@@ -43,6 +43,26 @@ Source IDs below are the exact upstream test names, under the pinned commit. Eve
 
 There are 31 ported cases: 11 driver cases (including four parameterized unsupported-value cases), 12 registry cases and 8 draft repository cases. All 31 cases are **passing on Node** at f8e8b01 in [CI run 36901609498](https://github.com/sveltery/cms/actions/runs/36901609498); the run passed all 48 tests (31 ports, 14 supplemental cases, 3 existing tests), checks and build. [The machine-readable port ledger](database-ports.json) maps 28 declarations/31 expanded cases to the same stable `commit:path:declaration-line` IDs used by [inventory PR #4](https://github.com/sveltery/cms/pull/4) at `71fb210e1867dbdf464defdd6a5490fdd84a26ae`. Matching candidate IDs were cross-checked; ports outside those candidates are derived from the same pinned source/declaration convention. The parent retains ownership of `parity/emdash/`; this implementation ledger does not edit its inventory-only statuses.
 
+## What is preserved versus adapted
+
+These are adapted executable product tests, not unmodified upstream test files. All 28 source declarations run against product modules backed by real SQLite; no mock repository or memory-only document store stands in for persistence. The 31 expanded Node cases comprise:
+
+- Eight driver declarations/eleven cases exercise the copied product NodeSqliteCompatDatabase through Kysely and direct statements. Literal expected values, parameter cases and PRAGMA settings are preserved. Vitest is replaced by Node's runner/assertions and null-prototype rows are normalized for deep comparison.
+- Twelve registry declarations exercise this product SchemaRegistry and its real metadata/physical tables. The selected inputs and expected collection/field values are preserved; imports, fixture migrations, direct SQL/Kysely calls and SchemaError-to-CmsError type assertions are adapted. The fixture initializes this slice's system tables, not all 89 upstream migrations.
+- Eight draft repository declarations exercise this product DraftRepository and real ec_post/ec_page tables. User data, duplicate/null-slug behavior, ID/type/data/status/timestamp assertions and lookup results are preserved. The fixture omits the unused Portable Text field, and create receives its author from a separate server-only argument instead of client input.
+
+The source registry reserved-field test retains its original created_at/datetime input and domain-error assertion. Because datetime is unsupported here, that particular input is rejected during field-type validation. It does not prove datetime support or the reserved-name reason. The original supplemental injection test also checks created_at using the supported text type, so the reserved identifier boundary is independently covered without presenting it as datetime parity.
+
+No complete upstream file is ported verbatim. The claim is limited to the selected assertions and the above adaptations; passing them does not establish untested neighboring behavior.
+
+## Ownership, revision and trash boundaries
+
+The service uses the upstream own/any permission names and persisted author_id, but it consumes effective permissions resolved by trusted server authentication rather than implementing the upstream numeric role-to-permission mapping. That role mapping and token scopes are deferred. Create always sets the author to the server principal; author reassignment has no API.
+
+Update/delete require the upstream-shaped version/updatedAt precondition at this slice's public service boundary. Some upstream low-level repository helpers accept unconditioned writes; that API is deliberately unavailable here. SQL enforces the pair, empty updates advance version, and partial data updates preserve other field columns. This slice handles only unpublished physical-column drafts, without live/draft revision pointers, revision history, publication or edit locks.
+
+Delete sets deleted_at/updated_at and advances version; normal reads/lists exclude the row. This matches the selected soft-delete safety direction, but upstream trash listing, restore and permanent deletion are unported and have no API here. Soft-deleted slugs remain subject to the physical slug/locale unique constraint. No lifecycle parity is claimed from the original supplemental deletion test.
+
 ## Unported and blocked contracts
 
 All other cases in the source files above remain **unported**, including destructive schema changes, collection update/order/sidebar/UI properties, other field types, field reordering, FTS, media usage capture, published/scheduled content, revisions, restoration and multilingual translation groups. Initial unpublished drafts use physical field columns, as in the upstream repository. The stored supports array retains upstream defaults/configuration; this slice does not yet implement a revision history or publish workflow.

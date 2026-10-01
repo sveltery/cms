@@ -79,7 +79,7 @@ test('SQL identifiers, unknown/system fields and client ownership claims are rej
     for (const slug of ['x"; DROP TABLE _cms_fields;--', 'Posts', '9posts', 'bad-name', 'a'.repeat(64), 'reorder']) {
       await assert.rejects(() => f.service.createCollection({ slug, label: 'Attack' }));
     }
-    for (const slug of ['status', 'author_id', 'locale', 'translation_group', 'version', 'x"']) {
+    for (const slug of ['id', 'created_at', 'status', 'author_id', 'locale', 'translation_group', 'version', 'x"']) {
       await assert.rejects(() => f.schema.createField('posts', { slug, label: 'Attack', type: 'text' }));
     }
     for (const data of [{ unknown: 'value' }, { author_id: 'admin' }, { status: 'published' }, { version: '999' }]) {
