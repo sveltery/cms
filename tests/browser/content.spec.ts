@@ -13,8 +13,20 @@ test('production preview hydrates with handled denial and disabled named control
   await expect(page.getByLabel('Content', { exact: true })).toBeDisabled();
   await expect(page.getByLabel('Content', { exact: true })).toHaveAttribute('name', 'body');
   await expect(page.getByRole('button', { name: 'Save draft' })).toBeDisabled();
-  // Hydration binds Kit's submit handler to the form; this is absent from SSR HTML.
-  await expect.poll(() => page.locator('form').evaluate((form) => typeof form.onsubmit)).toBe('function');
+  // A synthetic submit leaves disabled fields disabled. Hydration must prevent
+  // navigation and send the enhanced remote request, which rejects missing input.
+  const submission = page.waitForResponse((response) =>
+    response.url().includes('/_app/remote/') && response.request().method() === 'POST');
+  await expect.poll(() => page.locator('form').evaluate((form) => {
+    const event = new Event('submit', { bubbles: true, cancelable: true });
+    form.dispatchEvent(event);
+    return event.defaultPrevented;
+  })).toBe(true);
+  const response = await submission;
+  expect(response.status()).toBe(200);
+  const validation = await response.json();
+  expect(validation.type).toBe('result');
+  expect(parse(validation.data)._.issues.map((issue: { path: string[] }) => issue.path)).toEqual([['title'], ['body']]);
   expect(errors).toEqual([]);
 });
 
