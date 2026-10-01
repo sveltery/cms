@@ -189,4 +189,23 @@ describe('built remotes with persisted schema and server-derived sessions', () =
       assert.doesNotMatch(html, /name="(?:title|body)"/);
     }
   });
+  it('detail previews preserve persisted nulls instead of substituting schema defaults', async () => {
+    await harness.registry.createCollection({ slug: 'default_fields', label: 'Default fields' });
+    for (const type of ['string', 'text'] as const) {
+      await harness.registry.createField('default_fields', { slug: type, label: type, type, defaultValue: 'Schema default' });
+    }
+    const created = await harness.mutate('createContent', {
+      collection: 'default_fields', data: JSON.stringify({ string: null, text: null })
+    }, 'editor');
+    const item = await harness.query('getContent', { collection: 'default_fields', id: created._.result.id }, 'editor');
+    assert.deepEqual(item.data, { string: null, text: null });
+    const response = await harness.request(`/content/default_fields/${item.id}`, 'editor');
+    assert.equal(response.status, 200);
+    const html = await response.text();
+    assert.match(html, /<input\b[^>]*data-field="string"[^>]*value=""/);
+    assert.match(html, /<textarea\b[^>]*data-field="text"[^>]*><\/textarea>/);
+    assert.match(html, /<fieldset disabled(?:[\s=>])/);
+    await harness.restart();
+    assert.deepEqual((await harness.query('getContent', { collection: 'default_fields', id: item.id }, 'editor')).data, item.data);
+  });
 });
