@@ -18,7 +18,7 @@ import { storageContract } from './helpers/storage-contract.ts';
 
 async function localD1(path?: string, script = 'export default { fetch() { return new Response("fixture"); } }') {
   const runtime = new Miniflare({ modules: true, script, compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0,
-    d1Databases: { DB: 'cms-test-d1' }, d1Persist: path ?? false });
+    d1Databases: { DB: 'cms-test-d1' }, d1Persist: path ?? false, cf: false });
   const binding = await runtime.getD1Database('DB');
   return { runtime, binding, database: openD1(binding) };
 }
@@ -162,6 +162,25 @@ test('D1: unrelated envelopes do not turn into successful migration race recover
     } };
     await assert.rejects(() => migrateCms(failing), /unrelated_storage_failure/);
     assert.deepEqual(await versions(database), [1, 2], 'completed schema alone cannot swallow unexpected failures');
+  } finally { await database.close(); await runtime.dispose(); }
+});
+
+test('D1: raw parameter variants retain binding support/rejections without Node normalization', { timeout: 30000 }, async () => {
+  const { runtime, database } = await localD1();
+  try {
+    await sql`CREATE TABLE parameters (value)`.execute(database.db);
+    for (const value of [undefined, 7n, {}, new Date(0), new Number(1)]) {
+      await assert.rejects(() => database.atomicBatch([
+        CompiledQuery.raw('INSERT INTO parameters VALUES (?)', ['would commit']),
+        CompiledQuery.raw('INSERT INTO parameters VALUES (?)', [value])
+      ]), /D1_TYPE_ERROR/);
+      assert.deepEqual((await sql`SELECT * FROM parameters`.execute(database.db)).rows, []);
+    }
+    for (const [value, expected] of [[null, null], [true, 1], [false, 0], [7, 7], ['text', 'text'],
+      [new Uint8Array([1, 2]), [1, 2]], [new Uint8Array([1, 2]).buffer, [1, 2]], [[1, 2], [1, 2]]] as const) {
+      const result = await database.db.executeQuery<{ value: unknown }>(CompiledQuery.raw('SELECT ? AS value', [value]));
+      assert.deepEqual(result.rows, [{ value: expected }]);
+    }
   } finally { await database.close(); await runtime.dispose(); }
 });
 
