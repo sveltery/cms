@@ -1,6 +1,7 @@
 // Synthetic portable-core acceptance harness. No deployed route or storage adapter is defined here.
 import { encodeBase64urlNoPadding } from '@oslojs/encoding';
 import { resolveSessionUser, resolvePrincipal, hashSessionToken, revokeSession, type SessionSnapshot, type SessionStore } from '../../src/lib/server/auth/session.ts';
+import { createCmsHandle, servicePrincipal } from '../../src/lib/server/auth/composition.ts';
 import { Role } from '../../src/lib/server/auth/roles.ts';
 import { hasPermission, canActOnOwn } from '../../src/lib/server/auth/permissions.ts';
 import { requireSessionMutationOrigin, SESSION_COOKIE_OPTIONS } from '../../src/lib/server/auth/request.ts';
@@ -49,6 +50,22 @@ export default {
     try { requireSessionMutationOrigin(new Request('https://cms.example', { method: 'POST', headers: { Origin: 'https://evil.example', 'X-EmDash-Request': '1' } }), 'https://cms.example'); }
     catch { denied = true; }
     check('local: origin denial and cookie flags', denied && SESSION_COOKIE_OPTIONS.httpOnly && SESSION_COOKIE_OPTIONS.secure && SESSION_COOKIE_OPTIONS.sameSite === 'lax');
+    check('local: server permission bridge without schema escalation', servicePrincipal({ id: 'author', role: Role.AUTHOR })!.permissions.includes('content:edit_own') && !servicePrincipal({ id: 'author', role: Role.AUTHOR })!.permissions.includes('schema:read'));
+    let role = Role.AUTHOR as number;
+    let scopedReads = 0;
+    const adapter = {
+      $pickTables() { return this; },
+      selectFrom() { return this; }, innerJoin() { return this; }, select() { return this; }, where() { return this; },
+      async executeTakeFirst() { scopedReads++; return { id: 'author', role, disabled: 0, expires_at: Date.now() + 60_000 }; }
+    };
+    let lifetimeCalls = 0;
+    const handle = createCmsHandle(() => ({ database: { db: adapter } as any, keepAlive(task) { lifetimeCalls++; ctx.waitUntil(task); } }));
+    const firstEvent = { cookies: { get: () => token }, locals: {} } as any;
+    await handle({ event: firstEvent, resolve: async () => new Response() } as any);
+    role = Role.SUBSCRIBER;
+    const secondEvent = { cookies: { get: () => token }, locals: {} } as any;
+    await handle({ event: secondEvent, resolve: async () => new Response() } as any);
+    check('local: request-scoped composition and lifetime forwarding', scopedReads === 2 && lifetimeCalls === 2 && firstEvent.locals.cms.mutationsEnabled === false && firstEvent.locals.cms.principal.permissions.includes('content:create') && !secondEvent.locals.cms.principal.permissions.includes('content:create'));
     return Response.json({ passed });
   }
 };

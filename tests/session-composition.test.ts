@@ -47,7 +47,7 @@ test('request-scoped cookie resolution observes role changes, revocation and exp
     await db.updateTable('_cms_auth_sessions').set({ expires_at: Date.now() - 1 }).execute();
     assert.equal((await run(token)).principal, null);
     await db.updateTable('_cms_auth_sessions').set({ expires_at: Date.now() + 60_000 }).execute();
-    await revokeSession(token, createKyselySessionStore(db));
+    await revokeSession(token, createKyselySessionStore(db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>()));
     assert.equal((await run(token)).principal, null);
     assert.equal((await run()).principal, null);
     assert.equal((await run('admin')).principal, null);

@@ -25,7 +25,8 @@ test('local workerd: portable auth core runs without nodejs_compat or a persiste
       'local: upstream-compatible SHA-256 hash', 'local: trusted minimal principal and request waitUntil',
       'source: author owns content', 'source: author cannot edit others', 'local: null ownership denial',
       'local: exact expiry', 'local: current role demotion', 'local: disabled user denial', 'local: revocation',
-      'local: role-cookie injection denial', 'local: origin denial and cookie flags'
+      'local: role-cookie injection denial', 'local: origin denial and cookie flags',
+      'local: server permission bridge without schema escalation', 'local: request-scoped composition and lifetime forwarding'
     ]);
   } finally { await runtime.dispose(); }
 });

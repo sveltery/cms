@@ -39,3 +39,5 @@ See [the exact remote contracts, ownership and adapter handoff](content-remotes.
 PR slices: foundation and CI; auth/storage composition plus minimal draft CRUD; UI replacement as `sveltery/ui` becomes available; then content workflows and documentation app. Each slice gets independent GPT 6.1 Sol high/low reviews and real CI. Keep the Mac checkout on clean main while implementation continues in the saved cloud environment.
 
 See [the independent saved-environment review](cloud-review.md) for exact-commit verification, HTTP boundary test coverage, remaining runtime limits, and provider-neutral persistence/auth tradeoffs.
+
+The [safe session composition slice](session-composition.md) adds an unconfigured request handle factory, current-role permission bridge, atomic empty auth migrations and an explicit default-disabled HTTP mutation gate. Editor metadata uses a bounded manifest query for draft-capable roles rather than administrative schema permission. Production login/storage/hosting remain unconfigured; UI writes remain disabled.

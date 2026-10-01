@@ -2,11 +2,16 @@
   import { page } from '$app/state';
   import WorkspaceShell from '$lib/ui/WorkspaceShell.svelte';
   import DraftPreview from '$lib/ui/DraftPreview.svelte';
-  import { getCollection, listContent, createContent } from '$lib/content.remote';
-  const content = $derived(await Promise.all([
-    getCollection(page.params.collection ?? ''),
-    listContent({ collection: page.params.collection ?? '' })
-  ]).then(([definition, drafts]) => ({ definition, drafts }), () => null));
+  import { getEditorManifest, listContent, createContent } from '$lib/content.remote';
+  async function loadContent(collection: string) {
+    return Promise.all([getEditorManifest(), listContent({ collection })]).then(
+      ([manifest, drafts]) => {
+        const definition = manifest.collections[collection];
+        return definition ? { definition, drafts } : null;
+      }, () => null
+    );
+  }
+  const content = $derived(await loadContent(page.params.collection ?? ''));
 </script>
 
 <svelte:head><title>{content?.definition.label ?? 'Content'} · Sveltery CMS</title></svelte:head>
@@ -20,8 +25,8 @@
       {/each}
     </ul>
     <form {...createContent}>
-      <input type="hidden" name="collection" value={content.definition.slug} />
-      <DraftPreview fields={content.definition.fields} />
+      <input type="hidden" name="collection" value={page.params.collection} />
+      <DraftPreview fields={Object.entries(content.definition.fields).map(([slug, field]) => ({ ...field, slug, type: field.kind === 'richText' ? 'text' : 'string', validation: field.validation ?? null }))} />
     </form>
   {:else}
     <p role="status">Content is unavailable until authentication and storage are configured.</p>

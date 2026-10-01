@@ -2,6 +2,7 @@
 // MIT Copyright 2026 Cloudflare Inc.; see notices/emdash-MIT.txt and docs/session-composition-ports.json.
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { sql } from 'kysely';
 import { openSqlite } from '../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../src/lib/server/database/migrations.ts';
 import { SchemaRegistry, MAX_COLLECTIONS, MAX_FIELDS } from '../src/lib/server/database/registry.ts';
@@ -64,9 +65,11 @@ test('least-disclosure projection excludes storage/admin/default/content values 
   try {
     await registry.createCollection({ slug: 'posts', label: 'Posts', description: 'Internal schema description' });
     await registry.createField('posts', { slug: 'title', label: 'Title', type: 'string', unique: true, defaultValue: 'Internal default' });
+    await sql`UPDATE _cms_fields SET validation = ${JSON.stringify({ minLength: 1, internalNote: 'Internal validation' })} WHERE slug = 'title'`.execute(database.db);
     const collection = (await editorManifest(database, author)).collections.posts;
     assert.deepEqual(Object.keys(collection).sort(), ['fields', 'label', 'labelSingular', 'supports']);
-    assert.deepEqual(Object.keys(collection.fields.title).sort(), ['id', 'kind', 'label', 'required']);
+    assert.deepEqual(Object.keys(collection.fields.title).sort(), ['id', 'kind', 'label', 'required', 'validation']);
+    assert.deepEqual(collection.fields.title.validation, { minLength: 1 });
     assert.doesNotMatch(JSON.stringify(collection), /Internal|columnType|collectionId|createdAt|version|unique/);
     for (let i = 1; i < MAX_COLLECTIONS; i++) await registry.createCollection({ slug: `coll_${i}`, label: `Coll ${i}` });
     for (let i = 1; i < MAX_FIELDS; i++) await registry.createField('posts', { slug: `field_${i}`, label: `Field ${i}`, type: 'string' });

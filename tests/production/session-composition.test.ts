@@ -83,7 +83,7 @@ test('actual HTTP role changes, ownership, revocation and expiry apply on the ne
     denial(await claims.json(), 401, 'UNAUTHENTICATED');
     const unchanged = await h.query('getContent', { collection: 'notes', id: item.id }, 'admin');
     assert.deepEqual(unchanged, updated);
-    assert.equal((await sql`SELECT COUNT(*) AS count FROM ec_notes`.execute(h.database.db)).rows[0].count, 1);
+    assert.equal((await sql<{ count: number }>`SELECT COUNT(*) AS count FROM ec_notes`.execute(h.database.db)).rows[0].count, 1);
     for (const claim of ['principal', 'permissions', 'authorId', 'role', 'mutationsEnabled']) {
       const forged = await h.remote('createContent', 'admin', { ...input, [claim]: '50' });
       assert.ok(parse(forged.data)._.issues.length); assert.equal(parse(forged.data)._.result, undefined);

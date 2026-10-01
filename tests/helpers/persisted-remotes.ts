@@ -85,7 +85,7 @@ export async function persistedRemotes(config?: { persistedSessions: true; mutat
     async setRole(session: string, role: number) { await database.db.updateTable('_cms_auth_users').set({ role }).where('id', '=', `user_${session}`).execute(); },
     async disable(session: string) { await database.db.updateTable('_cms_auth_users').set({ disabled: 1 }).where('id', '=', `user_${session}`).execute(); },
     async expire(session: string) { await database.db.updateTable('_cms_auth_sessions').set({ expires_at: Date.now() - 1 }).where('hash', '=', (await hashSessionToken(tokens[session]))!).execute(); },
-    async revoke(session: string) { await revokeSession(tokens[session], createKyselySessionStore(database.db)); },
+    async revoke(session: string) { await revokeSession(tokens[session], createKyselySessionStore(database.db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>())); },
     get database() { return database; },
     get repository() { return new DraftRepository(database); },
     async query(name: string, argument: unknown, session: string | null = 'author') {
