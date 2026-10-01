@@ -101,3 +101,26 @@ test('two independent clean and upgrade callers reach a fully migrated database'
     } finally { await b.close(); await a.close(); await rm(dir, { recursive: true, force: true }); }
   }
 });
+
+test('startup accepts a complete concurrent upgrade between its preflight reads', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'cms-session-snapshot-')); const path = join(dir, 'cms.sqlite');
+  const a = openSqlite(path); const b = openSqlite(path);
+  try {
+    await v1(a);
+    const queries = new Set<unknown>(); let committed = false;
+    const observing = { ...b, db: b.db.withPlugin({
+      transformQuery(args) {
+        if (JSON.stringify(args.node).includes('sqlite_master')) queries.add(args.queryId);
+        return args.node;
+      },
+      async transformResult(args) {
+        if (!committed && queries.has(args.queryId)) { committed = true; await migrateCms(a); }
+        return args.result;
+      }
+    }) };
+    await migrateCms(observing);
+    assert.equal(committed, true, 'independent upgrade occurs after an actual preflight result');
+    assert.deepEqual((await b.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row => row.version), [1, 2]);
+    await migrateCms(b);
+  } finally { await b.close(); await a.close(); await rm(dir, { recursive: true, force: true }); }
+});
