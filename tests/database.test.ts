@@ -264,3 +264,43 @@ test('schema defaults reject NUL before DDL while escaped quotes remain inert', 
     assert.equal((await f.schema.listCollections()).length, 1);
   } finally { await f.database.close(); }
 });
+
+test('cursor OR branches keep locale and trash filters when titles and slugs are null', async () => {
+  const f = await fixture();
+  try {
+    const kept = [
+      await f.service.createDraft({ type: 'posts', data: {} }),
+      await f.service.createDraft({ type: 'posts', data: { title: null } }),
+      await f.service.createDraft({ type: 'posts', data: { title: 'Older' } })
+    ];
+    const hidden = [
+      await f.service.createDraft({ type: 'posts', locale: 'fr', data: {} }),
+      await f.service.createDraft({ type: 'posts', locale: 'fr', data: {} }),
+      await f.service.createDraft({ type: 'posts', data: {} }),
+      await f.service.createDraft({ type: 'posts', data: {} })
+    ];
+    await f.service.deleteDraft({ type: 'posts', id: hidden[2].id, expected: expected(hidden[2]) });
+    await f.service.deleteDraft({ type: 'posts', id: hidden[3].id, expected: expected(hidden[3]) });
+    const tied = '2026-02-01T00:00:00.000Z';
+    const older = '2026-01-01T00:00:00.000Z';
+    for (const row of [kept[0], kept[1], hidden[0], hidden[2]]) {
+      await sql`UPDATE ec_posts SET created_at = ${tied} WHERE id = ${row.id}`.execute(f.database.db);
+    }
+    for (const row of [kept[2], hidden[1], hidden[3]]) {
+      await sql`UPDATE ec_posts SET created_at = ${older} WHERE id = ${row.id}`.execute(f.database.db);
+    }
+    const seen: string[] = [];
+    let cursor: string | undefined;
+    for (let pageNumber = 0; pageNumber < 3; pageNumber++) {
+      const page = await f.service.listDrafts({ type: 'posts', limit: 1, ...(cursor ? { cursor } : {}) });
+      assert.equal(page.items.length, 1);
+      const row = page.items[0];
+      assert.equal(row.locale, 'en'); assert.equal(row.status, 'draft'); assert.equal(row.slug, null);
+      assert.equal(row.title, row.id === kept[2].id ? 'Older' : null);
+      seen.push(row.id); cursor = page.nextCursor;
+      assert.equal(cursor !== undefined, pageNumber < 2);
+    }
+    assert.deepEqual(seen, [kept[0].id, kept[1].id].sort().reverse().concat(kept[2].id));
+    assert.equal(new Set(seen).size, 3);
+  } finally { await f.database.close(); }
+});
