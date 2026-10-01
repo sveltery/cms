@@ -1,4 +1,5 @@
 import * as v from 'valibot';
+import { editorManifest } from '../content/manifest.ts';
 import { CmsError, type CmsDatabase } from './contract.ts';
 import { DraftRepository } from './entries.ts';
 import { SchemaRegistry } from './registry.ts';
@@ -49,6 +50,7 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
     return actor.id;
   }
   return {
+    async getEditorManifest() { return editorManifest(database, identity); },
     async listCollections() { requirePermission('schema:read'); return registry.listCollections(); },
     async getCollection(input: unknown) {
       requirePermission('schema:read');

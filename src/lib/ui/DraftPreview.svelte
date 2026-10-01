@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Field } from '$lib/server/database/contract';
-  let { fields = [], values = {} }: { fields?: Field[]; values?: Record<string, string | null> } = $props();
+  let { fields = [], values = {} }: { fields?: Pick<Field, 'id' | 'slug' | 'label' | 'type' | 'required' | 'validation' | 'defaultValue'>[]; values?: Record<string, string | null> } = $props();
 </script>
 
 <input type="hidden" name="data" value={JSON.stringify(values)} disabled />

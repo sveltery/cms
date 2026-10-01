@@ -11,7 +11,7 @@ test('production build registers content remotes and enforces HTTP boundaries', 
     const { default: exports } = await (load as () => Promise<{ default: Record<string, unknown> }>)();
     for (const name of Object.keys(exports)) ids.set(name, `${hash}/${name}`);
   }
-  assert.deepEqual([...ids.keys()].sort(), ['createContent', 'deleteContent', 'getCollection', 'getContent', 'listCollections', 'listContent', 'updateContent']);
+  assert.deepEqual([...ids.keys()].sort(), ['createContent', 'deleteContent', 'getCollection', 'getContent', 'getEditorManifest', 'listCollections', 'listContent', 'updateContent']);
   const server = await preview({ preview: { host: '127.0.0.1', port: 0 }, clearScreen: false });
   try {
     assert.ok(server.resolvedUrls);

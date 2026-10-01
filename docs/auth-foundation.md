@@ -1,3 +1,5 @@
+This document records the original bounded auth foundation. [Session composition](session-composition.md) now registers version-two empty auth migrations, derives request principals and gates HTTP mutations; login and production hosting remain deferred.
+
 # Bounded server-session foundation
 
 This slice resolves an existing server session into a current role-derived principal, denies expired/revoked sessions, and provides the pinned EmDash permission and ownership helpers. It does not implement sign-in or expose an authenticated endpoint. Production remains fail closed: hooks, locals, content remotes, shared database contracts and migration registration are unchanged. The parent owns composition with the collection-aware CRUD slice and must verify their joint tests before enabling writes.

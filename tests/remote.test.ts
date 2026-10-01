@@ -12,7 +12,7 @@ test('development HTTP remote boundaries fail closed', async (t) => {
     const source = await (await fetch(new URL('src/lib/content.remote.ts', base))).text();
     const ids = new Map([...source.matchAll(/export const (\w+) = __remote\.(?:query|form)\('([^']+)'\)/g)]
       .map((match) => [match[1], match[2]]));
-    assert.equal(ids.size, 7);
+    assert.equal(ids.size, 8);
     await remoteBoundaries(t, base, ids, false);
   } finally {
     await server.close();
