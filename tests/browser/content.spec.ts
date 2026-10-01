@@ -50,6 +50,6 @@ test('browser-origin calls use the registered production form and validate its t
   expect(results.invalid.status).toBe(200);
   expect(results.invalid.data.type).toBe('result');
   expect(parse(results.invalid.data.data)._.issues).toEqual([
-    { path: ['title'], message: 'Invalid length: Expected >=1 but received 0' }
+    { path: ['title'], name: 'title', server: true, message: 'Invalid length: Expected >=1 but received 0' }
   ]);
 });
