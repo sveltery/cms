@@ -22,3 +22,5 @@ The bootstrap installs the frozen lockfile, checks types and Svelte, tests servi
 See [the remote/session handoff and evidence](docs/content-remotes.md), [the database contract](docs/database.md) and [the pinned EmDash test inventory](docs/database-parity.md) for the implemented persistence slice and its limits.
 
 Licensed under MIT. The SQLite compatibility wrapper and adapted database tests derive from MIT-licensed EmDash 1.1.0, unchanged from the initial 1.0.1 port; [the upstream notice is preserved](notices/emdash-MIT.txt). The remaining database slice is independently implemented.
+
+See [safe session composition and editor metadata](docs/session-composition.md) for version-two migrations, the request handle factory, the default-disabled mutation gate and current readiness limits.

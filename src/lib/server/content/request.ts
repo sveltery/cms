@@ -4,9 +4,10 @@ import { CmsError } from '../database/contract';
 import { cmsService } from '../database/service';
 
 /** The adapter/session owner supplies trusted request locals. No database is opened here. */
-export function requestContent() {
+export function requestContent(operation: 'read' | 'mutation' = 'read') {
   const context = getRequestEvent().locals.cms;
   if (!context?.principal) throw new CmsError('UNAUTHENTICATED');
+  if (operation === 'mutation' && context.mutationsEnabled !== true) error(503, { message: 'Content mutations are disabled', code: 'MUTATIONS_DISABLED' });
   if (!context.database) error(503, { message: 'Content storage is not configured', code: 'NOT_CONFIGURED' });
   return cmsService(context.database, context.principal);
 }

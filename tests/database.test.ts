@@ -360,7 +360,7 @@ test('version-one migration markers reject missing system tables without repair 
       const before = (await sql<{ name: string }>`SELECT name FROM sqlite_master ORDER BY name`.execute(database.db)).rows;
       await assert.rejects(() => migrateCms(database), { code: 'MIGRATION_REQUIRED' });
       assert.deepEqual((await sql<{ name: string }>`SELECT name FROM sqlite_master ORDER BY name`.execute(database.db)).rows, before);
-      assert.equal((await sql<{ version: number }>`SELECT version FROM _cms_migrations`.execute(database.db)).rows[0].version, 1);
+      assert.equal((await sql<{ version: number }>`SELECT version FROM _cms_migrations ORDER BY version`.execute(database.db)).rows[0].version, 1);
     } finally { await database.close(); }
   }
 });

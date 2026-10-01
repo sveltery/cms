@@ -1,9 +1,9 @@
 <script lang="ts">
   import WorkspaceShell from '$lib/ui/WorkspaceShell.svelte';
   import DraftPreview from '$lib/ui/DraftPreview.svelte';
-  import { listCollections, createContent } from '$lib/content.remote';
-  const collections = await listCollections().then(
-    (records) => ({ records, unavailable: false }),
+  import { getEditorManifest, createContent } from '$lib/content.remote';
+  const collections = await getEditorManifest().then(
+    (manifest) => ({ records: Object.entries(manifest.collections), unavailable: false }),
     () => ({ records: [], unavailable: true })
   );
 </script>
@@ -15,8 +15,8 @@
     <p role="status">Content is unavailable until authentication and storage are configured.</p>
   {:else}
     <ul aria-label="Collections">
-      {#each collections.records as collection (collection.id)}
-        <li><a href={`/content/${collection.slug}`}>{collection.label}</a></li>
+      {#each collections.records as [slug, collection] (slug)}
+        <li><a href={`/content/${slug}`}>{collection.label}</a></li>
       {/each}
     </ul>
   {/if}

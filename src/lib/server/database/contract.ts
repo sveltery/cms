@@ -1,3 +1,4 @@
+import type { AuthTables } from '../auth/schema.ts';
 import type { CompiledQuery, Kysely, QueryResult } from 'kysely';
 
 export interface CollectionRow {
@@ -11,7 +12,7 @@ export interface FieldRow {
   unique: number; default_value: string | null; validation: string | null;
   sort_order: number; created_at: string;
 }
-export interface CmsTables {
+export interface CmsTables extends AuthTables {
   _cms_collections: CollectionRow;
   _cms_fields: FieldRow;
   _cms_migrations: { version: number };

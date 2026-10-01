@@ -53,6 +53,7 @@ export async function remoteBoundaries(t: TestContext, base: string, ids: Map<st
     }
   });
   await t.test('valid anonymous schema/content reads return 401 envelopes', async () => {
+    denied(await call('getEditorManifest'));
     denied(await call('listCollections'));
     denied(await call('getCollection', undefined, 'post'));
     denied(await call('listContent', undefined, { collection: 'post' }));

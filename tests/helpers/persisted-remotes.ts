@@ -8,6 +8,11 @@ import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
 import { DraftRepository } from '../../src/lib/server/database/entries.ts';
+import { createCmsHandle } from '../../src/lib/server/auth/composition.ts';
+import { hashSessionToken, revokeSession } from '../../src/lib/server/auth/session.ts';
+import { createKyselySessionStore } from '../../src/lib/server/auth/store.ts';
+import { encodeBase64urlNoPadding } from '@oslojs/encoding';
+import { Role } from '../../src/lib/server/auth/roles.ts';
 import type { ServerPrincipal } from '../../src/lib/server/database/service.ts';
 
 export const sessions: Record<string, ServerPrincipal> = {
@@ -19,7 +24,7 @@ export const sessions: Record<string, ServerPrincipal> = {
 };
 
 /** Isolated built-server test hook. This file is never imported by app source. */
-export async function persistedRemotes() {
+export async function persistedRemotes(config?: { persistedSessions: true; mutationsEnabled?: boolean }) {
   const directory = await mkdtemp(join(tmpdir(), 'cms-remotes-'));
   const path = join(directory, 'content.sqlite');
   let database = openSqlite(path);
@@ -32,6 +37,14 @@ export async function persistedRemotes() {
   await registry.createCollection({ slug: 'notes', label: 'Notes' });
   await registry.createField('notes', { slug: 'headline', label: 'Headline', type: 'string', required: true, validation: { minLength: 1, maxLength: 100 } });
   await registry.createField('notes', { slug: 'detail', label: 'Detail', type: 'text' });
+  const tokens: Record<string, string> = {};
+  if (config?.persistedSessions) {
+    for (const [name, role] of Object.entries({ author: Role.AUTHOR, other: Role.AUTHOR, editor: Role.EDITOR, admin: Role.ADMIN, contributor: Role.CONTRIBUTOR, subscriber: Role.SUBSCRIBER })) {
+      tokens[name] = encodeBase64urlNoPadding(crypto.getRandomValues(new Uint8Array(32)));
+      await database.db.insertInto('_cms_auth_users').values({ id: `user_${name}`, role, disabled: 0 }).execute();
+      await database.db.insertInto('_cms_auth_sessions').values({ hash: (await hashSessionToken(tokens[name]))!, user_id: `user_${name}`, expires_at: Date.now() + 60_000 }).execute();
+    }
+  }
   const built = (file: string) => import(new URL(`../../.svelte-kit/output/server/${file}`, import.meta.url).href);
   const { manifest } = await built('manifest.js');
   const { Server } = await built('index.js');
@@ -44,17 +57,17 @@ export async function persistedRemotes() {
     for (const name of Object.keys(exports)) ids.set(name, `${hash}/${name}`);
   }
   const originalHandle = options.hooks.handle;
-  const handle: Handle = ({ event, resolve }) => {
+  const handle: Handle = config?.persistedSessions ? createCmsHandle(() => ({ database, mutationsEnabled: config.mutationsEnabled })) : ({ event, resolve }) => {
     const sid = event.cookies.get('cms-test-session');
     // Opaque cookie -> trusted server session. No role/permission/header claims.
     const principal = sid ? sessions[sid] ?? null : null;
-    Object.assign(event.locals, { cms: { database, principal } });
+    Object.assign(event.locals, { cms: { database, principal, mutationsEnabled: true } });
     return resolve(event);
   };
   options.hooks.handle = handle;
   async function request(url: string, session: string | null, init: RequestInit = {}) {
     const headers = new Headers(init.headers);
-    if (session) headers.set('cookie', `cms-test-session=${session}`);
+    if (session) headers.set('cookie', config?.persistedSessions ? `cms-session=${tokens[session] ?? session}` : `cms-test-session=${session}`);
     return server.respond(new Request(`http://cms.test${url}`, { ...init, headers }), { getClientAddress: () => '127.0.0.1' });
   }
   async function remote(name: string, session: string | null, input?: Record<string, string>, argument?: unknown) {
@@ -69,6 +82,10 @@ export async function persistedRemotes() {
   }
   return {
     ids, registry, request, remote,
+    async setRole(session: string, role: number) { await database.db.updateTable('_cms_auth_users').set({ role }).where('id', '=', `user_${session}`).execute(); },
+    async disable(session: string) { await database.db.updateTable('_cms_auth_users').set({ disabled: 1 }).where('id', '=', `user_${session}`).execute(); },
+    async expire(session: string) { await database.db.updateTable('_cms_auth_sessions').set({ expires_at: Date.now() - 1 }).where('hash', '=', (await hashSessionToken(tokens[session]))!).execute(); },
+    async revoke(session: string) { await revokeSession(tokens[session], createKyselySessionStore(database.db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>())); },
     get database() { return database; },
     get repository() { return new DraftRepository(database); },
     async query(name: string, argument: unknown, session: string | null = 'author') {
