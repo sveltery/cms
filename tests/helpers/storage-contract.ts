@@ -28,19 +28,19 @@ export async function storageContract(database: CmsDatabase) {
   const definition = await registry.getCollectionWithFields('notes');
   check(definition?.fields.length === 3 && definition.version === 4, 'persisted scalar schema');
   const draft = await entries.create({ type: 'notes', data: { body: 'one\u0000two', constructor: 'own key' } }, 'author');
-  check(draft.data.title === "O'Brien" && draft.data.body === 'one\u0000two' && draft.data.constructor === 'own key', 'literal default and bound scalar');
+  check(draft.data.title === "O'Brien" && draft.data.body === 'one\u0000two' && draft.data['constructor'] === 'own key', 'literal default and bound scalar');
   await rejects(() => entries.create({ type: 'notes', data: {} }, 'author'), 'CONFLICT');
   await rejects(() => entries.create({ type: 'notes', data: { title: null } }, 'author'), 'VALIDATION_ERROR');
   const outcomes = await Promise.allSettled([
-    entries.update({ type: 'notes', id: draft.id, expected: draft, data: { title: 'Winner A' } }),
-    entries.update({ type: 'notes', id: draft.id, expected: draft, data: { title: 'Winner B' } })
+    entries.update({ type: 'notes', id: draft.id, expected: { version: draft.version, updatedAt: draft.updatedAt }, data: { title: 'Winner A' } }),
+    entries.update({ type: 'notes', id: draft.id, expected: { version: draft.version, updatedAt: draft.updatedAt }, data: { title: 'Winner B' } })
   ]);
   check(outcomes.filter(outcome => outcome.status === 'fulfilled').length === 1, 'one CAS winner');
   const lost = outcomes.find(outcome => outcome.status === 'rejected');
   check(lost?.status === 'rejected' && lost.reason.code === 'CONFLICT', 'one CAS conflict');
   const changed = await entries.findById('notes', draft.id);
   check(changed && changed.version === 2 && changed.data.body === draft.data.body, 'partial update preserves body');
-  await entries.delete({ type: 'notes', id: draft.id, expected: changed });
+  await entries.delete({ type: 'notes', id: draft.id, expected: { version: changed.version, updatedAt: changed.updatedAt } });
   check(await entries.findById('notes', draft.id) === null && (await entries.list('notes')).items.length === 0, 'soft deleted read/list');
   const row = (await sql<{ deleted_at: string; version: number }>`SELECT deleted_at, version FROM ec_notes WHERE id = ${draft.id}`.execute(db)).rows[0];
   check(row.deleted_at && row.version === 3, 'soft deleted row retained');
@@ -57,7 +57,7 @@ export async function storageContract(database: CmsDatabase) {
   const token = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; const hash = await hashSessionToken(token); check(hash, 'canonical token');
   await db.insertInto('_cms_auth_users').values({ id: 'author', role: Role.AUTHOR, disabled: 0 }).execute();
   await db.insertInto('_cms_auth_sessions').values({ hash, user_id: 'author', expires_at: 1001 }).execute();
-  const store = createKyselySessionStore(db);
+  const store = createKyselySessionStore(db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>());
   check((await resolvePrincipal(token, store, { now: () => 1000 }))?.role === Role.AUTHOR, 'persisted session read');
   check(await resolvePrincipal(token, store, { now: () => 1001 }) === null, 'exact expiry');
   await db.updateTable('_cms_auth_users').set({ role: Role.SUBSCRIBER }).where('id', '=', 'author').execute();

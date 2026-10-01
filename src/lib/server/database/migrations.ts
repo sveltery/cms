@@ -1,4 +1,5 @@
 import { sql, type CompiledQuery } from 'kysely';
+import { sqliteErrorMessage } from './errors.ts';
 import { CmsError, type CmsDatabase } from './contract.ts';
 import { authSchemaStatements } from '../auth/schema.ts';
 
@@ -92,7 +93,8 @@ export async function migrateCms(database: CmsDatabase): Promise<void> {
   try { await database.atomicBatch(statements); }
   catch (cause) {
     // Recover only a known migration race after proving the complete committed schema.
-    const race = cause instanceof Error && (state === 0 ? cause.message === 'table _cms_migrations already exists' : cause.message === 'CHECK constraint failed: pass = 1');
+    const message = sqliteErrorMessage(cause);
+    const race = state === 0 ? message === 'table _cms_migrations already exists' : message === 'CHECK constraint failed: pass = 1';
     if (race && await migrationState(database) === CMS_MIGRATION_VERSION) return;
     throw cause;
   }

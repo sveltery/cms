@@ -15,6 +15,7 @@ import { DraftRepository } from '../src/lib/server/database/entries.ts';
 import { createKyselySessionStore } from '../src/lib/server/auth/store.ts';
 import { hashSessionToken, resolvePrincipal, revokeSession } from '../src/lib/server/auth/session.ts';
 import { storageContract } from './helpers/storage-contract.ts';
+import { sqliteErrorMessage } from '../src/lib/server/database/errors.ts';
 
 async function localD1(path?: string, script = 'export default { fetch() { return new Response("fixture"); } }') {
   const runtime = new Miniflare({ modules: true, script, compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0,
@@ -26,7 +27,9 @@ async function versionOne(database: CmsDatabase) {
   const statements = JSON.parse(await readFile(new URL('./fixtures/cms-v1.json', import.meta.url), 'utf8')) as string[];
   await database.atomicBatch(statements.map(statement => CompiledQuery.raw(statement)));
 }
-const objects = async (database: CmsDatabase) => (await sql<{ name: string; sql: string }>`SELECT name, sql FROM sqlite_master ORDER BY name`.execute(database.db)).rows.map(row => ({ ...row }));
+// Local D1 may initialize its own metadata on the first write, outside the user batch.
+// Compare every application object; _cf_METADATA is platform-owned, never CMS DDL.
+const objects = async (database: CmsDatabase) => (await sql<{ name: string; sql: string }>`SELECT name, sql FROM sqlite_master WHERE name != '_cf_METADATA' ORDER BY name`.execute(database.db)).rows.map(row => ({ ...row }));
 const versions = async (database: CmsDatabase) => (await database.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row => row.version);
 
 for (const target of ['Node', 'D1'] as const) {
@@ -132,6 +135,17 @@ test('D1: concurrent same-slug creators map the real UNIQUE envelope to COLLECTI
     assert.deepEqual(await database.db.selectFrom('_cms_guards').selectAll().execute(), []);
   } finally { await other.close(); await database.close(); await runtime.dispose(); }
 });
+test('D1: startup accepts a complete upgrade between actual preflight reads', { timeout: 30000 }, async () => {
+  const { runtime, binding, database: a } = await localD1(); const b = openD1(binding);
+  try {
+    await versionOne(a); const queries = new Set<unknown>(); let committed = false;
+    const observing = { ...b, db: b.db.withPlugin({
+      transformQuery(args) { if (JSON.stringify(args.node).includes('sqlite_master')) queries.add(args.queryId); return args.node; },
+      async transformResult(args) { if (!committed && queries.has(args.queryId)) { committed = true; await migrateCms(a); } return args.result; }
+    }) };
+    await migrateCms(observing); assert.equal(committed, true); assert.deepEqual(await versions(b), [1, 2]);
+  } finally { await b.close(); await a.close(); await runtime.dispose(); }
+});
 test('D1: one actual batch forwards parameters/order, RETURNING rows, zero/positive changes and insert IDs', { timeout: 30000 }, async () => {
   const { runtime, binding, database } = await localD1(); const calls: string[][] = [];
   const tracked: D1Binding = { prepare: query => binding.prepare(query), async batch(statements) { calls.push(statements.map(() => 'statement')); return binding.batch(statements); } };
@@ -162,6 +176,25 @@ test('D1: unrelated envelopes do not turn into successful migration race recover
     } };
     await assert.rejects(() => migrateCms(failing), /unrelated_storage_failure/);
     assert.deepEqual(await versions(database), [1, 2], 'completed schema alone cannot swallow unexpected failures');
+  } finally { await database.close(); await runtime.dispose(); }
+});
+test('local: envelope classifier keeps Node messages and ignores lookalike/unknown D1 formats', () => {
+  const node = 'table _cms_migrations already exists';
+  assert.equal(sqliteErrorMessage(new Error(node)), node);
+  assert.equal(sqliteErrorMessage(new Error(`D1_ERROR: ${node} at offset 13: SQLITE_ERROR`)), node);
+  assert.equal(sqliteErrorMessage(new Error('D1_ERROR: CHECK constraint failed: pass = 1: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_CHECK)')), 'CHECK constraint failed: pass = 1');
+  for (const message of [`other D1_ERROR: ${node}: SQLITE_ERROR`, `D1_ERROR: ${node}: UNRECOGNIZED`, `D1_ERROR: ${node}: SQLITE_ERROR trailing`]) {
+    assert.equal(sqliteErrorMessage(new Error(message)), message);
+  }
+  assert.equal(sqliteErrorMessage(node), undefined);
+});
+test('D1: callback transactions, streaming and general introspection reject explicitly', { timeout: 30000 }, async () => {
+  const { runtime, database } = await localD1(); let called = false;
+  try {
+    await assert.rejects(() => database.db.transaction().execute(async () => { called = true; }), /callback transactions are unsupported/);
+    assert.equal(called, false);
+    assert.throws(() => database.db.introspection, /outside the bounded CMS adapter/);
+    await assert.rejects(async () => { for await (const _row of database.db.selectFrom('_cms_migrations').selectAll().stream()) { called = true; } }, /streaming is unsupported/);
   } finally { await database.close(); await runtime.dispose(); }
 });
 
@@ -208,11 +241,11 @@ test('D1 and Node: v1 content and hashed sessions persist across close/reopen an
       await database.close(); await runtime?.dispose(); database = await open(); await migrateCms(database);
       assert.deepEqual(await new DraftRepository(database).findById('preserved', entry.id), entry);
       assert.deepEqual(await new SchemaRegistry(database).getCollectionWithFields('preserved'), definition);
-      assert.deepEqual(await resolvePrincipal(token, createKyselySessionStore(database.db), { now: () => 1000 }), { id: 'author', role: 20 });
+      assert.deepEqual(await resolvePrincipal(token, createKyselySessionStore(database.db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>()), { now: () => 1000 }), { id: 'author', role: 20 });
       assert.equal((await database.db.selectFrom('_cms_auth_sessions').selectAll().execute())[0].hash, hash);
-      await revokeSession(token, createKyselySessionStore(database.db));
+      await revokeSession(token, createKyselySessionStore(database.db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>()));
       await database.close(); await runtime?.dispose(); database = await open();
-      assert.equal(await resolvePrincipal(token, createKyselySessionStore(database.db), { now: () => 1000 }), null);
+      assert.equal(await resolvePrincipal(token, createKyselySessionStore(database.db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>()), { now: () => 1000 }), null);
       assert.deepEqual(await database.db.selectFrom('_cms_auth_sessions').selectAll().execute(), []);
     } finally { await database.close(); await runtime?.dispose(); await rm(dir, { recursive: true, force: true }); }
   }
