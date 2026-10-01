@@ -2,7 +2,7 @@
 // MIT; see notices/emdash-LICENSE and docs/database-parity.md for source mapping.
 import { afterEach, beforeEach, describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { Kysely, SqliteDialect, sql } from 'kysely';
+import { sql } from 'kysely';
 import { openSqlite } from '../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';

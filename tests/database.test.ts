@@ -1,0 +1,206 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { sql } from 'kysely';
+import { openSqlite } from '../src/lib/server/database/sqlite.ts';
+import { migrateCms } from '../src/lib/server/database/migrations.ts';
+import { SchemaRegistry, MAX_FIELDS } from '../src/lib/server/database/registry.ts';
+import { DraftRepository } from '../src/lib/server/database/entries.ts';
+import { cmsService, type ServerPrincipal } from '../src/lib/server/database/service.ts';
+import { CmsError } from '../src/lib/server/database/contract.ts';
+
+const admin: ServerPrincipal = { id: 'admin', permissions: ['schema:read', 'schema:manage', 'content:read', 'content:read_drafts', 'content:create', 'content:edit_any', 'content:delete_any'] };
+const conflict = (cause: unknown) => cause instanceof CmsError && cause.code === 'CONFLICT';
+const invalid = (cause: unknown) => cause instanceof CmsError && cause.code === 'VALIDATION_ERROR';
+const expected = (entry: { version: number; updatedAt: string }) => ({ version: entry.version, updatedAt: entry.updatedAt });
+async function fixture(path = ':memory:') {
+  const database = openSqlite(path); await migrateCms(database);
+  const schema = new SchemaRegistry(database);
+  await schema.createCollection({ slug: 'posts', label: 'Posts' });
+  await schema.createField('posts', { slug: 'title', label: 'Title', type: 'string' });
+  await schema.createField('posts', { slug: 'body', label: 'Body', type: 'text' });
+  return { database, schema, entries: new DraftRepository(database), service: cmsService(database, admin) };
+}
+
+test('system migration, additive field and drafts survive close/reopen', async () => {
+  const directory = mkdtempSync(join(tmpdir(), 'cms-restart-')); const path = join(directory, 'data.sqlite');
+  try {
+    const first = await fixture(path);
+    const created = await first.service.createDraft({ type: 'posts', data: { title: 'Persisted', body: 'Original' } });
+    const schemaVersion = (await first.schema.getCollection('posts'))!.version;
+    await first.service.addField({ collection: 'posts', expectedSchemaVersion: schemaVersion, input: { slug: 'subtitle', label: 'Subtitle', type: 'string', defaultValue: "it's retained" } });
+    await first.database.close();
+    const database = openSqlite(path);
+    try {
+      await migrateCms(database); await migrateCms(database);
+      const service = cmsService(database, admin);
+      const reread = await service.getDraft({ type: 'posts', id: created.id });
+      assert.equal(reread.data.title, 'Persisted');
+      assert.equal(reread.data.body, 'Original');
+      assert.equal(reread.data.subtitle, "it's retained");
+      assert.equal((await service.getCollection('posts')).fields.length, 3);
+      assert.equal((await service.getCollection('posts')).version, schemaVersion + 1);
+    } finally { await database.close(); }
+  } finally { rmSync(directory, { recursive: true, force: true }); }
+});
+
+test('required additive field without a backfill/default rolls back metadata and physical column', async () => {
+  const f = await fixture();
+  try {
+    await f.service.createDraft({ type: 'posts', data: { title: 'Existing' } });
+    const before = (await f.schema.getCollection('posts'))!.version;
+    await assert.rejects(() => f.schema.createField('posts', { slug: 'required_later', label: 'Required', type: 'text', required: true }));
+    assert.equal(await f.schema.getField('posts', 'required_later'), null);
+    assert.equal((await f.schema.getCollection('posts'))!.version, before);
+    const columns = (await sql<{ name: string }>`PRAGMA table_info(ec_posts)`.execute(f.database.db)).rows.map(row => row.name);
+    assert.equal(columns.includes('required_later'), false);
+    assert.equal((await sql`SELECT * FROM _cms_guards`.execute(f.database.db)).rows.length, 0);
+  } finally { await f.database.close(); }
+});
+
+test('batch failures roll back both DDL and DML', async () => {
+  const database = openSqlite(':memory:');
+  try {
+    await migrateCms(database);
+    await assert.rejects(() => database.atomicBatch([
+      sql`CREATE TABLE rollback_probe (id TEXT PRIMARY KEY)`.compile(database.db),
+      sql`INSERT INTO rollback_probe VALUES ('one')`.compile(database.db),
+      sql`INSERT INTO rollback_probe VALUES ('one')`.compile(database.db)
+    ]));
+    assert.equal((await sql`SELECT name FROM sqlite_master WHERE name = 'rollback_probe'`.execute(database.db)).rows.length, 0);
+  } finally { await database.close(); }
+});
+
+test('SQL identifiers, unknown/system fields and client ownership claims are rejected; quoted values remain inert', async () => {
+  const f = await fixture();
+  try {
+    for (const slug of ['x"; DROP TABLE _cms_fields;--', 'Posts', '9posts', 'bad-name', 'a'.repeat(64), 'reorder']) {
+      await assert.rejects(() => f.service.createCollection({ slug, label: 'Attack' }));
+    }
+    for (const slug of ['status', 'author_id', 'locale', 'translation_group', 'version', 'x"']) {
+      await assert.rejects(() => f.schema.createField('posts', { slug, label: 'Attack', type: 'text' }));
+    }
+    for (const data of [{ unknown: 'value' }, { author_id: 'admin' }, { status: 'published' }, { version: '999' }]) {
+      await assert.rejects(() => f.service.createDraft({ type: 'posts', data }), invalid);
+    }
+    await assert.rejects(() => f.service.createDraft({ type: 'posts', authorId: 'somebody', data: { title: 'Spoof' } }), invalid);
+    await assert.rejects(() => f.service.createDraft({ type: 'posts', principal: admin, data: { title: 'Spoof' } }), invalid);
+    const malicious = "'; DROP TABLE ec_posts; --";
+    const created = await f.service.createDraft({ type: 'posts', slug: malicious, data: { title: malicious } });
+    assert.equal((await f.service.getDraft({ type: 'posts', id: created.id })).data.title, malicious);
+    assert.equal((await f.service.listDrafts({ type: 'posts' })).items.length, 1);
+  } finally { await f.database.close(); }
+});
+
+test('real database constraints enforce required, unique, length, locale slug uniqueness and foreign keys', async () => {
+  const f = await fixture();
+  try {
+    await f.schema.createField('posts', { slug: 'code', label: 'Code', type: 'string', required: true, unique: true, validation: { minLength: 2, maxLength: 4 } });
+    await assert.rejects(() => f.service.createDraft({ type: 'posts', data: { title: 'Missing code' } }), invalid);
+    await assert.rejects(() => sql`INSERT INTO ec_posts(id, code) VALUES ('short', 'x')`.execute(f.database.db));
+    await assert.rejects(() => sql`INSERT INTO ec_posts(id) VALUES ('missing')`.execute(f.database.db));
+    await f.service.createDraft({ type: 'posts', slug: 'same', data: { code: 'aa' } });
+    await assert.rejects(() => f.service.createDraft({ type: 'posts', data: { code: 'aa' } }));
+    await f.service.createDraft({ type: 'posts', slug: 'same', locale: 'fr', data: { code: 'bb' } });
+    await assert.rejects(() => f.service.createDraft({ type: 'posts', slug: 'same', data: { code: 'cc' } }));
+    await assert.rejects(() => sql`INSERT INTO _cms_fields(id, collection_id, slug, label, type, column_type, required, "unique", sort_order, created_at)
+      VALUES ('orphan', 'missing', 'field', 'Field', 'text', 'TEXT', 0, 0, 0, 'now')`.execute(f.database.db));
+  } finally { await f.database.close(); }
+});
+
+test('anonymous/empty principals and missing permissions fail closed before any query', async () => {
+  const database = openSqlite(':memory:'); // Intentionally unmigrated; unauthorized calls must never touch storage.
+  try {
+    for (const principal of [null, { id: '', permissions: admin.permissions }] as const) {
+      const service = cmsService(database, principal);
+      for (const run of [() => service.listCollections(), () => service.getCollection('posts'), () => service.createCollection({}),
+        () => service.addField({}), () => service.listDrafts({}), () => service.getDraft({}), () => service.createDraft({}),
+        () => service.updateDraft({}), () => service.deleteDraft({})]) {
+        await assert.rejects(run, { code: 'UNAUTHENTICATED' });
+      }
+    }
+    const reader = cmsService(database, { id: 'subscriber', permissions: ['content:read'] });
+    await assert.rejects(() => reader.listDrafts({ type: 'posts' }), { code: 'FORBIDDEN' });
+    await assert.rejects(() => reader.getDraft({ type: 'posts', id: 'missing' }), { code: 'FORBIDDEN' });
+    await assert.rejects(() => reader.createDraft({}), { code: 'FORBIDDEN' });
+    await assert.rejects(() => reader.updateDraft({}), { code: 'FORBIDDEN' });
+    await assert.rejects(() => reader.deleteDraft({}), { code: 'FORBIDDEN' });
+    await assert.rejects(() => reader.createCollection({}), { code: 'FORBIDDEN' });
+  } finally { await database.close(); }
+});
+
+test('owner permissions use persisted author; any permission permits another author', async () => {
+  const f = await fixture();
+  try {
+    const author = cmsService(f.database, { id: 'author', permissions: ['content:create', 'content:edit_own', 'content:delete_own'] });
+    const stranger = cmsService(f.database, { id: 'stranger', permissions: ['content:edit_own', 'content:delete_own'] });
+    const created = await author.createDraft({ type: 'posts', data: { title: 'Owned', body: 'Preserved' } });
+    assert.equal(created.authorId, 'author');
+    await assert.rejects(() => stranger.updateDraft({ type: 'posts', id: created.id, expected: expected(created), data: { title: 'Stolen' } }), { code: 'FORBIDDEN' });
+    await assert.rejects(() => stranger.deleteDraft({ type: 'posts', id: created.id, expected: expected(created) }), { code: 'FORBIDDEN' });
+    const updated = await author.updateDraft({ type: 'posts', id: created.id, expected: expected(created), data: { title: 'Changed' } });
+    assert.equal(updated.data.title, 'Changed'); assert.equal(updated.data.body, 'Preserved'); assert.equal(updated.version, 2);
+    const edited = await f.service.updateDraft({ type: 'posts', id: created.id, expected: expected(updated), data: { title: 'Editor' } });
+    assert.equal(edited.authorId, 'author');
+  } finally { await f.database.close(); }
+});
+
+test('two independent connections competing from the same revision yield exactly one successful update', async () => {
+  const directory = mkdtempSync(join(tmpdir(), 'cms-conflict-')); const path = join(directory, 'db.sqlite');
+  const first = await fixture(path); const second = openSqlite(path);
+  try {
+    const other = cmsService(second, admin);
+    const created = await first.service.createDraft({ type: 'posts', data: { title: 'Initial', body: 'Preserved' } });
+    const outcomes = await Promise.allSettled([
+      first.service.updateDraft({ type: 'posts', id: created.id, expected: expected(created), data: { title: 'One' } }),
+      other.updateDraft({ type: 'posts', id: created.id, expected: expected(created), data: { title: 'Two' } })
+    ]);
+    assert.equal(outcomes.filter(item => item.status === 'fulfilled').length, 1);
+    const rejected = outcomes.find(item => item.status === 'rejected');
+    assert.equal(rejected?.status, 'rejected'); assert.ok(rejected?.status === 'rejected' && conflict(rejected.reason));
+    const current = await other.getDraft({ type: 'posts', id: created.id });
+    assert.equal(current.version, 2); assert.equal(current.data.body, 'Preserved');
+    await assert.rejects(() => other.deleteDraft({ type: 'posts', id: created.id, expected: expected(created) }), conflict);
+    await other.deleteDraft({ type: 'posts', id: created.id, expected: expected(current) });
+    await assert.rejects(() => first.service.getDraft({ type: 'posts', id: created.id }), { code: 'NOT_FOUND' });
+    assert.equal((await first.service.listDrafts({ type: 'posts' })).items.length, 0);
+    assert.equal((await sql<{ version: number }>`SELECT version FROM ec_posts WHERE id = ${created.id}`.execute(first.database.db)).rows[0].version, 3);
+  } finally { await second.close(); await first.database.close(); rmSync(directory, { recursive: true, force: true }); }
+});
+
+test('schema version conflicts and field bounds preserve existing definitions', async () => {
+  const f = await fixture();
+  try {
+    const version = (await f.schema.getCollection('posts'))!.version;
+    await f.service.addField({ collection: 'posts', expectedSchemaVersion: version, input: { slug: 'new_field', label: 'New', type: 'text' } });
+    await assert.rejects(() => f.service.addField({ collection: 'posts', expectedSchemaVersion: version, input: { slug: 'stale', label: 'Stale', type: 'text' } }), conflict);
+    assert.equal(await f.schema.getField('posts', 'stale'), null);
+    for (let n = 3; n < MAX_FIELDS; n++) await f.schema.createField('posts', { slug: 'f_' + n, label: 'Field', type: 'text' });
+    await assert.rejects(() => f.schema.createField('posts', { slug: 'overflow', label: 'Overflow', type: 'text' }), { code: 'LIMIT_EXCEEDED' });
+    assert.equal((await f.schema.listFields((await f.schema.getCollection('posts'))!.id)).length, MAX_FIELDS);
+    await assert.rejects(() => f.service.addField({ collection: 'posts', input: { slug: 'missing_version', label: 'Missing', type: 'text' } }), invalid);
+  } finally { await f.database.close(); }
+});
+
+test('summary query excludes large bodies, clamps pages, orders ties, scopes locales and validates cursors', async () => {
+  const f = await fixture();
+  try {
+    for (let i = 0; i < 103; i++) await f.service.createDraft({ type: 'posts', data: { title: 'Title ' + i, body: 'b'.repeat(100_000) } });
+    await f.service.createDraft({ type: 'posts', locale: 'fr', data: { title: 'French' } });
+    await sql`UPDATE ec_posts SET created_at = '2026-01-01T00:00:00.000Z'`.execute(f.database.db);
+    const first = await f.service.listDrafts({ type: 'posts', limit: 1000 });
+    assert.equal(first.items.length, 100); assert.ok(first.nextCursor);
+    assert.equal('data' in first.items[0], false);
+    assert.equal(JSON.stringify(first).includes('bbbbbbbb'), false);
+    const last = await f.service.listDrafts({ type: 'posts', cursor: first.nextCursor });
+    assert.equal(last.items.length, 3); assert.equal(last.nextCursor, undefined);
+    assert.equal(new Set([...first.items, ...last.items].map(item => item.id)).size, 103);
+    assert.equal((await f.service.listDrafts({ type: 'posts', locale: 'fr' })).items.length, 1);
+    assert.equal((await f.service.listDrafts({ type: 'posts' })).items.length, 50);
+    for (const cursor of ['invalid', 'a'.repeat(2049), btoa('{}'), btoa(JSON.stringify({ type: 'posts', locale: 'fr', createdAt: '2026-01-01T00:00:00.000Z', id: 'a' }))]) {
+      await assert.rejects(() => f.service.listDrafts({ type: 'posts', cursor }), invalid);
+    }
+  } finally { await f.database.close(); }
+});
