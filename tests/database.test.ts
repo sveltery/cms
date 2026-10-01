@@ -281,6 +281,18 @@ test('cursor OR branches keep locale and trash filters when titles and slugs are
     ];
     await f.service.deleteDraft({ type: 'posts', id: hidden[2].id, expected: expected(hidden[2]) });
     await f.service.deleteDraft({ type: 'posts', id: hidden[3].id, expected: expected(hidden[3]) });
+    // Keep tied hidden IDs below either visible cursor, so an ungrouped OR would leak them.
+    const fixtureIds = [
+      '00000000000000000000000010', '00000000000000000000000020', '00000000000000000000000030',
+      '00000000000000000000000001', '00000000000000000000000002',
+      '00000000000000000000000003', '00000000000000000000000004'
+    ];
+    const allRows = [...kept, ...hidden];
+    for (let index = 0; index < allRows.length; index++) {
+      const row = allRows[index];
+      await sql`UPDATE ec_posts SET id = ${fixtureIds[index]}, translation_group = ${fixtureIds[index]} WHERE id = ${row.id}`.execute(f.database.db);
+      row.id = fixtureIds[index];
+    }
     const tied = '2026-02-01T00:00:00.000Z';
     const older = '2026-01-01T00:00:00.000Z';
     for (const row of [kept[0], kept[1], hidden[0], hidden[2]]) {
