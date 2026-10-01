@@ -1,0 +1,566 @@
+{
+  "referenceCommit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "inventoryPr": "https://github.com/sveltery/cms/pull/4",
+  "inventoryHead": "c52761b161b55da8844532dc58052cae90c25e69",
+  "sourceIdFormat": "commit:path:declaration-line",
+  "portedDeclarations": 28,
+  "expandedNodeCases": 31,
+  "ports": [
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/db/node-sqlite-compat.test.ts:36",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/db/node-sqlite-compat.test.ts:36",
+      "title": "implements the statement contract Kysely uses",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L36",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L36",
+      "portFile": "tests/database-node-compat.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "direct-byte-identical-source-file",
+      "sourceBlobSha": "c89d433eccafd691dbe1725543703e186e0a786f",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/db/node-sqlite-compat.test.ts:62",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/db/node-sqlite-compat.test.ts:62",
+      "title": "supports direct statement calls",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L62",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L62",
+      "portFile": "tests/database-node-compat.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "direct-byte-identical-source-file",
+      "sourceBlobSha": "c89d433eccafd691dbe1725543703e186e0a786f",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/db/node-sqlite-compat.test.ts:80",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/db/node-sqlite-compat.test.ts:80",
+      "title": "can be closed more than once",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L80",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L80",
+      "portFile": "tests/database-node-compat.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "direct-byte-identical-source-file",
+      "sourceBlobSha": "c89d433eccafd691dbe1725543703e186e0a786f",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/db/node-sqlite-compat.test.ts:89",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/db/node-sqlite-compat.test.ts:89",
+      "title": "normalizes supported positional values without shifting parameters",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L89",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L89",
+      "portFile": "tests/database-node-compat.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "direct-byte-identical-source-file",
+      "sourceBlobSha": "c89d433eccafd691dbe1725543703e186e0a786f",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/db/node-sqlite-compat.test.ts:107",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/db/node-sqlite-compat.test.ts:107",
+      "title": "rejects an unsupported %s before executing the statement",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L107",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L107",
+      "portFile": "tests/database-node-compat.test.ts",
+      "nodeCaseCount": 4,
+      "status": "passing-node",
+      "mappingBasis": "direct-byte-identical-source-file",
+      "sourceBlobSha": "c89d433eccafd691dbe1725543703e186e0a786f",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/db/node-sqlite-compat.test.ts:123",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/db/node-sqlite-compat.test.ts:123",
+      "title": "applies connection defaults without changing the journal mode",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L123",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L123",
+      "portFile": "tests/database-node-compat.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "direct-byte-identical-source-file",
+      "sourceBlobSha": "c89d433eccafd691dbe1725543703e186e0a786f",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/db/node-sqlite-compat.test.ts:133",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/db/node-sqlite-compat.test.ts:133",
+      "title": "switches to WAL with NORMAL synchronization when requested",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L133",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L133",
+      "portFile": "tests/database-node-compat.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "direct-byte-identical-source-file",
+      "sourceBlobSha": "c89d433eccafd691dbe1725543703e186e0a786f",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/db/node-sqlite-compat.test.ts:141",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/db/node-sqlite-compat.test.ts:141",
+      "title": "keeps NORMAL synchronization when reopening an existing WAL database without the option",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L141",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/db/node-sqlite-compat.test.ts#L141",
+      "portFile": "tests/database-node-compat.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "direct-byte-identical-source-file",
+      "sourceBlobSha": "c89d433eccafd691dbe1725543703e186e0a786f",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:37",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/schema/registry.test.ts:37",
+      "title": "should create a collection",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L37",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/schema/registry.test.ts#L37",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "69d67cc1a6da543ce78dcbab68be486f67e45371fcadcd3e93af420a5581ae7e",
+      "sourceAssertionsSha256": "c68ccba080864f200d8a46061d35142d84a2aafc1b4d3eecab36522f123a9219",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:53",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/schema/registry.test.ts:53",
+      "title": "F14: defaults supports to ['drafts', 'revisions'] when undefined",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L53",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/schema/registry.test.ts#L53",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "d593d72c491a397ae94a701a3d2fabf9242ee69e8d2f0ba195af38346d188d6f",
+      "sourceAssertionsSha256": "19718bb4dd6bd859d488e92445fa4fda4e08d226091ab272452134f69ea569f6",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:63",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/schema/registry.test.ts:63",
+      "title": "F14: preserves explicit empty supports array (opt-out)",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L63",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/schema/registry.test.ts#L63",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "903ab35dceca5728bed5e889ce2394b463d51a4d0b89b1899e5182210b4a6e38",
+      "sourceAssertionsSha256": "4aee0e485846bea83fd99198e72d76137a73e399fc4a5db805d89645e07ceb23",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:86",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/schema/registry.test.ts:86",
+      "title": "should create the content table when creating a collection",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L86",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/schema/registry.test.ts#L86",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "2522c09f2f53d9e82d890b656aeb23b9b4cd92cdd2f4658022de7853dfcb919e",
+      "sourceAssertionsSha256": "90a46a22066fe745b566e805bee5d2ad449da28431819a1464da162257fca5d3",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:105",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/schema/registry.test.ts:105",
+      "title": "rejects an unregistered content table with a structured conflict",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L105",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/schema/registry.test.ts#L105",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "4f131dc9aefdd24a8f08e58787fccdd1f1cc95296fd2921b83ff143d1e2eaff0",
+      "sourceAssertionsSha256": "77d0dbfa37abdbb5eb3b432bd1be339ae8d3783b244630129035e45241b694a2",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:113",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/schema/registry.test.ts:113",
+      "title": "should list collections",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L113",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/schema/registry.test.ts#L113",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "b7ed03cce784250ea575a684da1dea94f404d3713e40c6229a8810b6f4a41892",
+      "sourceAssertionsSha256": "8a8883f2eee36a407bae297bd76fe29d392083eb5c41dc1a52a5c74cd15a39ed",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:215",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/schema/registry.test.ts:215",
+      "title": "should get a collection by slug",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L215",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/schema/registry.test.ts#L215",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "90bf7ab292a168a9b979a00d8a3e36a18676228e2c5b7b3554a0a3a0c7186729",
+      "sourceAssertionsSha256": "717ad7bb45ef63859674359e408d3ba864f9794a268e63f9c778bce5b4c22cd4",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:229",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/schema/registry.test.ts:229",
+      "title": "should return null for non-existent collection",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L229",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/schema/registry.test.ts#L229",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "5c1949ba9248fef7cc6aa5c4286936aa67b8bd459ac9cd0d5fb2bcebf6876c10",
+      "sourceAssertionsSha256": "2334f056884b29dbf2882513a088b98f2ee3c771adf33b2b432432e87a45a9ce",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:351",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/schema/registry.test.ts:351",
+      "title": "should throw when creating duplicate collection",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L351",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/schema/registry.test.ts#L351",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "44ecb31d1b0f1240fa4c13d3ec497116f71908394c0625930c231543dab79c22",
+      "sourceAssertionsSha256": "2bbdfaec9834481b21f1a77f07912fa4f06608e6d4c0bff8273dec3f2f9d03f4",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:610",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/schema/registry.test.ts:610",
+      "title": "should add column to content table when creating field",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L610",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/schema/registry.test.ts#L610",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "b425c9b6789a5609169bd2f6ce88816fd4b601c055849be3f368a47e2322af6f",
+      "sourceAssertionsSha256": "0ff6ce38fa1322a5c8de320e1e678940c3ba3eb6590afe0553bfcdbf2e1d329e",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:654",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/schema/registry.test.ts:654",
+      "title": "should get a field by slug",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L654",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/schema/registry.test.ts#L654",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "5b09eb5bf4bbf088f7dbe77e0557a0eea742d39d07f2c4ca88bd3d17a6856009",
+      "sourceAssertionsSha256": "fbd238204fd1ea0809fba534194ff3b5b9df6fa8f9ff89125dd015f2d8ce5432",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:738",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/schema/registry.test.ts:738",
+      "title": "should reject reserved field slugs",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L738",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/unit/schema/registry.test.ts#L738",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "bd76a33b523c05cea067042ee35842af83846dca145eb0b01bf386eb7f549803",
+      "sourceAssertionsSha256": "2c5481fb943cc8fa07a20c6b33cffffc3704ebc7a0a2570b404ad10acc4c9d4a",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:58",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/database/repositories/content.test.ts:58",
+      "title": "should create content with minimal data",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L58",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/database/repositories/content.test.ts#L58",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "3a7b70eacdd4bf7b2f306b2faf07524f656509cdfd8e7b83cc9343ade1e27eff",
+      "sourceAssertionsSha256": "5373b52cc62322e022cb739cd1f725c2603940df6219c2df90f40c0ef534441f",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:115",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/database/repositories/content.test.ts:115",
+      "title": "should throw error for duplicate type+slug",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L115",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/database/repositories/content.test.ts#L115",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "786bc2590ea0582d462268dfa9d4a00ac65e101fc75feb0deb2b922b04049e06",
+      "sourceAssertionsSha256": "9538166878c04d66c296cade3ff643fd6c864a21d35f97ec3d52d7d665212407",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:131",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/database/repositories/content.test.ts:131",
+      "title": "should allow same slug for different types",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L131",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/database/repositories/content.test.ts#L131",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "942d95a7c3f1255f496511a2fbb6d2061660c2c9a6647bcc5307e1e5afe0eba7",
+      "sourceAssertionsSha256": "d262d8c75eb57d6c86a14239f332b3f2dfa23900e1edc413ff1745d33f1075ff",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:147",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/database/repositories/content.test.ts:147",
+      "title": "should allow null slug",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L147",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/database/repositories/content.test.ts#L147",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "8be9669bb61f96398d0d18c5ee255015ae70cf63613f8d1a13deb377a3cdbc92",
+      "sourceAssertionsSha256": "aae9ca16d2bdf2ab2a23ea682bd33ab8dc11ba77e923511d20c5497bda843721",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:166",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/database/repositories/content.test.ts:166",
+      "title": "should generate unique ID",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L166",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/database/repositories/content.test.ts#L166",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "92dd2d9b7876a136df30d9a931521f5f9f18fe8e2e5777485f4d84cd7a4dfbf0",
+      "sourceAssertionsSha256": "763f11acd6f8ed628f456fe1457c09bd42804357a636ec2f32d0bbc4f2e16b34",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:209",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/database/repositories/content.test.ts:209",
+      "title": "should find content by ID",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L209",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/database/repositories/content.test.ts#L209",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "5eaddaae15c73e9f5d419d6f7c1a5f662a6600c963e119aa1810d7e1e3a47316",
+      "sourceAssertionsSha256": "d281e39283e06aeabb6a39b6a73bbea66487fb198bb27b05a35f8673263e715f",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:222",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/database/repositories/content.test.ts:222",
+      "title": "should return null for non-existent ID",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L222",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/database/repositories/content.test.ts#L222",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "50b12663792e47b16ac89f78b132d3eac24338b57f72fd08d990ace5450b99e6",
+      "sourceAssertionsSha256": "b6d4bd8fc3f1dacccd81288d57bcd96b623dabe53b7707173fd49fba9d8aa2e5",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:227",
+      "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/database/repositories/content.test.ts:227",
+      "title": "should return null when type doesn't match",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L227",
+      "previousSourceUrl": "https://github.com/emdash-cms/emdash/blob/0e8977c221dd8e5111511eb226faa3d164c829ef/packages/core/tests/database/repositories/content.test.ts#L227",
+      "portFile": "tests/database-upstream.test.ts",
+      "nodeCaseCount": 1,
+      "status": "passing-node",
+      "mappingBasis": "inventory-baseline-map",
+      "sourceRegistrationSha256": "975b3a442422df49800c210f7868c3d1267fc1a40cb2161df3736b5729e46d6a",
+      "sourceAssertionsSha256": "b6d4bd8fc3f1dacccd81288d57bcd96b623dabe53b7707173fd49fba9d8aa2e5",
+      "historicalEvidence": {
+        "referenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+        "head": "f8e8b01be81afb89c2879aecc78f19af39da732b",
+        "url": "https://github.com/sveltery/cms/actions/runs/36901609498"
+      },
+      "evidenceHead": "e681bada237e968603115c56446babfa77559437",
+      "evidenceUrl": "https://github.com/sveltery/cms/actions/runs/36906954902"
+    }
+  ],
+  "previousReferenceCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
+  "baselineMapUrl": "https://github.com/sveltery/cms/blob/c52761b161b55da8844532dc58052cae90c25e69/parity/emdash/baseline-map.json",
+  "inventoryMappedDeclarations": 20,
+  "directSourceVerifiedDeclarations": 8
+}

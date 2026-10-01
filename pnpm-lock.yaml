@@ -166,6 +166,12 @@ importers:
 
   .:
     dependencies:
+      kysely:
+        specifier: 0.29.2
+        version: 0.29.2
+      ulidx:
+        specifier: 2.4.1
+        version: 2.4.1
       valibot:
         specifier: 1.5.0
         version: 1.5.0(typescript@6.0.3)
@@ -681,6 +687,20 @@ packages:
   zimmerframe@1.1.5:
     resolution: {integrity: sha512-msJxIvYDYcoNL+PJsu+7qmpDWsYmAxTY+2TNYXXF0hzBzBk0BMecOqDOG/EckUoKCuKwObfbugIl8QpqHDXeFA==}
 
+  kysely@0.29.2:
+    resolution: {integrity: sha512-s6WVJyEZrbm6jhBpiKHsGHyePMrVQKJ85wZCFCr9W4QHv6WTjWIrdvTmO9hDEA3bNK0xkrE2DqrHsXMLWuZpQg==}
+    engines: {node: '>=22.0.0'}
+
+
+  ulidx@2.4.1:
+    resolution: {integrity: sha512-xY7c8LPyzvhvew0Fn+Ek3wBC9STZAuDI/Y5andCKi9AX6/jvfaX45PhsDX8oxgPL0YFp0Jhr8qWMbS/p9375Xg==}
+    engines: {node: '>=16'}
+
+
+  layerr@3.0.0:
+    resolution: {integrity: sha512-tv754Ki2dXpPVApOrjTyRo4/QegVb9eVFq4mjqp4+NM5NaX7syQvN5BBNfV/ZpAHCEHV24XdUVrBAoka4jt3pA==}
+
+
 snapshots:
 
   '@jridgewell/gen-mapping@0.3.13':
@@ -1029,3 +1049,12 @@ snapshots:
       vite: 8.3.2(@types/node@24.19.0)
 
   zimmerframe@1.1.5: {}
+
+  kysely@0.29.2: {}
+
+  layerr@3.0.0: {}
+
+  ulidx@2.4.1:
+    dependencies:
+      layerr: 3.0.0
+

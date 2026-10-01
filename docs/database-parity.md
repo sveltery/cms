@@ -1,0 +1,101 @@
+# Bounded EmDash database contract port
+
+Reference: [EmDash 1.1.0 at 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e](https://github.com/emdash-cms/emdash/tree/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e), explicitly approved by the parent. The initial 1.0.1 baseline at 0e8977c221dd8e5111511eb226faa3d164c829ef remains historical evidence. The MIT license is byte-identical across both commits and preserved verbatim in [notices/emdash-MIT.txt](../notices/emdash-MIT.txt). Copied and adapted files carry notices. No compatibility with the rest of EmDash is claimed.
+
+The upstream review established the implementation baseline before writing this slice: Kysely 0.29.2, Node built-in SQLite with an explicit compatibility wrapper, persisted schema registry rows, real `ec_*` content tables and field columns, ULID identities, draft status, soft deletion, per-locale slug uniqueness, permission checks and revision preconditions. This follows the user's instruction to retain EmDash behavior unless a specific adaptation is justified.
+
+## Test-first evidence and source IDs
+
+Commit `cf9211d04033c1e00c86353dce629595bf9b4dd5` adds the ported tests before the implementation. [CI run 36899388506](https://github.com/sveltery/cms/actions/runs/36899388506) installed the frozen dependency lockfile with Node 24.21.0/pnpm 12.6.0, then failed checks on the missing implementation imports. This is evidence of a missing-module red state; the assertion bodies did not run in that commit. The selected local environment failed provisioning with `executor_registration_failed`, so no local red/green runs were possible.
+
+Source IDs below are the exact upstream test names under the approved pinned commit. Historical red/green evidence remains attributed to 1.0.1. Every assertion in each selected test is retained in meaning. Vitest assertions become Node strict assertions; Node SQLite row prototypes are normalized only in the driver tests, while the exact field/value shapes remain asserted. Registry `SchemaError` checks map to the slice's `CmsError`. Repo creation's author argument is server-only. Direct repository calls adapt to the slice API; fixtures omit Portable Text because those cases are explicitly unported.
+
+| Upstream file | Source test IDs and exact assertions retained | Port |
+| --- | --- | --- |
+| `packages/core/tests/unit/db/node-sqlite-compat.test.ts` | implements the statement contract Kysely uses: inserted id 1; rows exactly [{ id: 1, title: "First entry" }] | `tests/database-node-compat.test.ts` |
+| same | supports direct statement calls: open true; titles First/Second; get(2) Second | same |
+| same | can be closed more than once: close does not throw; open false | same |
+| same | normalizes supported positional values without shifting parameters: undefined/null, true/1, false/0, 7n/7, text, Uint8Array([1,2]) | same |
+| same | rejects an unsupported %s before executing the statement (four cases): object, array, Date, boxed number throw /Cannot bind/; row count remains 0 | same |
+| same | applies connection defaults without changing the journal mode: delete, synchronous 2, cache_size -16000, timeout 5000, foreign_keys 1 | same |
+| same | switches to WAL with NORMAL synchronization when requested: wal, synchronous 1, cache_size -16000 | same |
+| same | keeps NORMAL synchronization when reopening an existing WAL database without the option: wal and synchronous 1 | same |
+| `packages/core/tests/unit/schema/registry.test.ts` | should create a collection: posts, Blog Posts, Post, supports drafts/revisions, source manual, id defined | `tests/database-upstream.test.ts` |
+| same | F14: defaults supports to ['drafts', 'revisions'] when undefined: sorted supports match | same |
+| same | F14: preserves explicit empty supports array (opt-out): supports [] | same |
+| same | should create the content table when creating a collection: insert test-id/test-slug/draft into ec_articles succeeds | same |
+| same | rejects an unregistered content table with a structured conflict: COLLECTION_TABLE_ORPHANED | same |
+| same | should list collections: length 2; sorted slugs pages/posts | same |
+| same | should get a collection by slug: non-null; products; description Store products | same |
+| same | should return null for non-existent collection: null | same |
+| same | should throw when creating duplicate collection: domain/schema error | same |
+| same | should add column to content table when creating field: direct title insert; stored title Test Title | same |
+| same | should get a field by slug: non-null; validation exactly minLength 1/maxLength 100 | same |
+| same | should reject reserved field slugs: id/string and created_at/datetime throw domain/schema error | same |
+| `packages/core/tests/database/repositories/content.test.ts` | should create content with minimal data: id defined; type post; data {title:"Test Post"}; status draft; timestamps defined | `tests/database-upstream.test.ts` |
+| same | should throw error for duplicate type+slug: rejects second duplicate-slug | same |
+| same | should allow same slug for different types: post/page with same-slug both succeed | same |
+| same | should allow null slug: returned slug null | same |
+| same | should generate unique ID: IDs differ | same |
+| same | should find content by ID: non-null; id/data exactly match created entry | same |
+| same | should return null for non-existent ID: null | same |
+| same | should return null when type doesn't match: lookup in page returns null | same |
+
+There are 31 ported cases: 11 driver cases (including four parameterized unsupported-value cases), 12 registry cases and 8 draft repository cases. Historical 1.0.1 evidence at f8e8b01 in [CI run 36901609498](https://github.com/sveltery/cms/actions/runs/36901609498) passed 48 tests (31 ports, 14 supplemental cases, 3 then-existing tests), checks and build. [CI run 36903659565](https://github.com/sveltery/cms/actions/runs/36903659565) at 359c57ad passed 49 tests after adding supplemental cursor coverage; independent review then required deterministic fixture IDs, fixed at 49feb796. The combined baseline/main integration head `8a5107592dd352799a355b5f05480e73bb8795c8` passed [CI run 36905712993](https://github.com/sveltery/cms/actions/runs/36905712993): frozen installation, zero-error/warning Svelte/type checks, 57 service/development/database tests (31 ports, 15 supplemental database cases, 11 existing boundary cases), build, 10 production remote tests and 2 sandboxed browser tests. Only the selected 31 cases are executable upstream ports; production/browser gates are supplemental SvelteKit evidence and do not prove authenticated database composition or a deployed Node/D1 runtime.
+
+[The machine-readable port ledger](database-ports.json) maps all 28 declarations/31 expanded cases to current and predecessor stable `commit:path:declaration-line` IDs. The 20 registry/repository declarations were checked against [inventory PR #4](https://github.com/sveltery/cms/pull/4)'s complete [baseline mapping](https://github.com/sveltery/cms/blob/c52761b161b55da8844532dc58052cae90c25e69/parity/emdash/baseline-map.json) at `c52761b161b55da8844532dc58052cae90c25e69`: files/registration bodies/assertion lists are unchanged, with matching titles and hashes. The eight driver declarations are outside that inventory's selected files; their IDs, lines and assertions were verified directly against the byte-identical upstream file (blob c89d433eccafd691dbe1725543703e186e0a786f). The parent retains ownership of `parity/emdash/`; this implementation ledger does not edit its inventory-only statuses.
+
+## What is preserved versus adapted
+
+These are adapted executable product tests, not unmodified upstream test files. All 28 source declarations run against product modules backed by real SQLite; no mock repository or memory-only document store stands in for persistence. The 31 expanded Node cases comprise:
+
+- Eight driver declarations/eleven cases exercise the copied product NodeSqliteCompatDatabase through Kysely and direct statements. Literal expected values, parameter cases and PRAGMA settings are preserved. Vitest is replaced by Node's runner/assertions and null-prototype rows are normalized for deep comparison.
+- Twelve registry declarations exercise this product SchemaRegistry and its real metadata/physical tables. The selected inputs and expected collection/field values are preserved; imports, fixture migrations, direct SQL/Kysely calls and SchemaError-to-CmsError type assertions are adapted. The fixture initializes this slice's system tables, not all 89 upstream migrations.
+- Eight draft repository declarations exercise this product DraftRepository and real ec_post/ec_page tables. User data, duplicate/null-slug behavior, ID/type/data/status/timestamp assertions and lookup results are preserved. The fixture omits the unused Portable Text field, and create receives its author from a separate server-only argument instead of client input.
+
+The source registry reserved-field test retains its original created_at/datetime input and domain-error assertion. Because datetime is unsupported here, that particular input is rejected during field-type validation. It does not prove datetime support or the reserved-name reason. The original supplemental injection test also checks created_at using the supported text type, so the reserved identifier boundary is independently covered without presenting it as datetime parity.
+
+No complete upstream file is ported verbatim. The claim is limited to the selected assertions and the above adaptations; passing them does not establish untested neighboring behavior.
+
+## Ownership, revision and trash boundaries
+
+The service uses the upstream own/any permission names and persisted author_id, but it consumes effective permissions resolved by trusted server authentication rather than implementing the upstream numeric role-to-permission mapping. That role mapping and token scopes are deferred. Create always sets the author to the server principal; author reassignment has no API.
+
+Update/delete require the upstream-shaped version/updatedAt precondition at this slice's public service boundary. Some upstream low-level repository helpers accept unconditioned writes; that API is deliberately unavailable here. SQL enforces the pair, empty updates advance version, and partial data updates preserve other field columns. This slice handles only unpublished physical-column drafts, without live/draft revision pointers, revision history, publication or edit locks.
+
+Delete sets deleted_at/updated_at and advances version; normal reads/lists exclude the row. This matches the selected soft-delete safety direction, but upstream trash listing, restore and permanent deletion are unported and have no API here. Soft-deleted slugs remain subject to the physical slug/locale unique constraint. No lifecycle parity is claimed from the original supplemental deletion test.
+
+## Unported and blocked contracts
+
+All other cases in the source files above remain **unported**, including destructive schema changes, collection update/order/sidebar/UI properties, other field types, field reordering, FTS, media usage capture, published/scheduled content, revisions, restoration and multilingual translation groups. Initial unpublished drafts use physical field columns, as in the upstream repository. The stored supports array retains upstream defaults/configuration; this slice does not yet implement a revision history or publish workflow.
+
+The draft-read-after-update and partial-merge assertions in `packages/core/tests/integration/mcp/drafts.test.ts` inform supplemental tests, but are **not ported MCP tests**: their harness includes publishing/live-vs-draft revision semantics absent from this slice. Core behavior inventory and future ports must keep those tests visible rather than remove assertions to claim parity.
+
+Cloudflare's `packages/cloudflare/tests/db/d1-dialect.test.ts`, D1 session/request-scope tests, `packages/core/tests/workerd/*d1.test.ts` and live D1 migration tests remain **unported/blocked**. There is no D1 adapter or Workers hosting configuration in this PR. The provider-neutral Kysely/batch seam keeps that target open; Node SQLite success does not establish D1 transaction behavior.
+
+## Supplemental tests and deliberate bounds
+
+`tests/database.test.ts` contains original tests for restart persistence, repeated system migration, failed additive-field rollback, DDL/DML batch rollback, identifier/value injection resistance, concurrent collection creation with sanitized conflicts including the final capacity slot, missing-system-table migration rejection without repair, client ownership rejection, SQL required/unique/foreign-key constraints, UTF-16 length validation, index identity collision prevention, deterministic cursor locale/trash filtering with null title/slug values, fail-closed authorization before storage, persisted ownership, two-connection optimistic concurrency, schema version conflicts, field bounds and body-free paginated summaries.
+
+Specific scope differences:
+
+- SvelteKit remote functions will replace Astro REST/React transport in the integration slice; this PR registers no routes.
+- System tables use `_cms_*` rather than `_emdash_*` to prevent falsely treating an upstream database as an upgradeable CMS database. The `ec_*` physical collection model is retained. This is not an EmDash data import.
+- Only string/text fields and unpublished drafts are enabled. SQLite status constraints prevent accidental publishing through this slice. Maximum 100 collections, 32 fields, 100,000 characters per text value and 200,000 characters per submitted data payload keep operations bounded. String fields default to 200 characters; configured limits can extend them.
+- List transport returns metadata plus a title of at most 200 characters, never full bodies. Default page 50, hard maximum 100, with stable created_at/id keyset ordering. This deliberately narrower projection avoids returning full documents during dashboard navigation.
+- Update/delete require a version and updatedAt pair, following the upstream revision precondition shape. The version predicate is enforced by SQL; a stale update or delete reports CONFLICT. Identity comes from the server principal, and ownership comes from author_id in storage.
+- Length validation retains upstream JavaScript UTF-16 semantics in the service. SQLite's length() is not used for field validation because its code-point/NUL behavior differs. NUL is rejected only in schema default values, which SQLite cannot represent as DDL literals; bound content values preserve it.
+- Unlike upstream's callback transaction fallback, every schema/guarded write requires an adapter-proven atomic batch. There is no non-atomic fallback. This prevents silently claiming multi-statement D1 safety. The SQLite batch owns Kysely's connection mutex and executes synchronously between BEGIN IMMEDIATE and COMMIT.
+- Collection/field deletion, rename and type conversion have no API. Adding a required field without a suitable default to existing data fails and rolls back; an explicit backfill/migration plan is needed before supporting that operation.
+
+## Approved 1.1.0 change review
+
+The selected three upstream test files, Node compatibility wrapper, schema registry and MIT notice are byte-identical to the initial 1.0.1 baseline. All 28 selected declarations remain unchanged; no assertions were removed or relaxed during the baseline update.
+
+The content repository's 1.1.0 pagination fix handles nullable sort values and groups OR cursor predicates so status/trash filters apply to every branch. This slice only sorts non-null created_at/id, already uses a grouped cursor predicate, and has no custom sort API. The supplemental real-database regression uses deterministic IDs, both timestamp branches, nullable titles/slugs, foreign locales and soft-deleted rows; it does not claim to port the upstream nullable-sort suite or to prove published-state paging. Only draft status is accepted by the physical table constraint.
+
+The 1.1.0 writable-field filtering when publishing a revision after field deletion concerns two APIs absent here. Field deletion, historical/live revisions and publication remain deferred rather than introducing an untested publishing path. Cloudflare affected-row and setup-origin regressions remain unported; this slice has neither a D1 adapter nor a setup endpoint.
+
+The audit regressions were committed before their fixes at `970e25875935b93429ad5b880edf0125af67fd6a`. [CI run 36906289241](https://github.com/sveltery/cms/actions/runs/36906289241) executed 59 tests: 57 passed, and the new same-slug race and missing-system-table marker checks failed their assertions. This is an executed assertion red state, distinct from the original missing-module red. The fix classifies only the exact SQLite registered-slug uniqueness error or a deliberate capacity guard with that slug now present; unexpected failures remain server errors. Existing version-one migrations require all three named system tables and do not repair missing objects. Neither check claims complete schema integrity or D1 behavior.
+
+The fixed candidate `e681bada237e968603115c56446babfa77559437`, integrated with main `77b10072f4c2c9b3d2cdcf4a7a325a283e5c7d0a`, passed [CI run 36906954902](https://github.com/sveltery/cms/actions/runs/36906954902): frozen install, zero Svelte/type errors or warnings, 60 service/development/database tests (31 adapted upstream cases, 18 original supplemental database cases and 11 existing boundary cases), build, 10 production remote tests and 2 sandboxed browser tests. The duplicate race, final-capacity case, unexpected trigger error and marker-only/missing-table checks all passed. Independent GPT 6.1 Sol high review of this exact candidate found no remaining material findings. The port ledger points to this tested implementation head; later evidence-only documentation does not retroactively relabel the historical runs.
