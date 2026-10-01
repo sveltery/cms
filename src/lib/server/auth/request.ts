@@ -9,4 +9,12 @@ export class SessionOriginError extends Error {
 }
 
 /** The configured public origin must come from trusted server composition, never forwarded headers. */
-export function requireSessionMutationOrigin(request: Request, publicOrigin: string): void {}
+export function requireSessionMutationOrigin(request: Request, publicOrigin: string): void {
+  if (['GET', 'HEAD', 'OPTIONS'].includes(request.method.toUpperCase())) return;
+  try {
+    const configured = new URL(publicOrigin);
+    if ((configured.protocol === 'https:' || configured.protocol === 'http:') &&
+      configured.origin === publicOrigin && request.headers.get('Origin') === publicOrigin) return;
+  } catch { /* Invalid configuration fails closed. */ }
+  throw new SessionOriginError();
+}

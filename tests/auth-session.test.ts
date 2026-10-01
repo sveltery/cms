@@ -72,7 +72,7 @@ test('local: expiry denies at and beyond the exact boundary without renewal', as
   assert.equal(await resolvePrincipal(f.token, f.store, { now: () => 1002 }), null);
   assert.deepEqual(await resolvePrincipal(f.token, f.store, { now: () => 1000 }), { id: 'user_1', role: Role.AUTHOR });
 });
-test('local: expired-during-read, missing, disabled and invalid records all deny', async () => {
+test('local: missing, disabled and invalid records all deny', async () => {
   const f = fixture();
   for (const snapshot of [null,
     { user: { id: '', role: 50, disabled: false }, expiresAt: 1001 },
@@ -105,4 +105,21 @@ test('local: failed revocation propagates, while failed/stalled resolution denie
   assert.equal(await resolvePrincipal(f.token, failure, { timeoutMs: 20 }), null);
   assert.equal(await resolvePrincipal(f.token, { ...failure, read: () => new Promise(() => {}) }, { timeoutMs: 20 }), null);
   await assert.rejects(revokeSession(f.token, failure), /unavailable/);
+});
+
+test('local: a session that expires while its store read is pending cannot authenticate', async () => {
+  const f = fixture();
+  let clock = 1000;
+  let release!: (snapshot: SessionSnapshot) => void;
+  let started!: () => void;
+  const readStarted = new Promise<void>((resolve) => { started = resolve; });
+  const store: SessionStore = {
+    read() { started(); return new Promise((resolve) => { release = resolve; }); },
+    async revoke() {}
+  };
+  const resolving = resolvePrincipal(f.token, store, { now: () => clock });
+  await readStarted;
+  clock = 1001;
+  release({ user: { id: 'user_1', role: Role.AUTHOR, disabled: false }, expiresAt: 1001 });
+  assert.equal(await resolving, null);
 });

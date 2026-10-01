@@ -13,7 +13,7 @@ import { hasPermission } from '../src/lib/server/auth/permissions.ts';
 
 test('local Node SQLite: empty auth schema creates no account, credential or default admin', async () => {
   const database = openSqlite(':memory:');
-  const db = database.db.withTables<AuthTables>();
+  const db = database.db.$extendTables<AuthTables>().$pickTables<keyof AuthTables>();
   try {
     await database.atomicBatch(authSchemaStatements(db));
     assert.deepEqual(await db.selectFrom('_cms_auth_users').selectAll().execute(), []);
@@ -27,7 +27,7 @@ test('local Node SQLite: current role, disabled/deleted users, expiry and revoca
   const directory = await mkdtemp(join(tmpdir(), 'cms-auth-'));
   const path = join(directory, 'auth.sqlite');
   let database = openSqlite(path);
-  let db = database.db.withTables<AuthTables>();
+  let db = database.db.$extendTables<AuthTables>().$pickTables<keyof AuthTables>();
   const token = encodeBase64urlNoPadding(crypto.getRandomValues(new Uint8Array(32)));
   const otherToken = encodeBase64urlNoPadding(crypto.getRandomValues(new Uint8Array(32)));
   const hash = await hashSessionToken(token);
@@ -49,7 +49,7 @@ test('local Node SQLite: current role, disabled/deleted users, expiry and revoca
     assert.equal(await resolvePrincipal(token, store, { now: () => 1001 }), null);
     assert.equal((await db.selectFrom('_cms_auth_sessions').selectAll().execute())[0].expires_at, 1001);
     await database.close();
-    database = openSqlite(path); db = database.db.withTables<AuthTables>(); store = createKyselySessionStore(db);
+    database = openSqlite(path); db = database.db.$extendTables<AuthTables>().$pickTables<keyof AuthTables>(); store = createKyselySessionStore(db);
     assert.deepEqual(await resolvePrincipal(token, store, { now: () => 1000 }), { id: 'user_1', role: Role.AUTHOR });
     await db.updateTable('_cms_auth_users').set({ role: Role.SUBSCRIBER }).where('id', '=', 'user_1').execute();
     const subscriber = await resolvePrincipal(token, store, { now: () => 1000 });
@@ -65,7 +65,7 @@ test('local Node SQLite: current role, disabled/deleted users, expiry and revoca
     assert.ok(await resolvePrincipal(otherToken, store, { now: () => 1000 }));
     assert.equal((await db.selectFrom('_cms_auth_sessions').selectAll().execute()).length, 1);
     await database.close();
-    database = openSqlite(path); db = database.db.withTables<AuthTables>(); store = createKyselySessionStore(db);
+    database = openSqlite(path); db = database.db.$extendTables<AuthTables>().$pickTables<keyof AuthTables>(); store = createKyselySessionStore(db);
     assert.equal(await resolvePrincipal(token, store, { now: () => 1000 }), null);
     assert.ok(await resolvePrincipal(otherToken, store, { now: () => 1000 }));
     await db.deleteFrom('_cms_auth_users').where('id', '=', 'user_1').execute();

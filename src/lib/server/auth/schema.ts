@@ -1,9 +1,9 @@
 import { sql, type Kysely, type CompiledQuery } from 'kysely';
 
-export interface AuthTables {
+export type AuthTables = {
   _cms_auth_users: { id: string; role: number; disabled: number };
   _cms_auth_sessions: { hash: string; user_id: string; expires_at: number };
-}
+};
 /** Empty auth-only tables. The composition owner must register these in its migration lifecycle. */
 export function authSchemaStatements(db: Kysely<AuthTables>): CompiledQuery[] {
   return [
