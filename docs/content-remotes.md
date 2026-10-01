@@ -1,6 +1,6 @@
 # Persisted content remote integration
 
-Base: verified main `ec0376fc4d83ba70ec896e6cb34e5ad301f27788`. Behavior reference: [EmDash 1.1.0, pinned 913cb1b](https://github.com/emdash-cms/emdash/tree/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e). This slice composes the merged `cmsService` through registered SvelteKit remotes; it removes the provisional fixed title/body repository and capability service. Existing database schemas, physical columns, permissions, partial updates, atomic revision comparison and recoverable trash remain the domain boundary.
+Historical PR #6 base: verified main `ec0376fc4d83ba70ec896e6cb34e5ad301f27788`. Behavior reference: [EmDash 1.1.0, pinned 913cb1b](https://github.com/emdash-cms/emdash/tree/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e). This slice composes the merged `cmsService` through registered SvelteKit remotes; it removes the provisional fixed title/body repository and capability service. Existing database schemas, physical columns, permissions, partial updates, atomic revision comparison and recoverable trash remain the domain boundary.
 
 ## Auth/session and adapter handoff
 
@@ -10,7 +10,7 @@ Trusted server composition must populate `event.locals.cms = { database, princip
 - `principal: ServerPrincipal | null` is `{ id, permissions }`, derived from the actual authenticated server session. Effective own/any permissions use the merged service names; content input contains no identity, role, capabilities, permissions or author override. No new role map is installed.
 - Missing composition/session fails closed with 401. Read queries require `content:read` and `content:read_drafts`; schema reads require `schema:read`. Create uses `content:create`; update/trash delegate own/any policy and persisted ownership to the merged service.
 
-This branch owns `src/lib/content.remote.ts`, `src/lib/server/content/{request,schema}.ts`, the locals contract, temporary content routes/UI, and remote evidence. The auth/session owner owns real session resolution and its request hook; the adapter owner owns the database/bindings. No production hook is installed here. UI writes remain disabled even when trusted locals permit reads. Joint session/adapter verification must precede enabling them.
+The original integration branch owned `src/lib/content.remote.ts`, `src/lib/server/content/{request,schema}.ts`, the locals contract, temporary content routes/UI, and remote evidence. The auth/session owner owns real session resolution and its request hook; the adapter owner owns the database/bindings. That original slice installed no production hook; [PR #7 composition](session-composition.md) now supplies a configurable request handle with an unconfigured production factory and a default-disabled HTTP mutation gate. UI writes remain disabled even when trusted locals permit reads. Joint session/adapter verification must precede enabling them.
 
 ## Native contracts
 
@@ -46,6 +46,16 @@ Supplemental production tests prove arbitrary persisted schema fields, create/re
 
 ## Readiness limits
 
-Real production session composition, login/logout/expiry/revocation/role mapping, provider lifecycle and joint session integration remain unverified. Node SQLite evidence uses the built SvelteKit Server and a temporary persisted file; adapter-auto does not produce a verified self-hosted Node deployment. The interface and token code contain no Node-only imports, but D1/workerd and a Cloudflare hosting adapter are absent from inherited main and remain blocked. Node success does not establish equivalent D1 atomicity. No runtime/provider resources or security settings changed.
+PR #7 now verifies configurable request composition, current roles, revocation and expiry with synthetic server sessions; see [its contract and ledger](session-composition.md). Actual configured production sessions, login/logout, provider lifecycle and deployed hosting remain unverified. Node SQLite evidence uses the built SvelteKit Server and a temporary persisted file; adapter-auto does not produce a verified self-hosted Node deployment. The interface and token code contain no Node-only imports. PR #7 adds portable workerd checks with a synthetic adapter; D1 persistence and a Cloudflare hosting adapter remain absent and blocked. Node success does not establish equivalent D1 atomicity. No runtime/provider resources or security settings changed.
 
 Only existing string/text schema fields and unpublished drafts are integrated. JSON/rich field types, publishing/live-vs-draft revisions, history, restoration, permanent delete, edit locks, schema dashboard editing, automatic slug generation and configured default locales remain unported. Stored supports flags do not establish revision lifecycle support. No domain deviation is accepted through this branch; these are incomplete families.
+
+## Compatibility register and merged preview correction
+
+The [current compatibility register](../parity/emdash/compatibility.md) indexes landed transport/error mapping, revision-token, receipt/refresh and inherited database/auth adaptations. The earlier “No domain deviation is accepted through this branch” statement describes that branch’s acceptance record; it does not imply current main has no intentional differences. Landed state alone does not establish a specific acceptance decision.
+
+[PR #6](https://github.com/sveltery/cms/pull/6) landed the null-preview correction at `066e1879ae21b0d891b69627ec8138da77243cc5`: string/text preview controls apply schema defaults only to absent own persisted keys. Explicit null and empty strings render empty; inherited keys count as absent. The disabled preview's [local SSR regression](../tests/draft-preview.test.ts) remains unchanged. [A 28-case paired rendering reproduction](preview-upstream-reproduction.md) now runs the pinned EmDash editor and local before/fix/current sources. The explicit-null correction restores the pinned empty display at the direct-default control boundary; it is a fidelity repair, not a shared upstream defect. Projected null already matched before the fix because PR #7’s manifest omits defaults.
+
+[Register entry C-16](../parity/emdash/compatibility.md) separately discloses local absent-key defaults, own-key treatment and runtime false/zero coercion. False/zero/inherited cases are runtime rendering probes, not persisted-field support. These intentional local differences have landed provenance but no recorded specific acceptance decision. The fixture establishes static control behavior, not browser interactions, database default application or whole-editor parity.
+
+Current read-only preview routes use [PR #7’s editor manifest](session-composition.md) rather than editor-only administrative schema queries. The [source ledger](session-composition-ports.json) records its deliberate projection/access/query limits and retained `constructor` omission in [issue #8](https://github.com/sveltery/cms/issues/8). UI writes remain disabled.
