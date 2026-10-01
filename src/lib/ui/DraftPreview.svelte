@@ -1,21 +1,31 @@
-<section aria-labelledby="draft-heading">
-  <h2 id="draft-heading">Start with a draft</h2>
-  <p>This editor preview will connect to content storage after authentication and persistence are configured.</p>
-  <fieldset disabled>
-    <label for="draft-title">Title</label>
-    <input id="draft-title" name="title" placeholder="Give your story a title" />
-    <label for="draft-body">Content</label>
-    <textarea id="draft-body" name="body" rows="6" placeholder="Write something worth sharing"></textarea>
-    <button type="submit">Save draft</button>
-  </fieldset>
-</section>
+<script lang="ts">
+  import type { Field } from '$lib/server/database/contract';
+  let { fields = [], values = {} }: { fields?: Field[]; values?: Record<string, string | null> } = $props();
+</script>
+
+<input type="hidden" name="data" value={JSON.stringify(values)} disabled />
+<fieldset disabled>
+  <legend>Draft preview</legend>
+  {#each fields as field (field.id)}
+    <label>
+      {field.label}{field.required ? ' *' : ''}
+      {#if field.type === 'text'}
+        <textarea data-field={field.slug} value={Object.hasOwn(values, field.slug) ? values[field.slug] ?? '' : field.defaultValue ?? ''} required={field.required} maxlength={field.validation?.maxLength ?? 100_000}></textarea>
+      {:else}
+        <input data-field={field.slug} value={Object.hasOwn(values, field.slug) ? values[field.slug] ?? '' : field.defaultValue ?? ''} required={field.required} minlength={field.validation?.minLength} maxlength={field.validation?.maxLength ?? 200} />
+      {/if}
+    </label>
+  {/each}
+  <button type="submit">Save draft</button>
+</fieldset>
+<p>Writes will be available after authentication and persistence are configured.</p>
 
 <style>
-  section { padding: 28px; background: white; border: 1px solid #dfe3e9; border-radius: 12px; }
-  h2 { margin-top: 0; font-size: 20px; }
-  p { color: #526079; line-height: 1.6; }
-  fieldset { border: 0; padding: 0; display: grid; gap: 12px; }
-  label { font-weight: 600; }
-  input, textarea { font: inherit; padding: 12px; border: 1px solid #aab4c3; border-radius: 6px; background: #f5f6f8; }
-  button { justify-self: start; font: inherit; padding: 10px 18px; border: 0; border-radius: 6px; background: #dce1ee; color: #526079; }
+  fieldset { border: 1px solid #d9e0eb; border-radius: 12px; padding: 24px; }
+  legend { font-weight: 600; }
+  label { display: block; margin-block: 12px; }
+  input, textarea { display: block; box-sizing: border-box; inline-size: 100%; margin-block-start: 8px; padding: 10px; border: 1px solid #c4cedd; border-radius: 6px; font: inherit; }
+  textarea { min-block-size: 140px; }
+  button { padding: 10px 18px; }
+  p { color: #526079; font-size: 14px; }
 </style>

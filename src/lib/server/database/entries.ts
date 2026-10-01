@@ -142,7 +142,7 @@ export class DraftRepository {
         query, sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
       ]);
     } catch (cause) {
-      if (cause instanceof Error && /CHECK constraint failed: pass = 1/.test(cause.message)) throw new CmsError('CONFLICT');
+      if (cause instanceof Error && /CHECK constraint failed: pass = 1|UNIQUE constraint failed:/.test(cause.message)) throw new CmsError('CONFLICT');
       throw cause;
     }
   }

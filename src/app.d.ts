@@ -1,10 +1,12 @@
-import type { Principal, ContentRepository } from './lib/server/content/service';
+import type { CmsDatabase } from './lib/server/database/contract';
+import type { ServerPrincipal } from './lib/server/database/service';
 
 declare global {
   namespace App {
+    interface Error { code?: string }
     interface Locals {
-      // Populate only from trusted server authentication and adapter composition.
-      cms?: { principal: Principal | null; repository: ContentRepository };
+      // Explicit adapter injection, populated only by trusted server session composition.
+      cms?: { database: CmsDatabase; principal: ServerPrincipal | null };
     }
   }
 }
