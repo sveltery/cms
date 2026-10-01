@@ -1,0 +1,1058 @@
+{
+  "formatVersion": 1,
+  "baseline": {
+    "repository": "https://github.com/emdash-cms/emdash.git",
+    "commit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "tag": "emdash@1.1.0",
+    "cmsBase": "ec0376fc4d83ba70ec896e6cb34e5ad301f27788"
+  },
+  "scope": "server-session resolution/expiry/revocation/current role principal; no login or route composition",
+  "inspectedImplementation": [
+    {
+      "path": "packages/auth/src/types.ts",
+      "sourceBlob": "e5fc2ec92b399079aca96f08621b3d042a41fb15",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/types.ts"
+    },
+    {
+      "path": "packages/auth/src/rbac.ts",
+      "sourceBlob": "55eda9bdfd9aa92b3d40ba45ebda6daa00d20dbb",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.ts"
+    },
+    {
+      "path": "packages/auth/src/config.ts",
+      "sourceBlob": "059329cda6af21a23dab17d58ae6a1e90c243aa1",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/config.ts"
+    },
+    {
+      "path": "packages/auth/src/tokens.ts",
+      "sourceBlob": "c96ef3c7ad026bfd31117f2db2ce0378d570dc4f",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/tokens.ts"
+    },
+    {
+      "path": "packages/auth/src/adapters/kysely.ts",
+      "sourceBlob": "7cb68baea14a9696296c8fc9c414abe95c8ea594",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/adapters/kysely.ts"
+    },
+    {
+      "path": "packages/core/src/astro/session-user.ts",
+      "sourceBlob": "d3624ac7739076c726522a3e8529f1f4278bc5e3",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/astro/session-user.ts"
+    },
+    {
+      "path": "packages/core/src/astro/middleware/auth.ts",
+      "sourceBlob": "3c23748f8d6ee8d02bac37e65d2537c3945548c6",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/astro/middleware/auth.ts"
+    },
+    {
+      "path": "packages/core/src/api/csrf.ts",
+      "sourceBlob": "d190c01e3bf3d83d9deea9512913259e737fe7c5",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/api/csrf.ts"
+    },
+    {
+      "path": "packages/core/tests/unit/api/csrf.test.ts",
+      "sourceBlob": "13721757ae9291434db1ea89f3946d6f652a2e67",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/csrf.test.ts"
+    },
+    {
+      "path": "packages/core/src/astro/routes/api/auth/passkey/verify.ts",
+      "sourceBlob": "d2fbc1b05f9f4019c64b6b204d5f561fcec31b96",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/astro/routes/api/auth/passkey/verify.ts"
+    },
+    {
+      "path": "packages/core/src/astro/routes/api/auth/logout.ts",
+      "sourceBlob": "75b378927cae6e3f53b6c862e8911d134528aa26",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/astro/routes/api/auth/logout.ts"
+    },
+    {
+      "path": "packages/core/tests/unit/auth/logout-route.test.ts",
+      "sourceBlob": "0bfa8eb20126e4db7d84775f313715755e3e517d",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/auth/logout-route.test.ts"
+    },
+    {
+      "path": "packages/core/tests/unit/auth/passkey-verify-route.test.ts",
+      "sourceBlob": "b89788ced594ddb65d65bad5e231b96d74b7e508",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/auth/passkey-verify-route.test.ts"
+    },
+    {
+      "path": "e2e/tests/auth.spec.ts",
+      "sourceBlob": "773affad3dfd5a09eac74126d2d2f2ce3c940c45",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/e2e/tests/auth.spec.ts"
+    }
+  ],
+  "ports": [
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:15",
+      "title": "returns false for null user",
+      "localTitle": "returns false for null user [rbac.ts:15]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L15",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "hasPermission"
+      ],
+      "assertions": [
+        "expect(hasPermission(null, \"content:read\")).toBe(false)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "returns false for null user [rbac.ts:15]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:19",
+      "title": "returns false for undefined user",
+      "localTitle": "returns false for undefined user [rbac.ts:19]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L19",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "hasPermission"
+      ],
+      "assertions": [
+        "expect(hasPermission(undefined, \"content:read\")).toBe(false)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "returns false for undefined user [rbac.ts:19]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:23",
+      "title": "allows subscriber to read content",
+      "localTitle": "allows subscriber to read content [rbac.ts:23]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L23",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "hasPermission"
+      ],
+      "assertions": [
+        "expect(hasPermission({ role: Role.SUBSCRIBER }, \"content:read\")).toBe(true)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "allows subscriber to read content [rbac.ts:23]",
+          "redCommit": "de6753e",
+          "redResult": "assertion-fail",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:27",
+      "title": "denies subscriber from creating content",
+      "localTitle": "denies subscriber from creating content [rbac.ts:27]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L27",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "hasPermission"
+      ],
+      "assertions": [
+        "expect(hasPermission({ role: Role.SUBSCRIBER }, \"content:create\")).toBe(false)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "denies subscriber from creating content [rbac.ts:27]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:31",
+      "title": "allows contributor to create content",
+      "localTitle": "allows contributor to create content [rbac.ts:31]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L31",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "hasPermission"
+      ],
+      "assertions": [
+        "expect(hasPermission({ role: Role.CONTRIBUTOR }, \"content:create\")).toBe(true)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "allows contributor to create content [rbac.ts:31]",
+          "redCommit": "de6753e",
+          "redResult": "assertion-fail",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:35",
+      "title": "allows admin to do anything",
+      "localTitle": "allows admin to do anything [rbac.ts:35]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L35",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "hasPermission"
+      ],
+      "assertions": [
+        "expect(hasPermission(admin, \"content:read\")).toBe(true)",
+        "expect(hasPermission(admin, \"content:create\")).toBe(true)",
+        "expect(hasPermission(admin, \"users:manage\")).toBe(true)",
+        "expect(hasPermission(admin, \"schema:manage\")).toBe(true)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "allows admin to do anything [rbac.ts:35]",
+          "redCommit": "de6753e",
+          "redResult": "assertion-fail",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:43",
+      "title": "denies editor from managing users",
+      "localTitle": "denies editor from managing users [rbac.ts:43]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L43",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "hasPermission"
+      ],
+      "assertions": [
+        "expect(hasPermission({ role: Role.EDITOR }, \"users:manage\")).toBe(false)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "denies editor from managing users [rbac.ts:43]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:47",
+      "title": "allows author to edit own media",
+      "localTitle": "allows author to edit own media [rbac.ts:47]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L47",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "hasPermission"
+      ],
+      "assertions": [
+        "expect(hasPermission({ role: Role.AUTHOR }, \"media:edit_own\")).toBe(true)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "allows author to edit own media [rbac.ts:47]",
+          "redCommit": "de6753e",
+          "redResult": "assertion-fail",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:51",
+      "title": "denies contributor from editing media",
+      "localTitle": "denies contributor from editing media [rbac.ts:51]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L51",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "hasPermission"
+      ],
+      "assertions": [
+        "expect(hasPermission({ role: Role.CONTRIBUTOR }, \"media:edit_own\")).toBe(false)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "denies contributor from editing media [rbac.ts:51]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:55",
+      "title": "allows editor to edit any media",
+      "localTitle": "allows editor to edit any media [rbac.ts:55]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L55",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "hasPermission"
+      ],
+      "assertions": [
+        "expect(hasPermission({ role: Role.EDITOR }, \"media:edit_any\")).toBe(true)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "allows editor to edit any media [rbac.ts:55]",
+          "redCommit": "de6753e",
+          "redResult": "assertion-fail",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:59",
+      "title": "denies author from editing any media",
+      "localTitle": "denies author from editing any media [rbac.ts:59]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L59",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "hasPermission"
+      ],
+      "assertions": [
+        "expect(hasPermission({ role: Role.AUTHOR }, \"media:edit_any\")).toBe(false)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "denies author from editing any media [rbac.ts:59]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:65",
+      "title": "denies subscriber from reading drafts",
+      "localTitle": "denies subscriber from reading drafts [rbac.ts:65]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L65",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "hasPermission"
+      ],
+      "assertions": [
+        "expect(hasPermission({ role: Role.SUBSCRIBER }, \"content:read_drafts\")).toBe(false)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "denies subscriber from reading drafts [rbac.ts:65]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:69",
+      "title": "allows contributor to read drafts",
+      "localTitle": "allows contributor to read drafts [rbac.ts:69]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L69",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "hasPermission"
+      ],
+      "assertions": [
+        "expect(hasPermission({ role: Role.CONTRIBUTOR }, \"content:read_drafts\")).toBe(true)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "allows contributor to read drafts [rbac.ts:69]",
+          "redCommit": "de6753e",
+          "redResult": "assertion-fail",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:73",
+      "title": "allows editor to read drafts",
+      "localTitle": "allows editor to read drafts [rbac.ts:73]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L73",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "hasPermission"
+      ],
+      "assertions": [
+        "expect(hasPermission({ role: Role.EDITOR }, \"content:read_drafts\")).toBe(true)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "allows editor to read drafts [rbac.ts:73]",
+          "redCommit": "de6753e",
+          "redResult": "assertion-fail",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:79",
+      "title": "throws for null user",
+      "localTitle": "throws for null user [rbac.ts:79]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L79",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "requirePermission"
+      ],
+      "assertions": [
+        "expect(() => requirePermission(null, \"content:read\")).toThrow(PermissionError)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "throws for null user [rbac.ts:79]",
+          "redCommit": "de6753e",
+          "redResult": "assertion-fail",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:83",
+      "title": "throws unauthorized for missing user",
+      "localTitle": "throws unauthorized for missing user [rbac.ts:83]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L83",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "requirePermission"
+      ],
+      "assertions": [
+        "expect(e).toBeInstanceOf(PermissionError)",
+        "expect((e as PermissionError).code).toBe(\"unauthorized\")"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "throws unauthorized for missing user [rbac.ts:83]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:92",
+      "title": "throws forbidden for insufficient permissions",
+      "localTitle": "throws forbidden for insufficient permissions [rbac.ts:92]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L92",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "requirePermission"
+      ],
+      "assertions": [
+        "expect(e).toBeInstanceOf(PermissionError)",
+        "expect((e as PermissionError).code).toBe(\"forbidden\")"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "throws forbidden for insufficient permissions [rbac.ts:92]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:101",
+      "title": "does not throw for sufficient permissions",
+      "localTitle": "does not throw for sufficient permissions [rbac.ts:101]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L101",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "requirePermission"
+      ],
+      "assertions": [
+        "expect(() => requirePermission({ role: Role.ADMIN }, \"content:create\")).not.toThrow()"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "does not throw for sufficient permissions [rbac.ts:101]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:109",
+      "title": "allows action on own resource with own permission",
+      "localTitle": "allows action on own resource with own permission [rbac.ts:109]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L109",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "canActOnOwn"
+      ],
+      "assertions": [
+        "expect(canActOnOwn(user, \"user-1\", \"content:edit_own\", \"content:edit_any\")).toBe(true)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "allows action on own resource with own permission [rbac.ts:109]",
+          "redCommit": "de6753e",
+          "redResult": "assertion-fail",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        },
+        {
+          "runtime": "local workerd 1.20260507.1 (Miniflare 4.20260507.1), no nodejs_compat",
+          "localFile": "tests/helpers/auth-worker.ts",
+          "localTitle": "source: author owns content",
+          "redCommit": null,
+          "redResult": "supplemental runtime check added after Node assertion-level red",
+          "greenCommand": "node --test tests/auth-workerd.test.ts",
+          "greenResult": "pass",
+          "fixture": "unchanged source AUTHOR/user-1 and owner user-1/user-2 literals"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:113",
+      "title": "denies action on others resource without any permission",
+      "localTitle": "denies action on others resource without any permission [rbac.ts:113]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L113",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "canActOnOwn"
+      ],
+      "assertions": [
+        "expect(canActOnOwn(user, \"user-2\", \"content:edit_own\", \"content:edit_any\")).toBe(false)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "denies action on others resource without any permission [rbac.ts:113]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        },
+        {
+          "runtime": "local workerd 1.20260507.1 (Miniflare 4.20260507.1), no nodejs_compat",
+          "localFile": "tests/helpers/auth-worker.ts",
+          "localTitle": "source: author cannot edit others",
+          "redCommit": null,
+          "redResult": "supplemental runtime check added after Node assertion-level red",
+          "greenCommand": "node --test tests/auth-workerd.test.ts",
+          "greenResult": "pass",
+          "fixture": "unchanged source AUTHOR/user-1 and owner user-1/user-2 literals"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:117",
+      "title": "allows editor to edit any resource",
+      "localTitle": "allows editor to edit any resource [rbac.ts:117]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L117",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "canActOnOwn"
+      ],
+      "assertions": [
+        "expect(canActOnOwn(editor, \"user-2\", \"content:edit_own\", \"content:edit_any\")).toBe(true)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "allows editor to edit any resource [rbac.ts:117]",
+          "redCommit": "de6753e",
+          "redResult": "assertion-fail",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:122",
+      "title": "allows author to edit own media",
+      "localTitle": "allows author to edit own media [rbac.ts:122]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L122",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "canActOnOwn"
+      ],
+      "assertions": [
+        "expect(canActOnOwn(user, \"user-1\", \"media:edit_own\", \"media:edit_any\")).toBe(true)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "allows author to edit own media [rbac.ts:122]",
+          "redCommit": "de6753e",
+          "redResult": "assertion-fail",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:126",
+      "title": "denies author from editing others media",
+      "localTitle": "denies author from editing others media [rbac.ts:126]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L126",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "canActOnOwn"
+      ],
+      "assertions": [
+        "expect(canActOnOwn(user, \"user-2\", \"media:edit_own\", \"media:edit_any\")).toBe(false)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "denies author from editing others media [rbac.ts:126]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:130",
+      "title": "denies contributor from editing any media (including own)",
+      "localTitle": "denies contributor from editing any media (including own) [rbac.ts:130]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L130",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "canActOnOwn"
+      ],
+      "assertions": [
+        "expect(canActOnOwn(contributor, \"contrib-1\", \"media:edit_own\", \"media:edit_any\")).toBe(false)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "denies contributor from editing any media (including own) [rbac.ts:130]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:135",
+      "title": "allows editor to edit any media",
+      "localTitle": "allows editor to edit any media [rbac.ts:135]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L135",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "canActOnOwn"
+      ],
+      "assertions": [
+        "expect(canActOnOwn(editor, \"user-2\", \"media:edit_own\", \"media:edit_any\")).toBe(true)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "allows editor to edit any media [rbac.ts:135]",
+          "redCommit": "de6753e",
+          "redResult": "assertion-fail",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:140",
+      "title": "F17: empty-string ownerId is not treated as 'owned by user with id ''",
+      "localTitle": "F17: empty-string ownerId is not treated as 'owned by user with id '' [rbac.ts:140]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L140",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "canActOnOwn"
+      ],
+      "assertions": [
+        "expect(canActOnOwn(orphanedUser, \"\", \"content:edit_own\", \"content:edit_any\")).toBe(false)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "F17: empty-string ownerId is not treated as 'owned by user with id '' [rbac.ts:140]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:169",
+      "title": "allows author to edit own content",
+      "localTitle": "allows author to edit own content [rbac.ts:169]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L169",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "requirePermissionOnResource"
+      ],
+      "assertions": [
+        "expect(() =>\n\t\t\t\trequirePermissionOnResource(user, \"user-1\", \"content:edit_own\", \"content:edit_any\"),\n\t\t\t).not.toThrow()"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "allows author to edit own content [rbac.ts:169]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:176",
+      "title": "throws for author editing others content",
+      "localTitle": "throws for author editing others content [rbac.ts:176]",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/auth/src/rbac.test.ts#L176",
+      "sourceBlob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a",
+      "suites": [
+        "rbac",
+        "requirePermissionOnResource"
+      ],
+      "assertions": [
+        "expect(() =>\n\t\t\t\trequirePermissionOnResource(user, \"user-2\", \"content:edit_own\", \"content:edit_any\"),\n\t\t\t).toThrow(PermissionError)"
+      ],
+      "fixture": "unchanged source role, user ID and owner ID literals",
+      "harnessAdaptation": "Vitest matchers/it become equivalent node:assert/node:test calls; module imports target product auth",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-upstream.test.ts",
+          "localTitle": "throws for author editing others content [rbac.ts:176]",
+          "redCommit": "de6753e",
+          "redResult": "assertion-fail",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/astro/session-user.test.ts:11",
+      "title": "returns the session user when the read resolves",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/session-user.test.ts#L11",
+      "sourceBlob": "d83e39a4923024b34f4ddd0242f6cc73a6caf92b",
+      "inventoryStatus": "additional inspected source outside the existing inventory; not silently added to its counts",
+      "assertions": [
+        "expect(resolveSessionUser(session)).resolves.toEqual({ id: \"user_1\" })",
+        "expect(session.get).toHaveBeenCalledWith(\"user\")"
+      ],
+      "fixture": "unchanged source user_1; stalled/rejected reads use the source 20 ms timeout",
+      "harnessAdaptation": "Astro virtual after/waitUntil stub becomes optional request keepAlive seam; equivalent node assertions",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-session.test.ts",
+          "localTitle": "returns the session user when the read resolves [session-user.test.ts:11]",
+          "redCommit": "de6753e",
+          "redResult": "assertion-fail",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        },
+        {
+          "runtime": "local workerd 1.20260507.1 (Miniflare 4.20260507.1), no nodejs_compat",
+          "localFile": "tests/helpers/auth-worker.ts",
+          "localTitle": "source: resolved session user and user-key lookup",
+          "redCommit": null,
+          "redResult": "supplemental runtime check added after Node assertion-level red",
+          "greenCommand": "node --test tests/auth-workerd.test.ts",
+          "greenResult": "pass",
+          "storage": "synthetic test seam, no persistence adapter"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/astro/session-user.test.ts:17",
+      "title": "returns undefined when there is no session",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/session-user.test.ts#L17",
+      "sourceBlob": "d83e39a4923024b34f4ddd0242f6cc73a6caf92b",
+      "inventoryStatus": "additional inspected source outside the existing inventory; not silently added to its counts",
+      "assertions": [
+        "expect(resolveSessionUser(undefined)).resolves.toBeUndefined()"
+      ],
+      "fixture": "unchanged source user_1; stalled/rejected reads use the source 20 ms timeout",
+      "harnessAdaptation": "Astro virtual after/waitUntil stub becomes optional request keepAlive seam; equivalent node assertions",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-session.test.ts",
+          "localTitle": "returns undefined when there is no session [session-user.test.ts:17]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        },
+        {
+          "runtime": "local workerd 1.20260507.1 (Miniflare 4.20260507.1), no nodejs_compat",
+          "localFile": "tests/helpers/auth-worker.ts",
+          "localTitle": "source: missing session",
+          "redCommit": null,
+          "redResult": "supplemental runtime check added after Node assertion-level red",
+          "greenCommand": "node --test tests/auth-workerd.test.ts",
+          "greenResult": "pass",
+          "storage": "synthetic test seam, no persistence adapter"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/astro/session-user.test.ts:23",
+      "title": "falls back to undefined instead of hanging when the read never settles",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/session-user.test.ts#L23",
+      "sourceBlob": "d83e39a4923024b34f4ddd0242f6cc73a6caf92b",
+      "inventoryStatus": "additional inspected source outside the existing inventory; not silently added to its counts",
+      "assertions": [
+        "expect(resolveSessionUser(session, 20)).resolves.toBeUndefined()"
+      ],
+      "fixture": "unchanged source user_1; stalled/rejected reads use the source 20 ms timeout",
+      "harnessAdaptation": "Astro virtual after/waitUntil stub becomes optional request keepAlive seam; equivalent node assertions",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-session.test.ts",
+          "localTitle": "falls back to undefined instead of hanging when the read never settles [session-user.test.ts:23]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        },
+        {
+          "runtime": "local workerd 1.20260507.1 (Miniflare 4.20260507.1), no nodejs_compat",
+          "localFile": "tests/helpers/auth-worker.ts",
+          "localTitle": "source: stalled session",
+          "redCommit": null,
+          "redResult": "supplemental runtime check added after Node assertion-level red",
+          "greenCommand": "node --test tests/auth-workerd.test.ts",
+          "greenResult": "pass",
+          "storage": "synthetic test seam, no persistence adapter"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/astro/session-user.test.ts:30",
+      "title": "fails closed to undefined when the read rejects",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/session-user.test.ts#L30",
+      "sourceBlob": "d83e39a4923024b34f4ddd0242f6cc73a6caf92b",
+      "inventoryStatus": "additional inspected source outside the existing inventory; not silently added to its counts",
+      "assertions": [
+        "expect(resolveSessionUser(session, 20)).resolves.toBeUndefined()"
+      ],
+      "fixture": "unchanged source user_1; stalled/rejected reads use the source 20 ms timeout",
+      "harnessAdaptation": "Astro virtual after/waitUntil stub becomes optional request keepAlive seam; equivalent node assertions",
+      "cases": [
+        {
+          "runtime": "Node 24.19.0",
+          "localFile": "tests/auth-session.test.ts",
+          "localTitle": "fails closed to undefined when the read rejects [session-user.test.ts:30]",
+          "redCommit": "de6753e",
+          "redResult": "pass-against-inert-seam",
+          "greenCommand": "node --test tests/auth-*.test.ts",
+          "greenResult": "pass"
+        },
+        {
+          "runtime": "local workerd 1.20260507.1 (Miniflare 4.20260507.1), no nodejs_compat",
+          "localFile": "tests/helpers/auth-worker.ts",
+          "localTitle": "source: rejected session",
+          "redCommit": null,
+          "redResult": "supplemental runtime check added after Node assertion-level red",
+          "greenCommand": "node --test tests/auth-workerd.test.ts",
+          "greenResult": "pass",
+          "storage": "synthetic test seam, no persistence adapter"
+        }
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:153",
+      "title": "clampScopes keeps transfer scopes for admins",
+      "reason": "API token/scope issuance outside bounded server-session slice"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.test.ts:160",
+      "title": "clampScopes drops transfer scopes for role %s",
+      "reason": "API token/scope issuance outside bounded server-session slice"
+    }
+  ],
+  "localRequirements": {
+    "files": [
+      "tests/auth-session.test.ts (local: titles)",
+      "tests/auth-storage.test.ts",
+      "tests/auth-request.test.ts",
+      "tests/auth-workerd.test.ts (local: worker checks)"
+    ],
+    "claimedUpstreamPorts": false
+  },
+  "evidence": {
+    "initialRed": {
+      "commit": "de6753e",
+      "command": "node --test tests/auth-upstream.test.ts tests/auth-session.test.ts",
+      "tests": 41,
+      "pass": 20,
+      "assertionFail": 21,
+      "importFailure": false
+    },
+    "storageRed": {
+      "commit": "c293aa6",
+      "command": "node --test tests/auth-storage.test.ts",
+      "tests": 2,
+      "pass": 1,
+      "assertionFail": 1
+    },
+    "originRed": {
+      "commit": "9ae890e",
+      "command": "node --test tests/auth-request.test.ts",
+      "tests": 6,
+      "pass": 4,
+      "assertionFail": 2
+    },
+    "green": {
+      "command": "PATH=/workspace/.tools/pnpm/node_modules/.bin:$PATH sh scripts/bootstrap.sh",
+      "node": "24.19.0",
+      "pnpm": "12.6.0",
+      "svelteCheck": "0 errors, 0 warnings",
+      "tests": 111,
+      "productionTests": 10,
+      "skips": 0
+    },
+    "limitations": [
+      "Workerd core uses a synthetic store, not D1 or KV.",
+      "waitUntil forwarding is checked; request cancellation recovery is not.",
+      "Local Chromium download denied by network policy; hosted browser CI must supply final browser evidence.",
+      "No hooks, locals, shared database contracts, remote or public write integration is included."
+    ]
+  }
+}
