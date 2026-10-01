@@ -37,7 +37,7 @@ The [compatibility register](../parity/emdash/compatibility.md), [content contra
 
 ## Executable temporary fixture
 
-Set `CMS_CHECKOUT` to a checkout whose preview source matches composition main `a9726b2a`; no product files are changed. In an empty temporary directory, prepare the sources and dependencies:
+Set `CMS_CHECKOUT` to a checkout whose preview source matches composition main `a9726b2a`; no product files are changed. PR #6 was squashed, so a normal clone need not contain the pre-fix/fix commits. The temporary `commit-source` repository explicitly fetches both immutable commits; this was verified from an empty repository and both extracted files matched the recorded sources. In an empty temporary directory, prepare the sources and dependencies:
 
 ```sh
 export CMS_CHECKOUT=/path/to/sveltery/cms
@@ -46,8 +46,10 @@ cd "$preview_work"
 git clone --no-checkout https://github.com/emdash-cms/emdash.git source
 mkdir upstream
 git -C source archive 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e packages/admin/src packages/core/src/api/handlers/manifest.ts LICENSE | tar -x -C upstream
-git -C "$CMS_CHECKOUT" show 63b4025b5f8e0cf660322c17a850d9705a5614e0:src/lib/ui/DraftPreview.svelte > DraftPreview.before.svelte
-git -C "$CMS_CHECKOUT" show 066e1879ae21b0d891b69627ec8138da77243cc5:src/lib/ui/DraftPreview.svelte > DraftPreview.fix.svelte
+git init commit-source
+git -C commit-source fetch --no-tags --depth=1 https://github.com/sveltery/cms.git 63b4025b5f8e0cf660322c17a850d9705a5614e0 066e1879ae21b0d891b69627ec8138da77243cc5
+git -C commit-source show 63b4025b5f8e0cf660322c17a850d9705a5614e0:src/lib/ui/DraftPreview.svelte > DraftPreview.before.svelte
+git -C commit-source show 066e1879ae21b0d891b69627ec8138da77243cc5:src/lib/ui/DraftPreview.svelte > DraftPreview.fix.svelte
 printf '%s\n' '{"private":true,"type":"module"}' > package.json
 npm install --cache "$preview_work/npm-cache" --ignore-scripts --no-audit --no-fund react@19.2.4 react-dom@19.2.4 @cloudflare/kumo@2.6.0 @lingui/core@5.9.5 @lingui/react@5.9.5 @lingui/babel-plugin-lingui-macro@5.9.5 @babel/core@7.29.7 esbuild@0.28.1 svelte@5.57.1 clsx@2.1.1 tailwind-merge@3.3.0
 printf '%s\n' "export default {sourceLocale:'en',locales:['en'],catalogs:[]};" > lingui.config.js
