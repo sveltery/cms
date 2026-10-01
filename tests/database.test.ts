@@ -316,3 +316,51 @@ test('cursor OR branches keep locale and trash filters when titles and slugs are
     assert.equal(new Set(seen).size, 3);
   } finally { await f.database.close(); }
 });
+
+test('concurrent same-slug collection creation reports a sanitized conflict and preserves unrelated failures', async () => {
+  const directory = mkdtempSync(join(tmpdir(), 'cms-schema-race-')); const path = join(directory, 'db.sqlite');
+  const first = await fixture(path); const second = openSqlite(path);
+  try {
+    const other = cmsService(second, admin);
+    const outcomes = await Promise.allSettled([
+      first.service.createCollection({ slug: 'race', label: 'Race' }),
+      other.createCollection({ slug: 'race', label: 'Race' })
+    ]);
+    assert.equal(outcomes.filter(result => result.status === 'fulfilled').length, 1);
+    const rejected = outcomes.find(result => result.status === 'rejected');
+    assert.ok(rejected?.status === 'rejected' && rejected.reason instanceof CmsError);
+    assert.equal(rejected.reason.code, 'COLLECTION_EXISTS');
+    assert.equal(rejected.reason.message, 'COLLECTION_EXISTS');
+    const rows = await sql<{ count: number }>`SELECT count(*) AS count FROM _cms_collections WHERE slug = 'race'`.execute(first.database.db);
+    assert.equal(rows.rows[0].count, 1);
+    assert.equal((await sql`SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'ec_race'`.execute(first.database.db)).rows.length, 1);
+    assert.equal((await sql`SELECT * FROM _cms_guards`.execute(first.database.db)).rows.length, 0);
+    const entry = await first.service.createDraft({ type: 'race', data: {} });
+    assert.equal((await other.getDraft({ type: 'race', id: entry.id })).id, entry.id);
+    await sql`CREATE TRIGGER reject_unrelated_collection BEFORE INSERT ON _cms_collections
+      WHEN NEW.slug = 'unrelated' BEGIN SELECT RAISE(ABORT, 'unrelated schema failure'); END`.execute(first.database.db);
+    await assert.rejects(() => first.service.createCollection({ slug: 'unrelated', label: 'Failure' }),
+      cause => cause instanceof Error && !(cause instanceof CmsError) && cause.message === 'unrelated schema failure');
+    assert.equal(await first.schema.getCollection('unrelated'), null);
+    assert.equal((await sql`SELECT * FROM _cms_guards`.execute(first.database.db)).rows.length, 0);
+  } finally { await second.close(); await first.database.close(); rmSync(directory, { recursive: true, force: true }); }
+});
+
+test('version-one migration markers reject missing system tables without repair or mutation', async () => {
+  for (const missing of [null, '_cms_collections', '_cms_fields', '_cms_guards']) {
+    const database = openSqlite(':memory:');
+    try {
+      if (missing === null) {
+        await sql`CREATE TABLE _cms_migrations (version INTEGER PRIMARY KEY)`.execute(database.db);
+        await sql`INSERT INTO _cms_migrations(version) VALUES (1)`.execute(database.db);
+      } else {
+        await migrateCms(database);
+        await sql`DROP TABLE ${sql.ref(missing)}`.execute(database.db);
+      }
+      const before = (await sql<{ name: string }>`SELECT name FROM sqlite_master ORDER BY name`.execute(database.db)).rows;
+      await assert.rejects(() => migrateCms(database), { code: 'MIGRATION_REQUIRED' });
+      assert.deepEqual((await sql<{ name: string }>`SELECT name FROM sqlite_master ORDER BY name`.execute(database.db)).rows, before);
+      assert.equal((await sql<{ version: number }>`SELECT version FROM _cms_migrations`.execute(database.db)).rows[0].version, 1);
+    } finally { await database.close(); }
+  }
+});
