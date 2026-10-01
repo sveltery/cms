@@ -20,9 +20,10 @@
     "test:browser": "playwright test"
   },
   "dependencies": {
-    "valibot": "1.5.0",
+    "@oslojs/encoding": "1.1.0",
     "kysely": "0.29.2",
-    "ulidx": "2.4.1"
+    "ulidx": "2.4.1",
+    "valibot": "1.5.0"
   },
   "devDependencies": {
     "@playwright/test": "1.63.0",
@@ -31,6 +32,7 @@
     "@sveltejs/vite-plugin-svelte": "7.3.1",
     "@types/node": "24.19.0",
     "devalue": "5.9.4",
+    "miniflare": "4.20260507.1",
     "svelte": "5.57.1",
     "svelte-check": "4.7.6",
     "typescript": "6.0.3",
