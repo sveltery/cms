@@ -1,6 +1,24 @@
 # Independent saved-environment review — 2026-10-01
 
-## Verified baseline
+## PR2 production boundary recovery
+
+The continuation fetched and verified PR1 `ac0ec3fb83566cb2352da80d919a4e2ad2ec8c1f` and PR2 `718fc67f01b3ad57ac67623feb040d23b96113eb` before editing. The fresh workspace initially exposed only main through its narrow fetch configuration; both feature refs were fetched explicitly. PR2 is the only branch changed, remains a stacked draft against `feat/foundation`, and has no merge authorization. No local AGENTS.md, `.agents/skills`, or SKILL.md was present.
+
+The route now consumes `listContent` and catches unavailable content without exposing server error details. It owns the `createContent` form around the disabled generic preview, whose fields now have title/body names. No authentication hook, repository, bypass principal, or enabled editor was added. The generated production registry has one module (`5e9re`) exporting all five remotes, so same-origin requests exercise real registered endpoints rather than returning the former 404.
+
+`sh scripts/bootstrap.sh` now builds before running `pnpm test:production`. On Node 24.19.0 / pnpm 12.6.0 it passed frozen installation, zero checker errors/warnings, 11 reported service/development tests and 7 reported production tests including subtests. Both runtime suites inspect 401 envelopes and private/no-store headers, validate query IDs, decode form results with devalue, and assert the exact issue path/message for title, body and ID limits. Production also exercises the actual route-owned unenhanced form (401) and checks all three mutation endpoints against foreign, null and absent Origin headers (403), plus native form cross-origin rejection. Service validation checks specifically require Valibot errors; the unprivileged denial matrix covers all five operations with zero storage calls. Expected invalid-query diagnostics from Kit are not test failures.
+
+Hosted CI adds two Playwright checks against the build: successful hydration with an unavailable-content status, no browser page errors, disabled named controls, and browser-origin registered-form denial and title validation. Chromium sandboxing is explicitly enabled; the browser job uses Ubuntu 22.04 without altering host security policy, and uploads traces/reports on failure. Test discovery passed locally. The managed workspace could not download pinned Chromium: the CDN returned HTTP 403 `Domain forbidden`. Its system Chromium was also attempted with sandboxing enabled; this is not a successful browser verification. Hosted results are the authority for browser execution and must be checked on the latest pushed head.
+
+These are supplemental SvelteKit boundary tests, not ported EmDash behavior tests. They prove anonymous denial/validation and production registration/origin handling, not authenticated CRUD, persistence, successful query refreshes, schema migration, or Node/Cloudflare deployment. `adapter-auto` still detects no production platform. Automatic review is not configured in the checked-in files or initial PR review timeline; independent latest-head review and actual CI results belong in the handoff.
+
+## Resolved direction and next contracts
+
+The user selected self-hosted CMS only, with dashboard-managed collection/field definitions stored in the database. Preserve both Node and Cloudflare hosting and relevant EmDash core behavior unless a specific documented reason requires deviation. The initial parent-reviewed reference is EmDash 1.0.1 `0e8977c221dd8e5111511eb226faa3d164c829ef`; this continuation has not independently inspected or copied upstream source/tests.
+
+Port faithful relevant upstream tests before implementation, preserve their source IDs and assertions, and record passing/unported/blocked coverage separately from this supplemental transport suite. Verify MIT/license notices before copying. Compare upstream Kysely/dialects/runtime adapters before introducing a persistence design. Schema/storage, permissions and draft/conflict semantics should follow the verified upstream contracts. React/Astro transport to SvelteKit remotes is the justified framework-specific deviation; no broad compatibility promise follows from these tests. The title/body scaffold is not the product schema. Production writes stay disabled until trusted auth and storage composition are integrated and tested. No cloud resources, credentials, deployment, or UI dependency are authorized by this work.
+
+## Historical baseline verification
 
 Draft [PR #1](https://github.com/sveltery/cms/pull/1) and fetched `feat/foundation` both pointed to `ac0ec3fb83566cb2352da80d919a4e2ad2ec8c1f`. That exact commit was checked out before bootstrap or application execution. Base main `e2e0b8111554ab8a9570e2d3237728ac1c503f6b` contains README and MIT LICENSE only. No checkout `.agents/skills` or AGENTS.md was present. This review ran independently in the saved Linux environment; it does not claim an additional delegated model review.
 
@@ -15,11 +33,11 @@ Baseline frozen installation, Svelte/type checks (zero errors and warnings), all
 
 [CI run 36895696934](https://github.com/sveltery/cms/actions/runs/36895696934), validate job 110482002272, completed successfully. Its logs show Node 24.21.0, pnpm 12.6.0, zero checker diagnostics, three passing tests, and build success. CI checked out GitHub's synthetic merge commit `d52d5fe3ae8150ad83c9eb23a09ec4ca2c531d3c`, merging the exact reviewed feature head into the base. The separate saved-environment run verified the feature commit itself.
 
-## Architecture and boundary findings
+## Historical findings at the original PR2 head
 
 The current foundation fails closed. Identity/capabilities come only from request locals; no hook supplies them yet. Every service operation authorizes before parsing input or accessing storage. Remote schemas also validate the transport, and object schemas discard extra fields. Server-only service, repository contracts, and schemas are separated from the client-facing `.remote.ts` exports. No authorization bypass was found in the inspected code or anonymous development HTTP probes. [SvelteKit's remote-function contract](https://svelte.dev/docs/kit/remote-functions) and [server-only modules](https://svelte.dev/docs/kit/server-only-modules) support this arrangement.
 
-The production manifest has an empty remote registry because the preview never imports the content remote module. Same-origin content remote URLs therefore return 404 in the baseline production build. In development, explicitly requesting Vite's client transform registers the five exports for testing: valid anonymous list/get/create/update/delete calls return error envelopes with status 401; an invalid query ID returns status 400; invalid forms return validation issues. Runtime remote error envelopes can use HTTP 200, so tests must inspect the envelope status. Production cross-origin POSTs return HTTP 403; development intentionally does not enforce that production origin check. These probes prove denial and validation, not authenticated CRUD.
+At the original reviewed head, the production manifest had an empty remote registry because the preview never imports the content remote module. Same-origin content remote URLs therefore return 404 in the baseline production build. In development, explicitly requesting Vite's client transform registers the five exports for testing: valid anonymous list/get/create/update/delete calls return error envelopes with status 401; an invalid query ID returns status 400; invalid forms return validation issues. Runtime remote error envelopes can use HTTP 200, so tests must inspect the envelope status. Production cross-origin POSTs return HTTP 403; development intentionally does not enforce that production origin check. These probes prove denial and validation, not authenticated CRUD.
 
 The original CI tests exercised the service only. The separate review branch adds development HTTP tests using the already installed Vite and Node test runner, plus denied-capability coverage, input limits, and unknown-field stripping for non-HTTP service callers. `pnpm test` runs them automatically without new dependencies, real sessions, or storage configuration. They do not test production registered remotes, browser interaction, successful mutation refreshes, or persistence. A headless Chromium attempt timed out; browser verification remains outstanding.
 
@@ -29,7 +47,7 @@ Svelte usage is idiomatic for this small scaffold: Svelte 5 props/snippets, scop
 
 The parent reports that `sveltery/ui` PR #3 has merged with bounded experimental Dialog readiness and documented focus limits; the package remains unpublished. This review adds no UI dependency. Consider narrow Dialog reuse only when the CMS needs a dialog and its accessibility/browser tests cover the required behavior; avoid making this foundation depend on another repository's head.
 
-Before wiring persisted mutations:
+Original follow-up concerns, now to be compared with faithful upstream contracts before implementation:
 
 - Decide single-workspace versus ownership/tenancy. `Principal.id` is currently unused and repositories receive no actor/scope. Capability checks alone must not become the cross-workspace policy.
 - Add an actual version token and conditional update/delete semantics. The schema named `revision` currently means ID plus draft fields and does not detect conflicting edits.
@@ -37,7 +55,7 @@ Before wiring persisted mutations:
 - Compose verified sessions in server hooks and resolve repositories per request. Separate authenticated identity from storage readiness if an authenticated 503 is required; the current combined locals contract cannot represent that state cleanly.
 - Prove successful create/update/delete refresh behavior, deleted-detail handling, and write-only versus editor capability behavior through real registered production remotes. Keep SQL parameters and returned public fields explicit inside adapters.
 
-## Persistence and authentication choices for the next decision
+## Historical provider options (no selection or implementation)
 
 These are options, not selected providers or authorization to provision them. Keep the domain service and policy independent of provider SDKs; put binding/client composition and SQL in server-only repository adapters.
 
@@ -57,7 +75,7 @@ See [D1 bindings](https://developers.cloudflare.com/d1/worker-api/) and [Postgre
 
 See [OpenID Connect](https://openid.net/developers/how-connect-works/), [Better Auth's SvelteKit integration](https://better-auth.com/docs/integrations/svelte-kit), and [SvelteKit authentication guidance](https://svelte.dev/docs/kit/auth). Keep the verified identity-to-capability mapping under CMS control regardless of the login provider. Test-only identity fixtures must never become an application bypass.
 
-## Smallest next end-to-end slice
+## Historical first-slice suggestion (superseded by upstream tests first)
 
 After the parent resolves auth/storage direction, implement one authenticated workspace and plain-text drafts: ID, title, body, and version. Add one repository adapter with parameterized SQL and a restart-persistence test; verified session composition; list/detail queries; create/update/delete forms; and a visible missing/conflict/error state. Retain temporary UI and keep docs with the feature.
 

@@ -10,3 +10,4 @@ pnpm install --frozen-lockfile
 pnpm check
 pnpm test
 pnpm build
+pnpm test:production

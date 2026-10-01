@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { ValiError } from 'valibot';
 import { contentService, ContentError, type ContentRepository } from '../src/lib/server/content/service.ts';
 
 function fixture() {
@@ -28,9 +29,9 @@ test('read capability cannot mutate and invalid input never reaches storage', as
   const reader = contentService(f.repository, { id: 'reader', capabilities: ['content:read'] });
   await assert.rejects(() => reader.create({ title: 'Draft', body: '' }), (e) => e instanceof ContentError && e.code === 'forbidden');
   const writer = contentService(f.repository, { id: 'writer', capabilities: ['content:write'] });
-  await assert.rejects(() => writer.create({ title: '   ', body: '' }));
-  await assert.rejects(() => writer.update({ id: '', title: 'Draft', body: '' }));
-  await assert.rejects(() => writer.delete(''));
+  await assert.rejects(() => writer.create({ title: '   ', body: '' }), ValiError);
+  await assert.rejects(() => writer.update({ id: '', title: 'Draft', body: '' }), ValiError);
+  await assert.rejects(() => writer.delete(''), ValiError);
   assert.equal(f.calls(), 0);
 });
 
@@ -53,7 +54,10 @@ test('capability checks cover every denied operation before accessing storage', 
     () => reader.update({ id: 'a', title: 'Draft', body: '' }),
     () => reader.delete('a'),
     () => writer.list(), () => writer.get('a'),
-    () => unprivileged.list(), () => unprivileged.create({ title: 'Draft', body: '' })
+    () => unprivileged.list(), () => unprivileged.get('a'),
+    () => unprivileged.create({ title: 'Draft', body: '' }),
+    () => unprivileged.update({ id: 'a', title: 'Draft', body: '' }),
+    () => unprivileged.delete('a')
   ]) {
     await assert.rejects(run, (e) => e instanceof ContentError && e.code === 'forbidden');
   }
@@ -70,7 +74,7 @@ test('service limits and unknown input fields protect future non-HTTP callers', 
     () => service.update({ id: 'a', title: 'Draft', body: 1 }),
     () => service.delete('x'.repeat(129))
   ]) {
-    await assert.rejects(run);
+    await assert.rejects(run, ValiError);
   }
   assert.equal(f.calls(), 0);
   assert.deepEqual(await service.create({
