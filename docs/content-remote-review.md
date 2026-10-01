@@ -22,3 +22,9 @@ The independent second review found no remaining blocking findings and passed 26
 ## Remaining joint gates
 
 Production auth/session lifecycle and adapter composition, enabled editing, Cloudflare/workerd/D1 atomicity, Node hosting packaging, publishing/revisions/edit locks, restore/permanent deletion, rich field types and schema-write dashboard remain unverified. These are preserved incomplete boundaries rather than accepted deviations. The parent coordinates merge; this branch does not merge, deploy, create resources, change credentials/security, or publish packages.
+
+## Merged null-preview correction
+
+[PR #6](https://github.com/sveltery/cms/pull/6) merged at `8bd3e62fe131116670fea7b87e623ba30fd84b19`. The final local preview fix is `066e1879ae21b0d891b69627ec8138da77243cc5`, preceded by test-only `63b4025`. [The SSR regression](../tests/draft-preview.test.ts) distinguishes absent keys (schema default), explicit null (empty), empty strings (empty), stored strings and inherited keys (absent) for both string and text controls. The disabled preview now uses own-key presence instead of nullish fallback. Runtime false/zero rendering probes do not expand persisted field support.
+
+This is a landed local correction. Upstream comparison is unverified; do not label it a shared upstream defect or claim new parity credit. Earlier implementation checkpoints and run counts above predate this final correction. Current substitutions and evidence boundaries are indexed in the [compatibility register](../parity/emdash/compatibility.md).
