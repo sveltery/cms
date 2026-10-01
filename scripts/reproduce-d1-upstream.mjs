@@ -64,7 +64,10 @@ test('pin: real local D1 zero changes, raw parameters and first-write DDL rollba
     }
     const result = await database.atomicBatch([CompiledQuery.raw('UPDATE parameters SET value = ? WHERE value = ?',['changed','absent'])]);
     assert.equal(result[0].numAffectedRows,undefined);
-    assert.equal((await database.db.executeQuery(CompiledQuery.raw('UPDATE parameters SET value = ? WHERE value = ?',['changed','absent']))).numAffectedRows,undefined);
+    const ordinary = await database.db.executeQuery(CompiledQuery.raw('UPDATE parameters SET value = ? WHERE value = ?',['changed','absent']));
+    assert.equal(ordinary.numAffectedRows,undefined);
+    assert.equal(Object.hasOwn(ordinary,'numUpdatedOrDeletedRows'),true);
+    assert.equal(Object.hasOwn(result[0],'numUpdatedOrDeletedRows'),false);
     console.log('Pinned upstream reproduced: zero=>undefined; unsupported undefined/bigint/object/Date/boxed number; byte array/ArrayBuffer/array BLOB support; only _cf_METADATA remains after first failed DDL batch.');
   } finally {await database.close(); await mf.dispose();}
 });

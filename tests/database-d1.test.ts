@@ -164,6 +164,7 @@ test('D1: one actual batch forwards parameters/order, RETURNING rows, zero/posit
     assert.deepEqual(results[3].rows, [{ storage_key: 'expired.png' }]); assert.equal(results[3].numAffectedRows, 1n);
     const noChange = await sql`UPDATE media SET status = 'none' WHERE id = 99`.execute(cms.db);
     assert.equal(noChange.numAffectedRows, undefined);
+    assert.equal(Object.hasOwn(noChange, 'numUpdatedOrDeletedRows'), false, 'bounded QueryResult omits the deprecated upstream ordinary-query alias');
   } finally { await cms.close(); await database.close(); await runtime.dispose(); }
 });
 test('D1: unrelated envelopes do not turn into successful migration race recovery', { timeout: 30000 }, async () => {

@@ -1,4 +1,5 @@
 {
+  "proposedPr": "https://github.com/sveltery/cms/pull/10",
   "referenceVersion": "1.1.0",
   "referenceCommit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "sourceFile": "packages/cloudflare/tests/db/d1-dialect.test.ts",
@@ -20,6 +21,7 @@
   "supplemental": ["unsettled-read liveness mock", "real D1 single-batch forwarding/results", "DML and CREATE/ALTER/DROP rollback", "fresh/v1 auth rollback", "incomplete/future migration fail-closed", "forced concurrent fresh/v1 migration errors", "preflight snapshot upgrade", "forced concurrent registered-slug creation", "unrelated errors and narrow envelope classification", "unsupported API rejection", "raw parameter variants", "equivalent Node/D1 scalar/default/unique/CAS/soft-delete and persisted sessions", "Node/D1 file persistence reopen", "real workerd CMS/session execution"],
   "rawParameterLedger": { "passingD1": ["null", "string", "number", "boolean to 0/1", "Uint8Array", "ArrayBuffer", "byte-number Array"], "rejectedD1": ["undefined", "bigint", "object", "Date", "boxed Number"], "differencesFromNode": ["Node undefined becomes null; D1 rejects", "Node bigint supported; D1 rejects", "Node rejects ArrayBuffer/ordinary Array; D1 accepts BLOB variants", "Node BLOB rows are Uint8Array; D1 BLOB rows are number arrays"], "unsupportedOrUntestedVariants": ["other typed arrays", "non-finite numbers", "unsafe integers", "out-of-range byte arrays", "payload/statement limits"], "parityCredit": "none for divergent variants; raw forwarding retained as pinned upstream" },
   "unported": ["session mutex tests at lines 104/114", "session/coalescing expanded cases at lines 128/144/174", "D1 introspector", "row-based Kysely migration locking", "coalescing/bookmarks/read replication", "core compound SELECT splitting", "other upstream workerd/live D1 suites", "actual HTTP cancellation recovery", "production packaging/composition", "live D1/deployment"],
+  "ordinaryResultAlias": { "upstream": "kysely-d1 0.4.0 ordinary executeQuery includes deprecated numUpdatedOrDeletedRows; upstream batch omits it", "local": "both paths omit it under the existing Kysely 0.29.2 QueryResult seam; CMS does not consume it", "evidence": "existing real result test and isolated upstream probe assert key presence", "parityCredit": "none for alias omission; specific acceptance not recorded" },
   "differencesRegister": ["C-16", "C-17", "C-18"],
   "decisionStatus": "Proposed bounded trusted-binding implementation; specific deviation acceptance not recorded; draft PR holds merge"
 }
