@@ -10,6 +10,8 @@ export async function migrateCms(database: CmsDatabase): Promise<void> {
     if (versions.length !== 1 || versions[0].version !== 1) throw new CmsError('MIGRATION_REQUIRED');
     return;
   }
+  const unmanaged = await sql`SELECT name FROM sqlite_master WHERE name IN ('_cms_collections', '_cms_fields', '_cms_guards') LIMIT 1`.execute(db);
+  if (unmanaged.rows.length) throw new CmsError('MIGRATION_REQUIRED');
   await database.atomicBatch([
     sql`CREATE TABLE IF NOT EXISTS _cms_migrations (version INTEGER PRIMARY KEY CHECK(version = 1))`.compile(db),
     sql`CREATE TABLE IF NOT EXISTS _cms_collections (

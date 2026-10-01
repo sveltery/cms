@@ -94,12 +94,13 @@ test('SQL identifiers, unknown/system fields and client ownership claims are rej
   } finally { await f.database.close(); }
 });
 
-test('real database constraints enforce required, unique, length, locale slug uniqueness and foreign keys', async () => {
+test('real database constraints enforce required, unique, locale slug uniqueness and foreign keys; service validates lengths', async () => {
   const f = await fixture();
   try {
     await f.schema.createField('posts', { slug: 'code', label: 'Code', type: 'string', required: true, unique: true, validation: { minLength: 2, maxLength: 4 } });
     await assert.rejects(() => f.service.createDraft({ type: 'posts', data: { title: 'Missing code' } }), invalid);
-    await assert.rejects(() => sql`INSERT INTO ec_posts(id, code) VALUES ('short', 'x')`.execute(f.database.db));
+    await assert.rejects(() => f.service.createDraft({ type: 'posts', data: { code: 'x' } }), invalid);
+    await assert.rejects(() => f.service.createDraft({ type: 'posts', data: { code: 'oversize' } }), invalid);
     await assert.rejects(() => sql`INSERT INTO ec_posts(id) VALUES ('missing')`.execute(f.database.db));
     await f.service.createDraft({ type: 'posts', slug: 'same', data: { code: 'aa' } });
     await assert.rejects(() => f.service.createDraft({ type: 'posts', data: { code: 'aa' } }));
@@ -203,4 +204,48 @@ test('summary query excludes large bodies, clamps pages, orders ties, scopes loc
       await assert.rejects(() => f.service.listDrafts({ type: 'posts', cursor }), invalid);
     }
   } finally { await f.database.close(); }
+});
+
+test('unique-index identity is unambiguous across collection/field underscores', async () => {
+  const database = openSqlite(':memory:');
+  try {
+    await migrateCms(database); const registry = new SchemaRegistry(database);
+    await registry.createCollection({ slug: 'foo_bar', label: 'First' });
+    await registry.createCollection({ slug: 'foo', label: 'Second' });
+    await registry.createField('foo_bar', { slug: 'baz', label: 'Unique', type: 'string', unique: true });
+    await registry.createField('foo', { slug: 'bar_baz', label: 'Unique', type: 'string', unique: true });
+    const repository = new DraftRepository(database);
+    await repository.create({ type: 'foo_bar', data: { baz: 'value' } }, 'author');
+    await repository.create({ type: 'foo', data: { bar_baz: 'value' } }, 'author');
+    await assert.rejects(() => repository.create({ type: 'foo', data: { bar_baz: 'value' } }, 'author'));
+  } finally { await database.close(); }
+});
+
+test('field length semantics preserve upstream JavaScript UTF-16 units for emoji and embedded NUL', async () => {
+  const f = await fixture();
+  try {
+    await f.schema.createField('posts', { slug: 'utf16', label: 'UTF16', type: 'text', validation: { minLength: 2, maxLength: 2 } });
+    const created = await f.service.createDraft({ type: 'posts', data: { utf16: '😀' } });
+    assert.equal(created.data.utf16, '😀');
+    const withNul = await f.service.createDraft({ type: 'posts', data: { utf16: 'a\0' } });
+    assert.equal(withNul.data.utf16, 'a\0');
+    await assert.rejects(() => f.service.createDraft({ type: 'posts', data: { utf16: 'x' } }), invalid);
+    await assert.rejects(() => f.service.createDraft({ type: 'posts', data: { utf16: '😀x' } }), invalid);
+  } finally { await f.database.close(); }
+});
+
+test('migrations reject unknown versions and unmanaged system tables without mutation', async () => {
+  const database = openSqlite(':memory:');
+  try {
+    await sql`CREATE TABLE _cms_collections (sentinel TEXT)`.execute(database.db);
+    await assert.rejects(() => migrateCms(database), { code: 'MIGRATION_REQUIRED' });
+    assert.equal((await sql`SELECT name FROM sqlite_master WHERE name = '_cms_migrations'`.execute(database.db)).rows.length, 0);
+  } finally { await database.close(); }
+  const future = openSqlite(':memory:');
+  try {
+    await sql`CREATE TABLE _cms_migrations (version INTEGER)`.execute(future.db);
+    await sql`INSERT INTO _cms_migrations VALUES (2)`.execute(future.db);
+    await assert.rejects(() => migrateCms(future), { code: 'MIGRATION_REQUIRED' });
+    assert.equal((await sql<{ version: number }>`SELECT version FROM _cms_migrations`.execute(future.db)).rows[0].version, 2);
+  } finally { await future.close(); }
 });

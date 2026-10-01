@@ -44,7 +44,8 @@ function cursorDecode(input: unknown, type: string, locale: string): { createdAt
 /** Internal storage API. Request callers must use cmsService for authorization. */
 export class DraftRepository {
   private readonly registry: SchemaRegistry;
-  constructor(private readonly database: CmsDatabase) { this.registry = new SchemaRegistry(database); }
+  private readonly database: CmsDatabase;
+  constructor(database: CmsDatabase) { this.database = database; this.registry = new SchemaRegistry(database); }
 
   private async definition(type: string) {
     const definition = await this.registry.getCollectionWithFields(type);

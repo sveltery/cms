@@ -21,7 +21,8 @@ function field(row: FieldRow): Field {
     sortOrder: row.sort_order, createdAt: row.created_at };
 }
 export class SchemaRegistry {
-  constructor(private readonly database: CmsDatabase) {}
+  private readonly database: CmsDatabase;
+  constructor(database: CmsDatabase) { this.database = database; }
 
   async getCollection(input: unknown): Promise<Collection | null> {
     const slug = parse(identifier, input);
@@ -104,7 +105,7 @@ export class SchemaRegistry {
     const fields = await this.listFields(definition.id);
     if (fields.length >= MAX_FIELDS) throw new CmsError('LIMIT_EXCEEDED');
     const column = db.schema.alterTable(name).addColumn(value.slug, 'text', c => {
-      let column = c.check(sql`${sql.ref(value.slug)} IS NULL OR (length(${sql.ref(value.slug)}) >= ${sql.lit(minimum)} AND length(${sql.ref(value.slug)}) <= ${sql.lit(maximum)})`);
+      let column = c;
       if (value.required) column = column.notNull();
       if (value.defaultValue !== undefined) column = column.defaultTo(sql.lit(value.defaultValue));
       return column;
@@ -124,7 +125,7 @@ export class SchemaRegistry {
       }).compile(),
       db.updateTable('_cms_collections').set({ version: definition.version + 1, updated_at: new Date().toISOString() }).where('id', '=', definition.id).compile()
     ];
-    if (value.unique) statements.push(db.schema.createIndex('idx_' + name + '_' + value.slug + '_unique').on(name).column(value.slug).unique().compile());
+    if (value.unique) statements.push(db.schema.createIndex('idx_' + name + '_' + id + '_unique').on(name).column(value.slug).unique().compile());
     statements.push(sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db));
     await this.batch(statements, 'CONFLICT');
     return (await this.getField(definition.slug, value.slug))!;

@@ -7,7 +7,7 @@ import { openSqlite } from '../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
 import { DraftRepository } from '../src/lib/server/database/entries.ts';
-import type { CmsDatabase } from '../src/lib/server/database/contract.ts';
+import { CmsError, type CmsDatabase } from '../src/lib/server/database/contract.ts';
 
 describe('ported EmDash SchemaRegistry assertions', () => {
   let database: CmsDatabase;
@@ -60,7 +60,7 @@ describe('ported EmDash SchemaRegistry assertions', () => {
   });
   it('should throw when creating duplicate collection', async () => {
     await registry.createCollection({ slug: 'posts', label: 'Posts' });
-    await assert.rejects(() => registry.createCollection({ slug: 'posts', label: 'Posts' }));
+    await assert.rejects(() => registry.createCollection({ slug: 'posts', label: 'Posts' }), CmsError);
   });
   it('should add column to content table when creating field', async () => {
     await registry.createCollection({ slug: 'posts', label: 'Posts' });
@@ -78,8 +78,8 @@ describe('ported EmDash SchemaRegistry assertions', () => {
   });
   it('should reject reserved field slugs', async () => {
     await registry.createCollection({ slug: 'posts', label: 'Posts' });
-    await assert.rejects(() => registry.createField('posts', { slug: 'id', label: 'ID', type: 'string' }));
-    await assert.rejects(() => registry.createField('posts', { slug: 'created_at', label: 'Created', type: 'text' }));
+    await assert.rejects(() => registry.createField('posts', { slug: 'id', label: 'ID', type: 'string' }), CmsError);
+    await assert.rejects(() => registry.createField('posts', { slug: 'created_at', label: 'Created', type: 'datetime' }), CmsError);
   });
 });
 
