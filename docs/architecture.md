@@ -31,3 +31,5 @@ In the saved cloud environment, clone the branch, then run `sh scripts/bootstrap
 The visible editor is disabled and explicitly a preview. Remote exports are not yet consumed by this preview route. The next slice must configure trusted authentication and a real storage adapter, wire forms and queries, add browser tests for CRUD and direct unauthorized remote requests, and run the complete flow in the chosen Cloudflare/local runtimes before claiming a usable CMS.
 
 PR slices: foundation and CI; auth/storage composition plus minimal draft CRUD; UI replacement as `sveltery/ui` becomes available; then content workflows and documentation app. Each slice gets independent GPT 6.1 Sol high/low reviews and real CI. Keep the Mac checkout on clean main while implementation continues in the saved cloud environment.
+
+See [the independent saved-environment review](cloud-review.md) for exact-commit verification, HTTP boundary test coverage, remaining runtime limits, and provider-neutral persistence/auth tradeoffs.

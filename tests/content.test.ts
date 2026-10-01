@@ -42,3 +42,38 @@ test('valid drafts are normalized and missing records are explicit', async () =>
     await assert.rejects(run, (e) => e instanceof ContentError && e.code === 'not-found');
   }
 });
+
+test('capability checks cover every denied operation before accessing storage', async () => {
+  const f = fixture();
+  const reader = contentService(f.repository, { id: 'reader', capabilities: ['content:read'] });
+  const writer = contentService(f.repository, { id: 'writer', capabilities: ['content:write'] });
+  const unprivileged = contentService(f.repository, { id: 'user', capabilities: [] });
+  for (const run of [
+    () => reader.create({ title: 'Draft', body: '' }),
+    () => reader.update({ id: 'a', title: 'Draft', body: '' }),
+    () => reader.delete('a'),
+    () => writer.list(), () => writer.get('a'),
+    () => unprivileged.list(), () => unprivileged.create({ title: 'Draft', body: '' })
+  ]) {
+    await assert.rejects(run, (e) => e instanceof ContentError && e.code === 'forbidden');
+  }
+  assert.equal(f.calls(), 0);
+});
+
+test('service limits and unknown input fields protect future non-HTTP callers', async () => {
+  const f = fixture();
+  const service = contentService(f.repository, { id: 'editor', capabilities: ['content:read', 'content:write'] });
+  for (const run of [
+    () => service.get(1), () => service.get('x'.repeat(129)),
+    () => service.create({ title: 'x'.repeat(201), body: '' }),
+    () => service.create({ title: 'Draft', body: 'x'.repeat(100_001) }),
+    () => service.update({ id: 'a', title: 'Draft', body: 1 }),
+    () => service.delete('x'.repeat(129))
+  ]) {
+    await assert.rejects(run);
+  }
+  assert.equal(f.calls(), 0);
+  assert.deepEqual(await service.create({
+    title: ' Draft ', body: 'Hello', id: 'injected', principal: 'admin', capabilities: ['content:write']
+  }), { id: 'draft-1', title: 'Draft', body: 'Hello' });
+});
