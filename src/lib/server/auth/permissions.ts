@@ -184,4 +184,3 @@ export class PermissionError extends Error {
 		this.code = code;
 	}
 }
-

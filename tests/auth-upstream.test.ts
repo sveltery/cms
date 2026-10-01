@@ -150,7 +150,7 @@ describe("rbac", () => {
 		});
 	});
 
-	
+
 
 	describe("requirePermissionOnResource", () => {
 		it("allows author to edit own content [rbac.ts:169]", () => {
