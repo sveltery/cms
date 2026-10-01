@@ -47,7 +47,7 @@ The merged null-preview fix at `066e1879ae21b0d891b69627ec8138da77243cc5` applie
 
 ### Session/editor composition: landed in [PR #7](https://github.com/sveltery/cms/pull/7)
 
-[The composition contract and differences](../../docs/session-composition.md) and [source/assertion ledger](../../docs/session-composition-ports.json) retain exact source blobs, selected assertion omissions, test-first checkpoints and runtime limits. Decision status C-11–C-15: landed at `a9726b2a67e57290e7c49b1ddb2a1b9b1f4b1ada`; specific acceptance of each deviation is not inferred from that merge. [Implementation-head CI](https://github.com/sveltery/cms/actions/runs/36928939940) checked synthetic merge `2a77ec8ba7d25984e3f92ed8bda974ef17564aee`, containing head `d875a560ae0aed37e8549ae876131ebb49b958d6` and main `8bd3e62`. It is not post-merge execution evidence.
+[The composition contract and differences](../../docs/session-composition.md) and [source/assertion ledger](../../docs/session-composition-ports.json) retain exact source blobs, selected assertion omissions, test-first checkpoints and runtime limits. Decision status C-11–C-15: landed at `a9726b2a67e57290e7c49b1ddb2a1b9b1f4b1ada`; specific deviation acceptance is not recorded in the cited evidence and is not inferred from that merge. [Implementation-head CI](https://github.com/sveltery/cms/actions/runs/36928939940) checked synthetic merge `2a77ec8ba7d25984e3f92ed8bda974ef17564aee`, containing head `d875a560ae0aed37e8549ae876131ebb49b958d6` and main `8bd3e62`. It is not post-merge execution evidence.
 
 | ID/source at the EmDash pin | Observable upstream versus local behavior | Rationale and evidence |
 | --- | --- | --- |
