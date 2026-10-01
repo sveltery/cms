@@ -6,7 +6,7 @@
   async function loadContent(collection: string, id: string) {
     return Promise.all([getEditorManifest(), getContent({ collection, id })]).then(
       ([manifest, item]) => {
-        const definition = manifest.collections[collection];
+        const definition = Object.hasOwn(manifest.collections, collection) ? manifest.collections[collection] : undefined;
         return definition ? { definition, item } : null;
       }, () => null
     );

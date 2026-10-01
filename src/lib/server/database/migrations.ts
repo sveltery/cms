@@ -10,24 +10,38 @@ const normalize = (value: string) => value.trim().replace(/\s+/g, ' ');
 async function migrationState(database: CmsDatabase): Promise<0 | 1 | 2> {
   const db = database.db;
   const names = [...coreTables, '_cms_migrations', migrationTemp, '_cms_auth_users', '_cms_auth_sessions', 'idx_cms_auth_sessions_user'];
-  const rows = await db.selectFrom(sql<{ name: string; type: string; sql: string }>`sqlite_master`.as('objects'))
-    .select(['name', 'type', 'sql']).where('name', 'in', names).execute();
-  const objects = new Map(rows.map(row => [row.name, row]));
-  if (!objects.has('_cms_migrations')) {
-    if (objects.size) throw new CmsError('MIGRATION_REQUIRED');
+  const probe = await db.selectFrom(sql<{ name: string; type: string }>`sqlite_master`.as('objects'))
+    .select(['name', 'type']).where('name', 'in', names).execute();
+  if (!probe.some(row => row.name === '_cms_migrations' && row.type === 'table')) {
+    if (probe.length) throw new CmsError('MIGRATION_REQUIRED');
     return 0;
   }
-  if (objects.get('_cms_migrations')!.type !== 'table' || objects.has(migrationTemp) ||
+  // Object layout and marker values must come from one statement snapshot.
+  // A concurrent upgrade may commit between the probe and this read, but cannot split this read.
+  let rows;
+  try {
+    rows = await db.selectFrom(sql<{ name: string; type: string; sql: string }>`sqlite_master`.as('objects'))
+      .select(['name', 'type', 'sql'])
+      .select([
+        sql<number>`(SELECT COUNT(*) FROM _cms_migrations)`.as('version_count'),
+        sql<number>`(SELECT MIN(version) FROM _cms_migrations)`.as('version_min'),
+        sql<number>`(SELECT MAX(version) FROM _cms_migrations)`.as('version_max')
+      ]).where('name', 'in', names).execute();
+  } catch (cause) {
+    // A malformed tracking table is an incomplete migration, not a repair opportunity.
+    if (cause instanceof Error && /no such (?:table|column):/.test(cause.message)) throw new CmsError('MIGRATION_REQUIRED');
+    throw cause;
+  }
+  const objects = new Map(rows.map(row => [row.name, row]));
+  const marker = objects.get('_cms_migrations');
+  if (!marker || marker.type !== 'table' || objects.has(migrationTemp) ||
     coreTables.some(name => objects.get(name)?.type !== 'table')) throw new CmsError('MIGRATION_REQUIRED');
-  let versions: number[];
-  try { versions = (await db.selectFrom('_cms_migrations').select('version').orderBy('version').limit(3).execute()).map(row => row.version); }
-  catch { throw new CmsError('MIGRATION_REQUIRED'); }
   const authObjects = ['_cms_auth_users', '_cms_auth_sessions', 'idx_cms_auth_sessions_user'];
-  if (versions.length === 1 && versions[0] === 1) {
+  if (marker.version_count === 1 && marker.version_min === 1 && marker.version_max === 1) {
     if (authObjects.some(name => objects.has(name))) throw new CmsError('MIGRATION_REQUIRED');
     return 1;
   }
-  if (versions.length !== 2 || versions[0] !== 1 || versions[1] !== 2) throw new CmsError('MIGRATION_REQUIRED');
+  if (marker.version_count !== 2 || marker.version_min !== 1 || marker.version_max !== 2) throw new CmsError('MIGRATION_REQUIRED');
   // Verify the registered auth contract, including constraints, foreign key and lookup index.
   // This is a bounded known-DDL check, not general database corruption recovery.
   const expected = authSchemaStatements(db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>());

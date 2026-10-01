@@ -69,6 +69,12 @@
       "sourceBlob": "47c0e80cff0c7b0b0c1b095086d13e815ee2d132",
       "sha256": "88e92f0c9f69473c160482de2c1751cc7311b09b960dea4e2590d7cf180655a3",
       "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/cloudflare/tests/db/d1-request-scope.test.ts"
+    },
+    {
+      "path": "packages/core/src/schema/types.ts",
+      "sourceBlob": "0c2f44156cff829951c52b0dd259fc5ff45bc554",
+      "sha256": "92a76aa8192b98e9703ece4b72b5ba1377ca66454b97608b4dfc3804ab3bc698",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/schema/types.ts"
     }
   ],
   "ports": [
@@ -174,7 +180,12 @@
       "incomplete/untracked/future schema rejection without repair",
       "atomic rollback on DDL/marker failure",
       "independent clean/upgrade migration races"
-    ]
+    ],
+    "snapshotRegression": {
+      "redCommit": "bf89f6da3920088eec05cdf8a23e3204d0ab5d5e",
+      "result": "5 passing migration cases/1 failing deterministic snapshot race; MIGRATION_REQUIRED after actual independent upgrade committed before marker read.",
+      "fix": "Initial marker-exists probe followed by single statement snapshot of object layout and marker aggregate values."
+    }
   },
   "httpCoverage": {
     "kind": "supplemental-synthetic-session-composition",
@@ -202,5 +213,13 @@
     "Manifest excludes defaults/admin schema/content; text retains richText kind but preview remains disabled plain textarea",
     "No upstream full-manifest hash/config precedence/plugins/branding/relations/rich-field claims",
     "Upstream manifest protected by auth middleware; this bounded draft-editor projection additionally requires content:read and content:read_drafts, deliberately denies subscribers"
-  ]
+  ],
+  "retainedUpstreamLimitation": {
+    "issue": "https://github.com/sveltery/cms/issues/8",
+    "source": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/src/api/handlers/manifest.ts:147",
+    "evidence": "Actual transpiled pinned builder with synthetic registry row returns no own constructor collection; local real SQLite accepts the slug. Isolated source execution only, not whole upstream suite.",
+    "localTest": "tests/editor-manifest.test.ts:82",
+    "redCommit": "247d43090fb006c072f03f517e2be79f869fad81",
+    "behavior": "Manual constructor collection omitted; optional correction deferred. Explicit prototype-name exclusion retains output without unsafe UI property interpretation."
+  }
 }

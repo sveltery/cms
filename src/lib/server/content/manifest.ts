@@ -28,6 +28,9 @@ export async function editorManifest(database: CmsDatabase, principal: ServerPri
   const collections: Record<string, EditorCollection> = {};
   // Existing registry caps apply: at most 100 collections and 32 scalar fields each.
   for (const collection of await registry.listCollections()) {
+    // Retain the pinned builder's inherited-name omission until its separate bug-fix slice.
+    // Use an explicit own-key test rather than importing unsafe prototype lookup into the UI.
+    if (Object.hasOwn(Object.prototype, collection.slug)) continue;
     const fields: Record<string, EditorField> = {};
     for (const field of await registry.listFields(collection.id)) {
       fields[field.slug] = {
