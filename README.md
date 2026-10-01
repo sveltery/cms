@@ -6,9 +6,11 @@ The project is at its foundation stage. The scaffold includes server-only author
 
 Node.js 24 and pnpm 12.6.0 are the development baseline. Preserve Node and Cloudflare hosting options. Collection and field definitions will be managed in the dashboard and stored in the database, following the reviewed upstream schema/storage model. The bounded Node/SQLite and trusted raw-binding D1 adapters provide database-defined collections/fields and persisted drafts, verified on local SQLite and workerd/D1. Both deployed hosting runtimes remain unverified; authentication and request storage composition remain unconfigured; registered content remotes now compose the database service with collection-qualified schema data and opaque revisions. The request/session handoff is explicit but production composition is not installed.
 
-Run `sh scripts/bootstrap.sh` for frozen installation, checks, service/development tests, build, and registered production remote tests. Hosted CI also runs `pnpm test:browser` against the build with Chromium sandboxing enabled. The editor remains disabled, and unauthenticated remote requests fail closed.
+Run `sh scripts/bootstrap.sh` for frozen installation, checks, service/development tests, build, registered production remote tests, and the explicit Node package checks. Hosted CI runs the browser suite against both preview and standalone Node with Chromium sandboxing enabled. The editor remains disabled, and unauthenticated remote requests fail closed.
 
 No deployment, cloud resources, secrets, or package publishing are part of repository setup.
+
+For a standalone local Node process, use `pnpm build:node` then `HOST=127.0.0.1 PORT=3000 ORIGIN=http://127.0.0.1:3000 pnpm start:node`. `pnpm package:node` stages an isolated runtime package for a frozen production-only install. See [the Node hosting contract](docs/node-hosting.md) for commands, source references, packaging contents and limitations. This explicit target leaves default adapter-auto builds intact; runtime storage/session composition, login, enabled writes and Cloudflare hosting remain future gates.
 
 With Node.js 24 and pnpm 12.6.0 installed:
 

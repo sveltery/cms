@@ -1,5 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const nodeTarget = process.env.SVELTERY_BROWSER_TARGET === 'node';
+
 export default defineConfig({
   testDir: './tests/browser',
   fullyParallel: false,
@@ -16,7 +18,9 @@ export default defineConfig({
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
     // Own the Vite process directly so teardown cannot leave pnpm's child running.
-    command: 'exec node node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 4173 --strictPort',
+    command: nodeTarget ? 'exec node build/node/index.js'
+      : 'exec node node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 4173 --strictPort',
+    ...(nodeTarget ? { env: { HOST: '127.0.0.1', PORT: '4173', ORIGIN: 'http://127.0.0.1:4173' } } : {}),
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: false,
     timeout: 30_000

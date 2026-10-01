@@ -12,6 +12,10 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
+    "build:node": "SVELTERY_ADAPTER=node vite build",
+    "start:node": "node build/node/index.js",
+    "package:node": "pnpm build:node && node scripts/package-node.mjs",
+    "test:node": "node --test tests/node-hosting/*.test.ts",
     "preview": "vite preview",
     "prepare": "svelte-kit sync",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -28,6 +32,7 @@
   "devDependencies": {
     "@playwright/test": "1.63.0",
     "@sveltejs/adapter-auto": "7.0.1",
+    "@sveltejs/adapter-node": "5.5.7",
     "@sveltejs/kit": "2.70.3",
     "@sveltejs/vite-plugin-svelte": "7.3.1",
     "@types/node": "24.19.0",

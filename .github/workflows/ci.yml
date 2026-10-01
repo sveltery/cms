@@ -38,6 +38,12 @@ jobs:
         run: timeout --kill-after=30s 180s pnpm test:browser
         env:
           DEBUG: pw:browser,pw:webserver
+      - run: pnpm build:node
+      - name: Run sandboxed Node browser tests
+        run: timeout --kill-after=30s 180s pnpm test:browser
+        env:
+          SVELTERY_BROWSER_TARGET: node
+          DEBUG: pw:browser,pw:webserver
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

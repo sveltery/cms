@@ -57,15 +57,22 @@ test('isolated production package starts, serves assets and denies anonymous HTT
   let running: ReturnType<typeof launch> | undefined;
   try {
     await cp(new URL('../../node-package/', import.meta.url), directory, { recursive: true });
-    assert.deepEqual((await readdir(directory)).sort(), ['LICENSE', 'README.md', 'build', 'notices', 'package.json', 'pnpm-lock.yaml']);
+    assert.deepEqual((await readdir(directory)).sort(), ['.npmrc', 'LICENSE', 'README.md', 'build', 'notices', 'package.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml']);
+    for (const file of ['.npmrc', 'pnpm-lock.yaml', 'pnpm-workspace.yaml']) {
+      assert.equal(await readFile(join(directory, file), 'utf8'), await readFile(new URL(`../../${file}`, import.meta.url), 'utf8'));
+    }
     const pkg = JSON.parse(await readFile(join(directory, 'package.json'), 'utf8'));
     assert.deepEqual(pkg.scripts, { start: 'node build/index.js' });
     assert.equal(pkg.type, 'module');
     const pnpm = process.env.npm_execpath;
     assert.ok(pnpm, 'run via pnpm test:node to use the pinned package manager');
-    execFileSync(process.execPath, [pnpm, 'install', '--prod', '--frozen-lockfile', '--ignore-scripts', '--store-dir', join(temporary, 'store')], {
+    const installArgs = ['install', '--prod', '--frozen-lockfile', '--ignore-scripts', '--store-dir', join(temporary, 'store')];
+    const javascriptPnpm = /\.[cm]?js$/.test(pnpm);
+    const transport = Object.fromEntries(['HTTP_PROXY', 'HTTPS_PROXY', 'NO_PROXY', 'http_proxy', 'https_proxy', 'no_proxy',
+      'NODE_EXTRA_CA_CERTS', 'SSL_CERT_FILE'].filter(name => process.env[name] !== undefined).map(name => [name, process.env[name]]));
+    execFileSync(javascriptPnpm ? process.execPath : pnpm, javascriptPnpm ? [pnpm, ...installArgs] : installArgs, {
       cwd: directory, timeout: 120_000, stdio: 'pipe',
-      env: { PATH: process.env.PATH, HOME: temporary, CI: 'true' }
+      env: { ...transport, PATH: process.env.PATH, HOME: temporary, CI: 'true' }
     });
     assert.ok(!(await readdir(join(directory, 'node_modules'))).includes('vite'));
     assert.ok(!(await readdir(join(directory, 'node_modules'))).includes('svelte'));
@@ -157,7 +164,7 @@ test('isolated production package starts, serves assets and denies anonymous HTT
     });
     // Only installation artifacts and the synthetic .env were allowed to be added.
     assert.deepEqual((await readdir(directory)).filter(name => !['node_modules', '.env'].includes(name)).sort(),
-      ['LICENSE', 'README.md', 'build', 'notices', 'package.json', 'pnpm-lock.yaml']);
+      ['.npmrc', 'LICENSE', 'README.md', 'build', 'notices', 'package.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml']);
   } finally {
     if (running && running.child.exitCode === null) { running.child.kill('SIGKILL'); await running.exited; }
     await rm(temporary, { recursive: true, force: true });
