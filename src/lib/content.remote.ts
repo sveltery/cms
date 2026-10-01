@@ -17,5 +17,5 @@ export const updateContent = form(revision, (input) => contentResponse(async () 
 }));
 export const deleteContent = form(v.object({ id: contentId }), ({ id }) => contentResponse(async () => {
   await requestContent('content:write').delete(id);
-  await listContent().refresh();
+  await Promise.all([listContent().refresh(), getContent(id).refresh()]);
 }));
