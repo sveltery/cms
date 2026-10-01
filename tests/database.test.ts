@@ -249,3 +249,18 @@ test('migrations reject unknown versions and unmanaged system tables without mut
     assert.equal((await sql<{ version: number }>`SELECT version FROM _cms_migrations`.execute(future.db)).rows[0].version, 2);
   } finally { await future.close(); }
 });
+
+test('schema defaults reject NUL before DDL while escaped quotes remain inert', async () => {
+  const f = await fixture();
+  try {
+    const before = (await f.schema.getCollection('posts'))!.version;
+    await assert.rejects(() => f.schema.createField('posts', { slug: 'nul_default', label: 'Nul', type: 'text', defaultValue: 'a\0' }), invalid);
+    assert.equal(await f.schema.getField('posts', 'nul_default'), null);
+    assert.equal((await f.schema.getCollection('posts'))!.version, before);
+    const quoted = "'; DROP TABLE _cms_collections; --";
+    await f.schema.createField('posts', { slug: 'quoted_default', label: 'Quote', type: 'text', defaultValue: quoted });
+    const entry = await f.service.createDraft({ type: 'posts', data: { title: 'Default' } });
+    assert.equal(entry.data.quoted_default, quoted);
+    assert.equal((await f.schema.listCollections()).length, 1);
+  } finally { await f.database.close(); }
+});

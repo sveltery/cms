@@ -16,7 +16,7 @@ const length = v.pipe(v.number(), v.integer(), v.minValue(0), v.maxValue(100_000
 export const fieldInput = v.strictObject({
   slug: identifier, label, type: v.picklist(['string', 'text']),
   required: v.optional(v.boolean(), false), unique: v.optional(v.boolean(), false),
-  defaultValue: v.optional(v.pipe(v.string(), v.maxLength(100_000))),
+  defaultValue: v.optional(v.pipe(v.string(), v.maxLength(100_000), v.check(value => !value.includes('\0')))),
   validation: v.optional(v.strictObject({ minLength: v.optional(length), maxLength: v.optional(length) }))
 });
 export const entryId = v.pipe(v.string(), v.minLength(1), v.maxLength(128));
