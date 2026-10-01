@@ -1,4 +1,5 @@
 import { sql, type CompiledQuery } from 'kysely';
+import { sqliteErrorMessage } from './errors.ts';
 import { ulid } from 'ulidx';
 import { CmsError, type CmsDatabase, type Collection, type CollectionRow, type Field, type FieldRow } from './contract.ts';
 import { collectionInput, fieldInput, identifier, parse, reservedCollections, reservedFields, tableName } from './validation.ts';
@@ -90,7 +91,7 @@ export class SchemaRegistry {
     catch (cause) {
       // Classify only SQLite's exact registered-slug uniqueness failure after a concurrent create.
       // Other constraints, DDL and adapter failures remain unexpected server errors.
-      const duplicateSlug = cause instanceof Error && cause.message === 'UNIQUE constraint failed: _cms_collections.slug';
+      const duplicateSlug = sqliteErrorMessage(cause) === 'UNIQUE constraint failed: _cms_collections.slug';
       // At the final capacity slot, the guard can fail before the duplicate insert is attempted.
       const duplicateAtCapacity = cause instanceof CmsError && cause.code === 'LIMIT_EXCEEDED'
         && await this.getCollection(value.slug) !== null;

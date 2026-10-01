@@ -22,7 +22,7 @@ export interface CmsTables extends AuthTables {
 /**
  * Server-only adapter seam. SQL is compiled by Kysely with positional parameters.
  * atomicBatch must commit every statement or roll back every statement, including DDL.
- * A future D1 implementation must prove that guarantee on the real binding first.
+ * Node SQLite and the bounded raw-binding D1 adapter prove this on real local storage.
  * There is deliberately no callback-transaction fallback or non-atomic mode.
  */
 export interface CmsDatabase {
