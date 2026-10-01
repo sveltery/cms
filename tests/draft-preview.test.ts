@@ -1,12 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 import { compile } from 'svelte/compiler';
 import { render } from 'svelte/server';
 
 test('draft preview applies defaults only to absent persisted keys', async (t) => {
   const source = await readFile(new URL('../src/lib/ui/DraftPreview.svelte', import.meta.url), 'utf8');
-  const directory = await mkdtemp(new URL('.draft-preview-', import.meta.url));
+  const directory = await mkdtemp(fileURLToPath(new URL('.draft-preview-', import.meta.url)));
   try {
     const module = `${directory}/DraftPreview.js`;
     await writeFile(module, compile(source, { filename: 'DraftPreview.svelte', generate: 'server' }).js.code);

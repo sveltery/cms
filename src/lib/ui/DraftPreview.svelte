@@ -10,9 +10,9 @@
     <label>
       {field.label}{field.required ? ' *' : ''}
       {#if field.type === 'text'}
-        <textarea data-field={field.slug} value={values[field.slug] ?? field.defaultValue ?? ''} required={field.required} maxlength={field.validation?.maxLength ?? 100_000}></textarea>
+        <textarea data-field={field.slug} value={Object.hasOwn(values, field.slug) ? values[field.slug] ?? '' : field.defaultValue ?? ''} required={field.required} maxlength={field.validation?.maxLength ?? 100_000}></textarea>
       {:else}
-        <input data-field={field.slug} value={values[field.slug] ?? field.defaultValue ?? ''} required={field.required} minlength={field.validation?.minLength} maxlength={field.validation?.maxLength ?? 200} />
+        <input data-field={field.slug} value={Object.hasOwn(values, field.slug) ? values[field.slug] ?? '' : field.defaultValue ?? ''} required={field.required} minlength={field.validation?.minLength} maxlength={field.validation?.maxLength ?? 200} />
       {/if}
     </label>
   {/each}
