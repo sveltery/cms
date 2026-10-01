@@ -12,7 +12,7 @@ describe('registered remote ports of EmDash scalar repository assertions', () =>
   afterEach(async () => { await harness.close(); });
   async function created(data = { title: 'Test Post' }, extra = {}) {
     const result = await harness.mutate('createContent', { collection: 'post', ...fields(data), ...extra });
-    return result._.result;
+    return harness.query('getContent', { collection: 'post', id: result._.result.id });
   }
   it('should create content with minimal data [source:58]', async () => {
     const content = await created();
@@ -41,21 +41,24 @@ describe('registered remote ports of EmDash scalar repository assertions', () =>
     const item = await harness.repository.create({ type: 'post', data: { title: 'Original' } }, 'user_author');
     const read = await harness.query('getContent', { collection: 'post', id: item.id });
     const result = await harness.mutate('updateContent', { collection: 'post', id: item.id, _rev: read._rev, ...fields({ title: 'Updated' }) });
-    assert.equal(result._.result.data.title, 'Updated');
-    assert.equal(result._.result.id, item.id);
+    const updated = await harness.query('getContent', { collection: 'post', id: result._.result.id });
+    assert.equal(updated.data.title, 'Updated');
+    assert.equal(updated.id, item.id);
   });
   it('should update slug [source:908]', async () => {
     const item = await harness.repository.create({ type: 'post', slug: 'old-slug', data: { title: 'Test' } }, 'user_author');
     const read = await harness.query('getContent', { collection: 'post', id: item.id });
     const result = await harness.mutate('updateContent', { collection: 'post', id: item.id, _rev: read._rev, slug: 'new-slug' });
-    assert.equal(result._.result.slug, 'new-slug');
+    const updated = await harness.query('getContent', { collection: 'post', id: result._.result.id });
+    assert.equal(updated.slug, 'new-slug');
   });
   it('should update updatedAt timestamp [source:1026]', async () => {
     const item = await harness.repository.create({ type: 'post', data: { title: 'Test' } }, 'user_author');
     const read = await harness.query('getContent', { collection: 'post', id: item.id });
     await new Promise(resolve => setTimeout(resolve, 10));
     const result = await harness.mutate('updateContent', { collection: 'post', id: item.id, _rev: read._rev, ...fields({ title: 'Updated' }) });
-    assert.ok(result._.result.updatedAt > item.updatedAt);
+    const updated = await harness.query('getContent', { collection: 'post', id: result._.result.id });
+    assert.ok(updated.updatedAt > item.updatedAt);
   });
   it('should set deleted_at timestamp [source:1088]', async () => {
     const item = await harness.repository.create({ type: 'post', data: { title: 'Test' } }, 'user_author');

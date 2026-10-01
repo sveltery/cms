@@ -1,0 +1,370 @@
+{
+  "referenceCommit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "verifiedMain": "ec0376fc4d83ba70ec896e6cb34e5ad301f27788",
+  "testFirstCommit": "3ff05292a27b8e9aebdc6639a429a4e35846f7be",
+  "scalarAssertionCases": 8,
+  "partialPolicyAdaptations": 5,
+  "ports": [
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:58",
+      "title": "should create content with minimal data",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L58",
+      "sourceBlob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "sourceRegistrationSha256": "3a7b70eacdd4bf7b2f306b2faf07524f656509cdfd8e7b83cc9343ade1e27eff",
+      "sourceAssertions": [
+        {
+          "line": 64,
+          "expression": "expect(content.id).toBeDefined()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L64"
+        },
+        {
+          "line": 65,
+          "expression": "expect(content.type).toBe(\"post\")",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L65"
+        },
+        {
+          "line": 66,
+          "expression": "expect(content.data).toEqual({ title: \"Test Post\" })",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L66"
+        },
+        {
+          "line": 67,
+          "expression": "expect(content.status).toBe(\"draft\")",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L67"
+        },
+        {
+          "line": 68,
+          "expression": "expect(content.createdAt).toBeDefined()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L68"
+        },
+        {
+          "line": 69,
+          "expression": "expect(content.updatedAt).toBeDefined()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L69"
+        }
+      ],
+      "portFile": "tests/production/content-upstream.test.ts",
+      "kind": "scalar-assertion-port",
+      "expandedNodeCases": 1,
+      "runtime": "Node 24 + built SvelteKit Server + persisted SQLite",
+      "redCommit": "3ff05292a27b8e9aebdc6639a429a4e35846f7be",
+      "redResult": "assertion failure against built verified main, not import/registration failure",
+      "status": "verified-locally",
+      "greenCommand": "pnpm build && pnpm test:production",
+      "adaptations": "Native form mutation returns a receipt; scalar expectations asserted through registered getContent. Collection-qualified inputs; server author; required opaque _rev. Fixture omits unused Portable Text metadata, so complex storage remains blocked."
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:147",
+      "title": "should allow null slug",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L147",
+      "sourceBlob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "sourceRegistrationSha256": "8be9669bb61f96398d0d18c5ee255015ae70cf63613f8d1a13deb377a3cdbc92",
+      "sourceAssertions": [
+        {
+          "line": 154,
+          "expression": "expect(content.slug).toBeNull()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L154"
+        }
+      ],
+      "portFile": "tests/production/content-upstream.test.ts",
+      "kind": "scalar-assertion-port",
+      "expandedNodeCases": 1,
+      "runtime": "Node 24 + built SvelteKit Server + persisted SQLite",
+      "redCommit": "3ff05292a27b8e9aebdc6639a429a4e35846f7be",
+      "redResult": "assertion failure against built verified main, not import/registration failure",
+      "status": "verified-locally",
+      "greenCommand": "pnpm build && pnpm test:production",
+      "adaptations": "Native form mutation returns a receipt; scalar expectations asserted through registered getContent. Collection-qualified inputs; server author; required opaque _rev. Fixture omits unused Portable Text metadata, so complex storage remains blocked."
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:157",
+      "title": "should default status to draft",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L157",
+      "sourceBlob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "sourceRegistrationSha256": "a421be2e9b5384b912658b11d915fae366a5267a0def0cba124b9ef21e8b886a",
+      "sourceAssertions": [
+        {
+          "line": 163,
+          "expression": "expect(content.status).toBe(\"draft\")",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L163"
+        }
+      ],
+      "portFile": "tests/production/content-upstream.test.ts",
+      "kind": "scalar-assertion-port",
+      "expandedNodeCases": 1,
+      "runtime": "Node 24 + built SvelteKit Server + persisted SQLite",
+      "redCommit": "3ff05292a27b8e9aebdc6639a429a4e35846f7be",
+      "redResult": "assertion failure against built verified main, not import/registration failure",
+      "status": "verified-locally",
+      "greenCommand": "pnpm build && pnpm test:production",
+      "adaptations": "Native form mutation returns a receipt; scalar expectations asserted through registered getContent. Collection-qualified inputs; server author; required opaque _rev. Fixture omits unused Portable Text metadata, so complex storage remains blocked."
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:209",
+      "title": "should find content by ID",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L209",
+      "sourceBlob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "sourceRegistrationSha256": "5eaddaae15c73e9f5d419d6f7c1a5f662a6600c963e119aa1810d7e1e3a47316",
+      "sourceAssertions": [
+        {
+          "line": 217,
+          "expression": "expect(found).not.toBeNull()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L217"
+        },
+        {
+          "line": 218,
+          "expression": "expect(found!.id).toBe(created.id)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L218"
+        },
+        {
+          "line": 219,
+          "expression": "expect(found!.data).toEqual(created.data)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L219"
+        }
+      ],
+      "portFile": "tests/production/content-upstream.test.ts",
+      "kind": "scalar-assertion-port",
+      "expandedNodeCases": 1,
+      "runtime": "Node 24 + built SvelteKit Server + persisted SQLite",
+      "redCommit": "3ff05292a27b8e9aebdc6639a429a4e35846f7be",
+      "redResult": "assertion failure against built verified main, not import/registration failure",
+      "status": "verified-locally",
+      "greenCommand": "pnpm build && pnpm test:production",
+      "adaptations": "Native form mutation returns a receipt; scalar expectations asserted through registered getContent. Collection-qualified inputs; server author; required opaque _rev. Fixture omits unused Portable Text metadata, so complex storage remains blocked."
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:880",
+      "title": "should update content data",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L880",
+      "sourceBlob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "sourceRegistrationSha256": "96f4f877013943d86117fd2dc6ab511cbb780d1908e2f19cabe394fe7bad8eb3",
+      "sourceAssertions": [
+        {
+          "line": 890,
+          "expression": "expect(updated.data.title).toBe(\"Updated\")",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L890"
+        },
+        {
+          "line": 891,
+          "expression": "expect(updated.id).toBe(created.id)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L891"
+        }
+      ],
+      "portFile": "tests/production/content-upstream.test.ts",
+      "kind": "scalar-assertion-port",
+      "expandedNodeCases": 1,
+      "runtime": "Node 24 + built SvelteKit Server + persisted SQLite",
+      "redCommit": "3ff05292a27b8e9aebdc6639a429a4e35846f7be",
+      "redResult": "assertion failure against built verified main, not import/registration failure",
+      "status": "verified-locally",
+      "greenCommand": "pnpm build && pnpm test:production",
+      "adaptations": "Native form mutation returns a receipt; scalar expectations asserted through registered getContent. Collection-qualified inputs; server author; required opaque _rev. Fixture omits unused Portable Text metadata, so complex storage remains blocked."
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:908",
+      "title": "should update slug",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L908",
+      "sourceBlob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "sourceRegistrationSha256": "bf9ea3642b06890eb2adb2f88a90fbcf3e53b652a119e6bf268277a1e80a87e1",
+      "sourceAssertions": [
+        {
+          "line": 919,
+          "expression": "expect(updated.slug).toBe(\"new-slug\")",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L919"
+        }
+      ],
+      "portFile": "tests/production/content-upstream.test.ts",
+      "kind": "scalar-assertion-port",
+      "expandedNodeCases": 1,
+      "runtime": "Node 24 + built SvelteKit Server + persisted SQLite",
+      "redCommit": "3ff05292a27b8e9aebdc6639a429a4e35846f7be",
+      "redResult": "assertion failure against built verified main, not import/registration failure",
+      "status": "verified-locally",
+      "greenCommand": "pnpm build && pnpm test:production",
+      "adaptations": "Native form mutation returns a receipt; scalar expectations asserted through registered getContent. Collection-qualified inputs; server author; required opaque _rev. Fixture omits unused Portable Text metadata, so complex storage remains blocked."
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:1026",
+      "title": "should update updatedAt timestamp",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L1026",
+      "sourceBlob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "sourceRegistrationSha256": "6824145dda07d5ec5b9b659b7770f91490534ed7cf6ad749773239b9bfbc7385",
+      "sourceAssertions": [
+        {
+          "line": 1039,
+          "expression": "expect(updated.updatedAt > created.updatedAt).toBe(true)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L1039"
+        }
+      ],
+      "portFile": "tests/production/content-upstream.test.ts",
+      "kind": "scalar-assertion-port",
+      "expandedNodeCases": 1,
+      "runtime": "Node 24 + built SvelteKit Server + persisted SQLite",
+      "redCommit": "3ff05292a27b8e9aebdc6639a429a4e35846f7be",
+      "redResult": "assertion failure against built verified main, not import/registration failure",
+      "status": "verified-locally",
+      "greenCommand": "pnpm build && pnpm test:production",
+      "adaptations": "Native form mutation returns a receipt; scalar expectations asserted through registered getContent. Collection-qualified inputs; server author; required opaque _rev. Fixture omits unused Portable Text metadata, so complex storage remains blocked."
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:1088",
+      "title": "should set deleted_at timestamp",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L1088",
+      "sourceBlob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "sourceRegistrationSha256": "95b2e8b3868b7080111724ad2d86f972d833ddd2b430611358a9d59b1c530acb",
+      "sourceAssertions": [
+        {
+          "line": 1103,
+          "expression": "expect(result.rows[0]?.deleted_at).toBeDefined()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L1103"
+        },
+        {
+          "line": 1104,
+          "expression": "expect(result.rows[0]?.deleted_at).not.toBeNull()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L1104"
+        }
+      ],
+      "portFile": "tests/production/content-upstream.test.ts",
+      "kind": "scalar-assertion-port",
+      "expandedNodeCases": 1,
+      "runtime": "Node 24 + built SvelteKit Server + persisted SQLite",
+      "redCommit": "3ff05292a27b8e9aebdc6639a429a4e35846f7be",
+      "redResult": "assertion failure against built verified main, not import/registration failure",
+      "status": "verified-locally",
+      "greenCommand": "pnpm build && pnpm test:production",
+      "adaptations": "Native form mutation returns a receipt; scalar expectations asserted through registered getContent. Collection-qualified inputs; server author; required opaque _rev. Fixture omits unused Portable Text metadata, so complex storage remains blocked."
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/mcp/ownership.test.ts:102",
+      "title": "EDITOR can update content with null authorId",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/ownership.test.ts#L102",
+      "sourceBlob": "67d817c3314dbf6ccecfb2c689067fa9fbd3b06e",
+      "sourceRegistrationSha256": "c6b6ae357ec01be5bf52231d7f12a31069db75452232a0fe36617bbe7ad9dccd",
+      "sourceAssertions": [
+        {
+          "line": 116,
+          "expression": "expect(result.isError, extractText(result)).toBeFalsy()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/ownership.test.ts#L116"
+        }
+      ],
+      "portFile": "tests/production/ownership.test.ts",
+      "kind": "partial-draft-policy-adaptation",
+      "expandedNodeCases": 1,
+      "runtime": "Node 24 + built SvelteKit Server + persisted SQLite",
+      "redCommit": "3ff05292a27b8e9aebdc6639a429a4e35846f7be",
+      "redResult": "assertion failure against built verified main, not import/registration failure",
+      "status": "verified-locally",
+      "greenCommand": "pnpm build && pnpm test:production",
+      "adaptations": "Published source fixture replaced by unpublished draft; effective permissions supplied from server test session, not role mapping. Native 403 + INSUFFICIENT_PERMISSIONS maps MCP isError/_meta. Policy assertions preserved; publication/lifecycle assertions unported."
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/mcp/ownership.test.ts:119",
+      "title": "AUTHOR cannot update content with null authorId (no ownership claim)",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/ownership.test.ts#L119",
+      "sourceBlob": "67d817c3314dbf6ccecfb2c689067fa9fbd3b06e",
+      "sourceRegistrationSha256": "6e7d085d7b944129789644426d0000edf65a93dba2eea21ccc29d42a1c7cfc91",
+      "sourceAssertions": [
+        {
+          "line": 135,
+          "expression": "expect(result.isError).toBe(true)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/ownership.test.ts#L135"
+        },
+        {
+          "line": 137,
+          "expression": "expect(extractText(result)).not.toMatch(NULL_AUTHOR_ERROR)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/ownership.test.ts#L137"
+        },
+        {
+          "line": 140,
+          "expression": "expect(meta?.code).toBe(\"INSUFFICIENT_PERMISSIONS\")",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/ownership.test.ts#L140"
+        }
+      ],
+      "portFile": "tests/production/ownership.test.ts",
+      "kind": "partial-draft-policy-adaptation",
+      "expandedNodeCases": 1,
+      "runtime": "Node 24 + built SvelteKit Server + persisted SQLite",
+      "redCommit": "3ff05292a27b8e9aebdc6639a429a4e35846f7be",
+      "redResult": "assertion failure against built verified main, not import/registration failure",
+      "status": "verified-locally",
+      "greenCommand": "pnpm build && pnpm test:production",
+      "adaptations": "Published source fixture replaced by unpublished draft; effective permissions supplied from server test session, not role mapping. Native 403 + INSUFFICIENT_PERMISSIONS maps MCP isError/_meta. Policy assertions preserved; publication/lifecycle assertions unported."
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/mcp/ownership.test.ts:285",
+      "title": "AUTHOR can update their own content (authorId matches)",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/ownership.test.ts#L285",
+      "sourceBlob": "67d817c3314dbf6ccecfb2c689067fa9fbd3b06e",
+      "sourceRegistrationSha256": "b6a97608308abf6bd6537f354b0696b95a1aa78474c53814251323d57c145b8a",
+      "sourceAssertions": [
+        {
+          "line": 299,
+          "expression": "expect(result.isError, extractText(result)).toBeFalsy()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/ownership.test.ts#L299"
+        }
+      ],
+      "portFile": "tests/production/ownership.test.ts",
+      "kind": "partial-draft-policy-adaptation",
+      "expandedNodeCases": 1,
+      "runtime": "Node 24 + built SvelteKit Server + persisted SQLite",
+      "redCommit": "3ff05292a27b8e9aebdc6639a429a4e35846f7be",
+      "redResult": "assertion failure against built verified main, not import/registration failure",
+      "status": "verified-locally",
+      "greenCommand": "pnpm build && pnpm test:production",
+      "adaptations": "Published source fixture replaced by unpublished draft; effective permissions supplied from server test session, not role mapping. Native 403 + INSUFFICIENT_PERMISSIONS maps MCP isError/_meta. Policy assertions preserved; publication/lifecycle assertions unported."
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/mcp/ownership.test.ts:302",
+      "title": "AUTHOR cannot update someone else's content (authorId set to other user)",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/ownership.test.ts#L302",
+      "sourceBlob": "67d817c3314dbf6ccecfb2c689067fa9fbd3b06e",
+      "sourceRegistrationSha256": "a1ccf5bf204081f3edbaacaf3390ea9c8bdacf344ed090e68debc41e5b27986d",
+      "sourceAssertions": [
+        {
+          "line": 316,
+          "expression": "expect(result.isError).toBe(true)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/ownership.test.ts#L316"
+        }
+      ],
+      "portFile": "tests/production/ownership.test.ts",
+      "kind": "partial-draft-policy-adaptation",
+      "expandedNodeCases": 1,
+      "runtime": "Node 24 + built SvelteKit Server + persisted SQLite",
+      "redCommit": "3ff05292a27b8e9aebdc6639a429a4e35846f7be",
+      "redResult": "assertion failure against built verified main, not import/registration failure",
+      "status": "verified-locally",
+      "greenCommand": "pnpm build && pnpm test:production",
+      "adaptations": "Published source fixture replaced by unpublished draft; effective permissions supplied from server test session, not role mapping. Native 403 + INSUFFICIENT_PERMISSIONS maps MCP isError/_meta. Policy assertions preserved; publication/lifecycle assertions unported."
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/mcp/ownership.test.ts:319",
+      "title": "EDITOR can update anyone's content (any-permission)",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/ownership.test.ts#L319",
+      "sourceBlob": "67d817c3314dbf6ccecfb2c689067fa9fbd3b06e",
+      "sourceRegistrationSha256": "99fa4814822eed68c7568f027bb91b4489b514f880ddb75cac3968ba2c410866",
+      "sourceAssertions": [
+        {
+          "line": 333,
+          "expression": "expect(result.isError, extractText(result)).toBeFalsy()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/ownership.test.ts#L333"
+        }
+      ],
+      "portFile": "tests/production/ownership.test.ts",
+      "kind": "partial-draft-policy-adaptation",
+      "expandedNodeCases": 1,
+      "runtime": "Node 24 + built SvelteKit Server + persisted SQLite",
+      "redCommit": "3ff05292a27b8e9aebdc6639a429a4e35846f7be",
+      "redResult": "assertion failure against built verified main, not import/registration failure",
+      "status": "verified-locally",
+      "greenCommand": "pnpm build && pnpm test:production",
+      "adaptations": "Published source fixture replaced by unpublished draft; effective permissions supplied from server test session, not role mapping. Native 403 + INSUFFICIENT_PERMISSIONS maps MCP isError/_meta. Policy assertions preserved; publication/lifecycle assertions unported."
+    }
+  ],
+  "evidenceNotes": [
+    "Red run: 0/8 scalar and 0/5 policy cases passed. Endpoints registered and temp SQLite fixtures initialized; failures came from old title/body or ID-string contract.",
+    "Helper correction after red: query parse(envelope.data)._ unwraps Kit query result. Main red does not rely on this correction; old getContent rejects collection-qualified objects with 400.",
+    "Mutation receipt revision: read-capable port callers now verify exact scalar values via registered detail queries, preventing read permission leakage through write-only mutations.",
+    "Eight scalar remote mappings include already-ported database declarations; they are another product boundary, not eight new unique upstream cases.",
+    "No D1/workerd, role/session provider, published ownership or full-file parity claim. Inventory-only entries remain unchanged."
+  ]
+}

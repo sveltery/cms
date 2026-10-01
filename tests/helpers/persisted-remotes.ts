@@ -74,7 +74,7 @@ export async function persistedRemotes() {
     async query(name: string, argument: unknown, session: string | null = 'author') {
       const result = await remote(name, session, undefined, argument);
       assert.equal(result.type, 'result', JSON.stringify(result));
-      return parse(result.data);
+      return parse(result.data)._;
     },
     async mutate(name: string, input: Record<string, string>, session: string | null = 'author') {
       const result = await remote(name, session, input);
@@ -83,6 +83,21 @@ export async function persistedRemotes() {
       assert.equal(data._.issues, undefined, JSON.stringify(data._.issues));
       assert.equal(data._.submission, true);
       return data;
+    },
+    async mutateWithRefreshes(name: string, input: Record<string, unknown>, keys: string[], session = 'author') {
+      const header = new TextEncoder().encode(stringify([input, { remote_refreshes: keys }]));
+      const offsets = new TextEncoder().encode('[]');
+      const prefix = new Uint8Array(7);
+      new DataView(prefix.buffer).setUint32(1, header.length, true);
+      new DataView(prefix.buffer).setUint16(5, offsets.length, true);
+      const response = await request(`/_app/remote/${ids.get(name)}`, session, {
+        method: 'POST', headers: { origin: 'http://cms.test', 'content-type': 'application/x-sveltekit-formdata' },
+        body: new Blob([prefix, header, offsets])
+      });
+      assert.equal(response.status, 200);
+      const result = await response.json();
+      assert.equal(result.type, 'result');
+      return parse(result.data);
     },
     async restart() {
       await database.close();

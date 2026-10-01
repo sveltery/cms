@@ -25,7 +25,15 @@ export const revisionInput = v.strictObject({
   version: v.pipe(v.number(), v.safeInteger(), v.minValue(1)),
   updatedAt: v.pipe(v.string(), v.isoTimestamp(), v.maxLength(40))
 });
-const data = v.pipe(v.record(identifier, v.nullable(v.pipe(v.string(), v.maxLength(100_000)))), v.check(value => Object.keys(value).length <= 32), v.check(value => JSON.stringify(value).length <= 200_000));
+// Keep valid schema keys such as constructor/prototype: record() silently drops them.
+export const schemaData = v.custom<Record<string, string | null>>(value => {
+  if (!value || typeof value !== 'object' || Array.isArray(value) ||
+    ![Object.prototype, null].includes(Object.getPrototypeOf(value))) return false;
+  const entries = Object.entries(value);
+  return entries.length <= 32 && entries.every(([key, item]) => v.safeParse(identifier, key).success &&
+    (item === null || (typeof item === 'string' && item.length <= 100_000))) && JSON.stringify(value).length <= 200_000;
+});
+const data = schemaData;
 export const createDraftInput = v.strictObject({
   type: identifier, slug: v.optional(v.nullable(v.pipe(v.string(), v.maxLength(200)))),
   locale: v.optional(localeInput, 'en'), data

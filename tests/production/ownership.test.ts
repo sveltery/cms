@@ -4,6 +4,7 @@
 import { beforeEach, afterEach, describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { sql } from 'kysely';
+import { parse } from 'devalue';
 import { persistedRemotes, fields } from '../helpers/persisted-remotes.ts';
 
 describe('registered remote ownership policy adaptations', () => {
@@ -19,7 +20,9 @@ describe('registered remote ownership policy adaptations', () => {
   it('AUTHOR can update their own content (authorId matches)', async () => {
     const result = await update('user_author', 'author');
     assert.equal(result.type, 'result');
-    assert.equal(JSON.parse(JSON.stringify(result)).status, undefined);
+    assert.equal(parse(result.data)._.issues, undefined);
+    const item = parse(result.data)._.result;
+    assert.equal((await harness.query('getContent', { collection: item.type, id: item.id })).data.title, 'Updated');
   });
   it("AUTHOR cannot update someone else's content (authorId set to other user)", async () => {
     const result = await update('user_someone_else', 'author');
@@ -27,7 +30,11 @@ describe('registered remote ownership policy adaptations', () => {
     assert.equal(result.status, 403);
   });
   it("EDITOR can update anyone's content (any-permission)", async () => {
-    assert.equal((await update('user_someone_else', 'editor')).type, 'result');
+    const result = await update('user_someone_else', 'editor');
+    assert.equal(result.type, 'result');
+    assert.equal(parse(result.data)._.issues, undefined);
+    const item = parse(result.data)._.result;
+    assert.equal((await harness.query('getContent', { collection: item.type, id: item.id })).data.title, 'Updated');
   });
   it('AUTHOR cannot update content with null authorId (no ownership claim)', async () => {
     const result = await update(null, 'author');
@@ -37,6 +44,10 @@ describe('registered remote ownership policy adaptations', () => {
     assert.equal(result.error.code, 'INSUFFICIENT_PERMISSIONS');
   });
   it('EDITOR can update content with null authorId', async () => {
-    assert.equal((await update(null, 'editor')).type, 'result');
+    const result = await update(null, 'editor');
+    assert.equal(result.type, 'result');
+    assert.equal(parse(result.data)._.issues, undefined);
+    const item = parse(result.data)._.result;
+    assert.equal((await harness.query('getContent', { collection: item.type, id: item.id })).data.title, 'Updated');
   });
 });

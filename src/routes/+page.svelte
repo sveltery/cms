@@ -1,28 +1,27 @@
 <script lang="ts">
   import WorkspaceShell from '$lib/ui/WorkspaceShell.svelte';
   import DraftPreview from '$lib/ui/DraftPreview.svelte';
-  import { listContent, createContent } from '$lib/content.remote';
-
-  const content = await listContent().then(
+  import { listCollections, createContent } from '$lib/content.remote';
+  const collections = await listCollections().then(
     (records) => ({ records, unavailable: false }),
     () => ({ records: [], unavailable: true })
   );
 </script>
 
 <svelte:head><title>Content · Sveltery CMS</title><meta name="description" content="Sveltery CMS foundation preview" /></svelte:head>
-
 <WorkspaceShell>
   <header><p>YOUR WORKSPACE</p><h1>Content</h1></header>
-  {#if content.unavailable}
+  {#if collections.unavailable}
     <p role="status">Content is unavailable until authentication and storage are configured.</p>
   {:else}
-    <ul aria-label="Content drafts">
-      {#each content.records as record (record.id)}
-        <li>{record.title}</li>
+    <ul aria-label="Collections">
+      {#each collections.records as collection (collection.id)}
+        <li><a href={`/content/${collection.slug}`}>{collection.label}</a></li>
       {/each}
     </ul>
   {/if}
   <form {...createContent}>
+    <label>Collection <input name="collection" disabled /></label>
     <DraftPreview />
   </form>
 </WorkspaceShell>
