@@ -1,4 +1,5 @@
-// Adapted from EmDash 1.0.1 (0e8977c), Copyright 2026 Cloudflare Inc.
+// Adapted from EmDash 1.1.0 (913cb1b); unchanged from initial 1.0.1 port.
+// Copyright 2026 Cloudflare Inc.
 // MIT; see notices/emdash-LICENSE and docs/database-parity.md for source mapping.
 import { afterEach, describe, it } from 'node:test';
 import assert from 'node:assert/strict';

@@ -1,5 +1,6 @@
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-LICENSE.
-// Copied from EmDash 1.0.1, packages/core/src/db/node-sqlite-compat.ts (0e8977c).
+// Copied from EmDash 1.1.0, packages/core/src/db/node-sqlite-compat.ts (913cb1b).
+// Byte-identical to the initial 1.0.1 port.
 import { DatabaseSync } from "node:sqlite";
 
 export interface NodeSqliteCompatStatement {

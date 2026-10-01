@@ -3,10 +3,10 @@
   <p>This editor preview will connect to content storage after authentication and persistence are configured.</p>
   <fieldset disabled>
     <label for="draft-title">Title</label>
-    <input id="draft-title" placeholder="Give your story a title" />
+    <input id="draft-title" name="title" placeholder="Give your story a title" />
     <label for="draft-body">Content</label>
-    <textarea id="draft-body" rows="6" placeholder="Write something worth sharing"></textarea>
-    <button type="button">Save draft</button>
+    <textarea id="draft-body" name="body" rows="6" placeholder="Write something worth sharing"></textarea>
+    <button type="submit">Save draft</button>
   </fieldset>
 </section>
 

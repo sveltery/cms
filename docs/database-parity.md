@@ -1,6 +1,6 @@
 # Bounded EmDash database contract port
 
-Reference: [EmDash 1.0.1 at 0e8977c221dd8e5111511eb226faa3d164c829ef](https://github.com/emdash-cms/emdash/tree/0e8977c221dd8e5111511eb226faa3d164c829ef). The pinned core package reports 1.0.1. Its MIT license is preserved verbatim in [notices/emdash-LICENSE](../notices/emdash-LICENSE). Copied and adapted files carry notices. No compatibility with the rest of EmDash is claimed.
+Reference: [EmDash 1.1.0 at 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e](https://github.com/emdash-cms/emdash/tree/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e), explicitly approved by the parent. The initial 1.0.1 baseline at 0e8977c221dd8e5111511eb226faa3d164c829ef remains historical evidence. The MIT license is byte-identical across both commits and preserved verbatim in [notices/emdash-LICENSE](../notices/emdash-LICENSE). Copied and adapted files carry notices. No compatibility with the rest of EmDash is claimed.
 
 The upstream review established the implementation baseline before writing this slice: Kysely 0.29.2, Node built-in SQLite with an explicit compatibility wrapper, persisted schema registry rows, real `ec_*` content tables and field columns, ULID identities, draft status, soft deletion, per-locale slug uniqueness, permission checks and revision preconditions. This follows the user's instruction to retain EmDash behavior unless a specific adaptation is justified.
 
@@ -8,7 +8,7 @@ The upstream review established the implementation baseline before writing this 
 
 Commit `cf9211d04033c1e00c86353dce629595bf9b4dd5` adds the ported tests before the implementation. [CI run 36899388506](https://github.com/sveltery/cms/actions/runs/36899388506) installed the frozen dependency lockfile with Node 24.21.0/pnpm 12.6.0, then failed checks on the missing implementation imports. This is evidence of a missing-module red state; the assertion bodies did not run in that commit. The selected local environment failed provisioning with `executor_registration_failed`, so no local red/green runs were possible.
 
-Source IDs below are the exact upstream test names, under the pinned commit. Every assertion in each selected test is retained in meaning. Vitest assertions become Node strict assertions; Node SQLite row prototypes are normalized only in the driver tests, while the exact field/value shapes remain asserted. Registry `SchemaError` checks map to the slice's `CmsError`. Repo creation's author argument is server-only. Direct repository calls adapt to the slice API; fixtures omit Portable Text because those cases are explicitly unported.
+Source IDs below are the exact upstream test names under the approved pinned commit. Historical red/green evidence remains attributed to 1.0.1. Every assertion in each selected test is retained in meaning. Vitest assertions become Node strict assertions; Node SQLite row prototypes are normalized only in the driver tests, while the exact field/value shapes remain asserted. Registry `SchemaError` checks map to the slice's `CmsError`. Repo creation's author argument is server-only. Direct repository calls adapt to the slice API; fixtures omit Portable Text because those cases are explicitly unported.
 
 | Upstream file | Source test IDs and exact assertions retained | Port |
 | --- | --- | --- |
@@ -41,7 +41,9 @@ Source IDs below are the exact upstream test names, under the pinned commit. Eve
 | same | should return null for non-existent ID: null | same |
 | same | should return null when type doesn't match: lookup in page returns null | same |
 
-There are 31 ported cases: 11 driver cases (including four parameterized unsupported-value cases), 12 registry cases and 8 draft repository cases. All 31 cases are **passing on Node** at f8e8b01 in [CI run 36901609498](https://github.com/sveltery/cms/actions/runs/36901609498); the run passed all 48 tests (31 ports, 14 supplemental cases, 3 existing tests), checks and build. [The machine-readable port ledger](database-ports.json) maps 28 declarations/31 expanded cases to the same stable `commit:path:declaration-line` IDs used by [inventory PR #4](https://github.com/sveltery/cms/pull/4) at `71fb210e1867dbdf464defdd6a5490fdd84a26ae`. Matching candidate IDs were cross-checked; ports outside those candidates are derived from the same pinned source/declaration convention. The parent retains ownership of `parity/emdash/`; this implementation ledger does not edit its inventory-only statuses.
+There are 31 ported cases: 11 driver cases (including four parameterized unsupported-value cases), 12 registry cases and 8 draft repository cases. Historical 1.0.1 evidence at f8e8b01 in [CI run 36901609498](https://github.com/sveltery/cms/actions/runs/36901609498) passed 48 tests (31 ports, 14 supplemental cases, 3 then-existing tests), checks and build. [CI run 36903659565](https://github.com/sveltery/cms/actions/runs/36903659565) at 359c57ad passed 49 tests after adding supplemental cursor coverage; independent review then required deterministic fixture IDs, fixed at 49feb796. Current combined-head evidence is pending and must not be inferred from those historical runs.
+
+[The machine-readable port ledger](database-ports.json) maps all 28 declarations/31 expanded cases to current and predecessor stable `commit:path:declaration-line` IDs. The 20 registry/repository declarations were checked against [inventory PR #4](https://github.com/sveltery/cms/pull/4)'s complete [baseline mapping](https://github.com/sveltery/cms/blob/c52761b161b55da8844532dc58052cae90c25e69/parity/emdash/baseline-map.json) at `c52761b161b55da8844532dc58052cae90c25e69`: files/registration bodies/assertion lists are unchanged, with matching titles and hashes. The eight driver declarations are outside that inventory's selected files; their IDs, lines and assertions were verified directly against the byte-identical upstream file (blob c89d433eccafd691dbe1725543703e186e0a786f). The parent retains ownership of `parity/emdash/`; this implementation ledger does not edit its inventory-only statuses.
 
 ## What is preserved versus adapted
 
@@ -73,7 +75,7 @@ Cloudflare's `packages/cloudflare/tests/db/d1-dialect.test.ts`, D1 session/reque
 
 ## Supplemental tests and deliberate bounds
 
-`tests/database.test.ts` contains original tests for restart persistence, repeated system migration, failed additive-field rollback, DDL/DML batch rollback, identifier/value injection resistance, client ownership rejection, SQL required/unique/foreign-key constraints, UTF-16 length validation, index identity collision prevention, fail-closed authorization before storage, persisted ownership, two-connection optimistic concurrency, schema version conflicts, field bounds and body-free paginated summaries.
+`tests/database.test.ts` contains original tests for restart persistence, repeated system migration, failed additive-field rollback, DDL/DML batch rollback, identifier/value injection resistance, client ownership rejection, SQL required/unique/foreign-key constraints, UTF-16 length validation, index identity collision prevention, deterministic cursor locale/trash filtering with null title/slug values, fail-closed authorization before storage, persisted ownership, two-connection optimistic concurrency, schema version conflicts, field bounds and body-free paginated summaries.
 
 Specific scope differences:
 
@@ -85,3 +87,11 @@ Specific scope differences:
 - Length validation retains upstream JavaScript UTF-16 semantics in the service. SQLite's length() is not used for field validation because its code-point/NUL behavior differs. NUL is rejected only in schema default values, which SQLite cannot represent as DDL literals; bound content values preserve it.
 - Unlike upstream's callback transaction fallback, every schema/guarded write requires an adapter-proven atomic batch. There is no non-atomic fallback. This prevents silently claiming multi-statement D1 safety. The SQLite batch owns Kysely's connection mutex and executes synchronously between BEGIN IMMEDIATE and COMMIT.
 - Collection/field deletion, rename and type conversion have no API. Adding a required field without a suitable default to existing data fails and rolls back; an explicit backfill/migration plan is needed before supporting that operation.
+
+## Approved 1.1.0 change review
+
+The selected three upstream test files, Node compatibility wrapper, schema registry and MIT notice are byte-identical to the initial 1.0.1 baseline. All 28 selected declarations remain unchanged; no assertions were removed or relaxed during the baseline update.
+
+The content repository's 1.1.0 pagination fix handles nullable sort values and groups OR cursor predicates so status/trash filters apply to every branch. This slice only sorts non-null created_at/id, already uses a grouped cursor predicate, and has no custom sort API. The supplemental real-database regression uses deterministic IDs, both timestamp branches, nullable titles/slugs, foreign locales and soft-deleted rows; it does not claim to port the upstream nullable-sort suite or to prove published-state paging. Only draft status is accepted by the physical table constraint.
+
+The 1.1.0 writable-field filtering when publishing a revision after field deletion concerns two APIs absent here. Field deletion, historical/live revisions and publication remain deferred rather than introducing an untested publishing path. Cloudflare affected-row and setup-origin regressions remain unported; this slice has neither a D1 adapter nor a setup endpoint.
