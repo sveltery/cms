@@ -26,3 +26,5 @@ The previous catalog hash matches the original artifact at CMS commit `71fb210e1
 An independent AST/source check found no omitted expectation chains or incorrect registration hashes, assertions, source identities or local links. Notices match both upstream licenses exactly, and the approved SHA, package version and official release tag agree. Changes remain confined to `parity/emdash/` and `notices/`; deferred features remain outside the initial implementation scope.
 
 This was a read-only source/documentation review. No CMS, browser, Node persistence or workerd/D1 execution was performed. Foundation landing and the subsequent retarget/rebase are separate integration steps. CI executes existing foundation checks and does not establish executable upstream parity.
+
+Foundation later landed at main commit `89a1663df69d3e788e2290254b7a54b30b071ded`. The documentation branch was rebased onto that exact merge and the draft retargeted to `main`. Catalog, mapping and initial-slice artifacts are unchanged by the rebase. The original scaffold audit remains explicitly historical.

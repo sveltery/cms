@@ -2,7 +2,7 @@
 
 Use this inventory to select upstream tests, port their assertions to the CMS product boundary, and fix the failing implementation. Preserve EmDash behavior on self-hosted Node and Cloudflare unless a documented platform constraint requires a difference. The native framework is SvelteKit; collection and content CRUD uses remote functions. Collection schemas are defined through the dashboard and persisted in the database. The temporary UI stays isolated until `sveltery/ui` is available. Documentation and the public MIT implementation stay in this repository.
 
-This is a planning PR based on foundation commit `ac0ec3fb83566cb2352da80d919a4e2ad2ec8c1f`, targeting `feat/foundation`. It changes only `parity/emdash/` and `notices/`. It adds **zero executable product tests** and implements **zero CMS behavior**. The catalog checker verifies provenance and extraction, not product parity. The three existing scaffold service tests are original tests, not upstream ports; their fixture repository does not establish persisted CRUD, remote registration, browser behavior, or runtime support.
+This planning PR targets `main`, rebased onto the landed foundation merge `89a1663df69d3e788e2290254b7a54b30b071ded`. Its original scaffold audit remains pinned to `ac0ec3fb83566cb2352da80d919a4e2ad2ec8c1f`. It changes only `parity/emdash/` and `notices/`, adds **zero executable product tests** and implements **zero CMS behavior**. The catalog checker verifies provenance and extraction, not product parity. Foundation's service, production-remote and browser checks are supplemental original tests, not upstream ports; their fixtures do not establish database-defined schemas, real-session CRUD, provider persistence or deployed runtime support.
 
 ## Baseline and provenance
 

@@ -14,7 +14,7 @@ These substitutions authorize framework integration, not changes to domain defau
 
 ## Foundation audit at `ac0ec3f`
 
-These findings describe provisional scaffolding. The UI is disabled, there is no trusted session/storage wiring, and no exploit or functioning persisted CMS is claimed. Implementation owners must resolve the differences; this documentation PR leaves their files untouched.
+These findings describe the original provisional scaffold at `ac0ec3f`; they are a historical audit, not a claim that every finding remains open on current main. Foundation subsequently landed at `89a1663df69d3e788e2290254b7a54b30b071ded` with registered fail-closed remotes, supplemental service/production/browser checks and updated architecture guidance. Its fixtures still do not establish real-session CRUD, provider persistence or executable EmDash parity. The UI is disabled, there is no trusted session/storage wiring, and no exploit or functioning persisted CMS is claimed. Implementation owners must resolve and track remaining differences; this documentation PR leaves their files untouched.
 
 | ID | Foundation location and concrete trigger | Observable difference and upstream anchor | Disposition |
 | --- | --- | --- | --- |
