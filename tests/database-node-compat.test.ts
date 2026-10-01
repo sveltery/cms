@@ -1,6 +1,6 @@
 // Adapted from EmDash 1.1.0 (913cb1b); unchanged from initial 1.0.1 port.
 // Copyright 2026 Cloudflare Inc.
-// MIT; see notices/emdash-LICENSE and docs/database-parity.md for source mapping.
+// MIT; see notices/emdash-MIT.txt and docs/database-parity.md for source mapping.
 import { afterEach, describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, rmSync } from 'node:fs';

@@ -8,6 +8,9 @@ export async function migrateCms(database: CmsDatabase): Promise<void> {
   if (exists.rows.length) {
     const versions = await db.selectFrom('_cms_migrations').select('version').orderBy('version').limit(2).execute();
     if (versions.length !== 1 || versions[0].version !== 1) throw new CmsError('MIGRATION_REQUIRED');
+    const tables = await sql<{ name: string }>`SELECT name FROM sqlite_master WHERE type = 'table'
+      AND name IN ('_cms_collections', '_cms_fields', '_cms_guards')`.execute(db);
+    if (tables.rows.length !== 3) throw new CmsError('MIGRATION_REQUIRED');
     return;
   }
   const unmanaged = await sql`SELECT name FROM sqlite_master WHERE name IN ('_cms_collections', '_cms_fields', '_cms_guards') LIMIT 1`.execute(db);

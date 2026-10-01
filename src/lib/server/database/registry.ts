@@ -58,7 +58,11 @@ export class SchemaRegistry {
     const db = this.database.db;
     const name = tableName(value.slug);
     const exists = await sql`SELECT name FROM sqlite_master WHERE type = 'table' AND name = ${name}`.execute(db);
-    if (exists.rows.length) throw new CmsError('COLLECTION_TABLE_ORPHANED');
+    if (exists.rows.length) {
+      // Another creator may have committed between the registry and table preflight reads.
+      if (await this.getCollection(value.slug)) throw new CmsError('COLLECTION_EXISTS');
+      throw new CmsError('COLLECTION_TABLE_ORPHANED');
+    }
     const token = ulid();
     const now = new Date().toISOString();
     const statements: CompiledQuery[] = [
@@ -82,7 +86,17 @@ export class SchemaRegistry {
       db.schema.createIndex('idx_' + name + '_draft_list').on(name).columns(['locale', 'deleted_at', 'created_at', 'id']).compile(),
       sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
     ];
-    await this.batch(statements, 'LIMIT_EXCEEDED');
+    try { await this.batch(statements, 'LIMIT_EXCEEDED'); }
+    catch (cause) {
+      // Classify only SQLite's exact registered-slug uniqueness failure after a concurrent create.
+      // Other constraints, DDL and adapter failures remain unexpected server errors.
+      const duplicateSlug = cause instanceof Error && cause.message === 'UNIQUE constraint failed: _cms_collections.slug';
+      // At the final capacity slot, the guard can fail before the duplicate insert is attempted.
+      const duplicateAtCapacity = cause instanceof CmsError && cause.code === 'LIMIT_EXCEEDED'
+        && await this.getCollection(value.slug) !== null;
+      if (duplicateSlug || duplicateAtCapacity) throw new CmsError('COLLECTION_EXISTS');
+      throw cause;
+    }
     return (await this.getCollection(value.slug))!;
   }
 

@@ -1,0 +1,105 @@
+[
+  {
+    "category": "schema",
+    "stage": "first-schema",
+    "prefixes": [
+      "packages/core/tests/unit/schema/",
+      "packages/core/tests/integration/schema/"
+    ],
+    "paths": [
+      "packages/core/tests/unit/api/collection-admin-schema.test.ts",
+      "packages/core/tests/unit/api/field-validation-schema.test.ts",
+      "packages/core/tests/unit/api/schema-collection-update-route.test.ts",
+      "packages/core/tests/unit/api/schema-collections-reorder-route.test.ts",
+      "packages/core/tests/unit/api/schema-update-collection-display-fields.test.ts",
+      "packages/core/tests/integration/mcp/schema.test.ts"
+    ]
+  },
+  {
+    "category": "content-and-workflows",
+    "stage": "staged-content",
+    "prefixes": [
+      "packages/core/tests/integration/content/"
+    ],
+    "paths": [
+      "packages/core/tests/unit/api/content-handlers.test.ts",
+      "packages/core/tests/unit/api/revision-handlers.test.ts",
+      "packages/core/tests/database/repositories/content.test.ts",
+      "packages/core/tests/unit/database/repositories/content.test.ts",
+      "packages/core/tests/unit/database/repositories/content-statement-errors.test.ts",
+      "packages/core/tests/unit/database/repositories/revision-pruning.test.ts",
+      "packages/core/tests/integration/mcp/drafts.test.ts",
+      "packages/core/tests/integration/mcp/content-misc.test.ts",
+      "packages/core/tests/unit/loader-revision-preview.test.ts",
+      "packages/core/tests/unit/query-collection-offset.test.ts",
+      "packages/core/tests/unit/query-collection-nextcursor.test.ts"
+    ]
+  },
+  {
+    "category": "authorization-and-concurrency",
+    "stage": "first-policy",
+    "prefixes": [],
+    "paths": [
+      "packages/auth/src/rbac.test.ts",
+      "packages/core/tests/unit/api/ownership-extraction.test.ts",
+      "packages/core/tests/unit/api/content-route-permissions.test.ts",
+      "packages/core/tests/unit/api/publish-revision-cas.test.ts",
+      "packages/core/tests/unit/astro/content-routes-authz.test.ts",
+      "packages/core/tests/unit/astro/content-route-entry-lock.test.ts",
+      "packages/core/tests/integration/mcp/ownership.test.ts",
+      "packages/core/tests/integration/mcp/publish-revision-cas.test.ts",
+      "packages/core/tests/integration/mcp/entry-lock.test.ts",
+      "packages/core/tests/integration/database/entry-locks.test.ts",
+      "packages/core/tests/unit/mcp/authorization.test.ts"
+    ]
+  },
+  {
+    "category": "adapters",
+    "stage": "every-persistence-slice",
+    "prefixes": [],
+    "paths": [
+      "packages/core/tests/database/connection.test.ts",
+      "packages/core/tests/database/migrations.test.ts",
+      "packages/core/tests/integration/database/dialect-compat.test.ts",
+      "packages/core/tests/integration/database/migration-race.test.ts",
+      "packages/core/tests/unit/database/migration-lock.test.ts",
+      "packages/core/tests/unit/db/migration-adapters.test.ts",
+      "packages/core/tests/unit/db/migration-executors.test.ts",
+      "packages/core/tests/unit/db/dialect-runtime-imports.test.ts",
+      "packages/core/tests/workerd/collection-recreate-d1.test.ts",
+      "packages/core/tests/workerd/revision-restore-d1.test.ts",
+      "packages/core/tests/workerd/seed-trash-d1.test.ts",
+      "packages/core/tests/workerd/migrations-d1.test.ts",
+      "packages/core/tests/workerd/migration-lock-d1.test.ts",
+      "packages/core/tests/workerd/loader-wide-collection-d1.test.ts",
+      "packages/cloudflare/tests/db/d1-dialect.test.ts",
+      "packages/cloudflare/tests/db/d1-migrations.test.ts",
+      "packages/cloudflare/tests/db/d1-session-guard.test.ts",
+      "packages/cloudflare/tests/db/d1-request-scope.test.ts",
+      "packages/cloudflare/tests/missing-bindings.test.ts",
+      "packages/cloudflare/tests/db/do-sql-collection-deletion.test.ts"
+    ]
+  },
+  {
+    "category": "admin-behavior",
+    "stage": "remote-and-browser",
+    "prefixes": [],
+    "paths": [
+      "packages/admin/tests/lib/content-rev.test.ts",
+      "packages/admin/tests/lib/api/content-token.test.ts",
+      "packages/admin/tests/lib/content-validation-errors.test.ts",
+      "packages/admin/tests/lib/content-publishing-state.test.ts",
+      "packages/admin/tests/unpublish-discard-revision-token.test.tsx",
+      "packages/admin/tests/lib/useEntryLock.test.tsx",
+      "packages/admin/tests/lib/trash-locale.test.ts",
+      "e2e/tests/content-types.spec.ts",
+      "e2e/tests/content-crud.spec.ts",
+      "e2e/tests/revisions.spec.ts",
+      "e2e/tests/autosave.spec.ts",
+      "e2e/tests/entry-lock.spec.ts",
+      "e2e/tests/form-data-loss.spec.ts",
+      "e2e/tests/auth.spec.ts",
+      "e2e/tests/content-actions.spec.ts"
+    ]
+  }
+]

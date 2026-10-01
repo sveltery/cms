@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { sql } from 'kysely';
 import { openSqlite } from '../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../src/lib/server/database/migrations.ts';
-import { SchemaRegistry, MAX_FIELDS } from '../src/lib/server/database/registry.ts';
+import { SchemaRegistry, MAX_COLLECTIONS, MAX_FIELDS } from '../src/lib/server/database/registry.ts';
 import { DraftRepository } from '../src/lib/server/database/entries.ts';
 import { cmsService, type ServerPrincipal } from '../src/lib/server/database/service.ts';
 import { CmsError } from '../src/lib/server/database/contract.ts';
@@ -363,4 +363,28 @@ test('version-one migration markers reject missing system tables without repair 
       assert.equal((await sql<{ version: number }>`SELECT version FROM _cms_migrations`.execute(database.db)).rows[0].version, 1);
     } finally { await database.close(); }
   }
+});
+
+test('same-slug creation at the collection cap still reports duplicate while new slugs report the bound', async () => {
+  const directory = mkdtempSync(join(tmpdir(), 'cms-schema-cap-race-')); const path = join(directory, 'db.sqlite');
+  const first = await fixture(path); const second = openSqlite(path);
+  try {
+    for (let index = 1; index < MAX_COLLECTIONS - 1; index++) {
+      await first.service.createCollection({ slug: 'existing_' + index, label: 'Existing' });
+    }
+    const other = cmsService(second, admin);
+    const outcomes = await Promise.allSettled([
+      first.service.createCollection({ slug: 'last_slot', label: 'Last' }),
+      other.createCollection({ slug: 'last_slot', label: 'Last' })
+    ]);
+    assert.equal(outcomes.filter(result => result.status === 'fulfilled').length, 1);
+    const rejected = outcomes.find(result => result.status === 'rejected');
+    assert.ok(rejected?.status === 'rejected' && rejected.reason instanceof CmsError);
+    assert.equal(rejected.reason.code, 'COLLECTION_EXISTS');
+    assert.equal((await first.service.listCollections()).length, MAX_COLLECTIONS);
+    await assert.rejects(() => first.service.createCollection({ slug: 'overflow', label: 'Overflow' }), { code: 'LIMIT_EXCEEDED' });
+    assert.equal(await first.schema.getCollection('overflow'), null);
+    assert.equal((await sql`SELECT name FROM sqlite_master WHERE name = 'ec_overflow'`.execute(first.database.db)).rows.length, 0);
+    assert.equal((await sql`SELECT * FROM _cms_guards`.execute(first.database.db)).rows.length, 0);
+  } finally { await second.close(); await first.database.close(); rmSync(directory, { recursive: true, force: true }); }
 });

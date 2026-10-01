@@ -2,7 +2,7 @@ import * as v from 'valibot';
 import { CmsError } from './contract.ts';
 
 // Slug rules and reserved names follow EmDash 1.1.0 schema/types.ts.
-// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-LICENSE.
+// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 export const reservedCollections = ['content', 'media', 'users', 'revisions', 'taxonomies', 'options', 'audit_logs', 'reorder', 'relations'];
 export const reservedFields = ['id', 'slug', 'status', 'author_id', 'primary_byline_id', 'created_at', 'updated_at', 'published_at', 'scheduled_at', 'deleted_at', 'version', 'live_revision_id', 'draft_revision_id', 'terms', 'bylines', 'byline', 'locale', 'translation_group'];
 export const identifier = v.pipe(v.string(), v.minLength(1), v.maxLength(63), v.regex(/^[a-z][a-z0-9_]*$/));
