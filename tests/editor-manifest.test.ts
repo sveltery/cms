@@ -78,3 +78,14 @@ test('least-disclosure projection excludes storage/admin/default/content values 
     assert.equal(Object.keys(manifest.collections.posts.fields).length, MAX_FIELDS);
   } finally { await database.close(); }
 });
+
+test('pinned manifest limitation: a manual constructor collection is omitted pending a separate upstream-behavior fix', async () => {
+  const { database, registry } = await fixture();
+  try {
+    await registry.createCollection({ slug: 'constructor', label: 'Constructor' });
+    assert.deepEqual((await registry.listCollections()).map(collection => collection.slug), ['constructor']);
+    const manifest = await editorManifest(database, author);
+    assert.deepEqual(Object.keys(manifest.collections), []);
+    assert.equal(Object.hasOwn(manifest.collections, 'constructor'), false);
+  } finally { await database.close(); }
+});
