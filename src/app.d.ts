@@ -6,7 +6,7 @@ declare global {
     interface Error { code?: string }
     interface Locals {
       // Explicit adapter injection, populated only by trusted server session composition.
-      cms?: { database: CmsDatabase; principal: ServerPrincipal | null };
+      cms?: { database: CmsDatabase; principal: ServerPrincipal | null; mutationsEnabled?: boolean };
     }
   }
 }

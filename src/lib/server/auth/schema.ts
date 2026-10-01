@@ -4,7 +4,7 @@ export type AuthTables = {
   _cms_auth_users: { id: string; role: number; disabled: number };
   _cms_auth_sessions: { hash: string; user_id: string; expires_at: number };
 };
-/** Empty auth-only tables. The composition owner must register these in its migration lifecycle. */
+/** Empty auth-only tables registered atomically by migrateCms version two. */
 export function authSchemaStatements(db: Kysely<AuthTables>): CompiledQuery[] {
   return [
     sql`CREATE TABLE _cms_auth_users (

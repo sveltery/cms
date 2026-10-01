@@ -21,7 +21,7 @@ test('clean migration registers empty auth tables and version two, and is idempo
   const database = openSqlite(':memory:');
   try {
     await migrateCms(database); await migrateCms(database);
-    assert.deepEqual(await database.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute(), [{ version: 1 }, { version: 2 }]);
+    assert.deepEqual((await database.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row => ({ ...row })), [{ version: 1 }, { version: 2 }]);
     assert.deepEqual(await database.db.selectFrom('_cms_auth_users').selectAll().execute(), []);
     assert.deepEqual(await database.db.selectFrom('_cms_auth_sessions').selectAll().execute(), []);
   } finally { await database.close(); }
