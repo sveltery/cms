@@ -41,7 +41,7 @@ Source IDs below are the exact upstream test names, under the pinned commit. Eve
 | same | should return null for non-existent ID: null | same |
 | same | should return null when type doesn't match: lookup in page returns null | same |
 
-There are 31 ported cases: 11 driver cases (including four parameterized unsupported-value cases), 12 registry cases and 8 draft repository cases. Passing status requires the final CI run; a table mapping is not evidence of a passing test.
+There are 31 ported cases: 11 driver cases (including four parameterized unsupported-value cases), 12 registry cases and 8 draft repository cases. All 31 cases are **passing on Node** at f8e8b01 in [CI run 36901609498](https://github.com/sveltery/cms/actions/runs/36901609498); the run passed all 48 tests (31 ports, 14 supplemental cases, 3 existing tests), checks and build. [The machine-readable port ledger](database-ports.json) maps 28 declarations/31 expanded cases to the same stable `commit:path:declaration-line` IDs used by [inventory PR #4](https://github.com/sveltery/cms/pull/4) at `71fb210e1867dbdf464defdd6a5490fdd84a26ae`. Matching candidate IDs were cross-checked; ports outside those candidates are derived from the same pinned source/declaration convention. The parent retains ownership of `parity/emdash/`; this implementation ledger does not edit its inventory-only statuses.
 
 ## Unported and blocked contracts
 
