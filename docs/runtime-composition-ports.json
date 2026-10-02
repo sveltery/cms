@@ -1,0 +1,59 @@
+{
+  "upstream": "https://github.com/emdash-cms/emdash",
+  "commit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "tag": "emdash@1.1.0",
+  "feature": "configured-runtime-composition",
+  "scope": "Node persistent SQLite runtime and trusted raw D1 request configuration; native Cloudflare hosting is incomplete",
+  "sourceDeclarations": [
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/db/sqlite.test.ts:25",
+      "sourceBlob": "d0cc2b8eda2b4b13674e9177fd0bc5ad732b55a5",
+      "sourceSha256": "bc454f5ee6061b9a63cda40649810f89b03f19d4459ed805ca65ac2107f28d53",
+      "title": "opens a fresh database file in WAL mode",
+      "assertions": [
+        { "line": 34, "expression": "expect(rows).toEqual([{ journal_mode: \"wal\" }])", "localExpected": [{ "journal_mode": "wal" }] },
+        { "line": 37, "expression": "expect(synchronous.rows).toEqual([{ synchronous: 1 }])", "localExpected": [{ "synchronous": 1 }] }
+      ],
+      "localFile": "tests/runtime-composition.test.ts",
+      "setupAdaptations": [
+        "Original createDialect is reached through trusted configured CMS request initialization rather than a direct dialect constructor.",
+        "Vitest toEqual becomes Node strict equality after spreading SQLite null-prototype rows into plain records; expected values and SQL are unchanged."
+      ],
+      "baselineRed": { "commit": "02fa246", "result": "0 passed, 2 failed; source WAL expected row absent; supplemental trusted database absent", "log": "/tmp/cms-runtime-baseline-red.log" },
+      "implementationGreen": { "commit": "67d1b26", "result": "7 passed, 0 failed; source two assertions preserved" },
+      "originalSourceProbe": { "result": "Both expected rows passed against original pinned createDialect and NodeSqliteCompatDatabase", "script": "scripts/reproduce-runtime-upstream.mjs", "implementationBlob": "7767c114295d08c9f62a4128a69b058cc47a3e86" },
+      "catalogStatus": "file is outside current 118-file selected inventory; formal catalog declaration/assertion credit pending expansion",
+      "omissions": []
+    }
+  ],
+  "supplementalCoverage": [
+    "Configured canonical migrations and anonymous/current-role session resolution",
+    "Concurrent first requests share a migrated adapter and retain request-specific principals",
+    "Nested persistent file path, actual content storage and runtime restart",
+    "Current role promotion/demotion and disabled-user denial",
+    "Exact trusted public origin and invalid-origin rejection before file creation",
+    "Unconfigured fail-closed application behavior and stale-local clearing",
+    "Real local workerd/D1 storage via trusted platform binding and request waitUntil forwarding",
+    "Built application hooks and real registered create/read remotes without replacement test handle",
+    "Production artifact fixture exclusion and client/private-runtime separation"
+  ],
+  "incomplete": [
+    "Actual setup/login/passkey credential flow is owned by the auth feature",
+    "Native writable editor is owned by the editor feature",
+    "New schema/auth/lifecycle migrations are owned by the canonical migration feature",
+    "Adapter-cloudflare application hosting, D1 Sessions/bookmarks, Durable Object and Hyperdrive",
+    "libSQL and PostgreSQL runtime adapters",
+    "External deployed runtime evidence"
+  ],
+  "specificDeviationAcceptance": "not recorded",
+  "validation": {
+    "fullBootstrap": { "checkerErrors": 0, "servicePassed": 458, "productionPassed": 104, "originalNodePackagePassed": 11, "log": "/tmp/cms-runtime-bootstrap.log" },
+    "configuredPackageSubtest": "added for ordinary hosted CI; local pnpm installation blocked before startup by registry proxy503 and missing offline policy metadata",
+    "isolatedConfiguredProcessProbe": { "script": "/tmp/cms-runtime-configured-process-proof.mjs", "runtimeLibraries": ["@oslojs/encoding@1.1.0", "kysely@0.29.2", "ulidx@2.4.1", "layerr@3.0.0", "valibot@1.5.0"], "passed": ["configured startup", "anonymous denial", "stored-session HTTP create/read", "actual process restart persistence", "current role demotion", "SIGTERM/SIGINT shutdown"], "installationVerification": "cached installed libraries copied; normal fresh pnpm verification pending hosted CI" },
+    "finalHeadCi": "pending",
+    "securedBrowsers": "pending",
+    "independentReview": "pending",
+    "parentApproval": "pending"
+  },
+  "landing": "pending"
+}

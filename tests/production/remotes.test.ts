@@ -21,16 +21,18 @@ test('production build registers CMS remotes and enforces HTTP boundaries', asyn
   }
 });
 
-test('production artifacts contain neither the trusted-session fixture nor a Node SQLite opener', async () => {
-  async function inspect(path: string) {
+test('production artifacts exclude trusted-session fixtures and keep configured SQLite opening server-only', async () => {
+  async function inspect(path: string, client = false) {
     for (const entry of await readdir(path, { withFileTypes: true })) {
       const child = `${path}/${entry.name}`;
-      if (entry.isDirectory()) await inspect(child);
+      if (entry.isDirectory()) await inspect(child, client);
       else if (/\.(?:js|json|html)$/.test(entry.name)) {
         const source = await readFile(child, 'utf8');
-        assert.doesNotMatch(source, /cms-test-session|cms-remotes-|user_writer|node:sqlite|openSqlite/);
+        assert.doesNotMatch(source, /cms-test-session|cms-remotes-|user_writer/);
+        if (client) assert.doesNotMatch(source, /node:sqlite|openSqlite|SVELTERY_DATABASE_PATH|SVELTERY_PUBLIC_ORIGIN/);
       }
     }
   }
   await inspect(new URL('../../.svelte-kit/output', import.meta.url).pathname);
+  await inspect(new URL('../../.svelte-kit/output/client', import.meta.url).pathname, true);
 });

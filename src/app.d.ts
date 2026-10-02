@@ -7,6 +7,7 @@ declare global {
     interface Locals {
       // Explicit adapter injection, populated only by trusted server session composition.
       cms?: { database: CmsDatabase; principal: ServerPrincipal | null; mutationsEnabled?: boolean };
+      cmsRuntime?: { readonly publicOrigin: string; readonly basePath: string; readonly rpName: string };
     }
   }
 }
