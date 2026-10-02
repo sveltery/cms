@@ -122,6 +122,16 @@ for (const target of ['Node', 'D1'] as const) {
       for (const saved of entries) {
         let current = await setup.getDraft({ type: 'legacy', id: saved.id });
         assert.deepEqual(current.data, saved.data);
+        const watch = monitored(h.database);
+        const service = cmsService(watch.database, admin);
+        const unchanged = await snapshot(h.database);
+        for (const field of ['string_value', 'text_value']) for (const value of ['', null]) {
+          await assert.rejects(() => service.updateDraft({ type: 'legacy', id: saved.id, expected: expected(current), data: { [field]: value } }), { code: 'VALIDATION_ERROR' });
+        }
+        assert.deepEqual(watch.writes, []);
+        assert.deepEqual(await snapshot(h.database), unchanged);
+        current = await setup.updateDraft({ type: 'legacy', id: saved.id, expected: expected(current), data: {} });
+        assert.deepEqual(current.data, saved.data);
         current = await setup.updateDraft({ type: 'legacy', id: saved.id, expected: expected(current), data: { other: 'changed' } });
         assert.equal(current.data.string_value, saved.data.string_value);
         assert.equal(current.data.text_value, saved.data.text_value);
