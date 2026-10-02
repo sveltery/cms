@@ -3,6 +3,11 @@ import type { ServerPrincipal } from './lib/server/database/service';
 
 declare global {
   namespace App {
+    interface Platform {
+      env?: Record<string, unknown>;
+      ctx?: { waitUntil(task: Promise<unknown>): void };
+      context?: { waitUntil(task: Promise<unknown>): void };
+    }
     interface Error { code?: string }
     interface Locals {
       // Explicit adapter injection, populated only by trusted server session composition.

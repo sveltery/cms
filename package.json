@@ -21,7 +21,10 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "test": "node --test tests/*.test.ts",
     "test:production": "node --test tests/production/*.test.ts",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "build:cloudflare": "WRANGLER_LOG_PATH=.wrangler/logs SVELTERY_ADAPTER=cloudflare vite build && WRANGLER_LOG_PATH=.wrangler/logs wrangler deploy --dry-run --outdir build/cloudflare/worker",
+    "start:cloudflare": "WRANGLER_LOG_PATH=.wrangler/logs wrangler dev --local",
+    "test:cloudflare": "vitest run --config vitest.cloudflare.config.ts && node --test tests/cloudflare-hosting/*.test.ts"
   },
   "dependencies": {
     "@oslojs/encoding": "1.1.0",

@@ -70,8 +70,8 @@ class D1Driver implements Driver {
 export class RawBindingD1Dialect implements Dialect {
   private readonly database: D1Binding;
   constructor(database: D1Binding) { this.database = database; }
-  createAdapter() { return new RawBindingD1Adapter(this.database); }
-  createDriver() { return new D1Driver(this.database); }
+  createAdapter(): RawBindingD1Adapter { return new RawBindingD1Adapter(this.database); }
+  createDriver(): Driver { return new D1Driver(this.database); }
   createQueryCompiler() { return new SqliteQueryCompiler(); }
   createIntrospector(): never { throw new Error('D1 introspection is outside the bounded CMS adapter'); }
 }
@@ -95,7 +95,7 @@ export function openD1(binding: D1Binding): CmsDatabase {
 export class SessionD1Dialect extends RawBindingD1Dialect {
   private readonly sessionBinding: D1Binding;
   constructor(config: { database: D1Binding }) { super(config.database); this.sessionBinding = config.database; }
-  override createAdapter() {
+  override createAdapter(): RawBindingD1Adapter {
     const binding = this.sessionBinding;
     return new class extends RawBindingD1Adapter {
       override get supportsMultipleConnections() { return false; }

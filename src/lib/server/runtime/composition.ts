@@ -1,3 +1,6 @@
+import type { D1Database } from '@cloudflare/workers-types';
+import { createRequestScopedDb, type D1Config } from './cloudflare-d1.ts';
+import { SESSION_COOKIE_NAME } from '../auth/request.ts';
 import type { Handle, RequestEvent } from '@sveltejs/kit';
 import { createCmsHandle } from '../auth/composition.ts';
 import type { D1Binding } from '../database/d1.ts';
@@ -14,7 +17,7 @@ export interface RuntimePresentation {
 }
 export type RuntimeConfiguration = RuntimePresentation & (
   { kind: 'sqlite'; path: string } |
-  { kind: 'd1'; binding: D1Binding }
+  { kind: 'd1'; binding: D1Binding; d1?: D1Config }
 );
 
 export interface CmsRuntime {
@@ -28,6 +31,7 @@ export function createCmsRuntime(
 ): CmsRuntime {
   const sqlite = new Map<string, Promise<CmsDatabase>>();
   const bindings = new Map<D1Binding, Promise<CmsDatabase>>();
+  const configurations = new WeakMap<RequestEvent, RuntimeConfiguration>();
   let closed = false;
   let closing: Promise<void> | undefined;
 
@@ -97,6 +101,7 @@ export function createCmsRuntime(
     const database = await databaseFor(config);
     assertOpen();
     event.locals.cmsRuntime = Object.freeze({ publicOrigin, basePath, rpName });
+    configurations.set(event, config);
     return { database, mutationsEnabled: config.mutationsEnabled !== false, keepAlive: config.keepAlive };
   });
 
@@ -104,9 +109,44 @@ export function createCmsRuntime(
     handle: async input => {
       delete input.event.locals.cmsRuntime;
       try {
-        return await sessionHandle({ ...input, resolve: (event, options) => {
+        return await sessionHandle({ ...input, resolve: async (event, options) => {
           assertOpen();
-          return input.resolve(event, options);
+          const config = configurations.get(event);
+          if (config?.kind !== 'd1' || !config.d1) return input.resolve(event, options);
+          const cookies = event.cookies;
+          let outgoingSession = false;
+          event.cookies = new Proxy(cookies, { get(target, key) {
+            if (key === 'set') return (...args: Parameters<typeof cookies.set>) => {
+              if (args[0] === SESSION_COOKIE_NAME) outgoingSession = true;
+              return cookies.set(...args);
+            };
+            const value = Reflect.get(target, key);
+            return typeof value === 'function' ? value.bind(target) : value;
+          } });
+          const isAuthenticated = !!event.locals.cms?.principal;
+          const scoped = createRequestScopedDb({
+            config: config.d1, binding: config.binding as D1Database,
+            isAuthenticated, endedAuthenticated: () => isAuthenticated || outgoingSession,
+            isWrite: !['GET', 'HEAD'].includes(event.request.method), url: event.url,
+            cookies: {
+              get: name => { const value = cookies.get(name); return value === undefined ? undefined : { value }; },
+              set: (name, value, options) => cookies.set(name, value, options as unknown as Parameters<typeof cookies.set>[2])
+            }
+          });
+          try {
+            if (!scoped) return await input.resolve(event, options);
+            event.locals.cms = Object.freeze({ ...event.locals.cms!, database: scoped.database });
+            let response: Response;
+            try { response = await input.resolve(event, options); }
+            catch (cause) {
+              try { scoped.commit(); }
+              catch (commitError) { console.error('CMS D1 bookmark commit failed during error handling', commitError); }
+              throw cause;
+            }
+            scoped.commit();
+            // D1 has no connection teardown. Stream/deferred readers retain this request's db.
+            return response;
+          } finally { event.cookies = cookies; }
         } });
       } catch (cause) {
         if (closed) {
@@ -114,7 +154,7 @@ export function createCmsRuntime(
           delete input.event.locals.cmsRuntime;
         }
         throw cause;
-      }
+      } finally { configurations.delete(input.event); }
     },
     close() {
       closed = true;

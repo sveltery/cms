@@ -305,7 +305,7 @@ export class CoalescingD1Dialect extends EmDashD1Dialect {
 		this.#database = config.database;
 	}
 
-	override createAdapter(): SqliteAdapter {
+	override createAdapter(): CoalescingD1Adapter {
 		return new CoalescingD1Adapter(this.#database);
 	}
 
