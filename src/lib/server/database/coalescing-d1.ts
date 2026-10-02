@@ -139,6 +139,15 @@ export class CoalescingD1Connection implements DatabaseConnection {
 		});
 	}
 
+	/** Native CmsDatabase extension: atomic writes share the physical session chain. */
+	async executeAtomicBatch(queries: readonly CompiledQuery[]): Promise<readonly QueryResult<unknown>[]> {
+		// Drain already-issued SELECTs synchronously into the chain before this
+		// barrier. Awaiting the drain here would let a later write overtake it.
+		void this.#flush();
+		const statements = queries.map(query => this.#database.prepare(query.sql).bind(...query.parameters));
+		return this.#enqueue(async () => (await this.#database.batch(statements)).map(mapD1Result));
+	}
+
 	/**
 	 * Schedule a flush of buffered SELECTs unless one is already pending.
 	 *
@@ -249,10 +258,10 @@ export class CoalescingD1Connection implements DatabaseConnection {
 export class CoalescingD1Driver implements Driver {
 	#connection: CoalescingD1Connection;
 
-	constructor(database: D1Database) {
+	constructor(database: D1Database, connection = new CoalescingD1Connection(database)) {
 		// A single shared connection: the whole point is for concurrent queries
 		// in the same request to land in the same buffer.
-		this.#connection = new CoalescingD1Connection(database);
+		this.#connection = connection;
 	}
 
 	async init(): Promise<void> {}
@@ -288,6 +297,14 @@ export class CoalescingD1Driver implements Driver {
  * Transactions are rejected by the driver regardless.
  */
 class CoalescingD1Adapter extends D1Adapter {
+	readonly #connection: CoalescingD1Connection;
+	constructor(database: D1Database, connection: CoalescingD1Connection) {
+		super(database);
+		this.#connection = connection;
+	}
+	override executeAtomicBatch(queries: readonly CompiledQuery[]): Promise<readonly QueryResult<unknown>[]> {
+		return this.#connection.executeAtomicBatch(queries);
+	}
 	override get supportsMultipleConnections(): boolean {
 		return true;
 	}
@@ -299,17 +316,19 @@ class CoalescingD1Adapter extends D1Adapter {
  */
 export class CoalescingD1Dialect extends EmDashD1Dialect {
 	#database: D1Database;
+	readonly #connection: CoalescingD1Connection;
 
 	constructor(config: D1DialectConfig) {
 		super(config);
 		this.#database = config.database;
+		this.#connection = new CoalescingD1Connection(config.database);
 	}
 
 	override createAdapter(): CoalescingD1Adapter {
-		return new CoalescingD1Adapter(this.#database);
+		return new CoalescingD1Adapter(this.#database, this.#connection);
 	}
 
 	override createDriver(): Driver {
-		return new CoalescingD1Driver(this.#database);
+		return new CoalescingD1Driver(this.#database, this.#connection);
 	}
 }

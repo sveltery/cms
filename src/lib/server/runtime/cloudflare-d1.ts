@@ -142,4 +142,3 @@ export function createRequestScopedDb(opts: RequestScopedDbOpts): RequestScopedD
 function isSessionEnabled(config: D1Config): boolean {
 	return !!config.session && config.session !== "disabled";
 }
-
