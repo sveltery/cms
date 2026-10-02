@@ -38,6 +38,7 @@ class NativeAdmin {
 }
 export const test = base.extend<{ admin: NativeAdmin }>({
   admin: async ({ page }, use) => {
+    page.setDefaultTimeout(5_000);
     const h = await schemaAdminRemotes('Node');
     try {
       await h.registry.createCollection({ slug: 'posts', label: 'Posts', supports: ['drafts', 'revisions'] });

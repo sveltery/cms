@@ -38,7 +38,8 @@ export const test = base.extend<{ nativeAutosave: {
     page: Page; devBypassAuth(): Promise<void>; goToEditContent(collection: string, id: string): Promise<void>; waitForLoading(): Promise<void>;
   };
 }; admin: any }>({ nativeAutosave: async ({ page }, use) => {
-  const h = await schemaAdminRemotes('Node');
+  page.setDefaultTimeout(5_000);
+    const h = await schemaAdminRemotes('Node');
   try {
     const collection = `autosave_${Date.now()}`;
     await h.registry.createCollection({ slug: collection, label: 'Autosave Test', labelSingular: 'Autosave Test', supports: ['revisions', 'drafts'] });
