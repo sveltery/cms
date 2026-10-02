@@ -1,6 +1,6 @@
 # Sveltery CMS Node package
 
-This is an experimental standalone HTTP package for Node 24, built with the official SvelteKit Node adapter. Production storage/session composition remains unconfigured; anonymous requests fail closed and the editor stays disabled. Starting this package creates no database, accounts or sessions. Login, passkeys, provisioning, enabled writes and Cloudflare hosting are future integration gates.
+This standalone HTTP package for Node 24 uses the official SvelteKit Node adapter. With no database configuration, anonymous requests fail closed. Explicit `SVELTERY_DATABASE_PATH` plus the public `ORIGIN` configures persistent SQLite and trusted stored-session resolution; the first request creates parent directories and runs reviewed forward migrations. Configuration creates no accounts, credentials or sessions. Real passkey setup/login, writable editors and Cloudflare hosting are separate complete-product features.
 
 Install with pnpm 12.6.0, then run locally:
 
@@ -8,6 +8,15 @@ Install with pnpm 12.6.0, then run locally:
 pnpm install --prod --frozen-lockfile --ignore-scripts
 HOST=127.0.0.1 PORT=3000 ORIGIN=http://127.0.0.1:3000 pnpm start
 ```
+
+To opt into the local persistent database:
+
+```sh
+HOST=127.0.0.1 PORT=3000 ORIGIN=http://127.0.0.1:3000 \
+SVELTERY_DATABASE_PATH=./data/cms.db pnpm start
+```
+
+The database path is relative to the package's working directory. `SVELTERY_PUBLIC_ORIGIN` can provide authentication's exact public origin separately; keep it equal to `ORIGIN` when set. `SVELTERY_MUTATIONS_ENABLED=false` retains read-only service composition for authenticated sessions. Every write still requires a real current stored session and operation permission. The complete [runtime configuration contract](https://github.com/sveltery/cms/blob/main/docs/runtime-composition.md) records source assertions, local D1 evidence and remaining features.
 
 The package contains `build/`, `package.json`, `pnpm-lock.yaml`, `pnpm-workspace.yaml`, `.npmrc`, license notices and this README. Keep all of them together. The workspace/configuration files preserve the repository's existing installation policies, including strict engines and its recorded Vite release-age exception; no additional workspaces are defined. The manifest retains development dependency declarations to match the frozen lockfile; `--prod` installs only runtime dependencies. The adapter bundles development dependencies used by server code. No SvelteKit/Vite source checkout is required at runtime. The only package script starts the generated entry directly.
 
