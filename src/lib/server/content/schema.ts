@@ -19,20 +19,42 @@ export const trashedContentList = v.strictObject({
   limit: v.optional(v.pipe(v.number(), v.safeInteger(), v.minValue(1)))
 });
 export const collectionSlug = identifier;
-const nestedData = v.pipe(
-  v.record(identifier, v.pipe(v.string(), v.maxLength(100_000))),
-  v.check(value => Object.keys(value).length <= 32),
-  v.check(value => JSON.stringify(value).length <= 200_000)
-);
-const jsonData = v.pipe(v.string(), v.maxLength(200_000), v.check(value => {
+// Enhanced forms carry real JSON values. Whole-record JSON also supports field
+// names reserved by Kit's nested form parser. Both use the domain JSON bounds.
+// Kit's static form-field typing cannot express dynamic JSON/nulls and treats
+// booleans inside arrays as required checkboxes. Only this input adapter uses
+// `any`; the actual shared JSON guard and domain output stay bounded/unknown.
+const data = v.optional(v.pipe(v.custom<string | Record<string, any>>(value => {
+  if (typeof value !== 'string') return v.safeParse(schemaData, value).success;
+  if (value.length > 200_000) return false;
   try { return v.safeParse(schemaData, JSON.parse(value)).success; } catch { return false; }
-}), v.transform(value => parse(schemaData, JSON.parse(value))));
-// JSON supports nullable values and schema keys reserved by the framework's nested form parser.
-const data = v.optional(v.union([jsonData, nestedData]), {});
+}),
+  v.rawCheck(({ dataset, addIssue }) => {
+    if (!dataset.typed || typeof dataset.value === 'string') return;
+    for (const [key, value] of Object.entries(dataset.value)) if (typeof value === 'string' && value.length > 100_000) {
+      addIssue({ message: 'Content text is too long', path: [{ type: 'object', origin: 'value', input: dataset.value, key, value }] });
+    }
+  }),
+  v.transform(value => typeof value === 'string' ? parse(schemaData, JSON.parse(value)) : value as Record<string, unknown>)), {});
+const jsonValue = v.pipe(v.string(), v.maxLength(200_000), v.check(value => {
+  try { JSON.parse(value); return true; } catch { return false; }
+}, 'Enter valid JSON'), v.transform(value => JSON.parse(value) as unknown));
+// Native HTML controls can carry a complex value without a JavaScript widget.
+// This transport-only map never reaches storage or the domain service.
+const jsonData = v.optional(v.record(identifier, jsonValue), {});
 const slug = v.optional(v.pipe(v.string(), v.maxLength(200)));
-export const createInput = v.strictObject({ ...qualified, data, slug });
+const contentEntries = { data, jsonData, slug };
+export const createInput = v.pipe(v.strictObject({ ...qualified, ...contentEntries }),
+  v.forward(v.check(input => Object.keys(input.jsonData).every(key => !Object.hasOwn(input.data, key)),
+    'Supply each field once'), ['jsonData']),
+  v.transform(({ jsonData, ...input }) => ({ ...input, data: { ...input.data, ...jsonData } })),
+  v.forward(v.check(input => v.safeParse(schemaData, input.data).success, 'Invalid content data'), ['data']));
 export const revisionToken = v.pipe(v.string(), v.minLength(1), v.maxLength(2048), v.regex(/^[A-Za-z0-9_-]+$/));
-export const updateInput = v.strictObject({ ...contentKey.entries, _rev: revisionToken, data, slug });
+export const updateInput = v.pipe(v.strictObject({ ...contentKey.entries, _rev: revisionToken, ...contentEntries }),
+  v.forward(v.check(input => Object.keys(input.jsonData).every(key => !Object.hasOwn(input.data, key)),
+    'Supply each field once'), ['jsonData']),
+  v.transform(({ jsonData, ...input }) => ({ ...input, data: { ...input.data, ...jsonData } })),
+  v.forward(v.check(input => v.safeParse(schemaData, input.data).success, 'Invalid content data'), ['data']));
 export const trashInput = v.strictObject({ ...contentKey.entries, _rev: revisionToken });
 export const restoreInput = v.strictObject({ ...contentKey.entries, _rev: revisionToken });
 const token = v.strictObject({ ...contentKey.entries, expected: revisionInput });
