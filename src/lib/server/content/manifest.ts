@@ -4,7 +4,7 @@
 // Field batching follows schema/registry.ts:418 and utils/chunks.ts at the same pin.
 // Local ordering, field caps and error behavior: docs/editor-manifest-batching.md.
 import { sql } from 'kysely';
-import { CmsError, type CmsDatabase, type FieldRow } from '../database/contract.ts';
+import { CmsError, type CmsDatabase, type FieldRow, type ScalarValidation } from '../database/contract.ts';
 import { MAX_FIELDS, SchemaRegistry } from '../database/registry.ts';
 import type { ServerPrincipal } from '../database/service.ts';
 
@@ -13,7 +13,7 @@ export interface EditorField {
   kind: 'string' | 'richText';
   label: string;
   required: boolean;
-  validation?: { minLength?: number; maxLength?: number };
+  validation?: ScalarValidation;
 }
 export interface EditorCollection {
   label: string;
@@ -67,7 +67,8 @@ export async function editorManifest(database: CmsDatabase, principal: ServerPri
         id: field.id, kind: field.type === 'text' ? 'richText' : 'string', label: field.label, required: field.required === 1,
         ...(validation ? { validation: {
           ...(validation.minLength === undefined ? {} : { minLength: validation.minLength }),
-          ...(validation.maxLength === undefined ? {} : { maxLength: validation.maxLength })
+          ...(validation.maxLength === undefined ? {} : { maxLength: validation.maxLength }),
+          ...(validation.pattern === undefined ? {} : { pattern: validation.pattern })
         } } : {})
       };
     }
