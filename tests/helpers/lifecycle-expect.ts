@@ -21,6 +21,7 @@ export const expect=Object.assign((actual: unknown): any => {
   const match = existingExpect(actual);
   match.toEqual=(expected:unknown)=>assert.deepEqual(comparable(actual),comparable(expected));
   match.toBeTruthy = () => assert.ok(actual);
+  match.toBeFalsy = () => assert.ok(!actual);
   match.toBeGreaterThanOrEqual = (expected: number) => assert.ok(typeof actual === 'number' && actual >= expected);
   match.toContainEqual=(expected:any)=>assert.ok(Array.isArray(actual)&&actual.some(value=>matches(value,expected)),'Expected array to contain source expected value');
   return match;
