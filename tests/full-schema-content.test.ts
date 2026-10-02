@@ -55,6 +55,11 @@ test('pinned constructor omission bug is preserved at the actual content service
       assert.deepEqual(error.details?.issues,[{path:'constructor',code:'invalid_type',message:'Invalid input: expected string, received function'}]);return true;
     });
     assert.equal((await service.createDraft({type:'posts',data:{constructor:null}})).data.constructor,null);
-    assert.equal((await service.createDraft({type:'posts',data:{constructor:'own key'}})).data.constructor,'own key');
+    const created=await service.createDraft({type:'posts',data:{constructor:'own key'}});
+    assert.equal(created.data.constructor,'own key');
+    await assert.rejects(()=>service.updateDraft({type:'posts',id:created.id,expected:{version:created.version,updatedAt:created.updatedAt},data:{category:'guide'}}),cause=>{
+      const error=cause as {details?:{issues:{path:string;code:string;message:string}[]}};
+      assert.deepEqual(error.details?.issues,[{path:'constructor',code:'invalid_type',message:'Invalid input: expected string, received function'}]);return true;
+    });
   } finally {await database.close();}
 });

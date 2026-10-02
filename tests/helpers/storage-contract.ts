@@ -34,8 +34,8 @@ export async function storageContract(database: CmsDatabase) {
   await entries.delete({ type: 'notes', id: duplicate.id, expected: { version: duplicate.version, updatedAt: duplicate.updatedAt } });
   await rejects(() => entries.create({ type: 'notes', data: { title: null } }, 'author'), 'VALIDATION_ERROR');
   const outcomes = await Promise.allSettled([
-    entries.update({ type: 'notes', id: draft.id, expected: { version: draft.version, updatedAt: draft.updatedAt }, data: { title: 'Winner A' } }),
-    entries.update({ type: 'notes', id: draft.id, expected: { version: draft.version, updatedAt: draft.updatedAt }, data: { title: 'Winner B' } })
+    entries.update({ type: 'notes', id: draft.id, expected: { version: draft.version, updatedAt: draft.updatedAt }, data: { title: 'Winner A', constructor: 'own key' } }),
+    entries.update({ type: 'notes', id: draft.id, expected: { version: draft.version, updatedAt: draft.updatedAt }, data: { title: 'Winner B', constructor: 'own key' } })
   ]);
   check(outcomes.filter(outcome => outcome.status === 'fulfilled').length === 1, 'one CAS winner');
   const lost = outcomes.find(outcome => outcome.status === 'rejected');

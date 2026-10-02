@@ -328,6 +328,25 @@ Starting from CMS main `5f73e252bfc4f8392fc7c337b7b33d8798330cf8`, this [bounded
 
 Historical SF-03 divergent expectations remain evidence of the original gap, not current parity or specific deviation acceptance. The shared helper's upstream expectations are preserved; supplemental service/storage/native/browser coverage earns zero new complete declaration credit, and validation-issues.test.ts:168 remains deferred for unsupported fixture types and issue details. SF-02 legacy layouts, C-07/SA-03 atomicity and issue #20 are preserved. Draft [PR #31](https://github.com/sveltery/cms/pull/31) records verified focused baseline-red/local-green and complete-source reproductions in the feature record. Full bootstrap, production integration, secured browser execution, independent/configured review, exact-head eligibility and landing/post-merge checks remain pending until verified. Existing records above retain their historical slice status.
 
+## Expanded persisted schema foundation (proposed)
+
+Authority remains EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`.
+The [feature record](../../docs/full-schema.md), [exact source ledger](../../docs/full-schema-ports.json)
+and [implementation provenance](../../docs/full-schema-sources.json) record all17
+field names, metadata storage, source validation and v3/v4 upgrade behavior.
+Status is proposed pending final-head checks, independent/configured review and
+PM approval; implementation authorization is not separate acceptance of every
+existing framework or storage difference.
+
+| Record | Pinned behavior and local result | Classification / evidence |
+| --- | --- | --- |
+| FS-01 | Whole generator's 54 declarations/115 expressions and non-FTS registry's 53 declarations/111 expressions retain all expectations and datasets, using Node runner/setup, local table namespace and assertion adapter. | Runner/storage adaptation; 74+54 Node cases pass. Fourteen FTS/typegen declarations and block/reference integration suites remain unported. No complete product, Postgres, HTTP or browser parity inferred. |
+| FS-02 | Pinned Zod4.5.4 bounds count Unicode codepoints. Prior supplemental local UTF16 assumption accepted one emoji at minimum2 and rejected emoji+ASCII at maximum2; local content now preserves the exact source result. | Fidelity repair verified from immutable committed module. Existing physical values are not rewritten; byte/payload/creation bounds remain distinct local API differences. |
+| FS-03 | Omitted optional `constructor` field observes the inherited function and rejects `invalid_type`; own string/null accepts in both exact source and actual CMS service. | Shared upstream bug deliberately preserved in [issue35](https://github.com/sveltery/cms/issues/35). No local fix or acceptance decision. Source fixture and service regressions distinguish this from storage fixture duplicates that explicitly supply null. |
+| FS-04 | Registry metadata is copied atomically to richer v3 tables; all existing content DDL/rows/IDs/defaults are retained. V4 adds the auth developer's empty identity tables. Latest markers are a positive contiguous provider sequence with rollback and verified race recovery. | Local storage mapping and explicit migration extension; supplemental Node/local D1 checks. No identity bootstrap, credentials, external DB migration or deployment. Lifecycle provider5 remains integration work. |
+| FS-05 | Exact pinned validation helper returns ordered issue paths/messages/bounds/formats and checks referenced targets; actual create/update uses it and exact serialize/deserialize functions. | Fidelity extension to real service boundary. Registered native issue envelopes and 17-type editor/manifest projections are dependent transport/UI work. Legacy strict input, limits/CAS/atomicity adaptations retain their existing records. |
+| FS-06 | Pure generator preserves EmDash import/module augmentation text. | Source fidelity evidence only. A usable native public generated query API remains incomplete; no API compatibility or native codegen completion claim. |
+
 ## Proposed scalar pattern validation core — [PR #32](https://github.com/sveltery/cms/pull/32)
 
 Authority is EmDash 1.1.0 immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, from CMS main `9e0cf4e7cb7d8ab002fc897c22a5d87703fb5196`. The [focused core feature and evidence record](../../docs/pattern-validation-core.md) adds pattern metadata, supplied string/text validation and unchanged-source editor projection. Native controls and the full product's remaining schema/lifecycle work have separate owners; this core milestone does not establish their completion. Existing SF-02, FE/FL, C-07/SA-02/SA-03 and issue #20 records remain authoritative.
