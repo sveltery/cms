@@ -1,6 +1,9 @@
 import type { Handle, RequestEvent } from '@sveltejs/kit';
 import { createCmsHandle } from '../auth/composition.ts';
 import type { D1Binding } from '../database/d1.ts';
+import { openD1 } from '../database/d1.ts';
+import { migrateCms } from '../database/migrations.ts';
+import type { CmsDatabase } from '../database/contract.ts';
 
 export interface RuntimePresentation {
   publicOrigin: string;
@@ -20,7 +23,77 @@ export interface CmsRuntime {
 
 /** Request configuration is supplied by the hosting owner, never a client claim. */
 export function createCmsRuntime(
-  _configuration: (event: RequestEvent) => RuntimeConfiguration | undefined | Promise<RuntimeConfiguration | undefined>
+  configuration: (event: RequestEvent) => RuntimeConfiguration | undefined | Promise<RuntimeConfiguration | undefined>
 ): CmsRuntime {
-  return { handle: createCmsHandle(() => undefined), async close() {} };
+  const sqlite = new Map<string, Promise<CmsDatabase>>();
+  const bindings = new Map<D1Binding, Promise<CmsDatabase>>();
+  let closed = false;
+
+  async function initialize(open: () => CmsDatabase | Promise<CmsDatabase>): Promise<CmsDatabase> {
+    const database = await open();
+    try { await migrateCms(database); return database; }
+    catch (cause) { await database.close(); throw cause; }
+  }
+
+  function databaseFor(config: RuntimeConfiguration): Promise<CmsDatabase> {
+    if (config.kind === 'sqlite') {
+      const path = config.path;
+      if (typeof path !== 'string' || !path.trim() || path.includes('\0') || path === ':memory:') {
+        throw new Error('SVELTERY_DATABASE_PATH must name a persistent SQLite file');
+      }
+      let pending = sqlite.get(path);
+      if (!pending) {
+        pending = initialize(async () => (await import('./node.ts')).openRuntimeSqlite(path));
+        sqlite.set(path, pending);
+        void pending.catch(() => { if (sqlite.get(path) === pending) sqlite.delete(path); });
+      }
+      return pending;
+    }
+    const binding = config.binding;
+    if (!binding || typeof binding.prepare !== 'function' || typeof binding.batch !== 'function') {
+      throw new Error('CMS_DB must be a raw D1 database binding declared in d1_databases');
+    }
+    let pending = bindings.get(binding);
+    if (!pending) {
+      pending = initialize(() => openD1(binding));
+      bindings.set(binding, pending);
+      void pending.catch(() => { if (bindings.get(binding) === pending) bindings.delete(binding); });
+    }
+    return pending;
+  }
+
+  const sessionHandle = createCmsHandle(async event => {
+    if (closed) throw new Error('CMS runtime is closed');
+    const config = await configuration(event);
+    if (!config) return undefined;
+    const { publicOrigin, basePath = '', rpName = 'Sveltery CMS' } = config;
+    let parsed: URL;
+    try { parsed = new URL(publicOrigin); }
+    catch { throw new Error('SVELTERY_PUBLIC_ORIGIN must be an exact HTTP or HTTPS origin'); }
+    if (!['http:', 'https:'].includes(parsed.protocol) || parsed.origin !== publicOrigin) {
+      throw new Error('SVELTERY_PUBLIC_ORIGIN must be an exact HTTP or HTTPS origin');
+    }
+    if (basePath !== '' && (!basePath.startsWith('/') || basePath.startsWith('//') || basePath.endsWith('/'))) {
+      throw new Error('CMS base path must be an absolute path without a trailing slash');
+    }
+    if (typeof rpName !== 'string' || !rpName.trim()) throw new Error('SVELTERY_RP_NAME must be nonempty');
+    const database = await databaseFor(config);
+    event.locals.cmsRuntime = Object.freeze({ publicOrigin, basePath, rpName });
+    return { database, mutationsEnabled: config.mutationsEnabled !== false };
+  });
+
+  return {
+    handle: input => {
+      delete input.event.locals.cmsRuntime;
+      return sessionHandle(input);
+    },
+    async close() {
+      closed = true;
+      const pending = [...sqlite.values(), ...bindings.values()];
+      sqlite.clear(); bindings.clear();
+      const initialized = await Promise.allSettled(pending);
+      await Promise.all(initialized.filter(result => result.status === 'fulfilled')
+        .map(result => result.value.close()));
+    }
+  };
 }
