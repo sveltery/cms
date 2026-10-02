@@ -4,7 +4,7 @@
   "integrationBase": "8c773d815bb54499d5d3eeca4f92b28d7b42ac22",
   "licenseNotice": "../notices/emdash-MIT.txt",
   "implementationPullRequest": "https://github.com/sveltery/cms/pull/27",
-  "decisionStatus": "Proposed implementation in PR #27, rebased onto merged trash-pagination main 46533f657b3fbcc73d78360b9abb8e653bd72dec. Canonical ownership was released and six documentation changes reconciled; both expected-export inventories are updated. Specific acceptance of intentional differences is not recorded. Fresh combined final-head verification/reviews remain pending; no field-edit merge/post-merge success is claimed.",
+  "decisionStatus": "Implementation landed in PR #27 at ad2efe16d42cafff8c2d0d5b6d38eeca4f9b0830, integrated onto trash-pagination main 46533f657b3fbcc73d78360b9abb8e653bd72dec. Final candidate 3be9fb14849020b9c90eefee0ef176c9d3552990 and exact post-merge CI passed. Independent final-head review is recorded in the PR body; configured review was quota-blocked and directly waived by the user for this merge, not completed or approved. Specific acceptance of FE-01–FE-03 and other intentional differences is not recorded. This documentation reconciliation grants zero new source declaration/assertion credit.",
   "inspectedSources": [
     {
       "path": "packages/core/src/schema/registry.ts",
@@ -382,7 +382,7 @@
         "Direct form/descriptor spreads and explicit hidden values; per-field instance pending/issues/results.",
         "Native/enhanced consecutiveedits, origin/auth/default-disabled and refreshed schema/manifest."
       ],
-      "evidence": "Focused registered field-options production8cases passed after native textarea/label repair; historical default browser25passed/3failed before fix. Fresh combined-head production/conversion/browser/full-bootstrap/final-head gates pending. No rendered upstream React/REST parity credit."
+      "evidence": "Focused registered field-options production8cases passed after native textarea/label repair; historical default browser25passed/3failed before fix. Final candidate CI and exact post-merge CI passed 87 registered production and 32 secured default/Node browser cases per target. These framework supplements grant no rendered upstream React/REST parity credit."
     }
   ],
   "compatibilityRecords": [
@@ -476,10 +476,21 @@
     },
     "productionAndConversionTests": {
       "status": "historical_initial_options_cases_passed_full_initial_run_had_stale_inventory",
-      "scope": "Historical initial production run: 79 cases, 78 passed, stale expected-export inventory failed. Current inventories are updated; final combined-head verification remains pending."
+      "scope": "Historical initial production run: 79 cases, 78 passed, stale expected-export inventory failed. Both inventories were corrected before the final candidate; final candidate and exact post-merge CI passed all 87 registered production cases. The historical failure remains recorded."
     },
     "browserTests": {
-      "status": "pending_secured_default_and_Node_CI"
+      "status": "passed_secured_default_and_Node_CI",
+      "candidateCommit": "3be9fb14849020b9c90eefee0ef176c9d3552990",
+      "candidateCI": "https://github.com/sveltery/cms/actions/runs/37003356435",
+      "postMergeCommit": "ad2efe16d42cafff8c2d0d5b6d38eeca4f9b0830",
+      "postMergeCI": "https://github.com/sveltery/cms/actions/runs/37040933046",
+      "defaultTargetTests": 32,
+      "nodeTargetTests": 32,
+      "failures": 0,
+      "sandboxBypass": false,
+      "candidateJobId": 110825872979,
+      "postMergeJobId": 110950579622,
+      "scope": "GitHub job logs verify both targets and successful steps; historical uncorrected browser failure retained separately. Supplemental framework evidence, not new source assertion credit."
     },
     "bootstrap": {
       "status": "historical_initial_failure_shared_export_inventory_now_resolved",
@@ -489,26 +500,82 @@
       "productionPassed": 78,
       "productionFailures": 1,
       "failure": "Parent-owned tests/production/remotes.test.ts expected export list lacks new updateSchemaFieldOptions. No product/source assertion failure; exact shared test patch awaits parent integration.",
-      "finalGate": "Both shared export lists now updated; fresh bootstrap still required on the combined final head."
+      "finalGate": "Historical stale inventory failure resolved before final candidate. Fresh final combined-head bootstrap is recorded below; candidate and post-merge validate CI independently passed 438/87/11 tests."
     },
     "finalHeadCI": {
-      "status": "pending"
+      "status": "passed",
+      "candidateCommit": "3be9fb14849020b9c90eefee0ef176c9d3552990",
+      "testedMergeRef": "c5d22b89993b72935dd5ddb6163b62f2c07cf377",
+      "tree": "72ec2df3e92feefdeeed7822612edede6586f446",
+      "ci": "https://github.com/sveltery/cms/actions/runs/37003356435",
+      "validateJobId": 110825873242,
+      "browserJobId": 110825872979,
+      "jobs": {
+        "validate": "success",
+        "browser": "success"
+      },
+      "serviceDevelopmentTests": 438,
+      "productionTests": 87,
+      "nodePackageTests": 11,
+      "checkerErrors": 0,
+      "checkerWarnings": 0,
+      "failures": 0,
+      "browserTestsPerTarget": 32,
+      "scope": "GitHub API jobs and job logs verified; tested merge ref has exactly the candidate and landed merge tree. Zero new source credit."
     },
     "independentReview": {
-      "status": "pending_exact_head"
+      "status": "recorded_no_unresolved_findings",
+      "commit": "3be9fb14849020b9c90eefee0ef176c9d3552990",
+      "evidence": "https://github.com/sveltery/cms/pull/27",
+      "evidenceType": "implementation PR body",
+      "checks": [
+        "source credit",
+        "152 local Markdown links",
+        "immutable patch hash",
+        "export inventories",
+        "pagination records",
+        "native textarea repair"
+      ],
+      "scope": "Fresh exact-head implementation review recorded in PR #27, not a configured GitHub review submission. Documentation follow-up requires its own independent final-head review."
     },
     "configuredReview": {
-      "status": "blocked_usage_quota",
+      "status": "quota_blocked_user_waived",
       "evidence": "https://github.com/sveltery/cms/pull/27#issuecomment-5951520229",
-      "scope": "Ready-triggered configured review cannot complete at its current usage quota; no completed review or eligibility claimed."
+      "completed": false,
+      "approvalClaimed": false,
+      "waiver": {
+        "decision": "merge is ok",
+        "evidence": "https://github.com/sveltery/cms/pull/27",
+        "scope": "Direct user approval of the pending PR #27 merge in its execution context, with configured code review waived; not specific acceptance of compatibility differences."
+      },
+      "priorMergeAttempts": "PR #27 body records automatic approval-review rejection of forwarded waiver evidence; no alternate merge route attempted before direct user approval.",
+      "retriggered": false,
+      "scope": "Quota-blocked configured review was waived for the implementation merge. Neither completed configured review nor acceptance of FE-01–FE-03 or other compatibility differences is claimed."
     },
     "postMergeCI": {
-      "status": "not_merged"
+      "status": "passed",
+      "commit": "ad2efe16d42cafff8c2d0d5b6d38eeca4f9b0830",
+      "tree": "72ec2df3e92feefdeeed7822612edede6586f446",
+      "ci": "https://github.com/sveltery/cms/actions/runs/37040933046",
+      "validateJobId": 110950579757,
+      "browserJobId": 110950579622,
+      "jobs": {
+        "validate": "success",
+        "browser": "success"
+      },
+      "serviceDevelopmentTests": 438,
+      "productionTests": 87,
+      "nodePackageTests": 11,
+      "checkerErrors": 0,
+      "checkerWarnings": 0,
+      "failures": 0,
+      "browserTestsPerTarget": 32,
+      "scope": "GitHub jobs/logs verify checkout of the exact landed main commit and passing bootstrap plus sandboxed default/Node browsers. No deployed-runtime parity or new source credit."
     },
     "nodePackage": {
       "status": "historical_initial_build_passed_package_inventory_failed_now_resolved",
       "failure": "Parent-owned tests/node-hosting/package.test.ts expected export list lacks updateSchemaFieldOptions; hosting checks stop before completion.",
-      "finalGate": "Both shared export lists updated; fresh combined-head Node package checks remain pending."
+      "finalGate": "Both shared export lists corrected before final candidate; candidate and exact post-merge CI passed all 11 Node package checks. The initial package inventory failure remains historical evidence."
     },
     "historicalPatchedBootstrap": {
       "status": "passed",
@@ -553,7 +620,7 @@
         "evidence": "/tmp/field-options-textarea-green.log"
       },
       "sourceCredit": 0,
-      "scope": "Local native SSR/form rendering repair, not an upstream semantic change. Secured final combined-head browsers remain pending."
+      "scope": "Local native SSR/form rendering repair, not an upstream semantic change. Final candidate and exact post-merge CI passed 32 secured browser cases on each default/Node target; zero additional source credit."
     },
     "trashPaginationBaseline": {
       "status": "merged_post_ci_passed",
@@ -567,7 +634,18 @@
       "scope": "Parent-confirmed PR #28 baseline evidence, not field-edit final-head verification."
     },
     "finalCombinedBootstrap": {
-      "status": "pending_fresh_combined_head"
+      "status": "recorded_passed",
+      "commit": "3be9fb14849020b9c90eefee0ef176c9d3552990",
+      "command": "sh scripts/bootstrap.sh",
+      "serviceDevelopmentTests": 438,
+      "productionTests": 87,
+      "nodePackageTests": 11,
+      "checkerErrors": 0,
+      "checkerWarnings": 0,
+      "failures": 0,
+      "evidence": "/tmp/field-edit-combined-bootstrap.log",
+      "recordedIn": "https://github.com/sveltery/cms/pull/27",
+      "scope": "Local final-candidate bootstrap reported in the implementation PR body; temporary log not independently recovered by this documentation reconciliation. GitHub candidate and post-merge validate logs independently verify matching counts."
     }
   },
   "omissions": [
@@ -584,8 +662,23 @@
     "sha256": "febd4a2419edb44b7e1b2bd7555bb4d2be2cc23103934f88ba0638ae65589a4f",
     "scope": "Six canonical documentation changes and two expected-export inventory additions, retained byte-for-byte as historical handoff evidence. Current canonical documents are reconciled onto latest main; both inventory tests are updated.",
     "latestIntegrationBase": "46533f657b3fbcc73d78360b9abb8e653bd72dec",
-    "currentGate": "Fresh full bootstrap, secured default/Node CI, exact-head independent review, and configured review quota resolution remain pending."
+    "currentGate": "Implementation gates completed at final candidate 3be9fb14849020b9c90eefee0ef176c9d3552990; merged at ad2efe16d42cafff8c2d0d5b6d38eeca4f9b0830 with exact post-merge CI passed. Configured review was quota-blocked and scoped user-waived, not completed. Documentation follow-up has separate final-head validation/review/CI gates."
   },
   "initialIntegrationBase": "8c773d815bb54499d5d3eeca4f92b28d7b42ac22",
-  "latestIntegrationBase": "46533f657b3fbcc73d78360b9abb8e653bd72dec"
+  "latestIntegrationBase": "46533f657b3fbcc73d78360b9abb8e653bd72dec",
+  "implementationLanding": {
+    "status": "merged",
+    "commit": "ad2efe16d42cafff8c2d0d5b6d38eeca4f9b0830",
+    "candidateCommit": "3be9fb14849020b9c90eefee0ef176c9d3552990",
+    "tree": "72ec2df3e92feefdeeed7822612edede6586f446",
+    "pullRequest": "https://github.com/sveltery/cms/pull/27",
+    "scope": "GitHub confirms merge; landed commit, candidate and tested CI merge ref have identical trees. Specific intentional-difference acceptance remains unrecorded."
+  },
+  "documentationReconciliation": {
+    "scope": "Only docs/field-edit.md and docs/field-edit-ports.json. Preserve historical failures, immutable handoff patch, source accounting and omissions. Canonical compatibility and trash-count-owned docs are outside this change.",
+    "newSourceDeclarations": 0,
+    "newSourceAssertionExpressions": 0,
+    "newExecutableTests": 0,
+    "specificCompatibilityAcceptance": "not_recorded"
+  }
 }
