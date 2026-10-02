@@ -2,6 +2,7 @@ import { sql, type CompiledQuery } from 'kysely';
 import { sqliteErrorMessage } from './errors.ts';
 import { CmsError, type CmsDatabase } from './contract.ts';
 import { authSchemaStatements } from '../auth/schema.ts';
+import { pendingTrashIndexStatements } from './trash-index.ts';
 
 export const CMS_MIGRATION_VERSION = 2;
 const coreTables = ['_cms_collections', '_cms_fields', '_cms_guards'];
@@ -56,7 +57,17 @@ async function migrationState(database: CmsDatabase): Promise<0 | 1 | 2> {
 /** Explicit operator-run migrations; no users, credentials, defaults or sessions are inserted. */
 export async function migrateCms(database: CmsDatabase): Promise<void> {
   const state = await migrationState(database);
-  if (state === CMS_MIGRATION_VERSION) return;
+  if (state === CMS_MIGRATION_VERSION) {
+    const indexes = await pendingTrashIndexStatements(database);
+    if (indexes.length) {
+      try { await database.atomicBatch(indexes); }
+      catch (cause) {
+        if (sqliteErrorMessage(cause) === 'CHECK constraint failed: pass = 1') throw new CmsError('MIGRATION_REQUIRED');
+        throw cause;
+      }
+    }
+    return;
+  }
   const db = database.db;
   const tracking = sql`CREATE TABLE _cms_migrations (version INTEGER PRIMARY KEY CHECK(version IN (1, 2)))`.compile(db);
   const statements: CompiledQuery[] = state === 0 ? [tracking,
@@ -88,14 +99,26 @@ export async function migrateCms(database: CmsDatabase): Promise<void> {
     sql`DROP TABLE _cms_migrations_v1`.compile(db),
     sql`DELETE FROM _cms_guards WHERE token = 'migration-v2'`.compile(db)
   ];
+  const indexes = state === 1 ? await pendingTrashIndexStatements(database) : [];
   statements.push(...authSchemaStatements(db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>()),
-    sql`INSERT INTO _cms_migrations (version) VALUES (2)`.compile(db));
+    sql`INSERT INTO _cms_migrations (version) VALUES (2)`.compile(db),
+    ...indexes);
   try { await database.atomicBatch(statements); }
   catch (cause) {
     // Recover only a known migration race after proving the complete committed schema.
     const message = sqliteErrorMessage(cause);
     const race = state === 0 ? message === 'table _cms_migrations already exists' : message === 'CHECK constraint failed: pass = 1';
-    if (race && await migrationState(database) === CMS_MIGRATION_VERSION) return;
+    if (race) {
+      const current = await migrationState(database);
+      if (current === CMS_MIGRATION_VERSION) {
+        const pending = await pendingTrashIndexStatements(database);
+        if (pending.length) await database.atomicBatch(pending);
+        return;
+      }
+      // A late incompatible index can fail its guard after the v1 upgrade has
+      // started. Its whole batch rolled back; classify only a verified collision.
+      if (current === 1 && indexes.length) await pendingTrashIndexStatements(database);
+    }
     throw cause;
   }
 }
