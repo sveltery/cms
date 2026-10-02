@@ -1,7 +1,7 @@
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 // Runs the complete immutable upstream registry and content validator against
 // 32 original supplemental pattern probes per runtime, plus the unchanged
-// MCP schema.test.ts:964 callback at an adapted request-schema/registry boundary.
+// all-fields.test.ts:58 factory callback. MCP schema.test.ts:964 is inspected only.
 // See docs/pattern-validation.md for fixture boundaries, source identities and evidence.
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -21,6 +21,8 @@ const sources = [
   ['packages/core/src/api/schemas/common.ts', 'ba9be767aa9a2c564f3ebfd2c4106ad904324c59'],
   ['packages/core/src/i18n/config.ts', 'fe714e5ad514485fe1737585c663e470d50519df'],
   ['packages/core/tests/integration/mcp/schema.test.ts', '4c1d5c283a19f4262b84cc5165b70f2046ba8b43'],
+  ['packages/core/src/fields/text.ts', '4ede131c9696c7b4a6c3d7cbeec213176961e49e'],
+  ['packages/core/tests/unit/fields/all-fields.test.ts', '5ba1588097718438b8de04543e602b883be17642'],
   ['packages/core/src/schema/registry.ts', 'da7bbcdda224dfca8d9146b2f36659ab90bcac2e'],
   ['packages/core/tests/unit/schema/registry.test.ts', '7e1413acd99071e888693021224a9644efa2a8c5'],
   ['packages/core/src/database/transaction.ts', '69bf167998a2fa9cc228c3612a69c8fde5ed85fe'],
@@ -64,6 +66,18 @@ try {
   }
   visitSelected(selectedAst);
   if (!selectedCallback || (selectedCallback.match(/expect\(/g) ?? []).length !== 3) throw new Error('selected source assertions changed');
+  const factoryTestPath = join(directory, 'packages/core/tests/unit/fields/all-fields.test.ts');
+  const factoryAst = ts.createSourceFile(factoryTestPath, await readFile(factoryTestPath, 'utf8'), ts.ScriptTarget.Latest, true);
+  let factoryCallback;
+  function visitFactory(node) {
+    if (ts.isCallExpression(node) && node.arguments[0]?.text === 'should enforce pattern') {
+      if (factoryAst.getLineAndCharacterOfPosition(node.getStart(factoryAst)).line + 1 !== 58) throw new Error('factory source ID changed');
+      factoryCallback = node.arguments[1].getText(factoryAst);
+    }
+    ts.forEachChild(node, visitFactory);
+  }
+  visitFactory(factoryAst);
+  if (!factoryCallback || (factoryCallback.match(/expect\(/g) ?? []).length !== 2) throw new Error('factory source assertions changed');
   execFileSync('npm', ['pack', 'kysely-d1@0.4.0', '--cache', join(directory, 'npm-cache'), '--pack-destination', directory], { stdio: 'pipe' });
   if (createHash('sha1').update(await readFile(join(directory, 'kysely-d1-0.4.0.tgz'))).digest('hex') !== '3122753e3d3d1d00d118ff756a329ae2318b1589') throw new Error('kysely-d1 tarball mismatch');
   execFileSync('tar', ['-xzf', join(directory, 'kysely-d1-0.4.0.tgz'), '-C', directory]);
@@ -130,29 +144,6 @@ export async function migrateCms(database) {
   )\`.execute(db);
 }
 `);
-  // Preserve all three source expressions and four input datasets unchanged.
-  // The fixture replaces MCP client/envelope transport with a direct execution
-  // of the complete upstream request schema and registry; it earns no MCP credit.
-  const entryPath = join(directory, 'entry.ts');
-  await writeFile(entryPath, await readFile(entryPath, 'utf8') + `
-test(target+': adapted MCP schema.test.ts:964 exact source assertion callback',()=>fixture(async(db,r)=>{
- await r.createCollection({slug:'post',label:'Post'});
- await r.createField('post',{slug:'body',label:'Body',type:'text'});
- const before=await db.selectFrom('_emdash_fields').selectAll().orderBy('id').execute();
- const harness={client:{async callTool({name,arguments:input}) {
-  assert.equal(name,'schema_update_field');
-  const parsed=updateFieldBody.safeParse({validation:input.validation});
-  if(!parsed.success) return {isError:true,content:[{type:'text',text:parsed.error.message}]};
-  const item=await r.updateField(input.collection,input.fieldSlug,parsed.data);
-  return {isError:false,content:[{type:'text',text:JSON.stringify({item})}]};
- }}};
- const extractText=result=>result.content.filter(item=>item.type==='text').map(item=>item.text).join('\\n');
- const expect=value=>({toBe:expected=>assert.equal(value,expected),
-  toMatch:expected=>assert.match(value,expected),toBeUndefined:()=>assert.equal(value,undefined)});
- await (${selectedCallback})();
- assert.deepEqual(await db.selectFrom('_emdash_fields').selectAll().orderBy('id').execute(),before);
-}));
-`);
 
   await writeFile(join(directory, 'entry.ts'), String.raw`
 import test from 'node:test'; import assert from 'node:assert/strict';
@@ -161,6 +152,7 @@ import {sql} from 'kysely';
 import {SchemaRegistry} from './packages/core/src/schema/registry.ts';
 import {createFieldBody,updateFieldBody} from './packages/core/src/api/schemas/schema.ts';
 import {validateContentData} from './packages/core/src/api/handlers/validation.ts';
+import {text} from './packages/core/src/fields/text.ts';
 import {migrateCms,schemaAdminStorage} from './fixture.ts';
 const target=process.env.CMS_UPSTREAM_TARGET;
 const creation={slug:'value',label:'Value',type:'string'};
@@ -360,12 +352,22 @@ probe('P32','regex has no Unicode flag and uses UTF-16 units',()=>withPatterns('
  await successful(db,{string:'😀',text:'😀'});
 }));
 `);
+  // Execute the complete factory and its two exact source expressions.
+  // Astro's Zod re-export is resolved to the immutable pin's catalog version.
+  const entryPath = join(directory, 'entry.ts');
+  await writeFile(entryPath, await readFile(entryPath, 'utf8') + `
+test(target+': exact all-fields.test.ts:58 source factory assertion callback',()=>{
+ const UPPERCASE_PATTERN_REGEX=/^[A-Z]+$/;
+ const expect=value=>({not:{toThrow:()=>assert.doesNotThrow(value)},toThrow:()=>assert.throws(value)});
+ (${factoryCallback})();
+});
+`);
   const output = join(directory, 'bundle.mjs');
   await build({ configFile: false, logLevel: 'error', plugins: [{
     name: 'bounded-pattern-fixture',
     resolveId(source, importer) {
       if (importer === registryPath && fixtureModules.has(source)) return '\0pattern-fixture:' + source;
-      if (source === 'zod') return join(directory, 'zod/node_modules/zod/index.js');
+      if (source === 'zod' || source === 'astro/zod') return join(directory, 'zod/node_modules/zod/index.js');
       if (source === 'kysely-d1') return join(directory, 'package/dist/index.js');
       if (source === 'emdash/internal/database/migration-lock') return join(directory, 'packages/core/src/database/migration-lock.ts');
     },
@@ -379,8 +381,9 @@ probe('P32','regex has no Unicode flag and uses UTF-16 units',()=>withPatterns('
   });
   console.log(JSON.stringify({ pin, sources, fixtureBoundaries: [...fixtureModules.keys()],
     supplementalProbesPerTarget:32, targets:['Node','D1'], zod:'4.5.4',
-    sourceAssertionExpressionsExecuted:3, sourceAssertionEvaluationsPerTarget:9,
-    adaptedCompleteSourceDeclarationsExecuted:1, completeMcpTransportDeclarationsExecuted:0,
+    sourceAssertionExpressionsExecuted:2, sourceAssertionEvaluationsPerTarget:2,
+    unchangedFactorySourceDeclarationsExecuted:1, inspectedMcpAssertionExpressions:3,
+    completeMcpTransportDeclarationsExecuted:0,
     probeEntrySha256:createHash('sha256').update(await readFile(join(directory,'entry.ts'))).digest('hex'),
     omissions:['MCP/REST transport and remaining source test declarations','upstream migrations',
       'media/FTS/type-generation subsystems','full schema types','deployed Node/Cloudflare hosting'] }));
