@@ -20,7 +20,8 @@ The original integration branch owned `src/lib/content.remote.ts`, `src/lib/serv
 | `getCollection` | Collection slug | Persisted collection plus scalar field definitions |
 | `listContent` | `{ collection, locale?, limit?, cursor? }` | `{ items, nextCursor? }`; body-free summaries with `_rev` |
 | `getContent` | `{ collection, id, locale? }` | Schema-defined draft data and `_rev` |
-| `listTrashedContent` | `{ collection, locale?, limit?, cursor? }` | `{ items, nextCursor? }`; all-locale-on-omission body-free trash summaries with `_rev`; no count |
+| `listTrashedContent` | `{ collection, locale?, limit?, cursor? }` | `{ items, nextCursor? }`; all-locale-on-omission body-free trash summaries with `_rev` |
+| `countTrashedContent` | `{ collection, locale? }` | Number of retained drafts independently of pagination; omission includes all locales |
 | `getTrashedContent` | `{ collection, id, locale? }` | Retained scalar draft with `deletedAt` and `_rev`; omission searches all locales |
 | `restoreContent` | Form: `collection`, `id`, `locale?`, `_rev` | Bounded identity/locale/refreshed-token receipt; edit-own/edit-any, atomic restore |
 | `createContent` | Form: `collection`, `locale?`, `slug?`, `data?` | Bounded `{ id, type, locale, _rev }` receipt |
@@ -81,3 +82,5 @@ Authentication, request origin, mutation gates, revision tokens/CAS, payload val
 [The read-only collection trash view](collection-trash-view.md) adds a separate `/trash/[collection]` page over the existing capped all-locale summary query, with text Title/Locale/Deleted, explicit up-to-50 wording and separate empty/unavailable states. CTV-01–CTV-03 record route, locale, summary-title and UTC-date differences with zero upstream credit. Restore and permanent-delete controls remain unimplemented.
 
 [Trash pagination](trash-pagination.md) retains the pinned UTF-8/base64 cursor and explicitly maps InvalidCursorError to the native INVALID_CURSOR 400 envelope. Later-page restore updates use the exact displayed cursor-bearing query key; active-list cursors remain separate.
+
+The [read-only draft trash count](trash-count.md) adds a dedicated registered query, with the same content-read/draft-read permissions. Trash and restore refresh canonical all-locale and changed-locale count keys plus matching original requested count instances among the first five in that family, before scope filtering. Count and pages are separate reads without an atomic snapshot guarantee. The existing loaded-row UI semantics are unchanged.

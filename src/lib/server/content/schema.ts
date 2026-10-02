@@ -11,6 +11,7 @@ export const contentList = v.strictObject({
 });
 // Unlike active reads and mutations, omitted locale means every trash locale.
 const trashQualified = { collection: identifier, locale: v.optional(localeInput) };
+export const trashedContentCount = v.strictObject(trashQualified);
 export const trashedContentKey = v.strictObject({ ...trashQualified, id: entryId });
 export const trashedContentList = v.strictObject({
   ...trashQualified,
