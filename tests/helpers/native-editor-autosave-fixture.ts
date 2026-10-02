@@ -4,6 +4,9 @@
 import { test as base, type Page, type Response as BrowserResponse } from '@playwright/test';
 import { schemaAdminRemotes } from './schema-admin-remotes';
 
+interface NativeAutosaveAdmin {
+  page: Page; devBypassAuth(): Promise<void>; goToEditContent(collection: string, id: string): Promise<void>; waitForLoading(): Promise<void>;
+}
 type Harness = Awaited<ReturnType<typeof schemaAdminRemotes>>;
 function nativePage(page: Page, h: Harness, key: { collection: string; id: string }) {
   async function response(value: BrowserResponse) {
@@ -34,10 +37,8 @@ function nativePage(page: Page, h: Harness, key: { collection: string; id: strin
 }
 export const test = base.extend<{ nativeAutosave: {
   collection: string; id: string; origin: string; token: string;
-  fetch: typeof globalThis.fetch; admin: {
-    page: Page; devBypassAuth(): Promise<void>; goToEditContent(collection: string, id: string): Promise<void>; waitForLoading(): Promise<void>;
-  };
-}; admin: any }>({ nativeAutosave: async ({ page }, use) => {
+  fetch: typeof globalThis.fetch; admin: NativeAutosaveAdmin;
+}; admin: NativeAutosaveAdmin }>({ nativeAutosave: async ({ page }, use) => {
   page.setDefaultTimeout(5_000);
     const h = await schemaAdminRemotes('Node');
   try {
