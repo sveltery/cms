@@ -14,11 +14,11 @@
   {#if field.required}<span aria-hidden="true"> *</span>{/if}
 </label>
 {#if field.kind === 'richText'}
-  <textarea id={`field-${slug}`} {name} bind:value {disabled} required={field.required}
-    minlength={field.validation?.minLength} maxlength={field.validation?.maxLength}></textarea>
+  <textarea id={`field-${slug}`} {name} bind:value {disabled} maxlength={field.validation?.maxLength}
+    dir="auto" placeholder="Enter markdown content..."></textarea>
 {:else}
   <input id={`field-${slug}`} type="text" {name} bind:value {disabled} required={field.required}
-    minlength={field.validation?.minLength} maxlength={field.validation?.maxLength} />
+    maxlength={field.validation?.maxLength} dir="auto" />
 {/if}
 
 <style>
