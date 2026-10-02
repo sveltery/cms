@@ -61,6 +61,10 @@ export async function remoteBoundaries(t: TestContext, base: string, ids: Map<st
     denied(await call('listTrashedContent', undefined, { collection: 'post' }));
     denied(await call('countTrashedContent', undefined, { collection: 'post' }));
     denied(await call('getTrashedContent', undefined, { collection: 'post', id: 'draft-1' }));
+    if(ids.has('getLifecycleContent')) {
+      denied(await call('getLifecycleContent',undefined,{collection:'post',id:'draft-1'}));
+      denied(await call('listContentRevisions',undefined,{collection:'post',id:'draft-1'}));
+    }
   });
   await t.test('valid anonymous mutations deny access and client claims are rejected', async () => {
     for (const name of ['createContent', 'updateContent', 'deleteContent', 'restoreContent']) {
@@ -70,6 +74,13 @@ export async function remoteBoundaries(t: TestContext, base: string, ids: Map<st
       assert.equal(result.type, 'result');
       assert.ok(parse(result.data)._.issues.length);
       assert.equal(parse(result.data)._.result, undefined);
+    }
+    if(ids.has('createLifecycleContent'))for(const name of ['createLifecycleContent','publishContent','unpublishContent','discardContentDraft','restoreContentRevision']) {
+      const valid:Record<string,string>=name==='createLifecycleContent'?{collection:'post','data.title':'Draft'}:
+        {collection:'post',id:'draft-1',_rev:'opaque',...(name==='restoreContentRevision'?{revisionId:'revision'}:{})};
+      denied(await call(name,valid));
+      const claims=await call(name,{...valid,principal:'admin'});
+      assert.equal(claims.type,'result');assert.ok(parse(claims.data)._.issues.length);
     }
   });
   await t.test('query schemas reject invalid collection-qualified arguments before authorization', async () => {
@@ -95,7 +106,8 @@ export async function remoteBoundaries(t: TestContext, base: string, ids: Map<st
     }
   });
   if (production) await t.test('all production mutations enforce request origin', async () => {
-    for (const name of ['createContent', 'updateContent', 'deleteContent', 'restoreContent']) for (const requestOrigin of ['https://attacker.invalid', 'null', undefined]) {
+    const names=['createContent','updateContent','deleteContent','restoreContent',...(['createLifecycleContent','publishContent','unpublishContent','discardContentDraft','restoreContentRevision'].filter(name=>ids.has(name)))];
+    for (const name of names) for (const requestOrigin of ['https://attacker.invalid', 'null', undefined]) {
       const response = await fetch(endpoint(name), {
         method: 'POST', headers: requestOrigin ? { origin: requestOrigin } : {}, body: new URLSearchParams(input), signal: AbortSignal.timeout(10_000)
       });

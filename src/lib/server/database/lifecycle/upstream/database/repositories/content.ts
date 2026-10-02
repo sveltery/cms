@@ -1091,10 +1091,13 @@ this.datetimeContexts = datetimeContexts;
 		id: string,
 		revisionData: Record<string, unknown>,
 		authorId: string,
+		expectedRevision?: ContentRevisionPrecondition,
 	): Promise<{ item: ContentItem; revisionId: string }> {
 		const tableName = getTableName(type);
 		const existing = await this.findById(type, id);
 		if (!existing) throw new EmDashValidationError("Content item not found");
+		// Native host extension: omitted preconditions retain source behavior.
+		assertRevisionPrecondition(existing, expectedRevision);
 
 		const normalizedSnapshot = await this.datetimes.normalizeData(type, revisionData);
 		const { _slug } = normalizedSnapshot;
@@ -1132,8 +1135,8 @@ this.datetimeContexts = datetimeContexts;
 				SET ${sql.join(assignments, sql`, `)}
 				WHERE id = ${id}
 				AND deleted_at IS NULL
-				AND version = ${existing.version}
-				AND updated_at = ${existing.updatedAt}
+				AND version = ${expectedRevision?.version ?? existing.version}
+				AND updated_at = ${expectedRevision?.updatedAt ?? existing.updatedAt}
 				AND status = ${existing.status}
 				AND ${nullableColumnMatch("live_revision_id", existing.liveRevisionId)}
 				AND ${nullableColumnMatch("draft_revision_id", existing.draftRevisionId)}
@@ -1199,10 +1202,13 @@ this.datetimeContexts = datetimeContexts;
 		id: string,
 		revisionData: Record<string, unknown>,
 		authorId: string,
+		expectedRevision?: ContentRevisionPrecondition,
 	): Promise<string | null> {
 		const tableName = getTableName(type);
 		const existing = await this.findById(type, id);
 		if (!existing) return null;
+		// Native host extension: keep the caller's token through the atomic CAS.
+		assertRevisionPrecondition(existing, expectedRevision);
 
 		const normalizedSnapshot = await this.datetimes.normalizeData(type, revisionData);
 		const revisionId = createRevisionId();
@@ -1218,8 +1224,8 @@ this.datetimeContexts = datetimeContexts;
 					version = version + 1
 				WHERE id = ${id}
 				AND deleted_at IS NULL
-				AND version = ${existing.version}
-				AND updated_at = ${existing.updatedAt}
+				AND version = ${expectedRevision?.version ?? existing.version}
+				AND updated_at = ${expectedRevision?.updatedAt ?? existing.updatedAt}
 				AND status = ${existing.status}
 				AND ${nullableColumnMatch("live_revision_id", existing.liveRevisionId)}
 				AND ${nullableColumnMatch("draft_revision_id", existing.draftRevisionId)}
