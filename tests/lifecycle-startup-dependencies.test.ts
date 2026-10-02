@@ -77,6 +77,7 @@ for (const target of ['Node','D1'] as const) {
       await sql`CREATE TABLE operator_events (entry_id TEXT, ec_note TEXT)`.execute(database.db);
       await sql`INSERT INTO operator_events VALUES ('operator-row','retained')`.execute(database.db);
       await sql.raw("CREATE VIEW operator_notes AS SELECT ec_note, 'FROM ec_post '' literal' AS note FROM operator_events /* JOIN ec_post */").execute(database.db);
+      await sql.raw("CREATE VIEW operator_join AS SELECT entry_id FROM operator_events JOIN (SELECT 'retained' AS value) AS notes ON coalesce(ec_note,'')=notes.value").execute(database.db);
       await sql`CREATE VIEW operator_cte AS WITH ec_post AS (SELECT entry_id FROM operator_events) SELECT * FROM ec_post`.execute(database.db);
       await sql.raw("CREATE TRIGGER operator_trigger AFTER INSERT ON operator_events BEGIN SELECT 'FROM ec_post' /* UPDATE ec_post */; UPDATE operator_events SET ec_note='ec_post' WHERE entry_id=new.entry_id; END").execute(database.db);
       const before=await databaseSnapshot(database);
