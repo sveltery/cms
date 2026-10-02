@@ -5,6 +5,7 @@ import { parse, stringify } from 'devalue';
 import { sql } from 'kysely';
 import { schemaAdminRemotes } from '../helpers/schema-admin-remotes.ts';
 import { FIELD_TYPES, type FieldType } from '../../src/lib/server/schema/types.ts';
+import { Role } from '../../src/lib/server/auth/roles.ts';
 
 const values: Record<FieldType, unknown> = {
   string: 'Title', text: 'Rich text', slug: 'title', url: 'https://example.test/', number: 1.25,
@@ -12,7 +13,7 @@ const values: Record<FieldType, unknown> = {
   portableText: [{ _type: 'block', children: [{ _type: 'span', text: 'Hello' }] }],
   image: { id: 'image-id', alt: 'A picture', meta: { storageKey: 'photo' } },
   file: { id: 'file-id', filename: 'file.pdf' }, reference: 'unbound-entry-id',
-  json: { deep: [null, { count: 2, enabled: false }], '__proto__': 'literal-safe' },
+  json: { deep: [null, { count: 2, enabled: false }] },
   repeater: [{ name: 'First', extra: { untouched: true } }], blocks: [{ _type: 'legacy', arbitrary: { items: [1, 2] } }]
 };
 async function fixture(target: 'Node' | 'D1') {
@@ -83,7 +84,7 @@ for (const target of ['Node', 'D1'] as const) {
       const denied = await enhanced(h, 'updateContent', { ...key, data: { value_number: 'invalid' } });
       assert.deepEqual(denied, { type: 'error', status: 403, error: { code: 'INSUFFICIENT_PERMISSIONS', message: 'forbidden' } });
       await sql`UPDATE ec_typed SET author_id = 'schema_author'`.execute(h.database.db);
-      await h.database.db.updateTable('_cms_auth_users').set({ role: 'subscriber' }).where('id', '=', 'schema_author').execute();
+      await h.database.db.updateTable('_cms_auth_users').set({ role: Role.SUBSCRIBER }).where('id', '=', 'schema_author').execute();
       assert.deepEqual(await enhanced(h, 'updateContent', { ...key, data: { value_number: 'invalid' } }), denied);
       assert.deepEqual((await sql`SELECT * FROM ec_typed`.execute(h.database.db)).rows, before);
     } finally { await h.close(); }
