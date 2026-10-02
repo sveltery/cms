@@ -51,7 +51,7 @@ test('built direct scalar descriptors reject native empty-string full/partial wr
       if (update) { input.id = field('id'); input._rev = field('_rev'); assert.equal(input._rev, fixture.inputs.legacy._rev); }
       const rejected = await fetch(action, { method: 'POST', headers: { ...headers, origin: new URL(fixture.baseURL).origin, accept: 'text/html' },
         body: new URLSearchParams(input), signal: AbortSignal.timeout(10_000) });
-      assert.equal(rejected.status, 400); assert.match(await rejected.text(), /validation-error/);
+      assert.equal(rejected.status, 400); assert.match(await rejected.text(), /required \(empty value not allowed\)/);
       assert.deepEqual(await snapshot(), before);
     }
   } finally { await fixture.close(); }

@@ -28,6 +28,12 @@ const encodedData = v.pipe(v.string(), v.maxLength(200_000), v.check(value => {
 // booleans inside arrays as required checkboxes. Only this input adapter uses
 // `any`; the actual shared JSON guard and domain output stay bounded/unknown.
 const nativeData = v.pipe(v.custom<Record<string, any>>(value => v.safeParse(schemaData, value).success),
+  v.rawCheck(({ dataset, addIssue }) => {
+    if (!dataset.typed) return;
+    for (const [key, value] of Object.entries(dataset.value)) if (typeof value === 'string' && value.length > 100_000) {
+      addIssue({ message: 'Content text is too long', path: [{ type: 'object', origin: 'value', input: dataset.value, key, value }] });
+    }
+  }),
   v.transform(value => value as Record<string, unknown>));
 const data = v.optional(v.union([encodedData, nativeData]), {});
 const jsonValue = v.pipe(v.string(), v.maxLength(200_000), v.check(value => {

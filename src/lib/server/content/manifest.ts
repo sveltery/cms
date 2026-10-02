@@ -3,7 +3,7 @@
 // See notices/emdash-MIT.txt and docs/session-composition-ports.json.
 // Field batching follows schema/registry.ts:418 and utils/chunks.ts at the same pin.
 // Local ordering, field caps and error behavior: docs/editor-manifest-batching.md.
-import { MAX_COLLECTION_LIST_COLUMNS, type CollectionSupport, type FieldType, type FieldValidation, type FieldWidgetOptions, type UnsupportedFieldType } from '../schema/types.ts';
+import { MAX_COLLECTION_LIST_COLUMNS, type CollectionSupport, type FieldType, type FieldValidation, type FieldWidgetOptions, type RepeaterSubField, type UnsupportedFieldType } from '../schema/types.ts';
 import { sql } from 'kysely';
 import { CmsError, type CmsDatabase, type Field, type FieldRow } from '../database/contract.ts';
 import { MAX_FIELDS, SchemaRegistry, fieldFromRow } from '../database/registry.ts';
@@ -54,6 +54,7 @@ const LIST_COLUMN_FIELD_TYPES: ReadonlySet<FieldType> = new Set(['string', 'numb
 const VALIDATION_KEYS = ['required', 'min', 'max', 'minLength', 'maxLength', 'pattern', 'options', 'subFields',
   'minItems', 'maxItems', 'allowedMimeTypes', 'relation', 'relationSide', 'targetCollection', 'multiple',
   'allowedTypes', 'retiredTypes'] as const satisfies readonly (keyof FieldValidation)[];
+const SUB_FIELD_KEYS = ['slug', 'type', 'label', 'required', 'options'] as const satisfies readonly (keyof RepeaterSubField)[];
 function descriptor(field: Field): EditorField {
   const entry: EditorField = {
     id: field.id, type: field.type, kind: field.unsupportedType ? 'unsupported' : FIELD_TYPE_TO_KIND[field.type],
@@ -67,6 +68,8 @@ function descriptor(field: Field): EditorField {
   }));
   if (field.validation) entry.validation = Object.fromEntries(VALIDATION_KEYS
     .filter(key => Object.hasOwn(field.validation!, key)).map(key => [key, field.validation![key]]));
+  if (Array.isArray(entry.validation?.subFields)) entry.validation.subFields = entry.validation.subFields.map(field =>
+    Object.fromEntries(SUB_FIELD_KEYS.filter(key => Object.hasOwn(field, key)).map(key => [key, field[key]])) as unknown as RepeaterSubField);
   return entry;
 }
 
