@@ -63,7 +63,7 @@ The merged null-preview fix at `066e1879ae21b0d891b69627ec8138da77243cc5` now ha
 
 The pinned manual `constructor` collection omission is **retained**, not corrected: [CMS issue #8](https://github.com/sveltery/cms/issues/8) tracks later work. The composition document records isolated execution of the pinned builder and the local regression. Own-key lookup safely renders omitted descriptors unavailable while administrative storage/reads remain intact. This limitation is separate from the already-fixed null-preview correction and receives no additional parity credit.
 
-Configured production authentication/storage, login/provisioning, enabled editor writes, production Cloudflare/D1 composition, configured hosting, richer fields, publication/revisions, restore/permanent deletion and schema dashboard writes remain incomplete. Indexing these contracts changes no product behavior or inventory credit. Keep [MIT attribution](../../notices/emdash-MIT.txt); track newly verified shared bugs in this repository's GitHub issues for deferred work. Already-fixed contracts do not require duplicate issues.
+Configured production authentication/storage, login/provisioning, enabled editor writes, production Cloudflare/D1 composition, configured hosting, richer fields, publication/revisions, published-content restore/permanent deletion and configured schema dashboard writes remain incomplete. Indexing these contracts changes no product behavior or inventory credit. Keep [MIT attribution](../../notices/emdash-MIT.txt); track newly verified shared bugs in this repository's GitHub issues for deferred work. Already-fixed contracts do not require duplicate issues.
 
 ## Bounded D1 adapter: landed in PR #10
 
