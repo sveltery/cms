@@ -6,7 +6,13 @@ import { countScalarWrites, requiredScalarFixture, scalarFields, scalarSnapshot,
 
 // Original HTTP/storage requirements. Pinned validation.ts:199 / zod-generator.ts:41 provide behavior authority;
 // validation-issues.test.ts:168 is not ported by these bounded scalar fixtures.
-const validationError = { type: 'error', status: 400, error: { message: 'validation-error', code: 'VALIDATION_ERROR' } };
+function validationError(response: { type: string; status: number; error: { code: string; message: string; details: { issues: { path: string; code: string; message: string }[] } } }, field: string) {
+  assert.equal(response.type, 'error'); assert.equal(response.status, 400); assert.equal(response.error.code, 'VALIDATION_ERROR');
+  const issues = response.error.details.issues;
+  assert.ok(issues.length > 0); assert.ok(issues.every(issue => issue.path === field));
+  assert.ok(issues.some(issue => issue.code === 'required'));
+  assert.equal(response.error.message, issues.map(issue => `${issue.path}: ${issue.message}`).join('; '));
+}
 
 for (const target of ['Node', 'D1'] as const) {
   test(`${target}: registered full/partial scalar validation rejects explicit empty required values without writes`, { timeout: 60_000 }, async () => {
@@ -19,12 +25,12 @@ for (const target of ['Node', 'D1'] as const) {
       const before = await scalarSnapshot(h);
       for (const field of scalarFields.filter(field => field.required)) {
         for (const value of ['', null]) {
-          assert.deepEqual(await h.remote('createContent', 'author', {
+          validationError(await h.remote('createContent', 'author', {
             collection: 'scalars', data: JSON.stringify({ ...validScalarData(), [field.slug]: value })
-          }), validationError, `${field.slug}: full ${JSON.stringify(value)}`);
-          assert.deepEqual(await h.remote('updateContent', 'author', {
+          }), field.slug);
+          validationError(await h.remote('updateContent', 'author', {
             ...key, data: JSON.stringify({ [field.slug]: value })
-          }), validationError, `${field.slug}: partial ${JSON.stringify(value)}`);
+          }), field.slug);
         }
       }
       assert.equal(writes(), 0, 'all rejected requests stop before an atomic write batch');
@@ -37,9 +43,9 @@ for (const target of ['Node', 'D1'] as const) {
           ...(mode === 'set' ? { minLength: '', maxLength: '' } : {})
         });
         const afterMetadata = await scalarSnapshot(h); const previousWrites = writes();
-        for (const field of scalarFields.filter(field => field.required)) assert.deepEqual(await h.remote('updateContent', 'author', {
+        for (const field of scalarFields.filter(field => field.required)) validationError(await h.remote('updateContent', 'author', {
           ...key, data: JSON.stringify({ [field.slug]: '' })
-        }), validationError, `${field.slug}: ${mode} bounds`);
+        }), field.slug);
         assert.equal(writes(), previousWrites); assert.deepEqual(await scalarSnapshot(h), afterMetadata);
       }
       const data = Object.fromEntries(scalarFields.map(field => [field.slug, field.required ? ' \t\n ' : '']));
@@ -77,7 +83,7 @@ for (const target of ['Node', 'D1'] as const) {
         method: 'POST', headers: { origin: h.origin, accept: 'text/html' },
         body: new URLSearchParams({ ...key, _rev: legacy._rev, 'data.string': '' })
       });
-      assert.equal(native.status, 400); assert.match(await native.text(), /validation-error/);
+      assert.equal(native.status, 400); assert.match(await native.text(), /string: required \(empty value not allowed\)/);
       const enhanced = async (data: Record<string, string | null>, rev = legacy._rev) => {
         const header = new TextEncoder().encode(stringify([{ ...key, _rev: rev, data }, { remote_refreshes: [] }]));
         const offsets = new TextEncoder().encode('[]'); const prefix = new Uint8Array(7);
@@ -88,7 +94,7 @@ for (const target of ['Node', 'D1'] as const) {
       };
       const rejected = await enhanced({ text: '' });
       assert.equal(rejected.status, 200); assert.equal(rejected.headers.get('cache-control'), 'private, no-store');
-      assert.deepEqual(await rejected.json(), validationError);
+      validationError(await rejected.json(), 'text');
       for (const [session, status, code] of [[null, 401, 'UNAUTHENTICATED'], ['subscriber', 403, 'INSUFFICIENT_PERMISSIONS']] as const) {
         assert.deepEqual(await h.remote('updateContent', session, { ...key, _rev: legacy._rev, 'data.string': '' }),
           { type: 'error', status, error: { message: session ? 'forbidden' : 'unauthenticated', code } });

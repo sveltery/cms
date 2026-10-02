@@ -62,8 +62,8 @@ async function previousProjection(database: CmsDatabase): Promise<EditorManifest
     if (Object.hasOwn(Object.prototype, collection.slug)) continue;
     const fields: EditorManifest['collections'][string]['fields'] = {};
     for (const field of await registry.listFields(collection.id)) {
-      fields[field.slug] = { id: field.id, type: field.type, translatable: field.translatable, kind: field.type === 'text' ? 'richText' : 'string',
-        label: field.label, required: field.required, ...(field.validation ? { validation: {
+      fields[field.slug] = { id: field.id, type: field.type, kind: field.type === 'text' ? 'richText' : 'string',
+        label: field.label, required: field.required, translatable: field.translatable, ...(field.validation ? { validation: {
           ...(field.validation.minLength === undefined ? {} : { minLength: field.validation.minLength }),
           ...(field.validation.maxLength === undefined ? {} : { maxLength: field.validation.maxLength })
         } } : {}) };
