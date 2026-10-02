@@ -3,7 +3,7 @@
   "referenceCommit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "integrationBase": "bf9d1c34cde4bb972b7d2d9a599c16d406607d49",
   "licenseNotice": "../notices/emdash-MIT.txt",
-  "decisionStatus": "Proposed bounded implementation. Specific acceptance of differences is not recorded. Landing and divergent expectations do not establish acceptance or complete parity.",
+  "decisionStatus": "Bounded implementation landed in PR #24 at 1a51b66a5599fcb061940b69b93c2cac8a1fcfa5. Specific acceptance of intentional differences is not recorded; landing and divergent expectations do not establish acceptance or complete parity.",
   "inspectedSources": [
     {
       "path": "packages/core/src/schema/registry.ts",
@@ -118,7 +118,7 @@
         "Missing targets, strict extra keys and forced storage failures do not write.",
         "Metadata writes and field addition coexist without overwriting labels; legacy physical layouts remain unchanged."
       ],
-      "runEvidence": "Passed in focused 35 supplemental service cases and 12 production/conversion cases; final-head gates pending."
+      "runEvidence": "Passed in 35 supplemental service cases and 12 production/conversion cases; complete bootstrap and post-merge CI passed."
     },
     {
       "category": "framework transport and UI",
@@ -128,7 +128,7 @@
         "Native and enhanced submissions isolate pending state, issues and results; disabled capability remains disabled.",
         "Origin rejection and refreshed schema/manifest consumers."
       ],
-      "runEvidence": "Focused registered production/conversion suite passed12; actual secured hosted browser execution pending."
+      "runEvidence": "Registered production/conversion suite passed 12; hosted secured default and Node browsers passed 21 cases per target including 3 dedicated label cases."
     }
   ],
   "compatibilityRecords": [
@@ -164,29 +164,61 @@
       "failures": 0,
       "skipped": 0,
       "runtime": "Node24.19.0; Node SQLite and real local D1",
-      "scope": "Focused run as reported by implementation owner; final-head full bootstrap remains pending"
+      "scope": "Focused operation assertions; included in the complete reviewed-head bootstrap and post-merge CI."
     },
     "productionTests": {
       "status": "passed",
       "cases": 12,
-      "scope": "Focused production remote plus conversion suite, as reported by implementation owner; exact-head/full bootstrap pending"
+      "scope": "10 registered production cases plus 2 conversion cases; complete reviewed-head bootstrap and post-merge CI passed."
     },
-    "browserTests": "pending hosted secured default/Node CI; local browser download403 and system sandbox failure supply no passing browser evidence",
+    "browserTests": {
+      "status": "passed",
+      "commit": "518ad8ac3246aef8eb358fddd6738d02527e380c",
+      "testsPerTarget": 21,
+      "targets": [
+        "default",
+        "Node"
+      ],
+      "chromiumSandbox": true,
+      "ci": "https://github.com/sveltery/cms/actions/runs/36995148922",
+      "scope": "Hosted sandboxed Chromium; local download/sandbox limitations provided no passing local browser evidence."
+    },
     "bootstrap": {
       "status": "passed",
       "command": "sh scripts/bootstrap.sh",
-      "commit": "deaebcb56e23cf20aad25eae570e10614b9da502",
+      "commit": "518ad8ac3246aef8eb358fddd6738d02527e380c",
       "coreTests": 371,
       "productionTests": 76,
       "nodePackageTests": 11,
       "failures": 0,
       "checkerErrors": 0,
       "checkerWarnings": 0,
-      "scope": "Integrated executable head; subsequent canonical-doc-only changes require final-head CI and review."
+      "scope": "Complete reviewed implementation head, including canonical documentation; default and Node builds and isolated package checks."
     },
-    "finalHeadCI": "pending",
-    "independentReview": "pending",
-    "configuredReview": "pending",
+    "finalHeadCI": {
+      "status": "passed",
+      "commit": "518ad8ac3246aef8eb358fddd6738d02527e380c",
+      "ci": "https://github.com/sveltery/cms/actions/runs/36995148922",
+      "attempt": 2,
+      "coreTests": 371,
+      "productionTests": 76,
+      "nodePackageTests": 11,
+      "browserTestsPerTarget": 21,
+      "initialFailure": "Preexisting editor-manifest-batching.test.ts local D1 case hit a Miniflare IPC assertion. Only the failed validate job was retried unchanged; all tests then passed."
+    },
+    "independentReview": {
+      "status": "completed",
+      "commit": "518ad8ac3246aef8eb358fddd6738d02527e380c",
+      "blockingFindings": 0,
+      "evidence": "Independent focused runs:39 service/conversion,10 registered production,12 pinned upstream;141 relative Markdown targets,JSON,diff checks; CTV records preserved."
+    },
+    "configuredReview": {
+      "status": "completed",
+      "commit": "518ad8ac3246aef8eb358fddd6738d02527e380c",
+      "blockingFindings": 0,
+      "evidence": "https://github.com/sveltery/cms/pull/24#issuecomment-5950242582",
+      "scope": "Final-head completion with positive completion reaction; earlier canonical-document finding addressed and resolved."
+    },
     "check": {
       "status": "passed",
       "errors": 0,
@@ -199,5 +231,20 @@
     "Media-usage invalidation, development type generation, full upstream migrations, REST/React/MCP parity and deployed Node/Cloudflare/D1 support."
   ],
   "integrationMain": "06ecd8889d625e24c564e59a8ed5a5e63daa8e8f",
-  "proposedPullRequest": "https://github.com/sveltery/cms/pull/24"
+  "landing": {
+    "pullRequest": "https://github.com/sveltery/cms/pull/24",
+    "commit": "1a51b66a5599fcb061940b69b93c2cac8a1fcfa5",
+    "treeEqualsReviewedHead": true,
+    "postMergeCI": {
+      "status": "passed",
+      "commit": "1a51b66a5599fcb061940b69b93c2cac8a1fcfa5",
+      "ci": "https://github.com/sveltery/cms/actions/runs/36995700613",
+      "coreTests": 371,
+      "productionTests": 76,
+      "nodePackageTests": 11,
+      "browserTestsPerTarget": 21,
+      "failures": 0
+    }
+  },
+  "implementationPullRequest": "https://github.com/sveltery/cms/pull/24"
 }
