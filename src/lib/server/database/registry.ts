@@ -1,8 +1,8 @@
 import { sql, type CompiledQuery } from 'kysely';
 import { sqliteErrorMessage } from './errors.ts';
 import { ulid } from 'ulidx';
-import { CmsError, type CmsDatabase, type Collection, type CollectionRow, type Field, type FieldRow } from './contract.ts';
-import { collectionInput, fieldInput, identifier, parse, reservedCollections, reservedFields, tableName } from './validation.ts';
+import { CmsError, type CmsDatabase, type Collection, type CollectionRow, type Field, type FieldRow, type RevisionPrecondition } from './contract.ts';
+import { collectionInput, collectionMetadataInput, fieldInput, identifier, parse, reservedCollections, reservedFields, revisionInput, tableName } from './validation.ts';
 
 export const MAX_COLLECTIONS = 100;
 export const MAX_FIELDS = 32;
@@ -33,6 +33,38 @@ export class SchemaRegistry {
   async listCollections(): Promise<Collection[]> {
     const rows = await this.database.db.selectFrom('_cms_collections').selectAll().orderBy('slug').limit(MAX_COLLECTIONS).execute();
     return rows.map(collection);
+  }
+  // EmDash registry.ts updateCollection: supplied metadata only; no schema-version bump.
+  // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
+  // The trusted service requires CAS; direct registry calls may omit a precondition.
+  async updateCollection(slug: unknown, input: unknown, expected?: RevisionPrecondition): Promise<Collection> {
+    const value = parse(collectionMetadataInput, input);
+    const precondition = expected === undefined ? undefined : parse(revisionInput, expected);
+    const definition = await this.getCollection(slug);
+    if (!definition) throw new CmsError('NOT_FOUND');
+    if (precondition && (precondition.version !== definition.version || precondition.updatedAt !== definition.updatedAt)) {
+      throw new CmsError('CONFLICT');
+    }
+    const db = this.database.db;
+    const token = ulid();
+    // A distinct timestamp keeps same-millisecond/backward-clock metadata writes
+    // observable to CAS while schema version remains unchanged. See collection-update.md.
+    const updatedAt = new Date(Math.max(Date.now(), Date.parse(definition.updatedAt) + 1)).toISOString();
+    const updates: Partial<CollectionRow> = { updated_at: updatedAt };
+    if (value.label !== undefined) updates.label = value.label;
+    if (value.labelSingular !== undefined) updates.label_singular = value.labelSingular;
+    if (value.description !== undefined) updates.description = value.description;
+    if (value.supports !== undefined) updates.supports = JSON.stringify(value.supports);
+    const results = await this.batch([
+      sql`INSERT INTO _cms_guards(token, pass) SELECT ${token},
+        CASE WHEN EXISTS (SELECT 1 FROM _cms_collections WHERE id = ${definition.id}
+          AND version = ${definition.version} AND updated_at = ${definition.updatedAt})
+        THEN 1 ELSE 0 END`.compile(db),
+      db.updateTable('_cms_collections').set(updates).where('id', '=', definition.id).returningAll().compile(),
+      sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
+    ], 'CONFLICT');
+    // Read the operation's own RETURNING row, rather than a later concurrent writer.
+    return collection(results[1].rows[0] as CollectionRow);
   }
   async listFields(collectionId: string): Promise<Field[]> {
     const rows = await this.database.db.selectFrom('_cms_fields').selectAll().where('collection_id', '=', collectionId)
@@ -146,7 +178,7 @@ export class SchemaRegistry {
     return (await this.getField(definition.slug, value.slug))!;
   }
   private async batch(statements: CompiledQuery[], guardCode: 'LIMIT_EXCEEDED' | 'CONFLICT') {
-    try { await this.database.atomicBatch(statements); }
+    try { return await this.database.atomicBatch(statements); }
     catch (cause) {
       // Only the deliberate SQL guard's CHECK failure becomes a domain conflict.
       if (cause instanceof Error && /CHECK constraint failed: pass = 1/.test(cause.message)) throw new CmsError(guardCode);
