@@ -6,7 +6,7 @@ import {expect,it,compositionFixture} from './helpers/content-composition-fixtur
 let fixture:any;let ctx:any;
 beforeEach(async()=>{fixture=await compositionFixture();ctx={db:fixture};for(const s of [{locale:'en',slug:'hello-en',title:'Hello'},{locale:'fr',slug:'hello-fr',title:'Bonjour'},{locale:'de',slug:'hallo-de',title:'Hallo'}]){const item=await fixture.repo.create({type:'posts',slug:s.slug,locale:s.locale,data:{title:s.title},status:'published'});await fixture.seedTrash('posts',item.id);}});
 afterEach(async()=>{await fixture.database.close();});
-function handleContentListTrashed(db:any,type:string,params:any){return db.trashHandler(type,params);}
+function handleContentListTrashed(db:any,type:string,params:any):Promise<{success:boolean;data:{items:any[]}}>{return db.trashHandler(type,params);}
 function handleContentCountTrashed(db:any,type:string,params:any={}){return db.trashCountHandler(type,params);}
 it("lists only the trashed entries in the requested locale", async () => {
 		const result = await handleContentListTrashed(ctx.db, "posts", { locale: "fr" });

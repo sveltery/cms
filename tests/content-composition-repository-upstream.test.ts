@@ -3,7 +3,7 @@
 // Complete source declarations; fixture/framework substitutions are in the ledger.
 import {describe,beforeEach,afterEach} from 'node:test';
 import {expect,it,compositionFixture} from './helpers/content-composition-fixture.ts';
-let fixture:any;let repo:any;
+let fixture:any;let repo:{create(input:any):Promise<any>;findMany(type:string,options?:any):Promise<{items:any[];nextCursor?:string;total?:number}>;count(type:string,where?:any):Promise<number>;delete(type:string,id:string):Promise<boolean>};
 beforeEach(async()=>{fixture=await compositionFixture();repo=fixture.repo;});
 afterEach(async()=>{await fixture.database.close();});
 describe('findMany complete basic/total declarations',()=>{
