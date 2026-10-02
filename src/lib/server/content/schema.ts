@@ -1,14 +1,11 @@
 import * as v from 'valibot';
+import {contentListOptions} from '../database/content-validation.ts';
 import { CmsError, type DraftEntry, type DraftSummary } from '../database/contract.ts';
 import { identifier, entryId, localeInput, revisionInput, schemaData, parse } from '../database/validation.ts';
 
 const qualified = { collection: identifier, locale: v.optional(localeInput, 'en') };
 export const contentKey = v.strictObject({ ...qualified, id: entryId });
-export const contentList = v.strictObject({
-  ...qualified,
-  limit: v.optional(v.pipe(v.number(), v.safeInteger(), v.minValue(1))),
-  cursor: v.optional(v.pipe(v.string(), v.maxLength(2048)))
-});
+export const contentList = v.strictObject({collection:identifier,...contentListOptions});
 // Unlike active reads and mutations, omitted locale means every trash locale.
 const trashQualified = { collection: identifier, locale: v.optional(localeInput) };
 export const trashedContentCount = v.strictObject(trashQualified);

@@ -6,28 +6,28 @@ export const getEditorManifest = query(() => contentResponse(() => requestConten
 export const listCollections = query(() => contentResponse(() => requestContent().listCollections()));
 export const getCollection = query(collectionSlug, collection => contentResponse(() => requestContent().getCollection(collection)));
 export const listContent = query(contentList, ({ collection, ...options }) => contentResponse(async () => {
-  const page = await requestContent().listDrafts({ type: collection, ...options });
+  const page = await requestContent().listContent({ type: collection, ...options });
   return { ...page, items: page.items.map(withRevision) };
 }));
 export const getContent = query(contentKey, ({ collection, ...key }) => contentResponse(async () =>
-  withRevision(await requestContent().getDraft({ type: collection, ...key }))));
+  withRevision(await requestContent().getContent({ type: collection, ...key }))));
 export const listTrashedContent = query(trashedContentList, ({ collection, ...options }) => contentResponse(async () => {
-  const page = await requestContent().listTrashedDrafts({ type: collection, ...options });
+  const page = await requestContent().listTrashedContent({ type: collection, ...options });
   return { ...page, items: page.items.map(withRevision) };
 }));
 export const countTrashedContent = query(trashedContentCount, ({ collection, ...options }) =>
-  contentResponse(() => requestContent().countTrashedDrafts({ type: collection, ...options })));
+  contentResponse(() => requestContent().countTrashedContent({ type: collection, ...options })));
 export const getTrashedContent = query(trashedContentKey, ({ collection, ...key }) => contentResponse(async () =>
-  withRevision(await requestContent().getTrashedDraft({ type: collection, ...key }))));
+  withRevision(await requestContent().getTrashedContent({ type: collection, ...key }))));
 export const createContent = form(createInput, ({ collection, ...input }) => contentResponse(async () => {
-  const value = withRevision(await requestContent('mutation').createDraft({ type: collection, ...input }));
+  const value = withRevision(await requestContent('mutation').createContent({ type: collection, ...input, ...(input.slug === '' ? {slug:null} : {}) }));
   await refreshContent(collection, input.locale);
   return receipt(value);
 }));
 export const updateContent = form(updateInput, (input) => contentResponse(async () => {
   const service = requestContent('mutation');
   const { collection, _rev, ...value } = input;
-  const record = withRevision(await service.updateDraft({ type: collection, ...value, expected: precondition(input) }));
+  const record = withRevision(await service.updateContent({ type: collection, ...value, expected: precondition(input) }));
   await refreshContent(collection, value.locale, value.id);
   return receipt(record);
 }));
@@ -35,7 +35,7 @@ export const updateContent = form(updateInput, (input) => contentResponse(async 
 export const deleteContent = form(trashInput, (input) => contentResponse(async () => {
   const service = requestContent('mutation');
   const { collection, _rev, ...key } = input;
-  await service.deleteDraft({ type: collection, ...key, expected: precondition(input) });
+  await service.deleteContent({ type: collection, ...key, expected: precondition(input) });
   await refreshContent(collection, key.locale, key.id);
   await refreshTrash(collection, key.locale, key.id);
   return { id: key.id, trashed: true };
@@ -43,7 +43,7 @@ export const deleteContent = form(trashInput, (input) => contentResponse(async (
 export const restoreContent = form(restoreInput, (input) => contentResponse(async () => {
   const service = requestContent('mutation');
   const { collection, _rev, ...key } = input;
-  const record = withRevision(await service.restoreDraft({ type: collection, ...key,
+  const record = withRevision(await service.restoreContent({ type: collection, ...key,
     // The service authorizes before its parser reads/decodes the precondition.
     get expected() { return precondition(input); }
   }));

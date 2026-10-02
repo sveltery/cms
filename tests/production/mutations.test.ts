@@ -6,7 +6,10 @@ import { persistedRemotes, fields } from '../helpers/persisted-remotes.ts';
 
 describe('built remotes with persisted schema and server-derived sessions', () => {
   let harness: Awaited<ReturnType<typeof persistedRemotes>>;
-  beforeEach(async () => { harness = await persistedRemotes(); });
+  beforeEach(async () => { harness = await persistedRemotes();
+    const collection=(await harness.registry.getCollectionWithFields('notes'))!;
+    await harness.registry.updateCollection('notes',{supports:[]},{version:collection.version,updatedAt:collection.updatedAt});
+  });
   afterEach(async () => { await harness.close(); });
   const refreshed = (data: any, name: string) => Object.entries(data.q ?? {}).filter(([key]) => key.includes(`/${name}/`)).map(([, value]) => value as any);
   async function create(session = 'author') {
