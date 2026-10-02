@@ -81,7 +81,8 @@ for (const target of ['Node','D1'] as const) {
       await sql`CREATE VIEW operator_cte AS WITH ec_post AS (SELECT entry_id FROM operator_events) SELECT * FROM ec_post`.execute(database.db);
       await sql.raw("CREATE TRIGGER operator_trigger AFTER INSERT ON operator_events BEGIN SELECT 'FROM ec_post' /* UPDATE ec_post */; UPDATE operator_events SET ec_note='ec_post' WHERE entry_id=new.entry_id; END").execute(database.db);
       const before=await databaseSnapshot(database);
-      await migrateCms(database); await migrateCms(database);
+      await assert.doesNotReject(()=>migrateCms(database));
+      await assert.doesNotReject(()=>migrateCms(database));
       const after=await databaseSnapshot(database);
       for (const table of before.tables.filter(row=>row.name.startsWith('operator_'))) {
         assert.deepEqual(after.tables.find(row=>row.name===table.name),table);
