@@ -1,0 +1,510 @@
+{
+  "referenceCommit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "referenceRelease": "EmDash 1.1.0",
+  "cmsBaseCommit": "9e0cf4e7cb7d8ab002fc897c22a5d87703fb5196",
+  "status": "source-reference evidence; implementation and local assertion credit are separate PRs",
+  "license": {
+    "name": "MIT",
+    "copyright": "2026 Cloudflare Inc.",
+    "notice": "notices/emdash-MIT.txt"
+  },
+  "sourceFiles": [
+    {
+      "path": "LICENSE",
+      "blob": "02cc4b8b0a5f883c5243927e683b00c10588bf4c",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/LICENSE"
+    },
+    {
+      "path": "packages/core/src/api/schemas/schema.ts",
+      "blob": "57e0338b8e1a7633d1e3409f4a38b39f73469e68",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/api/schemas/schema.ts"
+    },
+    {
+      "path": "packages/core/src/api/schemas/common.ts",
+      "blob": "ba9be767aa9a2c564f3ebfd2c4106ad904324c59",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/api/schemas/common.ts"
+    },
+    {
+      "path": "packages/core/src/i18n/config.ts",
+      "blob": "fe714e5ad514485fe1737585c663e470d50519df",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/i18n/config.ts"
+    },
+    {
+      "path": "packages/core/tests/integration/mcp/schema.test.ts",
+      "blob": "4c1d5c283a19f4262b84cc5165b70f2046ba8b43",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/schema.test.ts"
+    },
+    {
+      "path": "packages/core/src/fields/text.ts",
+      "blob": "4ede131c9696c7b4a6c3d7cbeec213176961e49e",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/fields/text.ts"
+    },
+    {
+      "path": "packages/core/tests/unit/fields/all-fields.test.ts",
+      "blob": "5ba1588097718438b8de04543e602b883be17642",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/fields/all-fields.test.ts"
+    },
+    {
+      "path": "packages/core/src/schema/registry.ts",
+      "blob": "da7bbcdda224dfca8d9146b2f36659ab90bcac2e",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/schema/registry.ts"
+    },
+    {
+      "path": "packages/core/tests/unit/schema/registry.test.ts",
+      "blob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts"
+    },
+    {
+      "path": "packages/core/src/database/transaction.ts",
+      "blob": "69bf167998a2fa9cc228c3612a69c8fde5ed85fe",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/transaction.ts"
+    },
+    {
+      "path": "packages/cloudflare/src/db/d1-dialect.ts",
+      "blob": "b026d293554c5173e1447b5eff0d704e169d3384",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/cloudflare/src/db/d1-dialect.ts"
+    },
+    {
+      "path": "packages/core/src/api/handlers/validation.ts",
+      "blob": "a9e40d310098e2329e166614fa10fcea1b53c84d",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/api/handlers/validation.ts"
+    },
+    {
+      "path": "packages/core/src/schema/zod-generator.ts",
+      "blob": "550d4918258aa52a0d0f272b69061c76e79d86ee",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/schema/zod-generator.ts"
+    },
+    {
+      "path": "packages/core/src/utils/hash.ts",
+      "blob": "93db9df4a2b88692d5772fa5e32d309d7f23fab8",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/utils/hash.ts"
+    },
+    {
+      "path": "packages/core/src/utils/url.ts",
+      "blob": "5ea627417b29212beeb178863f7b2f4989f90d58",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/utils/url.ts"
+    },
+    {
+      "path": "packages/core/src/utils/chunks.ts",
+      "blob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/utils/chunks.ts"
+    },
+    {
+      "path": "packages/core/src/schema/types.ts",
+      "blob": "0c2f44156cff829951c52b0dd259fc5ff45bc554",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/schema/types.ts"
+    },
+    {
+      "path": "packages/core/src/schema/url-pattern.ts",
+      "blob": "1b9776eb0ab18119c46bceeeff2459db555bc41e",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/schema/url-pattern.ts"
+    },
+    {
+      "path": "packages/core/src/database/dialect-helpers.ts",
+      "blob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/dialect-helpers.ts"
+    },
+    {
+      "path": "packages/core/src/database/validate.ts",
+      "blob": "73d3b303764b473d4238e0cb17f1a904998671f8",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/validate.ts"
+    },
+    {
+      "path": "packages/cloudflare/src/db/d1-introspector.ts",
+      "blob": "4c40fc55aa449f46f887f9335d11b42633312225",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/cloudflare/src/db/d1-introspector.ts"
+    },
+    {
+      "path": "packages/core/src/database/migration-lock.ts",
+      "blob": "160cce48c64a6c815ec780bef8fc2646be5b5ec9",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/migration-lock.ts"
+    },
+    {
+      "path": "packages/core/src/database/pg-migration-lock.ts",
+      "blob": "cf8fd580c4549e50e1d6ef0a0cb8515579bb6bc3",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/pg-migration-lock.ts"
+    },
+    {
+      "path": "packages/core/src/utils/db-errors.ts",
+      "blob": "d0a051ad9d48003eeeeb38dd9d5cb7cedf4140e5",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/utils/db-errors.ts"
+    }
+  ],
+  "sourceSelections": [
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/fields/all-fields.test.ts:58",
+      "title": "should enforce pattern",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/fields/all-fields.test.ts#L58",
+      "sourceBlob": "5ba1588097718438b8de04543e602b883be17642",
+      "selectedInExistingInventory": false,
+      "sourceAssertionExpressions": [
+        {
+          "line": 60,
+          "expression": "expect(() => field.schema.parse(\"HELLO\")).not.toThrow()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/fields/all-fields.test.ts#L60"
+        },
+        {
+          "line": 61,
+          "expression": "expect(() => field.schema.parse(\"hello\")).toThrow()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/fields/all-fields.test.ts#L61"
+        }
+      ],
+      "referenceStatus": "reference-executed",
+      "localProductExecution": null,
+      "localParityCreditInThisPr": 0,
+      "limits": "Factory callback/source implementation unchanged; matcher/runtime imports substituted; product ports tracked separately. This static factory declaration is not selected in the existing dashboard/storage source inventory."
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/mcp/schema.test.ts:964",
+      "title": "rejects invalid validation rules without changing the field",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/schema.test.ts#L964",
+      "sourceBlob": "4c1d5c283a19f4262b84cc5165b70f2046ba8b43",
+      "selectedInExistingInventory": true,
+      "sourceAssertionExpressions": [
+        {
+          "line": 975,
+          "expression": "expect(result.isError).toBe(true)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/schema.test.ts#L975"
+        },
+        {
+          "line": 976,
+          "expression": "expect(extractText(result)).toMatch(/invalid|minimum|maximum|pattern/i)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/schema.test.ts#L976"
+        },
+        {
+          "line": 979,
+          "expression": "expect((await new SchemaRegistry(db).getField(\"post\", \"body\"))?.validation).toBeUndefined()",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/schema.test.ts#L979"
+        }
+      ],
+      "referenceStatus": "inspected-unported",
+      "localProductExecution": null,
+      "localParityCreditInThisPr": 0,
+      "limits": "MCP transport/envelope not executed; all three expressions and all four invalid-rule datasets remain incomplete."
+    }
+  ],
+  "supplementalProbes": [
+    {
+      "id": "P01",
+      "title": "create/update preserve valid regex sources without trimming, flags or length limit",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P02",
+      "title": "create/update reject invalid syntax with the exact pattern issue",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P03",
+      "title": "create/update reject non-string pattern values",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P04",
+      "title": "request omission, undefined, null and empty object remain distinct",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P05",
+      "title": "upstream request strips unknown validation keys",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P06",
+      "title": "pattern syntax and length-range issues accumulate",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P07",
+      "title": "create metadata stores exact empty, whitespace and Unicode sources",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P08",
+      "title": "omitted validation and unrelated metadata edits preserve pattern",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P09",
+      "title": "pattern-only update replaces previous length validation",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P10",
+      "title": "length-only update removes previous pattern",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P11",
+      "title": "empty pattern remains a real JSON metadata property",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P12",
+      "title": "null clears SQL NULL and maps to undefined while empty object stays JSON",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P13",
+      "title": "pattern edit preserves physical schema, existing rows and collection metadata",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P14",
+      "title": "persisted malformed regex survives read but throws for full/partial absent/null/supplied validation",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P15",
+      "title": "direct registry accepts malformed pattern rather than checking request syntax",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P16",
+      "title": "pattern metadata and enforcement survive actual SQLite/local D1 reopen",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P17",
+      "title": "matching supplied string/text values pass full and partial validation",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P18",
+      "title": "nonmatching supplied values expose invalid_format and regex format",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P19",
+      "title": "unanchored source matches substrings",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P20",
+      "title": "anchors reject matching substrings",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P21",
+      "title": "regex has no case-insensitive flag",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P22",
+      "title": "slash-looking source is literal source rather than parsed flags",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P23",
+      "title": "whitespace pattern is preserved and enforced",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P24",
+      "title": "empty source disables regex checking",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P25",
+      "title": "optional omission, explicit undefined and null bypass regex",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P26",
+      "title": "required missing and null fail as required",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P27",
+      "title": "required empty stays rejected even when regex matches empty",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P28",
+      "title": "partial omitted required field passes while supplied nonmatch fails",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P29",
+      "title": "length and regex checks compose independently",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P30",
+      "title": "omitted default bypasses regex without mutating input or SQL default",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P31",
+      "title": "partial omitted default bypasses regex and validation returns only ok",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    },
+    {
+      "id": "P32",
+      "title": "regex has no Unicode flag and uses UTF-16 units",
+      "status": "reference-passed-both-processes",
+      "classification": "original-supplemental",
+      "localParityCredit": 0
+    }
+  ],
+  "referenceRuntime": {
+    "node": "24.19.0",
+    "pnpm": "12.6.0",
+    "zod": "4.5.4",
+    "kysely": "0.29.2",
+    "kyselyD1": {
+      "version": "0.4.0",
+      "tarballSha1": "3122753e3d3d1d00d118ff756a329ae2318b1589"
+    },
+    "databaseTargets": [
+      "Node SQLite",
+      "local Miniflare/workerd raw-binding D1"
+    ],
+    "fixtureBoundaries": [
+      "../astro/dev-typegen.js",
+      "../media/usage/activation.js",
+      "../media/usage/collection-deletion.js",
+      "../media/usage/content-refresh.js",
+      "../media/usage/maintenance-engine.js",
+      "../search/fts-manager.js",
+      "../transfer/format/columns.js",
+      "../transfer/format/digest.js",
+      "../transfer/import/rows.js",
+      "../transfer/import/sql.js",
+      "./collection-slugs-cache.js"
+    ],
+    "setup": "Fixture metadata tables replace upstream migrations. Complete unchanged upstream registry creates physical scalar columns. Request/factory cases are target-independent."
+  },
+  "runEvidence": [
+    {
+      "date": "2026-10-02",
+      "sourceCommit": "4fd9506",
+      "command": "node scripts/reproduce-pattern-validation-upstream.mjs",
+      "acquisition": "immutable raw GitHub URLs",
+      "result": {
+        "Node": {
+          "tests": 33,
+          "pass": 33,
+          "fail": 0
+        },
+        "D1": {
+          "tests": 33,
+          "pass": 33,
+          "fail": 0
+        }
+      },
+      "probeEntrySha256": "6541a20d444598dda1171287c0472581c985b9738e02a381b573c5430e2b490b"
+    },
+    {
+      "date": "2026-10-02",
+      "sourceCommit": "91495588889b68373cd33bff7a0d3cb436a54dfe",
+      "command": "node scripts/reproduce-pattern-validation-upstream.mjs /tmp/cms-emdash-full",
+      "acquisition": "immutable Git blobs from supplied clone",
+      "result": {
+        "Node": {
+          "tests": 33,
+          "pass": 33,
+          "fail": 0
+        },
+        "D1": {
+          "tests": 33,
+          "pass": 33,
+          "fail": 0
+        }
+      },
+      "probeEntrySha256": "6541a20d444598dda1171287c0472581c985b9738e02a381b573c5430e2b490b"
+    }
+  ],
+  "accounting": {
+    "referenceSourceDeclarations": 1,
+    "referenceSourceAssertionExpressions": 2,
+    "referenceSourceAssertionEvaluationsPerProcess": 2,
+    "supplementalProbesPerProcess": 32,
+    "processes": 2,
+    "completeMcpDeclarations": 0,
+    "newLocalProductAssertionCredit": 0,
+    "inventoryChanged": false
+  },
+  "compatibilityRecords": [
+    "PV-01",
+    "PV-02",
+    "PV-03"
+  ],
+  "compatibilityOwnership": "parity/emdash/compatibility.md; proposed coordinated records, specific acceptance not recorded",
+  "verifiedInheritedBehavior": {
+    "directRegistryMalformedRegex": "createField/updateField accept invalid source; request schema rejects; later eager generated-schema compilation throws SyntaxError even omitted/null/partial",
+    "defaults": "omitted configured default bypasses regex; input not mutated/materialized; physical SQL defaults unchanged"
+  },
+  "omissions": [
+    "MCP/REST transport and remaining source test declarations",
+    "upstream migrations",
+    "media/FTS/type-generation subsystems",
+    "full schema types",
+    "deployed Node/Cloudflare hosting",
+    "React/native UI and actual field editor rendering",
+    "local product implementation/parity credit in this source-only PR",
+    "full product features beyond scalar string/text pattern capability"
+  ]
+}
