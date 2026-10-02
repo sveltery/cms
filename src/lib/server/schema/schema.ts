@@ -2,6 +2,7 @@ import * as v from 'valibot';
 import {
   collectionInput, collectionMetadataInput, fieldInput, fieldLabelInput, updateFieldLabelInput, identifier, parse, revisionInput
 } from '../database/validation.ts';
+import { updateFieldInput } from '../database/field-edit-validation.ts';
 
 // Native forms keep omitted support flags distinct from an explicit JSON [].
 const supportsValue = v.pipe(v.array(v.picklist(['drafts', 'revisions'])), v.maxLength(2));
@@ -29,6 +30,50 @@ export const fieldLabelFormInput = v.pipe(v.strictObject({
 export function convertFieldLabel(input: v.InferOutput<typeof fieldLabelFormInput>) {
   const { id: _id, ...value } = input;
   return parse(updateFieldLabelInput, value);
+}
+
+// Mode fields are native transport only. All controls can remain available without
+// JavaScript; keep omits its domain key, even when the browser sends the displayed value.
+const editMode = v.optional(v.picklist(['keep', 'set']), 'keep');
+const validationMode = v.optional(v.picklist(['keep', 'set', 'clear']), 'keep');
+const editString = v.optional(v.string());
+const isNonnegativeInteger = (value: string | undefined) => value !== undefined &&
+  /^(?:0|[1-9][0-9]*)$/.test(value) && Number.isSafeInteger(Number(value));
+const isOptionalInteger = (value: string | undefined) => value === undefined || value === '' || isNonnegativeInteger(value);
+export const fieldOptionsFormInput = v.pipe(v.strictObject({
+  id: v.optional(v.pipe(v.string(), v.maxLength(127))), collection: identifier, field: identifier,
+  labelMode: editMode, label: editString,
+  sortOrderMode: editMode, sortOrder: editString,
+  defaultValueMode: editMode, defaultValue: editString,
+  validationMode, minLength: editString, maxLength: editString
+}), v.forward(v.check(input => input.id === undefined || input.id === `${input.collection}/${input.field}`,
+  'Form instance must match the collection and field'), ['id']),
+v.forward(v.check(input => input.labelMode !== 'set' || (input.label !== undefined && input.label.length > 0),
+  'Label must contain at least one character'), ['label']),
+v.forward(v.check(input => input.sortOrderMode !== 'set' || isNonnegativeInteger(input.sortOrder),
+  'Sort order must be a nonnegative safe integer'), ['sortOrder']),
+v.forward(v.check(input => input.defaultValueMode !== 'set' || input.defaultValue !== undefined,
+  'Set default metadata requires a string value'), ['defaultValue']),
+v.forward(v.check(input => input.validationMode !== 'set' || isOptionalInteger(input.minLength),
+  'Minimum length must be a nonnegative safe integer'), ['minLength']),
+v.forward(v.check(input => input.validationMode !== 'set' || isOptionalInteger(input.maxLength),
+  'Maximum length must be a nonnegative safe integer'), ['maxLength']),
+v.forward(v.check(input => input.validationMode !== 'set' ||
+  !isNonnegativeInteger(input.minLength) || !isNonnegativeInteger(input.maxLength) ||
+  Number(input.minLength) <= Number(input.maxLength),
+  'Minimum length must not exceed maximum length'), ['minLength']));
+
+export function convertFieldOptions(input: v.InferOutput<typeof fieldOptionsFormInput>) {
+  return parse(updateFieldInput, {
+    collection: input.collection, field: input.field,
+    ...(input.labelMode === 'set' ? { label: input.label } : {}),
+    ...(input.sortOrderMode === 'set' ? { sortOrder: Number(input.sortOrder) } : {}),
+    ...(input.defaultValueMode === 'set' ? { defaultValue: input.defaultValue } : {}),
+    ...(input.validationMode === 'keep' ? {} : { validation: input.validationMode === 'clear' ? null : {
+      ...(input.minLength === undefined || input.minLength === '' ? {} : { minLength: Number(input.minLength) }),
+      ...(input.maxLength === undefined || input.maxLength === '' ? {} : { maxLength: Number(input.maxLength) })
+    } })
+  });
 }
 export const createInput = v.strictObject({
   slug: identifier, ...metadata, label: collectionInput.entries.label
