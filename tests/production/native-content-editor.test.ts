@@ -51,10 +51,11 @@ test('editor saves stage the same lifecycle revision later published by the work
 test('unchanged native scalar displays retain exact stored bytes and null through a real editor form', async () => {
   const h = await persistedRemotes({ persistedSessions: true, mutationsEnabled: true });
   try {
-    await h.registry.createField('post', { slug: 'detail', type: 'text' });
-    await h.registry.createField('post', { slug: 'optional', type: 'string' });
+    await h.registry.createField('post', { slug: 'detail', label: 'Detail', type: 'text' });
+    await h.registry.createField('post', { slug: 'optional', label: 'Optional', type: 'string' });
     const data = { title: 'Original\r\nTitle', detail: 'a\r\nb\rc\nd', optional: null };
     const created = (await h.mutate('createLifecycleContent', { collection: 'post', data: JSON.stringify(data) }))._.result;
+    const before = (await h.query('getLifecycleContent', { collection: 'post', id: created.id })).data;
     const response = await h.request(`/content/post/${created.id}`, 'author');
     const html = await response.text();
     assert.match(html, /id="field-title"/);
@@ -66,6 +67,8 @@ test('unchanged native scalar displays retain exact stored bytes and null throug
         slug: 'original-title', 'data.title': 'OriginalTitle', 'data.detail': 'a\r\nb\r\nc\r\nd', 'data.optional': ''
       }) });
     assert.equal(saved.status, 200);
-    assert.deepEqual((await h.query('getLifecycleContent', { collection: 'post', id: created.id })).data, data);
+    assert.deepEqual((await h.query('getLifecycleContent', { collection: 'post', id: created.id })).data, before);
+    const stored = await h.database.db.selectFrom('ec_post' as any).select('optional' as any).where('id' as any, '=', created.id).executeTakeFirstOrThrow();
+    assert.equal(stored.optional, null);
   } finally { await h.close(); }
 });
