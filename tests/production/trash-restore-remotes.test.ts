@@ -18,7 +18,7 @@ describe('registered trash queries and restore forms on persisted built Kit Serv
   beforeEach(async () => { h = await persistedRemotes(); });
   afterEach(async () => { await h.close(); });
   async function trashed(locale = 'en', session = 'author') {
-    const create = await h.mutate('createContent', { collection: 'notes', locale, data: JSON.stringify({ headline: `Retained ${locale}`, detail: 'Private retained body' }) }, session);
+    const create = await h.mutate('createContent', { collection: 'notes', locale, slug:'', data: JSON.stringify({ headline: `Retained ${locale}`, detail: 'Private retained body' }) }, session);
     const receipt = create._.result;
     const output = await h.mutate('deleteContent', { collection: 'notes', locale, id: receipt.id, _rev: receipt._rev }, session);
     const item = await h.query('getTrashedContent', { collection: 'notes', id: receipt.id });

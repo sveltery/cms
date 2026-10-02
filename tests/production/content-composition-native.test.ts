@@ -50,3 +50,20 @@ test('generic registered published trash/restore preserves staged data and rejec
   await f.restart();assert.equal((await f.query('getContent',key)).data.title,'Pending before trash');
  }finally{await f.close();}
 });
+test('generic save refreshes requested lifecycle entry and revision history queries',async()=>{
+ const f=await persistedRemotes({persistedSessions:true,mutationsEnabled:true});
+ try{
+  const service=lifecycleService(f.database,actor,{after:()=>{}});
+  const initial=await service.createContent({type:'post',data:{title:'Workflow before'},slug:'workflow-ordinary'});
+  const published=await service.publish({type:'post',id:initial.id});
+  const arg={collection:'post',id:initial.id,locale:'en'};
+  const {stringify}=await import('devalue');
+  const keys=['getLifecycleContent','listContentRevisions'].map(name=>`${f.ids.get(name)}/${Buffer.from(stringify(arg)).toString('base64url')}`);
+  const result=await f.mutateWithRefreshes('updateContent',{...arg,_rev:input(published)._rev,data:{title:'Workflow after'}},keys);
+  assert.ok(result.q[keys[0]].v,'requested lifecycle entry receives a refreshed value');
+  assert.ok(result.q[keys[1]].v,'requested history receives a refreshed value');
+  assert.equal(result.q[keys[0]].v.data.title,'Workflow after');
+  assert.equal(result.q[keys[0]].v._rev,result._.result._rev);
+  assert.ok(result.q[keys[1]].v.some((row:any)=>row.id===result.q[keys[0]].v.draftRevisionId));
+ }finally{await f.close();}
+});
