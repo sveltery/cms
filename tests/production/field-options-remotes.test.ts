@@ -89,6 +89,19 @@ for (const target of ['Node', 'D1'] as const) {
       const forms = [...html.matchAll(/<form[^>]*action="([^"]+)"[^>]*>([\s\S]*?)<\/form>/g)]
         .filter(form => form[1].includes(h.ids.get(remoteName)!));
       assert.equal(forms.length, 2);
+      const defaultTextarea = (form: string) => {
+        const match = form.match(/<textarea\b((?:"[^"]*"|'[^']*'|[^'">])*)>([\s\S]*?)<\/textarea>/);
+        assert.ok(match, 'native default metadata textarea');
+        assert.match(match[1], /\bname="defaultValue"/);
+        return { attributes: match[1], body: match[2] };
+      };
+      assert.equal(defaultTextarea(forms[0][2]).body, 'Original', 'stored default is native textarea content, not a value attribute');
+      assert.equal(defaultTextarea(forms[1][2]).body, '', 'omitted metadata default displays an empty string');
+      for (const form of forms) {
+        const textareaId = defaultTextarea(form[2]).attributes.match(/\bid="([^"]+)"/);
+        assert.ok(textareaId, 'textarea has an explicit unique control ID');
+        assert.ok(form[2].includes(`<label for="${textareaId[1]}"`), 'default label is explicitly associated with its textarea');
+      }
       const actions = forms.map(form => new URL(form[1].replaceAll('&amp;', '&'), `${h.origin}/schema/notes`));
       for (const [index, field] of ['title', 'body'].entries()) {
         assert.equal(actions[index].searchParams.get('/remote'), `${h.ids.get(remoteName)}/${JSON.stringify(`notes/${field}`)}`);
@@ -105,6 +118,18 @@ for (const target of ['Node', 'D1'] as const) {
       assert.match(invalidHtml, /aria-label="title options validation errors"/);
       assert.doesNotMatch(invalidHtml, /aria-label="body options validation errors"/);
       assert.deepEqual(await h.snapshot(), before);
+      for (const [submitted, encoded] of [['Submitted & <default>', 'Submitted &amp; &lt;default>'], ['', '']] as const) {
+        const response = await post(0, input({ labelMode: 'set', label: '', defaultValueMode: 'set', defaultValue: submitted }));
+        assert.equal(response.status, 200);
+        const responseHtml = await response.text();
+        const responseForms = [...responseHtml.matchAll(/<form[^>]*action="([^"]+)"[^>]*>([\s\S]*?)<\/form>/g)]
+          .filter(form => form[1].includes(h.ids.get(remoteName)!));
+        assert.equal(defaultTextarea(responseForms[0][2]).body, encoded, 'invalid native input remains in its own textarea, including empty strings');
+        assert.equal(defaultTextarea(responseForms[1][2]).body, '', 'invalid instance does not populate the other field');
+        assert.match(responseForms[0][2], /aria-label="title options validation errors"/);
+        assert.doesNotMatch(responseForms[1][2], /aria-label="body options validation errors"/);
+        assert.deepEqual(await h.snapshot(), before);
+      }
       const consecutive: Record<string, string>[] = [{ defaultValueMode: 'set', defaultValue: '' }, { validationMode: 'set', minLength: '', maxLength: '' }, { validationMode: 'clear' }];
       for (const value of consecutive) {
         const response = await post(1, input(value, 'body')); assert.equal(response.status, 200);

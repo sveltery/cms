@@ -26,7 +26,9 @@
     <select id={`${controlsId}-default-mode`} {...optionsForm.fields.defaultValueMode.as('select', 'keep')}>
       <option value="keep">Keep default metadata</option><option value="set">Set default metadata</option>
     </select>
-    <label>Metadata default value <textarea {...optionsForm.fields.defaultValue.as('text', field.defaultValue ?? '')}></textarea></label>
+    <label for={`${controlsId}-default-value`}>Metadata default value</label>
+    <textarea id={`${controlsId}-default-value`} {...optionsForm.fields.defaultValue.as('text', field.defaultValue ?? '')}
+      value={optionsForm.fields.defaultValue.value() ?? field.defaultValue ?? ''}></textarea>
     <p>Setting an empty default saves an empty string. Changing this default leaves existing content unchanged.</p>
     <label for={`${controlsId}-validation-mode`}>Validation update</label>
     <select id={`${controlsId}-validation-mode`} {...optionsForm.fields.validationMode.as('select', 'keep')}>
