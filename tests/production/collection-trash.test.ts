@@ -13,7 +13,7 @@ test('built trash routes preserve bounded all-locale summaries and disabled rest
     assert.match(html, /Trashed drafts/); // New route/table is the missing UI contract.
     assert.match(html, /Showing 50 deleted drafts across all locales\./);
     assert.equal((html.match(/<time /g) ?? []).length, 50);
-    const titles = fixture.expected.map(item => (item.data.title || item.slug || item.id).slice(0, 200));
+    const titles = fixture.expected.map(item => String(item.data.title || item.slug || item.id).slice(0, 200));
     for (const title of titles.slice(1)) assert.ok(html.includes(title));
     assert.match(html, /&lt;img src=x onerror=alert\(1\)> &amp; title/);
     assert.match(html, /<td[^>]*>fr<\/td>/);

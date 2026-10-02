@@ -249,16 +249,16 @@ test('unique flags remain metadata across collection/field underscore boundaries
   } finally { await database.close(); }
 });
 
-test('field length semantics preserve upstream JavaScript UTF-16 units for emoji and embedded NUL', async () => {
+test('field length semantics preserve pinned Unicode codepoints and embedded NUL', async () => {
   const f = await fixture();
   try {
     await f.schema.createField('posts', { slug: 'utf16', label: 'UTF16', type: 'text', validation: { minLength: 2, maxLength: 2 } });
-    const created = await f.service.createDraft({ type: 'posts', data: { utf16: '😀' } });
-    assert.equal(created.data.utf16, '😀');
+    const created = await f.service.createDraft({ type: 'posts', data: { utf16: '😀x' } });
+    assert.equal(created.data.utf16, '😀x');
     const withNul = await f.service.createDraft({ type: 'posts', data: { utf16: 'a\0' } });
     assert.equal(withNul.data.utf16, 'a\0');
     await assert.rejects(() => f.service.createDraft({ type: 'posts', data: { utf16: 'x' } }), invalid);
-    await assert.rejects(() => f.service.createDraft({ type: 'posts', data: { utf16: '😀x' } }), invalid);
+    await assert.rejects(() => f.service.createDraft({ type: 'posts', data: { utf16: '😀' } }), invalid);
   } finally { await f.database.close(); }
 });
 

@@ -1,0 +1,3272 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "runtime": "Node24.19.0",
+  "ports": [
+    {
+      "path": "packages/core/tests/unit/schema/registry.test.ts",
+      "category": "schema",
+      "stage": "first-schema",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "sourceSha256": "31121e7e6be3db373e0d2c09985e1e11e46115a750a26d085fd1c6c70933e7ee",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:37",
+          "title": "should create a collection",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 37,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L37",
+          "registration": "it",
+          "registrationSha256": "69d67cc1a6da543ce78dcbab68be486f67e45371fcadcd3e93af420a5581ae7e",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 45,
+              "expression": "expect(collection.slug).toBe(\"posts\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L45"
+            },
+            {
+              "line": 46,
+              "expression": "expect(collection.label).toBe(\"Blog Posts\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L46"
+            },
+            {
+              "line": 47,
+              "expression": "expect(collection.labelSingular).toBe(\"Post\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L47"
+            },
+            {
+              "line": 48,
+              "expression": "expect(collection.supports).toEqual([\"drafts\", \"revisions\"])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L48"
+            },
+            {
+              "line": 49,
+              "expression": "expect(collection.source).toBe(\"manual\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L49"
+            },
+            {
+              "line": 50,
+              "expression": "expect(collection.id).toBeDefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L50"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:53",
+          "title": "F14: defaults supports to ['drafts', 'revisions'] when undefined",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 53,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L53",
+          "registration": "it",
+          "registrationSha256": "d593d72c491a397ae94a701a3d2fabf9242ee69e8d2f0ba195af38346d188d6f",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 60,
+              "expression": "expect(collection.supports.toSorted()).toEqual([\"drafts\", \"revisions\"].toSorted())",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L60"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:63",
+          "title": "F14: preserves explicit empty supports array (opt-out)",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 63,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L63",
+          "registration": "it",
+          "registrationSha256": "903ab35dceca5728bed5e889ce2394b463d51a4d0b89b1899e5182210b4a6e38",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 70,
+              "expression": "expect(collection.supports).toEqual([])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L70"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:73",
+          "title": "defaults collections to routable and preserves explicit opt-out",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 73,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L73",
+          "registration": "it",
+          "registrationSha256": "29a2f9cb57dd177fafc277f8e0f194de2170fe440f09e5bcc142dacbad18aa6e",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 81,
+              "expression": "expect(routable.routable).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L81"
+            },
+            {
+              "line": 82,
+              "expression": "expect(internal.routable).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L82"
+            },
+            {
+              "line": 83,
+              "expression": "expect((await registry.updateCollection(\"blocks\", { routable: true })).routable).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L83"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:86",
+          "title": "should create the content table when creating a collection",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 86,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L86",
+          "registration": "it",
+          "registrationSha256": "2522c09f2f53d9e82d890b656aeb23b9b4cd92cdd2f4658022de7853dfcb919e",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 102,
+              "expression": "expect(result).toBeDefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L102"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:105",
+          "title": "rejects an unregistered content table with a structured conflict",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 105,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L105",
+          "registration": "it",
+          "registrationSha256": "4f131dc9aefdd24a8f08e58787fccdd1f1cc95296fd2921b83ff143d1e2eaff0",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 108,
+              "expression": "await expect(\n\t\t\t\tregistry.createCollection({ slug: \"orphaned\", label: \"Orphaned\" }),\n\t\t\t).rejects.toMatchObject({ code: \"COLLECTION_TABLE_ORPHANED\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L108"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:113",
+          "title": "should list collections",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 113,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L113",
+          "registration": "it",
+          "registrationSha256": "b7ed03cce784250ea575a684da1dea94f404d3713e40c6229a8810b6f4a41892",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 119,
+              "expression": "expect(collections).toHaveLength(2)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L119"
+            },
+            {
+              "line": 120,
+              "expression": "expect(collections.map((c) => c.slug)).toEqual([\"pages\", \"posts\"])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L120"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:124",
+          "title": "has no explicit order by default",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations",
+            "sidebar sort order"
+          ],
+          "line": 124,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L124",
+          "registration": "it",
+          "registrationSha256": "58647cfb3bacc761b011b9afc295e05a8f530cf03125b0ae807bcf70294860cb",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 127,
+              "expression": "expect(collection.sortOrder).toBeUndefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L127"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:130",
+          "title": "lists explicitly ordered collections first, then the rest alphabetically",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations",
+            "sidebar sort order"
+          ],
+          "line": 130,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L130",
+          "registration": "it",
+          "registrationSha256": "6c2d1c551beb3ddc81e418ee73fa42d4b52eaac4c838740c814ebc7dc9b97f20",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 141,
+              "expression": "expect(collections.map((c) => c.slug)).toEqual([\n\t\t\t\t\t\"projects\",\n\t\t\t\t\t\"positions\",\n\t\t\t\t\t\"certifications\",\n\t\t\t\t\t\"education\",\n\t\t\t\t])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L141"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:149",
+          "title": "applies the same order to listCollectionsWithFields (the manifest path)",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations",
+            "sidebar sort order"
+          ],
+          "line": 149,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L149",
+          "registration": "it",
+          "registrationSha256": "c4d16b190be245d385a6e2fbc26bc07392677446ec0e79cd314c4c68dad1b753",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 155,
+              "expression": "expect(collections.map((c) => c.slug)).toEqual([\"projects\", \"education\"])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L155"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:158",
+          "title": "reorderCollections assigns positions in the given order",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations",
+            "sidebar sort order"
+          ],
+          "line": 158,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L158",
+          "registration": "it",
+          "registrationSha256": "e56ac9b514e33ffce24a2f8e3bedb7dac4db5631d1e33a8f12f71d43fbb9dd47",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 166,
+              "expression": "expect(collections.map((c) => c.slug)).toEqual([\"posts\", \"authors\", \"pages\"])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L166"
+            },
+            {
+              "line": 167,
+              "expression": "expect(collections.map((c) => c.sortOrder)).toEqual([0, 1, 2])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L167"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:170",
+          "title": "reorderCollections clears the position of collections left out",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations",
+            "sidebar sort order"
+          ],
+          "line": 170,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L170",
+          "registration": "it",
+          "registrationSha256": "8bbb43ae49a939337c5c852b84cf4e909752fcf398c8d5f3507694d055dbfc22",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 179,
+              "expression": "expect(collections.map((c) => c.slug)).toEqual([\"pages\", \"posts\"])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L179"
+            },
+            {
+              "line": 180,
+              "expression": "expect(await registry.getCollection(\"posts\").then((c) => c?.sortOrder)).toBeUndefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L180"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:183",
+          "title": "reorderCollections rejects unknown slugs without touching the order",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations",
+            "sidebar sort order"
+          ],
+          "line": 183,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L183",
+          "registration": "it",
+          "registrationSha256": "1c91eca956e6c324cc72a0309bf0e8f3bc35d7df794051615c4d6362153452e9",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 187,
+              "expression": "await expect(registry.reorderCollections([\"posts\", \"ghosts\"])).rejects.toThrow(SchemaError)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L187"
+            },
+            {
+              "line": 190,
+              "expression": "expect(collections.map((c) => c.sortOrder)).toEqual([undefined, undefined])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L190"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:193",
+          "title": "reorderCollections rejects duplicate slugs",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations",
+            "sidebar sort order"
+          ],
+          "line": 193,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L193",
+          "registration": "it",
+          "registrationSha256": "a6f2611074271e9e9c150ccba544d30d5f831022e9c6fb8624e337eeb17b013d",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 196,
+              "expression": "await expect(registry.reorderCollections([\"posts\", \"posts\"])).rejects.toThrow(SchemaError)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L196"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:199",
+          "title": "update preserves the position when sortOrder is omitted, and clears it on null",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations",
+            "sidebar sort order"
+          ],
+          "line": 199,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L199",
+          "registration": "it",
+          "registrationSha256": "1881a6165e9ec4546c98ea4e2363c4bafd293e516a79b73e09ed6338f08d0754",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 202,
+              "expression": "expect((await registry.updateCollection(\"posts\", { label: \"Blog\" })).sortOrder).toBe(3)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L202"
+            },
+            {
+              "line": 203,
+              "expression": "expect((await registry.updateCollection(\"posts\", { sortOrder: null })).sortOrder).toBe(\n\t\t\t\t\tundefined,\n\t\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L203"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:208",
+          "title": "rejects `reorder` as a collection slug (shadowed by the reorder route)",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations",
+            "sidebar sort order"
+          ],
+          "line": 208,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L208",
+          "registration": "it",
+          "registrationSha256": "b9ef69fdc548ec2accedcbf916774ff356dec954797ec538ef33b9068966db72",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 209,
+              "expression": "await expect(\n\t\t\t\t\tregistry.createCollection({ slug: \"reorder\", label: \"Reorder\" }),\n\t\t\t\t).rejects.toThrow(SchemaError)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L209"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:215",
+          "title": "should get a collection by slug",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 215,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L215",
+          "registration": "it",
+          "registrationSha256": "90bf7ab292a168a9b979a00d8a3e36a18676228e2c5b7b3554a0a3a0c7186729",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 224,
+              "expression": "expect(collection).not.toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L224"
+            },
+            {
+              "line": 225,
+              "expression": "expect(collection?.slug).toBe(\"products\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L225"
+            },
+            {
+              "line": 226,
+              "expression": "expect(collection?.description).toBe(\"Store products\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L226"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:229",
+          "title": "should return null for non-existent collection",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 229,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L229",
+          "registration": "it",
+          "registrationSha256": "5c1949ba9248fef7cc6aa5c4286936aa67b8bd459ac9cd0d5fb2bcebf6876c10",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 231,
+              "expression": "expect(collection).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L231"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:234",
+          "title": "should update a collection",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 234,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L234",
+          "registration": "it",
+          "registrationSha256": "a822a0414dd54461418ba09fc9ffb76dac8c80c8444fd15585b8b0a1815f2d45",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 243,
+              "expression": "expect(updated.label).toBe(\"Blog Posts\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L243"
+            },
+            {
+              "line": 244,
+              "expression": "expect(updated.description).toBe(\"All blog posts\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L244"
+            },
+            {
+              "line": 245,
+              "expression": "expect(updated.supports).toEqual([\"drafts\"])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L245"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:248",
+          "title": "touches updatedAt for an empty update",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 248,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L248",
+          "registration": "it",
+          "registrationSha256": "b73731135bfe1436d57de9f9752913a11f4b21dbcf2fdf06cf411638c9b0532e",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 258,
+              "expression": "expect(updated.updatedAt).not.toBe(\"2000-01-01T00:00:00.000Z\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L258"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:261",
+          "title": "collections are visible in the sidebar by default",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 261,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L261",
+          "registration": "it",
+          "registrationSha256": "99808623ab1fa12b61f48d52a37559600d21b270f821a45dba43c7b1a7ac1787",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 264,
+              "expression": "expect(collection.hidden).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L264"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:267",
+          "title": "creates a collection hidden from the sidebar",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 267,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L267",
+          "registration": "it",
+          "registrationSha256": "787bd43500b46927b1a2861518ea28e925cbff6b234f2d9129b794337bf47d69",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 274,
+              "expression": "expect(collection.hidden).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L274"
+            },
+            {
+              "line": 279,
+              "expression": "expect(listed.map((c) => c.slug)).toContain(\"contact_submissions\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L279"
+            },
+            {
+              "line": 280,
+              "expression": "expect(await registry.getCollection(\"contact_submissions\")).not.toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L280"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:283",
+          "title": "toggles hidden on an existing collection",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 283,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L283",
+          "registration": "it",
+          "registrationSha256": "1d8c1e7c2c001962674a026374c43093a42c2abc52d8957f8a5e12703e4468ae",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 286,
+              "expression": "expect((await registry.updateCollection(\"posts\", { hidden: true })).hidden).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L286"
+            },
+            {
+              "line": 287,
+              "expression": "expect((await registry.updateCollection(\"posts\", { hidden: false })).hidden).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L287"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:290",
+          "title": "preserves hidden when an update omits it",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 290,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L290",
+          "registration": "it",
+          "registrationSha256": "6e26d4506c83836cc6375ad02ce3a845c782101f61b85154cc31cc96c3e2dcbb",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 295,
+              "expression": "expect(updated.label).toBe(\"Blog Posts\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L295"
+            },
+            {
+              "line": 296,
+              "expression": "expect(updated.hidden).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L296"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:299",
+          "title": "groups a collection into a sidebar folder and moves it back inline",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 299,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L299",
+          "registration": "it",
+          "registrationSha256": "9d614b498ec438845cb0418e1b32897eab99fc8e70b2ca75bd76c82fa7932580",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 305,
+              "expression": "expect(created.group).toBe(\"Calendar\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L305"
+            },
+            {
+              "line": 308,
+              "expression": "expect(relabeled.group).toBe(\"Calendar\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L308"
+            },
+            {
+              "line": 311,
+              "expression": "expect(inline.group).toBeUndefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L311"
+            },
+            {
+              "line": 314,
+              "expression": "expect(blank.group).toBeUndefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L314"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:317",
+          "title": "clears a collection icon with an empty string",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 317,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L317",
+          "registration": "it",
+          "registrationSha256": "0ce2d68c8eb6354da6cafbf0aef8513929837dcf556654d1817eee4b444e7535",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 320,
+              "expression": "expect(cleared.icon).toBeUndefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L320"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:323",
+          "title": "persists collection admin list columns",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 323,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L323",
+          "registration": "it",
+          "registrationSha256": "43d1842c072c3b32f0f80da32a670a01b30f9dcf40da513beb664bcbc4ffbdde",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 330,
+              "expression": "expect(created.admin?.listColumns).toEqual([\"ticket_number\", \"priority\"])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L330"
+            },
+            {
+              "line": 333,
+              "expression": "expect(updated.admin?.listColumns).toEqual([\"ticket_number\", \"priority\"])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L333"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:336",
+          "title": "should throw when updating non-existent collection",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 336,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L336",
+          "registration": "it",
+          "registrationSha256": "e68cc12b9462bf6f3500f6217cedf47c1ad3ae3ed074c50a32f1ba1baad82ede",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 337,
+              "expression": "await expect(registry.updateCollection(\"nonexistent\", { label: \"Test\" })).rejects.toThrow(\n\t\t\t\tSchemaError,\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L337"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:342",
+          "title": "should delete a collection",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 342,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L342",
+          "registration": "it",
+          "registrationSha256": "2b946b5ea02c2581981167f0b442b18cd30af1f4c60d59f574482fc64d536470",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 348,
+              "expression": "expect(collection).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L348"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:351",
+          "title": "should throw when creating duplicate collection",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 351,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L351",
+          "registration": "it",
+          "registrationSha256": "44ecb31d1b0f1240fa4c13d3ec497116f71908394c0625930c231543dab79c22",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 354,
+              "expression": "await expect(registry.createCollection({ slug: \"posts\", label: \"Posts 2\" })).rejects.toThrow(\n\t\t\t\tSchemaError,\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L354"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:359",
+          "title": "should reject reserved collection slugs",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 359,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L359",
+          "registration": "it",
+          "registrationSha256": "b78126cf371073089231919e01e3ebdafed3c301a3bfc37c34d02df718340347",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 360,
+              "expression": "await expect(\n\t\t\t\tregistry.createCollection({ slug: \"content\", label: \"Content\" }),\n\t\t\t).rejects.toThrow(SchemaError)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L360"
+            },
+            {
+              "line": 364,
+              "expression": "await expect(registry.createCollection({ slug: \"users\", label: \"Users\" })).rejects.toThrow(\n\t\t\t\tSchemaError,\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L364"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:369",
+          "title": "should validate collection slug format",
+          "suites": [
+            "SchemaRegistry",
+            "Collection Operations"
+          ],
+          "line": 369,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L369",
+          "registration": "it",
+          "registrationSha256": "fba1b50a2989b212dc60cd90ab764eee37bccd78906e81bd70534ba0912df18e",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 370,
+              "expression": "await expect(registry.createCollection({ slug: \"My Posts\", label: \"Posts\" })).rejects.toThrow(\n\t\t\t\tSchemaError,\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L370"
+            },
+            {
+              "line": 374,
+              "expression": "await expect(registry.createCollection({ slug: \"123posts\", label: \"Posts\" })).rejects.toThrow(\n\t\t\t\tSchemaError,\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L374"
+            },
+            {
+              "line": 378,
+              "expression": "await expect(\n\t\t\t\tregistry.createCollection({ slug: \"posts-here\", label: \"Posts\" }),\n\t\t\t).rejects.toThrow(SchemaError)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L378"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:385",
+          "title": "preserves unsupported stored field types instead of treating them as strings",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 385,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L385",
+          "registration": "it",
+          "registrationSha256": "18182cce027b3adfc60c3f9c8c2f82cf2ffe24f38da4d12ee0c5f58575042c1d",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 399,
+              "expression": "expect(field?.unsupportedType).toEqual({\n\t\t\t\ttype: \"future_blocks\",\n\t\t\t\tpath: \"type\",\n\t\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L399"
+            },
+            {
+              "line": 403,
+              "expression": "await expect(\n\t\t\t\tregistry.updateField(\"posts\", \"future\", { label: \"Changed\" }),\n\t\t\t).rejects.toMatchObject({ code: \"UNSUPPORTED_FIELD_TYPE\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L403"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:408",
+          "title": "preserves unsupported stored repeater sub-field types",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 408,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L408",
+          "registration": "it",
+          "registrationSha256": "e1d87867c5499ed8fc9495be615e578e590f29d52f853fa80e93fc857d3079e8",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 429,
+              "expression": "expect(field?.unsupportedType).toEqual({\n\t\t\t\ttype: \"future_nested\",\n\t\t\t\tpath: \"validation.subFields[0].type\",\n\t\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L429"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:439",
+          "title": "should create a field",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 439,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L439",
+          "registration": "it",
+          "registrationSha256": "b40c360f79ef445f3316cbe53101e4771c370af785173b5a9dba94a87f53187e",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 447,
+              "expression": "expect(field.slug).toBe(\"title\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L447"
+            },
+            {
+              "line": 448,
+              "expression": "expect(field.label).toBe(\"Title\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L448"
+            },
+            {
+              "line": 449,
+              "expression": "expect(field.type).toBe(\"string\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L449"
+            },
+            {
+              "line": 450,
+              "expression": "expect(field.columnType).toBe(\"TEXT\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L450"
+            },
+            {
+              "line": 451,
+              "expression": "expect(field.required).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L451"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:454",
+          "title": "keeps an indexed field's physical index in sync",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 454,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L454",
+          "registration": "it",
+          "registrationSha256": "c4b6ac8a9f7b7c6961e9311c9e9aab98fb1427a1ac0a7a4125c76be26bd2b450",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 473,
+              "expression": "expect(field.indexed).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L473"
+            },
+            {
+              "line": 474,
+              "expression": "expect(await listFieldIndexes()).toHaveLength(2)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L474"
+            },
+            {
+              "line": 477,
+              "expression": "expect(await listFieldIndexes()).toHaveLength(0)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L477"
+            },
+            {
+              "line": 480,
+              "expression": "expect(await listFieldIndexes()).toHaveLength(2)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L480"
+            },
+            {
+              "line": 483,
+              "expression": "expect(await listFieldIndexes()).toHaveLength(0)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L483"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:486",
+          "title": "keeps metadata and its physical index aligned when indexed changes from %s to %s during concurrent updates",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 486,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L486",
+          "registration": "it.each([\n\t\t\t[true, false],\n\t\t\t[false, true],\n\t\t] as const)",
+          "registrationSha256": "4d65811437a578d2d8c35c7b2b96420c918c53c5911cd7b306b947667af0871b",
+          "expansion": [
+            {
+              "line": 486,
+              "registration": "it.each([\n\t\t\t[true, false],\n\t\t\t[false, true],\n\t\t] as const)",
+              "dataset": "it.each([\n\t\t\t[true, false],\n\t\t\t[false, true],\n\t\t] as const)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 511,
+              "expression": "expect(updated).toMatchObject({ label: \"Updated priority\", indexed: nextIndexed })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L511"
+            },
+            {
+              "line": 512,
+              "expression": "expect(indexes.rows).toHaveLength(nextIndexed ? 2 : 0)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L512"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:516",
+          "title": "drops the index when an indexed field moves to a type that cannot carry one",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 516,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L516",
+          "registration": "it",
+          "registrationSha256": "150eab0e2a7e173a16e0d81c45939f453b877c9ec54f01d5a578500055585638",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 524,
+              "expression": "await expect(\n\t\t\t\tregistry.updateField(\"posts\", \"summary\", { type: \"text\" }),\n\t\t\t).rejects.toMatchObject({ code: \"FIELD_NOT_INDEXABLE\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L524"
+            },
+            {
+              "line": 533,
+              "expression": "expect(updated.type).toBe(\"text\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L533"
+            },
+            {
+              "line": 534,
+              "expression": "expect(updated.indexed).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L534"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:537",
+          "title": "reuses an existing generated index when enabling indexed metadata",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 537,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L537",
+          "registration": "it",
+          "registrationSha256": "b9007d0bb32badf7606f6b69db7936a26b1d10edc2b74c91a14e9599e5be6219",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 552,
+              "expression": "await expect(\n\t\t\t\tregistry.updateField(\"posts\", \"priority\", { indexed: true }),\n\t\t\t).resolves.toMatchObject({ indexed: true })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L552"
+            },
+            {
+              "line": 560,
+              "expression": "expect(indexes.rows.map((row) => row.name).toSorted()).toEqual(\n\t\t\t\t[indexName, localeIndexName].toSorted(),\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L560"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:565",
+          "title": "uses the generated index for indexed custom field ordering",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 565,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L565",
+          "registration": "it",
+          "registrationSha256": "552ce37b6f43197e24c1228018589182f9623d1ba2e9a8f7b4a2ca3ad448aa26",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 594,
+              "expression": "expect(details).toContain(`USING INDEX ${localeIndexName}`)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L594"
+            },
+            {
+              "line": 595,
+              "expression": "expect(details).not.toContain(\"USE TEMP B-TREE\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L595"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:599",
+          "title": "rejects indexes for non-scalar fields",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 599,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L599",
+          "registration": "it",
+          "registrationSha256": "85b9a45ca4ad34ddf5c62eb6e6beb37d74e00c2f9b191676642a4027b5ecba57",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 600,
+              "expression": "await expect(\n\t\t\t\tregistry.createField(\"posts\", {\n\t\t\t\t\tslug: \"body\",\n\t\t\t\t\tlabel: \"Body\",\n\t\t\t\t\ttype: \"portableText\",\n\t\t\t\t\tindexed: true,\n\t\t\t\t}),\n\t\t\t).rejects.toMatchObject({ code: \"FIELD_NOT_INDEXABLE\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L600"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:610",
+          "title": "should add column to content table when creating field",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 610,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L610",
+          "registration": "it",
+          "registrationSha256": "b425c9b6789a5609169bd2f6ce88816fd4b601c055849be3f368a47e2322af6f",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 631,
+              "expression": "expect((row as any).title).toBe(\"Test Title\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L631"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:634",
+          "title": "should list fields for a collection",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 634,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L634",
+          "registration": "it",
+          "registrationSha256": "1c494108f7f4547105e0bbedfcb4a7ea2fc4b3595128a4cbcad491d107078dcd",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 649,
+              "expression": "expect(fields).toHaveLength(2)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L649"
+            },
+            {
+              "line": 650,
+              "expression": "expect(fields[0].slug).toBe(\"title\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L650"
+            },
+            {
+              "line": 651,
+              "expression": "expect(fields[1].slug).toBe(\"content\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L651"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:654",
+          "title": "should get a field by slug",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 654,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L654",
+          "registration": "it",
+          "registrationSha256": "5b09eb5bf4bbf088f7dbe77e0557a0eea742d39d07f2c4ca88bd3d17a6856009",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 664,
+              "expression": "expect(field).not.toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L664"
+            },
+            {
+              "line": 665,
+              "expression": "expect(field?.validation).toEqual({ minLength: 1, maxLength: 100 })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L665"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:668",
+          "title": "should update a field",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 668,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L668",
+          "registration": "it",
+          "registrationSha256": "56878b0b86becb5092c7e459a994c5b2cb629a5cc2fc7e7de6b4b96539a9a06d",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 681,
+              "expression": "expect(updated.label).toBe(\"Post Title\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L681"
+            },
+            {
+              "line": 682,
+              "expression": "expect(updated.sortOrder).toBe(3)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L682"
+            },
+            {
+              "line": 683,
+              "expression": "expect(updated.widget).toBe(\"text\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L683"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:686",
+          "title": "updates a field type when the column affinity is unchanged (#1397)",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 686,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L686",
+          "registration": "it",
+          "registrationSha256": "50f43ce12ebd3338f12c0b1a3eefc9512b1d58c74d026c51174aaf9866409c3e",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 696,
+              "expression": "expect(updated.type).toBe(\"slug\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L696"
+            },
+            {
+              "line": 697,
+              "expression": "expect(updated.columnType).toBe(\"TEXT\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L697"
+            },
+            {
+              "line": 701,
+              "expression": "expect(reread?.type).toBe(\"slug\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L701"
+            },
+            {
+              "line": 702,
+              "expression": "expect(reread?.columnType).toBe(\"TEXT\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L702"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:705",
+          "title": "rejects a field type change that would alter the column type (#1397)",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 705,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L705",
+          "registration": "it",
+          "registrationSha256": "028bcfef5dbe52318d43072e5dc91adf95537b547066a6ffa54dfc0d4d6cf72c",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 715,
+              "expression": "await expect(registry.updateField(\"posts\", \"body\", { type: \"portableText\" })).rejects.toThrow(\n\t\t\t\tSchemaError,\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L715"
+            },
+            {
+              "line": 721,
+              "expression": "expect(field?.type).toBe(\"text\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L721"
+            },
+            {
+              "line": 722,
+              "expression": "expect(field?.columnType).toBe(\"TEXT\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L722"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:725",
+          "title": "should delete a field",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 725,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L725",
+          "registration": "it",
+          "registrationSha256": "4f3d7bd522bf5df75f93911fffce8a97e18e8af855ff10d4757df9bc154cc8ad",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 735,
+              "expression": "expect(field).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L735"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:738",
+          "title": "should reject reserved field slugs",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 738,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L738",
+          "registration": "it",
+          "registrationSha256": "bd76a33b523c05cea067042ee35842af83846dca145eb0b01bf386eb7f549803",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 739,
+              "expression": "await expect(\n\t\t\t\tregistry.createField(\"posts\", {\n\t\t\t\t\tslug: \"id\",\n\t\t\t\t\tlabel: \"ID\",\n\t\t\t\t\ttype: \"string\",\n\t\t\t\t}),\n\t\t\t).rejects.toThrow(SchemaError)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L739"
+            },
+            {
+              "line": 747,
+              "expression": "await expect(\n\t\t\t\tregistry.createField(\"posts\", {\n\t\t\t\t\tslug: \"created_at\",\n\t\t\t\t\tlabel: \"Created\",\n\t\t\t\t\ttype: \"datetime\",\n\t\t\t\t}),\n\t\t\t).rejects.toThrow(SchemaError)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L747"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:756",
+          "title": "should map field types to correct column types",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 756,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L756",
+          "registration": "it",
+          "registrationSha256": "039aec1c07e419509d90e352e2c463a22e6f08800820e435587160680f0d37ff",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 776,
+              "expression": "expect(field.columnType).toBe(expected)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L776"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:780",
+          "title": "should reorder fields",
+          "suites": [
+            "SchemaRegistry",
+            "Field Operations"
+          ],
+          "line": 780,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L780",
+          "registration": "it",
+          "registrationSha256": "4339636f330e45c14b72d659aa0253dd9876a67487ca83b8b163d4de54822c42",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 802,
+              "expression": "expect(fields[0].slug).toBe(\"author\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L802"
+            },
+            {
+              "line": 803,
+              "expression": "expect(fields[1].slug).toBe(\"title\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L803"
+            },
+            {
+              "line": 804,
+              "expression": "expect(fields[2].slug).toBe(\"content\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L804"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:809",
+          "title": "should get collection with all fields",
+          "suites": [
+            "SchemaRegistry",
+            "Collection with Fields"
+          ],
+          "line": 809,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L809",
+          "registration": "it",
+          "registrationSha256": "4b1d9c8ca9818413847a068fe9e0a4c73889d0aa7ff02ffca1d68d033551fa26",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 824,
+              "expression": "expect(collection).not.toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L824"
+            },
+            {
+              "line": 825,
+              "expression": "expect(collection?.slug).toBe(\"posts\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L825"
+            },
+            {
+              "line": 826,
+              "expression": "expect(collection?.fields).toHaveLength(2)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L826"
+            },
+            {
+              "line": 827,
+              "expression": "expect(collection?.fields[0].slug).toBe(\"title\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L827"
+            },
+            {
+              "line": 828,
+              "expression": "expect(collection?.fields[1].slug).toBe(\"content\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L828"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:831",
+          "title": "should cascade delete fields when deleting collection",
+          "suites": [
+            "SchemaRegistry",
+            "Collection with Fields"
+          ],
+          "line": 831,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L831",
+          "registration": "it",
+          "registrationSha256": "e436eaa9f6d1bdf0c911fac7875d09453d356dfaf0f4d8e96daafec0a4c910bb",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 843,
+              "expression": "expect(field).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts#L843"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": [],
+      "local": "tests/full-schema-registry-upstream.test.ts",
+      "scope": "53 non-FTS declarations, 111 assertion expressions, 54 Node cases; 14 remaining declarations deferred"
+    },
+    {
+      "path": "packages/core/tests/unit/schema/zod-generator.test.ts",
+      "category": "schema",
+      "stage": "first-schema",
+      "sourceBlob": "1b4b06c55e2ff1fa41079709b5f4b82e1cd6bd4e",
+      "sourceSha256": "c5643e94f29302d3ce1d5e426684486ad3ef9493dc9507124526c599d6558c5a",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:21",
+          "title": "should generate string schema",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 21,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L21",
+          "registration": "it",
+          "registrationSha256": "e5e067665ea4124d6a0d2996b2e41085ef6e3ba2f7509bf6fe02ffcfa5358dba",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 36,
+              "expression": "expect(schema.parse(\"Hello\")).toBe(\"Hello\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L36"
+            },
+            {
+              "line": 37,
+              "expression": "expect(() => schema.parse(123)).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L37"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:40",
+          "title": "should generate number schema",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 40,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L40",
+          "registration": "it",
+          "registrationSha256": "6f97841c808483632888465e39f9437fe6692c8c1a5a538899ae2b9e294987d3",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 55,
+              "expression": "expect(schema.parse(99.99)).toBe(99.99)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L55"
+            },
+            {
+              "line": 56,
+              "expression": "expect(() => schema.parse(\"not a number\")).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L56"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:59",
+          "title": "should generate integer schema",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 59,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L59",
+          "registration": "it",
+          "registrationSha256": "58473172caa10d138d4aaa2b9ff63b3703b3c9b352d7d6a0e4751f4f14449309",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 74,
+              "expression": "expect(schema.parse(42)).toBe(42)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L74"
+            },
+            {
+              "line": 75,
+              "expression": "expect(() => schema.parse(3.14)).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L75"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:78",
+          "title": "should generate boolean schema",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 78,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L78",
+          "registration": "it",
+          "registrationSha256": "5ba3068a8fe6e3b7b04c1098ac63be879555c62b7b779c0aba1a24457d843098",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 93,
+              "expression": "expect(schema.parse(true)).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L93"
+            },
+            {
+              "line": 94,
+              "expression": "expect(schema.parse(false)).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L94"
+            },
+            {
+              "line": 95,
+              "expression": "expect(() => schema.parse(\"yes\")).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L95"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:98",
+          "title": "should coerce stored 0/1 booleans to real booleans",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 98,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L98",
+          "registration": "it",
+          "registrationSha256": "e97944ef5e67901515db31a69ec26c229c0b123bac7324cca10a5298d830570d",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 119,
+              "expression": "expect(schema.parse(0)).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L119"
+            },
+            {
+              "line": 120,
+              "expression": "expect(schema.parse(1)).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L120"
+            },
+            {
+              "line": 122,
+              "expression": "expect(() => schema.parse(2)).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L122"
+            },
+            {
+              "line": 123,
+              "expression": "expect(() => schema.parse(-1)).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L123"
+            },
+            {
+              "line": 125,
+              "expression": "expect(() => schema.parse(\"0\")).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L125"
+            },
+            {
+              "line": 126,
+              "expression": "expect(() => schema.parse(\"true\")).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L126"
+            },
+            {
+              "line": 130,
+              "expression": "expect(() => schema.parse(BigInt(0))).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L130"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:133",
+          "title": "should preserve `.default(false)` chaining through the boolean preprocess",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 133,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L133",
+          "registration": "it",
+          "registrationSha256": "ce31d0ba43e43e415ec1c2e8f0439a0130b810eb3b18046364577c28d171b9d9",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 150,
+              "expression": "expect(schema.parse(undefined)).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L150"
+            },
+            {
+              "line": 152,
+              "expression": "expect(schema.parse(1)).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L152"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:155",
+          "title": "should accept stored 0/1 booleans in partial-mode validation",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 155,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L155",
+          "registration": "it",
+          "registrationSha256": "38d5ca3d1471ed2daa66353c9bb24c996264726ec6c486871c2f445eb999d5ea",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 182,
+              "expression": "expect(schema.parse({ active: 0 })).toEqual({ active: false })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L182"
+            },
+            {
+              "line": 183,
+              "expression": "expect(schema.parse({ active: 1 })).toEqual({ active: true })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L183"
+            },
+            {
+              "line": 184,
+              "expression": "expect(schema.parse({})).toEqual({})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L184"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:187",
+          "title": "should generate url schema",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 187,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L187",
+          "registration": "it",
+          "registrationSha256": "e8dcbf44faa055c1c58806e2969b1b8f06314fd07c9acf13efb7ca1dbcfe5128",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 202,
+              "expression": "expect(schema.parse(\"https://example.com\")).toBe(\"https://example.com\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L202"
+            },
+            {
+              "line": 203,
+              "expression": "expect(schema.parse(\"http://localhost:3000/path\")).toBe(\"http://localhost:3000/path\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L203"
+            },
+            {
+              "line": 204,
+              "expression": "expect(schema.parse(\"mailto:hello@example.com\")).toBe(\"mailto:hello@example.com\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L204"
+            },
+            {
+              "line": 205,
+              "expression": "expect(schema.parse(\"tel:+15550100\")).toBe(\"tel:+15550100\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L205"
+            },
+            {
+              "line": 206,
+              "expression": "expect(schema.parse(\"/about\")).toBe(\"/about\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L206"
+            },
+            {
+              "line": 207,
+              "expression": "expect(schema.parse(\"#section\")).toBe(\"#section\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L207"
+            },
+            {
+              "line": 208,
+              "expression": "expect(() => schema.parse(\"not-a-url\")).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L208"
+            },
+            {
+              "line": 209,
+              "expression": "expect(() => schema.parse(\"https://\")).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L209"
+            },
+            {
+              "line": 210,
+              "expression": "expect(() => schema.parse(123)).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L210"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:213",
+          "title": "rejects url field value %j",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 213,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L213",
+          "registration": "it.each([\n\t\t\t\"javascript:alert(1)\",\n\t\t\t\"JAVASCRIPT:alert(1)\",\n\t\t\t\"data:text/html,<script>alert(1)</script>\",\n\t\t\t\"vbscript:msgbox(1)\",\n\t\t\t\"//evil.example\",\n\t\t\t\"ftp://files.example/file\",\n\t\t])",
+          "registrationSha256": "9836c8ee37df5d247bef5e8ce815ee9d34b500c39e436533e198363a08188445",
+          "expansion": [
+            {
+              "line": 213,
+              "registration": "it.each([\n\t\t\t\"javascript:alert(1)\",\n\t\t\t\"JAVASCRIPT:alert(1)\",\n\t\t\t\"data:text/html,<script>alert(1)</script>\",\n\t\t\t\"vbscript:msgbox(1)\",\n\t\t\t\"//evil.example\",\n\t\t\t\"ftp://files.example/file\",\n\t\t])",
+              "dataset": "it.each([\n\t\t\t\"javascript:alert(1)\",\n\t\t\t\"JAVASCRIPT:alert(1)\",\n\t\t\t\"data:text/html,<script>alert(1)</script>\",\n\t\t\t\"vbscript:msgbox(1)\",\n\t\t\t\"//evil.example\",\n\t\t\t\"ftp://files.example/file\",\n\t\t])"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 234,
+              "expression": "expect(generateFieldSchema(field).safeParse(value).success).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L234"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:237",
+          "title": "applies custom string validation to url fields",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 237,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L237",
+          "registration": "it",
+          "registrationSha256": "21339e5d2d036483fb43cdc161451f4004c87d9679c5a23a3b24b935e67300b9",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 256,
+              "expression": "expect(schema.safeParse(\"https://allowed.example/path\").success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L256"
+            },
+            {
+              "line": 257,
+              "expression": "expect(schema.safeParse(\"https://allowed.example/a-very-long-path\").success).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L257"
+            },
+            {
+              "line": 258,
+              "expression": "expect(schema.safeParse(\"https://other.example/path\").success).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L258"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:261",
+          "title": "should generate select schema with options",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 261,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L261",
+          "registration": "it",
+          "registrationSha256": "a2e6c1c388c8bd27fc5ae7612972439a10ab245f8ede14a614f348f2f2193d6e",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 277,
+              "expression": "expect(schema.parse(\"draft\")).toBe(\"draft\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L277"
+            },
+            {
+              "line": 278,
+              "expression": "expect(() => schema.parse(\"invalid\")).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L278"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:281",
+          "title": "should generate multiSelect schema",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 281,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L281",
+          "registration": "it",
+          "registrationSha256": "94c491d5487c72d683d427e7deb63fd2cc724a51298f807964a70e98fd0f8ee5",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 297,
+              "expression": "expect(schema.parse([\"news\", \"featured\"])).toEqual([\"news\", \"featured\"])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L297"
+            },
+            {
+              "line": 298,
+              "expression": "expect(() => schema.parse([\"invalid\"])).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L298"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:301",
+          "title": "should generate portableText schema",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 301,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L301",
+          "registration": "it",
+          "registrationSha256": "bff6f8ecc206033cc7727c267ad3e61a4124c2b9d724da05e775106227d88b25",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 317,
+              "expression": "expect(schema.parse(validContent)).toEqual(validContent)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L317"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:320",
+          "title": "should generate image schema",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 320,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L320",
+          "registration": "it",
+          "registrationSha256": "6cb226093404eab7d155a8957743f3f755fd8032cf0cc2f369e9e592064b980b",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 349,
+              "expression": "expect(schema.parse(validImage)).toEqual(validImage)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L349"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:352",
+          "title": "accepts a dark variant on an image field and rejects a malformed one",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 352,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L352",
+          "registration": "it",
+          "registrationSha256": "2d658ce26b1ec2f55c7abacf4889c6d443dcb3dc189b7a6754911a5dbdd61264",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 372,
+              "expression": "expect(schema.parse(withVariant)).toEqual(withVariant)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L372"
+            },
+            {
+              "line": 373,
+              "expression": "expect(\n\t\t\t\tschema.safeParse({ id: \"img-light\", darkVariant: { provider: \"local\" } }).success,\n\t\t\t).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L373"
+            },
+            {
+              "line": 376,
+              "expression": "expect(schema.safeParse({ id: \"img-light\", darkVariant: \"img-dark\" }).success).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L376"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:379",
+          "title": "should make field optional when required is false",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 379,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L379",
+          "registration": "it",
+          "registrationSha256": "1a3cb76db12bc66aef6b06446c0c2091eba172b3df500fb4e22f32fa64f65e56",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 394,
+              "expression": "expect(schema.parse(undefined)).toBe(undefined)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L394"
+            },
+            {
+              "line": 395,
+              "expression": "expect(schema.parse(\"Hello\")).toBe(\"Hello\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L395"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:398",
+          "title": "should apply default value",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 398,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L398",
+          "registration": "it",
+          "registrationSha256": "2f300743049423355451c2163810ca054e76dc72ac245ba74d733b73b85cb6bf",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 414,
+              "expression": "expect(schema.parse(undefined)).toBe(\"draft\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L414"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:417",
+          "title": "should apply string validation rules",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 417,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L417",
+          "registration": "it",
+          "registrationSha256": "c64b6501c9d92a2f6bbb6870dc5dcb87679512596a31e073c1846182f28436a0",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 433,
+              "expression": "expect(() => schema.parse(\"ab\")).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L433"
+            },
+            {
+              "line": 434,
+              "expression": "expect(schema.parse(\"abc\")).toBe(\"abc\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L434"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:437",
+          "title": "should apply number validation rules",
+          "suites": [
+            "Zod Generator",
+            "generateFieldSchema"
+          ],
+          "line": 437,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L437",
+          "registration": "it",
+          "registrationSha256": "0acb2b778b6a731267b21bcf82f71cab54e759df9251fece76b42b75a374f0f3",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 453,
+              "expression": "expect(() => schema.parse(-1)).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L453"
+            },
+            {
+              "line": 454,
+              "expression": "expect(() => schema.parse(1001)).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L454"
+            },
+            {
+              "line": 455,
+              "expression": "expect(schema.parse(500)).toBe(500)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L455"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:460",
+          "title": "should generate schema for collection with multiple fields",
+          "suites": [
+            "Zod Generator",
+            "generateZodSchema"
+          ],
+          "line": 460,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L460",
+          "registration": "it",
+          "registrationSha256": "348867b48f5063f0b5470461002907176060854f9d0f78d78ade4224367b6b06",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 517,
+              "expression": "expect(result.title).toBe(\"Hello World\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L517"
+            },
+            {
+              "line": 518,
+              "expression": "expect(result.views).toBe(0)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L518"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:560",
+          "title": "should return success for valid data",
+          "suites": [
+            "Zod Generator",
+            "validateContent"
+          ],
+          "line": 560,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L560",
+          "registration": "it",
+          "registrationSha256": "d97b17c2d3b1fc41f57750942d6cb716f0e25be04838ff5ce96c3dac9e52e349",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 566,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L566"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:569",
+          "title": "should return errors for invalid data",
+          "suites": [
+            "Zod Generator",
+            "validateContent"
+          ],
+          "line": 569,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L569",
+          "registration": "it",
+          "registrationSha256": "dcede3446476b924c2daa709c84a31938b4b4f5c782a720794e9d25a4287b58e",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 575,
+              "expression": "expect(result.success).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L575"
+            },
+            {
+              "line": 577,
+              "expression": "expect(result.errors.issues.length).toBeGreaterThan(0)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L577"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:583",
+          "title": "should generate TypeScript interface",
+          "suites": [
+            "Zod Generator",
+            "generateTypeScript"
+          ],
+          "line": 583,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L583",
+          "registration": "it",
+          "registrationSha256": "280ad0dde072d4760e594b1c55bf2825e2711ba0c12d7854179b7a90710868f3",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 661,
+              "expression": "expect(ts).toContain(\"export interface BlogPost\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L661"
+            },
+            {
+              "line": 662,
+              "expression": "expect(ts).toContain(\"title: string;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L662"
+            },
+            {
+              "line": 663,
+              "expression": "expect(ts).toContain(\"content: PortableTextBlock[];\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L663"
+            },
+            {
+              "line": 664,
+              "expression": "expect(ts).toContain(\"featured?: boolean;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L664"
+            },
+            {
+              "line": 665,
+              "expression": "expect(ts).toContain('status: \"draft\" | \"published\";')",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L665"
+            },
+            {
+              "line": 666,
+              "expression": "expect(ts).toContain(\n\t\t\t\t\"hero: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown>; darkVariant?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> } };\",\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L666"
+            },
+            {
+              "line": 670,
+              "expression": "expect(ts).toContain(\"byline?: BylineSummary | null;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L670"
+            },
+            {
+              "line": 671,
+              "expression": "expect(ts).toContain(\"bylines?: ContentBylineCredit[];\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L671"
+            },
+            {
+              "line": 672,
+              "expression": "expect(ts).toContain(\"terms?: Record<string, TaxonomyTerm[]>;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L672"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:698",
+          "title": "uses the slug, ignoring an arbitrary human label",
+          "suites": [
+            "Zod Generator",
+            "interface names derive from the singularized slug"
+          ],
+          "line": 698,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L698",
+          "registration": "it",
+          "registrationSha256": "b473fe103595274a286ff8e0d7464497caaa81b7ef904b02b0e1f988905653be",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 703,
+              "expression": "expect(interfaceNamesOf(ts)).toEqual([\"Book\"])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L703"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:706",
+          "title": "keeps names unique when singularization collapses two slugs",
+          "suites": [
+            "Zod Generator",
+            "interface names derive from the singularized slug"
+          ],
+          "line": 706,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L706",
+          "registration": "it",
+          "registrationSha256": "addb438c3438ddf0151c9dca84fb7d25939d2e023daf77fd4eeb6637545a6818",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 713,
+              "expression": "expect(names).toEqual([\"Book\", \"Book2\"])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L713"
+            },
+            {
+              "line": 714,
+              "expression": "expect(new Set(names).size).toBe(names.length)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L714"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:717",
+          "title": "keeps names unique when a suffixed name collides with another slug",
+          "suites": [
+            "Zod Generator",
+            "interface names derive from the singularized slug"
+          ],
+          "line": 717,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L717",
+          "registration": "it",
+          "registrationSha256": "3a9026087812fba37f197c5cdec0e761db28b9127c73e8483eceea1f2fb52e04",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 729,
+              "expression": "expect(new Set(names).size).toBe(names.length)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L729"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:732",
+          "title": "singularizes and PascalCases multi-word slugs",
+          "suites": [
+            "Zod Generator",
+            "interface names derive from the singularized slug"
+          ],
+          "line": 732,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L732",
+          "registration": "it",
+          "registrationSha256": "6bb9927fe30109ae00788b6c48c8d7ebb717137c7755950baeeb98b2cf181a8f",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 733,
+              "expression": "expect(interfaceNamesOf(generateTypeScript(makeCollection(\"blog_posts\")))).toEqual([\n\t\t\t\t\"BlogPost\",\n\t\t\t])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L733"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:738",
+          "title": "singularizes a plural slug to describe a single entry",
+          "suites": [
+            "Zod Generator",
+            "interface names derive from the singularized slug"
+          ],
+          "line": 738,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L738",
+          "registration": "it",
+          "registrationSha256": "89ef6656064cb8f5dc536a3b99160b4da84e76e91e1b0da722c98d7ba90c5903",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 739,
+              "expression": "expect(interfaceNamesOf(generateTypeScript(makeCollection(\"pages\")))).toEqual([\"Page\"])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L739"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:742",
+          "title": "leaves an already-singular slug unchanged",
+          "suites": [
+            "Zod Generator",
+            "interface names derive from the singularized slug"
+          ],
+          "line": 742,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L742",
+          "registration": "it",
+          "registrationSha256": "02fb04948b66f3569aa847c86af068b12056b8a948f0d913b36c516849e83f36",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 743,
+              "expression": "expect(interfaceNamesOf(generateTypeScript(makeCollection(\"book\")))).toEqual([\"Book\"])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L743"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:746",
+          "title": "references the same interface names in the EmDashCollections map",
+          "suites": [
+            "Zod Generator",
+            "interface names derive from the singularized slug"
+          ],
+          "line": 746,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L746",
+          "registration": "it",
+          "registrationSha256": "93c1f13060ae1f6d5b4117e98a8760e3ac26545dcb91e039931c766e4744292a",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 754,
+              "expression": "expect(ts).toContain(\"export interface Book {\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L754"
+            },
+            {
+              "line": 755,
+              "expression": "expect(ts).toContain(\"book: Book;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L755"
+            },
+            {
+              "line": 756,
+              "expression": "expect(ts).toContain(\"export interface BlogPost {\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L756"
+            },
+            {
+              "line": 757,
+              "expression": "expect(ts).toContain(\"blog_posts: BlogPost;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L757"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:760",
+          "title": "includes BylineSummary in generated interface imports and byline property",
+          "suites": [
+            "Zod Generator",
+            "interface names derive from the singularized slug"
+          ],
+          "line": 760,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L760",
+          "registration": "it",
+          "registrationSha256": "676cfebf7295cf802568da25dcbe5a34fc2ac49e1641c5f66064a09c4b42aad6",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 763,
+              "expression": "expect(ts).toContain(\n\t\t\t\t'import type { BylineSummary, ContentBylineCredit, TaxonomyTerm } from \"emdash\";',\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L763"
+            },
+            {
+              "line": 766,
+              "expression": "expect(ts).toContain(\"byline?: BylineSummary | null;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L766"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:771",
+          "title": "emits retained version, per-type, and field unions",
+          "suites": [
+            "Zod Generator",
+            "blocks fields in generated types"
+          ],
+          "line": 771,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L771",
+          "registration": "it",
+          "registrationSha256": "96abc0e968507410d0493c7b5e2aa26fc6bdc9d6186eee7bb7c6746ec0ef81a1",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 846,
+              "expression": "expect(diagnostics).toEqual([])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L846"
+            },
+            {
+              "line": 847,
+              "expression": "expect(generated).toContain(\"export interface PageLayoutHeroV1Block\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L847"
+            },
+            {
+              "line": 848,
+              "expression": "expect(generated).toContain(\"export interface PageLayoutHeroV2Block\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L848"
+            },
+            {
+              "line": 849,
+              "expression": "expect(generated).toContain(\n\t\t\t\t\"export type PageLayoutHeroBlock = PageLayoutHeroV1Block | PageLayoutHeroV2Block;\",\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L849"
+            },
+            {
+              "line": 852,
+              "expression": "expect(generated).toContain(\"export type PageLayoutBlock = PageLayoutHeroBlock;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L852"
+            },
+            {
+              "line": 853,
+              "expression": "expect(generated).toContain(\"layout?: PageLayoutBlock[];\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L853"
+            },
+            {
+              "line": 854,
+              "expression": "expect(generated).toContain(\"PortableTextBlock\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L854"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:934",
+          "title": "builds a row object array from subFields",
+          "suites": [
+            "Zod Generator",
+            "repeater fields in generated types"
+          ],
+          "line": 934,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L934",
+          "registration": "it",
+          "registrationSha256": "ef3582c771665ec8d1eff777996099ebaa26b76e884e8c99777bcf6226c811fd",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 942,
+              "expression": "expect(ts).toContain(`specs?: { \"name\": string; \"value\"?: string | null }[];`)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L942"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:945",
+          "title": "types a sub-field that is not required as nullable",
+          "suites": [
+            "Zod Generator",
+            "repeater fields in generated types"
+          ],
+          "line": 945,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L945",
+          "registration": "it",
+          "registrationSha256": "f489ff8acb55591f23978e70748c9bd1e5005cf0fe39b460da5ec4bb46003294",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 951,
+              "expression": "expect(ts).toContain(`specs?: { \"note\"?: string | null }[];`)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L951"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:954",
+          "title": "enumerates the options of a select sub-field",
+          "suites": [
+            "Zod Generator",
+            "repeater fields in generated types"
+          ],
+          "line": 954,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L954",
+          "registration": "it",
+          "registrationSha256": "51e109d0f9eef5c8a8fda485add67311b0a825e7ce289ebcec7a79a8bffc58f6",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 967,
+              "expression": "expect(ts).toContain('specs?: { \"unit\": \"cm\" | \"in\" }[];')",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L967"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:970",
+          "title": "emits the media literal for an image sub-field",
+          "suites": [
+            "Zod Generator",
+            "repeater fields in generated types"
+          ],
+          "line": 970,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L970",
+          "registration": "it",
+          "registrationSha256": "6d046f961d9aa92b0177a45658a5e1ad602acfcb84856df695c5bbfe90c42474",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 975,
+              "expression": "expect(ts).toContain(`specs?: { \"photo\": ${MEDIA_LITERAL} }[];`)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L975"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:992",
+          "title": "maps a %s sub-field",
+          "suites": [
+            "Zod Generator",
+            "repeater fields in generated types"
+          ],
+          "line": 992,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L992",
+          "registration": "it.each([...REPEATER_SUB_FIELD_TYPES])",
+          "registrationSha256": "bb447253103b16873064299feaa50981b885ec8fd8a9db29c27f064b21f4a4df",
+          "expansion": [
+            {
+              "line": 992,
+              "registration": "it.each([...REPEATER_SUB_FIELD_TYPES])",
+              "dataset": "it.each([...REPEATER_SUB_FIELD_TYPES])"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 997,
+              "expression": "expect(ts).toContain(`specs?: { \"value\": ${EXPECTED_TS_TYPE[type]} }[];`)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L997"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1000",
+          "title": "falls back to unknown when subFields is absent",
+          "suites": [
+            "Zod Generator",
+            "repeater fields in generated types"
+          ],
+          "line": 1000,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1000",
+          "registration": "it",
+          "registrationSha256": "45bb12b1f78846bdab5bd96de274c28362a90218487aac61f4dc42952bed3f2f",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1001,
+              "expression": "expect(generateTypeScript(makeRepeaterCollection(undefined))).toContain(\"specs?: unknown;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1001"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1004",
+          "title": "falls back to unknown when subFields is empty",
+          "suites": [
+            "Zod Generator",
+            "repeater fields in generated types"
+          ],
+          "line": 1004,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1004",
+          "registration": "it",
+          "registrationSha256": "eccb5fe5c275280d4c48b642e7c7b6a06378d0576ae03e95680c9f37090bb590",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1005,
+              "expression": "expect(generateTypeScript(makeRepeaterCollection([]))).toContain(\"specs?: unknown;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1005"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1011",
+          "title": "falls back to unknown when subFields is %j",
+          "suites": [
+            "Zod Generator",
+            "repeater fields in generated types"
+          ],
+          "line": 1011,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1011",
+          "registration": "it.each([{}, \"nope\", 42, true, null])",
+          "registrationSha256": "47b3106b6df32f4a64eed8977292aba4f8a8f571736d0ed1ecb07de795858762",
+          "expansion": [
+            {
+              "line": 1011,
+              "registration": "it.each([{}, \"nope\", 42, true, null])",
+              "dataset": "it.each([{}, \"nope\", 42, true, null])"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1014,
+              "expression": "expect(generateTypeScript(collection)).toContain(\"specs?: unknown;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1014"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1054",
+          "title": "emits a parseable declaration file for %j",
+          "suites": [
+            "Zod Generator",
+            "repeater fields in generated types",
+            "sub-field slugs that are not bare identifiers"
+          ],
+          "line": 1054,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1054",
+          "registration": "it.each(HOSTILE_SLUGS)",
+          "registrationSha256": "1af7933c247ddab4eb80786c71e1c77c7ed0b427d9df172b8154c3882c95b038",
+          "expansion": [
+            {
+              "line": 1054,
+              "registration": "it.each(HOSTILE_SLUGS)",
+              "dataset": "it.each(HOSTILE_SLUGS)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1056,
+              "expression": "expect(syntaxErrorsOf(fileFor(slug))).toEqual([])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1056"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1059",
+          "title": "does not let a slug restructure the emitted type",
+          "suites": [
+            "Zod Generator",
+            "repeater fields in generated types",
+            "sub-field slugs that are not bare identifiers"
+          ],
+          "line": 1059,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1059",
+          "registration": "it",
+          "registrationSha256": "11faca667f56e8b13f70a0966c67b7d0dd489704c1f2a29379f93c37619d6a81",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1064,
+              "expression": "expect(tsc.isUnionTypeNode(type)).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1064"
+            },
+            {
+              "line": 1065,
+              "expression": "expect(declaresAny(type)).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1065"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1092",
+          "title": "declares a duplicated slug once",
+          "suites": [
+            "Zod Generator",
+            "repeater fields in generated types",
+            "duplicate sub-field slugs"
+          ],
+          "line": 1092,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1092",
+          "registration": "it",
+          "registrationSha256": "67582c0a095846e783122c12b062b6b2df7218ff2b91b487ae7ec813f84f3cd9",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1096,
+              "expression": "expect(members.map((member) => member.name)).toEqual([\"a\", \"name\", \"b\"])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1096"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1099",
+          "title": "keeps the last declaration of a duplicated slug",
+          "suites": [
+            "Zod Generator",
+            "repeater fields in generated types",
+            "duplicate sub-field slugs"
+          ],
+          "line": 1099,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1099",
+          "registration": "it",
+          "registrationSha256": "cfe08d3f8589067108da0a18323043ed2435469b0333628c6396360911c578fa",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1102,
+              "expression": "expect(members.find((member) => member.name === \"name\")?.type).toBe(\"number\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1102"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1105",
+          "title": "declares the members the row schema accepts",
+          "suites": [
+            "Zod Generator",
+            "repeater fields in generated types",
+            "duplicate sub-field slugs"
+          ],
+          "line": 1105,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1105",
+          "registration": "it",
+          "registrationSha256": "e9302094541910a4c415c22ad82cb1bcdee96becb7f3739497d1339ea584ee24",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1110,
+              "expression": "expect(members.map((member) => member.name)).toEqual(rowSchemaKeys())",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1110"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1114",
+          "title": "keeps a required repeater non-optional",
+          "suites": [
+            "Zod Generator",
+            "repeater fields in generated types"
+          ],
+          "line": 1114,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1114",
+          "registration": "it",
+          "registrationSha256": "cf0dd05d6f5d9b1c806f56787b577e3434e3754670af717113f7563e7807c03f",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1121,
+              "expression": "expect(ts).toContain(`specs: { \"name\": string }[];`)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1121"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1155",
+          "title": "validates a field with no relation as the entry id string it stores",
+          "suites": [
+            "Zod Generator",
+            "reference fields"
+          ],
+          "line": 1155,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1155",
+          "registration": "it",
+          "registrationSha256": "fa2503e3b951b26868cfe6b836012211c76549a7f5ac5ed72de12c52b8646cb1",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1158,
+              "expression": "expect(schema.parse({ author: \"entry-id\" })).toEqual({ author: \"entry-id\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1158"
+            },
+            {
+              "line": 1159,
+              "expression": "expect(() => schema.parse({ author: 42 })).toThrow()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1159"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1162",
+          "title": "leaves a field bound to a relation out of the data schema",
+          "suites": [
+            "Zod Generator",
+            "reference fields"
+          ],
+          "line": 1162,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1162",
+          "registration": "it",
+          "registrationSha256": "0982b17cf12ab1a476ad0cabd9e0e8e7cf9fb5c0bc3a26aaadccd9354e21ec72",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1165,
+              "expression": "expect(Object.keys(schema.shape)).not.toContain(\"author\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1165"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1168",
+          "title": "types a field with no relation as a string and omits a bound one",
+          "suites": [
+            "Zod Generator",
+            "reference fields"
+          ],
+          "line": 1168,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1168",
+          "registration": "it",
+          "registrationSha256": "dffdcdbf1382e355ff585ea24097c5344c4c91a3fc06e03c209e4ffb24643ff9",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1169,
+              "expression": "expect(generateTypeScript(makeReferenceCollection(undefined))).toContain(\"author?: string;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1169"
+            },
+            {
+              "line": 1170,
+              "expression": "expect(generateTypeScript(makeReferenceCollection(WIRED))).not.toContain(\"author\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1170"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1233",
+          "title": "emits a page per bound field, typed to the target collection",
+          "suites": [
+            "Zod Generator",
+            "reference interfaces in the generated file"
+          ],
+          "line": 1233,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1233",
+          "registration": "it",
+          "registrationSha256": "c2c271b54f55e956015117e49606896b21c755fb1c8f697f4daaf04ce8530b33",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1236,
+              "expression": "expect(ts).toContain(\"export interface PostReferences {\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1236"
+            },
+            {
+              "line": 1237,
+              "expression": "expect(ts).toContain(\"author: ReferencePage<Author>;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1237"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1240",
+          "title": "registers the references interface under EmDashCollectionReferences",
+          "suites": [
+            "Zod Generator",
+            "reference interfaces in the generated file"
+          ],
+          "line": 1240,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1240",
+          "registration": "it",
+          "registrationSha256": "3f7ce8c402d19c9ee62472744d52e775866bad7b2fe47da9baf0fdd8486ca1a1",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1243,
+              "expression": "expect(ts).toContain(\"interface EmDashCollectionReferences {\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1243"
+            },
+            {
+              "line": 1245,
+              "expression": "expect(ts).toContain(\"posts: PostReferences;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1245"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1248",
+          "title": "imports ReferencePage only when a bound reference field exists",
+          "suites": [
+            "Zod Generator",
+            "reference interfaces in the generated file"
+          ],
+          "line": 1248,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1248",
+          "registration": "it",
+          "registrationSha256": "fb9eb5642f13b8e2a106e5148e831f1199f94a90c960e76c1978e619ad79bab4",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1249,
+              "expression": "expect(generateTypesFile([makePosts(WIRED), makeAuthors()])).toContain(\n\t\t\t\t'import type { BylineSummary, ContentBylineCredit, TaxonomyTerm, ReferencePage } from \"emdash\";',\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1249"
+            },
+            {
+              "line": 1252,
+              "expression": "expect(generateTypesFile([makePosts(undefined), makeAuthors()])).toContain(\n\t\t\t\t'import type { BylineSummary, ContentBylineCredit, TaxonomyTerm } from \"emdash\";',\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1252"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1257",
+          "title": "emits nothing for a collection whose reference fields are all unbound",
+          "suites": [
+            "Zod Generator",
+            "reference interfaces in the generated file"
+          ],
+          "line": 1257,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1257",
+          "registration": "it",
+          "registrationSha256": "13461c698accd0f609acf03ddcaa30e38d006299deac7c13c593e67428123c77",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1262,
+              "expression": "expect(ts).not.toContain(\"PostReferences\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1262"
+            },
+            {
+              "line": 1263,
+              "expression": "expect(ts).not.toContain(\"EmDashCollectionReferences\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1263"
+            },
+            {
+              "line": 1264,
+              "expression": "expect(ts).toContain(\"author?: string;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1264"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/zod-generator.test.ts:1267",
+          "title": "leaves the page un-narrowed when the target is not in the file",
+          "suites": [
+            "Zod Generator",
+            "reference interfaces in the generated file"
+          ],
+          "line": 1267,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1267",
+          "registration": "it",
+          "registrationSha256": "26cadfb666edf11d27dbfe81572a69457c20545dbf8d9e73d06317b68c4fb590",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 1272,
+              "expression": "expect(ts).toContain(\"author: ReferencePage;\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/zod-generator.test.ts#L1272"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": [],
+      "local": "tests/full-schema-generator-upstream.test.ts",
+      "scope": "all 54 source declarations, 115 assertion expressions, 74 Node runtime cases; all datasets retained"
+    }
+  ],
+  "sourceVerification": "Original committed blobs read using git show; package Zod4.5.4 and TypeScript6.0.3 pinned. Node-test runner/expect adapter only; source assertions/datasets unchanged.",
+  "redEvidence": [
+    {
+      "commit": "14fae81 (pre-rebase)",
+      "suite": "full-schema-types.test.ts",
+      "pass": 0,
+      "fail": 2,
+      "kind": "existing public capability assertions"
+    },
+    {
+      "commit": "ae8a07a (pre-rebase)",
+      "suite": "full-schema-generator-upstream.test.ts",
+      "pass": 10,
+      "fail": 64,
+      "kind": "new API scaffold; distinct from existing public feature failures"
+    },
+    {
+      "commit": "bbcb764",
+      "suite": "full-schema-registry-upstream.test.ts",
+      "pass": 52,
+      "fail": 2,
+      "kind": "metadata CHECK rejected unsupported stored type; exact unsupported-subfield assertion failed"
+    },
+    {
+      "commit": "d21a0ec",
+      "suite": "full-schema-content.test.ts",
+      "pass": 0,
+      "fail": 2,
+      "kind": "actual content service array/media serialization and detailed enum/range assertions"
+    }
+  ]
+}

@@ -29,13 +29,13 @@ export async function storageContract(database: CmsDatabase) {
   check(definition?.fields.length === 3 && definition.version === 4, 'persisted scalar schema');
   const draft = await entries.create({ type: 'notes', data: { body: 'one\u0000two', constructor: 'own key' } }, 'author');
   check(draft.data.title === "O'Brien" && draft.data.body === 'one\u0000two' && draft.data['constructor'] === 'own key', 'literal default and bound scalar');
-  const duplicate = await entries.create({ type: 'notes', data: {} }, 'author');
+  const duplicate = await entries.create({ type: 'notes', data: {constructor:null} }, 'author');
   check(duplicate.data.title === draft.data.title && definition.fields[0].unique, 'unique is retained metadata without enforcement');
   await entries.delete({ type: 'notes', id: duplicate.id, expected: { version: duplicate.version, updatedAt: duplicate.updatedAt } });
   await rejects(() => entries.create({ type: 'notes', data: { title: null } }, 'author'), 'VALIDATION_ERROR');
   const outcomes = await Promise.allSettled([
-    entries.update({ type: 'notes', id: draft.id, expected: { version: draft.version, updatedAt: draft.updatedAt }, data: { title: 'Winner A' } }),
-    entries.update({ type: 'notes', id: draft.id, expected: { version: draft.version, updatedAt: draft.updatedAt }, data: { title: 'Winner B' } })
+    entries.update({ type: 'notes', id: draft.id, expected: { version: draft.version, updatedAt: draft.updatedAt }, data: { title: 'Winner A', constructor: 'own key' } }),
+    entries.update({ type: 'notes', id: draft.id, expected: { version: draft.version, updatedAt: draft.updatedAt }, data: { title: 'Winner B', constructor: 'own key' } })
   ]);
   check(outcomes.filter(outcome => outcome.status === 'fulfilled').length === 1, 'one CAS winner');
   const lost = outcomes.find(outcome => outcome.status === 'rejected');

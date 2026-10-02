@@ -8,7 +8,7 @@ import { join } from 'node:path';
 import { sql } from 'kysely';
 import { collectionUpdateStorage } from './helpers/collection-update-fixture.ts';
 import { openSqlite } from '../src/lib/server/database/sqlite.ts';
-import { migrateCms } from '../src/lib/server/database/migrations.ts';
+import { migrateCms, CMS_MIGRATION_VERSION } from '../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
 import { DraftRepository } from '../src/lib/server/database/entries.ts';
 import { CmsError, type CmsDatabase } from '../src/lib/server/database/contract.ts';
@@ -62,7 +62,7 @@ for (const target of ['Node', 'D1'] as const) {
         assert.deepEqual(outcomes.map(outcome => outcome.status), ['fulfilled', 'fulfilled'], JSON.stringify(outcomes));
         assert.match((await object(f.database, 'idx_ec_posts_deleted_status')).sql, /\(deleted_at, status\)/);
         assert.deepEqual((await sql`SELECT * FROM ec_posts`.execute(f.database.db)).rows, before);
-        assert.deepEqual((await f.database.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row => row.version), [1, 2]);
+        assert.deepEqual((await f.database.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row => row.version), Array.from({length:CMS_MIGRATION_VERSION},(_,index)=>index+1));
         assert.deepEqual(await f.database.db.selectFrom('_cms_auth_users').selectAll().execute(), []);
         assert.deepEqual(await f.database.db.selectFrom('_cms_auth_sessions').selectAll().execute(), []);
         assert.deepEqual(await f.database.db.selectFrom('_cms_guards').selectAll().execute(), []);

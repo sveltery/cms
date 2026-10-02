@@ -60,7 +60,7 @@ for (const base of ['', '/cms'] as const) {
       await expect(page).toHaveURL(`${origin}${base}/trash/post`);
       const table = page.getByRole('table', { name: 'Trashed drafts' });
       const rows = table.locator('tbody tr');
-      const expectedTitles = fixture.expected.map(item => (item.data.title ? item.data.title.slice(0, 200) : item.slug || item.id));
+      const expectedTitles = fixture.expected.map(item => (item.data.title ? (item.data.title as string).slice(0, 200) : item.slug || item.id));
       const checkRows = async () => {
         await expect(rows).toHaveCount(50);
         await expect(rows.locator('td:first-child')).toHaveText(expectedTitles);
@@ -96,7 +96,7 @@ for (const base of ['', '/cms'] as const) {
       await page.unroute('**/_app/remote/**/listTrashedContent?**');
       await loadMore.click();
       await expect(rows).toHaveCount(103);
-      await expect(rows.locator('td:first-child')).toHaveText(fixture.fullExpected.map(item => (item.data.title ? item.data.title.slice(0, 200) : item.slug || item.id)));
+      await expect(rows.locator('td:first-child')).toHaveText(fixture.fullExpected.map(item => (item.data.title ? (item.data.title as string).slice(0, 200) : item.slug || item.id)));
       const visibleIds = await rows.locator('input[name="id"]').evaluateAll(inputs => inputs.map(input => (input as HTMLInputElement).value));
       expect(visibleIds).toEqual(fixture.fullExpected.map(item => item.id));
       expect(new Set(visibleIds).size).toBe(103);

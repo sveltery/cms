@@ -5,7 +5,7 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { openSqlite } from '../src/lib/server/database/sqlite.ts';
-import { migrateCms } from '../src/lib/server/database/migrations.ts';
+import { migrateCms, CMS_MIGRATION_VERSION } from '../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
 import { DraftRepository } from '../src/lib/server/database/entries.ts';
 import { readFileSync } from 'node:fs';
@@ -21,7 +21,7 @@ test('clean migration registers empty auth tables and version two, and is idempo
   const database = openSqlite(':memory:');
   try {
     await migrateCms(database); await migrateCms(database);
-    assert.deepEqual((await database.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row => ({ ...row })), [{ version: 1 }, { version: 2 }]);
+    assert.deepEqual((await database.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row => ({ ...row })), Array.from({length: CMS_MIGRATION_VERSION}, (_,index) => ({version:index+1})));
     assert.deepEqual(await database.db.selectFrom('_cms_auth_users').selectAll().execute(), []);
     assert.deepEqual(await database.db.selectFrom('_cms_auth_sessions').selectAll().execute(), []);
   } finally { await database.close(); }
@@ -58,7 +58,7 @@ test('incomplete, untracked and future migration states reject without repair', 
         if (state === 'missing-sessions') await sql`DROP TABLE _cms_auth_sessions`.execute(database.db);
         if (state === 'missing-index') await sql`DROP INDEX idx_cms_auth_sessions_user`.execute(database.db);
         if (state === 'missing-v1') await sql`DELETE FROM _cms_migrations WHERE version = 1`.execute(database.db);
-        if (state === 'future') { await sql`PRAGMA ignore_check_constraints = ON`.execute(database.db); await sql`INSERT INTO _cms_migrations(version) VALUES (3)`.execute(database.db); }
+        if (state === 'future') { await sql`PRAGMA ignore_check_constraints = ON`.execute(database.db); await sql`INSERT INTO _cms_migrations(version) VALUES (${CMS_MIGRATION_VERSION + 1})`.execute(database.db); }
         if (state === 'malformed-users') { await sql`ALTER TABLE _cms_auth_users RENAME COLUMN role TO wrong_role`.execute(database.db); }
       }
       const before = await names(database);
@@ -82,7 +82,7 @@ test('failed auth DDL or marker commits roll back the entire clean/upgrade batch
       await assert.rejects(() => migrateCms(failing), /nonexistent_migration_test_table/);
       assert.deepEqual(await names(database), before);
       await migrateCms(database);
-      assert.equal((await database.db.selectFrom('_cms_migrations').selectAll().execute()).length, 2);
+      assert.equal((await database.db.selectFrom('_cms_migrations').selectAll().execute()).length, CMS_MIGRATION_VERSION);
     } finally { await database.close(); }
   }
 });
@@ -96,7 +96,7 @@ test('two independent clean and upgrade callers reach a fully migrated database'
       const outcomes = await Promise.allSettled([migrateCms(a), migrateCms(b)]);
       assert.deepEqual(outcomes.map(value => value.status), ['fulfilled', 'fulfilled']);
       await migrateCms(a);
-      assert.equal((await a.db.selectFrom('_cms_migrations').selectAll().execute()).length, 2);
+      assert.equal((await a.db.selectFrom('_cms_migrations').selectAll().execute()).length, CMS_MIGRATION_VERSION);
       assert.deepEqual(await a.db.selectFrom('_cms_auth_sessions').selectAll().execute(), []);
     } finally { await b.close(); await a.close(); await rm(dir, { recursive: true, force: true }); }
   }
@@ -120,7 +120,7 @@ test('startup accepts a complete concurrent upgrade between its preflight reads'
     }) };
     await migrateCms(observing);
     assert.equal(committed, true, 'independent upgrade occurs after an actual preflight result');
-    assert.deepEqual((await b.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row => row.version), [1, 2]);
+    assert.deepEqual((await b.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row => row.version), Array.from({length:CMS_MIGRATION_VERSION},(_,index)=>index+1));
     await migrateCms(b);
   } finally { await b.close(); await a.close(); await rm(dir, { recursive: true, force: true }); }
 });
