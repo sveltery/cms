@@ -186,7 +186,8 @@ export class SchemaRegistry {
       db.insertInto('_cms_collections').values({
         id: ulid(), slug: value.slug, label: value.label, label_singular: value.labelSingular ?? null,
         description: value.description ?? null, supports: JSON.stringify(value.supports ?? ['drafts', 'revisions']),
-        source: value.source ?? 'manual', has_seo: Number(value.hasSeo ?? value.supports?.includes('seo') ?? false),
+        source: value.source ?? 'manual',
+        ...(value.hasSeo === undefined && value.supports?.includes('seo') ? { has_seo: 1 } : {}),
         version: 1, created_at: now, updated_at: now,
         ...Object.fromEntries(Object.entries(collectionMetadataColumns).flatMap(([key,column]) => {
           const item = value[key as keyof typeof value];
