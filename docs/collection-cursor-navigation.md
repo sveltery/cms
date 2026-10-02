@@ -46,12 +46,12 @@ Full bootstrap at implementation/test head `930b6c75b88fa8d32de2dd1278cf5b53a0e5
 
 Local pinned Chromium download returned CDN HTTP 403; system Chromium with `chromiumSandbox: true` aborted on its unconfigured SUID helper. Neither local attempt is browser success; the hosted run supplies the browser evidence.
 
-## Shared-file handoff
+## Canonical registration
 
-The metadata owner owns the shared compatibility register, feature indexes and fixture scripts. This PR changes no shared database validation, registry, service, permission, metadata or contract files. Add this minimal entry to `parity/emdash/compatibility.md` during coordinated integration (stable ID `F-CURSOR`; specific adaptation acceptance is not recorded):
+The [compatibility register](../parity/emdash/compatibility.md) records stable ID `F-CURSOR` in this PR, and the [content feature index](content-remotes.md) links this feature record. Specific adaptation acceptance is not recorded. The shared-record integration changes no database validation, registry, service, permission, collection metadata or contract files. The cursor record remains independently attributable to [PR #15](https://github.com/sveltery/cms/pull/15):
 
 | ID | Upstream/local boundary and proposed difference | Evidence and status |
 | --- | --- | --- |
 | F-CURSOR: collection browser navigation | Pinned repository cursor/terminal behavior remains the reference; temporary Svelte collection UI adds bounded next/first controls, terminal/empty statuses and collection-scoped reset using unchanged remotes. This is supplemental framework navigation, not an upstream test leaf port. | [Collection navigation record](collection-cursor-navigation.md), real pinned cases 360/377, assertion-level missing-control red, persisted Node/local D1 and built browser checks. Proposed [PR #15](https://github.com/sveltery/cms/pull/15); no specific deviation acceptance recorded. Hosted exact-head browser/review gates remain required. |
 
-When copying the entry into the register, use `../../docs/collection-cursor-navigation.md` for its local feature link. Also link this feature record from the collection/content feature index when reconciling the metadata PR. No package, CI or shared fixture-script changes are needed: the existing bootstrap globs and hosted default/Node browser jobs discover the dedicated tests.
+No package, CI or shared fixture-script changes are needed: the existing bootstrap globs and hosted default/Node browser jobs discover the dedicated tests. Canonical registration resolves the prior shared-documentation finding; fresh exact-head checks and independent/configured ready-triggered review remain required before landing.

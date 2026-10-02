@@ -36,6 +36,8 @@ List pages default to 50, cap at 100, and exclude trash and other locales/collec
 
 `/` lists stored collections. `/content/[collection]` renders stored fields and bounded drafts; `/content/[collection]/[id]` renders stored values. Reused route parameters re-evaluate queries. Temporary scalar controls, JSON payload preview and write buttons remain disabled; there are no fixed title/body schema controls.
 
+[PR #15's collection cursor navigation](collection-cursor-navigation.md) adds bounded next/first controls around the unchanged `listContent` remote, terminal/empty statuses and collection-scoped cursor reset. Its persisted Node/local D1, registered production-route and sandboxed default/Node browser tests are supplemental Svelte requirements; canonical [F-CURSOR](../parity/emdash/compatibility.md) retains the immutable reference and explicit zero upstream leaf credit. Editing and the HTTP mutation gate remain disabled.
+
 ## Test-first evidence
 
 [Test mapping](content-remote-ports.json) retains exact pinned source IDs, titles, assertion expressions and registration hashes. Test-first commit `3ff05292a27b8e9aebdc6639a429a4e35846f7be` contains eight scalar repository assertion ports and five partial ownership adaptations. Against the built verified-main implementation, all eight scalar cases and all five policy cases failed assertions after endpoint registration and real SQLite setup. These were not missing-module/registration reds. The policy fixtures replace upstream published entries with drafts; only those policy assertions are ported, not published lifecycle behavior or role resolution.
