@@ -53,6 +53,14 @@ export async function setupLifecycleFixture({ atomic = false } = {}) {
     }
     await registry.createField('post', {slug:'content',label:'Content',type:'portableText'});
   }
+  const providerPath = '../../src/lib/server/database/lifecycle-migrations.ts';
+  try {
+    const provider=(await import(providerPath)).lifecycleMigration;
+    const installed=(await sql`SELECT name FROM sqlite_master WHERE name='_cms_revisions'`.execute(database.db)).rows.length;
+    if(!installed)await database.atomicBatch(await provider.statements(database));
+  } catch(cause) {
+    if (!(cause instanceof Error)||!('code' in cause)||cause.code!=='ERR_MODULE_NOT_FOUND')throw cause;
+  }
   // Only test seed/read helpers use this before provider 5 exists. Retention
   // assertions exercise the actual update handler, which has no revision save.
   const revisionsExist = (await sql`SELECT name FROM sqlite_master WHERE name = '_cms_revisions'`.execute(database.db)).rows.length;
