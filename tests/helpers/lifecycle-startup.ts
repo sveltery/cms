@@ -1,9 +1,10 @@
 import { sql } from 'kysely';
-import { CmsError, type CmsDatabase } from '../../src/lib/server/database/contract.ts';
+import type { CmsDatabase } from '../../src/lib/server/database/contract.ts';
 import { CMS_MIGRATIONS } from '../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
 import { DraftRepository } from '../../src/lib/server/database/entries.ts';
 import { sqliteErrorMessage } from '../../src/lib/server/database/errors.ts';
+import { trashIndexStatement } from '../../src/lib/server/database/trash-index.ts';
 
 /** Immutable pre-v5 local table layout. Supplemental upgrade setup only. */
 export const legacyContentSql = `CREATE TABLE ec_post (
@@ -34,7 +35,7 @@ export async function legacyPost(database: CmsDatabase) {
   await database.atomicBatch([
     sql`DROP TABLE ec_post`.compile(database.db), sql.raw(legacyContentSql).compile(database.db),
     sql`CREATE INDEX idx_ec_post_draft_list ON ec_post (locale, deleted_at, created_at, id)`.compile(database.db),
-    sql`CREATE INDEX idx_ec_post_deleted_status ON ec_post (deleted_at, status)`.compile(database.db)
+    trashIndexStatement(database,'post')
   ]);
   await registry.createField('post', { slug: 'title', label: 'Title', type: 'string' });
   return registry;
