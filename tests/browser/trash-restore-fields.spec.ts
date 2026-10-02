@@ -34,6 +34,7 @@ test('direct hidden spreads generate bound values and native validation, restore
       await expect(control).toHaveAttribute('type', 'hidden');
       await expect(control).toHaveValue(input[field]);
     }
+    expect(await page.locator('form').evaluate(form => Object.fromEntries(new FormData(form as HTMLFormElement)))).toEqual(input);
     await page.locator('input[name="_rev"]').evaluate((element: HTMLInputElement) => { element.value = ''; });
     const invalid = page.waitForResponse(response => response.request().method() === 'POST');
     await page.getByRole('button', { name: 'Restore draft' }).click();
@@ -78,12 +79,15 @@ test('one-argument hidden spreads omit values even after fields.set and native v
       await expect(page.locator(`input[name="${field}"]`)).toHaveValue('');
       expect(await page.locator(`input[name="${field}"]`).getAttribute('value')).toBeNull();
     }
+    expect(await page.locator('form').evaluate(form => Object.fromEntries(new FormData(form as HTMLFormElement))))
+      .toEqual({ collection: '', id: '', locale: '', _rev: '' });
     await page.getByRole('button', { name: 'Restore draft' }).click();
     for (const field of ['collection', 'id', 'locale', '_rev']) {
       await expect(page.locator(`[role="alert"][data-path="${field}"]`).first()).toBeVisible();
     }
     const before = await context.request.get(queryURL('getTrashedContent', { collection: 'post', id: fixture.inputs.missing.id }));
     expect(parse((await before.json()).data)._._rev).toBe(fixture.inputs.missing._rev);
+    await expect(page.locator('output')).toHaveCount(0);
   } finally {
     await context.close();
   }
@@ -97,6 +101,8 @@ test('direct native form spread enhances restore and returns a refreshed revisio
   await page.evaluate(() => { (window as any).__restoreNavigationProbe = true; });
   // Wait for Kit's enhancement attachment without making a speculative submission.
   await expect(page.locator('body')).toHaveAttribute('data-hydrated', 'true');
+  expect(await page.locator('form').evaluate(form => Object.fromEntries(new FormData(form as HTMLFormElement))))
+    .toEqual(fixture.inputs.enhanced);
   const submission = page.waitForResponse(response => response.url().includes('/_app/remote/') && response.request().method() === 'POST');
   await page.getByRole('button', { name: 'Restore draft' }).click();
   const response = await submission;
