@@ -183,16 +183,17 @@ describe('built remotes with persisted schema and server-derived sessions', () =
     assert.equal(output.q[keys[3]].v.data.headline, 'Scoped refresh');
     assert.equal((await harness.query('getContent', { collection: 'notes', id: other.id })).data.headline, 'First note');
   });
-  it('duplicate slugs and unique field values map to conflicts without overwriting data', async () => {
+  it('duplicate slugs conflict while scalar unique remains unenforced metadata', async () => {
     await harness.registry.createCollection({ slug: 'unique_notes', label: 'Unique notes' });
     await harness.registry.createField('unique_notes', { slug: 'code', label: 'Code', type: 'string', unique: true });
     await harness.mutate('createContent', { collection: 'unique_notes', slug: 'taken', 'data.code': 'unique' });
-    for (const input of [{ slug: 'taken', 'data.code': 'other' }, { slug: 'other', 'data.code': 'unique' }]) {
-      const result = await harness.remote('createContent', 'author', { collection: 'unique_notes', ...input });
-      assert.equal(result.status, 409);
-      assert.equal(result.error.code, 'CONFLICT');
-    }
-    assert.equal((await harness.repository.list('unique_notes')).items.length, 1);
+    const conflict = await harness.remote('createContent', 'author', { collection: 'unique_notes', slug: 'taken', 'data.code': 'other' });
+    assert.equal(conflict.status, 409); assert.equal(conflict.error.code, 'CONFLICT');
+    const duplicate = await harness.mutate('createContent', { collection: 'unique_notes', slug: 'other', 'data.code': 'unique' });
+    const stored = await harness.query('getContent', { collection: 'unique_notes', id: duplicate._.result.id }, 'editor');
+    assert.equal(stored.data.code, 'unique');
+    assert.equal((await harness.registry.getField('unique_notes', 'code'))!.unique, true);
+    assert.equal((await harness.repository.list('unique_notes')).items.length, 2);
   });
   it('JSON form data preserves schema fields that collide with nested form guards and nullable values', async () => {
     await harness.registry.createCollection({ slug: 'special_fields', label: 'Special fields' });

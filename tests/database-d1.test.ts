@@ -42,7 +42,7 @@ for (const target of ['Node', 'D1'] as const) {
     const local = await fixture();
     try { assert.deepEqual(await storageContract(local.database), [
       'fresh/idempotent migration', 'empty auth tables', 'persisted scalar schema', 'literal defaults/NUL/own keys',
-      'unique/required constraints', 'draft CAS/partial update', 'retained soft delete', 'schema CAS/DDL rollback',
+      'unique metadata/required constraints', 'draft CAS/partial update', 'retained soft delete', 'schema CAS/DDL rollback',
       'persisted session/current role/disabled/expiry/revocation'
     ]); } finally { await local.close(); }
   });
@@ -262,7 +262,7 @@ test('local workerd: real D1-backed CMS/session core runs without nodejs_compat'
     const response = await runtime.dispatchFetch('https://cms.example/'); assert.equal(response.status, 200);
     assert.deepEqual((await response.json() as { passed: string[] }).passed, [
       'fresh/idempotent migration', 'empty auth tables', 'persisted scalar schema', 'literal defaults/NUL/own keys',
-      'unique/required constraints', 'draft CAS/partial update', 'retained soft delete', 'schema CAS/DDL rollback',
+      'unique metadata/required constraints', 'draft CAS/partial update', 'retained soft delete', 'schema CAS/DDL rollback',
       'persisted session/current role/disabled/expiry/revocation'
     ]);
     assert.deepEqual(await versions(database), [1, 2], 'worker migrated the actual binding');
