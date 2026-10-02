@@ -202,7 +202,8 @@ describe('built remotes with persisted schema and server-derived sessions', () =
     const created = await harness.mutate('createContent', { collection: 'special_fields', data: JSON.stringify({ constructor: 'Constructor value', prototype: 'Prototype value', optional: null }) });
     const item = await harness.query('getContent', { collection: 'special_fields', id: created._.result.id });
     assert.deepEqual(item.data, { constructor: 'Constructor value', prototype: 'Prototype value', optional: null });
-    const updated = await harness.mutate('updateContent', { collection: 'special_fields', id: item.id, _rev: item._rev, data: JSON.stringify({ prototype: 'New value' }) });
+    // Preserve the immutable source validator's partial constructor omission behavior (issue #35).
+    const updated = await harness.mutate('updateContent', { collection: 'special_fields', id: item.id, _rev: item._rev, data: JSON.stringify({ constructor: 'Constructor value', prototype: 'New value' }) });
     const read = await harness.query('getContent', { collection: 'special_fields', id: updated._.result.id });
     assert.deepEqual(read.data, { constructor: 'Constructor value', prototype: 'New value', optional: null });
   });
