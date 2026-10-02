@@ -1,4 +1,6 @@
+import type { ContentValidationIssue } from '../schema/validate-content.ts';
 import type { FieldType, ColumnType, FieldValidation, CollectionSupport, CollectionSource, CollectionAdminConfig, FieldWidgetOptions } from '../schema/types.ts';
+import type { AuthIdentityTables } from '../auth/identity-migrations.ts';
 import type { AuthTables } from '../auth/schema.ts';
 import type { CompiledQuery, Kysely, QueryResult } from 'kysely';
 
@@ -18,7 +20,7 @@ export interface FieldRow {
   sort_order: number; created_at: string;
   widget?: string | null; options?: string | null; searchable?: number; indexed?: number; translatable?: number;
 }
-export interface CmsTables extends AuthTables {
+export interface CmsTables extends AuthTables, AuthIdentityTables {
   _cms_collections: CollectionRow;
   _cms_fields: FieldRow;
   _cms_migrations: { version: number };
@@ -41,7 +43,8 @@ export type DatabaseErrorCode = 'UNAUTHENTICATED' | 'FORBIDDEN' | 'VALIDATION_ER
   | 'FIELD_EXISTS' | 'FIELD_TYPE_COLUMN_CHANGE' | 'FIELD_TYPE_CHANGE_REQUIRES_MIGRATION' | 'FIELD_UPDATE_REQUIRES_MIGRATION' | 'FIELD_NOT_INDEXABLE' | 'COLLECTION_NOT_EMPTY' | 'UNSUPPORTED_FIELD_TYPE' | 'INVALID_TITLE_FIELD' | 'INVALID_DATE_FIELD' | 'RESERVED_SLUG' | 'LIMIT_EXCEEDED' | 'MIGRATION_REQUIRED';
 export class CmsError extends Error {
   readonly code: DatabaseErrorCode;
-  constructor(code: DatabaseErrorCode) { super(code); this.name = 'CmsError'; this.code = code; }
+  readonly details?: {issues:ContentValidationIssue[]};
+  constructor(code: DatabaseErrorCode, message:string=code, details?:{issues:ContentValidationIssue[]}) { super(message); this.name='CmsError'; this.code=code; this.details=details; }
 }
 export interface Collection {
   id: string; slug: string; label: string; labelSingular: string | null;

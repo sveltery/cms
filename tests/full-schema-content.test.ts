@@ -3,11 +3,11 @@ import assert from 'node:assert/strict';
 import { openSqlite } from '../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
-import { cmsService } from '../src/lib/server/database/service.ts';
+import { cmsService, type ServerPrincipal } from '../src/lib/server/database/service.ts';
 
 // Supplemental actual service contracts; source issue assertions are separately
 // ported at the registered HTTP boundary by the content transport developer.
-const principal = { id: 'owner', permissions: ['content:create','content:read','content:read_drafts','content:edit_any'] };
+const principal:ServerPrincipal = { id: 'owner', permissions: ['content:create','content:read','content:read_drafts','content:edit_any'] };
 async function fixture() {
   const database = openSqlite(':memory:'); await migrateCms(database);
   const registry = new SchemaRegistry(database);

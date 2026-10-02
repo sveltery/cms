@@ -10,7 +10,7 @@ export const fieldType = v.picklist(FIELD_TYPES);
 export const fieldValidation = v.pipe(object, v.strictObject({
   required: v.optional(v.boolean()), min: v.optional(v.number()), max: v.optional(v.number()),
   minLength: v.optional(integer), maxLength: v.optional(integer),
-  pattern: v.optional(v.pipe(v.string(), v.check(value => { try { new RegExp(value); return true; } catch { return false; } }))),
+  pattern: v.optional(v.pipe(v.string(), v.check(value => { try { new RegExp(value); return true; } catch { return false; } }, 'Invalid validation pattern'))),
   options: v.optional(v.array(v.string())),
   subFields: v.optional(v.pipe(v.array(v.strictObject({
     slug, label: v.pipe(v.string(), v.minLength(1)), type: v.picklist(REPEATER_SUB_FIELD_TYPES),
