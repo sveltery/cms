@@ -29,7 +29,7 @@
 <h1>{definition.label}</h1>
 <p><code>{definition.slug}</code> · Schema version {definition.version}</p>
 <form {...metadataForm}>
-  <fieldset {disabled}>
+  <fieldset disabled={disabled || metadataForm.pending > 0}>
     <legend>Collection metadata</legend>
     <input {...metadataForm.fields.collection.as('hidden', definition.slug)} />
     <input {...metadataForm.fields.version.as('hidden', String(definition.version))} />
@@ -69,7 +69,7 @@
   {:else}<li>No fields yet.</li>{/each}
 </ul>
 <form {...fieldForm}>
-  <fieldset {disabled}>
+  <fieldset disabled={disabled || fieldForm.pending > 0}>
     <legend>Add field</legend>
     <input {...fieldForm.fields.collection.as('hidden', definition.slug)} />
     <input {...fieldForm.fields.expectedSchemaVersion.as('hidden', String(definition.version))} />

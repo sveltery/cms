@@ -7,7 +7,7 @@
 </script>
 
 <form {...labelForm}>
-  <fieldset {disabled}>
+  <fieldset disabled={disabled || labelForm.pending > 0}>
     <legend>Edit {field.slug} label</legend>
     <input {...labelForm.fields.collection.as('hidden', collection)} />
     <input {...labelForm.fields.field.as('hidden', field.slug)} />
