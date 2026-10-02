@@ -53,7 +53,7 @@ for (const operation of ['create', 'update'] as const) {
         const before = await snapshot(); const submitted = page.waitForResponse(response => response.request().method() === 'POST');
         await form.getByRole('button').click();
         expect((await submitted).status()).toBe(400);
-        await expect(page.getByText('validation-error', { exact: true })).toBeVisible();
+        await expect(page.getByText(`${empty}: required (empty value not allowed)`, { exact: true })).toBeVisible();
         expect(await snapshot()).toEqual(before);
       }
     } finally { await context.close(); }
@@ -71,7 +71,10 @@ for (const operation of ['create', 'update'] as const) {
       await page.locator('form').getByRole('button').click();
       const response = await submitted;
       expect(response.status()).toBe(200); expect(response.headers()['cache-control']).toBe('private, no-store');
-      expect(await response.json()).toEqual({ type: 'error', status: 400, error: { message: 'validation-error', code: 'VALIDATION_ERROR' } });
+      expect(await response.json()).toEqual({ type: 'error', status: 400, error: {
+        message: `${empty}: required (empty value not allowed)`, code: 'VALIDATION_ERROR',
+        details: { issues: [{ path: empty, code: 'required', message: 'required (empty value not allowed)' }] }
+      } });
       await expect(page.getByRole('alert')).toHaveText('VALIDATION_ERROR');
       await expect(page.locator('output')).toHaveCount(0);
       expect(await page.evaluate(() => (window as any).__scalarNavigationProbe)).toBe(true);
