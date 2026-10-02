@@ -36,7 +36,16 @@
     </select>
     <label>Validation minimum length <input {...optionsForm.fields.minLength.as('text', field.validation?.minLength === undefined ? '' : String(field.validation.minLength))} inputmode="numeric" /></label>
     <label>Validation maximum length <input {...optionsForm.fields.maxLength.as('text', field.validation?.maxLength === undefined ? '' : String(field.validation.maxLength))} inputmode="numeric" /></label>
-    <p>Replace saves only the displayed bounds. Leaving both empty saves no length bounds. Clear removes validation. Existing content remains readable.</p>
+    <label for={`${controlsId}-pattern-mode`}>Replacement pattern metadata</label>
+    <select id={`${controlsId}-pattern-mode`} {...optionsForm.fields.patternMode.as('select', field.validation?.pattern === undefined ? 'omit' : 'set')}>
+      <option value="omit">Omit pattern</option><option value="set">Save pattern</option>
+    </select>
+    <label for={`${controlsId}-pattern`}>Validation pattern</label>
+    <input {...optionsForm.fields.patternOriginal.as('hidden', JSON.stringify(field.validation?.pattern ?? ''))} />
+    <textarea id={`${controlsId}-pattern`} {...optionsForm.fields.pattern.as('text', field.validation?.pattern ?? '')}
+      value={optionsForm.fields.pattern.value() ?? field.validation?.pattern ?? ''}></textarea>
+    <p>Replace saves the displayed bounds and the selected pattern source. An unchanged source preserves its original line endings; new text uses the browser's submitted line endings. Omit pattern removes its key; Save pattern preserves an empty string. Clear removes validation. Existing content remains readable.</p>
+    <p>The server uses JavaScript regular expressions without flags; matching is case sensitive and unanchored unless you include anchors.</p>
     <button type="submit" disabled={optionsForm.pending > 0}>Save field options</button>
   </fieldset>
   {#if optionsForm.fields.allIssues()?.length}

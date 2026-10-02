@@ -37,6 +37,25 @@ export function convertFieldLabel(input: v.InferOutput<typeof fieldLabelFormInpu
 const editMode = v.optional(v.picklist(['keep', 'set']), 'keep');
 const validationMode = v.optional(v.picklist(['keep', 'set', 'clear']), 'keep');
 const editString = v.optional(v.string());
+// Empty regex sources are distinct metadata. Native text controls always submit
+// strings, so an explicit mode keeps a blank source distinct from omission.
+const patternMode = v.optional(v.picklist(['omit', 'set']), 'omit');
+const validPattern = (value: string | undefined) => {
+  if (value === undefined) return false;
+  try { new RegExp(value); return true; } catch { return false; }
+};
+const textareaValue = (value: string) => value.replace(/\r\n?/g, '\n');
+function replacementPattern(input: { pattern?: string; patternOriginal?: string }) {
+  if (input.pattern === undefined || input.patternOriginal === undefined) return input.pattern;
+  try {
+    const original: unknown = JSON.parse(input.patternOriginal);
+    if (typeof original !== 'string') return undefined;
+    // HTML textarea display and native encoding normalize line endings. A JSON
+    // string snapshot preserves an unchanged source byte-for-byte; it grants no
+    // authority and the chosen source still passes syntax/domain validation.
+    return textareaValue(input.pattern) === textareaValue(original) ? original : input.pattern;
+  } catch { return undefined; }
+}
 const isNonnegativeInteger = (value: string | undefined) => value !== undefined &&
   /^(?:0|[1-9][0-9]*)$/.test(value) && Number.isSafeInteger(Number(value));
 const isOptionalInteger = (value: string | undefined) => value === undefined || value === '' || isNonnegativeInteger(value);
@@ -45,7 +64,8 @@ export const fieldOptionsFormInput = v.pipe(v.strictObject({
   labelMode: editMode, label: editString,
   sortOrderMode: editMode, sortOrder: editString,
   defaultValueMode: editMode, defaultValue: editString,
-  validationMode, minLength: editString, maxLength: editString
+  validationMode, minLength: editString, maxLength: editString, patternMode, pattern: editString,
+  patternOriginal: editString
 }), v.forward(v.check(input => input.id === undefined || input.id === `${input.collection}/${input.field}`,
   'Form instance must match the collection and field'), ['id']),
 v.forward(v.check(input => input.labelMode !== 'set' || (input.label !== undefined && input.label.length > 0),
@@ -58,6 +78,8 @@ v.forward(v.check(input => input.validationMode !== 'set' || isOptionalInteger(i
   'Minimum length must be a nonnegative safe integer'), ['minLength']),
 v.forward(v.check(input => input.validationMode !== 'set' || isOptionalInteger(input.maxLength),
   'Maximum length must be a nonnegative safe integer'), ['maxLength']),
+v.forward(v.check(input => input.validationMode !== 'set' || input.patternMode !== 'set' || validPattern(replacementPattern(input)),
+  'Invalid validation pattern'), ['pattern']),
 v.forward(v.check(input => input.validationMode !== 'set' ||
   !isNonnegativeInteger(input.minLength) || !isNonnegativeInteger(input.maxLength) ||
   Number(input.minLength) <= Number(input.maxLength),
@@ -71,7 +93,8 @@ export function convertFieldOptions(input: v.InferOutput<typeof fieldOptionsForm
     ...(input.defaultValueMode === 'set' ? { defaultValue: input.defaultValue } : {}),
     ...(input.validationMode === 'keep' ? {} : { validation: input.validationMode === 'clear' ? null : {
       ...(input.minLength === undefined || input.minLength === '' ? {} : { minLength: Number(input.minLength) }),
-      ...(input.maxLength === undefined || input.maxLength === '' ? {} : { maxLength: Number(input.maxLength) })
+      ...(input.maxLength === undefined || input.maxLength === '' ? {} : { maxLength: Number(input.maxLength) }),
+      ...(input.patternMode === 'set' ? { pattern: replacementPattern(input) } : {})
     } })
   });
 }
@@ -89,9 +112,11 @@ export const addFieldInput = v.pipe(v.strictObject({
   slug: fieldInput.entries.slug, label: fieldInput.entries.label, type: fieldInput.entries.type,
   required: fieldInput.entries.required, unique: fieldInput.entries.unique,
   defaultValue: fieldInput.entries.defaultValue,
-  minLength: optionalLength, maxLength: optionalLength
+  minLength: optionalLength, maxLength: optionalLength, patternMode, pattern: editString
 }), v.forward(v.check(input => input.id === undefined || input.id === input.collection,
   'Form instance must match the collection'), ['id']),
+v.forward(v.check(input => input.patternMode !== 'set' || validPattern(input.pattern),
+  'Invalid validation pattern'), ['pattern']),
 v.forward(v.check(input => (input.minLength ?? 0) <=
   Math.min(input.maxLength ?? (input.type === 'string' ? 200 : 100_000), 100_000),
   'Minimum length must not exceed the effective maximum'), ['minLength']),
@@ -109,9 +134,10 @@ export function convertCollectionUpdate(input: v.InferOutput<typeof updateInput>
   return { collection, input: parse(collectionMetadataInput, metadata), expected: { version, updatedAt } };
 }
 export function convertFieldAdd(input: v.InferOutput<typeof addFieldInput>) {
-  const { id: _id, collection, expectedSchemaVersion, minLength, maxLength, ...field } = input;
-  const validation = minLength === undefined && maxLength === undefined ? {} : {
-    validation: { ...(minLength === undefined ? {} : { minLength }), ...(maxLength === undefined ? {} : { maxLength }) }
+  const { id: _id, collection, expectedSchemaVersion, minLength, maxLength, patternMode, pattern, ...field } = input;
+  const validation = minLength === undefined && maxLength === undefined && patternMode !== 'set' ? {} : {
+    validation: { ...(minLength === undefined ? {} : { minLength }), ...(maxLength === undefined ? {} : { maxLength }),
+      ...(patternMode === 'set' ? { pattern } : {}) }
   };
   return { collection, expectedSchemaVersion, input: parse(fieldInput, { ...field, ...validation }) };
 }
