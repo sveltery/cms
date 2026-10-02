@@ -76,6 +76,20 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     const validation=await validateContentData(database,type,data,{partial});
     if(!validation.ok)throw new CmsError(validation.error.code==='COLLECTION_NOT_FOUND'?'NOT_FOUND':validation.error.code,validation.error.message,validation.error.details);
   }
+  // EmDashRuntime.normalizeContentFields:5804 at the pinned source. Optional
+  // array-valued editors can submit a blank string; required fields still
+  // reject the resulting null through the normal source validation path.
+  function normalizeBlankArrays(data:Record<string,unknown>,fields:Array<{slug:string;type:string}>) {
+    let normalized=data;
+    for(const field of fields) {
+      const value=data[field.slug];
+      if(['portableText','multiSelect','repeater'].includes(field.type)&&typeof value==='string'&&value.trim()==='') {
+        if(normalized===data)normalized={...data};
+        normalized[field.slug]=null;
+      }
+    }
+    return normalized;
+  }
   async function hydrate(item:ContentItem):Promise<ContentItem> {
     if(!item.draftRevisionId)return item;
     const revision=await revisions.findById(item.draftRevisionId);
@@ -125,7 +139,8 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const actor=requirePermission('content:create');const value=object(input);
       const type=parse(identifier,value.type);const locale=parse(localeInput,value.locale??'en');
       if(value.status!==undefined&&value.status!=='draft')throw new CmsError('VALIDATION_ERROR','Create a draft, then publish it');
-      const data=parse(schemaData,value.data);
+      const collection=await definition(type);
+      const data=normalizeBlankArrays(parse(schemaData,value.data),collection.fields);
       const slug=value.slug===undefined?await content.generateUniqueSlug(type,typeof data.title==='string'?data.title:'',locale):value.slug;
       const item=await drafts.create({type,locale,data,slug},actor.id);
       return stored({type,id:item.id,locale});
@@ -144,7 +159,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const actor=mutationPermission('content:edit_own','content:edit_any');const value=key(input);
       let existing=await stored(value);owner(existing,actor,'content:edit_any');precondition(value.expected,existing);
       const collection=await definition(value.type);const fields=new Set(collection.fields.map(field=>field.slug));
-      let data=value.data===undefined?undefined:parse(schemaData,value.data);
+      let data=value.data===undefined?undefined:normalizeBlankArrays(parse(schemaData,value.data),collection.fields);
       if(data){
         const base=existing.draftRevisionId?(await revisions.findById(existing.draftRevisionId))?.data??existing.data:existing.data;
         const stale=staleStoredKeys(data,base,fields);if(stale.length){data={...data};for(const field of stale)delete data[field];}
@@ -179,8 +194,6 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     async publish(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
       owner(item,actor,'content:publish_any');precondition(value.expected,item);const collection=await definition(value.type);
-      const draft=item.draftRevisionId?await revisions.findById(item.draftRevisionId):null;
-      await checked(value.type,Object.fromEntries(Object.entries(draft?.data??item.data).filter(([field])=>!field.startsWith('_'))),false);
       return translate(()=>content.publish(value.type,value.id,value.publishedAt,false,undefined,collection.supports.includes('revisions'),collection.routable,{version:item.version,updatedAt:item.updatedAt}));
     },
     async unpublish(input:unknown):Promise<ContentItem> {
