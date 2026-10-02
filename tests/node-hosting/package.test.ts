@@ -15,6 +15,7 @@ import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
 import { hashSessionToken } from '../../src/lib/server/auth/session.ts';
 import { Role } from '../../src/lib/server/auth/roles.ts';
 import { remoteBoundaries } from '../helpers/remote.ts';
+import { webauthnCredential } from '../helpers/webauthn-credential.ts';
 
 async function unusedPort() {
   const socket = createServer();
@@ -213,6 +214,49 @@ test('isolated production package starts, serves assets and denies anonymous HTT
         assert.equal((await remote('getContent', true, { collection: 'notes', id: receipt.id })).status, 403);
         await running.stop('SIGINT');
         running = undefined;
+      } finally { await operator.close(); }
+    });
+    await t.test('standalone package issues a real passkey session without seeded identity and revokes it after restart', async () => {
+      const databasePath = join(temporary, 'passkey-data', 'cms.db');
+      const origin = new URL(base).origin;
+      const credential = webauthnCredential(origin);
+      const cookies = new Map<string, string>();
+      const headers = () => ({ origin, cookie: [...cookies].map(([key, value]) => `${key}=${value}`).join('; ') });
+      const post = async (path: string, data: unknown) => {
+        const response = await fetch(new URL(path, base), { method: 'POST', headers: { ...headers(), 'content-type': 'application/json' }, body: JSON.stringify(data) });
+        for (const cookie of response.headers.getSetCookie()) {
+          const [pair] = cookie.split(';'), index = pair.indexOf('=');
+          if (/max-age=0(?:;|$)/i.test(cookie)) cookies.delete(pair.slice(0, index));
+          else cookies.set(pair.slice(0, index), pair.slice(index + 1));
+        }
+        return response;
+      };
+      running = launch(directory, port, origin, databasePath);
+      await running.ready();
+      assert.equal((await fetch(new URL('api/auth/me', base))).status, 401);
+      const began = await post('api/setup/admin', { email: 'package-admin@example.com', name: 'Package Admin' });
+      assert.equal(began.status, 200);
+      const registration = (await began.json()).data.options;
+      assert.equal((await post('api/setup/admin/verify', { credential: credential.registration(registration.challenge) })).status, 200);
+      assert.equal(cookies.has('cms-session'), false);
+      const options = (await (await post('api/auth/passkey/options', {})).json()).data.options;
+      const verified = await post('api/auth/passkey/verify', { credential: credential.assertion(options.challenge) });
+      assert.equal(verified.status, 200);
+      const token = cookies.get('cms-session'); assert.match(token!, /^[A-Za-z0-9_-]{43}$/);
+      const operator = openSqlite(databasePath);
+      try {
+        const sessions = await operator.db.selectFrom('_cms_auth_sessions').selectAll().execute();
+        assert.equal(sessions.length, 1); assert.equal(sessions[0].hash, await hashSessionToken(token));
+        const current = () => fetch(new URL('api/auth/me', base), { headers: headers() });
+        assert.equal((await (await current()).json()).data.email, 'package-admin@example.com');
+        await running.stop('SIGTERM');
+        running = launch(directory, port, origin, databasePath);
+        await running.ready();
+        assert.equal((await (await current()).json()).data.email, 'package-admin@example.com');
+        assert.equal((await post('api/auth/logout', {})).status, 200);
+        assert.equal((await current()).status, 401);
+        assert.equal((await operator.db.selectFrom('_cms_auth_sessions').selectAll().execute()).length, 0);
+        await running.stop('SIGINT'); running = undefined;
       } finally { await operator.close(); }
     });
     // Only installation artifacts and the synthetic .env were allowed to be added.
