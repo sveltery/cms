@@ -14,6 +14,8 @@ import ts from 'typescript';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const pin = '913cb1bb9b7f08c3ff0d258b4420e53835b6a58e';
+// Optional clone path; read committed blobs, never working-tree files or HEAD.
+const upstreamRepository = process.argv[2];
 const directory = await mkdtemp(join(tmpdir(), 'cms-upstream-pattern-'));
 const sources = [
   ['LICENSE', '02cc4b8b0a5f883c5243927e683b00c10588bf4c'],
@@ -47,7 +49,8 @@ sources.push(
 try {
   for (const [path, blob] of sources) {
     const destination = join(directory, path); await mkdir(dirname(destination), { recursive: true });
-    execFileSync('curl', ['--retry', '2', '-fsSL', `https://raw.githubusercontent.com/emdash-cms/emdash/${pin}/${path}`, '-o', destination]);
+    if (upstreamRepository) await writeFile(destination, execFileSync('git', ['-C', upstreamRepository, 'show', `${pin}:${path}`]));
+    else execFileSync('curl', ['--retry', '2', '-fsSL', `https://raw.githubusercontent.com/emdash-cms/emdash/${pin}/${path}`, '-o', destination]);
     if (blob) {
       const content = await readFile(destination);
       const actual = createHash('sha1').update(`blob ${content.length}\0`).update(content).digest('hex');
@@ -380,6 +383,7 @@ test(target+': exact all-fields.test.ts:58 source factory assertion callback',()
     env: { ...process.env, CMS_UPSTREAM_TARGET: target }, stdio: 'inherit'
   });
   console.log(JSON.stringify({ pin, sources, fixtureBoundaries: [...fixtureModules.keys()],
+    acquisition:upstreamRepository ? 'immutable Git blobs from supplied clone' : 'immutable raw GitHub URLs',
     supplementalProbesPerTarget:32, targets:['Node','D1'], zod:'4.5.4',
     sourceAssertionExpressionsExecuted:2, sourceAssertionEvaluationsPerTarget:2,
     unchangedFactorySourceDeclarationsExecuted:1, inspectedMcpAssertionExpressions:3,
