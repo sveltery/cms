@@ -69,8 +69,11 @@ export async function finishAdminSetup(context: IdentityContext, cookieNonce: st
   await options.delete('emdash:setup_state');
   return user;
 }
-export async function authenticationOptions(context: IdentityContext, trustedIp: string | null) {
+export async function authenticationOptions(context: IdentityContext, trustedIp: string | null,
+  validateInput?: () => Promise<unknown>) {
   void cleanupExpiredChallenges(context.database).catch(() => {});
+  // Pinned options.ts parses after cleanup and before consuming a rate slot.
+  await validateInput?.();
   if (trustedIp) {
     const window = new Date(Math.floor(Date.now() / 60_000) * 60_000).toISOString();
     const db = identityDb(context.database), key = `${trustedIp}:passkey/options`;

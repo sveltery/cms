@@ -4,7 +4,7 @@ import { identityApi, identityBody, identitySuccess } from '$lib/server/auth/ide
 import { loginOptionsInput } from '$lib/server/auth/identity-schemas';
 
 export const POST: RequestHandler = event => identityApi(event, 'PASSKEY_OPTIONS_ERROR', async context => {
-  await identityBody(event, loginOptionsInput, true);
-  const options = await authenticationOptions(context, event.getClientAddress());
+  const options = await authenticationOptions(context, event.getClientAddress(),
+    () => identityBody(event, loginOptionsInput, true));
   return identitySuccess({ success: true, options });
 });
