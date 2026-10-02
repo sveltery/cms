@@ -32,7 +32,7 @@ test('real passkey setup then login persists role/session across process restart
     await page.reload();
     await expect(page.getByText('Content is unavailable until authentication and storage are configured.')).toHaveCount(0);
     await page.goto(`${h.origin}/login`);
-    await expect(page.getByText('Signed in as virtual-auth@example.com')).toBeVisible();
+    await expect(page.getByText('Signed in as Virtual Auth User.')).toBeVisible();
     await page.getByRole('button', { name: 'Sign out', exact: true }).click();
     await expect(page.getByRole('button', { name: 'Sign in with a passkey' })).toBeVisible();
     await page.goto(`${h.origin}/`);
