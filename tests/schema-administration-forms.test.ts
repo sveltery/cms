@@ -46,6 +46,15 @@ test('native addition preserves explicitly non-translatable fields', () => {
   const value = convertFieldAdd(result.output);
   assert.equal(value.input.translatable,false);
 });
+
+test('native collection creation keeps source defaults until advanced settings are selected', () => {
+  const input = {slug:'posts',label:'Posts',supports:'["seo"]',settingsMode:'keep',icon:'',group:'',urlPattern:'',routable:'true',hasSeo:'false',hidden:'false',editLocking:'true',commentsEnabled:'false',listColumns:'[]',quickCreate:'true'};
+  const parsed=v.safeParse(createInput,input);
+  assert.equal(parsed.success,true,'native settings mode is accepted');
+  if(!parsed.success) return;
+  const value=convertCollectionCreate(parsed.output);
+  assert.deepEqual(value,{slug:'posts',label:'Posts',supports:['seo']});
+});
 test('native collection updates distinguish omitted display fields from clearing them', () => {
   const kept = convertCollectionUpdate(v.parse(updateInput, expected));
   assert.equal(Object.hasOwn(kept.input, 'titleField'), false);
