@@ -74,11 +74,13 @@ test('built Cloudflare Worker migrates persistent D1 and enforces current sessio
   const cookie = `cms-session=${token}`;
   let operator: ReturnType<typeof openD1> | undefined;
   try {
-    const anonymous = await request(worker, ids, 'getEditorManifest');
-    assert.equal(anonymous.body.status, 401);
+    const anonymous = await Promise.all(Array.from({ length: 4 }, () => request(worker, ids, 'getEditorManifest')));
+    assert.ok(anonymous.every(result => result.body.status === 401));
+    assert.ok(anonymous.every(result => !result.response.headers.get('set-cookie')?.includes('__em_d1_bookmark')));
     operator = openD1(await worker.getD1Database('CMS_DB'));
     const versions = await operator.db.selectFrom('_cms_migrations').select('version').execute();
     assert.ok(versions.some(row => row.version === 4));
+    assert.equal(new Set(versions.map(row => row.version)).size, versions.length);
     const registry = new SchemaRegistry(operator);
     await registry.createCollection({ slug: 'notes', label: 'Notes' });
     await registry.createField('notes', { slug: 'headline', label: 'Headline', type: 'string', required: true });
