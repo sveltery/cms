@@ -75,6 +75,18 @@
       "sourceBlob": "0c2f44156cff829951c52b0dd259fc5ff45bc554",
       "sha256": "92a76aa8192b98e9703ece4b72b5ba1377ca66454b97608b4dfc3804ab3bc698",
       "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/schema/types.ts"
+    },
+    {
+      "path": "packages/core/src/schema/registry.ts",
+      "sourceBlob": "da7bbcdda224dfca8d9146b2f36659ab90bcac2e",
+      "sha256": "db26cf5bd9c9442c3b41185c879281914410cd9ece94cf2f9716533eb6e71516",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/schema/registry.ts"
+    },
+    {
+      "path": "packages/core/src/utils/chunks.ts",
+      "sourceBlob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e",
+      "sha256": "d5c454b134d9727d0af1fa5befb786a781e65cdac964a668af6a8fab74b81877",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/utils/chunks.ts"
     }
   ],
   "ports": [
@@ -209,7 +221,7 @@
     "No Node hosting packaging or deployment",
     "No D1 binding persistence or migration atomicity proof",
     "Workerd synthetic Kysely-read-shaped adapter proves executable portable resolver/bridge/handle only",
-    "No cross-request principal or manifest caching; manifest uses at most 101 registry reads, not upstream two-query JOIN parity",
+    "No cross-request principal or manifest caching; bounded field batching uses at most 3 reads (1 collection + ceil(visible/50)); no JOIN, config-fallback or snapshot-isolation parity. See docs/editor-manifest-batching.md.",
     "Manifest excludes defaults/admin schema/content; text retains richText kind but preview remains disabled plain textarea",
     "No upstream full-manifest hash/config precedence/plugins/branding/relations/rich-field claims",
     "Upstream manifest protected by auth middleware; this bounded draft-editor projection additionally requires content:read and content:read_drafts, deliberately denies subscribers"
@@ -221,5 +233,49 @@
     "localTest": "tests/editor-manifest.test.ts:82",
     "redCommit": "247d43090fb006c072f03f517e2be79f869fad81",
     "behavior": "Manual constructor collection omitted; optional correction deferred. Explicit prototype-name exclusion retains output without unsafe UI property interpretation."
+  },
+  "manifestBatching": {
+    "referenceCommit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "integratedMain": "ae61dd04bf150058907b147a9c978b18ffacc0d5",
+    "featureEvidence": "docs/editor-manifest-batching.md",
+    "localFile": "tests/editor-manifest-batching.test.ts",
+    "sourceReproducer": "tests/helpers/reproduce-editor-manifest-upstream.mjs",
+    "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/runtime/manifest-build.test.ts:537",
+    "sourceBlob": "91f8fddb1472831b984034daa9776edd31d98e07",
+    "sourceAssertions": [
+      {
+        "line": 556,
+        "expression": "expect(Object.keys(manifest.collections).toSorted()).toEqual([\"coll_0\", \"coll_1\", \"coll_2\", \"coll_3\", \"coll_4\"])",
+        "ported": true
+      },
+      {
+        "line": 564,
+        "expression": "expect(manifest.collections[`coll_${i}`]?.fields.title?.kind).toBe(\"string\")",
+        "iterations": 5,
+        "ported": true
+      }
+    ],
+    "adaptations": "Node assertions and independent CMS registry/authenticated projection; source source:test input absent locally. Actual upstream builder repro directly seeds metadata rather than migration/mutation/runtime setup. Full Runtime/config/plugin/hash/rich-schema contracts omitted.",
+    "queryCounts": {
+      "kind": "supplemental",
+      "0": 1,
+      "1": 2,
+      "50": 2,
+      "51": 3,
+      "100": 3
+    },
+    "sourceRun": "Manual immutable source fixture: 7/7 cases Node, 7/7 local D1; complete registry/builder/scalar expansion unchanged, 14 blob checks and throwing unrelated dependencies.",
+    "redResult": "Unchanged main61fddd9: 10 tests,6 passes,4 supplemental batching failures; source output already passes. Observer later corrected to completed-query results.",
+    "initialGreenResult": "16 existing/dedicated manifest tests passed, then full bootstrap248/37/11 including actual workerd supplement; integrated main requires fresh gates.",
+    "status": "proposed; selected output assertions and supplemental optimization evidence; no inventory leaf credit added",
+    "omissions": [
+      "No full upstream suite",
+      "No universal two-query/JOIN guarantee",
+      "No shared-snapshot or caching",
+      "No configured production Cloudflare/hosting",
+      "Existing scalar/disclosure/auth/order/cap/constructor/error adaptations retained"
+    ],
+    "proposedPr": "https://github.com/sveltery/cms/pull/17",
+    "integratedGreenResult": "Integrated main ae61dd0 full bootstrap passed: zero checker diagnostics, 250 development/storage,38 production,11 packaged-consumer tests; default/Node builds. Documentation-only evidence updates follow executable run."
   }
 }
