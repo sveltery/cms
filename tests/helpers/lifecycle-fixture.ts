@@ -96,7 +96,7 @@ export async function setupLifecycleFixture({ atomic = false } = {}) {
   const runtime = {
     async handleContentCreate(type: string, input: any) {
       try { return result(await (lifecycle ? lifecycle.createContent({type,...input}) : baseline.createDraft({type,...input}))); }
-      catch (cause: any) { return {success:false,error:{code:cause.code ?? 'ERROR'}}; }
+      catch (cause: any) { return {success:false,error:{code:cause.code ?? 'ERROR',message:cause.message,details:cause.details}}; }
     },
     handleContentGet: (type: string, id: string) => lifecycle ? invoke('getContent',type,id) : existing(type,id).then(result),
     async handleContentUpdate(type: string, id: string, input: any) {
