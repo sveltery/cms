@@ -1,0 +1,55 @@
+# Native draft trash and restore transport
+
+This bounded slice starts at merged main `32a9395aa6c1e389d1b01e15ea946f34be9f64ac` ([PR #19](https://github.com/sveltery/cms/pull/19)); its exact [post-merge CI run](https://github.com/sveltery/cms/actions/runs/36987685852) passed validate and secured default/Node browser jobs. It binds the existing [trash service](draft-trash.md) to installed SvelteKit **2.70.3**, Svelte **5.57.1**, Valibot **1.5.0** and the existing native content remote module. No database/service, UI, publication, permanent deletion, production composition, credentials or deployment changes are included.
+
+| Remote | Input | Result |
+| --- | --- | --- |
+| `getTrashedContent` | `{ collection, id, locale? }` | Retained scalar draft data, `deletedAt`, locale and `_rev`; active/missing rows return `NOT_FOUND`. |
+| `listTrashedContent` | `{ collection, locale?, limit? }` | `{ items }` of body-free draft summaries, `deletedAt`, locale and `_rev`; default 50, cap 100, deletion time/ID descending. No count, cursor or order override. |
+| `restoreContent` | Native form: `collection`, `id`, `locale?`, `_rev` | Bounded `{ id, type, locale, _rev }` receipt for the active row returned by this atomic restore. |
+
+Trash reads preserve absent locale, searching every locale; explicit locale must match. Restore defaults to `en`, consistent with existing local mutations. To restore a non-English result, submit the result's actual locale. Its `_rev` binds collection, ID and locale to version and timestamp. Lexically invalid token fields return native Kit issues; malformed encoded/context tokens return `VALIDATION_ERROR` (400). Stale/double/active restoration returns `CONFLICT` (409); missing rows return `NOT_FOUND` (404). Successful restore advances `_rev`; clients must use the new token for subsequent update/delete.
+
+Read permission remains `content:read` plus `content:read_drafts`. Restore requires edit-own/edit-any; delete-only cannot restore. Native Kit structural validation occurs before the callback, as for existing remotes. Within the callback, request identity and the existing explicit mutation/storage gates remain intact. The restore input defers semantic `_rev` decoding through its `expected` getter until the unchanged service authorizes and parses input. Thus a reader/delete-only principal with an undecodable but lexically valid token is denied before decoding or storage; persisted-owner/null-owner denial still precedes CAS. No duplicate ownership policy or principal claims are accepted. Domain errors use existing `contentResponse` mappings; unexpected storage errors remain sanitized by Kit.
+
+Deletion and restore refresh canonical active lists/details for the exact changed locale and omitted active aliases when that locale is `en`. They refresh canonical trash lists/details for the exact locale and the omitted/all-locale aliases for every locale. Native client-requested list/detail instances retain their **original** cache keys through asynchronous `requested` iteration. Active instances match collection/locale/ID; trash instances match collection/ID and either absent or exact locale. Each query family has a five-request limit **before scope filtering**; invalid or excess requested instances receive separate native query errors. Unrelated valid scopes do not refresh. Write-only restore returns a successful bounded receipt while all refreshed reads independently return 403; restored trash detail independently returns 404. No retained data escapes through a mutation receipt.
+
+## Direct native field spread
+
+The test-only compiled form uses the supported API directly:
+
+```svelte
+<form {...restoreContent}>
+  <input {...restoreContent.fields.collection.as('hidden', input.collection)} />
+  <input {...restoreContent.fields.id.as('hidden', input.id)} />
+  <input {...restoreContent.fields.locale.as('hidden', input.locale)} />
+  <input {...restoreContent.fields._rev.as('hidden', input._rev)} />
+  <button>Restore draft</button>
+</form>
+```
+
+Hidden fields need the second value argument in installed Kit. A one-argument hidden spread does not inherit a `fields.set` value: production emits an absent value and development throws. `_rev` submits normally, but Kit redacts leading-underscore fields from the input echoed after invalid unenhanced submission. The fixture explicitly provides the retained token again when rendering; this does not suppress validation or enable any application UI.
+
+The [official remote-function docs](https://svelte.dev/docs/kit/remote-functions) were inspected on 2026-10-02, but currently describe newer `ignore`/`ignoreAll` APIs absent from installed 2.70.3. The executable authority is installed `src/runtime/app/server/remote/{form,query,requested}.js` and `src/runtime/shared/form-utils.js`. No dependency or experimental flag changes are made.
+
+## Source authority and differences
+
+EmDash 1.1.0 immutable pin is `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. The full pinned handler blob is `34c2528c51a54119cd1730e876d699319c9f3702`; repository blob is `29dab9decf9af0d9fb21b464dc185ed48ab958ea`; locale test blob is `49f5ea1a533750f2c1a6b7bf78d12c468030c6e6`. Existing DT-01–DT-04, C-08–C-16 and service bounds remain inherited. No scalar-storage/default/required/unique behavior changes are included.
+
+The following entries are the proposed handoff to the canonical-register owner; they do not imply a recorded specific acceptance decision or merged state.
+
+| ID / immutable source | Upstream and local observable behavior | Rationale, evidence and decision state |
+| --- | --- | --- |
+| DTT-01: native query/form transport; [pinned trash/restore handlers](https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/api/handlers/content.ts) | Upstream handler uses API success/error envelopes and ID/slug resolution; local uses registered Kit queries/forms, native structural issues and existing mapped domain errors with collection/ID-only resolution. Trash omission still includes all locales; restore retains the local `en` mutation default. | Framework substitution preserves the merged service bounds. Built Node/local D1 query/form, denial, origin and validation evidence; direct compiled field spreads and secured browser checks. Proposed in this transport slice; specific deviation acceptance is not recorded. |
+| DTT-02: mandatory context token and bounded restore receipt; [pinned restore handler/repository](https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/repositories/content.ts) | Upstream accepts optional encoded `_rev` and returns a full restored item with updated token. Local requires collection/ID/locale-bound `_rev`, keeps inherited atomic ownership/CAS/monotonic timestamp rules and returns only identity/locale/refreshed token. Kit structural validation precedes callback authorization; semantic decoding is deferred until service authorization. | Existing local concurrency and write-only data-disclosure contract. Context/stale/double/concurrent restore, persisted owner/null owner, denied malformed token and write-only query-error tests. Proposed in this transport slice; inherited DT-02 differences receive no new parity credit and specific acceptance is not recorded. |
+| DTT-03: bounded native active/trash cache refresh; same pinned handlers, which expose API responses rather than Kit cache metadata | Local refreshes canonical exact/default/all-locale keys and original requested instances through Kit, with five requested instances per query family before scope filtering. Read errors are independent of successful restore/deletion receipts; unsupported/excess keys receive native query errors. Upstream has no equivalent native Kit cache envelope. | Framework substitution supports coherent active/trash reads without returning retained data to write-only callers. Original-key/default/non-English/all-locale, scope, overflow and read-denial tests. Proposed in this transport slice; specific acceptance is not recorded. |
+
+These are supplemental SvelteKit boundary requirements, **zero new upstream assertions or complete source declarations**. Existing three adapted trash locale value assertions remain owned by PR #19; this slice does not claim browser parity for EmDash `content-actions.spec.ts:629`, published restoration, revisions/history, translation creation, count/cursor or deployed runtimes. MIT attribution remains in [the existing notice](../notices/emdash-MIT.txt); upstream implementation/tests are not copied into this transport.
+
+## Verification and limits
+
+The dedicated [built-server suite](../tests/production/trash-restore-remotes.test.ts) uses real persisted Node SQLite and an isolated trusted test hook, plus actual local D1 and persisted sessions. It checks locale omission/caps/order, token fidelity, permission-before-storage, retained values, concurrent/double restore, original cache keys/limits, origin rejection and the existing disabled mutation gate. The [native compiled fixture](../tests/helpers/trash-restore-fields-server.mjs) and [browser checks](../tests/browser/trash-restore-fields.spec.ts) exist only under tests and never enter production artifacts.
+
+Record exact final head, full bootstrap, secured default/Node browser runs and independent/configured automatic review in the PR handoff before merge. A running/missing review or a browser launch blocked by environment policy is not passing evidence. Production content writes and draft editor buttons remain disabled by default.
+
+Next bounded work depends on these contracts and the separate scalar-fidelity work: an explicitly scoped read-only trash view can consume the existing locale-bearing summaries/detail without mutation UI. Enabling restore/edit UI additionally requires deciding the production trusted session/storage setup and mutation policy; publication/permanent deletion remain separate upstream lifecycle families. No future-field storage changes are folded into this slice.

@@ -9,6 +9,13 @@ export const contentList = v.strictObject({
   limit: v.optional(v.pipe(v.number(), v.safeInteger(), v.minValue(1))),
   cursor: v.optional(v.pipe(v.string(), v.maxLength(2048)))
 });
+// Unlike active reads and mutations, omitted locale means every trash locale.
+const trashQualified = { collection: identifier, locale: v.optional(localeInput) };
+export const trashedContentKey = v.strictObject({ ...trashQualified, id: entryId });
+export const trashedContentList = v.strictObject({
+  ...trashQualified,
+  limit: v.optional(v.pipe(v.number(), v.safeInteger(), v.minValue(1)))
+});
 export const collectionSlug = identifier;
 const nestedData = v.pipe(
   v.record(identifier, v.pipe(v.string(), v.maxLength(100_000))),
@@ -25,6 +32,7 @@ export const createInput = v.strictObject({ ...qualified, data, slug });
 export const revisionToken = v.pipe(v.string(), v.minLength(1), v.maxLength(2048), v.regex(/^[A-Za-z0-9_-]+$/));
 export const updateInput = v.strictObject({ ...contentKey.entries, _rev: revisionToken, data, slug });
 export const trashInput = v.strictObject({ ...contentKey.entries, _rev: revisionToken });
+export const restoreInput = v.strictObject({ ...contentKey.entries, _rev: revisionToken });
 const token = v.strictObject({ ...contentKey.entries, expected: revisionInput });
 
 export function withRevision<T extends DraftEntry | DraftSummary>(entry: T) {
