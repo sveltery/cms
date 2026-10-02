@@ -1,4 +1,5 @@
 import { query, form, requested } from '$app/server';
+import {getLifecycleContent,listContentRevisions} from './lifecycle.remote';
 import { collectionSlug, contentKey, contentList, trashedContentCount, trashedContentKey, trashedContentList, createInput, updateInput, trashInput, restoreInput, withRevision, precondition } from '$lib/server/content/schema';
 import { requestContent, contentResponse } from '$lib/server/content/request';
 
@@ -29,6 +30,7 @@ export const updateContent = form(updateInput, (input) => contentResponse(async 
   const { collection, _rev, ...value } = input;
   const record = withRevision(await service.updateContent({ type: collection, ...value, expected: precondition(input) }));
   await refreshContent(collection, value.locale, value.id);
+  await refreshWorkflow(collection, value.locale, value.id);
   return receipt(record);
 }));
 /** Recoverable trash; retained rows remain in storage. */
@@ -38,6 +40,7 @@ export const deleteContent = form(trashInput, (input) => contentResponse(async (
   await service.deleteContent({ type: collection, ...key, expected: precondition(input) });
   await refreshContent(collection, key.locale, key.id);
   await refreshTrash(collection, key.locale, key.id);
+  await refreshWorkflow(collection, key.locale, key.id);
   return { id: key.id, trashed: true };
 }));
 export const restoreContent = form(restoreInput, (input) => contentResponse(async () => {
@@ -49,6 +52,7 @@ export const restoreContent = form(restoreInput, (input) => contentResponse(asyn
   }));
   await refreshContent(collection, key.locale, key.id);
   await refreshTrash(collection, key.locale, key.id);
+  await refreshWorkflow(collection, key.locale, key.id);
   return receipt(record);
 }));
 
@@ -83,6 +87,15 @@ async function refreshTrash(collection: string, locale: string, id: string) {
   }
   for await (const { arg, query } of requested(getTrashedContent, 5)) {
     if (arg.collection === collection && arg.id === id && (arg.locale === undefined || arg.locale === locale)) void query.refresh();
+  }
+}
+
+async function refreshWorkflow(collection:string,locale:string,id:string) {
+  for await (const {arg,query} of requested(getLifecycleContent,5)) {
+    if(arg.collection===collection&&arg.locale===locale&&arg.id===id)void query.refresh();
+  }
+  for await (const {arg,query} of requested(listContentRevisions,5)) {
+    if(arg.collection===collection&&arg.locale===locale&&arg.id===id)void query.refresh();
   }
 }
 
