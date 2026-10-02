@@ -1,6 +1,6 @@
 # Bounded collection metadata updates
 
-Proposed service slice from CMS main `054c576e43b166124c9660cc2bdb3909ea4db2d5`. Authority is EmDash **1.1.0**, immutable [`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`](https://github.com/emdash-cms/emdash/commit/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e). Preserve [MIT attribution](../notices/emdash-MIT.txt). This document is the service owner's detailed compatibility record; shared database/compatibility indexes are handed to the parent for coordinated integration with the separate cursor UI owner. No specific acceptance decision for the differences below is recorded.
+Proposed in [PR #16](https://github.com/sveltery/cms/pull/16) from CMS main `054c576e43b166124c9660cc2bdb3909ea4db2d5`. Authority is EmDash **1.1.0**, immutable [`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`](https://github.com/emdash-cms/emdash/commit/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e). Preserve [MIT attribution](../notices/emdash-MIT.txt). This document contains the source and fixture detail for canonical CU-01/CU-02 in the [compatibility register](../parity/emdash/compatibility.md). The database feature/parity indexes are integrated in the same PR; the separate cursor UI slice retains its own records and evidence. No specific acceptance decision for the differences below is recorded.
 
 ## Trusted server API
 
@@ -32,7 +32,7 @@ Upstream fixtures insert rows directly into a temporary `_emdash_collections` ta
 
 The paired run passed **10 cases**: six selected source cases plus four supplemental probes across Node/local D1. Probes confirm omitted/undefined values, singular-label updates, explicit empty description/supports and unchanged SQLite schema objects. Upstream's collection mapper has **no schema version property** and its update does not write a version; the local existing schema-version field remains unchanged. No upstream bug claim was identified.
 
-## Compatibility records for parent integration
+## Compatibility records
 
 | Proposed record | Observable upstream / local behavior | Rationale, evidence and decision status |
 | --- | --- | --- |
