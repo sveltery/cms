@@ -1,0 +1,591 @@
+{
+  "referenceVersion": "EmDash 1.1.0",
+  "referenceCommit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "integrationBase": "8c773d815bb54499d5d3eeca4f92b28d7b42ac22",
+  "licenseNotice": "../notices/emdash-MIT.txt",
+  "implementationPullRequest": "https://github.com/sveltery/cms/pull/27",
+  "decisionStatus": "Proposed implementation in PR #27, rebased onto merged trash-pagination main 46533f657b3fbcc73d78360b9abb8e653bd72dec. Canonical ownership was released and six documentation changes reconciled; both expected-export inventories are updated. Specific acceptance of intentional differences is not recorded. Fresh combined final-head verification/reviews remain pending; no field-edit merge/post-merge success is claimed.",
+  "inspectedSources": [
+    {
+      "path": "packages/core/src/schema/registry.ts",
+      "sourceBlob": "da7bbcdda224dfca8d9146b2f36659ab90bcac2e",
+      "sha256": "db26cf5bd9c9442c3b41185c879281914410cd9ece94cf2f9716533eb6e71516",
+      "inspectedLines": [
+        1416,
+        1542,
+        1552,
+        1555,
+        1559,
+        1577,
+        1595,
+        2475
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/schema/registry.ts"
+    },
+    {
+      "path": "packages/core/tests/integration/mcp/schema.test.ts",
+      "sourceBlob": "4c1d5c283a19f4262b84cc5165b70f2046ba8b43",
+      "sha256": "85b699a650a99a0e5c2246ad4395249f3ff59cbb8882c021445ea58eb1be1a29",
+      "inspectedLines": [
+        982,
+        1003,
+        1011,
+        1012
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/schema.test.ts"
+    },
+    {
+      "path": "packages/core/src/database/repositories/content.ts",
+      "sourceBlob": "29dab9decf9af0d9fb21b464dc185ed48ab958ea",
+      "sha256": "b334660e351c6953e41bde5058b29a7b1d00219c5afa96a0773d09bd251e63ee",
+      "inspectedLines": [
+        377,
+        456,
+        2910
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/repositories/content.ts"
+    },
+    {
+      "path": "packages/core/tests/unit/schema/registry.test.ts",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "sha256": "31121e7e6be3db373e0d2c09985e1e11e46115a750a26d085fd1c6c70933e7ee",
+      "inspectedLines": [
+        668,
+        681,
+        682,
+        683
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts"
+    },
+    {
+      "path": "packages/core/src/database/transaction.ts",
+      "sourceBlob": "69bf167998a2fa9cc228c3612a69c8fde5ed85fe",
+      "sha256": "a390fe445530a32efa8ab2b4041eb46517a157ac5f9d295ef848d58b69530a4a",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/transaction.ts"
+    },
+    {
+      "path": "packages/cloudflare/src/db/d1-dialect.ts",
+      "sourceBlob": "b026d293554c5173e1447b5eff0d704e169d3384",
+      "sha256": "c37040b0868590d2467a9230b32a84ae421dec6d98fb31b1a480e18a38b39c6c",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/cloudflare/src/db/d1-dialect.ts"
+    },
+    {
+      "path": "packages/core/src/api/handlers/validation.ts",
+      "sourceBlob": "a9e40d310098e2329e166614fa10fcea1b53c84d",
+      "sha256": "ee610b437c37d2e73bb948878cdec1687cb1973a28ab5d0724939fc06b520600",
+      "inspectedLines": [
+        149,
+        204,
+        222
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/api/handlers/validation.ts"
+    },
+    {
+      "path": "packages/core/src/schema/zod-generator.ts",
+      "sourceBlob": "550d4918258aa52a0d0f272b69061c76e79d86ee",
+      "sha256": "aa54ab4a8a5b60c7ea76335f94e2d4df74d0e7beca1cbc8d38858d4cc5cb5c86",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/schema/zod-generator.ts"
+    },
+    {
+      "path": "packages/core/src/utils/hash.ts",
+      "sourceBlob": "93db9df4a2b88692d5772fa5e32d309d7f23fab8",
+      "sha256": "7245086a4e29bb0a82852cb63f477ba3ced6d89ab6bee8cbe9f716561e5eced3",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/utils/hash.ts"
+    },
+    {
+      "path": "packages/core/src/utils/url.ts",
+      "sourceBlob": "5ea627417b29212beeb178863f7b2f4989f90d58",
+      "sha256": "6f410994ca25c960baa96256ffda0626289284f486a288bc2747bf479c4a9ff2",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/utils/url.ts"
+    },
+    {
+      "path": "packages/core/src/api/schemas/schema.ts",
+      "sourceBlob": "57e0338b8e1a7633d1e3409f4a38b39f73469e68",
+      "sha256": "e4f783e7852b3480ac6110f5e79736310804ae2cd2452f181c70d27263b0524e",
+      "inspectedLines": [
+        96,
+        133,
+        232
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/api/schemas/schema.ts"
+    },
+    {
+      "path": "packages/core/src/api/schemas/common.ts",
+      "sourceBlob": "ba9be767aa9a2c564f3ebfd2c4106ad904324c59",
+      "sha256": "9df0fc5f1d40a33f87c131b151278ba639f35013b387c7b7bef15523c11c3e08",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/api/schemas/common.ts"
+    },
+    {
+      "path": "packages/core/src/i18n/config.ts",
+      "sourceBlob": "fe714e5ad514485fe1737585c663e470d50519df",
+      "sha256": "e354441e19a9013b520112fc1722a1e861ea0a381ceec7ff4e28218bc9c652f7",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/i18n/config.ts"
+    },
+    {
+      "path": "packages/admin/src/components/FieldEditor.tsx",
+      "sourceBlob": "f918b302b527d150f3f51fdfa1ebf1facc0fe7ba",
+      "sha256": "2848aa488ef28fd8f15202de32c4352f5a0a8c83980fa823610e9460cfcedad0",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/src/components/FieldEditor.tsx"
+    },
+    {
+      "path": "packages/core/src/utils/chunks.ts",
+      "sourceBlob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e",
+      "sha256": "d5c454b134d9727d0af1fa5befb786a781e65cdac964a668af6a8fab74b81877",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/utils/chunks.ts"
+    },
+    {
+      "path": "packages/core/src/schema/types.ts",
+      "sourceBlob": "0c2f44156cff829951c52b0dd259fc5ff45bc554",
+      "sha256": "92a76aa8192b98e9703ece4b72b5ba1377ca66454b97608b4dfc3804ab3bc698",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/schema/types.ts"
+    },
+    {
+      "path": "packages/core/src/schema/url-pattern.ts",
+      "sourceBlob": "1b9776eb0ab18119c46bceeeff2459db555bc41e",
+      "sha256": "795db92e54d41afaaa992b4cc1379d09073dcf7287a8c8b84be3d303c301edae",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/schema/url-pattern.ts"
+    },
+    {
+      "path": "packages/core/src/database/dialect-helpers.ts",
+      "sourceBlob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24",
+      "sha256": "31606b29b5a98cb657078a9d89a8ab9b9f0be1694ac7410e34af6cbf49dda154",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/dialect-helpers.ts"
+    },
+    {
+      "path": "packages/core/src/database/validate.ts",
+      "sourceBlob": "73d3b303764b473d4238e0cb17f1a904998671f8",
+      "sha256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/validate.ts"
+    },
+    {
+      "path": "packages/cloudflare/src/db/d1-introspector.ts",
+      "sourceBlob": "4c40fc55aa449f46f887f9335d11b42633312225",
+      "sha256": "1435befb2c61a3a5a0b20a7c0724cbc79914f8d9528ab629c7869d849ccbf9d0",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/cloudflare/src/db/d1-introspector.ts"
+    },
+    {
+      "path": "packages/core/src/database/migration-lock.ts",
+      "sourceBlob": "160cce48c64a6c815ec780bef8fc2646be5b5ec9",
+      "sha256": "ef5bda7b8b433a6fb7d0c8f9232d3d1398442eee884085c486d3545b8cbe9976",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/migration-lock.ts"
+    },
+    {
+      "path": "packages/core/src/database/pg-migration-lock.ts",
+      "sourceBlob": "cf8fd580c4549e50e1d6ef0a0cb8515579bb6bc3",
+      "sha256": "db06bd5eca4feae571184c50951c0369f6ea8a2f63abf52cc526f097602ae646",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/pg-migration-lock.ts"
+    },
+    {
+      "path": "packages/core/src/utils/db-errors.ts",
+      "sourceBlob": "d0a051ad9d48003eeeeb38dd9d5cb7cedf4140e5",
+      "sha256": "2637fdc8b0b8d5f6c1d0816a788e5f6efb29748bd0096816f179ca185e3585e0",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/utils/db-errors.ts"
+    },
+    {
+      "path": "packages/core/src/database/repositories/types.ts",
+      "sourceBlob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7",
+      "sha256": "880e1ee7c6b2792d0f0316d4853dea590ce10f89073dd5a4f5ef56ebd118fa04",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/repositories/types.ts"
+    },
+    {
+      "path": "packages/core/src/database/content-datetime.ts",
+      "sourceBlob": "06be050e17d7760ae1df2073632845ba15e034c2",
+      "sha256": "fe7788a24929b78efd2ae112c6111ed23d16eb838284945243a4cc4d272e8e9d",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/content-datetime.ts"
+    },
+    {
+      "path": "packages/core/src/datetime-normalization.ts",
+      "sourceBlob": "eb31fb99e2d1e41c6001c5aec3ae49d82e39c345",
+      "sha256": "96317452072327aa029ed4e01a4b7e7efc9aaf4ffed6bd401d7e3a73de01b31e",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/datetime-normalization.ts"
+    },
+    {
+      "path": "packages/core/src/request-cache.ts",
+      "sourceBlob": "ab8f007b22ce601219ca1270d487342338de8634",
+      "sha256": "b0a8094bbd5c9b987e3b8b00c1d7fdb3bdc542a0d2d4f244108fc8f5655d8d73",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/request-cache.ts"
+    },
+    {
+      "path": "packages/core/src/request-context.ts",
+      "sourceBlob": "4f140c77a1dca951defb43fd1a114e838b6f691f",
+      "sha256": "c18cdd22e012f26b109919cbd1c780406132ff2505d6245614e4040f215bae1f",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/request-context.ts"
+    },
+    {
+      "path": "packages/core/src/utils/base64.ts",
+      "sourceBlob": "9dae6dade270b1c1291b21c8a90adc73f5dab294",
+      "sha256": "79a94b895668f729574cc25e50ad5e1f6db5998dc3f6e3e12e5c1fa661969a90",
+      "inspectedLines": [],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/utils/base64.ts"
+    }
+  ],
+  "selectedAssertions": [
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:668",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "sourceSha256": "31121e7e6be3db373e0d2c09985e1e11e46115a750a26d085fd1c6c70933e7ee",
+      "declarationLine": 668,
+      "title": "should update a field",
+      "sourceAssertionCount": 3,
+      "preservedExpressions": [
+        "expect(updated.label).toBe(\"Post Title\")",
+        "expect(updated.sortOrder).toBe(3)"
+      ],
+      "omittedExpressions": [
+        "expect(updated.widget).toBe(\"text\")"
+      ],
+      "inputAdaptation": "Source request widget:text omitted; original label Post Title and sortOrder3 remain exact.",
+      "coverage": "Partial declaration, two of three expressions; widget remains omitted.",
+      "runtimeSubstitutions": [
+        "Vitest registration/matchers become node:test/node:assert.",
+        "CMS migrations/metadata namespace/adapters or bounded reference fixture replace complete upstream migrations.",
+        "Each Node/local D1 target creates isolated collections and fields; broader schema/MCP harness is not executed."
+      ],
+      "testPath": "tests/field-edit-upstream.test.ts",
+      "runEvidence": {
+        "upstream": "Passed: one case per runtime, exact expressions/values; complete immutable registry.",
+        "local": "Passed: one case per runtime in the8-case Node/local D1 suite."
+      }
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/mcp/schema.test.ts:1003",
+      "sourceBlob": "4c1d5c283a19f4262b84cc5165b70f2046ba8b43",
+      "sourceSha256": "85b699a650a99a0e5c2246ad4395249f3ff59cbb8882c021445ea58eb1be1a29",
+      "declarationLine": 1003,
+      "title": "preserves concurrent partial field updates",
+      "sourceAssertionCount": 2,
+      "preservedExpressions": [
+        "expect(field?.label).toBe(\"Summary\")",
+        "expect(field?.sortOrder).toBe(7)"
+      ],
+      "omittedExpressions": [],
+      "inputAdaptation": "Source itself directly calls registry.updateField. Initial post/body setup uses CMS/local or bounded upstream metadata migrations, not MCP harness; concurrent writes retain exact Summary/7 values.",
+      "coverage": "Complete selected declaration with adapted setup; both exact expressions remain. This is not MCP transport/schema-family parity.",
+      "runtimeSubstitutions": [
+        "Vitest registration/matchers become node:test/node:assert.",
+        "CMS migrations/metadata namespace/adapters or bounded reference fixture replace complete upstream migrations.",
+        "Each Node/local D1 target creates isolated collections and fields; broader schema/MCP harness is not executed."
+      ],
+      "testPath": "tests/field-edit-upstream.test.ts",
+      "runEvidence": {
+        "upstream": "Passed: one case per runtime, exact expressions/values; complete immutable registry.",
+        "local": "Passed: one case per runtime in the8-case Node/local D1 suite."
+      }
+    }
+  ],
+  "coverageAccounting": {
+    "preservedUniqueSourceExpressions": 4,
+    "partialSourceDeclarations": 1,
+    "adaptedCompleteSourceDeclarations": 1,
+    "omittedSourceExpressions": 1,
+    "priorCoveredExpressions": [
+      "expect(updated.label).toBe(\"Post Title\") from registry.test.ts:668, retained in field-label-ports.json."
+    ],
+    "newUniqueSourceExpressions": 3,
+    "selectedRuntimeCases": 4,
+    "mcp982CreditedExpressions": 0,
+    "mcp982CreditedDeclarations": 0,
+    "wholeFamilyParity": false
+  },
+  "supplementalContracts": [
+    {
+      "category": "exact metadata states",
+      "contracts": [
+        "Omission preserves, objects replace, null clears SQL NULL, {} stores distinct JSON object.",
+        "Optional exact nonempty/untrimmed/unbounded labels; nonnegative safe integer order/minmax; pair comparison only both supplied.",
+        "String defaults including empty/long/NUL values remain metadata only, no default cross-validation or existing content scan.",
+        "DefaultValue:null unsupported local slice; no clear sentinel."
+      ],
+      "evidence": "Pinned source16passed; original local service/storage21passed. Upstream cleared SQL NULL validation projects undefined versus retained local null SA-02 difference."
+    },
+    {
+      "category": "paired omitted inserts",
+      "dataset": {
+        "types": [
+          "string",
+          "text"
+        ],
+        "required": [
+          false,
+          true
+        ],
+        "initialDefault": [
+          {
+            "state": "omitted"
+          },
+          {
+            "state": "string",
+            "value": "old SQL value"
+          },
+          {
+            "state": "string",
+            "value": ""
+          }
+        ],
+        "afterDefault": "new metadata value",
+        "afterValidation": {
+          "maxLength": 1
+        }
+      },
+      "datasetsPerTarget": 12,
+      "contracts": [
+        "DDL/index/old rows/collection tokens unchanged after metadata edit.",
+        "Raw and content omitted inserts retain original optional NULL or required original explicit/default empty SQL values.",
+        "Before edit, full handler/service validation rejects missing required with no metadata default; raw/repository storage can use physical empty default.",
+        "After edit, omitted full validation accepts metadata default without materializing it into repository input."
+      ],
+      "evidence": "Both complete pinned source and local trusted service execute all 12 datasets on each of Node/local D1; SQL cells compared to avoid optional NULL responseprojection differences. No live data."
+    },
+    {
+      "category": "validation observation inspired by MCP schema:982",
+      "contracts": [
+        "Before long body valid; after maxLength1 too long invalid in full/partial writes.",
+        "Old content readable with preserved tokens; a one-character future write accepted."
+      ],
+      "evidence": "Complete pinned contenthandler validator observation and local service accepted/rejected writes pass. MCP tool envelopes/generated schema cache identity are not executed; zero copied source assertion/declaration credit."
+    },
+    {
+      "category": "authorization/atomicity/persistence",
+      "contracts": [
+        "Trusted schema:manage precedes parsing/storage; default-disabled HTTPgate retained.",
+        "No field CAS/collection timestamp touch/schema-version bump; separate partialcolumns coexist.",
+        "Atomic own receipt/target identity/rollback/storage restart retain existing local contract."
+      ],
+      "evidence": "Original supplemental local21-case service suite passed; pinned source separately tests actual persisted reopen and single UPDATE trigger failure/no-write. C-07/SA-03 differences retained."
+    },
+    {
+      "category": "native transport/UI",
+      "contracts": [
+        "Explicit keep/set/validation clear states preserve domain omission/null/object and default empty string.",
+        "Direct form/descriptor spreads and explicit hidden values; per-field instance pending/issues/results.",
+        "Native/enhanced consecutiveedits, origin/auth/default-disabled and refreshed schema/manifest."
+      ],
+      "evidence": "Focused registered field-options production8cases passed after native textarea/label repair; historical default browser25passed/3failed before fix. Fresh combined-head production/conversion/browser/full-bootstrap/final-head gates pending. No rendered upstream React/REST parity credit."
+    }
+  ],
+  "compatibilityRecords": [
+    "FE-01",
+    "FE-02",
+    "FE-03"
+  ],
+  "retainedRecords": [
+    "FL-01",
+    "FL-02",
+    "FL-03",
+    "SF-02",
+    "SF-03",
+    "C-07",
+    "SA-02",
+    "SA-03",
+    "issue#20"
+  ],
+  "runEvidence": {
+    "retrospectiveBaseline": {
+      "status": "failed_missing_surface_as_expected",
+      "commit": "8c773d815bb54499d5d3eeca4f92b28d7b42ac22",
+      "command": "node --test --test-name-pattern='partial registry|adapted MCP' tests/field-edit-upstream.test.ts",
+      "selectedRuntimeCases": 4,
+      "failures": 4,
+      "failure": "TypeError: f.registry.updateField is not a function",
+      "scope": "Isolated base worktree with new selected test copied in after implementation; retrospective missing-surface red, not chronological test-first. Prior label-only source assertion was already green.",
+      "evidence": "/tmp/field-edit-baseline-red.log"
+    },
+    "sourceReproduction": {
+      "status": "passed",
+      "command": "node scripts/reproduce-field-edit-upstream.mjs",
+      "totalTests": 16,
+      "selectedRuntimeCases": 4,
+      "supplementalRuntimeCases": 12,
+      "pairedDatasetsPerTarget": 12,
+      "failures": 0,
+      "skipped": 0,
+      "runtime": "Node 24.19.0; real Node SQLite/Miniflare 4.20260507.1 local D1; pinned RawBindingD1Dialect and verified kysely-d1@0.4.0; fixture-only Zod 4.5.4",
+      "probeEntrySha256": "eed014371e632a7b4fc3f69e2eb167396633d1559c16f40e1b2e2a887fdc3ce5",
+      "sourceBlobsVerified": 29,
+      "fixtureBoundaries": [
+        "Temporary _emdash_collections/_emdash_fields/revisions-reference/empty-options tables instead of full migrations.",
+        "Media deletion/nonactivation/capture seams explicit; invalidationfalse/cache/typegen/stale marking no-ops.",
+        "Unrelated registry operations throw if called; content cache invalidation no-op and unused search/revision helpers throw.",
+        "Full contentrepository and datetime normalizer retained; no configured site timezone or datetime fields.",
+        "No full API handlers/native UI/media/typegen/complete migrations/deployed parity."
+      ],
+      "registryFixtureModules": [
+        "../astro/dev-typegen.js",
+        "../media/usage/activation.js",
+        "../media/usage/collection-deletion.js",
+        "../media/usage/content-refresh.js",
+        "../media/usage/maintenance-engine.js",
+        "../search/fts-manager.js",
+        "../transfer/format/columns.js",
+        "../transfer/format/digest.js",
+        "../transfer/import/rows.js",
+        "../transfer/import/sql.js",
+        "./collection-slugs-cache.js"
+      ],
+      "contentFixtureModules": [
+        "../../content/known-fields.js",
+        "../../object-cache/index.js",
+        "../../search/match.js",
+        "../../utils/slugify.js",
+        "./revision.js"
+      ],
+      "evidence": "/tmp/field-edit-reproduction.log"
+    },
+    "selectedAndPairedLocalTests": {
+      "status": "passed",
+      "command": "node --test tests/field-edit-upstream.test.ts",
+      "totalTests": 8,
+      "selectedRuntimeCases": 4,
+      "supplementalRuntimeCases": 4,
+      "pairedDatasetsPerTarget": 12,
+      "failures": 0,
+      "skipped": 0,
+      "runtime": "Node 24.19.0; real SQLite/local Miniflare D1",
+      "evidence": "/tmp/field-edit-upstream-local.log"
+    },
+    "originalServiceStorageTests": {
+      "status": "passed",
+      "command": "node --test tests/field-edit.test.ts",
+      "totalTests": 21,
+      "sourceCredit": 0,
+      "failures": 0,
+      "scope": "Original supplemental permission/storage/validation/concurrency/rollback/reopen tests; database owner reported focused run with existing label suite58 passed.",
+      "evidence": "/tmp/field-edit-database-tests.log"
+    },
+    "productionAndConversionTests": {
+      "status": "historical_initial_options_cases_passed_full_initial_run_had_stale_inventory",
+      "scope": "Historical initial production run: 79 cases, 78 passed, stale expected-export inventory failed. Current inventories are updated; final combined-head verification remains pending."
+    },
+    "browserTests": {
+      "status": "pending_secured_default_and_Node_CI"
+    },
+    "bootstrap": {
+      "status": "historical_initial_failure_shared_export_inventory_now_resolved",
+      "serviceDevelopmentTests": 405,
+      "serviceFailures": 0,
+      "productionTests": 79,
+      "productionPassed": 78,
+      "productionFailures": 1,
+      "failure": "Parent-owned tests/production/remotes.test.ts expected export list lacks new updateSchemaFieldOptions. No product/source assertion failure; exact shared test patch awaits parent integration.",
+      "finalGate": "Both shared export lists now updated; fresh bootstrap still required on the combined final head."
+    },
+    "finalHeadCI": {
+      "status": "pending"
+    },
+    "independentReview": {
+      "status": "pending_exact_head"
+    },
+    "configuredReview": {
+      "status": "blocked_usage_quota",
+      "evidence": "https://github.com/sveltery/cms/pull/27#issuecomment-5951520229",
+      "scope": "Ready-triggered configured review cannot complete at its current usage quota; no completed review or eligibility claimed."
+    },
+    "postMergeCI": {
+      "status": "not_merged"
+    },
+    "nodePackage": {
+      "status": "historical_initial_build_passed_package_inventory_failed_now_resolved",
+      "failure": "Parent-owned tests/node-hosting/package.test.ts expected export list lacks updateSchemaFieldOptions; hosting checks stop before completion.",
+      "finalGate": "Both shared export lists updated; fresh combined-head Node package checks remain pending."
+    },
+    "historicalPatchedBootstrap": {
+      "status": "passed",
+      "baseCommit": "67de384ef0a55a4539f22035205d3670b51fd34c",
+      "worktreeChanges": "Exact eight-file handoff patch applied as uncommitted changes; worktree diff matches artifact SHA-256. This is not unchanged-head or current combined-head evidence.",
+      "patchSha256": "febd4a2419edb44b7e1b2bd7555bb4d2be2cc23103934f88ba0638ae65589a4f",
+      "command": "sh scripts/bootstrap.sh",
+      "serviceDevelopmentTests": 405,
+      "productionTests": 85,
+      "nodePackageTests": 11,
+      "checkerErrors": 0,
+      "checkerWarnings": 0,
+      "failures": 0,
+      "evidence": "/tmp/field-edit-proposed-patch-bootstrap.log"
+    },
+    "historicalBrowserFailure": {
+      "status": "failed_before_native_textarea_fix",
+      "commit": "67de384ef0a55a4539f22035205d3670b51fd34c",
+      "ci": "https://github.com/sveltery/cms/actions/runs/37002150503",
+      "job": "110822064140",
+      "target": "default",
+      "tests": 28,
+      "passed": 25,
+      "failures": 3,
+      "failedScope": "Two native default/empty initial textarea cases and one disabled-label association case. Enhanced field-options cases passed.",
+      "nodeBrowserStep": "skipped",
+      "scope": "Historical uncorrected head; not final combined-head evidence."
+    },
+    "nativeTextareaRepair": {
+      "status": "focused_registered_production_green",
+      "rebasedCommit": "6ff3ac937398942c28df9e0cd19d0c41729d4e75",
+      "change": "Explicit Svelte textarea value uses its own native form field value before stored-default fallback; explicit label for/id association. Direct native descriptor spread retained.",
+      "red": {
+        "passed": 6,
+        "failures": 2,
+        "evidence": "/tmp/field-options-textarea-red.log"
+      },
+      "green": {
+        "tests": 8,
+        "passed": 8,
+        "failures": 0,
+        "evidence": "/tmp/field-options-textarea-green.log"
+      },
+      "sourceCredit": 0,
+      "scope": "Local native SSR/form rendering repair, not an upstream semantic change. Secured final combined-head browsers remain pending."
+    },
+    "trashPaginationBaseline": {
+      "status": "merged_post_ci_passed",
+      "commit": "46533f657b3fbcc73d78360b9abb8e653bd72dec",
+      "reviewedHeadPrefix": "98e8d33",
+      "ci": "https://github.com/sveltery/cms/actions/runs/37002254425",
+      "serviceDevelopmentTests": 404,
+      "productionTests": 79,
+      "nodePackageTests": 11,
+      "browserTestsPerTarget": 27,
+      "scope": "Parent-confirmed PR #28 baseline evidence, not field-edit final-head verification."
+    },
+    "finalCombinedBootstrap": {
+      "status": "pending_fresh_combined_head"
+    }
+  },
+  "omissions": [
+    "Registry668 widget input/expression and broader schema_update_field MCP family.",
+    "MCP982 generated schema-cache/toolresponse assertions; only supplemental before/after validation observations.",
+    "Type/required/unique/widget/index/search/translation/defaultnull edits and broader validation keys.",
+    "Full migrations/media/type generation/FTS/caches/REST/React/MCP transport and deployedNode/CloudflareD1.",
+    "Existing physical layout repair, defaults/index reconstruction/content rewrites, production activation/access/publishing/permanent deletion."
+  ],
+  "integrationHandoff": {
+    "path": "docs/field-edit-integration.patch",
+    "status": "historical_prepared_patch_reconciled_after_ownership_release",
+    "preparedAgainst": "8c773d815bb54499d5d3eeca4f92b28d7b42ac22",
+    "sha256": "febd4a2419edb44b7e1b2bd7555bb4d2be2cc23103934f88ba0638ae65589a4f",
+    "scope": "Six canonical documentation changes and two expected-export inventory additions, retained byte-for-byte as historical handoff evidence. Current canonical documents are reconciled onto latest main; both inventory tests are updated.",
+    "latestIntegrationBase": "46533f657b3fbcc73d78360b9abb8e653bd72dec",
+    "currentGate": "Fresh full bootstrap, secured default/Node CI, exact-head independent review, and configured review quota resolution remain pending."
+  },
+  "initialIntegrationBase": "8c773d815bb54499d5d3eeca4f92b28d7b42ac22",
+  "latestIntegrationBase": "46533f657b3fbcc73d78360b9abb8e653bd72dec"
+}

@@ -4,6 +4,7 @@ import { ulid } from 'ulidx';
 import { CmsError, type CmsDatabase, type Collection, type CollectionRow, type Field, type FieldRow, type RevisionPrecondition } from './contract.ts';
 import { collectionInput, collectionMetadataInput, fieldInput, fieldLabelInput, identifier, parse, reservedCollections, reservedFields, revisionInput, tableName } from './validation.ts';
 import { trashIndexStatement } from './trash-index.ts';
+import { fieldEditInput } from './field-edit-validation.ts';
 
 export const MAX_COLLECTIONS = 100;
 export const MAX_FIELDS = 32;
@@ -85,17 +86,24 @@ export class SchemaRegistry {
     return definition ? { ...definition, fields: await this.listFields(definition.id) } : null;
   }
 
-  // Label-only subset of EmDash 1.1.0 registry.ts updateField, pinned at 913cb1bb.
+  // String/text metadata subset of EmDash 1.1.0 registry.ts updateField:1542,
+  // pinned at 913cb1bb. Supplied keys only; no DDL or content-row changes.
   // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
-  async updateFieldLabel(collectionSlug: unknown, fieldSlug: unknown, input: unknown): Promise<Field> {
-    const value = parse(fieldLabelInput, input);
+  async updateField(collectionSlug: unknown, fieldSlug: unknown, input: unknown): Promise<Field> {
+    const value = parse(fieldEditInput, input);
     const target = await this.getField(collectionSlug, fieldSlug);
     if (!target) throw new CmsError('NOT_FOUND');
+    const updates: Partial<FieldRow> = {};
+    if (value.label !== undefined) updates.label = value.label;
+    if (value.sortOrder !== undefined) updates.sort_order = value.sortOrder;
+    if (value.defaultValue !== undefined) updates.default_value = JSON.stringify(value.defaultValue);
+    if (value.validation !== undefined) updates.validation = value.validation === null ? null : JSON.stringify(value.validation);
+    if (Object.keys(updates).length === 0) return target;
     const db = this.database.db;
     // Preserve the resolved identity, and return this write's row even if a later writer wins.
-    // No schema/metadata precondition or collection touch: labels are last-writer-wins.
+    // No schema/metadata precondition or collection touch: fields are last-writer-wins.
     const results = await this.database.atomicBatch([
-      db.updateTable('_cms_fields').set({ label: value.label })
+      db.updateTable('_cms_fields').set(updates)
         .where('id', '=', target.id).where('collection_id', '=', target.collectionId)
         .where('slug', '=', target.slug)
         .where('type', 'in', ['string', 'text'])
@@ -106,6 +114,10 @@ export class SchemaRegistry {
     const row = results[0].rows[0] as FieldRow | undefined;
     if (!row) throw new CmsError('NOT_FOUND');
     return field(row);
+  }
+
+  async updateFieldLabel(collectionSlug: unknown, fieldSlug: unknown, input: unknown): Promise<Field> {
+    return this.updateField(collectionSlug, fieldSlug, parse(fieldLabelInput, input));
   }
 
   async createCollection(input: unknown): Promise<Collection> {

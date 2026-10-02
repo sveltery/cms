@@ -1,5 +1,7 @@
 # Existing scalar field labels
 
+This document records the landed PR #24 label-only operation and its historical source/evidence limits. [PR #27](https://github.com/sveltery/cms/pull/27) extends the current scalar editor through a separate [field metadata operation](field-edit.md) supporting optional label/order/string default/nullable length validation. The original label-only service/remote remain strict and supported; broader-edit rejection and one-expression counts below describe those original APIs and runs, not the later operation. FL-01–FL-03 and all recorded differences remain unchanged.
+
 Landed in [PR #24](https://github.com/sveltery/cms/pull/24). This bounded slice starts from CMS main `bf9d1c34cde4bb972b7d2d9a599c16d406607d49`. Authority is EmDash **1.1.0**, immutable [`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`](https://github.com/emdash-cms/emdash/commit/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e). Preserve [MIT attribution](../notices/emdash-MIT.txt). The [source and assertion ledger](field-label-ports.json) records inspected blobs, partial coverage, runtime substitutions and actual execution evidence. FL-01–FL-03 remain proposed differences recorded in the [canonical register](../parity/emdash/compatibility.md); specific acceptance of differences is not recorded. Landing or passing different expectations does not establish acceptance or complete parity.
 
 ## Preserved label behavior
