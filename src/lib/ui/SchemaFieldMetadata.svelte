@@ -8,10 +8,6 @@
   }=$props();
   const edit=$derived(updateSchemaFieldMetadata.for(`${collection}/${field.slug}`));
   const remove=$derived(deleteSchemaField.for(`${collection}/${field.slug}`));
-  let setType=$state(false); let setWidget=$state(false);
-  let setDefault=$state(false); let setValidation=$state(false); let setOptions=$state(false);
-  let setSearchable=$state(false); let setIndexed=$state(false); let setTranslatable=$state(false);
-  let confirmDelete=$state(false);
 </script>
 
 <details>
@@ -21,28 +17,29 @@
       <legend>Settings for {field.label}</legend>
       <input {...edit.fields.collection.as('hidden',collection)} />
       <input {...edit.fields.field.as('hidden',field.slug)} />
-      <label><input type="checkbox" bind:checked={setType} /> Change field type</label>
+      <label>Field type update <select {...edit.fields.typeMode.as('select','keep')}><option value="keep">Keep field type</option><option value="set">Change field type</option></select></label>
       <label>New field type
-        <select {...edit.fields.type.as('select',field.type)} disabled={!setType}>
+        <select {...edit.fields.type.as('select',field.type)}>
           {#each schemaFieldTypes as [value,label]}<option {value}>{label}</option>{/each}
         </select>
       </label>
       <p>Short text, long text and slug can change between one another. Other type changes require a content migration.</p>
-      <label><input type="checkbox" bind:checked={setWidget} /> Set widget</label>
-      <label>Widget <input {...edit.fields.widget.as('text',field.widget??'')} disabled={!setWidget} /></label>
-      <label><input type="checkbox" bind:checked={setSearchable} /> Set searchable</label>
-      <label>Searchable <select {...edit.fields.searchable.as('select',String(field.searchable))} disabled={!setSearchable}><option value="true">Yes</option><option value="false">No</option></select></label>
-      <label><input type="checkbox" bind:checked={setIndexed} /> Set indexed</label>
-      <label>Indexed <select {...edit.fields.indexed.as('select',String(field.indexed))} disabled={!setIndexed}><option value="true">Yes</option><option value="false">No</option></select></label>
-      <label><input type="checkbox" bind:checked={setTranslatable} /> Set translatable</label>
-      <label>Translatable <select {...edit.fields.translatable.as('select',String(field.translatable))} disabled={!setTranslatable}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <p>Required: {field.required?'Yes':'No'}. Unique: {field.unique?'Yes':'No'}. Changing these settings requires a content migration.</p>
+      <label>Widget update <select {...edit.fields.widgetMode.as('select','keep')}><option value="keep">Keep widget</option><option value="set">Set widget</option></select></label>
+      <label>Widget <input {...edit.fields.widget.as('text',field.widget??'')} /></label>
+      <label>Searchable update <select {...edit.fields.searchableMode.as('select','keep')}><option value="keep">Keep searchable</option><option value="set">Set searchable</option></select></label>
+      <label>Searchable <select {...edit.fields.searchable.as('select',String(field.searchable))}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>Index update <select {...edit.fields.indexedMode.as('select','keep')}><option value="keep">Keep index</option><option value="set">Set indexed</option></select></label>
+      <label>Indexed <select {...edit.fields.indexed.as('select',String(field.indexed))}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>Translation update <select {...edit.fields.translatableMode.as('select','keep')}><option value="keep">Keep translatable</option><option value="set">Set translatable</option></select></label>
+      <label>Translatable <select {...edit.fields.translatable.as('select',String(field.translatable))}><option value="true">Yes</option><option value="false">No</option></select></label>
       <p>Making an existing field non-translatable requires a content migration.</p>
-      <label><input type="checkbox" bind:checked={setDefault} /> Replace default value</label>
-      <label>Default value (JSON) <textarea {...edit.fields.defaultValueJson.as('text',JSON.stringify(field.defaultValue??null))} disabled={!setDefault}></textarea></label>
-      <label><input type="checkbox" bind:checked={setValidation} /> Replace validation rules</label>
-      <label>Validation rules (JSON) <textarea {...edit.fields.validationJson.as('text',JSON.stringify(field.validation??null,null,2))} disabled={!setValidation}></textarea></label>
-      <label><input type="checkbox" bind:checked={setOptions} /> Replace field options</label>
-      <label>Field options (JSON) <textarea {...edit.fields.optionsJson.as('text',JSON.stringify(field.options??{},null,2))} disabled={!setOptions}></textarea></label>
+      <label>Default update <select {...edit.fields.defaultValueMode.as('select','keep')}><option value="keep">Keep default value</option><option value="set">Replace default value</option></select></label>
+      <label>Default value (JSON) <textarea {...edit.fields.defaultValueJson.as('text',JSON.stringify(field.defaultValue??null))}></textarea></label>
+      <label>Validation update <select {...edit.fields.validationMode.as('select','keep')}><option value="keep">Keep validation rules</option><option value="set">Replace validation rules</option></select></label>
+      <label>Validation rules (JSON) <textarea {...edit.fields.validationJson.as('text',JSON.stringify(field.validation??null,null,2))}></textarea></label>
+      <label>Options update <select {...edit.fields.optionsMode.as('select','keep')}><option value="keep">Keep field options</option><option value="set">Replace field options</option></select></label>
+      <label>Field options (JSON) <textarea {...edit.fields.optionsJson.as('text',JSON.stringify(field.options??{},null,2))}></textarea></label>
       <p>Rules and options use the selected field's schema. Unselected settings keep their stored values.</p>
       <button type="submit">Save field settings</button>
     </fieldset>
@@ -58,8 +55,8 @@
       <input {...remove.fields.version.as('hidden',String(expected.version))} />
       <input {...remove.fields.updatedAt.as('hidden',expected.updatedAt)} />
       <p>Deleting this field removes its values from this collection.</p>
-      <label><input type="checkbox" bind:checked={confirmDelete} /> Confirm deleting {field.label}</label>
-      <button type="submit" disabled={!confirmDelete}>Delete field {field.label}</button>
+      <label><input type="checkbox" required /> Confirm deleting {field.label}</label>
+      <button type="submit">Delete field {field.label}</button>
     </fieldset>
     {#if remove.fields.allIssues()?.length}<ul>{#each remove.fields.allIssues()??[] as issue}<li>{issue.message}</li>{/each}</ul>{/if}
   </form>

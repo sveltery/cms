@@ -36,7 +36,8 @@ for (const target of ['Node','D1'] as const) {
       assert.ok(form,'registered native deletion form');
       const action=new URL(form[1].replaceAll('&amp;','&'),h.origin+'/schema/complete');
       const deleted=await h.request(action.pathname+action.search,'admin',{method:'POST',redirect:'manual',headers:{origin:h.origin,accept:'text/html'},body:new URLSearchParams({...expected(c),id:'complete'})});
-      assert.equal(deleted.status,303); assert.equal(deleted.headers.get('location'),'/schema');
+      assert.equal(deleted.status,303);
+      assert.equal(new URL(deleted.headers.get('location')!,h.origin+'/schema/complete').pathname,'/schema');
       assert.equal((await h.query('listSchemaCollections')).length,0);
       assert.equal((await h.request('/schema')).status,200);
     } finally {await h.close();}

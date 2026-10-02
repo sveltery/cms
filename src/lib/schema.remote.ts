@@ -1,4 +1,6 @@
 import { query, form } from '$app/server';
+import { redirect } from '@sveltejs/kit';
+import { resolve } from '$app/paths';
 import { getCollection, getEditorManifest, listCollections } from '$lib/content.remote';
 import {
   collectionSlug, createInput, updateInput, addFieldInput,
@@ -56,11 +58,11 @@ export const deleteSchemaField = form(fieldDeleteInput, input => schemaResponse(
   refreshSchema(input.collection);
   return { collection:input.collection, field:input.field, deleted:true };
 }));
-export const deleteSchemaCollection = form(collectionDeleteInput, input => schemaResponse(async () => {
-  await requestSchema('mutation').deleteCollection(convertAdminOperation(input));
+export const deleteSchemaCollection = form(collectionDeleteInput, async input => {
+  await schemaResponse(() => requestSchema('mutation').deleteCollection(convertAdminOperation(input)));
   refreshSchemaList();
-  return { collection:input.collection, deleted:true };
-}));
+  redirect(303,resolve('/schema'));
+});
 
 function refreshSchemaList() {
   void listSchemaCollections().refresh();

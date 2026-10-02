@@ -22,6 +22,7 @@ const metadata = {
   commentsEnabled: optionalBoolean, listColumns: optionalJson, quickCreate: optionalBoolean,
   urlPattern: v.optional(v.pipe(v.string(), v.transform(value => value === '' ? null : value)))
 };
+const optionalEditMode = v.optional(v.picklist(['keep', 'set']));
 const decimalVersion = v.pipe(v.string(), v.maxLength(16), v.regex(/^[1-9][0-9]*$/),
   v.transform(Number), v.safeInteger(), v.minValue(1));
 const optionalLength = v.optional(v.pipe(v.string(), v.maxLength(6),
@@ -116,7 +117,8 @@ export const updateInput = v.pipe(v.strictObject({
   sortOrder: v.optional(v.pipe(v.string(), v.transform(value => value === '' ? null : Number(value)), v.nullable(v.pipe(v.number(), v.safeInteger())))),
   commentsModeration: collectionMetadataInput.pipe[1].entries.commentsModeration,
   commentsClosedAfterDays: v.optional(v.pipe(v.string(), v.transform(Number), v.number(), v.safeInteger(), v.minValue(0))),
-  commentsAutoApproveUsers: optionalBoolean
+  commentsAutoApproveUsers: optionalBoolean,
+  settingsMode: optionalEditMode, displayMode: optionalEditMode, adminMode: optionalEditMode
 }), v.forward(v.check(input => input.id === undefined || input.id === input.collection,
   'Form instance must match the collection'), ['id']));
 export const addFieldInput = v.pipe(v.strictObject({
@@ -126,7 +128,7 @@ export const addFieldInput = v.pipe(v.strictObject({
   defaultValue: v.optional(v.pipe(v.string(),v.maxLength(100_000),v.check(value => !value.includes('\0')))),
   minLength: optionalLength, maxLength: optionalLength, patternMode, pattern: editString,
   defaultValueJson: optionalJson, validationJson: optionalJson, optionsJson: optionalJson,
-  widget: v.optional(v.string()), indexed: v.optional(v.boolean()), searchable: v.optional(v.boolean()), translatable: v.optional(v.boolean())
+  widget: v.optional(v.string()), indexed: v.optional(v.boolean()), searchable: v.optional(v.boolean()), translatable: optionalBoolean
 }), v.forward(v.check(input => input.id === undefined || input.id === input.collection,
   'Form instance must match the collection'), ['id']),
 v.forward(v.check(input => input.patternMode !== 'set' || validPattern(input.pattern),
@@ -145,8 +147,13 @@ export function convertCollectionCreate(input: v.InferOutput<typeof createInput>
   return parse(collectionInput, { ...value, ...(listColumns === undefined && quickCreate === undefined ? {} : {admin: { ...(listColumns === undefined ? {} : {listColumns}), ...(quickCreate === undefined ? {} : {quickCreate}) }}) });
 }
 export function convertCollectionUpdate(input: v.InferOutput<typeof updateInput>) {
-  const { id: _id, collection, version, updatedAt, listColumns, quickCreate, ...metadata } = input;
-  return { collection, input: parse(collectionMetadataInput, { ...metadata, ...(listColumns === undefined && quickCreate === undefined ? {} : {admin: { ...(listColumns === undefined ? {} : {listColumns}), ...(quickCreate === undefined ? {} : {quickCreate}) }}) }), expected: { version, updatedAt } };
+  const { id: _id, collection, version, updatedAt, settingsMode, displayMode, adminMode, ...value } = input;
+  const metadata = {...value};
+  if (settingsMode === 'keep') for (const key of ['icon','group','routable','hidden','hasSeo','urlPattern','editLocking','commentsEnabled','commentsModeration','commentsClosedAfterDays','commentsAutoApproveUsers','sortOrder'] as const) delete metadata[key];
+  if (displayMode === 'keep') {delete metadata.titleField; delete metadata.dateField;}
+  if (adminMode === 'keep') {delete metadata.listColumns; delete metadata.quickCreate;}
+  const {listColumns,quickCreate,...rest} = metadata;
+  return { collection, input: parse(collectionMetadataInput, { ...rest, ...(listColumns === undefined && quickCreate === undefined ? {} : {admin: { ...(listColumns === undefined ? {} : {listColumns}), ...(quickCreate === undefined ? {} : {quickCreate}) }}) }), expected: { version, updatedAt } };
 }
 export function convertFieldAdd(input: v.InferOutput<typeof addFieldInput>) {
   const { id: _id, collection, expectedSchemaVersion, minLength, maxLength, patternMode, pattern, defaultValueJson, validationJson, optionsJson, ...field } = input;
@@ -160,21 +167,34 @@ export function convertFieldAdd(input: v.InferOutput<typeof addFieldInput>) {
 }
 
 const fieldIdentity = { id: v.optional(v.string()), collection: identifier, field: identifier };
-export const fieldMetadataFormInput = v.strictObject({ ...fieldIdentity,
+export const fieldMetadataFormInput = v.pipe(v.strictObject({ ...fieldIdentity,
   type: v.optional(fieldInput.entries.type), widget: v.optional(v.string()),
   defaultValueJson: optionalJson, validationJson: optionalJson, optionsJson: optionalJson,
-  required: optionalBoolean, unique: optionalBoolean, searchable: optionalBoolean, indexed: optionalBoolean, translatable: optionalBoolean
-});
+  required: optionalBoolean, unique: optionalBoolean, searchable: optionalBoolean, indexed: optionalBoolean, translatable: optionalBoolean,
+  typeMode: optionalEditMode, widgetMode: optionalEditMode, defaultValueMode: optionalEditMode,
+  validationMode: optionalEditMode, optionsMode: optionalEditMode, searchableMode: optionalEditMode,
+  indexedMode: optionalEditMode, translatableMode: optionalEditMode
+}),v.forward(v.check(input => input.id === undefined || input.id === `${input.collection}/${input.field}`,
+  'Form instance must match the collection and field'), ['id']));
 export function convertFieldMetadata(input: v.InferOutput<typeof fieldMetadataFormInput>) {
-  const {id:_id, defaultValueJson, validationJson, optionsJson, ...value} = input;
-  if(input.id !== undefined && input.id !== `${input.collection}/${input.field}`) throw new Error('Invalid form instance');
-  return parse(updateFieldInput, { ...value, ...(defaultValueJson === undefined ? {} : {defaultValue:defaultValueJson}),
-    ...(validationJson === undefined ? {} : {validation:validationJson}), ...(optionsJson === undefined ? {} : {options:optionsJson}) });
+  const {id:_id, defaultValueJson, validationJson, optionsJson, typeMode, widgetMode,
+    defaultValueMode,validationMode,optionsMode,searchableMode,indexedMode,translatableMode,...value} = input;
+  const metadata={...value};
+  if(typeMode === 'keep') delete metadata.type;
+  if(widgetMode === 'keep') delete metadata.widget;
+  if(searchableMode === 'keep') delete metadata.searchable;
+  if(indexedMode === 'keep') delete metadata.indexed;
+  if(translatableMode === 'keep') delete metadata.translatable;
+  return parse(updateFieldInput, { ...metadata, ...(defaultValueMode === 'keep' || defaultValueJson === undefined ? {} : {defaultValue:defaultValueJson}),
+    ...(validationMode === 'keep' || validationJson === undefined ? {} : {validation:validationJson}), ...(optionsMode === 'keep' || optionsJson === undefined ? {} : {options:optionsJson}) });
 }
 const precondition = { version: decimalVersion, updatedAt: revisionInput.entries.updatedAt };
-export const fieldOrderInput = v.strictObject({ id:v.optional(identifier), collection:identifier, fields:optionalJson, ...precondition });
-export const fieldDeleteInput = v.strictObject({ ...fieldIdentity, ...precondition });
-export const collectionDeleteInput = v.strictObject({ id:v.optional(identifier), collection:identifier, force:v.optional(v.boolean(),false), ...precondition });
+export const fieldOrderInput = v.pipe(v.strictObject({ id:v.optional(identifier), collection:identifier, fields:optionalJson, ...precondition }),
+  v.forward(v.check(input => input.id === undefined || input.id === input.collection,'Form instance must match the collection'),['id']));
+export const fieldDeleteInput = v.pipe(v.strictObject({ ...fieldIdentity, ...precondition }),
+  v.forward(v.check(input => input.id === undefined || input.id === `${input.collection}/${input.field}`,'Form instance must match the collection and field'),['id']));
+export const collectionDeleteInput = v.pipe(v.strictObject({ id:v.optional(identifier), collection:identifier, force:v.optional(v.boolean(),false), ...precondition }),
+  v.forward(v.check(input => input.id === undefined || input.id === input.collection,'Form instance must match the collection'),['id']));
 export const collectionOrderInput = v.strictObject({ slugs:optionalJson, expected:optionalJson });
 export function convertAdminOperation(input: {id?:string;collection:string;version:number;updatedAt:string;[key:string]:unknown}) {
   const {id:_id,version,updatedAt,...value}=input;

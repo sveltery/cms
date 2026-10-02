@@ -63,6 +63,19 @@
       <label class="toggle"><input type="checkbox" bind:checked={seo} /> SEO</label>
       <p>Leaving all unchecked stores an empty supports list.</p>
     {/if}
+    <details>
+      <summary>Collection settings</summary>
+      <label>Icon <input {...createSchemaCollection.fields.icon.as('text')} /></label>
+      <label>Navigation group <input {...createSchemaCollection.fields.group.as('text')} /></label>
+      <label>URL pattern <input {...createSchemaCollection.fields.urlPattern.as('text')} /></label>
+      <label>Routable <select {...createSchemaCollection.fields.routable.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>SEO settings <select {...createSchemaCollection.fields.hasSeo.as('select','false')}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>Hidden from navigation <select {...createSchemaCollection.fields.hidden.as('select','false')}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>Edit locking <select {...createSchemaCollection.fields.editLocking.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>Enable comments <select {...createSchemaCollection.fields.commentsEnabled.as('select','false')}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>List columns <textarea {...createSchemaCollection.fields.listColumns.as('text','[]')}></textarea></label>
+      <label>Quick create <select {...createSchemaCollection.fields.quickCreate.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
+    </details>
     <button type="submit" disabled={createSchemaCollection.pending > 0}>Create collection</button>
   </fieldset>
   {#if createSchemaCollection.fields.allIssues()?.length}
