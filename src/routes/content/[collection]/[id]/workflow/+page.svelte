@@ -7,11 +7,12 @@
   let {data}:{data:PageData}=$props();
   const collection=$derived(page.params.collection??'');
   const id=$derived(page.params.id??'');
-  async function loadContent(collection:string,id:string) {
-    try{return {item:await getLifecycleContent({collection,id}),revisions:await listContentRevisions({collection,id})};}
+  const locale=$derived(page.url.searchParams.get('locale')??'en');
+  async function loadContent(collection:string,id:string,locale:string) {
+    try{return {item:await getLifecycleContent({collection,id,locale}),revisions:await listContentRevisions({collection,id,locale})};}
     catch{return null;}
   }
-  const content=$derived(await loadContent(collection,id));
+  const content=$derived(await loadContent(collection,id,locale));
   const canPublish=$derived(Boolean(content&&(data.workflow.publishAny||(data.workflow.publishOwn&&content.item.authorId===data.workflow.principalId))));
   const canEdit=$derived(Boolean(content&&(data.workflow.editAny||(data.workflow.editOwn&&content.item.authorId===data.workflow.principalId))));
   const formKey=$derived(JSON.stringify([collection,id,content?.item.locale]));
