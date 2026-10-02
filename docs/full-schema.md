@@ -46,6 +46,13 @@ Postgres and deployed hosting remain unverified. The existing 118-file selected
 catalog remains intact; this feature adds no claim that it represents the full
 upstream product catalog.
 
+Collection creation/update derives `hasSeo` from supplied `supports` unless
+explicitly overridden, matching the pin. Reordering updates timestamps for listed
+and cleared collections without a version bump. Deleting the title/date field
+clears its pointer and updates that collection's timestamp; deleting an unrelated
+field leaves metadata timestamps intact. The existing local monotonic metadata
+timestamp adaptation keeps stale CAS tokens invalid for these operations.
+
 Test-first evidence distinguishes the existing public capability failures from
 the new generator API scaffold: public registry 0/2 before implementation;
 generator scaffold 10/74 passed, 64 assertion failures; registry 52/54 before
@@ -74,3 +81,20 @@ bounds, metadata collection CAS and atomic adapter batches. These have distinct
 framework/storage records and do not earn upstream parity credit. The pure
 copied code generator still emits EmDash imports/augmentation for fidelity tests;
 a usable native generated public query API is not implemented by this feature.
+
+The shared input boundary intentionally requires recursive JSON values. It
+rejects nested undefined/function/symbol/BigInt, nonfinite numbers, Date/Map/Set,
+sparse arrays, cycles, custom objects, accessors and extra non-JSON properties
+before either create or partial update writes. Plain/null-prototype objects,
+dense arrays, finite numbers and repeated noncyclic references are accepted.
+This is the stricter local adaptation FS-07, not behavior attributed to the
+pinned `json` validator. The copied generator and serializer retain their exact
+source behavior. The dependent transport has separate enhanced request evidence.
+
+Review regressions were committed before fixes in `0cb9fe7`: 2 cases passed and
+12 assertion failures reproduced SEO, timestamp and nested JSON defects across
+Node/local D1. Implementation `21bab4c` passes all 14, including stale-CAS denial,
+untouched unreferenced collection metadata and no-write create/update checks.
+These supplements grant zero new upstream source declaration/assertion credit.
+PR #39 initially passed CI run 37061467935; rebased review fixes require a fresh
+final-head bootstrap, secured browser CI and independent delta review.
