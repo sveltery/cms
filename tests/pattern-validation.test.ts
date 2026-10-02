@@ -1,7 +1,10 @@
 // Supplemental fidelity probes, not complete upstream test declarations.
 // Authority: EmDash 1.1.0, immutable 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e,
 // api/schemas/schema.ts:97, schema/zod-generator.ts:256 and handlers/validation.ts:199.
-// Source behavior is independently reproduced by scripts/reproduce-pattern-upstream.mjs.
+// Source behavior is independently reproduced by scripts/reproduce-pattern-validation-upstream.mjs.
+// The partial URL-field assertion port below preserves the three string-rule
+// input/result expectations, with an adapted string fixture and async service boundary.
+// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, rm } from 'node:fs/promises';
@@ -67,6 +70,34 @@ test('pattern metadata syntax is a string source, including empty, with a locali
 });
 
 for (const target of ['Node', 'D1'] as const) {
+  // Source ID: pin:packages/core/tests/unit/schema/zod-generator.test.ts:235.
+  // Preserve its three exact input/boolean expectations. URL type/URL validation
+  // and generated-Zod API are omitted; no complete source declaration credit.
+  test(`${target}: partial zod-generator.test.ts:235 custom string-rule expectations`, async () => {
+    const h = await schemaAdminStorage(target);
+    try {
+      await migrateCms(h.database);
+      const registry = new SchemaRegistry(h.database);
+      await registry.createCollection({ slug: 'posts', label: 'Posts' });
+      await registry.createField('posts', { slug: 'website', label: 'Website', type: 'string', required: true });
+      // Direct persisted setup isolates content enforcement for assertion-level
+      // baseline red, independently from the missing pattern-creation capability.
+      await sql`UPDATE _cms_fields SET validation = ${JSON.stringify({ maxLength: 32, pattern: '^https://allowed\\.example/' })}
+        WHERE slug = 'website'`.execute(h.database.db);
+      const service = cmsService(h.database, admin);
+      const schema = { async safeParse(website: string) {
+        try { await service.createDraft({ type: 'posts', data: { website } }); return { success: true }; }
+        catch (error) {
+          if (error instanceof Error && 'code' in error && error.code === 'VALIDATION_ERROR') return { success: false };
+          throw error;
+        }
+      } };
+      assert.equal((await schema.safeParse('https://allowed.example/path')).success, true);
+      assert.equal((await schema.safeParse('https://allowed.example/a-very-long-path')).success, false);
+      assert.equal((await schema.safeParse('https://other.example/path')).success, false);
+    } finally { await h.close(); }
+  });
+
   test(`${target}: pattern metadata persists, projects unchanged and replaces without changing content, defaults, DDL or tokens`, { timeout: 120000 }, async () => {
     const directory = await mkdtemp(join(tmpdir(), 'cms-pattern-metadata-'));
     let h = await schemaAdminStorage(target, directory);
