@@ -1,6 +1,6 @@
 # Bounded trusted-binding D1 adapter
 
-Proposed in [draft PR #10](https://github.com/sveltery/cms/pull/10); merge is held for parent review. This is not a landed or specifically accepted deviation record.
+Landed in [PR #10](https://github.com/sveltery/cms/pull/10) at merge `30ba4831cd8f402541a46161a151271fa650b213`. Landed state does not establish specific acceptance of the documented deviations. The compatibility register uses C-23 for the D1 seam, C-17 for result/parameter metadata and C-18 for migration races; C-16 belongs to scalar preview.
 
 `openD1(binding)` in [d1.ts](../src/lib/server/database/d1.ts) accepts an operator-supplied **raw D1Database binding**, returns the existing `CmsDatabase` seam, and does no resource lookup, provisioning or migration. The caller owns the binding/runtime lifetime. `close()` destroys Kysely; it does not dispose the binding. Call `migrateCms` explicitly before composing the existing CMS service. No production hook/factory, login, account setup, credentials, hosting configuration or enabled UI writes are added. The server mutation gate remains default-disabled.
 
@@ -28,7 +28,7 @@ The [shared storage contract](../tests/helpers/storage-contract.ts) executes on 
 
 ## Reproduction and review
 
-Test-first commit `7676984` precedes implementation. `node --test tests/database-d1-upstream.test.ts tests/database-d1.test.ts` failed both modules on the missing adapter import (zero assertion bodies executed). Parameter-bound tests were added before implementation at `76a813d`. The first complete focused green run executed **22 cases**, before three supplemental rejection/snapshot/classifier cases were added. Final counts, exact-head hosted checks and independent/configured review are supplied in the draft PR handoff; a draft is held for parent review and merge is not authorized.
+Test-first commit `7676984` precedes implementation. `node --test tests/database-d1-upstream.test.ts tests/database-d1.test.ts` failed both modules on the missing adapter import (zero assertion bodies executed). Parameter-bound tests were added before implementation at `76a813d`. The first complete focused green run executed **22 cases**, before three supplemental rejection/snapshot/classifier cases were added. The original handoff supplied final counts, exact-head hosted checks and independent/configured review before PR #10 landed. Those historical candidate results remain distinct from execution of the merge commit.
 
 Run `node scripts/reproduce-d1-upstream.mjs` to fetch the immutable upstream modules into a temporary directory, verify both dialect/test blobs and the kysely-d1 0.4.0 tarball, bundle the selected assertions against the **upstream implementation**, then execute them. Its constructor bridge and Node assertion harness adapt API/test tooling only. The supplemental real-D1 probe reproduces zero-count mapping, all parameter variants above and first-write `_cf_METADATA` behavior. The initial run passed seven cases on Node 24.19.0, Kysely 0.29.2, Miniflare 4.20260507.1 / workerd 1.20260507.1, compatibility date 2026-05-07. No newly verified shared CMS/upstream bug was identified; those observations are retained and documented.
 
