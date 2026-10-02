@@ -1,5 +1,5 @@
 import { form, getRequestEvent, query } from '$app/server';
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import * as v from 'valibot';
 import { requestIdentity, identityCookiePath } from '$lib/server/auth/identity-request';
 import { AuthFlowError, authenticationOptions, authenticatePasskey, beginAdminSetup, finishAdminSetup,
@@ -61,9 +61,13 @@ export const completeLogin = form(v.strictObject({ credential: authenticationTex
       path: identityCookiePath(context), maxAge: SESSION_MAX_AGE_SECONDS, expires: new Date(session.expiresAt) });
     return { id: user.id, email: user.email, name: user.name, role: user.role };
   }));
-export const logout = form(v.strictObject({}), () => authResponse(async () => {
-  const event = getRequestEvent(), context = requestIdentity(event, true);
-  await revokeSession(event.cookies.get(SESSION_COOKIE_NAME), createKyselySessionStore(context.database.db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>()));
-  event.cookies.delete(SESSION_COOKIE_NAME, { ...SESSION_COOKIE_DELETE_OPTIONS, path: identityCookiePath(context) });
-  return { loggedOut: true };
-}));
+export const logout = form(v.strictObject({}), async () => {
+  const loginPath = await authResponse(async () => {
+    const event = getRequestEvent(), context = requestIdentity(event, true);
+    await revokeSession(event.cookies.get(SESSION_COOKIE_NAME), createKyselySessionStore(context.database.db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>()));
+    event.cookies.delete(SESSION_COOKIE_NAME, { ...SESSION_COOKIE_DELETE_OPTIONS, path: identityCookiePath(context) });
+    return `${context.basePath}/login`;
+  });
+  // A new request resolves the revoked cookie before rendering account state.
+  redirect(303, loginPath);
+});
