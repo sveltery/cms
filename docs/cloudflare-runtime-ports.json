@@ -42,5 +42,575 @@
     "Durable Objects, Hyperdrive, libSQL/PostgreSQL, remote provision/deployment",
     "Full source instrumentation/AST catalog coverage beyond selected local ports"
   ],
-  "specificDeviationAcceptance": "not recorded"
+  "specificDeviationAcceptance": "not recorded",
+  "sourceDeclarations": [
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/d1-request-scope.test.ts:32",
+      "sourceBlob": "47c0e80cff0c7b0b0c1b095086d13e815ee2d132",
+      "title": "persists the bookmark for a request that started authenticated",
+      "declarationSha256": "92236fb6b6a37a302ece14ef3230835492449e75ef1184394b791290c0541d4d",
+      "assertions": [
+        {
+          "line": 42,
+          "expression": "expect(scoped).not.toBeNull()"
+        },
+        {
+          "line": 44,
+          "expression": "expect(cookies.set).toHaveBeenCalledWith(\n\t\t\t\"__em_d1_bookmark\",\n\t\t\t\"d1-bookmark-1\",\n\t\t\texpect.objectContaining({ httpOnly: true, secure: true }),\n\t\t)"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/d1-request-scope.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/d1-request-scope.test.ts:51",
+      "sourceBlob": "47c0e80cff0c7b0b0c1b095086d13e815ee2d132",
+      "title": "persists the bookmark when the request becomes authenticated mid-request",
+      "declarationSha256": "c9fac27697ca9c91bf58c64bd3c858a499d5fb3a9bcd695162fa022db2a84c11",
+      "assertions": [
+        {
+          "line": 62,
+          "expression": "expect(scoped).not.toBeNull()"
+        },
+        {
+          "line": 64,
+          "expression": "expect(cookies.set).toHaveBeenCalledWith(\n\t\t\t\"__em_d1_bookmark\",\n\t\t\t\"d1-bookmark-1\",\n\t\t\texpect.objectContaining({ httpOnly: true, secure: true }),\n\t\t)"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/d1-request-scope.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/d1-request-scope.test.ts:71",
+      "sourceBlob": "47c0e80cff0c7b0b0c1b095086d13e815ee2d132",
+      "title": "persists nothing for a request that stays anonymous",
+      "declarationSha256": "1745327a63e4481b5f65b360c52bd9e95ace11b8ecbee4e6c81f9ab3a6bdfa49",
+      "assertions": [
+        {
+          "line": 82,
+          "expression": "expect(scoped).not.toBeNull()"
+        },
+        {
+          "line": 84,
+          "expression": "expect(cookies.set).not.toHaveBeenCalled()"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/d1-request-scope.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/d1-session-guard.test.ts:74",
+      "sourceBlob": "b4ca9414158b8e15f0663c0fce3d2cace5f6b771",
+      "title": "passes healthy session queries through and never latches broken",
+      "declarationSha256": "749137abcaf9d31780c9de58cf2bb0c6c504d40cf5ef3446045001ff48a4c68d",
+      "assertions": [
+        {
+          "line": 82,
+          "expression": "expect(result.results).toEqual([{ id: 1 }])"
+        },
+        {
+          "line": 83,
+          "expression": "expect(session.executed).toEqual([\"select * from posts\"])"
+        },
+        {
+          "line": 84,
+          "expression": "expect(fallback.executed).toEqual([])"
+        },
+        {
+          "line": 85,
+          "expression": "expect(guard.isBroken()).toBe(false)"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/d1-session-guard.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/d1-session-guard.test.ts:88",
+      "sourceBlob": "b4ca9414158b8e15f0663c0fce3d2cace5f6b771",
+      "title": "falls back to the direct binding when a SELECT hangs, and latches broken",
+      "declarationSha256": "79afcf32ad53b36b51006b16c8db5b5744022a58ba54cc6a49d89ca23f52cf1a",
+      "assertions": [
+        {
+          "line": 97,
+          "expression": "expect(result.results).toEqual([{ id: 7 }])"
+        },
+        {
+          "line": 98,
+          "expression": "expect(session.executed).toEqual([\"select * from posts\"])"
+        },
+        {
+          "line": 99,
+          "expression": "expect(fallback.executed).toEqual([\"select * from posts\"])"
+        },
+        {
+          "line": 100,
+          "expression": "expect(guard.isBroken()).toBe(true)"
+        },
+        {
+          "line": 101,
+          "expression": "expect(errorSpy).toHaveBeenCalledOnce()"
+        },
+        {
+          "line": 102,
+          "expression": "expect(errorSpy.mock.calls[0]?.[0]).toContain(\"global_fetch_strictly_public\")"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/d1-session-guard.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/d1-session-guard.test.ts:105",
+      "sourceBlob": "b4ca9414158b8e15f0663c0fce3d2cace5f6b771",
+      "title": "refuses to re-run a hung non-SELECT on the direct binding",
+      "declarationSha256": "2757c4413b27445cea8d29cc95e7846cf21a668b14cf4feb6501fff9f944422f",
+      "assertions": [
+        {
+          "line": 112,
+          "expression": "expect(db.prepare(\"update posts set title = ?\").bind(\"x\").run()).rejects.toThrow(\n\t\t\t/non-SELECT/,\n\t\t)"
+        },
+        {
+          "line": 116,
+          "expression": "expect(fallback.executed).toEqual([])"
+        },
+        {
+          "line": 117,
+          "expression": "expect(guard.isBroken()).toBe(true)"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/d1-session-guard.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/d1-session-guard.test.ts:120",
+      "sourceBlob": "b4ca9414158b8e15f0663c0fce3d2cace5f6b771",
+      "title": "re-runs a hung all-SELECT batch on the direct binding",
+      "declarationSha256": "b2832011ba6e57c33c94e4deca12a2f2b49e296da458a46ef2c8926aa0d1b770",
+      "assertions": [
+        {
+          "line": 133,
+          "expression": "expect(results).toHaveLength(2)"
+        },
+        {
+          "line": 134,
+          "expression": "expect(results[0]?.results).toEqual([{ n: 1 }])"
+        },
+        {
+          "line": 135,
+          "expression": "expect(fallback.batches).toEqual([[\"select * from a\", \"select * from b\"]])"
+        },
+        {
+          "line": 136,
+          "expression": "expect(guard.isBroken()).toBe(true)"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/d1-session-guard.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/d1-session-guard.test.ts:139",
+      "sourceBlob": "b4ca9414158b8e15f0663c0fce3d2cace5f6b771",
+      "title": "rejects a hung batch containing a write instead of re-running it",
+      "declarationSha256": "e8aa92d1ee4466e1461e448424cc636e91ff03e0ed90466c506ca9df5a8c6f07",
+      "assertions": [
+        {
+          "line": 147,
+          "expression": "expect(db.batch(statements)).rejects.toThrow(/non-SELECT/)"
+        },
+        {
+          "line": 149,
+          "expression": "expect(fallback.batches).toEqual([])"
+        },
+        {
+          "line": 150,
+          "expression": "expect(guard.isBroken()).toBe(true)"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/d1-session-guard.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/d1-session-guard.test.ts:153",
+      "sourceBlob": "b4ca9414158b8e15f0663c0fce3d2cace5f6b771",
+      "title": "treats a settled SQL error as proof of a healthy transport",
+      "declarationSha256": "0d01773236e5dd8f39baf51e51cd1998380f982d8b22df1445db7b4b0c45f48a",
+      "assertions": [
+        {
+          "line": 159,
+          "expression": "expect(db.prepare(\"select * from posts\").bind().all()).rejects.toThrow(/no such table/)"
+        },
+        {
+          "line": 161,
+          "expression": "expect(guard.isBroken()).toBe(false)"
+        },
+        {
+          "line": 162,
+          "expression": "expect(fallback.executed).toEqual([])"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/d1-session-guard.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/d1-session-guard.test.ts:165",
+      "sourceBlob": "b4ca9414158b8e15f0663c0fce3d2cace5f6b771",
+      "title": "skips the race entirely once a query has settled successfully",
+      "declarationSha256": "65c33ccfc5ce691498155e5e47d6fa208a46d45b2932d0cb75fc54c4891a6ee8",
+      "assertions": [
+        {
+          "line": 182,
+          "expression": "expect(raced).toBe(\"still pending\")"
+        },
+        {
+          "line": 183,
+          "expression": "expect(guard.isBroken()).toBe(false)"
+        },
+        {
+          "line": 184,
+          "expression": "expect(fallback.executed).toEqual([])"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/d1-session-guard.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/d1-session-guard.test.ts:187",
+      "sourceBlob": "b4ca9414158b8e15f0663c0fce3d2cace5f6b771",
+      "title": "skips the timeout entirely once latched broken (fast path)",
+      "declarationSha256": "4a07096385f24b37da38032866026e294a80e81e22204afa88e467fc86a39a93",
+      "assertions": [
+        {
+          "line": 196,
+          "expression": "expect(guard.isBroken()).toBe(true)"
+        },
+        {
+          "line": 203,
+          "expression": "expect(db.prepare(\"update posts set x = 1\").bind().run()).rejects.toThrow(/non-SELECT/)"
+        },
+        {
+          "line": 210,
+          "expression": "expect(result.results).toEqual([{ id: 1 }])"
+        },
+        {
+          "line": 211,
+          "expression": "expect(batchResults).toHaveLength(2)"
+        },
+        {
+          "line": 212,
+          "expression": "expect(fallback.batches).toEqual([[\"select * from a\", \"select * from b\"]])"
+        },
+        {
+          "line": 214,
+          "expression": "expect(elapsed).toBeLessThan(TIMEOUT_MS)"
+        },
+        {
+          "line": 216,
+          "expression": "expect(session.executed).toEqual([\"select 1\"])"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/d1-session-guard.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/d1-session-guard.test.ts:219",
+      "sourceBlob": "b4ca9414158b8e15f0663c0fce3d2cace5f6b771",
+      "title": "supports first() and raw() on the guarded statement",
+      "declarationSha256": "94e265dac0f44cfac553f2e3c6dad25e7ba469181ce71e282b6fbae5add6f88d",
+      "assertions": [
+        {
+          "line": 225,
+          "expression": "expect(db.prepare(\"select 1\").bind().first()).resolves.toBeNull()"
+        },
+        {
+          "line": 226,
+          "expression": "expect(db.prepare(\"select 1\").bind().raw()).resolves.toEqual([])"
+        },
+        {
+          "line": 227,
+          "expression": "expect(session.executed).toEqual([\"select 1\", \"select 1\"])"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/d1-session-guard.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/coalescing-d1.test.ts:76",
+      "sourceBlob": "d4b778395c2714590effe6cdbca8ee279d6bdc35",
+      "title": "coalesces SELECTs issued in the same turn into one batch in issue order",
+      "declarationSha256": "edbe838e7580cf168db54ed69b7f6ecdc1db093404d8e0fbc00e7bc96ea1cfd7",
+      "assertions": [
+        {
+          "line": 90,
+          "expression": "expect(mock.batchCalls).toHaveLength(1)"
+        },
+        {
+          "line": 91,
+          "expression": "expect(mock.batchCalls[0]?.map((s) => s.sql)).toEqual([\n\t\t\t\"SELECT * FROM a\",\n\t\t\t\"select * from b where id = ?\",\n\t\t])"
+        },
+        {
+          "line": 96,
+          "expression": "expect(r1.rows).toEqual(rowsA)"
+        },
+        {
+          "line": 97,
+          "expression": "expect(r2.rows).toEqual(rowsB)"
+        },
+        {
+          "line": 98,
+          "expression": "expect(mock.batchCalls[0]?.[1]?.params).toEqual([\"abc\"])"
+        },
+        {
+          "line": 100,
+          "expression": "expect(mock.allCalls).toHaveLength(0)"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/coalescing-d1.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/coalescing-d1.test.ts:103",
+      "sourceBlob": "d4b778395c2714590effe6cdbca8ee279d6bdc35",
+      "title": "does not batch sequentially awaited SELECTs",
+      "declarationSha256": "b6becb96ed8ee393940f0b89e201ae47cbaed15fab5940af8ea95321504b924d",
+      "assertions": [
+        {
+          "line": 113,
+          "expression": "expect(mock.batchCalls).toHaveLength(0)"
+        },
+        {
+          "line": 114,
+          "expression": "expect(mock.allCalls.map((s) => s.sql)).toEqual([\"select 1\", \"select 2\"])"
+        },
+        {
+          "line": 115,
+          "expression": "expect(r1.rows).toEqual([{ one: 1 }])"
+        },
+        {
+          "line": 116,
+          "expression": "expect(r2.rows).toEqual([{ two: 2 }])"
+        },
+        {
+          "line": 118,
+          "expression": "expect(r1.numAffectedRows).toBeUndefined()"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/coalescing-d1.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/coalescing-d1.test.ts:121",
+      "sourceBlob": "d4b778395c2714590effe6cdbca8ee279d6bdc35",
+      "title": "executes writes and CTEs immediately while same-turn SELECTs still coalesce",
+      "declarationSha256": "4a07e2344f41a3bd41c1015413a5ebf11f8ca7a543f419f1fecc97629551142f",
+      "assertions": [
+        {
+          "line": 136,
+          "expression": "expect(mock.operations).toEqual([\n\t\t\t\"all:insert into a (name) values (?)\",\n\t\t\t\"all:update a set name = ?\",\n\t\t\t\"all:delete from a where id = ?\",\n\t\t\t\"all:with x as (select 1) delete from a\",\n\t\t\t\"batch:select * from a|select * from b\",\n\t\t])"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/coalescing-d1.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/coalescing-d1.test.ts:145",
+      "sourceBlob": "d4b778395c2714590effe6cdbca8ee279d6bdc35",
+      "title": "falls back to individual execution when the batch rejects",
+      "declarationSha256": "9426f50e7700207bebc91056b1c2864e3ee5f9e7eba14ca3cc55549e665cc18c",
+      "assertions": [
+        {
+          "line": 161,
+          "expression": "expect(mock.batchCalls).toHaveLength(1)"
+        },
+        {
+          "line": 162,
+          "expression": "expect(mock.allCalls.map((s) => s.sql)).toEqual([\n\t\t\t\"select good1\",\n\t\t\t\"select nope\",\n\t\t\t\"select good2\",\n\t\t])"
+        },
+        {
+          "line": 168,
+          "expression": "expect(r1.status).toBe(\"fulfilled\")"
+        },
+        {
+          "line": 169,
+          "expression": "expect(r1.value.rows).toEqual([{ ok: 1 }])"
+        },
+        {
+          "line": 170,
+          "expression": "expect(r2.status).toBe(\"rejected\")"
+        },
+        {
+          "line": 171,
+          "expression": "expect(r2.reason).toBe(failure)"
+        },
+        {
+          "line": 172,
+          "expression": "expect(r3.status).toBe(\"fulfilled\")"
+        },
+        {
+          "line": 173,
+          "expression": "expect(r3.value.rows).toEqual([{ ok: 2 }])"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/coalescing-d1.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/coalescing-d1.test.ts:176",
+      "sourceBlob": "d4b778395c2714590effe6cdbca8ee279d6bdc35",
+      "title": "maps rows, numAffectedRows and insertId on the direct path",
+      "declarationSha256": "f5a746932ef4a9130e2d6c69b038282c7acb2e1d8f6a1baff73d7551e0ddb9bd",
+      "assertions": [
+        {
+          "line": 190,
+          "expression": "expect(inserted.rows).toEqual([])"
+        },
+        {
+          "line": 191,
+          "expression": "expect(inserted.numAffectedRows).toBe(2n)"
+        },
+        {
+          "line": 192,
+          "expression": "expect(inserted.insertId).toBe(7n)"
+        },
+        {
+          "line": 193,
+          "expression": "expect(mock.allCalls[0]?.params).toEqual([\"x\"])"
+        },
+        {
+          "line": 197,
+          "expression": "expect(deleted.numAffectedRows).toBeUndefined()"
+        },
+        {
+          "line": 202,
+          "expression": "expect(returned.rows).toEqual([{ storage_key: \"expired.png\" }])"
+        },
+        {
+          "line": 203,
+          "expression": "expect(returned.numAffectedRows).toBe(1n)"
+        },
+        {
+          "line": 204,
+          "expression": "expect(mock.batchCalls).toHaveLength(0)"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/coalescing-d1.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/coalescing-d1.test.ts:207",
+      "sourceBlob": "d4b778395c2714590effe6cdbca8ee279d6bdc35",
+      "title": "starts a new batch window after a flush",
+      "declarationSha256": "3ed6652467c32a458055bf30e171ad1b5e65822620db4de784536b95f4f657ca",
+      "assertions": [
+        {
+          "line": 220,
+          "expression": "expect(mock.batchCalls).toHaveLength(2)"
+        },
+        {
+          "line": 221,
+          "expression": "expect(mock.batchCalls[0]?.map((s) => s.sql)).toEqual([\"select 1\", \"select 2\"])"
+        },
+        {
+          "line": 222,
+          "expression": "expect(mock.batchCalls[1]?.map((s) => s.sql)).toEqual([\"select 3\", \"select 4\"])"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/coalescing-d1.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/coalescing-d1.test.ts:225",
+      "sourceBlob": "d4b778395c2714590effe6cdbca8ee279d6bdc35",
+      "title": "never overlaps physical session calls: a write and a SELECT batch run serially",
+      "declarationSha256": "e5ccc1192b9088602723f3b6dec6c0e2eb2beb6ae3ff6012ce54243d3f9fef8e",
+      "assertions": [
+        {
+          "line": 277,
+          "expression": "expect(maxInFlight).toBe(1)"
+        },
+        {
+          "line": 280,
+          "expression": "expect(ops).toEqual([\"all:update a set n = ?\", \"batch:select * from a|select * from b\"])"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/coalescing-d1.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/coalescing-d1.test.ts:283",
+      "sourceBlob": "d4b778395c2714590effe6cdbca8ee279d6bdc35",
+      "title": "rejects transactions",
+      "declarationSha256": "59c6f35f4416cee2acfb5b8da2e24a012c467b90c623c4b795690e211d0598a5",
+      "assertions": [
+        {
+          "line": 286,
+          "expression": "expect(\n\t\t\tdb.transaction().execute(async () => {\n\t\t\t\t// never reached\n\t\t\t}),\n\t\t).rejects.toThrow(\"Transactions are not supported\")"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/coalescing-d1.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/coalescing-d1.test.ts:298",
+      "sourceBlob": "d4b778395c2714590effe6cdbca8ee279d6bdc35",
+      "title": "reclaims a stranded flush so a later query is not left hanging",
+      "declarationSha256": "89847f672597c2c21a63dc98533fac354f094027be524a40770ae2ae6e949edc",
+      "assertions": [
+        {
+          "line": 318,
+          "expression": "expect(first).resolves.toMatchObject({ rows: [{ id: 1 }] })"
+        },
+        {
+          "line": 319,
+          "expression": "expect(second).resolves.toMatchObject({ rows: [{ id: 1 }] })"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/coalescing-d1.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/db/coalescing-d1.test.ts:322",
+      "sourceBlob": "d4b778395c2714590effe6cdbca8ee279d6bdc35",
+      "title": "does not reclaim a live flush that is still within its deadline",
+      "declarationSha256": "e8f908b6d85d15e8d162fbf0f7d324a9e45ddbf66ee2a95cd48c1fe180b20f4e",
+      "assertions": [
+        {
+          "line": 335,
+          "expression": "expect(mock.batchCalls).toHaveLength(1)"
+        },
+        {
+          "line": 336,
+          "expression": "expect(mock.batchCalls[0]?.map((s) => s.sql)).toEqual([\"select 1\", \"select 2\"])"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/coalescing-d1.test.ts",
+      "omissions": []
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/cloudflare/tests/missing-bindings.test.ts:44",
+      "sourceBlob": "b0b5668fbd87c69e9228f0ec352f1e642cebf0cb",
+      "title": "names the D1 binding and the wrangler key that declares it",
+      "declarationSha256": "da2eaf8e09ba4f6ad1a017640b66851ea648a633a5e16ac0e95a89de1fa40278",
+      "assertions": [
+        {
+          "line": 47,
+          "expression": "expect(message).toContain(\"SITE_DB\")"
+        },
+        {
+          "line": 48,
+          "expression": "expect(message).toContain(\"d1_databases\")"
+        },
+        {
+          "line": 49,
+          "expression": "expect(error).toBeInstanceOf(EmDashConfigurationError)"
+        },
+        {
+          "line": 50,
+          "expression": "expect(error.code).toBe(\"BINDING_NOT_FOUND\")"
+        }
+      ],
+      "localFile": "tests/source-cloudflare/missing-bindings.test.ts",
+      "omissions": [
+        "Other R2, KV, DO and Hyperdrive declarations remain unported"
+      ]
+    }
+  ]
 }
