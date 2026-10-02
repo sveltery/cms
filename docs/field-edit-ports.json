@@ -4,7 +4,7 @@
   "integrationBase": "8c773d815bb54499d5d3eeca4f92b28d7b42ac22",
   "licenseNotice": "../notices/emdash-MIT.txt",
   "implementationPullRequest": "https://github.com/sveltery/cms/pull/27",
-  "decisionStatus": "Proposed implementation in draft PR #27; specific acceptance of intentional differences is not recorded. Full integration/final-head gates remain pending. No merge/post-merge success is claimed.",
+  "decisionStatus": "Proposed implementation in PR #27, rebased onto merged trash-pagination main 46533f657b3fbcc73d78360b9abb8e653bd72dec. Canonical ownership was released and six documentation changes reconciled; both expected-export inventories are updated. Specific acceptance of intentional differences is not recorded. Fresh combined final-head verification/reviews remain pending; no field-edit merge/post-merge success is claimed.",
   "inspectedSources": [
     {
       "path": "packages/core/src/schema/registry.ts",
@@ -382,7 +382,7 @@
         "Direct form/descriptor spreads and explicit hidden values; per-field instance pending/issues/results.",
         "Native/enhanced consecutiveedits, origin/auth/default-disabled and refreshed schema/manifest."
       ],
-      "evidence": "Implementation inspected; production/conversion/securedbrowser/finalhead gates pending parent evidence. No rendered upstreamReact/REST parity credit."
+      "evidence": "Focused registered field-options production8cases passed after native textarea/label repair; historical default browser25passed/3failed before fix. Fresh combined-head production/conversion/browser/full-bootstrap/final-head gates pending. No rendered upstream React/REST parity credit."
     }
   ],
   "compatibilityRecords": [
@@ -475,21 +475,21 @@
       "evidence": "/tmp/field-edit-database-tests.log"
     },
     "productionAndConversionTests": {
-      "status": "new_options_production_cases_passed_in_initial_bootstrap",
-      "scope": "Initial full production run79cases78passed; parent-owned stale export inventory is sole failure. Final integrated head evidence pending."
+      "status": "historical_initial_options_cases_passed_full_initial_run_had_stale_inventory",
+      "scope": "Historical initial production run: 79 cases, 78 passed, stale expected-export inventory failed. Current inventories are updated; final combined-head verification remains pending."
     },
     "browserTests": {
       "status": "pending_secured_default_and_Node_CI"
     },
     "bootstrap": {
-      "status": "initial_failed_shared_export_inventory",
+      "status": "historical_initial_failure_shared_export_inventory_now_resolved",
       "serviceDevelopmentTests": 405,
       "serviceFailures": 0,
       "productionTests": 79,
       "productionPassed": 78,
       "productionFailures": 1,
       "failure": "Parent-owned tests/production/remotes.test.ts expected export list lacks new updateSchemaFieldOptions. No product/source assertion failure; exact shared test patch awaits parent integration.",
-      "finalGate": "Blocked until shared test/canonical documentation integration and full rerun."
+      "finalGate": "Both shared export lists now updated; fresh bootstrap still required on the combined final head."
     },
     "finalHeadCI": {
       "status": "pending"
@@ -498,15 +498,76 @@
       "status": "pending_exact_head"
     },
     "configuredReview": {
-      "status": "pending_exact_head"
+      "status": "blocked_usage_quota",
+      "evidence": "https://github.com/sveltery/cms/pull/27#issuecomment-5951520229",
+      "scope": "Ready-triggered configured review cannot complete at its current usage quota; no completed review or eligibility claimed."
     },
     "postMergeCI": {
       "status": "not_merged"
     },
     "nodePackage": {
-      "status": "build_passed_package_test_blocked_shared_export_inventory",
+      "status": "historical_initial_build_passed_package_inventory_failed_now_resolved",
       "failure": "Parent-owned tests/node-hosting/package.test.ts expected export list lacks updateSchemaFieldOptions; hosting checks stop before completion.",
-      "finalGate": "Both parent-owned exact export-list corrections await integration before full rerun."
+      "finalGate": "Both shared export lists updated; fresh combined-head Node package checks remain pending."
+    },
+    "historicalPatchedBootstrap": {
+      "status": "passed",
+      "baseCommit": "67de384ef0a55a4539f22035205d3670b51fd34c",
+      "worktreeChanges": "Exact eight-file handoff patch applied as uncommitted changes; worktree diff matches artifact SHA-256. This is not unchanged-head or current combined-head evidence.",
+      "patchSha256": "febd4a2419edb44b7e1b2bd7555bb4d2be2cc23103934f88ba0638ae65589a4f",
+      "command": "sh scripts/bootstrap.sh",
+      "serviceDevelopmentTests": 405,
+      "productionTests": 85,
+      "nodePackageTests": 11,
+      "checkerErrors": 0,
+      "checkerWarnings": 0,
+      "failures": 0,
+      "evidence": "/tmp/field-edit-proposed-patch-bootstrap.log"
+    },
+    "historicalBrowserFailure": {
+      "status": "failed_before_native_textarea_fix",
+      "commit": "67de384ef0a55a4539f22035205d3670b51fd34c",
+      "ci": "https://github.com/sveltery/cms/actions/runs/37002150503",
+      "job": "110822064140",
+      "target": "default",
+      "tests": 28,
+      "passed": 25,
+      "failures": 3,
+      "failedScope": "Two native default/empty initial textarea cases and one disabled-label association case. Enhanced field-options cases passed.",
+      "nodeBrowserStep": "skipped",
+      "scope": "Historical uncorrected head; not final combined-head evidence."
+    },
+    "nativeTextareaRepair": {
+      "status": "focused_registered_production_green",
+      "rebasedCommit": "6ff3ac937398942c28df9e0cd19d0c41729d4e75",
+      "change": "Explicit Svelte textarea value uses its own native form field value before stored-default fallback; explicit label for/id association. Direct native descriptor spread retained.",
+      "red": {
+        "passed": 6,
+        "failures": 2,
+        "evidence": "/tmp/field-options-textarea-red.log"
+      },
+      "green": {
+        "tests": 8,
+        "passed": 8,
+        "failures": 0,
+        "evidence": "/tmp/field-options-textarea-green.log"
+      },
+      "sourceCredit": 0,
+      "scope": "Local native SSR/form rendering repair, not an upstream semantic change. Secured final combined-head browsers remain pending."
+    },
+    "trashPaginationBaseline": {
+      "status": "merged_post_ci_passed",
+      "commit": "46533f657b3fbcc73d78360b9abb8e653bd72dec",
+      "reviewedHeadPrefix": "98e8d33",
+      "ci": "https://github.com/sveltery/cms/actions/runs/37002254425",
+      "serviceDevelopmentTests": 404,
+      "productionTests": 79,
+      "nodePackageTests": 11,
+      "browserTestsPerTarget": 27,
+      "scope": "Parent-confirmed PR #28 baseline evidence, not field-edit final-head verification."
+    },
+    "finalCombinedBootstrap": {
+      "status": "pending_fresh_combined_head"
     }
   },
   "omissions": [
@@ -518,8 +579,13 @@
   ],
   "integrationHandoff": {
     "path": "docs/field-edit-integration.patch",
-    "status": "prepared_for_parent_application_only",
-    "scope": "Exact canonical documentation and two expected-export inventory corrections; underlying parent-owned files remain untouched by this feature branch.",
-    "applicationGate": "Parent applies with git apply --unidiff-zero docs/field-edit-integration.patch or reconciles, then verifies integrated final-head bootstrap/CI/reviews before merge."
-  }
+    "status": "historical_prepared_patch_reconciled_after_ownership_release",
+    "preparedAgainst": "8c773d815bb54499d5d3eeca4f92b28d7b42ac22",
+    "sha256": "febd4a2419edb44b7e1b2bd7555bb4d2be2cc23103934f88ba0638ae65589a4f",
+    "scope": "Six canonical documentation changes and two expected-export inventory additions, retained byte-for-byte as historical handoff evidence. Current canonical documents are reconciled onto latest main; both inventory tests are updated.",
+    "latestIntegrationBase": "46533f657b3fbcc73d78360b9abb8e653bd72dec",
+    "currentGate": "Fresh full bootstrap, secured default/Node CI, exact-head independent review, and configured review quota resolution remain pending."
+  },
+  "initialIntegrationBase": "8c773d815bb54499d5d3eeca4f92b28d7b42ac22",
+  "latestIntegrationBase": "46533f657b3fbcc73d78360b9abb8e653bd72dec"
 }
