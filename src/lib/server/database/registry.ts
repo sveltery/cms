@@ -3,6 +3,7 @@ import { sqliteErrorMessage } from './errors.ts';
 import { ulid } from 'ulidx';
 import { CmsError, type CmsDatabase, type Collection, type CollectionRow, type Field, type FieldRow, type RevisionPrecondition } from './contract.ts';
 import { collectionInput, collectionMetadataInput, fieldInput, identifier, parse, reservedCollections, reservedFields, revisionInput, tableName } from './validation.ts';
+import { trashIndexStatement } from './trash-index.ts';
 
 export const MAX_COLLECTIONS = 100;
 export const MAX_FIELDS = 32;
@@ -117,6 +118,7 @@ export class SchemaRegistry {
         UNIQUE(slug, locale)
       )`.compile(db),
       db.schema.createIndex('idx_' + name + '_draft_list').on(name).columns(['locale', 'deleted_at', 'created_at', 'id']).compile(),
+      trashIndexStatement(this.database, value.slug),
       sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
     ];
     try { await this.batch(statements, 'LIMIT_EXCEEDED'); }

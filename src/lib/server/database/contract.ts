@@ -54,5 +54,7 @@ export interface DraftEntry {
   data: Record<string, string | null>;
 }
 export interface DraftSummary extends Omit<DraftEntry, 'data'> { title: string | null }
+export interface TrashedDraftEntry extends DraftEntry { deletedAt: string }
+export interface TrashedDraftSummary extends DraftSummary { deletedAt: string }
 export interface RevisionPrecondition { version: number; updatedAt: string }
 export interface Page<T> { items: T[]; nextCursor?: string }
