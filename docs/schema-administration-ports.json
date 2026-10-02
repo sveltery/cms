@@ -1,0 +1,214 @@
+{
+  "referenceVersion": "EmDash1.1.0",
+  "referenceCommit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "source": {
+    "path": "packages/core/tests/unit/schema/collection-title-date-fields.test.ts",
+    "sourceBlob": "829c6447a0d450906780211a293d5bc781e5412a",
+    "sha256": "ca6792f92eafc9e9b6c658def3ec558e9899e9be7e17b8d30d24d82fe43b8d53"
+  },
+  "localPath": "tests/schema-administration-display-upstream.test.ts",
+  "completeDeclarations": 11,
+  "assertionExpressions": 19,
+  "runtime": "node:test, genuine node:sqlite/Kysely; no additional Cloudflare credit",
+  "adaptations": [
+    "Vitest imports and expect runner adapter; setup migrations and registry constructor use CmsDatabase",
+    "SchemaError constructor alias; complete source callbacks/assertions/datasets unchanged"
+  ],
+  "baseline": {
+    "testFirstCommit": "8d6df6b",
+    "result": "all 11 complete source declarations were already green; no behavioral red credit"
+  },
+  "omissions": [
+    "broader full registry declarations already counted by schema39 are not counted again",
+    "FTS/media/relations/type-generation subsystem expectations remain unimplemented",
+    "Astro schema REST and React UI assertions are not ported"
+  ],
+  "registrations": [
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/collection-title-date-fields.test.ts:44",
+      "title": "defaults to undefined when unset",
+      "sourceLine": 44,
+      "localLine": 39,
+      "completeDeclaration": true,
+      "callbackSha256": "ca1030b7eef644203772a083d1ac5b54a26cfb2d7ababfdcf0557a6b66a2b670",
+      "expressions": [
+        {
+          "sourceLine": 46,
+          "expression": "expect(collection?.titleField).toBeUndefined();"
+        },
+        {
+          "sourceLine": 47,
+          "expression": "expect(collection?.dateField).toBeUndefined();"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/collection-title-date-fields.test.ts:50",
+      "title": "updateCollection sets titleField and dateField to valid fields",
+      "sourceLine": 50,
+      "localLine": 45,
+      "completeDeclaration": true,
+      "callbackSha256": "ccdfb39d1eb5ccaa3a0ddf8e4a2a6c82dffab6d2170bc5fcf08f0bbfdfb6c480",
+      "expressions": [
+        {
+          "sourceLine": 55,
+          "expression": "expect(updated.titleField).toBe(\"name\");"
+        },
+        {
+          "sourceLine": 56,
+          "expression": "expect(updated.dateField).toBe(\"pub_date\");"
+        },
+        {
+          "sourceLine": 59,
+          "expression": "expect(reread?.titleField).toBe(\"name\");"
+        },
+        {
+          "sourceLine": 60,
+          "expression": "expect(reread?.dateField).toBe(\"pub_date\");"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/collection-title-date-fields.test.ts:63",
+      "title": "clears titleField/dateField back to default with null",
+      "sourceLine": 63,
+      "localLine": 58,
+      "completeDeclaration": true,
+      "callbackSha256": "b5ee49adc9885d6784d7e48e0e985cc3c798d163da4fa38313428e03f792674b",
+      "expressions": [
+        {
+          "sourceLine": 69,
+          "expression": "expect(cleared.titleField).toBeUndefined();"
+        },
+        {
+          "sourceLine": 70,
+          "expression": "expect(cleared.dateField).toBeUndefined();"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/collection-title-date-fields.test.ts:73",
+      "title": "leaves titleField/dateField unchanged on an unrelated update",
+      "sourceLine": 73,
+      "localLine": 68,
+      "completeDeclaration": true,
+      "callbackSha256": "831dc6211e655f488ef19b2730d2db3879ee0675ca39ff741778a50141b7c427",
+      "expressions": [
+        {
+          "sourceLine": 76,
+          "expression": "expect(updated.titleField).toBe(\"name\");"
+        },
+        {
+          "sourceLine": 77,
+          "expression": "expect(updated.dateField).toBe(\"pub_date\");"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/collection-title-date-fields.test.ts:80",
+      "title": "updateCollection rejects a titleField that does not exist",
+      "sourceLine": 80,
+      "localLine": 75,
+      "completeDeclaration": true,
+      "callbackSha256": "6ad132c8a96fac6a2b06601712a9dae1b28f27d80e096e97aebbe405a98f04bc",
+      "expressions": [
+        {
+          "sourceLine": 81,
+          "expression": "await expect(\n\t\t\tregistry.updateCollection(\"employees\", { titleField: \"nonexistent\" }),\n\t\t).rejects.toBeInstanceOf(SchemaError);"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/collection-title-date-fields.test.ts:86",
+      "title": "updateCollection rejects a titleField that isn't a text field",
+      "sourceLine": 86,
+      "localLine": 81,
+      "completeDeclaration": true,
+      "callbackSha256": "0f5d40c4e03057307256f518427307e025a3dd1f74ead25c0fc7eea86e7ef7ba",
+      "expressions": [
+        {
+          "sourceLine": 88,
+          "expression": "await expect(\n\t\t\tregistry.updateCollection(\"employees\", { titleField: \"pub_date\" }),\n\t\t).rejects.toBeInstanceOf(SchemaError);"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/collection-title-date-fields.test.ts:93",
+      "title": "updateCollection rejects a dateField that is not a datetime field",
+      "sourceLine": 93,
+      "localLine": 88,
+      "completeDeclaration": true,
+      "callbackSha256": "7ebe5233bcb3de93c9e7ededceeb171901fd9aa7cecefa599f3a33a8e782c4f4",
+      "expressions": [
+        {
+          "sourceLine": 94,
+          "expression": "await expect(\n\t\t\tregistry.updateCollection(\"employees\", { dateField: \"title\" }),\n\t\t).rejects.toBeInstanceOf(SchemaError);"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/collection-title-date-fields.test.ts:99",
+      "title": "updateCollection rejects a dateField that does not exist",
+      "sourceLine": 99,
+      "localLine": 94,
+      "completeDeclaration": true,
+      "callbackSha256": "faab1a42f711b2ef334f8ea2572c240a0404d775769eb900eed8746ae8b469b8",
+      "expressions": [
+        {
+          "sourceLine": 100,
+          "expression": "await expect(\n\t\t\tregistry.updateCollection(\"employees\", { dateField: \"nope\" }),\n\t\t).rejects.toBeInstanceOf(SchemaError);"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/collection-title-date-fields.test.ts:105",
+      "title": "clears titleField/dateField when the referenced field is deleted",
+      "sourceLine": 105,
+      "localLine": 100,
+      "completeDeclaration": true,
+      "callbackSha256": "d467341feacc352195b68def650ec35bd2a22b1c5b7b299d041d3c63caad7110",
+      "expressions": [
+        {
+          "sourceLine": 112,
+          "expression": "expect(afterDate?.dateField).toBeUndefined();"
+        },
+        {
+          "sourceLine": 113,
+          "expression": "expect(afterDate?.titleField).toBe(\"name\");"
+        },
+        {
+          "sourceLine": 117,
+          "expression": "expect(afterName?.titleField).toBeUndefined();"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/collection-title-date-fields.test.ts:120",
+      "title": "rejects changing a dateField's type away from datetime",
+      "sourceLine": 120,
+      "localLine": 115,
+      "completeDeclaration": true,
+      "callbackSha256": "77a2f461f333d02d55e5e523c68631fda53013cbc70ed8c6f6eb8587521d53fb",
+      "expressions": [
+        {
+          "sourceLine": 124,
+          "expression": "await expect(\n\t\t\tregistry.updateField(\"employees\", \"pub_date\", { type: \"string\" }),\n\t\t).rejects.toBeInstanceOf(SchemaError);"
+        }
+      ]
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/collection-title-date-fields.test.ts:129",
+      "title": "rejects changing a titleField's type to a non-text field",
+      "sourceLine": 129,
+      "localLine": 124,
+      "completeDeclaration": true,
+      "callbackSha256": "1a774c70e07dca597ec3c0be2975a52728eeb1ff3cee850860ce827716c164eb",
+      "expressions": [
+        {
+          "sourceLine": 131,
+          "expression": "await expect(registry.updateField(\"employees\", \"name\", { type: \"url\" })).rejects.toBeInstanceOf(\n\t\t\tSchemaError,\n\t\t);"
+        }
+      ]
+    }
+  ]
+}

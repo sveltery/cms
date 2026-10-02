@@ -1,6 +1,6 @@
 # Bounded schema administration
 
-The current [persisted schema domain](full-schema.md) supports all 17 pinned field types, richer metadata, index flags and deletion/reordering APIs. The native forms on this page still expose additive string/text fields and scalar metadata; full field builders and deletion/reordering controls remain unfinished. Version 3 upgrades existing metadata and preserves physical content definitions and values; version 4 registers empty identity tables. The evidence and compatibility records below describe the historical bounded administration checkpoint unless a later subsection explicitly supersedes it.
+The current [persisted schema domain](full-schema.md) supports all 17 pinned field types, richer metadata, index flags and deletion/reordering APIs. The [expanded administration controls](schema-administration.md) now expose all 17 persisted types, collection/field settings, ordering and deletion. Dedicated field builders and the block/media/relation/FTS/type-generation subsystems remain unfinished. The rest of this page records the historical bounded checkpoint. Version 3 upgrades existing metadata and preserves physical content definitions and values; version 4 registers empty identity tables. The evidence and compatibility records below describe the historical bounded administration checkpoint unless a later subsection explicitly supersedes it.
 
 ## Historical bounded administration checkpoint
 
