@@ -151,6 +151,7 @@ export default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: ad
       page.on('pageerror', error => errors.push(error.message));
       await context.addCookies([{ name: 'cms-session', value: fixture.tokens.author, url: origin }]);
       await page.goto(`${origin}${base}/trash/restore`);
+      await page.waitForLoadState('networkidle');
       const rows = page.getByRole('table', { name: 'Trashed drafts' }).locator('tbody tr');
       const en = rows.filter({ has: page.getByRole('button', { name: 'Restore Restore pair (en)', exact: true }) });
       const fr = rows.filter({ has: page.getByRole('button', { name: 'Restore Restore pair (fr)', exact: true }) });
@@ -204,15 +205,20 @@ export default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: ad
       await expect(fr).toHaveCount(0);
       await expect(rows).toHaveCount(3);
       await expect(en.getByRole('alert')).toBeVisible();
+      await expect(en.getByRole('status')).toHaveCount(0);
+      expect(await page.evaluate(() => (window as any).__restoreNavigation)).toBe(true);
       await page.unroute('**/_app/remote/**/restoreContent');
       await fixture.staleRestore(String(enInput.id));
       await en.locator('input[name="_rev"]').evaluate((input: HTMLInputElement, value: string) => { input.value = value; }, String(enInput._rev));
       const stale = page.waitForResponse(response => response.url().includes('/restoreContent') && response.request().method() === 'POST');
       await en.getByRole('button').click();
-      expect((await stale).status()).toBe(200); // Kit error envelope carries the domain status.
+      const staleResponse = await stale;
+      expect(staleResponse.status()).toBe(200); // Kit error envelope carries the domain status.
+      expect(await staleResponse.json()).toMatchObject({ type: 'error', status: 409, error: { code: 'CONFLICT' } });
       await expect(en.getByRole('alert')).toHaveText('Failed to restore. Reload trash and try again.');
       await expect(other.getByRole('alert')).toHaveCount(0);
       await page.reload();
+      await page.waitForLoadState('networkidle');
       await expect(en.getByRole('alert')).toHaveCount(0);
       expect((await fields(en))._rev).not.toBe(enInput._rev);
       const restored = page.waitForResponse(response => response.url().includes('/restoreContent') && response.request().method() === 'POST');

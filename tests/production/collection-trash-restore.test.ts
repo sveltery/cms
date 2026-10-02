@@ -66,7 +66,11 @@ test('built trash forms bind identity/locale/token, isolate issues and restore t
     assert.equal(parse((await query('listContent', { collection: 'restore', locale: 'fr' })).data)._.items[0].id, fr.fields.id);
     assert.equal((await submit(fr)).status, 409);
     assert.equal(parse((await query('getContent', { collection: 'restore', id: fr.fields.id, locale: 'fr' })).data)._._rev, restored._rev);
-    const first = await submit(en);
+    await fixture.staleRestore(en.fields.id);
+    assert.equal((await submit(en)).status, 409);
+    const freshEn = forms(await (await request('/trash/restore')).text()).find(form => form.fields.id === en.fields.id)!;
+    assert.notEqual(freshEn.fields._rev, en.fields._rev);
+    const first = await submit(freshEn);
     assert.equal(first.status, 200);
     assert.match(await (await request('/content/restore')).text(), /Restore pair/);
     assert.equal((await submit(en)).status, 409);
