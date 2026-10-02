@@ -4,16 +4,19 @@
   import WorkspaceShell from '$lib/ui/WorkspaceShell.svelte';
   import DraftPreview from '$lib/ui/DraftPreview.svelte';
   import { previewFields } from '$lib/ui/preview-fields';
-  import { getEditorManifest, getContent, updateContent, deleteContent } from '$lib/content.remote';
-  async function loadContent(collection: string, id: string) {
-    return Promise.all([getEditorManifest(), getContent({ collection, id })]).then(
+  import { getEditorManifest, deleteContent } from '$lib/content.remote';
+  import { getLifecycleContent } from '$lib/lifecycle.remote';
+  import { saveEditorContent } from '$lib/editor.remote';
+  async function loadContent(collection: string, id: string, locale: string) {
+    return Promise.all([getEditorManifest(), getLifecycleContent({ collection, id, locale })]).then(
       ([manifest, item]) => {
         const definition = Object.hasOwn(manifest.collections, collection) ? manifest.collections[collection] : undefined;
         return definition ? { definition, item } : null;
       }, () => null
     );
   }
-  const content = $derived(await loadContent(page.params.collection ?? '', page.params.id ?? ''));
+  const locale = $derived(page.url.searchParams.get('locale') ?? 'en');
+  const content = $derived(await loadContent(page.params.collection ?? '', page.params.id ?? '', locale));
 </script>
 
 <svelte:head><title>{content?.item.slug ?? 'Draft'} · Sveltery CMS</title></svelte:head>
@@ -22,9 +25,10 @@
   <h1>Draft</h1>
   {#if content}
     {const fields = $derived(previewFields(content.definition.fields))}
-    <form {...updateContent}>
+    <form {...saveEditorContent}>
       <input type="hidden" name="collection" value={page.params.collection} />
       <input type="hidden" name="id" value={content.item.id} />
+      <input type="hidden" name="locale" value={content.item.locale} />
       <input type="hidden" name="_rev" value={content.item._rev} />
       <DraftPreview {fields} values={content.item.data} />
     </form>
