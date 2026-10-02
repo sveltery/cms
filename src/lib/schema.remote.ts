@@ -3,7 +3,8 @@ import { getCollection, getEditorManifest, listCollections } from '$lib/content.
 import {
   collectionSlug, createInput, updateInput, addFieldInput,
   convertCollectionCreate, convertCollectionUpdate, convertFieldAdd, fieldLabelFormInput, convertFieldLabel,
-  fieldOptionsFormInput, convertFieldOptions
+  fieldOptionsFormInput, convertFieldOptions, fieldMetadataFormInput, convertFieldMetadata,
+  fieldOrderInput, fieldDeleteInput, collectionDeleteInput, collectionOrderInput, convertAdminOperation
 } from '$lib/server/schema/schema';
 import { requestSchema, schemaResponse } from '$lib/server/schema/request';
 
@@ -35,6 +36,37 @@ export const updateSchemaFieldOptions = form(fieldOptionsFormInput, input => sch
   refreshSchema(input.collection);
   return { collection: input.collection, field: field.slug };
 }));
+export const updateSchemaFieldMetadata = form(fieldMetadataFormInput, input => schemaResponse(async () => {
+  const field = await requestSchema('mutation').updateField(convertFieldMetadata(input));
+  refreshSchema(input.collection);
+  return { collection:input.collection, field:field.slug };
+}));
+export const reorderSchemaCollections = form(collectionOrderInput, input => schemaResponse(async () => {
+  await requestSchema('mutation').reorderCollections(input);
+  refreshSchemaList();
+  return { reordered:true };
+}));
+export const reorderSchemaFields = form(fieldOrderInput, input => schemaResponse(async () => {
+  await requestSchema('mutation').reorderFields(convertAdminOperation(input));
+  refreshSchema(input.collection);
+  return { collection:input.collection, reordered:true };
+}));
+export const deleteSchemaField = form(fieldDeleteInput, input => schemaResponse(async () => {
+  await requestSchema('mutation').deleteField(convertAdminOperation(input));
+  refreshSchema(input.collection);
+  return { collection:input.collection, field:input.field, deleted:true };
+}));
+export const deleteSchemaCollection = form(collectionDeleteInput, input => schemaResponse(async () => {
+  await requestSchema('mutation').deleteCollection(convertAdminOperation(input));
+  refreshSchemaList();
+  return { collection:input.collection, deleted:true };
+}));
+
+function refreshSchemaList() {
+  void listSchemaCollections().refresh();
+  void listCollections().refresh();
+  void getEditorManifest().refresh();
+}
 
 function refreshSchema(collection: string) {
   void listSchemaCollections().refresh();

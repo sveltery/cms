@@ -5,15 +5,22 @@ import {
 import { updateFieldInput } from '../database/field-edit-validation.ts';
 
 // Native forms keep omitted support flags distinct from an explicit JSON [].
-const supportsValue = v.pipe(v.array(v.picklist(['drafts', 'revisions'])), v.maxLength(2));
-const supports = v.optional(v.pipe(v.string(), v.maxLength(64), v.check(value => {
+const supportsValue = collectionInput.entries.supports.wrapped;
+const supports = v.optional(v.pipe(v.string(), v.maxLength(512), v.check(value => {
   try { return v.safeParse(supportsValue, JSON.parse(value)).success; } catch { return false; }
 }), v.transform(value => parse(supportsValue, JSON.parse(value)))));
+const formBoolean = v.pipe(v.union([v.boolean(), v.picklist(['true', 'false'])]), v.transform(value => value === true || value === 'true'));
+const optionalBoolean = v.optional(formBoolean);
+const optionalJson = v.optional(v.pipe(v.string(), v.maxLength(200_000), v.check(value => { try { JSON.parse(value); return true; } catch { return false; } }), v.transform(value => JSON.parse(value))));
+const clearableIdentifier = v.optional(v.pipe(v.string(), v.transform(value => value === '' ? null : value), v.nullable(identifier)));
 const metadata = {
   label: v.optional(collectionInput.entries.label),
   labelSingular: collectionInput.entries.labelSingular,
   description: collectionInput.entries.description,
-  supports
+  supports, icon: v.optional(v.string()), group: v.optional(v.pipe(v.string(), v.transform(value => value === '' ? null : value))),
+  routable: optionalBoolean, hidden: optionalBoolean, hasSeo: optionalBoolean, editLocking: optionalBoolean,
+  commentsEnabled: optionalBoolean, listColumns: optionalJson, quickCreate: optionalBoolean,
+  urlPattern: v.optional(v.pipe(v.string(), v.transform(value => value === '' ? null : value)))
 };
 const decimalVersion = v.pipe(v.string(), v.maxLength(16), v.regex(/^[1-9][0-9]*$/),
   v.transform(Number), v.safeInteger(), v.minValue(1));
@@ -104,15 +111,22 @@ export const createInput = v.strictObject({
 export const updateInput = v.pipe(v.strictObject({
   // Kit form.for(collection) injects this instance key on native and enhanced submissions.
   id: v.optional(identifier), collection: identifier, ...metadata,
-  version: decimalVersion, updatedAt: revisionInput.entries.updatedAt
+  version: decimalVersion, updatedAt: revisionInput.entries.updatedAt,
+  titleField: clearableIdentifier, dateField: clearableIdentifier,
+  sortOrder: v.optional(v.pipe(v.string(), v.transform(value => value === '' ? null : Number(value)), v.nullable(v.pipe(v.number(), v.safeInteger())))),
+  commentsModeration: collectionMetadataInput.pipe[1].entries.commentsModeration,
+  commentsClosedAfterDays: v.optional(v.pipe(v.string(), v.transform(Number), v.number(), v.safeInteger(), v.minValue(0))),
+  commentsAutoApproveUsers: optionalBoolean
 }), v.forward(v.check(input => input.id === undefined || input.id === input.collection,
   'Form instance must match the collection'), ['id']));
 export const addFieldInput = v.pipe(v.strictObject({
   id: v.optional(identifier), collection: identifier, expectedSchemaVersion: decimalVersion,
-  slug: fieldInput.entries.slug, label: fieldInput.entries.label, type: v.picklist(['string','text']),
+  slug: fieldInput.entries.slug, label: fieldInput.entries.label, type: fieldInput.entries.type,
   required: fieldInput.entries.required, unique: fieldInput.entries.unique,
   defaultValue: v.optional(v.pipe(v.string(),v.maxLength(100_000),v.check(value => !value.includes('\0')))),
-  minLength: optionalLength, maxLength: optionalLength, patternMode, pattern: editString
+  minLength: optionalLength, maxLength: optionalLength, patternMode, pattern: editString,
+  defaultValueJson: optionalJson, validationJson: optionalJson, optionsJson: optionalJson,
+  widget: v.optional(v.string()), indexed: v.optional(v.boolean()), searchable: v.optional(v.boolean()), translatable: v.optional(v.boolean())
 }), v.forward(v.check(input => input.id === undefined || input.id === input.collection,
   'Form instance must match the collection'), ['id']),
 v.forward(v.check(input => input.patternMode !== 'set' || validPattern(input.pattern),
@@ -127,17 +141,42 @@ v.forward(v.check(input => input.defaultValue === undefined ||
 
 /** Form validation/conversion precedes the service; the service revalidates domain inputs. */
 export function convertCollectionCreate(input: v.InferOutput<typeof createInput>) {
-  return parse(collectionInput, input);
+  const { listColumns, quickCreate, ...value } = input;
+  return parse(collectionInput, { ...value, ...(listColumns === undefined && quickCreate === undefined ? {} : {admin: { ...(listColumns === undefined ? {} : {listColumns}), ...(quickCreate === undefined ? {} : {quickCreate}) }}) });
 }
 export function convertCollectionUpdate(input: v.InferOutput<typeof updateInput>) {
-  const { id: _id, collection, version, updatedAt, ...metadata } = input;
-  return { collection, input: parse(collectionMetadataInput, metadata), expected: { version, updatedAt } };
+  const { id: _id, collection, version, updatedAt, listColumns, quickCreate, ...metadata } = input;
+  return { collection, input: parse(collectionMetadataInput, { ...metadata, ...(listColumns === undefined && quickCreate === undefined ? {} : {admin: { ...(listColumns === undefined ? {} : {listColumns}), ...(quickCreate === undefined ? {} : {quickCreate}) }}) }), expected: { version, updatedAt } };
 }
 export function convertFieldAdd(input: v.InferOutput<typeof addFieldInput>) {
-  const { id: _id, collection, expectedSchemaVersion, minLength, maxLength, patternMode, pattern, ...field } = input;
+  const { id: _id, collection, expectedSchemaVersion, minLength, maxLength, patternMode, pattern, defaultValueJson, validationJson, optionsJson, ...field } = input;
   const validation = minLength === undefined && maxLength === undefined && patternMode !== 'set' ? {} : {
     validation: { ...(minLength === undefined ? {} : { minLength }), ...(maxLength === undefined ? {} : { maxLength }),
       ...(patternMode === 'set' ? { pattern } : {}) }
   };
-  return { collection, expectedSchemaVersion, input: parse(fieldInput, { ...field, ...validation }) };
+  return { collection, expectedSchemaVersion, input: parse(fieldInput, { ...field, ...validation,
+    ...(defaultValueJson === undefined ? {} : {defaultValue:defaultValueJson}),
+    ...(validationJson === undefined ? {} : {validation:validationJson}), ...(optionsJson === undefined ? {} : {options:optionsJson}) }) };
+}
+
+const fieldIdentity = { id: v.optional(v.string()), collection: identifier, field: identifier };
+export const fieldMetadataFormInput = v.strictObject({ ...fieldIdentity,
+  type: v.optional(fieldInput.entries.type), widget: v.optional(v.string()),
+  defaultValueJson: optionalJson, validationJson: optionalJson, optionsJson: optionalJson,
+  required: optionalBoolean, unique: optionalBoolean, searchable: optionalBoolean, indexed: optionalBoolean, translatable: optionalBoolean
+});
+export function convertFieldMetadata(input: v.InferOutput<typeof fieldMetadataFormInput>) {
+  const {id:_id, defaultValueJson, validationJson, optionsJson, ...value} = input;
+  if(input.id !== undefined && input.id !== `${input.collection}/${input.field}`) throw new Error('Invalid form instance');
+  return parse(updateFieldInput, { ...value, ...(defaultValueJson === undefined ? {} : {defaultValue:defaultValueJson}),
+    ...(validationJson === undefined ? {} : {validation:validationJson}), ...(optionsJson === undefined ? {} : {options:optionsJson}) });
+}
+const precondition = { version: decimalVersion, updatedAt: revisionInput.entries.updatedAt };
+export const fieldOrderInput = v.strictObject({ id:v.optional(identifier), collection:identifier, fields:optionalJson, ...precondition });
+export const fieldDeleteInput = v.strictObject({ ...fieldIdentity, ...precondition });
+export const collectionDeleteInput = v.strictObject({ id:v.optional(identifier), collection:identifier, force:v.optional(v.boolean(),false), ...precondition });
+export const collectionOrderInput = v.strictObject({ slugs:optionalJson, expected:optionalJson });
+export function convertAdminOperation(input: {id?:string;collection:string;version:number;updatedAt:string;[key:string]:unknown}) {
+  const {id:_id,version,updatedAt,...value}=input;
+  return {...value,expected:{version,updatedAt}};
 }

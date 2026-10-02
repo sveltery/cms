@@ -281,39 +281,59 @@ export class SchemaRegistry {
   async listCollectionsWithFields(): Promise<(Collection & {fields: Field[]})[]> {
     return Promise.all((await this.listCollections()).map(async collection => ({...collection,fields: await this.listFields(collection.id)})));
   }
-  async reorderCollections(input: unknown): Promise<void> {
+  async reorderCollections(input: unknown, expected?: Array<{slug:string} & RevisionPrecondition>): Promise<void> {
     if(!Array.isArray(input) || new Set(input).size !== input.length) throw new CmsError('VALIDATION_ERROR');
     const slugs = input.map(slug => parse(identifier,slug)); const collections = await this.listCollections();
     if(slugs.some(slug => !collections.some(collection => collection.slug===slug))) throw new CmsError('NOT_FOUND');
     const positions = new Map(slugs.map((slug,index) => [slug,index]));
     const updatedAt = nextMetadataTimestamp(collections);
-    await this.database.atomicBatch(collections.map(collection => this.database.db.updateTable('_cms_collections')
-      .set({sort_order:positions.get(collection.slug) ?? null, updated_at:updatedAt}).where('id','=',collection.id).compile()));
+    if (expected && (expected.length !== collections.length || expected.some(snapshot => !collections.some(collection => collection.slug === snapshot.slug && collection.version === snapshot.version && collection.updatedAt === snapshot.updatedAt)))) throw new CmsError('CONFLICT');
+    const token=ulid(); const db=this.database.db;
+    const checks=collections.map(collection => sql`EXISTS (SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${collection.version} AND updated_at=${collection.updatedAt})`);
+    await this.batch([
+      ...(expected ? [sql`INSERT INTO _cms_guards(token,pass) SELECT ${token}, CASE WHEN (SELECT COUNT(*) FROM _cms_collections)=${collections.length} ${checks.length ? sql`AND ${sql.join(checks,sql` AND `)}` : sql``} THEN 1 ELSE 0 END`.compile(db)] : []),
+      ...collections.map(collection => db.updateTable('_cms_collections')
+      .set({sort_order:positions.get(collection.slug) ?? null, updated_at:updatedAt}).where('id','=',collection.id).compile()),
+      ...(expected ? [sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)] : [])
+    ],'CONFLICT');
   }
-  async reorderFields(collectionSlug: unknown, input: unknown): Promise<void> {
+  async reorderFields(collectionSlug: unknown, input: unknown, expected?: RevisionPrecondition): Promise<void> {
     if(!Array.isArray(input)) throw new CmsError('VALIDATION_ERROR');
     const definition = await this.getCollection(collectionSlug); if(!definition) throw new CmsError('NOT_FOUND');
-    await this.database.atomicBatch(input.map((slug,index) => this.database.db.updateTable('_cms_fields').set({sort_order:index}).where('collection_id','=',definition.id).where('slug','=',parse(identifier,slug)).compile()));
+    const guard=this.collectionGuard(definition,expected);
+    await this.batch([...guard.before,...input.map((slug,index) => this.database.db.updateTable('_cms_fields').set({sort_order:index}).where('collection_id','=',definition.id).where('slug','=',parse(identifier,slug)).compile()),...guard.after],'CONFLICT');
   }
-  async deleteField(collectionSlug: unknown, fieldSlug: unknown): Promise<void> {
+  async deleteField(collectionSlug: unknown, fieldSlug: unknown, expected?: RevisionPrecondition): Promise<void> {
     const target = await this.getField(collectionSlug,fieldSlug); if(!target) throw new CmsError('NOT_FOUND');
     const definition = await this.getCollection(collectionSlug); if(!definition) throw new CmsError('NOT_FOUND');
     const db = this.database.db;
-    await this.database.atomicBatch([...this.dropFieldIndexStatements(target.id),
-      ...(isStoragelessField({type:target.type,validation:target.validation??undefined}) ? [] : [sql`ALTER TABLE ${sql.ref(tableName(collectionSlug))} DROP COLUMN ${sql.ref(target.slug)}`.compile(db)]),
+    // Source registry.deleteField uses the physical row's column existence: a
+    // bound legacy reference can retain its frozen pre-binding TEXT column.
+    const columns=(await sql<{name:string}>`PRAGMA table_info(${sql.ref(tableName(collectionSlug))})`.execute(db)).rows;
+    const guard=this.collectionGuard(definition,expected);
+    await this.batch([...guard.before,...this.dropFieldIndexStatements(target.id),
+      ...(columns.some(column=>column.name===target.slug) ? [sql`ALTER TABLE ${sql.ref(tableName(collectionSlug))} DROP COLUMN ${sql.ref(target.slug)}`.compile(db)] : []),
       db.deleteFrom('_cms_fields').where('id','=',target.id).compile(),
       db.updateTable('_cms_collections').set({title_field:sql`CASE WHEN title_field = ${target.slug} THEN NULL ELSE title_field END`, date_field:sql`CASE WHEN date_field = ${target.slug} THEN NULL ELSE date_field END`, updated_at:nextMetadataTimestamp([definition])})
-        .where('id','=',target.collectionId).where(eb => eb.or([eb('title_field','=',target.slug),eb('date_field','=',target.slug)])).compile()]);
+        .where('id','=',target.collectionId).where(eb => eb.or([eb('title_field','=',target.slug),eb('date_field','=',target.slug)])).compile(),...guard.after],'CONFLICT');
   }
-  async deleteCollection(slug: unknown, options?: {force?:boolean}): Promise<void> {
+  async deleteCollection(slug: unknown, options?: {force?:boolean}, expected?: RevisionPrecondition): Promise<void> {
     const target = await this.getCollection(slug); if(!target) throw new CmsError('NOT_FOUND');
     const db = this.database.db;
     const token = ulid();
-    await this.batch([
+    const guard=this.collectionGuard(target,expected);
+    await this.batch([...guard.before,
       ...(options?.force ? [] : [sql`INSERT INTO _cms_guards(token,pass) SELECT ${token}, CASE WHEN NOT EXISTS (SELECT 1 FROM ${sql.ref(tableName(slug))} WHERE deleted_at IS NULL) THEN 1 ELSE 0 END`.compile(db)]),
       sql`DROP TABLE ${sql.ref(tableName(slug))}`.compile(db),db.deleteFrom('_cms_fields').where('collection_id','=',target.id).compile(),
-      db.deleteFrom('_cms_collections').where('id','=',target.id).compile(), sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
+      db.deleteFrom('_cms_collections').where('id','=',target.id).compile(), sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db),...guard.after
     ],'COLLECTION_NOT_EMPTY');
+  }
+  private collectionGuard(collection: Collection, expected?: RevisionPrecondition) {
+    if(expected === undefined) return {before:[],after:[]} as {before:CompiledQuery[];after:CompiledQuery[]};
+    const value=parse(revisionInput,expected);
+    if(value.version !== collection.version || value.updatedAt !== collection.updatedAt) throw new CmsError('CONFLICT');
+    const token=ulid(); const db=this.database.db;
+    return { before:[sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN EXISTS(SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${value.version} AND updated_at=${value.updatedAt}) THEN 1 ELSE 0 END`.compile(db)],after:[sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)] };
   }
   private async batch(statements: CompiledQuery[], guardCode: 'LIMIT_EXCEEDED' | 'CONFLICT' | 'COLLECTION_NOT_EMPTY') {
     try { return await this.database.atomicBatch(statements); }
