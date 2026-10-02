@@ -17,17 +17,20 @@ for (const base of ['', '/cms'] as const) {
     let origin: string;
     let ids: Map<string, string>;
     let storageUnavailable = false;
+    let installStorageProbe: () => void;
     test.beforeAll(async () => {
       test.setTimeout(90_000);
       build = await trashCountOutput(base);
       fixture = await collectionTrashFixture(build.output, { mutationsEnabled: true });
       const { options } = await import(pathToFileURL(join(build.output, 'server/internal.js')).href);
       const securedHandle = options.hooks.handle;
-      options.hooks.handle = (args: any) => securedHandle({ ...args, resolve: (event: any, resolveOptions: any) => {
+      const storageProbe = (args: any) => securedHandle({ ...args, resolve: (event: any, resolveOptions: any) => {
         // Test-only missing storage after real session resolution; no production hook changes.
         if (storageUnavailable) event.locals.cms = { ...event.locals.cms, database: undefined };
         return args.resolve(event, resolveOptions);
       } });
+      installStorageProbe = () => { options.hooks.handle = storageProbe; };
+      installStorageProbe();
       ids = new Map();
       for (const [hash, load] of Object.entries(fixture.manifest._.remotes)) {
         const { default: exports } = await (load as () => Promise<any>)();
@@ -57,6 +60,7 @@ for (const base of ['', '/cms'] as const) {
       await new Promise<void>(resolve => http.listen(0, '127.0.0.1', resolve));
       origin = `http://127.0.0.1:${(http.address() as { port: number }).port}`;
     });
+    test.beforeEach(() => { installStorageProbe(); });
     test.afterAll(async () => {
       if (http) await new Promise<void>((resolve, reject) => http.close(error => error ? reject(error) : resolve()));
       await fixture?.close();
@@ -105,6 +109,8 @@ for (const base of ['', '/cms'] as const) {
       await mutate('deleteContent', 'Trash draft');
       await counts(103, 52);
       await fixture.restart();
+      // Restart installs the secured fixture handle again; retain the test-only overlay.
+      installStorageProbe();
       await page.reload();
       await counts(103, 52);
       expect(errors).toEqual([]);
@@ -125,10 +131,10 @@ for (const base of ['', '/cms'] as const) {
       await context.addCookies([{ name: 'cms-session', value: fixture.tokens.editor, url: origin }]);
       storageUnavailable = true;
       try {
-        await page.goto(`${origin}${base}/`);
-        for (const name of ['all', 'en', 'fr', 'other', 'empty']) await expect(page.getByLabel(name, { exact: true })).toHaveText('unavailable');
         const response = await context.request.get(queryURL('countTrashedContent', { collection: 'post' }));
         expect(await response.json()).toMatchObject({ type: 'error', status: 503, error: { code: 'NOT_CONFIGURED' } });
+        await page.goto(`${origin}${base}/`);
+        for (const name of ['all', 'en', 'fr', 'other', 'empty']) await expect(page.getByLabel(name, { exact: true })).toHaveText('unavailable');
       } finally { storageUnavailable = false; }
       // The standard previews have the unchanged unconfigured production hook.
       const unconfiguredOrigin = base ? 'http://127.0.0.1:4174' : 'http://127.0.0.1:4173';

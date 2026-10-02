@@ -116,17 +116,42 @@
       "command": "node --test tests/production/trash-count.test.ts tests/production/trash-restore-remotes.test.ts",
       "dateUTC": "2026-10-02",
       "result": "25 passed, zero failures/skips; 11 new supplemental count cases and 14 retained restore cases. New count cases:5 Node,5 localD1,1 Node write-only."
+    },
+    {
+      "command": "PATH=/workspace/.tools/pnpm/node_modules/.bin:$PATH sh scripts/bootstrap.sh",
+      "commit": "21f0934db983164d9e8cdc6c1685d13a4f05672b",
+      "dateUTC": "2026-10-02",
+      "result": "Initial bootstrap failed:440 of441 service/development cases passed; missing count export in tests/remote.test.ts prevented5 nested boundary cases. No full-bootstrap pass claimed. Corrected dev inventory and anonymous read coverage in121914f200bb48ed1466196be41f5c089ac0020b; focused dev suite passed6/6."
+    },
+    {
+      "command": "Hosted CI",
+      "commit": "21f0934db983164d9e8cdc6c1685d13a4f05672b",
+      "run": "https://github.com/sveltery/cms/actions/runs/37043697864",
+      "result": "Default secured browsers34 passed/2 failed, Node browsers skipped. Both authenticated503 unavailable harness cases failed after fixture.restart removed their test-only hook overlay. Restore/trash retained query tests passed. Fix and fresh final CI required. Validate also failed on missing development export inventory."
+    },
+    {
+      "command": "Local secured browser attempts",
+      "dateUTC": "2026-10-02",
+      "result": "Official Playwright Chromium download policy403; system Chromium aborts at SUID sandbox launch. Browser assertions not run locally, no sandbox/policy changes. Default/Node isolated root/base builds and direct SSR/native binary refresh+503 spot checks passed; not browser evidence."
+    },
+    {
+      "command": "PATH=/workspace/.tools/pnpm/node_modules/.bin:$PATH sh scripts/bootstrap.sh",
+      "commit": "121914f200bb48ed1466196be41f5c089ac0020b",
+      "workingTree": "Same bootstrap-target code/tests as121914f; only browser test installer and documentation evidence edits were uncommitted during this run.",
+      "dateUTC": "2026-10-02",
+      "result": "Full bootstrap passed:0 checker errors/warnings,446 service/development,98 registered production,11 Node package tests;0 failures/skips. Default build and explicit Node package passed. Secured browsers remain separately required."
     }
   ],
   "integrationGates": {
-    "bootstrap": "pending",
+    "bootstrap": "Full local bootstrap passed on121914f bootstrap-target source/tests; final CI repeats it on final reviewed head.",
     "securedDefaultAndNodeBrowsers": "pending",
     "independentFinalHeadReview": "pending",
     "configuredAutomaticReview": "Required unless actual quota exhaustion; prior PR quota is not a current PR review.",
     "finalCI": "pending",
     "eligibleHead": null,
     "merged": null,
-    "postMergeCI": null
+    "postMergeCI": null,
+    "eligibleHeadStatus": "Exact eligible head, final CI, review/verified quota exception, merge and postCI are recorded in PR30 handoff after those events, not inferred from commit-time evidence."
   },
   "omissions": [
     "Zero complete new upstream source declarations or full expression credit.",
@@ -134,5 +159,20 @@
     "No PostgreSQL, REST/MCP/React transport, browser source declaration or published/revision lifecycle parity.",
     "No new migration/CAS/permission/adapter, production composition, access change, deployment/release/live data/permanent deletion.",
     "No UI total display; future small total wording is proposed separately in feature doc."
+  ],
+  "implementationPullRequest": "https://github.com/sveltery/cms/pull/30",
+  "latestIntegrationBase": "67ccbbfa3093f7a0e060a2731e16700ea4548cc3",
+  "retainedRecords": [
+    "DT-01\u2013DT-04",
+    "DTT-01\u2013DTT-03",
+    "CTV-01\u2013CTV-03",
+    "NTR-01\u2013NTR-03",
+    "TP-01\u2013TP-03",
+    "FE-01\u2013FE-03",
+    "FL-01\u2013FL-03",
+    "SF-02/SF-03",
+    "C-07/SA-03",
+    "issue20",
+    "unchanged EmDash assertion inventories/baseline mapping"
   ]
 }
