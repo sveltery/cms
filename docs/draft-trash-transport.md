@@ -1,5 +1,7 @@
 # Native draft trash and restore transport
 
+Current pagination: [PR #28](https://github.com/sveltery/cms/pull/28) adds the [cursor/Load More contract](trash-pagination.md). The no-cursor/up-to-50 limits below describe the historical slice; the new record supersedes only those bounds, preserving prior differences and evidence.
+
 This bounded slice starts at merged main `32a9395aa6c1e389d1b01e15ea946f34be9f64ac` ([PR #19](https://github.com/sveltery/cms/pull/19)); its exact [post-merge CI run](https://github.com/sveltery/cms/actions/runs/36987685852) passed validate and secured default/Node browser jobs. It integrates scalar-fidelity main `14d53e97e113fcd8af9574f36bd562cc8bfa231e` ([PR #21](https://github.com/sveltery/cms/pull/21)) without changing its separate future-field behavior or legacy-layout limits. It binds the existing [trash service](draft-trash.md) to installed SvelteKit **2.70.3**, Svelte **5.57.1**, Valibot **1.5.0** and the existing native content remote module. No database/service, UI, publication, permanent deletion, production composition, credentials or deployment changes are included.
 
 | Remote | Input | Result |

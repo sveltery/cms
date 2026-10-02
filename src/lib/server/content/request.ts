@@ -1,5 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { getRequestEvent } from '$app/server';
+import { InvalidCursorError } from '../database/trash-cursor';
 import { CmsError } from '../database/contract';
 import { cmsService } from '../database/service';
 
@@ -15,6 +16,7 @@ export function requestContent(operation: 'read' | 'mutation' = 'read') {
 export async function contentResponse<T>(run: () => Promise<T>): Promise<T> {
   try { return await run(); }
   catch (cause) {
+    if (cause instanceof InvalidCursorError) error(400, { message: 'invalid-cursor', code: 'INVALID_CURSOR' });
     if (cause instanceof CmsError) {
       const status = cause.code === 'UNAUTHENTICATED' ? 401 : cause.code === 'FORBIDDEN' ? 403 :
         cause.code === 'NOT_FOUND' ? 404 : cause.code === 'VALIDATION_ERROR' ? 400 :

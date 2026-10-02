@@ -1,10 +1,11 @@
 <script lang="ts">
   import { restoreContent, listTrashedContent } from '$lib/content.remote';
 
-  let { collection, item, disabled }: {
+  let { collection, item, disabled, queryArgs }: {
     collection: string;
     item: { id: string; locale: string; _rev: string; title: string | null; slug: string | null };
     disabled: boolean;
+    queryArgs: { collection: string; locale?: string; limit?: number; cursor?: string };
   } = $props();
   const restoreForm = $derived(restoreContent.for(JSON.stringify([collection, item.id, item.locale])));
   let failed = $state(false);
@@ -16,7 +17,7 @@
   if (disabled || submitting || restoreForm.result) return;
   submitting = true;
   failed = false;
-  try { await form.submit().updates(listTrashedContent({ collection, limit: 50 })); }
+  try { await form.submit().updates(listTrashedContent(queryArgs)); }
   catch { failed = true; }
   finally { submitting = false; }
 })} aria-label={`Restore ${item.title || item.slug || item.id} (${item.locale})`}>

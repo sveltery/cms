@@ -23,7 +23,7 @@ The bootstrap installs the frozen lockfile, checks types and Svelte, tests servi
 
 See [the remote/session handoff and evidence](docs/content-remotes.md), [the database contract](docs/database.md) and [the pinned EmDash test inventory](docs/database-parity.md) for the implemented persistence slice and its limits.
 
-Licensed under MIT. The SQLite compatibility wrapper and its adapted database tests derive from MIT-licensed EmDash 1.1.0, unchanged from the initial 1.0.1 port. The raw D1 concurrency/batch mapper and selected tests also adapt the pinned EmDash dialect; [the upstream notice is preserved](notices/emdash-MIT.txt). The remaining database/domain code is independently implemented.
+Licensed under MIT. The SQLite compatibility wrapper and its adapted database tests derive from MIT-licensed EmDash 1.1.0, unchanged from the initial 1.0.1 port. The raw D1 concurrency/batch mapper and selected tests also adapt the pinned EmDash dialect; [the upstream notice is preserved](notices/emdash-MIT.txt). The dedicated trash cursor also ports the pinned UTF-8/base64 helper; other database/domain code is independently implemented.
 
 See [safe session composition and editor metadata](docs/session-composition.md) for version-two migrations, the request handle factory, the default-disabled mutation gate and current readiness limits.
 
@@ -31,4 +31,4 @@ Read [CONTRIBUTING](CONTRIBUTING.md) and the [current compatibility register](pa
 
 See [the bounded D1 contract and limitations](docs/d1-database.md) and [selected D1 assertion ledger](docs/d1-ports.json) for local workerd evidence, raw parameter differences and migration envelopes. No production adapter composition or live D1 resources are installed.
 
-The bounded [native trash restore interaction](docs/native-trash-restore.md) adds per-row forms with explicit locale/revision binding, trusted display capabilities and independent feedback. Trash remains limited to 50 newest deleted drafts across all locales without count/pagination. Production writes remain unconfigured and default-disabled.
+The bounded [native trash restore interaction](docs/native-trash-restore.md) adds per-row forms with explicit locale/revision binding, trusted display capabilities and independent feedback. The [trash pagination slice](docs/trash-pagination.md) adds cursor queries and appended Load More for older retained drafts across all locales, with first-page SSR and JavaScript continuation; count and broader lifecycle remain incomplete. Production writes remain unconfigured and default-disabled.

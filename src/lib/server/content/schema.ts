@@ -14,6 +14,7 @@ const trashQualified = { collection: identifier, locale: v.optional(localeInput)
 export const trashedContentKey = v.strictObject({ ...trashQualified, id: entryId });
 export const trashedContentList = v.strictObject({
   ...trashQualified,
+  cursor: v.optional(v.pipe(v.string(), v.maxLength(2048))),
   limit: v.optional(v.pipe(v.number(), v.safeInteger(), v.minValue(1)))
 });
 export const collectionSlug = identifier;

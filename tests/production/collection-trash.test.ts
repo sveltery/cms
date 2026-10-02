@@ -11,7 +11,7 @@ test('built trash routes preserve bounded all-locale summaries and disabled rest
     }));
     const html = await (await request('/trash/post')).text();
     assert.match(html, /Trashed drafts/); // New route/table is the missing UI contract.
-    assert.match(html, /Showing up to 50 most recently deleted drafts across all locales\./);
+    assert.match(html, /Showing 50 deleted drafts across all locales\./);
     assert.equal((html.match(/<time /g) ?? []).length, 50);
     const titles = fixture.expected.map(item => (item.data.title || item.slug || item.id).slice(0, 200));
     for (const title of titles.slice(1)) assert.ok(html.includes(title));
@@ -19,11 +19,13 @@ test('built trash routes preserve bounded all-locale summaries and disabled rest
     assert.match(html, /<td[^>]*>fr<\/td>/);
     assert.match(html, /<td[^>]*>en<\/td>/);
     assert.match(html, /Deleted \(UTC\)/);
-    assert.match(html, /datetime="2026-09-28T23:30:00.000Z">2026-09-28<\/time>/);
+    assert.match(html, /datetime="2026-10-22T23:30:00.000Z">2026-10-22<\/time>/);
     assert.doesNotMatch(html, /<img|PRIVATE_BODY_MARKER|ACTIVE_BODY_MARKER|Active trash ID|Trashed 0<|Trashed 1<|Other collection/);
     assert.equal((html.match(/<form /g) ?? []).length, 50);
     assert.equal((html.match(/<button[^>]*disabled/g) ?? []).length, 50);
-    assert.doesNotMatch(html, /Permanently|Next drafts|Load More|No more drafts/);
+    assert.match(html, /Load More/);
+    assert.match(html, /Enable JavaScript to load more deleted drafts\./);
+    assert.doesNotMatch(html, /Permanently|Next drafts|First page|No more deleted drafts/);
     const ids = new Map<string, string>();
     for (const [hash, load] of Object.entries(fixture.manifest._.remotes)) {
       const { default: exports } = await (load as () => Promise<{ default: Record<string, unknown> }>)();
@@ -35,7 +37,8 @@ test('built trash routes preserve bounded all-locale summaries and disabled rest
     assert.equal(envelope.type, 'result');
     const value = parse(envelope.data)._;
     assert.deepEqual(value.items.map((item: { id: string }) => item.id), fixture.expected.map(item => item.id));
-    assert.deepEqual(Object.keys(value), ['items']);
+    assert.deepEqual(Object.keys(value), ['items', 'nextCursor']);
+    assert.equal(typeof value.nextCursor, 'string');
     for (const item of value.items) { assert.equal('data' in item, false); assert.equal('body' in item, false); }
     assert.match(await (await request('/content/post')).text(), /href="\.\.\/trash\/post"/);
     assert.match(await (await request('/content/post/trash')).text(), /Active trash ID/);

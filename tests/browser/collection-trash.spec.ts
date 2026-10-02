@@ -1,48 +1,20 @@
 import { test, expect } from '@playwright/test';
 import { createServer } from 'node:http';
-import { cp, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
+import { readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { spawn } from 'node:child_process';
-import { collectionTrashFixture } from '../helpers/collection-trash';
-import { parse } from 'devalue';
+import { collectionTrashFixture, collectionTrashOutput } from '../helpers/collection-trash';
+import { parse, stringify } from 'devalue';
 
-const checkout = fileURLToPath(new URL('../../', import.meta.url));
-for (const base of ['', '/cms']) {
+for (const base of ['', '/cms'] as const) {
   test.describe(`read-only collection trash${base ? ' under /cms' : ''}`, () => {
     let fixture: Awaited<ReturnType<typeof collectionTrashFixture>>;
     let http: ReturnType<typeof createServer>;
     let origin: string;
-    let directory: string | undefined;
+    let build: Awaited<ReturnType<typeof collectionTrashOutput>>;
     test.beforeAll(async () => {
       test.setTimeout(90_000);
-      let output = join(checkout, '.svelte-kit/output');
-      if (base) {
-        directory = await mkdtemp(join(tmpdir(), 'cms-trash-base-'));
-        await Promise.all([
-          cp(join(checkout, 'src'), join(directory, 'src'), { recursive: true }),
-          cp(join(checkout, 'package.json'), join(directory, 'package.json')),
-          cp(join(checkout, 'tsconfig.json'), join(directory, 'tsconfig.json')),
-          symlink(join(checkout, 'node_modules'), join(directory, 'node_modules'), 'dir')
-        ]);
-        const nodeTarget = process.env.SVELTERY_BROWSER_TARGET === 'node';
-        await writeFile(join(directory, 'vite.config.ts'), `
-import adapter from '@sveltejs/adapter-${nodeTarget ? 'node' : 'auto'}';
-import { sveltekit } from '@sveltejs/kit/vite';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-export default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: adapter(),
-  paths: { base: '/cms' }, experimental: { remoteFunctions: true },
-  compilerOptions: { experimental: { async: true } }
-})] };
-`);
-        const child = spawn(process.execPath, [join(checkout, 'node_modules/vite/bin/vite.js'), 'build'], { cwd: directory, stdio: 'pipe' });
-        let diagnostics = '';
-        child.stdout.on('data', chunk => { diagnostics += chunk; });
-        child.stderr.on('data', chunk => { diagnostics += chunk; });
-        expect(await new Promise(resolve => child.once('exit', resolve)), diagnostics).toBe(0);
-        output = join(directory, '.svelte-kit/output');
-      }
+      build = await collectionTrashOutput(base);
+      const output = build.output;
       fixture = await collectionTrashFixture(output, { mutationsEnabled: true, restoreEntries: true });
       http = createServer(async (request, response) => {
         try {
@@ -74,9 +46,9 @@ export default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: ad
     test.afterAll(async () => {
       if (http) await new Promise<void>((resolve, reject) => http.close(error => error ? reject(error) : resolve()));
       if (fixture) await fixture.close();
-      if (directory) await rm(directory, { recursive: true, force: true });
+      if (build) await build.close();
     });
-    test('bounded mixed-locale trash survives reload and native collection navigation without mutations', async ({ page, context }) => {
+    test('Load More appends all 103 mixed-locale drafts, resets collection navigation and survives reload without mutations', async ({ page, context }) => {
       const errors: string[] = [];
       const mutations: string[] = [];
       page.on('pageerror', error => errors.push(error.message));
@@ -101,9 +73,38 @@ export default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: ad
       await expect(table.locator('button:disabled')).toHaveCount(50); // Other owners, author has edit-own only.
       await expect(page.locator('body')).not.toContainText('PRIVATE_BODY_MARKER');
       await expect(page.locator('body')).not.toContainText('Active trash ID');
-      await expect(page.getByText('Showing up to 50 most recently deleted drafts across all locales.', { exact: true })).toBeVisible();
+      await expect(page.getByText('Showing 50 deleted drafts across all locales.', { exact: true })).toBeVisible();
       await page.reload();
       await checkRows();
+      const loadMore = page.getByRole('button', { name: 'Load More', exact: true });
+      let release!: () => void;
+      const held = new Promise<void>(resolve => { release = resolve; });
+      let loads = 0;
+      await page.route('**/_app/remote/**/listTrashedContent?**', async route => {
+        loads++;
+        await held;
+        await route.continue();
+      });
+      await loadMore.click();
+      const loading = page.getByRole('button', { name: 'Loading...', exact: true });
+      await expect(loading).toBeDisabled();
+      // A programmatic click while pending must not request or append twice.
+      await loading.evaluate(button => (button as HTMLButtonElement).click());
+      await expect.poll(() => loads).toBe(1);
+      release();
+      await expect(rows).toHaveCount(100);
+      await page.unroute('**/_app/remote/**/listTrashedContent?**');
+      await loadMore.click();
+      await expect(rows).toHaveCount(103);
+      await expect(rows.locator('td:first-child')).toHaveText(fixture.fullExpected.map(item => (item.data.title ? item.data.title.slice(0, 200) : item.slug || item.id)));
+      const visibleIds = await rows.locator('input[name="id"]').evaluateAll(inputs => inputs.map(input => (input as HTMLInputElement).value));
+      expect(visibleIds).toEqual(fixture.fullExpected.map(item => item.id));
+      expect(new Set(visibleIds).size).toBe(103);
+      await expect(page.getByText('Showing 103 deleted drafts across all locales.', { exact: true })).toBeVisible();
+      await expect(page.getByText('No more deleted drafts.', { exact: true })).toBeVisible();
+      await expect(loadMore).toHaveCount(0);
+      await expect(page.getByRole('button', { name: 'First page', exact: true })).toHaveCount(0);
+      await expect(page.getByRole('button', { name: 'Next drafts', exact: true })).toHaveCount(0);
       await page.evaluate(() => { (window as any).__trashNavigation = true; });
       // DOM-only links exercise Kit param navigation without product test hooks.
       const navigate = async (collection: string) => {
@@ -250,6 +251,113 @@ export default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: ad
       await context.addCookies([{ name: 'cms-session', value: fixture.tokens.editor, url: origin }]);
       await page.reload();
       await expect(rows.locator('button:enabled')).toHaveCount(2);
+      expect(errors).toEqual([]);
+    });
+    test('continuation errors retain rows and malformed native cursors expose INVALID_CURSOR', async ({ page, context }) => {
+      // Retain native cache proxy anchors so GC cannot make a rejected query
+      // disappear and accidentally turn reuse of its failed promise into retry.
+      await page.addInitScript(() => {
+        const anchors: object[] = [];
+        const register = FinalizationRegistry.prototype.register;
+        FinalizationRegistry.prototype.register = function (target: object, heldValue: unknown, token?: object) {
+          anchors.push(target);
+          register.call(this, target, heldValue, token);
+        };
+        (window as any).__trashCacheAnchors = anchors;
+      });
+      await context.addCookies([{ name: 'cms-session', value: fixture.tokens.author, url: origin }]);
+      await page.goto(`${origin}${base}/trash/post`);
+      const rows = page.getByRole('table', { name: 'Trashed drafts' }).locator('tbody tr');
+      await expect(rows).toHaveCount(50);
+      let queryUrl = '';
+      await page.route('**/_app/remote/**/listTrashedContent?**', async route => {
+        queryUrl = route.request().url();
+        await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({
+          type: 'error', status: 400, error: { message: 'invalid-cursor', code: 'INVALID_CURSOR' }
+        }) });
+      });
+      await page.getByRole('button', { name: 'Load More', exact: true }).click();
+      await expect(page.getByRole('alert')).toHaveText('Failed to load more. Try again.');
+      await expect(rows).toHaveCount(50);
+      await expect(page.getByText('No more deleted drafts.', { exact: true })).toHaveCount(0);
+      await page.unroute('**/_app/remote/**/listTrashedContent?**');
+      const malformed = new URL(queryUrl);
+      // Use native devalue arguments, preserving Kit's real query registration.
+      malformed.searchParams.set('payload', Buffer.from(stringify({ collection: 'post', cursor: 'not-base64!' })).toString('base64url'));
+      const response = await page.request.get(malformed.href);
+      expect(response.status()).toBe(200);
+      expect(await response.json()).toEqual({ type: 'error', status: 400, error: { message: 'invalid-cursor', code: 'INVALID_CURSOR' } });
+      await page.getByRole('button', { name: 'Load More', exact: true }).click();
+      await expect(rows).toHaveCount(100);
+      await expect(page.getByRole('alert')).toHaveCount(0);
+    });
+    test('later-page restore refreshes its exact cursor, keeps the live page and rejects stale revisions', async ({ page, context }) => {
+      const errors: string[] = [];
+      page.on('pageerror', error => errors.push(error.message));
+      await context.addCookies([{ name: 'cms-session', value: fixture.tokens.editor, url: origin }]);
+      const rows = page.getByRole('table', { name: 'Trashed drafts' }).locator('tbody tr');
+      const loadAll = async () => {
+        await page.goto(`${origin}${base}/trash/post`);
+        await expect(rows).toHaveCount(50);
+        await page.getByRole('button', { name: 'Load More', exact: true }).click();
+        await expect(rows).toHaveCount(100);
+        await page.getByRole('button', { name: 'Load More', exact: true }).click();
+        await expect(page.getByText('No more deleted drafts.', { exact: true })).toBeVisible();
+      };
+      await loadAll();
+      await expect(rows).toHaveCount(103);
+      const item = fixture.fullExpected[70];
+      const row = rows.filter({ has: page.locator(`input[name="id"][value="${item.id}"]`) });
+      const input = await row.locator('form').evaluate(form => Object.fromEntries(new FormData(form as HTMLFormElement)));
+      await fixture.stalePost(item.id);
+      const stale = page.waitForResponse(response => response.url().includes('/restoreContent') && response.request().method() === 'POST');
+      await row.getByRole('button').click();
+      expect(await (await stale).json()).toMatchObject({ type: 'error', status: 409, error: { code: 'CONFLICT' } });
+      await expect(row.getByRole('alert')).toHaveText('Failed to restore. Reload trash and try again.');
+      await expect(rows).toHaveCount(103);
+      await loadAll();
+      await expect(row.getByRole('alert')).toHaveCount(0);
+      const fresh = await row.locator('form').evaluate(form => Object.fromEntries(new FormData(form as HTMLFormElement)));
+      expect(fresh._rev).not.toBe(input._rev);
+      const cursors: string[] = [];
+      const expectedSecondCursorRow = fixture.fullExpected[49];
+      const expectedCursor = Buffer.from(JSON.stringify({ orderValue: expectedSecondCursorRow.deletedAt, id: expectedSecondCursorRow.id })).toString('base64');
+      await page.route('**/_app/remote/**/restoreContent', async route => {
+        const request = route.request();
+        expect(request.headers()['content-type']).toBe('application/x-sveltekit-formdata');
+        const body = request.postDataBuffer()!;
+        const [data, meta] = parse(body.subarray(7, 7 + body.readUInt32LE(1)).toString());
+        expect(data).toEqual(fresh);
+        expect(meta.remote_refreshes).toHaveLength(1);
+        const [, name, payload] = meta.remote_refreshes[0].split('/');
+        expect(name).toBe('listTrashedContent');
+        const args = parse(Buffer.from(payload, 'base64url').toString(), { __skrao: value => value });
+        expect(args).toEqual({ collection: 'post', limit: 50, cursor: expectedCursor });
+        cursors.push(args.cursor);
+        await route.continue();
+      });
+      await page.evaluate(() => { (window as any).__laterTrashRestore = true; });
+      const restored = page.waitForResponse(response => response.url().includes('/restoreContent') && response.request().method() === 'POST');
+      await row.getByRole('button').click();
+      expect((await restored).status()).toBe(200);
+      await expect(row).toHaveCount(0);
+      await expect(rows).toHaveCount(102);
+      expect(cursors).toEqual([expectedCursor]);
+      expect(await page.evaluate(() => (window as any).__laterTrashRestore)).toBe(true);
+      const remainingIds = await rows.locator('input[name="id"]').evaluateAll(inputs => inputs.map(input => (input as HTMLInputElement).value));
+      expect(new Set(remainingIds).size).toBe(102);
+      expect(remainingIds).toEqual(fixture.fullExpected.filter(row => row.id !== item.id).map(row => row.id));
+      await page.unroute('**/_app/remote/**/restoreContent');
+      await page.reload();
+      await expect(rows).toHaveCount(50);
+      await page.getByRole('button', { name: 'Load More', exact: true }).click();
+      await expect(rows).toHaveCount(100);
+      await page.getByRole('button', { name: 'Load More', exact: true }).click();
+      await expect(rows).toHaveCount(102);
+      await expect(row).toHaveCount(0);
+      await fixture.restart();
+      await page.reload();
+      await expect(rows).toHaveCount(50);
       expect(errors).toEqual([]);
     });
   });

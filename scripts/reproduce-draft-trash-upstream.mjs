@@ -3,12 +3,13 @@
 // The fixtures seed draft rows directly; this is not published/revision or browser parity.
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { mkdtemp, mkdir, readFile, writeFile, symlink, rm } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, writeFile, appendFile, symlink, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { build } from 'vite';
 import ts from 'typescript';
+import { trashPaginationEntry } from './reproduce-trash-pagination-upstream.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const pin = '913cb1bb9b7f08c3ff0d258b4420e53835b6a58e';
@@ -23,6 +24,11 @@ const sources = [
   ['packages/core/src/database/transaction.ts', '69bf167998a2fa9cc228c3612a69c8fde5ed85fe'],
   ['packages/cloudflare/src/db/d1-dialect.ts', 'b026d293554c5173e1447b5eff0d704e169d3384']
 ];
+const pagination = process.argv.includes('--pagination');
+if (pagination) sources.push([
+  'packages/core/tests/unit/database/repositories/cursor.test.ts',
+  '119add8308e15decbe8dbf148f7433fb8b12312f'
+]);
 sources.push(...[
   'database/repositories/types.ts', 'database/content-datetime.ts', 'database/validate.ts',
   'object-cache/index.ts', 'object-cache/codec.ts', 'after.ts', 'deferred-tasks.ts',
@@ -30,6 +36,14 @@ sources.push(...[
   'database/migration-lock.ts', 'database/pg-migration-lock.ts'
 ].map(path => ['packages/core/src/' + path, null]));
 sources.push(['packages/cloudflare/src/db/d1-introspector.ts', null]);
+if (pagination) {
+  // The optional cursor probe verifies the complete unchanged helper modules,
+  // as well as the test blob, before building the temporary fixture.
+  sources.find(([path]) => path === 'packages/core/src/database/repositories/types.ts')[1] =
+    'abcf7a35f71936c2e8953f7bbd18b32fa1282bb7';
+  sources.find(([path]) => path === 'packages/core/src/utils/base64.ts')[1] =
+    '9dae6dade270b1c1291b21c8a90adc73f5dab294';
+}
 const fixtureModules = new Map();
 const realImports = new Map([
   [content, new Set(['kysely', 'ulidx', '../../object-cache/index.js',
@@ -222,6 +236,9 @@ test(target+': supplemental same-clock restore preserves upstream timestamp beha
   }finally{t.mock.timers.reset();await f.close();}
 });
 `);
+  if (pagination) await appendFile(join(directory, 'entry.ts'), trashPaginationEntry(
+    await readFile(join(directory, 'packages/core/tests/unit/database/repositories/cursor.test.ts'), 'utf8')
+  ));
   // The escaped template ticks above deliberately keep embedded SQL as source.
   const output = join(directory, 'bundle.mjs');
   await build({ configFile: false, logLevel: 'error', plugins: [{
@@ -252,6 +269,18 @@ test(target+': supplemental same-clock restore preserves upstream timestamp beha
     disabledVirtualModules: ['virtual:emdash/object-cache', 'virtual:emdash/wait-until'],
     selectedSourceCasesPerRuntime: 3, selectedSourceAssertionsPerRuntime: 6,
     supplementalCasesPerRuntime: 6,
+    ...(pagination ? {
+      pagination: {
+        sourceCursorDeclarationsPerRuntime: 8,
+        sourceCursorAssertionExpressionsPerRuntime: 10,
+        sourceCursorFailureGuardsPerRuntime: 1,
+        sourceCursorDeclarationLines: [10, 16, 20, 24, 29, 34, 39, 49],
+        supplementalPaginationCasesPerRuntime: 5,
+        totalCasesPerRuntime: 22,
+        utilityRuntime: 'Node host UTF-8/btoa/atob fallback in both adapter processes; not workerd utility execution',
+        repositoryRuntime: 'Complete pinned repository/handler with real Node SQLite or local D1 storage'
+      }
+    } : {}),
     omissions: ['trash-locale-filter.test.ts:83 count (2 assertions)',
       'content-actions.spec.ts:629 entire browser case (0 credit)',
       'published/revision lifecycle', 'schema-registry fixture setup', 'production/deployed adapters',

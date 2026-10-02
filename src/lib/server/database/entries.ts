@@ -1,5 +1,6 @@
 import { sql, type CompiledQuery } from 'kysely';
 import { ulid } from 'ulidx';
+import { decodeCursor, encodeCursor } from './trash-cursor.ts';
 import { CmsError, type CmsDatabase, type DraftEntry, type DraftSummary, type Field, type Page, type TrashedDraftEntry, type TrashedDraftSummary } from './contract.ts';
 import { SchemaRegistry, fieldMax } from './registry.ts';
 import { createDraftInput, entryId, identifier, listTrashedDraftInput, localeInput, parse, restoreDraftInput, tableName, updateDraftInput, deleteDraftInput } from './validation.ts';
@@ -95,19 +96,24 @@ export class DraftRepository {
     const row = await this.trashLookup(type, id, locale, true);
     return row && row.deletedAt !== null ? { ...row, deletedAt: row.deletedAt } : null;
   }
-  async listTrashed(typeInput: unknown, options: { limit?: number; locale?: string } = {}): Promise<{ items: TrashedDraftSummary[] }> {
-    const { type, locale, limit: requested = 50 } = parse(listTrashedDraftInput, { ...options, type: typeInput });
+  async listTrashed(typeInput: unknown, options: { limit?: number; locale?: string; cursor?: string } = {}): Promise<Page<TrashedDraftSummary>> {
+    const { type, locale, cursor: encoded, limit: requested = 50 } = parse(listTrashedDraftInput, { ...options, type: typeInput });
+    const limit = Math.min(requested, 100);
+    // Pinned findTrashed treats an empty cursor as the first page.
+    const cursor = encoded ? decodeCursor(encoded) : undefined;
     const definition = await this.definition(type);
     const title = definition.fields.some(field => field.slug === 'title') ? sql`substr(${sql.ref('title')}, 1, 200)` : sql`NULL`;
     const result = await sql<EntryRow & { title: string | null; deleted_at: string }>`SELECT id, slug, status, author_id, locale,
       version, created_at, updated_at, deleted_at, ${title} AS title FROM ${sql.ref(tableName(type))}
       WHERE deleted_at IS NOT NULL AND status = 'draft'
       ${locale === undefined ? sql`` : sql`AND locale = ${locale}`}
-      ORDER BY deleted_at DESC, id DESC LIMIT ${Math.min(requested, 100)}`.execute(this.database.db);
-    return { items: result.rows.map(row => {
+       ${cursor ? sql`AND (deleted_at < ${cursor.orderValue} OR (deleted_at = ${cursor.orderValue} AND id < ${cursor.id}))` : sql``}
+      ORDER BY deleted_at DESC, id DESC LIMIT ${limit + 1}`.execute(this.database.db);
+    const rows = result.rows.slice(0, limit);
+    return { items: rows.map(row => {
       const { data, ...summary } = entry(type, row, []);
       return { ...summary, title: row.title, deletedAt: row.deleted_at };
-    }) };
+    }), ...(result.rows.length > limit ? { nextCursor: encodeCursor(rows[rows.length - 1].deleted_at, rows[rows.length - 1].id) } : {}) };
   }
   // Draft-only adaptation of pinned ContentRepository.restore. Ownership and both
   // revision tokens are SQL predicates; RETURNING is this write's committed receipt.

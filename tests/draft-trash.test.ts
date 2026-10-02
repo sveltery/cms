@@ -56,7 +56,7 @@ test('draft trash: permitted malformed bounded inputs reject before storage', as
   const service = cmsService(database, admin);
   for (const input of [{}, { type: '../posts' }, { type: 'posts', locale: '' }, { type: 'posts', locale: 'a'.repeat(36) },
     { type: 'posts', limit: 0 }, { type: 'posts', limit: 1.5 }, { type: 'posts', limit: Infinity },
-    { type: 'posts', limit: Number.MAX_SAFE_INTEGER + 1 }, { type: 'posts', cursor: 'unsupported' },
+    { type: 'posts', limit: Number.MAX_SAFE_INTEGER + 1 }, { type: 'posts', cursor: 42 },
     { type: 'posts', authorId: 'forged' }]) await assert.rejects(() => service.listTrashedDrafts(input), { code: 'VALIDATION_ERROR' });
   for (const input of [{}, { type: 'posts', id: '' }, { type: 'posts', id: 'a'.repeat(129) },
     { type: 'posts', id: 'id', locale: 'en_US' }, { type: 'posts', id: 'id', authorId: 'forged' }]) {
@@ -67,6 +67,7 @@ test('draft trash: permitted malformed bounded inputs reject before storage', as
     await assert.rejects(() => service.restoreDraft({ type: 'posts', id: 'id', expected: precondition }), { code: 'VALIDATION_ERROR' });
   }
   await assert.rejects(() => service.restoreDraft({ type: 'posts', id: 'id', expected: { version: 1, updatedAt: '2026-01-01T00:00:00.000Z' }, authorId: 'forged' }), { code: 'VALIDATION_ERROR' });
+  await assert.rejects(() => service.listTrashedDrafts({ type: 'posts', cursor: 'unsupported' }), { code: 'INVALID_CURSOR' });
   assert.equal(touched, 0);
 });
 
