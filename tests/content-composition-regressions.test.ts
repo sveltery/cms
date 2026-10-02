@@ -12,7 +12,7 @@ for(const status of ['draft','published'])test(`generic ${status} save updates r
  const saved=await service.updateContent({type:'post',id:item.id,data:{title:'Edited'},expected:condition(item)});
  assert.equal(saved.data.title,'Edited');assert.equal(saved.data.body,'Body');assert.ok(saved.draftRevisionId);
  if(status==='published')assert.equal(saved.liveData.title,'Original');
- for(const name of ['updateContent','deleteContent'])await assert.rejects(service[name]({type:'post',id:item.id,data:{title:'Stale'},expected:condition(item)}),{code:'CONFLICT'});
+ for(const name of ['updateContent','deleteContent'])await assert.rejects(service[name]({type:'post',id:item.id,...(name==='updateContent'?{data:{title:'Stale'}}:{}),expected:condition(item)}),{code:'CONFLICT'});
  await f.lifecycle.publish({type:'post',id:item.id,expected:condition(saved)});
  assert.equal((await f.storage.findById('post',item.id)).data.title,'Edited');
 }));
@@ -35,9 +35,9 @@ test('generic ownership, null ownership and read-draft capability remain trusted
  const item=await f.repo.create({type:'post',data:{title:'Private'},status:'published'});
  const author:any=cmsService(f.database,{id:'someone-else',permissions:['content:read','content:read_drafts','content:edit_own','content:delete_own']});
  assert.equal(typeof author.updateContent,'function');
- for(const name of ['updateContent','deleteContent'])await assert.rejects(author[name]({type:'post',id:item.id,data:{title:'Other'},expected:condition(item)}),{code:'FORBIDDEN'});
+ for(const name of ['updateContent','deleteContent'])await assert.rejects(author[name]({type:'post',id:item.id,...(name==='updateContent'?{data:{title:'Other'}}:{}),expected:condition(item)}),{code:'FORBIDDEN'});
  await sql`UPDATE ec_post SET author_id=NULL WHERE id=${item.id}`.execute(f.database.db);
- for(const name of ['updateContent','deleteContent'])await assert.rejects(author[name]({type:'post',id:item.id,data:{title:'Ownerless'},expected:condition(item)}),{code:'FORBIDDEN'});
+ for(const name of ['updateContent','deleteContent'])await assert.rejects(author[name]({type:'post',id:item.id,...(name==='updateContent'?{data:{title:'Ownerless'}}:{}),expected:condition(item)}),{code:'FORBIDDEN'});
  const subscriber:any=cmsService(f.database,{id:'subscriber',permissions:['content:read']});
  for(const name of ['getContent','listContent','getTrashedContent','listTrashedContent','countTrashedContent'])await assert.rejects(subscriber[name]({type:'post',id:item.id}),{code:'FORBIDDEN'});
 }));

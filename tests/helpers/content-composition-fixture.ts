@@ -55,7 +55,7 @@ export async function compositionFixture(){
   trashCountHandler:(type:string,params:any)=>wrapped(async()=>({count:await(service.countTrashedContent?service.countTrashedContent({type,...params}):service.countTrashedDrafts({type,...params}))}))
  };
  const client={async callTool({name,arguments:input}:any){
-  const {collection,...value}=input;const key={type:collection,...value};
+  const {collection,_rev,...value}=input;const key={type:collection,...value};
   try{
    let result:any;
    if(name==='content_create')result={item:service.createContent?await service.createContent(key):await create(key)};
