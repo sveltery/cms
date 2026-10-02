@@ -10,6 +10,7 @@ for (const target of ['Node', 'D1'] as const) {
   test(`${target}: passkey completion discards wizard title/tagline like pinned route`, async () => {
     const h = await passkeyRuntime(target);
     try {
+      assert.equal((await h.request('/api/setup/status')).status, 200);
       const options = identityOptions(await h.database());
       await options.set('emdash:site_title', 'Stored title');
       await options.set('emdash:site_tagline', 'Stored tagline');
