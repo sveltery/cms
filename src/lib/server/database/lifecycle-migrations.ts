@@ -96,7 +96,9 @@ function dependsOnContent(statement:string|null): boolean {
   const fromScopes=new Set<number>();
   for (let index=0;index<tokens.length;index++) {
     const token=tokens[index]; const scope=depths[index];
-    if (token==='('&&fromScopes.has(scope)) {
+    const previous=tokens[index-1]??'';
+    const tableGroup=/^(?:FROM|JOIN)$/i.test(previous)||previous==='('||previous===',';
+    if (token==='('&&tableGroup&&fromScopes.has(scope)) {
       fromScopes.add(scope+1);
       if (isContentTarget(index+1)) return true;
     }
