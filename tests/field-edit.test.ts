@@ -104,7 +104,7 @@ for (const target of ['Node', 'D1'] as const) {
       assert.equal((await snapshot(f.database)).fields.find(row => row.id === f.title.id)?.validation, null);
       edited = await service.updateField({ collection: 'posts', field: 'title', label: 'x'.repeat(100_001),
         defaultValue: 'unbounded\0' + 'x'.repeat(100_001), sortOrder: 250_000 });
-      assert.equal(edited.label.length, 100_001); assert.equal(edited.defaultValue?.length, 100_011);
+      assert.equal(edited.label.length, 100_001); assert.equal((edited.defaultValue as string)?.length, 100_011);
       assert.equal(edited.sortOrder, 250_000); assert.equal(edited.validation, null);
       assert.deepEqual(await service.updateFieldLabel({ collection: 'posts', field: 'title', label: 'Compatible label' }),
         { ...edited, label: 'Compatible label' });

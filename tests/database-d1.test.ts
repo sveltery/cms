@@ -9,7 +9,7 @@ import { join } from 'node:path';
 import { openD1, type D1Binding } from '../src/lib/server/database/d1.ts';
 import { openSqlite } from '../src/lib/server/database/sqlite.ts';
 import type { CmsDatabase } from '../src/lib/server/database/contract.ts';
-import { migrateCms } from '../src/lib/server/database/migrations.ts';
+import { migrateCms, CMS_MIGRATION_VERSION } from '../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
 import { DraftRepository } from '../src/lib/server/database/entries.ts';
 import { createKyselySessionStore } from '../src/lib/server/auth/store.ts';
@@ -74,7 +74,7 @@ for (const target of ['Node', 'D1'] as const) {
         } };
         await assert.rejects(() => migrateCms(failing), /absent_auth_table/);
         assert.deepEqual(await objects(database), before);
-        await migrateCms(database); assert.deepEqual(await versions(database), [1, 2]);
+        await migrateCms(database); assert.deepEqual(await versions(database), Array.from({length:CMS_MIGRATION_VERSION},(_,index)=>index+1));
       } finally { await local.close(); }
     }
   });
@@ -117,7 +117,7 @@ test('D1: deterministic stale fresh/v1 callers recover the actual binding error 
       assert.equal(arrivals, 2); assert.equal(errors.length, 1, 'both preflights reach a real failing batch');
       assert.match(errors[0].message, /^D1_ERROR:/);
       assert.match(errors[0].message, upgrade ? /CHECK constraint failed: pass = 1/ : /table _cms_migrations already exists/);
-      assert.deepEqual(await versions(a), [1, 2]);
+      assert.deepEqual(await versions(a), Array.from({length:CMS_MIGRATION_VERSION},(_,index)=>index+1));
       assert.deepEqual(await a.db.selectFrom('_cms_guards').selectAll().execute(), []);
     } finally { await b.close(); await a.close(); await runtime.dispose(); }
   }
@@ -143,7 +143,7 @@ test('D1: startup accepts a complete upgrade between actual preflight reads', { 
       transformQuery(args) { if (JSON.stringify(args.node).includes('sqlite_master')) queries.add(args.queryId); return args.node; },
       async transformResult(args) { if (!committed && queries.has(args.queryId)) { committed = true; await migrateCms(a); } return args.result; }
     }) };
-    await migrateCms(observing); assert.equal(committed, true); assert.deepEqual(await versions(b), [1, 2]);
+    await migrateCms(observing); assert.equal(committed, true); assert.deepEqual(await versions(b), Array.from({length:CMS_MIGRATION_VERSION},(_,index)=>index+1));
   } finally { await b.close(); await a.close(); await runtime.dispose(); }
 });
 test('D1: one actual batch forwards parameters/order, RETURNING rows, zero/positive changes and insert IDs', { timeout: 30000 }, async () => {
@@ -176,7 +176,7 @@ test('D1: unrelated envelopes do not turn into successful migration race recover
       return [];
     } };
     await assert.rejects(() => migrateCms(failing), /unrelated_storage_failure/);
-    assert.deepEqual(await versions(database), [1, 2], 'completed schema alone cannot swallow unexpected failures');
+    assert.deepEqual(await versions(database), Array.from({length:CMS_MIGRATION_VERSION},(_,index)=>index+1), 'completed schema alone cannot swallow unexpected failures');
   } finally { await database.close(); await runtime.dispose(); }
 });
 test('local: envelope classifier keeps Node messages and ignores lookalike/unknown D1 formats', () => {
@@ -265,6 +265,6 @@ test('local workerd: real D1-backed CMS/session core runs without nodejs_compat'
       'unique metadata/required constraints', 'draft CAS/partial update', 'retained soft delete', 'schema CAS/DDL rollback',
       'persisted session/current role/disabled/expiry/revocation'
     ]);
-    assert.deepEqual(await versions(database), [1, 2], 'worker migrated the actual binding');
+    assert.deepEqual(await versions(database), Array.from({length:CMS_MIGRATION_VERSION},(_,index)=>index+1), 'worker migrated the actual binding');
   } finally { await database.close(); await runtime.dispose(); }
 });

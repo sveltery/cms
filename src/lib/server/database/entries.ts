@@ -17,7 +17,7 @@ function entry(type: string, row: EntryRow, fields: Field[]): DraftEntry {
   return { id: row.id, type, slug: row.slug, status: row.status, authorId: row.author_id,
     locale: row.locale, version: row.version, createdAt: row.created_at, updatedAt: row.updated_at, data };
 }
-function validateData(fields: Field[], data: Record<string, string | null>, partial: boolean) {
+function validateData(fields: Field[], data: Record<string, unknown>, partial: boolean) {
   // Pinned zod-generator.ts builds every truthy pattern before parsing data.
   // Preserve eager legacy SyntaxError even for omitted/null/untouched fields.
   // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.

@@ -4,7 +4,7 @@ import { ulid } from 'ulidx';
 import { CmsError, type CmsDatabase, type Collection, type CollectionRow, type Field, type FieldRow, type RevisionPrecondition } from './contract.ts';
 import { collectionInput, collectionMetadataInput, fieldInput, fieldLabelInput, identifier, parse, reservedCollections, reservedFields, revisionInput, tableName } from './validation.ts';
 import { trashIndexStatement } from './trash-index.ts';
-import { FIELD_TYPE_TO_COLUMN, isIndexableFieldType, isStoragelessField, type CollectionSource } from '../schema/types.ts';
+import { FIELD_TYPE_TO_COLUMN, FIELD_TYPES, REPEATER_SUB_FIELD_TYPES, isIndexableFieldType, isStoragelessField, type CollectionSource } from '../schema/types.ts';
 import { fieldEditInput } from './field-edit-validation.ts';
 
 export const MAX_COLLECTIONS = 100;
@@ -24,8 +24,10 @@ function collection(row: CollectionRow): Collection {
     version: row.version, createdAt: row.created_at, updatedAt: row.updated_at };
 }
 function field(row: FieldRow): Field {
+  const validation = row.validation === null ? null : JSON.parse(row.validation);
+  const unsupportedType = !FIELD_TYPES.includes(row.type) ? {type:row.type,path:'type'} : row.type === 'repeater' && Array.isArray(validation?.subFields) ? validation.subFields.flatMap((item: {type: string},index: number) => REPEATER_SUB_FIELD_TYPES.includes(item.type as typeof REPEATER_SUB_FIELD_TYPES[number]) ? [] : [{type:item.type,path:`validation.subFields[${index}].type`}])[0] : undefined;
   return { id: row.id, collectionId: row.collection_id, slug: row.slug, label: row.label,
-    type: row.type, columnType: row.column_type, required: row.required === 1, unique: row.unique === 1,
+    type: FIELD_TYPES.includes(row.type) ? row.type : 'string', unsupportedType, columnType: row.column_type, required: row.required === 1, unique: row.unique === 1,
     ...(row.default_value === null ? {} : { defaultValue: JSON.parse(row.default_value) }),
     validation: row.validation === null ? null : JSON.parse(row.validation),
     widget: row.widget ?? undefined, options: row.options ? JSON.parse(row.options) : undefined,
@@ -42,8 +44,8 @@ export class SchemaRegistry {
     return row ? collection(row) : null;
   }
   async listCollections(): Promise<Collection[]> {
-    const rows = await this.database.db.selectFrom('_cms_collections').selectAll().orderBy(sql`sort_order IS NULL`).orderBy('sort_order').orderBy('slug').limit(MAX_COLLECTIONS).execute();
-    return rows.map(collection);
+    const rows = await this.database.db.selectFrom('_cms_collections').selectAll().orderBy('slug').limit(MAX_COLLECTIONS).execute();
+    return rows.map(collection).sort((a,b) => (a.sortOrder === undefined ? 1 : 0) - (b.sortOrder === undefined ? 1 : 0) || (a.sortOrder ?? 0) - (b.sortOrder ?? 0) || a.slug.localeCompare(b.slug));
   }
   // EmDash registry.ts updateCollection: supplied metadata only; no schema-version bump.
   // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
@@ -116,6 +118,7 @@ export class SchemaRegistry {
     const target = await this.getField(collectionSlug, fieldSlug);
     if (!target) throw new CmsError('NOT_FOUND');
     const updates: Partial<FieldRow> = {};
+    if(target.unsupportedType) throw new CmsError('UNSUPPORTED_FIELD_TYPE');
     const nextType = value.type ?? target.type;
     if(value.type && value.type !== target.type) {
       if(FIELD_TYPE_TO_COLUMN[value.type] !== target.columnType) throw new CmsError('FIELD_TYPE_COLUMN_CHANGE');
@@ -179,10 +182,10 @@ export class SchemaRegistry {
         id: ulid(), slug: value.slug, label: value.label, label_singular: value.labelSingular ?? null,
         description: value.description ?? null, supports: JSON.stringify(value.supports ?? ['drafts', 'revisions']),
         source: value.source ?? 'manual', version: 1, created_at: now, updated_at: now,
-        icon: value.icon || null, admin_config: value.admin ? JSON.stringify(value.admin) : null, has_seo: Number(value.hasSeo ?? false),
-        url_pattern: value.urlPattern || null, routable: Number(value.routable ?? true), hidden: Number(value.hidden ?? false),
-        sort_order: value.sortOrder ?? null, nav_group: value.group || null, edit_locking: Number(value.editLocking ?? true),
-        comments_enabled: Number(value.commentsEnabled ?? false)
+        ...Object.fromEntries(Object.entries(collectionMetadataColumns).flatMap(([key,column]) => {
+          const item = value[key as keyof typeof value];
+          return item === undefined ? [] : [[column,typeof item === 'boolean' ? Number(item) : item || null]];
+        })), ...(value.admin === undefined ? {} : {admin_config:JSON.stringify(value.admin)})
       }).compile(),
       sql`CREATE TABLE ${sql.ref(name)} (
         id TEXT PRIMARY KEY NOT NULL, slug TEXT, status TEXT NOT NULL DEFAULT 'draft' CHECK(status = 'draft'),
@@ -247,8 +250,10 @@ export class SchemaRegistry {
         default_value: value.defaultValue === undefined ? null : JSON.stringify(value.defaultValue),
         validation: value.validation === undefined ? null : JSON.stringify(value.validation),
         sort_order: value.sortOrder ?? (fields.length ? Math.max(...fields.map(field => field.sortOrder))+1 : 0), created_at: new Date().toISOString(),
-        widget: value.widget ?? null, options: value.options ? JSON.stringify(value.options) : null,
-        searchable: Number(value.searchable ?? false), indexed: Number(value.indexed ?? false), translatable: Number(value.translatable ?? true)
+        ...(value.widget === undefined ? {} : {widget:value.widget}), ...(value.options === undefined ? {} : {options:JSON.stringify(value.options)}),
+        ...(value.searchable === undefined ? {} : {searchable:Number(value.searchable)}),
+        ...(value.indexed === undefined ? {} : {indexed:Number(value.indexed)}),
+        ...(value.translatable === undefined ? {} : {translatable:Number(value.translatable)})
       }).compile(),
       db.updateTable('_cms_collections').set({ version: definition.version + 1, updated_at: new Date().toISOString() }).where('id', '=', definition.id).compile()
     ];

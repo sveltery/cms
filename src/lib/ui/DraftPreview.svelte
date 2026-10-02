@@ -1,13 +1,13 @@
 <script lang="ts">
   import type { PreviewField } from './preview-fields';
-  let { fields = [], values = {} }: { fields?: PreviewField[]; values?: Record<string, string | null> } = $props();
+  let { fields = [], values = {} }: { fields?: PreviewField[]; values?: Record<string, unknown> } = $props();
 </script>
 
 <input type="hidden" name="data" value={JSON.stringify(values)} disabled />
 <fieldset disabled>
   <legend>Draft preview</legend>
   {#each fields as field (field.id)}
-    {const displayed = $derived(Object.hasOwn(values, field.slug) ? values[field.slug] ?? '' : field.defaultValue ?? '')}
+    {const displayed = $derived(Object.hasOwn(values, field.slug) ? String(values[field.slug] ?? '') : String(field.defaultValue ?? ''))}
     <label>
       {field.label}{field.required ? ' *' : ''}
       {#if field.type === 'text'}

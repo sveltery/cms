@@ -1,6 +1,5 @@
 import { sql } from 'kysely';
 import type { CmsDatabase } from './contract.ts';
-import { FIELD_TYPES } from '../schema/types.ts';
 import { migrationObjects, type CmsMigrationProvider } from './migration-provider.ts';
 
 function schemaStatements(database: CmsDatabase, suffix = '') {
@@ -21,7 +20,7 @@ function schemaStatements(database: CmsDatabase, suffix = '') {
   )`.compile(db),
   sql`CREATE TABLE ${sql.ref('_cms_fields' + suffix)} (
     id TEXT PRIMARY KEY NOT NULL, collection_id TEXT NOT NULL REFERENCES ${sql.ref('_cms_collections' + suffix)}(id),
-    slug TEXT NOT NULL, label TEXT NOT NULL, type TEXT NOT NULL CHECK(type IN (${sql.join(FIELD_TYPES.map(type => sql.lit(type)))})),
+    slug TEXT NOT NULL, label TEXT NOT NULL, type TEXT NOT NULL,
     column_type TEXT NOT NULL CHECK(column_type IN ('TEXT','REAL','INTEGER','JSON')),
     required INTEGER NOT NULL CHECK(required IN (0,1)), "unique" INTEGER NOT NULL CHECK("unique" IN (0,1)),
     default_value TEXT, validation TEXT, sort_order INTEGER NOT NULL, created_at TEXT NOT NULL,

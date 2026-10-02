@@ -109,9 +109,9 @@ export const updateInput = v.pipe(v.strictObject({
   'Form instance must match the collection'), ['id']));
 export const addFieldInput = v.pipe(v.strictObject({
   id: v.optional(identifier), collection: identifier, expectedSchemaVersion: decimalVersion,
-  slug: fieldInput.entries.slug, label: fieldInput.entries.label, type: fieldInput.entries.type,
+  slug: fieldInput.entries.slug, label: fieldInput.entries.label, type: v.picklist(['string','text']),
   required: fieldInput.entries.required, unique: fieldInput.entries.unique,
-  defaultValue: fieldInput.entries.defaultValue,
+  defaultValue: v.optional(v.pipe(v.string(),v.maxLength(100_000),v.check(value => !value.includes('\0')))),
   minLength: optionalLength, maxLength: optionalLength, patternMode, pattern: editString
 }), v.forward(v.check(input => input.id === undefined || input.id === input.collection,
   'Form instance must match the collection'), ['id']),
