@@ -1,8 +1,14 @@
 import { schemaAdminRemotes } from './schema-admin-remotes.ts';
+import { sql } from 'kysely';
+import { authIdentitySchemaStatements } from '../../src/lib/server/auth/identity-migrations.ts';
 
 /** Real built Kit server and persisted database; only trusted runtime composition is test-owned. */
 export async function passkeyRemotes(target: 'Node' | 'D1', publicOrigin?: string) {
   const h = await schemaAdminRemotes(target);
+  // Temporary provider fixture before the canonical version-four registration lands.
+  // Final integrated evidence must remove this seam and require migrateCms to create the objects.
+  const identity = await sql`SELECT 1 FROM sqlite_master WHERE name = '_cms_auth_profiles'`.execute(h.database.db);
+  if (!identity.rows.length) await h.database.atomicBatch(authIdentitySchemaStatements(h.database.db));
   // Setup source fixtures start with no users; remove this helper's synthetic sessions first.
   await h.database.db.deleteFrom('_cms_auth_sessions').execute();
   await h.database.db.deleteFrom('_cms_auth_users').execute();
@@ -19,7 +25,7 @@ export async function passkeyRemotes(target: 'Node' | 'D1', publicOrigin?: strin
       cookies,
       async post(path: string, body: unknown) {
         const response = await h.request(path, null, { method: 'POST', headers: {
-          origin: h.origin, 'content-type': 'application/json',
+          origin: publicOrigin ?? h.origin, 'content-type': 'application/json',
           ...(cookies.size ? { cookie: [...cookies].map(([name, value]) => `${name}=${value.value}`).join('; ') } : {})
         }, body: JSON.stringify(body) });
         for (const header of response.headers.getSetCookie()) {

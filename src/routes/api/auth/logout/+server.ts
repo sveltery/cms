@@ -5,7 +5,7 @@ import { createKyselySessionStore } from '$lib/server/auth/store';
 import { SESSION_COOKIE_NAME, SESSION_COOKIE_DELETE_OPTIONS } from '$lib/server/auth/request';
 
 export const POST: RequestHandler = event => identityApi(event, 'LOGOUT_ERROR', async context => {
-  await revokeSession(event.cookies.get(SESSION_COOKIE_NAME), createKyselySessionStore(context.database.db));
+  await revokeSession(event.cookies.get(SESSION_COOKIE_NAME), createKyselySessionStore(context.database.db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>()));
   event.cookies.delete(SESSION_COOKIE_NAME, { ...SESSION_COOKIE_DELETE_OPTIONS, path: identityCookiePath(context) });
   return identitySuccess({ success: true });
 });
