@@ -122,6 +122,16 @@ Full final-head bootstrap, secured hosted browser checks and independent/configu
 
 These substitutions describe the framework integration direction; they do not establish acceptance of changes to domain defaults or policy. Native transport failures need an explicit mapping to upstream validation/auth/not-found/conflict results. Keep error details that affect callers; a SvelteKit response shape alone is not a reason to weaken an assertion.
 
+## Proposed collection cursor navigation
+
+Authority: EmDash 1.1.0 immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, repository tests [content.test.ts:360](https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L360) / [377](https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/database/repositories/content.test.ts#L377). These original five-item mixed-status fixtures pass on the actual reference; the local 103-draft UI checks remain supplemental and earn zero upstream leaf credit.
+
+| ID | Upstream/local boundary and proposed difference | Evidence and status |
+| --- | --- | --- |
+| F-CURSOR: collection browser navigation | Pinned repository cursor/terminal behavior remains the reference; temporary Svelte collection UI adds bounded next/first controls, terminal/empty statuses and collection-scoped reset using unchanged remotes. This is supplemental framework navigation, not an upstream test leaf port. | [Collection navigation record](../../docs/collection-cursor-navigation.md), real pinned cases 360/377, assertion-level missing-control red, persisted Node/local D1 and built browser checks. Proposed [PR #15](https://github.com/sveltery/cms/pull/15); no specific deviation acceptance recorded. Hosted exact-head browser/review gates remain required. |
+
+The feature record retains source blob, assertion provenance, runtime/dataset/fixture boundaries and historical implementation-head evidence. This entry belongs to PR #15 independently of the collection metadata service. No schema/service/permission changes, enabled editing, production sessions, live D1 or deployed-hosting parity are claimed.
+
 ## Foundation audit at `ac0ec3f`
 
 These findings describe the original provisional scaffold at `ac0ec3f`; they are a historical audit, not a claim that every finding remains open on current main. Foundation subsequently landed at `89a1663df69d3e788e2290254b7a54b30b071ded` with registered fail-closed remotes, supplemental service/production/browser checks and updated architecture guidance. Its fixtures still do not establish real-session CRUD, provider persistence or executable EmDash parity. The UI is disabled, there is no trusted session/storage wiring, and no exploit or functioning persisted CMS is claimed. Implementation owners must resolve and track remaining differences; this documentation PR leaves their files untouched.
