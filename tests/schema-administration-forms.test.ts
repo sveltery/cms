@@ -32,12 +32,18 @@ test('native field settings explicitly retain metadata without JavaScript', () =
     defaultValueJson:'"stale"',defaultValueMode:'keep',validationJson:'{"minLength":10}',validationMode:'keep',
     optionsJson:'{"stale":true}',optionsMode:'keep',searchable:'true',searchableMode:'keep',
     indexed:'true',indexedMode:'keep',translatable:'true',translatableMode:'keep'};
-  const value = convertFieldMetadata(v.parse(fieldMetadataFormInput,field));
+  const result = v.safeParse(fieldMetadataFormInput,field);
+  assert.equal(result.success,true,'native keep modes are accepted');
+  if (!result.success) return;
+  const value = convertFieldMetadata(result.output);
   assert.deepEqual(value,{collection:'posts',field:'title'});
 });
 
 test('native addition preserves explicitly non-translatable fields', () => {
-  const value = convertFieldAdd(v.parse(addFieldInput,{collection:'posts',expectedSchemaVersion:'1',slug:'code',label:'Code',type:'string',translatable:'false'}));
+  const result = v.safeParse(addFieldInput,{collection:'posts',expectedSchemaVersion:'1',slug:'code',label:'Code',type:'string',translatable:'false'});
+  assert.equal(result.success,true,'native false is accepted');
+  if (!result.success) return;
+  const value = convertFieldAdd(result.output);
   assert.equal(value.input.translatable,false);
 });
 test('native collection updates distinguish omitted display fields from clearing them', () => {
