@@ -1,6 +1,7 @@
 import { sql, type CompiledQuery } from 'kysely';
 import { sqliteErrorMessage } from './errors.ts';
 import { CmsError, type CmsDatabase } from './contract.ts';
+import { authIdentitySchemaStatements, authIdentitySchemaObjects } from '../auth/identity-migrations.ts';
 import { authSchemaStatements } from '../auth/schema.ts';
 import { pendingTrashIndexStatements } from './trash-index.ts';
 import { schemaMigration } from './schema-migrations.ts';
@@ -32,7 +33,9 @@ export const CMS_MIGRATIONS: readonly CmsMigrationProvider[] = [
   { version: 2, name: 'session-auth',
     async statements(database) { return authSchemaStatements(database.db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>()); },
     async expectedObjects(database) { return migrationObjects(await this.statements(database)); } },
-  schemaMigration
+  schemaMigration,
+  {version:4,name:'auth-identity',async statements(database) {return authIdentitySchemaStatements(database.db);},
+    async expectedObjects(database) {return authIdentitySchemaObjects(database.db);}}
 ];
 export const CMS_MIGRATION_VERSION = CMS_MIGRATIONS.at(-1)!.version;
 const trackingStatement = (database: CmsDatabase) =>

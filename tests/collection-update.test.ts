@@ -72,10 +72,10 @@ for (const target of ['Node', 'D1'] as const) {
     const service = cmsService(guarded, admin);
     try {
       const before = await snapshot(f.database);
-      for (const input of [{ slug: 'changed' }, { source: 'seed' }, { version: 99 }, { routable: true },
+      for (const input of [{ slug: 'changed' }, { source: 'seed' }, { version: 99 }, { routable: 'true' },
         { label: '' }, { label: ' '.repeat(5) }, { label: 'x'.repeat(201) }, { labelSingular: null },
-        { description: null }, { description: 'x'.repeat(2001) }, { supports: ['search'] },
-        { supports: ['drafts', 'drafts', 'drafts'] }, { supports: null }, { authorId: 'forged' }, []]) {
+        { description: null }, { description: 'x'.repeat(2001) }, { supports: ['invalid_support'] },
+        { supports: [true] }, { supports: null }, { authorId: 'forged' }, []]) {
         await assert.rejects(() => service.updateCollection({ collection: 'posts', input, expected: expected(f.definition) }), { code: 'VALIDATION_ERROR' });
       }
       for (const value of [undefined, 1, { version: 1 }, { version: 0, updatedAt: f.definition.updatedAt },

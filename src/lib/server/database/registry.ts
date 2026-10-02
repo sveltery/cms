@@ -184,7 +184,7 @@ export class SchemaRegistry {
         source: value.source ?? 'manual', version: 1, created_at: now, updated_at: now,
         ...Object.fromEntries(Object.entries(collectionMetadataColumns).flatMap(([key,column]) => {
           const item = value[key as keyof typeof value];
-          return item === undefined ? [] : [[column,typeof item === 'boolean' ? Number(item) : item || null]];
+          return item === undefined ? [] : [[column,typeof item === 'boolean' ? Number(item) : item === '' ? null : item]];
         })), ...(value.admin === undefined ? {} : {admin_config:JSON.stringify(value.admin)})
       }).compile(),
       sql`CREATE TABLE ${sql.ref(name)} (

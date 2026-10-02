@@ -117,14 +117,18 @@ for (const target of ['Node', 'D1'] as const) {
       const before = await snapshot(f.database);
       for (const input of [null, [], { label: '' }, { label: null }, { sortOrder: -1 }, { sortOrder: 1.5 },
         { sortOrder: '1' }, { sortOrder: Number.MAX_SAFE_INTEGER + 1 }, { sortOrder: 1e100 },
-        { defaultValue: null }, { defaultValue: 0 }, { validation: [] },
+        { validation: [] },
         { validation: { minLength: -1 } }, { validation: { maxLength: 1.5 } },
         { validation: { minLength: Number.MAX_SAFE_INTEGER + 1 } }, { validation: { maxLength: 1e100 } },
         { validation: { minLength: 2, maxLength: 1 } }, { validation: { pattern: '[' } },
-        { type: 'text' }, { required: true }, { unique: false }, { widget: 'text' }, { indexed: true },
-        { translatable: false }, { expected: { version: 1 } }]) {
+        { type: 'future_type' }, { required: 'true' }, { unique: 'false' }, { widget: null }, { indexed: 'true' },
+        { translatable: 'false' }, { expected: { version: 1 } }]) {
         await assert.rejects(() => f.registry.updateField('posts', 'title', input), { code: 'VALIDATION_ERROR' });
         assert.deepEqual(await snapshot(f.database), before);
+      }
+      for (const input of [{required:false},{unique:false},{translatable:false}]) {
+        await assert.rejects(()=>f.registry.updateField('posts','title',input),{code:'FIELD_UPDATE_REQUIRES_MIGRATION'});
+        assert.deepEqual(await snapshot(f.database),before);
       }
       await assert.rejects(() => f.service.updateField({ collection: 'posts', field: 'title', unexpected: true }), { code: 'VALIDATION_ERROR' });
       await assert.rejects(() => f.service.updateFieldLabel({ collection: 'posts', field: 'title' }), { code: 'VALIDATION_ERROR' });

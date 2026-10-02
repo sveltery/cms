@@ -1,3 +1,5 @@
+import { validateContentData } from '../schema/validate-content.ts';
+import { serializeValue, deserializeValue } from './field-value.ts';
 import { sql, type CompiledQuery } from 'kysely';
 import { ulid } from 'ulidx';
 import { decodeCursor, encodeCursor } from './trash-cursor.ts';
@@ -12,8 +14,8 @@ interface EntryRow {
   [key: string]: unknown;
 }
 function entry(type: string, row: EntryRow, fields: Field[]): DraftEntry {
-  const data: Record<string, string | null> = {};
-  for (const field of fields) if (row[field.slug] !== undefined) data[field.slug] = row[field.slug] as string | null;
+  const data: Record<string, unknown> = {};
+  for (const field of fields) if (row[field.slug] !== undefined) data[field.slug] = deserializeValue(row[field.slug]);
   return { id: row.id, type, slug: row.slug, status: row.status, authorId: row.author_id,
     locale: row.locale, version: row.version, createdAt: row.created_at, updatedAt: row.updated_at, data };
 }
@@ -29,8 +31,7 @@ function validateData(fields: Field[], data: Record<string, unknown>, partial: b
   for (const [key, value] of Object.entries(data)) {
     const field = known.get(key);
     if (!field || (field.required && (value === null || value === '')) ||
-      (typeof value === 'string' && (value.length < (field.validation?.minLength ?? 0) || value.length > fieldMax(field)
-        || patterns.get(key)?.test(value) === false))) {
+      (typeof value === 'string' && value.length > 100_000)) {
       throw new CmsError('VALIDATION_ERROR');
     }
   }
@@ -66,11 +67,13 @@ export class DraftRepository {
     const value = parse(createDraftInput, input);
     if (!authorId || authorId.length > 128) throw new CmsError('VALIDATION_ERROR');
     const definition = await this.definition(value.type);
+    const checked = await validateContentData(this.database,value.type,value.data);
+    if(!checked.ok) throw new CmsError(checked.error.code==='COLLECTION_NOT_FOUND'?'NOT_FOUND':checked.error.code,checked.error.message,checked.error.details);
     validateData(definition.fields, value.data, false);
     const id = ulid();
     const now = new Date().toISOString();
     const columns = ['id', 'slug', 'status', 'author_id', 'created_at', 'updated_at', 'version', 'locale', 'translation_group', ...Object.keys(value.data)];
-    const values = [id, value.slug || null, 'draft', authorId, now, now, 1, value.locale, id, ...Object.values(value.data)];
+    const values = [id, value.slug || null, 'draft', authorId, now, now, 1, value.locale, id, ...Object.values(value.data).map(serializeValue)];
     const db = this.database.db;
     const query = sql<EntryRow>`INSERT INTO ${sql.ref(tableName(value.type))}
       (${sql.join(columns.map(column => sql.ref(column)))})
@@ -157,9 +160,11 @@ export class DraftRepository {
   async update(input: unknown, ownerId?: string): Promise<DraftEntry> {
     const value = parse(updateDraftInput, input);
     const definition = await this.definition(value.type);
+    const checked = await validateContentData(this.database,value.type,value.data,{partial:true});
+    if(!checked.ok) throw new CmsError(checked.error.code==='COLLECTION_NOT_FOUND'?'NOT_FOUND':checked.error.code,checked.error.message,checked.error.details);
     validateData(definition.fields, value.data, true);
     const db = this.database.db;
-    const assignments = Object.entries(value.data).map(([key, item]) => sql`${sql.ref(key)} = ${item}`);
+    const assignments = Object.entries(value.data).map(([key, item]) => sql`${sql.ref(key)} = ${serializeValue(item)}`);
     if (value.slug !== undefined) assignments.push(sql`slug = ${value.slug || null}`);
     // Upstream increments version even for an empty update. updated_at only changes for column writes.
     if (assignments.length) assignments.push(sql`updated_at = ${new Date().toISOString()}`);
