@@ -13,7 +13,7 @@ const values: Record<FieldType, unknown> = {
   portableText: [{ _type: 'block', children: [{ _type: 'span', text: 'Hello' }] }],
   image: { id: 'image-id', alt: 'A picture', meta: { storageKey: 'photo' } },
   file: { id: 'file-id', filename: 'file.pdf' }, reference: 'unbound-entry-id',
-  json: { deep: [null, { count: 2, enabled: false }] },
+  json: JSON.parse('{"deep":[null,{"count":2,"enabled":false}],"constructor":{"prototype":["safe",null]},"__proto__":{"allowed":true}}'),
   repeater: [{ name: 'First', extra: { untouched: true } }], blocks: [{ _type: 'legacy', arbitrary: { items: [1, 2] } }]
 };
 async function fixture(target: 'Node' | 'D1') {
