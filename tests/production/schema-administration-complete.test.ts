@@ -14,6 +14,7 @@ for (const target of ['Node','D1'] as const) {
       for (const name of ['icon','group','routable','hasSeo','hidden','editLocking','commentsEnabled','listColumns','quickCreate']) {
         assert.match(listHtml,new RegExp(`name="${name}"`),`collection creation exposes ${name}`);
       }
+      assert.equal(listHtml.match(/<textarea[^>]*name="listColumns"[^>]*>([\s\S]*?)<\/textarea>/)?.[1],'[]','native list-column textarea contains the default JSON');
       await h.mutate('createSchemaCollection',{slug:'complete',label:'Complete',icon:'book',group:'Editorial',routable:'false',hasSeo:'true',hidden:'true',editLocking:'false',commentsEnabled:'true',listColumns:'[]',quickCreate:'false'});
       let c=await h.query('getSchemaCollection','complete');
       await h.mutate('addSchemaField',{collection:c.slug,expectedSchemaVersion:String(c.version),slug:'priority',label:'Priority',type:'integer',defaultValueJson:'2',validationJson:'{"min":0,"max":10}',optionsJson:'{"helpText":"Rank"}',widget:'number',translatable:'false'});
@@ -32,6 +33,7 @@ for (const target of ['Node','D1'] as const) {
       for (const name of ['typeMode','widgetMode','defaultValueMode','validationMode','optionsMode','indexedMode','searchableMode','translatableMode']) {
         assert.match(html,new RegExp(`name="${name}"`),`settings expose native ${name}`);
       }
+      assert.equal(html.match(/<textarea[^>]*name="defaultValueJson"[^>]*>([\s\S]*?)<\/textarea>/)?.[1],'3','native default textarea contains its stored value');
       const form=[...html.matchAll(/<form[^>]*action="([^"]+)"/g)].find(match=>match[1].includes(h.ids.get('deleteSchemaCollection')!));
       assert.ok(form,'registered native deletion form');
       const action=new URL(form[1].replaceAll('&amp;','&'),h.origin+'/schema/complete');
