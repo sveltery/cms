@@ -10,6 +10,8 @@ Collection and field definitions are dashboard-managed and stored in the databas
 
 Documentation belongs in this repository, so features and their documentation share PRs. Keep `docs/` separate from application source. A separate documentation app can be added here when needed; no separate repository or documentation deployment is planned in this slice.
 
+The proposed [bounded string/text pattern-validation slice](pattern-validation.md) extends the persisted scalar contract, refreshed editor descriptors and native schema administration through the existing service/remote seams. The [core](pattern-validation-core.md) and [native](pattern-validation-native.md) records own their executable evidence; this canonical documentation integration adds no source-declaration credit or acceptance of intentional differences. Existing SF-02 physical divergence, C-07/SA-03 adapter atomicity and inherited unenforced scalar uniqueness in issue #20 remain deferred; production composition and writes remain unconfigured/default-disabled.
+
 The eventual UI dependency is `sveltery/ui`, a framework-neutral CSS/native-HTML library. Temporary components live in `src/lib/ui/` and can be replaced without moving domain logic into them.
 
 ## Proposed vertical slice
