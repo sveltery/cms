@@ -1,0 +1,446 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "classification": "Complete selected expectation conditions at adapted native HTTP boundary; no full source transport or configuration factory credit.",
+  "selection": "Separate explicit feature selection; historical 118-file catalog unchanged.",
+  "testFirstExecutedCommits": [
+    "32dd43712294290c26a518000c6288c4d98b36f9",
+    "c876e13a7e1fcb9bf0907eb8434ab466a6e7b71d",
+    "2936a14fca8c4a723c2c3e52515bcf8579fced09"
+  ],
+  "sourceExpectationCount": 25,
+  "previouslyCreditedExpectationCount": 3,
+  "previousOverlap": "manifest-build.test.ts:406 title, excerpt and subtitle conditions already covered in session-composition-ports.json; 22 additional unique source-ID expectations in this slice.",
+  "adaptations": [
+    "Standard Node matchers replace Vitest expect; objectContaining subsets retain key comparisons and exact issue count/order.",
+    "Source runtime handlers/manifest become actual registered SvelteKit forms/query with persisted trusted test sessions. Mandatory CAS tokens use actual committed receipts.",
+    "Original baseline fixtures used raw empty-table metadata seeding to run wider source types against scalar baseline; refactored final fixtures use actual migrated registry field creation.",
+    "Config collections/plugins/manifest hash and whole runtime factory are omitted. Unknown stored types and over-limit list configuration retain raw fixture mutation.",
+    "Source one partial-object assertion may require several Node comparisons; expanded local comparisons do not increase source expression credit.",
+    "Node/local D1 replace source dialect setup; no Postgres/deployed hosting evidence."
+  ],
+  "ports": [
+    {
+      "path": "packages/core/tests/integration/content/validation-issues.test.ts",
+      "category": "content",
+      "stage": "native-transport",
+      "sourceBlob": "a8b1a1e0a41fd99591e350fce0375d6066e53dd3",
+      "sourceSha256": "d8dfb48f8abf5bb5334860b8146e2351e1afd17926ca03fbfd84845a4643caf6",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/validation-issues.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/validation-issues.test.ts:96",
+          "title": "lists each rejected field as an issue with its code and bounds",
+          "suites": [
+            "content validation issues"
+          ],
+          "line": 96,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/validation-issues.test.ts#L96",
+          "registration": "it",
+          "registrationSha256": "6ac2b5747052c9c159f7286bd85375667b041b1c6705370d997ff1e9faef73cf",
+          "expansion": [
+            {
+              "line": 19,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "adapted-native-observations",
+          "productExecution": {
+            "localTest": "tests/production/full-content-validation-upstream.test.ts",
+            "NodeCases": 1,
+            "localD1Cases": 1,
+            "retainedExpectations": 3,
+            "envelope": "Registered Kit native HTTP, source success/error and receipts adapted; no REST/full-runtime transport credit.",
+            "sourceExpectationEvaluationsPerRuntime": 3
+          },
+          "assertions": [
+            {
+              "line": 109,
+              "expression": "expect(result.success).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/validation-issues.test.ts#L109"
+            },
+            {
+              "line": 111,
+              "expression": "expect(result.error.code).toBe(\"VALIDATION_ERROR\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/validation-issues.test.ts#L111"
+            },
+            {
+              "line": 112,
+              "expression": "expect(issuesOf(result.error)).toEqual([\n\t\t\t{ path: \"subtitle\", code: \"unknown_field\", message: \"unknown field on collection 'posts'\" },\n\t\t\texpect.objectContaining({ path: \"title\", code: \"required\" }),\n\t\t\texpect.objectContaining({ path: \"starts_at\", code: \"required\" }),\n\t\t\texpect.objectContaining({ path: \"category\", code: \"required\" }),\n\t\t\texpect.objectContaining({\n\t\t\t\tpath: \"excerpt\",\n\t\t\t\tcode: \"too_big\",\n\t\t\t\torigin: \"string\",\n\t\t\t\tmaximum: 5,\n\t\t\t}),\n\t\t\texpect.objectContaining({\n\t\t\t\tpath: \"reading_minutes\",\n\t\t\t\tcode: \"too_big\",\n\t\t\t\torigin: \"number\",\n\t\t\t\tmaximum: 60,\n\t\t\t}),\n\t\t\texpect.objectContaining({ path: \"website\", code: \"invalid_format\", format: \"url\" }),\n\t\t\texpect.objectContaining({ path: \"body.0._type\", code: \"invalid_type\" }),\n\t\t\texpect.objectContaining({ path: \"stops.0.name\", code: \"required\" }),\n\t\t\texpect.objectContaining({ path: \"stops.1\", code: \"invalid_type\" }),\n\t\t\texpect.objectContaining({ path: \"stops\", code: \"too_big\", origin: \"array\", maximum: 1 }),\n\t\t\t{\n\t\t\t\tpath: \"related\",\n\t\t\t\tcode: \"reference_not_found\",\n\t\t\t\tmessage: \"target 'missing' not found in collection 'posts'\",\n\t\t\t},\n\t\t])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/validation-issues.test.ts#L112"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/validation-issues.test.ts:142",
+          "title": "reports a wrong option and each failed string rule by its code",
+          "suites": [
+            "content validation issues"
+          ],
+          "line": 142,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/validation-issues.test.ts#L142",
+          "registration": "it",
+          "registrationSha256": "30f614f992a5e335c0d27a04e2afcc48d97c2521b796f760ae629a47bd4867f5",
+          "expansion": [
+            {
+              "line": 19,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "adapted-native-observations",
+          "productExecution": {
+            "localTest": "tests/production/full-content-validation-upstream.test.ts",
+            "NodeCases": 1,
+            "localD1Cases": 1,
+            "retainedExpectations": 2,
+            "envelope": "Registered Kit native HTTP, source success/error and receipts adapted; no REST/full-runtime transport credit.",
+            "sourceExpectationEvaluationsPerRuntime": 2
+          },
+          "assertions": [
+            {
+              "line": 147,
+              "expression": "expect(result.success).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/validation-issues.test.ts#L147"
+            },
+            {
+              "line": 149,
+              "expression": "expect(issuesOf(result.error)).toEqual([\n\t\t\texpect.objectContaining({ path: \"category\", code: \"invalid_value\" }),\n\t\t\texpect.objectContaining({ path: \"kicker\", code: \"too_small\", origin: \"string\", minimum: 3 }),\n\t\t\texpect.objectContaining({ path: \"kicker\", code: \"invalid_format\", format: \"regex\" }),\n\t\t])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/validation-issues.test.ts#L149"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/validation-issues.test.ts:156",
+          "title": "keeps naming every issue in the error message",
+          "suites": [
+            "content validation issues"
+          ],
+          "line": 156,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/validation-issues.test.ts#L156",
+          "registration": "it",
+          "registrationSha256": "fad0d853b501c3889bcda9a865db58b025d434a2e70e04550b2eb2fa0306ee85",
+          "expansion": [
+            {
+              "line": 19,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "adapted-native-observations",
+          "productExecution": {
+            "localTest": "tests/production/full-content-validation-upstream.test.ts",
+            "NodeCases": 1,
+            "localD1Cases": 1,
+            "retainedExpectations": 2,
+            "envelope": "Registered Kit native HTTP, source success/error and receipts adapted; no REST/full-runtime transport credit.",
+            "sourceExpectationEvaluationsPerRuntime": 2
+          },
+          "assertions": [
+            {
+              "line": 161,
+              "expression": "expect(result.success).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/validation-issues.test.ts#L161"
+            },
+            {
+              "line": 163,
+              "expression": "expect(result.error.message).toBe(\n\t\t\t\"excerpt: Too big: expected string to have <=5 characters; related: target 'missing' not found in collection 'posts'\",\n\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/validation-issues.test.ts#L163"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/validation-issues.test.ts:168",
+          "title": "reports a required field cleared on update as required",
+          "suites": [
+            "content validation issues"
+          ],
+          "line": 168,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/validation-issues.test.ts#L168",
+          "registration": "it",
+          "registrationSha256": "aee27742d53c35c8b5933728cd8cc57247bf3364d6e14a5d23e70012a72b2219",
+          "expansion": [
+            {
+              "line": 19,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "adapted-native-observations",
+          "productExecution": {
+            "localTest": "tests/production/full-content-validation-upstream.test.ts",
+            "NodeCases": 1,
+            "localD1Cases": 1,
+            "retainedExpectations": 3,
+            "envelope": "Registered Kit native HTTP, source success/error and receipts adapted; no REST/full-runtime transport credit.",
+            "sourceExpectationEvaluationsPerRuntime": 5
+          },
+          "assertions": [
+            {
+              "line": 172,
+              "expression": "expect(created.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/validation-issues.test.ts#L172"
+            },
+            {
+              "line": 180,
+              "expression": "expect(result.success).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/validation-issues.test.ts#L180"
+            },
+            {
+              "line": 182,
+              "expression": "expect(issuesOf(result.error)).toEqual([\n\t\t\t\texpect.objectContaining({ path: \"title\", code: \"required\" }),\n\t\t\t])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/validation-issues.test.ts#L182"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    },
+    {
+      "path": "packages/core/tests/unit/runtime/manifest-build.test.ts",
+      "category": "content",
+      "stage": "native-transport",
+      "sourceBlob": "91f8fddb1472831b984034daa9776edd31d98e07",
+      "sourceSha256": "e354115e3146c3438fc52583676415bea8a408dfb24344aa41e0e52ec23fda5f",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/runtime/manifest-build.test.ts:158",
+          "title": "publishes the sidebar icon and group for database collections",
+          "suites": [
+            "generateManifest()"
+          ],
+          "line": 158,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L158",
+          "registration": "it",
+          "registrationSha256": "a575ff612507b8afa4a024857543a62b83593c17df906ec451720fa1df8d74d7",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "adapted-native-observations",
+          "productExecution": {
+            "localTest": "tests/production/full-content-manifest-upstream.test.ts",
+            "NodeCases": 1,
+            "localD1Cases": 1,
+            "retainedExpectations": 3,
+            "envelope": "Registered Kit native HTTP, source success/error and receipts adapted; no REST/full-runtime transport credit.",
+            "sourceExpectationEvaluationsPerRuntime": 3
+          },
+          "assertions": [
+            {
+              "line": 170,
+              "expression": "expect(manifest.collections.calendar_entries).toMatchObject({\n\t\t\ticon: \"calendar-blank\",\n\t\t\tgroup: \"Calendar\",\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L170"
+            },
+            {
+              "line": 174,
+              "expression": "expect(manifest.collections.team).not.toHaveProperty(\"icon\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L174"
+            },
+            {
+              "line": 175,
+              "expression": "expect(manifest.collections.team).not.toHaveProperty(\"group\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L175"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/runtime/manifest-build.test.ts:178",
+          "title": "publishes the dashboard quick-action opt-out only when set",
+          "suites": [
+            "generateManifest()"
+          ],
+          "line": 178,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L178",
+          "registration": "it",
+          "registrationSha256": "ecb569038d466cea22bae9982b728a9dc7e9f9afab58bf573b5c99ca77affb51",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "adapted-native-observations",
+          "productExecution": {
+            "localTest": "tests/production/full-content-manifest-upstream.test.ts",
+            "NodeCases": 1,
+            "localD1Cases": 1,
+            "retainedExpectations": 2,
+            "envelope": "Registered Kit native HTTP, source success/error and receipts adapted; no REST/full-runtime transport credit.",
+            "sourceExpectationEvaluationsPerRuntime": 2
+          },
+          "assertions": [
+            {
+              "line": 189,
+              "expression": "expect(manifest.collections.sync_runs?.quickCreate).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L189"
+            },
+            {
+              "line": 190,
+              "expression": "expect(manifest.collections.team).not.toHaveProperty(\"quickCreate\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L190"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/runtime/manifest-build.test.ts:257",
+          "title": "marks unknown database field types as unsupported",
+          "suites": [
+            "generateManifest()"
+          ],
+          "line": 257,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L257",
+          "registration": "it",
+          "registrationSha256": "00c4149d1009eaf5fb17270f5aa8a9a52747904c4ad3e890d80f671323560c2d",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "adapted-native-observations",
+          "productExecution": {
+            "localTest": "tests/production/full-content-manifest-upstream.test.ts",
+            "NodeCases": 1,
+            "localD1Cases": 1,
+            "retainedExpectations": 1,
+            "envelope": "Registered Kit native HTTP, source success/error and receipts adapted; no REST/full-runtime transport credit.",
+            "sourceExpectationEvaluationsPerRuntime": 1
+          },
+          "assertions": [
+            {
+              "line": 286,
+              "expression": "expect(manifest.collections.imports?.fields.payload).toMatchObject({\n\t\t\tkind: \"unsupported\",\n\t\t\tlabel: \"Payload\",\n\t\t\tunsupportedType: {\n\t\t\t\ttype: \"unknown_plugin_type\",\n\t\t\t\tpath: \"type\",\n\t\t\t},\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L286"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/runtime/manifest-build.test.ts:386",
+          "title": "includes field definitions built via the two-query JOIN (one collection)",
+          "suites": [
+            "EmDashRuntime.getManifest()"
+          ],
+          "line": 386,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L386",
+          "registration": "it",
+          "registrationSha256": "e6d7a5ddb67a13a2d31706f448312bfea9ecaaa5bc4c9571ea0f7aed7989d25a",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "adapted-native-observations",
+          "productExecution": {
+            "localTest": "tests/production/full-content-manifest-upstream.test.ts",
+            "NodeCases": 1,
+            "localD1Cases": 1,
+            "retainedExpectations": 3,
+            "envelope": "Registered Kit native HTTP, source success/error and receipts adapted; no REST/full-runtime transport credit.",
+            "sourceExpectationEvaluationsPerRuntime": 3
+          },
+          "assertions": [
+            {
+              "line": 401,
+              "expression": "expect(posts).toBeDefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L401"
+            },
+            {
+              "line": 402,
+              "expression": "expect(posts?.fields.title?.kind).toBe(\"string\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L402"
+            },
+            {
+              "line": 403,
+              "expression": "expect(posts?.fields.body?.kind).toBe(\"json\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L403"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/runtime/manifest-build.test.ts:406",
+          "title": "forwards declared validation on every field type",
+          "suites": [
+            "EmDashRuntime.getManifest()"
+          ],
+          "line": 406,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L406",
+          "registration": "it",
+          "registrationSha256": "b7034cae450b19d9c2ac00dd35438dc6d2adb933b2e0f75737e0d9d0ac72311e",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "adapted-native-observations",
+          "productExecution": {
+            "localTest": "tests/production/full-content-manifest-upstream.test.ts",
+            "NodeCases": 1,
+            "localD1Cases": 1,
+            "retainedExpectations": 4,
+            "envelope": "Registered Kit native HTTP, source success/error and receipts adapted; no REST/full-runtime transport credit.",
+            "sourceExpectationEvaluationsPerRuntime": 4
+          },
+          "assertions": [
+            {
+              "line": 437,
+              "expression": "expect(fields?.title?.validation).toEqual({ minLength: 3, maxLength: 80 })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L437"
+            },
+            {
+              "line": 438,
+              "expression": "expect(fields?.excerpt?.validation).toEqual({ maxLength: 160 })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L438"
+            },
+            {
+              "line": 439,
+              "expression": "expect(fields?.reading_minutes?.validation).toEqual({ min: 1, max: 60 })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L439"
+            },
+            {
+              "line": 440,
+              "expression": "expect(fields?.subtitle?.validation).toBeUndefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L440"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/runtime/manifest-build.test.ts:581",
+          "title": "publishes only supported, existing list columns and caps them at four",
+          "suites": [
+            "EmDashRuntime.getManifest()"
+          ],
+          "line": 581,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L581",
+          "registration": "it",
+          "registrationSha256": "130ffa2d2e4510d834661dc167f80739a47e5f5e5f018f183341eee4dd5f7cac",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "adapted-native-observations",
+          "productExecution": {
+            "localTest": "tests/production/full-content-manifest-upstream.test.ts",
+            "NodeCases": 1,
+            "localD1Cases": 1,
+            "retainedExpectations": 2,
+            "envelope": "Registered Kit native HTTP, source success/error and receipts adapted; no REST/full-runtime transport credit.",
+            "sourceExpectationEvaluationsPerRuntime": 2
+          },
+          "assertions": [
+            {
+              "line": 634,
+              "expression": "expect(manifest.collections.tickets?.listColumns).toEqual([\n\t\t\t\"ticket_number\",\n\t\t\t\"priority\",\n\t\t\t\"urgent\",\n\t\t\t\"queue\",\n\t\t])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L634"
+            },
+            {
+              "line": 640,
+              "expression": "expect(warn).toHaveBeenCalledTimes(3)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/runtime/manifest-build.test.ts#L640"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    }
+  ]
+}

@@ -23,6 +23,16 @@ export async function contentResponse<T>(run: () => Promise<T>): Promise<T> {
           cause.code === 'MIGRATION_REQUIRED' ? 503 : 409;
       const message = cause.code === 'UNAUTHENTICATED' ? 'unauthenticated' :
         cause.code === 'FORBIDDEN' ? 'forbidden' : cause.code === 'NOT_FOUND' ? 'not-found' : cause.code.toLowerCase().replaceAll('_', '-');
+      if (cause.code === 'VALIDATION_ERROR' && cause.details) {
+        // Only the domain validator's public issue keys cross the boundary.
+        // Never serialize exception stacks, SQL, Zod input or schema internals.
+        const issues = cause.details.issues.map(({ path, code, message, origin, minimum, maximum, format }) => ({
+          path, code, message,
+          ...(origin === undefined ? {} : { origin }), ...(minimum === undefined ? {} : { minimum }),
+          ...(maximum === undefined ? {} : { maximum }), ...(format === undefined ? {} : { format })
+        }));
+        error(status, { message: cause.message, code: cause.code, details: { issues } });
+      }
       error(status, { message, code: cause.code === 'FORBIDDEN' ? 'INSUFFICIENT_PERMISSIONS' : cause.code });
     }
     throw cause;

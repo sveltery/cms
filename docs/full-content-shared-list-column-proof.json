@@ -1,0 +1,80 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "verified": [
+    {
+      "sourcePath": "packages/core/src/api/handlers/manifest.ts",
+      "blob": "a8afe936152b9cc5d8a5c426fb98a4103b7612de"
+    },
+    {
+      "sourcePath": "packages/core/src/schema/registry.ts",
+      "blob": "da7bbcdda224dfca8d9146b2f36659ab90bcac2e"
+    },
+    {
+      "sourcePath": "packages/core/src/schema/block-values.ts",
+      "blob": "3c29fe8a9cd8a0846cb5873e78336a13aaaa67dc"
+    },
+    {
+      "sourcePath": "packages/core/src/schema/types.ts",
+      "blob": "0c2f44156cff829951c52b0dd259fc5ff45bc554"
+    },
+    {
+      "sourcePath": "packages/core/src/schema/url-pattern.ts",
+      "blob": "1b9776eb0ab18119c46bceeeff2459db555bc41e"
+    },
+    {
+      "sourcePath": "packages/core/src/utils/chunks.ts",
+      "blob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e"
+    },
+    {
+      "sourcePath": "packages/core/src/utils/db-errors.ts",
+      "blob": "d0a051ad9d48003eeeeb38dd9d5cb7cedf4140e5"
+    },
+    {
+      "sourcePath": "packages/core/src/utils/hash.ts",
+      "blob": "93db9df4a2b88692d5772fa5e32d309d7f23fab8"
+    }
+  ],
+  "source": {
+    "mappedType": "string",
+    "unsupportedType": {
+      "type": "unknown_plugin_type",
+      "path": "type"
+    },
+    "kind": "unsupported",
+    "listColumns": [
+      "payload"
+    ]
+  },
+  "local": [
+    {
+      "target": "Node",
+      "mappedType": "string",
+      "unsupportedType": {
+        "type": "unknown_plugin_type",
+        "path": "type"
+      },
+      "kind": "unsupported",
+      "listColumns": [
+        "payload"
+      ]
+    },
+    {
+      "target": "D1",
+      "mappedType": "string",
+      "unsupportedType": {
+        "type": "unknown_plugin_type",
+        "path": "type"
+      },
+      "kind": "unsupported",
+      "listColumns": [
+        "payload"
+      ]
+    }
+  ],
+  "unmodifiedSourceMethods": true,
+  "fixtureOnlyDependenciesThrowIfReached": true,
+  "sourceCredit": 0,
+  "localHead": "efb5d235f6d577a71e727446e602bafff3accb53",
+  "issueUrl": "https://github.com/sveltery/cms/issues/44",
+  "probeMethod": "Complete unchanged pinned source files; fixture-only SQLite driver and unreached dependency stubs; actual registered native HTTP queries on Node SQLite and local D1. Fixture helper path adapted to the author's installed worktree."
+}

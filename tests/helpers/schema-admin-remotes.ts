@@ -41,6 +41,8 @@ export async function schemaAdminRemotes(target: 'Node' | 'D1', mutationsEnabled
     for (const name of Object.keys(exports)) ids.set(name, `${hash}/${name}`);
   }
   let server = new Server(manifest); await server.init({ env: {} });
+  const encoders = Object.fromEntries(Object.entries(options.hooks.transport).map(([key, handler]) => [key, (handler as { encode: (value: unknown) => unknown }).encode]));
+  const decoders = Object.fromEntries(Object.entries(options.hooks.transport).map(([key, handler]) => [key, (handler as { decode: (value: unknown) => unknown }).decode]));
   const originalHandle = options.hooks.handle;
   const authenticatedHandle = createCmsHandle(() => ({ database: storage.database, mutationsEnabled }));
   let storageProbe: 'throw' | 'absent' | undefined;
@@ -87,7 +89,7 @@ export async function schemaAdminRemotes(target: 'Node' | 'D1', mutationsEnabled
   }
   async function remote(name: string, session: string | null = 'admin', input?: Record<string, string>, argument?: unknown) {
     assert.ok(ids.has(name), `registered remote: ${name}`);
-    const suffix = argument === undefined ? '' : `?payload=${Buffer.from(stringify(argument)).toString('base64url')}`;
+    const suffix = argument === undefined ? '' : `?payload=${Buffer.from(stringify(argument, encoders)).toString('base64url')}`;
     const response = await request(`/_app/remote/${ids.get(name)}${suffix}`, session, input ? {
       method: 'POST', headers: { origin }, body: new URLSearchParams(input)
     } : {});
@@ -95,17 +97,17 @@ export async function schemaAdminRemotes(target: 'Node' | 'D1', mutationsEnabled
     return response.json();
   }
   return {
-    ids, origin, base, tokens, request, remote,
+    ids, origin, base, tokens, request, remote, encoders, decoders,
     probeStorage(mode: 'throw' | 'absent' = 'throw') { storageProbe = mode; storageReads = 0; },
     get storageReads() { return storageReads; },
     get database() { return storage.database; },
     get registry() { return new SchemaRegistry(storage.database); },
     async query(name: string, argument?: unknown, session: string | null = 'admin') {
-      const result = await remote(name, session, undefined, argument); assert.equal(result.type, 'result', JSON.stringify(result)); return parse(result.data)._;
+      const result = await remote(name, session, undefined, argument); assert.equal(result.type, 'result', JSON.stringify(result)); return parse(result.data, decoders)._;
     },
     async mutate(name: string, input: Record<string, string>, session: string | null = 'admin') {
       const result = await remote(name, session, input); assert.equal(result.type, 'result', JSON.stringify(result));
-      const data = parse(result.data); assert.equal(data._.issues, undefined, JSON.stringify(data._.issues)); assert.equal(data._.submission, true); return data;
+      const data = parse(result.data, decoders); assert.equal(data._.issues, undefined, JSON.stringify(data._.issues)); assert.equal(data._.submission, true); return data;
     },
     async snapshot() {
       return {
