@@ -2,11 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { parse } from 'devalue';
 import { persistedRemotes } from '../helpers/persisted-remotes.ts';
-import { lifecycleMigration } from '../../src/lib/server/database/lifecycle-migrations.ts';
 import { lifecycleService } from '../../src/lib/server/database/lifecycle/service.ts';
 import { withRevision } from '../../src/lib/server/content/schema.ts';
 import { contentEntry } from '../../src/lib/server/lifecycle/schema.ts';
-import { sql } from 'kysely';
 import { RevisionRepository } from '../../src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts';
 
 // Supplemental native HTTP evidence. Source lifecycle assertions are preserved
@@ -20,11 +18,7 @@ const denied=(value:any,status:number,code:string)=>{
 test('registered lifecycle remotes enforce qualified tokens, permissions, origin and persisted revision transitions',async(t)=>{
   const fixture=await persistedRemotes({persistedSessions:true,mutationsEnabled:true});
   try {
-    // Central version-5 integration is owned separately. This explicit provider
-    // fixture proves native transport only; it is not startup-migration credit.
-    const installed=(await sql`SELECT name FROM sqlite_master WHERE name='_cms_revisions'`.execute(fixture.database.db)).rows.length;
-    if(!installed)await fixture.database.atomicBatch(await lifecycleMigration.statements(fixture.database));
-    for(const name of [...mutations,'listContentRevisions','getLifecycleContent'])assert.ok(fixture.ids.has(name),`registered ${name}`);
+    for(const name of [...mutations,'createLifecycleContent','listContentRevisions','getLifecycleContent'])assert.ok(fixture.ids.has(name),`registered ${name}`);
     const service=lifecycleService(fixture.database,actor,{after:()=>{}});
     const initial=await service.createContent({type:'post',data:{title:'Live first'},slug:'lifecycle-native'});
     const archived=await new RevisionRepository(fixture.database.db as any).create({collection:'post',entryId:initial.id,data:{title:'Archived'},authorId:'user_author'});
@@ -92,6 +86,36 @@ test('registered lifecycle remotes enforce qualified tokens, permissions, origin
       await fixture.restart();
       const after=await fixture.query('listContentRevisions',key);
       assert.deepEqual(after,before);
+    });
+    await t.test('unenhanced workflow forms retain locale, issues and the trusted display gate',async()=>{
+      const currentService=lifecycleService(fixture.database,actor,{after:()=>{}});
+      const french=await currentService.createContent({type:'post',locale:'fr',data:{title:'French workflow'},slug:'native-fr'});
+      const path=`/content/post/${french.id}/workflow?locale=fr`;
+      const read=async(session='author')=>{
+        const response=await fixture.request(path,session);assert.equal(response.status,200);return response.text();
+      };
+      const forms=(html:string)=>[...html.matchAll(/<form\b[^>]*action="([^"]+)"[^>]*>([\s\S]*?)<\/form>/g)].map(match=>({
+        action:match[1].replaceAll('&amp;','&'),html:match[2],
+        fields:Object.fromEntries([...match[2].matchAll(/<input\b[^>]*name="([^"]+)"[^>]*value="([^"]*)"[^>]*>/g)].map(value=>[value[1],value[2]]))
+      }));
+      const publish=forms(await read()).find(form=>form.html.includes('Publish now'))!;
+      assert.equal(publish.fields.locale,'fr');assert.equal(publish.fields._rev,token(french));
+      assert.doesNotMatch(publish.html,/<button[^>]*disabled/);
+      const contributor=forms(await read('contributor')).find(form=>form.html.includes('Publish now'))!;
+      assert.match(contributor.html,/<button[^>]*disabled/);
+      assert.match(await read('subscriber'),/Content is unavailable/);
+      const submit=async(fields:Record<string,string>)=>{
+        const action=new URL(publish.action,`http://cms.test${path}`);
+        return fixture.request(`${action.pathname}${action.search}`,'author',{
+          method:'POST',headers:{origin:'http://cms.test',accept:'text/html'},body:new URLSearchParams(fields)
+        });
+      };
+      const invalid=await submit({...publish.fields,_rev:''});assert.equal(invalid.status,200);
+      assert.match(await invalid.text(),/role="alert"/);
+      const success=await submit(publish.fields);assert.equal(success.status,200);
+      assert.match(await success.text(),/Status: published/);
+      assert.equal((await currentService.getContent({type:'post',id:french.id,locale:'fr'})).status,'published');
+      assert.equal((await submit(publish.fields)).status,409);
     });
   } finally {await fixture.close();}
 });

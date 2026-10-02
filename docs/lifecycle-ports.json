@@ -295,5 +295,13 @@
     "initial": "Legacy createContent omitted slug semantics differed from source; initial1pass4assertion-fail was an incomplete fixture and is superseded.",
     "corrected": "Native createLifecycleContent calls actual lifecycle service automatic slug creation. With both publish permissions and publication-date guard withheld:1pass4ERR_ASSERTION,0setup failures,5cases includingall3datasets.",
     "log": "/tmp/cms-lifecycle-publish-permissions-corrected-red.log"
+  },
+  "canonicalIntegration": {
+    "serviceCheckpoint": "41d1185f0120e31cfe988d56b2ca03ba89c45f4f",
+    "publishedProviderCheckpoint": "cf93405356c4bf6e1a75d7cfb4b78abd9a576523",
+    "canonicalProductOriginal": "52ea37a7f5da9a3e5a82a53960d5ba3e46fd035c",
+    "manualFixtureDDL": false,
+    "supplementalRequirements": "tests/lifecycle-canonical-storage.test.ts uses actual lifecycle services after fresh/v4 canonical startup on Node SQLite/local workerd D1, with rollback and persistent reopen; zero copied declaration credit.",
+    "nativeRegression": "French unenhanced workflow actions originally dropped locale query on POST; preserved regression failed at issue-display assertion before action fix."
   }
 }
