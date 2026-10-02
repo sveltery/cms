@@ -22,7 +22,7 @@ export async function passkeyRuntime(target: 'Node' | 'D1' = 'Node') {
   async function start() {
     output = '';
     child = spawn(process.execPath, ['tests/helpers/passkey-runtime-server.mjs'], {
-      cwd: new URL('../../', import.meta.url), stdio: ['ignore', 'pipe', 'pipe'],
+      cwd: new URL('../../', import.meta.url), stdio: ['ignore', 'pipe', 'pipe', 'ipc'],
       env: { PATH: process.env.PATH, CMS_AUTH_TARGET: target, CMS_AUTH_DIRECTORY: directory,
         SVELTERY_PUBLIC_ORIGIN: origin,
         ...(target === 'Node' ? { SVELTERY_DATABASE_PATH: join(directory, 'schema.sqlite') } : {}) }
@@ -39,7 +39,7 @@ export async function passkeyRuntime(target: 'Node' | 'D1' = 'Node') {
   }
   async function stop() {
     if (!child || child.exitCode !== null) return;
-    child.kill('SIGTERM'); const timer = setTimeout(() => child.kill('SIGKILL'), 5_000);
+    child.send({ type: 'close' }); const timer = setTimeout(() => child.kill('SIGKILL'), 5_000);
     try { const [code] = await exited; assert.equal(code, 0, output); } finally { clearTimeout(timer); }
   }
   await start();
