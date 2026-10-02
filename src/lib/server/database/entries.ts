@@ -18,11 +18,19 @@ function entry(type: string, row: EntryRow, fields: Field[]): DraftEntry {
     locale: row.locale, version: row.version, createdAt: row.created_at, updatedAt: row.updated_at, data };
 }
 function validateData(fields: Field[], data: Record<string, string | null>, partial: boolean) {
+  // Pinned zod-generator.ts builds every truthy pattern before parsing data.
+  // Preserve eager legacy SyntaxError even for omitted/null/untouched fields.
+  // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
+  const patterns = new Map<string, RegExp>();
+  for (const field of fields) if (field.validation?.pattern) {
+    patterns.set(field.slug, new RegExp(field.validation.pattern));
+  }
   const known = new Map(fields.map(field => [field.slug, field]));
   for (const [key, value] of Object.entries(data)) {
     const field = known.get(key);
     if (!field || (field.required && (value === null || value === '')) ||
-      (typeof value === 'string' && (value.length < (field.validation?.minLength ?? 0) || value.length > fieldMax(field)))) {
+      (typeof value === 'string' && (value.length < (field.validation?.minLength ?? 0) || value.length > fieldMax(field)
+        || patterns.get(key)?.test(value) === false))) {
       throw new CmsError('VALIDATION_ERROR');
     }
   }

@@ -1,5 +1,5 @@
 import * as v from 'valibot';
-import { identifier } from './validation.ts';
+import { fieldPattern, identifier } from './validation.ts';
 
 // Bounded string/text subset of EmDash 1.1.0 api/schemas/schema.ts:232.
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
@@ -11,7 +11,7 @@ const length = v.pipe(v.number(), v.safeInteger(), v.minValue(0));
 const objectInput = v.custom<Record<string, unknown>>(value => value !== null
   && typeof value === 'object' && !Array.isArray(value));
 export const fieldEditValidation = v.pipe(objectInput, v.strictObject({
-  minLength: v.optional(length), maxLength: v.optional(length)
+  minLength: v.optional(length), maxLength: v.optional(length), pattern: v.optional(fieldPattern)
 }), v.forward(v.check(value => value.minLength === undefined || value.maxLength === undefined
   || value.minLength <= value.maxLength, 'maxLength must be greater than or equal to minLength'), ['maxLength']));
 const entries = {

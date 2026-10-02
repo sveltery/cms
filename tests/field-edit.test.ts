@@ -120,7 +120,7 @@ for (const target of ['Node', 'D1'] as const) {
         { defaultValue: null }, { defaultValue: 0 }, { validation: [] },
         { validation: { minLength: -1 } }, { validation: { maxLength: 1.5 } },
         { validation: { minLength: Number.MAX_SAFE_INTEGER + 1 } }, { validation: { maxLength: 1e100 } },
-        { validation: { minLength: 2, maxLength: 1 } }, { validation: { pattern: '.' } },
+        { validation: { minLength: 2, maxLength: 1 } }, { validation: { pattern: '[' } },
         { type: 'text' }, { required: true }, { unique: false }, { widget: 'text' }, { indexed: true },
         { translatable: false }, { expected: { version: 1 } }]) {
         await assert.rejects(() => f.registry.updateField('posts', 'title', input), { code: 'VALIDATION_ERROR' });

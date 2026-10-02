@@ -45,7 +45,7 @@ export interface Collection {
 export interface Field {
   id: string; collectionId: string; slug: string; label: string;
   type: 'string' | 'text'; columnType: 'TEXT'; required: boolean; unique: boolean;
-  defaultValue?: string; validation: { minLength?: number; maxLength?: number } | null;
+  defaultValue?: string; validation: { minLength?: number; maxLength?: number; pattern?: string } | null;
   sortOrder: number; createdAt: string;
 }
 export interface DraftEntry {

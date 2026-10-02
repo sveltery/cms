@@ -13,7 +13,7 @@ export interface EditorField {
   kind: 'string' | 'richText';
   label: string;
   required: boolean;
-  validation?: { minLength?: number; maxLength?: number };
+  validation?: { minLength?: number; maxLength?: number; pattern?: string };
 }
 export interface EditorCollection {
   label: string;
@@ -67,7 +67,8 @@ export async function editorManifest(database: CmsDatabase, principal: ServerPri
         id: field.id, kind: field.type === 'text' ? 'richText' : 'string', label: field.label, required: field.required === 1,
         ...(validation ? { validation: {
           ...(validation.minLength === undefined ? {} : { minLength: validation.minLength }),
-          ...(validation.maxLength === undefined ? {} : { maxLength: validation.maxLength })
+          ...(validation.maxLength === undefined ? {} : { maxLength: validation.maxLength }),
+          ...(validation.pattern === undefined ? {} : { pattern: validation.pattern })
         } } : {})
       };
     }

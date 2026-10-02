@@ -20,11 +20,17 @@ export const collectionMetadataInput = v.pipe(v.custom<Record<string, unknown>>(
   supports: v.optional(v.pipe(v.array(v.picklist(['drafts', 'revisions'])), v.maxLength(2)))
 }));
 const length = v.pipe(v.number(), v.integer(), v.minValue(0), v.maxValue(100_000));
+// EmDash 1.1.0 api/schemas/schema.ts fieldValidation: exact JavaScript source,
+// no slash/flag interpretation. Empty source is valid metadata.
+// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
+export const fieldPattern = v.pipe(v.string(), v.check(value => {
+  try { new RegExp(value); return true; } catch { return false; }
+}, 'Invalid validation pattern'));
 export const fieldInput = v.strictObject({
   slug: identifier, label, type: v.picklist(['string', 'text']),
   required: v.optional(v.boolean(), false), unique: v.optional(v.boolean(), false),
   defaultValue: v.optional(v.pipe(v.string(), v.maxLength(100_000), v.check(value => !value.includes('\0')))),
-  validation: v.optional(v.strictObject({ minLength: v.optional(length), maxLength: v.optional(length) }))
+  validation: v.optional(v.strictObject({ minLength: v.optional(length), maxLength: v.optional(length), pattern: v.optional(fieldPattern) }))
 });
 // EmDash's update-field label is nonempty, with no trimming or creation-label bound.
 export const fieldLabelInput = v.strictObject({ label: v.pipe(v.string(), v.minLength(1)) });
