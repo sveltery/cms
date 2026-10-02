@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { stripVTControlCharacters } from 'node:util';
 
 test('base-prefixed production routes resolve SSR navigation targets and retain denial boundaries', { timeout: 90_000 }, async () => {
   const origin = 'http://127.0.0.1:4176';
@@ -15,7 +16,7 @@ test('base-prefixed production routes resolve SSR navigation targets and retain 
       const timeout = setTimeout(() => reject(new Error(`Base-path preview startup timed out\n${output}`)), 75_000);
       const record = (chunk: Buffer) => {
         output += chunk.toString();
-        if (output.includes(`${origin}/cms`)) {
+        if (stripVTControlCharacters(output).includes(`${origin}/cms`)) {
           clearTimeout(timeout);
           resolve();
         }
