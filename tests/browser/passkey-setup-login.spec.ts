@@ -5,11 +5,25 @@
 import { expect, test } from '@playwright/test';
 import { passkeyRuntime } from '../helpers/passkey-runtime';
 import { addVirtualWebAuthnAuthenticator } from '../helpers/virtual-authenticator';
+import { identityAdapter } from '../../src/lib/server/auth/identity-store';
+import { verifyAuthenticationResponse } from '../../src/lib/server/auth/vendor/passkey/authenticate';
+import type { AuthenticationResponse } from '../../src/lib/server/auth/vendor/passkey/types';
 
 test('real passkey setup then login persists role/session across process restart and logout', async ({ page }) => {
   test.setTimeout(90_000);
   const h = await passkeyRuntime('Node');
   const removeAuth = await addVirtualWebAuthnAuthenticator(page);
+  let attemptedAssertion: Promise<AuthenticationResponse | null> | undefined;
+  page.on('request', request => {
+    if (!request.url().includes('/completeLogin')) return;
+    attemptedAssertion = (async () => {
+      const body = request.postDataBuffer();
+      if (!body) return null;
+      const form = await new Response(body.toString(), { headers: { 'content-type': request.headers()['content-type'] } }).formData();
+      const credential = form.get('credential');
+      return typeof credential === 'string' ? JSON.parse(credential) : null;
+    })().catch(() => null);
+  });
   try {
     await page.goto(`${h.origin}/setup`);
     await expect(page.getByLabel('Email')).toBeVisible({ timeout: 3_000 });
@@ -41,5 +55,23 @@ test('real passkey setup then login persists role/session across process restart
     expect((await (await h.database()).db.selectFrom('_cms_auth_sessions').selectAll().execute())).toHaveLength(0);
     await expect(page.locator('text=Registration was cancelled or timed out')).toHaveCount(0);
     await expect(page.locator('text=Invalid origin')).toHaveCount(0);
+  } catch (cause) {
+    const assertion = await attemptedAssertion;
+    if (assertion) {
+      const database = await h.database();
+      const credential = await identityAdapter(database).getCredentialById(assertion.id);
+      let diagnosis = 'credential_not_found';
+      if (credential) {
+        try {
+          // Isolated algorithm diagnostic with the captured real assertion. This
+          // does not replace the product verifier or retry the failed workflow.
+          await verifyAuthenticationResponse({ rpId: new URL(h.origin).hostname, rpName: 'Sveltery CMS', origins: [h.origin] }, assertion, credential,
+            { set: async () => {}, delete: async () => {}, get: async () => ({ type: 'authentication', expiresAt: Date.now() + 300_000 }) });
+          diagnosis = 'captured_assertion_passes_source_algorithm_with_reference_challenge';
+        } catch (error) { diagnosis = error && typeof error === 'object' && 'code' in error ? String(error.code) : 'unexpected_algorithm_error'; }
+      }
+      await test.info().attach('passkey-failure-diagnostic', { body: JSON.stringify({ diagnosis, storedCounter: credential?.counter, algorithm: credential?.algorithm }), contentType: 'application/json' });
+    }
+    throw cause;
   } finally { await removeAuth(); await h.close(); }
 });
