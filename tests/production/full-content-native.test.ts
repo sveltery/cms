@@ -105,4 +105,23 @@ for (const target of ['Node', 'D1'] as const) {
       assert.deepEqual((await sql`SELECT * FROM ec_typed`.execute(h.database.db)).rows, []);
     } finally { await h.close(); }
   });
+
+  test(`${target}: enhanced payloads reject values JSON would silently drop or coerce`, async () => {
+    const h = await fixture(target);
+    try {
+      const invalid = [
+        { nested: undefined }, { nested: NaN }, { nested: Infinity },
+        { nested: new Date('2026-09-18T10:00:00Z') }, { nested: new Map([['key', 'value']]) },
+        { nested: new Array(1) }, { nested: 1n }
+      ];
+      for (const value of invalid) {
+        const response = await enhanced(h, 'createContent', { collection: 'typed', data: { value_json: value } });
+        assert.equal(response.type, 'result');
+        const submission = parse(response.data)._;
+        assert.ok(submission.issues?.length, 'unsafe JSON must reject before domain/storage');
+        assert.equal(submission.result, undefined);
+        assert.deepEqual((await sql`SELECT * FROM ec_typed`.execute(h.database.db)).rows, []);
+      }
+    } finally { await h.close(); }
+  });
 }
