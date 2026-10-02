@@ -16,16 +16,16 @@ test('native D1 runtime scopes each request and commits its authenticated bookma
   };
   const runtime = createCmsRuntime(() => ({ kind: 'd1', binding, publicOrigin: 'https://cms.example', d1: { binding: 'CMS_DB', session: 'auto', coalesce: true } } as never));
   const cookies = new Map<string, string>();
-  const event = { request: new Request('https://cms.example/'), url: new URL('https://cms.example/'), locals: {}, cookies: { get: (name: string) => cookies.get(name), set: (name: string, value: string) => cookies.set(name, value) } } as unknown as RequestEvent;
+  const event = { request: new Request('https://cms.example/'), url: new URL('https://cms.example/'), locals: {}, cookies: { get: (name: string) => cookies.get(name), set: (name: string, value: string) => cookies.set(name, value), serialize: (name: string, value: string) => `${name}=${value}; Path=/; HttpOnly; Secure` } } as unknown as RequestEvent;
   try {
-    await runtime.handle({ event, resolve: async request => {
+    const response = await runtime.handle({ event, resolve: async request => {
       await request.locals.cms!.database.db.selectFrom('_cms_migrations').select('version').execute();
       // A successful native auth endpoint sets an ordinary opaque session cookie.
       request.cookies.set('cms-session', 'new-opaque-session', { path: '/' });
       return new Response('ok');
     } });
     assert.deepEqual(constraints, ['first-unconstrained']);
-    assert.ok(cookies.get('__em_d1_bookmark'));
+    assert.match(response.headers.get('set-cookie') ?? '', /__em_d1_bookmark=.+HttpOnly/);
   } finally { await runtime.close(); await worker.dispose(); }
 });
 

@@ -1,7 +1,13 @@
 # Native Cloudflare D1 runtime
 
-This feature adds a real adapter-cloudflare build and local workerd/D1 execution. It extends the approved configured Node/raw-D1 runtime without provisioning external resources. Implementation and final validation are pending.
+This feature adds an official adapter-cloudflare build and local workerd/D1 execution. It extends the configured Node/raw-D1 runtime without provisioning external resources. Final-head CI, independent review and project-manager approval remain pending.
 
 Pinned EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e` supplies the D1 request bookmark, session guard, coalescing and missing-binding assertions. [The source ledger](cloudflare-runtime-ports.json) records exact blobs and truthful test-first evidence. The first actual baseline runs fourteen complete declarations: three pass and eleven fail at assertions. Nine guard declarations are copied before implementation but receive no baseline red credit because that API is absent.
 
 D1 REST migration CLI, the complete upstream migration-lock universe and other hosting adapters remain future scope. Canonical local migrations continue through the existing reviewed provider; this feature does not rename upstream migration assertions to claim coverage. Local Worker execution is separate from deployed Cloudflare evidence.
+
+The native hook resolves the stored session on the raw binding before selecting a request-scoped D1 session. Writes use `first-primary`; authenticated reads can resume a valid opaque bookmark. The source hang guard and coalescing driver retain their pinned algorithms. Anonymous requests omit bookmark cookies; a request that issues the ordinary session cookie can persist its bookmark.
+
+SvelteKit forbids `cookies.set` after `resolve` has generated a response. The built-Worker test exposed an actual HTTP 500 at bookmark commit before the repair. The native boundary now uses Kit's cookie serializer and appends the serialized bookmark to the returned response, retaining the source path, HttpOnly, SameSite and protocol-dependent Secure options and commit timing. This is the RT2-03 framework substitution, with no changed source expectations. A prior unconfigured-fixture expectation of 503 was incorrect: the existing remote boundary returns 401/UNAUTHENTICATED. That fixture correction earns no red credit. Earlier Miniflare import/setup failures likewise earn none.
+
+Recovery verification on the saved tree passed all 23 complete source declarations and five supplemental tests, including the actual bundled Worker HTTP boundary, persisted D1 reopen, current-role changes, disabled/revoked sessions, waitUntil forwarding and the outgoing bookmark. These checks do not establish full auth provisioning or deployed availability.

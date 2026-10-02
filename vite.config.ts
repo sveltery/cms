@@ -1,10 +1,12 @@
 import adapter from '@sveltejs/adapter-auto';
 import node from '@sveltejs/adapter-node';
-import cloudflare from '@sveltejs/adapter-cloudflare';
 import { fileURLToPath } from 'node:url';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { defineConfig } from 'vite';
+
+const cloudflare = process.env.SVELTERY_ADAPTER === 'cloudflare' ?
+  (await import('@sveltejs/adapter-cloudflare')).default : undefined;
 
 export default defineConfig({
   plugins: [
@@ -20,7 +22,7 @@ export default defineConfig({
     preprocess: vitePreprocess(),
     compilerOptions: { experimental: { async: true } },
     adapter: process.env.SVELTERY_ADAPTER === 'node' ? node({ out: 'build/node' }) :
-      process.env.SVELTERY_ADAPTER === 'cloudflare' ? cloudflare({ config: 'wrangler.jsonc', platformProxy: { configPath: 'wrangler.jsonc' } }) : adapter(),
+      process.env.SVELTERY_ADAPTER === 'cloudflare' ? cloudflare!({ config: 'wrangler.jsonc', platformProxy: { configPath: 'wrangler.jsonc' } }) : adapter(),
     experimental: { remoteFunctions: true }
   })]
 });

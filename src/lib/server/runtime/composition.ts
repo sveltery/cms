@@ -124,13 +124,14 @@ export function createCmsRuntime(
             return typeof value === 'function' ? value.bind(target) : value;
           } });
           const isAuthenticated = !!event.locals.cms?.principal;
+          const bookmarks: string[] = [];
           const scoped = createRequestScopedDb({
             config: config.d1, binding: config.binding as D1Database,
             isAuthenticated, endedAuthenticated: () => isAuthenticated || outgoingSession,
             isWrite: !['GET', 'HEAD'].includes(event.request.method), url: event.url,
             cookies: {
               get: name => { const value = cookies.get(name); return value === undefined ? undefined : { value }; },
-              set: (name, value, options) => cookies.set(name, value, options as unknown as Parameters<typeof cookies.set>[2])
+              set: (name, value, options) => bookmarks.push(cookies.serialize(name, value, options as unknown as Parameters<typeof cookies.serialize>[2]))
             }
           });
           try {
@@ -144,6 +145,13 @@ export function createCmsRuntime(
               throw cause;
             }
             scoped.commit();
+            // Kit forbids cookies.set after resolve. Serialization plus response headers
+            // preserves the pinned commit timing and cookie options on the native boundary.
+            if (bookmarks.length) {
+              const headers = new Headers(response.headers);
+              for (const bookmark of bookmarks) headers.append('set-cookie', bookmark);
+              response = new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+            }
             // D1 has no connection teardown. Stream/deferred readers retain this request's db.
             return response;
           } finally { event.cookies = cookies; }
