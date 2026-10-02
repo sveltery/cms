@@ -30,7 +30,7 @@ for (const target of ['Node', 'D1'] as const) {
           if (cause instanceof Error && 'code' in cause && cause.code === 'VALIDATION_ERROR') return { ok: false };
           throw cause;
         }
-      }, true);
+      });
       const before = await scalarSnapshot(h.database.db, registry);
       await h.close();
       h = await schemaAdminStorage(target, directory);
@@ -108,7 +108,7 @@ for (const target of ['Node', 'D1'] as const) {
     } finally { await h.close(); }
   });
 
-  test(target + ': metadata defaults and unenforced uniqueness round-trip through content; required empty-string divergence stays explicit', async () => {
+  test(target + ': metadata defaults and unenforced uniqueness round-trip through content; required empty strings are rejected', async () => {
     const h = await schemaAdminStorage(target);
     try {
       await migrateCms(h.database);
@@ -125,10 +125,8 @@ for (const target of ['Node', 'D1'] as const) {
       assert.equal((await registry.getField('posts', 'optional_value'))!.defaultValue, "O'Brien");
       const updated = await service.updateDraft({ type: 'posts', id: b.id, expected: { version: b.version, updatedAt: b.updatedAt }, data: { required_value: 'same', optional_value: null } });
       assert.equal(updated.data.required_value, a.data.required_value); assert.equal(updated.data.optional_value, null);
-      // Deliberately divergent assertion: pinned handlers reject required ''.
-      const empty = await service.createDraft({ type: 'posts', data: { required_value: '' } });
-      assert.equal(empty.data.required_value, '');
-      assert.equal((await service.updateDraft({ type: 'posts', id: empty.id, expected: { version: empty.version, updatedAt: empty.updatedAt }, data: { required_value: '' } })).data.required_value, '');
+      await assert.rejects(() => service.createDraft({ type: 'posts', data: { required_value: '' } }), { code: 'VALIDATION_ERROR' });
+      await assert.rejects(() => service.updateDraft({ type: 'posts', id: a.id, expected: { version: a.version, updatedAt: a.updatedAt }, data: { required_value: '' } }), { code: 'VALIDATION_ERROR' });
     } finally { await h.close(); }
   });
 }
