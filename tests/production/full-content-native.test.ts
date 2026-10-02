@@ -29,7 +29,7 @@ async function fixture(target: 'Node' | 'D1') {
   } catch (error) { await h.close(); throw error; }
 }
 async function enhanced(h: Awaited<ReturnType<typeof fixture>>, name: string, input: unknown, session = 'author') {
-  const header = new TextEncoder().encode(stringify([input, { remote_refreshes: [] }]));
+  const header = new TextEncoder().encode(stringify([input, { remote_refreshes: [] }], h.encoders));
   const offsets = new TextEncoder().encode('[]'); const prefix = new Uint8Array(7);
   new DataView(prefix.buffer).setUint32(1, header.length, true); new DataView(prefix.buffer).setUint16(5, offsets.length, true);
   const response = await h.request(`/_app/remote/${h.ids.get(name)}`, session, {
@@ -87,6 +87,51 @@ for (const target of ['Node', 'D1'] as const) {
       await h.database.db.updateTable('_cms_auth_users').set({ role: Role.SUBSCRIBER }).where('id', '=', 'schema_author').execute();
       assert.deepEqual(await enhanced(h, 'updateContent', { ...key, data: { value_number: 'invalid' } }), denied);
       assert.deepEqual((await sql`SELECT * FROM ec_typed`.execute(h.database.db)).rows, before);
+    } finally { await h.close(); }
+  });
+
+  test(`${target}: enhanced own-key JSON and legacy JSON-looking strings preserve their exact values on read`, async () => {
+    const h = await fixture(target);
+    try {
+      const ownKeys = JSON.parse('{"__proto__":{"constructor":{"prototype":["safe",null]}},"nested":[{"__proto__":{"allowed":true}}]}');
+      const receipt = result(await enhanced(h, 'createContent', { collection: 'typed', data: { value_json: ownKeys } }));
+      const key = { collection: 'typed', id: receipt.id };
+      let item = await h.query('getContent', key, 'author');
+      assert.deepEqual(item.data.value_json, ownKeys);
+      assert.ok(Object.hasOwn(item.data.value_json, '__proto__'));
+      assert.equal(Object.getPrototypeOf(item.data.value_json), Object.prototype);
+      const updated = result(await enhanced(h, 'updateContent', { ...key, _rev: receipt._rev,
+        data: { value_json: { children: [ownKeys] } } }));
+      assert.notEqual(updated._rev, receipt._rev);
+      item = await h.query('getContent', key, 'author');
+      assert.deepEqual(item.data.value_json, { children: [ownKeys] });
+      // Source deserializeValue also parses old string fields that look like JSON.
+      await sql`UPDATE ec_typed SET value_json = ${JSON.stringify(ownKeys)}, value_string = ${JSON.stringify(ownKeys)} WHERE id = ${receipt.id}`.execute(h.database.db);
+      await h.restart();
+      item = await h.query('getContent', key, 'author');
+      assert.deepEqual(item.data.value_json, ownKeys);
+      assert.deepEqual(item.data.value_string, ownKeys);
+      assert.ok(Object.hasOwn(item.data.value_string, '__proto__'));
+      assert.equal(Object.getPrototypeOf(item.data.value_string), Object.prototype);
+      assert.equal(({} as Record<string, unknown>).allowed, undefined);
+    } finally { await h.close(); }
+  });
+
+  test(`${target}: malformed own-key decoder payload rejects before writing`, async () => {
+    const h = await fixture(target);
+    try {
+      for (const encoded of ['{', 'null', '[]', '{"__proto__":1e400}', '{"ordinary":true}']) {
+        const custom = stringify([{ collection: 'typed', data: { value_json: { marker: true } } }, { remote_refreshes: [] }], {
+          CmsJsonOwnKeys: value => value && typeof value === 'object' && Object.hasOwn(value, 'marker') ? encoded : false
+        });
+        const header = new TextEncoder().encode(custom); const offsets = new TextEncoder().encode('[]');
+        const prefix = new Uint8Array(7); new DataView(prefix.buffer).setUint32(1, header.length, true); new DataView(prefix.buffer).setUint16(5, offsets.length, true);
+        const response = await h.request(`/_app/remote/${h.ids.get('createContent')}`, 'author', {
+          method: 'POST', headers: { origin: h.origin, 'content-type': 'application/x-sveltekit-formdata' }, body: new Blob([prefix, header, offsets])
+        });
+        assert.ok(response.status >= 400);
+        assert.deepEqual((await sql`SELECT * FROM ec_typed`.execute(h.database.db)).rows, []);
+      }
     } finally { await h.close(); }
   });
 
