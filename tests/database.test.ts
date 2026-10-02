@@ -15,6 +15,24 @@ const admin: ServerPrincipal = { id: 'admin', permissions: ['schema:read', 'sche
 const conflict = (cause: unknown) => cause instanceof CmsError && cause.code === 'CONFLICT';
 const invalid = (cause: unknown) => cause instanceof CmsError && cause.code === 'VALIDATION_ERROR';
 const expected = (entry: { version: number; updatedAt: string }) => ({ version: entry.version, updatedAt: entry.updatedAt });
+
+test('mutation authorization precedes hostile input access and storage; permitted callers still validate', async () => {
+  const database = openSqlite(':memory:');
+  try {
+    const input = new Proxy({}, { get() { throw new Error('input inspected'); }, ownKeys() { throw new Error('input inspected'); } });
+    for (const [principal, code] of [
+      [null, 'UNAUTHENTICATED'],
+      [{ id: 'reader', permissions: ['content:read'] }, 'FORBIDDEN']
+    ] as const) {
+      const service = cmsService(database, principal);
+      await assert.rejects(() => service.updateDraft(input), { code });
+      await assert.rejects(() => service.deleteDraft(input), { code });
+    }
+    const permitted = cmsService(database, admin);
+    await assert.rejects(() => permitted.updateDraft({}), { code: 'VALIDATION_ERROR' });
+    await assert.rejects(() => permitted.deleteDraft({}), { code: 'VALIDATION_ERROR' });
+  } finally { await database.close(); }
+});
 async function fixture(path = ':memory:') {
   const database = openSqlite(path); await migrateCms(database);
   const schema = new SchemaRegistry(database);

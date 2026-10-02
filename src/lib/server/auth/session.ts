@@ -48,6 +48,10 @@ function tokenBytes(token: string): Uint8Array<ArrayBuffer> | null {
 export async function hashSessionToken(token: string): Promise<string | null> {
   const bytes = tokenBytes(token);
   if (!bytes) return null;
+  return hashTokenBytes(bytes);
+}
+
+async function hashTokenBytes(bytes: Uint8Array<ArrayBuffer>): Promise<string> {
   return encodeBase64urlNoPadding(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)));
 }
 
@@ -56,10 +60,11 @@ export async function resolvePrincipal(
   store: SessionStore | undefined,
   options: SessionReadOptions & { now?: () => number } = {}
 ): Promise<SessionPrincipal | null> {
-  if (!store || typeof token !== 'string' || !tokenBytes(token)) return null;
+  if (!store || typeof token !== 'string') return null;
+  const bytes = tokenBytes(token);
+  if (!bytes) return null;
   const snapshot = await resolveSessionUser({ async get() {
-    const hash = await hashSessionToken(token);
-    return hash ? store.read(hash) : null;
+    return store.read(await hashTokenBytes(bytes));
   } }, options.timeoutMs, options.keepAlive);
   const now = (options.now ?? Date.now)();
   if (!snapshot || !Number.isFinite(now) || !Number.isFinite(snapshot.expiresAt) || snapshot.expiresAt <= now) return null;
