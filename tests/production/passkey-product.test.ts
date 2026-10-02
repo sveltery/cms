@@ -45,14 +45,23 @@ for (const target of ['Node', 'D1'] as const) {
       assert.equal(sessions.length, 1); assert.equal(sessions[0].hash, await hashSessionToken(token));
       assert.notEqual(sessions[0].hash, token);
       assert.equal((await state.browser.query('listSchemaCollections')).envelope.type, 'result');
+      const me = await state.browser.get('/api/auth/me?userId=attacker');
+      assert.equal(me.status, 200);
+      const profile = (await me.json()).data;
+      assert.equal(profile.id, state.user.id); assert.equal(profile.email, 'admin@example.com');
+      assert.equal(profile.name, 'Real Admin'); assert.equal(profile.role, 50);
+      assert.equal(profile.isFirstLogin, true);
+      assert.equal((await h.browser().get('/api/auth/me', { 'x-cms-user': state.user.id, 'x-cms-role': '50' })).status, 401);
       await h.restart();
       assert.equal((await state.browser.query('listSchemaCollections')).envelope.type, 'result');
       const reopened = await h.database();
       await reopened.db.updateTable('_cms_auth_users').set({ role: 10 }).where('id', '=', state.user.id).execute();
       const denied = await state.browser.query('listSchemaCollections');
       assert.equal(denied.envelope.status, 403);
+      assert.equal((await (await state.browser.get('/api/auth/me')).json()).data.role, 10);
       await reopened.db.updateTable('_cms_auth_users').set({ role: 50, disabled: 1 }).where('id', '=', state.user.id).execute();
       assert.equal((await state.browser.query('listSchemaCollections')).envelope.status, 401);
+      assert.equal((await state.browser.get('/api/auth/me')).status, 401);
     } finally { await h.close(); }
   });
   test(`${target}: login rotates predecessor, consumes challenge, and POST logout revokes authority`, async () => {
@@ -93,7 +102,7 @@ for (const target of ['Node', 'D1'] as const) {
       assert.equal((await state.browser.post('/api/auth/passkey/verify', payload)).status, 200);
       assert.equal((await state.browser.post('/api/auth/passkey/verify', payload)).status, 401);
       assert.equal((await db.db.selectFrom('_cms_auth_sessions').selectAll().execute()).length, 1);
-      await db.db.updateTable('_cms_auth_sessions').set({ expires_at: 0 }).execute();
+      await db.db.updateTable('_cms_auth_sessions').set({ expires_at: 1 }).execute();
       assert.equal((await state.browser.query('listSchemaCollections')).envelope.status, 401);
     } finally { await h.close(); }
   });
