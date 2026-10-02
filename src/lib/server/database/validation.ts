@@ -62,6 +62,7 @@ export const deleteDraftInput = v.strictObject({ type: identifier, id: entryId, 
 export const getDraftInput = v.strictObject({ type: identifier, id: entryId, locale: v.optional(localeInput, 'en') });
 // Trash reads deliberately leave locale absent: omission includes every locale.
 export const getTrashedDraftInput = v.strictObject({ type: identifier, id: entryId, locale: v.optional(localeInput) });
+export const countTrashedDraftInput = v.strictObject({ type: identifier, locale: v.optional(localeInput) });
 export const listTrashedDraftInput = v.strictObject({
   type: identifier, locale: v.optional(localeInput),
   cursor: v.optional(v.string()),

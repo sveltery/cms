@@ -4,7 +4,7 @@ import { CmsError, type CmsDatabase } from './contract.ts';
 import { DraftRepository } from './entries.ts';
 import { SchemaRegistry } from './registry.ts';
 import { updateFieldInput } from './field-edit-validation.ts';
-import { createDraftInput, deleteDraftInput, getDraftInput, getTrashedDraftInput, identifier, listTrashedDraftInput, localeInput, parse, restoreDraftInput, updateCollectionInput, updateDraftInput, updateFieldLabelInput } from './validation.ts';
+import { countTrashedDraftInput, createDraftInput, deleteDraftInput, getDraftInput, getTrashedDraftInput, identifier, listTrashedDraftInput, localeInput, parse, restoreDraftInput, updateCollectionInput, updateDraftInput, updateFieldLabelInput } from './validation.ts';
 
 // Permission names and ownership rules follow EmDash auth/rbac.ts.
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
@@ -110,6 +110,11 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
       requirePermission('content:read'); requirePermission('content:read_drafts');
       const { type, ...options } = parse(listTrashedDraftInput, input);
       return entries.listTrashed(type, options);
+    },
+    async countTrashedDrafts(input: unknown) {
+      requirePermission('content:read'); requirePermission('content:read_drafts');
+      const { type, ...options } = parse(countTrashedDraftInput, input);
+      return entries.countTrashed(type, options);
     },
     async restoreDraft(input: unknown) {
       const actor = requireMutationPermission('content:edit_own', 'content:edit_any');

@@ -10,6 +10,7 @@ import { fileURLToPath } from 'node:url';
 import { build } from 'vite';
 import ts from 'typescript';
 import { trashPaginationEntry } from './reproduce-trash-pagination-upstream.mjs';
+import { trashCountEntry } from './reproduce-trash-count-upstream.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const pin = '913cb1bb9b7f08c3ff0d258b4420e53835b6a58e';
@@ -25,6 +26,7 @@ const sources = [
   ['packages/cloudflare/src/db/d1-dialect.ts', 'b026d293554c5173e1447b5eff0d704e169d3384']
 ];
 const pagination = process.argv.includes('--pagination');
+const count = process.argv.includes('--count');
 if (pagination) sources.push([
   'packages/core/tests/unit/database/repositories/cursor.test.ts',
   '119add8308e15decbe8dbf148f7433fb8b12312f'
@@ -97,7 +99,7 @@ import { Miniflare } from 'miniflare';
 import { RawBindingD1Dialect } from './packages/cloudflare/src/db/d1-dialect.ts';
 import { ContentRepository } from './packages/core/src/database/repositories/content.ts';
 import { ContentMutationConflictError } from './packages/core/src/database/repositories/types.ts';
-import { handleContentListTrashed, handleContentRestore } from './packages/core/src/api/handlers/content.ts';
+import { handleContentListTrashed, handleContentCountTrashed, handleContentRestore } from './packages/core/src/api/handlers/content.ts';
 import { encodeRev, decodeRev } from './packages/core/src/api/rev.ts';
 import { waitForDeferredTasks } from './packages/core/src/deferred-tasks.ts';
 
@@ -239,6 +241,7 @@ test(target+': supplemental same-clock restore preserves upstream timestamp beha
   if (pagination) await appendFile(join(directory, 'entry.ts'), trashPaginationEntry(
     await readFile(join(directory, 'packages/core/tests/unit/database/repositories/cursor.test.ts'), 'utf8')
   ));
+  if (count) await appendFile(join(directory, 'entry.ts'), trashCountEntry());
   // The escaped template ticks above deliberately keep embedded SQL as source.
   const output = join(directory, 'bundle.mjs');
   await build({ configFile: false, logLevel: 'error', plugins: [{
@@ -281,7 +284,11 @@ test(target+': supplemental same-clock restore preserves upstream timestamp beha
         repositoryRuntime: 'Complete pinned repository/handler with real Node SQLite or local D1 storage'
       }
     } : {}),
-    omissions: ['trash-locale-filter.test.ts:83 count (2 assertions)',
+    ...(count ? { count: { adaptedValueExpectationsPerRuntime: 2, completeSourceDeclarations: 0,
+      supplementalCasesPerRuntime: 4, totalCasesPerRuntime: 14,
+      setupAdaptation: 'Direct seeded drafts; source translationOf/schema-registry setup is not executed',
+      statusProbe: 'Raw published status only demonstrates absent upstream status predicate, not published lifecycle' } } : {}),
+    omissions: [...(count ? [] : ['trash-locale-filter.test.ts:83 count (2 assertions)']),
       'content-actions.spec.ts:629 entire browser case (0 credit)',
       'published/revision lifecycle', 'schema-registry fixture setup', 'production/deployed adapters',
       'two-connection upstream race, restart and rollback (local implementation supplements own those)'] }));

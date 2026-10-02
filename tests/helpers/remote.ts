@@ -59,6 +59,7 @@ export async function remoteBoundaries(t: TestContext, base: string, ids: Map<st
     denied(await call('listContent', undefined, { collection: 'post' }));
     denied(await call('getContent', undefined, { collection: 'post', id: 'draft-1' }));
     denied(await call('listTrashedContent', undefined, { collection: 'post' }));
+    denied(await call('countTrashedContent', undefined, { collection: 'post' }));
     denied(await call('getTrashedContent', undefined, { collection: 'post', id: 'draft-1' }));
   });
   await t.test('valid anonymous mutations deny access and client claims are rejected', async () => {

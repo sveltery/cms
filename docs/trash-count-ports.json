@@ -1,0 +1,178 @@
+{
+  "referenceVersion": "EmDash 1.1.0",
+  "referenceCommit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "integrationBase": "ad2efe16d42cafff8c2d0d5b6d38eeca4f9b0830",
+  "licenseNotice": "../notices/emdash-MIT.txt",
+  "inventory": "../parity/emdash/inventory.json",
+  "decisionStatus": "Proposed bounded implementation; specific adaptation acceptance is not recorded. Final-head integration gates and landed status are separate.",
+  "inspectedSources": [
+    {
+      "path": "packages/core/src/database/repositories/content.ts",
+      "sourceBlob": "29dab9decf9af0d9fb21b464dc185ed48ab958ea",
+      "sha256": "b334660e351c6953e41bde5058b29a7b1d00219c5afa96a0773d09bd251e63ee",
+      "inspectedLines": [
+        1770
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/repositories/content.ts"
+    },
+    {
+      "path": "packages/core/src/api/handlers/content.ts",
+      "sourceBlob": "34c2528c51a54119cd1730e876d699319c9f3702",
+      "sha256": "f31d9d08cf7ad3ba863ed0b2f9b9d91729a4ce364ce63024077d81f1c6a4969c",
+      "inspectedLines": [
+        2087
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/api/handlers/content.ts"
+    },
+    {
+      "path": "packages/core/tests/integration/content/trash-locale-filter.test.ts",
+      "sourceBlob": "49f5ea1a533750f2c1a6b7bf78d12c468030c6e6",
+      "sha256": "780487edbb9d185d6885b4d06adb747e53661c5b46dd4d3612f517884a8f64b5",
+      "inspectedLines": [
+        83,
+        87,
+        88
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/content/trash-locale-filter.test.ts"
+    },
+    {
+      "path": "packages/admin/src/router.tsx",
+      "sourceBlob": "4b4793ea63352f8a80ccb695a809586cef06db93",
+      "sha256": "1bbed855b6c957e32a7bd5102ee13cb23fcbe09a570cc3dd7465174df0f38e75",
+      "inspectedLines": [
+        729
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/src/router.tsx"
+    }
+  ],
+  "cases": [
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/content/trash-locale-filter.test.ts:83",
+      "sourceRegistrationSha256": "8d62aae8a24a24262c5e4dd0e19bdf4a7ee476b31399418e05f563cdefd83751",
+      "sourceTitle": "counts only the trashed entries in the requested locale",
+      "sourceAssertions": [
+        {
+          "line": 87,
+          "expression": "expect(scoped.success && scoped.data.count).toBe(1)"
+        },
+        {
+          "line": 88,
+          "expression": "expect(all.success && all.data.count).toBe(3)"
+        }
+      ],
+      "localTest": "tests/trash-count.test.ts",
+      "status": "adapted-value-expectations",
+      "adaptedValueExpectations": 2,
+      "completeSourceDeclarationsCredited": 0,
+      "sourceExpressionsPreservedInFull": 0,
+      "setup": "Independent local scalar drafts with explicit owners/locales. translationOf, original schema-registry/migration fixture, upstream handler success conjunctions and describeEachDialect expansion are not ported.",
+      "runtimes": [
+        "Node 24.19.0 SQLite",
+        "local Miniflare/workerd D1"
+      ],
+      "sourceRuntime": "SQLite; PostgreSQL conditional on upstream EMDASH_TEST_PG, not executed by local tests"
+    }
+  ],
+  "assertionAccounting": {
+    "adaptedValueExpectations": 2,
+    "completeSourceDeclarations": 0,
+    "fullyPreservedSourceExpressions": 0,
+    "newInventoryDeclarations": 0,
+    "inventoryStatus": "Already selected line83 stays inventory-only; this separate ledger records adapted numeric expectations only.",
+    "duplicateRuntimeEvaluations": "The same two values execute on Node/local D1; four evaluations do not establish four distinct source expectations."
+  },
+  "contracts": {
+    "repository": "DraftRepository.countTrashed(type, {locale?}) -> number",
+    "service": "cmsService.countTrashedDrafts({type,locale?}) -> number",
+    "nativeQuery": "countTrashedContent({collection,locale?}) -> number",
+    "permissions": [
+      "content:read",
+      "content:read_drafts"
+    ],
+    "pagination": "Independent COUNT(id), no limit/cursor input; omitted locale includes all.",
+    "localBounds": "status=draft, strict existing collection/locale validation, retained collection lookup, inherited adapter/auth/error policy",
+    "refresh": "After trash/restore canonical all and changed locale plus original matching requested keys among first5 per count family before filtering. Unrelated collection/locale ignored; rejected query errors independent receipts.",
+    "consistency": "Separate count/list reads; no atomic snapshot/stable total/exhaustion claim",
+    "ui": "Application loaded-row semantics remain unchanged; isolated browser harness is test-only."
+  },
+  "compatibilityRecords": [
+    "TC-01",
+    "TC-02",
+    "TC-03"
+  ],
+  "runEvidence": [
+    {
+      "command": "node --test tests/trash-count.test.ts",
+      "dateUTC": "2026-10-02",
+      "result": "8 passed, zero failures/skips; four cases each Node/local D1."
+    },
+    {
+      "command": "CMS_EMDASH_REPOSITORY=/tmp/emdash-source-audit node scripts/reproduce-trash-count-upstream.mjs",
+      "dateUTC": "2026-10-02",
+      "result": "14 passed per Node/local D1, 28 total: nine unchanged existing cases plus one adapted count case and four supplements per runtime.",
+      "fixture": "Complete immutable repository/handler, pinned raw D1 dialect, direct-seeded draft table, disabled cache/wait-until and throwing unused imports. Original translationOf/registry setup omitted; raw mixed status probe only demonstrates missing upstream status predicate."
+    },
+    {
+      "command": "node --test tests/production/trash-count.test.ts tests/production/trash-restore-remotes.test.ts",
+      "dateUTC": "2026-10-02",
+      "result": "25 passed, zero failures/skips; 11 new supplemental count cases and 14 retained restore cases. New count cases:5 Node,5 localD1,1 Node write-only."
+    },
+    {
+      "command": "PATH=/workspace/.tools/pnpm/node_modules/.bin:$PATH sh scripts/bootstrap.sh",
+      "commit": "21f0934db983164d9e8cdc6c1685d13a4f05672b",
+      "dateUTC": "2026-10-02",
+      "result": "Initial bootstrap failed:440 of441 service/development cases passed; missing count export in tests/remote.test.ts prevented5 nested boundary cases. No full-bootstrap pass claimed. Corrected dev inventory and anonymous read coverage in121914f200bb48ed1466196be41f5c089ac0020b; focused dev suite passed6/6."
+    },
+    {
+      "command": "Hosted CI",
+      "commit": "21f0934db983164d9e8cdc6c1685d13a4f05672b",
+      "run": "https://github.com/sveltery/cms/actions/runs/37043697864",
+      "result": "Default secured browsers34 passed/2 failed, Node browsers skipped. Both authenticated503 unavailable harness cases failed after fixture.restart removed their test-only hook overlay. Restore/trash retained query tests passed. Fix and fresh final CI required. Validate also failed on missing development export inventory."
+    },
+    {
+      "command": "Local secured browser attempts",
+      "dateUTC": "2026-10-02",
+      "result": "Official Playwright Chromium download policy403; system Chromium aborts at SUID sandbox launch. Browser assertions not run locally, no sandbox/policy changes. Default/Node isolated root/base builds and direct SSR/native binary refresh+503 spot checks passed; not browser evidence."
+    },
+    {
+      "command": "PATH=/workspace/.tools/pnpm/node_modules/.bin:$PATH sh scripts/bootstrap.sh",
+      "commit": "121914f200bb48ed1466196be41f5c089ac0020b",
+      "workingTree": "Same bootstrap-target code/tests as121914f; only browser test installer and documentation evidence edits were uncommitted during this run.",
+      "dateUTC": "2026-10-02",
+      "result": "Full bootstrap passed:0 checker errors/warnings,446 service/development,98 registered production,11 Node package tests;0 failures/skips. Default build and explicit Node package passed. Secured browsers remain separately required."
+    }
+  ],
+  "integrationGates": {
+    "bootstrap": "Full local bootstrap passed on121914f bootstrap-target source/tests; final CI repeats it on final reviewed head.",
+    "securedDefaultAndNodeBrowsers": "pending",
+    "independentFinalHeadReview": "pending",
+    "configuredAutomaticReview": "Required unless actual quota exhaustion; prior PR quota is not a current PR review.",
+    "finalCI": "pending",
+    "eligibleHead": null,
+    "merged": null,
+    "postMergeCI": null,
+    "eligibleHeadStatus": "Exact eligible head, final CI, review/verified quota exception, merge and postCI are recorded in PR30 handoff after those events, not inferred from commit-time evidence."
+  },
+  "omissions": [
+    "Zero complete new upstream source declarations or full expression credit.",
+    "Original translationOf creation/schema registry fixture/full migrations and upstream dialect family not executed.",
+    "No PostgreSQL, REST/MCP/React transport, browser source declaration or published/revision lifecycle parity.",
+    "No new migration/CAS/permission/adapter, production composition, access change, deployment/release/live data/permanent deletion.",
+    "No UI total display; future small total wording is proposed separately in feature doc."
+  ],
+  "implementationPullRequest": "https://github.com/sveltery/cms/pull/30",
+  "latestIntegrationBase": "67ccbbfa3093f7a0e060a2731e16700ea4548cc3",
+  "retainedRecords": [
+    "DT-01\u2013DT-04",
+    "DTT-01\u2013DTT-03",
+    "CTV-01\u2013CTV-03",
+    "NTR-01\u2013NTR-03",
+    "TP-01\u2013TP-03",
+    "FE-01\u2013FE-03",
+    "FL-01\u2013FL-03",
+    "SF-02/SF-03",
+    "C-07/SA-03",
+    "issue20",
+    "unchanged EmDash assertion inventories/baseline mapping"
+  ]
+}

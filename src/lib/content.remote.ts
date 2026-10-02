@@ -1,5 +1,5 @@
 import { query, form, requested } from '$app/server';
-import { collectionSlug, contentKey, contentList, trashedContentKey, trashedContentList, createInput, updateInput, trashInput, restoreInput, withRevision, precondition } from '$lib/server/content/schema';
+import { collectionSlug, contentKey, contentList, trashedContentCount, trashedContentKey, trashedContentList, createInput, updateInput, trashInput, restoreInput, withRevision, precondition } from '$lib/server/content/schema';
 import { requestContent, contentResponse } from '$lib/server/content/request';
 
 export const getEditorManifest = query(() => contentResponse(() => requestContent().getEditorManifest()));
@@ -15,6 +15,8 @@ export const listTrashedContent = query(trashedContentList, ({ collection, ...op
   const page = await requestContent().listTrashedDrafts({ type: collection, ...options });
   return { ...page, items: page.items.map(withRevision) };
 }));
+export const countTrashedContent = query(trashedContentCount, ({ collection, ...options }) =>
+  contentResponse(() => requestContent().countTrashedDrafts({ type: collection, ...options })));
 export const getTrashedContent = query(trashedContentKey, ({ collection, ...key }) => contentResponse(async () =>
   withRevision(await requestContent().getTrashedDraft({ type: collection, ...key }))));
 export const createContent = form(createInput, ({ collection, ...input }) => contentResponse(async () => {
@@ -67,10 +69,15 @@ async function refreshContent(collection: string, locale: string, id?: string) {
 }
 
 async function refreshTrash(collection: string, locale: string, id: string) {
+  void countTrashedContent({ collection }).refresh();
+  void countTrashedContent({ collection, locale }).refresh();
   void listTrashedContent({ collection }).refresh();
   void listTrashedContent({ collection, locale }).refresh();
   void getTrashedContent({ collection, id }).refresh();
   void getTrashedContent({ collection, id, locale }).refresh();
+  for await (const { arg, query } of requested(countTrashedContent, 5)) {
+    if (arg.collection === collection && (arg.locale === undefined || arg.locale === locale)) void query.refresh();
+  }
   for await (const { arg, query } of requested(listTrashedContent, 5)) {
     if (arg.collection === collection && (arg.locale === undefined || arg.locale === locale)) void query.refresh();
   }

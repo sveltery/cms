@@ -3,7 +3,7 @@ import { ulid } from 'ulidx';
 import { decodeCursor, encodeCursor } from './trash-cursor.ts';
 import { CmsError, type CmsDatabase, type DraftEntry, type DraftSummary, type Field, type Page, type TrashedDraftEntry, type TrashedDraftSummary } from './contract.ts';
 import { SchemaRegistry, fieldMax } from './registry.ts';
-import { createDraftInput, entryId, identifier, listTrashedDraftInput, localeInput, parse, restoreDraftInput, tableName, updateDraftInput, deleteDraftInput } from './validation.ts';
+import { countTrashedDraftInput, createDraftInput, entryId, identifier, listTrashedDraftInput, localeInput, parse, restoreDraftInput, tableName, updateDraftInput, deleteDraftInput } from './validation.ts';
 
 interface EntryRow {
   id: string; slug: string | null; status: 'draft'; author_id: string | null;
@@ -95,6 +95,16 @@ export class DraftRepository {
   async findTrashedById(type: unknown, id: unknown, locale?: string): Promise<TrashedDraftEntry | null> {
     const row = await this.trashLookup(type, id, locale, true);
     return row && row.deletedAt !== null ? { ...row, deletedAt: row.deletedAt } : null;
+  }
+  // Draft-only adaptation of EmDash 1.1.0 ContentRepository.countTrashed:1770.
+  // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
+  async countTrashed(typeInput: unknown, options: { locale?: string } = {}): Promise<number> {
+    const { type, locale } = parse(countTrashedDraftInput, { ...options, type: typeInput });
+    await this.definition(type);
+    const result = await sql<{ count: number | string | bigint }>`SELECT count(id) AS count FROM ${sql.ref(tableName(type))}
+      WHERE deleted_at IS NOT NULL AND status = 'draft'
+      ${locale === undefined ? sql`` : sql`AND locale = ${locale}`}`.execute(this.database.db);
+    return Number(result.rows[0]?.count || 0);
   }
   async listTrashed(typeInput: unknown, options: { limit?: number; locale?: string; cursor?: string } = {}): Promise<Page<TrashedDraftSummary>> {
     const { type, locale, cursor: encoded, limit: requested = 50 } = parse(listTrashedDraftInput, { ...options, type: typeInput });
