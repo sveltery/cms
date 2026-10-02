@@ -69,6 +69,6 @@ test('unchanged native scalar displays retain exact stored bytes and null throug
     assert.equal(saved.status, 200);
     assert.deepEqual((await h.query('getLifecycleContent', { collection: 'post', id: created.id })).data, before);
     const stored = await h.database.db.selectFrom('ec_post' as any).select('optional' as any).where('id' as any, '=', created.id).executeTakeFirstOrThrow();
-    assert.equal(stored.optional, null);
+    assert.equal((stored as { optional: null }).optional, null);
   } finally { await h.close(); }
 });
