@@ -57,15 +57,14 @@ export async function beginAdminSetup(context: IdentityContext, input: { email: 
 }
 export async function finishAdminSetup(context: IdentityContext, cookieNonce: string | undefined, credential: RegistrationResponse) {
   const options = await setupGuard(context);
-  const state = await options.get<{ step?: string; email?: string; name?: string | null; nonce?: string; title?: string; tagline?: string }>('emdash:setup_state');
+  const state = await options.get<{ step?: string; email?: string; name?: string | null; nonce?: string }>('emdash:setup_state');
   if (!state || state.step !== 'admin' || !state.nonce || !cookieNonce || !secureCompare(cookieNonce, state.nonce) || !state.email) throw new AuthFlowError('INVALID_STATE');
   const verified = await verifyRegistrationResponse(config(context), credential, createChallengeStore(context.database));
   const user = await createFirstAdmin(context.database, { email: state.email, name: state.name ?? null });
   if (!user) throw new AuthFlowError('ADMIN_EXISTS');
   // The pinned first-user insert and credential registration are distinct steps; preserve that boundary.
   await registerPasskey(identityAdapter(context.database) as AuthAdapter, user.id, verified, 'Setup passkey');
-  if (typeof state.title === 'string' && state.title) await options.set('emdash:site_title', state.title);
-  if (typeof state.tagline === 'string') await options.set('emdash:site_tagline', state.tagline);
+  // Pinned admin-verify directly completes setup; the site step applies its own settings.
   await options.set('emdash:setup_complete', true);
   await options.delete('emdash:setup_state');
   return user;
