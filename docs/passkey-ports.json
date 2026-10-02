@@ -499,13 +499,28 @@
     "tests/production/passkey-product.test.ts",
     "tests/production/passkey-current-user.test.ts",
     "tests/browser/passkey-setup-login.spec.ts",
-    "tests/production/passkey-email-source.test.ts"
+    "tests/production/passkey-email-source.test.ts",
+    "tests/passkey-parser.test.ts",
+    "tests/production/passkey-site-state-source.test.ts",
+    "tests/production/passkey-parser-source.test.ts"
   ],
   "supplementalParityCredit": 0,
   "sourceExecution": {
     "command": "node scripts/reproduce-passkey-upstream.mjs PINNED_SOURCE_CHECKOUT",
     "result": "34 original parameterized source cases pass against ten byte-verified immutable source files, plus three original supplemental setup-email reference probes with zero copied source credit.",
-    "localProductCreditFromReferenceRun": 0
+    "localProductCreditFromReferenceRun": 0,
+    "additionalOriginalReferences": [
+      {
+        "script": "scripts/reproduce-passkey-setup-state-upstream.mjs",
+        "copiedSourceCredit": 0,
+        "boundary": "Unchanged pinned route with explicit crypto/adapter/framework mocks; side effects only."
+      },
+      {
+        "script": "scripts/reproduce-passkey-parser-upstream.mjs",
+        "copiedSourceCredit": 0,
+        "boundary": "Unchanged parser plus mocked options-route dependencies; four parser decisions and one ordering probe, no HTTP-host limit credit."
+      }
+    ]
   },
   "limitations": [
     "Typed-context algorithms are tested but production has no atomic typed-context store/endpoint.",
