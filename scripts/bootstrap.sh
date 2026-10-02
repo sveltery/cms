@@ -9,6 +9,7 @@ fi
 pnpm install --frozen-lockfile
 pnpm check
 pnpm test
+pnpm test:source-ports
 pnpm build
 pnpm test:production
 pnpm package:node
