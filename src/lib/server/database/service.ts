@@ -3,7 +3,7 @@ import { editorManifest } from '../content/manifest.ts';
 import { CmsError, type CmsDatabase } from './contract.ts';
 import { DraftRepository } from './entries.ts';
 import { SchemaRegistry } from './registry.ts';
-import { createDraftInput, deleteDraftInput, getDraftInput, identifier, localeInput, parse, updateDraftInput } from './validation.ts';
+import { createDraftInput, deleteDraftInput, getDraftInput, identifier, localeInput, parse, updateCollectionInput, updateDraftInput } from './validation.ts';
 
 // Permission names and ownership rules follow EmDash auth/rbac.ts.
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
@@ -62,6 +62,11 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
       return definition;
     },
     async createCollection(input: unknown) { requirePermission('schema:manage'); return registry.createCollection(input); },
+    async updateCollection(input: unknown) {
+      requirePermission('schema:manage');
+      const value = parse(updateCollectionInput, input);
+      return registry.updateCollection(value.collection, value.input, value.expected);
+    },
     async addField(input: unknown) {
       requirePermission('schema:manage');
       const value = parse(addFieldInput, input);

@@ -12,6 +12,13 @@ export const collectionInput = v.strictObject({
   slug: identifier, label, labelSingular: v.optional(label), description: v.optional(shortText),
   supports: v.optional(v.pipe(v.array(v.picklist(['drafts', 'revisions'])), v.maxLength(2)))
 });
+// Optional keys have no defaults: omission/undefined leaves persisted metadata intact.
+export const collectionMetadataInput = v.pipe(v.custom<Record<string, unknown>>(value =>
+  value !== null && typeof value === 'object' && !Array.isArray(value) &&
+  [Object.prototype, null].includes(Object.getPrototypeOf(value))), v.strictObject({
+  label: v.optional(label), labelSingular: v.optional(label), description: v.optional(shortText),
+  supports: v.optional(v.pipe(v.array(v.picklist(['drafts', 'revisions'])), v.maxLength(2)))
+}));
 const length = v.pipe(v.number(), v.integer(), v.minValue(0), v.maxValue(100_000));
 export const fieldInput = v.strictObject({
   slug: identifier, label, type: v.picklist(['string', 'text']),
@@ -24,6 +31,9 @@ export const localeInput = v.pipe(v.string(), v.minLength(1), v.maxLength(35), v
 export const revisionInput = v.strictObject({
   version: v.pipe(v.number(), v.safeInteger(), v.minValue(1)),
   updatedAt: v.pipe(v.string(), v.isoTimestamp(), v.maxLength(40))
+});
+export const updateCollectionInput = v.strictObject({
+  collection: identifier, input: collectionMetadataInput, expected: revisionInput
 });
 // Keep valid schema keys such as constructor/prototype: record() silently drops them.
 export const schemaData = v.custom<Record<string, string | null>>(value => {
