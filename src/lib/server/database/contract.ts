@@ -42,10 +42,11 @@ export interface Collection {
   description: string | null; supports: ('drafts' | 'revisions')[];
   source: 'manual'; version: number; createdAt: string; updatedAt: string;
 }
+export interface ScalarValidation { minLength?: number; maxLength?: number; pattern?: string }
 export interface Field {
   id: string; collectionId: string; slug: string; label: string;
   type: 'string' | 'text'; columnType: 'TEXT'; required: boolean; unique: boolean;
-  defaultValue?: string; validation: { minLength?: number; maxLength?: number; pattern?: string } | null;
+  defaultValue?: string; validation: ScalarValidation | null;
   sortOrder: number; createdAt: string;
 }
 export interface DraftEntry {
