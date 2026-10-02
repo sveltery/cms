@@ -86,7 +86,10 @@ describe('built remotes with persisted schema and server-derived sessions', () =
       { collection: 'notes', ...fields({ headline: 'Valid', unknown: 'bad' }) }
     ]) {
       const result = await harness.remote('createContent', 'author', input);
-      assert.deepEqual(result, { type: 'error', status: 400, error: { message: 'validation-error', code: 'VALIDATION_ERROR' } });
+      assert.equal(result.type, 'error'); assert.equal(result.status, 400); assert.equal(result.error.code, 'VALIDATION_ERROR');
+      const issues = result.error.details.issues;
+      assert.ok(issues.length > 0);
+      assert.equal(result.error.message, issues.map((issue: { path: string; message: string }) => `${issue.path}: ${issue.message}`).join('; '));
     }
     for (const claim of ['principal', 'permissions', 'authorId', 'createdAt', 'publishedAt', 'status', 'expected']) {
       const result = await harness.remote('createContent', 'author', { collection: 'notes', ...fields({ headline: 'Valid' }), [claim]: 'admin' });
