@@ -7,6 +7,7 @@
 
 <WorkspaceShell homeHref={resolve('/')}>
   <a href={resolve('/')}>Collections</a>
+  <a href={resolve('/trash/[collection]', { collection: page.params.collection ?? '' })}>Trash</a>
   {#key page.params.collection}
     <CollectionDrafts collection={page.params.collection ?? ''} />
   {/key}
