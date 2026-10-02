@@ -46,3 +46,40 @@ test('a next validation clear choice survives a delayed previous replacement res
     expect((await h.query('getSchemaCollection', 'notes')).fields[1].validation).toBeNull();
   } finally { release?.(); await h.close(); }
 });
+
+for (const operation of ['metadata', 'label', 'add', 'create'] as const) {
+  test(`${operation} schema controls lock their own pending instance while other forms stay usable`, async ({ page, context }) => {
+    const h = await schemaAdminRemotes('Node');
+    let release!: () => void; const held = new Promise<void>(resolve => { release = resolve; });
+    let written!: () => void; const committed = new Promise<void>(resolve => { written = resolve; });
+    try {
+      await h.registry.createCollection({ slug: 'notes', label: 'Notes' });
+      await h.registry.createField('notes', { slug: 'title', label: 'Title', type: 'string' });
+      await context.addCookies([{ name: 'cms-session', value: h.tokens.admin, url: h.origin }]);
+      await page.goto(`${h.origin}${operation === 'create' ? '/schema' : '/schema/notes'}`);
+      const legends = { metadata: 'Collection metadata', label: 'Edit title label', add: 'Add field', create: 'Create collection' };
+      const remotes = { metadata: 'updateSchemaCollection', label: 'updateSchemaFieldLabel', add: 'addSchemaField', create: 'createSchemaCollection' };
+      const form = page.locator('form').filter({ has: page.locator('legend', { hasText: legends[operation] }) });
+      if (operation === 'metadata') await form.getByLabel('Collection label', { exact: true }).fill('Notebook');
+      else if (operation === 'label') await form.getByLabel('Label', { exact: true }).fill('Headline');
+      else {
+        await form.getByLabel(operation === 'add' ? 'Field slug' : 'Collection slug', { exact: true }).fill('extra');
+        await form.getByLabel(operation === 'add' ? 'Field label' : 'Collection label', { exact: true }).fill('Extra');
+      }
+      await page.route(`**/_app/remote/${h.ids.get(remotes[operation])}`, async route => {
+        const response = await route.fetch(); written(); await held; await route.fulfill({ response });
+      });
+      await form.getByRole('button', { name: { metadata: 'Save metadata', label: 'Save label', add: 'Add field', create: 'Create collection' }[operation], exact: true }).click();
+      await committed;
+      await expect(form.locator('fieldset')).toBeDisabled();
+      if (operation !== 'create') {
+        const other = page.locator('form').filter({ has: page.locator('legend', { hasText: 'Edit title options' }) });
+        await expect(other.getByLabel('Validation update', { exact: true })).toBeEnabled();
+        await expect(other.getByRole('button', { name: 'Save field options' })).toBeEnabled();
+      }
+      release();
+      await expect(form.locator('fieldset')).toBeEnabled();
+      await expect(form.getByRole('status')).toBeVisible();
+    } finally { release?.(); await h.close(); }
+  });
+}
