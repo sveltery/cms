@@ -34,6 +34,8 @@ function field(row: FieldRow): Field {
     searchable: row.searchable === 1, indexed: row.indexed === 1, translatable: row.translatable !== 0,
     sortOrder: row.sort_order, createdAt: row.created_at };
 }
+/** Shared persisted-field projection for registry and trusted batched editor manifests. */
+export { field as fieldFromRow };
 export class SchemaRegistry {
   private readonly database: CmsDatabase;
   constructor(database: CmsDatabase) { this.database = database; }
