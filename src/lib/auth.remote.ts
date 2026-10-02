@@ -4,7 +4,7 @@ import * as v from 'valibot';
 import { requestIdentity, identityCookiePath } from '$lib/server/auth/identity-request';
 import { AuthFlowError, authenticationOptions, authenticatePasskey, beginAdminSetup, finishAdminSetup,
   issueSession, SESSION_MAX_AGE_SECONDS, SETUP_NONCE_COOKIE, SETUP_NONCE_MAX_AGE_SECONDS, setupStatus } from '$lib/server/auth/passkey-flow';
-import { registrationCredential, authenticationCredential } from '$lib/server/auth/identity-schemas';
+import { registrationCredential, authenticationCredential, emailInput } from '$lib/server/auth/identity-schemas';
 import { PasskeyAuthenticationError } from '$lib/server/auth/vendor/passkey/authenticate';
 import { SESSION_COOKIE_NAME, SESSION_COOKIE_OPTIONS, SESSION_COOKIE_DELETE_OPTIONS, SessionOriginError } from '$lib/server/auth/request';
 import { revokeSession } from '$lib/server/auth/session';
@@ -31,7 +31,7 @@ async function authResponse<T>(action: () => Promise<T>): Promise<T> {
 }
 export const getSetupStatus = query(() => authResponse(() => setupStatus(requestIdentity(getRequestEvent()))));
 export const getCurrentUser = query(() => authResponse(() => currentUser(getRequestEvent())));
-export const beginSetup = form(v.strictObject({ email: v.pipe(v.string(), v.email()), name: v.optional(v.string()) }),
+export const beginSetup = form(v.strictObject({ email: emailInput, name: v.optional(v.string()) }),
   input => authResponse(async () => {
     const event = getRequestEvent(), context = requestIdentity(event, true);
     const result = await beginAdminSetup(context, input);
