@@ -172,7 +172,18 @@
       "scope": "Focused production remote plus conversion suite, as reported by implementation owner; exact-head/full bootstrap pending"
     },
     "browserTests": "pending hosted secured default/Node CI; local browser download403 and system sandbox failure supply no passing browser evidence",
-    "bootstrap": "pending",
+    "bootstrap": {
+      "status": "passed",
+      "command": "sh scripts/bootstrap.sh",
+      "commit": "deaebcb56e23cf20aad25eae570e10614b9da502",
+      "coreTests": 371,
+      "productionTests": 76,
+      "nodePackageTests": 11,
+      "failures": 0,
+      "checkerErrors": 0,
+      "checkerWarnings": 0,
+      "scope": "Integrated executable head; subsequent canonical-doc-only changes require final-head CI and review."
+    },
     "finalHeadCI": "pending",
     "independentReview": "pending",
     "configuredReview": "pending",
