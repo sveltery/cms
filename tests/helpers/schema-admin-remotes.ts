@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve, sep } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { createServer } from 'node:http';
 import { Readable } from 'node:stream';
 import { parse, stringify } from 'devalue';
@@ -30,7 +31,7 @@ export async function schemaAdminRemotes(target: 'Node' | 'D1', mutationsEnabled
     await storage.database.db.insertInto('_cms_auth_users').values({ id: `schema_${name}`, role, disabled: 0 }).execute();
     await storage.database.db.insertInto('_cms_auth_sessions').values({ hash: (await hashSessionToken(tokens[name]))!, user_id: `schema_${name}`, expires_at: Date.now() + 600_000 }).execute();
   }
-  const built = (file: string) => import(new URL(`file://${join(output, 'server', file)}`).href);
+  const built = (file: string) => import(pathToFileURL(join(output, 'server', file)).href);
   const { manifest } = await built('manifest.js');
   const { Server } = await built('index.js');
   const { options } = await built('internal.js');

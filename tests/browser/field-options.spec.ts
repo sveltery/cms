@@ -38,7 +38,8 @@ for (const target of ['Node', 'D1'] as const) test.describe(`${target} isolated 
           .toEqual({ collection: 'notes', field, labelMode: 'keep', label: field === 'title' ? 'Title' : 'Body',
             sortOrderMode: 'keep', sortOrder: field === 'title' ? '0' : '1',
             defaultValueMode: 'keep', defaultValue: field === 'title' ? 'Original' : '',
-            validationMode: 'keep', minLength: field === 'title' ? '1' : '', maxLength: field === 'title' ? '80' : '' });
+            validationMode: 'keep', minLength: field === 'title' ? '1' : '', maxLength: field === 'title' ? '80' : '',
+            patternMode: 'omit', pattern: '' });
       }
       await title.getByLabel('Metadata label', { exact: true }).fill('Ignored while keeping');
       await title.getByLabel('Metadata default value', { exact: true }).fill('Ignored default');

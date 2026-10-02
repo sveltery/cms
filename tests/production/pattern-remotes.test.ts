@@ -17,11 +17,13 @@ for (const target of ['Node', 'D1'] as const) {
       assert.equal(manifest.collections.notes.fields.title.validation.pattern, 'cat');
       assert.equal(manifest.collections.notes.fields.body.validation.pattern, '');
       const created = await h.mutate('createContent', { collection: 'notes', 'data.title': 'concatenate', 'data.body': '' }, 'author');
-      const before = await h.snapshot();
+      const contentRows = () => h.database.db.selectFrom('ec_notes' as any).selectAll().orderBy('id').execute();
+      const before = await h.snapshot(); const rowsBefore = await contentRows();
       for (const value of ['CAT', 'dog', '']) {
         const failed = await h.remote('createContent', 'author', { collection: 'notes', 'data.title': value });
         assert.equal(failed.type, 'error'); assert.equal(failed.status, 400); assert.equal(failed.error.code, 'VALIDATION_ERROR');
         assert.deepEqual(await h.snapshot(), before);
+        assert.deepEqual(await contentRows(), rowsBefore, 'invalid content creates perform zero row writes');
       }
       await h.mutate('updateSchemaFieldOptions', { collection: 'notes', field: 'title', validationMode: 'keep', patternMode: 'set', pattern: '[' });
       assert.equal((await h.query('getSchemaCollection', 'notes')).fields[0].validation.pattern, 'cat');
