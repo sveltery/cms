@@ -33,7 +33,7 @@ for (const base of ['', '/cms']) for (const enhanced of [false, true]) {
       await expect(create.getByLabel('Pattern metadata', { exact: true })).toHaveValue('omit');
       for (const form of [title, body]) {
         await expect(form).toHaveAttribute('method', 'POST');
-        const action = new URL((await form.getAttribute('action'))!, h.origin);
+        const action = new URL((await form.getAttribute('action'))!, page.url());
         expect(action.pathname).toBe(`${base}/schema/notes`);
       }
       for (const [slug, pattern] of [['title', '^cat\ndog$'], ['windows', '^cat\r\ndog$'], ['legacy', '^cat\rdog$']]) {
