@@ -8,10 +8,12 @@ import { runtimeConfiguration } from '../src/lib/server/runtime/environment.ts';
 
 test('native D1 runtime scopes each request and commits its authenticated bookmark', { timeout: 30_000 }, async () => {
   const worker = new Miniflare({ modules: true, script: 'export default {fetch(){return new Response("fixture")}}', compatibilityDate: '2026-05-07', d1Databases: { CMS_DB: 'cms-cloudflare-scope' }, cf: false });
-  const binding = await worker.getD1Database('CMS_DB');
+  const realBinding = await worker.getD1Database('CMS_DB');
   const constraints: string[] = [];
-  const withSession = binding.withSession.bind(binding);
-  binding.withSession = (constraint?: string) => { constraints.push(constraint ?? ''); return withSession(constraint); };
+  const binding = {
+    prepare: realBinding.prepare.bind(realBinding), batch: realBinding.batch.bind(realBinding),
+    withSession(constraint?: string) { constraints.push(constraint ?? ''); return realBinding.withSession(constraint); }
+  };
   const runtime = createCmsRuntime(() => ({ kind: 'd1', binding, publicOrigin: 'https://cms.example', d1: { binding: 'CMS_DB', session: 'auto', coalesce: true } } as never));
   const cookies = new Map<string, string>();
   const event = { request: new Request('https://cms.example/'), url: new URL('https://cms.example/'), locals: {}, cookies: { get: (name: string) => cookies.get(name), set: (name: string, value: string) => cookies.set(name, value) } } as unknown as RequestEvent;
