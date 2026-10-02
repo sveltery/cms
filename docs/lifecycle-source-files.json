@@ -9,7 +9,9 @@
       "adaptations": [
         "module extension .js -> .ts",
         "metadata/revision table namespace",
-        "parameter properties -> explicit declarations/assignments"
+        "parameter properties -> explicit declarations/assignments",
+        "mapRow made public for committed SQL row mapping",
+        "restoreRevision/restoreDraftRevision optional native expected token: check after refetch and retain token in atomic SQL WHERE; argument omitted preserves original source method behavior"
       ]
     },
     {
@@ -255,6 +257,7 @@
     "Site timezone defaults UTC; an explicit timezone provider seam replaces source options lookup; settings integration not implemented",
     "Existing CmsDatabase.atomicBatch is preferred for source fixed-statement atomic promotion/restore; C-07 strictness retained",
     "Registered CmsDatabase never uses pinned unsupported-transaction fallback; callback-only D1 operations remain unsupported until a provider can prove atomicity",
-    "ContentRepository.mapRow visibility is exported solely to map committed RETURNING row receipts; mapping algorithm unchanged"
+    "ContentRepository.mapRow visibility is exported solely to map committed RETURNING row receipts; mapping algorithm unchanged",
+    "Mandatory native restore tokens extend source restore API; service passes the authorized read token to optional repository guards. Original source callbacks and omitted-precondition repository behavior remain intact."
   ]
 }

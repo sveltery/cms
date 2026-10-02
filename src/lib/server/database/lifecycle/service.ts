@@ -189,7 +189,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
           if(value.skipRevision&&existing.draftRevisionId)await revisions.deleteIfUnreferenced(value.type,value.id,existing.draftRevisionId);
           else prune(value.type,value.id,revision.id);
           let item=await stored(value);
-          if(liveMetaTouched)item=await atomicUpdate(value,item,value,undefined,'content:edit_any');
+          if(liveMetaTouched)item=await atomicUpdate(value,item,{...value,slug:undefined},undefined,'content:edit_any');
           return {item:await hydrate(item),liveContentChanged:liveMetaTouched};
         }
         throw new CmsError('CONFLICT');
@@ -226,10 +226,10 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const restored={...revision.data};delete restored._referencesBaseline;
       return translate(async()=>{
         if(collection.supports.includes('revisions')){
-          const revisionId=await content.restoreDraftRevision(revision.collection,revision.entryId,restored,actor.id);
+          const revisionId=await content.restoreDraftRevision(revision.collection,revision.entryId,restored,actor.id,{version:item.version,updatedAt:item.updatedAt});
           if(!revisionId)throw new CmsError('NOT_FOUND');prune(revision.collection,revision.entryId,revisionId);return hydrate(await stored(contentKey));
         }
-        const result=await content.restoreRevision(revision.collection,revision.entryId,restored,actor.id);prune(revision.collection,revision.entryId,result.revisionId);return hydrate(result.item);
+        const result=await content.restoreRevision(revision.collection,revision.entryId,restored,actor.id,{version:item.version,updatedAt:item.updatedAt});prune(revision.collection,revision.entryId,result.revisionId);return hydrate(result.item);
       });
     },
     /** Public repository read: literal published status, live columns, no draft hydration. */
