@@ -152,6 +152,37 @@ describe('built remotes with persisted schema and server-derived sessions', () =
     for (const key of boundedKeys.slice(0, 5)) assert.equal(next.q[key].v.items[0].id, item.id);
     for (const key of boundedKeys.slice(5)) assert.equal(next.q[key].e[0], 400);
   });
+  it('requested refreshes exclude other collections, locales and entry identities', async () => {
+    const { item } = await create();
+    const { item: other } = await create();
+    const page = await harness.repository.create({ type: 'page', data: { title: 'Other collection' } }, 'user_author');
+    const french = await harness.repository.create({ type: 'notes', locale: 'fr', data: { headline: 'Other locale' } }, 'user_author');
+    const requested: { name: string; argument: unknown; included: boolean }[] = [
+      { name: 'listContent', argument: { collection: 'notes', limit: 3 }, included: true },
+      { name: 'listContent', argument: { collection: 'page', limit: 3 }, included: false },
+      { name: 'listContent', argument: { collection: 'notes', locale: 'fr', limit: 3 }, included: false },
+      { name: 'getContent', argument: { collection: 'notes', id: item.id }, included: true },
+      { name: 'getContent', argument: { collection: 'notes', id: other.id }, included: false },
+      { name: 'getContent', argument: { collection: 'page', id: page.id }, included: false },
+      { name: 'getContent', argument: { collection: 'notes', locale: 'fr', id: french.id }, included: false }
+    ];
+    const keys: string[] = [];
+    for (const { name, argument } of requested) {
+      const envelope = await harness.remote(name, 'author', undefined, argument);
+      keys.push(Object.keys(parse(envelope.data).q)[0]);
+    }
+    const output = await harness.mutateWithRefreshes('updateContent', {
+      collection: 'notes', id: item.id, _rev: item._rev, data: { headline: 'Scoped refresh' }
+    }, keys);
+    assert.equal(output._.issues, undefined);
+    assert.ok(output._.result._rev);
+    for (const [index, { included }] of requested.entries()) assert.equal(Object.hasOwn(output.q, keys[index]), included);
+    const refreshedSummary = output.q[keys[0]].v.items.find((entry: any) => entry.id === item.id);
+    assert.equal(refreshedSummary._rev, output._.result._rev);
+    assert.notEqual(refreshedSummary._rev, item._rev);
+    assert.equal(output.q[keys[3]].v.data.headline, 'Scoped refresh');
+    assert.equal((await harness.query('getContent', { collection: 'notes', id: other.id })).data.headline, 'First note');
+  });
   it('duplicate slugs and unique field values map to conflicts without overwriting data', async () => {
     await harness.registry.createCollection({ slug: 'unique_notes', label: 'Unique notes' });
     await harness.registry.createField('unique_notes', { slug: 'code', label: 'Code', type: 'string', unique: true });
@@ -177,7 +208,9 @@ describe('built remotes with persisted schema and server-derived sessions', () =
   it('dynamic routes render persisted fields and retain disabled writes with authenticated reads', async () => {
     const { item } = await create();
     const index = await harness.request('/', 'author');
-    assert.match(await index.text(), /href="\/content\/notes"/);
+    const links = (html: string, path: string) => [...html.matchAll(/<a\b[^>]*href="([^"]+)"/g)]
+      .map(([, href]) => new URL(href.replaceAll('&amp;', '&'), `http://cms.test${path}`).pathname);
+    assert.ok(links(await index.text(), '/').includes('/content/notes'));
     for (const path of ['/content/notes', `/content/notes/${item.id}`]) {
       const response = await harness.request(path, 'author');
       assert.equal(response.status, 200);
@@ -187,6 +220,13 @@ describe('built remotes with persisted schema and server-derived sessions', () =
       assert.match(html, /data-field="detail"/);
       assert.match(html, /<fieldset disabled(?:[\s=>])/);
       assert.doesNotMatch(html, /name="(?:title|body)"/);
+      const destinations = links(html, path);
+      assert.ok(destinations.includes('/'), 'workspace link resolves to collections');
+      if (path === '/content/notes') {
+        assert.ok(destinations.includes(`/content/notes/${item.id}`), 'draft link resolves to its qualified detail route');
+      } else {
+        assert.ok(destinations.includes('/content/notes'), 'detail link resolves to its collection route');
+      }
     }
   });
   it('detail previews preserve persisted nulls instead of substituting schema defaults', async () => {

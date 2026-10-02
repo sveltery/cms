@@ -8,7 +8,7 @@ export default defineConfig({
   forbidOnly: Boolean(process.env.CI),
   retries: 0,
   workers: 1,
-  globalTimeout: 120_000,
+  globalTimeout: 180_000,
   reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : 'list',
   use: {
     baseURL: 'http://127.0.0.1:4173',
@@ -16,7 +16,7 @@ export default defineConfig({
     launchOptions: { chromiumSandbox: true, timeout: 30_000 }
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
-  webServer: {
+  webServer: [{
     // Own the Vite process directly so teardown cannot leave pnpm's child running.
     command: nodeTarget ? 'exec node build/node/index.js'
       : 'exec node node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 4173 --strictPort',
@@ -24,5 +24,11 @@ export default defineConfig({
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: false,
     timeout: 30_000
-  }
+  }, {
+    // Build a separate fail-closed copy to verify navigation under a nonempty app base.
+    command: 'exec node tests/helpers/basepath-server.mjs',
+    url: 'http://127.0.0.1:4174/cms',
+    reuseExistingServer: false,
+    timeout: 90_000
+  }]
 });

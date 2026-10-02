@@ -33,20 +33,19 @@ export const deleteContent = form(trashInput, (input) => contentResponse(async (
 }));
 
 async function refreshContent(collection: string, locale: string, id?: string) {
-  const refreshes = [listContent({ collection, locale }).refresh()];
-  if (locale === 'en') refreshes.push(listContent({ collection }).refresh());
+  void listContent({ collection, locale }).refresh();
+  if (locale === 'en') void listContent({ collection }).refresh();
   if (id) {
-    refreshes.push(getContent({ collection, id, locale }).refresh());
-    if (locale === 'en') refreshes.push(getContent({ collection, id }).refresh());
+    void getContent({ collection, id, locale }).refresh();
+    if (locale === 'en') void getContent({ collection, id }).refresh();
   }
   // Preserve original client cache keys, including defaults and paginated queries.
   for await (const { arg, query } of requested(listContent, 5)) {
-    if (arg.collection === collection && arg.locale === locale) refreshes.push(query.refresh());
+    if (arg.collection === collection && arg.locale === locale) void query.refresh();
   }
   for await (const { arg, query } of requested(getContent, 5)) {
-    if (arg.collection === collection && arg.locale === locale && arg.id === id) refreshes.push(query.refresh());
+    if (arg.collection === collection && arg.locale === locale && arg.id === id) void query.refresh();
   }
-  await Promise.all(refreshes);
 }
 
 function receipt(entry: { id: string; type: string; locale: string; _rev: string }) {
