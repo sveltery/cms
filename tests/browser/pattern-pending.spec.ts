@@ -60,6 +60,7 @@ for (const operation of ['metadata', 'label', 'add', 'create'] as const) {
       const legends = { metadata: 'Collection metadata', label: 'Edit title label', add: 'Add field', create: 'Create collection' };
       const remotes = { metadata: 'updateSchemaCollection', label: 'updateSchemaFieldLabel', add: 'addSchemaField', create: 'createSchemaCollection' };
       const form = page.locator('form').filter({ has: page.locator('legend', { hasText: legends[operation] }) });
+      const editable = form.getByLabel({ metadata: 'Collection label', label: 'Label', add: 'Field slug', create: 'Collection slug' }[operation], { exact: true });
       if (operation === 'metadata') await form.getByLabel('Collection label', { exact: true }).fill('Notebook');
       else if (operation === 'label') await form.getByLabel('Label', { exact: true }).fill('Headline');
       else {
@@ -71,14 +72,16 @@ for (const operation of ['metadata', 'label', 'add', 'create'] as const) {
       });
       await form.getByRole('button', { name: { metadata: 'Save metadata', label: 'Save label', add: 'Add field', create: 'Create collection' }[operation], exact: true }).click();
       await committed;
-      await expect(form.locator('fieldset')).toBeDisabled();
+      await expect(editable).toBeDisabled();
+      await expect(form.locator('fieldset')).toHaveJSProperty('disabled', true);
       if (operation !== 'create') {
         const other = page.locator('form').filter({ has: page.locator('legend', { hasText: 'Edit title options' }) });
         await expect(other.getByLabel('Validation update', { exact: true })).toBeEnabled();
         await expect(other.getByRole('button', { name: 'Save field options' })).toBeEnabled();
       }
       release();
-      await expect(form.locator('fieldset')).toBeEnabled();
+      await expect(editable).toBeEnabled();
+      await expect(form.locator('fieldset')).toHaveJSProperty('disabled', false);
       await expect(form.getByRole('status')).toBeVisible();
     } finally { release?.(); await h.close(); }
   });
