@@ -71,6 +71,11 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
   function owner(item:ContentItem,actor:NonNullable<typeof identity>,any:string) {
     if(!actor.permissions.has(any)&&item.authorId!==actor.id)throw new CmsError('FORBIDDEN');
   }
+  function publicationDatePermission(value:Record<string,unknown>) {
+    // Pinned route/MCP gates explicit presence, including a null clear.
+    if(value.publishedAt!==undefined&&!authenticated().permissions.has('content:publish_any'))
+      throw new CmsError('FORBIDDEN','Missing permission: content:publish_any');
+  }
   async function checked(type:string,data:Record<string,unknown>,partial:boolean) {
     parse(schemaData,data);
     const validation=await validateContentData(database,type,data,{partial});
@@ -158,6 +163,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     async updateContent(input:unknown):Promise<ContentReceipt> {
       const actor=mutationPermission('content:edit_own','content:edit_any');const value=key(input);
       let existing=await stored(value);owner(existing,actor,'content:edit_any');precondition(value.expected,existing);
+      publicationDatePermission(value);
       const collection=await definition(value.type);const fields=new Set(collection.fields.map(field=>field.slug));
       let data=value.data===undefined?undefined:normalizeBlankArrays(parse(schemaData,value.data),collection.fields);
       if(data){
@@ -194,6 +200,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     async publish(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
       owner(item,actor,'content:publish_any');precondition(value.expected,item);const collection=await definition(value.type);
+      publicationDatePermission(value);
       return translate(()=>content.publish(value.type,value.id,value.publishedAt,false,undefined,collection.supports.includes('revisions'),collection.routable,{version:item.version,updatedAt:item.updatedAt}));
     },
     async unpublish(input:unknown):Promise<ContentItem> {
