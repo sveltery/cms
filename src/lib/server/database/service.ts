@@ -3,6 +3,7 @@ import { editorManifest } from '../content/manifest.ts';
 import { CmsError, type CmsDatabase } from './contract.ts';
 import { DraftRepository } from './entries.ts';
 import { SchemaRegistry } from './registry.ts';
+import { updateFieldInput } from './field-edit-validation.ts';
 import { createDraftInput, deleteDraftInput, getDraftInput, getTrashedDraftInput, identifier, listTrashedDraftInput, localeInput, parse, restoreDraftInput, updateCollectionInput, updateDraftInput, updateFieldLabelInput } from './validation.ts';
 
 // Permission names and ownership rules follow EmDash auth/rbac.ts.
@@ -76,6 +77,11 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
       requirePermission('schema:manage');
       const { collection, field, label } = parse(updateFieldLabelInput, input);
       return registry.updateFieldLabel(collection, field, { label });
+    },
+    async updateField(input: unknown) {
+      requirePermission('schema:manage');
+      const { collection, field, ...metadata } = parse(updateFieldInput, input);
+      return registry.updateField(collection, field, metadata);
     },
     async createDraft(input: unknown) {
       const actor = requirePermission('content:create');
