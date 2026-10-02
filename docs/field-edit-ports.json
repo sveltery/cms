@@ -520,6 +520,6 @@
     "path": "docs/field-edit-integration.patch",
     "status": "prepared_for_parent_application_only",
     "scope": "Exact canonical documentation and two expected-export inventory corrections; underlying parent-owned files remain untouched by this feature branch.",
-    "applicationGate": "Parent applies patch and verifies integrated final-head bootstrap/CI/reviews before merge."
+    "applicationGate": "Parent applies with git apply --unidiff-zero docs/field-edit-integration.patch or reconciles, then verifies integrated final-head bootstrap/CI/reviews before merge."
   }
 }
