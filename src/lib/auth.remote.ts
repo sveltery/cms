@@ -10,9 +10,15 @@ import { SESSION_COOKIE_NAME, SESSION_COOKIE_OPTIONS, SESSION_COOKIE_DELETE_OPTI
 import { revokeSession } from '$lib/server/auth/session';
 import { createKyselySessionStore } from '$lib/server/auth/store';
 
-const credentialText = <T extends v.BaseSchema<unknown, unknown, v.BaseIssue<unknown>>>(schema: T) => v.pipe(v.string(),
-  v.check(text => { try { return v.safeParse(schema, JSON.parse(text)).success; } catch { return false; } }, 'Invalid passkey credential'),
-  v.transform((text): v.InferOutput<T> => v.parse(schema, JSON.parse(text))));
+function validCredential(schema: v.BaseSchema<unknown, unknown, v.BaseIssue<unknown>>, text: string) {
+  try { return v.safeParse(schema, JSON.parse(text)).success; } catch { return false; }
+}
+const registrationText = v.pipe(v.string(),
+  v.check(text => validCredential(registrationCredential, text), 'Invalid passkey credential'),
+  v.transform(text => v.parse(registrationCredential, JSON.parse(text))));
+const authenticationText = v.pipe(v.string(),
+  v.check(text => validCredential(authenticationCredential, text), 'Invalid passkey credential'),
+  v.transform(text => v.parse(authenticationCredential, JSON.parse(text))));
 async function authResponse<T>(action: () => Promise<T>): Promise<T> {
   try { return await action(); }
   catch (cause) {
@@ -32,7 +38,7 @@ export const beginSetup = form(v.strictObject({ email: v.pipe(v.string(), v.emai
     void getSetupStatus().refresh();
     return { options: result.options };
   }));
-export const completeSetup = form(v.strictObject({ credential: credentialText(registrationCredential) }),
+export const completeSetup = form(v.strictObject({ credential: registrationText }),
   input => authResponse(async () => {
     const event = getRequestEvent(), context = requestIdentity(event, true);
     const user = await finishAdminSetup(context, event.cookies.get(SETUP_NONCE_COOKIE), input.credential);
@@ -44,7 +50,7 @@ export const beginLogin = form(v.strictObject({}), () => authResponse(async () =
   const event = getRequestEvent();
   return { options: await authenticationOptions(requestIdentity(event, true), event.getClientAddress()) };
 }));
-export const completeLogin = form(v.strictObject({ credential: credentialText(authenticationCredential) }),
+export const completeLogin = form(v.strictObject({ credential: authenticationText }),
   input => authResponse(async () => {
     const event = getRequestEvent(), context = requestIdentity(event, true);
     const user = await authenticatePasskey(context, input.credential);
