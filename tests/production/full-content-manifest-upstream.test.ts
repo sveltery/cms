@@ -3,8 +3,9 @@
 // declarations 158/178/257/386/406/581, blob 91f8fddb1472831b984034daa9776edd31d98e07.
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 // Full runtime generation becomes the registered Kit editing-manifest query.
-// Raw disposable metadata setup is an explicit fixture substitution; no schema
-// migration, config collection, plugin or whole runtime manifest credit.
+// Persisted registry setup replaces the full runtime/config/plugin fixture.
+// Unknown types/invalid list metadata use explicit raw fixtures; no schema
+// administration, config collection, plugin or whole runtime manifest credit.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { sql } from 'kysely';
