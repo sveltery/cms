@@ -31,12 +31,16 @@ export function createCmsRuntime(
   let closed = false;
   let closing: Promise<void> | undefined;
 
+  function assertOpen() {
+    if (closed) throw new Error('CMS runtime is closed');
+  }
+
   async function initialize(open: () => CmsDatabase | Promise<CmsDatabase>): Promise<CmsDatabase> {
     const database = await open();
     try {
-      if (closed) throw new Error('CMS runtime is closed');
+      assertOpen();
       await migrateCms(database);
-      if (closed) throw new Error('CMS runtime is closed');
+      assertOpen();
       return database;
     }
     catch (cause) { await database.close(); throw cause; }
@@ -63,7 +67,7 @@ export function createCmsRuntime(
       }
       return cachedAdapter(sqlite, path, async () => {
         const { openRuntimeSqlite } = await import('./node.ts');
-        if (closed) throw new Error('CMS runtime is closed');
+        assertOpen();
         return openRuntimeSqlite(path);
       });
     }
@@ -75,9 +79,9 @@ export function createCmsRuntime(
   }
 
   const sessionHandle = createCmsHandle(async event => {
-    if (closed) throw new Error('CMS runtime is closed');
+    assertOpen();
     const config = await configuration(event);
-    if (closed) throw new Error('CMS runtime is closed');
+    assertOpen();
     if (!config) return undefined;
     const { publicOrigin, basePath = '', rpName = 'Sveltery CMS' } = config;
     let parsed: URL;
@@ -91,7 +95,7 @@ export function createCmsRuntime(
     }
     if (typeof rpName !== 'string' || !rpName.trim()) throw new Error('SVELTERY_RP_NAME must be nonempty');
     const database = await databaseFor(config);
-    if (closed) throw new Error('CMS runtime is closed');
+    assertOpen();
     event.locals.cmsRuntime = Object.freeze({ publicOrigin, basePath, rpName });
     return { database, mutationsEnabled: config.mutationsEnabled !== false, keepAlive: config.keepAlive };
   });
@@ -101,7 +105,7 @@ export function createCmsRuntime(
       delete input.event.locals.cmsRuntime;
       try {
         return await sessionHandle({ ...input, resolve: (event, options) => {
-          if (closed) throw new Error('CMS runtime is closed');
+          assertOpen();
           return input.resolve(event, options);
         } });
       } catch (cause) {
