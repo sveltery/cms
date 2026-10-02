@@ -233,21 +233,29 @@ export const lifecycleMigration:CmsMigrationProvider = {
     statements.unshift(sql`INSERT INTO _cms_guards(token,pass) SELECT ${token}, CASE WHEN EXISTS
       (SELECT 1 FROM (${snapshotQuery()}) WHERE objects=${content.snapshot.objects}
         AND collections=${content.snapshot.collections} AND fields=${content.snapshot.fields}) THEN 1 ELSE 0 END`.compile(database.db));
-    for (const {object,target} of content.tables) {
-      if (target===object.sql) continue;
+    const rebuilding=content.tables.filter(({object,target})=>target!==object.sql);
+    const contentNames=new Set(content.tables.map(({object})=>object.name.toLowerCase()));
+    const triggers=rebuilding.length ? content.objects.filter(row=>row.type==='trigger'&&
+      contentNames.has(row.tbl_name.toLowerCase())&&row.sql!==null) : [];
+    // A trigger on any registered table can reference another table being
+    // rebuilt. Remove all attached content triggers after the snapshot guard,
+    // then restore their original SQL only when every content table exists.
+    statements.push(...triggers.map(row=>sql`DROP TRIGGER ${sql.id(row.name)}`.compile(database.db)));
+    for (const {object,target} of rebuilding) {
       const temporary='_cms_lifecycle_'+object.name+'_v5';
       const create=target.replace(/^CREATE TABLE\s+(?:"[^"]+"|\w+)/i,'CREATE TABLE "'+temporary+'"');
       const columns=definitions(object.sql!,object.name).flatMap(definition=>{
         const match=/^(?:"([a-z0-9_]+)"|([a-z0-9_]+))\s+/i.exec(definition);
         return match ? [sql.ref(match[1] ?? match[2])] : [];
       });
-      const retained=content.objects.filter(row=>row.tbl_name===object.name && ['index','trigger'].includes(row.type) && row.sql!==null);
+      const retained=content.objects.filter(row=>row.tbl_name===object.name&&row.type==='index'&&row.sql!==null);
       statements.push(sql.raw(create).compile(database.db),
         sql`INSERT INTO ${sql.ref(temporary)} (${sql.join(columns)}) SELECT ${sql.join(columns)} FROM ${sql.ref(object.name)}`.compile(database.db),
         sql`DROP TABLE ${sql.ref(object.name)}`.compile(database.db),
         sql`ALTER TABLE ${sql.ref(temporary)} RENAME TO ${sql.ref(object.name)}`.compile(database.db),
         ...retained.map(row=>sql.raw(row.sql!).compile(database.db)));
     }
+    statements.push(...triggers.map(row=>sql.raw(row.sql!).compile(database.db)));
     statements.push(sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(database.db));
     return statements;
   },

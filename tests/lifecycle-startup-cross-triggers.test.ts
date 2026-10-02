@@ -39,8 +39,8 @@ for (const target of ['Node','D1'] as const) {
         const after=await databaseSnapshot(database);
         assert.deepEqual(after.objects.filter(row=>row.type==='trigger'),before.objects.filter(row=>row.type==='trigger'));
         for (const name of ['ec_a','ec_b']) {
-          const withoutByline=(rows:Record<string,unknown>[]|undefined)=>rows?.map(row=>{
-            const retained={...row}; delete retained.primary_byline_id; return retained;
+          const withoutByline=(rows:unknown[]|undefined)=>rows?.map(row=>{
+            const retained={...(row as Record<string,unknown>)}; delete retained.primary_byline_id; return retained;
           });
           assert.deepEqual(withoutByline(after.tables.find(row=>row.name===name)?.rows),
             withoutByline(before.tables.find(row=>row.name===name)?.rows));
