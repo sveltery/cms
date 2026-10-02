@@ -1,6 +1,6 @@
 # Native Cloudflare D1 runtime
 
-This feature adds an official adapter-cloudflare build and local workerd/D1 execution. It extends the configured Node/raw-D1 runtime without provisioning external resources. Final-head CI, independent review and project-manager approval remain pending.
+This feature adds an official adapter-cloudflare build and local workerd/D1 execution in [PR #47](https://github.com/sveltery/cms/pull/47). It extends the configured Node/raw-D1 runtime without provisioning external resources. Final-head CI, independent review and project-manager approval remain pending.
 
 Pinned EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e` supplies the D1 request bookmark, session guard, coalescing and missing-binding assertions. [The source ledger](cloudflare-runtime-ports.json) records exact blobs and truthful test-first evidence. The first actual baseline runs fourteen complete declarations: three pass and eleven fail at assertions. Nine guard declarations are copied before implementation but receive no baseline red credit because that API is absent.
 

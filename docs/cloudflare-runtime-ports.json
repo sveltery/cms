@@ -649,6 +649,13 @@
       "sha256": "c37040b0868590d2467a9230b32a84ae421dec6d98fb31b1a480e18a38b39c6c",
       "localFile": "src/lib/server/database/d1.ts",
       "scope": "Session mutex policy layered onto the existing raw binding dialect; full source migration lock and introspector omitted"
+    },
+    {
+      "path": "packages/core/src/config/errors.ts",
+      "blob": "ab95f3ff6057f33cb474dfa1c1d5698ebbcd97b3",
+      "sha256": "dcd33fdc263c724c12cbd13e772576b0d95b841666d8dafca0d13f049931b21a",
+      "localFile": "src/lib/server/runtime/errors.ts",
+      "scope": "Configuration error class renamed for CMS with narrowed supported code union; no source tests omitted by renaming"
     }
   ]
 }
