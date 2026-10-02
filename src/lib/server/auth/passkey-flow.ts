@@ -78,6 +78,11 @@ export async function authenticationOptions(context: IdentityContext, trustedIp:
     const result = await sql<{ count: number }>`INSERT INTO _cms_auth_rate_limits (key,"window",count)
       VALUES (${key},${window},1) ON CONFLICT (key,"window")
       DO UPDATE SET count = _cms_auth_rate_limits.count + 1 RETURNING count`.execute(db);
+    // Pinned rate-limit.ts: expiry maintenance is probabilistic and best-effort.
+    if (Math.random() < 0.01) {
+      const cutoff = new Date(Date.now() - 3600 * 1000).toISOString();
+      void sql`DELETE FROM _cms_auth_rate_limits WHERE "window" < ${cutoff}`.execute(db).catch(() => {});
+    }
     if ((result.rows[0]?.count ?? 1) > 10) throw new AuthFlowError('RATE_LIMITED', 429);
   }
   // Submitted email is deliberately ignored to preserve the pinned nondisclosure boundary.
