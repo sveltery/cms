@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { restoreContent } from '$lib/content.remote';
+  import { restoreContent, listTrashedContent } from '$lib/content.remote';
 
   let { collection, item, disabled }: {
     collection: string;
@@ -16,7 +16,7 @@
   if (disabled || submitting || restoreForm.result) return;
   submitting = true;
   failed = false;
-  try { await form.submit(); }
+  try { await form.submit().updates(listTrashedContent({ collection, limit: 50 })); }
   catch { failed = true; }
   finally { submitting = false; }
 })} aria-label={`Restore ${item.title || item.slug || item.id} (${item.locale})`}>
