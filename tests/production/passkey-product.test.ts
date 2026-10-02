@@ -26,6 +26,22 @@ async function login(h: Awaited<ReturnType<typeof passkeyRuntime>>, state: Await
   return response;
 }
 for (const target of ['Node', 'D1'] as const) {
+  test(`${target}: native no-JavaScript logout redirects before rendering stale request identity`, async () => {
+    const h = await passkeyRuntime(target);
+    try {
+      const state = await setup(h); await login(h, state);
+      const html = await (await state.browser.get('/login')).text();
+      const action = html.match(/<form[^>]*action="([^"]+)"/)?.[1];
+      assert.ok(action, 'registered native sign-out form');
+      const response = await state.browser.submitNative(new URL(action.replaceAll('&amp;', '&'), `${h.origin}/login`).pathname
+        + new URL(action.replaceAll('&amp;', '&'), `${h.origin}/login`).search);
+      assert.equal(response.status, 303);
+      assert.equal(response.headers.get('location'), '/login');
+      assert.equal(state.browser.cookies.has('cms-session'), false);
+      assert.equal((await state.browser.get('/api/auth/me')).status, 401);
+      assert.equal((await (await h.database()).db.selectFrom('_cms_auth_sessions').selectAll().execute()).length, 0);
+    } finally { await h.close(); }
+  });
   test(`${target}: real registration then signed login persists hash-only session and current-role authority across restart`, async () => {
     const h = await passkeyRuntime(target);
     try {
