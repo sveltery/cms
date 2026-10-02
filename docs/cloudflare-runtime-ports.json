@@ -1,0 +1,46 @@
+{
+  "upstream": "https://github.com/emdash-cms/emdash",
+  "commit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "feature": "native-cloudflare-d1-runtime",
+  "sourceFiles": [
+    {
+      "path": "packages/cloudflare/tests/db/d1-request-scope.test.ts",
+      "blob": "47c0e80cff0c7b0b0c1b095086d13e815ee2d132",
+      "sha256": "88e92f0c9f69473c160482de2c1751cc7311b09b960dea4e2590d7cf180655a3",
+      "localFile": "tests/source-cloudflare/d1-request-scope.test.ts"
+    },
+    {
+      "path": "packages/cloudflare/tests/db/d1-session-guard.test.ts",
+      "blob": "b4ca9414158b8e15f0663c0fce3d2cace5f6b771",
+      "sha256": "32ce9bbc01698d4cf98dcff329270eef6dec459dfa355c1fad4368521d4a626a",
+      "localFile": "tests/source-cloudflare/d1-session-guard.test.ts"
+    },
+    {
+      "path": "packages/cloudflare/tests/db/coalescing-d1.test.ts",
+      "blob": "d4b778395c2714590effe6cdbca8ee279d6bdc35",
+      "sha256": "9981a6153654d0f0b5ab72e06ac55a21b0619792808fd525002d11b7fd9e81d4",
+      "localFile": "tests/source-cloudflare/coalescing-d1.test.ts"
+    },
+    {
+      "path": "packages/cloudflare/tests/missing-bindings.test.ts",
+      "blob": "b0b5668fbd87c69e9228f0ec352f1e642cebf0cb",
+      "sha256": "c3a547c584c661eca5f07fe0b8fec125d5f44b75cc4e841dd623650be73077c5",
+      "localFile": "tests/source-cloudflare/missing-bindings.test.ts"
+    }
+  ],
+  "baseline": {
+    "base": "8eb3b88bef1fdae892069fec02ce1c89c164c705",
+    "command": "pnpm exec vitest run --config vitest.cloudflare.config.ts tests/source-cloudflare/d1-request-scope.test.ts tests/source-cloudflare/coalescing-d1.test.ts tests/source-cloudflare/missing-bindings.test.ts",
+    "result": "14 declarations: 3 passed, 11 assertion failures, normal exit 1; no import/setup failures or timeouts",
+    "log": "/tmp/cloudflare-source-baseline-red.log",
+    "bridge": "No request session API yields null, matching the raw-only main product. Coalescing calls use the real main RawBindingD1Dialect. Source expect expressions and declaration bodies are preserved; binding injection replaces cloudflare:workers globals. Guard declarations copied before implementation but absent API prevents behavioral execution; zero baseline red credit."
+  },
+  "implementation": "pending",
+  "incomplete": [
+    "Remote API-token D1 REST migration executor (three source declarations)",
+    "Complete source migration-lock universe (five source declarations); canonical local migrations are owned separately",
+    "Durable Objects, Hyperdrive, libSQL/PostgreSQL, remote provision/deployment",
+    "Full source instrumentation/AST catalog coverage beyond selected local ports"
+  ],
+  "specificDeviationAcceptance": "not recorded"
+}
