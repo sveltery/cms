@@ -1,0 +1,495 @@
+{
+  "referenceVersion": "EmDash1.1.0",
+  "referenceCommit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "verifiedMain": "61fddd9d419d1619173bb73a01da361e0eb861d3",
+  "integrationBase": "ae61dd04",
+  "testFirstCommit": "95d0d8b0458bc48a792180df6ef363704fb2a292",
+  "decisionStatus": "Proposed bounded slice; specific acceptance of differences is not recorded. Merging and divergent tests do not establish acceptance or whole-source parity.",
+  "inspectedSources": [
+    {
+      "path": "LICENSE",
+      "sourceBlob": "02cc4b8b0a5f883c5243927e683b00c10588bf4c",
+      "sha256": "d5ab82c0225b0def1fa140af22ff2f3bed9791a527545be1b04ab4337dc88675",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/LICENSE"
+    },
+    {
+      "path": "packages/core/src/schema/registry.ts",
+      "sourceBlob": "da7bbcdda224dfca8d9146b2f36659ab90bcac2e",
+      "sha256": "db26cf5bd9c9442c3b41185c879281914410cd9ece94cf2f9716533eb6e71516",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/schema/registry.ts"
+    },
+    {
+      "path": "packages/core/src/schema/types.ts",
+      "sourceBlob": "0c2f44156cff829951c52b0dd259fc5ff45bc554",
+      "sha256": "92a76aa8192b98e9703ece4b72b5ba1377ca66454b97608b4dfc3804ab3bc698",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/schema/types.ts"
+    },
+    {
+      "path": "packages/core/src/api/handlers/schema.ts",
+      "sourceBlob": "abe31215af8f40b3df4ae4d1be5d06ebbe9342e0",
+      "sha256": "b9b06fd887c066a8724608963424205517442440fdc844243b24ab1765b11e4a",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/api/handlers/schema.ts"
+    },
+    {
+      "path": "packages/core/src/api/schemas/schema.ts",
+      "sourceBlob": "57e0338b8e1a7633d1e3409f4a38b39f73469e68",
+      "sha256": "e4f783e7852b3480ac6110f5e79736310804ae2cd2452f181c70d27263b0524e",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/api/schemas/schema.ts"
+    },
+    {
+      "path": "packages/core/src/astro/routes/api/schema/collections/index.ts",
+      "sourceBlob": "d8183953a0be68ecb3cdd0f3037783b4d68b24d3",
+      "sha256": "9af37277d5596460bbf4c7ffe6ebe6cc06a129a6774b700ea25ec9f4f044f8c6",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/astro/routes/api/schema/collections/index.ts"
+    },
+    {
+      "path": "packages/core/src/astro/routes/api/schema/collections/[slug]/index.ts",
+      "sourceBlob": "f50e6ffb823123da26263a4a13a0954f898ea15f",
+      "sha256": "2f2e2d5574a79d2a2b5c97b8d903d2d2bdbdeeb4a16121ea95ecbf44a5c8320c",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/astro/routes/api/schema/collections/[slug]/index.ts"
+    },
+    {
+      "path": "packages/core/src/astro/routes/api/schema/collections/[slug]/fields/index.ts",
+      "sourceBlob": "610ee51cec3aac02c6a7e4e867cb4387d708880b",
+      "sha256": "e0575db978d517037aaf846f32b8da1593cdbfd38d27598e77a23b59db8383cb",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/astro/routes/api/schema/collections/[slug]/fields/index.ts"
+    },
+    {
+      "path": "packages/core/tests/unit/schema/registry.test.ts",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "sha256": "31121e7e6be3db373e0d2c09985e1e11e46115a750a26d085fd1c6c70933e7ee",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts"
+    },
+    {
+      "path": "packages/core/tests/unit/api/schema-collection-update-route.test.ts",
+      "sourceBlob": "ca197df6eb9555fc2d5db4ab438556ca4b18fbbc",
+      "sha256": "4483fb4bf2da7c2946947f48407474ecbc46d45df0ab1163f180c488d7e40ce1",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/schema-collection-update-route.test.ts"
+    },
+    {
+      "path": "packages/core/tests/unit/api/schema-update-collection-display-fields.test.ts",
+      "sourceBlob": "29c6a30ec4c39a6b11a2885bd08af0f4f3ecbb76",
+      "sha256": "7d4d0a755b450db70865cb7e4f92e51c983e7820e00d29f448cc9b3330b13b9f",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/schema-update-collection-display-fields.test.ts"
+    },
+    {
+      "path": "packages/core/tests/unit/api/collection-admin-schema.test.ts",
+      "sourceBlob": "e3b2d7c536bbfb5bb2839ed547d73c2898033b8b",
+      "sha256": "4ed8eee86387e0152512795b8b9b5e0cacecfcf993af36f56e77bf3fc4cb864e",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/collection-admin-schema.test.ts"
+    },
+    {
+      "path": "packages/admin/src/lib/api/schema.ts",
+      "sourceBlob": "c18a951a06d8b0dd07eddc1a086ea3cc49726bac",
+      "sha256": "237d19ee0cb43071ee2060a4a53f575013eeafc2e9da4d8527195c9f18af69ca",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/src/lib/api/schema.ts"
+    },
+    {
+      "path": "packages/admin/src/router.tsx",
+      "sourceBlob": "4b4793ea63352f8a80ccb695a809586cef06db93",
+      "sha256": "1bbed855b6c957e32a7bd5102ee13cb23fcbe09a570cc3dd7465174df0f38e75",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/src/router.tsx"
+    },
+    {
+      "path": "packages/admin/src/components/ContentTypeEditor.tsx",
+      "sourceBlob": "fc5a907279508dc71beedb82a84b6f36de670b65",
+      "sha256": "0754b2829eabf065fee9f65fec4fc2d5dd716ef555f8264d38a57df0135ad785",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/src/components/ContentTypeEditor.tsx"
+    },
+    {
+      "path": "packages/core/src/database/transaction.ts",
+      "sourceBlob": "69bf167998a2fa9cc228c3612a69c8fde5ed85fe",
+      "sha256": "a390fe445530a32efa8ab2b4041eb46517a157ac5f9d295ef848d58b69530a4a",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/transaction.ts"
+    },
+    {
+      "path": "packages/core/src/database/dialect-helpers.ts",
+      "sourceBlob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24",
+      "sha256": "31606b29b5a98cb657078a9d89a8ab9b9f0be1694ac7410e34af6cbf49dda154",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/dialect-helpers.ts"
+    },
+    {
+      "path": "packages/core/src/database/validate.ts",
+      "sourceBlob": "73d3b303764b473d4238e0cb17f1a904998671f8",
+      "sha256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/validate.ts"
+    },
+    {
+      "path": "packages/cloudflare/src/db/d1-dialect.ts",
+      "sourceBlob": "b026d293554c5173e1447b5eff0d704e169d3384",
+      "sha256": "c37040b0868590d2467a9230b32a84ae421dec6d98fb31b1a480e18a38b39c6c",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/cloudflare/src/db/d1-dialect.ts"
+    }
+  ],
+  "ports": [
+    {
+      "title": "should create a collection",
+      "sourceAssertions": [
+        {
+          "line": 45,
+          "expression": "expect(collection.slug).toBe(\"posts\")",
+          "ported": true
+        },
+        {
+          "line": 46,
+          "expression": "expect(collection.label).toBe(\"Blog Posts\")",
+          "ported": true
+        },
+        {
+          "line": 47,
+          "expression": "expect(collection.labelSingular).toBe(\"Post\")",
+          "ported": true
+        },
+        {
+          "line": 48,
+          "expression": "expect(collection.supports).toEqual([\"drafts\", \"revisions\"])",
+          "ported": true
+        },
+        {
+          "line": 49,
+          "expression": "expect(collection.source).toBe(\"manual\")",
+          "ported": true
+        },
+        {
+          "line": 50,
+          "expression": "expect(collection.id).toBeDefined()",
+          "ported": true
+        }
+      ],
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:37",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "kind": "assertion-port",
+      "localFile": "tests/schema-admin-upstream.test.ts",
+      "runtime": [
+        "Node24 node:sqlite",
+        "real local Miniflare D1"
+      ],
+      "adaptations": "Fresh migrated storage per declaration; Vitest matchers become node:assert; SchemaError becomes CmsError locally; Kysely SqliteDialect bridge or CMS D1 fixture. Exact selected datasets and all selected assertion expressions retained.",
+      "redResult": "Existing landed registry already passes these selected source assertions; no new schema-admin source assertion red is claimed. New remote module absence was a supplemental ENOENT registration failure at95d0d8b0458bc48a792180df6ef363704fb2a292.",
+      "greenResult": "22 selected source tests /50 evaluated source assertions passed locally and against full pinned upstream registry with bounded media fixture substitutions; see runEvidence.",
+      "omittedAssertions": []
+    },
+    {
+      "title": "F14: defaults supports to ['drafts', 'revisions'] when undefined",
+      "sourceAssertions": [
+        {
+          "line": 60,
+          "expression": "expect(collection.supports.toSorted()).toEqual([\"drafts\", \"revisions\"].toSorted())",
+          "ported": true
+        }
+      ],
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:53",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "kind": "assertion-port",
+      "localFile": "tests/schema-admin-upstream.test.ts",
+      "runtime": [
+        "Node24 node:sqlite",
+        "real local Miniflare D1"
+      ],
+      "adaptations": "Fresh migrated storage per declaration; Vitest matchers become node:assert; SchemaError becomes CmsError locally; Kysely SqliteDialect bridge or CMS D1 fixture. Exact selected datasets and all selected assertion expressions retained.",
+      "redResult": "Existing landed registry already passes these selected source assertions; no new schema-admin source assertion red is claimed. New remote module absence was a supplemental ENOENT registration failure at95d0d8b0458bc48a792180df6ef363704fb2a292.",
+      "greenResult": "22 selected source tests /50 evaluated source assertions passed locally and against full pinned upstream registry with bounded media fixture substitutions; see runEvidence.",
+      "omittedAssertions": []
+    },
+    {
+      "title": "F14: preserves explicit empty supports array (opt-out)",
+      "sourceAssertions": [
+        {
+          "line": 70,
+          "expression": "expect(collection.supports).toEqual([])",
+          "ported": true
+        }
+      ],
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:63",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "kind": "assertion-port",
+      "localFile": "tests/schema-admin-upstream.test.ts",
+      "runtime": [
+        "Node24 node:sqlite",
+        "real local Miniflare D1"
+      ],
+      "adaptations": "Fresh migrated storage per declaration; Vitest matchers become node:assert; SchemaError becomes CmsError locally; Kysely SqliteDialect bridge or CMS D1 fixture. Exact selected datasets and all selected assertion expressions retained.",
+      "redResult": "Existing landed registry already passes these selected source assertions; no new schema-admin source assertion red is claimed. New remote module absence was a supplemental ENOENT registration failure at95d0d8b0458bc48a792180df6ef363704fb2a292.",
+      "greenResult": "22 selected source tests /50 evaluated source assertions passed locally and against full pinned upstream registry with bounded media fixture substitutions; see runEvidence.",
+      "omittedAssertions": []
+    },
+    {
+      "title": "should create the content table when creating a collection",
+      "sourceAssertions": [
+        {
+          "line": 102,
+          "expression": "expect(result).toBeDefined()",
+          "ported": true
+        }
+      ],
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:86",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "kind": "assertion-port",
+      "localFile": "tests/schema-admin-upstream.test.ts",
+      "runtime": [
+        "Node24 node:sqlite",
+        "real local Miniflare D1"
+      ],
+      "adaptations": "Fresh migrated storage per declaration; Vitest matchers become node:assert; SchemaError becomes CmsError locally; Kysely SqliteDialect bridge or CMS D1 fixture. Exact selected datasets and all selected assertion expressions retained.",
+      "redResult": "Existing landed registry already passes these selected source assertions; no new schema-admin source assertion red is claimed. New remote module absence was a supplemental ENOENT registration failure at95d0d8b0458bc48a792180df6ef363704fb2a292.",
+      "greenResult": "22 selected source tests /50 evaluated source assertions passed locally and against full pinned upstream registry with bounded media fixture substitutions; see runEvidence.",
+      "omittedAssertions": []
+    },
+    {
+      "title": "should list collections",
+      "sourceAssertions": [
+        {
+          "line": 119,
+          "expression": "expect(collections).toHaveLength(2)",
+          "ported": true
+        },
+        {
+          "line": 120,
+          "expression": "expect(collections.map((c) => c.slug)).toEqual([\"pages\", \"posts\"])",
+          "ported": true
+        }
+      ],
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:113",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "kind": "assertion-port",
+      "localFile": "tests/schema-admin-upstream.test.ts",
+      "runtime": [
+        "Node24 node:sqlite",
+        "real local Miniflare D1"
+      ],
+      "adaptations": "Fresh migrated storage per declaration; Vitest matchers become node:assert; SchemaError becomes CmsError locally; Kysely SqliteDialect bridge or CMS D1 fixture. Exact selected datasets and all selected assertion expressions retained.",
+      "redResult": "Existing landed registry already passes these selected source assertions; no new schema-admin source assertion red is claimed. New remote module absence was a supplemental ENOENT registration failure at95d0d8b0458bc48a792180df6ef363704fb2a292.",
+      "greenResult": "22 selected source tests /50 evaluated source assertions passed locally and against full pinned upstream registry with bounded media fixture substitutions; see runEvidence.",
+      "omittedAssertions": []
+    },
+    {
+      "title": "should throw when creating duplicate collection",
+      "sourceAssertions": [
+        {
+          "line": 354,
+          "expression": "expect(registry.createCollection({ slug: \"posts\", label: \"Posts 2\" })).rejects.toThrow(\n\t\t\t\tSchemaError,\n\t\t\t)",
+          "ported": true
+        }
+      ],
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:351",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "kind": "assertion-port",
+      "localFile": "tests/schema-admin-upstream.test.ts",
+      "runtime": [
+        "Node24 node:sqlite",
+        "real local Miniflare D1"
+      ],
+      "adaptations": "Fresh migrated storage per declaration; Vitest matchers become node:assert; SchemaError becomes CmsError locally; Kysely SqliteDialect bridge or CMS D1 fixture. Exact selected datasets and all selected assertion expressions retained.",
+      "redResult": "Existing landed registry already passes these selected source assertions; no new schema-admin source assertion red is claimed. New remote module absence was a supplemental ENOENT registration failure at95d0d8b0458bc48a792180df6ef363704fb2a292.",
+      "greenResult": "22 selected source tests /50 evaluated source assertions passed locally and against full pinned upstream registry with bounded media fixture substitutions; see runEvidence.",
+      "omittedAssertions": []
+    },
+    {
+      "title": "should reject reserved collection slugs",
+      "sourceAssertions": [
+        {
+          "line": 360,
+          "expression": "expect(\n\t\t\t\tregistry.createCollection({ slug: \"content\", label: \"Content\" }),\n\t\t\t).rejects.toThrow(SchemaError)",
+          "ported": true
+        },
+        {
+          "line": 364,
+          "expression": "expect(registry.createCollection({ slug: \"users\", label: \"Users\" })).rejects.toThrow(\n\t\t\t\tSchemaError,\n\t\t\t)",
+          "ported": true
+        }
+      ],
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:359",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "kind": "assertion-port",
+      "localFile": "tests/schema-admin-upstream.test.ts",
+      "runtime": [
+        "Node24 node:sqlite",
+        "real local Miniflare D1"
+      ],
+      "adaptations": "Fresh migrated storage per declaration; Vitest matchers become node:assert; SchemaError becomes CmsError locally; Kysely SqliteDialect bridge or CMS D1 fixture. Exact selected datasets and all selected assertion expressions retained.",
+      "redResult": "Existing landed registry already passes these selected source assertions; no new schema-admin source assertion red is claimed. New remote module absence was a supplemental ENOENT registration failure at95d0d8b0458bc48a792180df6ef363704fb2a292.",
+      "greenResult": "22 selected source tests /50 evaluated source assertions passed locally and against full pinned upstream registry with bounded media fixture substitutions; see runEvidence.",
+      "omittedAssertions": []
+    },
+    {
+      "title": "should validate collection slug format",
+      "sourceAssertions": [
+        {
+          "line": 370,
+          "expression": "expect(registry.createCollection({ slug: \"My Posts\", label: \"Posts\" })).rejects.toThrow(\n\t\t\t\tSchemaError,\n\t\t\t)",
+          "ported": true
+        },
+        {
+          "line": 374,
+          "expression": "expect(registry.createCollection({ slug: \"123posts\", label: \"Posts\" })).rejects.toThrow(\n\t\t\t\tSchemaError,\n\t\t\t)",
+          "ported": true
+        },
+        {
+          "line": 378,
+          "expression": "expect(\n\t\t\t\tregistry.createCollection({ slug: \"posts-here\", label: \"Posts\" }),\n\t\t\t).rejects.toThrow(SchemaError)",
+          "ported": true
+        }
+      ],
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:369",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "kind": "assertion-port",
+      "localFile": "tests/schema-admin-upstream.test.ts",
+      "runtime": [
+        "Node24 node:sqlite",
+        "real local Miniflare D1"
+      ],
+      "adaptations": "Fresh migrated storage per declaration; Vitest matchers become node:assert; SchemaError becomes CmsError locally; Kysely SqliteDialect bridge or CMS D1 fixture. Exact selected datasets and all selected assertion expressions retained.",
+      "redResult": "Existing landed registry already passes these selected source assertions; no new schema-admin source assertion red is claimed. New remote module absence was a supplemental ENOENT registration failure at95d0d8b0458bc48a792180df6ef363704fb2a292.",
+      "greenResult": "22 selected source tests /50 evaluated source assertions passed locally and against full pinned upstream registry with bounded media fixture substitutions; see runEvidence.",
+      "omittedAssertions": []
+    },
+    {
+      "title": "should create a field",
+      "sourceAssertions": [
+        {
+          "line": 447,
+          "expression": "expect(field.slug).toBe(\"title\")",
+          "ported": true
+        },
+        {
+          "line": 448,
+          "expression": "expect(field.label).toBe(\"Title\")",
+          "ported": true
+        },
+        {
+          "line": 449,
+          "expression": "expect(field.type).toBe(\"string\")",
+          "ported": true
+        },
+        {
+          "line": 450,
+          "expression": "expect(field.columnType).toBe(\"TEXT\")",
+          "ported": true
+        },
+        {
+          "line": 451,
+          "expression": "expect(field.required).toBe(true)",
+          "ported": true
+        }
+      ],
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:439",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "kind": "assertion-port",
+      "localFile": "tests/schema-admin-upstream.test.ts",
+      "runtime": [
+        "Node24 node:sqlite",
+        "real local Miniflare D1"
+      ],
+      "adaptations": "Fresh migrated storage per declaration; Vitest matchers become node:assert; SchemaError becomes CmsError locally; Kysely SqliteDialect bridge or CMS D1 fixture. Exact selected datasets and all selected assertion expressions retained.",
+      "redResult": "Existing landed registry already passes these selected source assertions; no new schema-admin source assertion red is claimed. New remote module absence was a supplemental ENOENT registration failure at95d0d8b0458bc48a792180df6ef363704fb2a292.",
+      "greenResult": "22 selected source tests /50 evaluated source assertions passed locally and against full pinned upstream registry with bounded media fixture substitutions; see runEvidence.",
+      "omittedAssertions": []
+    },
+    {
+      "title": "should add column to content table when creating field",
+      "sourceAssertions": [
+        {
+          "line": 631,
+          "expression": "expect((row as any).title).toBe(\"Test Title\")",
+          "ported": true
+        }
+      ],
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:610",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "kind": "assertion-port",
+      "localFile": "tests/schema-admin-upstream.test.ts",
+      "runtime": [
+        "Node24 node:sqlite",
+        "real local Miniflare D1"
+      ],
+      "adaptations": "Fresh migrated storage per declaration; Vitest matchers become node:assert; SchemaError becomes CmsError locally; Kysely SqliteDialect bridge or CMS D1 fixture. Exact selected datasets and all selected assertion expressions retained.",
+      "redResult": "Existing landed registry already passes these selected source assertions; no new schema-admin source assertion red is claimed. New remote module absence was a supplemental ENOENT registration failure at95d0d8b0458bc48a792180df6ef363704fb2a292.",
+      "greenResult": "22 selected source tests /50 evaluated source assertions passed locally and against full pinned upstream registry with bounded media fixture substitutions; see runEvidence.",
+      "omittedAssertions": []
+    },
+    {
+      "title": "should get a field by slug",
+      "sourceAssertions": [
+        {
+          "line": 664,
+          "expression": "expect(field).not.toBeNull()",
+          "ported": true
+        },
+        {
+          "line": 665,
+          "expression": "expect(field?.validation).toEqual({ minLength: 1, maxLength: 100 })",
+          "ported": true
+        }
+      ],
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:654",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "kind": "assertion-port",
+      "localFile": "tests/schema-admin-upstream.test.ts",
+      "runtime": [
+        "Node24 node:sqlite",
+        "real local Miniflare D1"
+      ],
+      "adaptations": "Fresh migrated storage per declaration; Vitest matchers become node:assert; SchemaError becomes CmsError locally; Kysely SqliteDialect bridge or CMS D1 fixture. Exact selected datasets and all selected assertion expressions retained.",
+      "redResult": "Existing landed registry already passes these selected source assertions; no new schema-admin source assertion red is claimed. New remote module absence was a supplemental ENOENT registration failure at95d0d8b0458bc48a792180df6ef363704fb2a292.",
+      "greenResult": "22 selected source tests /50 evaluated source assertions passed locally and against full pinned upstream registry with bounded media fixture substitutions; see runEvidence.",
+      "omittedAssertions": []
+    }
+  ],
+  "runEvidence": [
+    {
+      "command": "node --test tests/schema-admin-upstream.test.ts",
+      "result": "22 passed,0 failed;11 declarations \u00d72 runtimes;25 assertions each runtime",
+      "log": "/tmp/schema-admin-evidence/upstream-green.log"
+    },
+    {
+      "command": "node scripts/reproduce-schema-admin-upstream.mjs",
+      "result": "22 selected cases +2 upstream supplemental scalar storage probes passed; separate1 local Node storage probe included by script; actual pinned full registry with documented fixture boundaries.",
+      "log": "/tmp/schema-upstream-run.log",
+      "selectedAssertionsSha256": "2b192f1561a3f111224d3512fbf5053eb10fcb4f5b0207de752494ac28be08af"
+    },
+    {
+      "command": "node --test tests/schema-admin-registration.test.ts tests/schema-admin-upstream.test.ts",
+      "head": "95d0d8b0458bc48a792180df6ef363704fb2a292",
+      "result": "Original grouped tests6 pass; supplemental missing-module registration1 fail with ENOENT. Grouped113 fixture later corrected to independent clean source fixture; this historical run is not22-test source credit.",
+      "log": "/tmp/schema-assertion-red.log"
+    },
+    {
+      "command": "node --test tests/production/schema-admin-remotes.test.ts",
+      "result": "8 tests passed,0 failed;4 each Node/localD1, real registered HTTP endpoints and persisted trusted sessions, native HTML/restart/zero-write/conflict/gates/consumer refresh",
+      "log": "/tmp/schema-native-roundtrip.log"
+    }
+  ],
+  "supplementalFiles": [
+    "tests/production/schema-admin-remotes.test.ts",
+    "tests/browser/schema-admin.spec.ts",
+    "tests/schema-admin.test.ts",
+    "tests/schema-admin-ui.test.ts",
+    "tests/schema-admin-conversion.test.ts"
+  ],
+  "omissions": [
+    "All other registry.test.ts declarations, including portableText/datetime/mixed-field assertions, field mutation/deletion, indexes, media, FTS and richer metadata. No substituted scalar expectations count as those source assertions.",
+    "Inspected schema handlers, REST routes, request schemas, metadata route/schema tests, admin API/router/ContentTypeEditor are source contracts only. No assertion-level port of those suites or full React UI/REST envelope parity is claimed.",
+    "Metadata service assertion ports remain owned by docs/collection-update.md; do not count them again here.",
+    "Upstream fixture executes subset DDL with exact full registry; full upstream migrations and media capture/activation/cache/FTS/typegen are outside fixture; documented nonthrowing media seams carry no subsystem parity credit.",
+    "Remote HTTP/native-form/browser tests are supplemental framework contracts. Hosted browser/final CI/reviews only acquire passing evidence when recorded by parent at reviewed head.",
+    "Standalone localD1 scalar difference probe stalled and was terminated; no localD1 physical-default/uniqueness divergence run credit is claimed. The reproducible local scalar divergence probe is Node only; upstream probes passed on both targets."
+  ],
+  "compatibilityRecords": [
+    "SA-01",
+    "SA-02",
+    "SA-03",
+    "SA-04",
+    "SA-05"
+  ],
+  "runtime": {
+    "node": "24.19.0",
+    "pnpm": "12.6.0",
+    "kysely": "0.29.2",
+    "svelte": "5.57.1",
+    "sveltekit": "2.70.3",
+    "vite": "8.3.2",
+    "miniflare": "4.20260507.1",
+    "compatibilityDate": "2026-05-07",
+    "scope": "Temporary SQLite/localD1 only; no production or deployed-hosting evidence"
+  }
+}

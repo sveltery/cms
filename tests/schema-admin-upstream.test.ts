@@ -1,8 +1,9 @@
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
-// Assertion-level selected port of registry.test.ts at EmDash 1.1.0
-// 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e. Vitest -> node:test,
-// SchemaError -> CmsError and upstream DB fixture -> isolated SQLite/local D1.
-// No portableText/datetime substitutions earn parity credit; those cases are omitted.
+// Selected exact assertions/datasets from packages/core/tests/unit/schema/registry.test.ts,
+// EmDash 1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e. Each source case has
+// its own migrated database. Vitest -> node:test, SchemaError -> CmsError,
+// upstream DB fixture -> isolated SQLite/local D1 are runner substitutions.
+// PortableText/datetime cases and the remainder of the source suite are omitted.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { sql } from 'kysely';
@@ -11,47 +12,57 @@ import { migrateCms } from '../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
 import { schemaAdminStorage } from './helpers/schema-admin-storage.ts';
 
-for (const target of ['Node', 'D1'] as const) {
-  test(`${target}: registry.test.ts:37,53,63,86,113 collection creation assertions (11)`, async () => {
+type Storage = Awaited<ReturnType<typeof schemaAdminStorage>>;
+const cases: { line: number; assertions: number; title: string; run(r: SchemaRegistry,h: Storage): Promise<void> }[] = [
+  { line:37, assertions:6, title:'should create a collection', async run(r) {
+    const c = await r.createCollection({ slug:'posts',label:'Blog Posts',labelSingular:'Post',supports:['drafts','revisions'] });
+    assert.equal(c.slug,'posts'); assert.equal(c.label,'Blog Posts'); assert.equal(c.labelSingular,'Post');
+    assert.deepEqual(c.supports,['drafts','revisions']); assert.equal(c.source,'manual'); assert.notEqual(c.id,undefined);
+  } },
+  { line:53, assertions:1, title:'defaults supports when undefined', async run(r) {
+    const c = await r.createCollection({ slug:'default_supports',label:'Default Supports' });
+    assert.deepEqual(c.supports.toSorted(),['drafts','revisions'].toSorted());
+  } },
+  { line:63, assertions:1, title:'preserves explicit empty supports opt-out', async run(r) {
+    assert.deepEqual((await r.createCollection({ slug:'no_supports',label:'No Supports',supports:[] })).supports,[]);
+  } },
+  { line:86, assertions:1, title:'creates the content table', async run(r,h) {
+    await r.createCollection({ slug:'articles',label:'Articles' });
+    const result = await sql`INSERT INTO ec_articles (id,slug,status) VALUES ('test-id','test-slug','draft')`.execute(h.database.db);
+    assert.notEqual(result,undefined);
+  } },
+  { line:113, assertions:2, title:'lists collections sorted by slug', async run(r) {
+    await r.createCollection({ slug:'posts',label:'Posts' }); await r.createCollection({ slug:'pages',label:'Pages' });
+    const c = await r.listCollections(); assert.equal(c.length,2); assert.deepEqual(c.map(c=>c.slug),['pages','posts']);
+  } },
+  { line:351, assertions:1, title:'rejects duplicate collections', async run(r) {
+    await r.createCollection({ slug:'posts',label:'Posts' }); await assert.rejects(()=>r.createCollection({ slug:'posts',label:'Posts 2' }),CmsError);
+  } },
+  { line:359, assertions:2, title:'rejects reserved collection slugs', async run(r) {
+    await assert.rejects(()=>r.createCollection({ slug:'content',label:'Content' }),CmsError);
+    await assert.rejects(()=>r.createCollection({ slug:'users',label:'Users' }),CmsError);
+  } },
+  { line:369, assertions:3, title:'validates collection slug format', async run(r) {
+    for (const slug of ['My Posts','123posts','posts-here']) await assert.rejects(()=>r.createCollection({ slug,label:'Posts' }),CmsError);
+  } },
+  { line:439, assertions:5, title:'creates a required string field', async run(r) {
+    await r.createCollection({ slug:'posts',label:'Posts' });
+    const f = await r.createField('posts',{ slug:'title',label:'Title',type:'string',required:true });
+    assert.equal(f.slug,'title'); assert.equal(f.label,'Title'); assert.equal(f.type,'string'); assert.equal(f.columnType,'TEXT'); assert.equal(f.required,true);
+  } },
+  { line:610, assertions:1, title:'adds the physical content column', async run(r,h) {
+    await r.createCollection({ slug:'posts',label:'Posts' }); await r.createField('posts',{ slug:'title',label:'Title',type:'string' });
+    await sql`INSERT INTO ec_posts (id,title) VALUES ('test-id','Test Title')`.execute(h.database.db);
+    const row = (await sql<{ title:string }>`SELECT * FROM ec_posts`.execute(h.database.db)).rows[0]; assert.equal(row.title,'Test Title');
+  } },
+  { line:654, assertions:2, title:'gets a field by slug with validation', async run(r) {
+    await r.createCollection({ slug:'posts',label:'Posts' }); await r.createField('posts',{ slug:'title',label:'Title',type:'string',validation:{ minLength:1,maxLength:100 } });
+    const f = await r.getField('posts','title'); assert.notEqual(f,null); assert.deepEqual(f?.validation,{ minLength:1,maxLength:100 });
+  } }
+];
+for (const target of ['Node','D1'] as const) for (const source of cases) {
+  test(`${target}: registry.test.ts:${source.line}: ${source.title} (${source.assertions} assertions)`,{ timeout:30_000 },async()=>{
     const h = await schemaAdminStorage(target);
-    try {
-      await migrateCms(h.database); const r = new SchemaRegistry(h.database);
-      const c = await r.createCollection({ slug: 'posts', label: 'Blog Posts', labelSingular: 'Post', supports: ['drafts', 'revisions'] });
-      assert.equal(c.slug, 'posts'); assert.equal(c.label, 'Blog Posts'); assert.equal(c.labelSingular, 'Post');
-      assert.deepEqual(c.supports, ['drafts', 'revisions']); assert.equal(c.source, 'manual'); assert.notEqual(c.id, undefined);
-      assert.deepEqual((await r.createCollection({ slug: 'default_supports', label: 'Default Supports' })).supports.toSorted(), ['drafts', 'revisions'].toSorted());
-      assert.deepEqual((await r.createCollection({ slug: 'no_supports', label: 'No Supports', supports: [] })).supports, []);
-      const result = await sql`INSERT INTO ec_posts (id,slug,status) VALUES ('test-id','test-slug','draft')`.execute(h.database.db);
-      assert.notEqual(result, undefined);
-      // Source113 uses its own clean fixture. The earlier collection cases share ours;
-      // selecting the same two source rows preserves its exact output assertions.
-      await r.createCollection({ slug: 'pages', label: 'Pages' });
-      const collections = (await r.listCollections()).filter(c => ['posts', 'pages'].includes(c.slug));
-      assert.equal(collections.length, 2); assert.deepEqual(collections.map(c => c.slug), ['pages', 'posts']);
-    } finally { await h.close(); }
-  });
-  test(`${target}: registry.test.ts:351,359,369 duplicate/reserved/slug assertions (6)`, async () => {
-    const h = await schemaAdminStorage(target);
-    try {
-      await migrateCms(h.database); const r = new SchemaRegistry(h.database);
-      await r.createCollection({ slug: 'posts', label: 'Posts' });
-      await assert.rejects(() => r.createCollection({ slug: 'posts', label: 'Posts 2' }), CmsError);
-      for (const [slug,label] of [['content','Content'],['users','Users'],['My Posts','Posts'],['123posts','Posts'],['posts-here','Posts']]) {
-        await assert.rejects(() => r.createCollection({ slug,label }), CmsError);
-      }
-    } finally { await h.close(); }
-  });
-  test(`${target}: registry.test.ts:439,610,654 string-field assertions (8)`, async () => {
-    const h = await schemaAdminStorage(target);
-    try {
-      await migrateCms(h.database); const r = new SchemaRegistry(h.database);
-      await r.createCollection({ slug: 'posts', label: 'Posts' });
-      const field = await r.createField('posts', { slug: 'title', label: 'Title', type: 'string', required: true });
-      assert.equal(field.slug,'title'); assert.equal(field.label,'Title'); assert.equal(field.type,'string'); assert.equal(field.columnType,'TEXT'); assert.equal(field.required,true);
-      await sql`INSERT INTO ec_posts (id,title) VALUES ('test-id','Test Title')`.execute(h.database.db);
-      const row = (await sql<{ title: string }>`SELECT * FROM ec_posts`.execute(h.database.db)).rows[0]; assert.equal(row.title, 'Test Title');
-      await r.createField('posts', { slug: 'other_title', label: 'Title', type: 'string', validation: { minLength: 1, maxLength: 100 } });
-      const read = await r.getField('posts','other_title'); assert.notEqual(read,null); assert.deepEqual(read?.validation,{ minLength:1,maxLength:100 });
-    } finally { await h.close(); }
+    try { await migrateCms(h.database); await source.run(new SchemaRegistry(h.database),h); } finally { await h.close(); }
   });
 }

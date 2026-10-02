@@ -4,14 +4,14 @@ import { preview } from 'vite';
 import { readdir, readFile } from 'node:fs/promises';
 import { remoteBoundaries } from '../helpers/remote.ts';
 
-test('production build registers content remotes and enforces HTTP boundaries', async (t) => {
+test('production build registers CMS remotes and enforces HTTP boundaries', async (t) => {
   const { manifest } = await import(new URL('../../.svelte-kit/output/server/manifest.js', import.meta.url).href);
   const ids = new Map<string, string>();
   for (const [hash, load] of Object.entries(manifest._.remotes)) {
     const { default: exports } = await (load as () => Promise<{ default: Record<string, unknown> }>)();
     for (const name of Object.keys(exports)) ids.set(name, `${hash}/${name}`);
   }
-  assert.deepEqual([...ids.keys()].sort(), ['createContent', 'deleteContent', 'getCollection', 'getContent', 'getEditorManifest', 'listCollections', 'listContent', 'updateContent']);
+  assert.deepEqual([...ids.keys()].sort(), ['addSchemaField', 'createContent', 'createSchemaCollection', 'deleteContent', 'getCollection', 'getContent', 'getEditorManifest', 'getSchemaCollection', 'listCollections', 'listContent', 'listSchemaCollections', 'updateContent', 'updateSchemaCollection']);
   const server = await preview({ preview: { host: '127.0.0.1', port: 0 }, clearScreen: false });
   try {
     assert.ok(server.resolvedUrls);
