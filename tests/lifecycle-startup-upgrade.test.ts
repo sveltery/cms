@@ -28,7 +28,7 @@ for (const target of ['Node','D1'] as const) {
         sql`UPDATE ec_post SET status='published',published_at='2026-10-02T12:00:00.000Z',live_revision_id='live',draft_revision_id='draft' WHERE id=${row.id}`.compile(database.db)
       ]);
       const stored=(await sql<{live_revision_id:string;draft_revision_id:string;version:number;updated_at:string}>`SELECT live_revision_id,draft_revision_id,version,updated_at FROM ec_post WHERE id=${row.id}`.execute(database.db)).rows[0];
-      assert.deepEqual(stored,{live_revision_id:'live',draft_revision_id:'draft',version:before!.version,updated_at:before!.updatedAt});
+      assert.deepEqual({...stored},{live_revision_id:'live',draft_revision_id:'draft',version:before!.version,updated_at:before!.updatedAt});
       await migrateCms(database);
       assert.equal((await sql`SELECT * FROM _cms_revisions ORDER BY id`.execute(database.db)).rows.length,2);
     } finally {await storage.close();}
