@@ -25,6 +25,7 @@ export const sessions: Record<string, ServerPrincipal> = {
 
 /** Isolated built-server test hook. This file is never imported by app source. */
 export async function persistedRemotes(config?: { persistedSessions: true; mutationsEnabled?: boolean }) {
+  let mutationsEnabled = config?.mutationsEnabled ?? true;
   const directory = await mkdtemp(join(tmpdir(), 'cms-remotes-'));
   const path = join(directory, 'content.sqlite');
   let database = openSqlite(path);
@@ -57,11 +58,11 @@ export async function persistedRemotes(config?: { persistedSessions: true; mutat
     for (const name of Object.keys(exports)) ids.set(name, `${hash}/${name}`);
   }
   const originalHandle = options.hooks.handle;
-  const handle: Handle = config?.persistedSessions ? createCmsHandle(() => ({ database, mutationsEnabled: config.mutationsEnabled })) : ({ event, resolve }) => {
+  const handle: Handle = config?.persistedSessions ? createCmsHandle(() => ({ database, mutationsEnabled })) : ({ event, resolve }) => {
     const sid = event.cookies.get('cms-test-session');
     // Opaque cookie -> trusted server session. No role/permission/header claims.
     const principal = sid ? sessions[sid] ?? null : null;
-    Object.assign(event.locals, { cms: { database, principal, mutationsEnabled: true } });
+    Object.assign(event.locals, { cms: { database, principal, mutationsEnabled } });
     return resolve(event);
   };
   options.hooks.handle = handle;
@@ -82,6 +83,7 @@ export async function persistedRemotes(config?: { persistedSessions: true; mutat
   }
   return {
     ids, registry, request, remote,
+    setMutationsEnabled(value: boolean) { mutationsEnabled = value; },
     async setRole(session: string, role: number) { await database.db.updateTable('_cms_auth_users').set({ role }).where('id', '=', `user_${session}`).execute(); },
     async disable(session: string) { await database.db.updateTable('_cms_auth_users').set({ disabled: 1 }).where('id', '=', `user_${session}`).execute(); },
     async expire(session: string) { await database.db.updateTable('_cms_auth_sessions').set({ expires_at: Date.now() - 1 }).where('hash', '=', (await hashSessionToken(tokens[session]))!).execute(); },

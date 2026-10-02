@@ -61,7 +61,8 @@ export const test = base.extend<{ nativeAutosave: {
         return Response.json({ data: { item: field } }, { status: 201 });
       }
       if (url.pathname === `/_emdash/api/content/${collection}/${created.id}/revisions` && (!init?.method || init.method === 'GET')) {
-        return Response.json({ data: await h.query('listContentRevisions', { collection, id: created.id }) });
+        const items = await h.query('listContentRevisions', { collection, id: created.id });
+        return Response.json({ data: { items, total: items.length } });
       }
       throw new Error(`Unadapted source request: ${init?.method ?? 'GET'} ${url.pathname}`);
     };

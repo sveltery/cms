@@ -22,7 +22,7 @@
       <thead><tr><th>Title</th><th>Status</th><th>Locale</th></tr></thead>
       <tbody>
         {#each content.entries.items as item (item.id)}
-          <tr><td><span role="listitem"><a href={`${resolve('/content/[collection]/[id]', { collection, id: item.id })}?locale=${encodeURIComponent(item.locale)}`}>{String(item.data[content.definition.titleField ?? 'title'] ?? item.slug ?? item.id)}</a></span></td>
+          <tr><td><span role="listitem"><a href={`${resolve('/content/[collection]/[id]', { collection, id: item.id })}${item.locale === 'en' ? '' : `?locale=${encodeURIComponent(item.locale)}`}`}>{String(item.data[content.definition.titleField ?? 'title'] ?? item.slug ?? item.id)}</a></span></td>
             <td><span class="inline-flex">{item.status}</span></td><td>{item.locale}</td></tr>
         {/each}
       </tbody>

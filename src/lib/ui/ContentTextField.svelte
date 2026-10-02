@@ -15,10 +15,10 @@
   {#if field.required}<span aria-hidden="true"> *</span>{/if}
 </label>
 {#if field.kind === 'richText'}
-  <textarea id={`field-${slug}`} {name} bind:value {disabled} maxlength={field.validation?.maxLength}
+  <textarea id={`field-${slug}`} {name} data-field={slug} bind:value {disabled} maxlength={field.validation?.maxLength}
     oninput={event => onchange?.(event.currentTarget.value)} dir="auto" placeholder="Enter markdown content..."></textarea>
 {:else}
-  <input id={`field-${slug}`} type="text" {name} bind:value {disabled} required={field.required}
+  <input id={`field-${slug}`} type="text" {name} data-field={slug} bind:value {disabled} required={field.required}
     oninput={event => onchange?.(event.currentTarget.value)} maxlength={field.validation?.maxLength} dir="auto" />
 {/if}
 
