@@ -576,3 +576,7 @@ request; it does not prove the exact timing of the hosted auth-head failure.
 assertion reds, already-green parameter/rollback/restart controls, focused green
 runs and required final gates. Decision status: implementation authorized;
 specific PM acceptance and merge are pending.
+
+## Ordinary content composition candidate
+
+[Ordinary content composition](../../docs/content-composition.md) has a source-first baseline of 49 complete declarations at immutable pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`: 20 pass and 29 fail at preserved assertions against unchanged product commit `5a2923b933f01969d90faf9197ecf4c8385a7731`. The [ledger](../../docs/content-composition-ports.json) identifies service/handler/tool projections and actual lifecycle fixture substitutions. No native transport implementation, approval, source inventory expansion, MCP protocol, PostgreSQL or deployed adapter parity is established. All-status lifecycle composition is a fidelity repair still pending; native summary projection and caller-required CAS remain explicit host adaptations, with no specific acceptance decision recorded. Existing C-07/FS-07/LC-01–03 records remain applicable.
