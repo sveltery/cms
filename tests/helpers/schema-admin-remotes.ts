@@ -17,7 +17,10 @@ import { Role } from '../../src/lib/server/auth/roles.ts';
 import { schemaAdminStorage } from './schema-admin-storage.ts';
 
 /** Isolated persisted trusted test sessions and actual built Kit remotes; no app imports this. */
-export async function schemaAdminRemotes(target: 'Node' | 'D1', mutationsEnabled = true) {
+export async function schemaAdminRemotes(target: 'Node' | 'D1', mutationsEnabled = true,
+  fixture: { output?: string; base?: string } = {}) {
+  const output = fixture.output ?? new URL('../../.svelte-kit/output/', import.meta.url).pathname;
+  const base = fixture.base ?? '';
   const directory = await mkdtemp(join(tmpdir(), 'cms-schema-admin-'));
   let storage = await schemaAdminStorage(target, directory);
   await migrateCms(storage.database);
@@ -27,7 +30,7 @@ export async function schemaAdminRemotes(target: 'Node' | 'D1', mutationsEnabled
     await storage.database.db.insertInto('_cms_auth_users').values({ id: `schema_${name}`, role, disabled: 0 }).execute();
     await storage.database.db.insertInto('_cms_auth_sessions').values({ hash: (await hashSessionToken(tokens[name]))!, user_id: `schema_${name}`, expires_at: Date.now() + 600_000 }).execute();
   }
-  const built = (file: string) => import(new URL(`../../.svelte-kit/output/server/${file}`, import.meta.url).href);
+  const built = (file: string) => import(new URL(`file://${join(output, 'server', file)}`).href);
   const { manifest } = await built('manifest.js');
   const { Server } = await built('index.js');
   const { options } = await built('internal.js');
@@ -54,9 +57,9 @@ export async function schemaAdminRemotes(target: 'Node' | 'D1', mutationsEnabled
     try {
       const address = http.address(); assert.ok(address && typeof address === 'object');
       const pathname = new URL(incoming.url ?? '/', `http://127.0.0.1:${address.port}`).pathname;
-      if (pathname.startsWith('/_app/') && !pathname.startsWith('/_app/remote/')) {
-        const root = resolve(new URL('../../.svelte-kit/output/client', import.meta.url).pathname);
-        const path = resolve(root, `.${decodeURIComponent(pathname)}`);
+      if (pathname.startsWith(`${base}/_app/`) && !pathname.startsWith(`${base}/_app/remote/`)) {
+        const root = resolve(output, 'client');
+        const path = resolve(root, `.${decodeURIComponent(pathname.slice(base.length))}`);
         if (!path.startsWith(root + sep)) { outgoing.writeHead(400); outgoing.end(); return; }
         const body = await readFile(path);
         outgoing.writeHead(200, { 'content-type': path.endsWith('.js') ? 'text/javascript' : path.endsWith('.css') ? 'text/css' : 'application/octet-stream' });
@@ -79,7 +82,7 @@ export async function schemaAdminRemotes(target: 'Node' | 'D1', mutationsEnabled
   async function request(path: string, session: string | null = 'admin', init: RequestInit = {}) {
     const headers = new Headers(init.headers);
     if (session) headers.set('cookie', `cms-session=${tokens[session] ?? session}`);
-    return fetch(new URL(path, origin), { ...init, headers, signal: AbortSignal.timeout(10_000) });
+    return fetch(new URL(`${base}${path}`, origin), { ...init, headers, signal: AbortSignal.timeout(10_000) });
   }
   async function remote(name: string, session: string | null = 'admin', input?: Record<string, string>, argument?: unknown) {
     assert.ok(ids.has(name), `registered remote: ${name}`);
@@ -91,7 +94,7 @@ export async function schemaAdminRemotes(target: 'Node' | 'D1', mutationsEnabled
     return response.json();
   }
   return {
-    ids, origin, tokens, request, remote,
+    ids, origin, base, tokens, request, remote,
     probeStorage(mode: 'throw' | 'absent' = 'throw') { storageProbe = mode; storageReads = 0; },
     get storageReads() { return storageReads; },
     get database() { return storage.database; },

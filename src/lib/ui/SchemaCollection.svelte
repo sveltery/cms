@@ -83,6 +83,12 @@
     <label>Default value <textarea {...fieldForm.fields.defaultValue.as('text')} disabled={!setDefault} maxlength="100000"></textarea></label>
     <label>Minimum length <input {...fieldForm.fields.minLength.as('text')} inputmode="numeric" pattern="[0-9]*" /></label>
     <label>Maximum length <input {...fieldForm.fields.maxLength.as('text')} inputmode="numeric" pattern="[0-9]*" /></label>
+    <label for={`${controlsId}-pattern-mode`}>Pattern metadata</label>
+    <select id={`${controlsId}-pattern-mode`} {...fieldForm.fields.patternMode.as('select', 'omit')}>
+      <option value="omit">Omit pattern</option><option value="set">Save pattern</option>
+    </select>
+    <label>Validation pattern <input {...fieldForm.fields.pattern.as('text')} /></label>
+    <p>Save pattern stores the exact source, including an empty string. The server uses JavaScript regular expressions without flags; matching is case sensitive and unanchored unless you include anchors.</p>
     <button type="submit" disabled={fieldForm.pending > 0}>Add field</button>
   </fieldset>
   {#if fieldForm.fields.allIssues()?.length}
