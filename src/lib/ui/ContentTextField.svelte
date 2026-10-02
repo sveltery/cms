@@ -2,7 +2,7 @@
   import type { EditorField } from '$lib/server/content/manifest';
   let { slug, field, name, value = $bindable(''), disabled = false }: {
     slug: string;
-    field: EditorField;
+    field: Omit<EditorField, 'kind'> & { kind: 'string' | 'richText' };
     name?: string;
     value?: string | null;
     disabled?: boolean;
