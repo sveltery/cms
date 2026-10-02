@@ -1,17 +1,18 @@
 <script lang="ts">
-  import { createSchemaCollection } from '$lib/schema.remote';
+  import { createSchemaCollection, reorderSchemaCollections } from '$lib/schema.remote';
   const controlsId = $props.id();
   let { collections = [], unavailable = false, disabled = true }: {
-    collections?: { slug: string; label: string; href: string }[];
+    collections?: { slug: string; label: string; href: string;version:number;updatedAt:string }[];
     unavailable?: boolean;
     disabled?: boolean;
   } = $props();
   let supportsMode = $state('keep');
   let drafts = $state(true);
   let revisions = $state(true);
+  let preview=$state(false); let scheduling=$state(false); let search=$state(false); let seo=$state(false);
   let setSingular = $state(false);
   let setDescription = $state(false);
-  const supports = $derived(JSON.stringify([...(drafts ? ['drafts'] : []), ...(revisions ? ['revisions'] : [])]));
+  const supports = $derived(JSON.stringify([...(drafts ? ['drafts'] : []), ...(revisions ? ['revisions'] : []),...(preview?['preview']:[]),...(scheduling?['scheduling']:[]),...(search?['search']:[]),...(seo?['seo']:[])]));
 </script>
 
 <h1>Schema</h1>
@@ -25,6 +26,18 @@
       <li>No collections yet.</li>
     {/each}
   </ul>
+{/if}
+{#if collections.length>1}
+<form {...reorderSchemaCollections}>
+  <fieldset disabled={disabled || reorderSchemaCollections.pending>0}>
+    <legend>Collection order</legend>
+    <input {...reorderSchemaCollections.fields.expected.as('hidden',JSON.stringify(collections.map(({slug,version,updatedAt})=>({slug,version,updatedAt}))))} />
+    <label>Ordered collection slugs <textarea {...reorderSchemaCollections.fields.slugs.as('text',JSON.stringify(collections.map(collection=>collection.slug)))}></textarea></label>
+    <button type="submit">Save collection order</button>
+  </fieldset>
+  {#if reorderSchemaCollections.fields.allIssues()?.length}<ul>{#each reorderSchemaCollections.fields.allIssues()??[] as issue}<li>{issue.message}</li>{/each}</ul>{/if}
+  {#if reorderSchemaCollections.result}<p role="status">Collection order saved.</p>{/if}
+</form>
 {/if}
 <form {...createSchemaCollection}>
   <fieldset disabled={disabled || createSchemaCollection.pending > 0}>
@@ -44,7 +57,11 @@
       <input {...createSchemaCollection.fields.supports.as('hidden', supports)} />
       <label class="toggle"><input type="checkbox" bind:checked={drafts} /> Drafts</label>
       <label class="toggle"><input type="checkbox" bind:checked={revisions} /> Revisions</label>
-      <p>Leaving both unchecked stores an empty supports list.</p>
+      <label class="toggle"><input type="checkbox" bind:checked={preview} /> Preview</label>
+      <label class="toggle"><input type="checkbox" bind:checked={scheduling} /> Scheduling</label>
+      <label class="toggle"><input type="checkbox" bind:checked={search} /> Search</label>
+      <label class="toggle"><input type="checkbox" bind:checked={seo} /> SEO</label>
+      <p>Leaving all unchecked stores an empty supports list.</p>
     {/if}
     <button type="submit" disabled={createSchemaCollection.pending > 0}>Create collection</button>
   </fieldset>

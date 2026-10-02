@@ -10,7 +10,7 @@
     () => ({ records: [], unavailable: true })
   ));
   const collections = $derived(schemas.records.map(collection => ({
-    slug: collection.slug, label: collection.label,
+    slug: collection.slug, label: collection.label, version:collection.version, updatedAt:collection.updatedAt,
     href: resolve('/schema/[collection]', { collection: collection.slug })
   })));
 </script>

@@ -1,7 +1,9 @@
 <script lang="ts">
-  import { getSchemaCollection, updateSchemaCollection, addSchemaField } from '$lib/schema.remote';
+  import { getSchemaCollection, updateSchemaCollection, addSchemaField, reorderSchemaFields, deleteSchemaCollection } from '$lib/schema.remote';
   import SchemaFieldLabel from './SchemaFieldLabel.svelte';
   import SchemaFieldOptions from './SchemaFieldOptions.svelte';
+  import SchemaFieldMetadata from './SchemaFieldMetadata.svelte';
+  import { schemaFieldTypes } from './schema-field-types';
   const controlsId = $props.id();
   let { definition, collectionsHref = '/schema', disabled = true }: {
     definition: Awaited<ReturnType<typeof getSchemaCollection>>;
@@ -10,9 +12,15 @@
   } = $props();
   const metadataForm = $derived(updateSchemaCollection.for(definition.slug));
   const fieldForm = $derived(addSchemaField.for(definition.slug));
+  const orderForm = $derived(reorderSchemaFields.for(definition.slug));
+  const deleteForm = $derived(deleteSchemaCollection.for(definition.slug));
   let supportsMode = $state('keep');
   let drafts = $state(false);
   let revisions = $state(false);
+  let preview=$state(false); let scheduling=$state(false); let search=$state(false); let seo=$state(false);
+  let setSettings=$state(false); let setDisplay=$state(false); let setAdmin=$state(false);
+  let setTypedDefault=$state(false); let setRules=$state(false); let setOptions=$state(false);
+  let confirmDelete=$state(false);
   let setSingular = $state(false);
   let setDescription = $state(false);
   let setDefault = $state(false);
@@ -20,9 +28,11 @@
     if (supportsMode === 'keep') {
       drafts = definition.supports.includes('drafts');
       revisions = definition.supports.includes('revisions');
+      preview=definition.supports.includes('preview'); scheduling=definition.supports.includes('scheduling');
+      search=definition.supports.includes('search'); seo=definition.supports.includes('seo');
     }
   });
-  const supports = $derived(JSON.stringify([...(drafts ? ['drafts'] : []), ...(revisions ? ['revisions'] : [])]));
+  const supports = $derived(JSON.stringify([...(drafts ? ['drafts'] : []), ...(revisions ? ['revisions'] : []), ...(preview?['preview']:[]), ...(scheduling?['scheduling']:[]), ...(search?['search']:[]), ...(seo?['seo']:[])]));
 </script>
 
 <a href={collectionsHref}>Schema collections</a>
@@ -49,8 +59,29 @@
       <input {...metadataForm.fields.supports.as('hidden', supports)} />
       <label class="toggle"><input type="checkbox" bind:checked={drafts} /> Drafts</label>
       <label class="toggle"><input type="checkbox" bind:checked={revisions} /> Revisions</label>
-      <p>Leaving both unchecked stores an empty supports list.</p>
+      <label class="toggle"><input type="checkbox" bind:checked={preview} /> Preview</label>
+      <label class="toggle"><input type="checkbox" bind:checked={scheduling} /> Scheduling</label>
+      <label class="toggle"><input type="checkbox" bind:checked={search} /> Search</label>
+      <label class="toggle"><input type="checkbox" bind:checked={seo} /> SEO</label>
+      <p>Leaving all unchecked stores an empty supports list.</p>
     {/if}
+    <label class="toggle"><input type="checkbox" bind:checked={setSettings} /> Set collection settings</label>
+    <label>Icon <input {...metadataForm.fields.icon.as('text',definition.icon??'')} disabled={!setSettings} /></label>
+    <label>Navigation group <input {...metadataForm.fields.group.as('text',definition.group??'')} disabled={!setSettings} /></label>
+    <label>URL pattern <input {...metadataForm.fields.urlPattern.as('text',definition.urlPattern??'')} disabled={!setSettings} /></label>
+    <label>Routable <select {...metadataForm.fields.routable.as('select',String(definition.routable))} disabled={!setSettings}><option value="true">Yes</option><option value="false">No</option></select></label>
+    <label>Hidden from navigation <select {...metadataForm.fields.hidden.as('select',String(definition.hidden))} disabled={!setSettings}><option value="true">Yes</option><option value="false">No</option></select></label>
+    <label>Edit locking <select {...metadataForm.fields.editLocking.as('select',String(definition.editLocking))} disabled={!setSettings}><option value="true">Yes</option><option value="false">No</option></select></label>
+    <label>Enable comments <select {...metadataForm.fields.commentsEnabled.as('select',String(definition.commentsEnabled))} disabled={!setSettings}><option value="true">Yes</option><option value="false">No</option></select></label>
+    <label>Comment moderation <select {...metadataForm.fields.commentsModeration.as('select',definition.commentsModeration)} disabled={!setSettings}><option value="all">All comments</option><option value="first_time">First comment</option><option value="none">No moderation</option></select></label>
+    <label>Close comments after days <input {...metadataForm.fields.commentsClosedAfterDays.as('text',String(definition.commentsClosedAfterDays))} disabled={!setSettings} inputmode="numeric" /></label>
+    <label>Auto approve signed-in comments <select {...metadataForm.fields.commentsAutoApproveUsers.as('select',String(definition.commentsAutoApproveUsers))} disabled={!setSettings}><option value="true">Yes</option><option value="false">No</option></select></label>
+    <label class="toggle"><input type="checkbox" bind:checked={setDisplay} /> Set display fields</label>
+    <label>Title field <select {...metadataForm.fields.titleField.as('select',definition.titleField??'')} disabled={!setDisplay}><option value="">Default title</option>{#each definition.fields.filter(field=>['string','text','slug'].includes(field.type)) as field}<option value={field.slug}>{field.label}</option>{/each}</select></label>
+    <label>Date field <select {...metadataForm.fields.dateField.as('select',definition.dateField??'')} disabled={!setDisplay}><option value="">Default date</option>{#each definition.fields.filter(field=>field.type==='datetime') as field}<option value={field.slug}>{field.label}</option>{/each}</select></label>
+    <label class="toggle"><input type="checkbox" bind:checked={setAdmin} /> Set list display</label>
+    <label>List columns <textarea {...metadataForm.fields.listColumns.as('text',JSON.stringify(definition.admin?.listColumns??[]))} disabled={!setAdmin}></textarea></label>
+    <label>Quick create <select {...metadataForm.fields.quickCreate.as('select',String(definition.admin?.quickCreate??true))} disabled={!setAdmin}><option value="true">Yes</option><option value="false">No</option></select></label>
     <button type="submit" disabled={metadataForm.pending > 0}>Save metadata</button>
   </fieldset>
   {#if metadataForm.fields.allIssues()?.length}
@@ -65,9 +96,23 @@
     <li>{field.label} <code>{field.slug}</code> · {field.type}{field.required ? ' · required' : ''}{field.unique ? ' · unique' : ''}
       <SchemaFieldLabel collection={definition.slug} {field} {disabled} />
       <SchemaFieldOptions collection={definition.slug} {field} {disabled} />
+      <SchemaFieldMetadata collection={definition.slug} {field} expected={definition} {disabled} />
     </li>
   {:else}<li>No fields yet.</li>{/each}
 </ul>
+{#if definition.fields.length>1}
+<form {...orderForm}>
+  <fieldset disabled={disabled || orderForm.pending>0}>
+    <legend>Field order</legend>
+    <input {...orderForm.fields.collection.as('hidden',definition.slug)} />
+    <input {...orderForm.fields.version.as('hidden',String(definition.version))} />
+    <input {...orderForm.fields.updatedAt.as('hidden',definition.updatedAt)} />
+    <label>Ordered field slugs <textarea {...orderForm.fields.fields.as('text',JSON.stringify(definition.fields.map(field=>field.slug)))}></textarea></label>
+    <button type="submit">Save field order</button>
+  </fieldset>
+  {#if orderForm.result}<p role="status">Field order saved.</p>{/if}
+</form>
+{/if}
 <form {...fieldForm}>
   <fieldset disabled={disabled || fieldForm.pending > 0}>
     <legend>Add field</legend>
@@ -76,11 +121,20 @@
     <label>Field slug <input {...fieldForm.fields.slug.as('text')} required maxlength="63" pattern="[a-z][a-z0-9_]*" /></label>
     <label>Field label <input {...fieldForm.fields.label.as('text')} required maxlength="200" /></label>
     <label for={`${controlsId}-field-type`}>Field type</label>
-    <select id={`${controlsId}-field-type`} {...fieldForm.fields.type.as('select', 'string')}><option value="string">String</option><option value="text">Text</option></select>
+    <select id={`${controlsId}-field-type`} {...fieldForm.fields.type.as('select', 'string')}>{#each schemaFieldTypes as [value,label]}<option {value}>{label}</option>{/each}</select>
     <label class="toggle"><input {...fieldForm.fields.required.as('checkbox')} /> Required</label>
     <label class="toggle"><input {...fieldForm.fields.unique.as('checkbox')} /> Unique</label>
     <label class="toggle"><input type="checkbox" bind:checked={setDefault} /> Set default value</label>
     <label>Default value <textarea {...fieldForm.fields.defaultValue.as('text')} disabled={!setDefault} maxlength="100000"></textarea></label>
+    <label class="toggle"><input type="checkbox" bind:checked={setTypedDefault} /> Set typed default</label>
+    <label>Typed default value (JSON) <textarea {...fieldForm.fields.defaultValueJson.as('text')} disabled={!setTypedDefault}></textarea></label>
+    <label class="toggle"><input type="checkbox" bind:checked={setRules} /> Set validation rules</label>
+    <label>Validation rules (JSON) <textarea {...fieldForm.fields.validationJson.as('text')} disabled={!setRules}></textarea></label>
+    <label class="toggle"><input type="checkbox" bind:checked={setOptions} /> Set field options</label>
+    <label>Field options (JSON) <textarea {...fieldForm.fields.optionsJson.as('text')} disabled={!setOptions}></textarea></label>
+    <label>Widget <input {...fieldForm.fields.widget.as('text')} /></label>
+    <label class="toggle"><input {...fieldForm.fields.indexed.as('checkbox')} /> Indexed</label>
+    <label class="toggle"><input {...fieldForm.fields.searchable.as('checkbox')} /> Searchable</label>
     <label>Minimum length <input {...fieldForm.fields.minLength.as('text')} inputmode="numeric" pattern="[0-9]*" /></label>
     <label>Maximum length <input {...fieldForm.fields.maxLength.as('text')} inputmode="numeric" pattern="[0-9]*" /></label>
     <label for={`${controlsId}-pattern-mode`}>Pattern metadata</label>
@@ -97,6 +151,19 @@
     <ul aria-label="Field validation errors">{#each fieldForm.fields.allIssues() ?? [] as issue}<li>{issue.message}</li>{/each}</ul>
   {/if}
   {#if fieldForm.result}<p role="status">Field added: {fieldForm.result.slug}.</p>{/if}
+</form>
+<form {...deleteForm}>
+  <fieldset disabled={disabled || deleteForm.pending>0}>
+    <legend>Delete collection</legend>
+    <input {...deleteForm.fields.collection.as('hidden',definition.slug)} />
+    <input {...deleteForm.fields.version.as('hidden',String(definition.version))} />
+    <input {...deleteForm.fields.updatedAt.as('hidden',definition.updatedAt)} />
+    <p>Collection deletion removes its schema and stored content.</p>
+    <label class="toggle"><input {...deleteForm.fields.force.as('checkbox')} /> Also delete existing content</label>
+    <label class="toggle"><input type="checkbox" bind:checked={confirmDelete} /> Confirm deleting this collection</label>
+    <button type="submit" disabled={!confirmDelete}>Delete collection</button>
+  </fieldset>
+  {#if deleteForm.result}<p role="status">Collection deleted. <a href={collectionsHref}>Return to schema collections</a></p>{/if}
 </form>
 {#if disabled}<p>Writes will be available after authentication and persistence are configured.</p>{/if}
 
