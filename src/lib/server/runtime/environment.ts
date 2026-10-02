@@ -3,7 +3,7 @@ import type { D1Binding } from '../database/d1.ts';
 import { createCmsRuntime, type RuntimeConfiguration } from './composition.ts';
 
 type PrivateEnvironment = Record<string, string | undefined>;
-type CmsPlatform = { env?: Record<string, unknown> };
+type CmsPlatform = { env?: Record<string, unknown>; context?: { waitUntil(task: Promise<void>): void } };
 
 /** Host variables and platform bindings are server-owned; request headers are ignored. */
 export function runtimeConfiguration(
@@ -29,7 +29,10 @@ export function runtimeConfiguration(
     typeof (binding as D1Binding).batch !== 'function') {
     throw new Error(`D1 binding ${bindingName ?? 'CMS_DB'} was not found; declare it in d1_databases`);
   }
-  return { ...presentation, kind: 'd1', binding: binding as D1Binding };
+  return {
+    ...presentation, kind: 'd1', binding: binding as D1Binding,
+    ...(platform?.context ? { keepAlive: (task: Promise<void>) => platform.context!.waitUntil(task) } : {})
+  };
 }
 
 export function createEnvironmentCmsRuntime(environment: () => PrivateEnvironment, basePath = '') {

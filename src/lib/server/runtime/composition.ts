@@ -10,6 +10,7 @@ export interface RuntimePresentation {
   basePath?: string;
   rpName?: string;
   mutationsEnabled?: boolean;
+  keepAlive?: (task: Promise<void>) => void;
 }
 export type RuntimeConfiguration = RuntimePresentation & (
   { kind: 'sqlite'; path: string } |
@@ -35,31 +36,32 @@ export function createCmsRuntime(
     catch (cause) { await database.close(); throw cause; }
   }
 
+  function cachedAdapter<Key>(
+    cache: Map<Key, Promise<CmsDatabase>>, key: Key, open: () => CmsDatabase | Promise<CmsDatabase>
+  ): Promise<CmsDatabase> {
+    let pending = cache.get(key);
+    if (!pending) {
+      pending = initialize(open);
+      cache.set(key, pending);
+      const initialized = pending;
+      void pending.catch(() => { if (cache.get(key) === initialized) cache.delete(key); });
+    }
+    return pending;
+  }
+
   function databaseFor(config: RuntimeConfiguration): Promise<CmsDatabase> {
     if (config.kind === 'sqlite') {
       const path = config.path;
       if (typeof path !== 'string' || !path.trim() || path.includes('\0') || path === ':memory:') {
         throw new Error('SVELTERY_DATABASE_PATH must name a persistent SQLite file');
       }
-      let pending = sqlite.get(path);
-      if (!pending) {
-        pending = initialize(async () => (await import('./node.ts')).openRuntimeSqlite(path));
-        sqlite.set(path, pending);
-        void pending.catch(() => { if (sqlite.get(path) === pending) sqlite.delete(path); });
-      }
-      return pending;
+      return cachedAdapter(sqlite, path, async () => (await import('./node.ts')).openRuntimeSqlite(path));
     }
     const binding = config.binding;
     if (!binding || typeof binding.prepare !== 'function' || typeof binding.batch !== 'function') {
       throw new Error('CMS_DB must be a raw D1 database binding declared in d1_databases');
     }
-    let pending = bindings.get(binding);
-    if (!pending) {
-      pending = initialize(() => openD1(binding));
-      bindings.set(binding, pending);
-      void pending.catch(() => { if (bindings.get(binding) === pending) bindings.delete(binding); });
-    }
-    return pending;
+    return cachedAdapter(bindings, binding, () => openD1(binding));
   }
 
   const sessionHandle = createCmsHandle(async event => {
@@ -79,7 +81,7 @@ export function createCmsRuntime(
     if (typeof rpName !== 'string' || !rpName.trim()) throw new Error('SVELTERY_RP_NAME must be nonempty');
     const database = await databaseFor(config);
     event.locals.cmsRuntime = Object.freeze({ publicOrigin, basePath, rpName });
-    return { database, mutationsEnabled: config.mutationsEnabled !== false };
+    return { database, mutationsEnabled: config.mutationsEnabled !== false, keepAlive: config.keepAlive };
   });
 
   return {
