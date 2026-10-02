@@ -2,8 +2,8 @@
 // Authority: EmDash 1.1.0, immutable 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e,
 // api/schemas/schema.ts:97, schema/zod-generator.ts:256 and handlers/validation.ts:199.
 // Source behavior is independently reproduced by scripts/reproduce-pattern-validation-upstream.mjs.
-// The partial URL-field assertion port below preserves the three string-rule
-// input/result expectations, with an adapted string fixture and async service boundary.
+// The all-fields.test.ts:58 port below preserves the two pattern assertions,
+// with a persisted string/text fixture and asynchronous service boundary.
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -70,31 +70,26 @@ test('pattern metadata syntax is a string source, including empty, with a locali
 });
 
 for (const target of ['Node', 'D1'] as const) {
-  // Source ID: pin:packages/core/tests/unit/schema/zod-generator.test.ts:235.
-  // Preserve its three exact input/boolean expectations. URL type/URL validation
-  // and generated-Zod API are omitted; no complete source declaration credit.
-  test(`${target}: partial zod-generator.test.ts:235 custom string-rule expectations`, async () => {
+  // Source ID: pin:packages/core/tests/unit/fields/all-fields.test.ts:58.
+  // Source text({pattern:/^[A-Z]+$/}) factory becomes persisted scalar metadata;
+  // standard doesNotReject/rejects replace synchronous not.toThrow/toThrow.
+  // This adapts both observable assertions, not the static factory/URL/MCP APIs.
+  for (const type of ['string', 'text'] as const) test(`${target}/${type}: adapted all-fields.test.ts:58 should enforce pattern`, async () => {
     const h = await schemaAdminStorage(target);
     try {
       await migrateCms(h.database);
       const registry = new SchemaRegistry(h.database);
       await registry.createCollection({ slug: 'posts', label: 'Posts' });
-      await registry.createField('posts', { slug: 'website', label: 'Website', type: 'string', required: true });
+      await registry.createField('posts', { slug: 'value', label: 'Value', type });
       // Direct persisted setup isolates content enforcement for assertion-level
       // baseline red, independently from the missing pattern-creation capability.
-      await sql`UPDATE _cms_fields SET validation = ${JSON.stringify({ maxLength: 32, pattern: '^https://allowed\\.example/' })}
-        WHERE slug = 'website'`.execute(h.database.db);
+      const UPPERCASE_PATTERN_REGEX = /^[A-Z]+$/;
+      await sql`UPDATE _cms_fields SET validation = ${JSON.stringify({ pattern: UPPERCASE_PATTERN_REGEX.source })}
+        WHERE slug = 'value'`.execute(h.database.db);
       const service = cmsService(h.database, admin);
-      const schema = { async safeParse(website: string) {
-        try { await service.createDraft({ type: 'posts', data: { website } }); return { success: true }; }
-        catch (error) {
-          if (error instanceof Error && 'code' in error && error.code === 'VALIDATION_ERROR') return { success: false };
-          throw error;
-        }
-      } };
-      assert.equal((await schema.safeParse('https://allowed.example/path')).success, true);
-      assert.equal((await schema.safeParse('https://allowed.example/a-very-long-path')).success, false);
-      assert.equal((await schema.safeParse('https://other.example/path')).success, false);
+      const field = { schema: { parse: (value: string) => service.createDraft({ type: 'posts', data: { value } }) } };
+      await assert.doesNotReject(() => field.schema.parse('HELLO'));
+      await assert.rejects(() => field.schema.parse('hello'));
     } finally { await h.close(); }
   });
 
