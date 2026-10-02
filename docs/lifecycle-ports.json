@@ -1,6 +1,6 @@
 {
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
-  "stage": "source-tests-before-implementation",
+  "stage": "implemented-checkpoint",
   "credit": "executed source declarations; formal catalog expansion pending",
   "runtime": "Node SQLite",
   "declarations": [
@@ -210,5 +210,13 @@
     "path": "packages/core/tests/utils/fixtures.ts",
     "blob": "70801b7bffcf977674c67f554ad289a6e4bf27b2",
     "declaration": "createPostFixture"
+  },
+  "green": {
+    "command": "node --test tests/lifecycle-upstream.test.ts",
+    "tests": 22,
+    "pass": 22,
+    "fail": 0,
+    "log": "/tmp/cms-lifecycle-checkpoint-green.log",
+    "typeCheck": "svelte-check0errors0warnings"
   }
 }
