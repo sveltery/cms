@@ -143,7 +143,7 @@
       "checkerErrors": 0,
       "checkerWarnings": 0,
       "servicePassed": 629,
-      "production": "pending",
+      "productionPassed": 108,
       "defaultBuild": "passed",
       "pinnedProbeAssertionsPassed": 2,
       "logs": [
@@ -152,6 +152,22 @@
         "/tmp/cms-runtime-final-installed-production.log",
         "/tmp/cms-runtime-final-installed-build.log"
       ]
+    },
+    "integratedHostedCheckpoint": {
+      "head": "34cf84180f8ed0b154916d0f3ea88ae56abbabb1",
+      "base": "745a3469cf92de3f8b8f672d59cf58f36a053caf",
+      "run": "https://github.com/sveltery/cms/actions/runs/37068737345",
+      "result": "success",
+      "checkerErrors": 0,
+      "checkerWarnings": 0,
+      "servicePassed": 629,
+      "productionPassed": 108,
+      "nodePackagePassed": 12,
+      "securedDefaultBrowserPassed": 53,
+      "securedNodeBrowserPassed": 53,
+      "validateJob": 111042844805,
+      "browserJob": 111042844657,
+      "countEvidence": "dedicated workflow job logs; ordinary frozen installation and configured standalone process/restart passed; subsequent evidence-only documentation head still requires CI and review"
     }
   },
   "landing": "pending",
