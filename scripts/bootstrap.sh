@@ -11,3 +11,5 @@ pnpm check
 pnpm test
 pnpm build
 pnpm test:production
+pnpm package:node
+pnpm test:node

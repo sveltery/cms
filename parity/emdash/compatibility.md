@@ -77,6 +77,17 @@ See [the D1 contract/evidence](../../docs/d1-database.md) and [separate source l
 
 Proposed implementation is held in [draft PR #10](https://github.com/sveltery/cms/pull/10) for parent review; exact-head CI/review links belong to its final handoff. No newly verified shared upstream bug was identified. Production factories/credentials/admin setup, the default-disabled mutation gate and UI controls remain unchanged. Live D1, hosting packages, login/provisioning, sessions/bookmarks, general migration/introspection and richer content lifecycle remain incomplete.
 
+## Proposed explicit Node hosting package
+
+See [the versioned hosting sources, differences and evidence](../../docs/node-hosting.md). EmDash authority remains 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, specifically its [Node guide](https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/docs/src/content/docs/deployment/nodejs.mdx) and [starter configuration](https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/templates/starter/astro.config.mjs). These source-derived supplemental tests port no upstream assertions and earn no new inventory credit.
+
+| ID | Observable upstream versus local behavior | Rationale, evidence and status |
+| --- | --- | --- |
+| C-19 / F-03: framework packaging and explicit selection | Astro's default standalone `dist/server/entry.mjs` becomes official SvelteKit adapter-node 5.5.7 `build/node/index.js`, client assets/server chunks and native remotes. Default builds retain adapter-auto; Node is an explicit separate target. | Native hosting adaptation with isolated production-only installation and real HTTP SSR, asset, anonymous remote/native-form denial and origin tests. Proposed; specific deviation acceptance not recorded. |
+| C-20: runtime defaults | EmDash's guide supports Node 22.16+, port 4321 and composed services. Local target uses the existing Node 24/pnpm baseline and unchanged adapter-node port 3000, host 0.0.0.0, 512K body limit and 30-second shutdown timeout. | Preserve official adapter contracts. Local loopback/ORIGIN examples and both signal shutdown/same-port restart tests. Node 22, in-flight draining and deployed operation unverified. Proposed; specific deviation acceptance not recorded. |
+
+Proposed in [PR #11](https://github.com/sveltery/cms/pull/11); not landed or specifically accepted. The production hook still installs no storage/session configuration or principal. Automatic opening/migrations/seeding, default accounts, login/passkeys/provisioning, enabled writes, media/scheduler/plugins and Cloudflare hosting are incomplete scope, not accepted differences. Existing mutation/origin/remote contracts and real local D1 tests remain intact. Exact-head CI and independent/configured review belong to the PR handoff; merge/deployment are separate gates. No shared upstream defect is repaired by this package.
+
 ## Framework substitutions for the port
 
 | ID | Substitution | Preserved contract | Evidence required |
