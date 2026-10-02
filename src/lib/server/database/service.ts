@@ -3,7 +3,7 @@ import { editorManifest } from '../content/manifest.ts';
 import { CmsError, type CmsDatabase } from './contract.ts';
 import { DraftRepository } from './entries.ts';
 import { SchemaRegistry } from './registry.ts';
-import { createDraftInput, deleteDraftInput, getDraftInput, getTrashedDraftInput, identifier, listTrashedDraftInput, localeInput, parse, restoreDraftInput, updateCollectionInput, updateDraftInput } from './validation.ts';
+import { createDraftInput, deleteDraftInput, getDraftInput, getTrashedDraftInput, identifier, listTrashedDraftInput, localeInput, parse, restoreDraftInput, updateCollectionInput, updateDraftInput, updateFieldLabelInput } from './validation.ts';
 
 // Permission names and ownership rules follow EmDash auth/rbac.ts.
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
@@ -71,6 +71,11 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
       requirePermission('schema:manage');
       const value = parse(addFieldInput, input);
       return registry.createField(value.collection, value.input, value.expectedSchemaVersion);
+    },
+    async updateFieldLabel(input: unknown) {
+      requirePermission('schema:manage');
+      const { collection, field, label } = parse(updateFieldLabelInput, input);
+      return registry.updateFieldLabel(collection, field, { label });
     },
     async createDraft(input: unknown) {
       const actor = requirePermission('content:create');

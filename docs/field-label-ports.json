@@ -1,0 +1,203 @@
+{
+  "referenceVersion": "EmDash 1.1.0",
+  "referenceCommit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "integrationBase": "bf9d1c34cde4bb972b7d2d9a599c16d406607d49",
+  "licenseNotice": "../notices/emdash-MIT.txt",
+  "decisionStatus": "Proposed bounded implementation. Specific acceptance of differences is not recorded. Landing and divergent expectations do not establish acceptance or complete parity.",
+  "inspectedSources": [
+    {
+      "path": "packages/core/src/schema/registry.ts",
+      "sourceBlob": "da7bbcdda224dfca8d9146b2f36659ab90bcac2e",
+      "sha256": "db26cf5bd9c9442c3b41185c879281914410cd9ece94cf2f9716533eb6e71516",
+      "inspectedLines": [
+        1416,
+        1542,
+        1577,
+        1595,
+        1623
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/schema/registry.ts"
+    },
+    {
+      "path": "packages/core/src/api/schemas/schema.ts",
+      "sourceBlob": "57e0338b8e1a7633d1e3409f4a38b39f73469e68",
+      "sha256": "e4f783e7852b3480ac6110f5e79736310804ae2cd2452f181c70d27263b0524e",
+      "inspectedLines": [
+        232,
+        234
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/api/schemas/schema.ts"
+    },
+    {
+      "path": "packages/core/src/api/handlers/schema.ts",
+      "sourceBlob": "abe31215af8f40b3df4ae4d1be5d06ebbe9342e0",
+      "sha256": "b9b06fd887c066a8724608963424205517442440fdc844243b24ab1765b11e4a",
+      "inspectedLines": [
+        765,
+        767
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/api/handlers/schema.ts"
+    },
+    {
+      "path": "packages/admin/src/lib/api/schema.ts",
+      "sourceBlob": "c18a951a06d8b0dd07eddc1a086ea3cc49726bac",
+      "sha256": "237d19ee0cb43071ee2060a4a53f575013eeafc2e9da4d8527195c9f18af69ca",
+      "inspectedLines": [
+        425,
+        431
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/src/lib/api/schema.ts"
+    },
+    {
+      "path": "packages/admin/src/components/FieldEditor.tsx",
+      "sourceBlob": "f918b302b527d150f3f51fdfa1ebf1facc0fe7ba",
+      "sha256": "2848aa488ef28fd8f15202de32c4352f5a0a8c83980fa823610e9460cfcedad0",
+      "inspectedLines": [
+        485,
+        540,
+        808,
+        819
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/src/components/FieldEditor.tsx"
+    },
+    {
+      "path": "packages/core/tests/unit/schema/registry.test.ts",
+      "sourceBlob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "sha256": "31121e7e6be3db373e0d2c09985e1e11e46115a750a26d085fd1c6c70933e7ee",
+      "inspectedLines": [
+        668,
+        682,
+        683,
+        684
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/schema/registry.test.ts"
+    }
+  ],
+  "selectedAssertions": [
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/schema/registry.test.ts:668",
+      "declarationLine": 668,
+      "title": "should update a field",
+      "sourceAssertionCount": 3,
+      "preservedExpressions": [
+        "expect(updated.label).toBe(\"Post Title\")"
+      ],
+      "omittedExpressions": [
+        "expect(updated.sortOrder).toBe(3)",
+        "expect(updated.widget).toBe(\"text\")"
+      ],
+      "inputAdaptation": "The source request includes label, sortOrder and widget. This slice submits only label; sortOrder and widget edits are rejected as unsupported scope.",
+      "coverage": "Partial declaration: one label expression only. Zero complete source declarations; no credit for omitted or rejected edit properties.",
+      "runtimeSubstitutions": [
+        "Vitest matcher becomes node:assert equal; test registration becomes node:test.",
+        "SchemaRegistry/database setup uses the local CMS metadata tables and adapters instead of complete upstream migrations.",
+        "Source request omits unsupported sortOrder/widget; local fixture creates collection and title field before preserving the exact label assertion. The fixture is not the full original three-assertion test."
+      ],
+      "testPath": "tests/field-label.test.ts",
+      "runEvidence": {
+        "upstream": "Passed on real pinned registry: Post Title exact; 2 partial runtime cases, no complete declarations.",
+        "local": "Passed on Node/local D1 in the 37-case focused suite: 2 runtime executions of the exact Post Title label expression; zero complete declarations."
+      }
+    }
+  ],
+  "supplementalContracts": [
+    {
+      "category": "label fidelity",
+      "contracts": [
+        "Untrimmed nonempty labels, whitespace-only labels and labels longer than 200 characters persist exactly.",
+        "No request precondition; same-field writes are last-writer-wins, including repeated same-label writes.",
+        "Collection version and updatedAt, field attributes other than label, content revisions/values, DDL and indexes remain unchanged."
+      ],
+      "runEvidence": "Passed in focused 35 supplemental service cases; pinned reference label/storage probes passed separately."
+    },
+    {
+      "category": "local authorization and atomicity",
+      "contracts": [
+        "Trusted schema:manage and existing mutation gate; denied requests write nothing.",
+        "Existing collection/field pair resolves target identity; atomic UPDATE result belongs to the operation.",
+        "Missing targets, strict extra keys and forced storage failures do not write.",
+        "Metadata writes and field addition coexist without overwriting labels; legacy physical layouts remain unchanged."
+      ],
+      "runEvidence": "Passed in focused 35 supplemental service cases and 12 production/conversion cases; final-head gates pending."
+    },
+    {
+      "category": "framework transport and UI",
+      "contracts": [
+        "One supported Kit form instance per collection/field pair; optional injected id validates against that pair and is stripped before the service.",
+        "Direct native form and field descriptor spreads; hidden descriptors carry explicit values.",
+        "Native and enhanced submissions isolate pending state, issues and results; disabled capability remains disabled.",
+        "Origin rejection and refreshed schema/manifest consumers."
+      ],
+      "runEvidence": "Focused registered production/conversion suite passed12; actual secured hosted browser execution pending."
+    }
+  ],
+  "compatibilityRecords": [
+    "FL-01",
+    "FL-02",
+    "FL-03"
+  ],
+  "runEvidence": {
+    "sourceReproduction": {
+      "command": "node scripts/reproduce-field-label-upstream.mjs",
+      "status": "passed",
+      "partialCases": 2,
+      "supplementalCases": 10,
+      "totalTests": 12,
+      "failures": 0,
+      "skipped": 0,
+      "runtime": "Node 24.19.0; real Node SQLite and Miniflare 4.20260507.1 local D1; pinned upstream RawBindingD1Dialect and kysely-d1 0.4.0; fixture-only Zod 4.5.4",
+      "probeEntrySha256": "a7e738a1c2be50767ded901067747601ba5a6a213d006b1c1f74b8cc9a1a01aa",
+      "fixtureBoundaries": [
+        "Temporary metadata/revision reference tables instead of full upstream migrations.",
+        "Media activation/deletion state supplied; media invalidation false/stale marking no-op.",
+        "Cache reset and dev type generation no-op; unrelated imported operations throw if invoked.",
+        "FieldEditor source-text checks only; no rendered React parity.",
+        "Node Kysely-shaped bridge and real pinned local D1 dialect; separate process per target."
+      ]
+    },
+    "serviceTests": {
+      "status": "passed",
+      "command": "node --test tests/field-label.test.ts",
+      "totalTests": 37,
+      "partialSourceRuntimeCases": 2,
+      "supplementalCases": 35,
+      "failures": 0,
+      "skipped": 0,
+      "runtime": "Node24.19.0; Node SQLite and real local D1",
+      "scope": "Focused run as reported by implementation owner; final-head full bootstrap remains pending"
+    },
+    "productionTests": {
+      "status": "passed",
+      "cases": 12,
+      "scope": "Focused production remote plus conversion suite, as reported by implementation owner; exact-head/full bootstrap pending"
+    },
+    "browserTests": "pending hosted secured default/Node CI; local browser download403 and system sandbox failure supply no passing browser evidence",
+    "bootstrap": {
+      "status": "passed",
+      "command": "sh scripts/bootstrap.sh",
+      "commit": "deaebcb56e23cf20aad25eae570e10614b9da502",
+      "coreTests": 371,
+      "productionTests": 76,
+      "nodePackageTests": 11,
+      "failures": 0,
+      "checkerErrors": 0,
+      "checkerWarnings": 0,
+      "scope": "Integrated executable head; subsequent canonical-doc-only changes require final-head CI and review."
+    },
+    "finalHeadCI": "pending",
+    "independentReview": "pending",
+    "configuredReview": "pending",
+    "check": {
+      "status": "passed",
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  "omissions": [
+    "All complete upstream field-update declarations, including sortOrder/widget assertions at line 668.",
+    "Broader field properties/types, reorder/delete, physical column alteration, default/index repair and stored-value rewrite.",
+    "Media-usage invalidation, development type generation, full upstream migrations, REST/React/MCP parity and deployed Node/Cloudflare/D1 support."
+  ],
+  "integrationMain": "06ecd8889d625e24c564e59a8ed5a5e63daa8e8f",
+  "proposedPullRequest": "https://github.com/sveltery/cms/pull/24"
+}

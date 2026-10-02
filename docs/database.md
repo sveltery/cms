@@ -13,6 +13,7 @@ Compose `cmsService(database, principal)` inside trusted server request composit
 | listCollections | none; returns at most 100 definitions | schema:read |
 | getCollection | collection slug; returns definition plus at most 32 fields | schema:read |
 | createCollection | {slug, label, labelSingular?, description?, supports?} | schema:manage |
+| updateFieldLabel | {collection,field,label}; no expected token | schema:manage |
 | addField | {collection, expectedSchemaVersion, input:{slug,label,type,required?,unique?,defaultValue?,validation?}} | schema:manage |
 | createDraft | {type, data, slug?, locale?} | content:create |
 | getDraft | {type,id,locale?} | content:read and content:read_drafts |
@@ -64,3 +65,7 @@ The [bounded scalar repair](scalar-field-fidelity.md), proposed in [PR #21](http
 Existing tables remain divergent pending a separately reviewed upgrade. No existing column default/index or stored value is rewritten, and no existing database is migrated by this repair. [Paired original supplemental probes](../tests/scalar-field-fidelity.test.ts) and the [complete immutable upstream reproducer](../scripts/reproduce-scalar-field-upstream.mjs) cover 24 cases per Node/local D1 runtime, raw omissions, explicit NULL, duplicates, full/partial validation, and persisted restart. Local schema authorization/CAS and independent DDL/DML rollback remain covered. These probes add no copied-source declaration credit or deployed parity.
 
 Required-empty-string content validation remains a separate difference: pinned handlers reject `''` in full/partial validation; local accepts it when minimum lengths permit. Upstream D1 transaction fallback and local adapter-proven atomic batches remain the separate C-07/SA-03 difference. Neither is silently fixed, granted parity credit or specifically accepted by this repair. Final-head bootstrap, secured hosted browser CI, independent/configured automatic review and coordinated canonical-doc integration remain merge gates.
+
+## Existing scalar field labels
+
+`cmsService.updateFieldLabel({ collection, field, label })` requires trusted `schema:manage` and writes only the label of an existing string/text field. The [feature/source record](field-label.md) specifies exact nonempty/untrimmed/unbounded label values, strict extra-key rejection, atomic target identity and own returned row, last-writer-wins and unchanged collection timestamp/schema-version/content tokens. Metadata writes and additive fields retain their separate existing contracts; metadata tokens do not certify field-display freshness. Legacy physical columns/defaults/indexes remain unchanged. No migration or value rewrite is included. The [ledger](field-label-ports.json) counts the label assertion at registry.test.ts:668 as partial, with zero complete declarations, and separates supplemental Node/local D1/framework evidence. FL-01–FL-03 remain proposed pending coordinated integration and required final-head validation/review.
