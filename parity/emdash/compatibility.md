@@ -174,7 +174,7 @@ For each proposed deviation add: stable ID; exact upstream source IDs and assert
 
 Evidence: [local selected cases](../../tests/collection-update-upstream.test.ts), [CAS/no-write/authorization/restart](../../tests/collection-update.test.ts), [in-workerd D1](../../tests/collection-update-workerd.test.ts), and [complete-source paired reproducer](../../scripts/reproduce-collection-update-upstream.mjs). [CI run 36977195941](https://github.com/sveltery/cms/actions/runs/36977195941) passes bootstrap and sandboxed default/Node Chromium on that exact head. Independent GPT-6.1 Sol high review found no material implementation findings. The configured ready-triggered review requested this canonical registration; fresh review/checks are required if integration changes the head. Other collection metadata/subsystems remain unimplemented; production mutations stay disabled, with no deployed parity or specific deviation acceptance claimed.
 
-## Proposed bounded editor-manifest reads
+## Proposed bounded editor-manifest reads — [PR #17](https://github.com/sveltery/cms/pull/17)
 
 [Feature/source/evidence](../../docs/editor-manifest-batching.md), [local source-output and supplemental tests](../../tests/editor-manifest-batching.test.ts), and [immutable source reproducer](../../tests/helpers/reproduce-editor-manifest-upstream.mjs) follow EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. Source `manifest-build.test.ts:537` preserves six output assertions; query counts are supplemental and receive no additional inventory leaf credit. All seven selected source/probe cases pass separately on Node and local D1.
 
