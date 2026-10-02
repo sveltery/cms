@@ -31,7 +31,7 @@ export interface CmsDatabase {
   close(): Promise<void>;
 }
 export type DatabaseErrorCode = 'UNAUTHENTICATED' | 'FORBIDDEN' | 'VALIDATION_ERROR'
-  | 'NOT_FOUND' | 'CONFLICT' | 'COLLECTION_EXISTS' | 'COLLECTION_TABLE_ORPHANED'
+  | 'INVALID_CURSOR' | 'NOT_FOUND' | 'CONFLICT' | 'COLLECTION_EXISTS' | 'COLLECTION_TABLE_ORPHANED'
   | 'FIELD_EXISTS' | 'RESERVED_SLUG' | 'LIMIT_EXCEEDED' | 'MIGRATION_REQUIRED';
 export class CmsError extends Error {
   readonly code: DatabaseErrorCode;

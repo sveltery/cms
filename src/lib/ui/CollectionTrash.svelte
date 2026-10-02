@@ -1,9 +1,12 @@
 <script lang="ts">
   import RestoreDraft from './RestoreDraft.svelte';
-  let { content, collection, collectionHref, restoreCapability }: {
-    content: { label: string; items: { id: string; title: string | null; slug: string | null; locale: string; deletedAt: string; authorId: string | null; _rev: string }[] } | null;
+  let { content, collection, collectionHref, restoreCapability, loading, loadFailed, onLoadMore }: {
+    content: { label: string; items: { id: string; title: string | null; slug: string | null; locale: string; deletedAt: string; authorId: string | null; _rev: string; queryArgs: { collection: string; limit: number; cursor?: string; locale?: string } }[]; nextCursor?: string } | null;
     collection: string;
     collectionHref: string;
+    loading: boolean;
+    loadFailed: boolean;
+    onLoadMore: () => Promise<void>;
     restoreCapability: { any: boolean; own: boolean; actorId: string | null };
   } = $props();
 </script>
@@ -11,7 +14,8 @@
 <a href={collectionHref}>Collection drafts</a>
 <h1>{content?.label ?? 'Collection'} trash</h1>
 {#if content}
-  <p>Showing up to 50 most recently deleted drafts across all locales.</p>
+  <p>Showing {content.items.length} deleted drafts across all locales.</p>
+  <noscript><p>Enable JavaScript to load more deleted drafts.</p></noscript>
   <div class="table-scroll">
     <table aria-label="Trashed drafts">
       <thead><tr><th scope="col">Title</th><th scope="col">Locale</th><th scope="col">Deleted (UTC)</th><th scope="col">Actions</th></tr></thead>
@@ -21,7 +25,7 @@
             <td>{item.title || item.slug || item.id}</td>
             <td>{item.locale}</td>
             <td><time datetime={item.deletedAt}>{item.deletedAt.slice(0, 10)}</time></td>
-            <td><RestoreDraft {collection} {item} disabled={!(restoreCapability.any ||
+            <td><RestoreDraft {collection} {item} queryArgs={item.queryArgs} disabled={!(restoreCapability.any ||
               (restoreCapability.own && restoreCapability.actorId === item.authorId))} /></td>
           </tr>
         {:else}
@@ -30,6 +34,12 @@
       </tbody>
     </table>
   </div>
+  {#if content.nextCursor}
+    <button type="button" onclick={onLoadMore} disabled={loading}>{loading ? 'Loading...' : 'Load More'}</button>
+  {:else if content.items.length > 0}
+    <p role="status">No more deleted drafts.</p>
+  {/if}
+  {#if loadFailed}<p role="alert">Failed to load more. Try again.</p>{/if}
   {#if !restoreCapability.any && !restoreCapability.own}<p>Restoring is unavailable for this session or configuration.</p>{/if}
 {:else}
   <p role="status">Trash is unavailable.</p>

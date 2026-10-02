@@ -64,6 +64,7 @@ export const getDraftInput = v.strictObject({ type: identifier, id: entryId, loc
 export const getTrashedDraftInput = v.strictObject({ type: identifier, id: entryId, locale: v.optional(localeInput) });
 export const listTrashedDraftInput = v.strictObject({
   type: identifier, locale: v.optional(localeInput),
+  cursor: v.optional(v.string()),
   limit: v.optional(v.pipe(v.number(), v.safeInteger(), v.minValue(1)))
 });
 export const restoreDraftInput = v.strictObject({ type: identifier, id: entryId, expected: revisionInput, locale: v.optional(localeInput, 'en') });

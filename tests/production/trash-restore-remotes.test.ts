@@ -52,7 +52,7 @@ describe('registered trash queries and restore forms on persisted built Kit Serv
     const all = await h.query('listTrashedContent', { collection: 'long_trash', limit: 1000 });
     assert.equal(all.items.length, 100);
     assert.equal((await h.query('listTrashedContent', { collection: 'long_trash' })).items.length, 50);
-    assert.equal(Object.hasOwn(all, 'nextCursor'), false);
+    assert.equal(typeof all.nextCursor, 'string');
     for (const item of all.items) {
       assert.equal(item.title.length, 200); assert.equal(Object.hasOwn(item, 'data'), false);
       assert.equal(Object.hasOwn(item, 'version'), false); assert.ok(item._rev.length <= 2048); assert.ok(item.deletedAt);
