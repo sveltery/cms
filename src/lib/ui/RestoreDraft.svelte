@@ -28,7 +28,7 @@
     aria-label={`Restore ${item.title || item.slug || item.id} (${item.locale})`}>
     {restoreForm.pending > 0 ? 'Restoring…' : 'Restore'}
   </button>
-  {#if restoreForm.fields.allIssues()?.length}
+  {#if !failed && restoreForm.pending === 0 && restoreForm.fields.allIssues()?.length}
     <ul aria-label="Restore validation errors" role="alert">
       {#each restoreForm.fields.allIssues() ?? [] as issue}<li>{issue.message}</li>{/each}
     </ul>
