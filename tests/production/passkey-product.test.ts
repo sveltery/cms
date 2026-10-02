@@ -20,7 +20,7 @@ async function setup(h: Awaited<ReturnType<typeof passkeyRuntime>>) {
 async function login(h: Awaited<ReturnType<typeof passkeyRuntime>>, state: Awaited<ReturnType<typeof setup>>, counter = 1) {
   const options = await state.browser.post('/api/auth/passkey/options', {});
   assert.equal(options.status, 200);
-  const challenge = (await options.json()).data.challenge;
+  const challenge = (await options.json()).data.options.challenge;
   const response = await state.browser.post('/api/auth/passkey/verify', { credential: state.credential.assertion(challenge, counter) });
   assert.equal(response.status, 200, JSON.stringify(await response.clone().json()));
   return response;
@@ -81,14 +81,14 @@ for (const target of ['Node', 'D1'] as const) {
     try {
       const state = await setup(h), db = await h.database();
       for (const overrides of [{ origin: 'https://attacker.example' }, { rpId: 'attacker.example' }, { invalidSignature: true }]) {
-        const challenge = (await (await state.browser.post('/api/auth/passkey/options', {})).json()).data.challenge;
+        const challenge = (await (await state.browser.post('/api/auth/passkey/options', {})).json()).data.options.challenge;
         const response = await state.browser.post('/api/auth/passkey/verify', { credential: state.credential.assertion(challenge, 1, overrides) });
         assert.equal(response.status, 401); assert.equal((await response.json()).error.code, 'UNAUTHORIZED');
       }
-      const expired = (await (await state.browser.post('/api/auth/passkey/options', {})).json()).data.challenge;
+      const expired = (await (await state.browser.post('/api/auth/passkey/options', {})).json()).data.options.challenge;
       await db.db.updateTable('_cms_auth_challenges').set({ expires_at: new Date(0).toISOString() }).where('challenge', '=', expired).execute();
       assert.equal((await state.browser.post('/api/auth/passkey/verify', { credential: state.credential.assertion(expired) })).status, 401);
-      const challenge = (await (await state.browser.post('/api/auth/passkey/options', {})).json()).data.challenge;
+      const challenge = (await (await state.browser.post('/api/auth/passkey/options', {})).json()).data.options.challenge;
       const payload = { credential: state.credential.assertion(challenge) };
       assert.equal((await state.browser.post('/api/auth/passkey/verify', payload)).status, 200);
       assert.equal((await state.browser.post('/api/auth/passkey/verify', payload)).status, 401);
@@ -108,7 +108,7 @@ for (const target of ['Node', 'D1'] as const) {
       assert.equal((await db.db.selectFrom('_cms_auth_challenges').selectAll().execute()).length, 0);
       for (let i = 0; i < 10; i++) {
         const response = await browser.post('/api/auth/passkey/options', { email: 'unregistered@example.com' });
-        assert.equal(response.status, 200); assert.equal((await response.json()).data.allowCredentials, undefined);
+        assert.equal(response.status, 200); assert.equal((await response.json()).data.options.allowCredentials, undefined);
       }
       const limited = await browser.post('/api/auth/passkey/options', {});
       assert.equal(limited.status, 429); assert.equal(limited.headers.get('retry-after'), '60');
