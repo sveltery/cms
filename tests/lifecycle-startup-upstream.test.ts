@@ -11,14 +11,18 @@ import { createStoredContent, queryRevisionRows, installVersion4, legacyPost } f
 for (const target of ['Node','D1'] as const) for (const setup of ['fresh','v4'] as const) {
   async function fixture() {
     const storage = await schemaAdminStorage(target);
-    if (setup === 'v4') { await installVersion4(storage.database); await legacyPost(storage.database); }
-    await migrateCms(storage.database);
-    if (setup === 'fresh') {
-      const registry = new SchemaRegistry(storage.database);
-      await registry.createCollection({slug:'post',label:'Posts'});
-      await registry.createField('post',{slug:'title',label:'Title',type:'string'});
+    try {
+      if (setup === 'v4') { await installVersion4(storage.database); await legacyPost(storage.database); }
+      await migrateCms(storage.database);
+      if (setup === 'fresh') {
+        const registry = new SchemaRegistry(storage.database);
+        await registry.createCollection({slug:'post',label:'Posts'});
+        await registry.createField('post',{slug:'title',label:'Title',type:'string'});
+      }
+      return storage;
+    } catch (cause) {
+      await storage.close(); throw cause;
     }
-    return storage;
   }
   test(`${target} ${setup}: should create all tables from migrations [revisions-only scope]`, async () => {
     const storage = await fixture();

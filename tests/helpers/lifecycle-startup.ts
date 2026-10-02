@@ -68,7 +68,7 @@ export async function queryRevisionRows(database: CmsDatabase) {
 }
 
 export async function databaseSnapshot(database: CmsDatabase) {
-  const objects = (await sql<{name:string;type:string;sql:string}>`SELECT name,type,sql FROM sqlite_master ORDER BY name`.execute(database.db)).rows;
+  const objects = (await sql<{name:string;type:string;sql:string}>`SELECT name,type,sql FROM sqlite_master WHERE name NOT GLOB '_cf_*' ORDER BY name`.execute(database.db)).rows;
   const tables = [];
   for (const object of objects.filter(row => row.type === 'table' && !row.name.startsWith('sqlite_'))) tables.push({
     name:object.name, rows:(await sql`SELECT * FROM ${sql.ref(object.name)} ORDER BY rowid`.execute(database.db)).rows
