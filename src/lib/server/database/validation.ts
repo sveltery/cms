@@ -26,6 +26,11 @@ export const fieldInput = v.strictObject({
   defaultValue: v.optional(v.pipe(v.string(), v.maxLength(100_000), v.check(value => !value.includes('\0')))),
   validation: v.optional(v.strictObject({ minLength: v.optional(length), maxLength: v.optional(length) }))
 });
+// EmDash's update-field label is nonempty, with no trimming or creation-label bound.
+export const fieldLabelInput = v.strictObject({ label: v.pipe(v.string(), v.minLength(1)) });
+export const updateFieldLabelInput = v.strictObject({
+  collection: identifier, field: identifier, label: fieldLabelInput.entries.label
+});
 export const entryId = v.pipe(v.string(), v.minLength(1), v.maxLength(128));
 export const localeInput = v.pipe(v.string(), v.minLength(1), v.maxLength(35), v.regex(/^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/));
 export const revisionInput = v.strictObject({

@@ -1,6 +1,6 @@
 import * as v from 'valibot';
 import {
-  collectionInput, collectionMetadataInput, fieldInput, identifier, parse, revisionInput
+  collectionInput, collectionMetadataInput, fieldInput, fieldLabelInput, updateFieldLabelInput, identifier, parse, revisionInput
 } from '../database/validation.ts';
 
 // Native forms keep omitted support flags distinct from an explicit JSON [].
@@ -21,6 +21,15 @@ const optionalLength = v.optional(v.pipe(v.string(), v.maxLength(6),
   v.check(value => value === undefined || (Number.isSafeInteger(value) && value <= 100_000))));
 
 export const collectionSlug = identifier;
+export const fieldLabelFormInput = v.pipe(v.strictObject({
+  id: v.optional(v.pipe(v.string(), v.maxLength(127))),
+  collection: identifier, field: identifier, label: fieldLabelInput.entries.label
+}), v.forward(v.check(input => input.id === undefined || input.id === `${input.collection}/${input.field}`,
+  'Form instance must match the collection and field'), ['id']));
+export function convertFieldLabel(input: v.InferOutput<typeof fieldLabelFormInput>) {
+  const { id: _id, ...value } = input;
+  return parse(updateFieldLabelInput, value);
+}
 export const createInput = v.strictObject({
   slug: identifier, ...metadata, label: collectionInput.entries.label
 });
