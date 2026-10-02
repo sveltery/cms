@@ -26,6 +26,7 @@ interface RegisteredCollection { id:string; slug:string; version:number }
 interface RegisteredField { collection_id:string; slug:string; type:string; column_type:string; validation:string|null }
 const contentObjectsSql = sql`SELECT name,type,tbl_name,sql FROM sqlite_master
   WHERE lower(tbl_name) GLOB 'ec_*' OR lower(name) GLOB '_cms_lifecycle_*'
+    OR type IN ('view','trigger')
     OR (type='table' AND instr(upper(sql),'REFERENCES')>0 AND instr(lower(sql),'ec_')>0) ORDER BY name`;
 const collectionsSql = sql`SELECT id,slug,version FROM _cms_collections ORDER BY slug`;
 const fieldsSql = sql`SELECT collection_id,slug,type,column_type,validation FROM _cms_fields ORDER BY collection_id,slug`;
@@ -36,17 +37,74 @@ function snapshotQuery() {
     (SELECT json_group_array(json_object('collection_id',collection_id,'slug',slug,'type',type,'column_type',column_type,'validation',validation)) FROM (${fieldsSql})) AS fields`;
 }
 
+/** Tokenize stored SQLite SQL without treating comments or literal contents as SQL. */
+function sqlTokens(statement:string|null): string[] {
+  return statement?.match(/--[^\r\n]*|\/\*[\s\S]*?\*\/|'(?:[^']|'')*'|"(?:[^"]|"")*"|`(?:[^`]|``)*`|\[[^\]]*\]|[a-z_][a-z0-9_$]*|[^\s]/gi)
+    ?.filter(token=>!token.startsWith('--')&&!token.startsWith('/*')) ?? [];
+}
+
+function sqlIdentifier(token:string|undefined): string|undefined {
+  if (!token) return undefined;
+  const quote=token[0];
+  if (['\'', '"', '`', '['].includes(quote)) return token.slice(1,-1).replaceAll(quote+quote,quote).toLowerCase();
+  return /^[a-z_][a-z0-9_$]*$/i.test(token) ? token.toLowerCase() : undefined;
+}
+
 /** SQLite permits quoted FK targets; literals/comments are not FK clauses. */
 function referencesContent(statement:string|null): boolean {
-  const tokens=statement?.match(/--[^\r\n]*|\/\*[\s\S]*?\*\/|'(?:[^']|'')*'|"(?:[^"]|"")*"|`(?:[^`]|``)*`|\[[^\]]*\]|[a-z_][a-z0-9_$]*|[^\s]/gi)
-    ?.filter(token=>!token.startsWith('--')&&!token.startsWith('/*')) ?? [];
-  for (let index=0;index<tokens.length-1;index++) {
-    if (!/^REFERENCES$/i.test(tokens[index])) continue;
-    const token=tokens[index+1];
-    const quote=token[0];
-    const target=['\'', '"', '`', '['].includes(quote) ?
-      token.slice(1,-1).replaceAll(quote+quote,quote) : token;
-    if (target.toLowerCase().startsWith('ec_')) return true;
+  const tokens=sqlTokens(statement);
+  return tokens.some((token,index)=>/^REFERENCES$/i.test(token)&&sqlIdentifier(tokens[index+1])?.startsWith('ec_'));
+}
+
+/** View/trigger table references can use schema qualification, joins and CTEs. */
+function dependsOnContent(statement:string|null): boolean {
+  const tokens=sqlTokens(statement);
+  const depths:number[]=[]; const closing=new Map<number,number>(); const opening:number[]=[];
+  let depth=0;
+  for (let index=0;index<tokens.length;index++) {
+    depths[index]=depth;
+    if (tokens[index]==='(') {opening.push(index);depth++;}
+    if (tokens[index]===')') {depth--;closing.set(opening.pop()!,index);}
+  }
+  const bindings:{name:string;start:number;end:number}[]=[];
+  for (let index=0;index<tokens.length;index++) {
+    if (!/^WITH$/i.test(tokens[index])) continue;
+    const scope=depths[index];
+    let end=index+1;
+    while (end<tokens.length&&depths[end]>=scope&&tokens[end]!==';') end++;
+    let next=index+1;
+    if (/^RECURSIVE$/i.test(tokens[next]??'')) next++;
+    while (next<end) {
+      const name=sqlIdentifier(tokens[next++]);
+      if (!name) break;
+      if (tokens[next]==='(') next=(closing.get(next)??end)+1;
+      if (!/^AS$/i.test(tokens[next++]??'')) break;
+      if (/^NOT$/i.test(tokens[next]??'')) next++;
+      if (/^MATERIALIZED$/i.test(tokens[next]??'')) next++;
+      if (tokens[next]!=='(') break;
+      bindings.push({name,start:index,end});
+      next=(closing.get(next)??end)+1;
+      if (tokens[next]!==',') break;
+      next++;
+    }
+  }
+  const isContentTarget=(index:number) => {
+    const qualified=tokens[index+1]==='.';
+    const name=sqlIdentifier(tokens[index+(qualified ? 2 : 0)]);
+    return !!name?.startsWith('ec_')&&(qualified||!bindings.some(binding=>binding.name===name&&binding.start<=index&&index<binding.end));
+  };
+  const fromScopes=new Set<number>();
+  for (let index=0;index<tokens.length;index++) {
+    const token=tokens[index]; const scope=depths[index];
+    if (token==='('&&fromScopes.has(scope)) fromScopes.add(scope+1);
+    if (token===')') fromScopes.delete(scope);
+    if (/^(?:SELECT|WHERE|GROUP|ORDER|HAVING|LIMIT|UNION|EXCEPT|INTERSECT|RETURNING|SET|VALUES|END)$/i.test(token)||token===';') fromScopes.delete(scope);
+    if (/^FROM$/i.test(token)) fromScopes.add(scope);
+    if (/^(?:FROM|JOIN|INTO|UPDATE)$/i.test(token)||(token===','&&fromScopes.has(scope))) {
+      let next=index+1;
+      if (/^UPDATE$/i.test(token)&&/^OR$/i.test(tokens[next]??'')) next+=2;
+      if (isContentTarget(next)) return true;
+    }
   }
   return false;
 }
@@ -142,9 +200,11 @@ async function contentSnapshot(database:CmsDatabase, installed:boolean) {
   const names=new Set(collections.map(row=>'ec_'+row.slug));
   if (objects.some(row=>(row.type==='table'||row.type==='view')&&
     (row.name.toLowerCase().startsWith('ec_') ? !names.has(row.name) : referencesContent(row.sql)))) throw new CmsError('MIGRATION_REQUIRED');
+  if (objects.some(row=>['view','trigger'].includes(row.type)&&!names.has(row.tbl_name)&&dependsOnContent(row.sql))) throw new CmsError('MIGRATION_REQUIRED');
   // Candidate operator FK tables remain in the atomic schema snapshot, but only
   // actual REFERENCES targets in the reserved namespace reject: DROP could
-  // activate cascading actions. Unrelated FK tables/rows remain untouched.
+  // activate cascading actions. External views/triggers can also invalidate the
+  // rebuild. Unrelated operator objects remain untouched; their DDL is guarded.
   for (const collection of collections) {
     if (!identifier.test(collection.slug)) throw new CmsError('MIGRATION_REQUIRED');
     const name='ec_'+collection.slug; const object=objects.find(row=>row.name===name);
