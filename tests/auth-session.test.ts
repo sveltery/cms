@@ -123,3 +123,35 @@ test('local: a session that expires while its store read is pending cannot authe
   release({ user: { id: 'user_1', role: Role.AUTHOR, disabled: false }, expiresAt: 1001 });
   assert.equal(await resolving, null);
 });
+
+test('local: public hashing and resolution reject noncanonical trailing bits before storage', async () => {
+  const f = fixture();
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+  const ambiguous = f.token.slice(0, -1) + alphabet[alphabet.indexOf(f.token.at(-1)!) + 1];
+  for (const token of [ambiguous, f.token + '=', '', '!'.repeat(43)]) {
+    assert.equal(await hashSessionToken(token), null);
+    assert.equal(await resolvePrincipal(token, f.store), null);
+    await revokeSession(token, f.store);
+  }
+  assert.deepEqual(f.hashes, []);
+});
+
+test('local: stalled digest remains inside the resolver timeout and request lifetime', { timeout: 1000 }, async t => {
+  const f = fixture();
+  let reject!: (cause: Error) => void;
+  let started!: () => void;
+  const digestStarted = new Promise<void>(resolve => { started = resolve; });
+  t.mock.method(crypto.subtle, 'digest', () => {
+    started();
+    return new Promise<ArrayBuffer>((_, fail) => { reject = fail; });
+  });
+  const tasks: Promise<void>[] = [];
+  const resolving = resolvePrincipal(f.token, f.store, { timeoutMs: 20, keepAlive: task => { tasks.push(task); } });
+  await digestStarted;
+  assert.equal(await resolving, null);
+  assert.deepEqual(f.hashes, []);
+  assert.equal(tasks.length, 1);
+  reject(new Error('late digest failure'));
+  await tasks[0];
+  assert.deepEqual(f.hashes, []);
+});

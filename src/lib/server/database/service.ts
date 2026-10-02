@@ -40,9 +40,12 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
     if (!actor.permissions.includes(permission)) throw new CmsError('FORBIDDEN');
     return actor;
   }
-  async function mutationOwner(input: { type: string; id: string; locale: string }, own: Permission, any: Permission) {
+  function requireMutationPermission(own: Permission, any: Permission) {
     const actor = authenticated();
     if (!actor.permissions.includes(own) && !actor.permissions.includes(any)) throw new CmsError('FORBIDDEN');
+    return actor;
+  }
+  async function mutationOwner(input: { type: string; id: string; locale: string }, actor: ServerPrincipal, any: Permission) {
     const entry = await entries.findById(input.type, input.id, input.locale);
     if (!entry) throw new CmsError('NOT_FOUND');
     if (actor.permissions.includes(any)) return undefined;
@@ -81,18 +84,16 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
       return entries.list(type, options);
     },
     async updateDraft(input: unknown) {
-      authenticated();
       // Check general permission before even parsing or reading a record.
-      if (!identity!.permissions.some(permission => permission === 'content:edit_own' || permission === 'content:edit_any')) throw new CmsError('FORBIDDEN');
+      const actor = requireMutationPermission('content:edit_own', 'content:edit_any');
       const value = parse(updateDraftInput, input);
-      const owner = await mutationOwner(value, 'content:edit_own', 'content:edit_any');
+      const owner = await mutationOwner(value, actor, 'content:edit_any');
       return entries.update(value, owner);
     },
     async deleteDraft(input: unknown) {
-      authenticated();
-      if (!identity!.permissions.some(permission => permission === 'content:delete_own' || permission === 'content:delete_any')) throw new CmsError('FORBIDDEN');
+      const actor = requireMutationPermission('content:delete_own', 'content:delete_any');
       const value = parse(deleteDraftInput, input);
-      const owner = await mutationOwner(value, 'content:delete_own', 'content:delete_any');
+      const owner = await mutationOwner(value, actor, 'content:delete_any');
       return entries.delete(value, owner);
     }
   };
