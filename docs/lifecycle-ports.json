@@ -302,6 +302,49 @@
     "canonicalProductOriginal": "52ea37a7f5da9a3e5a82a53960d5ba3e46fd035c",
     "manualFixtureDDL": false,
     "supplementalRequirements": "tests/lifecycle-canonical-storage.test.ts uses actual lifecycle services after fresh/v4 canonical startup on Node SQLite/local workerd D1, with rollback and persistent reopen; zero copied declaration credit.",
-    "nativeRegression": "French unenhanced workflow actions originally dropped locale query on POST; preserved regression failed at issue-display assertion before action fix."
+    "nativeRegression": "French unenhanced workflow actions originally dropped locale query on POST; preserved regression failed at issue-display assertion before action fix.",
+    "publishedReviewCheckpoint": {
+      "lifecyclePR": "https://github.com/sveltery/cms/pull/45",
+      "serviceHead": "58e3d3cc380930d7707b41066975ae93469920b7",
+      "integratedTree": "121ed6c81b71c23ca247e695922a4973e7c74ce6",
+      "providerHead": "d8a4f8d7d2bbc8f45c87c4c49baa68349f9a73e0",
+      "canonicalImplementationDiff": "zero",
+      "jointRun": {
+        "cases": 70,
+        "passed": 70,
+        "log": "/tmp/cms-lifecycle-final42-all-source-startup.log",
+        "credit": "26 unchanged Node source declarations;10 original adapter regressions;34 source-scoped/supplemental migration cases"
+      },
+      "realStorageRun": {
+        "cases": 4,
+        "passed": 4,
+        "log": "/tmp/cms-lifecycle-final42-canonical-storage.log",
+        "credit": "original supplemental only"
+      },
+      "bootstrap": {
+        "exitCode": 0,
+        "policyEntries": 188,
+        "checkerErrors": 0,
+        "checkerWarnings": 0,
+        "serviceCases": 693,
+        "productionCases": 119,
+        "nodePackageCases": 11,
+        "bothBuilds": true,
+        "log": "/tmp/cms-lifecycle-final42-bootstrap.log"
+      },
+      "status": "Published draft; renewed proof required after further provider review fixes/actual approved merge; secured hosted browsers and final lifecycle review pending"
+    }
+  },
+  "adapterRegressionEvidence": {
+    "originalTestCommit": "383828b",
+    "publishedRebasedTestCommit": "8a39430",
+    "cases": 10,
+    "baselinePass": 4,
+    "baselineAssertionFailures": 6,
+    "setupFailures": 0,
+    "baselineLog": "/tmp/cms-lifecycle-adapter-expanded-red.log",
+    "greenPassed": 10,
+    "copiedSourceCredit": 0,
+    "nativeRestoreAdaptation": "Optional repository precondition checks after refetch and binds original token in atomic SQL WHERE; omission preserves source behavior"
   }
 }
