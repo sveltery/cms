@@ -47,3 +47,25 @@ test('editor saves stage the same lifecycle revision later published by the work
     assert.equal((await service.readPublished({ type: 'post', id: created.id }))?.data.title, 'Edited');
   } finally { await h.close(); }
 });
+
+test('unchanged native scalar displays retain exact stored bytes and null through a real editor form', async () => {
+  const h = await persistedRemotes({ persistedSessions: true, mutationsEnabled: true });
+  try {
+    await h.registry.createField('post', { slug: 'detail', type: 'text' });
+    await h.registry.createField('post', { slug: 'optional', type: 'string' });
+    const data = { title: 'Original\r\nTitle', detail: 'a\r\nb\rc\nd', optional: null };
+    const created = (await h.mutate('createLifecycleContent', { collection: 'post', data: JSON.stringify(data) }))._.result;
+    const response = await h.request(`/content/post/${created.id}`, 'author');
+    const html = await response.text();
+    assert.match(html, /id="field-title"/);
+    const action = html.match(/<form\b[^>]*action="([^"]+)"/)?.[1]; assert.ok(action);
+    const url = new URL(action.replaceAll('&amp;', '&'), `http://cms.test/content/post/${created.id}`);
+    const saved = await h.request(`${url.pathname}${url.search}`, 'author', { method: 'POST',
+      headers: { origin: 'http://cms.test', accept: 'text/html' }, body: new URLSearchParams({
+        collection: 'post', id: created.id, locale: 'en', _rev: created._rev, editorMode: 'native',
+        slug: 'original-title', 'data.title': 'OriginalTitle', 'data.detail': 'a\r\nb\r\nc\r\nd', 'data.optional': ''
+      }) });
+    assert.equal(saved.status, 200);
+    assert.deepEqual((await h.query('getLifecycleContent', { collection: 'post', id: created.id })).data, data);
+  } finally { await h.close(); }
+});
