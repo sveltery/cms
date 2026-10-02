@@ -72,6 +72,15 @@ async function migrationState(database: CmsDatabase): Promise<number> {
   const expected = new Map<string,{name: string; type: string; sql: string}>();
   const owned = new Set(['_cms_migrations']);
   for (const provider of CMS_MIGRATIONS) {
+    // Lifecycle's dynamic content descriptors read registered fields. Validate
+    // the latest preceding metadata/auth descriptors first, so a missing or
+    // malformed prerequisite fails closed before those reads are attempted.
+    if (provider === lifecycleMigration && version >= provider.version) {
+      for (const [name,wanted] of expected) {
+        const actual=objects.get(name);
+        if (!actual || wanted.type!==actual.type || normalizeMigrationSql(wanted.sql)!==normalizeMigrationSql(actual.sql ?? '')) throw new CmsError('MIGRATION_REQUIRED');
+      }
+    }
     const descriptors = await provider.expectedObjects(database,version);
     for (const object of descriptors) {
       owned.add(object.name);

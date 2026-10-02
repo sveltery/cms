@@ -1,4 +1,5 @@
 import { sql } from 'kysely';
+import { readFileSync } from 'node:fs';
 import type { CmsDatabase } from '../../src/lib/server/database/contract.ts';
 import { CMS_MIGRATIONS } from '../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
@@ -25,6 +26,18 @@ export async function installVersion4(database: CmsDatabase) {
   ]);
   for (const provider of CMS_MIGRATIONS.slice(1, 4)) await database.atomicBatch([
     ...await provider.statements(database), sql`INSERT INTO _cms_migrations VALUES (${sql.lit(provider.version)})`.compile(database.db)
+  ]);
+}
+
+export async function installHistoricalVersion(database:CmsDatabase, version:1|2) {
+  const statements = JSON.parse(readFileSync(new URL('../fixtures/cms-v1.json',import.meta.url),'utf8')) as string[];
+  await database.atomicBatch(statements.map(statement=>sql.raw(statement).compile(database.db)));
+  if (version===2) await database.atomicBatch([
+    ...await CMS_MIGRATIONS[1].statements(database),
+    sql`ALTER TABLE _cms_migrations RENAME TO _cms_migrations_v1`.compile(database.db),
+    sql`CREATE TABLE _cms_migrations (version INTEGER PRIMARY KEY CHECK(version IN (1, 2)))`.compile(database.db),
+    sql`INSERT INTO _cms_migrations VALUES (1),(2)`.compile(database.db),
+    sql`DROP TABLE _cms_migrations_v1`.compile(database.db)
   ]);
 }
 
