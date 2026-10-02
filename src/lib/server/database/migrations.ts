@@ -141,7 +141,8 @@ export async function migrateCms(database: CmsDatabase): Promise<void> {
   try { await database.atomicBatch(statements); }
   catch (cause) {
     const message = sqliteErrorMessage(cause);
-    const race = state === 0 ? message === 'table _cms_migrations already exists' : message === 'CHECK constraint failed: pass = 1';
+    const race = message === 'CHECK constraint failed: pass = 1' ||
+      (state === 0 && message === 'table _cms_migrations already exists');
     if (race) {
       const current = await migrationState(database);
       if (current === CMS_MIGRATION_VERSION) { await installIndexes(database); return; }

@@ -111,8 +111,14 @@ function validateTable(object:SchemaObject, fields:RegisteredField[], installed:
 
 async function contentSnapshot(database:CmsDatabase, installed:boolean) {
   const exists=(await sql`SELECT name FROM sqlite_master WHERE name='_cms_collections' AND type='table'`.execute(database.db)).rows.length;
-  if (!exists) return undefined; // Fresh provider preparation precedes foundation DDL.
-  const snapshot=(await snapshotQuery().execute(database.db)).rows[0];
+  if (!exists && installed) throw new CmsError('MIGRATION_REQUIRED');
+  // Fresh preparation precedes foundation DDL, but existing ec objects still
+  // require validation. Keep the empty metadata snapshot for the batch guard:
+  // foundation creates these tables before provider 5 runs in that transaction.
+  const snapshot=(await (exists ? snapshotQuery() :
+    sql<{objects:string;collections:string;fields:string}>`SELECT
+      (SELECT json_group_array(json_object('name',name,'type',type,'tbl_name',tbl_name,'sql',sql)) FROM (${contentObjectsSql})) AS objects,
+      '[]' AS collections, '[]' AS fields`).execute(database.db)).rows[0];
   const objects=JSON.parse(snapshot.objects) as SchemaObject[];
   const collections=JSON.parse(snapshot.collections) as RegisteredCollection[];
   const fields=JSON.parse(snapshot.fields) as RegisteredField[];
@@ -139,10 +145,10 @@ export const lifecycleMigration:CmsMigrationProvider = {
   async statements(database) {
     const content=await contentSnapshot(database,false);
     const statements=staticStatements(database);
-    if (!content) return statements;
     const token=ulid();
-    // Execute before any content DDL, in the same batch transaction. A schema
-    // writer after preflight cannot have its new fields/indexes overwritten.
+    // Execute before lifecycle DDL in the same batch as foundation. A writer
+    // after fresh or legacy preflight cannot install unvalidated content objects
+    // or have its new fields/indexes overwritten.
     statements.unshift(sql`INSERT INTO _cms_guards(token,pass) SELECT ${token}, CASE WHEN EXISTS
       (SELECT 1 FROM (${snapshotQuery()}) WHERE objects=${content.snapshot.objects}
         AND collections=${content.snapshot.collections} AND fields=${content.snapshot.fields}) THEN 1 ELSE 0 END`.compile(database.db));
@@ -169,7 +175,6 @@ export const lifecycleMigration:CmsMigrationProvider = {
     // Existing v1-v4 ec tables are not partially installed future objects.
     if (installedVersion>=5) {
       const content=await contentSnapshot(database,true);
-      if (!content) throw new CmsError('MIGRATION_REQUIRED');
       for (const {object,target} of content.tables) objects.push({name:object.name,type:'table',sql:target});
     }
     return objects;
