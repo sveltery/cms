@@ -96,7 +96,7 @@ for (const target of ['Node', 'D1'] as const) {
       for (const input of [
         { collection: 'typed', 'jsonData.value_json': '{' },
         { collection: 'typed', 'jsonData.value_json': '{"a":1}', 'data.value_json': 'ambiguous' }
-      ]) {
+      ] as Record<string, string>[]) {
         const response = await h.remote('createContent', 'author', input);
         assert.equal(response.type, 'result'); const issues = parse(response.data)._.issues;
         assert.ok(Array.isArray(issues) && issues.length > 0);

@@ -53,7 +53,8 @@ async function seed(database: CmsDatabase, count: number, fields = 1) {
   }
 }
 
-// Executable pre-change projection oracle through unchanged registry methods.
+// Independent scalar-fixture projection through the unchanged registry reads;
+// its supported public metadata is now expanded with the full manifest.
 async function previousProjection(database: CmsDatabase): Promise<EditorManifest> {
   const registry = new SchemaRegistry(database);
   const collections: EditorManifest['collections'] = {};
@@ -61,14 +62,16 @@ async function previousProjection(database: CmsDatabase): Promise<EditorManifest
     if (Object.hasOwn(Object.prototype, collection.slug)) continue;
     const fields: EditorManifest['collections'][string]['fields'] = {};
     for (const field of await registry.listFields(collection.id)) {
-      fields[field.slug] = { id: field.id, kind: field.type === 'text' ? 'richText' : 'string',
+      fields[field.slug] = { id: field.id, type: field.type, translatable: field.translatable, kind: field.type === 'text' ? 'richText' : 'string',
         label: field.label, required: field.required, ...(field.validation ? { validation: {
           ...(field.validation.minLength === undefined ? {} : { minLength: field.validation.minLength }),
           ...(field.validation.maxLength === undefined ? {} : { maxLength: field.validation.maxLength })
         } } : {}) };
     }
     collections[collection.slug] = { label: collection.label,
-      labelSingular: collection.labelSingular || collection.label, supports: [...collection.supports], fields };
+      labelSingular: collection.labelSingular || collection.label, supports: [...collection.supports],
+      hasSeo: collection.hasSeo, routable: collection.routable !== false, urlPattern: collection.urlPattern,
+      titleField: collection.titleField, dateField: collection.dateField, listColumns: undefined, fields };
   }
   return { collections };
 }
@@ -194,8 +197,8 @@ test('workerd supplemental: manifest executes on the actual local D1 binding wit
     assert.equal(result.forbidden, 'FORBIDDEN'); assert.equal(result.unauthenticated, 'UNAUTHENTICATED');
     assert.deepEqual(Object.keys(result.manifest.collections), ['posts']);
     assert.deepEqual(result.manifest.collections.posts, { label: 'Posts', labelSingular: 'Post',
-      supports: ['drafts', 'revisions'], fields: { title: {
-        id: result.manifest.collections.posts.fields.title.id, kind: 'string', label: 'Title', required: true,
+      supports: ['drafts', 'revisions'], hasSeo: false, routable: true, fields: { title: {
+        id: result.manifest.collections.posts.fields.title.id, type: 'string', translatable: true, kind: 'string', label: 'Title', required: true,
         validation: { maxLength: 80 }
       } } });
     assert.doesNotMatch(JSON.stringify(result), /Private|description|default_value|field_rank/);
