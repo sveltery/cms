@@ -181,7 +181,7 @@ export default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: ad
         expect(request.headers()['content-type']).toBe('application/x-sveltekit-formdata');
         const body = request.postDataBuffer()!;
         // Pinned Kit binary form header: version byte, uint32 header size, uint16 file-offset size.
-        expect(body[0]).toBe(1);
+        expect(body[0]).toBe(0); // BINARY_FORM_VERSION in pinned Kit 2.70.3.
         expect(body.readUInt16LE(5)).toBe(0); // No file fields in this interaction.
         submissions.push(parse(body.subarray(7, 7 + body.readUInt32LE(1)).toString())[0]);
         await held;
