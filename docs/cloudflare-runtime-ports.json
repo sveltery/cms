@@ -35,7 +35,15 @@
     "log": "/tmp/cloudflare-source-baseline-red.log",
     "bridge": "No request session API yields null, matching the raw-only main product. Coalescing calls use the real main RawBindingD1Dialect. Source expect expressions and declaration bodies are preserved; binding injection replaces cloudflare:workers globals. Guard declarations copied before implementation but absent API prevents behavioral execution; zero baseline red credit."
   },
-  "implementation": "pending",
+  "implementation": {
+    "status": "implemented; final-head CI and review pending",
+    "sourceCommand": "pnpm exec vitest run --config vitest.cloudflare.config.ts",
+    "sourceResult": "23 complete declarations pass; 84 immutable source assertion expressions; no altered source declarations",
+    "provenanceCommand": "node scripts/check-cloudflare-source-ports.mjs /path/to/pinned-emdash",
+    "nativeCommand": "node --test tests/cloudflare-runtime.test.ts tests/cloudflare-hosting/runtime.test.ts",
+    "nativeResult": "6 supplemental checks pass against real local D1 and the actual built adapter Worker",
+    "sourceCreditLimits": "Nine guard declarations received no baseline red credit. Native tests and fixture repairs earn no source parity credit."
+  },
   "incomplete": [
     "Remote API-token D1 REST migration executor (three source declarations)",
     "Complete source migration-lock universe (five source declarations); canonical local migrations are owned separately",
@@ -611,6 +619,36 @@
       "omissions": [
         "Other R2, KV, DO and Hyperdrive declarations remain unported"
       ]
+    }
+  ],
+  "implementationSources": [
+    {
+      "path": "packages/cloudflare/src/db/d1-session-guard.ts",
+      "blob": "87fd4866163bcc73d8aab8900a8a71a648060c7f",
+      "sha256": "c5c512ca5fd74dfa11ab20fbd82ce576b44f30b53c9143437be3c9fe17cc81c5",
+      "localFile": "src/lib/server/database/d1-session-guard.ts",
+      "scope": "Complete guard algorithms, type import/header adapted"
+    },
+    {
+      "path": "packages/cloudflare/src/db/coalescing-d1.ts",
+      "blob": "88fe0f014117065f32a49ec6d74067dc612b2a51",
+      "sha256": "0e11c666cdaaecdd92e53389728c5dcf20de5f79b37fa1fd1d1b97220c6d706f",
+      "localFile": "src/lib/server/database/coalescing-d1.ts",
+      "scope": "Complete coalescing algorithms, local dialect/type import substitution"
+    },
+    {
+      "path": "packages/cloudflare/src/db/d1.ts",
+      "blob": "47be6ed31fcfe68429ae4203a6f9cfbddcf958a6",
+      "sha256": "b31ce007b9abeb0612c8de94c4c5eef7a120e649c220c102e0f6e32b7d3f643a",
+      "localFile": "src/lib/server/runtime/cloudflare-d1.ts",
+      "scope": "Request-scope/bookmark helpers and createRequestScopedDb; local binding injection and CmsDatabase/atomicBatch facade"
+    },
+    {
+      "path": "packages/cloudflare/src/db/d1-dialect.ts",
+      "blob": "b026d293554c5173e1447b5eff0d704e169d3384",
+      "sha256": "c37040b0868590d2467a9230b32a84ae421dec6d98fb31b1a480e18a38b39c6c",
+      "localFile": "src/lib/server/database/d1.ts",
+      "scope": "Session mutex policy layered onto the existing raw binding dialect; full source migration lock and introspector omitted"
     }
   ]
 }
