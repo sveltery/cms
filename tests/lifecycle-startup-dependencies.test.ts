@@ -46,6 +46,7 @@ for (const target of ['Node','D1'] as const) {
   test(`${target}: qualified, joined, grouped and mutating content dependencies reject unchanged`, async () => {
     for (const definition of [
       'CREATE VIEW operator_posts AS SELECT id FROM main."EC_POST"',
+      'CREATE VIEW operator_posts AS SELECT id FROM (ec_post)',
       'CREATE VIEW operator_posts AS SELECT ec_post.id FROM operator_events, /* dependency */ ec_post',
       'CREATE VIEW operator_posts AS SELECT ec_post.id FROM (operator_events CROSS JOIN [ec_post])',
       'CREATE VIEW operator_posts AS WITH retained AS (SELECT id FROM ec_post) SELECT * FROM retained',
@@ -87,7 +88,7 @@ for (const target of ['Node','D1'] as const) {
       for (const object of before.objects.filter(row=>row.name.startsWith('operator_'))) {
         assert.deepEqual(after.objects.find(row=>row.name===object.name),object);
       }
-      assert.deepEqual((await sql`SELECT * FROM operator_cte`.execute(database.db)).rows.map(row=>({...row})),[{entry_id:'operator-row'}]);
+      assert.deepEqual((await sql<{entry_id:string}>`SELECT * FROM operator_cte`.execute(database.db)).rows.map(row=>({...row})),[{entry_id:'operator-row'}]);
     } finally {await storage.close();}
   });
 }
