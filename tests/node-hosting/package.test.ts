@@ -242,7 +242,7 @@ test('isolated production package starts, serves assets and denies anonymous HTT
       const options = (await (await post('api/auth/passkey/options', {})).json()).data.options;
       const verified = await post('api/auth/passkey/verify', { credential: credential.assertion(options.challenge) });
       assert.equal(verified.status, 200);
-      const token = cookies.get('cms-session'); assert.match(token!, /^[A-Za-z0-9_-]{43}$/);
+      const token = cookies.get('cms-session'); assert.ok(token); assert.match(token, /^[A-Za-z0-9_-]{43}$/);
       const operator = openSqlite(databasePath);
       try {
         const sessions = await operator.db.selectFrom('_cms_auth_sessions').selectAll().execute();
