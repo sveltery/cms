@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as v from 'valibot';
-import { createInput, updateInput, addFieldInput, convertCollectionCreate, convertCollectionUpdate, convertFieldAdd } from '../src/lib/server/schema/schema.ts';
+import { createInput, updateInput, addFieldInput, fieldMetadataFormInput, fieldOrderInput, fieldDeleteInput, collectionDeleteInput, convertCollectionCreate, convertCollectionUpdate, convertFieldAdd, convertFieldMetadata } from '../src/lib/server/schema/schema.ts';
 
 // Original native transport requirements. No upstream declaration credit.
 const expected = { collection: 'posts', version: '1', updatedAt: '2026-10-02T00:00:00.000Z' };
@@ -12,6 +12,33 @@ test('native collection forms preserve every supported feature and administratio
   assert.deepEqual(value.admin, { listColumns: ['title', 'priority'], quickCreate: false });
   assert.equal(value.routable, false); assert.equal(value.hidden, true); assert.equal(value.editLocking, false);
   assert.equal(value.icon, 'book'); assert.equal(value.group, 'Editorial');
+});
+
+test('new native forms reject mismatched registered form instances before handlers', () => {
+  for (const [schema, input] of [
+    [fieldMetadataFormInput, {collection:'posts',field:'title',id:'posts/other'}],
+    [fieldDeleteInput, {...expected,field:'title',id:'posts/other'}],
+    [fieldOrderInput, {...expected,fields:'["title"]',id:'other'}],
+    [collectionDeleteInput, {...expected,id:'other'}]
+  ] as const) {
+    const result = v.safeParse(schema,input);
+    assert.equal(result.success,false,'mismatched instance creates native issues');
+    if (!result.success) assert.equal(result.issues[0].path?.[0]?.key,'id');
+  }
+});
+
+test('native field settings explicitly retain metadata without JavaScript', () => {
+  const field = {collection:'posts',field:'title',type:'text',typeMode:'keep',widget:'editor',widgetMode:'keep',
+    defaultValueJson:'"stale"',defaultValueMode:'keep',validationJson:'{"minLength":10}',validationMode:'keep',
+    optionsJson:'{"stale":true}',optionsMode:'keep',searchable:'true',searchableMode:'keep',
+    indexed:'true',indexedMode:'keep',translatable:'true',translatableMode:'keep'};
+  const value = convertFieldMetadata(v.parse(fieldMetadataFormInput,field));
+  assert.deepEqual(value,{collection:'posts',field:'title'});
+});
+
+test('native addition preserves explicitly non-translatable fields', () => {
+  const value = convertFieldAdd(v.parse(addFieldInput,{collection:'posts',expectedSchemaVersion:'1',slug:'code',label:'Code',type:'string',translatable:'false'}));
+  assert.equal(value.input.translatable,false);
 });
 test('native collection updates distinguish omitted display fields from clearing them', () => {
   const kept = convertCollectionUpdate(v.parse(updateInput, expected));
