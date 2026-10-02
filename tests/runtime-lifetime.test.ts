@@ -15,7 +15,7 @@ test('runtime close prevents an in-flight configuration from opening a new datab
   const configured = Promise.withResolvers<RuntimeConfiguration>();
   const runtime = createCmsRuntime(() => configured.promise);
   const event = { locals: {}, cookies: { get() {} } } as unknown as RequestEvent;
-  const request = runtime.handle({ event, resolve: async () => new Response('ok') });
+  const request = Promise.resolve(runtime.handle({ event, resolve: async () => new Response('ok') }));
   try {
     await runtime.close();
     configured.resolve({ kind: 'sqlite', path: join(directory, 'late.db'), publicOrigin: 'http://cms.test' });
@@ -58,7 +58,7 @@ test('all close callers await an already-started migration and its request canno
   const runtime = createCmsRuntime(() => ({ kind: 'd1', binding, publicOrigin: 'https://cms.example' }));
   const event = { locals: {}, cookies: { get() {} } } as unknown as RequestEvent;
   let resolved = false;
-  const request = runtime.handle({ event, resolve: async () => { resolved = true; return new Response('ok'); } });
+  const request = Promise.resolve(runtime.handle({ event, resolve: async () => { resolved = true; return new Response('ok'); } }));
   // Keep early rejection handled while the deterministic migration barrier is held.
   void request.catch(() => {});
   let firstClose: Promise<void> | undefined;
@@ -76,7 +76,7 @@ test('all close callers await an already-started migration and its request canno
     assert.equal(resolved, false);
     assert.equal(event.locals.cms, undefined);
     assert.equal(event.locals.cmsRuntime, undefined);
-    await assert.rejects(runtime.handle({ event, resolve: async () => new Response('late') }), /closed/);
+    await assert.rejects(async () => runtime.handle({ event, resolve: async () => new Response('late') }), /closed/);
   } finally {
     continueMigration.resolve();
     await Promise.allSettled([request, firstClose, secondClose]);

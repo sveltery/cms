@@ -29,10 +29,16 @@ export function createCmsRuntime(
   const sqlite = new Map<string, Promise<CmsDatabase>>();
   const bindings = new Map<D1Binding, Promise<CmsDatabase>>();
   let closed = false;
+  let closing: Promise<void> | undefined;
 
   async function initialize(open: () => CmsDatabase | Promise<CmsDatabase>): Promise<CmsDatabase> {
     const database = await open();
-    try { await migrateCms(database); return database; }
+    try {
+      if (closed) throw new Error('CMS runtime is closed');
+      await migrateCms(database);
+      if (closed) throw new Error('CMS runtime is closed');
+      return database;
+    }
     catch (cause) { await database.close(); throw cause; }
   }
 
@@ -55,7 +61,11 @@ export function createCmsRuntime(
       if (typeof path !== 'string' || !path.trim() || path.includes('\0') || path === ':memory:') {
         throw new Error('SVELTERY_DATABASE_PATH must name a persistent SQLite file');
       }
-      return cachedAdapter(sqlite, path, async () => (await import('./node.ts')).openRuntimeSqlite(path));
+      return cachedAdapter(sqlite, path, async () => {
+        const { openRuntimeSqlite } = await import('./node.ts');
+        if (closed) throw new Error('CMS runtime is closed');
+        return openRuntimeSqlite(path);
+      });
     }
     const binding = config.binding;
     if (!binding || typeof binding.prepare !== 'function' || typeof binding.batch !== 'function') {
@@ -67,6 +77,7 @@ export function createCmsRuntime(
   const sessionHandle = createCmsHandle(async event => {
     if (closed) throw new Error('CMS runtime is closed');
     const config = await configuration(event);
+    if (closed) throw new Error('CMS runtime is closed');
     if (!config) return undefined;
     const { publicOrigin, basePath = '', rpName = 'Sveltery CMS' } = config;
     let parsed: URL;
@@ -80,22 +91,37 @@ export function createCmsRuntime(
     }
     if (typeof rpName !== 'string' || !rpName.trim()) throw new Error('SVELTERY_RP_NAME must be nonempty');
     const database = await databaseFor(config);
+    if (closed) throw new Error('CMS runtime is closed');
     event.locals.cmsRuntime = Object.freeze({ publicOrigin, basePath, rpName });
     return { database, mutationsEnabled: config.mutationsEnabled !== false, keepAlive: config.keepAlive };
   });
 
   return {
-    handle: input => {
+    handle: async input => {
       delete input.event.locals.cmsRuntime;
-      return sessionHandle(input);
+      try {
+        return await sessionHandle({ ...input, resolve: (event, options) => {
+          if (closed) throw new Error('CMS runtime is closed');
+          return input.resolve(event, options);
+        } });
+      } catch (cause) {
+        if (closed) {
+          delete input.event.locals.cms;
+          delete input.event.locals.cmsRuntime;
+        }
+        throw cause;
+      }
     },
-    async close() {
+    close() {
       closed = true;
-      const pending = [...sqlite.values(), ...bindings.values()];
-      sqlite.clear(); bindings.clear();
-      const initialized = await Promise.allSettled(pending);
-      await Promise.all(initialized.filter(result => result.status === 'fulfilled')
-        .map(result => result.value.close()));
+      closing ??= (async () => {
+        const pending = [...sqlite.values(), ...bindings.values()];
+        sqlite.clear(); bindings.clear();
+        const initialized = await Promise.allSettled(pending);
+        await Promise.all(initialized.filter(result => result.status === 'fulfilled')
+          .map(result => result.value.close()));
+      })();
+      return closing;
     }
   };
 }
