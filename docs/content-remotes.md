@@ -20,7 +20,7 @@ The original integration branch owned `src/lib/content.remote.ts`, `src/lib/serv
 | `getCollection` | Collection slug | Persisted collection plus scalar field definitions |
 | `listContent` | `{ collection, locale?, limit?, cursor? }` | `{ items, nextCursor? }`; body-free summaries with `_rev` |
 | `getContent` | `{ collection, id, locale? }` | Schema-defined draft data and `_rev` |
-| `listTrashedContent` | `{ collection, locale?, limit? }` | All-locale-on-omission capped body-free trash summaries with `_rev`; no cursor/count |
+| `listTrashedContent` | `{ collection, locale?, limit?, cursor? }` | `{ items, nextCursor? }`; all-locale-on-omission body-free trash summaries with `_rev`; no count |
 | `getTrashedContent` | `{ collection, id, locale? }` | Retained scalar draft with `deletedAt` and `_rev`; omission searches all locales |
 | `restoreContent` | Form: `collection`, `id`, `locale?`, `_rev` | Bounded identity/locale/refreshed-token receipt; edit-own/edit-any, atomic restore |
 | `createContent` | Form: `collection`, `locale?`, `slug?`, `data?` | Bounded `{ id, type, locale, _rev }` receipt |
@@ -79,3 +79,5 @@ Authentication, request origin, mutation gates, revision tokens/CAS, payload val
 [Native trash/restore transport](draft-trash-transport.md) binds the merged draft service to Kit 2.70.3 with collection/ID/locale-bound restore tokens, canonical active/trash aliases and original native requested cache keys. Trash reads preserve omitted locale across all locales; restore defaults to `en`. Direct hidden-field spreads require explicit values. Each active/trash query family permits five client-requested instances before scope filtering; excess instances receive separate native query errors. This supersedes historical restoration-as-unimplemented statements for bounded scalar drafts only; UI, published lifecycle, permanent deletion and production setup remain incomplete. DTT-01–DTT-03 disclose the transport/receipt/cache differences and add zero upstream assertion credit. Separate scalar PR #21 remains authoritative for newly created defaults/uniqueness and legacy-layout divergence.
 
 [The read-only collection trash view](collection-trash-view.md) adds a separate `/trash/[collection]` page over the existing capped all-locale summary query, with text Title/Locale/Deleted, explicit up-to-50 wording and separate empty/unavailable states. CTV-01–CTV-03 record route, locale, summary-title and UTC-date differences with zero upstream credit. Restore and permanent-delete controls remain unimplemented.
+
+[Trash pagination](trash-pagination.md) retains the pinned UTF-8/base64 cursor and explicitly maps InvalidCursorError to the native INVALID_CURSOR 400 envelope. Later-page restore updates use the exact displayed cursor-bearing query key; active-list cursors remain separate.

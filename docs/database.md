@@ -20,7 +20,7 @@ Compose `cmsService(database, principal)` inside trusted server request composit
 | listDrafts | {type,limit?,cursor?,locale?} | content:read and content:read_drafts |
 | updateDraft | {type,id,expected:{version,updatedAt},data,slug?,locale?} | content:edit_any, or content:edit_own with matching persisted author |
 | getTrashedDraft | {type,id,locale?}; omitted locale includes every locale | content:read and content:read_drafts |
-| listTrashedDrafts | {type,limit?,locale?}; omitted locale includes every locale | content:read and content:read_drafts |
+| listTrashedDrafts | {type,limit?,locale?,cursor?}; omitted locale includes every locale | content:read and content:read_drafts |
 | restoreDraft | {type,id,expected:{version,updatedAt},locale?} | content:edit_any, or content:edit_own with matching persisted author |
 | deleteDraft | {type,id,expected:{version,updatedAt},locale?} | content:delete_any, or content:delete_own with matching persisted author |
 
@@ -54,7 +54,7 @@ The EmDash 1.1.0 pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e` remains authorit
 
 ## Bounded draft trash service
 
-[PR #19](https://github.com/sveltery/cms/pull/19) adds separate trash lookup/list and atomic restoration through the trusted service. [The feature/source record](draft-trash.md) specifies draft-only status, edit-own/edit-any ownership, mandatory CAS, atomic schema guards, refreshed tokens, fixed deletedAt/id ordering, default50/cap100 body-free summaries and all-locale trash reads. Authorized active restores conflict; missing rows are NOT_FOUND. Node/local D1 races, rollback, restart and in-workerd portability are supplemental service evidence. Canonical DT-01–DT-04 preserve validation/API/timestamp differences and explicit source omissions; native transport/UI, count/cursor, published/revision restoration and permanent deletion remain deferred. Existing APIs/error order and production configuration remain unchanged.
+[PR #19](https://github.com/sveltery/cms/pull/19) adds separate trash lookup/list and atomic restoration through the trusted service. [The feature/source record](draft-trash.md) specifies draft-only status, edit-own/edit-any ownership, mandatory CAS, atomic schema guards, refreshed tokens, fixed deletedAt/id ordering, default50/cap100 body-free summaries and all-locale trash reads. Authorized active restores conflict; missing rows are NOT_FOUND. Node/local D1 races, rollback, restart and in-workerd portability are supplemental service evidence. Canonical DT-01–DT-04 preserve validation/API/timestamp differences and explicit source omissions; native transport/UI and [cursor pagination](trash-pagination.md) are subsequently implemented within their documented bounds; count, published/revision restoration and permanent deletion remain deferred. Existing APIs/error order and production configuration remain unchanged.
 
 The trash slice restores the pinned deleted-leading `(deleted_at,status)` index for all-locale indexed search. Explicit operator-run `migrateCms` backfills existing v1/v2 collections atomically after existing system/auth validation; it leaves migration markers, schema metadata, retained rows and scalar rules unchanged. New collection creation includes the index in its own atomic batch. Upstream tie sorting is retained, so row-count caps are not a general database-work guarantee. See [the paired plan and migration evidence](draft-trash.md). No runtime service call or production hook performs index DDL.
 

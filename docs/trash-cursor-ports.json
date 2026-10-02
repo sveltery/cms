@@ -1,0 +1,394 @@
+{
+  "referenceVersion": "EmDash 1.1.0",
+  "referenceCommit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "integrationBase": "8c773d815bb54499d5d3eeca4f92b28d7b42ac22",
+  "licenseNotice": "../notices/emdash-MIT.txt",
+  "inventory": "../parity/emdash/inventory.json",
+  "decisionStatus": "Eight complete cursor-helper declarations pass against the local Node helper in the working tree. Final-head bootstrap, runtime/browser checks and independent/configured reviews are separate required integration gates. No MCP, storage, UI or lifecycle parity is established by this unit suite.",
+  "inspectedSources": [
+    {
+      "path": "packages/core/src/database/repositories/types.ts",
+      "sourceBlob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7",
+      "sha256": "880e1ee7c6b2792d0f0316d4853dea590ce10f89073dd5a4f5ef56ebd118fa04",
+      "inspectedLines": [
+        13,
+        252,
+        265,
+        281
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/database/repositories/types.ts"
+    },
+    {
+      "path": "packages/core/src/utils/base64.ts",
+      "sourceBlob": "9dae6dade270b1c1291b21c8a90adc73f5dab294",
+      "sha256": "79a94b895668f729574cc25e50ad5e1f6db5998dc3f6e3e12e5c1fa661969a90",
+      "inspectedLines": [
+        14,
+        32,
+        42,
+        47
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/src/utils/base64.ts"
+    },
+    {
+      "path": "packages/core/tests/unit/database/repositories/cursor.test.ts",
+      "sourceBlob": "119add8308e15decbe8dbf148f7433fb8b12312f",
+      "sha256": "cbb2ee72dbb7560a696a7620d875ff5fe466b6b201740b2fed7b15afba97c563",
+      "inspectedLines": [
+        10,
+        16,
+        20,
+        24,
+        29,
+        34,
+        39,
+        49
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts"
+    },
+    {
+      "path": "packages/core/tests/integration/mcp/pagination.test.ts",
+      "sourceBlob": "14cd3364efd5b4ecef3c4ad52714509f1e08b2c8",
+      "sha256": "a5a3dba882227468269bb820ed11f79e530db4ee1da03f24f08fce8347fc01b5",
+      "inspectedLines": [
+        205,
+        214
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/pagination.test.ts"
+    }
+  ],
+  "implementation": {
+    "path": "src/lib/server/database/trash-cursor.ts",
+    "source": "packages/core/src/database/repositories/types.ts encodeCursor/decodeCursor/InvalidCursorError and utils/base64.ts UTF-8 standard-base64 branches",
+    "substitutions": [
+      "Dedicated trash helper instead of shared upstream repository types; the active-list context-qualified cursor remains separate.",
+      "UTF-8 standard-base64 helper branches are colocated, with decodeBase64Bytes inlined into decodeBase64.",
+      "InvalidCursorError adds readonly code INVALID_CURSOR for local native envelope metadata; class name, validation and truncated message remain unchanged."
+    ],
+    "preserved": [
+      "Decoder rejects empty input directly and input longer than 4096 before decoding.",
+      "Only string orderValue and id are required; empty fields, arbitrary values and extra context remain permitted.",
+      "No timestamp, ID-format, collection or locale validation is added.",
+      "Both native Uint8Array and fallback btoa/atob branches retain upstream encoding semantics."
+    ]
+  },
+  "cases": [
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:10",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L10",
+      "sourceTitle": "round-trips a valid cursor",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceRegistrationSha256": "48db610fa9604a11a1a1d12bf66cf3e1aba989d426583e5134134df67605a61b",
+      "retainedAssertions": [
+        {
+          "line": 13,
+          "expression": "expect(decoded).toEqual({ orderValue: \"2024-01-01\", id: \"01ABC\" })",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L13"
+        }
+      ],
+      "omittedAssertions": [],
+      "localTest": "tests/trash-cursor.test.ts",
+      "localTitle": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:10 — round-trips a valid cursor",
+      "runtime": "Node 24.19.0, native test runner with node:assert/strict and actual CMS helper",
+      "datasets": "Identical pinned literals; no runtime expansion in the source declaration.",
+      "substitutions": [
+        "Vitest it/expect become node:test and node:assert; assert.fail preserves the source line 49 failure guard."
+      ],
+      "status": "ported-green",
+      "implementationCommit": null,
+      "implementationCommitStatus": "Working-tree evidence; parent records the immutable eligible integration head after all edits.",
+      "runEvidence": {
+        "command": "node --test tests/trash-cursor.test.ts",
+        "dateUTC": "2026-10-02",
+        "result": "13 passed: eight upstream declarations and five separately supplemental cases; zero failures/skips."
+      }
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:16",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L16",
+      "sourceTitle": "throws InvalidCursorError on empty string",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceRegistrationSha256": "b25a630b49349ce985de96827a766196fcb7afba4e839597889b89e45387d96a",
+      "retainedAssertions": [
+        {
+          "line": 17,
+          "expression": "expect(() => decodeCursor(\"\")).toThrow(InvalidCursorError)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L17"
+        }
+      ],
+      "omittedAssertions": [],
+      "localTest": "tests/trash-cursor.test.ts",
+      "localTitle": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:16 — throws InvalidCursorError on empty string",
+      "runtime": "Node 24.19.0, native test runner with node:assert/strict and actual CMS helper",
+      "datasets": "Identical pinned literals; no runtime expansion in the source declaration.",
+      "substitutions": [
+        "Vitest it/expect become node:test and node:assert; assert.fail preserves the source line 49 failure guard."
+      ],
+      "status": "ported-green",
+      "implementationCommit": null,
+      "implementationCommitStatus": "Working-tree evidence; parent records the immutable eligible integration head after all edits.",
+      "runEvidence": {
+        "command": "node --test tests/trash-cursor.test.ts",
+        "dateUTC": "2026-10-02",
+        "result": "13 passed: eight upstream declarations and five separately supplemental cases; zero failures/skips."
+      }
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:20",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L20",
+      "sourceTitle": "throws InvalidCursorError on non-base64 input",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceRegistrationSha256": "37f433892e20858a2c88cc4d93dd39b988d3ff99c6f19ea9caacad3fd1280f2b",
+      "retainedAssertions": [
+        {
+          "line": 21,
+          "expression": "expect(() => decodeCursor(\"not-base64-!!!\")).toThrow(InvalidCursorError)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L21"
+        }
+      ],
+      "omittedAssertions": [],
+      "localTest": "tests/trash-cursor.test.ts",
+      "localTitle": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:20 — throws InvalidCursorError on non-base64 input",
+      "runtime": "Node 24.19.0, native test runner with node:assert/strict and actual CMS helper",
+      "datasets": "Identical pinned literals; no runtime expansion in the source declaration.",
+      "substitutions": [
+        "Vitest it/expect become node:test and node:assert; assert.fail preserves the source line 49 failure guard."
+      ],
+      "status": "ported-green",
+      "implementationCommit": null,
+      "implementationCommitStatus": "Working-tree evidence; parent records the immutable eligible integration head after all edits.",
+      "runEvidence": {
+        "command": "node --test tests/trash-cursor.test.ts",
+        "dateUTC": "2026-10-02",
+        "result": "13 passed: eight upstream declarations and five separately supplemental cases; zero failures/skips."
+      }
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:24",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L24",
+      "sourceTitle": "throws InvalidCursorError on base64 of malformed JSON",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceRegistrationSha256": "447288087445c5a6f2ddba3f69c3805e1489b58f5783b787ef4c94060b3de82a",
+      "retainedAssertions": [
+        {
+          "line": 26,
+          "expression": "expect(() => decodeCursor(bad)).toThrow(InvalidCursorError)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L26"
+        }
+      ],
+      "omittedAssertions": [],
+      "localTest": "tests/trash-cursor.test.ts",
+      "localTitle": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:24 — throws InvalidCursorError on base64 of malformed JSON",
+      "runtime": "Node 24.19.0, native test runner with node:assert/strict and actual CMS helper",
+      "datasets": "Identical pinned literals; no runtime expansion in the source declaration.",
+      "substitutions": [
+        "Vitest it/expect become node:test and node:assert; assert.fail preserves the source line 49 failure guard."
+      ],
+      "status": "ported-green",
+      "implementationCommit": null,
+      "implementationCommitStatus": "Working-tree evidence; parent records the immutable eligible integration head after all edits.",
+      "runEvidence": {
+        "command": "node --test tests/trash-cursor.test.ts",
+        "dateUTC": "2026-10-02",
+        "result": "13 passed: eight upstream declarations and five separately supplemental cases; zero failures/skips."
+      }
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:29",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L29",
+      "sourceTitle": "throws InvalidCursorError on base64 JSON missing required fields",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceRegistrationSha256": "b4fa78b9ae7d42eef12c8d00bfd91589924a7a4186f1fee2319ff53a01be683e",
+      "retainedAssertions": [
+        {
+          "line": 31,
+          "expression": "expect(() => decodeCursor(bad)).toThrow(InvalidCursorError)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L31"
+        }
+      ],
+      "omittedAssertions": [],
+      "localTest": "tests/trash-cursor.test.ts",
+      "localTitle": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:29 — throws InvalidCursorError on base64 JSON missing required fields",
+      "runtime": "Node 24.19.0, native test runner with node:assert/strict and actual CMS helper",
+      "datasets": "Identical pinned literals; no runtime expansion in the source declaration.",
+      "substitutions": [
+        "Vitest it/expect become node:test and node:assert; assert.fail preserves the source line 49 failure guard."
+      ],
+      "status": "ported-green",
+      "implementationCommit": null,
+      "implementationCommitStatus": "Working-tree evidence; parent records the immutable eligible integration head after all edits.",
+      "runEvidence": {
+        "command": "node --test tests/trash-cursor.test.ts",
+        "dateUTC": "2026-10-02",
+        "result": "13 passed: eight upstream declarations and five separately supplemental cases; zero failures/skips."
+      }
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:34",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L34",
+      "sourceTitle": "throws InvalidCursorError when id is not a string",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceRegistrationSha256": "7ffd48a3d204da1d99f6240ce37dec118ef4fea1ec73050fb3493130d4edb3e3",
+      "retainedAssertions": [
+        {
+          "line": 36,
+          "expression": "expect(() => decodeCursor(bad)).toThrow(InvalidCursorError)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L36"
+        }
+      ],
+      "omittedAssertions": [],
+      "localTest": "tests/trash-cursor.test.ts",
+      "localTitle": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:34 — throws InvalidCursorError when id is not a string",
+      "runtime": "Node 24.19.0, native test runner with node:assert/strict and actual CMS helper",
+      "datasets": "Identical pinned literals; no runtime expansion in the source declaration.",
+      "substitutions": [
+        "Vitest it/expect become node:test and node:assert; assert.fail preserves the source line 49 failure guard."
+      ],
+      "status": "ported-green",
+      "implementationCommit": null,
+      "implementationCommitStatus": "Working-tree evidence; parent records the immutable eligible integration head after all edits.",
+      "runEvidence": {
+        "command": "node --test tests/trash-cursor.test.ts",
+        "dateUTC": "2026-10-02",
+        "result": "13 passed: eight upstream declarations and five separately supplemental cases; zero failures/skips."
+      }
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:39",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L39",
+      "sourceTitle": "rejects oversized cursors before attempting to decode (DoS guard)",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceRegistrationSha256": "f5e7d9561b8cc4ff2282632a22bdd171de2ce096e51ce5543fbbfb03cfab8729",
+      "retainedAssertions": [
+        {
+          "line": 46,
+          "expression": "expect(() => decodeCursor(huge)).toThrow(InvalidCursorError)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L46"
+        }
+      ],
+      "omittedAssertions": [],
+      "localTest": "tests/trash-cursor.test.ts",
+      "localTitle": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:39 — rejects oversized cursors before attempting to decode (DoS guard)",
+      "runtime": "Node 24.19.0, native test runner with node:assert/strict and actual CMS helper",
+      "datasets": "Identical pinned literals; no runtime expansion in the source declaration.",
+      "substitutions": [
+        "Vitest it/expect become node:test and node:assert; assert.fail preserves the source line 49 failure guard."
+      ],
+      "status": "ported-green",
+      "implementationCommit": null,
+      "implementationCommitStatus": "Working-tree evidence; parent records the immutable eligible integration head after all edits.",
+      "runEvidence": {
+        "command": "node --test tests/trash-cursor.test.ts",
+        "dateUTC": "2026-10-02",
+        "result": "13 passed: eight upstream declarations and five separately supplemental cases; zero failures/skips."
+      }
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:49",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L49",
+      "sourceTitle": "error message truncates very long cursors",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceRegistrationSha256": "b10001b38a95f3b9929e15e5d96a2eb4be731dc02c3efdbe90c95c15c66d4986",
+      "retainedAssertions": [
+        {
+          "line": 53,
+          "expression": "expect.fail(\"expected throw\")",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L53"
+        },
+        {
+          "line": 55,
+          "expression": "expect(error).toBeInstanceOf(InvalidCursorError)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L55"
+        },
+        {
+          "line": 57,
+          "expression": "expect((error as Error).message.length).toBeLessThan(120)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L57"
+        }
+      ],
+      "omittedAssertions": [],
+      "localTest": "tests/trash-cursor.test.ts",
+      "localTitle": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:49 — error message truncates very long cursors",
+      "runtime": "Node 24.19.0, native test runner with node:assert/strict and actual CMS helper",
+      "datasets": "Identical pinned literals; no runtime expansion in the source declaration.",
+      "substitutions": [
+        "Vitest it/expect become node:test and node:assert; assert.fail preserves the source line 49 failure guard."
+      ],
+      "status": "ported-green",
+      "implementationCommit": null,
+      "implementationCommitStatus": "Working-tree evidence; parent records the immutable eligible integration head after all edits.",
+      "runEvidence": {
+        "command": "node --test tests/trash-cursor.test.ts",
+        "dateUTC": "2026-10-02",
+        "result": "13 passed: eight upstream declarations and five separately supplemental cases; zero failures/skips."
+      }
+    }
+  ],
+  "assertionAccounting": {
+    "completeSourceDeclarations": 8,
+    "inventoriedAssertionExpressions": 10,
+    "passingPredicateExpressions": 9,
+    "failureGuardExpressions": 1,
+    "explanation": "Line 49 retains expect.fail as assert.fail plus both catch assertions. The failure guard is inventoried and preserved but is not an additional successful predicate or source declaration.",
+    "inventoryStatus": "Inventory remains inventory-only; executable evidence is recorded in this separate ledger."
+  },
+  "supplemental": {
+    "localTest": "tests/trash-cursor.test.ts",
+    "cases": 5,
+    "scope": [
+      "UTF-8 standard-base64 with Unicode values",
+      "Permissive empty/arbitrary string fields and ignored extra context",
+      "Exactly 4096 decoder characters accepted and 4100 rejected",
+      "Non-object JSON and non-string orderValue rejected",
+      "Exact 47-character message prefix and 50-character boundary"
+    ],
+    "sourceAssertionCredit": 0
+  },
+  "adaptedTransportReference": {
+    "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/mcp/pagination.test.ts:205",
+    "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/mcp/pagination.test.ts#L205",
+    "sourceTitle": "content_list_trashed rejects malformed cursor",
+    "sourceAssertion": "expect(result.isError).toBe(true)",
+    "adaptation": "Native Kit INVALID_CURSOR error/HTTP 400 envelope is a separate transport adaptation. This helper suite does not execute MCP harness, callTool, seedPosts or repository.delete.",
+    "completeSourceDeclarationsCredited": 0,
+    "sourceAssertionCredit": 0,
+    "status": "blocked",
+    "dependency": "Full MCP family is outside this native Kit slice; parent owns native malformed-cursor test/evidence."
+  },
+  "omissions": [
+    "No Vitest runtime or upstream whole-module execution in this local suite.",
+    "Node 24 exercises the upstream btoa/atob fallback; native Uint8Array/workerd execution requires separate runtime evidence.",
+    "No database, D1 persistence, pagination, native HTTP, browser, React or MCP execution in this unit suite.",
+    "No publication, revisions, permanent deletion, configured production or deployed runtime credit."
+  ],
+  "upstreamReproduction": {
+    "command": "CMS_EMDASH_REPOSITORY=/tmp/emdash-source-audit node scripts/reproduce-trash-pagination-upstream.mjs",
+    "dateUTC": "2026-10-02",
+    "result": "22 tests pass separately with Node SQLite and local D1 storage (44 total); no failures or skips.",
+    "sourceCursorDeclarations": 8,
+    "sourceCursorAssertionExpressions": 10,
+    "sourceCursorFailureGuards": 1,
+    "addedSupplementalPaginationCasesPerAdapter": 5,
+    "retainedExistingDraftCasesPerAdapter": 9,
+    "implementation": "Complete immutable upstream ContentRepository, content handler, repository types and UTF-8/base64 modules. cursor.test.ts blob is verified before exact Vitest assertion-to-node:assert substitutions; no cursor algorithm replica.",
+    "scope": "Repository/handler pagination uses real Node SQLite or local D1. Cursor utility assertions execute host Node fallback in both adapter processes and do not establish workerd native Uint8Array utility execution.",
+    "fixtureBoundaries": "Reuses and prints the existing directly seeded draft ec_posts schema, unrelated-import throwing seams and disabled object-cache/wait-until virtual modules. Published/revision, schema registry, full migrations, HTTP/browser/MCP and upstream restart/rollback remain omitted.",
+    "legacyDefault": "Existing reproduce-draft-trash-upstream.mjs only adds cases under --pagination; its default nine cases per adapter remain unchanged."
+  }
+}

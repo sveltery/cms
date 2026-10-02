@@ -26,6 +26,8 @@ When porting:
 
 The exact paths and declarations are in `inventory.json`. Prefix selection includes every test file under the named pinned directories. Whole files are retained so nearby regressions and dependencies stay visible; inclusion does not mean every case belongs in the first slice.
 
+The trash-pagination slice adds the pinned `packages/core/tests/unit/database/repositories/cursor.test.ts` whole file before any cursor-helper port credit: eight declarations at lines 10, 16, 20, 24, 29, 34, 39 and 49. Its ten assertion expressions include the `expect.fail` guard and two catch assertions at line 49; it has no shared assertions or runtime expansion. The current selection therefore contains **118 source files, 1,326 declarations and 3,356 assertion expressions**, with **zero product tests run by the inventory tooling**. All earlier source IDs, assertion expressions and historical baseline mappings remain retained. MCP `pagination.test.ts:205` is a separately documented transport adaptation, not complete MCP pagination-family parity.
+
 | Area | Selected source families | Assertion obligations and scheduling |
 | --- | --- | --- |
 | Dashboard/database schema | `core/tests/unit/schema/*`, `integration/schema/*`, schema collection update/reorder/display-field API tests, collection/field body schemas, MCP schema tests | Collection/field creation, persistence, defaults and explicit opt-outs, slug restrictions/conflicts, mutation validation, physical table/index effects, deletion/recreation, unsupported stored types, reference lifecycle. Start with scalar schema operations; blocks/references and seed contracts remain explicit follow-ups. |

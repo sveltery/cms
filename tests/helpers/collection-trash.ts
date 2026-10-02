@@ -1,4 +1,5 @@
-import { mkdtemp, rm } from 'node:fs/promises';
+import { cp, mkdtemp, rm, symlink, writeFile } from 'node:fs/promises';
+import { spawn } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
@@ -11,6 +12,41 @@ import { DraftRepository } from '../../src/lib/server/database/entries.ts';
 import { createCmsHandle } from '../../src/lib/server/auth/composition.ts';
 import { hashSessionToken } from '../../src/lib/server/auth/session.ts';
 import { Role } from '../../src/lib/server/auth/roles.ts';
+
+// Shared isolated /cms build for native SSR and browser pagination evidence.
+export async function collectionTrashOutput(base: '' | '/cms') {
+  const checkout = fileURLToPath(new URL('../../', import.meta.url));
+  if (!base) return { output: join(checkout, '.svelte-kit/output'), async close() {} };
+  const directory = await mkdtemp(join(tmpdir(), 'cms-trash-base-'));
+  try {
+    await Promise.all([
+      cp(join(checkout, 'src'), join(directory, 'src'), { recursive: true }),
+      cp(join(checkout, 'package.json'), join(directory, 'package.json')),
+      cp(join(checkout, 'tsconfig.json'), join(directory, 'tsconfig.json')),
+      symlink(join(checkout, 'node_modules'), join(directory, 'node_modules'), 'dir')
+    ]);
+    const nodeTarget = process.env.SVELTERY_BROWSER_TARGET === 'node';
+    await writeFile(join(directory, 'vite.config.ts'), `
+import adapter from '@sveltejs/adapter-${nodeTarget ? 'node' : 'auto'}';
+import { sveltekit } from '@sveltejs/kit/vite';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+export default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: adapter(),
+  paths: { base: '/cms' }, experimental: { remoteFunctions: true },
+  compilerOptions: { experimental: { async: true } }
+})] };
+`);
+    const child = spawn(process.execPath, [join(checkout, 'node_modules/vite/bin/vite.js'), 'build'], { cwd: directory, stdio: 'pipe' });
+    let diagnostics = '';
+    child.stdout.on('data', chunk => { diagnostics += chunk; });
+    child.stderr.on('data', chunk => { diagnostics += chunk; });
+    const result = await new Promise(resolve => child.once('exit', resolve));
+    if (result !== 0) throw new Error(`Isolated trash build failed (${result}): ${diagnostics}`);
+    return { output: join(directory, '.svelte-kit/output'), close: () => rm(directory, { recursive: true, force: true }) };
+  } catch (error) {
+    await rm(directory, { recursive: true, force: true });
+    throw error;
+  }
+}
 
 // Test-only persisted fixture; no app hook, production writes or live credentials.
 export async function collectionTrashFixture(output = fileURLToPath(new URL('../../.svelte-kit/output/', import.meta.url)),
@@ -27,17 +63,18 @@ export async function collectionTrashFixture(output = fileURLToPath(new URL('../
   }
   const repository = new DraftRepository(database);
   const items = [];
-  for (let index = 0; index < 55; index++) {
+  for (let index = 0; index < 103; index++) {
     const item = await repository.create({ type: 'post', locale: index % 2 ? 'fr' : 'en',
-      data: { title: index === 54 ? '<img src=x onerror=alert(1)> & title' : index === 53 ? ''
-        : index === 52 ? null : index === 51 ? 'T'.repeat(230) : `Trashed ${index}`,
-        body: 'PRIVATE_BODY_MARKER' }, ...(index === 53 ? { slug: 'fallback-slug' } : {}) }, 'user_other');
+      data: { title: index === 102 ? '<img src=x onerror=alert(1)> & title' : index === 101 ? ''
+        : index === 100 ? null : index === 99 ? 'T'.repeat(230) : `Trashed ${index}`,
+        body: 'PRIVATE_BODY_MARKER' }, ...(index === 101 ? { slug: 'fallback-slug' } : {}) }, 'user_other');
     // Fixed deletion times include ties; expected order is independently derived below.
     const deletedAt = new Date(Date.UTC(2026, 8, 1 + Math.floor(index / 2), 23, 30)).toISOString();
     await sql`UPDATE ec_post SET deleted_at = ${deletedAt} WHERE id = ${item.id}`.execute(database.db);
     items.push({ ...item, deletedAt });
   }
-  const expected = [...items].sort((a, b) => b.deletedAt.localeCompare(a.deletedAt) || b.id.localeCompare(a.id)).slice(0, 50);
+  const fullExpected = [...items].sort((a, b) => b.deletedAt.localeCompare(a.deletedAt) || b.id.localeCompare(a.id));
+  const expected = fullExpected.slice(0, 50);
   const active = await repository.create({ type: 'post', data: { title: 'Active trash ID', body: 'ACTIVE_BODY_MARKER' } }, 'user_author');
   await sql`UPDATE ec_post SET id = 'trash' WHERE id = ${active.id}`.execute(database.db);
   const other = await repository.create({ type: 'page', locale: 'fr', data: { title: 'Other collection' } }, 'user_other');
@@ -74,11 +111,14 @@ export async function collectionTrashFixture(output = fileURLToPath(new URL('../
   const originalHandle = options.hooks.handle;
   options.hooks.handle = handle;
   return {
-    output, items, expected, untitled, tokens, manifest, restoreItems,
+    output, items, expected, fullExpected, untitled, tokens, manifest, restoreItems,
     respond(request: Request) { return server.respond(request, { getClientAddress: () => '127.0.0.1' }); },
     async staleRestore(id: string) {
       if (!configuration.restoreEntries) throw new Error('Restore fixtures are not enabled');
       await sql`UPDATE ec_restore SET version = version + 1 WHERE id = ${id}`.execute(database.db);
+    },
+    async stalePost(id: string) {
+      await sql`UPDATE ec_post SET version = version + 1 WHERE id = ${id}`.execute(database.db);
     },
     async restart() {
       await database.close();

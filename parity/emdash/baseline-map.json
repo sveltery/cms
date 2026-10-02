@@ -4,9 +4,9 @@
   "previousCommit": "0e8977c221dd8e5111511eb226faa3d164c829ef",
   "commit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "previousCatalogSha256": "fd94dadeaf45ecce5ed3d0ee863b2b15d9149f53123ab22bab9ac23252899151",
-  "catalogSha256": "13b03cc254b909e8ce5d861543b38a51aee364e5974bbcddf0204d1e4b718c27",
+  "catalogSha256": "7ff02e933413fd281e74c0ce9ad1669bb2596f72fd6871532d679e7465937fc1",
   "previousSelectionSha256": "6b8601fb9190caa2b6eff58b3253c9876686255d1f3701abe537967cfffdef8f",
-  "selectionSha256": "ef98d9d3e6d2313e5fb60d16a6e0960cf98d410c9f70571f3d84e0b2c9005dda",
+  "selectionSha256": "d408659ad29819721d59be53ed2ff78d2550f3aa16c813e75914aec4cc017ab4",
   "declarations": [
     {
       "previousSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:e2e/tests/auth.spec.ts:30",
@@ -25512,6 +25512,102 @@
       ],
       "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/database/content-nullable-order-pagination.test.ts#L148",
       "reason": "new-upstream-declaration",
+      "status": "inventory-only"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:10",
+      "path": "packages/core/tests/unit/database/repositories/cursor.test.ts",
+      "title": "round-trips a valid cursor",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L10",
+      "reason": "newly-selected-declaration",
+      "previousUpstreamSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/database/repositories/cursor.test.ts:10",
+      "status": "inventory-only"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:16",
+      "path": "packages/core/tests/unit/database/repositories/cursor.test.ts",
+      "title": "throws InvalidCursorError on empty string",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L16",
+      "reason": "newly-selected-declaration",
+      "previousUpstreamSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/database/repositories/cursor.test.ts:16",
+      "status": "inventory-only"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:20",
+      "path": "packages/core/tests/unit/database/repositories/cursor.test.ts",
+      "title": "throws InvalidCursorError on non-base64 input",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L20",
+      "reason": "newly-selected-declaration",
+      "previousUpstreamSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/database/repositories/cursor.test.ts:20",
+      "status": "inventory-only"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:24",
+      "path": "packages/core/tests/unit/database/repositories/cursor.test.ts",
+      "title": "throws InvalidCursorError on base64 of malformed JSON",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L24",
+      "reason": "newly-selected-declaration",
+      "previousUpstreamSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/database/repositories/cursor.test.ts:24",
+      "status": "inventory-only"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:29",
+      "path": "packages/core/tests/unit/database/repositories/cursor.test.ts",
+      "title": "throws InvalidCursorError on base64 JSON missing required fields",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L29",
+      "reason": "newly-selected-declaration",
+      "previousUpstreamSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/database/repositories/cursor.test.ts:29",
+      "status": "inventory-only"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:34",
+      "path": "packages/core/tests/unit/database/repositories/cursor.test.ts",
+      "title": "throws InvalidCursorError when id is not a string",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L34",
+      "reason": "newly-selected-declaration",
+      "previousUpstreamSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/database/repositories/cursor.test.ts:34",
+      "status": "inventory-only"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:39",
+      "path": "packages/core/tests/unit/database/repositories/cursor.test.ts",
+      "title": "rejects oversized cursors before attempting to decode (DoS guard)",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L39",
+      "reason": "newly-selected-declaration",
+      "previousUpstreamSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/database/repositories/cursor.test.ts:39",
+      "status": "inventory-only"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:49",
+      "path": "packages/core/tests/unit/database/repositories/cursor.test.ts",
+      "title": "error message truncates very long cursors",
+      "suites": [
+        "decodeCursor"
+      ],
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/database/repositories/cursor.test.ts#L49",
+      "reason": "newly-selected-declaration",
+      "previousUpstreamSourceId": "0e8977c221dd8e5111511eb226faa3d164c829ef:packages/core/tests/unit/database/repositories/cursor.test.ts:49",
       "status": "inventory-only"
     }
   ],

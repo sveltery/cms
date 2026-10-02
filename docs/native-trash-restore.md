@@ -1,5 +1,7 @@
 # Bounded native trash restore interaction
 
+Current pagination: [PR #28](https://github.com/sveltery/cms/pull/28) adds the [cursor/Load More contract](trash-pagination.md). The no-cursor/up-to-50 limits below describe the historical slice; the new record supersedes only those bounds, preserving prior differences and evidence.
+
 Proposed in [PR #26](https://github.com/sveltery/cms/pull/26). Base: main `06ecd8889d625e24c564e59a8ed5a5e63daa8e8f` (read-only trash PR #23). Immutable behavior authority: EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. Implementation is authorized by the continuous parity-first request; specific acceptance of the adaptations below is not recorded. No database, schema, permission, session or transport API changes.
 
 ## Verified pinned interaction
