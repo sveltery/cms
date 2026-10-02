@@ -155,8 +155,10 @@ export class SchemaRegistry {
     if (fields.length >= MAX_FIELDS) throw new CmsError('LIMIT_EXCEEDED');
     const column = db.schema.alterTable(name).addColumn(value.slug, 'text', c => {
       let column = c;
-      if (value.required) column = column.notNull();
-      if (value.defaultValue !== undefined) column = column.defaultTo(sql.lit(value.defaultValue));
+      // EmDash 1.1.0 registry.ts addColumn: required scalar columns need a
+      // physical default; optional defaults and unique remain metadata only.
+      // Existing columns/indexes are untouched; see scalar-field-fidelity.md.
+      if (value.required) column = column.notNull().defaultTo(sql.lit(value.defaultValue ?? ''));
       return column;
     });
     const statements: CompiledQuery[] = [
@@ -174,7 +176,6 @@ export class SchemaRegistry {
       }).compile(),
       db.updateTable('_cms_collections').set({ version: definition.version + 1, updated_at: new Date().toISOString() }).where('id', '=', definition.id).compile()
     ];
-    if (value.unique) statements.push(db.schema.createIndex('idx_' + name + '_' + id + '_unique').on(name).column(value.slug).unique().compile());
     statements.push(sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db));
     await this.batch(statements, 'CONFLICT');
     return (await this.getField(definition.slug, value.slug))!;

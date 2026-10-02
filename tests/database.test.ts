@@ -57,23 +57,26 @@ test('system migration, additive field and drafts survive close/reopen', async (
       const reread = await service.getDraft({ type: 'posts', id: created.id });
       assert.equal(reread.data.title, 'Persisted');
       assert.equal(reread.data.body, 'Original');
-      assert.equal(reread.data.subtitle, "it's retained");
+      assert.equal(reread.data.subtitle, null);
+      assert.equal((await service.getCollection('posts')).fields[2].defaultValue, "it's retained");
       assert.equal((await service.getCollection('posts')).fields.length, 3);
       assert.equal((await service.getCollection('posts')).version, schemaVersion + 1);
     } finally { await database.close(); }
   } finally { rmSync(directory, { recursive: true, force: true }); }
 });
 
-test('required additive field without a backfill/default rolls back metadata and physical column', async () => {
+test('independent additive DDL failure rolls back metadata and schema guard', async () => {
   const f = await fixture();
   try {
     await f.service.createDraft({ type: 'posts', data: { title: 'Existing' } });
+    // Deliberate DDL collision retains rollback coverage independently of defaults.
+    await sql`ALTER TABLE ec_posts ADD COLUMN required_later TEXT`.execute(f.database.db);
+    const physicalBefore = (await sql`PRAGMA table_info(ec_posts)`.execute(f.database.db)).rows;
     const before = (await f.schema.getCollection('posts'))!.version;
     await assert.rejects(() => f.schema.createField('posts', { slug: 'required_later', label: 'Required', type: 'text', required: true }));
     assert.equal(await f.schema.getField('posts', 'required_later'), null);
     assert.equal((await f.schema.getCollection('posts'))!.version, before);
-    const columns = (await sql<{ name: string }>`PRAGMA table_info(ec_posts)`.execute(f.database.db)).rows.map(row => row.name);
-    assert.equal(columns.includes('required_later'), false);
+    assert.deepEqual((await sql`PRAGMA table_info(ec_posts)`.execute(f.database.db)).rows, physicalBefore);
     assert.equal((await sql`SELECT * FROM _cms_guards`.execute(f.database.db)).rows.length, 0);
   } finally { await f.database.close(); }
 });
@@ -112,16 +115,20 @@ test('SQL identifiers, unknown/system fields and client ownership claims are rej
   } finally { await f.database.close(); }
 });
 
-test('real database constraints enforce required, unique, locale slug uniqueness and foreign keys; service validates lengths', async () => {
+test('database constraints enforce required NULL, locale slug uniqueness and foreign keys; unique is metadata and service validates lengths', async () => {
   const f = await fixture();
   try {
     await f.schema.createField('posts', { slug: 'code', label: 'Code', type: 'string', required: true, unique: true, validation: { minLength: 2, maxLength: 4 } });
     await assert.rejects(() => f.service.createDraft({ type: 'posts', data: { title: 'Missing code' } }), invalid);
     await assert.rejects(() => f.service.createDraft({ type: 'posts', data: { code: 'x' } }), invalid);
     await assert.rejects(() => f.service.createDraft({ type: 'posts', data: { code: 'oversize' } }), invalid);
-    await assert.rejects(() => sql`INSERT INTO ec_posts(id) VALUES ('missing')`.execute(f.database.db));
+    await sql`INSERT INTO ec_posts(id) VALUES ('missing')`.execute(f.database.db);
+    assert.equal((await sql<{ code: string }>`SELECT code FROM ec_posts WHERE id = 'missing'`.execute(f.database.db)).rows[0].code, '');
+    await assert.rejects(() => sql`INSERT INTO ec_posts(id, code) VALUES ('null_code', NULL)`.execute(f.database.db));
     await f.service.createDraft({ type: 'posts', slug: 'same', data: { code: 'aa' } });
-    await assert.rejects(() => f.service.createDraft({ type: 'posts', data: { code: 'aa' } }));
+    const duplicate = await f.service.createDraft({ type: 'posts', data: { code: 'aa' } });
+    assert.equal(duplicate.data.code, 'aa');
+    assert.equal((await f.schema.getField('posts', 'code'))!.unique, true);
     await f.service.createDraft({ type: 'posts', slug: 'same', locale: 'fr', data: { code: 'bb' } });
     await assert.rejects(() => f.service.createDraft({ type: 'posts', slug: 'same', data: { code: 'cc' } }));
     await assert.rejects(() => sql`INSERT INTO _cms_fields(id, collection_id, slug, label, type, column_type, required, "unique", sort_order, created_at)
@@ -224,7 +231,7 @@ test('summary query excludes large bodies, clamps pages, orders ties, scopes loc
   } finally { await f.database.close(); }
 });
 
-test('unique-index identity is unambiguous across collection/field underscores', async () => {
+test('unique flags remain metadata across collection/field underscore boundaries', async () => {
   const database = openSqlite(':memory:');
   try {
     await migrateCms(database); const registry = new SchemaRegistry(database);
@@ -235,7 +242,10 @@ test('unique-index identity is unambiguous across collection/field underscores',
     const repository = new DraftRepository(database);
     await repository.create({ type: 'foo_bar', data: { baz: 'value' } }, 'author');
     await repository.create({ type: 'foo', data: { bar_baz: 'value' } }, 'author');
-    await assert.rejects(() => repository.create({ type: 'foo', data: { bar_baz: 'value' } }, 'author'));
+    await repository.create({ type: 'foo', data: { bar_baz: 'value' } }, 'author');
+    assert.equal((await registry.getField('foo_bar', 'baz'))!.unique, true);
+    assert.equal((await registry.getField('foo', 'bar_baz'))!.unique, true);
+    assert.equal((await sql`SELECT name FROM sqlite_master WHERE type = 'index' AND name LIKE '%_unique'`.execute(database.db)).rows.length, 0);
   } finally { await database.close(); }
 });
 
@@ -276,7 +286,7 @@ test('schema defaults reject NUL before DDL while escaped quotes remain inert', 
     assert.equal(await f.schema.getField('posts', 'nul_default'), null);
     assert.equal((await f.schema.getCollection('posts'))!.version, before);
     const quoted = "'; DROP TABLE _cms_collections; --";
-    await f.schema.createField('posts', { slug: 'quoted_default', label: 'Quote', type: 'text', defaultValue: quoted });
+    await f.schema.createField('posts', { slug: 'quoted_default', label: 'Quote', type: 'text', required: true, defaultValue: quoted });
     const entry = await f.service.createDraft({ type: 'posts', data: { title: 'Default' } });
     assert.equal(entry.data.quoted_default, quoted);
     assert.equal((await f.schema.listCollections()).length, 1);
