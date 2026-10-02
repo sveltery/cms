@@ -14,6 +14,7 @@ function match(actual: unknown, negate = false): any {
     toBeDefined() { check(actual !== undefined, 'Expected a defined value'); },
     toBeUndefined() { check(actual === undefined, 'Expected undefined'); },
     toBeNull() { check(actual === null, 'Expected null'); },
+    toBeGreaterThan(expected: number) { check(typeof actual === 'number' && actual > expected, `Expected greater than ${expected}`); },
     toHaveLength(expected: number) { check((actual as {length: number}).length === expected, `Expected length ${expected}`); },
     toContain(expected: any) { check((actual as {includes(value: any): boolean}).includes(expected), `Expected to contain ${String(expected)}`); },
     toThrow(expected?: any) {
