@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { resolve } from '$app/paths';
   import WorkspaceShell from '$lib/ui/WorkspaceShell.svelte';
   import DraftPreview from '$lib/ui/DraftPreview.svelte';
   import { getEditorManifest, createContent } from '$lib/content.remote';
@@ -9,14 +10,14 @@
 </script>
 
 <svelte:head><title>Content · Sveltery CMS</title><meta name="description" content="Sveltery CMS foundation preview" /></svelte:head>
-<WorkspaceShell>
+<WorkspaceShell homeHref={resolve('/')}>
   <header><p>YOUR WORKSPACE</p><h1>Content</h1></header>
   {#if collections.unavailable}
     <p role="status">Content is unavailable until authentication and storage are configured.</p>
   {:else}
     <ul aria-label="Collections">
       {#each collections.records as [slug, collection] (slug)}
-        <li><a href={`/content/${slug}`}>{collection.label}</a></li>
+        <li><a href={resolve('/content/[collection]', { collection: slug })}>{collection.label}</a></li>
       {/each}
     </ul>
   {/if}

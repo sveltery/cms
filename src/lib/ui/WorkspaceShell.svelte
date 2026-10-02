@@ -1,12 +1,12 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
-  let { children }: { children: Snippet } = $props();
+  let { children, homeHref = '/' }: { children: Snippet; homeHref?: string } = $props();
 </script>
 
 <div class="workspace">
   <aside>
-    <a class="brand" href="/">Sveltery <span>CMS</span></a>
-    <nav aria-label="Workspace"><a href="/" aria-current="page">Content</a></nav>
+    <a class="brand" href={homeHref}>Sveltery <span>CMS</span></a>
+    <nav aria-label="Workspace"><a href={homeHref} aria-current="page">Content</a></nav>
     <small>Foundation preview</small>
   </aside>
   <main>{@render children()}</main>

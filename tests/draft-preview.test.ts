@@ -12,23 +12,43 @@ test('draft preview applies defaults only to absent persisted keys', async (t) =
     const module = `${directory}/DraftPreview.js`;
     await writeFile(module, compile(source, { filename: 'DraftPreview.svelte', generate: 'server' }).js.code);
     const { default: DraftPreview } = await import(module);
-    for (const type of ['string', 'text']) {
-      const field = { id: type, slug: 'value', label: 'Value', type, defaultValue: 'Schema default' };
+    for (const type of ['string', 'text']) for (const defaults of [
+      { name: 'schema default', properties: { defaultValue: 'Schema default' }, expected: 'Schema default' },
+      { name: 'absent default', properties: {}, expected: '' },
+      { name: 'null default', properties: { defaultValue: null }, expected: '' }
+    ]) {
+      const field = { id: type, slug: 'value', label: 'Value', type, ...defaults.properties };
       const cases = [
-        { name: 'absent key', values: {}, expected: 'Schema default' },
+        { name: 'absent key', values: {}, expected: defaults.expected },
         { name: 'explicit null', values: { value: null }, expected: '' },
         { name: 'empty string', values: { value: '' }, expected: '' },
         // Runtime rendering checks only: persisted schema support remains string/text.
         { name: 'false', values: { value: false }, expected: 'false' },
         { name: 'zero', values: { value: 0 }, expected: '0' },
         { name: 'stored string', values: { value: 'Saved value' }, expected: 'Saved value' },
-        { name: 'inherited key', values: Object.create({ value: 'Inherited value' }), expected: 'Schema default' }
+        { name: 'inherited key', values: Object.create({ value: 'Inherited value' }), expected: defaults.expected }
       ];
-      for (const { name, values, expected } of cases) await t.test(`${type}: ${name}`, () => {
+      for (const { name, values, expected } of cases) await t.test(`${type}, ${defaults.name}: ${name}`, () => {
         const { body } = render(DraftPreview, { props: { fields: [field], values } });
         const displayed = type === 'text'
           ? body.match(/<textarea\b[^>]*>(.*?)<\/textarea>/s)?.[1]
           : body.match(/<input\b(?=[^>]*data-field="value")(?=[^>]*value="([^"]*)")[^>]*>/)?.[1];
+        assert.equal(displayed, expected);
+        assert.match(body, /<fieldset disabled(?:[\s=>])/);
+      });
+    }
+    for (const type of ['string', 'text']) for (const slug of ['constructor', 'prototype']) {
+      const field = { id: `${type}-${slug}`, slug, label: slug, type, defaultValue: 'Schema default' };
+      for (const { name, values, expected } of [
+        { name: 'absent', values: {}, expected: 'Schema default' },
+        { name: 'inherited', values: Object.create({ [slug]: 'Inherited value' }), expected: 'Schema default' },
+        { name: 'own', values: { [slug]: 'Own value' }, expected: 'Own value' },
+        { name: 'null', values: { [slug]: null }, expected: '' }
+      ]) await t.test(`${type}, ${slug}: ${name}`, () => {
+        const { body } = render(DraftPreview, { props: { fields: [field], values } });
+        const displayed = type === 'text'
+          ? body.match(/<textarea\b[^>]*>(.*?)<\/textarea>/s)?.[1]
+          : body.match(new RegExp(`<input\\b(?=[^>]*data-field="${slug}")(?=[^>]*value="([^"]*)")[^>]*>`))?.[1];
         assert.equal(displayed, expected);
         assert.match(body, /<fieldset disabled(?:[\s=>])/);
       });

@@ -1,18 +1,19 @@
 <script lang="ts">
-  import type { Field } from '$lib/server/database/contract';
-  let { fields = [], values = {} }: { fields?: Pick<Field, 'id' | 'slug' | 'label' | 'type' | 'required' | 'validation' | 'defaultValue'>[]; values?: Record<string, string | null> } = $props();
+  import type { PreviewField } from './preview-fields';
+  let { fields = [], values = {} }: { fields?: PreviewField[]; values?: Record<string, string | null> } = $props();
 </script>
 
 <input type="hidden" name="data" value={JSON.stringify(values)} disabled />
 <fieldset disabled>
   <legend>Draft preview</legend>
   {#each fields as field (field.id)}
+    {const displayed = $derived(Object.hasOwn(values, field.slug) ? values[field.slug] ?? '' : field.defaultValue ?? '')}
     <label>
       {field.label}{field.required ? ' *' : ''}
       {#if field.type === 'text'}
-        <textarea data-field={field.slug} value={Object.hasOwn(values, field.slug) ? values[field.slug] ?? '' : field.defaultValue ?? ''} required={field.required} maxlength={field.validation?.maxLength ?? 100_000}></textarea>
+        <textarea data-field={field.slug} value={displayed} required={field.required} maxlength={field.validation?.maxLength ?? 100_000}></textarea>
       {:else}
-        <input data-field={field.slug} value={Object.hasOwn(values, field.slug) ? values[field.slug] ?? '' : field.defaultValue ?? ''} required={field.required} minlength={field.validation?.minLength} maxlength={field.validation?.maxLength ?? 200} />
+        <input data-field={field.slug} value={displayed} required={field.required} minlength={field.validation?.minLength} maxlength={field.validation?.maxLength ?? 200} />
       {/if}
     </label>
   {/each}
