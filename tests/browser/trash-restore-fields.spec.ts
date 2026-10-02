@@ -72,7 +72,8 @@ test('one-argument hidden spreads omit values even after fields.set and native v
   try {
     await authenticate(context);
     const page = await context.newPage();
-    await page.goto(new URL('?case=missing&missing', fixture.baseURL).href);
+    const response = await page.goto(new URL('?case=missing&missing', fixture.baseURL).href);
+    expect(response?.status()).toBe(200);
     for (const field of ['collection', 'id', 'locale', '_rev']) {
       await expect(page.locator(`input[name="${field}"]`)).toHaveValue('');
       expect(await page.locator(`input[name="${field}"]`).getAttribute('value')).toBeNull();

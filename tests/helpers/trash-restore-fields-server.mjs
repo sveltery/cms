@@ -19,6 +19,9 @@ const principal = {
 
 export async function createTrashRestoreFieldsServer() {
   const nodeTarget = process.env.SVELTERY_BROWSER_TARGET === 'node';
+  // Other browser fixtures use Vite dev servers, which can set the worker's NODE_ENV.
+  // This fixture verifies production Kit behavior, including its production-only hidden-field probe.
+  const fixtureEnvironment = { ...process.env, NODE_ENV: 'production' };
   const directory = await mkdtemp(join(tmpdir(), 'cms-trash-fields-'));
   const databasePath = join(directory, 'content.sqlite');
   /** @type {import('node:child_process').ChildProcess | undefined} */
@@ -120,7 +123,7 @@ export const load = ({ url }) => ({
 `);
     let buildOutput = '';
     const buildProcess = spawn(process.execPath, [join(checkout, 'node_modules/vite/bin/vite.js'), 'build'], {
-      cwd: directory, stdio: ['ignore', 'pipe', 'pipe']
+      cwd: directory, stdio: ['ignore', 'pipe', 'pipe'], env: fixtureEnvironment
     });
     build = buildProcess;
     for (const stream of [buildProcess.stdout, buildProcess.stderr]) stream?.on('data', chunk => { buildOutput = (buildOutput + chunk).slice(-20_000); });
@@ -143,7 +146,7 @@ process.send(server.resolvedUrls.local[0]);
 `);
     const previewProcess = spawn(process.execPath, ['preview-runner.mjs'], {
       cwd: directory, stdio: ['ignore', 'pipe', 'pipe', 'ipc'],
-      ...(nodeTarget ? { env: { ...process.env, HOST: '127.0.0.1', PORT: '0' } } : {})
+      env: { ...fixtureEnvironment, ...(nodeTarget ? { HOST: '127.0.0.1', PORT: '0' } : {}) }
     });
     server = previewProcess;
     for (const stream of [previewProcess.stdout, previewProcess.stderr]) stream?.on('data', chunk => { buildOutput = (buildOutput + chunk).slice(-20_000); });
