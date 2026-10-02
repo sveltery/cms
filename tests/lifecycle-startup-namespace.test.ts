@@ -68,4 +68,50 @@ for (const target of ['Node','D1'] as const) {
       } finally {await storage.close();}
     });
   }
+
+  test(`${target}: actual quoted/comment-separated inbound content FKs and their races preserve every row`, async () => {
+    for (const reference of ['"Ec_Post"',"'Ec_Post'",'`Ec_Post`','[Ec_Post]','/* target */ ec_post','-- target\nec_post','race']) {
+      const storage=await schemaAdminStorage(target);
+      try {
+        const database=storage.database;
+        await installVersion4(database); await legacyPost(database);
+        await sql`INSERT INTO ec_post (id,title) VALUES ('retained','Retained')`.execute(database.db);
+        const createLink=async () => {
+          const targetSql=reference==='race' ? '"EC_POST"' : reference;
+          await sql.raw('CREATE TABLE operator_links (entry_id TEXT REFERENCES '+targetSql+'(id) ON DELETE CASCADE)').execute(database.db);
+          await sql`INSERT INTO operator_links VALUES ('retained')`.execute(database.db);
+        };
+        if (reference!=='race') await createLink();
+        let before=await databaseSnapshot(database);
+        const subject=reference==='race' ? {...database,
+          async atomicBatch(statements:Parameters<typeof database.atomicBatch>[0]) {
+            await createLink(); before=await databaseSnapshot(database);
+            return database.atomicBatch(statements);
+          }
+        } : database;
+        await assert.rejects(()=>migrateCms(subject),{code:'MIGRATION_REQUIRED'},reference);
+        assert.deepEqual(await databaseSnapshot(database),before,reference);
+        assert.equal((await sql`SELECT * FROM pragma_foreign_key_check`.execute(database.db)).rows.length,0);
+      } finally {await storage.close();}
+    }
+  });
+
+  test(`${target}: operator FK comments and escaped literals mentioning content remain unmanaged`, async () => {
+    for (const note of ["ec_note TEXT DEFAULT 'literal '' REFERENCES EC_POST'",'ec_note TEXT /* REFERENCES EC_POST */']) {
+      const storage=await schemaAdminStorage(target);
+      try {
+        const database=storage.database;
+        await sql`CREATE TABLE operator_users (id TEXT PRIMARY KEY)`.execute(database.db);
+        await sql`INSERT INTO operator_users VALUES ('owner')`.execute(database.db);
+        await sql.raw('CREATE TABLE operator_links ('+note+', user_id TEXT REFERENCES operator_users(id))').execute(database.db);
+        await sql`INSERT INTO operator_links VALUES ('operator data','owner')`.execute(database.db);
+        const before=await databaseSnapshot(database);
+        await migrateCms(database); await migrateCms(database);
+        const after=await databaseSnapshot(database);
+        for (const table of before.tables) assert.deepEqual(after.tables.find(row=>row.name===table.name),table);
+        for (const object of before.objects) assert.deepEqual(after.objects.find(row=>row.name===object.name),object);
+        assert.equal((await sql`SELECT * FROM pragma_foreign_key_check`.execute(database.db)).rows.length,0);
+      } finally {await storage.close();}
+    }
+  });
 }
