@@ -50,7 +50,7 @@
       "blob": "8f0fcda3cd44d54e506f24c2ff9e4151a9e25709",
       "line": 57,
       "title": "Save (draft staging) on a published entry does not bump updated_at",
-      "sourceDeclaration": "it(\"Save (draft staging) on a published entry does not bump updated_at\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Live Post\" },\n\t\t\tslug: \"live-post\",\n\t\t});\n\t\texpect(created.success).toBe(true);\n\t\tconst id = created.data!.item.id;\n\n\t\tconst published = await runtime.handleContentPublish(\"posts\", id);\n\t\texpect(published.success).toBe(true);\n\t\tconst publishedUpdatedAt = published.data!.item.updatedAt;\n\n\t\t// Manual Save: no skipRevision → creates a new draft revision and\n\t\t// points draft_revision_id at it. Live columns are untouched.\n\t\tconst saved = await runtime.handleContentUpdate(\"posts\", id, {\n\t\t\tdata: { title: \"Live Post (edited, unpublished)\" },\n\t\t});\n\t\texpect(saved.success).toBe(true);\n\t\texpect(saved.data!.item.draftRevisionId).not.toBeNull();\n\n\t\texpect(saved.data!.item.updatedAt).toBe(publishedUpdatedAt);\n\t});"
+      "sourceDeclaration": "it(\"Save (draft staging) on a published entry does not bump updated_at\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Live Post\" },\n\t\t\tslug: \"live-post\",\n\t\t});\n\t\texpect(created.success).toBe(true);\n\t\tconst id = created.data!.item.id;\n\n\t\tconst published = await runtime.handleContentPublish(\"posts\", id);\n\t\texpect(published.success).toBe(true);\n\t\tconst publishedUpdatedAt = published.data!.item.updatedAt;\n\n\t\t// Manual Save: no skipRevision \u2192 creates a new draft revision and\n\t\t// points draft_revision_id at it. Live columns are untouched.\n\t\tconst saved = await runtime.handleContentUpdate(\"posts\", id, {\n\t\t\tdata: { title: \"Live Post (edited, unpublished)\" },\n\t\t});\n\t\texpect(saved.success).toBe(true);\n\t\texpect(saved.data!.item.draftRevisionId).not.toBeNull();\n\n\t\texpect(saved.data!.item.updatedAt).toBe(publishedUpdatedAt);\n\t});"
     },
     {
       "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
@@ -90,7 +90,7 @@
       "blob": "8f0fcda3cd44d54e506f24c2ff9e4151a9e25709",
       "line": 273,
       "title": "Restore Revision (to draft) on a published entry does not bump updated_at",
-      "sourceDeclaration": "it(\"Restore Revision (to draft) on a published entry does not bump updated_at\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Original\" },\n\t\t\tslug: \"restore-post\",\n\t\t});\n\t\tconst id = created.data!.item.id;\n\t\tconst published = await runtime.handleContentPublish(\"posts\", id);\n\t\tconst publishedUpdatedAt = published.data!.item.updatedAt;\n\n\t\t// Find the published revision to restore from.\n\t\tconst revisions = await runtime.handleRevisionList(\"posts\", id);\n\t\texpect(revisions.success).toBe(true);\n\t\tconst liveRevisionId = published.data!.item.liveRevisionId;\n\t\tconst targetRevision = revisions.data!.items.find((r) => r.id === liveRevisionId);\n\t\texpect(targetRevision).toBeDefined();\n\n\t\t// Restore that revision as the current draft — draft-only staging,\n\t\t// live columns untouched, so updated_at must not move.\n\t\tconst restored = await runtime.handleRevisionRestore(targetRevision!.id, \"author-1\");\n\t\texpect(restored.success).toBe(true);\n\t\texpect(restored.data!.item.updatedAt).toBe(publishedUpdatedAt);\n\t\texpect(restored.data!.item.draftRevisionId).not.toBeNull();\n\t});"
+      "sourceDeclaration": "it(\"Restore Revision (to draft) on a published entry does not bump updated_at\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Original\" },\n\t\t\tslug: \"restore-post\",\n\t\t});\n\t\tconst id = created.data!.item.id;\n\t\tconst published = await runtime.handleContentPublish(\"posts\", id);\n\t\tconst publishedUpdatedAt = published.data!.item.updatedAt;\n\n\t\t// Find the published revision to restore from.\n\t\tconst revisions = await runtime.handleRevisionList(\"posts\", id);\n\t\texpect(revisions.success).toBe(true);\n\t\tconst liveRevisionId = published.data!.item.liveRevisionId;\n\t\tconst targetRevision = revisions.data!.items.find((r) => r.id === liveRevisionId);\n\t\texpect(targetRevision).toBeDefined();\n\n\t\t// Restore that revision as the current draft \u2014 draft-only staging,\n\t\t// live columns untouched, so updated_at must not move.\n\t\tconst restored = await runtime.handleRevisionRestore(targetRevision!.id, \"author-1\");\n\t\texpect(restored.success).toBe(true);\n\t\texpect(restored.data!.item.updatedAt).toBe(publishedUpdatedAt);\n\t\texpect(restored.data!.item.draftRevisionId).not.toBeNull();\n\t});"
     },
     {
       "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
@@ -155,20 +155,60 @@
       "line": 160,
       "title": "rejects malformed revision conditions as conflicts",
       "sourceDeclaration": "it(\"rejects malformed revision conditions as conflicts\", async () => {\n\t\tconst created = await createPublished();\n\t\tconst published = await runtime.handleContentPublish(\"post\", created.item.id, {\n\t\t\t_rev: \"not-a-revision\",\n\t\t});\n\n\t\texpect(published).toMatchObject({ success: false, error: { code: \"CONFLICT\" } });\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/atomic-publication.test.ts",
+      "blob": "6fe90e11b17a7d0e334644191f199b0541095b20",
+      "line": 29,
+      "title": "rolls back every promoted column when the staged slug constraint rejects",
+      "sourceDeclaration": "it(\"rolls back every promoted column when the staged slug constraint rejects\", async () => {\n\t\tawait contentRepo.create(createPostFixture({ slug: \"taken\", status: \"published\" }));\n\t\tconst post = await contentRepo.create(createPostFixture({ slug: \"initial\" }));\n\t\tconst draft = await revisionRepo.create({\n\t\t\tcollection: \"post\",\n\t\t\tentryId: post.id,\n\t\t\tdata: { ...post.data, title: \"Final title\", _slug: \"taken\" },\n\t\t});\n\t\tawait contentRepo.setDraftRevision(\"post\", post.id, draft.id);\n\t\tconst scheduledAt = new Date(Date.now() - 60_000).toISOString();\n\t\tawait contentRepo.update(\"post\", post.id, {\n\t\t\tstatus: \"scheduled\",\n\t\t\tscheduledAt,\n\t\t});\n\t\tconst before = await contentRepo.findById(\"post\", post.id);\n\t\tvi.spyOn(contentRepo, \"findBySlugIncludingTrashed\").mockResolvedValueOnce(null);\n\n\t\tawait expect(\n\t\t\tcontentRepo.publish(\"post\", post.id, scheduledAt, true, scheduledAt),\n\t\t).rejects.toThrow();\n\n\t\tconst after = await contentRepo.findById(\"post\", post.id);\n\t\texpect(after).toEqual(before);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/atomic-publication.test.ts",
+      "blob": "6fe90e11b17a7d0e334644191f199b0541095b20",
+      "line": 54,
+      "title": "never leaves a dangling pointer when staging races guarded revision deletion",
+      "sourceDeclaration": "it(\"never leaves a dangling pointer when staging races guarded revision deletion\", async () => {\n\t\tconst post = await contentRepo.create(createPostFixture());\n\t\tconst revision = await revisionRepo.create({\n\t\t\tcollection: \"post\",\n\t\t\tentryId: post.id,\n\t\t\tdata: { ...post.data, title: \"Racing draft\" },\n\t\t});\n\t\tconst expected = await contentRepo.findById(\"post\", post.id);\n\t\texpect(expected).not.toBeNull();\n\n\t\tawait Promise.allSettled([\n\t\t\tcontentRepo.replaceDraftRevision(\"post\", post.id, revision.id, expected!),\n\t\t\trevisionRepo.deleteIfUnreferenced(\"post\", post.id, revision.id),\n\t\t]);\n\n\t\tconst [after, storedRevision] = await Promise.all([\n\t\t\tcontentRepo.findById(\"post\", post.id),\n\t\t\trevisionRepo.findById(revision.id),\n\t\t]);\n\t\tif (after?.draftRevisionId === revision.id) {\n\t\t\texpect(storedRevision).not.toBeNull();\n\t\t} else {\n\t\t\texpect(storedRevision).toBeNull();\n\t\t}\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/revision-retention.test.ts",
+      "blob": "d3320579a0a1352fe78fe63799c8123c91c939a6",
+      "line": 46,
+      "title": "bounds history through request-lifetime work without a scheduled tick",
+      "sourceDeclaration": "it(\"bounds history through request-lifetime work without a scheduled tick\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Initial\" },\n\t\t\tslug: \"bounded-history\",\n\t\t});\n\t\texpect(created.success).toBe(true);\n\t\tconst entryId = created.data!.item.id;\n\t\tconst revisions = new RevisionRepository(db);\n\n\t\tfor (let index = 0; index < 50; index++) {\n\t\t\tawait revisions.create({\n\t\t\t\tcollection: \"posts\",\n\t\t\t\tentryId,\n\t\t\t\tdata: { title: `Version ${index}` },\n\t\t\t});\n\t\t}\n\n\t\tconst saved = await runtime.handleContentUpdate(\"posts\", entryId, {\n\t\t\tdata: { title: \"Version 50\" },\n\t\t});\n\t\texpect(saved.success).toBe(true);\n\t\texpect(await revisions.countByEntry(\"posts\", entryId)).toBe(51);\n\n\t\tawait flushDeferred();\n\n\t\texpect(await revisions.countByEntry(\"posts\", entryId)).toBe(50);\n\t});"
     }
   ],
   "adaptations": [
     "Node test runner and runner-only Vitest matcher bridge",
     "Host fixture replaces Astro Runtime; existing CMS calls establish pre-implementation baseline; unsupported lifecycle calls expose success:false with actual stored row receipt so failures occur at preserved assertions",
     "SchemaRegistry constructor is adapted from Kysely to trusted CmsDatabase",
-    "Source _rev token translated to version/updatedAt host precondition; expected expressions unchanged"
+    "Source _rev token translated to version/updatedAt host precondition; expected expressions unchanged",
+    "Atomic dialect fixture builds general-status content layout independently of migration coverage; exact createPostFixture is retained",
+    "Before lifecycle exists, direct-repository fixtures seed/read actual SQL revision rows, expose unsupported staging as false, and leave publication row unchanged; product repositories replace these baseline adapters when available",
+    "Request-lifetime after hook collects actual product work for retention; baseline update creates no history so retained51 assertion fails"
   ],
   "omissions": [
-    "atomic-publication (next source port, no credit yet)",
-    "revision-retention (next source port, no credit yet)",
+    "PostgreSQL atomic-publication dialect dataset",
     "draft-save-updated-at direct repository mock/race declarations",
     "publish-revision-cas Astro route authorization declarations",
     "PostgreSQL and remote D1",
     "scheduling/edit locks/localization (separate owners/followup)"
-  ]
+  ],
+  "baseline": {
+    "commit": "064ea7b prior19-testcheckpoint",
+    "command": "node --test tests/lifecycle-upstream.test.ts",
+    "tests": 22,
+    "pass": 2,
+    "assertionFailures": 20,
+    "nonAssertionFailures": 0,
+    "log": "/tmp/cms-lifecycle-expanded-red.log"
+  },
+  "fixture": {
+    "path": "packages/core/tests/utils/fixtures.ts",
+    "blob": "70801b7bffcf977674c67f554ad289a6e4bf27b2",
+    "declaration": "createPostFixture"
+  }
 }

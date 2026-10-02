@@ -3,11 +3,34 @@
 // See notices/emdash-MIT.txt and docs/lifecycle-ports.json for exact declaration provenance.
 import { describe, beforeEach, afterEach } from 'node:test';
 import { it, expect } from './helpers/lifecycle-expect.ts';
-import { setupLifecycleFixture, SchemaRegistry } from './helpers/lifecycle-fixture.ts';
+import { setupLifecycleFixture, SchemaRegistry, ContentRepository, RevisionRepository, vi, deferred, flushDeferred } from './helpers/lifecycle-fixture.ts';
+function createPostFixture(overrides: Partial<CreateContentInput> = {}): CreateContentInput {
+	return {
+		type: "post",
+		slug: "hello-world",
+		data: {
+			title: "Hello World",
+			content: [
+				{
+					_type: "block",
+					style: "normal",
+					children: [
+						{
+							_type: "span",
+							text: "This is a test post",
+						},
+					],
+				},
+			],
+		},
+		status: "draft",
+		...overrides,
+	};
+}
 
 describe("packages/core/tests/integration/content/draft-save-live-content-changed.test.ts",()=>{
- let fixture, runtime, db;
- beforeEach(async()=>{fixture=await setupLifecycleFixture(); runtime=fixture.runtime; db=fixture.database.db;});
+ let fixture, runtime, db, ctx, contentRepo, revisionRepo;
+ beforeEach(async()=>{fixture=await setupLifecycleFixture({atomic:false}); runtime=fixture.runtime; db=fixture.database.db; ctx={db}; contentRepo=new ContentRepository(db); revisionRepo=new RevisionRepository(db); deferred.length=0;});
  afterEach(async()=>{await fixture.database.close();});
 it("is false for draft-only data save on revision collections", async () => {
 		const created = await runtime.handleContentCreate("posts", {
@@ -84,8 +107,8 @@ it("is true for data updates on collections without revisions", async () => {
 });
 
 describe("packages/core/tests/integration/content/draft-save-updated-at.test.ts",()=>{
- let fixture, runtime, db;
- beforeEach(async()=>{fixture=await setupLifecycleFixture(); runtime=fixture.runtime; db=fixture.database.db;});
+ let fixture, runtime, db, ctx, contentRepo, revisionRepo;
+ beforeEach(async()=>{fixture=await setupLifecycleFixture({atomic:false}); runtime=fixture.runtime; db=fixture.database.db; ctx={db}; contentRepo=new ContentRepository(db); revisionRepo=new RevisionRepository(db); deferred.length=0;});
  afterEach(async()=>{await fixture.database.close();});
 it("Save (draft staging) on a published entry does not bump updated_at", async () => {
 		const created = await runtime.handleContentCreate("posts", {
@@ -242,8 +265,8 @@ it("collections without revision support keep the bump-on-write behavior", async
 });
 
 describe("packages/core/tests/unit/api/publish-revision-cas.test.ts",()=>{
- let fixture, runtime, db;
- beforeEach(async()=>{fixture=await setupLifecycleFixture(); runtime=fixture.runtime; db=fixture.database.db;});
+ let fixture, runtime, db, ctx, contentRepo, revisionRepo;
+ beforeEach(async()=>{fixture=await setupLifecycleFixture({atomic:false}); runtime=fixture.runtime; db=fixture.database.db; ctx={db}; contentRepo=new ContentRepository(db); revisionRepo=new RevisionRepository(db); deferred.length=0;});
  afterEach(async()=>{await fixture.database.close();});
 	async function createPublished(title = "Live") {
 		const created = await runtime.handleContentCreate("post", {
@@ -371,5 +394,93 @@ it("rejects malformed revision conditions as conflicts", async () => {
 		});
 
 		expect(published).toMatchObject({ success: false, error: { code: "CONFLICT" } });
+	});
+});
+
+describe("packages/core/tests/integration/content/atomic-publication.test.ts",()=>{
+ let fixture, runtime, db, ctx, contentRepo, revisionRepo;
+ beforeEach(async()=>{fixture=await setupLifecycleFixture({atomic:true}); runtime=fixture.runtime; db=fixture.database.db; ctx={db}; contentRepo=new ContentRepository(db); revisionRepo=new RevisionRepository(db); deferred.length=0;});
+ afterEach(async()=>{await fixture.database.close();});
+it("rolls back every promoted column when the staged slug constraint rejects", async () => {
+		await contentRepo.create(createPostFixture({ slug: "taken", status: "published" }));
+		const post = await contentRepo.create(createPostFixture({ slug: "initial" }));
+		const draft = await revisionRepo.create({
+			collection: "post",
+			entryId: post.id,
+			data: { ...post.data, title: "Final title", _slug: "taken" },
+		});
+		await contentRepo.setDraftRevision("post", post.id, draft.id);
+		const scheduledAt = new Date(Date.now() - 60_000).toISOString();
+		await contentRepo.update("post", post.id, {
+			status: "scheduled",
+			scheduledAt,
+		});
+		const before = await contentRepo.findById("post", post.id);
+		vi.spyOn(contentRepo, "findBySlugIncludingTrashed").mockResolvedValueOnce(null);
+
+		await expect(
+			contentRepo.publish("post", post.id, scheduledAt, true, scheduledAt),
+		).rejects.toThrow();
+
+		const after = await contentRepo.findById("post", post.id);
+		expect(after).toEqual(before);
+	});
+it("never leaves a dangling pointer when staging races guarded revision deletion", async () => {
+		const post = await contentRepo.create(createPostFixture());
+		const revision = await revisionRepo.create({
+			collection: "post",
+			entryId: post.id,
+			data: { ...post.data, title: "Racing draft" },
+		});
+		const expected = await contentRepo.findById("post", post.id);
+		expect(expected).not.toBeNull();
+
+		await Promise.allSettled([
+			contentRepo.replaceDraftRevision("post", post.id, revision.id, expected!),
+			revisionRepo.deleteIfUnreferenced("post", post.id, revision.id),
+		]);
+
+		const [after, storedRevision] = await Promise.all([
+			contentRepo.findById("post", post.id),
+			revisionRepo.findById(revision.id),
+		]);
+		if (after?.draftRevisionId === revision.id) {
+			expect(storedRevision).not.toBeNull();
+		} else {
+			expect(storedRevision).toBeNull();
+		}
+	});
+});
+
+describe("packages/core/tests/integration/content/revision-retention.test.ts",()=>{
+ let fixture, runtime, db, ctx, contentRepo, revisionRepo;
+ beforeEach(async()=>{fixture=await setupLifecycleFixture({atomic:false}); runtime=fixture.runtime; db=fixture.database.db; ctx={db}; contentRepo=new ContentRepository(db); revisionRepo=new RevisionRepository(db); deferred.length=0;});
+ afterEach(async()=>{await fixture.database.close();});
+it("bounds history through request-lifetime work without a scheduled tick", async () => {
+		const created = await runtime.handleContentCreate("posts", {
+			data: { title: "Initial" },
+			slug: "bounded-history",
+		});
+		expect(created.success).toBe(true);
+		const entryId = created.data!.item.id;
+		const revisions = new RevisionRepository(db);
+
+		for (let index = 0; index < 50; index++) {
+			await revisions.create({
+				collection: "posts",
+				entryId,
+				data: { title: `Version ${index}` },
+			});
+		}
+
+		const saved = await runtime.handleContentUpdate("posts", entryId, {
+			data: { title: "Version 50" },
+		});
+		expect(saved.success).toBe(true);
+		expect(await revisions.countByEntry("posts", entryId)).toBe(51);
+
+		await flushDeferred();
+
+		expect(await revisions.countByEntry("posts", entryId)).toBe(50);
 	});
 });
