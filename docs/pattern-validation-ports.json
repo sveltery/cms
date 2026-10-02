@@ -435,7 +435,8 @@
       "../transfer/import/sql.js",
       "./collection-slugs-cache.js"
     ],
-    "setup": "Fixture metadata tables replace upstream migrations. Complete unchanged upstream registry creates physical scalar columns. Request/factory cases are target-independent."
+    "setup": "Fixture metadata tables replace upstream migrations. Complete unchanged upstream registry creates physical scalar columns. Request/factory cases are target-independent.",
+    "transactionSemantics": "Node uses real transactions; local D1 retains the pinned withTransaction no-transaction fallback, distinct from local C-07 proven atomic-batch requirements."
   },
   "runEvidence": [
     {
@@ -492,7 +493,7 @@
     "PV-02",
     "PV-03"
   ],
-  "compatibilityOwnership": "parity/emdash/compatibility.md; proposed coordinated records, specific acceptance not recorded",
+  "compatibilityOwnership": "parity/emdash/compatibility.md; PV-01/PV-02/PV-03 are proposed integration identifiers; current canonical core records are PV-CORE-01/PV-CORE-02; specific acceptance not recorded",
   "verifiedInheritedBehavior": {
     "directRegistryMalformedRegex": "createField/updateField accept invalid source; request schema rejects; later eager generated-schema compilation throws SyntaxError even omitted/null/partial",
     "defaults": "omitted configured default bypasses regex; input not mutated/materialized; physical SQL defaults unchanged"
@@ -506,5 +507,10 @@
     "React/native UI and actual field editor rendering",
     "local product implementation/parity credit in this source-only PR",
     "full product features beyond scalar string/text pattern capability"
-  ]
+  ],
+  "chronology": {
+    "initialSupplementalProbes": "Preceded the first committed core implementation checkpoint.",
+    "completeReferenceFactoryCallback": "Added in 4fd9506 at 2026-10-02 19:36 UTC, after core implementation commit 5ec788d at 19:34 UTC.",
+    "coreSourceAssertionPort": "After user clarification, exact source expectations were copied and run against an isolated pre-implementation baseline, failing all four lowercase rejection assertions. Initial implementation edits already existed; no upstream-assertion-first chronology is claimed for those edits."
+  }
 }
