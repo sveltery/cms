@@ -188,7 +188,9 @@ export default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: ad
         expect(meta.remote_refreshes).toHaveLength(1);
         const [hash, name, payload] = meta.remote_refreshes[0].split('/');
         expect(hash).toBeTruthy(); expect(name).toBe('listTrashedContent');
-        expect(parse(Buffer.from(payload, 'base64url').toString())).toEqual({ collection: 'restore', limit: 50 });
+        // Kit marks canonical plain-object remote arguments with its identity reviver.
+        expect(parse(Buffer.from(payload, 'base64url').toString(), { __skrao: value => value }))
+          .toEqual({ collection: 'restore', limit: 50 });
         await held;
         await route.continue();
       });
