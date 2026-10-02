@@ -4,7 +4,7 @@ The current objective is a complete SvelteKit CMS that reproduces the relevant b
 
 ## Authority and development process
 
-EmDash **1.1.0**, immutable [`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`](https://github.com/emdash-cms/emdash/commit/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e), remains the behavior authority. The [source inventory](../parity/emdash/inventory.md), [port plan](../parity/emdash/port-plan.md) and [compatibility register](../parity/emdash/compatibility.md) retain their historical evidence. This plan maps future work; it does not grant source assertion credit or erase accepted source omissions and observable differences.
+EmDash **1.1.0**, immutable [`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`](https://github.com/emdash-cms/emdash/commit/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e), remains the behavior authority. The [source inventory](../parity/emdash/inventory.md), [port plan](../parity/emdash/port-plan.md) and [compatibility register](../parity/emdash/compatibility.md) retain their historical evidence. This plan maps future work; it does not grant source assertion credit or erase recorded source omissions and observable differences.
 
 Every feature follows the user's test-first requirement:
 
@@ -26,6 +26,8 @@ The [pattern-validation milestone](pattern-validation.md) extends string/text va
 | Core [PR #32](https://github.com/sveltery/cms/pull/32) | `03f2bde9aa0a0dd9945fe495881859be7d84d717` → `4e2adeec6e6558813704e8a7a9d5a480def1326a` | [CI 37055641050](https://github.com/sveltery/cms/actions/runs/37055641050) passed validate and secured default/Node browsers; [PM approval](https://github.com/sveltery/cms/pull/32#pullrequestreview-5396084679) records independent review and 463/103/11 bootstrap with zero diagnostics |
 | Reference [PR #34](https://github.com/sveltery/cms/pull/34) | `b062595a186b9695646d241e2b9d4b9907e9f6ae` → `29d4c025f4a32fd9b22676b2252d335ecd8b0986` | [CI 37056753726](https://github.com/sveltery/cms/actions/runs/37056753726) passed validate and secured default/Node browsers; [PM approval](https://github.com/sveltery/cms/pull/34#pullrequestreview-5396239278) verifies unchanged source probes, hashes and corrected chronology |
 | Native [PR #33](https://github.com/sveltery/cms/pull/33) | `3f2b863b5891f58bf617dad82412a8d5bcd11582` → `b54560671483162b4584d05599b482572fe781bb` | [CI 37056539317](https://github.com/sveltery/cms/actions/runs/37056539317) passed validate and secured default/Node browsers; [PM approval](https://github.com/sveltery/cms/pull/33#pullrequestreview-5396309460) records focused production/HTTP review |
+
+Post-merge push CI also passed: core [37056196581](https://github.com/sveltery/cms/actions/runs/37056196581), reference [37057994614](https://github.com/sveltery/cms/actions/runs/37057994614) and native [37058706269](https://github.com/sveltery/cms/actions/runs/37058706269), each on the corresponding merge commit above. Current main `b545606` has tree `d35a684a8faa63ca02574da0bb044d9523329136`, verified against source main plus the approved native head.
 
 These are separate implementation gates. The documentation integration needs its own final-head CI and independent review. Configured automatic review was quota-blocked in each implementation PR and waived only under the recorded standing exception; it did not complete. Merge and review do not establish specific acceptance of PV framework/domain differences or full product parity.
 
