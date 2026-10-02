@@ -57,7 +57,7 @@ export async function passkeyRuntime(target: 'Node' | 'D1' = 'Node') {
       async get(path: string, input: HeadersInit = {}) { return request(path, { headers: headers(input) }); },
       async submitNative(path: string, body = new URLSearchParams()) {
         const response = await request(path, { method: 'POST', redirect: 'manual',
-          headers: headers({ origin, 'content-type': 'application/x-www-form-urlencoded' }), body });
+          headers: headers({ origin, accept: 'text/html', 'content-type': 'application/x-www-form-urlencoded' }), body });
         for (const cookie of response.headers.getSetCookie()) {
           const [pair] = cookie.split(';'), index = pair.indexOf('=');
           if (/max-age=0(?:;|$)/i.test(cookie)) cookies.delete(pair.slice(0, index));
