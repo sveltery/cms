@@ -8,6 +8,6 @@ export async function currentUser(event: RequestEvent) {
   if (!principal) return null;
   const user = await identityAdapter(requestIdentity(event).database).getUserById(principal.id);
   if (!user) return null;
-  return { id: user.id, email: user.email, name: user.name, role: principal.role,
+  return { id: user.id, email: user.email, name: user.name, role: user.role,
     avatarUrl: user.avatarUrl, isFirstLogin: !user.data?.welcomeDismissed };
 }
