@@ -54,6 +54,7 @@ export async function passkeyRuntime(target: 'Node' | 'D1' = 'Node') {
       return headers;
     }
     return { cookies,
+      async get(path: string, input: HeadersInit = {}) { return request(path, { headers: headers(input) }); },
       async post(path: string, body: unknown, originHeader = origin) {
         const response = await request(path, { method: 'POST', headers: headers({ origin: originHeader, 'content-type': 'application/json' }), body: JSON.stringify(body) });
         for (const cookie of response.headers.getSetCookie()) {

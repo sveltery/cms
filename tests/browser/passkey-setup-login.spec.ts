@@ -31,9 +31,11 @@ test('real passkey setup then login persists role/session across process restart
     await h.restart();
     await page.reload();
     await expect(page.getByText('Content is unavailable until authentication and storage are configured.')).toHaveCount(0);
-    const response = await page.request.post(`${h.origin}/api/auth/logout`, { headers: { Origin: h.origin }, data: {} });
-    expect(response.status()).toBe(200);
-    await page.reload();
+    await page.goto(`${h.origin}/login`);
+    await expect(page.getByText('Signed in as virtual-auth@example.com')).toBeVisible();
+    await page.getByRole('button', { name: 'Sign out', exact: true }).click();
+    await expect(page.getByRole('button', { name: 'Sign in with a passkey' })).toBeVisible();
+    await page.goto(`${h.origin}/`);
     await expect(page.getByText('Content is unavailable until authentication and storage are configured.')).toBeVisible();
     expect((await page.context().cookies()).some(cookie => cookie.name === 'cms-session')).toBe(false);
     expect((await (await h.database()).db.selectFrom('_cms_auth_sessions').selectAll().execute())).toHaveLength(0);
