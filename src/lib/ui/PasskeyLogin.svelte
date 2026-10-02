@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { beginLogin, completeLogin } from '$lib/auth.remote';
+  import { beginLogin, completeLogin, logout } from '$lib/auth.remote';
   import { usePasskey } from '$lib/auth/passkey-browser';
   import { tick } from 'svelte';
-  let { unavailable = false, homeHref = '/', setupHref = '/setup', needsSetup = false }: {
+  let { unavailable = false, homeHref = '/', setupHref = '/setup', needsSetup = false, user = null, loginHref = '/login' }: {
     unavailable?: boolean; homeHref?: string; setupHref?: string; needsSetup?: boolean;
+    user?: { name: string | null; email: string } | null; loginHref?: string;
   } = $props();
   let failure = $state('');
   let pending = $state(false);
@@ -15,6 +16,12 @@
   <p role="status">Sign-in is unavailable until the database and public URL are configured.</p>
 {:else if needsSetup}
   <p><a href={setupHref}>Set up your administrator account first.</a></p>
+{:else if user}
+  <p>Signed in as {user.name ?? user.email}.</p>
+  <p><a href={homeHref}>Open your workspace</a></p>
+  <form {...logout.enhance(async ({ submit }) => { await submit(); window.location.assign(loginHref); })}>
+    <button disabled={logout.pending > 0}>Sign out</button>
+  </form>
 {:else}
   <p>Use the passkey saved for your account.</p>
   <noscript><p>Passkeys require JavaScript. Enable JavaScript to sign in.</p></noscript>

@@ -9,6 +9,7 @@ import { PasskeyAuthenticationError } from '$lib/server/auth/vendor/passkey/auth
 import { SESSION_COOKIE_NAME, SESSION_COOKIE_OPTIONS, SESSION_COOKIE_DELETE_OPTIONS, SessionOriginError } from '$lib/server/auth/request';
 import { revokeSession } from '$lib/server/auth/session';
 import { createKyselySessionStore } from '$lib/server/auth/store';
+import { currentUser } from '$lib/server/auth/current-user';
 
 function validCredential(schema: v.BaseSchema<unknown, unknown, v.BaseIssue<unknown>>, text: string) {
   try { return v.safeParse(schema, JSON.parse(text)).success; } catch { return false; }
@@ -29,6 +30,7 @@ async function authResponse<T>(action: () => Promise<T>): Promise<T> {
   }
 }
 export const getSetupStatus = query(() => authResponse(() => setupStatus(requestIdentity(getRequestEvent()))));
+export const getCurrentUser = query(() => authResponse(() => currentUser(getRequestEvent())));
 export const beginSetup = form(v.strictObject({ email: v.pipe(v.string(), v.email()), name: v.optional(v.string()) }),
   input => authResponse(async () => {
     const event = getRequestEvent(), context = requestIdentity(event, true);
