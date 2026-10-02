@@ -64,12 +64,15 @@ export class SchemaRegistry {
     const token = ulid();
     // A distinct timestamp keeps same-millisecond/backward-clock metadata writes
     // observable to CAS while schema version remains unchanged. See collection-update.md.
-    const updatedAt = new Date(Math.max(Date.now(), Date.parse(definition.updatedAt) + 1)).toISOString();
+    const updatedAt = nextMetadataTimestamp([definition]);
     const updates: Partial<CollectionRow> = { updated_at: updatedAt };
     if (value.label !== undefined) updates.label = value.label;
     if (value.labelSingular !== undefined) updates.label_singular = value.labelSingular;
     if (value.description !== undefined) updates.description = value.description;
-    if (value.supports !== undefined) updates.supports = JSON.stringify(value.supports);
+    if (value.supports !== undefined) {
+      updates.supports = JSON.stringify(value.supports);
+      if (value.hasSeo === undefined) updates.has_seo = Number(value.supports.includes('seo'));
+    }
     if(value.admin !== undefined) updates.admin_config = JSON.stringify(value.admin);
     for (const [key,column] of Object.entries(collectionMetadataColumns)) {
       const item = value[key as keyof typeof value];
@@ -183,7 +186,8 @@ export class SchemaRegistry {
       db.insertInto('_cms_collections').values({
         id: ulid(), slug: value.slug, label: value.label, label_singular: value.labelSingular ?? null,
         description: value.description ?? null, supports: JSON.stringify(value.supports ?? ['drafts', 'revisions']),
-        source: value.source ?? 'manual', version: 1, created_at: now, updated_at: now,
+        source: value.source ?? 'manual', has_seo: Number(value.hasSeo ?? value.supports?.includes('seo') ?? false),
+        version: 1, created_at: now, updated_at: now,
         ...Object.fromEntries(Object.entries(collectionMetadataColumns).flatMap(([key,column]) => {
           const item = value[key as keyof typeof value];
           return item === undefined ? [] : [[column,typeof item === 'boolean' ? Number(item) : item === '' ? null : item]];
@@ -280,8 +284,10 @@ export class SchemaRegistry {
     if(!Array.isArray(input) || new Set(input).size !== input.length) throw new CmsError('VALIDATION_ERROR');
     const slugs = input.map(slug => parse(identifier,slug)); const collections = await this.listCollections();
     if(slugs.some(slug => !collections.some(collection => collection.slug===slug))) throw new CmsError('NOT_FOUND');
-    await this.database.atomicBatch([this.database.db.updateTable('_cms_collections').set({sort_order:null}).compile(),
-      ...slugs.map((slug,index) => this.database.db.updateTable('_cms_collections').set({sort_order:index}).where('slug','=',slug).compile())]);
+    const positions = new Map(slugs.map((slug,index) => [slug,index]));
+    const updatedAt = nextMetadataTimestamp(collections);
+    await this.database.atomicBatch(collections.map(collection => this.database.db.updateTable('_cms_collections')
+      .set({sort_order:positions.get(collection.slug) ?? null, updated_at:updatedAt}).where('id','=',collection.id).compile()));
   }
   async reorderFields(collectionSlug: unknown, input: unknown): Promise<void> {
     if(!Array.isArray(input)) throw new CmsError('VALIDATION_ERROR');
@@ -290,11 +296,13 @@ export class SchemaRegistry {
   }
   async deleteField(collectionSlug: unknown, fieldSlug: unknown): Promise<void> {
     const target = await this.getField(collectionSlug,fieldSlug); if(!target) throw new CmsError('NOT_FOUND');
+    const definition = await this.getCollection(collectionSlug); if(!definition) throw new CmsError('NOT_FOUND');
     const db = this.database.db;
     await this.database.atomicBatch([...this.dropFieldIndexStatements(target.id),
       ...(isStoragelessField({type:target.type,validation:target.validation??undefined}) ? [] : [sql`ALTER TABLE ${sql.ref(tableName(collectionSlug))} DROP COLUMN ${sql.ref(target.slug)}`.compile(db)]),
       db.deleteFrom('_cms_fields').where('id','=',target.id).compile(),
-      db.updateTable('_cms_collections').set({title_field:sql`CASE WHEN title_field = ${target.slug} THEN NULL ELSE title_field END`, date_field:sql`CASE WHEN date_field = ${target.slug} THEN NULL ELSE date_field END`}).where('id','=',target.collectionId).compile()]);
+      db.updateTable('_cms_collections').set({title_field:sql`CASE WHEN title_field = ${target.slug} THEN NULL ELSE title_field END`, date_field:sql`CASE WHEN date_field = ${target.slug} THEN NULL ELSE date_field END`, updated_at:nextMetadataTimestamp([definition])})
+        .where('id','=',target.collectionId).where(eb => eb.or([eb('title_field','=',target.slug),eb('date_field','=',target.slug)])).compile()]);
   }
   async deleteCollection(slug: unknown, options?: {force?:boolean}): Promise<void> {
     const target = await this.getCollection(slug); if(!target) throw new CmsError('NOT_FOUND');
@@ -316,6 +324,12 @@ export class SchemaRegistry {
   }
 }
 export { fieldMax };
+
+// Preserve the local metadata CAS guarantee for same-millisecond/backward clocks.
+// Reorder uses one timestamp for exactly the records the pinned operation touches.
+function nextMetadataTimestamp(collections: Pick<Collection, 'updatedAt'>[]): string {
+  return new Date(Math.max(Date.now(), ...collections.map(collection => Date.parse(collection.updatedAt) + 1))).toISOString();
+}
 
 const collectionMetadataColumns = {icon:'icon',hasSeo:'has_seo',titleField:'title_field',dateField:'date_field',urlPattern:'url_pattern',routable:'routable',hidden:'hidden',sortOrder:'sort_order',group:'nav_group',commentsEnabled:'comments_enabled',commentsModeration:'comments_moderation',commentsClosedAfterDays:'comments_closed_after_days',commentsAutoApproveUsers:'comments_auto_approve_users',editLocking:'edit_locking'};
 function formatFieldDefault(value: unknown, type: keyof typeof FIELD_TYPE_TO_COLUMN): string {

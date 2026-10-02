@@ -52,15 +52,36 @@ export const revisionInput = v.strictObject({
 export const updateCollectionInput = v.strictObject({
   collection: identifier, input: collectionMetadataInput, expected: revisionInput
 });
+// Local JSON input contract: never silently omit/coerce unsupported JS values.
+// The copied upstream Zod validator and storage codec retain source behavior.
+function isJsonValue(value: unknown, ancestors = new Set<object>()): boolean {
+  if (value === null || typeof value === 'string' || typeof value === 'boolean') return true;
+  if (typeof value === 'number') return Number.isFinite(value);
+  if (typeof value !== 'object' || ancestors.has(value)) return false;
+  const array = Array.isArray(value);
+  if (array ? Object.getPrototypeOf(value) !== Array.prototype
+    : ![Object.prototype, null].includes(Object.getPrototypeOf(value))) return false;
+  const keys = Reflect.ownKeys(value);
+  if (keys.some(key => typeof key !== 'string')) return false;
+  if (array && (keys.length !== value.length + 1 ||
+    keys.some(key => key !== 'length' && (!/^(0|[1-9]\d*)$/.test(String(key)) || Number(key) >= value.length)))) return false;
+  ancestors.add(value);
+  try {
+    for (const key of keys) {
+      if (array && key === 'length') continue;
+      const descriptor = Object.getOwnPropertyDescriptor(value, key);
+      if (!descriptor?.enumerable || !('value' in descriptor) || !isJsonValue(descriptor.value, ancestors)) return false;
+    }
+    return true;
+  } finally { ancestors.delete(value); }
+}
 // Keep valid schema keys such as constructor/prototype: record() silently drops them.
 export const schemaData = v.custom<Record<string, unknown>>(value => {
-  if (!value || typeof value !== 'object' || Array.isArray(value) ||
-    ![Object.prototype, null].includes(Object.getPrototypeOf(value))) return false;
-  const entries = Object.entries(value);
   try {
-    const serialized = JSON.stringify(value);
-    return entries.length <= 32 && entries.every(([key]) => v.safeParse(identifier, key).success)
-      && serialized.length <= 200_000 && entries.every(([,item]) => item !== undefined && typeof item !== 'function' && typeof item !== 'symbol');
+    if (!value || typeof value !== 'object' || Array.isArray(value) || !isJsonValue(value)) return false;
+    const keys = Object.keys(value);
+    return keys.length <= 32 && keys.every(key => v.safeParse(identifier, key).success)
+      && JSON.stringify(value).length <= 200_000;
   } catch { return false; }
 });
 const data = schemaData;
