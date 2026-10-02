@@ -3,10 +3,8 @@
 import {describe,beforeEach,afterEach} from 'node:test';
 import {it,expect} from '../helpers/lifecycle-expect.ts';
 import {persistedRemotes} from '../helpers/persisted-remotes.ts';
-import {lifecycleMigration} from '../../src/lib/server/database/lifecycle-migrations.ts';
 import {Role} from '../../src/lib/server/auth/roles.ts';
 import {parse} from 'devalue';
-import {sql} from 'kysely';
 const ADMIN_ID='user_admin',AUTHOR_ID='user_author';
 const resultText=result=>result.content.filter(value=>value.type==='text').map(value=>value.text).join('\n');
 function extractText(result){return resultText(result);}
@@ -28,7 +26,7 @@ async function connectMcpHarness({userId}) {
   }}};
 }
 describe('complete pinned MCP publication callbacks through native HTTP',()=>{
- beforeEach(async()=>{fixture=await persistedRemotes({persistedSessions:true,mutationsEnabled:true});db=fixture.database.db;const installed=(await sql`SELECT name FROM sqlite_master WHERE name='_cms_revisions'`.execute(db)).rows.length;if(!installed)await fixture.database.atomicBatch(await lifecycleMigration.statements(fixture.database));harness=await connectMcpHarness({db,userId:ADMIN_ID,userRole:Role.ADMIN});});
+ beforeEach(async()=>{fixture=await persistedRemotes({persistedSessions:true,mutationsEnabled:true});db=fixture.database.db;harness=await connectMcpHarness({db,userId:ADMIN_ID,userRole:Role.ADMIN});});
  afterEach(async()=>{await harness.cleanup();await fixture.close();});
 it.each(["2020-01-15T10:00:00.000Z", "2020-01-15T10:00Z", "2020-01-15T11:00+01:00"])(
 		"backdates publishedAt from %s",

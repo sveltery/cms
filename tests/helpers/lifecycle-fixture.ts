@@ -39,33 +39,7 @@ export async function setupLifecycleFixture({ atomic = false } = {}) {
     await registry.createCollection({ slug, label: slug, ...(slug === 'plain_posts' ? {supports: []} : {}) });
     await registry.createField(slug, { slug: 'title', label: 'Title', type: 'string' });
   }
-  if (atomic) {
-    // Source dialect setup includes a general-status content table. This is
-    // fixture layout, not migration coverage; provider-5 upgrade is tested apart.
-    const row = (await sql<{sql:string}>`SELECT sql FROM sqlite_master WHERE name = 'ec_post'`.execute(database.db)).rows[0];
-    if (row.sql.includes("CHECK(status = 'draft')")) {
-      const indexes = (await sql<{sql:string}>`SELECT sql FROM sqlite_master WHERE tbl_name = 'ec_post' AND type = 'index' AND sql IS NOT NULL`.execute(database.db)).rows;
-      await database.atomicBatch([
-        sql`DROP TABLE ec_post`.compile(database.db),
-        sql.raw(row.sql.replace(" CHECK(status = 'draft')", '')).compile(database.db),
-        ...indexes.map(row=>sql.raw(row.sql).compile(database.db))
-      ]);
-    }
-    await registry.createField('post', {slug:'content',label:'Content',type:'portableText'});
-  }
-  const providerPath = '../../src/lib/server/database/lifecycle-migrations.ts';
-  try {
-    const provider=(await import(providerPath)).lifecycleMigration;
-    const installed=(await sql`SELECT name FROM sqlite_master WHERE name='_cms_revisions'`.execute(database.db)).rows.length;
-    if(!installed)await database.atomicBatch(await provider.statements(database));
-  } catch(cause) {
-    if (!(cause instanceof Error)||!('code' in cause)||cause.code!=='ERR_MODULE_NOT_FOUND')throw cause;
-  }
-  // Only test seed/read helpers use this before provider 5 exists. Retention
-  // assertions exercise the actual update handler, which has no revision save.
-  const revisionsExist = (await sql`SELECT name FROM sqlite_master WHERE name = '_cms_revisions'`.execute(database.db)).rows.length;
-  if (!revisionsExist) await sql`CREATE TABLE _cms_revisions (id TEXT PRIMARY KEY NOT NULL, collection TEXT NOT NULL,
-    entry_id TEXT NOT NULL, data TEXT NOT NULL, author_id TEXT, created_at TEXT NOT NULL DEFAULT (datetime('now')))`.execute(database.db);
+  if (atomic) await registry.createField('post', {slug:'content',label:'Content',type:'portableText'});
   const baseline = cmsService(database, principal);
   const modulePath = '../../src/lib/server/database/lifecycle/service.ts';
   let lifecycle: any;
