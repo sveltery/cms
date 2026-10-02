@@ -48,7 +48,11 @@
     loadFailed = false;
     try {
       // Resolve before appending so a failed continuation keeps the visible rows.
-      await listTrashedContent({ collection, limit: 50, cursor });
+      const next = listTrashedContent({ collection, limit: 50, cursor });
+      // Kit retains a failed promise until refresh/eviction. Retry must send a
+      // new request even when its proxy is still alive in the native cache.
+      if (next.error) await next.refresh();
+      await next;
       cursors = [...cursors, cursor];
     } catch { loadFailed = true; }
     finally { loading = false; }

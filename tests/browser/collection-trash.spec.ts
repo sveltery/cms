@@ -254,6 +254,17 @@ for (const base of ['', '/cms'] as const) {
       expect(errors).toEqual([]);
     });
     test('continuation errors retain rows and malformed native cursors expose INVALID_CURSOR', async ({ page, context }) => {
+      // Retain native cache proxy anchors so GC cannot make a rejected query
+      // disappear and accidentally turn reuse of its failed promise into retry.
+      await page.addInitScript(() => {
+        const anchors: object[] = [];
+        const register = FinalizationRegistry.prototype.register;
+        FinalizationRegistry.prototype.register = function (target: object, heldValue: unknown, token?: object) {
+          anchors.push(target);
+          register.call(this, target, heldValue, token);
+        };
+        (window as any).__trashCacheAnchors = anchors;
+      });
       await context.addCookies([{ name: 'cms-session', value: fixture.tokens.author, url: origin }]);
       await page.goto(`${origin}${base}/trash/post`);
       const rows = page.getByRole('table', { name: 'Trashed drafts' }).locator('tbody tr');
