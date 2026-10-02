@@ -1,6 +1,6 @@
 # Read-only collection trash view
 
-Base is verified main `bf9d1c34cde4bb972b7d2d9a599c16d406607d49`. Behavior authority is EmDash 1.1.0 immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. Inspected committed sources:
+Proposed in [PR #23](https://github.com/sveltery/cms/pull/23); specific deviation acceptance is not recorded. Base is verified main `bf9d1c34cde4bb972b7d2d9a599c16d406607d49`. Behavior authority is EmDash 1.1.0 immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. Inspected committed sources:
 
 | Source | Blob | Relevant behavior |
 | --- | --- | --- |
