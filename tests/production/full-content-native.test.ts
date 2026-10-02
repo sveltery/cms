@@ -29,7 +29,7 @@ async function fixture(target: 'Node' | 'D1') {
   } catch (error) { await h.close(); throw error; }
 }
 async function enhanced(h: Awaited<ReturnType<typeof fixture>>, name: string, input: unknown, session = 'author') {
-  const header = new TextEncoder().encode(stringify([input, { remote_refreshes: [] }], h.encoders));
+  const header = new TextEncoder().encode(stringify([input, { remote_refreshes: [] }]));
   const offsets = new TextEncoder().encode('[]'); const prefix = new Uint8Array(7);
   new DataView(prefix.buffer).setUint32(1, header.length, true); new DataView(prefix.buffer).setUint16(5, offsets.length, true);
   const response = await h.request(`/_app/remote/${h.ids.get(name)}`, session, {
@@ -38,9 +38,9 @@ async function enhanced(h: Awaited<ReturnType<typeof fixture>>, name: string, in
   });
   assert.equal(response.status, 200); return response.json();
 }
-function result(response: { type: string; data?: string; error?: unknown }) {
+function result(response: { type: string; data?: string; error?: unknown }, decoders = {}) {
   assert.equal(response.type, 'result', JSON.stringify(response));
-  const native = parse(response.data!)._; assert.equal(native.issues, undefined, JSON.stringify(native.issues)); return native.result;
+  const native = parse(response.data!, decoders)._; assert.equal(native.issues, undefined, JSON.stringify(native.issues)); return native.result;
 }
 
 for (const target of ['Node', 'D1'] as const) {
@@ -94,14 +94,16 @@ for (const target of ['Node', 'D1'] as const) {
     const h = await fixture(target);
     try {
       const ownKeys = JSON.parse('{"__proto__":{"constructor":{"prototype":["safe",null]}},"nested":[{"__proto__":{"allowed":true}}]}');
-      const receipt = result(await enhanced(h, 'createContent', { collection: 'typed', data: { value_json: ownKeys } }));
+      // Kit's binary enhanced forms do not use universal transport decoders.
+      // The native API's JSON-text input preserves these values on submission.
+      const receipt = result(await enhanced(h, 'createContent', { collection: 'typed', data: JSON.stringify({ value_json: ownKeys }) }), h.decoders);
       const key = { collection: 'typed', id: receipt.id };
       let item = await h.query('getContent', key, 'author');
       assert.deepEqual(item.data.value_json, ownKeys);
       assert.ok(Object.hasOwn(item.data.value_json, '__proto__'));
       assert.equal(Object.getPrototypeOf(item.data.value_json), Object.prototype);
       const updated = result(await enhanced(h, 'updateContent', { ...key, _rev: receipt._rev,
-        data: { value_json: { children: [ownKeys] } } }));
+        data: JSON.stringify({ value_json: { children: [ownKeys] } }) }), h.decoders);
       assert.notEqual(updated._rev, receipt._rev);
       item = await h.query('getContent', key, 'author');
       assert.deepEqual(item.data.value_json, { children: [ownKeys] });
@@ -121,15 +123,11 @@ for (const target of ['Node', 'D1'] as const) {
     const h = await fixture(target);
     try {
       for (const encoded of ['{', 'null', '[]', '{"__proto__":1e400}', '{"ordinary":true}']) {
-        const custom = stringify([{ collection: 'typed', data: { value_json: { marker: true } } }, { remote_refreshes: [] }], {
+        const custom = stringify({ collection: { marker: true }, id: 'unused' }, {
           CmsJsonOwnKeys: value => value && typeof value === 'object' && Object.hasOwn(value, 'marker') ? encoded : false
         });
-        const header = new TextEncoder().encode(custom); const offsets = new TextEncoder().encode('[]');
-        const prefix = new Uint8Array(7); new DataView(prefix.buffer).setUint32(1, header.length, true); new DataView(prefix.buffer).setUint16(5, offsets.length, true);
-        const response = await h.request(`/_app/remote/${h.ids.get('createContent')}`, 'author', {
-          method: 'POST', headers: { origin: h.origin, 'content-type': 'application/x-sveltekit-formdata' }, body: new Blob([prefix, header, offsets])
-        });
-        assert.ok(response.status >= 400);
+        const response = await h.request(`/_app/remote/${h.ids.get('getContent')}?payload=${Buffer.from(custom).toString('base64url')}`, 'author');
+        assert.deepEqual(await response.json(), { type: 'error', status: 500, error: { message: 'Internal Error' } });
         assert.deepEqual((await sql`SELECT * FROM ec_typed`.execute(h.database.db)).rows, []);
       }
     } finally { await h.close(); }
