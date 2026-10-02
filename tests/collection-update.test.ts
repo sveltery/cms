@@ -136,6 +136,21 @@ for (const target of ['Node', 'D1'] as const) {
       assert.deepEqual(await snapshot(f.database), before);
     } finally { await f.close(); }
   });
+  test(`${target}: update returns its own committed row when another writer commits before the adapter returns`, { timeout: 30000 }, async () => {
+    const f = await fixture(); let later: Collection | undefined;
+    const delayed = { ...f.database, async atomicBatch(statements) {
+      const results = await f.database.atomicBatch(statements);
+      const committed = results[1].rows[0] as { version: number; updated_at: string };
+      later = await f.service.updateCollection({ collection: 'posts', input: { label: 'Later' },
+        expected: { version: committed.version, updatedAt: committed.updated_at } });
+      return results;
+    } } satisfies CmsDatabase;
+    try {
+      const first = await cmsService(delayed, admin).updateCollection({ collection: 'posts', input: { label: 'First' }, expected: expected(f.definition) });
+      assert.equal(first.label, 'First'); assert.equal(later?.label, 'Later');
+      assert.deepEqual(await f.registry.getCollection('posts'), later);
+    } finally { await f.close(); }
+  });
   test(`${target}: metadata survives storage/runtime restart and prior timestamp stays stale`, { timeout: 30000 }, async () => {
     const directory = await mkdtemp(join(tmpdir(), 'cms-collection-update-'));
     let storage = await collectionUpdateStorage(target, directory);
