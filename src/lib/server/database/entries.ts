@@ -1,12 +1,13 @@
 import { sql, type CompiledQuery } from 'kysely';
 import { ulid } from 'ulidx';
-import { CmsError, type CmsDatabase, type DraftEntry, type DraftSummary, type Field, type Page, type RevisionPrecondition } from './contract.ts';
+import { CmsError, type CmsDatabase, type DraftEntry, type DraftSummary, type Field, type Page, type TrashedDraftEntry, type TrashedDraftSummary } from './contract.ts';
 import { SchemaRegistry, fieldMax } from './registry.ts';
-import { createDraftInput, entryId, identifier, localeInput, parse, tableName, updateDraftInput, deleteDraftInput } from './validation.ts';
+import { createDraftInput, entryId, identifier, listTrashedDraftInput, localeInput, parse, restoreDraftInput, tableName, updateDraftInput, deleteDraftInput } from './validation.ts';
 
 interface EntryRow {
   id: string; slug: string | null; status: 'draft'; author_id: string | null;
   locale: string; version: number; created_at: string; updated_at: string;
+  deleted_at?: string | null;
   [key: string]: unknown;
 }
 function entry(type: string, row: EntryRow, fields: Field[]): DraftEntry {
@@ -75,6 +76,59 @@ export class DraftRepository {
     const result = await sql<EntryRow>`SELECT * FROM ${sql.ref(tableName(type))}
       WHERE id = ${id} AND locale = ${locale} AND deleted_at IS NULL`.execute(this.database.db);
     return result.rows[0] ? entry(type, result.rows[0], definition.fields) : null;
+  }
+  private async trashLookup(typeInput: unknown, idInput: unknown, locale: string | undefined, onlyTrashed: boolean) {
+    const type = parse(identifier, typeInput); const id = parse(entryId, idInput);
+    if (locale !== undefined) parse(localeInput, locale);
+    const definition = await this.definition(type);
+    const result = await sql<EntryRow>`SELECT * FROM ${sql.ref(tableName(type))}
+      WHERE id = ${id} AND status = 'draft'
+      ${locale === undefined ? sql`` : sql`AND locale = ${locale}`}
+      ${onlyTrashed ? sql`AND deleted_at IS NOT NULL` : sql``}`.execute(this.database.db);
+    const row = result.rows[0];
+    return row ? { ...entry(type, row, definition.fields), deletedAt: row.deleted_at ?? null } : null;
+  }
+  async findByIdIncludingTrashed(type: unknown, id: unknown, locale?: string): Promise<(DraftEntry & { deletedAt: string | null }) | null> {
+    return this.trashLookup(type, id, locale, false);
+  }
+  async findTrashedById(type: unknown, id: unknown, locale?: string): Promise<TrashedDraftEntry | null> {
+    const row = await this.trashLookup(type, id, locale, true);
+    return row && row.deletedAt !== null ? { ...row, deletedAt: row.deletedAt } : null;
+  }
+  async listTrashed(typeInput: unknown, options: { limit?: number; locale?: string } = {}): Promise<{ items: TrashedDraftSummary[] }> {
+    const { type, locale, limit: requested = 50 } = parse(listTrashedDraftInput, { ...options, type: typeInput });
+    const definition = await this.definition(type);
+    const title = definition.fields.some(field => field.slug === 'title') ? sql`substr(${sql.ref('title')}, 1, 200)` : sql`NULL`;
+    const result = await sql<EntryRow & { title: string | null; deleted_at: string }>`SELECT id, slug, status, author_id, locale,
+      version, created_at, updated_at, deleted_at, ${title} AS title FROM ${sql.ref(tableName(type))}
+      WHERE deleted_at IS NOT NULL AND status = 'draft'
+      ${locale === undefined ? sql`` : sql`AND locale = ${locale}`}
+      ORDER BY deleted_at DESC, id DESC LIMIT ${Math.min(requested, 100)}`.execute(this.database.db);
+    return { items: result.rows.map(row => {
+      const { data, ...summary } = entry(type, row, []);
+      return { ...summary, title: row.title, deletedAt: row.deleted_at };
+    }) };
+  }
+  // Draft-only adaptation of pinned ContentRepository.restore. Ownership and both
+  // revision tokens are SQL predicates; RETURNING is this write's committed receipt.
+  // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
+  async restore(input: unknown, ownerId?: string): Promise<DraftEntry> {
+    const value = parse(restoreDraftInput, input);
+    const definition = await this.definition(value.type);
+    const now = new Date(Math.max(Date.now(), Date.parse(value.expected.updatedAt) + 1)).toISOString();
+    const query = sql<EntryRow>`UPDATE ${sql.ref(tableName(value.type))}
+      SET deleted_at = NULL, live_revision_id = NULL, scheduled_at = NULL, status = 'draft',
+        updated_at = ${now}, version = version + 1
+      WHERE id = ${value.id} AND locale = ${value.locale} AND deleted_at IS NOT NULL AND status = 'draft'
+      AND version = ${value.expected.version} AND updated_at = ${value.expected.updatedAt}
+      ${ownerId === undefined ? sql`` : sql`AND author_id = ${ownerId}`}
+      RETURNING *`.compile(this.database.db);
+    const result = await this.withSchemaGuard(definition.id, definition.version, query);
+    if (!result[1].rows.length) {
+      if (!await this.findByIdIncludingTrashed(value.type, value.id, value.locale)) throw new CmsError('NOT_FOUND');
+      throw new CmsError('CONFLICT');
+    }
+    return entry(value.type, result[1].rows[0] as EntryRow, definition.fields);
   }
   async update(input: unknown, ownerId?: string): Promise<DraftEntry> {
     const value = parse(updateDraftInput, input);

@@ -3,7 +3,7 @@ import { editorManifest } from '../content/manifest.ts';
 import { CmsError, type CmsDatabase } from './contract.ts';
 import { DraftRepository } from './entries.ts';
 import { SchemaRegistry } from './registry.ts';
-import { createDraftInput, deleteDraftInput, getDraftInput, identifier, localeInput, parse, updateCollectionInput, updateDraftInput } from './validation.ts';
+import { createDraftInput, deleteDraftInput, getDraftInput, getTrashedDraftInput, identifier, listTrashedDraftInput, localeInput, parse, restoreDraftInput, updateCollectionInput, updateDraftInput } from './validation.ts';
 
 // Permission names and ownership rules follow EmDash auth/rbac.ts.
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
@@ -87,6 +87,28 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
       requirePermission('content:read'); requirePermission('content:read_drafts');
       const { type, ...options } = parse(listInput, input);
       return entries.list(type, options);
+    },
+    async getTrashedDraft(input: unknown) {
+      requirePermission('content:read'); requirePermission('content:read_drafts');
+      const value = parse(getTrashedDraftInput, input);
+      const entry = await entries.findTrashedById(value.type, value.id, value.locale);
+      if (!entry) throw new CmsError('NOT_FOUND');
+      return entry;
+    },
+    async listTrashedDrafts(input: unknown) {
+      requirePermission('content:read'); requirePermission('content:read_drafts');
+      const { type, ...options } = parse(listTrashedDraftInput, input);
+      return entries.listTrashed(type, options);
+    },
+    async restoreDraft(input: unknown) {
+      const actor = requireMutationPermission('content:edit_own', 'content:edit_any');
+      const value = parse(restoreDraftInput, input);
+      // Include active rows so an authorized double restore reports CONFLICT.
+      const stored = await entries.findByIdIncludingTrashed(value.type, value.id, value.locale);
+      if (!stored) throw new CmsError('NOT_FOUND');
+      const owner = actor.permissions.includes('content:edit_any') ? undefined : actor.id;
+      if (owner !== undefined && stored.authorId !== owner) throw new CmsError('FORBIDDEN');
+      return entries.restore(value, owner);
     },
     async updateDraft(input: unknown) {
       // Check general permission before even parsing or reading a record.
