@@ -40,7 +40,9 @@
     <select id={`${controlsId}-pattern-mode`} {...optionsForm.fields.patternMode.as('select', field.validation?.pattern === undefined ? 'omit' : 'set')}>
       <option value="omit">Omit pattern</option><option value="set">Save pattern</option>
     </select>
-    <label>Validation pattern <input {...optionsForm.fields.pattern.as('text', field.validation?.pattern ?? '')} /></label>
+    <label for={`${controlsId}-pattern`}>Validation pattern</label>
+    <textarea id={`${controlsId}-pattern`} {...optionsForm.fields.pattern.as('text', field.validation?.pattern ?? '')}
+      value={optionsForm.fields.pattern.value() ?? field.validation?.pattern ?? ''}></textarea>
     <p>Replace saves the displayed bounds and the selected pattern source. Omit pattern removes its key; Save pattern preserves the exact source, including an empty string. Clear removes validation. Existing content remains readable.</p>
     <p>The server uses JavaScript regular expressions without flags; matching is case sensitive and unanchored unless you include anchors.</p>
     <button type="submit" disabled={optionsForm.pending > 0}>Save field options</button>
