@@ -1,0 +1,78 @@
+{
+  "upstream": "https://github.com/emdash-cms/emdash",
+  "version": "1.1.0",
+  "commit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "license": "MIT",
+  "notice": "notices/emdash-MIT.txt",
+  "files": [
+    {
+      "source": "packages/auth/src/tokens.ts",
+      "blob": "c96ef3c7ad026bfd31117f2db2ce0378d570dc4f",
+      "source_sha256": "9699e9636b3329812bc3743987ba4e36a5abab1a21dcf0dfffe03bf877bc215d",
+      "local": "src/lib/server/auth/vendor/tokens.ts",
+      "local_sha256": "be5e50da5d6c9b151fba69108b56e177a36f18289157e7446143347b33eba901",
+      "transformations": [
+        "Relative module suffix .js to .ts for Node 24 type stripping.",
+        "Append explicit pin/blob/MIT provenance header."
+      ]
+    },
+    {
+      "source": "packages/auth/src/types.ts",
+      "blob": "e5fc2ec92b399079aca96f08621b3d042a41fb15",
+      "source_sha256": "2764667f5a2552eda6f401ea63bfdccda5ef30508b71adaa049257fe733de7f5",
+      "local": "src/lib/server/auth/vendor/types.ts",
+      "local_sha256": "076b15f19716b65dc23658f93cf86f7746df22978fb810e5d6e6b135769fa1db",
+      "transformations": [
+        "Relative module suffix .js to .ts for Node 24 type stripping.",
+        "Append explicit pin/blob/MIT provenance header.",
+        "Expand AuthError parameter property into equivalent field assignment for Node type stripping."
+      ]
+    },
+    {
+      "source": "packages/auth/src/passkey/register.ts",
+      "blob": "b8c28c34ebf9e37f0b5bb636f30ff1b466be0ca1",
+      "source_sha256": "645c228570be61abf98a1cf24d1e342f0eee9ccfc31c8f859d644886528f8434",
+      "local": "src/lib/server/auth/vendor/passkey/register.ts",
+      "local_sha256": "8274fce4d7959b9be8643d771e87e07e68df14741d5feeca3879c921ed51925f",
+      "transformations": [
+        "Relative module suffix .js to .ts for Node 24 type stripping.",
+        "Append explicit pin/blob/MIT provenance header."
+      ]
+    },
+    {
+      "source": "packages/auth/src/passkey/authenticate.ts",
+      "blob": "3dfe5158fdfa39721b1612e66ccbe88fd26c2421",
+      "source_sha256": "475a0c8c8ef32cdafc19c70f3a0ae252f2d273fee14eed4d9fffa84b73f866f2",
+      "local": "src/lib/server/auth/vendor/passkey/authenticate.ts",
+      "local_sha256": "f5b359b1ab3ed9c962b63a9c90e9965bb8fe655cc12f381abd91695a37192477",
+      "transformations": [
+        "Relative module suffix .js to .ts for Node 24 type stripping.",
+        "Append explicit pin/blob/MIT provenance header.",
+        "Expand PasskeyAuthenticationError parameter property into equivalent field assignment for Node type stripping."
+      ]
+    },
+    {
+      "source": "packages/auth/src/passkey/challenge-context.ts",
+      "blob": "b5f08076cbc37fe6cf57ff709b3f3226992c4325",
+      "source_sha256": "4a5a9b77ebe4cae8e2138ba4cae5f3467e4d7dbdcd1b648401350695f816e28c",
+      "local": "src/lib/server/auth/vendor/passkey/challenge-context.ts",
+      "local_sha256": "11eaebdf53cdd202e486175b22ec21dbf3a917ce5cdb51f1548286b1ba6b016e",
+      "transformations": [
+        "Relative module suffix .js to .ts for Node 24 type stripping.",
+        "Append explicit pin/blob/MIT provenance header.",
+        "Expand ChallengeContextError parameter property into equivalent field assignment for Node type stripping."
+      ]
+    },
+    {
+      "source": "packages/auth/src/passkey/types.ts",
+      "blob": "80ba6a36db6962f1f559a7b20bd36f3c134c8528",
+      "source_sha256": "be093f2238bb00d6e930d333dab9c719ee80cb4adb0a4c2999df953851fa6efa",
+      "local": "src/lib/server/auth/vendor/passkey/types.ts",
+      "local_sha256": "86505f6c69909de4a580ae8344f23b21e2d5d619e8d7797241d76305b9d29e72",
+      "transformations": [
+        "Relative module suffix .js to .ts for Node 24 type stripping.",
+        "Append explicit pin/blob/MIT provenance header."
+      ]
+    }
+  ]
+}
