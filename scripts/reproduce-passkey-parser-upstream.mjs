@@ -75,7 +75,40 @@ assert.equal(malformedResult.status, 400);
 assert.equal((await malformedResult.clone().json()).error.code, 'INVALID_JSON');
 observations.push({ name: 'Malformed JSON is INVALID_JSON', source: { status: malformedResult.status, body: await malformedResult.json() },
   local: await local('malformed JSON', request('{')) });
+const optionsPath = 'packages/core/src/astro/routes/api/auth/passkey/options.ts';
+const optionsBlob = '7d659fde6f048a34ddf70479a9869bc6453f70d8';
+assert.equal(git('rev-parse', `${pin}:${optionsPath}`).toString().trim(), optionsBlob);
+let cleanupCalls = 0, rateChecks = 0;
+const route = new vm.SourceTextModule(stripTypeScriptTypes(git('show', `${pin}:${optionsPath}`).toString()));
+const controlledImports = {
+  '@emdash-cms/auth/passkey': { generateAuthenticationOptions: async () => ({}) },
+  '#api/error.js': { apiError: (code, message, status) => Response.json({ code, message }, { status }),
+    apiSuccess: data => Response.json(data), handleError: cause => { throw cause; } },
+  '#api/parse.js': { isParseError: value => value instanceof Response, parseOptionalBody: reference.namespace.parseOptionalBody },
+  '#api/public-url.js': { getPublicOrigin: () => 'https://cms.example.com' },
+  '#api/schemas.js': { passkeyOptionsBody: schema },
+  '#auth/challenge-store.js': { createChallengeStore: () => ({}), cleanupExpiredChallenges: async () => { cleanupCalls++; } },
+  '#auth/passkey-config.js': { getPasskeyConfig: () => ({}) },
+  '#auth/rate-limit.js': { checkRateLimit: async () => { rateChecks++; return { allowed: true }; },
+    getClientIp: () => '127.0.0.1', rateLimitResponse: () => new Response(null, { status: 429 }) },
+  '#auth/trusted-proxy.js': { getTrustedProxyHeaders: () => [] },
+  '#db/repositories/options.js': { OptionsRepository: class { async get() { return null; } } }
+};
+await route.link(specifier => {
+  const values = controlledImports[specifier]; assert.ok(values, specifier);
+  return new vm.SyntheticModule(Object.keys(values), function () {
+    for (const [name, value] of Object.entries(values)) this.setExport(name, value);
+  });
+});
+await route.evaluate();
+const malformedOptions = await route.namespace.POST({ request: request('{'), locals: { emdash: { db: {}, config: {} } } });
+assert.equal(malformedOptions.status, 400); assert.equal(cleanupCalls, 1); assert.equal(rateChecks, 0);
+observations.push({ name: 'Options cleanup precedes parsing; malformed input does not consume rate slots', source: {
+  status: malformedOptions.status, cleanupCalls, rateChecks }, sourcePath: optionsPath, blob: optionsBlob,
+  fixtureBoundaries: ['Unchanged source route and parser', 'Controlled framework/config/crypto/adapter/cleanup/rate imports'],
+  copiedSourceCredit: 0 });
 console.log(JSON.stringify({ pin, sourcePath, blob, originalSourceReferenceProbesPassed: 4, observations,
+  originalOptionsOrderingReferenceProbePassed: 1,
   fixtureBoundaries: ['Immutable source parser bytes verified; native TypeScript stripping only', 'apiError uses a controlled code/status envelope', 'Equivalent original optional-email caller-schema fixture', 'Actual local identityBody is diagnostic comparison only; no host adapter runs'],
   omissions: ['HTTP-host/adapter body limits', 'Detailed source Zod issue payload', 'Full route or native form execution'],
   copiedSourceDeclarationCredit: 0, copiedSourceAssertionCredit: 0, localProductCreditFromReferenceRun: 0 }));

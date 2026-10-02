@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { passkeyRuntime } from '../helpers/passkey-runtime.ts';
 
 for (const target of ['Node', 'D1'] as const) {
-  test(`${target}: malformed options body still schedules source challenge cleanup and consumes a rate slot`, async () => {
+  test(`${target}: malformed options body schedules source cleanup without consuming a rate slot`, async () => {
     const h = await passkeyRuntime(target);
     try {
       assert.equal((await h.request('/api/setup/status')).status, 200);
@@ -24,8 +24,7 @@ for (const target of ['Node', 'D1'] as const) {
       }
       assert.equal(remaining, 0);
       const counters = await db.db.selectFrom('_cms_auth_rate_limits').selectAll().execute();
-      assert.equal(counters.length, 1);
-      assert.equal(counters[0].count, 1);
+      assert.equal(counters.length, 0);
     } finally { await h.close(); }
   });
   test(`${target}: login options accept whitespace-only optional JSON body like pinned parser`, async () => {
