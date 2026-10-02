@@ -3,6 +3,7 @@
 // See notices/emdash-MIT.txt and docs/session-composition-ports.json.
 // Field batching follows schema/registry.ts:418 and utils/chunks.ts at the same pin.
 // Local ordering, field caps and error behavior: docs/editor-manifest-batching.md.
+import type { CollectionSupport } from '../schema/types.ts';
 import { sql } from 'kysely';
 import { CmsError, type CmsDatabase, type FieldRow, type ScalarValidation } from '../database/contract.ts';
 import { MAX_FIELDS, SchemaRegistry } from '../database/registry.ts';
@@ -18,7 +19,7 @@ export interface EditorField {
 export interface EditorCollection {
   label: string;
   labelSingular: string;
-  supports: ('drafts' | 'revisions')[];
+  supports: CollectionSupport[];
   fields: Record<string, EditorField>;
 }
 export interface EditorManifest { collections: Record<string, EditorCollection> }
