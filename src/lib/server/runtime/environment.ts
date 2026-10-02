@@ -1,3 +1,6 @@
+import { CmsConfigurationError } from './errors.ts';
+export { CmsConfigurationError } from './errors.ts';
+export { createRequestScopedDb } from './cloudflare-d1.ts';
 import type { RequestEvent } from '@sveltejs/kit';
 import type { D1Binding } from '../database/d1.ts';
 import { createCmsRuntime, type RuntimeConfiguration } from './composition.ts';
@@ -27,7 +30,7 @@ export function runtimeConfiguration(
   if (path) return { ...presentation, kind: 'sqlite', path };
   if (!binding || typeof binding !== 'object' || typeof (binding as D1Binding).prepare !== 'function' ||
     typeof (binding as D1Binding).batch !== 'function') {
-    throw new Error(`D1 binding ${bindingName ?? 'CMS_DB'} was not found; declare it in d1_databases`);
+    throw new CmsConfigurationError(`D1 binding ${bindingName ?? 'CMS_DB'} was not found; declare it in d1_databases`, 'BINDING_NOT_FOUND');
   }
   return {
     ...presentation, kind: 'd1', binding: binding as D1Binding,

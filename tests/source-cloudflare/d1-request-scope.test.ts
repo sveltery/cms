@@ -16,13 +16,8 @@ const mocks = vi.hoisted(() => {
 	return { session, binding };
 });
 
-import * as product from "../../src/lib/server/runtime/environment.ts";
-// Baseline bridge: main's raw-binding runtime has no request session API.
-// Null is that existing no-session behavior; the source assertions remain unchanged.
-const createRequestScopedDb = (opts: unknown) => {
-  const factory = (product as Record<string, any>).createRequestScopedDb;
-  return factory ? factory({ ...(opts as object), binding: mocks.binding }) : null;
-};
+import { createRequestScopedDb as createScoped } from "../../src/lib/server/runtime/cloudflare-d1.ts";
+const createRequestScopedDb = (opts: Parameters<typeof createScoped>[0]) => createScoped({ ...opts, binding: mocks.binding as any });
 
 const config = { binding: "DB", session: "auto" as const };
 

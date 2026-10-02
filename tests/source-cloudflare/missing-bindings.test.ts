@@ -1,9 +1,8 @@
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 // Source: EmDash 1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; see docs/cloudflare-runtime-ports.json.
 import { describe, expect, it, vi } from "vitest";
-import * as product from "../../src/lib/server/runtime/environment.ts";
-const EmDashConfigurationError = (product as Record<string, any>).CmsConfigurationError ?? class extends Error {};
-const createD1Dialect = ({ binding }: { binding: string }) => product.runtimeConfiguration(
+import { CmsConfigurationError as EmDashConfigurationError, runtimeConfiguration } from "../../src/lib/server/runtime/environment.ts";
+const createD1Dialect = ({ binding }: { binding: string }) => runtimeConfiguration(
   { SVELTERY_D1_BINDING: binding, SVELTERY_PUBLIC_ORIGIN: "https://cms.example" }, { env: {} }
 );
 const fakeEnv: Record<string, unknown> = {};

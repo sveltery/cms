@@ -2,9 +2,7 @@
 // Source: EmDash 1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; see docs/cloudflare-runtime-ports.json.
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import * as product from "../../src/lib/server/database/d1.ts";
-const createD1SessionGuard = (product as Record<string, any>).createD1SessionGuard ??
-  (() => { throw new Error("The current product has no D1 session guard API"); });
+import { createD1SessionGuard } from "../../src/lib/server/database/d1-session-guard.ts";
 
 /** Short timeout so hang tests stay fast. */
 const TIMEOUT_MS = 25;

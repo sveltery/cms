@@ -3,10 +3,7 @@
 import { CompiledQuery, Kysely } from "kysely";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import * as product from "../../src/lib/server/database/d1.ts";
-// The current raw adapter executes independent reads without coalescing.
-const CoalescingD1Dialect = (product as Record<string, any>).CoalescingD1Dialect ??
-  class extends product.RawBindingD1Dialect { constructor({ database }: { database: any }) { super(database); } };
+import { CoalescingD1Dialect } from "../../src/lib/server/database/coalescing-d1.ts";
 
 interface MockResultConfig {
 	rows?: Record<string, unknown>[];
