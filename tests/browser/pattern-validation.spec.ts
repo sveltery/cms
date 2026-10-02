@@ -21,6 +21,8 @@ for (const base of ['', '/cms']) for (const enhanced of [false, true]) {
       await h.registry.createCollection({ slug: 'notes', label: 'Notes' });
       await h.registry.createField('notes', { slug: 'title', label: 'Title', type: 'string', validation: { pattern: '^cat\ndog$' } });
       await h.registry.createField('notes', { slug: 'body', label: 'Body', type: 'text', validation: { pattern: '' } });
+      await h.registry.createField('notes', { slug: 'windows', label: 'Windows', type: 'text', validation: { pattern: '^cat\r\ndog$' } });
+      await h.registry.createField('notes', { slug: 'legacy', label: 'Legacy', type: 'string', validation: { pattern: '^cat\rdog$' } });
       await login(context, h); const page = await context.newPage();
       const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
       await page.goto(`${h.origin}${base}/schema/notes`);
@@ -34,10 +36,14 @@ for (const base of ['', '/cms']) for (const enhanced of [false, true]) {
         const action = new URL((await form.getAttribute('action'))!, h.origin);
         expect(action.pathname).toBe(`${base}/schema/notes`);
       }
-      await title.getByLabel('Validation update', { exact: true }).selectOption('set');
-      await title.getByRole('button', { name: 'Save field options' }).click();
-      await expect(title.getByRole('status')).toHaveText('Field options saved.');
-      expect((await h.query('getSchemaCollection', 'notes')).fields[0].validation.pattern).toBe('^cat\ndog$');
+      for (const [slug, pattern] of [['title', '^cat\ndog$'], ['windows', '^cat\r\ndog$'], ['legacy', '^cat\rdog$']]) {
+        const form = options(page, slug);
+        await expect(form.getByLabel('Validation pattern', { exact: true })).toHaveValue('^cat\ndog$');
+        await form.getByLabel('Validation update', { exact: true }).selectOption('set');
+        await form.getByRole('button', { name: 'Save field options' }).click();
+        await expect(form.getByRole('status')).toHaveText('Field options saved.');
+        expect((await h.query('getSchemaCollection', 'notes')).fields.find((field: any) => field.slug === slug).validation.pattern).toBe(pattern);
+      }
       await title.getByLabel('Validation update', { exact: true }).selectOption('set');
       await title.getByLabel('Validation pattern', { exact: true }).fill('[');
       const snapshot = await h.snapshot();
@@ -69,11 +75,11 @@ for (const base of ['', '/cms']) for (const enhanced of [false, true]) {
       await create.getByLabel('Validation pattern', { exact: true }).fill('[');
       await create.getByRole('button', { name: 'Add field', exact: true }).click();
       await expect(page.getByRole('list', { name: 'Field validation errors', exact: true })).toContainText('Invalid validation pattern');
-      expect((await h.query('getSchemaCollection', 'notes')).fields).toHaveLength(2);
+      expect((await h.query('getSchemaCollection', 'notes')).fields).toHaveLength(4);
       await create.getByLabel('Validation pattern', { exact: true }).fill('');
       await create.getByRole('button', { name: 'Add field', exact: true }).click();
       await expect(create.getByRole('status')).toHaveText('Field added: extra.');
-      expect((await h.query('getSchemaCollection', 'notes')).fields[2].validation).toEqual({ pattern: '' });
+      expect((await h.query('getSchemaCollection', 'notes')).fields[4].validation).toEqual({ pattern: '' });
       expect((await h.query('getEditorManifest', undefined, 'author')).collections.notes.fields.extra.validation.pattern).toBe('');
       expect(errors).toEqual([]);
     } finally { await context.close(); await h.close(); }

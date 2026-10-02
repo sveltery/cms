@@ -49,3 +49,23 @@ test('malformed or missing selected pattern reports the native pattern field bef
     assert.equal(v.safeParse(schema, { ...base, patternMode: 'replace', pattern: 'cat' }).success, false);
   }
 });
+
+test('replacement preserves unchanged textarea-normalized sources using untrusted JSON snapshots', () => {
+  for (const pattern of ['^cat\ndog$', '^cat\r\ndog$', '^cat\rdog$']) {
+    for (const submitted of ['^cat\ndog$', '^cat\r\ndog$']) {
+      const input = { ...options, validationMode: 'set', patternMode: 'set', pattern: submitted, patternOriginal: JSON.stringify(pattern) };
+      assert.equal(v.safeParse(fieldOptionsFormInput, input).success, true);
+      assert.deepEqual(convertFieldOptions(v.parse(fieldOptionsFormInput, input)), { ...options, validation: { pattern } });
+    }
+  }
+  const edited = { ...options, validationMode: 'set', patternMode: 'set', pattern: '^new\r\nsource$', patternOriginal: JSON.stringify('^old\nsource$') };
+  assert.deepEqual(convertFieldOptions(v.parse(fieldOptionsFormInput, edited)), { ...options, validation: { pattern: '^new\r\nsource$' } });
+  for (const patternOriginal of ['{', 'null', '42', '{}', '[]']) {
+    const result = v.safeParse(fieldOptionsFormInput, { ...options, validationMode: 'set', patternMode: 'set', pattern: 'cat', patternOriginal });
+    assert.equal(result.success, false); assert.deepEqual(issuePath(result), ['pattern']);
+    for (const validationMode of ['keep', 'clear']) assert.equal(v.safeParse(fieldOptionsFormInput,
+      { ...options, validationMode, patternMode: 'set', pattern: '[', patternOriginal }).success, true);
+  }
+  const invalidOriginal = v.safeParse(fieldOptionsFormInput, { ...options, validationMode: 'set', patternMode: 'set', pattern: '[', patternOriginal: '"["' });
+  assert.equal(invalidOriginal.success, false); assert.deepEqual(issuePath(invalidOriginal), ['pattern']);
+});
