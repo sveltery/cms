@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createSchemaCollection } from '$lib/schema.remote';
+  const controlsId = $props.id();
   let { collections = [], unavailable = false, disabled = true }: {
     collections?: { slug: string; label: string; href: string }[];
     unavailable?: boolean;
@@ -34,12 +35,11 @@
     <label>Singular label <input {...createSchemaCollection.fields.labelSingular.as('text')} disabled={!setSingular} required={setSingular} maxlength="200" /></label>
     <label class="toggle"><input type="checkbox" bind:checked={setDescription} /> Set description</label>
     <label>Description <textarea {...createSchemaCollection.fields.description.as('text')} disabled={!setDescription} maxlength="2000"></textarea></label>
-    <label>Supports
-      <select bind:value={supportsMode}>
-        <option value="keep">Use default supports</option>
-        <option value="set">Set supports</option>
-      </select>
-    </label>
+    <label for={`${controlsId}-supports`}>Supports</label>
+    <select id={`${controlsId}-supports`} bind:value={supportsMode}>
+      <option value="keep">Use default supports</option>
+      <option value="set">Set supports</option>
+    </select>
     {#if supportsMode === 'set'}
       <input {...createSchemaCollection.fields.supports.as('hidden', supports)} />
       <label class="toggle"><input type="checkbox" bind:checked={drafts} /> Drafts</label>

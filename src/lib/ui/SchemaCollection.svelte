@@ -1,5 +1,6 @@
 <script lang="ts">
   import { getSchemaCollection, updateSchemaCollection, addSchemaField } from '$lib/schema.remote';
+  const controlsId = $props.id();
   let { definition, collectionsHref = '/schema', disabled = true }: {
     definition: Awaited<ReturnType<typeof getSchemaCollection>>;
     collectionsHref?: string;
@@ -36,12 +37,11 @@
     <label>Singular label <input {...metadataForm.fields.labelSingular.as('text', definition.labelSingular ?? '')} disabled={!setSingular} required={setSingular} maxlength="200" /></label>
     <label class="toggle"><input type="checkbox" bind:checked={setDescription} /> Set description</label>
     <label>Description <textarea {...metadataForm.fields.description.as('text', definition.description ?? '')} disabled={!setDescription} maxlength="2000"></textarea></label>
-    <label>Supports
-      <select bind:value={supportsMode}>
-        <option value="keep">Keep existing supports</option>
-        <option value="set">Set supports</option>
-      </select>
-    </label>
+    <label for={`${controlsId}-supports`}>Supports</label>
+    <select id={`${controlsId}-supports`} bind:value={supportsMode}>
+      <option value="keep">Keep existing supports</option>
+      <option value="set">Set supports</option>
+    </select>
     <p>Current supports: {definition.supports.join(', ') || 'none'}.</p>
     {#if supportsMode === 'set'}
       <input {...metadataForm.fields.supports.as('hidden', supports)} />
@@ -70,7 +70,8 @@
     <input {...fieldForm.fields.expectedSchemaVersion.as('hidden', String(definition.version))} />
     <label>Field slug <input {...fieldForm.fields.slug.as('text')} required maxlength="63" pattern="[a-z][a-z0-9_]*" /></label>
     <label>Field label <input {...fieldForm.fields.label.as('text')} required maxlength="200" /></label>
-    <label>Field type <select {...fieldForm.fields.type.as('select', 'string')}><option value="string">String</option><option value="text">Text</option></select></label>
+    <label for={`${controlsId}-field-type`}>Field type</label>
+    <select id={`${controlsId}-field-type`} {...fieldForm.fields.type.as('select', 'string')}><option value="string">String</option><option value="text">Text</option></select>
     <label class="toggle"><input {...fieldForm.fields.required.as('checkbox')} /> Required</label>
     <label class="toggle"><input {...fieldForm.fields.unique.as('checkbox')} /> Unique</label>
     <label class="toggle"><input type="checkbox" bind:checked={setDefault} /> Set default value</label>
