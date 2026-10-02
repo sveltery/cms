@@ -36,6 +36,39 @@
       "local": "src/lib/server/schema/url.ts",
       "sha256": "6f410994ca25c960baa96256ffda0626289284f486a288bc2747bf479c4a9ff2",
       "adaptation": "relative .js imports mapped to local .ts imports; MIT header added"
+    },
+    {
+      "source": "packages/core/src/api/handlers/validation.ts",
+      "local": "src/lib/server/schema/validate-content.ts",
+      "sourceBlob": "a9e40d310098e2329e166614fa10fcea1b53c84d",
+      "sha256": "ee610b437c37d2e73bb948878cdec1687cb1973a28ab5d0724939fc06b520600",
+      "adaptation": "local imports; CmsDatabase extraction and registry constructor; metadata null to omitted source type; erase-only equivalent IdentifierError syntax"
+    },
+    {
+      "source": "packages/core/src/utils/chunks.ts",
+      "local": "src/lib/server/schema/chunks.ts",
+      "sourceBlob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e",
+      "sha256": "d5c454b134d9727d0af1fa5befb786a781e65cdac964a668af6a8fab74b81877",
+      "adaptation": "local imports; CmsDatabase extraction and registry constructor; metadata null to omitted source type; erase-only equivalent IdentifierError syntax"
+    },
+    {
+      "source": "packages/core/src/utils/db-errors.ts",
+      "local": "src/lib/server/schema/db-errors.ts",
+      "sourceBlob": "d0a051ad9d48003eeeeb38dd9d5cb7cedf4140e5",
+      "sha256": "2637fdc8b0b8d5f6c1d0816a788e5f6efb29748bd0096816f179ca185e3585e0",
+      "adaptation": "local imports; CmsDatabase extraction and registry constructor; metadata null to omitted source type; erase-only equivalent IdentifierError syntax"
+    },
+    {
+      "source": "packages/core/src/database/validate.ts",
+      "local": "src/lib/server/schema/validate.ts",
+      "sourceBlob": "73d3b303764b473d4238e0cb17f1a904998671f8",
+      "sha256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4",
+      "adaptation": "local imports; CmsDatabase extraction and registry constructor; metadata null to omitted source type; erase-only equivalent IdentifierError syntax"
+    },
+    {
+      "source": "packages/core/src/database/repositories/content.ts:307/334",
+      "local": "src/lib/server/database/field-value.ts",
+      "adaptation": "pure serializeValue/deserializeValue functions copied unchanged except export keyword; all other repository functionality excluded"
     }
   ]
 }

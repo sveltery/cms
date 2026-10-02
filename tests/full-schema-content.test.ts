@@ -46,3 +46,15 @@ test('actual content service reports every enum and numeric validation issue',as
     });
   } finally {await database.close();}
 });
+test('pinned constructor omission bug is preserved at the actual content service',async()=>{
+  const {database,service}=await fixture();
+  try {
+    await new SchemaRegistry(database).createField('posts',{slug:'constructor',label:'Constructor',type:'string'});
+    await assert.rejects(()=>service.createDraft({type:'posts',data:{}}),cause=>{
+      const error=cause as {details?:{issues:{path:string;code:string;message:string}[]}};
+      assert.deepEqual(error.details?.issues,[{path:'constructor',code:'invalid_type',message:'Invalid input: expected string, received function'}]);return true;
+    });
+    assert.equal((await service.createDraft({type:'posts',data:{constructor:null}})).data.constructor,null);
+    assert.equal((await service.createDraft({type:'posts',data:{constructor:'own key'}})).data.constructor,'own key');
+  } finally {await database.close();}
+});
