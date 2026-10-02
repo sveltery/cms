@@ -124,6 +124,10 @@ export default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: ad
       await fixture.restart();
       await page.goto(`${origin}${base}/content/post`);
       await expect(drafts).toHaveCount(50);
+      await context.addCookies([{ name: 'cms-session', value: fixture.tokens.subscriber, url: origin }]);
+      await page.getByRole('button', { name: 'Next drafts', exact: true }).click();
+      await expect(page.getByRole('status')).toHaveText('Content is unavailable until authentication and storage are configured.');
+      await expect(drafts).toHaveCount(0);
       for (const token of [fixture.tokens.subscriber, 'invalid-session']) {
         await context.addCookies([{ name: 'cms-session', value: token, url: origin }]);
         await page.reload();
