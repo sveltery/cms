@@ -107,7 +107,7 @@ export function convertFieldOptions(input: v.InferOutput<typeof fieldOptionsForm
   });
 }
 export const createInput = v.strictObject({
-  slug: identifier, ...metadata, label: collectionInput.entries.label
+  slug: identifier, ...metadata, label: collectionInput.entries.label, settingsMode: optionalEditMode
 });
 export const updateInput = v.pipe(v.strictObject({
   // Kit form.for(collection) injects this instance key on native and enhanced submissions.
@@ -143,7 +143,10 @@ v.forward(v.check(input => input.defaultValue === undefined ||
 
 /** Form validation/conversion precedes the service; the service revalidates domain inputs. */
 export function convertCollectionCreate(input: v.InferOutput<typeof createInput>) {
-  const { listColumns, quickCreate, ...value } = input;
+  const { settingsMode, ...settings } = input;
+  const metadata = {...settings};
+  if (settingsMode === 'keep') for (const key of ['icon','group','routable','hidden','hasSeo','urlPattern','editLocking','commentsEnabled','listColumns','quickCreate'] as const) delete metadata[key];
+  const { listColumns, quickCreate, ...value } = metadata;
   return parse(collectionInput, { ...value, ...(listColumns === undefined && quickCreate === undefined ? {} : {admin: { ...(listColumns === undefined ? {} : {listColumns}), ...(quickCreate === undefined ? {} : {quickCreate}) }}) });
 }
 export function convertCollectionUpdate(input: v.InferOutput<typeof updateInput>) {

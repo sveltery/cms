@@ -65,6 +65,7 @@
     {/if}
     <details>
       <summary>Collection settings</summary>
+      <label>Collection settings update <select {...createSchemaCollection.fields.settingsMode.as('select','keep')}><option value="keep">Use default settings</option><option value="set">Set collection settings</option></select></label>
       <label>Icon <input {...createSchemaCollection.fields.icon.as('text')} /></label>
       <label>Navigation group <input {...createSchemaCollection.fields.group.as('text')} /></label>
       <label>URL pattern <input {...createSchemaCollection.fields.urlPattern.as('text')} /></label>

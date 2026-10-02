@@ -1,0 +1,87 @@
+import {test,expect} from '@playwright/test';
+import {schemaAdminRemotes} from '../helpers/schema-admin-remotes.ts';
+
+// Original native Kit UI requirements. Uses isolated persisted trusted sessions;
+// this fixture does not establish passkey/setup or deployed authentication parity.
+test.describe('complete schema administration',()=>{
+  let fixture:Awaited<ReturnType<typeof schemaAdminRemotes>>;
+  test.beforeAll(async()=>{fixture=await schemaAdminRemotes('Node');});
+  test.afterAll(async()=>{await fixture?.close();});
+
+  test('enhanced integer settings persist, refresh and delete through native controls',async({page,context})=>{
+    const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
+    await context.addCookies([{name:'cms-session',value:fixture.tokens.admin,url:fixture.origin}]);
+    await page.goto(fixture.origin+'/schema');
+    const create=page.locator('form').filter({has:page.locator('legend',{hasText:'Create collection'})});
+    await create.getByLabel('Collection slug',{exact:true}).fill('schema_complete');
+    await create.getByLabel('Collection label',{exact:true}).fill('Schema Complete');
+    await create.getByRole('button',{name:'Create collection',exact:true}).click();
+    await page.getByRole('list',{name:'Schema collections'}).getByRole('link',{name:'Schema Complete',exact:true}).click();
+    const add=page.locator('form').filter({has:page.locator('legend',{hasText:'Add field'})});
+    await expect(add.getByLabel('Field type',{exact:true}).locator('option')).toHaveCount(17);
+    await add.getByLabel('Field slug',{exact:true}).fill('priority');
+    await add.getByLabel('Field label',{exact:true}).fill('Priority');
+    await add.getByLabel('Field type',{exact:true}).selectOption('integer');
+    await add.getByLabel('Set typed default',{exact:true}).check();
+    await add.getByLabel('Typed default value (JSON)',{exact:true}).fill('2');
+    await add.getByLabel('Set validation rules',{exact:true}).check();
+    await add.getByLabel('Validation rules (JSON)',{exact:true}).fill('{"min":0,"max":10}');
+    await add.getByLabel('Set field options',{exact:true}).check();
+    await add.getByLabel('Field options (JSON)',{exact:true}).fill('{"helpText":"Rank"}');
+    await add.getByLabel('Translatable',{exact:true}).selectOption('false');
+    await add.getByRole('button',{name:'Add field',exact:true}).click();
+    await expect(page.getByRole('list',{name:'Collection fields'})).toContainText('Priority');
+    await page.getByText('Field settings for Priority',{exact:true}).click();
+    const settings=page.locator('form').filter({has:page.locator('legend',{hasText:'Settings for Priority'})});
+    await expect(settings.getByLabel('Default value (JSON)',{exact:true})).toHaveValue('2');
+    await settings.getByLabel('Default update',{exact:true}).selectOption('set');
+    await settings.getByLabel('Default value (JSON)',{exact:true}).fill('3');
+    await settings.getByLabel('Index update',{exact:true}).selectOption('set');
+    await settings.getByLabel('Indexed',{exact:true}).selectOption('true');
+    await settings.getByRole('button',{name:'Save field settings',exact:true}).click();
+    await expect(settings.getByRole('status')).toHaveText('Field settings saved.');
+    let c=await fixture.query('getSchemaCollection','schema_complete');
+    expect(c.fields[0].defaultValue).toBe(3);expect(c.fields[0].indexed).toBe(true);expect(c.fields[0].translatable).toBe(false);
+    await fixture.restart();await page.reload();
+    c=await fixture.query('getSchemaCollection','schema_complete');expect(c.fields[0].defaultValue).toBe(3);
+    await page.getByText('Field settings for Priority',{exact:true}).click();
+    const remove=page.locator('form').filter({has:page.locator('legend',{hasText:'Delete Priority'})});
+    await remove.getByLabel('Confirm deleting Priority',{exact:true}).check();
+    await remove.getByRole('button',{name:'Delete field Priority',exact:true}).click();
+    await expect(page.getByRole('list',{name:'Collection fields'})).toContainText('No fields yet.');
+    const drop=page.locator('form').filter({has:page.locator('legend',{hasText:'Delete collection'})});
+    await drop.getByLabel('Confirm deleting this collection',{exact:true}).check();
+    await drop.getByRole('button',{name:'Delete collection',exact:true}).click();
+    await expect(page).toHaveURL(fixture.origin+'/schema');
+    await expect(page.getByRole('list',{name:'Schema collections'})).not.toContainText('Schema Complete');
+    expect(errors).toEqual([]);
+  });
+
+  test('collection settings and deletion work without JavaScript',async({browser})=>{
+    const context=await browser.newContext({javaScriptEnabled:false});
+    try {
+      await context.addCookies([{name:'cms-session',value:fixture.tokens.admin,url:fixture.origin}]);
+      const page=await context.newPage();await page.goto(fixture.origin+'/schema');
+      const create=page.locator('form').filter({has:page.locator('legend',{hasText:'Create collection'})});
+      await create.getByLabel('Collection slug',{exact:true}).fill('schema_native');
+      await create.getByLabel('Collection label',{exact:true}).fill('Schema Native');
+      await create.getByText('Collection settings',{exact:true}).click();
+      await create.getByLabel('Collection settings update',{exact:true}).selectOption('set');
+      await create.getByLabel('Navigation group',{exact:true}).fill('Editorial');
+      await create.getByLabel('Hidden from navigation',{exact:true}).selectOption('true');
+      await create.getByRole('button',{name:'Create collection',exact:true}).click();
+      await page.getByRole('list',{name:'Schema collections'}).getByRole('link',{name:'Schema Native',exact:true}).click();
+      const metadata=page.locator('form').filter({has:page.locator('legend',{hasText:'Collection metadata'})});
+      await expect(metadata.getByLabel('Navigation group',{exact:true})).toHaveValue('Editorial');
+      await metadata.getByLabel('Collection settings update',{exact:true}).selectOption('set');
+      await metadata.getByLabel('Comment moderation',{exact:true}).selectOption('first_time');
+      await metadata.getByLabel('Close comments after days',{exact:true}).fill('10');
+      await metadata.getByRole('button',{name:'Save metadata',exact:true}).click();
+      const c=await fixture.query('getSchemaCollection','schema_native');expect(c.commentsModeration).toBe('first_time');expect(c.commentsClosedAfterDays).toBe(10);
+      const drop=page.locator('form').filter({has:page.locator('legend',{hasText:'Delete collection'})});
+      await drop.getByLabel('Confirm deleting this collection',{exact:true}).check();
+      await drop.getByRole('button',{name:'Delete collection',exact:true}).click();
+      await expect(page).toHaveURL(fixture.origin+'/schema');
+    }finally{await context.close();}
+  });
+});
