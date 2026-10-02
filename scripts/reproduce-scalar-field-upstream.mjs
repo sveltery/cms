@@ -132,6 +132,49 @@ test(target+': complete pinned upstream: 24 scalar DDL/metadata/omission/NULL/du
   assert.deepEqual(await scalarSnapshot(h.database.db,new SchemaRegistry(h.database.db)),before);
  }finally{await h.close();await rm(directory,{recursive:true,force:true});}
 });
+test(target+': complete pinned upstream: 36 scalar required/default/bounds configurations, 432 full+partial validator requests', async()=>{
+ const h=await schemaAdminStorage(target);
+ try {
+  await migrateCms(h.database);const db=h.database.db;const r=new SchemaRegistry(db);
+  let configurations=0;let requests=0;
+  for(const type of ['string','text']) for(const required of [false,true])
+   for(const defaultValue of [undefined,"O'Brien",'']) for(const bounds of ['absent','zero','cleared']) {
+    const slug='required_scalar_'+configurations++;
+    await r.createCollection({slug,label:'Required scalar'});
+    await r.createField(slug,{slug:'value',label:'Value',type,required,
+     ...(defaultValue===undefined?{}:{defaultValue}),
+     ...(bounds==='zero'?{validation:{minLength:0}}:{}),
+     ...(bounds==='cleared'?{validation:{minLength:3,maxLength:20}}:{})});
+    await r.createField(slug,{slug:'other',label:'Other',type:'string'});
+    if(bounds==='cleared') {
+     const field=await r.updateField(slug,'value',{validation:null});
+     assert.equal(field.validation,undefined);
+    }
+    const probes=[
+     {name:'empty',data:{value:''},expected:!required},
+     {name:'null',data:{value:null},expected:!required},
+     {name:'whitespace',data:{value:String.fromCharCode(32,9,10,32)},expected:true},
+     {name:'nonempty',data:{value:'unchanged'},expected:true},
+     {name:'omitted',data:{},expected:!required||defaultValue!==undefined},
+     {name:'other-field-only',data:{other:'changed'},expected:!required||defaultValue!==undefined}
+    ];
+    for(const partial of [false,true]) for(const probe of probes) {
+     const data=structuredClone(probe.data);const before=structuredClone(data);
+     const result=await validateContentData(db,slug,data,{partial});requests++;
+     const expected=partial&&!Object.hasOwn(data,'value')?true:probe.expected;
+     const context=JSON.stringify({target,type,required,defaultValue,bounds,partial,probe:probe.name});
+     assert.equal(result.ok,expected,context);
+     assert.deepEqual(data,before,'validation must not coerce, trim or materialize defaults: '+context);
+     if(expected) assert.deepEqual(result,{ok:true},'validation output must not materialize defaults: '+context);
+     else {
+      assert.equal(result.error.code,'VALIDATION_ERROR',context);
+      assert.ok(result.error.details.issues.some(issue=>issue.path==='value'&&issue.code==='required'),context);
+     }
+    }
+   }
+  assert.equal(configurations,36);assert.equal(requests,432);
+ }finally{await h.close();}
+});
 `);
   const output = join(directory, 'bundle.mjs');
   await build({ configFile: false, logLevel: 'error', plugins: [{
@@ -152,6 +195,11 @@ test(target+': complete pinned upstream: 24 scalar DDL/metadata/omission/NULL/du
   });
   console.log(JSON.stringify({ pin, sources, fixtureBoundaries: [...fixtureModules.keys()],
     scalarCasesPerTarget:24, targets:['Node','D1'], zod:'4.5.4',
+    scalarValidationConfigurationsPerTarget:36, scalarValidationRequestsPerTarget:432,
+    scalarValidationDimensions:{types:['string','text'],required:[false,true],
+      defaults:['absent',"O'Brien",''],bounds:['absent','minLength:0','minLength:3/maxLength:20 cleared with validation:null'],
+      inputs:['empty','null','whitespace','nonempty','omitted','other-field-only'],partial:[false,true]},
+    validationOutput:'handler returns only {ok:true} on success; input remains unchanged, including omitted defaults and whitespace',
     assertions: 'tests/helpers/scalar-field-contract.ts',
     assertionsSha256: createHash('sha256').update(await readFile(join(root, 'tests/helpers/scalar-field-contract.ts'))).digest('hex') }));
 } finally { await rm(directory, { recursive: true, force: true }); }

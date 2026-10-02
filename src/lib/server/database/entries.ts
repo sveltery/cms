@@ -21,7 +21,7 @@ function validateData(fields: Field[], data: Record<string, string | null>, part
   const known = new Map(fields.map(field => [field.slug, field]));
   for (const [key, value] of Object.entries(data)) {
     const field = known.get(key);
-    if (!field || (value === null && field.required) ||
+    if (!field || (field.required && (value === null || value === '')) ||
       (typeof value === 'string' && (value.length < (field.validation?.minLength ?? 0) || value.length > fieldMax(field)))) {
       throw new CmsError('VALIDATION_ERROR');
     }
