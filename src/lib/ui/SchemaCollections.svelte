@@ -27,7 +27,7 @@
   </ul>
 {/if}
 <form {...createSchemaCollection}>
-  <fieldset {disabled}>
+  <fieldset disabled={disabled || createSchemaCollection.pending > 0}>
     <legend>Create collection</legend>
     <label>Collection slug <input {...createSchemaCollection.fields.slug.as('text')} required maxlength="63" pattern="[a-z][a-z0-9_]*" /></label>
     <label>Collection label <input {...createSchemaCollection.fields.label.as('text')} required maxlength="200" /></label>

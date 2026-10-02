@@ -8,7 +8,7 @@
 </script>
 
 <form {...optionsForm}>
-  <fieldset {disabled}>
+  <fieldset disabled={disabled || optionsForm.pending > 0}>
     <legend>Edit {field.slug} options</legend>
     <input {...optionsForm.fields.collection.as('hidden', collection)} />
     <input {...optionsForm.fields.field.as('hidden', field.slug)} />
