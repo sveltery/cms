@@ -32,7 +32,7 @@
   <fieldset disabled={disabled || reorderSchemaCollections.pending>0}>
     <legend>Collection order</legend>
     <input {...reorderSchemaCollections.fields.expected.as('hidden',JSON.stringify(collections.map(({slug,version,updatedAt})=>({slug,version,updatedAt}))))} />
-    <label>Ordered collection slugs <textarea {...reorderSchemaCollections.fields.slugs.as('text',JSON.stringify(collections.map(collection=>collection.slug)))}></textarea></label>
+    <label>Ordered collection slugs <textarea {...reorderSchemaCollections.fields.slugs.as('text',JSON.stringify(collections.map(collection=>collection.slug)))} value={reorderSchemaCollections.fields.slugs.value()??JSON.stringify(collections.map(collection=>collection.slug))}></textarea></label>
     <button type="submit">Save collection order</button>
   </fieldset>
   {#if reorderSchemaCollections.fields.allIssues()?.length}<ul>{#each reorderSchemaCollections.fields.allIssues()??[] as issue}<li>{issue.message}</li>{/each}</ul>{/if}
@@ -73,7 +73,7 @@
       <label>Hidden from navigation <select {...createSchemaCollection.fields.hidden.as('select','false')}><option value="true">Yes</option><option value="false">No</option></select></label>
       <label>Edit locking <select {...createSchemaCollection.fields.editLocking.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
       <label>Enable comments <select {...createSchemaCollection.fields.commentsEnabled.as('select','false')}><option value="true">Yes</option><option value="false">No</option></select></label>
-      <label>List columns <textarea {...createSchemaCollection.fields.listColumns.as('text','[]')}></textarea></label>
+      <label>List columns <textarea {...createSchemaCollection.fields.listColumns.as('text','[]')} value={createSchemaCollection.fields.listColumns.value()??'[]'}></textarea></label>
       <label>Quick create <select {...createSchemaCollection.fields.quickCreate.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
     </details>
     <button type="submit" disabled={createSchemaCollection.pending > 0}>Create collection</button>

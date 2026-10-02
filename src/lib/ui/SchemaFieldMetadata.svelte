@@ -35,11 +35,11 @@
       <label>Translatable <select {...edit.fields.translatable.as('select',String(field.translatable))}><option value="true">Yes</option><option value="false">No</option></select></label>
       <p>Making an existing field non-translatable requires a content migration.</p>
       <label>Default update <select {...edit.fields.defaultValueMode.as('select','keep')}><option value="keep">Keep default value</option><option value="set">Replace default value</option></select></label>
-      <label>Default value (JSON) <textarea {...edit.fields.defaultValueJson.as('text',JSON.stringify(field.defaultValue??null))}></textarea></label>
+      <label>Default value (JSON) <textarea {...edit.fields.defaultValueJson.as('text',JSON.stringify(field.defaultValue??null))} value={edit.fields.defaultValueJson.value()??JSON.stringify(field.defaultValue??null)}></textarea></label>
       <label>Validation update <select {...edit.fields.validationMode.as('select','keep')}><option value="keep">Keep validation rules</option><option value="set">Replace validation rules</option></select></label>
-      <label>Validation rules (JSON) <textarea {...edit.fields.validationJson.as('text',JSON.stringify(field.validation??null,null,2))}></textarea></label>
+      <label>Validation rules (JSON) <textarea {...edit.fields.validationJson.as('text',JSON.stringify(field.validation??null,null,2))} value={edit.fields.validationJson.value()??JSON.stringify(field.validation??null,null,2)}></textarea></label>
       <label>Options update <select {...edit.fields.optionsMode.as('select','keep')}><option value="keep">Keep field options</option><option value="set">Replace field options</option></select></label>
-      <label>Field options (JSON) <textarea {...edit.fields.optionsJson.as('text',JSON.stringify(field.options??{},null,2))}></textarea></label>
+      <label>Field options (JSON) <textarea {...edit.fields.optionsJson.as('text',JSON.stringify(field.options??{},null,2))} value={edit.fields.optionsJson.value()??JSON.stringify(field.options??{},null,2)}></textarea></label>
       <p>Rules and options use the selected field's schema. Unselected settings keep their stored values.</p>
       <button type="submit">Save field settings</button>
     </fieldset>

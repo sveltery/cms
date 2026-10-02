@@ -79,7 +79,7 @@
     <label>Title field <select {...metadataForm.fields.titleField.as('select',definition.titleField??'')}><option value="">Default title</option>{#each definition.fields.filter(field=>['string','text','slug'].includes(field.type)) as field}<option value={field.slug}>{field.label}</option>{/each}</select></label>
     <label>Date field <select {...metadataForm.fields.dateField.as('select',definition.dateField??'')}><option value="">Default date</option>{#each definition.fields.filter(field=>field.type==='datetime') as field}<option value={field.slug}>{field.label}</option>{/each}</select></label>
     <label>List display update <select {...metadataForm.fields.adminMode.as('select','keep')}><option value="keep">Keep list display</option><option value="set">Set list display</option></select></label>
-    <label>List columns <textarea {...metadataForm.fields.listColumns.as('text',JSON.stringify(definition.admin?.listColumns??[]))}></textarea></label>
+    <label>List columns <textarea {...metadataForm.fields.listColumns.as('text',JSON.stringify(definition.admin?.listColumns??[]))} value={metadataForm.fields.listColumns.value()??JSON.stringify(definition.admin?.listColumns??[])}></textarea></label>
     <label>Quick create <select {...metadataForm.fields.quickCreate.as('select',String(definition.admin?.quickCreate??true))}><option value="true">Yes</option><option value="false">No</option></select></label>
     <button type="submit" disabled={metadataForm.pending > 0}>Save metadata</button>
   </fieldset>
@@ -106,7 +106,7 @@
     <input {...orderForm.fields.collection.as('hidden',definition.slug)} />
     <input {...orderForm.fields.version.as('hidden',String(definition.version))} />
     <input {...orderForm.fields.updatedAt.as('hidden',definition.updatedAt)} />
-    <label>Ordered field slugs <textarea {...orderForm.fields.fields.as('text',JSON.stringify(definition.fields.map(field=>field.slug)))}></textarea></label>
+    <label>Ordered field slugs <textarea {...orderForm.fields.fields.as('text',JSON.stringify(definition.fields.map(field=>field.slug)))} value={orderForm.fields.fields.value()??JSON.stringify(definition.fields.map(field=>field.slug))}></textarea></label>
     <button type="submit">Save field order</button>
   </fieldset>
   {#if orderForm.fields.allIssues()?.length}<ul aria-label="Field order errors">{#each orderForm.fields.allIssues()??[] as issue}<li>{issue.message}</li>{/each}</ul>{/if}
@@ -164,7 +164,6 @@
     <label class="toggle"><input type="checkbox" required /> Confirm deleting this collection</label>
     <button type="submit">Delete collection</button>
   </fieldset>
-  {#if deleteForm.result}<p role="status">Collection deleted. <a href={collectionsHref}>Return to schema collections</a></p>{/if}
 </form>
 {#if disabled}<p>Writes will be available after authentication and persistence are configured.</p>{/if}
 

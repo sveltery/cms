@@ -322,11 +322,22 @@ export class SchemaRegistry {
     const db = this.database.db;
     const token = ulid();
     const guard=this.collectionGuard(target,expected);
-    await this.batch([...guard.before,
+    const statements = [...guard.before,
       ...(options?.force ? [] : [sql`INSERT INTO _cms_guards(token,pass) SELECT ${token}, CASE WHEN NOT EXISTS (SELECT 1 FROM ${sql.ref(tableName(slug))} WHERE deleted_at IS NULL) THEN 1 ELSE 0 END`.compile(db)]),
       sql`DROP TABLE ${sql.ref(tableName(slug))}`.compile(db),db.deleteFrom('_cms_fields').where('collection_id','=',target.id).compile(),
       db.deleteFrom('_cms_collections').where('id','=',target.id).compile(), sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db),...guard.after
-    ],'COLLECTION_NOT_EMPTY');
+    ];
+    try { await this.batch(statements,options?.force ? 'CONFLICT' : 'COLLECTION_NOT_EMPTY'); }
+    catch (cause) {
+      // Both content and metadata guards share the existing guard table. An
+      // atomic CAS race must retain the native CONFLICT contract, independently
+      // of the collection's content. Foreign-key/DDL errors remain untouched.
+      if (cause instanceof CmsError && cause.code === 'COLLECTION_NOT_EMPTY' && expected) {
+        const current = await this.getCollection(slug);
+        if (!current || current.version !== expected.version || current.updatedAt !== expected.updatedAt) throw new CmsError('CONFLICT');
+      }
+      throw cause;
+    }
   }
   private collectionGuard(collection: Collection, expected?: RevisionPrecondition) {
     if(expected === undefined) return {before:[],after:[]} as {before:CompiledQuery[];after:CompiledQuery[]};
