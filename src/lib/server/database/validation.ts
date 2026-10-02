@@ -1,4 +1,6 @@
 import * as v from 'valibot';
+import { fieldType, fieldMetadataEntries } from './field-validation.ts';
+import { compileUrlPattern } from '../schema/url-pattern.ts';
 import { CmsError } from './contract.ts';
 
 // Slug rules and reserved names follow EmDash 1.1.0 schema/types.ts.
@@ -8,29 +10,33 @@ export const reservedFields = ['id', 'slug', 'status', 'author_id', 'primary_byl
 export const identifier = v.pipe(v.string(), v.minLength(1), v.maxLength(63), v.regex(/^[a-z][a-z0-9_]*$/));
 const label = v.pipe(v.string(), v.trim(), v.minLength(1), v.maxLength(200));
 const shortText = v.pipe(v.string(), v.maxLength(2000));
+const collectionSupports = v.array(v.picklist(['drafts','revisions','preview','scheduling','search','seo']));
+const admin = v.strictObject({ listColumns: v.optional(v.pipe(v.array(identifier),v.maxLength(4))), quickCreate: v.optional(v.boolean()) });
+const metadata = {
+  icon: v.optional(v.pipe(v.string(),v.trim(),v.maxLength(64))), admin: v.optional(admin),
+  supports: v.optional(collectionSupports),
+  urlPattern: v.optional(v.nullable(v.pipe(v.string(),v.check(value => { try { if(value) compileUrlPattern(value); return true; } catch { return false; } })))),
+  routable: v.optional(v.boolean()), hasSeo: v.optional(v.boolean()), hidden: v.optional(v.boolean()),
+  sortOrder: v.optional(v.nullable(v.pipe(v.number(),v.safeInteger()))),
+  group: v.optional(v.nullable(v.pipe(v.string(),v.trim(),v.maxLength(100)))),
+  editLocking: v.optional(v.boolean()), commentsEnabled: v.optional(v.boolean())
+};
 export const collectionInput = v.strictObject({
-  slug: identifier, label, labelSingular: v.optional(label), description: v.optional(shortText),
-  supports: v.optional(v.pipe(v.array(v.picklist(['drafts', 'revisions'])), v.maxLength(2)))
+  slug: identifier, label, labelSingular: v.optional(label), description: v.optional(shortText), ...metadata,
+  source: v.optional(v.pipe(v.string(),v.regex(/^(?:manual|discovered|seed|(?:template|import):.+)$/)))
 });
-// Optional keys have no defaults: omission/undefined leaves persisted metadata intact.
+// Optional keys have no defaults: omission/undefined preserves metadata.
 export const collectionMetadataInput = v.pipe(v.custom<Record<string, unknown>>(value =>
   value !== null && typeof value === 'object' && !Array.isArray(value) &&
   [Object.prototype, null].includes(Object.getPrototypeOf(value))), v.strictObject({
-  label: v.optional(label), labelSingular: v.optional(label), description: v.optional(shortText),
-  supports: v.optional(v.pipe(v.array(v.picklist(['drafts', 'revisions'])), v.maxLength(2)))
+  label: v.optional(label), labelSingular: v.optional(label), description: v.optional(shortText), ...metadata,
+  commentsModeration: v.optional(v.picklist(['all','first_time','none'])),
+  commentsClosedAfterDays: v.optional(v.pipe(v.number(),v.safeInteger(),v.minValue(0))),
+  commentsAutoApproveUsers: v.optional(v.boolean()), titleField: v.optional(v.nullable(identifier)), dateField: v.optional(v.nullable(identifier))
 }));
-const length = v.pipe(v.number(), v.integer(), v.minValue(0), v.maxValue(100_000));
-// EmDash 1.1.0 api/schemas/schema.ts fieldValidation: exact JavaScript source,
-// no slash/flag interpretation. Empty source is valid metadata.
-// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
-export const fieldPattern = v.pipe(v.string(), v.check(value => {
-  try { new RegExp(value); return true; } catch { return false; }
-}, 'Invalid validation pattern'));
 export const fieldInput = v.strictObject({
-  slug: identifier, label, type: v.picklist(['string', 'text']),
-  required: v.optional(v.boolean(), false), unique: v.optional(v.boolean(), false),
-  defaultValue: v.optional(v.pipe(v.string(), v.maxLength(100_000), v.check(value => !value.includes('\0')))),
-  validation: v.optional(v.strictObject({ minLength: v.optional(length), maxLength: v.optional(length), pattern: v.optional(fieldPattern) }))
+  slug: identifier, label, type: fieldType, ...fieldMetadataEntries,
+  required: v.optional(v.boolean(), false), unique: v.optional(v.boolean(), false)
 });
 // EmDash's update-field label is nonempty, with no trimming or creation-label bound.
 export const fieldLabelInput = v.strictObject({ label: v.pipe(v.string(), v.minLength(1)) });
@@ -47,12 +53,15 @@ export const updateCollectionInput = v.strictObject({
   collection: identifier, input: collectionMetadataInput, expected: revisionInput
 });
 // Keep valid schema keys such as constructor/prototype: record() silently drops them.
-export const schemaData = v.custom<Record<string, string | null>>(value => {
+export const schemaData = v.custom<Record<string, unknown>>(value => {
   if (!value || typeof value !== 'object' || Array.isArray(value) ||
     ![Object.prototype, null].includes(Object.getPrototypeOf(value))) return false;
   const entries = Object.entries(value);
-  return entries.length <= 32 && entries.every(([key, item]) => v.safeParse(identifier, key).success &&
-    (item === null || (typeof item === 'string' && item.length <= 100_000))) && JSON.stringify(value).length <= 200_000;
+  try {
+    const serialized = JSON.stringify(value);
+    return entries.length <= 32 && entries.every(([key]) => v.safeParse(identifier, key).success)
+      && serialized.length <= 200_000 && entries.every(([,item]) => item !== undefined && typeof item !== 'function' && typeof item !== 'symbol');
+  } catch { return false; }
 });
 const data = schemaData;
 export const createDraftInput = v.strictObject({
