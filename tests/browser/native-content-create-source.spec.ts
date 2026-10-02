@@ -10,30 +10,30 @@ test.describe('Create Content', () => {
   test.beforeEach(async ({ admin }) => { await admin.devBypassAuth(); });
 
 	test("creates new post with title", async ({ admin }) => {
-		await admin.goToNewContent("posts");
-		await admin.waitForLoading();
+			await admin.goToNewContent("posts");
+			await admin.waitForLoading();
 
-		// Fill in title
-		await admin.fillField("title", "E2E Test Post");
+			// Fill in title
+			await admin.fillField("title", "E2E Test Post");
 
-		// Save
-		await admin.clickSave();
+			// Save
+			await admin.clickSave();
 
-		// Should redirect to edit page with new ID (ULID)
-		await expect(admin.page).toHaveURL(CONTENT_EDIT_URL_PATTERN, {
-			timeout: 10000,
+			// Should redirect to edit page with new ID (ULID)
+			await expect(admin.page).toHaveURL(CONTENT_EDIT_URL_PATTERN, {
+				timeout: 10000,
+			});
 		});
-	});
 
 	test("auto-generates slug from title", async ({ admin }) => {
-		await admin.goToNewContent("posts");
-		await admin.waitForLoading();
+			await admin.goToNewContent("posts");
+			await admin.waitForLoading();
 
-		// Fill in title — slug should auto-generate
-		await admin.fillField("title", "My Amazing Blog Post");
+			// Fill in title — slug should auto-generate
+			await admin.fillField("title", "My Amazing Blog Post");
 
-		// Check that slug field was auto-populated
-		const slugInput = admin.page.getByLabel("Slug");
-		await expect(slugInput).toHaveValue("my-amazing-blog-post");
-	});
+			// Check that slug field was auto-populated
+			const slugInput = admin.page.getByLabel("Slug");
+			await expect(slugInput).toHaveValue("my-amazing-blog-post");
+		});
 });
