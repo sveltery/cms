@@ -1,11 +1,12 @@
 <script lang="ts">
   import type { EditorField } from '$lib/server/content/manifest';
-  let { slug, field, name, value = $bindable(''), disabled = false }: {
+  let { slug, field, name, value = $bindable(''), disabled = false, onchange }: {
     slug: string;
     field: Omit<EditorField, 'kind'> & { kind: 'string' | 'richText' };
     name?: string;
     value?: string | null;
     disabled?: boolean;
+    onchange?: (value: string) => void;
   } = $props();
 </script>
 
@@ -15,10 +16,10 @@
 </label>
 {#if field.kind === 'richText'}
   <textarea id={`field-${slug}`} {name} bind:value {disabled} maxlength={field.validation?.maxLength}
-    dir="auto" placeholder="Enter markdown content..."></textarea>
+    oninput={event => onchange?.(event.currentTarget.value)} dir="auto" placeholder="Enter markdown content..."></textarea>
 {:else}
   <input id={`field-${slug}`} type="text" {name} bind:value {disabled} required={field.required}
-    maxlength={field.validation?.maxLength} dir="auto" />
+    oninput={event => onchange?.(event.currentTarget.value)} maxlength={field.validation?.maxLength} dir="auto" />
 {/if}
 
 <style>
