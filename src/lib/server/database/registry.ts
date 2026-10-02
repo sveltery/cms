@@ -2,7 +2,7 @@ import { sql, type CompiledQuery } from 'kysely';
 import { sqliteErrorMessage } from './errors.ts';
 import { ulid } from 'ulidx';
 import { CmsError, type CmsDatabase, type Collection, type CollectionRow, type Field, type FieldRow, type RevisionPrecondition } from './contract.ts';
-import { collectionInput, collectionMetadataInput, fieldInput, identifier, parse, reservedCollections, reservedFields, revisionInput, tableName } from './validation.ts';
+import { collectionInput, collectionMetadataInput, fieldInput, fieldLabelInput, identifier, parse, reservedCollections, reservedFields, revisionInput, tableName } from './validation.ts';
 import { trashIndexStatement } from './trash-index.ts';
 
 export const MAX_COLLECTIONS = 100;
@@ -83,6 +83,29 @@ export class SchemaRegistry {
   async getCollectionWithFields(slug: unknown): Promise<(Collection & { fields: Field[] }) | null> {
     const definition = await this.getCollection(slug);
     return definition ? { ...definition, fields: await this.listFields(definition.id) } : null;
+  }
+
+  // Label-only subset of EmDash 1.1.0 registry.ts updateField, pinned at 913cb1bb.
+  // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
+  async updateFieldLabel(collectionSlug: unknown, fieldSlug: unknown, input: unknown): Promise<Field> {
+    const value = parse(fieldLabelInput, input);
+    const target = await this.getField(collectionSlug, fieldSlug);
+    if (!target) throw new CmsError('NOT_FOUND');
+    const db = this.database.db;
+    // Preserve the resolved identity, and return this write's row even if a later writer wins.
+    // No schema/metadata precondition or collection touch: labels are last-writer-wins.
+    const results = await this.database.atomicBatch([
+      db.updateTable('_cms_fields').set({ label: value.label })
+        .where('id', '=', target.id).where('collection_id', '=', target.collectionId)
+        .where('slug', '=', target.slug)
+        .where('type', 'in', ['string', 'text'])
+        .where('collection_id', 'in', db.selectFrom('_cms_collections').select('id')
+          .where('id', '=', target.collectionId).where('slug', '=', parse(identifier, collectionSlug)))
+        .returningAll().compile()
+    ]);
+    const row = results[0].rows[0] as FieldRow | undefined;
+    if (!row) throw new CmsError('NOT_FOUND');
+    return field(row);
   }
 
   async createCollection(input: unknown): Promise<Collection> {

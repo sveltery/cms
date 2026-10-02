@@ -2,7 +2,7 @@ import { query, form } from '$app/server';
 import { getCollection, getEditorManifest, listCollections } from '$lib/content.remote';
 import {
   collectionSlug, createInput, updateInput, addFieldInput,
-  convertCollectionCreate, convertCollectionUpdate, convertFieldAdd
+  convertCollectionCreate, convertCollectionUpdate, convertFieldAdd, fieldLabelFormInput, convertFieldLabel
 } from '$lib/server/schema/schema';
 import { requestSchema, schemaResponse } from '$lib/server/schema/request';
 
@@ -23,6 +23,11 @@ export const addSchemaField = form(addFieldInput, input => schemaResponse(async 
   const field = await requestSchema('mutation').addField(convertFieldAdd(input));
   refreshSchema(input.collection);
   return { collection: input.collection, slug: field.slug };
+}));
+export const updateSchemaFieldLabel = form(fieldLabelFormInput, input => schemaResponse(async () => {
+  const field = await requestSchema('mutation').updateFieldLabel(convertFieldLabel(input));
+  refreshSchema(input.collection);
+  return { collection: input.collection, field: field.slug };
 }));
 
 function refreshSchema(collection: string) {

@@ -123,7 +123,7 @@ test.describe('configured isolated schema forms', () => {
     expect(await metadata.evaluate(form => new FormData(form as HTMLFormElement).get('supports'))).toBe('[]');
     await page.getByRole('button', { name: 'Save metadata' }).click();
     await expect(page.getByText('Current supports: none.', { exact: true })).toBeVisible();
-    await page.getByLabel('Field slug', { exact: true }).fill('headline');
+    await field.getByLabel('Field slug', { exact: true }).fill('headline');
     await page.getByLabel('Field label', { exact: true }).fill('Headline');
     await page.getByLabel('Field type', { exact: true }).selectOption('string');
     await page.getByLabel('Required', { exact: true }).check();
@@ -135,7 +135,7 @@ test.describe('configured isolated schema forms', () => {
     await expect(metadata.locator('input[name="version"]')).toHaveValue('2');
 
     // A numeric length beyond the server limit passes native input constraints and returns inline validation without writes.
-    await page.getByLabel('Field slug', { exact: true }).fill('details');
+    await field.getByLabel('Field slug', { exact: true }).fill('details');
     await page.getByLabel('Field label', { exact: true }).fill('Details');
     await page.getByLabel('Field type', { exact: true }).selectOption('text');
     await page.getByLabel('Required', { exact: true }).uncheck();

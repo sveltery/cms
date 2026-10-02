@@ -1,5 +1,6 @@
 <script lang="ts">
   import { getSchemaCollection, updateSchemaCollection, addSchemaField } from '$lib/schema.remote';
+  import SchemaFieldLabel from './SchemaFieldLabel.svelte';
   const controlsId = $props.id();
   let { definition, collectionsHref = '/schema', disabled = true }: {
     definition: Awaited<ReturnType<typeof getSchemaCollection>>;
@@ -60,7 +61,9 @@
 <h2>Fields</h2>
 <ul aria-label="Collection fields">
   {#each definition.fields as field (field.id)}
-    <li>{field.label} <code>{field.slug}</code> · {field.type}{field.required ? ' · required' : ''}{field.unique ? ' · unique' : ''}</li>
+    <li>{field.label} <code>{field.slug}</code> · {field.type}{field.required ? ' · required' : ''}{field.unique ? ' · unique' : ''}
+      <SchemaFieldLabel collection={definition.slug} {field} {disabled} />
+    </li>
   {:else}<li>No fields yet.</li>{/each}
 </ul>
 <form {...fieldForm}>
