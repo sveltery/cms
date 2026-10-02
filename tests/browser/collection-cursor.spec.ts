@@ -81,12 +81,18 @@ export default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: ad
       await context.addCookies([{ name: 'cms-session', value: fixture.tokens.author, url: origin }]);
       await page.goto(`${origin}${base}/content/post`);
       const drafts = page.getByRole('list', { name: 'Content drafts' }).getByRole('link');
+      const nextPage = async () => {
+        const firstHref = await drafts.first().getAttribute('href');
+        await page.getByRole('button', { name: 'Next drafts', exact: true }).click();
+        // Equal-sized pages need an identity change before reading their links.
+        await expect(drafts.first()).not.toHaveAttribute('href', firstHref!);
+      };
       const seen: string[] = [];
       for (const count of [50, 50, 3]) {
         await expect(drafts).toHaveCount(count);
         seen.push(...await drafts.evaluateAll(links => links.map(link => (link as HTMLAnchorElement).href)));
         await expect(page.getByRole('button', { name: 'Save draft' })).toBeDisabled();
-        if (count === 50) await page.getByRole('button', { name: 'Next drafts', exact: true }).click();
+        if (count === 50) await nextPage();
       }
       expect(new Set(seen).size).toBe(103);
       expect(seen.map(href => new URL(href).pathname.split('/').at(-1)).sort()).toEqual(fixture.items.map(item => item.id).sort());
@@ -95,7 +101,7 @@ export default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: ad
       await expect(page.getByRole('status')).toHaveText('No more drafts.');
       await page.getByRole('button', { name: 'First page', exact: true }).click();
       await expect(drafts).toHaveCount(50);
-      await page.getByRole('button', { name: 'Next drafts', exact: true }).click();
+      await nextPage();
       await page.evaluate(() => { (window as any).__cursorNavigation = true; });
       // DOM-only links reuse the actual Kit route; they supply no product hook or principal.
       const navigate = async (collection: string) => {
