@@ -96,7 +96,10 @@ function dependsOnContent(statement:string|null): boolean {
   const fromScopes=new Set<number>();
   for (let index=0;index<tokens.length;index++) {
     const token=tokens[index]; const scope=depths[index];
-    if (token==='('&&fromScopes.has(scope)) fromScopes.add(scope+1);
+    if (token==='('&&fromScopes.has(scope)) {
+      fromScopes.add(scope+1);
+      if (isContentTarget(index+1)) return true;
+    }
     if (token===')') fromScopes.delete(scope);
     if (/^(?:SELECT|WHERE|GROUP|ORDER|HAVING|LIMIT|UNION|EXCEPT|INTERSECT|RETURNING|SET|VALUES|END)$/i.test(token)||token===';') fromScopes.delete(scope);
     if (/^FROM$/i.test(token)) fromScopes.add(scope);
