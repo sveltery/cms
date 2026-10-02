@@ -95,7 +95,7 @@ test('required legacy empty/null previews remain readable and authoring stays di
   const response = await context.request.post(new URL(`_app/remote/${fixture.ids.get('updateContent')}`, fixture.baseURL).href, {
     headers: { origin: new URL(fixture.baseURL).origin }, form: { ...key, _rev: fixture.inputs.legacy._rev, 'data.string': '' }
   });
-  expect(await response.json()).toEqual({ type: 'error', status: 503, error: { message: 'mutations-disabled', code: 'MUTATIONS_DISABLED' } });
+  expect(await response.json()).toEqual({ type: 'error', status: 503, error: { message: 'Content mutations are disabled', code: 'MUTATIONS_DISABLED' } });
   const read = await context.request.get(queryURL('getContent', key));
   expect(parse((await read.json()).data)._).toMatchObject({ _rev: fixture.inputs.legacy._rev, data: { string: '', text: null, detail: 'Old detail' } });
   await page.reload();

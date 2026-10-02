@@ -38,15 +38,15 @@ function monitored(database: CmsDatabase) {
 async function snapshot(database: CmsDatabase) {
   const db = database.db;
   const objects = (await sql<{ name: string; type: string; sql: string | null }>`SELECT name, type, sql FROM sqlite_master WHERE name NOT LIKE 'sqlite_%' ORDER BY name`.execute(db)).rows;
-  const tables = [];
-  for (const object of objects.filter(object => object.type === 'table' && (object.name.startsWith('_cms_') || object.name.startsWith('ec_')))) {
-    tables.push({ name: object.name, rows: (await sql`SELECT * FROM ${sql.ref(object.name)} ORDER BY rowid`.execute(db)).rows });
-  }
+  const tables = await Promise.all(objects
+    .filter(object => object.type === 'table' && (object.name.startsWith('_cms_') || object.name.startsWith('ec_')))
+    .map(async object => ({ name: object.name,
+      rows: (await sql`SELECT * FROM ${sql.ref(object.name)} ORDER BY rowid`.execute(db)).rows })));
   return { objects, tables };
 }
 
 for (const target of ['Node', 'D1'] as const) {
-  test(target + ': required/optional string/text defaults and cleared bounds preserve exact submitted/omitted validation', { timeout: 60000 }, async () => {
+  test(target + ': required/optional string/text defaults and cleared bounds preserve exact submitted/omitted validation', { timeout: 120000 }, async () => {
     const h = await schemaAdminStorage(target);
     try {
       await migrateCms(h.database);

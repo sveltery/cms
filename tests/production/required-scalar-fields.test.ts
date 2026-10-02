@@ -23,6 +23,14 @@ test('built direct scalar descriptors reject native empty-string full/partial wr
   };
   try {
     const before = await snapshot();
+    const disabled = await fetch(new URL(`_app/remote/${fixture.ids.get('updateContent')}`, fixture.baseURL), {
+      method: 'POST', headers: { cookie: 'scalar-fields-session=author', origin: new URL(fixture.baseURL).origin },
+      body: new URLSearchParams({ collection: 'legacy', id: fixture.inputs.legacy.id, _rev: fixture.inputs.legacy._rev, 'data.string': '' }),
+      signal: AbortSignal.timeout(10_000)
+    });
+    assert.deepEqual(await disabled.json(), { type: 'error', status: 503,
+      error: { message: 'Content mutations are disabled', code: 'MUTATIONS_DISABLED' } });
+    assert.deepEqual(await snapshot(), before);
     for (const update of [false, true]) for (const empty of ['string', 'text']) {
       const pageURL = new URL(`?empty=${empty}${update ? '&update' : ''}`, fixture.baseURL);
       const page = await fetch(pageURL, { headers, signal: AbortSignal.timeout(10_000) });
