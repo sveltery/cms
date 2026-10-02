@@ -6,6 +6,7 @@ import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
 import { collectionTrashFixture } from '../helpers/collection-trash';
+import { parse } from 'devalue';
 
 const checkout = fileURLToPath(new URL('../../', import.meta.url));
 for (const base of ['', '/cms']) {
@@ -42,7 +43,7 @@ export default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: ad
         expect(await new Promise(resolve => child.once('exit', resolve)), diagnostics).toBe(0);
         output = join(directory, '.svelte-kit/output');
       }
-      fixture = await collectionTrashFixture(output);
+      fixture = await collectionTrashFixture(output, { mutationsEnabled: true, restoreEntries: true });
       http = createServer(async (request, response) => {
         try {
           const url = new URL(request.url!, origin);
@@ -95,8 +96,9 @@ export default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: ad
         await expect(rows.locator('time')).toHaveText(fixture.expected.map(item => item.deletedAt.slice(0, 10)));
       };
       await checkRows();
-      await expect(table.locator('img, a, button, form')).toHaveCount(0);
-      await expect(page.getByRole('button')).toHaveCount(0);
+      await expect(table.locator('img, a')).toHaveCount(0);
+      await expect(table.locator('form')).toHaveCount(50);
+      await expect(table.locator('button:disabled')).toHaveCount(50); // Other owners, author has edit-own only.
       await expect(page.locator('body')).not.toContainText('PRIVATE_BODY_MARKER');
       await expect(page.locator('body')).not.toContainText('Active trash ID');
       await expect(page.getByText('Showing up to 50 most recently deleted drafts across all locales.', { exact: true })).toBeVisible();
@@ -142,6 +144,99 @@ export default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: ad
         await expect(page.getByRole('status')).toHaveText('Trash is unavailable.');
       }
       expect(mutations).toEqual([]);
+      expect(errors).toEqual([]);
+    });
+    test('per-row restore binds locale/token, isolates pending/issues/errors and refreshes native navigation', async ({ page, context }) => {
+      const errors: string[] = [];
+      page.on('pageerror', error => errors.push(error.message));
+      await context.addCookies([{ name: 'cms-session', value: fixture.tokens.author, url: origin }]);
+      await page.goto(`${origin}${base}/trash/restore`);
+      const rows = page.getByRole('table', { name: 'Trashed drafts' }).locator('tbody tr');
+      const en = rows.filter({ has: page.getByRole('button', { name: 'Restore Restore pair (en)', exact: true }) });
+      const fr = rows.filter({ has: page.getByRole('button', { name: 'Restore Restore pair (fr)', exact: true }) });
+      const other = rows.filter({ hasText: 'Other owner' });
+      const unowned = rows.filter({ hasText: 'Null owner' });
+      await expect(en.getByRole('button')).toBeEnabled();
+      await expect(fr.getByRole('button')).toBeEnabled();
+      await expect(other.getByRole('button')).toBeDisabled();
+      await expect(unowned.getByRole('button')).toBeDisabled();
+      const fields = async (row: typeof en) => row.locator('form').evaluate(form => Object.fromEntries(new FormData(form as HTMLFormElement)));
+      const enInput = await fields(en);
+      const frInput = await fields(fr);
+      expect(enInput.id).not.toBe(frInput.id);
+      expect(enInput._rev).not.toBe(frInput._rev);
+      expect(enInput.locale).toBe('en'); expect(frInput.locale).toBe('fr');
+      expect(await en.locator('form').getAttribute('action')).not.toBe(await fr.locator('form').getAttribute('action'));
+      await page.evaluate(() => { (window as any).__restoreNavigation = true; });
+      await en.locator('input[name="_rev"]').evaluate((input: HTMLInputElement) => { input.value = ''; });
+      await en.getByRole('button').click();
+      await expect(en.getByRole('alert')).toContainText(/Invalid/);
+      await expect(fr.getByRole('alert')).toHaveCount(0);
+      let release!: () => void;
+      const held = new Promise<void>(resolve => { release = resolve; });
+      const submissions: Record<string, FormDataEntryValue>[] = [];
+      await page.route('**/_app/remote/**/restoreContent', async route => {
+        const request = route.request();
+        expect(request.headers()['content-type']).toBe('application/x-sveltekit-formdata');
+        const body = request.postDataBuffer()!;
+        // Pinned Kit binary form header: version byte, uint32 header size, uint16 file-offset size.
+        expect(body[0]).toBe(1);
+        expect(body.readUInt16LE(5)).toBe(0); // No file fields in this interaction.
+        submissions.push(parse(body.subarray(7, 7 + body.readUInt32LE(1)).toString())[0]);
+        await held;
+        await route.continue();
+      });
+      const completed = page.waitForResponse(response => response.url().includes('/restoreContent') && response.request().method() === 'POST');
+      await fr.getByRole('button').click();
+      await expect(fr.getByRole('button')).toHaveText('Restoring…');
+      await expect(fr.getByRole('button')).toBeDisabled();
+      await expect(en.getByRole('button')).toBeEnabled();
+      await expect(en.getByRole('alert')).toBeVisible();
+      // A second submit event is guarded even when it bypasses the disabled button.
+      await fr.locator('form').evaluate(form => (form as HTMLFormElement).requestSubmit());
+      await expect.poll(() => submissions).toEqual([frInput]);
+      release();
+      const response = await completed;
+      expect(response.status()).toBe(200);
+      const receipt = parse((await response.json()).data)._.result;
+      expect(receipt).toMatchObject({ id: frInput.id, type: 'restore', locale: 'fr' });
+      expect(receipt._rev).not.toBe(frInput._rev);
+      await expect(fr).toHaveCount(0);
+      await expect(rows).toHaveCount(3);
+      await expect(en.getByRole('alert')).toBeVisible();
+      await page.unroute('**/_app/remote/**/restoreContent');
+      await fixture.staleRestore(String(enInput.id));
+      await en.locator('input[name="_rev"]').evaluate((input: HTMLInputElement, value: string) => { input.value = value; }, String(enInput._rev));
+      const stale = page.waitForResponse(response => response.url().includes('/restoreContent') && response.request().method() === 'POST');
+      await en.getByRole('button').click();
+      expect((await stale).status()).toBe(200); // Kit error envelope carries the domain status.
+      await expect(en.getByRole('alert')).toHaveText('Failed to restore. Reload trash and try again.');
+      await expect(other.getByRole('alert')).toHaveCount(0);
+      await page.reload();
+      await expect(en.getByRole('alert')).toHaveCount(0);
+      expect((await fields(en))._rev).not.toBe(enInput._rev);
+      const restored = page.waitForResponse(response => response.url().includes('/restoreContent') && response.request().method() === 'POST');
+      await en.getByRole('button').click();
+      const result = parse((await (await restored).json()).data)._.result;
+      expect(result).toMatchObject({ id: enInput.id, locale: 'en' });
+      await expect(en).toHaveCount(0);
+      await expect(rows).toHaveCount(2);
+      await page.getByRole('link', { name: 'Collection drafts', exact: true }).click();
+      await expect(page.getByRole('list', { name: 'Content drafts' }).getByRole('link', { name: 'Restore pair', exact: true })).toBeVisible();
+      await page.goBack();
+      await expect(rows).toHaveCount(2);
+      await page.goForward();
+      await expect(page.getByRole('list', { name: 'Content drafts' }).getByRole('link', { name: 'Restore pair', exact: true })).toBeVisible();
+      await fixture.restart();
+      await page.goto(`${origin}${base}/trash/restore`);
+      await expect(rows).toHaveCount(2);
+      await context.addCookies([{ name: 'cms-session', value: fixture.tokens.contributor, url: origin }]);
+      await page.reload();
+      await expect(rows.locator('button:disabled')).toHaveCount(2);
+      await expect(page.getByText('Restoring is unavailable for this session or configuration.')).toBeVisible();
+      await context.addCookies([{ name: 'cms-session', value: fixture.tokens.editor, url: origin }]);
+      await page.reload();
+      await expect(rows.locator('button:enabled')).toHaveCount(2);
       expect(errors).toEqual([]);
     });
   });

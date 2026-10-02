@@ -1,0 +1,40 @@
+# Bounded native trash restore interaction
+
+Base: main `06ecd8889d625e24c564e59a8ed5a5e63daa8e8f` (read-only trash PR #23). Immutable behavior authority: EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. Implementation is authorized by the continuous parity-first request; specific acceptance of the adaptations below is not recorded. No database, schema, permission, session or transport API changes.
+
+## Verified pinned interaction
+
+Inspected committed blobs before implementation:
+
+| Pinned source | Blob | Observable behavior |
+| --- | --- | --- |
+| [ContentList.tsx, TrashedListItem](https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/src/components/ContentList.tsx) | `4d682692f45fa418a45cf14163ea0caecc4ec275` | Accessible name `Restore ${title}`; immediate ID callback, no confirmation or per-row pending disable. Permanent deletion has a separate dialog. |
+| [router.tsx, restoreMutation](https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/src/router.tsx) | `4b4793ea63352f8a80ccb695a809586cef06db93` | Shared TanStack mutation invalidates collection/trash queries on success and displays a failure toast on error. |
+| [api/content.ts:370](https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/src/lib/api/content.ts#L370) | `b18e6eba3a7485400f07002175d0c143b175b422` | REST POST to collection/ID endpoint, no locale or revision body. |
+| [content-actions.spec.ts:629](https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/e2e/tests/content-actions.spec.ts#L629) | `5bd09285048508d8c66d0e53761f32ea97f27a3c` | API trash setup; visible React Trash tab and trashed row; restore REST POST status 200; switch to All tab; restored row visible. |
+
+`CMS_EMDASH_REPOSITORY=/tmp/emdash node scripts/reproduce-draft-trash-upstream.mjs` passed the existing complete-source probe: nine tests each on Node and local D1. Its boundaries and omissions remain as recorded in [draft trash](draft-trash.md). This rerun grants no new assertion credit and does not execute React or the upstream browser declaration. MIT attribution remains in [the notice](../notices/emdash-MIT.txt); no upstream implementation/test is copied into this slice.
+
+The landed [transport](draft-trash-transport.md) supplies all-locale summaries, row `_rev`, strict native fields, mandatory context tokens, trusted mutation gate, edit-own/any and persisted-owner/CAS checks, bounded receipts and active/trash query refresh. The interaction uses that contract unchanged.
+
+## Native interaction and adaptations
+
+[The route](../src/routes/trash/[collection]/+page.svelte) still owns reactive queries and Kit href resolution. Its [server load](../src/routes/trash/[collection]/+page.server.ts) projects display capability only from trusted locals: valid actor, database, explicit mutation gate, and edit-own/any. [CollectionTrash](../src/lib/ui/CollectionTrash.svelte) disables own-only controls unless the existing summary's author matches the trusted actor. The remote independently rechecks all configuration, permission and persisted ownership; client claims confer nothing.
+
+[RestoreDraft](../src/lib/ui/RestoreDraft.svelte) uses `restoreContent.for(JSON.stringify([collection, id, locale]))`, and the table uses the same tuple as its component key. Direct supported form/enhance and `fields.*.as('hidden', explicitValue)` spreads bind collection, ID, exact locale and `_rev`. No hand-built field props, token decoding or transport shim enters the UI. Kit owns independent pending/issues/result state. A per-row in-flight guard and disabled button suppress repeat events while other rows remain usable. Query refresh removes the successful row; the result is visible only while a row remains mounted, and disables repeat submission in that case. Safe inline failure says “Failed to restore. Reload trash and try again.” Native field issues render inside that form. Reload fetches current tokens. Unenhanced forms use Kit's ordinary native validation and domain-error responses.
+
+| Record / pinned source | Upstream versus local behavior | Rationale/evidence/decision |
+| --- | --- | --- |
+| NTR-01: ContentList/router/API | Immediate React callback and REST become an immediate native Kit per-row form without confirmation. Shared mutation/toast becomes independent pending/issues/result and sanitized inline failure. Accessible names add locale for equal titles. | Kit 2.70.3/Svelte 5.57.1 form instances; framework/presentation adaptation. Specific acceptance not recorded. |
+| NTR-02: API/restore handler | ID-only client becomes explicit collection/ID/locale/mandatory `_rev`. Local display honors trusted gate and edit-any or matching edit-own; pinned TrashedListItem itself has no capability/pending guard. | Preserve inherited DTT/DT validation/ownership/CAS without a new permission API. Two equal-title locale entries, hostile swaps, ownership/null-owner, contributor and default-disabled tests. Inherited differences grant no new parity credit. |
+| NTR-03: router/e2e | TanStack invalidation/React tabs become existing native query refresh and route links. English restored entry returns to default active listing; French restoration is checked through explicit French active query. | Active listing retains its English default; locale switching remains incomplete. Route/link assertions adapt the user-visible flow but do not cover React-tab/REST assertions. Zero new complete declarations or upstream assertion credit. |
+
+The read-only view bounds stay truthful: up to 50 newest deleted drafts across all locales, capped body-free titles, UTC dates, unavailable/empty distinction, no count/pagination/exhaustion claim. Permanent deletion, published/revision lifecycle, localization/locale switching, broader editing, production auth/storage composition and deployed runtimes remain incomplete. No live-content mutation, credentials, production settings, release or deployment.
+
+## Verification boundary
+
+[Isolated persisted fixture](../tests/helpers/collection-trash.ts): opt-in restore collection with English/French equal-title drafts, other-owner and null-owner drafts, and synthetic author/editor/contributor/subscriber sessions. Trusted mutation enablement exists only in the test server. Original 55-row bounds and the unconfigured production hook remain intact.
+
+[HTTP tests](../tests/production/collection-trash-restore.test.ts) inspect real rendered forms and submit FormData to registered native actions. They cover four distinct instances, exact fields, sibling issue isolation, invalid-context and denied no-restore cases, refreshed removal, exact-locale active queries, fresh tokens, double-submit 409, restart and edit-any controls. [View tests](../tests/production/collection-trash.test.ts) retain existing read evidence and verify disabled controls when mutations are unconfigured.
+
+[Browser tests](../tests/browser/collection-trash.spec.ts) run with sandboxing on default/Node builds, root and `/cms`. They inspect DOM FormData and decode the pinned Kit binary header to verify actual enhanced requests; hold one request for pending/issues/repeat-event isolation; check stale failure, reload/retry, row refresh, active listing, back/forward/restart and denied/unconfigured controls. These are supplemental interaction assertions, not full upstream e2e parity. The local pinned browser download returns CDN HTTP 403 `Domain forbidden`; system Chromium cannot start its configured sandbox. Hosted execution must be verified on the complete reviewed head. Full bootstrap, exact-head CI and independent/configured automatic review remain merge gates.

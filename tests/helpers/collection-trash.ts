@@ -13,7 +13,8 @@ import { hashSessionToken } from '../../src/lib/server/auth/session.ts';
 import { Role } from '../../src/lib/server/auth/roles.ts';
 
 // Test-only persisted fixture; no app hook, production writes or live credentials.
-export async function collectionTrashFixture(output = fileURLToPath(new URL('../../.svelte-kit/output/', import.meta.url))) {
+export async function collectionTrashFixture(output = fileURLToPath(new URL('../../.svelte-kit/output/', import.meta.url)),
+  configuration: { mutationsEnabled?: boolean; restoreEntries?: boolean } = {}) {
   const directory = await mkdtemp(join(tmpdir(), 'cms-trash-data-'));
   const path = join(directory, 'content.sqlite');
   let database = openSqlite(path);
@@ -44,7 +45,21 @@ export async function collectionTrashFixture(output = fileURLToPath(new URL('../
   const untitled = await repository.create({ type: 'untitled', data: { body: 'UNTITLED_BODY_MARKER' } }, 'user_other');
   await sql`UPDATE ec_untitled SET deleted_at = '2026-09-30T00:00:00.000Z' WHERE id = ${untitled.id}`.execute(database.db);
   const tokens: Record<string, string> = {};
-  for (const [name, role] of Object.entries({ author: Role.AUTHOR, subscriber: Role.SUBSCRIBER })) {
+  const restoreItems = [];
+  if (configuration.restoreEntries) {
+    await registry.createCollection({ slug: 'restore', label: 'Restore fixtures' });
+    await registry.createField('restore', { slug: 'title', label: 'Title', type: 'text' });
+    for (const [title, locale, author] of [
+      ['Restore pair', 'en', 'user_author'], ['Restore pair', 'fr', 'user_author'],
+      ['Other owner', 'en', 'user_other'], ['Null owner', 'en', null]
+    ] as const) {
+      const row = await repository.create({ type: 'restore', locale, data: { title } }, author ?? 'user_other');
+      await sql`UPDATE ec_restore SET deleted_at = '2026-09-30T00:00:00.000Z', author_id = ${author}
+        WHERE id = ${row.id}`.execute(database.db);
+      restoreItems.push(await repository.findTrashedById('restore', row.id, locale));
+    }
+  }
+  for (const [name, role] of Object.entries({ author: Role.AUTHOR, editor: Role.EDITOR, contributor: Role.CONTRIBUTOR, subscriber: Role.SUBSCRIBER })) {
     tokens[name] = encodeBase64urlNoPadding(crypto.getRandomValues(new Uint8Array(32)));
     await database.db.insertInto('_cms_auth_users').values({ id: `user_${name}`, role, disabled: 0 }).execute();
     await database.db.insertInto('_cms_auth_sessions').values({ hash: (await hashSessionToken(tokens[name]))!, user_id: `user_${name}`, expires_at: Date.now() + 600_000 }).execute();
@@ -53,14 +68,18 @@ export async function collectionTrashFixture(output = fileURLToPath(new URL('../
   const { manifest } = await built('manifest.js');
   const { Server } = await built('index.js');
   const { options } = await built('internal.js');
-  const handle = createCmsHandle(() => ({ database }));
+  const handle = createCmsHandle(() => ({ database, mutationsEnabled: configuration.mutationsEnabled }));
   let server = new Server(manifest);
   await server.init({ env: {} });
   const originalHandle = options.hooks.handle;
   options.hooks.handle = handle;
   return {
-    output, items, expected, untitled, tokens, manifest,
+    output, items, expected, untitled, tokens, manifest, restoreItems,
     respond(request: Request) { return server.respond(request, { getClientAddress: () => '127.0.0.1' }); },
+    async staleRestore(id: string) {
+      if (!configuration.restoreEntries) throw new Error('Restore fixtures are not enabled');
+      await sql`UPDATE ec_restore SET version = version + 1 WHERE id = ${id}`.execute(database.db);
+    },
     async restart() {
       await database.close();
       database = openSqlite(path);

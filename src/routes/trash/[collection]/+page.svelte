@@ -4,6 +4,7 @@
   import { getEditorManifest, listTrashedContent } from '$lib/content.remote';
   import WorkspaceShell from '$lib/ui/WorkspaceShell.svelte';
   import CollectionTrash from '$lib/ui/CollectionTrash.svelte';
+  let { data } = $props();
 
   const collection = $derived(page.params.collection ?? '');
   async function loadTrash(collection: string) {
@@ -20,5 +21,6 @@
 
 <svelte:head><title>{content?.label ?? 'Collection'} trash · Sveltery CMS</title></svelte:head>
 <WorkspaceShell homeHref={resolve('/')}>
-  <CollectionTrash {content} collectionHref={resolve('/content/[collection]', { collection })} />
+  <CollectionTrash {content} {collection} restoreCapability={data.restoreCapability}
+    collectionHref={resolve('/content/[collection]', { collection })} />
 </WorkspaceShell>
