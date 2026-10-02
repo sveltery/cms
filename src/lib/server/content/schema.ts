@@ -19,23 +19,23 @@ export const trashedContentList = v.strictObject({
   limit: v.optional(v.pipe(v.number(), v.safeInteger(), v.minValue(1)))
 });
 export const collectionSlug = identifier;
-const encodedData = v.pipe(v.string(), v.maxLength(200_000), v.check(value => {
-  try { return v.safeParse(schemaData, JSON.parse(value)).success; } catch { return false; }
-}), v.transform(value => parse(schemaData, JSON.parse(value))));
 // Enhanced forms carry real JSON values. Whole-record JSON also supports field
 // names reserved by Kit's nested form parser. Both use the domain JSON bounds.
 // Kit's static form-field typing cannot express dynamic JSON/nulls and treats
 // booleans inside arrays as required checkboxes. Only this input adapter uses
 // `any`; the actual shared JSON guard and domain output stay bounded/unknown.
-const nativeData = v.pipe(v.custom<Record<string, any>>(value => v.safeParse(schemaData, value).success),
+const data = v.optional(v.pipe(v.custom<string | Record<string, any>>(value => {
+  if (typeof value !== 'string') return v.safeParse(schemaData, value).success;
+  if (value.length > 200_000) return false;
+  try { return v.safeParse(schemaData, JSON.parse(value)).success; } catch { return false; }
+}),
   v.rawCheck(({ dataset, addIssue }) => {
-    if (!dataset.typed) return;
+    if (!dataset.typed || typeof dataset.value === 'string') return;
     for (const [key, value] of Object.entries(dataset.value)) if (typeof value === 'string' && value.length > 100_000) {
       addIssue({ message: 'Content text is too long', path: [{ type: 'object', origin: 'value', input: dataset.value, key, value }] });
     }
   }),
-  v.transform(value => value as Record<string, unknown>));
-const data = v.optional(v.union([encodedData, nativeData]), {});
+  v.transform(value => typeof value === 'string' ? parse(schemaData, JSON.parse(value)) : value as Record<string, unknown>)), {});
 const jsonValue = v.pipe(v.string(), v.maxLength(200_000), v.check(value => {
   try { JSON.parse(value); return true; } catch { return false; }
 }, 'Enter valid JSON'), v.transform(value => JSON.parse(value) as unknown));
