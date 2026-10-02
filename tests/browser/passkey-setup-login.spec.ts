@@ -9,7 +9,9 @@ import { identityAdapter } from '../../src/lib/server/auth/identity-store';
 import { verifyAuthenticationResponse } from '../../src/lib/server/auth/vendor/passkey/authenticate';
 import type { AuthenticationResponse } from '../../src/lib/server/auth/vendor/passkey/types';
 
-test('real passkey setup then login persists role/session across process restart and logout', async ({ page }) => {
+// Isolated repetitions investigate the previously observed Node-only 401;
+// each uses a new browser context, authenticator, database and server process.
+for (const repetition of [1, 2, 3]) test(`real passkey setup then login persists role/session across process restart and logout (${repetition})`, async ({ page }) => {
   test.setTimeout(90_000);
   const h = await passkeyRuntime('Node');
   const removeAuth = await addVirtualWebAuthnAuthenticator(page);
