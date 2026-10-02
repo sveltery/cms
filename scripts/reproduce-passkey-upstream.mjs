@@ -20,7 +20,8 @@ const tests = [
   ['challenge-context', '7e4b1e707f18fdf0b6913c9d71c9eed53f374818']
 ];
 const files = [...manifest.files.map(file => [file.source, file.blob]),
-  ...tests.map(([name, blob]) => [`packages/auth/src/passkey/${name}.test.ts`, blob])];
+  ...tests.map(([name, blob]) => [`packages/auth/src/passkey/${name}.test.ts`, blob]),
+  ['packages/core/src/api/schemas/setup.ts', '2438f258ef385c4c62a66e5490a3c4f4e495a14c']];
 const hashes = [];
 for (const [path, expected] of files) {
   const immutable = git('show', `${pin}:${path}`), actual = await readFile(join(source, path));
@@ -29,13 +30,22 @@ for (const [path, expected] of files) {
   hashes.push({ path, blob: expected, sha256: createHash('sha256').update(actual).digest('hex') });
 }
 const aliases = ['@oslojs/crypto/ecdsa', '@oslojs/crypto/rsa', '@oslojs/crypto/sha2',
-  '@oslojs/encoding', '@oslojs/webauthn', 'vitest'].map(find => ({ find,
+  '@oslojs/encoding', '@oslojs/webauthn', 'vitest', 'zod'].map(find => ({ find,
     replacement: fileURLToPath(import.meta.resolve(find)) }));
 const temporary = await mkdtemp(join(tmpdir(), 'cms-passkey-source-reference-'));
 try {
   const config = join(temporary, 'reference.config.mjs');
+  const probe = join(temporary, 'setup-email.reference.test.ts');
+  // Original supplemental probes import the actual immutable source schema.
+  // They add no copied source declaration or assertion credit.
+  await writeFile(probe, `import { test, expect } from 'vitest';
+import { setupAdminBody } from ${JSON.stringify(join(source, 'packages/core/src/api/schemas/setup.ts'))};
+test.each([["o'connor@example.com", true], ['o..connor@example.com', false], ['ordinary@example.com', true]])(
+  'original pinned setup email probe: %s', (email, accepted) => {
+    expect(setupAdminBody.safeParse({ email }).success).toBe(accepted);
+  });\n`);
   await writeFile(config, 'export default ' + JSON.stringify({ resolve: { alias: aliases }, test: {
-    include: tests.map(([name]) => join(source, `packages/auth/src/passkey/${name}.test.ts`)), environment: 'node'
+    include: [...tests.map(([name]) => join(source, `packages/auth/src/passkey/${name}.test.ts`)), probe], environment: 'node'
   } }));
   const vitest = fileURLToPath(new URL('../vitest.mjs', import.meta.resolve('vitest')));
   execFileSync(process.execPath, [vitest, 'run', '--config', config], {
@@ -43,6 +53,7 @@ try {
   });
   console.log(JSON.stringify({ pin, files: hashes, sourceFiles: 3,
     sourceDeclarations: 28, sourceAssertionExpressions: 52, parameterizedCases: 34,
+    originalSetupEmailReferenceProbes: 3, copiedSourceCreditForEmailReferenceProbes: 0,
     fixtureBoundaries: ['Pinned local Oslo/Vitest dependencies resolved by aliases', 'Original tests and algorithm files unchanged'],
     omissions: ['Astro routes/middleware/session drivers', 'Product adapter/runtime/UI execution', 'Full setup seed wizard'],
     localProductParityCreditFromReferenceExecution: 0 }));
