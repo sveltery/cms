@@ -5,8 +5,8 @@ import type { EditorField } from '../src/lib/server/content/manifest.ts';
 
 test('preview fields preserve descriptor metadata and own entry order while mapping scalar kinds', () => {
   const validation = { minLength: 2, maxLength: 80 };
-  const string = { id: 'headline-id', kind: 'string', label: 'Headline', required: true, validation } satisfies EditorField;
-  const text = { id: 'detail-id', kind: 'richText', label: 'Detail', required: false } satisfies EditorField;
+  const string = { id: 'headline-id', type: 'string', translatable: true, kind: 'string', label: 'Headline', required: true, validation } satisfies EditorField;
+  const text = { id: 'detail-id', type: 'text', translatable: true, kind: 'richText', label: 'Detail', required: false } satisfies EditorField;
   const fields = Object.assign(Object.create({ inherited: string }), {
     detail: text, headline: string, constructor: string, prototype: text
   });

@@ -30,7 +30,7 @@ test('real synthetic sessions load editor descriptors without broadening schema 
   try {
     for (const session of ['author', 'contributor', 'editor', 'admin']) {
       const manifest = await h.query('getEditorManifest', undefined, session);
-      assert.deepEqual(manifest.collections.notes.fields.headline, { id: (await h.registry.getField('notes', 'headline'))!.id, kind: 'string', label: 'Headline', required: true, validation: { minLength: 1, maxLength: 100 } });
+      assert.deepEqual(manifest.collections.notes.fields.headline, { id: (await h.registry.getField('notes', 'headline'))!.id, type: 'string', translatable: true, kind: 'string', label: 'Headline', required: true, validation: { minLength: 1, maxLength: 100 } });
       assert.doesNotMatch(JSON.stringify(manifest), /columnType|collectionId|createdAt|updatedAt|defaultValue|source|version|user_author/);
       for (const path of ['/', '/content/notes']) {
         const response = await h.request(path, session); assert.equal(response.status, 200);
