@@ -396,7 +396,7 @@ Authority remains EmDash 1.1.0 immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a5
 
 Final-head bootstrap, secured default/Node browsers, independent review, approval, merge and post-merge verification remain separate evidence. No content autosave policy, transport schema, authorization, production composition or storage behavior changes are included.
 
-## Proposed canonical lifecycle storage startup
+## Proposed canonical lifecycle storage startup — [PR #42](https://github.com/sveltery/cms/pull/42)
 
 Immutable authority remains EmDash **1.1.0** `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`; dependency foundation [PR #39](https://github.com/sveltery/cms/pull/39) is merged as `745a3469cf92de3f8b8f672d59cf58f36a053caf`. The [feature record](../../docs/lifecycle-startup.md) and [source/fixture ledger](../../docs/lifecycle-startup-ports.json) separate four selected source expressions, twelve partial-source storage cases and original migration requirements. Complete source declaration credit is zero. Real service publication/history requires separate joint canonical-startup evidence from the lifecycle service owner.
 

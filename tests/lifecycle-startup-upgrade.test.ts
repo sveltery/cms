@@ -19,7 +19,8 @@ for (const target of ['Node','D1'] as const) {
       await new SchemaRegistry(database).createCollection({slug:'post',label:'Posts'});
       const columns=(await sql<{name:string;type:string;notnull:number;dflt_value:string|null}>`SELECT * FROM pragma_table_info('ec_post')`.execute(database.db)).rows;
       assert.deepEqual(columns.map(row=>row.name),['id','slug','status','author_id','primary_byline_id','created_at','updated_at','published_at','scheduled_at','deleted_at','version','live_revision_id','draft_revision_id','locale','translation_group']);
-      assert.deepEqual(columns.find(row=>row.name==='primary_byline_id'),{...columns.find(row=>row.name==='primary_byline_id')!,type:'TEXT',notnull:0,dflt_value:null});
+      const byline=columns.find(row=>row.name==='primary_byline_id')!;
+      assert.deepEqual({type:byline.type,notnull:byline.notnull,dflt_value:byline.dflt_value},{type:'TEXT',notnull:0,dflt_value:null});
       const row=await new DraftRepository(database).create({type:'post',slug:'fresh',data:{}},'owner');
       const before=await new DraftRepository(database).findById('post',row.id);
       await database.atomicBatch([
