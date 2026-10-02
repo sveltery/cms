@@ -1,0 +1,263 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "files": [
+    {
+      "path": "packages/core/src/database/repositories/content.ts",
+      "blob": "29dab9decf9af0d9fb21b464dc185ed48ab958ea",
+      "sourceSHA256": "b334660e351c6953e41bde5058b29a7b1d00219c5afa96a0773d09bd251e63ee",
+      "localPath": "src/lib/server/database/lifecycle/upstream/database/repositories/content.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments",
+        "mapRow made public for committed SQL row mapping",
+        "restoreRevision/restoreDraftRevision optional native expected token: check after refetch and retain token in atomic SQL WHERE; argument omitted preserves original source method behavior"
+      ]
+    },
+    {
+      "path": "packages/core/src/content/known-fields.ts",
+      "blob": "8fcc3c9a45bad4a664459a0ae753bbb1699bddfd",
+      "sourceSHA256": "88ea668a9936bb793eaed1148566f3d935ae6613c4108e0da51edbf5c1289efc",
+      "localPath": "src/lib/server/database/lifecycle/upstream/content/known-fields.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/datetime-normalization.ts",
+      "blob": "eb31fb99e2d1e41c6001c5aec3ae49d82e39c345",
+      "sourceSHA256": "96317452072327aa029ed4e01a4b7e7efc9aaf4ffed6bd401d7e3a73de01b31e",
+      "localPath": "src/lib/server/database/lifecycle/upstream/datetime-normalization.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/object-cache/index.ts",
+      "blob": "c2d72251ab09f1dedc6e1bf2ef086a38f6d99952",
+      "hostSubstitution": true
+    },
+    {
+      "path": "packages/core/src/after.ts",
+      "blob": "97f609ba4cb2e336cefd9bdc60e14284e7696ce0",
+      "hostSubstitution": true
+    },
+    {
+      "path": "packages/core/src/deferred-tasks.ts",
+      "blob": "8626b311e9ba22ae6c67be2f1fe4600afe8a530c",
+      "hostSubstitution": true
+    },
+    {
+      "path": "packages/core/src/request-context.ts",
+      "blob": "4f140c77a1dca951defb43fd1a114e838b6f691f",
+      "hostSubstitution": true
+    },
+    {
+      "path": "packages/core/src/object-cache/codec.ts",
+      "blob": "1068836c44ffacf851a185feebbb96fc9e6e7043",
+      "hostSubstitution": true
+    },
+    {
+      "path": "packages/core/src/schema/types.ts",
+      "blob": "0c2f44156cff829951c52b0dd259fc5ff45bc554",
+      "hostSubstitution": true
+    },
+    {
+      "path": "packages/core/src/search/match.ts",
+      "blob": "e97c6611f3cc943857bbac75d1a3a9bc56ee26f1",
+      "sourceSHA256": "b32fffddc184fd2b4c7255d3c4941d8d9ec4b81a2f70c9b59107cb024e55b26e",
+      "localPath": "src/lib/server/database/lifecycle/upstream/search/match.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/utils/chunks.ts",
+      "blob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e",
+      "sourceSHA256": "d5c454b134d9727d0af1fa5befb786a781e65cdac964a668af6a8fab74b81877",
+      "localPath": "src/lib/server/database/lifecycle/upstream/utils/chunks.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/utils/db-errors.ts",
+      "blob": "d0a051ad9d48003eeeeb38dd9d5cb7cedf4140e5",
+      "sourceSHA256": "2637fdc8b0b8d5f6c1d0816a788e5f6efb29748bd0096816f179ca185e3585e0",
+      "localPath": "src/lib/server/database/lifecycle/upstream/utils/db-errors.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/utils/slugify.ts",
+      "blob": "9872f3b9d2905dc1b4cd010347eed375ddeadf47",
+      "sourceSHA256": "b5a55cfc31c66166b59d7eb055aab8346ccee8588a183a57c5010d8f2fab1221",
+      "localPath": "src/lib/server/database/lifecycle/upstream/utils/slugify.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/database/content-datetime.ts",
+      "blob": "06be050e17d7760ae1df2073632845ba15e034c2",
+      "sourceSHA256": "fe7788a24929b78efd2ae112c6111ed23d16eb838284945243a4cc4d272e8e9d",
+      "localPath": "src/lib/server/database/lifecycle/upstream/database/content-datetime.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/request-cache.ts",
+      "blob": "ab8f007b22ce601219ca1270d487342338de8634",
+      "hostSubstitution": true
+    },
+    {
+      "path": "packages/core/src/utils/url.ts",
+      "blob": "5ea627417b29212beeb178863f7b2f4989f90d58",
+      "sourceSHA256": "6f410994ca25c960baa96256ffda0626289284f486a288bc2747bf479c4a9ff2",
+      "localPath": "src/lib/server/database/lifecycle/upstream/utils/url.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/database/repositories/types.ts",
+      "blob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7",
+      "sourceSHA256": "880e1ee7c6b2792d0f0316d4853dea590ce10f89073dd5a4f5ef56ebd118fa04",
+      "localPath": "src/lib/server/database/lifecycle/upstream/database/repositories/types.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/utils/base64.ts",
+      "blob": "9dae6dade270b1c1291b21c8a90adc73f5dab294",
+      "sourceSHA256": "79a94b895668f729574cc25e50ad5e1f6db5998dc3f6e3e12e5c1fa661969a90",
+      "localPath": "src/lib/server/database/lifecycle/upstream/utils/base64.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/database/dialect-helpers.ts",
+      "blob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24",
+      "sourceSHA256": "31606b29b5a98cb657078a9d89a8ab9b9f0be1694ac7410e34af6cbf49dda154",
+      "localPath": "src/lib/server/database/lifecycle/upstream/database/dialect-helpers.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/database/validate.ts",
+      "blob": "73d3b303764b473d4238e0cb17f1a904998671f8",
+      "sourceSHA256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4",
+      "localPath": "src/lib/server/database/lifecycle/upstream/database/validate.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/database/transaction.ts",
+      "blob": "69bf167998a2fa9cc228c3612a69c8fde5ed85fe",
+      "sourceSHA256": "a390fe445530a32efa8ab2b4041eb46517a157ac5f9d295ef848d58b69530a4a",
+      "localPath": "src/lib/server/database/lifecycle/upstream/database/transaction.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/database/repositories/revision.ts",
+      "blob": "e1fa0f08bf3affdb97367bea2261ef2fc6feb45f",
+      "sourceSHA256": "c6f680af45cdcd074e6dcc161487bff8f506fc48dbb45967e0cb131d0127e90c",
+      "localPath": "src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/database/types.ts",
+      "blob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7",
+      "sourceSHA256": "ebd3a2d8aded68ada1731adb4838d7eda5b85778d373b248211e0f8fe75c2b1d",
+      "localPath": "src/lib/server/database/lifecycle/upstream/database/types.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/content-list-query.ts",
+      "blob": "075fbabc173e1eac9c04edcaab98939c9fef271c",
+      "sourceSHA256": "7763889d7e7f5ac31a0461b6e9806fe0bf169ae91064ada1153b6833cc566e10",
+      "localPath": "src/lib/server/database/lifecycle/upstream/content-list-query.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/admin/src/slugify.ts",
+      "blob": "19bee0f0f9eb2017c4014cfa482f51dfac0cada1",
+      "sourceSHA256": "b4bb5ea95436619a82f93da84762daeeb47c656c7a7f18d1a287847c1ea5a8cf",
+      "localPath": "src/lib/server/database/lifecycle/upstream/admin-slugify.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    },
+    {
+      "path": "packages/core/src/api/rev.ts",
+      "blob": "388a727d6138f5cb41b706d67aef6520fbeeb43a",
+      "sourceSHA256": "6040c7abfded4bcf2ad52dacef08d15c6b953847198b4c8bdc8449e448c386ca",
+      "localPath": "src/lib/server/database/lifecycle/upstream/api/rev.ts",
+      "adaptations": [
+        "module extension .js -> .ts",
+        "metadata/revision table namespace",
+        "parameter properties -> explicit declarations/assignments"
+      ]
+    }
+  ],
+  "hostAdaptations": [
+    "Full source types retained; erasable constructor property declarations/assignments replace TypeScript parameter-property syntax for Node24 strip-only execution",
+    "Known metadata namespace _emdash_ becomes _cms_; revision SQL table becomes _cms_revisions; supports capability string remains revisions",
+    "Schema/types delegates to the complete pinned schema type module owned by the schema developer",
+    "Disabled object-cache default only; configured cache/search/filter/media/relation APIs are not exposed by this service",
+    "Request-cache has no host context and executes each load, matching the source no-context branch",
+    "Site timezone defaults UTC; an explicit timezone provider seam replaces source options lookup; settings integration not implemented",
+    "Existing CmsDatabase.atomicBatch is preferred for source fixed-statement atomic promotion/restore; C-07 strictness retained",
+    "Registered CmsDatabase never uses pinned unsupported-transaction fallback; callback-only D1 operations remain unsupported until a provider can prove atomicity",
+    "ContentRepository.mapRow visibility is exported solely to map committed RETURNING row receipts; mapping algorithm unchanged",
+    "Mandatory native restore tokens extend source restore API; service passes the authorized read token to optional repository guards. Original source callbacks and omitted-precondition repository behavior remain intact."
+  ]
+}

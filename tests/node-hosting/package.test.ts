@@ -84,7 +84,7 @@ test('isolated production package starts, serves assets and denies anonymous HTT
       const { default: exports } = await (load as () => Promise<{ default: Record<string, unknown> }>)();
       for (const name of Object.keys(exports)) ids.set(name, `${hash}/${name}`);
     }
-    assert.deepEqual([...ids.keys()].sort(), ['addSchemaField', 'countTrashedContent', 'createContent', 'createSchemaCollection', 'deleteContent', 'getCollection', 'getContent', 'getEditorManifest', 'getSchemaCollection', 'getTrashedContent', 'listCollections', 'listContent', 'listSchemaCollections', 'listTrashedContent', 'restoreContent', 'updateContent', 'updateSchemaCollection', 'updateSchemaFieldLabel', 'updateSchemaFieldOptions']);
+    assert.deepEqual([...ids.keys()].sort(), ['addSchemaField', 'countTrashedContent', 'createContent', 'createLifecycleContent', 'createSchemaCollection', 'deleteContent', 'discardContentDraft', 'getCollection', 'getContent', 'getEditorManifest', 'getLifecycleContent', 'getSchemaCollection', 'getTrashedContent', 'listCollections', 'listContent', 'listContentRevisions', 'listSchemaCollections', 'listTrashedContent', 'publishContent', 'restoreContent', 'restoreContentRevision', 'unpublishContent', 'updateContent', 'updateSchemaCollection', 'updateSchemaFieldLabel', 'updateSchemaFieldOptions']);
     const port = await unusedPort();
     const base = `http://127.0.0.1:${port}/`;
     running = launch(directory, port, new URL(base).origin);
