@@ -25,7 +25,7 @@ interface SchemaObject { name:string; type:string; tbl_name:string; sql:string|n
 interface RegisteredCollection { id:string; slug:string; version:number }
 interface RegisteredField { collection_id:string; slug:string; type:string; column_type:string; validation:string|null }
 const contentObjectsSql = sql`SELECT name,type,tbl_name,sql FROM sqlite_master
-  WHERE tbl_name GLOB 'ec_*' OR name GLOB '_cms_lifecycle_*'
+  WHERE lower(tbl_name) GLOB 'ec_*' OR lower(name) GLOB '_cms_lifecycle_*'
     OR (type='table' AND instr(upper(sql),'REFERENCES')>0 AND instr(lower(sql),'ec_')>0) ORDER BY name`;
 const collectionsSql = sql`SELECT id,slug,version FROM _cms_collections ORDER BY slug`;
 const fieldsSql = sql`SELECT collection_id,slug,type,column_type,validation FROM _cms_fields ORDER BY collection_id,slug`;
@@ -34,6 +34,21 @@ function snapshotQuery() {
     (SELECT json_group_array(json_object('name',name,'type',type,'tbl_name',tbl_name,'sql',sql)) FROM (${contentObjectsSql})) AS objects,
     (SELECT json_group_array(json_object('id',id,'slug',slug,'version',version)) FROM (${collectionsSql})) AS collections,
     (SELECT json_group_array(json_object('collection_id',collection_id,'slug',slug,'type',type,'column_type',column_type,'validation',validation)) FROM (${fieldsSql})) AS fields`;
+}
+
+/** SQLite permits quoted FK targets; literals/comments are not FK clauses. */
+function referencesContent(statement:string|null): boolean {
+  const tokens=statement?.match(/--[^\r\n]*|\/\*[\s\S]*?\*\/|'(?:[^']|'')*'|"(?:[^"]|"")*"|`(?:[^`]|``)*`|\[[^\]]*\]|[a-z_][a-z0-9_$]*|[^\s]/gi)
+    ?.filter(token=>!token.startsWith('--')&&!token.startsWith('/*')) ?? [];
+  for (let index=0;index<tokens.length-1;index++) {
+    if (!/^REFERENCES$/i.test(tokens[index])) continue;
+    const token=tokens[index+1];
+    const quote=token[0];
+    const target=['\'', '"', '`', '['].includes(quote) ?
+      token.slice(1,-1).replaceAll(quote+quote,quote) : token;
+    if (target.toLowerCase().startsWith('ec_')) return true;
+  }
+  return false;
 }
 
 // The immutable local v1-v4 registry system definitions are known explicitly.
@@ -122,13 +137,14 @@ async function contentSnapshot(database:CmsDatabase, installed:boolean) {
   const objects=JSON.parse(snapshot.objects) as SchemaObject[];
   const collections=JSON.parse(snapshot.collections) as RegisteredCollection[];
   const fields=JSON.parse(snapshot.fields) as RegisteredField[];
-  if (collections.length>100 || objects.some(row=>row.name.startsWith('_cms_lifecycle_'))) throw new CmsError('MIGRATION_REQUIRED');
+  if (collections.length>100 || objects.some(row=>row.name.toLowerCase().startsWith('_cms_lifecycle_'))) throw new CmsError('MIGRATION_REQUIRED');
   const tables=[];
   const names=new Set(collections.map(row=>'ec_'+row.slug));
-  if (objects.some(row=>(row.type==='table'||row.type==='view')&&!names.has(row.name))) throw new CmsError('MIGRATION_REQUIRED');
-  // Operator tables referencing ec parents are included in the snapshot and
-  // rejected above: DROP could activate cascading FK actions. This avoids
-  // unsupported D1 pragma introspection and guards their concurrent creation.
+  if (objects.some(row=>(row.type==='table'||row.type==='view')&&
+    (row.name.toLowerCase().startsWith('ec_') ? !names.has(row.name) : referencesContent(row.sql)))) throw new CmsError('MIGRATION_REQUIRED');
+  // Candidate operator FK tables remain in the atomic schema snapshot, but only
+  // actual REFERENCES targets in the reserved namespace reject: DROP could
+  // activate cascading actions. Unrelated FK tables/rows remain untouched.
   for (const collection of collections) {
     if (!identifier.test(collection.slug)) throw new CmsError('MIGRATION_REQUIRED');
     const name='ec_'+collection.slug; const object=objects.find(row=>row.name===name);
