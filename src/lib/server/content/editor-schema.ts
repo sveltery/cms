@@ -1,5 +1,5 @@
 import * as v from 'valibot';
-import { createInput, updateInput } from './schema';
+import { createInput, updateInput } from './schema.ts';
 
 /** Private UI hint only: never identity, authorization or a concurrency token. */
 function editorInput<T>(schema: v.GenericSchema<unknown, T>) {
