@@ -17,7 +17,7 @@ let fixture,db,harness;
 async function connectMcpHarness({userId}) {
   const session=userId===AUTHOR_ID?'author':'admin';
   return {cleanup:async()=>{},client:{async callTool({name,arguments:argument}) {
-    const remoteName={content_create:'createContent',content_get:'getLifecycleContent',content_publish:'publishContent'}[name];
+    const remoteName={content_create:'createLifecycleContent',content_get:'getLifecycleContent',content_publish:'publishContent'}[name];
     const {data,...rest}=argument;
     const envelope=await fixture.remote(remoteName,session,name==='content_get'?undefined:{...rest,...(data===undefined?{}:{data:JSON.stringify(data)})},name==='content_get'?rest:undefined);
     if(envelope.type==='error')return {isError:true,content:[{type:'text',text:`${envelope.error.code}: ${envelope.error.message}`}]};

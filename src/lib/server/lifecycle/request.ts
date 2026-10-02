@@ -2,6 +2,19 @@ import { error } from '@sveltejs/kit';
 import { getRequestEvent } from '$app/server';
 import { CmsError } from '../database/contract';
 import { lifecycleService } from '../database/lifecycle/service';
+import { contentResponse } from '../content/request';
+
+/** Retain the pinned diagnostic for historical publication-date overrides. */
+export function lifecycleResponse<T>(operation:()=>Promise<T>) {
+  return contentResponse(async()=>{
+    try{return await operation();}
+    catch(cause){
+      if(cause instanceof CmsError&&cause.code==='FORBIDDEN'&&cause.message==='Missing permission: content:publish_any')
+        error(403,{message:cause.message,code:'INSUFFICIENT_PERMISSIONS'});
+      throw cause;
+    }
+  });
+}
 
 /** Trusted server locals, shared with the existing native content transport. */
 export function requestLifecycle(operation:'read'|'mutation'='read') {

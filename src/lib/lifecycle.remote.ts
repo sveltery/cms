@@ -1,36 +1,42 @@
 import { query, form, requested } from '$app/server';
 import { getContent, listContent } from './content.remote';
 import { withRevision, precondition } from './server/content/schema';
-import { contentResponse } from './server/content/request';
-import { requestLifecycle } from './server/lifecycle/request';
+import { requestLifecycle, lifecycleResponse } from './server/lifecycle/request';
 import { contentEntry, lifecycleMutation, publishInput, revisionList, restoreRevisionInput } from './server/lifecycle/schema';
-import { contentKey } from './server/content/schema';
+import { contentKey, createInput } from './server/content/schema';
+
+export const createLifecycleContent=form(createInput,(input)=>lifecycleResponse(async()=>{
+  const {collection,...value}=input;
+  const item=await requestLifecycle('mutation').createContent({type:collection,...value});
+  await refresh(collection,item.id,item.locale??'en');
+  return receipt(contentEntry(item));
+}));
 
 export const getLifecycleContent=query(contentKey,({collection,...input})=>
-  contentResponse(async()=>withRevision(contentEntry(await requestLifecycle().getContent({type:collection,...input})))));
+  lifecycleResponse(async()=>withRevision(contentEntry(await requestLifecycle().getContent({type:collection,...input})))));
 
 export const listContentRevisions=query(revisionList,({collection,...input})=>
-  contentResponse(()=>requestLifecycle().listRevisions({type:collection,...input})));
+  lifecycleResponse(()=>requestLifecycle().listRevisions({type:collection,...input})));
 
-export const publishContent=form(publishInput,(input)=>contentResponse(async()=>{
+export const publishContent=form(publishInput,(input)=>lifecycleResponse(async()=>{
   const service=requestLifecycle('mutation');const {collection,_rev,...value}=input;
   const item=await service.publish({type:collection,...value,expected:precondition(input)});
   await refresh(collection,value.id,value.locale);
   return receipt(contentEntry(item));
 }));
-export const unpublishContent=form(lifecycleMutation,(input)=>contentResponse(async()=>{
+export const unpublishContent=form(lifecycleMutation,(input)=>lifecycleResponse(async()=>{
   const service=requestLifecycle('mutation');const {collection,_rev,...value}=input;
   const item=await service.unpublish({type:collection,...value,expected:precondition(input)});
   await refresh(collection,value.id,value.locale);
   return receipt(contentEntry(item));
 }));
-export const discardContentDraft=form(lifecycleMutation,(input)=>contentResponse(async()=>{
+export const discardContentDraft=form(lifecycleMutation,(input)=>lifecycleResponse(async()=>{
   const service=requestLifecycle('mutation');const {collection,_rev,...value}=input;
   const item=await service.discardDraft({type:collection,...value,expected:precondition(input)});
   await refresh(collection,value.id,value.locale);
   return receipt(contentEntry(item));
 }));
-export const restoreContentRevision=form(restoreRevisionInput,(input)=>contentResponse(async()=>{
+export const restoreContentRevision=form(restoreRevisionInput,(input)=>lifecycleResponse(async()=>{
   const service=requestLifecycle('mutation');const {collection,_rev,...value}=input;
   const item=await service.restoreRevision({type:collection,...value,expected:precondition(input)});
   await refresh(collection,value.id,value.locale);
