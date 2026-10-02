@@ -64,3 +64,4 @@ async function close() {
 }
 process.on('SIGTERM', () => void close());
 process.on('SIGINT', () => void close());
+process.on('message', message => { if (message?.type === 'close') void close(); });
