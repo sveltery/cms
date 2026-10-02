@@ -65,8 +65,11 @@ export interface Field {
   sortOrder: number; createdAt: string;
 }
 export interface DraftEntry {
-  id: string; type: string; slug: string | null; status: 'draft'; authorId: string | null;
+  id: string; type: string; slug: string | null; status: string; authorId: string | null;
   locale: string; version: number; createdAt: string; updatedAt: string;
+  publishedAt?: string | null; scheduledAt?: string | null;
+  liveRevisionId?: string | null; draftRevisionId?: string | null;
+  translationGroup?: string | null; liveData?: Record<string, unknown> | null;
   data: Record<string, unknown>;
 }
 export interface DraftSummary extends Omit<DraftEntry, 'data'> { title: string | null }
