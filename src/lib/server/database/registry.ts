@@ -1,7 +1,7 @@
 import { sql, type CompiledQuery } from 'kysely';
 import { sqliteErrorMessage } from './errors.ts';
 import { ulid } from 'ulidx';
-import { CmsError, type CmsDatabase, type Collection, type CollectionRow, type Field, type FieldRow } from './contract.ts';
+import { CmsError, type CmsDatabase, type Collection, type CollectionRow, type Field, type FieldRow, type RevisionPrecondition } from './contract.ts';
 import { collectionInput, fieldInput, identifier, parse, reservedCollections, reservedFields, tableName } from './validation.ts';
 
 export const MAX_COLLECTIONS = 100;
@@ -33,6 +33,13 @@ export class SchemaRegistry {
   async listCollections(): Promise<Collection[]> {
     const rows = await this.database.db.selectFrom('_cms_collections').selectAll().orderBy('slug').limit(MAX_COLLECTIONS).execute();
     return rows.map(collection);
+  }
+  // Temporary no-write TDD seam: expose the missing operation so the selected
+  // metadata and timestamp assertions can fail on observable stored values.
+  async updateCollection(slug: unknown, _input: unknown, _expected?: RevisionPrecondition): Promise<Collection> {
+    const definition = await this.getCollection(slug);
+    if (!definition) throw new CmsError('NOT_FOUND');
+    return definition;
   }
   async listFields(collectionId: string): Promise<Field[]> {
     const rows = await this.database.db.selectFrom('_cms_fields').selectAll().where('collection_id', '=', collectionId)
