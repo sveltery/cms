@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { parse, stringify } from 'devalue';
 import { collectionTrashFixture } from '../helpers/collection-trash.ts';
 
-test('built read-only trash routes preserve bounded all-locale summaries and denial states', async () => {
+test('built trash routes preserve bounded all-locale summaries and disabled restore/denial states', async () => {
   const fixture = await collectionTrashFixture();
   try {
     const request = (path: string, session: string | null = 'author') => fixture.respond(new Request(`http://cms.test${path}`, {
@@ -21,7 +21,9 @@ test('built read-only trash routes preserve bounded all-locale summaries and den
     assert.match(html, /Deleted \(UTC\)/);
     assert.match(html, /datetime="2026-09-28T23:30:00.000Z">2026-09-28<\/time>/);
     assert.doesNotMatch(html, /<img|PRIVATE_BODY_MARKER|ACTIVE_BODY_MARKER|Active trash ID|Trashed 0<|Trashed 1<|Other collection/);
-    assert.doesNotMatch(html, /<form|<button|Restore|Permanently|Next drafts|Load More|No more drafts/);
+    assert.equal((html.match(/<form /g) ?? []).length, 50);
+    assert.equal((html.match(/<button[^>]*disabled/g) ?? []).length, 50);
+    assert.doesNotMatch(html, /Permanently|Next drafts|Load More|No more drafts/);
     const ids = new Map<string, string>();
     for (const [hash, load] of Object.entries(fixture.manifest._.remotes)) {
       const { default: exports } = await (load as () => Promise<{ default: Record<string, unknown> }>)();

@@ -30,3 +30,5 @@ See [safe session composition and editor metadata](docs/session-composition.md) 
 Read [CONTRIBUTING](CONTRIBUTING.md) and the [current compatibility register](parity/emdash/compatibility.md) for landed substitutions, behavioral differences, evidence limits and the labeled historical scaffold audit.
 
 See [the bounded D1 contract and limitations](docs/d1-database.md) and [selected D1 assertion ledger](docs/d1-ports.json) for local workerd evidence, raw parameter differences and migration envelopes. No production adapter composition or live D1 resources are installed.
+
+The bounded [native trash restore interaction](docs/native-trash-restore.md) adds per-row forms with explicit locale/revision binding, trusted display capabilities and independent feedback. Trash remains limited to 50 newest deleted drafts across all locales without count/pagination. Production writes remain unconfigured and default-disabled.
