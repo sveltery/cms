@@ -12,6 +12,27 @@ import { schemaAdminStorage } from './helpers/schema-admin-storage.ts';
 import { installVersion4, installHistoricalVersion, legacyPost, legacyContentSql, databaseSnapshot } from './helpers/lifecycle-startup.ts';
 
 for (const target of ['Node','D1'] as const) {
+  test(`${target}: fresh canonical startup creates all lifecycle system columns and atomically stores revision pointers`, async () => {
+    const storage=await schemaAdminStorage(target);
+    try {
+      const database=storage.database; await migrateCms(database);
+      await new SchemaRegistry(database).createCollection({slug:'post',label:'Posts'});
+      const columns=(await sql<{name:string;type:string;notnull:number;dflt_value:string|null}>`SELECT * FROM pragma_table_info('ec_post')`.execute(database.db)).rows;
+      assert.deepEqual(columns.map(row=>row.name),['id','slug','status','author_id','primary_byline_id','created_at','updated_at','published_at','scheduled_at','deleted_at','version','live_revision_id','draft_revision_id','locale','translation_group']);
+      assert.deepEqual(columns.find(row=>row.name==='primary_byline_id'),{...columns.find(row=>row.name==='primary_byline_id')!,type:'TEXT',notnull:0,dflt_value:null});
+      const row=await new DraftRepository(database).create({type:'post',slug:'fresh',data:{}},'owner');
+      const before=await new DraftRepository(database).findById('post',row.id);
+      await database.atomicBatch([
+        sql`INSERT INTO _cms_revisions (id,collection,entry_id,data) VALUES ('live','post',${row.id},'{}'),('draft','post',${row.id},'{}')`.compile(database.db),
+        sql`UPDATE ec_post SET status='published',published_at='2026-10-02T12:00:00.000Z',live_revision_id='live',draft_revision_id='draft' WHERE id=${row.id}`.compile(database.db)
+      ]);
+      const stored=(await sql<{live_revision_id:string;draft_revision_id:string;version:number;updated_at:string}>`SELECT live_revision_id,draft_revision_id,version,updated_at FROM ec_post WHERE id=${row.id}`.execute(database.db)).rows[0];
+      assert.deepEqual(stored,{live_revision_id:'live',draft_revision_id:'draft',version:before!.version,updated_at:before!.updatedAt});
+      await migrateCms(database);
+      assert.equal((await sql`SELECT * FROM _cms_revisions ORDER BY id`.execute(database.db)).rows.length,2);
+    } finally {await storage.close();}
+  });
+
   test(`${target}: immutable v1/v2 layouts reach canonical v5 with legacy data, metadata and foreign keys intact`, async () => {
     for (const version of [1,2] as const) {
       const storage=await schemaAdminStorage(target);

@@ -4,6 +4,12 @@
   "license": "MIT; Copyright 2026 Cloudflare Inc.; notices/emdash-MIT.txt",
   "completeDeclarations": 0,
   "uniqueSourceAssertionExpressions": 4,
+  "implementationSources": [
+    {"path":"packages/core/src/database/migrations/001_initial.ts","blob":"aba2d82b24a34a721814e90c00dc0e34cd009911","scope":"revision table/index only; all other initial tables omitted"},
+    {"path":"packages/core/src/database/migrations/014_draft_revisions.ts","blob":"eedccd10cee4f27215a1e52f4d7efeb93008e655","scope":"revision pointers were already present in local v1-v4; no source FK/index retrofit"},
+    {"path":"packages/core/src/database/migrations/059_revision_prune_queue.ts","blob":"65522645c6fc88fbda9b7ad7a72de86225d319aa","scope":"queue table/index only; unknown preinstalled revision histories reject before provider installation, no complete source retry/backfill declaration credit"},
+    {"path":"packages/core/src/schema/registry.ts","blob":"da7bbcdda224dfca8d9146b2f36659ab90bcac2e","scope":"createContentTable:1870 status/byline storage; historical local system defaults and constraints retained"}
+  ],
   "sourceDeclarations": [
     {"id":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/migrations.test.ts:50","blob":"c45f05ea1588ca167dda9a77abeaf5beb36fa676","selectedExpressions":["expect(Array.isArray(result)).toBe(true)"],"scope":"revisions-only: 1 of 26 source table checks; source declaration incomplete"},
     {"id":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:72","blob":"d324b01d391f8a598cf837d7f0ad645e0bb0a88f","selectedExpressions":["expect(content.status).toBe(\"published\")","expect(content.authorId).toBe(\"author-1\")"],"scope":"2 of 6 expressions; raw storage facade substitutes the source ContentRepository; data/slug/ID/repository lifecycle omitted"},
