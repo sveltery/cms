@@ -1,11 +1,13 @@
 <script lang="ts">
   import { beginSetup, completeSetup } from '$lib/auth.remote';
   import { createPasskey } from '$lib/auth/passkey-browser';
+  import { tick } from 'svelte';
   let { unavailable = false, completed = false, loginHref = '/login' }: {
     unavailable?: boolean; completed?: boolean; loginHref?: string;
   } = $props();
   let failure = $state('');
   let pending = $state(false);
+  let credentialJSON = $state('');
 </script>
 
 <h1>Set up Sveltery CMS</h1>
@@ -22,7 +24,8 @@
       await submit();
       if (beginSetup.result) {
         const credential = await createPasskey(beginSetup.result.options);
-        completeSetup.fields.credential.set(JSON.stringify(credential));
+        credentialJSON = JSON.stringify(credential);
+        await tick();
         await completeSetup.submit();
         if (completeSetup.result) window.location.assign(loginHref);
       }
@@ -32,6 +35,9 @@
     <label>Email <input {...beginSetup.fields.email.as('email')} required autocomplete="email" /></label>
     <label>Name <input {...beginSetup.fields.name.as('text')} autocomplete="name" /></label>
     <button disabled={pending || beginSetup.pending > 0 || completeSetup.pending > 0}>Create administrator and passkey</button>
+  </form>
+  <form {...completeSetup} hidden aria-hidden="true">
+    <input {...completeSetup.fields.credential.as('hidden', credentialJSON)} />
   </form>
   {#each beginSetup.fields.allIssues() ?? [] as issue}<p role="alert">{issue.message}</p>{/each}
   {#if failure}<p role="alert">{failure}</p>{/if}

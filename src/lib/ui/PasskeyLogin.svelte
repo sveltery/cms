@@ -1,11 +1,13 @@
 <script lang="ts">
   import { beginLogin, completeLogin } from '$lib/auth.remote';
   import { usePasskey } from '$lib/auth/passkey-browser';
+  import { tick } from 'svelte';
   let { unavailable = false, homeHref = '/', setupHref = '/setup', needsSetup = false }: {
     unavailable?: boolean; homeHref?: string; setupHref?: string; needsSetup?: boolean;
   } = $props();
   let failure = $state('');
   let pending = $state(false);
+  let credentialJSON = $state('');
 </script>
 
 <h1>Sign in</h1>
@@ -22,7 +24,8 @@
       await submit();
       if (beginLogin.result) {
         const credential = await usePasskey(beginLogin.result.options);
-        completeLogin.fields.credential.set(JSON.stringify(credential));
+        credentialJSON = JSON.stringify(credential);
+        await tick();
         await completeLogin.submit();
         if (completeLogin.result) window.location.assign(homeHref);
       }
@@ -30,6 +33,9 @@
     finally { pending = false; }
   })}>
     <button disabled={pending || beginLogin.pending > 0 || completeLogin.pending > 0}>Sign in with a passkey</button>
+  </form>
+  <form {...completeLogin} hidden aria-hidden="true">
+    <input {...completeLogin.fields.credential.as('hidden', credentialJSON)} />
   </form>
   {#if failure}<p role="alert">{failure}</p>{/if}
 {/if}

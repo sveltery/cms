@@ -12,7 +12,7 @@ import { createKyselySessionStore } from '$lib/server/auth/store';
 
 const credentialText = <T extends v.BaseSchema<unknown, unknown, v.BaseIssue<unknown>>>(schema: T) => v.pipe(v.string(),
   v.check(text => { try { return v.safeParse(schema, JSON.parse(text)).success; } catch { return false; } }, 'Invalid passkey credential'),
-  v.transform(text => v.parse(schema, JSON.parse(text))));
+  v.transform((text): v.InferOutput<T> => v.parse(schema, JSON.parse(text))));
 async function authResponse<T>(action: () => Promise<T>): Promise<T> {
   try { return await action(); }
   catch (cause) {
