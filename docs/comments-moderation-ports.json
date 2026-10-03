@@ -1,0 +1,554 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "license": "MIT; Copyright 2026 Cloudflare Inc.; notices/emdash-MIT.txt",
+  "approvedBase": "e75654834e5d3a1ddc10449504ee34db1d43c905",
+  "count": 56,
+  "selectedWholeFiles": 7,
+  "assertionRule": "Whole callbacks, fixtures, expectations and deadlines are immutable; imports and host fixtures are recorded separately. Initial regex counts are inventory estimates, not parser counts or runtime evidence.",
+  "protectedProbeRule": "Signed, concurrent-session, replay, two-valid-session and SC49 protected relation binding probes are inventoried and not newly executed. Ordinary non-auth repository CAS and reaction-race callbacks remain whole.",
+  "authorities": [
+    {
+      "source": "e2e/tests/comments.spec.ts",
+      "authority": "parity/emdash/comments-source/authority/e2e/tests/comments.spec.ts.txt",
+      "gitBlob": "6b57f4318cbcef1cb326ef2d0d2c183974a7cddf",
+      "sha256": "53c9f7154d9eb5e7965449121a1b6164e1e1a39eb783659b336f4198f68aa9df",
+      "bytes": 9576,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 5,
+      "expectExpressionsApprox": 18
+    },
+    {
+      "source": "packages/admin/src/components/comments/CommentDetail.tsx",
+      "authority": "parity/emdash/comments-source/authority/packages/admin/src/components/comments/CommentDetail.tsx.txt",
+      "gitBlob": "91aa734061f3e26f75c748a87c6bf9cf1f8a32ec",
+      "sha256": "53ffc6104966c937626906df193f8c97b130a9fe1c93905ec7689c55ca3a6d0c",
+      "bytes": 6323,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/admin/src/components/comments/CommentInbox.tsx",
+      "authority": "parity/emdash/comments-source/authority/packages/admin/src/components/comments/CommentInbox.tsx.txt",
+      "gitBlob": "c22e3b5f514ae648d6778a4e2b0c5bce4b89dc81",
+      "sha256": "2158f1b619ed628742f9dd43bdbfa083bc8eae3c7738cc0bf5617c4c1341bba5",
+      "bytes": 16608,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/admin/src/lib/api/comments.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/admin/src/lib/api/comments.ts.txt",
+      "gitBlob": "d26f3512c02e354c376e6d7d1219349390bf8f72",
+      "sha256": "8def5668b11e4ae357b4e56ce7f133089179ff04ccb96162d56b3a4245495802",
+      "bytes": 3837,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/admin/tests/components/CommentInbox.test.tsx",
+      "authority": "parity/emdash/comments-source/authority/packages/admin/tests/components/CommentInbox.test.tsx.txt",
+      "gitBlob": "732be054f8ff35b7d6a1ec616ef49225948cf826",
+      "sha256": "0d8607e921a0b55a9acf184b76ae0f13ba0dcfbd15bacbc0a29f37d6858dd2e5",
+      "bytes": 3736,
+      "selected": true,
+      "evidence": "inventory-only",
+      "declarationsApprox": 4,
+      "expectExpressionsApprox": 4,
+      "executable": "tests/comments-source/packages/admin/tests/components/CommentInbox.test.tsx"
+    },
+    {
+      "source": "packages/admin/tests/utils/render.tsx",
+      "authority": "parity/emdash/comments-source/authority/packages/admin/tests/utils/render.tsx.txt",
+      "gitBlob": "bd876f25e9510d5e49c31c701f8b3edb7ff20dec",
+      "sha256": "71f7fc13dbc057eda13240e0df0fe0cd71797a5996c56bafd231bb75e91e3b3a",
+      "bytes": 962,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/cloudflare/tests/sandbox/bridge-comments.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/cloudflare/tests/sandbox/bridge-comments.test.ts.txt",
+      "gitBlob": "870415547107315079a04e785a314b7c37276b8f",
+      "sha256": "a1e2a030e50a52ce4b9f21987ab8ed9af629712858af1f1cc85ddc9d1b028b27",
+      "bytes": 2326,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 2,
+      "expectExpressionsApprox": 6
+    },
+    {
+      "source": "packages/core/src/api/error.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/error.ts.txt",
+      "gitBlob": "cac556e93bb76d42e7a36353cd045ce22638f3ef",
+      "sha256": "e191417b83c8314a6a7623f7e35dad793760a66ae8edc2f817042901587ca868",
+      "bytes": 3644,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/escape.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/escape.ts.txt",
+      "gitBlob": "5845f302b684d3937dcfb93298467bc35c721852",
+      "sha256": "a4856a990771ec31df3ff5870699435f248d8fbb27bde24d2a9c69fc245bb918",
+      "bytes": 279,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/handlers/comment-reactions.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/handlers/comment-reactions.ts.txt",
+      "gitBlob": "76501da50053972804f0509041f65f3965602b2d",
+      "sha256": "29fc012d50d022ca682e098c8a7aba6a1a5dec5af9b9b45f79c24acc2d70964e",
+      "bytes": 4842,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/handlers/comments.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/handlers/comments.ts.txt",
+      "gitBlob": "d0deaa042c84b058aca6c8953d4df1a00f2cd1cf",
+      "sha256": "1e4b023677b1c328f74b32a99fc2ac4d44c76f1ff380f8b5c861e4eb449919dd",
+      "bytes": 8393,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/parse.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/parse.ts.txt",
+      "gitBlob": "46b250ce60d82f37fc30d006f3e8ed166c2227b0",
+      "sha256": "8b8271292e8d8d5b0d39701f28a5820e45e2a89ddc159e0f4ab6da7dd484735a",
+      "bytes": 3620,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/schemas/comments.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/schemas/comments.ts.txt",
+      "gitBlob": "90be3d00ec075f47960d94e6566f2e6272fdb894",
+      "sha256": "9ea60d04647c743f36b0fafcdca11008f3be0d1afe02f43f53009f7f7c03f238",
+      "bytes": 4003,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/site-url.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/site-url.ts.txt",
+      "gitBlob": "d51171441bbe4108a9201bc43431be7a391bc286",
+      "sha256": "251aa2bddf6d0a360e616ea383ba7630efb304c735cf17404e5df875d7ee77ac",
+      "bytes": 1330,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/types.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/types.ts.txt",
+      "gitBlob": "462b0800408c270a8ac0b7e59b89adb46426fc3f",
+      "sha256": "8ee06f5fee0b47ab8891eb4b2980d06d3ad5317464db33d637f7c1b33aa28974",
+      "bytes": 3033,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/comments/[collection]/[contentId]/index.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/routes/api/comments/[collection]/[contentId]/index.ts.txt",
+      "gitBlob": "79465a7236239e5e215ad7d092cc70bf5e74a592",
+      "sha256": "754132d25e30a5c3f0e99a54d20e9ff3bb4043c6f1ede143ffe22eb700ca046b",
+      "bytes": 2290,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/comments/[collection]/[contentId]/reactions.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/routes/api/comments/[collection]/[contentId]/reactions.ts.txt",
+      "gitBlob": "f2429bc5aa0205fae5a64af5d23ef7beb1539c54",
+      "sha256": "fd48b58992b4d6a475f29075bd8a34af125ebf9131fe76e14a143f42909bf41c",
+      "bytes": 3480,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/auth/rate-limit.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/auth/rate-limit.ts.txt",
+      "gitBlob": "0dc5ebe1b99dab18bf1278af6db16375efd3b7d6",
+      "sha256": "8e47781016a0e44d12a3775630fc37cd35c6a46e71fea909c525bf7f722b22fc",
+      "bytes": 6171,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/comments/moderator.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/comments/moderator.ts.txt",
+      "gitBlob": "97dbc936a863c309044cb93aea841e730b0dba05",
+      "sha256": "853949955d60be2a067630734a096a3c3f4ba036f090a05b7bd467b37117c361",
+      "bytes": 1731,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/comments/notifications.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/comments/notifications.ts.txt",
+      "gitBlob": "4f8e35f10ed45e821951c1cfa64763721f6ff91c",
+      "sha256": "ac7118185d70bcd6ae0fb2cf811230c3a493b09f175b6fed59ec24d33c183558",
+      "bytes": 4338,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/comments/public-submission.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/comments/public-submission.ts.txt",
+      "gitBlob": "2ee4925a6760679f0f13253edff04489209a3fac",
+      "sha256": "a79feb4bcb799f76bf03d6d218ff0acff3d0016bbfe78397dd8847e554647f89",
+      "bytes": 8492,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/comments/query.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/comments/query.ts.txt",
+      "gitBlob": "eb3ed42e996253c8686086b9b747f6e4438ae6cd",
+      "sha256": "07c2aed945ea5d2aeb4748d1b216bc35386f1727cfe370ddc7fe814eeea40820",
+      "bytes": 5383,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/comments/ranking.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/comments/ranking.ts.txt",
+      "gitBlob": "eacdc7726e54ef806c940a1f42b9548ee868ace8",
+      "sha256": "eafa7705c86e04324ba01a01f3e4f2ddf6a68edd7d3eec67d83a24b27edb6ca2",
+      "bytes": 2082,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/comments/service.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/comments/service.ts.txt",
+      "gitBlob": "e50adbea1679e6a84655b0c538a85684721a5677",
+      "sha256": "76b86a362f34cc78c619917ad05ab29c529b673336d9cf6aa995b130003f10e0",
+      "bytes": 8074,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/comments/turnstile.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/comments/turnstile.ts.txt",
+      "gitBlob": "67fc3744f6360985ac7c77a57ddc10feed38ec80",
+      "sha256": "b210f3d2c7eef096d28cb3a4752e5089b333a7c20e766becb1aeb1264dc53486",
+      "bytes": 2443,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/components/CommentForm.astro",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/components/CommentForm.astro.txt",
+      "gitBlob": "e39c3eb6e434484ea1a7eb298da8462f9ca4d4e5",
+      "sha256": "bb33aaa6c917344ade9e73dddd0863b2d16b203da39698d17bf1e432d4fb456f",
+      "bytes": 7699,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/components/Comments.astro",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/components/Comments.astro.txt",
+      "gitBlob": "0a3425e124b1dad787b9027056f28d470a76884d",
+      "sha256": "42140656734770493eb3a175982a33bf85aa4ff1548344dc535eee0af646dcf3",
+      "bytes": 9936,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/dialect-helpers.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/dialect-helpers.ts.txt",
+      "gitBlob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24",
+      "sha256": "31606b29b5a98cb657078a9d89a8ab9b9f0be1694ac7410e34af6cbf49dda154",
+      "bytes": 18242,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/027_comments.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/migrations/027_comments.ts.txt",
+      "gitBlob": "c575f4ac679e7ab0dbf1dc02a9ae03dfc3afba69",
+      "sha256": "ba8dea6c3f64f1ea6c96ea8dc7e58a974fa4e1064de2756ec451e2fa1f9f3438",
+      "bytes": 2833,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/044_comment_reactions.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/migrations/044_comment_reactions.ts.txt",
+      "gitBlob": "897e83208f8f89047f6cfed07b9c3f944355dca4",
+      "sha256": "14eaf6309fee8995ac8c2d6c3b52d4d9aa0fe290ef6da2808e62f3099aeb7c21",
+      "bytes": 1965,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/repositories/comment-reaction.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/repositories/comment-reaction.ts.txt",
+      "gitBlob": "089857fd234b47735e84f3ff9b77d61a7a80b12e",
+      "sha256": "0865fd2a5970bf1691382d8c0812600096d1fcb12df8b964d0e96dc64513354a",
+      "bytes": 4279,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/repositories/comment.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/repositories/comment.ts.txt",
+      "gitBlob": "f31e5e5fd7f370addbd3146fb75f66cbc5fc7d0d",
+      "sha256": "47d02606ed0c20668dd6c3cda392c852e271cf05ea0c69cfb341a84be86ddf6c",
+      "bytes": 16680,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/repositories/types.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/repositories/types.ts.txt",
+      "gitBlob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7",
+      "sha256": "880e1ee7c6b2792d0f0316d4853dea590ce10f89073dd5a4f5ef56ebd118fa04",
+      "bytes": 13959,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/types.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/types.ts.txt",
+      "gitBlob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7",
+      "sha256": "ebd3a2d8aded68ada1731adb4838d7eda5b85778d373b248211e0f8fe75c2b1d",
+      "bytes": 31530,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/validate.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/validate.ts.txt",
+      "gitBlob": "73d3b303764b473d4238e0cb17f1a904998671f8",
+      "sha256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4",
+      "bytes": 5766,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/import/comments.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/import/comments.ts.txt",
+      "gitBlob": "2a61e7d35762755910e2c0ce91d88a4399b53ff9",
+      "sha256": "ba5f611dd6f76d8f0a6e8e8025c14319874ada3f3045e7c290f8fca333a4f3a9",
+      "bytes": 4878,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/plugins/define-plugin.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/plugins/define-plugin.ts.txt",
+      "gitBlob": "a40ad782066a9a3841050a07d90385d1da7c1a00",
+      "sha256": "3dc46465bf0ecfd79a8675b667be4e9074443049bcf4ee02604abca4d01c94d0",
+      "bytes": 10173,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/plugins/email.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/plugins/email.ts.txt",
+      "gitBlob": "f95d3f0723ff3d9ca5bfcbb2c0fbfe02779faa0c",
+      "sha256": "11ff1e008ce9af3b3e4f54d48dd680f8d9e57225210a8eb1c044ba9927643bc3",
+      "bytes": 8104,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/plugins/hooks.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/plugins/hooks.ts.txt",
+      "gitBlob": "c29944d02b11858ff7b824090ed02cf1be705626",
+      "sha256": "6b72dd30c5d34ea38764caa8bb9f16b727abef0589118e04368f81291e714cec",
+      "bytes": 51540,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/plugins/request-meta.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/plugins/request-meta.ts.txt",
+      "gitBlob": "81cbfad3f5bfc74d9a5ed6af9831ba8c36b3ce61",
+      "sha256": "9d02dbd73b4ee975becacfd5431c48d4343eaa373c0249ba65b6c211337bd0f5",
+      "bytes": 6391,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/plugins/types.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/plugins/types.ts.txt",
+      "gitBlob": "4c70d4438aebb76eb711482a8ed1e312b452fe1a",
+      "sha256": "89a8ec1e885481dafd1bca969ad4da8a085d240f1071adcb16b02a2d89958e3b",
+      "bytes": 70206,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/ui-comments.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/ui-comments.ts.txt",
+      "gitBlob": "430987fe2bc42c82064d9def3163c8502c3b33b8",
+      "sha256": "c9dd2bdc0674998d6b099107c4f3357c3747ffee531f349192ca6540d3705e65",
+      "bytes": 692,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/astro/comments-rate-limit.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/astro/comments-rate-limit.test.ts.txt",
+      "gitBlob": "964278410a9ab12849fe3bf20451302e57eed638",
+      "sha256": "9da38959a065995ea45cce5a5b3a37c13d39ce2c518986ac96c31162f156380c",
+      "bytes": 5785,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 2,
+      "expectExpressionsApprox": 5
+    },
+    {
+      "source": "packages/core/tests/integration/astro/comments-turnstile.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/astro/comments-turnstile.test.ts.txt",
+      "gitBlob": "dacc1434fd59b4faf432ccdcfb179ff18f28f0fa",
+      "sha256": "c7b6910a55fbd84d5d6ab6cb6c716789627276bab43ee80a22ce3f614704220a",
+      "bytes": 7048,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 7,
+      "expectExpressionsApprox": 21
+    },
+    {
+      "source": "packages/core/tests/integration/client/comment-session-auth.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/client/comment-session-auth.test.ts.txt",
+      "gitBlob": "027f88e36624f8cf67907423a807a3668838df74",
+      "sha256": "2b455b672d85dff63376f44c359a5645dcc6573079b5fbd41d435931f7e04647",
+      "bytes": 6098,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 3,
+      "expectExpressionsApprox": 19
+    },
+    {
+      "source": "packages/core/tests/integration/client/comments.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/client/comments.test.ts.txt",
+      "gitBlob": "6103c968e597cb1e971f51b3a7b0ffa1433a13b9",
+      "sha256": "eeb14796a5f782ba2ab7e629f21fe1dec29e8bfc452933dab247f66481824671",
+      "bytes": 12248,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 15,
+      "expectExpressionsApprox": 47
+    },
+    {
+      "source": "packages/core/tests/integration/comments/hooks.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/comments/hooks.test.ts.txt",
+      "gitBlob": "1f97438feb83ee5d00608f375ccd668e820d5029",
+      "sha256": "444b4194b4ff14185d84f428387b2265b2d506e333ec39fcd4a258d1ddd32575",
+      "bytes": 15630,
+      "selected": true,
+      "evidence": "inventory-only",
+      "declarationsApprox": 19,
+      "expectExpressionsApprox": 45,
+      "executable": "tests/comments-source/packages/core/tests/integration/comments/hooks.test.ts"
+    },
+    {
+      "source": "packages/core/tests/integration/comments/notifications.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/comments/notifications.test.ts.txt",
+      "gitBlob": "180268ea20c7791f77703fa42b022e684172aacb",
+      "sha256": "e5a973f4b5dc092eeb659b8ee4f5d377235ba8c320307cb409dc792a4bccaa96",
+      "bytes": 8971,
+      "selected": true,
+      "evidence": "inventory-only",
+      "declarationsApprox": 16,
+      "expectExpressionsApprox": 42,
+      "executable": "tests/comments-source/packages/core/tests/integration/comments/notifications.test.ts"
+    },
+    {
+      "source": "packages/core/tests/integration/comments/reactions.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/comments/reactions.test.ts.txt",
+      "gitBlob": "7bf6c48164c5ba9f5117754402a75a0c571dc613",
+      "sha256": "8614d0df755f28dba39133c451d3d0740618c08897b6858fe382540baf3cd625",
+      "bytes": 7047,
+      "selected": true,
+      "evidence": "inventory-only",
+      "declarationsApprox": 12,
+      "expectExpressionsApprox": 24,
+      "executable": "tests/comments-source/packages/core/tests/integration/comments/reactions.test.ts"
+    },
+    {
+      "source": "packages/core/tests/integration/comments/repository.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/comments/repository.test.ts.txt",
+      "gitBlob": "272c5157992cd32037de1b44e314d14cb6b5fd50",
+      "sha256": "75532a5f6637a341fc041d6692f32d003632b6b2d0b9769eedf72b9648258781",
+      "bytes": 15796,
+      "selected": true,
+      "evidence": "inventory-only",
+      "declarationsApprox": 32,
+      "expectExpressionsApprox": 88,
+      "executable": "tests/comments-source/packages/core/tests/integration/comments/repository.test.ts"
+    },
+    {
+      "source": "packages/core/tests/unit/astro/comments-public-auth.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/unit/astro/comments-public-auth.test.ts.txt",
+      "gitBlob": "fc64b1f88fead2b3463848c2f6344460b8f070cf",
+      "sha256": "076c906677d3df33e69d7131f199c6daabe75ecd3d587a902fef464a015b4403",
+      "bytes": 3615,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 3,
+      "expectExpressionsApprox": 11
+    },
+    {
+      "source": "packages/core/tests/unit/comments/ranking.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/unit/comments/ranking.test.ts.txt",
+      "gitBlob": "7d5c9d9e71a45d79f705cc24a019d6914f57917c",
+      "sha256": "551dec230dd85fdd8eaf3d38931ea74caddee5f6c6cb64665abf6dd4260ff956",
+      "bytes": 1770,
+      "selected": true,
+      "evidence": "inventory-only",
+      "declarationsApprox": 8,
+      "expectExpressionsApprox": 14,
+      "executable": "tests/comments-source/packages/core/tests/unit/comments/ranking.test.ts"
+    },
+    {
+      "source": "packages/core/tests/unit/comments/turnstile.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/unit/comments/turnstile.test.ts.txt",
+      "gitBlob": "1ece0d98db44c20f3ae8d6a29568f7cec2cfbebd",
+      "sha256": "9526e4c87a6773d2a55bc61f1da53805119e171447cb04bb95428487f0b328ec",
+      "bytes": 2033,
+      "selected": true,
+      "evidence": "inventory-only",
+      "declarationsApprox": 1,
+      "expectExpressionsApprox": 3,
+      "executable": "tests/comments-source/packages/core/tests/unit/comments/turnstile.test.ts"
+    },
+    {
+      "source": "packages/core/tests/unit/import/comments-import.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/unit/import/comments-import.test.ts.txt",
+      "gitBlob": "f352b7a03de0ec8f4ab2a43446af7785254509ed",
+      "sha256": "dab34c266f32d70a6a4ae5ec57049063283494337099d5fb0e5b64ef551da8c5",
+      "bytes": 3476,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 4,
+      "expectExpressionsApprox": 16
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache-comments-schema.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/unit/object-cache-comments-schema.test.ts.txt",
+      "gitBlob": "d99880923eb8ecec3b4db1945df2e7e06a4c82dc",
+      "sha256": "a39f67edf383ce95f8d729d4b6e3605d6390d7b4b9835286ef8e8ca35f3715b5",
+      "bytes": 5652,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 4,
+      "expectExpressionsApprox": 11
+    },
+    {
+      "source": "packages/core/tests/utils/test-db.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/utils/test-db.ts.txt",
+      "gitBlob": "b75bd5b5770e44050b2d0da28e87c155c603ed66",
+      "sha256": "0e6a59b5d2109e4134aed1277f82089725a53fe079ee0ec0c2622169d2480dc0",
+      "bytes": 18803,
+      "selected": false,
+      "evidence": "inventory-only"
+    }
+  ]
+}
