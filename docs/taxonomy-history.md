@@ -55,6 +55,18 @@ path accepts 101 bindings and causes one genuine supplemental assertion failure;
 the direct historical path uses real workerd and passes. This is fixture TDD,
 with zero source-declaration red or causal source TDD credit.
 
+The native fixture repair uses the approved shared asynchronous D1 test storage
+from actual main `34d4d2a1160e525eeab7f9eb0e973b3c1b513d0b`. Its real
+CmsDatabase runs canonical `migrateCms`, registers both native database hosts,
+and creates the standard collections/fields through the native SchemaRegistry.
+Both original binding guards pass; the unchanged native 068 callback now passes
+on actual workerd D1, restoring six real D1 passes with the same one 240-binding
+source-fixture omission. No source assertion, callback, fixture SQL, transport
+chunk, or deadline was changed. The original incorrect count remains recorded.
+A separate reference rerun records a 068 setup STACK_TRACE_ERROR before assertions
+plus the known binding-limit fixture; that host failure is retained and under
+qualification, with zero assertion-red credit.
+
 The remaining definition-group callback inserts 30 historical rows with 240 bound
 parameters in one statement. D1 rejects that original fixture before migration
 085 or its assertions. The source's dialect selection is SQLite/PostgreSQL,

@@ -57,13 +57,39 @@ export default defineConfig({plugins:[{
         import {registerTaxonomyDatabase} from ${JSON.stringify(resolve(nativeRoot,'src/lib/server/taxonomies/upstream/host.ts'))};
         import {resetTaxonomyDefsCacheForTests} from ${JSON.stringify(resolve(nativeRoot,'src/lib/server/taxonomies/upstream/taxonomies/index.ts'))};
         import {resetRegisteredCollectionsCacheForTests} from ${JSON.stringify(resolve(nativeRoot,'src/lib/server/taxonomies/upstream/schema/collection-slugs-cache.ts'))};
-        import {setupForDialectWithCollections,teardownForDialect} from ${JSON.stringify(resolve(nativeRoot,'tests/helpers/taxonomy-source-db.ts'))};
+        import {setupForDialectWithCollections as setupNodeCollections,teardownForDialect as teardownNode} from ${JSON.stringify(resolve(nativeRoot,'tests/helpers/taxonomy-source-db.ts'))};
+        import {schemaAdminStorage} from ${JSON.stringify(resolve(nativeRoot,'tests/helpers/schema-admin-storage.ts'))};
+        import {migrateCms} from ${JSON.stringify(resolve(nativeRoot,'src/lib/server/database/migrations.ts'))};
+        import {registerLifecycleDatabase} from ${JSON.stringify(resolve(nativeRoot,'src/lib/server/database/lifecycle/upstream/host.ts'))};
+        import {SchemaRegistry} from ${JSON.stringify(resolve(nativeRoot,'src/lib/server/taxonomies/upstream/schema/registry.ts'))};
+        import {waitForDeferredTasks} from ${JSON.stringify(resolve(nativeRoot,'src/lib/server/taxonomies/upstream/deferred-tasks.ts'))};
+        async function setupForDialectWithCollections(dialect){
+          if(dialect==='sqlite')return setupNodeCollections('sqlite');
+          if(dialect!=='workerd-d1')throw new Error('Unsupported native historical dialect: '+dialect);
+          const storage=await schemaAdminStorage('D1');
+          try {
+            await migrateCms(storage.database);
+            registerTaxonomyDatabase(storage.database);
+            registerLifecycleDatabase(storage.database);
+            const registry=new SchemaRegistry(storage.database.db);
+            for(const slug of ['post','page']){
+              await registry.createCollection({slug,label:slug==='post'?'Posts':'Pages',labelSingular:slug==='post'?'Post':'Page'});
+              await registry.createField(slug,{slug:'title',label:'Title',type:'string'});
+              await registry.createField(slug,{slug:'content',label:'Content',type:'portableText'});
+            }
+            return {db:storage.database.db,database:storage.database,dialect,closeRuntime:()=>storage.close()};
+          }catch(error){await storage.close();throw error;}
+        }
+        async function teardownForDialect(ctx){
+          if(ctx.closeRuntime){try{await waitForDeferredTasks();}finally{await ctx.closeRuntime();}}
+          else await teardownNode(ctx);
+        }
         export const nativeHost={registerTaxonomyDatabase,setupForDialectWithCollections,teardownForDialect,
           resetCaches(){resetTaxonomyDefsCacheForTests();resetRegisteredCollectionsCacheForTests();}};
       `;
     }
   }
 }],test:{
-  include:['tests/source-taxonomy-history/packages/core/tests/integration/database/*.test.ts'],
+  include:['tests/source-taxonomy-history/packages/core/tests/integration/database/*.test.ts','tests/taxonomy-history-transport.test.ts'],
   fileParallelism:false,maxWorkers:1
 }});

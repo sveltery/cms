@@ -1,6 +1,6 @@
 {
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
-  "state": "Seven complete source/native Node callbacks green. Reference workerd6/7. Initial native claim corrected to5 realD1/7 plus1 mislabeledSQLite068 and1 unchanged240-bind fixture omission. Host repair/review/full CI pending.",
+  "state": "Seven source/native Node baseline callbacks green. Initial nativeD1 claim withdrawn to5/7. Repaired native fixture verified6actualD1/7, plus unchanged240-binding fixture omission; source rerun retains a separate068 fixture host error. Full gates/review/integration pending.",
   "testFiles": [
     {
       "source": "packages/core/tests/integration/database/taxonomy-translation-locale-migration.test.ts",
@@ -219,6 +219,46 @@
       "bindingBoundary": "actual100-parameter SELECT executes and actual101-parameter SELECT rejects through both source paths",
       "assertionRedCredit": 0,
       "causalTddCredit": 0
+    },
+    {
+      "phase": "native transport repair after original guard",
+      "approvedSharedHelperDependency": "34d4d2a1160e525eeab7f9eb0e973b3c1b513d0b",
+      "runtime": "actual Worker env.DB via approved asyncD1Storage and real nativeCmsDatabase/canonical migrateCms/registry",
+      "guardResult": {
+        "tests": 2,
+        "passed": 2,
+        "failed": 0,
+        "pending": 0
+      },
+      "sourceCallbackResult": {
+        "tests": 7,
+        "passed": 6,
+        "failed": 1,
+        "pending": 0
+      },
+      "repairedSourceId": "packages/core/tests/integration/database/content-taxonomy-entry-groups-migration.test.ts:24",
+      "native068ActualD1Passed": true,
+      "fixtureTddSupplementalRedCount": 1,
+      "sourceDeclarationRedCredit": 0,
+      "causalSourceTddCredit": 0,
+      "wholeCallbacksAndExpectsUnchanged": true,
+      "sourceFixture240BindingsUnchanged": true,
+      "deadlineChanged": false,
+      "transportSplitOrChunkAdded": false,
+      "nativeScope": "ActualopenD1 database through sharedschemaAdminStorage, real migrateCms and nativeSchemaRegistry/hostregistration; source historicalSourceRunner stays test-only."
+    },
+    {
+      "phase": "reference source D1 rerun while qualifying native repair",
+      "runtime": "complete pinnedRawBindingD1Dialect/introspector on original synchronous Miniflare host binding",
+      "result": {
+        "tests": 7,
+        "passed": 5,
+        "failed": 2,
+        "pending": 0
+      },
+      "additionalHostError": "068 beforeEach STACK_TRACE_ERROR before source callback assertions; exact cause unresolved, isolated reproduction pending",
+      "sourceAssertionRedCredit": 0,
+      "knownFixture240BindFailureRetained": true
     }
   ],
   "limits": [
