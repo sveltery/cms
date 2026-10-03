@@ -91,4 +91,28 @@ for(const mode of ['node','raw','scoped'] as const) {
    assert.equal((await sql`SELECT token FROM _cms_guards`.execute(f.database.db)).rows.length,0);
   }finally{await f.close();}
  });
+ for(const timestamp of ['Tue, 01 Jan 2030 00:00:00 GMT','2030-01-01T00:00:00.1235Z','not-a-date']) {
+  test(`ordinary ${mode} existing redirect timestamp follows Source JS Date for ${timestamp}`,{timeout:30_000},async()=>{
+   const f=await fixture(mode);try {
+    const service=f.service(),item=await service.createContent({type:'posts',slug:'old',data:{title:'Original'}});
+    const manual=await f.repository.create({source:'/posts/old',destination:'/manual-target',type:308,enabled:false,groupName:'Manual'});
+    const reference=await f.repository.create({source:'/reference/old',destination:'/manual-target',type:308,enabled:false,groupName:'Manual'});
+    await sql`UPDATE _cms_redirects SET updated_at=${timestamp},hits=3 WHERE id IN (${manual.id},${reference.id})`.execute(f.db);
+    // Existing public repository retains the pinned complete createAutoRedirect
+    // and update bodies; this is an original comparison, no new Source callbacks.
+    if(timestamp==='not-a-date') {
+     await assert.rejects(f.repository.createAutoRedirect('reference','old','new','ordinary-reference',null),RangeError);
+     await assert.rejects(service.updateContent({type:'posts',id:item.id,slug:'new',expected:expected(item)}),RangeError);
+     assert.equal((await service.getContent({type:'posts',id:item.id})).slug,'old');assert.equal(f.deferred.length,0);
+    }else {
+     const upstream=await f.repository.createAutoRedirect('reference','old','new','ordinary-reference',null);assert.ok(upstream);
+     await service.updateContent({type:'posts',id:item.id,slug:'new',expected:expected(item)});
+     const redirected=await f.repository.findById(manual.id);assert.ok(redirected);
+     assert.equal(redirected.updatedAt,upstream.updatedAt);
+     assert.equal(redirected.type,308);assert.equal(redirected.auto,false);assert.equal(redirected.enabled,false);
+     assert.equal(redirected.groupName,'Manual');assert.equal(redirected.hits,3);
+    }
+   }finally{await f.close();}
+  });
+ }
 }
