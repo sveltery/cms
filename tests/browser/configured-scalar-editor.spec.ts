@@ -54,7 +54,8 @@ test('real administrator creates, edits, autosaves and publishes scalar content 
     expect(after).toHaveLength(before.length);
     expect(after[0].data.title).toBe('Autosaved post');
     expect((await query('getLifecycleContent', key)).data).toEqual({ title: 'Autosaved post', detail: 'Original\ntext' });
-    await page.goto(`${h.origin}/content/posts/${id}/workflow`);
+    await page.getByRole('link', { name: 'Publishing and revisions', exact: true }).click();
+    await expect(page).toHaveURL(`${h.origin}/content/posts/${id}/workflow`);
     await page.getByRole('button', { name: 'Publish now', exact: true }).click();
     await expect(page.getByText('Status: published', { exact: true })).toBeVisible();
     expect((await query('getLifecycleContent', key)).status).toBe('published');
