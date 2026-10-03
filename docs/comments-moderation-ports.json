@@ -1049,6 +1049,18 @@
         "/tmp/comments-readiness-token-boundaries-red.log",
         "/tmp/comments-readiness-token-boundaries-final-green.log"
       ]
+    },
+    "unicodeColumnRepair": {
+      "baselineCommit": "f212be3",
+      "implementationCommit": "baba4cf",
+      "genuineValueReds": 2,
+      "wholeReadinessPass": 26,
+      "sourceCredit": 0,
+      "authCredit": 0,
+      "logs": [
+        "/tmp/comments-readiness-unicode-collection-type-red.log",
+        "/tmp/comments-readiness-unicode-collection-type-green.log"
+      ]
     }
   },
   "selectedDeclarations": [
@@ -1197,5 +1209,12 @@
       "callback": "document.addEventListener(\"submit\", async...)",
       "nativeAttachment": "actual native Svelte form onsubmit; complete callback body unchanged"
     }
-  ]
+  ],
+  "validationEvidence": {
+    "interruptedNormal": {
+      "head": "97e1bd0054bfebbbb67290d51f8ae983e7538489",
+      "log": "/tmp/comments-full-main0cf-bootstrap.log",
+      "result": "explicitly interrupted during service phase upon new independent owned type-fold defect; frozen445/checker0/0 complete, no full normal pass credit"
+    }
+  }
 }
