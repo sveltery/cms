@@ -6,6 +6,45 @@ on:
 permissions:
   contents: read
 jobs:
+  media-authenticated-pre-ui-evidence:
+    # Temporary historical reproduction; remove after retaining exact job logs.
+    # Only the native signed-in fixture changes from immutable public e632.
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [default, node]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: f887fbd6859f9b0bd9ee07153b873c5dafb63578
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm build
+        if: matrix.target == 'default'
+      - run: pnpm build:node
+        if: matrix.target == 'node'
+      - name: Historical whole media callbacks after ordinary signed-in setup
+        run: timeout --kill-after=30s 180s pnpm exec playwright test tests/browser/media-library-source.spec.ts
+        env:
+          SVELTERY_BROWSER_TARGET: ${{ matrix.target }}
+          DEBUG: pw:browser,pw:webserver
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: media-authenticated-pre-ui-${{ matrix.target }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
   media-source-evidence:
     # Additive media slice; all normal validate/browser jobs remain required.
     runs-on: ubuntu-22.04
