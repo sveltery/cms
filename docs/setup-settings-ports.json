@@ -586,6 +586,29 @@
     "kind": "original native acceptance, zero copied-source credit",
     "fixture": "real default seed, ordinary signed setup/login, actual current stored authority/profile projection and restart",
     "headingExpectation": "default5seconds inside unchanged whole30seconds",
-    "baseline": "committed before welcome UI; secured execution pending"
+    "baseline": {
+      "run": 37093643043,
+      "head": "05294553bb6827f93e7172e7dd045e3188efd85b",
+      "jobs": {
+        "default": 111119028897,
+        "node": 111119028812
+      },
+      "actual": "missing heading expectation completes at default5000ms after real standard seed/signed registration/login",
+      "genuineNativeAssertionReds": 2,
+      "genuineCopiedAssertionRedCredit": 0,
+      "remainingAcceptance": "dismissal/restart assertions not reached before UI"
+    }
+  },
+  "welcomeNativeUI": {
+    "source": "packages/admin/src/components/WelcomeModal.tsx",
+    "blob": "38df5af8b8a041e3d149bb37d2f70f2cf5744d2a",
+    "sourceComponentTests": "packages/admin/tests/components/WelcomeModal.test.tsx",
+    "wholeSourceComponentCallbacksPorted": 0,
+    "selectedBehavior": "source messages/name split/role badge/scope thresholds and closes even on mutation error; native SvelteKit shared-shell dialog/form/query",
+    "omissions": [
+      "React/Kumo/Lingui/TanStack declarations and9 component callback bodies",
+      "locale catalogs",
+      "public toolbar localStorage behavior"
+    ]
   }
 }
