@@ -502,7 +502,8 @@
     "tests/production/passkey-email-source.test.ts",
     "tests/passkey-parser.test.ts",
     "tests/production/passkey-site-state-source.test.ts",
-    "tests/production/passkey-parser-source.test.ts"
+    "tests/production/passkey-parser-source.test.ts",
+    "tests/production/passkey-setup-guards-source.test.ts"
   ],
   "supplementalParityCredit": 0,
   "sourceExecution": {
@@ -519,6 +520,11 @@
         "script": "scripts/reproduce-passkey-parser-upstream.mjs",
         "copiedSourceCredit": 0,
         "boundary": "Unchanged parser plus mocked options-route dependencies; four parser decisions and one ordering probe, no HTTP-host limit credit."
+      },
+      {
+        "script": "scripts/reproduce-passkey-setup-guards-upstream.mjs",
+        "copiedSourceCredit": 0,
+        "boundary": "Five guard-order probes execute unchanged pinned setup handlers with controlled DB/framework dependencies; zero parses before source guard responses, no WebAuthn reference execution."
       }
     ]
   },
