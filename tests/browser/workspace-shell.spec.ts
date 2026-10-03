@@ -11,7 +11,7 @@ test('native shell folders, mobile navigation, skip focus and storage denial use
   const directory = await mkdtemp(join(tmpdir(), 'cms-workspace-vite-'));
   const root = fileURLToPath(new URL('../helpers/workspace-shell-client/', import.meta.url));
   const server: ViteDevServer = await createServer({ configFile: false, root, cacheDir: directory, logLevel: 'error',
-    plugins: [svelte({ configFile: false })], resolve: { alias: {
+    plugins: [svelte({ configFile: false, compilerOptions: { experimental: { async: true } } })], resolve: { alias: {
       '$app/state': `${root}state.ts`, '$lib/workspace.remote': `${root}remotes.ts`
     } }, server: { host: '127.0.0.1', port: 0, fs: { allow: [fileURLToPath(new URL('../../', import.meta.url))] } } });
   try {

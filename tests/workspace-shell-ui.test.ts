@@ -21,7 +21,7 @@ const navigation = { authenticated: true, permissions: ['content:read', 'content
 before(async () => {
   directory = await mkdtemp(fileURLToPath(new URL('.workspace-shell-display-', import.meta.url)));
   const source = await readFile(new URL('../src/lib/ui/WorkspaceShell.svelte', import.meta.url), 'utf8');
-  const compiled = compile(source, { filename: 'WorkspaceShell.svelte', generate: 'server' }).js.code;
+  const compiled = compile(source, { filename: 'WorkspaceShell.svelte', generate: 'server', experimental: { async: true } }).js.code;
   await mkdir(`${directory}/card`);
   for (const name of ['Card', 'CardHeader', 'CardTitle', 'CardDescription', 'CardAction', 'CardContent', 'CardFooter']) {
     const cardSource = await readFile(new URL(`../src/lib/ui/vendor/sveltery/card/${name}.svelte`, import.meta.url), 'utf8');
@@ -43,38 +43,38 @@ before(async () => {
 });
 after(async () => { if (directory) await rm(directory, { recursive: true, force: true }); });
 
-function html(extra: Record<string, unknown> = {}) {
-  return render(Shell, { props: { children: () => {}, navigation, ...extra } }).body;
+async function html(extra: Record<string, unknown> = {}) {
+  return (await render(Shell, { props: { children: () => {}, navigation, ...extra } })).body;
 }
-test('shell provides a keyboard skip link to its actual main landmark', () => {
-  const body = html();
+test('shell provides a keyboard skip link to its actual main landmark', async () => {
+  const body = await html();
   assert.match(body, /href="#workspace-main"[^>]*>Skip to content/);
   assert.match(body, /<main[^>]*id="workspace-main"[^>]*tabindex="-1"/);
 });
-test('shell renders persisted collection descriptors while omitting hidden collections', () => {
-  const body = html();
+test('shell renders persisted collection descriptors while omitting hidden collections', async () => {
+  const body = await html();
   assert.match(body, /href="\/content\/posts"[^>]*>[^<]*Posts/);
   assert.doesNotMatch(body, /Private notes|\/content\/private_notes/);
 });
-test('authenticated principals without schema permission have no administration link', () => {
-  assert.doesNotMatch(html({ navigation: { ...navigation, permissions: ['content:read', 'content:read_drafts'] } }), /href="\/schema"/);
+test('authenticated principals without schema permission have no administration link', async () => {
+  assert.doesNotMatch(await html({ navigation: { ...navigation, permissions: ['content:read', 'content:read_drafts'] } }), /href="\/schema"/);
 });
-test('grouped collection navigation is a real accessible disclosure', () => {
-  const body = html();
+test('grouped collection navigation is a real accessible disclosure', async () => {
+  const body = await html();
   assert.match(body, /<details[^>]*>[^]*<summary[^>]*>[^<]*Calendar/);
   assert.match(body, /href="\/content\/events"/);
   assert.match(body, /href="\/content\/venues"/);
 });
-test('collection navigation resolves the application base and actual active descendant path', () => {
-  const body = html({ homeHref: '/cms/', currentPath: '/cms/content/posts/entry' });
+test('collection navigation resolves the application base and actual active descendant path', async () => {
+  const body = await html({ homeHref: '/cms/', currentPath: '/cms/content/posts/entry' });
   assert.match(body, /href="\/cms\/content\/posts"[^>]*aria-current="page"/);
   assert.doesNotMatch(body, /href="\/content\/posts"/);
 });
-test('shell has an accessible navigation toggle and controlled sidebar landmark', () => {
-  const body = html();
+test('shell has an accessible navigation toggle and controlled sidebar landmark', async () => {
+  const body = await html();
   assert.match(body, /<button[^>]*aria-controls="workspace-sidebar"[^>]*>[^<]*Toggle navigation/);
   assert.match(body, /<aside[^>]*id="workspace-sidebar"/);
 });
-test('unavailable feature families are not advertised as working destinations', () => {
-  assert.doesNotMatch(html(), /href="\/(media|blocks|users|plugins|comments|menus|settings)"/);
+test('unavailable feature families are not advertised as working destinations', async () => {
+  assert.doesNotMatch(await html(), /href="\/(media|blocks|users|plugins|comments|menus|settings)"/);
 });

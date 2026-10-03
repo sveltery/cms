@@ -2,11 +2,16 @@ import type { RequestEvent } from '@sveltejs/kit';
 import { editorManifest } from '../content/manifest.ts';
 import type { WorkspaceNavigation } from '../../ui/nav/navigation.ts';
 /** Trusted, read-only display data. Never resolves, creates or alters a principal. */
-export async function workspaceNavigation(event: Pick<RequestEvent, 'locals'>): Promise<WorkspaceNavigation> {
+export async function workspaceNavigation(event: Pick<RequestEvent, 'locals'> & Partial<Pick<RequestEvent, 'request'>>): Promise<WorkspaceNavigation> {
   const context = event.locals.cms;
   const principal = context?.principal;
   if (!principal) return { authenticated: false, permissions: [], collections: {} };
   const permissions = [...principal.permissions];
+  // SSR may also render a native form response. Display metadata never adds
+  // storage reads to a non-GET request; actual principal state stays intact.
+  if (event.request && event.request.method !== 'GET') {
+    return { authenticated: true, permissions, collections: {}, unavailable: true };
+  }
   if (!permissions.includes('content:read') || !permissions.includes('content:read_drafts')) {
     return { authenticated: true, permissions, collections: {} };
   }

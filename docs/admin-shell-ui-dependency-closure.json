@@ -52,5 +52,11 @@
     "xmlchars@2.2.0"
   ],
   "existingSnapshotChanges": [],
-  "reason": "Exact immutable UI test host closure; normal resolver failed on unchanged platform metadata HTTP503. Frozen policy/integrity install remains required."
+  "reason": "Exact immutable UI test host closure; normal resolver failed on unchanged platform metadata HTTP503. Frozen policy/integrity install remains required.",
+  "normalQualification": "de36280 run37103299730 frozen340 policy/integrity passed; final SSR/engine repaired-head gates required",
+  "nodeEngine": {
+    "sourceJsdom": "^22.22.2 || ^24.15.0 || >=26.0.0",
+    "project": ">=24.15.0 <25",
+    "dependencySubstitution": false
+  }
 }

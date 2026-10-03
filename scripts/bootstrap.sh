@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -eu
 cd "$(dirname "$0")/.."
-node -e 'if (Number(process.versions.node.split(".")[0]) !== 24) { console.error("Use Node.js 24"); process.exit(1); }'
+node -e 'const [major, minor] = process.versions.node.split(".").map(Number); if (major !== 24 || minor < 15) { console.error("Use Node.js 24.15.0 or newer within the Node 24 series"); process.exit(1); }'
 if [ "$(pnpm --version)" != "12.6.0" ]; then
   echo 'Use pnpm 12.6.0 (packageManager is pinned in package.json)' >&2
   exit 1

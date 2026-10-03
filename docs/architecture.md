@@ -30,7 +30,7 @@ Components call remote functions in `src/lib/content.remote.ts`. The transport d
 
 ## Tooling and handoff
 
-Use Node 24 and pnpm 12.6.0. TypeScript 6.0.3 is pinned because the current Kit/checker peer contracts require TypeScript 5 or 6; TypeScript 7 needs an additional dual-version setup. All direct dependencies are pinned; `pnpm-lock.yaml` is committed. pnpm generated an exact Vite 8.3.2 release-age exception because that resolved version is recent; dependency updates should review this exception.
+Use Node 24.15.0 or newer within the Node 24 series and pnpm 12.6.0. TypeScript 6.0.3 is pinned because the current Kit/checker peer contracts require TypeScript 5 or 6; TypeScript 7 needs an additional dual-version setup. All direct dependencies are pinned; `pnpm-lock.yaml` is committed. pnpm generated an exact Vite 8.3.2 release-age exception because that resolved version is recent; dependency updates should review this exception.
 
 In the saved cloud environment, clone the branch, then run `sh scripts/bootstrap.sh`. It verifies Node/pnpm, installs with the frozen lockfile, checks types/Svelte, runs service/development authorization and validation tests, builds, and tests production remotes from the generated registry. It also checks the isolated Node package and official Cloudflare Worker build, selected unchanged source declarations and actual local Worker HTTP/D1 execution. The same command runs in GitHub Actions with read-only repository permissions and no secrets. A separate hosted browser job installs Chromium and runs `pnpm test:browser` against the built preview with `chromiumSandbox: true`, with no host security-policy changes. Start the preview with `pnpm dev --host 0.0.0.0` when the cloud preview setup supports it.
 

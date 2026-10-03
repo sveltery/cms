@@ -6,20 +6,21 @@
   import { formatAdminVersion } from './nav/admin-version';
   import { Card } from './vendor/sveltery/card/index';
   import './vendor/sveltery/themes-native.css';
-  let { children, homeHref = '/', schemaHref, activePage = 'content', currentPath, navigation, additionalNavigation, mediaHref, blocksHref, version, footerLabel = 'Sveltery CMS' }: {
+  let { children, homeHref = '/', schemaHref, activePage = 'content', currentPath, navigation, additionalNavigation, mediaHref, blocksHref, usersHref, version, footerLabel = 'Sveltery CMS' }: {
     children: Snippet; homeHref?: string; schemaHref?: string;
-    activePage?: 'content' | 'schema' | 'settings' | 'dashboard' | 'media' | 'blocks';
+    activePage?: 'content' | 'schema' | 'settings' | 'dashboard' | 'media' | 'blocks' | 'users';
     currentPath?: string; navigation?: WorkspaceNavigation;
     /** Owned features mount real links/palette without advertising absent routes. */
     additionalNavigation?: Snippet;
-    mediaHref?: string; blocksHref?: string;
+    mediaHref?: string; blocksHref?: string; usersHref?: string;
     version?: string; footerLabel?: string | false;
   } = $props();
-  let fetchedNavigation = $state<WorkspaceNavigation>({ authenticated: false, permissions: [], collections: {} });
-  let navigationQuery = $state.raw<ReturnType<typeof getWorkspaceNavigation>>();
+  const navigationQuery = $derived(navigation ? undefined : getWorkspaceNavigation());
+  const loadedNavigation = $derived(navigationQuery ? await navigationQuery.then(value => value,
+    (): WorkspaceNavigation => ({ authenticated: false, permissions: [], collections: {}, unavailable: true })) : undefined);
   let navigationOpen = $state(false);
   let folders = $state<Record<string, boolean>>({});
-  const navigationData = $derived(navigation ?? navigationQuery?.current ?? fetchedNavigation);
+  const navigationData = $derived<WorkspaceNavigation>(navigation ?? navigationQuery?.current ?? loadedNavigation ?? { authenticated: false, permissions: [], collections: {} });
   const prefix = $derived(homeHref.endsWith('/') ? homeHref : `${homeHref}/`);
   const schemaLink = $derived(schemaHref ?? `${prefix}schema`);
   const path = $derived(currentPath ?? page.url.pathname);
@@ -30,14 +31,7 @@
     try { localStorage.setItem('emdash-sidebar-folders', JSON.stringify(folders)); } catch { /* Optional display preference. */ }
   }
   onMount(() => {
-    let disposed = false;
     try { folders = parseFolderState(localStorage.getItem('emdash-sidebar-folders')); } catch { /* Storage denial retains route defaults. */ }
-    if (!navigation) {
-      navigationQuery = getWorkspaceNavigation();
-      void navigationQuery.then(value => { if (!disposed) fetchedNavigation = value; },
-        () => { if (!disposed) fetchedNavigation = { authenticated: false, permissions: [], collections: {}, unavailable: true }; });
-    }
-    return () => { disposed = true; };
   });
 </script>
 
@@ -71,13 +65,14 @@
       {/if}
       {#if mediaHref}<a href={mediaHref} aria-current={activePage === 'media' ? 'page' : undefined}>Media</a>{/if}
       {#if blocksHref}<a href={blocksHref} aria-current={activePage === 'blocks' ? 'page' : undefined}>Block types</a>{/if}
+      {#if usersHref}<a href={usersHref} aria-current={activePage === 'users' ? 'page' : undefined}>Users</a>{/if}
       {#if showSchema}
         <h2>Administration</h2>
         <a href={schemaLink} aria-current={activePage === 'schema' ? 'page' : undefined}>Schema</a>
       {/if}
       {@render additionalNavigation?.()}
     </nav>
-    <a class="account-link" href={`${prefix}login`}>{navigationData.authenticated ? 'Your account' : 'Sign in'}</a>
+    <a class="account-link" href={`${prefix}login`}>{navigationData.authenticated ? 'Your account' : navigationData.unavailable ? 'Account' : 'Sign in'}</a>
     <small>{formatAdminVersion(version, undefined, footerLabel)}</small>
   </aside>
   <main id="workspace-main" tabindex="-1"><Card class="workspace-surface">{@render children()}</Card></main>
