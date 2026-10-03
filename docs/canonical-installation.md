@@ -87,3 +87,43 @@ normal canonical registration of menus, sections/widgets and redirects remain
 separate integration work. [Compatibility decisions](../parity/emdash/compatibility.md)
 record native substitutions and distinguish development qualification from
 specific acceptance.
+
+## Complete historical-upgrade follow-on
+
+The first normal run on `dc463b1` passed its frozen install and checker, then
+recorded 1263 passes and 21 failures among 1284 service cases. The remaining ten
+stages were unreached. Six existing cross-collection trigger checks revealed a
+real snapshot failure: frozen provider5 preserved the exact trigger definitions
+but recreated them in a different SQLite rowid order before metadata8 ran.
+The qualified repair compares every captured name/type/owner/SQL record in
+SQLite BINARY UTF8 order. It still restores dependencies in their originally
+captured creation order. The other fifteen failures required explicit native
+inventory successors: old operator SQL/effects, the five-version prefix and
+absence of field-unique indexes on the original two content tables remain
+asserted alongside the complete new canonical inventory.
+
+The invariant helper now installs the actual complete, hash-guarded public5
+fixture instead of calling the latest runner and labeling its result v5. An
+explicit latest8 stage preserves the same ordinary single-binding checks,
+adding 22 first-green callbacks with zero Source or causal credit. The real v5
+upgrade then exposed eight completed before-write invariant assertion failures
+for reserved objects and orphan field metadata introduced at its existing
+prebatch seam. The qualified repair reuses the unchanged frozen lifecycle
+content/collection/field snapshot guard before forward upgrades from installed
+state5 or newer, after the leading static/future-trigger prerequisite. Guard
+cleanup and the complete plan remain in one physical atomic batch.
+
+The same complete eleven affected native families now pass all 178 callbacks,
+with zero failures/cancellations/skips, on `6a6985b`. Both failed receipts remain
+retained. Source authorities, complete runtime bodies, assertions/fixtures,
+frozen providers1–5 and deadlines remain unchanged. These are native upgrade
+repairs and fixture-contract corrections, with zero additional Source parity
+credit; no new authentication, session, signature or protected Source family
+is exercised.
+
+The next combined successor ordinarily adopts actual public Sections/widgets
+Main `2f1b74bdb9f368f5f5a75e4f0cfb065657924f56`, preserving all incoming
+capabilities, Source commands, CI and the 512-package/527-snapshot lock closure.
+Its complete normal and secured hosted gates, fresh final-head review,
+specific acceptance, publication and merge remain pending. Earlier isolated
+review and green receipts do not qualify that combined successor.
