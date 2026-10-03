@@ -217,3 +217,26 @@ remains navigable. This repairs the existing native capability presentation,
 changes no role/session/API authorization and earns no additional Source parity
 credit. All whole Source admin assertions remain unchanged. Final-head review
 and hosted qualification continue on the successor head.
+
+
+The content-picker integration is a bounded native dependency seam. Source's
+MenuEditor passes no locale or collection restriction to the shared picker;
+that picker lists collections, queries 50-entry pages with search and cursors,
+and keeps the cached pages on reopening. The current native menu page uses
+existing remotes, includes only routable collections and the selected menu
+locale, and exposes its first returned page. It does not reproduce cross-locale
+choices, all-collection browsing, search, accumulated pagination or shared query
+cache behavior. These are explicit incomplete contracts, with zero full-picker
+parity or final acceptance. Existing native remotes have a default locale and
+no Source q/search input; completing this seam requires their real owned
+integration, not a fake all-locale result or a changed Source assertion.
+
+The ordinary full434 bootstrap completed installation, checks, service1147,
+Source115+203+14+128/nativeUI5, Card23, default build, production255 and Node
+packaging, then failed three unchanged isolated package installation subprocesses
+at their 120-second deadlines. The Node product callbacks and two Cloudflare
+bootstrap phases did not complete in that run; it earns zero complete bootstrap
+credit. Separately, the reviewed UI successor passes six original UI cases,
+Cloudflare build/official dry deployment, all23 CF Source callbacks and seven
+real Worker cases. Public-Main integration and final hosted checks remain
+pending; the ordinary Git fetch currently returns a transport503.
