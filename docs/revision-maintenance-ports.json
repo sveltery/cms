@@ -1,0 +1,102 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "approvedMain": "95668fb45b262c5e8df63ede20d712e71ebea771",
+  "scope": "Complete queued revision subfunction only, not runSystemCleanup or its unrelated subsystems",
+  "copiedDeclarations": 8,
+  "assertionExpressions": 27,
+  "callbacks": [
+    {
+      "path": "packages/core/tests/unit/cleanup.test.ts",
+      "title": "prunes old revisions keeping the most recent N",
+      "line": 30,
+      "sha256": "875f3f1324382d29854ecfa353d96c7dc14e1e1b79cfe0c1f8749fe85620736d",
+      "assertions": 5
+    },
+    {
+      "path": "packages/core/tests/unit/cleanup.test.ts",
+      "title": "is a no-op when revision count is at or below keepCount",
+      "line": 66,
+      "sha256": "a4d66ff8d5c63cac50bce49f3547305dde12bf2121a5026fa9cf745adcdb8654",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/cleanup.test.ts",
+      "title": "prunes eligible history while preserving old live and current draft revisions",
+      "line": 91,
+      "sha256": "64e449bf5a5a76fb172e4f68508803f10f3291191c819b002f71170298709a02",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/unit/cleanup.test.ts",
+      "title": "prunes revision entries queued by revision writes",
+      "line": 168,
+      "sha256": "c1928d23ec465ba7a4ac905650eb234429f78f0bba8a8be1ad93b35bee85d39f",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/unit/cleanup.test.ts",
+      "title": "processes the oldest queued revision entries first",
+      "line": 199,
+      "sha256": "370121b9f546259c04503696ee7b8234ca9ad131bc276bba29baeb430296f873",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/unit/cleanup.test.ts",
+      "title": "does not query the full revision history",
+      "line": 232,
+      "sha256": "a8c977a8fd350d24c3dc9763704aad9644e243082acad9153bad43502507bb5c",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/database/repositories/revision-pruning.test.ts",
+      "title": "does not delete a revision inserted after the queued prune snapshot",
+      "line": 52,
+      "sha256": "0e6a368e7bd0edb86a98f875f9632bb5539e0ffb50205a860f0c2c2dbc72f50b",
+      "assertions": 5
+    },
+    {
+      "path": "packages/core/tests/unit/database/repositories/revision-pruning.test.ts",
+      "title": "prunes through the queued revision while preserving referenced live and draft revisions",
+      "line": 125,
+      "sha256": "d86c7eaee5103b7088c68a47dd76d9fd92e6e901fbc04f9c0b888091159555d2",
+      "assertions": 4
+    }
+  ],
+  "authority": [
+    {
+      "path": "packages/core/tests/unit/cleanup.test.ts",
+      "blob": "57193623af954946074b7409dfcc1bf6334c9f30",
+      "sha256": "33c767198954560b2b56e90162723e2976d94c2667165ec0c386daaea8e846f9"
+    },
+    {
+      "path": "packages/core/tests/unit/database/repositories/revision-pruning.test.ts",
+      "blob": "e25f7bb34038c78fb3e2b49104503a43b99f3709",
+      "sha256": "eeca1249c2352ab875127c0562612f65d8246fc1137765be9a02a188ce0ba205"
+    },
+    {
+      "path": "packages/core/src/cleanup.ts",
+      "blob": "21d6eabd50e690faac77865746c2c3b3c4c7ab44",
+      "sha256": "d5a17bf0ba96289cb7ee4ef3af2e81e131eed9515892ee847411ac6c6a19e0cb"
+    },
+    {
+      "path": "packages/core/src/database/repositories/revision.ts",
+      "blob": "e1fa0f08bf3affdb97367bea2261ef2fc6feb45f",
+      "sha256": "c6f680af45cdcd074e6dcc161487bff8f506fc48dbb45967e0cb131d0127e90c"
+    }
+  ],
+  "sourceCoordinatorSHA256": "2c17fa35dd7f2388891dab9dfa7006664804bc00603a960c4408c1d19f27d145",
+  "sourceRevisionHostAdaptations": [
+    "Only module specifiers and erasable constructor parameter property; complete repository bodies retained",
+    "Physical revisions and _emdash_* namespaces mapped by test-only SQL transformer",
+    "Existing pinned content datetime normalizer/validation/types host dependencies; UTC/no request cache substitutions remain explicitly bounded",
+    "Canonical providers 1–5 and real collection registration initialize fixtures; this does not qualify full Source migration runner"
+  ],
+  "baseline": {
+    "status": "Not run yet; product coordinator absent; no fabricated successful subsystem results"
+  },
+  "incomplete": [
+    "Other system cleanup subsystems",
+    "Source scheduler and actual cron cadence",
+    "Deployed Node and Cloudflare scheduling"
+  ]
+}
