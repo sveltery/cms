@@ -33,7 +33,9 @@ test('authenticated workspace HTML includes real collection navigation before Ja
     const html = await response.text();
     const navigation = html.match(/<nav[^>]*aria-label="Workspace"[^>]*>([^]*?)<\/nav>/)?.[1];
     assert.ok(navigation, 'actual workspace navigation landmark');
-    assert.match(navigation, /href="\/content\/notes"[^>]*>[^<]*Notes/);
+    const collectionLink = navigation.match(/href="([^"]*content\/notes)"[^>]*>[^<]*Notes/);
+    assert.ok(collectionLink, 'real persisted collection link');
+    assert.equal(new URL(collectionLink[1], 'http://cms.test/').pathname, '/content/notes');
     assert.match(html, /Your account/);
     assert.doesNotMatch(navigation, /href="\/schema"/);
   } finally { await h.close(); }
