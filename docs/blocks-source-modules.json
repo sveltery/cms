@@ -162,6 +162,18 @@
       "copiedSha256": "59d35bb5731202191caefe3dcb0a8d8edfdae65802767f3832fbe5c12560d8ad",
       "scope": "complete module",
       "transforms": []
+    },
+    {
+      "source": "packages/admin/src/components/FieldEditor.tsx",
+      "blob": "f918b302b527d150f3f51fdfa1ebf1facc0fe7ba",
+      "sourceSha256": "2848aa488ef28fd8f15202de32c4352f5a0a8c83980fa823610e9460cfcedad0",
+      "copiedPath": "src/lib/ui/BlockSchemaFieldEditor.svelte",
+      "copiedSha256": "c79eb756108964beb306f8d04efef480ada90c2906ccfb3eee1d21e6ec9936e7",
+      "scope": "native Svelte rendering transport of blocks-only selection, readonly version inventory, ordered allowed/retired types and sparse limits; not complete general React FieldEditor module",
+      "transforms": [
+        "Svelte known-blocks component and SvelteKit native form transport",
+        "complete immutable source callback invokes actual native controls; unrelated field families omitted"
+      ]
     }
   ]
 }

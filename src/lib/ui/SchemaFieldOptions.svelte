@@ -1,5 +1,6 @@
 <script lang="ts">
   import { updateSchemaFieldOptions } from '$lib/schema.remote';
+  import {base} from '$app/paths';
   import type { Field } from '$lib/server/database/contract';
 
   const controlsId = $props.id();
@@ -7,7 +8,9 @@
   const optionsForm = $derived(updateSchemaFieldOptions.for(`${collection}/${field.slug}`));
 </script>
 
-<form {...optionsForm}>
+{#if field.type==='blocks'}
+ <p><a href={`${base}/blocks`}>Configure {field.label} allowed block types and limits</a></p>
+{:else}<form {...optionsForm}>
   <fieldset disabled={disabled || optionsForm.pending > 0}>
     <legend>Edit {field.slug} options</legend>
     <input {...optionsForm.fields.collection.as('hidden', collection)} />
@@ -53,6 +56,7 @@
   {/if}
   {#if optionsForm.result}<p role="status">Field options saved.</p>{/if}
 </form>
+{/if}
 
 <style>
   fieldset { border: 1px solid #d9e0eb; border-radius: 12px; padding: 16px; margin-block: 16px; }

@@ -6,11 +6,12 @@
  import {BLOCK_FIELD_TYPES} from '$lib/blocks/field-types';
  let {type,oncomplete}:{type?:BlockType;oncomplete?:()=>void}=$props();
  let slug=$state(untrack(()=>type?.slug??'')),label=$state(untrack(()=>type?.label??'')),description=$state(untrack(()=>type?.description??'')),category=$state(untrack(()=>type?.category??'')),icon=$state(untrack(()=>type?.icon??''));
- let fields=$state<BlockFieldDefinition[]>(untrack(()=>structuredClone(type?.versions.find(version=>version.version===type.currentVersion)?.fields??[]))),breaking=$state(false),message=$state(''),pending=$state(false);
+ const openedFingerprint=untrack(()=>type?.versions.find(version=>version.version===type.currentVersion)?.fingerprint);
+ let fields=$state<BlockFieldDefinition[]>(untrack(()=>structuredClone($state.snapshot(type?.versions.find(version=>version.version===type.currentVersion)?.fields??[])))),breaking=$state(false),message=$state(''),pending=$state(false);
  function change(index:number,patch:Partial<BlockFieldDefinition>){fields=fields.map((field,i)=>i===index?{...field,...patch}:field);}
  function validation(index:number,key:string,value:unknown){const next={...fields[index]!.validation};if(value===undefined)delete (next as Record<string,unknown>)[key];else (next as Record<string,unknown>)[key]=value;change(index,{validation:next});}
  async function save(){pending=true;message='';try{
-  const payload={label,description,category,icon,fields,...(type?{expectedFingerprint:type.versions.find(version=>version.version===type.currentVersion)!.fingerprint,breaking}:{slug})};
+  const payload={label,description,category,icon,fields,...(type?{expectedFingerprint:openedFingerprint,breaking}:{slug})};
   const response=await fetch(`${base}/_emdash/api/schema/block-types${type?`/${encodeURIComponent(type.slug)}`:''}`,{method:type?'PUT':'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)}),result=await response.json();
   if(!response.ok||!result.success)throw new Error(result.error?.message??'Block definition could not save');
   await invalidateAll();oncomplete?.();message=type?'Block type updated':'Block type created';
