@@ -40,6 +40,7 @@ for (const target of ['Node', 'D1']) {
           const store = variant === 'source' ? source.createChallengeStore(db) : nativeStore(fixture.database);
           assert.equal('consume' in store, false);
           assert.equal('atomic' in store, false);
+          assert.deepEqual(Object.getOwnPropertySymbols(store), []);
           const item = { type: 'authentication', userId: 'dummy-storage-owner',
             expiresAt: Date.now() + (expired ? -60_000 : 600_000), context: 'dummy-unit-metadata' };
           await store.set('dummy-storage-item', item);
