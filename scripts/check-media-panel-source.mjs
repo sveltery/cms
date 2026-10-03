@@ -29,4 +29,10 @@ for (const file of ledger.files) {
  visit(source);
  if (file.callbacks) assert.deepEqual(callbacks, file.callbacks, `${file.sourcePath}: callbacks`);
 }
+for (const declaration of ledger.testHostDeclarations??[]) {
+ const source=ts.createSourceFile(declaration.productPath,await readFile(new URL(declaration.productPath,root),'utf8'),ts.ScriptTarget.Latest,true);
+ const node=source.statements.find(node=>ts.isFunctionDeclaration(node)&&node.name?.text===declaration.name);
+ assert.ok(node, declaration.name);
+ assert.equal(createHash('sha256').update(node.getText(source)).digest('hex'),declaration.sha256,declaration.name);
+}
 console.log(JSON.stringify({sourcePin: ledger.sourcePin, immutableFiles: ledger.files.length, wholeTestFiles: ledger.files.filter(file=>file.kind==='test').length, declarations, assertionExpressions, productCallbacksExecuted: 0, parityCredit: 0}));

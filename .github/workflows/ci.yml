@@ -6,6 +6,27 @@ on:
 permissions:
   contents: read
 jobs:
+  media-panel-source-evidence:
+    # Source test-first draft gate; all normal validate/browser jobs remain required.
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check:media:panel
+      - run: pnpm test:media:panel:host
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Whole pinned detail panel and navigation on secured Chromium
+        run: pnpm test:media:panel
+        env:
+          DEBUG: pw:browser
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 15

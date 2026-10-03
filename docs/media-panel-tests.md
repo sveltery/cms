@@ -1,0 +1,27 @@
+# Complete pinned media detail panel test host
+
+This proposed development slice preserves EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e` whole media detail panel and navigation tests. It mounts the actual native Svelte `MediaDetails` component inside the unchanged React callback JSX. Source tests were committed before adapter work. No media product behavior is implemented or repaired by this slice.
+
+The [Source ledger](media-panel-source.json) guards complete bytes, declaration identities and callback checksums. Panel82 declarations expand to86 callbacks; navigation6 expands to6. All88 declarations/336 expectation expressions in those two complete files are selected for secured browser execution. Complete focal-point1 and usage18 declarations/50 expectations are also frozen as required helper reference contracts, with their24 expanded callbacks unimplemented until native widgets exist. The combined107 declarations/386 expectations are an inventory, not executions or coverage. The original MIT attribution remains in [the notice](../notices/emdash-MIT.txt) and [file notice](../notices/media-panel-source-tests.json).
+
+The [prerequisite manifest](media-panel-prerequisites.json) contains14 exact public Media checkpoint `721227e79f22bdd52a06b82beb948061653f6ce6` UI/client/pure-helper blobs. ROOT qualified these for development. Their original graph, server/provider/routes and feature audit history are not carried into this branch. Source media API/helper declarations and native media client code remain byte-identical. The actual Media PR must land and this slice must integrate its final approved code before final review or merge.
+
+## Test host boundaries
+
+The isolated browser host replaces only import, renderer and mock seams. The complete Source callback, mock factories, datasets, matchers, deadlines and expected arguments remain unchanged. Real React19.2.4, Query5.90.21, Router1.163.2 and Kumo2.6.0 provide the Source JSX/wrapper/navigation context. The production widget is Svelte5.57.1. The empty base-path fixture gives no deployed or custom-prefix credit.
+
+The React-to-Svelte adapter forwards original item fields, including optional provider metadata and omissions. Source widget props supply an explicit native permission array in the isolated fixture: local image editing, library local/supported-provider deletion and permitted cropped-copy upload. This composition establishes no principal resolution or permission/identity consequence. Production default empty permissions remain unchanged. Unsupported Source props do not acquire synthetic implementations.
+
+The native client import seam calls the exact Source mocked API functions and arguments and adapts the native response envelope. Source metadata mocks that return a partial row receive only the original fixture plus actual returned fields; submitted edits are never manufactured as returned data. Native `MediaRequestError` retains the actual class, status, code and message. Cropped-copy files/options and replacement multipart files/dimensions are passed unchanged. The test host never replaces global fetch, executes a fake provider, manufactures storage cleanup, or supplies a successful usage backend. Source child mocks retain their own unchanged factories through a framework mount adapter. The native usage widget and its whole helper contracts remain unimplemented.
+
+These MPS-01 framework/test-host substitutions are proposed, with specific ROOT acceptance not yet recorded. Divergent widget behavior earns zero Source credit. The native component currently lacks Source tabs, dirty-change/navigation guards, folder chooser, crop-original, provider playback and focal-point layout; these remain product work owned by the Media developer. The adapter does not fill those gaps.
+
+## Current verification
+
+- Immutable Source guard:18 complete files,107 declarations,386 expectation expressions; zero executed Source callbacks.
+- Own frozen installation:PASS in5.8s. All291 original package resolution records remain unchanged;90 Source-context/test packages are added. Existing Vitest stays4.1.10 with its browser peer added; tslib2.8.1 becomes required by the new context dependency. No existing product package version is upgraded.
+- Native/checker:0 errors/0 warnings after resolving test-host import types; direct Vite transforms confirm actual Svelte rune compilation. These are host readiness checks only.
+- Six original adapter-boundary checks:PASS, baseline/supplemental, zero Source or causal TDD credit. An initial unsupported-route fixture incorrectly used a valid media ID; its assertion was corrected before this pass and is not a product red.
+- Local secured browser and normal bootstrap receipts are pending at this documentation checkpoint. Missing Chromium/startup/import/deadline failures earn zero completed-assertion red or execution credit.
+
+The proposed PR remains draft until hosted Source results, dependency integration, configured review, fresh independent final-head review and ROOT exact-head approval. Actual stored media admission, ordinary signed-in HTTP/browser behavior, Node/D1/R2, Canvas decoded output, deployed hosts and the wider full media family remain in their own feature evidence.
