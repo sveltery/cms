@@ -13,6 +13,7 @@ import { RevisionRepository, type Revision } from './upstream/database/repositor
 import { ContentMutationConflictError, EmDashValidationError, type ContentItem } from './upstream/database/repositories/types.ts';
 import { keepKnownFields, staleStoredKeys } from './upstream/content/known-fields.ts';
 import { ContentDatetimeNormalizer } from './upstream/database/content-datetime.ts';
+import { LifecycleSlugConflictError } from './errors.ts';
 import * as v from 'valibot';
 
 // Runtime draft-stage, hydration and retention algorithms adapted from
@@ -123,7 +124,12 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     try{return await operation();}
     catch(cause){
       if(cause instanceof ContentMutationConflictError)throw new CmsError('CONFLICT',cause.message);
-      if(cause instanceof EmDashValidationError)throw new CmsError('VALIDATION_ERROR',cause.message);
+      if(cause instanceof EmDashValidationError){
+        const details=cause.details;
+        if(typeof details==='object'&&details!==null&&'code' in details&&details.code==='SLUG_CONFLICT')
+          throw new LifecycleSlugConflictError(cause.message);
+        throw new CmsError('VALIDATION_ERROR',cause.message);
+      }
       throw cause;
     }
   }
