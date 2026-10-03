@@ -1,5 +1,5 @@
 <script lang="ts">
- import {onDestroy,tick,untrack,type Snippet} from 'svelte';
+ import {flushSync,onDestroy,tick,untrack,type Snippet} from 'svelte';
  import {base} from '$app/paths';
  import {nativeMediaPickerClient,fetchPickerCurrentUser,type MediaPickerClient,type MediaItem,type MediaProviderItem,type MediaProviderInfo,type MediaFolder} from './picker-client';
  import {URL_SOURCE,selectionKey,matchesAnyFilter,matchesFilenameSearch,intersectMimeFilters,filtersOverlap,appendUniqueSelections,withLocalMediaUrl,probeImageDimensions,type SelectedMedia,type UploadedMedia} from './picker-helpers';
@@ -172,6 +172,12 @@
   }catch{if(request===probeId)urlError='Could not load image from URL';}
   finally{if(request===probeId)probing=false;}
  }
+ function changeImageUrl(event:Event){
+  const value=(event.currentTarget as HTMLInputElement).value;
+  // Match the Source input's synchronous change commit before a following
+  // native click; keep the unmodified Source event/expectation sequence.
+  flushSync(()=>{imageUrl=value;urlError='';});
+ }
  function close(){invalidateProbe();queue.reset();targets.clear();pinned=[];selected=[];assetItem=null;dismissed=true;onOpenChange(false);}
  function confirm(){if(!selected.length||hasUnfinished)return;const values=selected.map(entry=>$state.snapshot(toItem(entry)));if(multiple)onSelectMany?.(values);else onSelect(values[0]);close();}
  function move(from:number,to:number){if(to<0||to>=selected.length)return;orderEdited=true;const next=[...selected],entry=next.splice(from,1)[0];next.splice(to,0,entry);selected=next;message=`Moved ${entry.item.filename} to position ${to+1}.`;}
@@ -197,7 +203,7 @@
     {#if canUpload}<button type="button" onclick={()=>fileInput?.click()}>Upload files</button><input bind:this={fileInput} type="file" class="file-input" aria-label="Choose files to upload" accept={filters?.map(filter=>filter.endsWith('/')?`${filter}*`:filter).join(',')} {multiple} onchange={event=>{enqueue([...(event.currentTarget.files??[])]);event.currentTarget.value='';}} />{/if}
    </div>
    {#if source===URL_SOURCE}
-    <section class="url-input"><label>Image URL<input type="url" aria-label="Image URL" bind:value={imageUrl} oninput={()=>urlError=''} onkeydown={event=>{if(event.key==='Enter'){event.preventDefault();void submitUrl();}}} /></label><button type="button" disabled={!imageUrl.trim()||probing} onclick={()=>void submitUrl()}>Use URL</button>{#if urlError}<p role="alert">{urlError}</p>{/if}</section>
+    <section class="url-input"><label>Image URL<input type="url" aria-label="Image URL" value={imageUrl} oninput={changeImageUrl} onchange={changeImageUrl} onkeydown={event=>{if(event.key==='Enter'){event.preventDefault();void submitUrl();}}} /></label><button type="button" disabled={!imageUrl.trim()||probing} onclick={()=>void submitUrl()}>Use URL</button>{#if urlError}<p role="alert">{urlError}</p>{/if}</section>
     {#each selected.filter(entry=>entry.providerId===URL_SOURCE) as entry}<button type="button" class="url-preview" aria-label={entry.item.filename} aria-pressed="true" onclick={event=>{if(event.detail<2)choose(entry.item,URL_SOURCE);}}><img src={(entry.item as MediaItem).url} alt="" />{entry.item.filename}</button>{/each}
    {:else}
     {#if folderId&&source==='local'}<nav aria-label="Current folder"><button type="button" disabled={hasUnfinished} onclick={()=>{folderId=undefined;page=1;}}>Main library</button><span aria-hidden="true">/</span><span>{folderName}</span></nav>{/if}
@@ -226,7 +232,7 @@
     </section>
     {#if source==='local'}<nav aria-label="Media pagination" class="pagination"><button type="button" aria-label="Previous page" disabled={page===1||loading} onclick={()=>page--}>Previous page</button><label>Page number<input aria-label="Page number" type="text" inputmode="numeric" value={String(page)} onchange={event=>{const value=Number(event.currentTarget.value);if(Number.isInteger(value)&&value>=1&&value<=lastPage)page=value;else event.currentTarget.value=String(page);}} /></label><span>of {lastPage}</span><button type="button" aria-label="Next page" disabled={page>=lastPage||loading} onclick={()=>page++}>Next page</button></nav>{/if}
    {/if}
-   {#if multiple&&selected.length}<section aria-label="Selected media" class="selection"><h3>Selected media</h3><ul>{#each selected as entry,index (entry.key)}<li><span>{entry.item.filename}</span><span>{index+1} of {selected.length}</span><button type="button" aria-label={`Move ${entry.item.filename} earlier`} disabled={index===0} onclick={()=>move(index,index-1)}>↑</button><button type="button" aria-label={`Move ${entry.item.filename} later`} disabled={index===selected.length-1} onclick={()=>move(index,index+1)}>↓</button><button type="button" aria-label={`Remove ${entry.item.filename}`} onclick={()=>remove(entry)}>Remove</button></li>{/each}</ul></section>{/if}
+   {#if multiple&&selected.length}<section aria-label="Selected media" class="selection"><h3>Selected media</h3><ul>{#each selected as entry,index (entry.key)}<li><span>{entry.item.filename}</span><span>{index+1} of {selected.length}</span><button type="button" aria-label={`Move ${entry.item.filename} earlier`} disabled={index===0} onclick={()=>move(index,index-1)}>↑</button><button type="button" aria-label={`Move ${entry.item.filename} later`} disabled={index===selected.length-1} onclick={()=>move(index,index+1)}>↓</button><button type="button" aria-label={`Remove ${entry.item.filename} from selection`} onclick={()=>remove(entry)}>Remove</button></li>{/each}</ul></section>{/if}
    <footer>{#if editable}<button type="button" bind:this={editButton} disabled={hasUnfinished} onclick={()=>assetItem=editable}>Edit asset</button>{/if}<button type="button" onclick={close}>Cancel</button><button type="button" disabled={!selected.length||hasUnfinished} onclick={confirm}>{confirmText}</button></footer>
   {/if}
   <p role="status" class="announcement" aria-live="polite">{message}</p>
