@@ -84,7 +84,7 @@ export async function passkeyRuntime(target: 'Node' | 'D1' = 'Node', options: {m
       }
     };
   }
-  return { origin, directory, request, browser, get ids() { return ids; },
+  return { origin, directory, request, browser, get ids() { return ids; }, diagnostics() {return output;},
     async database() { storage ??= await schemaAdminStorage(target, directory); return storage.database; },
     async restart() { await storage?.close(); storage = undefined; await stop(); await start(); },
     async close() { await storage?.close(); await stop(); await rm(directory, { recursive: true, force: true }); }

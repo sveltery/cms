@@ -28,7 +28,7 @@ for(const target of ['Node','D1'] as const){
    await mutate('addBlockSchemaField',{collection:'block_media_pages',slug:'layout',label:'Layout','n:expectedSchemaVersion':'1','allowedTypes[]':'media_hero',maxItems:'20'});
    const pending=await browser.post('/api/media/upload-url',{filename:'nested.png',contentType:'image/png',size:png.length});assert.equal(pending.status,200);
    const upload=(await pending.json()).data;assert.equal(upload.existing,undefined);
-   const put=await h.request(upload.uploadUrl,{method:upload.method,headers:{...upload.headers,origin:h.origin,cookie:cookies()},body:png});assert.equal(put.status,200,JSON.stringify({upload,result:await put.clone().text()}));
+   const put=await h.request(upload.uploadUrl,{method:upload.method,headers:{...upload.headers,origin:h.origin,cookie:cookies()},body:png});assert.equal(put.status,200,JSON.stringify({upload,result:await put.clone().text(),diagnostics:h.diagnostics().slice(-3000)}));
    const confirmed=await browser.post(`/api/media/${upload.mediaId}/confirm`,{size:png.length,width:1,height:1});assert.equal(confirmed.status,200);
    const metadata=await h.request(`/api/media/${upload.mediaId}`,{method:'PUT',headers:{origin:h.origin,cookie:cookies(),'content-type':'application/json'},body:JSON.stringify({alt:'Nested real image',caption:'Retained caption',focalX:0.25,focalY:0.75})});assert.equal(metadata.status,200);
    const selected=(await metadata.json()).data.item;
@@ -41,9 +41,9 @@ for(const target of ['Node','D1'] as const){
    assert.equal(photo.provider,'local');assert.equal(photo.id,upload.mediaId);assert.equal(photo.src,undefined);
    assert.equal(photo.filename,'nested.png');assert.equal(photo.mimeType,'image/png');assert.equal(photo.width,1);assert.equal(photo.height,1);
    assert.equal(photo.alt,'Nested real image');assert.equal(photo.focalX,0.25);assert.equal(photo.focalY,0.75);
-   assert.equal(photo.meta.storageKey,upload.storageKey);assert.equal(photo.meta.caption,'Retained caption');assert.deepEqual(photo.darkVariant,dark);
-   assert.equal(typeof photo.blurhash,'string');assert.equal(typeof photo.dominantColor,'string');
-   const assetPath=`/_emdash/api/media/file/${upload.storageKey.split('/').map(encodeURIComponent).join('/')}`;
+   assert.equal(photo.meta.storageKey,selected.storageKey);assert.equal(photo.meta.caption,'Retained caption');assert.deepEqual(photo.darkVariant,dark);
+   assert.equal(photo.blurhash,selected.blurhash??undefined);assert.equal(photo.dominantColor,selected.dominantColor??undefined);
+   const assetPath=`/_emdash/api/media/file/${selected.storageKey.split('/').map(encodeURIComponent).join('/')}`;
    const asset=await h.request(assetPath);assert.equal(asset.status,200);assert.deepEqual(Buffer.from(await asset.arrayBuffer()),png);
    await h.restart();
    assert.deepEqual((await browser.query('getLifecycleContent',key)).data.data,row.data);

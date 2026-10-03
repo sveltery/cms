@@ -69,6 +69,43 @@ jobs:
             playwright-report/
             test-results/
           retention-days: 7
+  blocks-native-editor:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [default, node]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm build
+        if: matrix.target == 'default'
+      - run: pnpm build:node
+        if: matrix.target == 'node'
+      - run: pnpm exec vitest run --config vitest.blocks-client.config.ts
+      - run: node --test tests/production/blocks-media-persistence.test.ts
+      - name: Ordinary reusable-block editor and shared media picker
+        run: timeout --kill-after=30s 180s pnpm exec playwright test tests/browser/configured-blocks-editor.spec.ts
+        env:
+          SVELTERY_BROWSER_TARGET: ${{ matrix.target }}
+          DEBUG: pw:browser,pw:webserver
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: blocks-native-editor-${{ matrix.target }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
   setup-source-evidence:
     # Additive slice evidence; full validate/browser jobs remain required below.
     runs-on: ubuntu-22.04
