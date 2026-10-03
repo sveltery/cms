@@ -10,7 +10,7 @@ export default defineConfig({ plugins: [svelte({ configFile: false }), {
     const target = resolve(dirname(importer), id).replace(/\.(tsx?|js)$/, '');
     if (target === resolve(frozen, 'src/components/ContentPickerModal')) return resolve(root, 'tests/helpers/content-picker/browser-react.tsx');
     if (target === resolve(frozen, 'src/lib/api')) return resolve(root, 'src/lib/content-picker/client.ts');
-    if (target === resolve(frozen, 'tests/utils/render')) return resolve(root, 'tests/helpers/menus/browser-render.ts');
+    if (target === resolve(frozen, 'tests/utils/render')) return resolve(root, 'tests/helpers/content-picker/browser-render.tsx');
   }
 }], resolve: { conditions: ['browser'] }, oxc: { jsx: { runtime: 'automatic' } },
   test: { fileParallelism: false, include: ['parity/emdash/content-picker-source/upstream/packages/admin/tests/components/ContentPickerModal.test.tsx'],
