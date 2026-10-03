@@ -1,0 +1,93 @@
+{
+  "head": "3a8718e79ca40d5118cfab080510ed5073317ab3",
+  "tree": "775b836670d125e945a86a788cd9cb7d15bd7786",
+  "run": 37105052856,
+  "normalValidation": {
+    "job": 111151809330,
+    "normalCommand": "sh scripts/bootstrap.sh",
+    "fullBootstrapPass": true,
+    "normalFrozenInstall": true,
+    "normalTypes": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "service": {
+      "tests": 1149,
+      "pass": 1149,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0
+    },
+    "sourcePorts": {
+      "files": 9,
+      "executions": 79
+    },
+    "mediaSource": {
+      "files": 34,
+      "executions": 349
+    },
+    "sourceHostTypes": true,
+    "defaultBuild": true,
+    "production": {
+      "tests": 353,
+      "pass": 353,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0
+    },
+    "nodePackageBuild": true,
+    "isolatedFrozenInstallAndRestart": {
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0
+    },
+    "cloudflareBuild": true,
+    "wranglerDryBundle": true,
+    "cloudflarePure": {
+      "files": 4,
+      "executions": 23
+    },
+    "actualOfficialWorker": {
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0,
+      "mediaOriginalCallbackPass": 1,
+      "extendedReplacementReferencesIncluded": true
+    },
+    "rawLogFile": "/tmp/media-normal-3a-job-111151809330.log",
+    "rawLogBytes": 410152,
+    "rawLogSha256": "3008cc22136b9397188ce2326764009021931827ec1926ae15f2bdfe4e22cba2",
+    "workflowUrl": "https://github.com/sveltery/cms/actions/runs/37105052856/job/111151809330"
+  },
+  "securedMediaSlices": {
+    "receipt": "parity/emdash/media/evidence/hosted-crop-before-ui-red.json",
+    "wholeSourceBrowserCallbacksPassEachTarget": 4,
+    "nativeGenuineAssertionRedEachTarget": 1
+  },
+  "fullBrowser": {
+    "job": 111151809351,
+    "completedReportedFailures": 4,
+    "editorTaxonomySidebarHeading": 1,
+    "searchPaletteExpectations": 2,
+    "searchApiChecksOrFixtureAdmissionFailures": 0,
+    "searchEndpointsObservedStatus": "Not reached in this job before unchanged180s deadline",
+    "overallPass": false,
+    "outerDeadlineSeconds": 180,
+    "exitCode": 124,
+    "nodeFullBrowserReached": false,
+    "qualifiedCause": "Expected nativecrop beforeUI requirement, absent editor TaxonomySidebar and absent Search palette; all four reported failures precede unchanged180s deadline. This is not a full browser pass.",
+    "rawLogFile": "/tmp/media-normal-3a-job-111151809351.log",
+    "rawLogBytes": 137663,
+    "rawLogSha256": "460fce5d0a65158277c47fcb63c9049dd9bcb2766ff3e969d2f368453565c871",
+    "workflowUrl": "https://github.com/sveltery/cms/actions/runs/37105052856/job/111151809351",
+    "nativeCropBeforeUi": 1
+  },
+  "wholeME1ME2Complete": false,
+  "newCropHostAndUiIncluded": false,
+  "sourceAssertionRedCredit": 0,
+  "newBeforeUiNativeCropRequirementIncluded": true
+}
