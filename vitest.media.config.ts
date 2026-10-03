@@ -26,7 +26,7 @@ export default defineConfig({ plugins:[{
     'parity/emdash/media/source-tests/packages/core/tests/unit/api/handlers/media-upload.test.ts',
     'parity/emdash/media/source-tests/packages/core/tests/unit/api/media-folders-routes.test.ts',
     'parity/emdash/media/source-tests/packages/core/tests/integration/astro/media-{asset-route,confirm-placeholder,replace,upload-deduplication,upload-placeholder,upload-widening}.test.ts',
-    'parity/emdash/media/source-tests/packages/core/tests/unit/media/{enrich,focal-point-normalize,image-endpoint,media-allowlist,media-value,mime,normalize,placeholder,responsive,thumbnail,url}.test.ts',
+    'parity/emdash/media/source-tests/packages/core/tests/unit/media/{enrich,focal-point-normalize,image-endpoint,image-size-security,media-allowlist,media-value,mime,normalize,placeholder,responsive,thumbnail,url}.test.ts',
     'parity/emdash/media/source-tests/packages/core/tests/unit/api/media-file-private-keys.test.ts',
     'parity/emdash/media/source-tests/packages/core/tests/unit/storage/{local,s3}.test.ts'
   ]
