@@ -1,0 +1,10 @@
+.media-image-cropper-frame{display:flex;height:320px;min-width:0;width:100%;align-items:center;justify-content:center;overflow:hidden;border-radius:.75rem;background:#eef0f4}
+.emdash-react-image-crop{position:relative;max-height:100%;max-width:100%}
+.emdash-react-image-crop img{display:block;width:100%;height:100%;object-fit:contain;transform:none}
+.ReactCrop__crop-selection{position:absolute;box-sizing:border-box;border:2px solid #4465ce;animation:none;container-type:size}
+.ReactCrop__crop-selection:focus-visible{outline:2px solid #4465ce;outline-offset:2px}
+.ReactCrop__rule-of-thirds-vt,.ReactCrop__rule-of-thirds-hz{position:absolute;inset:0;pointer-events:none}
+.ReactCrop__rule-of-thirds-vt::before,.ReactCrop__rule-of-thirds-vt::after{content:'';position:absolute;top:0;bottom:0;border-left:1px dashed #4465ce}
+.ReactCrop__rule-of-thirds-vt::before{left:33.333%}.ReactCrop__rule-of-thirds-vt::after{left:66.667%}
+.ReactCrop__rule-of-thirds-hz::before,.ReactCrop__rule-of-thirds-hz::after{content:'';position:absolute;left:0;right:0;border-top:1px dashed #4465ce}
+.ReactCrop__rule-of-thirds-hz::before{top:33.333%}.ReactCrop__rule-of-thirds-hz::after{top:66.667%}

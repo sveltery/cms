@@ -2,6 +2,7 @@
  import {base} from '$app/paths';
  import {onMount,untrack} from 'svelte';
  import MediaDialog from './MediaDialog.svelte';
+ import MediaCropDialog from './MediaCropDialog.svelte';
  import {computeContentHash,MAX_CONTENT_HASH_BYTES} from './hash';
  import type {MediaItem,MediaFolder} from './types';
  let {initialItems=[],initialTotal=0,permissions=[],actorId='',onselect}: {initialItems?:MediaItem[];initialTotal?:number;permissions?:readonly string[];actorId?:string;onselect?:(item:MediaItem)=>void}=$props();
@@ -9,6 +10,7 @@
  let search=$state(''),mimeType=$state(''),folderId=$state<string|undefined>(),page=$state(1),loading=$state(false),message=$state('');
  let uploadOpen=$state(false),uploading=$state(false),uploadState=$state(''),folderOpen=$state(false),folderName=$state('');
  let selected=$state<MediaItem|null>(null),alt=$state(''),caption=$state(''),focalX=$state<number|undefined>(),focalY=$state<number|undefined>(),saving=$state(false);
+ let cropOpen=$state(false);
  let editingFolder=$state<MediaFolder|null>(null),editingFolderName=$state('');let requestId=0;
  const canUpload=$derived(permissions.includes('media:upload')),canOrganize=$derived(permissions.includes('media:edit_any'));
  const canEdit=$derived(permissions.includes('media:edit_any')||(permissions.includes('media:edit_own')&&selected?.authorId===actorId));
@@ -37,19 +39,21 @@
   }catch(cause){message=cause instanceof Error?cause.message:'Folders could not load';}
  }
  onMount(()=>{void loadFolders();});
+ async function uploadFile(file:File,options?:{deduplicate?:boolean;ensureUniqueFilename?:boolean;folderId:string|null}){
+  const contentHash=options?.deduplicate!==false&&file.size<=MAX_CONTENT_HASH_BYTES?await computeContentHash(await file.arrayBuffer()):undefined;
+  const pending=await api<{uploadUrl:string;method:'PUT';headers:Record<string,string>;mediaId:string;existing?:boolean}>('/api/media/upload-url',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({filename:file.name,contentType:file.type||'application/octet-stream',size:file.size,contentHash,...(options?.deduplicate===false?{deduplicate:false}:{}),...(options?.ensureUniqueFilename?{ensureUniqueFilename:true}:{}),...(options?{folderId:options.folderId}:folderId&&folderId!=='unfiled'?{folderId}:{})})});
+  if(pending.existing)return;
+  const response=await fetch(href(pending.uploadUrl),{method:pending.method,headers:pending.headers,body:file});
+  if(!response.ok){let failure;try{failure=await response.json();}catch{/* External storage may return a non-JSON error. */}throw new Error(failure?.error?.message??'File upload failed');}
+  await api(`/api/media/${pending.mediaId}/confirm`,{method:'POST',headers:{'content-type':'application/json'},body:'{}'});
+ }
  async function uploadFiles(files:FileList|null){
   if(!files?.length)return;uploading=true;uploadState='Uploading';message='';
-  try{for(const file of files){
-   const contentHash=file.size<=MAX_CONTENT_HASH_BYTES?await computeContentHash(await file.arrayBuffer()):undefined;
-   const pending=await api<{uploadUrl:string;method:'PUT';headers:Record<string,string>;mediaId:string;existing?:boolean}>('/api/media/upload-url',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({filename:file.name,contentType:file.type||'application/octet-stream',size:file.size,contentHash,...(folderId&&folderId!=='unfiled'?{folderId}:{})})});
-   if(pending.existing)continue;
-   const response=await fetch(href(pending.uploadUrl),{method:pending.method,headers:pending.headers,body:file});
-   if(!response.ok){let failure;try{failure=await response.json();}catch{/* External storage may return a non-JSON error. */}throw new Error(failure?.error?.message??'File upload failed');}
-   await api(`/api/media/${pending.mediaId}/confirm`,{method:'POST',headers:{'content-type':'application/json'},body:'{}'});
-  }uploadState='Complete';page=1;await load();}
+  try{for(const file of files)await uploadFile(file);uploadState='Complete';page=1;await load();}
   catch(cause){uploadState='Upload failed';message=cause instanceof Error?cause.message:'Upload failed';}
   finally{uploading=false;}
  }
+ async function createCroppedCopy(file:File){if(!selected)throw new Error('Media selection is no longer available');await uploadFile(file,{deduplicate:false,ensureUniqueFilename:true,folderId:selected.folderId??null});await load();cropOpen=false;selected=null;message='Cropped copy created';}
  function open(item:MediaItem){if(onselect){onselect(item);return;}selected=item;alt=item.alt??'';caption=item.caption??'';focalX=item.focalX??undefined;focalY=item.focalY??undefined;}
  async function save(){if(!selected)return;saving=true;message='';
   try{const result=await api<{item:MediaItem}>(`/api/media/${selected.id}`,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify({alt,caption,focalX:focalX??null,focalY:focalY??null})});selected={...result.item,url:selected.url};await load();message='Media details saved';}
@@ -86,7 +90,8 @@
 </div>{:else}<table><thead><tr><th>Name</th><th>Dimensions</th><th>Size</th><th>Created</th><th>Folder</th></tr></thead><tbody>{#each items as item}<tr><td><button onclick={()=>open(item)}>{item.filename}</button></td><td>{item.width??'—'} × {item.height??'—'}</td><td>{size(item.size)}</td><td>{new Date(item.createdAt).toLocaleDateString()}</td><td>{folders.find(folder=>folder.id===item.folderId)?.name??'Main folder'}</td></tr>{/each}</tbody></table>{/if}
 <div class="pagination"><button disabled={page===1||loading} onclick={()=>{page--;void load();}}>Previous page</button><span>Page {page} · {total} files</span><button disabled={page*50>=total||loading} onclick={()=>{page++;void load();}}>Next page</button></div>
 {#if uploadOpen}<MediaDialog label="Upload media" dismissible={!uploading} onclose={()=>uploadOpen=false}><h2>Upload media</h2><label>Browse files to upload<input type="file" multiple disabled={uploading} onchange={event=>void uploadFiles(event.currentTarget.files)} /></label><p role="status">{uploadState}</p>{#if message}<p role="alert">{message}</p>{/if}<button disabled={uploading} onclick={()=>uploadOpen=false}>Done</button></MediaDialog>{/if}
-{#if selected}<MediaDialog label="Media details" onclose={()=>selected=null}><header><h2>Media details</h2><button aria-label="Close media details" onclick={()=>selected=null}>Close</button></header>{#if selected.mimeType.startsWith('image/')}<img class="preview" src={href(selected.url)} alt={selected.alt??selected.filename} />{/if}<p>{selected.filename} · {size(selected.size)} · {selected.width??'—'} × {selected.height??'—'}</p><form onsubmit={event=>{event.preventDefault();void save();}}><label>Alt text<input readonly={!canEdit} bind:value={alt} /></label><label>Caption<textarea readonly={!canEdit} bind:value={caption}></textarea></label><fieldset disabled={!canEdit}><legend>Focal point</legend><label>Horizontal focal point<input type="number" min="0" max="1" step="0.01" bind:value={focalX} /></label><label>Vertical focal point<input type="number" min="0" max="1" step="0.01" bind:value={focalY} /></label></fieldset>{#if canEdit}<button disabled={saving}>Save changes</button>{/if}{#if canDelete}<button type="button" disabled={saving} onclick={()=>void remove()}>Delete media</button>{/if}</form>{#if message}<p role="status">{message}</p>{/if}</MediaDialog>{/if}
+{#if selected}<MediaDialog label="Media details" onclose={()=>selected=null}><header><h2>Media details</h2><button aria-label="Close media details" onclick={()=>selected=null}>Close</button></header>{#if selected.mimeType.startsWith('image/')}<img class="preview" src={href(selected.url)} alt={selected.alt??selected.filename} />{/if}<p>{selected.filename} · {size(selected.size)} · {selected.width??'—'} × {selected.height??'—'}</p>{#if canUpload&&['image/jpeg','image/png','image/webp'].includes(selected.mimeType)}<button onclick={()=>cropOpen=true}>Crop image</button>{/if}<form onsubmit={event=>{event.preventDefault();void save();}}><label>Alt text<input readonly={!canEdit} bind:value={alt} /></label><label>Caption<textarea readonly={!canEdit} bind:value={caption}></textarea></label><fieldset disabled={!canEdit}><legend>Focal point</legend><label>Horizontal focal point<input type="number" min="0" max="1" step="0.01" bind:value={focalX} /></label><label>Vertical focal point<input type="number" min="0" max="1" step="0.01" bind:value={focalY} /></label></fieldset>{#if canEdit}<button disabled={saving}>Save changes</button>{/if}{#if canDelete}<button type="button" disabled={saving} onclick={()=>void remove()}>Delete media</button>{/if}</form>{#if message}<p role="status">{message}</p>{/if}</MediaDialog>{/if}
+{#if cropOpen&&selected}<MediaCropDialog item={selected} src={href(selected.url)} oncreate={createCroppedCopy} onclose={()=>cropOpen=false} />{/if}
 {#if folderOpen}<MediaDialog label="Add new folder" onclose={()=>folderOpen=false}><h2>Add new folder</h2><form onsubmit={event=>{event.preventDefault();void createFolder();}}><label>Name<input bind:value={folderName} required /></label><button>Create</button><button type="button" onclick={()=>folderOpen=false}>Cancel</button></form>{#if message}<p role="alert">{message}</p>{/if}</MediaDialog>{/if}
 {#if editingFolder}<MediaDialog label="Rename folder" onclose={()=>editingFolder=null}><h2>Rename folder</h2><form onsubmit={event=>{event.preventDefault();void renameFolder();}}><label>Name<input bind:value={editingFolderName} required /></label><button>Save</button><button type="button" onclick={()=>editingFolder=null}>Cancel</button></form></MediaDialog>{/if}
 <style>

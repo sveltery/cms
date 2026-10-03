@@ -1,0 +1,62 @@
+{
+  "independentlyVerifiedPublicSource": {
+    "head": "9571c3baa6d056e8794485db0e1c9f31a811d7d3",
+    "tree": "42460690130aa4ea35d7933b867e9dc5728d3319",
+    "files": [
+      "package.json",
+      "pnpm-lock.yaml"
+    ]
+  },
+  "scope": "Exact new test-only React JSX bridge dependency closure nodes only; no picker implementation/history consumed. Product remains Svelte.",
+  "testDevDependencies": {
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "vitest-browser-react": "2.2.0"
+  },
+  "perYamlDocumentAdditions": [
+    {
+      "packages": 0,
+      "snapshots": 0
+    },
+    {
+      "packages": 9,
+      "snapshots": 11
+    }
+  ],
+  "allPreviousPackageRecordsSnapshotsAndImporterEntriesUnchanged": true,
+  "retainedExistingDifference": [
+    {
+      "document": 1,
+      "map": "snapshots",
+      "entry": "tslib@2.8.1",
+      "oursRetained": {},
+      "publicPicker": {
+        "optional": true
+      }
+    }
+  ],
+  "priorOrdinaryAddFailure": "React registry metadata503 before package mutation, zero behavior-red credit.",
+  "unnecessaryUnchangedFrozenAttempt": "Stopped via own PID TERM after supply-chain-policy verification wait; no behavior assertion or pass claim.",
+  "newNormalFrozenInstall": "Policy verification metadata requests took70s+; exec session recovery later disconnected, own known processes stopped. No normal install/check pass claimed.",
+  "sourceAssertionRedCredit": 0,
+  "normalPlainStaticCheck": {
+    "errors": 2,
+    "warnings": 0,
+    "classification": "Missing uninstalled declared React/vitest-browser-react test-only dependencies; not product/source assertion reds."
+  },
+  "exactInstalledTestTypesDiagnosticCheck": {
+    "errors": 0,
+    "warnings": 0,
+    "command": "node node_modules/svelte-check/bin/svelte-check --tsconfig /tmp/media-crop-existing-test-deps-tsconfig.json",
+    "boundary": "Temporary config resolves exact pinned existing React types/test renderer from verified picker development host; diagnostic only.",
+    "rawLogSha256": "8e4d5b8210722daa9c47cf02995e6c64e69ce51624bd7437fc30e84ea2deb41d"
+  },
+  "diagnosticProductBuild": {
+    "pass": true,
+    "command": "node node_modules/vite/bin/vite.js build",
+    "boundary": "Actual native product using already installed pinned packages; not normal pnpm/bootstrap credit.",
+    "rawLogSha256": "3d2da7db58721be3aa03fe2d8f4e09aed0d9190e0de51d2d0b04eaf41ef765d2"
+  }
+}

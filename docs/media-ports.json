@@ -1288,6 +1288,20 @@
       "nativeUniqueGenuineAssertionReds": 1,
       "nativeTargetAssertionExecutions": 2,
       "copiedSourceAssertionRedCredit": 0
+    },
+    {
+      "id": "native-crop-first-implementation",
+      "stage": "After actual completed native crop baseline; before pointer/keyboard resize implementation",
+      "pureHelperProductPath": "src/lib/media/source/crop-image.ts",
+      "nativeUiPaths": [
+        "src/lib/media/MediaCropDialog.svelte",
+        "src/lib/media/MediaImageCropper.svelte"
+      ],
+      "sourceCanvasWholeExpandedExecutionsSelected": 15,
+      "sourceCropperWholeCallbacksSelected": 12,
+      "executionPending": true,
+      "copiedSourceAssertionRedCredit": 0,
+      "nativeSourceRendererSubstitutions": "Test-only React-to-actual-Svelte bridge, render wrapper and native external CSS; no full renderer/Lingui/query/CSS parity claim."
     }
   ],
   "inventoryCounts": {
