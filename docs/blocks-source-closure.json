@@ -2,8 +2,8 @@
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "method": "Full pinned tracked packages reusable-block symbol roots plus complete transitive relative/local-package static and literal-dynamic import closure. Inventory only; cross-family dependencies have no inferred execution or feature credit.",
   "symbolExpression": "BlockType|BlockField|BLOCK_FIELD|BlocksField|BlockTypeList|block-types|block_types|normalizeBlocks|retiredTypes|allowedTypes|\"blocks\"",
-  "symbolRootFiles": 168,
-  "transitiveClosureFiles": 1076,
+  "symbolRootFiles": 169,
+  "transitiveClosureFiles": 1077,
   "externalImportSpecifiers": [
     "#api/authorize.js",
     "#api/error.js",
@@ -1213,7 +1213,9 @@
           "path": "packages/admin/src/components/RelationFormPanel.tsx"
         }
       ],
-      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly",
+      "implementationScope": "native Svelte rendering transport of blocks-only selection, readonly version inventory, ordered allowed/retired types and sparse limits; not complete general React FieldEditor module",
+      "nativePath": "src/lib/ui/BlockSchemaFieldEditor.svelte"
     },
     {
       "path": "packages/admin/src/components/FieldHelpLabel.tsx",
@@ -6847,7 +6849,7 @@
         }
       ],
       "testSelection": "parity/emdash/blocks/source-tests/packages/admin/tests/components/BlockTypeList.test.tsx",
-      "runtimeScope": "committed immutable source; not yet executed / owning runtime family explicit"
+      "runtimeScope": "whole six callbacks passed in secured native Svelte component host on public269fefa; identity repair follows one completed Source assertion red; other baseline greens earn zero causal-red credit"
     },
     {
       "path": "packages/admin/tests/components/BlocksField.test.tsx",
@@ -6874,7 +6876,7 @@
         }
       ],
       "testSelection": "parity/emdash/blocks/source-tests/packages/admin/tests/components/BlocksField.test.tsx",
-      "runtimeScope": "committed immutable source; not yet executed / owning runtime family explicit"
+      "runtimeScope": "whole six callbacks passed in secured native Svelte component host on public269fefa; identity repair follows one completed Source assertion red; other baseline greens earn zero causal-red credit"
     },
     {
       "path": "packages/admin/tests/components/ContentEditor.test.tsx",
@@ -6924,7 +6926,30 @@
         }
       ],
       "testSelection": "parity/emdash/blocks/source-tests/packages/admin/tests/components/FieldEditor.blocks.test.tsx",
-      "runtimeScope": "committed immutable source; not yet executed / owning runtime family explicit"
+      "runtimeScope": "whole unchanged callback passes secured actual native Svelte field controls at public0213b48 after retained-version assertion red on public269fefa; no complete general React FieldEditor module credit"
+    },
+    {
+      "path": "packages/admin/tests/components/ImageFieldRenderer.test.tsx",
+      "blob": "ff62743b27d1e80e44c03145dbc13cb440893879",
+      "sha256": "e5969f36553c7ee7570cefc488c00f835b3d671152ddebca93788b6ec700de5a",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../src/components/ImageFieldRenderer",
+          "path": "packages/admin/src/components/ImageFieldRenderer.tsx"
+        },
+        {
+          "specifier": "../../src/lib/api",
+          "path": "packages/admin/src/lib/api.ts"
+        },
+        {
+          "specifier": "../utils/render.tsx",
+          "path": "packages/admin/tests/utils/render.tsx"
+        }
+      ],
+      "testSelection": "parity/emdash/blocks/source-tests/packages/admin/tests/components/ImageFieldRenderer.test.tsx",
+      "runtimeScope": "complete immutable general ImageFieldRenderer suite copied before selected field-value method ports; full renderer/detail/crop widget host belongs broader family and is inactive here, zero Source behavior-red/execution credit"
     },
     {
       "path": "packages/admin/tests/editor/linked-code.test.ts",

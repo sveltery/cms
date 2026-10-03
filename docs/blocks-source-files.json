@@ -1292,7 +1292,7 @@
       "blob": "ce4890bec449d547a5ab53c7eaf1c6302cd7af54",
       "sha256": "4c14f1c91700aa780c2ea2273e4b8bf05fd6f68b1b887c2b75bdd1c4959c8de4",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/admin/tests/components/ContentEditor.test.tsx",
-      "state": "whole immutable file imported; blocks autosave callback3090\u20133178 requires actual native editor host; other callbacks owned by broader editor families, zero runtime/red credit",
+      "state": "whole immutable file imported; blocks autosave callback3090–3178 requires actual native editor host; other callbacks owned by broader editor families, zero runtime/red credit",
       "declarations": [
         {
           "title": "uses a task-oriented placeholder for portable text fields",
@@ -1986,6 +1986,136 @@
         }
       ],
       "literalExpectCalls": 60
+    },
+    {
+      "path": "packages/admin/tests/components/ImageFieldRenderer.test.tsx",
+      "blob": "ff62743b27d1e80e44c03145dbc13cb440893879",
+      "sha256": "e5969f36553c7ee7570cefc488c00f835b3d671152ddebca93788b6ec700de5a",
+      "copiedPath": "parity/emdash/blocks/source-tests/packages/admin/tests/components/ImageFieldRenderer.test.tsx",
+      "state": "complete immutable general ImageFieldRenderer suite copied before selected field-value method ports; full renderer/detail/crop widget host belongs broader family and is inactive here, zero Source behavior-red/execution credit",
+      "declarations": [
+        {
+          "title": "renders the featured variant as a full-width media card with metadata",
+          "line": 167,
+          "callbackSha256": "42c05ce5efd2eaf59def9f8674942ebbbf258aceaf4e0cf958da2e631aaacbd4"
+        },
+        {
+          "title": "previews a local image whose storage key contains slashes (#2871)",
+          "line": 196,
+          "callbackSha256": "61f3cafac837511532719b329f0199376c2958828654c4cc9133c58d2738ca44"
+        },
+        {
+          "title": "refreshes a featured local preview from the current media item",
+          "line": 213,
+          "callbackSha256": "6e7ae1cf2c631a8387f291cc8c6e8c6b7f9888149de3eb91869bb87b0152c3b6"
+        },
+        {
+          "title": "refreshes a featured dark mode preview from the current media item",
+          "line": 253,
+          "callbackSha256": "5fe76d8b50b4a3ee7900d5ef67355a369e9db63e3fd0c4553ee73bff93ad36a3"
+        },
+        {
+          "title": "falls back cleanly when optional featured-image metadata is missing",
+          "line": 305,
+          "callbackSha256": "f909c283da9fc3002fd3e22c3bed91391f3611a03a5ac5c0cd2e17646a9187dc"
+        },
+        {
+          "title": "encodes path-unsafe characters in local storage keys",
+          "line": 320,
+          "callbackSha256": "03e5adb74c3e69c6411186c26afee02ae753ad45289ed23fe8e163b7ea28c85d"
+        },
+        {
+          "title": "preserves filename and MIME type when a replacement is selected",
+          "line": 337,
+          "callbackSha256": "eb672840422238e9aa6f12caadccf713cffef8b8abf93c1b720633d90bc56585"
+        },
+        {
+          "title": "stores an external URL as a renderable direct media value",
+          "line": 364,
+          "callbackSha256": "c4e72599c31846411b22204f4750d6ae2a912a8fcc14b6a8051b6ad07c4b59ac"
+        },
+        {
+          "title": "does not offer asset editing in mobile actions for an external featured image",
+          "line": 388,
+          "callbackSha256": "55e07622d71aa168e1e99094fbc2419aeec01e85c74317d29d0808c0d1ce1412"
+        },
+        {
+          "title": "removes the featured image immediately",
+          "line": 411,
+          "callbackSha256": "e03f0d77becc398d486c788e8f0cd5c3ca02ab5fb81bc546db518d0dab6d04bc"
+        },
+        {
+          "title": "keeps the featured card and actions available when the image is broken",
+          "line": 426,
+          "callbackSha256": "ecf438f809bedd073372cbf2dc67bfa510fbede6504d985da32a360530a98b86"
+        },
+        {
+          "title": "opens the picker from the featured empty state and reports required validation",
+          "line": 447,
+          "callbackSha256": "a7faa4b3b83d06639f5df4b28c6ba7d283a0a37dfaad77b940f0cb08fce149ed"
+        },
+        {
+          "title": "offers no dark mode slot unless the field enables it",
+          "line": 466,
+          "callbackSha256": "e5216d1669b6858a7c0a0328b96174bdd44392eae75d6ecba93a08cd6b0d6a4d"
+        },
+        {
+          "title": "offers the dark mode slot only once a primary image is selected",
+          "line": 474,
+          "callbackSha256": "b5efa7627af3519ece58d8feec8a18e22110664e9b9bc71f5c67a94009ba999b"
+        },
+        {
+          "title": "upgrades a legacy string value instead of discarding it",
+          "line": 482,
+          "callbackSha256": "ce35875c51a26dbd52236d2e112758860d3055993c4e5714ebea761ccc03d7ee"
+        },
+        {
+          "title": "keeps the upgraded url when the dark mode variant is removed again",
+          "line": 503,
+          "callbackSha256": "bc805ebe96e7d552a65edf20bec2cb815e4991548379e8124856f615a0e5d255"
+        },
+        {
+          "title": "stores a picked dark mode variant next to the primary image",
+          "line": 519,
+          "callbackSha256": "db8dc307ebce66ff99e14be7bd3cc7065b4ebce9fdc4d5a46f077dca26b5e4e0"
+        },
+        {
+          "title": "shows the stored dark mode variant and removes only that variant",
+          "line": 538,
+          "callbackSha256": "54fddccab44748a58382dfb2f37bd1fbd19afc25d2709029773252ade2c6f1b9"
+        },
+        {
+          "title": "gives the dark mode variant its own focal point",
+          "line": 561,
+          "callbackSha256": "7b21505e55dd792aa2f0eaec1a673cd3d6e784b2ce73a7938a8d2e1885ba897a"
+        },
+        {
+          "title": "keeps the dark mode variant when the primary image is replaced",
+          "line": 581,
+          "callbackSha256": "976b628648c9063c037abff2ffe593501e8037a025d5c49b93b60658d135ac30"
+        },
+        {
+          "title": "does not show featured metadata in the default variant",
+          "line": 601,
+          "callbackSha256": "c7e710675cc92c8be9e43a2baa59668d9c9905f7d32aa7bba33bbfa5957a8418"
+        },
+        {
+          "title": "uses a cropped copy for the field without dropping its dark mode variant",
+          "line": 610,
+          "callbackSha256": "bb81cd773c10a9e7e9077c7c072a6a447d345450000280910dbb9184ed8cfbff"
+        },
+        {
+          "title": "refreshes a custom field preview from the edited item without persisting its content hash",
+          "line": 644,
+          "callbackSha256": "6cc39c8643360106ba5d7bc986fd561e2b1f9c253097898568d9c03225acaeea"
+        },
+        {
+          "title": "refreshes both previews when light and dark variants share one replaced asset",
+          "line": 687,
+          "callbackSha256": "ac77145caa50f01c63e7f356b052e96404e6fdfc84e91ddbb813eb22078a161d"
+        }
+      ],
+      "literalExpectCalls": 34
     }
   ],
   "sourceTestsRun": 0,
