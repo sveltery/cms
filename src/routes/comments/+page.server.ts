@@ -1,0 +1,24 @@
+import { error } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
+import { commentsReady } from '$lib/server/comments/readiness.ts';
+import { nativeCommentDatabase } from '$lib/server/comments/runtime.ts';
+import { handleCommentInbox, handleCommentCounts } from '$lib/server/comments/upstream/api/handlers/comments.ts';
+import type { CommentStatus } from '$lib/comments/types.ts';
+export const load: PageServerLoad = async ({locals,url})=>{
+ const principal=locals.cms?.principal;
+ if(!principal)error(401,'Authentication required');
+ if(!principal.permissions.includes('comments:moderate'))error(403,'Insufficient permission');
+ const database=locals.cms!.database;
+ const available=await commentsReady(database);
+ const requested=url.searchParams.get('status');
+ const activeStatus:CommentStatus=requested==='approved'||requested==='spam'||requested==='trash'?requested:'pending';
+ const collectionFilter=url.searchParams.get('collection')??'';
+ const searchQuery=url.searchParams.get('search')??'';
+ const db=nativeCommentDatabase(database);
+ const collections=Object.fromEntries((await db.selectFrom('_emdash_collections').select(['slug','label']).execute()).map(row=>[row.slug,{label:row.label}]));
+ const inbox=available?await handleCommentInbox(db,{status:activeStatus,collection:collectionFilter||undefined,search:searchQuery||undefined,limit:50}):null;
+ const counts=available?await handleCommentCounts(db):null;
+ if(inbox&&!inbox.success)error(500,inbox.error.message);
+ if(counts&&!counts.success)error(500,counts.error.message);
+ return {available,comments:inbox?.success?inbox.data.items:[],nextCursor:inbox?.success?inbox.data.nextCursor:undefined,counts:counts?.success?counts.data:{pending:0,approved:0,spam:0,trash:0},collections,activeStatus,collectionFilter,searchQuery,isAdmin:principal.permissions.includes('comments:delete'),basePath:locals.cmsRuntime?.basePath??''};
+};

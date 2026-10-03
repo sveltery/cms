@@ -160,3 +160,46 @@ export interface ResolvedPlugin {
  id: string; version: string; capabilities: string[];
  hooks: { [Name in HookNameV2]?: ResolvedHook<HookHandlerMap[Name]> };
 }
+
+
+
+export interface VersionedValue<T = unknown> {
+	value: T;
+	/** Opaque host revision, valid only for the key from which it was read. */
+	revision: string;
+}
+
+
+export type ConditionalWriteResult = { applied: true; revision: string } | { applied: false };
+
+
+export interface ConditionalDeleteResult {
+	applied: boolean;
+}
+
+
+// =============================================================================
+// Request Metadata Types
+// =============================================================================
+
+/**
+ * Geographic location information derived from the request.
+ * Available when running on Cloudflare Workers (via the `cf` object).
+ */
+export interface GeoInfo {
+	country: string | null;
+	region: string | null;
+	city: string | null;
+}
+
+
+/**
+ * Normalized request metadata available to plugin route handlers.
+ * Extracted from request headers and platform-specific properties.
+ */
+export interface RequestMeta {
+	ip: string | null;
+	userAgent: string | null;
+	referer: string | null;
+	geo: GeoInfo | null;
+}

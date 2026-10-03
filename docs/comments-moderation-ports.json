@@ -983,5 +983,116 @@
     ],
     "sourceCredit": 0,
     "authCredit": 0
+  },
+  "selectedDeclarations": [
+    {
+      "source": "packages/core/src/plugins/hooks.ts",
+      "product": "src/lib/server/comments/upstream/plugins/hooks.ts",
+      "names": [
+        "getTypedHooks",
+        "sortHooks",
+        "executeWithTimeout",
+        "runCommentBeforeCreate",
+        "runCommentAfterCreate",
+        "runCommentAfterModerate",
+        "hasHooks",
+        "getHookCount",
+        "getRegisteredHooks",
+        "getRegisteredExclusiveHooks",
+        "isExclusiveHook",
+        "setExclusiveSelection",
+        "clearExclusiveSelection",
+        "getExclusiveSelection",
+        "getExclusiveHookProviders",
+        "getHookProviders",
+        "invokeExclusiveHook",
+        "ExclusiveHookResolutionOptions",
+        "resolveExclusiveHooks"
+      ]
+    },
+    {
+      "source": "packages/core/src/plugins/types.ts",
+      "product": "src/lib/server/comments/upstream/plugins/types.ts",
+      "names": [
+        "CollectionCommentSettings",
+        "CommentBeforeCreateEvent",
+        "CommentModerateEvent",
+        "ModerationDecision",
+        "StoredComment",
+        "CommentAfterCreateEvent",
+        "CommentAfterModerateEvent",
+        "UserInfo",
+        "EmailMessage",
+        "GeoInfo",
+        "RequestMeta",
+        "VersionedValue",
+        "ConditionalWriteResult",
+        "ConditionalDeleteResult"
+      ]
+    },
+    {
+      "source": "packages/core/src/config/secrets.ts",
+      "product": "src/lib/server/comments/upstream/config/secrets.ts",
+      "names": [
+        "EmDashSecretsError",
+        "ensureGeneratedOption",
+        "generateRandomSecret",
+        "pickFirstNonEmpty"
+      ]
+    },
+    {
+      "source": "packages/admin/src/lib/api/comments.ts",
+      "product": "src/lib/comments/types.ts",
+      "names": [
+        "AdminComment",
+        "CommentStatus",
+        "CommentCounts",
+        "BulkAction"
+      ]
+    },
+    {
+      "source": "packages/admin/src/components/comments/CommentInbox.tsx",
+      "product": "src/lib/comments/types.ts",
+      "names": [
+        "CommentInboxProps"
+      ]
+    }
+  ],
+  "originalFunctionalEvidence": {
+    "registeredWorkflow": {
+      "baseline": "7bfc90b",
+      "valueReds": 2,
+      "pass": 2,
+      "log": "/tmp/comments-registered-workflow-rate-fixed.log",
+      "scope": "Node SQLite and raw D1 registered ordinary public/admin/replies/reactions/cascade; explicit fixture, no canonical installation credit"
+    },
+    "configuredGuest": {
+      "pass": 2,
+      "valueReds": 0,
+      "log": "/tmp/comments-configured-anonymous-real-runtime.log",
+      "scope": "UNREPLACED actual built hooks with Nodeenv/rawD1platform, anonymous ordinary writes,0Source/authcredit"
+    },
+    "nativeInbox": {
+      "baseline": "305142d",
+      "valueReds": 4,
+      "pass": 4,
+      "log": "/tmp/comments-native-inbox-value-green.log",
+      "scope": "jsdom actual native Svelte controls,0Sourcebrowser/geometrycredit"
+    },
+    "registeredPage": {
+      "baseline": "5b911e1",
+      "valueReds": 2,
+      "pass": 2,
+      "log": "/tmp/comments-registered-page-value-green.log",
+      "scope": "actual registered native SSR Node/rawD1,0Sourcebrowsercredit"
+    }
+  },
+  "frameworkLimits": {
+    "nativeProvider": "comment-only real current user/profile reads; no full plugin engine or provider installation",
+    "nativeCache": "explicit DB and request-local cache; full Source ambient/object cache unavailable",
+    "nativePublicRuntime": "Source default moderator and trusted currentprincipal; no defaultemail provider; publicOrigin server owned; actual Source proxy env honored, Cloudflare binding-to-secret propagation/full config not implemented",
+    "nativeAuthorLookup": "Preserve pinned Source author/profile lookup without disabled predicate; earlier filter promise withdrawn; current identity resolver unchanged",
+    "nativeSourceUiHost": "Whole SourceInbox4 originalcallbacks/fixtures/expectations, native React-to-Svelte mounting + native rendertransport; full pinnedEnglish.po3184 compiledrealLingui5.9.5; no Kumo/@linguiReactproduct/translation/geometry parity",
+    "canonical": "1\u20135 unchanged;19 owned comment/runtime descriptors unregistered and requestreadonly readiness; Source027 nativeautoapprovedefault0vs1 existinggapunfinished"
   }
 }

@@ -8,6 +8,7 @@ import { openD1 } from '../src/lib/server/database/d1.ts';
 import { migrateCms } from '../src/lib/server/database/migrations.ts';
 import { commentsReady } from '../src/lib/server/comments/readiness.ts';
 import { commentSchemaSql } from '../src/lib/server/comments/migrations.ts';
+import { commentRuntimeSchemaStatements } from '../src/lib/server/comments/runtime-migrations.ts';
 import { asyncD1Storage } from './helpers/async-d1-storage.ts';
 
 for (const target of ['Node SQLite', 'raw D1'] as const) {
@@ -25,6 +26,7 @@ for (const target of ['Node SQLite', 'raw D1'] as const) {
         });
         await database.atomicBatch([
           ...statements.map(statement => sql.raw(statement).compile(database.db)),
+          ...commentRuntimeSchemaStatements(database.db),
           ...(variant === 'collection default case' ? [
             sql`ALTER TABLE _cms_collections DROP COLUMN comments_moderation`.compile(database.db),
             sql`ALTER TABLE _cms_collections ADD COLUMN comments_moderation TEXT DEFAULT 'FIRST_TIME'`.compile(database.db)

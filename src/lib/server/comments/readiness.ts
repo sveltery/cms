@@ -1,6 +1,7 @@
 import { sql } from 'kysely';
 import type { CmsDatabase } from '../database/contract.ts';
 import { commentSchemaSql } from './migrations.ts';
+import { commentRuntimeSchemaSql } from './runtime-migrations.ts';
 
 /** Fold SQL syntax outside string literals; literal values remain byte-exact. */
 export function normalizeCommentSchemaSql(value: string): string {
@@ -34,8 +35,8 @@ export function normalizeCommentSchemaSql(value: string): string {
   return result;
 }
 const normalize = normalizeCommentSchemaSql;
-const expected = new Map(commentSchemaSql.map(statement => {
-  const match = /^CREATE (?:UNIQUE )?(TABLE|INDEX) (\w+)/.exec(statement)!;
+const expected = new Map([...commentSchemaSql, ...commentRuntimeSchemaSql].map(statement => {
+  const match = /^CREATE (?:UNIQUE )?(TABLE|INDEX|TRIGGER) (\w+)/.exec(statement)!;
   return [match[2], { type: match[1].toLowerCase(), sql: normalize(statement) }];
 }));
 
@@ -43,7 +44,7 @@ const expected = new Map(commentSchemaSql.map(statement => {
 export async function commentsReady(database: CmsDatabase): Promise<boolean> {
   const rows = (await sql<{ name: string; type: string; tbl_name: string; sql: string | null }>`
     SELECT name, type, tbl_name, sql FROM sqlite_schema
-    WHERE tbl_name IN ('_cms_comments', '_cms_comment_reactions')
+    WHERE tbl_name IN ('_cms_comments', '_cms_comment_reactions', '_cms_comment_options', '_cms_comment_rate_limits')
     UNION ALL
     SELECT name, 'column', type, dflt_value FROM pragma_table_info('_cms_collections')
     WHERE name IN ('comments_enabled', 'comments_moderation', 'comments_closed_after_days', 'comments_auto_approve_users')

@@ -10,7 +10,7 @@ function fixture(patch:Partial<CommentInboxProps>={}){
  const props:CommentInboxProps={comments:[comment()],counts:{pending:1,approved:0,spam:0,trash:0},isLoading:false,collections:{posts:{label:'Posts'}},activeStatus:'pending',onStatusChange:vi.fn(),collectionFilter:'',onCollectionFilterChange:vi.fn(),searchQuery:'',onSearchChange:vi.fn(),onCommentStatusChange:vi.fn().mockResolvedValue(undefined),onCommentDelete:vi.fn().mockResolvedValue(undefined),onBulkAction:vi.fn().mockResolvedValue(undefined),onLoadMore:vi.fn(),isAdmin:true,isStatusPending:false,deleteError:null,onDeleteErrorReset:vi.fn(),...patch};
  const target=document.createElement('div');document.body.append(target);mounted.push(flushSync(()=>mount(Inbox,{target,props})));return {target,props};
 }
-function button(target:HTMLElement,label:string):HTMLButtonElement|null {return [...target.querySelectorAll('button')].find(element=>element.getAttribute('aria-label')===label||element.textContent===label)??null;}
+function button(target:HTMLElement,label:string):HTMLButtonElement|null {return [...target.querySelectorAll('button')].find(element=>element.getAttribute('aria-label')===label||element.textContent?.trim()===label)??null;}
 it('shows the source page context and sends a status tab change',async()=>{
  const {target,props}=fixture();expect(target.textContent).toContain('Review and moderate comments across your content.');
  const pending=target.querySelector('[role="tab"][aria-selected="true"]');expect(pending?.textContent).toContain('Pending');button(target,'Approved')!.click();await tick();expect(props.onStatusChange).toHaveBeenCalledWith('approved');
