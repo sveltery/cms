@@ -4,6 +4,7 @@ import {identifier,localeInput} from './validation.ts';
 // Wire-neutral bounded admin list inputs. Indexed filter semantics are checked
 // by the pinned repository after resolving collection existence and metadata.
 export const contentListOptions={
+ q:v.optional(v.pipe(v.string(),v.maxLength(1000))),
  locale:v.optional(localeInput,'en'),
  limit:v.optional(v.pipe(v.number(),v.safeInteger(),v.minValue(1))),
  cursor:v.optional(v.pipe(v.string(),v.maxLength(2048))),

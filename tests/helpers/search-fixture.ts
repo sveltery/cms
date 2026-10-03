@@ -1,3 +1,4 @@
+import {contentListSearch} from '../../src/lib/server/search/content-list.ts';
 // Test-host substitutions only; all collection/content storage uses real CMS providers.
 import { describe } from 'vitest';
 import { schemaAdminStorage } from './schema-admin-storage.ts';
@@ -43,7 +44,7 @@ export async function handleContentCreate(db:Kysely<Database>, type:string, inpu
   catch(cause){return {success:false as const,error:{message:String(cause)}};}
 }
 export async function handleContentList(db:Kysely<Database>,type:string,input:Record<string,unknown>) {
-  try{return {success:true as const,data:await new ContentRepository(db).findMany(type, {limit:input.limit as number|undefined})};}
+  try{return {success:true as const,data:await new ContentRepository(db).findMany(type, {limit:input.limit as number|undefined,where:await contentListSearch(db,type,input.q)})};}
   catch(cause){return {success:false as const,error:{message:String(cause)}};}
 }
 // Byte-identical fixture function from immutable packages/core/tests/utils/fixtures.ts.
