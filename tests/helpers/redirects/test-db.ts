@@ -15,7 +15,7 @@ class Namespace extends OperationNodeTransformer {
   }
 }
 const names=new Namespace();
-const plugin: KyselyPlugin={
+export const redirectNamespacePlugin: KyselyPlugin={
  transformQuery(args:PluginTransformQueryArgs){return names.transformNode(args.node);},
  async transformResult(args:PluginTransformResultArgs):Promise<QueryResult<UnknownRow>>{return args.result;}
 };
@@ -23,7 +23,7 @@ const owned = new WeakMap<object,ReturnType<typeof openSqlite>>();
 export interface DialectTestContext {db:Kysely<Database>;dialect:'sqlite'}
 export async function createForDialect(_dialect:'sqlite'):Promise<DialectTestContext> {
  const storage=openSqlite(':memory:');
- const db=storage.db.withTables<{[Name in keyof Database]:Database[Name]}>().$pickTables<keyof Database>().withPlugin(plugin);
+ const db=storage.db.withTables<{[Name in keyof Database]:Database[Name]}>().$pickTables<keyof Database>().withPlugin(redirectNamespacePlugin);
  owned.set(db,storage);
  return {db,dialect:'sqlite'};
 }
