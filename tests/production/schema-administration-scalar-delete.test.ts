@@ -42,8 +42,8 @@ for (const target of ['Node', 'D1'] as const) {
     try {
       await h.registry.createCollection({ slug: 'posts', label: 'Posts' });
       for (const type of ['string', 'text', 'slug'] as const) {
-        await h.registry.createField('posts', { slug: type, label: type, type });
-        await h.mutate('updateSchemaFieldOptions', { collection: 'posts', field: type, id: `posts/${type}`,
+        await h.registry.createField('posts', { slug: `value_${type}`, label: type, type });
+        await h.mutate('updateSchemaFieldOptions', { collection: 'posts', field: `value_${type}`, id: `posts/value_${type}`,
           defaultValueMode: 'set', defaultValue: `value-${type}` });
       }
       await h.registry.createField('posts', { slug: 'future', label: 'Future', type: 'string' });
@@ -55,8 +55,8 @@ for (const target of ['Node', 'D1'] as const) {
       assert.deepEqual(await h.snapshot(), before);
       const html = await (await h.request('/schema/posts')).text();
       for (const type of ['string', 'text', 'slug']) {
-        assert.match(html, new RegExp(`<legend[^>]*>Edit ${type} options</legend>`));
-        assert.equal((await h.registry.getField('posts', type))!.defaultValue, `value-${type}`);
+        assert.match(html, new RegExp(`<legend[^>]*>Edit value_${type} options</legend>`));
+        assert.equal((await h.registry.getField('posts', `value_${type}`))!.defaultValue, `value-${type}`);
       }
       assert.doesNotMatch(html, /<legend[^>]*>Edit future options<\/legend>/, 'fallback string projection is not a supported raw scalar type');
     } finally { await h.close(); }
@@ -74,7 +74,7 @@ for (const target of ['Node', 'D1'] as const) {
       assert.equal(result.type, 'result');
       const data = parse(result.data, h.decoders);
       assert.equal(typeof data.redirect, 'string', 'compiled form returns its redirect envelope');
-      assert.equal(new URL(data.redirect, `${h.origin}/schema/posts`).pathname, '/schema');
+      assert.equal(new URL(data.redirect, h.origin).pathname, '/schema');
       assert.ok(data.r, 'native Kit retains its successful redirect receipt');
       for (const name of ['getSchemaCollection', 'getCollection']) {
         const details = Object.entries(data.q ?? {}).filter(([key]) => key.includes(`/${name}/`));
