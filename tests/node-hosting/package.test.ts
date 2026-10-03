@@ -96,7 +96,7 @@ test('isolated production package starts, serves assets and denies anonymous HTT
       const { default: exports } = await (load as () => Promise<{ default: Record<string, unknown> }>)();
       for (const name of Object.keys(exports)) ids.set(name, `${hash}/${name}`);
     }
-    assert.deepEqual([...ids.keys()].sort(), ['addSchemaField', 'beginLogin', 'beginSetup', 'completeLogin', 'completeSetup', 'countTrashedContent', 'createContent', 'createSchemaCollection', 'deleteContent', 'getCollection', 'getContent', 'getCurrentUser', 'getEditorManifest', 'getSchemaCollection', 'getSetupStatus', 'getTrashedContent', 'listCollections', 'listContent', 'listSchemaCollections', 'listTrashedContent', 'logout', 'restoreContent', 'updateContent', 'updateSchemaCollection', 'updateSchemaFieldLabel', 'updateSchemaFieldOptions']);
+    assert.deepEqual([...ids.keys()].sort(), ['addSchemaField', 'beginLogin', 'beginSetup', 'completeLogin', 'completeSetup', 'countTrashedContent', 'createContent', 'createSchemaCollection', 'deleteContent', 'getAuthenticatedState', 'getCollection', 'getContent', 'getCurrentUser', 'getEditorManifest', 'getSchemaCollection', 'getSetupStatus', 'getTrashedContent', 'listCollections', 'listContent', 'listSchemaCollections', 'listTrashedContent', 'logout', 'restoreContent', 'updateContent', 'updateSchemaCollection', 'updateSchemaFieldLabel', 'updateSchemaFieldOptions']);
     const port = await unusedPort();
     const base = `http://127.0.0.1:${port}/`;
     running = launch(directory, port, new URL(base).origin);
