@@ -46,6 +46,15 @@ test('real administrator creates, edits, autosaves and publishes scalar content 
     await page.getByRole('button', { name: 'Save', exact: true }).click();
     await expect(page.getByRole('status').filter({ hasText: 'Saved' })).toBeVisible();
     const before = await query('listContentRevisions', key);
+    const rejectedSave = page.waitForResponse(response => response.url().includes('/autosaveEditorContent') && response.request().method() === 'POST');
+    await page.locator('#field-title').fill('');
+    expect((await (await rejectedSave).json()).status).toBe(400);
+    await expect(page.getByRole('alert').filter({ hasText: 'Title is required.' })).toBeVisible();
+    await page.locator('#field-detail').focus();
+    await page.locator('#field-title').focus();
+    await expect(page.locator('#field-title')).toHaveValue('');
+    await expect(page.getByRole('status').filter({ hasText: 'Saved' })).toHaveCount(0);
+    expect((await query('getLifecycleContent', key)).data.title).toBe('Manual saved post');
     const pending = page.waitForResponse(response => response.url().includes('/autosaveEditorContent') && response.request().method() === 'POST');
     await page.locator('#field-title').fill('Autosaved post');
     expect((await pending).status()).toBe(200);
@@ -54,6 +63,29 @@ test('real administrator creates, edits, autosaves and publishes scalar content 
     expect(after).toHaveLength(before.length);
     expect(after[0].data.title).toBe('Autosaved post');
     expect((await query('getLifecycleContent', key)).data).toEqual({ title: 'Autosaved post', detail: 'Original\ntext' });
+    const concurrent = await page.context().newPage();
+    try {
+      await concurrent.goto(`${h.origin}/content/posts/${id}`);
+      await concurrent.locator('#field-title').fill('Concurrent saved post');
+      await concurrent.getByRole('button', { name: 'Save', exact: true }).click();
+      await expect(concurrent.getByRole('status').filter({ hasText: 'Saved' })).toBeVisible();
+      const concurrentRevisions = await query('listContentRevisions', key);
+      const staleSave = page.waitForResponse(response => response.url().includes('/autosaveEditorContent') && response.request().method() === 'POST');
+      await page.locator('#field-title').fill('Retained conflicting edit');
+      expect((await (await staleSave).json()).status).toBe(409);
+      await expect(page.getByRole('alert').filter({ hasText: 'Content changed elsewhere. Reload before saving.' })).toBeVisible();
+      await page.locator('#field-detail').focus();
+      await page.locator('#field-title').focus();
+      await expect(page.locator('#field-title')).toHaveValue('Retained conflicting edit');
+      await expect(page.getByRole('button', { name: 'Save', exact: true })).toBeDisabled();
+      expect((await query('getLifecycleContent', key)).data.title).toBe('Concurrent saved post');
+      expect(await query('listContentRevisions', key)).toHaveLength(concurrentRevisions.length);
+      await page.getByRole('button', { name: 'Reload content', exact: true }).click();
+      await expect(page.locator('#field-title')).toHaveValue('Concurrent saved post');
+      await page.locator('#field-title').fill('Autosaved post');
+      await page.getByRole('button', { name: 'Save', exact: true }).click();
+      await expect(page.getByRole('status').filter({ hasText: 'Saved' })).toBeVisible();
+    } finally { await concurrent.close(); }
     await page.getByRole('link', { name: 'Publishing and revisions', exact: true }).click();
     await expect(page).toHaveURL(`${h.origin}/content/posts/${id}/workflow`);
     await page.getByRole('button', { name: 'Publish now', exact: true }).click();
