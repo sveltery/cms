@@ -54,3 +54,15 @@ it('native item deletion calls the backend immediately without confirmation', as
   const api = client(); const target = await render(MenuEditor, { client: api, name: 'main' }); await click(target, 'Delete');
   expect(api.deleteMenuItem).toHaveBeenCalledWith('main', '1', { locale: 'en' }); expect(target.querySelector('dialog')).toBeNull();
 });
+
+it('native read-only editor disables translation creation and keeps existing translation navigation', async () => {
+  const api = client(), navigate = vi.fn();
+  api.fetchMenuTranslations.mockResolvedValue({ translationGroup: 'main', translations: [menu, { ...menu, id: 'main-fr', locale: 'fr' }] });
+  const target = await render(MenuEditor, { client: api, name: 'main', locale: 'en', locales: ['en', 'fr', 'es'], mutationsEnabled: false, navigate });
+  const buttons = [...target.querySelectorAll<HTMLButtonElement>('.translations button')];
+  expect(buttons.find(button => button.textContent?.startsWith('ES'))?.disabled).toBe(true);
+  expect(buttons.find(button => button.textContent?.startsWith('FR'))?.disabled).toBe(false);
+  buttons.find(button => button.textContent?.startsWith('FR'))!.click(); await tick();
+  expect(navigate).toHaveBeenCalledWith('/menus/main?locale=fr');
+  expect(api.createMenuTranslation).not.toHaveBeenCalled();
+});
