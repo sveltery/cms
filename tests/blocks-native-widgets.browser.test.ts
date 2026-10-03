@@ -48,4 +48,20 @@ describe('Native reusable block controls',()=>{
   (screen.getByRole('button',{name:'new.png'}).element() as HTMLButtonElement).click();
   expect(onchange).toHaveBeenLastCalledWith(expect.objectContaining({provider:'local',id:'asset',darkVariant:dark}));
  });
+ it('retains selected image focal point placeholders and provider metadata',async()=>{
+  const onchange=vi.fn();
+  const item={id:'asset',filename:'new.png',storageKey:'new.png',mimeType:'image/png',size:123,width:40,height:30,alt:'Replacement',focalX:0.2,focalY:0.8,blurhash:'full-hash',dominantColor:'#112233',meta:{custom:'kept'}};
+  vi.stubGlobal('fetch',vi.fn().mockResolvedValue(new Response(JSON.stringify({success:true,data:{items:[item],totalCount:1}}),{status:200})));
+  const screen=await render(React.createElement(NativeBlockMediaField,{id:'photo',label:'Photo',image:true,onchange}));
+  (screen.getByRole('button',{name:'Choose from media library'}).element() as HTMLButtonElement).click();
+  await expect.element(screen.getByRole('button',{name:'new.png'})).toBeInTheDocument();
+  (screen.getByRole('button',{name:'new.png'}).element() as HTMLButtonElement).click();
+  expect(onchange).toHaveBeenLastCalledWith(expect.objectContaining({provider:'local',id:'asset',focalX:0.2,focalY:0.8,blurhash:'full-hash',dominantColor:'#112233',meta:{custom:'kept',storageKey:'new.png'}}));
+ });
+ it('keeps a legacy primary URL when assigning its dark image',async()=>{
+  const onchange=vi.fn();
+  const screen=await render(React.createElement(NativeBlockSubField,{id:'photo',field:{slug:'photo',label:'Photo',type:'image',options:{darkVariant:true}},value:'https://example.com/primary.png',onchange}));
+  await screen.getByLabelText('Photo (dark variant)').fill('https://example.com/dark.png');
+  expect(onchange).toHaveBeenLastCalledWith({id:'',src:'https://example.com/primary.png',darkVariant:{provider:'external',id:'',src:'https://example.com/dark.png'}});
+ });
 });
