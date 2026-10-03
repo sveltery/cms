@@ -58,6 +58,19 @@ async function fixture(db){
  await sql\`CREATE TABLE _emdash_collections(id TEXT PRIMARY KEY,slug TEXT UNIQUE,label TEXT,label_singular TEXT,description TEXT,supports TEXT,source TEXT,created_at TEXT DEFAULT '2000-01-01T00:00:00.000Z',updated_at TEXT DEFAULT '2000-01-01T00:00:00.000Z',icon TEXT,admin_config TEXT,has_seo INTEGER,title_field TEXT,date_field TEXT,url_pattern TEXT,routable INTEGER,hidden INTEGER,sort_order INTEGER,nav_group TEXT,comments_enabled INTEGER,comments_moderation TEXT,comments_closed_after_days INTEGER,comments_auto_approve_users INTEGER,edit_locking INTEGER)\`.execute(db);
  await sql\`CREATE TABLE _emdash_fields(id TEXT PRIMARY KEY,collection_id TEXT REFERENCES _emdash_collections(id) ON DELETE CASCADE,slug TEXT,label TEXT,type TEXT,column_type TEXT,required INTEGER,\"unique\" INTEGER,default_value TEXT,validation TEXT,widget TEXT,options TEXT,sort_order INTEGER,searchable INTEGER,indexed INTEGER,translatable INTEGER,created_at TEXT DEFAULT '2000-01-01T00:00:00.000Z',UNIQUE(collection_id,slug))\`.execute(db);
 }
+test('immutable source reorderFields accepts partial duplicate and unknown lists without advancing collection metadata',async()=>{
+ const db=storage();try{
+ await fixture(db);const registry=new SchemaRegistry(db);await registry.createCollection({slug:'posts',label:'Posts'});
+ const before=await registry.getCollection('posts');
+ await db.insertInto('_emdash_fields').values(['one','two'].map((slug,index)=>({id:slug,collection_id:before.id,slug,label:slug,type:'string',column_type:'TEXT',required:0,unique:0,sort_order:index,searchable:0,indexed:0,translatable:1}))).execute();
+ for(const [order,sorts] of [[['two'],[0,0]],[['one','one'],[1,0]],[['missing'],[1,0]]]) {
+   await registry.reorderFields('posts',order);
+   assert.deepEqual(await registry.getCollection('posts'),before);
+   const fields=await registry.listFields(before.id);
+   assert.deepEqual(['one','two'].map(slug=>fields.find(field=>field.slug===slug).sortOrder),sorts);
+ }
+ }finally{await db.destroy();}
+});
 for (const action of ['CASCADE','RESTRICT']) test('immutable Node registry force delete preserves external FK '+action,async()=>{
  const db=storage();try{
  await fixture(db);const registry=new SchemaRegistry(db);await registry.createCollection({slug:'posts',label:'Posts'});

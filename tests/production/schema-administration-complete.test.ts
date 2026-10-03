@@ -7,6 +7,24 @@ import {schemaAdminRemotes} from '../helpers/schema-admin-remotes.ts';
 const expected = (collection: any) => ({collection:collection.slug,version:String(collection.version),updatedAt:collection.updatedAt});
 
 for (const target of ['Node','D1'] as const) {
+  test(`${target}: native field reorder preserves pinned partial duplicate and unknown-list behavior without metadata advancement`,{timeout:60_000},async()=>{
+    const h=await schemaAdminRemotes(target);
+    try {
+      await h.mutate('createSchemaCollection',{slug:'posts',label:'Posts'});
+      let c=await h.query('getSchemaCollection','posts');
+      for(const slug of ['one','two']) {
+        await h.mutate('addSchemaField',{collection:'posts',expectedSchemaVersion:String(c.version),slug,label:slug,type:'string'});
+        c=await h.query('getSchemaCollection','posts');
+      }
+      const {fields:_fields,...before}=c;
+      for(const [order,sorts] of [[['two'],[0,0]],[['one','one'],[1,0]],[['missing'],[1,0]]] as const) {
+        await h.mutate('reorderSchemaFields',{...expected(c),id:'posts',fields:JSON.stringify(order)});
+        const {fields,...metadata}=await h.query('getSchemaCollection','posts');
+        assert.deepEqual(metadata,before,'field order does not consume collection metadata revisions');
+        assert.deepEqual(['one','two'].map(slug=>fields.find((field:any)=>field.slug===slug).sortOrder),sorts);
+      }
+    }finally{await h.close();}
+  });
   test(`${target}: complete native settings persist and collection deletion returns to the list`,{timeout:60_000},async()=>{
     const h=await schemaAdminRemotes(target);
     try {
