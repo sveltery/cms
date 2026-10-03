@@ -231,10 +231,30 @@
       "gitBlob": "19bee0f0f9eb2017c4014cfa482f51dfac0cada1"
     }
   ],
-  "executedSourceTests": 0,
+  "executedSourceTests": 2,
   "causalSourceReds": 0,
   "protectedWholeFamiliesUnexecuted": [
     "packages/core/tests/integration/database/options-repository.test.ts",
     "packages/core/tests/integration/database/plugin-storage-revisions-migration.test.ts (includes whole plugin-storage-revision-cases.ts concurrent start case)"
-  ]
+  ],
+  "executedSourceTestsUnit": "Whole selected Source callbacks entered; not causal reds or declarations inspected",
+  "sourceExecution": {
+    "family": "packages/core/tests/integration/database/taxonomy-repository-pagination.test.ts",
+    "host": "real Node SQLite normal canonical installation",
+    "wholeCallbacks": 2,
+    "directExpectExpressions": 6,
+    "fixtures": "unchanged five-term and 101-term Source fixtures",
+    "baseline": {
+      "callbacksEntered": 2,
+      "fixtureInsertionFailuresBeforeExpect": 2,
+      "assertionFailures": 0
+    },
+    "installedCheckpoint": {
+      "head": "4007004",
+      "passed": 2,
+      "failed": 0,
+      "causalSourceReds": 0
+    },
+    "sourcePostgreSQLOrD1Execution": false
+  }
 }
