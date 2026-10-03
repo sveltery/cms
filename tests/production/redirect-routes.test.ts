@@ -19,9 +19,11 @@ async function fixture(redirects=true){
  if(redirects)await installRedirectTables(database.db as unknown as Kysely<unknown>);
  await sql`CREATE TABLE options(name TEXT PRIMARY KEY,value TEXT NOT NULL,revision TEXT NOT NULL DEFAULT '0')`.execute(database.db);
  const principal=servicePrincipal({id:'ordinary-route-admin',role:Role.ADMIN});assert.ok(principal);
- const {manifest}=await import('../../.svelte-kit/output/server/manifest.js');
- const {Server}=await import('../../.svelte-kit/output/server/index.js');
- const {options}=await import('../../.svelte-kit/output/server/internal.js');
+ // Runtime URL imports keep generated bundles out of native source discovery.
+ const built=(file:string)=>import(new URL(`../../.svelte-kit/output/server/${file}`,import.meta.url).href);
+ const {manifest}=await built('manifest.js');
+ const {Server}=await built('index.js');
+ const {options}=await built('internal.js');
  const server=new Server(manifest);await server.init({env:{}});
  const original=options.hooks.handle;
  options.hooks.handle=({event,resolve}:any)=>{event.locals.cms={database,principal,mutationsEnabled:true};return resolve(event);};
