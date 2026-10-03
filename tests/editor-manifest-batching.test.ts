@@ -73,7 +73,7 @@ async function previousProjection(database: CmsDatabase): Promise<EditorManifest
       hasSeo: collection.hasSeo, routable: collection.routable !== false, urlPattern: collection.urlPattern,
       titleField: collection.titleField, dateField: collection.dateField, listColumns: undefined, fields };
   }
-  return { collections };
+  return { collections,timezone:'UTC' };
 }
 
 for (const target of ['Node', 'D1'] as const) {
@@ -108,9 +108,11 @@ for (const target of ['Node', 'D1'] as const) {
         }
         local.queries.length = 0;
         const manifest = await editorManifest(local.observed, author);
-        assert.equal(local.queries.length, 1 + Math.ceil(count / 50));
+        assert.equal(local.queries.length, 2 + Math.ceil(count / 50));
         assert.ok(local.queries.every(query => /^select/i.test(query.sql)));
-        const fieldQueries = local.queries.slice(1);
+        const fieldQueries = local.queries.slice(1,-1);
+        assert.match(local.queries.at(-1)!.sql,/from "options"/);
+        assert.deepEqual(local.queries.at(-1)!.parameters,['site:timezone']);
         assert.ok(fieldQueries.every(query => /"collection_id" in \(/.test(query.sql)));
         assert.ok(fieldQueries.every(query => query.parameters.length <= 51));
         assert.deepEqual(manifest, await previousProjection(local.database));
@@ -127,7 +129,7 @@ for (const target of ['Node', 'D1'] as const) {
       await seed(local.database, 2, MAX_FIELDS + 2);
       await sql`UPDATE _cms_fields SET validation = 'malformed', default_value = 'malformed' WHERE sort_order >= ${MAX_FIELDS / 2}`.execute(local.database.db);
       const manifest = await editorManifest(local.observed, author);
-      assert.equal(local.queries.length, 2);
+      assert.equal(local.queries.length, 3);
       for (const collection of Object.values(manifest.collections)) assert.equal(Object.keys(collection.fields).length, MAX_FIELDS);
       assert.equal(JSON.stringify(manifest), JSON.stringify(await previousProjection(local.database)));
       await local.database.db.updateTable('_cms_fields').set({ validation: 'malformed' }).where('slug', '=', 'field_000').execute();
@@ -152,10 +154,10 @@ for (const target of ['Node', 'D1'] as const) {
       await seed(local.database, 1);
       await local.database.db.updateTable('_cms_collections').set({ slug: 'constructor' }).execute();
       await local.database.db.updateTable('_cms_fields').set({ validation: 'malformed', default_value: 'malformed' }).execute();
-      assert.deepEqual(await editorManifest(local.observed, author), { collections: {} });
+      assert.deepEqual(await editorManifest(local.observed, author), { collections: {},timezone:'UTC' });
       assert.equal(JSON.stringify(await editorManifest(local.observed, author)), JSON.stringify(await previousProjection(local.database)));
       await local.database.db.schema.dropTable('_cms_fields').execute();
-      assert.deepEqual(await editorManifest(local.observed, author), { collections: {} });
+      assert.deepEqual(await editorManifest(local.observed, author), { collections: {},timezone:'UTC' });
       await local.database.db.updateTable('_cms_collections').set({ slug: 'posts' }).execute();
       await assert.rejects(() => editorManifest(local.observed, author), /_cms_fields/);
       await local.database.db.schema.dropTable('_cms_collections').execute();
@@ -175,7 +177,7 @@ for (const target of ['Node', 'D1'] as const) {
       assert.equal(manifest.collections.coll_000.label, 'Updated collection');
       assert.equal(manifest.collections.coll_000.fields.field_000.label, 'Updated field');
       assert.equal(manifest.collections.coll_000.fields.field_000.required, true);
-      assert.equal(local.queries.length, 2);
+      assert.equal(local.queries.length, 3);
       assert.equal(JSON.stringify(manifest), JSON.stringify(await previousProjection(local.database)));
       await local.database.db.deleteFrom('_cms_fields').execute();
       assert.deepEqual((await editorManifest(local.observed, author)).collections.coll_000.fields, {});
