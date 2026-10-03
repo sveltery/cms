@@ -9,18 +9,19 @@ import { serializeValue } from '../field-value.ts';
 import { validateContentData } from '../../schema/validate-content.ts';
 import { registerLifecycleDatabase, type LifecycleDependencies } from './upstream/host.ts';
 import { ContentRepository } from './upstream/database/repositories/content.ts';
-import { RevisionRepository, type Revision } from './upstream/database/repositories/revision.ts';
+import { RevisionRepository, createRevisionId, type Revision } from './upstream/database/repositories/revision.ts';
 import { ContentMutationConflictError, EmDashValidationError, type ContentItem } from './upstream/database/repositories/types.ts';
 import { keepKnownFields, staleStoredKeys } from './upstream/content/known-fields.ts';
 import { ContentDatetimeNormalizer } from './upstream/database/content-datetime.ts';
 import * as v from 'valibot';
+import { contentTaxonomyPlan, type ContentTaxonomyPlan } from '../../taxonomies/content-plan.ts';
 
 // Runtime draft-stage, hydration and retention algorithms adapted from
 // EmDashRuntime.handleContentUpdate:3538,hydrateDraftData:3257 and revision
 // restore:4974 at immutable913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.
 // Copyright2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
-const DRAFT_ONLY_UPDATE_KEYS = new Set(['data','slug','locale','skipRevision','references','actor','migrateBlocks','replaceBlocks']);
-const UNSUPPORTED = ['seo','taxonomies','references','bylines','actor','migrateBlocks','replaceBlocks','translationOf','inheritFields'];
+const DRAFT_ONLY_UPDATE_KEYS = new Set(['data','slug','locale','skipRevision','taxonomies','references','actor','migrateBlocks','replaceBlocks']);
+const UNSUPPORTED = ['seo','references','bylines','actor','migrateBlocks','replaceBlocks','translationOf','inheritFields'];
 export interface ContentKey {type:string;id:string;locale?:string}
 export interface ContentMutation extends ContentKey {expected?:RevisionPrecondition}
 export interface ContentUpdate extends ContentMutation {
@@ -116,28 +117,52 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       throw cause;
     }
   }
-  async function atomicUpdate(value:ReturnType<typeof key>,item:ContentItem,input:Record<string,any>,data:Record<string,unknown>|undefined,anyPermission:string) {
+  async function atomicUpdate(value:ReturnType<typeof key>,item:ContentItem,input:Record<string,any>,data:Record<string,unknown>|undefined,anyPermission:string, taxonomies:ContentTaxonomyPlan|null=null, preserveContentToken=false) {
     const actor=authenticated();const assignments=[];
     if(data!==undefined)for(const[field,contentValue]of Object.entries(data))assignments.push(sql`${sql.ref(field)}=${serializeValue(contentValue)}`);
     if(input.slug!==undefined)assignments.push(sql`slug=${input.slug}`);
     if(input.status!==undefined)assignments.push(sql`status=${input.status}`);
     if(input.publishedAt!==undefined)assignments.push(sql`published_at=${input.publishedAt===null?null:await translate(()=>datetimes.normalizeValue(value.type,input.publishedAt))}`);
     if(assignments.length)assignments.push(sql`updated_at=${new Date().toISOString()}`);
-    assignments.push(sql`version=version+1`);
+    const writesContent=!preserveContentToken;
+    if(writesContent)assignments.push(sql`version=version+1`);
     const collection=await definition(value.type);const token=ulid();
     const statements:CompiledQuery[]=[
-      sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN EXISTS(SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${collection.version})THEN 1 ELSE 0 END`.compile(database.db),
-      sql`UPDATE ${sql.ref(tableName(value.type))} SET ${sql.join(assignments)} WHERE id=${value.id} AND locale=${value.locale}
+      sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN EXISTS(SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${collection.version})
+        ${taxonomies?sql`AND EXISTS(SELECT 1 FROM ${sql.ref(tableName(value.type))} WHERE id=${value.id} AND locale=${value.locale} AND deleted_at IS NULL AND version=${item.version} AND updated_at=${item.updatedAt} ${actor.permissions.has(anyPermission)?sql``:sql`AND author_id=${actor.id}`})`:sql``}
+        THEN 1 ELSE 0 END`.compile(database.db),
+      ...(writesContent?[sql`UPDATE ${sql.ref(tableName(value.type))} SET ${sql.join(assignments)} WHERE id=${value.id} AND locale=${value.locale}
         AND deleted_at IS NULL AND version=${item.version} AND updated_at=${item.updatedAt}
-        ${actor.permissions.has(anyPermission)?sql``:sql`AND author_id=${actor.id}`} RETURNING *`.compile(database.db),
+        ${actor.permissions.has(anyPermission)?sql``:sql`AND author_id=${actor.id}`} RETURNING *`.compile(database.db)]:[]),
+      ...(taxonomies?.queries(item.translationGroup??item.id)??[]),
       sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(database.db)
     ];
     let results;
     try{results=await database.atomicBatch(statements);}
     catch(cause){if(cause instanceof Error&&/CHECK constraint failed: pass = 1/.test(cause.message))throw new CmsError('CONFLICT');throw cause;}
+    taxonomies?.invalidate();
+    if(!writesContent)return item;
     const row=results[1]?.rows[0] as Record<string,unknown>|undefined;
     if(!row)throw new CmsError('CONFLICT');
     return content.mapRow(value.type,row);
+  }
+  /** Complete fixed plan: new revision, stage CAS, pruning queue, and assignments. */
+  async function atomicTaxonomyRevision(value:ReturnType<typeof key>,item:ContentItem,input:Record<string,any>,snapshot:Record<string,unknown>,liveMetaTouched:boolean,taxonomies:ContentTaxonomyPlan) {
+    const actor=authenticated(),collection=await definition(value.type),token=ulid(),revisionId=createRevisionId();
+    const normalized=await translate(()=>datetimes.normalizeData(value.type,snapshot));
+    const assignments=[sql`draft_revision_id=${revisionId}`,sql`version=version+1`];
+    if(input.status!==undefined)assignments.push(sql`status=${input.status}`);
+    if(input.publishedAt!==undefined)assignments.push(sql`published_at=${input.publishedAt===null?null:await translate(()=>datetimes.normalizeValue(value.type,input.publishedAt))}`);
+    if(liveMetaTouched)assignments.push(sql`updated_at=${new Date().toISOString()}`);
+    const queries:CompiledQuery[]=[
+      sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN EXISTS(SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${collection.version}) AND EXISTS(SELECT 1 FROM ${sql.ref(tableName(value.type))} WHERE id=${value.id} AND locale=${value.locale} AND deleted_at IS NULL AND version=${item.version} AND updated_at=${item.updatedAt} AND live_revision_id IS ${item.liveRevisionId??null} AND draft_revision_id IS ${item.draftRevisionId??null} ${actor.permissions.has('content:edit_any')?sql``:sql`AND author_id=${actor.id}`}) THEN 1 ELSE 0 END`.compile(database.db),
+      sql`INSERT INTO _cms_revisions(id,collection,entry_id,data,author_id) VALUES(${revisionId},${value.type},${value.id},${JSON.stringify(normalized)},${actor.id})`.compile(database.db),
+      sql`UPDATE ${sql.ref(tableName(value.type))} SET ${sql.join(assignments)} WHERE id=${value.id} AND locale=${value.locale} RETURNING *`.compile(database.db),
+      sql`INSERT INTO _cms_revision_prune_queue(collection,entry_id,revision_id) VALUES(${value.type},${value.id},${revisionId}) ON CONFLICT(collection,entry_id) DO UPDATE SET revision_id=excluded.revision_id`.compile(database.db),
+      ...taxonomies.queries(item.translationGroup??item.id),sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(database.db)
+    ];
+    let results;try{results=await database.atomicBatch(queries);}catch(cause){if(cause instanceof Error&&/CHECK constraint failed: pass = 1/.test(cause.message))throw new CmsError('CONFLICT');throw cause;}
+    taxonomies.invalidate();return content.mapRow(value.type,results[2].rows[0] as Record<string,unknown>);
   }
   return {
     async createContent(input:unknown):Promise<ContentItem> {
@@ -147,7 +172,9 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const collection=await definition(type);
       const data=normalizeBlankArrays(parse(schemaData,value.data),collection.fields);
       const slug=value.slug===undefined?await content.generateUniqueSlug(type,typeof data.title==='string'?data.title:'',locale):value.slug;
-      const item=await drafts.create({type,locale,data,slug},actor.id);
+      const taxonomies=await contentTaxonomyPlan(database,type,locale,value.taxonomies);
+      const item=await drafts.create({type,locale,data,slug},actor.id,taxonomies? id=>taxonomies.queries(id):undefined);
+      taxonomies?.invalidate();
       return stored({type,id:item.id,locale});
     },
     async getContent(input:unknown):Promise<ContentItem> {
@@ -171,6 +198,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         const stale=staleStoredKeys(data,base,fields);if(stale.length){data={...data};for(const field of stale)delete data[field];}
         await checked(value.type,data,true);
       }
+      const taxonomies=await contentTaxonomyPlan(database,value.type,existing.locale??undefined,value.taxonomies);
       const usesDraftRevisions=data!==undefined&&collection.supports.includes('revisions');
       const liveMetaTouched=Object.entries(value).some(([field,fieldValue])=>fieldValue!==undefined&&!['type','id','expected','_rev'].includes(field)&&!DRAFT_ONLY_UPDATE_KEYS.has(field));
       if(usesDraftRevisions){
@@ -178,6 +206,13 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
           owner(existing,actor,'content:edit_any');precondition(value.expected,existing);
           const base=existing.draftRevisionId?(await revisions.findById(existing.draftRevisionId))?.data??existing.data:existing.data;
           const merged=keepKnownFields({...base,...data},fields);if(value.slug!==undefined)merged._slug=value.slug;
+          if(taxonomies){
+            try {const item=await atomicTaxonomyRevision(value,existing,{...value,slug:undefined},merged,liveMetaTouched,taxonomies);
+              if(value.skipRevision&&existing.draftRevisionId)await revisions.deleteIfUnreferenced(value.type,value.id,existing.draftRevisionId);
+              else prune(value.type,value.id,item.draftRevisionId!);
+              return {item:await hydrate(item),liveContentChanged:liveMetaTouched};
+            }catch(cause){if(cause instanceof CmsError&&cause.code==='CONFLICT'&&value.expected===undefined&&attempt<31){existing=await stored(value);continue;}throw cause;}
+          }
           const revision=await revisions.create({collection:value.type,entryId:value.id,data:merged,authorId:actor.id});
           let staged;
           try{staged=await content.replaceDraftRevision(value.type,value.id,revision.id,existing);}
@@ -194,8 +229,16 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         }
         throw new CmsError('CONFLICT');
       }
-      const item=await atomicUpdate(value,existing,value,data,'content:edit_any');
+      const item=await atomicUpdate(value,existing,value,data,'content:edit_any',taxonomies);
       return {item:await hydrate(item),liveContentChanged:Boolean(data||value.slug!==undefined||liveMetaTouched)};
+    },
+    /** Native sidebar-only assignment mutation, matching pinned per-entry terms POST. */
+    async setContentTaxonomies(input:unknown):Promise<ContentReceipt> {
+      const actor=mutationPermission('content:edit_own','content:edit_any'),value=key(input);
+      const item=await stored(value);owner(item,actor,'content:edit_any');precondition(value.expected,item);
+      const plan=await contentTaxonomyPlan(database,value.type,item.locale??undefined,value.taxonomies);
+      if(!plan)throw new CmsError('VALIDATION_ERROR','taxonomies must be provided');
+      return {item:await hydrate(await atomicUpdate(value,item,{},undefined,'content:edit_any',plan,true)),liveContentChanged:false};
     },
     async publish(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);

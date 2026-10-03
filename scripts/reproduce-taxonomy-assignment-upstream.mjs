@@ -16,6 +16,7 @@ try{
  if(blob!=='a1eaae54f6d887e5647be69ef3aab15ebe862705')throw Error('immutable source blob mismatch');
  const routeBytes=execFileSync('git',['-C',repository,'show',`${pin}:${routeSource}`]);
  const routeBlob=createHash('sha1').update(`blob ${routeBytes.length}\0`).update(routeBytes).digest('hex');
+ if(routeBlob!=='ef54f322f1b1a7298277525b01a7949f4885aa4b')throw Error('immutable source route blob mismatch');
  await writeFile(join(directory,'route.ts'),routeBytes);
  await mkdir(join(directory,'repository'));await writeFile(join(directory,'repository','taxonomy.ts'),bytes);
  await symlink(join(root,'node_modules'),join(directory,'node_modules'));
