@@ -49,7 +49,7 @@
   "sourceDeclarationsExecuted": 9,
   "genuineSourceAssertionReds": 0,
   "sourceMIT": "notices/emdash-MIT.txt",
-  "status": "ready PR66; accepted bounded UX1-01/02/03; proposed UX1-04 mobile progressive-host test-first qualification, repair, specific acceptance and final exact-head checks/merge approval pending",
+  "status": "ready PR66; accepted bounded UX1-01/02/03; UX1-04 two genuine native browser reds qualified and narrow fallback implemented, with current exact-head gates/review/specific acceptance/merge approval pending",
   "nativeTDD": {
     "testCommit": "4c14c8970572e990b214f779921ec3cfd0d4426e",
     "assertionReds": 6,
@@ -292,12 +292,25 @@
     "javaScriptEnabled": false,
     "localBrowserCallbacks": 0,
     "localLimitation": "secured Chromium unavailable; no --no-sandbox workaround",
-    "hostedRedQualification": "pending test-first head",
-    "genuineNativeAssertionReds": 0,
+    "hostedRedQualification": {
+      "run": 37115910185,
+      "job": 111182575149,
+      "completedOriginalCallbacks": 2,
+      "assertion": "workspace-progressive.spec.ts22 navigation expected visible; resolved nav hidden after actual Articles and authenticated account text qualified",
+      "baselineBrowserGreen": 59,
+      "nodeHostingBrowserStage": "not reached after default-stage failures"
+    },
+    "genuineNativeAssertionReds": 2,
     "sourceCredit": 0,
     "cryptographicCredit": 0,
-    "repair": "pending genuine hosted before-fix assertion red",
+    "repair": "SSR navigation visible until component enhancement; inert toggle hidden before enhancement; existing mobile collapse/toggle applies after onMount, including storage denial",
     "specificPMAcceptance": "pending actual qualification",
-    "testSHA256": "a7bc44bdf59f5cedded93cd8f3c4cd47d4d04562fa4cd26214e04e8d1fa95657"
+    "testSHA256": "a7bc44bdf59f5cedded93cd8f3c4cd47d4d04562fa4cd26214e04e8d1fa95657",
+    "originalTestCommit": "4ea2e4942c96957f1c67fd27fa5625b8a7299ed5",
+    "publishedTestCommit": "692dfe3c3efda38ee5370f59c63523e17cf424db",
+    "testFirstTree": "56ad70ae3028a9f20c5dfd908512e75a0bd7345a",
+    "focusedGreen": "12 compiled shell/Node+D1/storage-method cases plus4 actual built-server SSR/navigation/refresh/active cases; installed-runtime diagnosis, no local browser callbacks",
+    "newExactHeadQualification": "normal and secured default/Node gates, independent review and UX1-04 specific acceptance pending",
+    "configuredReview": "final status pending PM coordination; account quota block is not a pass or an assumed waiver"
   }
 }

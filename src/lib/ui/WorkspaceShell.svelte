@@ -19,6 +19,7 @@
   const loadedNavigation = $derived(navigationQuery ? await navigationQuery.then(value => value,
     (): WorkspaceNavigation => ({ authenticated: false, permissions: [], collections: {}, unavailable: true })) : undefined);
   let navigationOpen = $state(false);
+  let navigationEnhanced = $state(false);
   let folders = $state<Record<string, boolean>>({});
   const navigationData = $derived<WorkspaceNavigation>(navigation ?? navigationQuery?.current ?? loadedNavigation ?? { authenticated: false, permissions: [], collections: {} });
   const prefix = $derived(homeHref.endsWith('/') ? homeHref : `${homeHref}/`);
@@ -37,14 +38,15 @@
   }
   onMount(() => {
     try { folders = parseFolderState(localStorage.getItem('emdash-sidebar-folders')); } catch { /* Storage denial retains route defaults. */ }
+    navigationEnhanced = true;
   });
 </script>
 
 <a class="skip-link" href="#workspace-main">Skip to content</a>
-<div class="workspace">
+<div class="workspace" class:navigation-enhanced={navigationEnhanced}>
   <header class="mobile-header">
     <a class="brand" href={homeHref}>Sveltery <span>CMS</span></a>
-    <button type="button" aria-controls="workspace-sidebar" aria-expanded={navigationOpen} onclick={() => navigationOpen = !navigationOpen}>Toggle navigation</button>
+    <button type="button" hidden={!navigationEnhanced} aria-controls="workspace-sidebar" aria-expanded={navigationOpen} onclick={() => navigationOpen = !navigationOpen}>Toggle navigation</button>
   </header>
   <aside id="workspace-sidebar" class:mobile-open={navigationOpen}>
     <a class="brand desktop-brand" href={homeHref}>Sveltery <span>CMS</span></a>
@@ -109,7 +111,8 @@
   @media (max-width: 760px) {
     .workspace { grid-template-columns: minmax(0, 1fr); }
     .mobile-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px; border-bottom: 1px solid var(--border); background: var(--background); }
-    aside { display: none; border-right: 0; border-bottom: 1px solid var(--border); padding: 16px; gap: 16px; }
+    aside { border-right: 0; border-bottom: 1px solid var(--border); padding: 16px; gap: 16px; }
+    .workspace.navigation-enhanced aside:not(.mobile-open) { display: none; }
     aside.mobile-open { display: flex; }
     .desktop-brand { display: none; }
     main { padding: 16px; }
