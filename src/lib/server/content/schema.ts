@@ -40,7 +40,7 @@ const jsonValue = v.pipe(v.string(), v.maxLength(200_000), v.check(value => {
 // This transport-only map never reaches storage or the domain service.
 const jsonData = v.optional(v.record(identifier, jsonValue), {});
 const slug = v.optional(v.pipe(v.string(), v.maxLength(200)));
-const contentEntries = { data, jsonData, slug };
+const contentEntries = { data, jsonData, slug, migrateBlocks:v.optional(v.boolean()),replaceBlocks:v.optional(v.boolean()) };
 export const createInput = v.pipe(v.strictObject({ ...qualified, ...contentEntries }),
   v.forward(v.check(input => Object.keys(input.jsonData).every(key => !Object.hasOwn(input.data, key)),
     'Supply each field once'), ['jsonData']),

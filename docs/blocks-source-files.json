@@ -7,161 +7,1105 @@
       "blob": "bab9e85c9be8b654de75271cd552d15ad445ecfe",
       "sha256": "b04cda337617ec73016139876ab2f7eca84bcac435549eccfc0b43f22935fa55",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/unit/schema/block-type-contract.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "maps stable registry errors to resource and conflict statuses",
+          "line": 39,
+          "callbackSha256": "6f4277669a43d5a0afc4771af6d27c368795b9cc9a24eca840ee12405e07d999"
+        },
+        {
+          "title": "produces stable fingerprints that exclude presentation labels",
+          "line": 46,
+          "callbackSha256": "9ca0f051a5d2112806473aea658cc6c49326312647f5e024b89079f9d7ecbc24"
+        },
+        {
+          "title": "classifies additive and loosened changes as compatible",
+          "line": 53,
+          "callbackSha256": "4618ba3047be59366f073b6473fdd7aa24285f61b0f3aa5732ea48ebd230f321"
+        },
+        {
+          "title": "classifies removals, required additions, narrowing, and nested changes as breaking",
+          "line": 91,
+          "callbackSha256": "9ecca7adeec09badc9d7137754d68f0628beb70b71912839131e6d233841d754"
+        },
+        {
+          "title": "rejects invalid definitions with a stable field path",
+          "line": 125,
+          "callbackSha256": "f44a8b6f879fbe35a23166cef4275617ec0ff2676d5fbd803c523b2031328d05"
+        }
+      ],
+      "literalExpectCalls": 13
     },
     {
       "path": "packages/core/tests/integration/schema/block-type-registry.test.ts",
       "blob": "2dbf1ddb2c21f6f2af44ae42981cb93f60ca2a55",
       "sha256": "a0a5baa2a6eabb9ac33d66f62369451a28db1f292e77de34dd39a5c01d9cdd46",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/integration/schema/block-type-registry.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "creates version 1 as active and lists versions in order",
+          "line": 31,
+          "callbackSha256": "7a05a9a185a215e4d32d29c5b97191fe5e67b7bc196f21fc5d562d7effbed73d"
+        },
+        {
+          "title": "amends compatible changes in place and keeps presentation outside the fingerprint",
+          "line": 55,
+          "callbackSha256": "b06bb8c8d5815670f462410fa2767772ca1522414de6ce09705bf3649d5505dd"
+        },
+        {
+          "title": "requires an explicit breaking update and activation",
+          "line": 84,
+          "callbackSha256": "60ee72b24d779544afbf8e1a4ebbe04d22cef053db38a479ade54eb3faa1cc23"
+        },
+        {
+          "title": "rejects stale updates and missing activation targets with stable codes",
+          "line": 126,
+          "callbackSha256": "895cf2f4e7a18142fb24603a99149e2e845f2375c6f2bb0be14688c0e79c8d46"
+        },
+        {
+          "title": "converges concurrent retries of the same breaking version",
+          "line": 149,
+          "callbackSha256": "4ed78c774e59426a4a9c882b4ea22226adad9d58f81586a06a35a0a4034c0db1"
+        },
+        {
+          "title": "allows only one compatible update from the same fingerprint",
+          "line": 170,
+          "callbackSha256": "9ee4981fed518a16ae81f5c9bbc68028e888bee07e7cb5040188d4e6f19e8f47"
+        },
+        {
+          "title": "preserves unknown stored field types as fail-closed metadata",
+          "line": 194,
+          "callbackSha256": "eb1033471115e426643aecdbe5980af2cd38d0ed59d85d3e69475ec6f348b4a2"
+        },
+        {
+          "title": "returns stable create and lookup errors",
+          "line": 220,
+          "callbackSha256": "21dbb38a3588314b2f5b17708a23293bd11a6f30c231e99d5b129a4386a48f5b"
+        },
+        {
+          "title": "finds affected collections by parsing allowed and retired types in application code",
+          "line": 233,
+          "callbackSha256": "d88dd6a067b2dd764c9ec646626ed2b4853ee5f222e7ca6f8e2c5f3c2a4b62df"
+        }
+      ],
+      "literalExpectCalls": 30
     },
     {
       "path": "packages/core/tests/integration/schema/blocks-field-schema.test.ts",
       "blob": "e3b8fbd1936f22491d45671912c384a90d2b9f4c",
       "sha256": "ad77ed1e5cd52b7a7329c02415485b8cfcefa6a1918c7b38b008648e0ab62e84",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/integration/schema/blocks-field-schema.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "adds a non-null JSON column whose existing and new rows read as an empty array",
+          "line": 38,
+          "callbackSha256": "f6dd9198f25f129fa2107f2da6f5d4264b893dcbbe5a338a79994406c9a1f3bd"
+        },
+        {
+          "title": "keeps removed allowed types retired and restores them when re-enabled",
+          "line": 65,
+          "callbackSha256": "d032af837163bd8c567149e4e8f548c1d26b31e0e0d55cea4dc45b1d4e3b7633"
+        },
+        {
+          "title": "rejects column-oriented options and invalid limits",
+          "line": 84,
+          "callbackSha256": "10c7256ea9dee6208b6b51b09aee9a1d645bbef352c8bd177ce157e35f0ac0d0"
+        },
+        {
+          "title": "requires a migration before introducing a positive minimum on populated content",
+          "line": 123,
+          "callbackSha256": "551a3683a40bad52d165498ca5eb099ba4916c10b330862ddd49c4b8a1450ec7"
+        }
+      ],
+      "literalExpectCalls": 9
     },
     {
       "path": "packages/core/tests/integration/content/blocks-content.test.ts",
       "blob": "98143b84452d165ce5b594e92d9db9415ef45189",
       "sha256": "81b5b652370ce17d3d8049d4de2392efee9032364db60257a21237c56428b4ee",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/integration/content/blocks-content.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "assigns keys, active versions, and defaults on create",
+          "line": 59,
+          "callbackSha256": "0a8e5d8e4816c0c8f34c63a4ddccb2a9fccc156944643dd0fd064b078e882f9a"
+        },
+        {
+          "title": "writes the empty default when omitted and enforces a positive minimum",
+          "line": 78,
+          "callbackSha256": "250ac0c7156dc15597c95746ce9f176e2bacc808df674d713a8f9d282b5dc8ae"
+        },
+        {
+          "title": "rejects undeclared values, disallowed types, duplicate keys, and inactive versions",
+          "line": 100,
+          "callbackSha256": "d9aceb1cff825d25ca052411c8f0762e11a51f57d8c977c3a6d445fe8366447c"
+        },
+        {
+          "title": "preserves identity and requires explicit intent for keyless replacement",
+          "line": 119,
+          "callbackSha256": "4fe45726988f489aa7be35139b930dd78764ba557e46ad27a0510327aaf94f00"
+        },
+        {
+          "title": "normalizes blocks for collections without draft revisions",
+          "line": 144,
+          "callbackSha256": "b70ea9a91ee9675d3757c612b7818d2365787da339f2db7050914480c0f118bb"
+        },
+        {
+          "title": "rejects a stale revision before it can replace newer nested block data",
+          "line": 171,
+          "callbackSha256": "a7e7e10cb77d527f7b4338e98bcd40adf2a7a82d324aa318a94fb943be81d261"
+        },
+        {
+          "title": "keeps retired blocks editable but prevents adding new ones",
+          "line": 199,
+          "callbackSha256": "a7076af90f3daaf0ca940a32d65f30b74654bcc68337491a4284ad2b84003c35"
+        },
+        {
+          "title": "requires migration intent and the active target version",
+          "line": 224,
+          "callbackSha256": "3b5c93e0b4f291e3cabb5d9a1b9d9b2904b98481960008ba020d33304aff96e7"
+        },
+        {
+          "title": "preserves block keys and versions when duplicating and translating an entry",
+          "line": 263,
+          "callbackSha256": "36a9cd492e81eb454483e2ab1bf0d9a4316ded6a62c0d4b089de4dce3e8c2860"
+        },
+        {
+          "title": "preserves block identity through publish and revision restore",
+          "line": 288,
+          "callbackSha256": "ea31763338fdcbeb108aca62e2cadf073e6bb5de0df7030d1ab6f3efebea2cb1"
+        }
+      ],
+      "literalExpectCalls": 41
     },
     {
       "path": "packages/core/tests/integration/database/block-types-migration.test.ts",
       "blob": "a59439eedea9acd42b11d38444df67af701c9341",
       "sha256": "7895a03235d354fb8cdd2ca5fc91a47303af8a1c42efbb74fc4b41046555871e",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/integration/database/block-types-migration.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "creates the block registry tables and can be replayed after completion",
+          "line": 23,
+          "callbackSha256": "b25b56b03e5838ffcbe298ec207417459c3b935fa3bf86087b445dd6d45b3702"
+        },
+        {
+          "title": "enforces slug and version identity",
+          "line": 34,
+          "callbackSha256": "39b25ec530492caae4ec2e49d6c16f6e6fde1775b7583d91e9fb80162f603217"
+        }
+      ],
+      "literalExpectCalls": 6
     },
     {
       "path": "packages/core/tests/integration/mcp/blocks-schema.test.ts",
       "blob": "0ba1e45f763ce6f5948c21f3cee89e82c4f967dd",
       "sha256": "43a49b265ef78039edec65d951b89338dfe2af54fff41902b181a0c120c4af9c",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/integration/mcp/blocks-schema.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "creates, versions, activates, and expands a block type through shared handlers",
+          "line": 29,
+          "callbackSha256": "5ae0d6edcf8822453b54b5a9329c72a0578f769e4280c15233525a36a3b731ee"
+        },
+        {
+          "title": "creates a blocks field and converts nested Portable Text Markdown",
+          "line": 91,
+          "callbackSha256": "6b6a9c10a6d89c77672c543004fb8a605efd8e270c89fc86dbd76564ecb13166"
+        }
+      ],
+      "literalExpectCalls": 13
     },
     {
       "path": "packages/core/tests/workerd/block-type-registry-d1.test.ts",
       "blob": "a03b630f27c0ea262d11e5b60c176852693bfeb7",
       "sha256": "55c0dc479ebc6af90c3017e2cfff2d365b689115b70eb8e6e5daf70cb46b1b3d",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/workerd/block-type-registry-d1.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "resumes when the version table is missing after a partial migration",
+          "line": 34,
+          "callbackSha256": "27728785aab9afbfabc5022173f59a08f94a31d0995db239c0ca23c15c19aeb5"
+        },
+        {
+          "title": "creates the type and initial version atomically",
+          "line": 43,
+          "callbackSha256": "e3c9a96870839b5e21b2dc208ca4c427203c63d392fabbb3b559e4a2b21e3e88"
+        },
+        {
+          "title": "uses one atomic batch for a compatible contract and metadata update",
+          "line": 59,
+          "callbackSha256": "f47920ba56ec4afdbc786d53ea4d2b10521116cc0cc0df80a6b10777de85c0a9"
+        }
+      ],
+      "literalExpectCalls": 9
     },
     {
       "path": "packages/core/tests/workerd/blocks-content-d1.test.ts",
       "blob": "3d44d6ec2516c97d8ce8ddb1bc92eaa027495abc",
       "sha256": "fa1e10e6c58532bf3336a74a239ef9e7e6c4b5c66696f46a65e5b7bf0d756988",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/workerd/blocks-content-d1.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "normalizes and updates versioned block values",
+          "line": 36,
+          "callbackSha256": "fa452fccfe22ae6b8afc88b3e15cfa1016fe15030c1878888c51a44a850c40c2"
+        },
+        {
+          "title": "batches MIME admission for large block arrays",
+          "line": 77,
+          "callbackSha256": "aeeadf26fa00ea4b9b6c6cdf1acde82011796e1b827ab359180b87da9688bad8"
+        }
+      ],
+      "literalExpectCalls": 4
     },
     {
       "path": "packages/core/tests/workerd/blocks-seed-d1.test.ts",
       "blob": "f5e0c40dad73a74b5132019fa937434afe58c7c2",
       "sha256": "b51713d277200e2e26e6fe16d1e35a83db8b80c56ce5ce5cebeb7f48de9c6a97",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/workerd/blocks-seed-d1.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "applies exact retained versions and active pointer idempotently",
+          "line": 35,
+          "callbackSha256": "a73232a41ed4f64d7c80f88f7a8bae91c258ad88de84f415e1ab6f80ed627f39"
+        }
+      ],
+      "literalExpectCalls": 2
     },
     {
       "path": "packages/core/tests/unit/seed/blocks.test.ts",
       "blob": "4368a6ef264b14f740d004b5ca1f839adafa1791",
       "sha256": "dfba3ff35fc0a785ae72b9d3e395c14b7ccbe6b1b863cf609a1ca0693f59a9f1",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/unit/seed/blocks.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "preserves exact versions, active pointer, and stored block identity",
+          "line": 77,
+          "callbackSha256": "643880ca83fdd7fdf6c2430c97e0ea5231e1f673103b45d500248528fed5083e"
+        },
+        {
+          "title": "is idempotent and rejects incompatible reuse of a stored version",
+          "line": 104,
+          "callbackSha256": "a042c4dad74ea90e8390b5cfe2d01ffb9f0a05b08fbad0877c77a4f9ec0ac178"
+        }
+      ],
+      "literalExpectCalls": 10
     },
     {
       "path": "packages/core/tests/unit/api/block-type-route-registration.test.ts",
       "blob": "5ace90551420373604629bc79ea1d4a23f0cd104",
       "sha256": "1237576ba84a0b8e78092ab87d254879302b39b582b7517d98f0a9817c57e3af",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/unit/api/block-type-route-registration.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "registers list, item, and explicit activation routes",
+          "line": 6,
+          "callbackSha256": "46497be428e56674d2347a1cb35c7dc84b0cae09444ff8532a82d117f0c6071e"
+        },
+        {
+          "title": "does not expose block type deletion",
+          "line": 21,
+          "callbackSha256": "d4d3bba495724b73b85a5f2e147126f39a5cda4f01906a5fa4362a6316bfc628"
+        }
+      ],
+      "literalExpectCalls": 5
     },
     {
       "path": "packages/core/tests/unit/components/blocks-renderer.test.ts",
       "blob": "de4b9d504466e3238a0fd8b6254398a6b0bc9645",
       "sha256": "be1b4f1d241cbd0297b58ef104129a7a95cf0862911ead5aa6efbb4a4b3c489d",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/unit/components/blocks-renderer.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "selects mapped components before missing-renderer behavior",
+          "line": 16,
+          "callbackSha256": "71c27992a60c14d39d06379037021a5af03ce8618e4283c068259cf5035a8fba"
+        },
+        {
+          "title": "uses a visible diagnostic only in development",
+          "line": 34,
+          "callbackSha256": "2a9fd5e2b26a3949827f70d34dde4ca3d7ec81c35edd92d16cc5b5c1c73d5966"
+        }
+      ],
+      "literalExpectCalls": 4
     },
     {
       "path": "packages/core/tests/unit/components/blocks-renderer.test-d.ts",
       "blob": "470afaf5f4fd264c9b9487a377c4bebdf690355e",
       "sha256": "c50a3784a7926ef3decf72603529146031e3cda87ea3208343a6a7cb905263f2",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/unit/components/blocks-renderer.test-d.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "requires every block type and preserves retained-version unions",
+          "line": 10,
+          "callbackSha256": "3aa218862faabab304e40d1f44ecf24350fdccc042c1eb489a3b9c4e527e33d9"
+        }
+      ],
+      "literalExpectCalls": 0
     },
     {
       "path": "packages/core/tests/repro/blocks.render.test.ts",
       "blob": "de4b7b5b5d6b0a316495f354f87ce4547736389d",
       "sha256": "22c8a65a1d10389916c5d59cefd7bd91c3730c80c6bc639973724c7b8bb1c12b",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/repro/blocks.render.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "renders empty values without output",
+          "line": 11,
+          "callbackSha256": "f0b7e3117094df6e21c845b1d2e8f85e825349d1baaae223b37c8e8dc7a046f7"
+        },
+        {
+          "title": "renders mixed types and retained versions in stored order",
+          "line": 16,
+          "callbackSha256": "455099423edbfd0b381b02fe98a6de4aabec2f6fc14bdd97dd84fdc6f099ac6a"
+        },
+        {
+          "title": "shows a development diagnostic without exposing stored values",
+          "line": 36,
+          "callbackSha256": "3990e722cd398e273f18431d107fbbd5da58144dab39870756a50a03b7e958fa"
+        },
+        {
+          "title": "renders twenty static blocks without external state",
+          "line": 62,
+          "callbackSha256": "24f1ccf9b1cac816e8d9ff9550663618bfa8e57a6e31f354ddd186c6485eb0d4"
+        }
+      ],
+      "literalExpectCalls": 10
     },
     {
       "path": "packages/core/tests/repro/blocks-homepage.render.test.ts",
       "blob": "0ce81a7a0065bb6712ce13e67303a8dfa455387c",
       "sha256": "f30d1d02b52a71c054278b9bbb3a44e5d86ed5bd5d849c5a8064e441b9e2c921",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/repro/blocks-homepage.render.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "renders copy, links, Portable Text, media, repeaters, optional fields, and order from data",
+          "line": 61,
+          "callbackSha256": "d926fba5903ef7f72547f6a0e2ee3d9deb7627c6d41491236872f95a97b46598"
+        },
+        {
+          "title": "reflects an edited block without changing the page component",
+          "line": 73,
+          "callbackSha256": "04053f9d0f14570e61eba3e83f26f6b3b0495da980b9cc74a18a6cd004ab9f6d"
+        },
+        {
+          "title": "renders %i static blocks without hidden network access",
+          "line": 80,
+          "callbackSha256": "4347edc0e5f455c746e006fe20ac7eca83a168fded4c599559e6f61c678fc86b"
+        },
+        {
+          "title": "records empty, typical, and maximum render CPU",
+          "line": 97,
+          "callbackSha256": "956569363577d70e1174d4847b93bcbce79e413b6ae3394ea0ddd26d613047a0"
+        }
+      ],
+      "literalExpectCalls": 12
     },
     {
       "path": "packages/admin/tests/lib/block-field-state.test.ts",
       "blob": "29aca6b5e04b0c92f5341de610a86b4889a5d1e6",
       "sha256": "1f26c3cc45d6b45890945da51f4f74faab61601bf07d1d0c74faa76e2e7eb167",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/admin/tests/lib/block-field-state.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "creates new blocks at the active version with immediate identity",
+          "line": 44,
+          "callbackSha256": "0d29b43d137ee96c7621c763af6fcaa7de0855572c4cdd72de046b877809bd42"
+        },
+        {
+          "title": "duplicates content while preserving type and version and replacing only the key",
+          "line": 53,
+          "callbackSha256": "57bf0c8c47b209f66c037ad607262a649d877c7b51b20d308a61bd3795275c33"
+        },
+        {
+          "title": "uses the same identity-preserving move for pointer and keyboard reorder",
+          "line": 61,
+          "callbackSha256": "2d7009877324416b8ece7fb85aa692b99133ba7ee2b17cedaa12aabe9e25a630"
+        },
+        {
+          "title": "updates a nested field without changing block identity or order",
+          "line": 76,
+          "callbackSha256": "bf525fc4fb649d0484aa48994a1f74e0cd5187fefb685f9218b970a591943d8e"
+        }
+      ],
+      "literalExpectCalls": 6
     },
     {
       "path": "packages/admin/tests/components/BlockTypeList.test.tsx",
       "blob": "0641624b4162d4695531c357213e0e857561b4b3",
       "sha256": "05113ce73867a812fb2e0b3f7caa4c27659087e3d5e8ae5fed9de875e29c0912",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/admin/tests/components/BlockTypeList.test.tsx",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "shows active and retained versions with exact fingerprints",
+          "line": 7,
+          "callbackSha256": "31b695b49ef5f64fea95b156f939edfa52a2c6393e1140c1418f3cdde2a81921"
+        }
+      ],
+      "literalExpectCalls": 0
     },
     {
       "path": "packages/admin/tests/components/BlocksField.test.tsx",
       "blob": "0c9084350ccd9282296548d77d2ac50337ec8c83",
       "sha256": "4a708064001835272265540796b00c43a1d3b14c2f604027dc79d49dd78ed6b1",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/admin/tests/components/BlocksField.test.tsx",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "edits retained versions with path-stable controls and badges",
+          "line": 92,
+          "callbackSha256": "6feee3033175a16959f5a3d7ebcb44a68dd86b1cab7a55616d331007b025ba8f"
+        },
+        {
+          "title": "adds, duplicates, collapses, and deletes without losing identity",
+          "line": 111,
+          "callbackSha256": "74a76f2c307e2aa2ad5a44185c593b167e678d0778fa1a52ef9fa7864ac5e202"
+        },
+        {
+          "title": "keeps unsupported stored versions read-only",
+          "line": 134,
+          "callbackSha256": "9ea9f463ac5801b5ae52f66a9cbdc46f31bea1249ba53429ef216e88f78f9a26"
+        },
+        {
+          "title": "reorders the same stored values from the keyboard drag handle",
+          "line": 171,
+          "callbackSha256": "668ed4749cfc149a87cb78f84c04298fde441ba05ba32e9b36cc353e8d0cb359"
+        },
+        {
+          "title": "uses logical controls in RTL",
+          "line": 195,
+          "callbackSha256": "586e62376a2c1cc44af2a889528aaf2d8891271f3c95c8f878f8dac775b62a86"
+        }
+      ],
+      "literalExpectCalls": 9
     },
     {
       "path": "packages/admin/tests/components/FieldEditor.blocks.test.tsx",
       "blob": "4d1309703a7ec1042b77bf2d7ed3329f857a3025",
       "sha256": "8e2758c90cb3cd3dfe3096d4a5e29c37a199bf00e1fdfe4a45e43bfe30953a30",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/admin/tests/components/FieldEditor.blocks.test.tsx",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "creates an ordered blocks field from the read-only version inventory",
+          "line": 54,
+          "callbackSha256": "7cda701a4a3327e83b25cafeba08c7caf881d40fb1dfed09f469019943751ea7"
+        }
+      ],
+      "literalExpectCalls": 1
     },
     {
       "path": "packages/core/tests/unit/runtime/manifest-build.test.ts",
       "blob": "91f8fddb1472831b984034daa9776edd31d98e07",
       "sha256": "e354115e3146c3438fc52583676415bea8a408dfb24344aa41e0e52ec23fda5f",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/unit/runtime/manifest-build.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "merges runtime manual collections from the database with config collections",
+          "line": 118,
+          "callbackSha256": "e7a108fbee791a9aa14b0d4ba57bca08eb36a75df0f4e9817e24160313a797de"
+        },
+        {
+          "title": "publishes the sidebar icon and group for database collections",
+          "line": 158,
+          "callbackSha256": "a575ff612507b8afa4a024857543a62b83593c17df906ec451720fa1df8d74d7"
+        },
+        {
+          "title": "publishes the dashboard quick-action opt-out only when set",
+          "line": 178,
+          "callbackSha256": "ecb569038d466cea22bae9982b728a9dc7e9f9afab58bf573b5c99ca77affb51"
+        },
+        {
+          "title": "keeps config collection fields when the database has the same slug",
+          "line": 193,
+          "callbackSha256": "bbb63f4dbbbfd287db1287442350fcb312f19b68e65fddd6818cd8c7a884dad8"
+        },
+        {
+          "title": "includes manual collections that have no fields",
+          "line": 213,
+          "callbackSha256": "be475ff3c168ecc2d4465c0e90af7882984863e7984db8e947d7482ebaca54fe"
+        },
+        {
+          "title": "changes the hash when a manual collection is added",
+          "line": 228,
+          "callbackSha256": "f0989aacb013cdc289f60b1beb769f719c3f17bbf80ef947622900a790837f50"
+        },
+        {
+          "title": "falls back to config collections when database collection loading fails",
+          "line": 244,
+          "callbackSha256": "877eaa4718656ada2bcc4596861cd43bca4fc5ccb564bc2497e50fb7c335ae59"
+        },
+        {
+          "title": "marks unknown database field types as unsupported",
+          "line": 257,
+          "callbackSha256": "00c4149d1009eaf5fb17270f5aa8a9a52747904c4ad3e890d80f671323560c2d"
+        },
+        {
+          "title": "includes retained block definitions and changes hash when their contract changes",
+          "line": 296,
+          "callbackSha256": "241a77a5ca236f8141c1aad3c7ab16c6f796cfba521c1c08be9f14307385f44e"
+        },
+        {
+          "title": "reflects schema mutations immediately, with no cross-runtime cache",
+          "line": 353,
+          "callbackSha256": "0fff3566d46d724b568264adb12bb344dc37a45a6da04ad5012f0af832fad1a2"
+        },
+        {
+          "title": "includes field definitions built via the two-query JOIN (one collection)",
+          "line": 386,
+          "callbackSha256": "e6d7a5ddb67a13a2d31706f448312bfea9ecaaa5bc4c9571ea0f7aed7989d25a"
+        },
+        {
+          "title": "forwards declared validation on every field type",
+          "line": 406,
+          "callbackSha256": "b7034cae450b19d9c2ac00dd35438dc6d2adb933b2e0f75737e0d9d0ac72311e"
+        },
+        {
+          "title": "reports the implicit English content locale when i18n is not configured",
+          "line": 443,
+          "callbackSha256": "dea19613ea822ac206874e3ab14ceb10ecc964ec8b6cdab8b71f1f3d4f752234"
+        },
+        {
+          "title": "reports whether the plugin sandbox is enabled",
+          "line": 451,
+          "callbackSha256": "c51d2408d7c3ffc6f728d09632f4c6f70c882ebc346aa620568b3b66b90e01ab"
+        },
+        {
+          "title": "exposes configured saved-entry panels and actions to the admin",
+          "line": 456,
+          "callbackSha256": "548b4d9ebf9ab794205d7a67e0c11b7195b94c04826141b5f7bd6f6e64c1ed7b"
+        },
+        {
+          "title": "keeps the admin manifest available with a safe registry configuration diagnostic",
+          "line": 493,
+          "callbackSha256": "5e7075068f69d61d0dac5a167cecfdf7842f69253681eb332794df1fcc544ace"
+        },
+        {
+          "title": "reports the configured content default independently of admin language",
+          "line": 511,
+          "callbackSha256": "e60640213c191c845b3d3f6acb4a8c431842182a5aabaa222ac07e9e3c4bf1f9"
+        },
+        {
+          "title": "exposes locale-prefix routing to the admin",
+          "line": 520,
+          "callbackSha256": "e622cfbac2f365aac04d9dd5e18013facb7b29d64f128fff5f1601d8d2d4dec9"
+        },
+        {
+          "title": "includes field definitions for many collections in two queries flat",
+          "line": 537,
+          "callbackSha256": "4e0d1bd1119503f24e3e69ff60a8e85c69054d9c194b13c2b401ff9b7a53f12b"
+        },
+        {
+          "title": "includes taxonomy locale identity for admin-side normalization",
+          "line": 568,
+          "callbackSha256": "19fde8a2aea92b87f721da162096426d4451036473ac07c731e4cda1edb113d5"
+        },
+        {
+          "title": "publishes only supported, existing list columns and caps them at four",
+          "line": 581,
+          "callbackSha256": "130ffa2d2e4510d834661dc167f80739a47e5f5e5f018f183341eee4dd5f7cac"
+        }
+      ],
+      "literalExpectCalls": 47
     },
     {
       "path": "packages/core/tests/unit/schema/zod-generator.test.ts",
       "blob": "1b4b06c55e2ff1fa41079709b5f4b82e1cd6bd4e",
       "sha256": "c5643e94f29302d3ce1d5e426684486ad3ef9493dc9507124526c599d6558c5a",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/unit/schema/zod-generator.test.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "should generate string schema",
+          "line": 21,
+          "callbackSha256": "e5e067665ea4124d6a0d2996b2e41085ef6e3ba2f7509bf6fe02ffcfa5358dba"
+        },
+        {
+          "title": "should generate number schema",
+          "line": 40,
+          "callbackSha256": "6f97841c808483632888465e39f9437fe6692c8c1a5a538899ae2b9e294987d3"
+        },
+        {
+          "title": "should generate integer schema",
+          "line": 59,
+          "callbackSha256": "58473172caa10d138d4aaa2b9ff63b3703b3c9b352d7d6a0e4751f4f14449309"
+        },
+        {
+          "title": "should generate boolean schema",
+          "line": 78,
+          "callbackSha256": "5ba3068a8fe6e3b7b04c1098ac63be879555c62b7b779c0aba1a24457d843098"
+        },
+        {
+          "title": "should coerce stored 0/1 booleans to real booleans",
+          "line": 98,
+          "callbackSha256": "e97944ef5e67901515db31a69ec26c229c0b123bac7324cca10a5298d830570d"
+        },
+        {
+          "title": "should preserve `.default(false)` chaining through the boolean preprocess",
+          "line": 133,
+          "callbackSha256": "ce31d0ba43e43e415ec1c2e8f0439a0130b810eb3b18046364577c28d171b9d9"
+        },
+        {
+          "title": "should accept stored 0/1 booleans in partial-mode validation",
+          "line": 155,
+          "callbackSha256": "38d5ca3d1471ed2daa66353c9bb24c996264726ec6c486871c2f445eb999d5ea"
+        },
+        {
+          "title": "should generate url schema",
+          "line": 187,
+          "callbackSha256": "e8dcbf44faa055c1c58806e2969b1b8f06314fd07c9acf13efb7ca1dbcfe5128"
+        },
+        {
+          "title": "rejects url field value %j",
+          "line": 213,
+          "callbackSha256": "9836c8ee37df5d247bef5e8ce815ee9d34b500c39e436533e198363a08188445"
+        },
+        {
+          "title": "applies custom string validation to url fields",
+          "line": 237,
+          "callbackSha256": "21339e5d2d036483fb43cdc161451f4004c87d9679c5a23a3b24b935e67300b9"
+        },
+        {
+          "title": "should generate select schema with options",
+          "line": 261,
+          "callbackSha256": "a2e6c1c388c8bd27fc5ae7612972439a10ab245f8ede14a614f348f2f2193d6e"
+        },
+        {
+          "title": "should generate multiSelect schema",
+          "line": 281,
+          "callbackSha256": "94c491d5487c72d683d427e7deb63fd2cc724a51298f807964a70e98fd0f8ee5"
+        },
+        {
+          "title": "should generate portableText schema",
+          "line": 301,
+          "callbackSha256": "bff6f8ecc206033cc7727c267ad3e61a4124c2b9d724da05e775106227d88b25"
+        },
+        {
+          "title": "should generate image schema",
+          "line": 320,
+          "callbackSha256": "6cb226093404eab7d155a8957743f3f755fd8032cf0cc2f369e9e592064b980b"
+        },
+        {
+          "title": "accepts a dark variant on an image field and rejects a malformed one",
+          "line": 352,
+          "callbackSha256": "2d658ce26b1ec2f55c7abacf4889c6d443dcb3dc189b7a6754911a5dbdd61264"
+        },
+        {
+          "title": "should make field optional when required is false",
+          "line": 379,
+          "callbackSha256": "1a3cb76db12bc66aef6b06446c0c2091eba172b3df500fb4e22f32fa64f65e56"
+        },
+        {
+          "title": "should apply default value",
+          "line": 398,
+          "callbackSha256": "2f300743049423355451c2163810ca054e76dc72ac245ba74d733b73b85cb6bf"
+        },
+        {
+          "title": "should apply string validation rules",
+          "line": 417,
+          "callbackSha256": "c64b6501c9d92a2f6bbb6870dc5dcb87679512596a31e073c1846182f28436a0"
+        },
+        {
+          "title": "should apply number validation rules",
+          "line": 437,
+          "callbackSha256": "0acb2b778b6a731267b21bcf82f71cab54e759df9251fece76b42b75a374f0f3"
+        },
+        {
+          "title": "should generate schema for collection with multiple fields",
+          "line": 460,
+          "callbackSha256": "348867b48f5063f0b5470461002907176060854f9d0f78d78ade4224367b6b06"
+        },
+        {
+          "title": "should return success for valid data",
+          "line": 560,
+          "callbackSha256": "d97b17c2d3b1fc41f57750942d6cb716f0e25be04838ff5ce96c3dac9e52e349"
+        },
+        {
+          "title": "should return errors for invalid data",
+          "line": 569,
+          "callbackSha256": "dcede3446476b924c2daa709c84a31938b4b4f5c782a720794e9d25a4287b58e"
+        },
+        {
+          "title": "should generate TypeScript interface",
+          "line": 583,
+          "callbackSha256": "280ad0dde072d4760e594b1c55bf2825e2711ba0c12d7854179b7a90710868f3"
+        },
+        {
+          "title": "uses the slug, ignoring an arbitrary human label",
+          "line": 698,
+          "callbackSha256": "b473fe103595274a286ff8e0d7464497caaa81b7ef904b02b0e1f988905653be"
+        },
+        {
+          "title": "keeps names unique when singularization collapses two slugs",
+          "line": 706,
+          "callbackSha256": "addb438c3438ddf0151c9dca84fb7d25939d2e023daf77fd4eeb6637545a6818"
+        },
+        {
+          "title": "keeps names unique when a suffixed name collides with another slug",
+          "line": 717,
+          "callbackSha256": "3a9026087812fba37f197c5cdec0e761db28b9127c73e8483eceea1f2fb52e04"
+        },
+        {
+          "title": "singularizes and PascalCases multi-word slugs",
+          "line": 732,
+          "callbackSha256": "6bb9927fe30109ae00788b6c48c8d7ebb717137c7755950baeeb98b2cf181a8f"
+        },
+        {
+          "title": "singularizes a plural slug to describe a single entry",
+          "line": 738,
+          "callbackSha256": "89ef6656064cb8f5dc536a3b99160b4da84e76e91e1b0da722c98d7ba90c5903"
+        },
+        {
+          "title": "leaves an already-singular slug unchanged",
+          "line": 742,
+          "callbackSha256": "02fb04948b66f3569aa847c86af068b12056b8a948f0d913b36c516849e83f36"
+        },
+        {
+          "title": "references the same interface names in the EmDashCollections map",
+          "line": 746,
+          "callbackSha256": "93c1f13060ae1f6d5b4117e98a8760e3ac26545dcb91e039931c766e4744292a"
+        },
+        {
+          "title": "includes BylineSummary in generated interface imports and byline property",
+          "line": 760,
+          "callbackSha256": "676cfebf7295cf802568da25dcbe5a34fc2ac49e1641c5f66064a09c4b42aad6"
+        },
+        {
+          "title": "emits retained version, per-type, and field unions",
+          "line": 771,
+          "callbackSha256": "96abc0e968507410d0493c7b5e2aa26fc6bdc9d6186eee7bb7c6746ec0ef81a1"
+        },
+        {
+          "title": "builds a row object array from subFields",
+          "line": 934,
+          "callbackSha256": "ef3582c771665ec8d1eff777996099ebaa26b76e884e8c99777bcf6226c811fd"
+        },
+        {
+          "title": "types a sub-field that is not required as nullable",
+          "line": 945,
+          "callbackSha256": "f489ff8acb55591f23978e70748c9bd1e5005cf0fe39b460da5ec4bb46003294"
+        },
+        {
+          "title": "enumerates the options of a select sub-field",
+          "line": 954,
+          "callbackSha256": "51e109d0f9eef5c8a8fda485add67311b0a825e7ce289ebcec7a79a8bffc58f6"
+        },
+        {
+          "title": "emits the media literal for an image sub-field",
+          "line": 970,
+          "callbackSha256": "6d046f961d9aa92b0177a45658a5e1ad602acfcb84856df695c5bbfe90c42474"
+        },
+        {
+          "title": "maps a %s sub-field",
+          "line": 992,
+          "callbackSha256": "bb447253103b16873064299feaa50981b885ec8fd8a9db29c27f064b21f4a4df"
+        },
+        {
+          "title": "falls back to unknown when subFields is absent",
+          "line": 1000,
+          "callbackSha256": "45bb12b1f78846bdab5bd96de274c28362a90218487aac61f4dc42952bed3f2f"
+        },
+        {
+          "title": "falls back to unknown when subFields is empty",
+          "line": 1004,
+          "callbackSha256": "eccb5fe5c275280d4c48b642e7c7b6a06378d0576ae03e95680c9f37090bb590"
+        },
+        {
+          "title": "falls back to unknown when subFields is %j",
+          "line": 1011,
+          "callbackSha256": "47b3106b6df32f4a64eed8977292aba4f8a8f571736d0ed1ecb07de795858762"
+        },
+        {
+          "title": "emits a parseable declaration file for %j",
+          "line": 1054,
+          "callbackSha256": "1af7933c247ddab4eb80786c71e1c77c7ed0b427d9df172b8154c3882c95b038"
+        },
+        {
+          "title": "does not let a slug restructure the emitted type",
+          "line": 1059,
+          "callbackSha256": "11faca667f56e8b13f70a0966c67b7d0dd489704c1f2a29379f93c37619d6a81"
+        },
+        {
+          "title": "declares a duplicated slug once",
+          "line": 1092,
+          "callbackSha256": "67582c0a095846e783122c12b062b6b2df7218ff2b91b487ae7ec813f84f3cd9"
+        },
+        {
+          "title": "keeps the last declaration of a duplicated slug",
+          "line": 1099,
+          "callbackSha256": "cfe08d3f8589067108da0a18323043ed2435469b0333628c6396360911c578fa"
+        },
+        {
+          "title": "declares the members the row schema accepts",
+          "line": 1105,
+          "callbackSha256": "e9302094541910a4c415c22ad82cb1bcdee96becb7f3739497d1339ea584ee24"
+        },
+        {
+          "title": "keeps a required repeater non-optional",
+          "line": 1114,
+          "callbackSha256": "cf0dd05d6f5d9b1c806f56787b577e3434e3754670af717113f7563e7807c03f"
+        },
+        {
+          "title": "validates a field with no relation as the entry id string it stores",
+          "line": 1155,
+          "callbackSha256": "fa2503e3b951b26868cfe6b836012211c76549a7f5ac5ed72de12c52b8646cb1"
+        },
+        {
+          "title": "leaves a field bound to a relation out of the data schema",
+          "line": 1162,
+          "callbackSha256": "0982b17cf12ab1a476ad0cabd9e0e8e7cf9fb5c0bc3a26aaadccd9354e21ec72"
+        },
+        {
+          "title": "types a field with no relation as a string and omits a bound one",
+          "line": 1168,
+          "callbackSha256": "dffdcdbf1382e355ff585ea24097c5344c4c91a3fc06e03c209e4ffb24643ff9"
+        },
+        {
+          "title": "emits a page per bound field, typed to the target collection",
+          "line": 1233,
+          "callbackSha256": "c2c271b54f55e956015117e49606896b21c755fb1c8f697f4daaf04ce8530b33"
+        },
+        {
+          "title": "registers the references interface under EmDashCollectionReferences",
+          "line": 1240,
+          "callbackSha256": "3f7ce8c402d19c9ee62472744d52e775866bad7b2fe47da9baf0fdd8486ca1a1"
+        },
+        {
+          "title": "imports ReferencePage only when a bound reference field exists",
+          "line": 1248,
+          "callbackSha256": "fb9eb5642f13b8e2a106e5148e831f1199f94a90c960e76c1978e619ad79bab4"
+        },
+        {
+          "title": "emits nothing for a collection whose reference fields are all unbound",
+          "line": 1257,
+          "callbackSha256": "13461c698accd0f609acf03ddcaa30e38d006299deac7c13c593e67428123c77"
+        },
+        {
+          "title": "leaves the page un-narrowed when the target is not in the file",
+          "line": 1267,
+          "callbackSha256": "26cadfb666edf11d27dbfe81572a69457c20545dbf8d9e73d06317b68c4fb590"
+        }
+      ],
+      "literalExpectCalls": 115
     },
     {
       "path": "e2e/tests/field-widgets.spec.ts",
       "blob": "af231e7e425ecc084c5da22533df0c305b034993",
       "sha256": "a52c354bc807da55c66b0336768bc888b4f8009e3a341f9de02bec458ef8ef60",
       "copiedPath": "parity/emdash/blocks/source-tests/e2e/tests/field-widgets.spec.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "Field Widgets",
+          "line": 21,
+          "callbackSha256": "29bbe49ca7faa78ffc80244ebe7fd0562ca324605917d1b8554cf25802bd307d"
+        },
+        {
+          "title": "<dynamic>",
+          "line": 22,
+          "callbackSha256": "69a7cf02e28511dd367fbbae418a6a0fe6cb997fd17047482a1075e44b8546e8"
+        },
+        {
+          "title": "Color Picker Widget Rendering",
+          "line": 26,
+          "callbackSha256": "1ae5daaccf4cbf3bfe4a4a0ecf6a4a89ba2912e8f4a744bc6aafae337cd8b0dc"
+        },
+        {
+          "title": "renders color picker widget on new post form",
+          "line": 27,
+          "callbackSha256": "27c50934b5c4b6956c51f7388e67670a91c639a0b563d76cf519a0b4cdfb8ebd"
+        },
+        {
+          "title": "shows field label for color widget",
+          "line": 55,
+          "callbackSha256": "2b144405b8dcdbb96d04d3efa0ff559327d553b5bf212e1ecf068859e0ced699"
+        },
+        {
+          "title": "other fields render with default editors",
+          "line": 65,
+          "callbackSha256": "2b07801829b8006fe7df5923c4211fecc740d1a11197920bb6c1c08bbad5930c"
+        },
+        {
+          "title": "Color Picker Interaction",
+          "line": 80,
+          "callbackSha256": "c0eb235080b8d038f82945febb8bd850d045fb5251e846b1b732f26ad6766b81"
+        },
+        {
+          "title": "can type a hex value",
+          "line": 81,
+          "callbackSha256": "4677c0ff377ad486f52a3744d163a48bd2aec609b657b3e87260a1a90285bc48"
+        },
+        {
+          "title": "clicking a preset updates the value",
+          "line": 91,
+          "callbackSha256": "0b5bfdf6cbf7a8610c5aa723e82dea7121242294b40160d0dd0d7795dc72324a"
+        },
+        {
+          "title": "clicking different presets changes the value",
+          "line": 108,
+          "callbackSha256": "b47cd7bf6c023bb68192c39f1fcecf900f42c9a9cdcf68d278e6ce33e10c3c9f"
+        },
+        {
+          "title": "Save and Load Widget Values",
+          "line": 126,
+          "callbackSha256": "2d49f21df7b42f44fbd9239754b4b0bba8331dbadb264c9382589b01db96b868"
+        },
+        {
+          "title": "saves content with color value and loads it back",
+          "line": 127,
+          "callbackSha256": "e357cbe402949199acd27624ee28f676951468ca7582cad30b53dd95508cff54"
+        },
+        {
+          "title": "saves content with preset color value",
+          "line": 162,
+          "callbackSha256": "6902b1e6221ad2057eed857cb4f262fefc94f19c7d73edcc5cf5e61809b80aa7"
+        },
+        {
+          "title": "saves content without color value",
+          "line": 188,
+          "callbackSha256": "e705c2b3bd201af351fc048983d8361ed2b182c4b18d92e4ad3a980ac8f312dd"
+        },
+        {
+          "title": "Manifest API",
+          "line": 208,
+          "callbackSha256": "0718ff3a89e52ee86224c0a3ad3ba3ae14f37454144a809d937c62554eb39e96"
+        },
+        {
+          "title": "manifest includes widget property on theme_color field",
+          "line": 209,
+          "callbackSha256": "0b646483da07f1f8f76fd123d4b4e72bc9ca39dbf69f30cd2da245d98b86a702"
+        },
+        {
+          "title": "manifest includes color plugin with fieldWidgets",
+          "line": 227,
+          "callbackSha256": "64ce4a3a36915b5cfc914b53a5a8e9325a067705d4bb3075099fc2f07edcbcb2"
+        }
+      ],
+      "literalExpectCalls": 42
     },
     {
       "path": "e2e/tests/content-types.spec.ts",
       "blob": "836c3569e25e967a0b47dd895a518833bd3645ff",
       "sha256": "ac0f835fd4ae2a908cde58277aca7648c80ea87e185f9793214eaa27c8911b4b",
       "copiedPath": "parity/emdash/blocks/source-tests/e2e/tests/content-types.spec.ts",
-      "state": "committed-before-implementation; not-yet-executed"
+      "state": "committed-before-implementation; not-yet-executed",
+      "declarations": [
+        {
+          "title": "Content Types",
+          "line": 23,
+          "callbackSha256": "6c8afcbf2ee0f8e63bad4e2ae84e22146dc86f28e71b72b094c6fc8bfbc6d683"
+        },
+        {
+          "title": "<dynamic>",
+          "line": 24,
+          "callbackSha256": "69a7cf02e28511dd367fbbae418a6a0fe6cb997fd17047482a1075e44b8546e8"
+        },
+        {
+          "title": "Content Types List",
+          "line": 28,
+          "callbackSha256": "2215a86070f73f06fc476672f187aef1e9e293b94c3f9b8a46e7964a7190aadd"
+        },
+        {
+          "title": "displays seeded collections in a table",
+          "line": 29,
+          "callbackSha256": "03067f49987d285280dffe3060535784bc608019eeefb7a19f87dc9128fcf67f"
+        },
+        {
+          "title": "shows slug column for each collection",
+          "line": 45,
+          "callbackSha256": "c25043dc37e092c1b4f3a1b7ded6d6b10fa1a25940db4da48cfcb5b6fd867e5d"
+        },
+        {
+          "title": "has a New Content Type button",
+          "line": 54,
+          "callbackSha256": "408385a283d6ebc34602ba634db7fd02644bcbb7048a1a14dfbd00e5ba4f9c37"
+        },
+        {
+          "title": "View Content Type",
+          "line": 62,
+          "callbackSha256": "cd3c72314d73cfce52868d421d47563ef9a887e8bc734ee67671e1a287f44268"
+        },
+        {
+          "title": "clicking a collection shows its field list",
+          "line": 63,
+          "callbackSha256": "537a1c1ee826dd4e7ac7904f480e44aa86170e6310eaef25c8cf607a96575c03"
+        },
+        {
+          "title": "shows expected custom fields for posts",
+          "line": 85,
+          "callbackSha256": "727804dcfebbf7c232eded5bc8bbc39e7213156e489733baef770540cbab52ce"
+        },
+        {
+          "title": "shows system fields for a collection",
+          "line": 101,
+          "callbackSha256": "20e73f370c25617795a31aaeb4902cb0d0e4b04ab312d017f17058ddecdbe003"
+        },
+        {
+          "title": "Save Content Type Settings",
+          "line": 113,
+          "callbackSha256": "069f6e88643c98174ab9776a7574b8a4c5992fc85072779d4a1db4c19308e0f1"
+        },
+        {
+          "title": "toggling a feature and saving persists across reloads",
+          "line": 114,
+          "callbackSha256": "3e9aa7e93f609d42b0d59392498e437377c25e5ef19aa35054a7e2137784f728"
+        },
+        {
+          "title": "Create Content Type",
+          "line": 167,
+          "callbackSha256": "1153a9a92267aacf3b2ab44cd134f4c1ad75f7d08b117349a95d7d34c9e79573"
+        },
+        {
+          "title": "creates a new content type and redirects to editor",
+          "line": 168,
+          "callbackSha256": "3d29b1ff497bc78c34144b303f9b6e99283cddff406e15dd00e674eba305d1f9"
+        },
+        {
+          "title": "new collection appears in the content types list",
+          "line": 200,
+          "callbackSha256": "4df8ac8d682a47fb39174a0d1b3a4afe842b9488d34a8301a2033f8bf97e99e2"
+        },
+        {
+          "title": "Add Field to Content Type",
+          "line": 213,
+          "callbackSha256": "ac1d05f683597b086cb9e1a4ff5a4107ea30515cc124df26421936444fb410d1"
+        },
+        {
+          "title": "adds a text field to the test collection",
+          "line": 214,
+          "callbackSha256": "a7b1cf091e1221f720b035b803c5aa9a7733c6cb5b052ded6dabf6ec9fc689ac"
+        },
+        {
+          "title": "Delete Content Type",
+          "line": 253,
+          "callbackSha256": "73c481d79a430c5ecdcf4b1cfd259b95250cfa8256b1758aea216809d056209b"
+        },
+        {
+          "title": "deletes the test-created collection",
+          "line": 254,
+          "callbackSha256": "2259bcac962d3b9b7ffeb8b3531790a1b6392f1359581134ae59256ee1f213ee"
+        }
+      ],
+      "literalExpectCalls": 37
     }
   ],
   "sourceTestsRun": 0,

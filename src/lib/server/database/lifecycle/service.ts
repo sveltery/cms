@@ -1,3 +1,5 @@
+import {normalizeBlocksData} from '../../blocks/values.ts';
+import {blocksDatabase} from '../../blocks/host.ts';
 import { sql, type CompiledQuery } from 'kysely';
 import { ulid } from 'ulidx';
 import { CmsError, type CmsDatabase, type RevisionPrecondition } from '../contract.ts';
@@ -20,7 +22,7 @@ import * as v from 'valibot';
 // restore:4974 at immutable913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.
 // Copyright2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
 const DRAFT_ONLY_UPDATE_KEYS = new Set(['data','slug','locale','skipRevision','references','actor','migrateBlocks','replaceBlocks']);
-const UNSUPPORTED = ['seo','taxonomies','references','bylines','actor','migrateBlocks','replaceBlocks','translationOf','inheritFields'];
+const UNSUPPORTED = ['seo','taxonomies','references','bylines','actor','inheritFields'];
 export interface ContentKey {type:string;id:string;locale?:string}
 export interface ContentMutation extends ContentKey {expected?:RevisionPrecondition}
 export interface ContentUpdate extends ContentMutation {
@@ -49,6 +51,8 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     for(const key of UNSUPPORTED)if(value[key]!==undefined)throw new CmsError('VALIDATION_ERROR',`Lifecycle capability '${key}' is not implemented`);
     if(value.slug!==undefined)parse(v.nullable(v.pipe(v.string(),v.maxLength(200))),value.slug);
     if(value.skipRevision!==undefined)parse(v.boolean(),value.skipRevision);
+    for(const flag of ['migrateBlocks','replaceBlocks'])if(value[flag]!==undefined)parse(v.boolean(),value[flag]);
+    if(value.translationOf!==undefined)parse(entryId,value.translationOf);
     if(value.status!==undefined)parse(v.string(),value.status);
     return value;
   }
@@ -145,10 +149,16 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const type=parse(identifier,value.type);const locale=parse(localeInput,value.locale??'en');
       if(value.status!==undefined&&value.status!=='draft')throw new CmsError('VALIDATION_ERROR','Create a draft, then publish it');
       const collection=await definition(type);
-      const data=normalizeBlankArrays(parse(schemaData,value.data),collection.fields);
+      const translationSource=value.translationOf===undefined?undefined:await content.findById(type,value.translationOf);
+      if(value.translationOf!==undefined&&!translationSource)throw new CmsError('NOT_FOUND');
+      const data=await normalizeBlocksData(blocksDatabase(database),collection as any,normalizeBlankArrays(parse(schemaData,value.data),collection.fields),translationSource?.data??{},{migrateBlocks:value.migrateBlocks,replaceBlocks:value.replaceBlocks},false);
       const slug=value.slug===undefined?await content.generateUniqueSlug(type,typeof data.title==='string'?data.title:'',locale):value.slug;
-      const item=await drafts.create({type,locale,data,slug},actor.id);
+      const item=value.translationOf===undefined?await drafts.create({type,locale,data,slug},actor.id):await content.create({type,locale,data,slug,authorId:actor.id,translationOf:value.translationOf});
       return stored({type,id:item.id,locale});
+    },
+    async duplicateContent(input:unknown):Promise<ContentItem> {
+      const actor=requirePermission('content:create');requirePermission('content:read');requirePermission('content:read_drafts');
+      const value=key(input);await stored(value);return translate(()=>content.duplicate(value.type,value.id,actor.id));
     },
     async getContent(input:unknown):Promise<ContentItem> {
       requirePermission('content:read');requirePermission('content:read_drafts');return hydrate(await stored(key(input)));
@@ -168,6 +178,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       let data=value.data===undefined?undefined:normalizeBlankArrays(parse(schemaData,value.data),collection.fields);
       if(data){
         const base=existing.draftRevisionId?(await revisions.findById(existing.draftRevisionId))?.data??existing.data:existing.data;
+        data=await normalizeBlocksData(blocksDatabase(database),collection as any,data,base,{migrateBlocks:value.migrateBlocks,replaceBlocks:value.replaceBlocks});
         const stale=staleStoredKeys(data,base,fields);if(stale.length){data={...data};for(const field of stale)delete data[field];}
         await checked(value.type,data,true);
       }

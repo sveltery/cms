@@ -86,9 +86,9 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
    mutation('content:edit_own','content:edit_any');
    // Preserve current required token, JSON and slug bounds. skipRevision is
    // the only added save option; publication remains a separate operation.
-   const source=input as Record<string,unknown>;const {skipRevision,...value}=source??{};
-   if(skipRevision!==undefined&&typeof skipRevision!=='boolean')throw new CmsError('VALIDATION_ERROR');
-   const parsed=parse(updateDraftInput,value);return entry((await lifecycle().updateContent({...parsed,...(skipRevision===undefined?{}:{skipRevision})})).item);
+   const source=input as Record<string,unknown>;const {skipRevision,migrateBlocks,replaceBlocks,...value}=source??{};
+   if([skipRevision,migrateBlocks,replaceBlocks].some(flag=>flag!==undefined&&typeof flag!=='boolean'))throw new CmsError('VALIDATION_ERROR');
+   const parsed=parse(updateDraftInput,value);return entry((await lifecycle().updateContent({...parsed,...(skipRevision===undefined?{}:{skipRevision}),...(migrateBlocks===undefined?{}:{migrateBlocks}),...(replaceBlocks===undefined?{}:{replaceBlocks})})).item);
   },
   async listContent(input:unknown){read();const {value,collection,options}=await listOptions(input);
    const result=await translate(()=>repository().findMany(value.type,options));return{...result,items:result.items.map(item=>summary(item,collection.titleField??'title'))};

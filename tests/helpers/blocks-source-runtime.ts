@@ -14,6 +14,6 @@ export function createTestRuntime(db:any){
   handleContentUpdate:(collection:string,id:string,input:any)=>result(async()=>(await service.updateContent({type:collection,id,...input,...revision(collection,id,input)})).item),
   handleContentPublish:(collection:string,id:string)=>result(()=>service.publish({type:collection,id})),
   handleRevisionRestore:(revisionId:string,_authorId:string)=>result(()=>service.restoreRevision({revisionId})),
-  handleContentDuplicate:async()=>({success:false,error:{code:'NOT_IMPLEMENTED',message:'Native duplicate content is not yet implemented'}})
+  handleContentDuplicate:(collection:string,id:string)=>result(()=>service.duplicateContent({type:collection,id}))
  };
 }

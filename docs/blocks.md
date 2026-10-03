@@ -8,4 +8,10 @@ Canonical provider 10 follows the real options 6, taxonomy 7, metadata 8 and med
 
 The source deliberately exposes no block type DELETE route, preserving retained content definitions. Removing a block from a content value is supported. The React block component kit, portable text widgets, plugin runtime, Astro public rendering, full import/transfer and media usage indexing are separate feature families; this delivery must not claim those from JSON storage or source inventory alone.
 
-Status: tests copied; implementation and required current-head verification pending.
+The first native test commit `f09c784` precedes product changes. Its eight original schema regressions reached genuine assertion failures on Node SQLite and actual Miniflare D1, then passed after provider/contract integration. An invented original expectation that omitted default metadata becomes `[]` was removed after checking the complete pinned `createField`: physical values default to `[]`, metadata remains omitted. It was never reached by the red run and earns no source credit.
+
+The initial six-file source host had six import failures and zero executed assertions. Registry/contracts/state/render modules then supplied the native import boundary; 37 source callbacks were already green and earn zero causal red credit. Before block-value normalization, all 20 content callbacks failed at completed assertions: 18 observe genuine missing native data/identity/version/validation behavior, while two reach the explicit missing-duplicate fixture boundary and earn zero causal source red credit. The unchanged six-file suite subsequently passes 57/57 executions, including whole callbacks on real Node SQLite and D1. This is not the complete inventoried block test universe.
+
+The native host exposes the default absent media-usage state only. If an active usage provider is present without the real invalidation integration, block schema mutations fail explicitly; no fake usage counts or successful stale-index maintenance are supplied. Astro development type watching remains a framework omission; native typed schema generation uses current persisted definitions.
+
+Status: core registry/content tests pass; seed, route/UI integration, final normal/bootstrap and secured browser evidence, configured and independent review, approved dependency replay and merge remain pending.
