@@ -1,0 +1,42 @@
+{
+  "currentJobHead": "a64e3148586b39cb862676466d091c51437e90a5",
+  "baselineHead": "f887fbd6859f9b0bd9ee07153b873c5dafb63578",
+  "baselineTree": "40495d93a5b36a86c587ff36e1a5278d392badc3",
+  "baselineParent": "e6323cf21a74ff8f859c0e97baf507d0b6b66c0a",
+  "onlyChangedPath": "tests/browser/media-library-source.spec.ts",
+  "run": 37099414595,
+  "qualifiedUniqueSourceCallbackReds": 1,
+  "qualifiedTargetAssertionExecutions": 2,
+  "callbacksIntact": 4,
+  "sourceHelperBodiesIntact": 2,
+  "sourceDeadlinesIntact": true,
+  "ordinaryNativeFixture": "Real virtual passkey signup then visible sign-in; existing current-user GET200 and administrator role50 assertions complete before source callbacks. No source setup auto-session or fake principal.",
+  "chronology": "Four whole source callbacks committed before UI, original native fixture was unauthenticated. Its old expectation failures were withdrawn. Proper native fixture and historical e632 reproduction were added after UI implementation; no claim that original properly authenticated browser TDD preceded UI.",
+  "priorUnauthenticatedQualifiedCredit": 0,
+  "targets": [
+    {
+      "target": "node",
+      "job": 111135838270,
+      "rawLogSha256": "43e04e7ed7ce0ab1b4c90b9ce0f19f8599f7f5c3535b28f5a980fecaeb88ad1d",
+      "normalFrozenInstall": true,
+      "normalBuild": true,
+      "securedChromium": true,
+      "sourceCallbacksInvoked": 4,
+      "completedMissingMediaLibraryHeadingExpectation": 1,
+      "preAssertionUploadClickTimeoutsExcluded": 3,
+      "overallPass": false
+    },
+    {
+      "target": "default",
+      "job": 111135838295,
+      "rawLogSha256": "27d445bc41cdc160648fccbafa4775f4151eaac6fd925cd8f8485b513778e99e",
+      "normalFrozenInstall": true,
+      "normalBuild": true,
+      "securedChromium": true,
+      "sourceCallbacksInvoked": 4,
+      "completedMissingMediaLibraryHeadingExpectation": 1,
+      "preAssertionUploadClickTimeoutsExcluded": 3,
+      "overallPass": false
+    }
+  ]
+}
