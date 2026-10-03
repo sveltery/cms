@@ -104,9 +104,14 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     return {...item,data:{...item.data,...draftData},liveData:item.data};
   }
   function prune(collection:string,id:string,revisionId:string) {
-    const task=async()=>{await revisions.pruneQueuedEntry(collection,id,revisionId,50);};
+    // Pinned runtime/cleanup isolate deferred bookkeeping failures. The queue
+    // remains unacknowledged when pruning fails, so later work can retry it.
+    const task=async()=>{
+      try {await revisions.pruneQueuedEntry(collection,id,revisionId,50);}
+      catch(error){console.error(`[revisions] Failed to prune revisions for ${collection}/${id}:`,error);}
+    };
     if(dependencies.after)dependencies.after(task);
-    else void task().catch(error=>console.error(`[revisions] Failed to prune revisions for ${collection}/${id}:`,error));
+    else void task();
   }
   async function translate<T>(operation:()=>Promise<T>):Promise<T> {
     try{return await operation();}
@@ -211,9 +216,15 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       // already pending for an existing draft. This host binds that consumer
       // to request-lifetime work; conditional acknowledgement preserves a
       // newer queue write while the task is deferred.
-      const queued=(await sql<{revision_id:string}>`SELECT revision_id FROM _cms_revision_prune_queue
-        WHERE collection=${value.type} AND entry_id=${value.id}`.execute(database.db)).rows[0];
-      if(queued)prune(value.type,value.id,queued.revision_id);
+      try {
+        const queued=(await sql<{revision_id:string}>`SELECT revision_id FROM _cms_revision_prune_queue
+          WHERE collection=${value.type} AND entry_id=${value.id}`.execute(database.db)).rows[0];
+        if(queued)prune(value.type,value.id,queued.revision_id);
+      } catch(error) {
+        // The accepted mutation already committed. A bookkeeping read or host
+        // scheduling failure must leave its result intact and queue retryable.
+        console.error(`[revisions] Failed to schedule pruning for ${value.type}/${value.id}:`,error);
+      }
       return unpublished;
     },
     async discardDraft(input:unknown):Promise<ContentItem> {
