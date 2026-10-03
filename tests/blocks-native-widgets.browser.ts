@@ -79,11 +79,11 @@ describe('Native reusable block controls',()=>{
  });
  it('links legacy external file URLs using the pinned file display rules',async()=>{
   const screen=await render(React.createElement(NativeBlockMediaField,{id:'attachment',label:'Attachment',value:{id:'external-file',provider:'external',url:'https://files.example.com/report.pdf',filename:'report.pdf',mimeType:'application/pdf'},onchange:vi.fn()}));
-  await expect.element(screen.getByRole('link',{name:'report.pdf'})).toHaveAttribute('href','https://files.example.com/report.pdf');
+  expect([...screen.container.querySelectorAll('a')].map(link=>({text:link.textContent,href:link.getAttribute('href')}))).toEqual([{text:'report.pdf',href:'https://files.example.com/report.pdf'}]);
  });
  it('encodes local file keys and ignores external URLs on local snapshots',async()=>{
   const screen=await render(React.createElement(NativeBlockMediaField,{id:'attachment',label:'Attachment',value:{id:'local-file',provider:'local',src:'https://attacker.example/file.pdf',filename:'local.pdf',mimeType:'application/pdf',meta:{storageKey:'folder/a?b#c.pdf'}},onchange:vi.fn()}));
-  await expect.element(screen.getByRole('link',{name:'local.pdf'})).toHaveAttribute('href','/_emdash/api/media/file/folder/a%3Fb%23c.pdf');
+  expect([...screen.container.querySelectorAll('a')].map(link=>({text:link.textContent,href:link.getAttribute('href')}))).toEqual([{text:'local.pdf',href:'/_emdash/api/media/file/folder/a%3Fb%23c.pdf'}]);
  });
 
 });
