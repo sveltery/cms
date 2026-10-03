@@ -1,0 +1,83 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "sourcePath": "packages/core/tests/unit/settings/settings.test.ts",
+  "blob": "ba5be15f19e7cba122a85112d9ad79b3e9826d4a",
+  "frozenPath": "parity/emdash/media/source-settings/settings.test.ts",
+  "sha256": "2db5822526e08da988f2dd04b050e30bce9e51b7612c0453264e91b0f4a32567",
+  "productPath": "tests/source-port/settings/media-settings.test.ts",
+  "uniqueCallbacks": [
+    {
+      "title": "resolves seo.defaultOgImage to a media file URL via getSiteSettings",
+      "line": 408,
+      "sha256": "c1da2827a2169b85e8836b0283415812818315345be5da6f44ddab318dc675ca"
+    },
+    {
+      "title": "resolves seo.defaultOgImage via getSiteSetting('seo')",
+      "line": 445,
+      "sha256": "2780a625b053f990d3b565dd33ca549eb9c2aec45eedeabccc58b315bb141900"
+    },
+    {
+      "title": "EmDashRuntime.handleMediaDelete invalidates the cache on success",
+      "line": 663,
+      "sha256": "f1a80f5b1ec541ca8014137bf5f0b42a80ec47ada6d57011540b3c69ac05bf4f"
+    },
+    {
+      "title": "EmDashRuntime.handleMediaUpdate invalidates the cache on success",
+      "line": 703,
+      "sha256": "58bddff165e500387c27727d5232956f7589d30105ad920492f7d464ed3cd645"
+    },
+    {
+      "title": "EmDashRuntime.handleMediaReplaceMetadata invalidates the cache on success",
+      "line": 742,
+      "sha256": "f5a5475014479fdae03e85d3e4c0c6f2a16b2141b066f241c9fcfe10dec6574d"
+    }
+  ],
+  "existingOverlaps": [
+    {
+      "title": "should store logo without URL",
+      "productPath": "tests/source-port/settings/site-settings.test.ts",
+      "sha256": "f653dca2d164a7a2216bcd651f27202985d51ea9377abdd2ca93861286d42fe9"
+    },
+    {
+      "title": "should store favicon without URL",
+      "productPath": "tests/source-port/settings/site-settings.test.ts",
+      "sha256": "e0e5d4c18af2d63819c4680251f262307d0c985d5a1dc0cb18276d9be03b4fe6"
+    },
+    {
+      "title": "returns seo settings unchanged when no defaultOgImage is set",
+      "productPath": "tests/source-port/settings/site-settings.test.ts",
+      "sha256": "f793e90d41bc89ba82192e210e28f03aacd35dfbaa62e8eeb23f53ee23f5ef96"
+    }
+  ],
+  "fixture": {
+    "sourcePath": "packages/core/tests/utils/test-db.ts",
+    "blob": "b75bd5b5770e44050b2d0da28e87c155c603ed66",
+    "productPath": "tests/helpers/settings-media-database.ts",
+    "function": "setupTestDatabaseWithCollections",
+    "sha256": "b475eeab47b598c7bba10d268b0c4c1f15d3e92ff8dd2054b84c3a6a1865bcb5",
+    "frozenPath": "parity/emdash/media/source-settings/test-db.ts",
+    "frozenSha256": "0e6a59b5d2109e4134aed1277f82089725a53fe079ee0ec0c2622169d2480dc0"
+  },
+  "adaptations": [
+    "Native canonical media/options schemas, Node SQLite and workerd Miniflare D1 adapters; same source row fixtures",
+    "Two exact callback import strings map via narrow test resolver to native runtime and full original collection setup function",
+    "Native runtime executes only three complete pinned media mutation methods; zero full EmDashRuntime/MCP/PAT/plugin infrastructure credit",
+    "Three previously selected source settings callbacks are overlaps and earn zero additional unique count"
+  ],
+  "baseline": "10/10 executions pass on actual Node SQLite and Miniflare workerd D1. Existing implementations precede this selection: zero source behavior-red or TDD-order credit.",
+  "runs": [
+    {
+      "command": "node node_modules/vitest/vitest.mjs run --config /tmp/media-settings-existing-deps.config.mts",
+      "kind": "temporary diagnostic host resolving already normally installed exact crypto1.0.1; not normal check/bootstrap",
+      "rawLogSha256": "8f89dd8f14c8b14d738db0e5d4e403dfd24f17ccd3689c3e877d92c179d4a533",
+      "uniqueCallbacks": 5,
+      "executions": 10,
+      "pass": 10,
+      "skip": 0,
+      "targets": [
+        "Node SQLite",
+        "Miniflare workerd D1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "publicTree": "9b064085d5435477967088224bf6d46d05a4adb1",
+  "nativeRepairCommit": "59ebad45df9f5f57d0fe0b26774b4333d8935440",
+  "command": "node --test tests/*.test.ts",
+  "host": "shared local workspace; installed dependency graph incomplete",
+  "total": 1110,
+  "pass": 1092,
+  "fail": 17,
+  "cancelled": 1,
+  "runtimeSeconds": 771.444703437,
+  "rawLogSha256": "acd43bedce23fa13cae9c38ed5a8392434099ce468fab15101bf626a120e5aa0",
+  "qualification": "Original canonical MIGRATION_REQUIRED composition cases pass after own9 prefix repair. Remaining exact failures retained below; missing-dependency imports, dependency-preflight build failure and timeout do not establish source behavior reds or a full normal gate pass.",
+  "families": {
+    "tests/database.test.ts": {
+      "cases": 1,
+      "failureMessages": [
+        "tests/database.test.ts:234:1\n\u2716 unique flags remain metadata across collection/field underscore boundaries (54.355868ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  1 !== 0\n  "
+      ]
+    },
+    "tests/draft-trash-index.test.ts": {
+      "cases": 2,
+      "failureMessages": [
+        "tests/draft-trash-index.test.ts:24:3\n\u2716 Node: all-locale trash order uses the pinned deleted-leading index while retaining upstream tie sorting (90.540824ms)\n  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /USING INDEX idx_ec_posts_deleted_status/. Input:\n  \n  'SCAN ec_posts\\nUSE TEMP B-TREE FOR ORDER BY'\n  ",
+        "tests/draft-trash-index.test.ts:24:3\n\u2716 D1: all-locale trash order uses the pinned deleted-leading index while retaining upstream tie sorting (1832.894497ms)\n  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /USING INDEX idx_ec_posts_deleted_status/. Input:\n  \n  'SCAN ec_posts\\nUSE TEMP B-TREE FOR ORDER BY'\n  "
+      ]
+    },
+    "tests/lifecycle-canonical-storage.test.ts": {
+      "cases": 4,
+      "failureMessages": [
+        "tests/lifecycle-canonical-storage.test.ts:20:3\n\u2716 Node: fresh canonical startup publishes, stages, rolls back and retains history on reopen (79.884988ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n    [",
+        "tests/lifecycle-canonical-storage.test.ts:20:3\n\u2716 Node: v4 canonical startup publishes, stages, rolls back and retains history on reopen (64.889945ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n    [",
+        "tests/lifecycle-canonical-storage.test.ts:20:3\n\u2716 D1: fresh canonical startup publishes, stages, rolls back and retains history on reopen (2720.732727ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n    [",
+        "tests/lifecycle-canonical-storage.test.ts:20:3\n\u2716 D1: v4 canonical startup publishes, stages, rolls back and retains history on reopen (2489.942448ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n    ["
+      ]
+    },
+    "tests/lifecycle-startup-upgrade.test.ts": {
+      "cases": 2,
+      "failureMessages": [
+        "tests/lifecycle-startup-upgrade.test.ts:56:3\n\u2716 Node: v4 upgrade preserves rows, tokens, physical defaults, indexes, triggers and auth metadata on reopen (107.912769ms)\n  AssertionError [ERR_ASSERTION]: _cms_collections\n  + actual - expected\n  ... Skipped lines\n  ",
+        "tests/lifecycle-startup-upgrade.test.ts:56:3\n\u2716 D1: v4 upgrade preserves rows, tokens, physical defaults, indexes, triggers and auth metadata on reopen (3220.248793ms)\n  AssertionError [ERR_ASSERTION]: _cms_collections\n  + actual - expected\n  ... Skipped lines\n  "
+      ]
+    },
+    "tests/metadata-fidelity-upgrade.test.ts": {
+      "cases": 2,
+      "failureMessages": [
+        "tests/metadata-fidelity-upgrade.test.ts:35:3\n\u2716 Node: actual prefix7 upgrades preserve every existing row and content physical defaults (51.740584ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  9 !== 8\n  ",
+        "tests/metadata-fidelity-upgrade.test.ts:35:3\n\u2716 D1: actual prefix7 upgrades preserve every existing row and content physical defaults (2368.424781ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  9 !== 8\n  "
+      ]
+    },
+    "tests/passkey-parser.test.ts": {
+      "cases": 1,
+      "failureMessages": [
+        "tests/passkey-parser.test.ts:1:1\n\u2716 tests/passkey-parser.test.ts (146.09642ms)\n  'test failed'"
+      ]
+    },
+    "tests/passkey-rate-limit.test.ts": {
+      "cases": 1,
+      "failureMessages": [
+        "tests/passkey-rate-limit.test.ts:1:1\n\u2716 tests/passkey-rate-limit.test.ts (405.933358ms)\n  'test failed'"
+      ]
+    },
+    "tests/paths.test.ts": {
+      "cases": 1,
+      "failureMessages": [
+        "tests/paths.test.ts:7:1\n\u2716 base-prefixed production routes resolve SSR navigation targets and retain denial boundaries (4411.627478ms)\n  Error: Base-path preview exited (1)\n  vite v8.3.2 building ssr environment for production...\n  transforming...\n  \u2713 449 modules transformed."
+      ]
+    },
+    "tests/required-scalar-validation.test.ts": {
+      "cases": 1,
+      "failureMessages": [
+        "tests/required-scalar-validation.test.ts:49:3\n\u2716 D1: required/optional string/text defaults and cleared bounds preserve exact submitted/omitted validation (120487.63711ms)\n  'test timed out after 120000ms'"
+      ]
+    },
+    "tests/runtime-d1.test.ts": {
+      "cases": 1,
+      "failureMessages": [
+        "tests/runtime-d1.test.ts:14:1\n\u2716 trusted D1 platform configuration migrates local storage, resolves fresh roles and forwards request waitUntil (2403.805624ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n    ["
+      ]
+    },
+    "tests/session-composition.test.ts": {
+      "cases": 2,
+      "failureMessages": [
+        "tests/session-composition.test.ts:12:1\n\u2716 server bridge derives supported settings, schema, content and publication permissions from a current role (22.304952ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  ... Skipped lines\n  ",
+        "tests/session-composition.test.ts:32:1\n\u2716 request-scoped cookie resolution observes role changes, revocation and expiry, with writes disabled by default (62.1455ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n    ["
+      ]
+    }
+  }
+}

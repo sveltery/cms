@@ -36,3 +36,18 @@ const port=ts.createSourceFile(browser.productPath,await readFile(new URL(browse
 const actual=new Map();function callbacks(node){if(ts.isCallExpression(node)&&node.expression.getText(port)==='test'&&ts.isStringLiteral(node.arguments[0]))actual.set(node.arguments[0].text,createHash('sha256').update(node.getText(port)).digest('hex'));ts.forEachChild(node,callbacks);}callbacks(port);
 for(const callback of browser.callbacks)if(actual.get(callback.title)!==callback.sha256)throw new Error(`Source browser callback changed: ${callback.title}`);
 console.log(JSON.stringify({verifiedModuleChecksums:modules.modules.length,verifiedFrozenFixtures:fixtures.files.length,unchangedBrowserCallbacks:browser.callbacks.length,productTestsRun:0}));
+const settings=JSON.parse(await readFile(new URL('docs/media-settings-ports.json',root),'utf8'));
+for(const record of [settings,{...settings.fixture,sha256:settings.fixture.frozenSha256}]){
+ const bytes=await readFile(new URL(record.frozenPath,root));
+ if(createHash('sha256').update(bytes).digest('hex')!==record.sha256||createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex')!==record.blob)throw new Error(`Settings source changed: ${record.sourcePath}`);
+}
+const settingsPorts=new Map();
+for(const path of new Set([settings.productPath,...settings.existingOverlaps.map(record=>record.productPath)])){
+ const source=ts.createSourceFile(path,await readFile(new URL(path,root),'utf8'),ts.ScriptTarget.Latest,true),records=new Map();
+ function visit(node){if(ts.isCallExpression(node)&&node.expression.getText(source)==='it'&&ts.isStringLiteral(node.arguments[0]))records.set(node.arguments[0].text,createHash('sha256').update(node.getText(source)).digest('hex'));ts.forEachChild(node,visit);}visit(source);settingsPorts.set(path,records);
+}
+for(const record of [...settings.uniqueCallbacks.map(record=>({...record,productPath:settings.productPath})),...settings.existingOverlaps])if(settingsPorts.get(record.productPath)?.get(record.title)!==record.sha256)throw new Error(`Settings source callback changed: ${record.title}`);
+const settingsFixture=ts.createSourceFile(settings.fixture.productPath,await readFile(new URL(settings.fixture.productPath,root),'utf8'),ts.ScriptTarget.Latest,true);
+const fixtureFunction=settingsFixture.statements.find(node=>node.name?.getText(settingsFixture)===settings.fixture.function);
+if(!fixtureFunction||createHash('sha256').update(fixtureFunction.getText(settingsFixture)).digest('hex')!==settings.fixture.sha256)throw new Error('Settings media collection fixture changed');
+console.log(JSON.stringify({unchangedAdditionalSettingsCallbacks:settings.uniqueCallbacks.length,existingOverlaps:settings.existingOverlaps.length,unchangedCollectionFixture:1,productTestsRun:0}));
