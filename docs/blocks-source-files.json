@@ -2201,6 +2201,116 @@
         }
       ],
       "literalExpectCalls": 11
+    },
+    {
+      "path": "packages/admin/tests/lib/url.test.ts",
+      "copiedPath": "parity/emdash/blocks/source-tests/packages/admin/tests/lib/url.test.ts",
+      "blob": "3ca451e0e56809c966dd741a792e46af21abb59f",
+      "sha256": "780f1591962bd06f88feeb58ef0b3de6db6fc8757d74385685e86ca61872678c",
+      "state": "whole20 URL helper callbacks pass against complete frozen raw helper before native file display port; baseline green, zero causal-red/product/public-link-redirect feature credit",
+      "declarations": [
+        {
+          "title": "prefixes published links with the entry's non-default locale",
+          "line": 6,
+          "callbackSha256": "c869fbdb4e7ff6c2a26b98a9ea0e2a40efe56929d655c5e296956b242e8cdc2d"
+        },
+        {
+          "title": "leaves the default locale unprefixed when configured",
+          "line": 15,
+          "callbackSha256": "9c40da66f092a142c0655233be4c05a374ed7306094ce7e104e7b172c46ed367"
+        },
+        {
+          "title": "prefixes the default locale when configured",
+          "line": 24,
+          "callbackSha256": "b39dff60953a22b18df731f268be1185d55b86d4afb6cf89cdbce9a31b0103d9"
+        },
+        {
+          "title": "resolves date tokens from the publish date and still applies the locale prefix",
+          "line": 33,
+          "callbackSha256": "8d76942fd065bad175e86c1ae75af1fbf8cb73c70d3e577f6cc65f216ae4207b"
+        },
+        {
+          "title": "keeps date tokens literal without a publish date",
+          "line": 43,
+          "callbackSha256": "0b5a842b2b9d027499bab90765ea9eee215d05d6fce14130de6e1be15e878af7"
+        },
+        {
+          "title": "resolves {id} tokens from the entry id",
+          "line": 47,
+          "callbackSha256": "6103785f886b33fac2df309d3c81674e45dc86ac4e5fee9538e183b794c10e2d"
+        },
+        {
+          "title": "allows simple relative paths",
+          "line": 53,
+          "callbackSha256": "a6a53d98b55d220b3a2ddca3481c8c4920aae342f94dd64a26f9cf63d3de12f4"
+        },
+        {
+          "title": "allows deep relative paths",
+          "line": 57,
+          "callbackSha256": "db3f11565f990b188bd87760d7b2ff0353c760669502358e56f81ac68610c057"
+        },
+        {
+          "title": "allows root path",
+          "line": 63,
+          "callbackSha256": "a5af74a318fc8911a92207b975d26954fc9813b020c35cfcacd19ad079378ce5"
+        },
+        {
+          "title": "allows paths with query strings",
+          "line": 67,
+          "callbackSha256": "2134c51246fab8b7357a52f5049afd0593b611dd330cc4a6646a98e2ecb00b82"
+        },
+        {
+          "title": "allows paths with hash fragments",
+          "line": 71,
+          "callbackSha256": "32a42010d2aa74036fc4cde3bf1bd77364f7e65121603f1161ab37560f36a640"
+        },
+        {
+          "title": "rejects absolute http URLs (open redirect)",
+          "line": 75,
+          "callbackSha256": "188d097d5cd3434b8350fe1e48f3bfaf361a1448f16cf598ef887a1b7c0213c8"
+        },
+        {
+          "title": "rejects absolute http URLs without TLS",
+          "line": 79,
+          "callbackSha256": "d98e703d6993fb5f1c9220a243f77e2d162110c0be2ceb3577723b8caf110441"
+        },
+        {
+          "title": "rejects protocol-relative URLs (//evil.com)",
+          "line": 83,
+          "callbackSha256": "4052ce9ce0f20ce5a906e6e617944747b2d235a20992eb2bd2d958944825c5f3"
+        },
+        {
+          "title": "rejects javascript: scheme (DOM XSS)",
+          "line": 87,
+          "callbackSha256": "4dfa6c5acaa84b06d9547cbcd86bb9b69bd3e0b3340a0c2c00c053f5c2729549"
+        },
+        {
+          "title": "rejects data: scheme",
+          "line": 91,
+          "callbackSha256": "ba7dbd01bdcfa573ac46d931b5fa9b5a12ffc2899e413739544539ec4c0aba88"
+        },
+        {
+          "title": "rejects backslash trick (/\\evil.com)",
+          "line": 95,
+          "callbackSha256": "7a43ec253234e2a3ec1851dcd19faea5fba8423c9de5f19fbce4c3ec4500b022"
+        },
+        {
+          "title": "rejects control characters that browsers strip (/\\t/evil.com)",
+          "line": 99,
+          "callbackSha256": "e6816df01a1e394c2b585de09c50b4b8899a7b5046e28f8a52a35ab1173c4069"
+        },
+        {
+          "title": "rejects empty string",
+          "line": 106,
+          "callbackSha256": "4e59004048d70a1ba1eac9f37679ece9ba317f26d9a54b77bbaaad51750b8a93"
+        },
+        {
+          "title": "rejects bare domain",
+          "line": 110,
+          "callbackSha256": "24b8d48bb490a36bd08b57e02355863cdd1d28e3ab561abb63f776e9273c6bcb"
+        }
+      ],
+      "literalExpectCalls": 23
     }
   ],
   "sourceTestsRun": 0,
@@ -2227,7 +2337,7 @@
       "Astro routes/public rendering",
       "MCP SDK/network",
       "portableText widget/plugin market runtime",
-      "media usage provider11"
+      "media usage provider12"
     ]
   },
   "supportFiles": [
@@ -2237,6 +2347,13 @@
       "blob": "016cacbb9054b3ef423eae27008e8492c81470bc",
       "sha256": "8ce5c39386f471243134fe5cdae511c94908e45d18c2dc9750ee3c3fe8cc92b2",
       "scope": "complete immutable source fixture helper; namespace transform at load only"
+    },
+    {
+      "path": "packages/admin/src/lib/url.ts",
+      "copiedPath": "parity/emdash/blocks/source-fixtures/packages/admin/src/lib/url.ts",
+      "blob": "33d7329282c29dd2a275f6020a7077b0b0f7dbda",
+      "sha256": "3c65bdcf038100e7a6076e7444f62f968771125320dc405d4a13e2e4f6d97730",
+      "scope": "complete immutable pure URL helper; baseline fixture before native file display callback port"
     }
   ]
 }

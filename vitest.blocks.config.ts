@@ -30,6 +30,7 @@ export default defineConfig({plugins:[{
     if(target.includes('/packages/core/src/cli/commands/export-seed.js'))return resolve(root,'tests/helpers/blocks-source-seed.ts');
     if(target.includes('/packages/core/src/i18n/config.js'))return resolve(root,'src/lib/server/taxonomies/upstream/i18n/config.ts');
     if(target.includes('/packages/core/src/components/blocks.js'))return resolve(root,'src/lib/blocks/render.ts');
+    if(target.endsWith('/packages/admin/src/lib/url'))return resolve(root,'parity/emdash/blocks/source-fixtures/packages/admin/src/lib/url.ts');
     if(target.endsWith('/packages/admin/src/lib/datetime-local'))return resolve(root,'src/lib/blocks/datetime-local.ts');
     if(target.includes('/packages/admin/src/lib/block-field-state.js'))return resolve(root,'src/lib/blocks/state.ts');
   },
@@ -43,5 +44,5 @@ export default defineConfig({plugins:[{
   'parity/emdash/blocks/source-tests/packages/core/tests/integration/database/block-types-migration.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/unit/seed/blocks.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/workerd/{block-type-registry-d1,blocks-content-d1,blocks-seed-d1}.test.ts',
-  'parity/emdash/blocks/source-tests/packages/admin/tests/lib/{block-field-state,datetime-local}.test.ts'
+  'parity/emdash/blocks/source-tests/packages/admin/tests/lib/{block-field-state,datetime-local,url}.test.ts'
 ]}});

@@ -2,8 +2,8 @@
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "method": "Full pinned tracked packages reusable-block symbol roots plus complete transitive relative/local-package static and literal-dynamic import closure. Inventory only; cross-family dependencies have no inferred execution or feature credit.",
   "symbolExpression": "BlockType|BlockField|BLOCK_FIELD|BlocksField|BlockTypeList|block-types|block_types|normalizeBlocks|retiredTypes|allowedTypes|\"blocks\"",
-  "symbolRootFiles": 173,
-  "transitiveClosureFiles": 1079,
+  "symbolRootFiles": 174,
+  "transitiveClosureFiles": 1080,
   "externalImportSpecifiers": [
     "#api/authorize.js",
     "#api/error.js",
@@ -7020,6 +7020,21 @@
         }
       ],
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/tests/lib/url.test.ts",
+      "blob": "3ca451e0e56809c966dd741a792e46af21abb59f",
+      "sha256": "780f1591962bd06f88feeb58ef0b3de6db6fc8757d74385685e86ca61872678c",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../src/lib/url",
+          "path": "packages/admin/src/lib/url.ts"
+        }
+      ],
+      "testSelection": "parity/emdash/blocks/source-tests/packages/admin/tests/lib/url.test.ts",
+      "runtimeScope": "whole20 URL helper callbacks pass against complete frozen raw helper before native file display port; baseline green, zero causal-red/product/public-link-redirect feature credit"
     },
     {
       "path": "packages/admin/tests/utils/render.tsx",

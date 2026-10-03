@@ -68,4 +68,22 @@ describe('Native reusable block controls',()=>{
   await screen.getByLabelText('Photo (dark variant)').fill('https://example.com/dark.png');
   expect(onchange).toHaveBeenLastCalledWith({id:'',src:'https://example.com/primary.png',darkVariant:{provider:'external',id:'',src:'https://example.com/dark.png'}});
  });
+ it('uses the image MIME allowlist for the dark variant picker',async()=>{
+  const items=[{id:'png',filename:'allowed.png',storageKey:'allowed.png',mimeType:'image/png',size:123,width:1,height:1},{id:'jpeg',filename:'blocked.jpg',storageKey:'blocked.jpg',mimeType:'image/jpeg',size:123,width:1,height:1}];
+  vi.stubGlobal('fetch',vi.fn().mockResolvedValue(new Response(JSON.stringify({success:true,data:{items,totalCount:2}}),{status:200})));
+  const screen=await render(React.createElement(NativeBlockSubField,{id:'photo',field:{slug:'photo',label:'Photo',type:'image',validation:{allowedMimeTypes:['image/png']},options:{darkVariant:true}},value:{provider:'external',id:'',src:'https://example.com/primary.png'},onchange:vi.fn()}));
+  const choose=[...screen.container.querySelectorAll('button')].filter(button=>button.textContent==='Choose from media library');expect(choose).toHaveLength(2);choose[1]!.click();
+  await expect.element(screen.getByRole('button',{name:'allowed.png'})).toBeInTheDocument();
+  await expect.element(screen.getByRole('button',{name:'blocked.jpg'})).not.toBeInTheDocument();
+  expect((screen.getByLabelText('Choose files to upload').element() as HTMLInputElement).accept).toBe('image/png');
+ });
+ it('links legacy external file URLs using the pinned file display rules',async()=>{
+  const screen=await render(React.createElement(NativeBlockMediaField,{id:'attachment',label:'Attachment',value:{id:'external-file',provider:'external',url:'https://files.example.com/report.pdf',filename:'report.pdf',mimeType:'application/pdf'},onchange:vi.fn()}));
+  await expect.element(screen.getByRole('link',{name:'report.pdf'})).toHaveAttribute('href','https://files.example.com/report.pdf');
+ });
+ it('encodes local file keys and ignores external URLs on local snapshots',async()=>{
+  const screen=await render(React.createElement(NativeBlockMediaField,{id:'attachment',label:'Attachment',value:{id:'local-file',provider:'local',src:'https://attacker.example/file.pdf',filename:'local.pdf',mimeType:'application/pdf',meta:{storageKey:'folder/a?b#c.pdf'}},onchange:vi.fn()}));
+  await expect.element(screen.getByRole('link',{name:'local.pdf'})).toHaveAttribute('href','/_emdash/api/media/file/folder/a%3Fb%23c.pdf');
+ });
+
 });
