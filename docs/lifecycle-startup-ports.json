@@ -1,0 +1,25 @@
+{
+  "source": "https://github.com/emdash-cms/emdash",
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "license": "MIT; Copyright 2026 Cloudflare Inc.; notices/emdash-MIT.txt",
+  "completeDeclarations": 0,
+  "uniqueSourceAssertionExpressions": 4,
+  "implementationSources": [
+    {"path":"packages/core/src/database/migrations/001_initial.ts","blob":"aba2d82b24a34a721814e90c00dc0e34cd009911","scope":"revision table/index only; all other initial tables omitted"},
+    {"path":"packages/core/src/database/migrations/014_draft_revisions.ts","blob":"eedccd10cee4f27215a1e52f4d7efeb93008e655","scope":"revision pointers were already present in local v1-v4; no source FK/index retrofit"},
+    {"path":"packages/core/src/database/migrations/059_revision_prune_queue.ts","blob":"65522645c6fc88fbda9b7ad7a72de86225d319aa","scope":"queue table/index only; unknown preinstalled revision histories reject before provider installation, no complete source retry/backfill declaration credit"},
+    {"path":"packages/core/src/schema/registry.ts","blob":"da7bbcdda224dfca8d9146b2f36659ab90bcac2e","scope":"createContentTable:1870 status/byline storage; historical local system defaults and constraints retained"}
+  ],
+  "sourceDeclarations": [
+    {"id":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/database/migrations.test.ts:50","blob":"c45f05ea1588ca167dda9a77abeaf5beb36fa676","selectedExpressions":["expect(Array.isArray(result)).toBe(true)"],"scope":"revisions-only: 1 of 26 source table checks; source declaration incomplete"},
+    {"id":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/database/repositories/content.test.ts:72","blob":"d324b01d391f8a598cf837d7f0ad645e0bb0a88f","selectedExpressions":["expect(content.status).toBe(\"published\")","expect(content.authorId).toBe(\"author-1\")"],"scope":"2 of 6 expressions; raw storage facade substitutes the source ContentRepository; data/slug/ID/repository lifecycle omitted"},
+    {"id":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/content.test.ts:87","blob":"7f0c7578178e2f9d6ac5e7b479bf30d4e6766d8c","selectedExpressions":["expect(result.primaryBylineId).toBe(\"byline_1\")"],"scope":"1 of 1 source expression; raw storage facade substitutes the source repository create callback, so complete declaration credit is zero"}
+  ],
+  "hostMappings": {"runMigrations":"canonical migrateCms only; no manual lifecycle provider application or fallback revision DDL","revisions":"_cms_revisions","_emdash_revision_prune_queue":"_cms_revision_prune_queue","_emdash_collections":"_cms_collections","_emdash_fields":"_cms_fields","ec_post":"ec_post unchanged","database":"Node 24 SQLite and Miniflare/local workerd raw D1 binding","fixture":"local trusted registry creates post with a string title; source page/portableText fixtures omitted; supplemental version4 seeding is immutable local layout only","baselineDiagnostics":"only known missing revision table, byline column and draft-only CHECK failures are caught; actual stored values remain for assertion failure"},
+  "sourceFixture":{"path":"packages/core/tests/utils/fixtures.ts","blob":"70801b7bffcf977674c67f554ad289a6e4bf27b2","scope":"source slug/status/author/byline dataset values retained; rich-body setup omitted"},
+  "sourceSetup":{"path":"packages/core/tests/utils/test-db.ts","blob":"b75bd5b5770e44050b2d0da28e87c155c603ed66","scope":"setupTestDatabase:77 and setupTestDatabaseWithCollections:87 mapped to local canonical startup and trusted registry"},
+  "supplementalTests":{"path":"tests/lifecycle-startup-upgrade.test.ts","sourceCredit":0,"scope":"known layouts, legacy physical data/default/index/trigger and token preservation, strict no-write rejection, atomic rollback, race and restart requirements"},
+  "supplementalReviewTests":{"path":"tests/lifecycle-startup-fresh-orphans.test.ts","sourceCredit":0,"testFirstCommit":"bd3db9d","baseline":"cf85f607439f33fc61985581f3df04b9ac626886","scope":"six original Node/local D1 fresh orphan table/view and preflight-to-batch race regressions; actual assertion-red before production repair, first/repeated rejection and exact no-write snapshots"},
+  "supplementalNamespaceTests":{"path":"tests/lifecycle-startup-namespace.test.ts","sourceCredit":0,"testFirstCommit":"c50b562","baseline":"d8a4f8d7d2bbc8f45c87c4c49baa68349f9a73e0","syntaxCoverageCommit":"e7b2de9","scope":"ten original actual assertion-red Node/local D1 case-folded orphan and fresh/v4 unrelated FK regressions, plus four supplemental declarations covering seeded genuine quoted/comment-separated FK targets, their atomic race, unrelated escaped literals/comments and retained unmanaged DDL/rows"},
+  "omissions":["full upstream migration universe and tracker/status API","PostgreSQL/libSQL/deployed D1","revision queue history backfill for unknown partially installed provider layouts","full ContentRepository/RevisionRepository source declarations","actual lifecycle publish/history service callbacks tracked by the separate lifecycle service owner"]
+}
