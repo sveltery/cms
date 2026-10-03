@@ -78,7 +78,7 @@ export async function commentsReady(database: CmsDatabase): Promise<boolean> {
   const collectionColumns = rows.filter(row => row.type === 'column');
   if (collectionColumns.length !== settings.size || !collectionColumns.every(row => {
     const source = settings.get(row.name);
-    return source && row.tbl_name.toUpperCase() === source.type && row.sql !== null && normalize(row.sql) === normalize(source.value);
+    return source && row.tbl_name.replace(/[a-z]/g, letter => letter.toUpperCase()) === source.type && row.sql !== null && normalize(row.sql) === normalize(source.value);
   })) return false;
   const actual = rows.filter(row => row.type !== 'column' && !row.name.startsWith('sqlite_autoindex_'));
   if (actual.length !== expected.size) return false;
