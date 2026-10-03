@@ -696,3 +696,18 @@ Exact cc8 CI37096046908 secured jobs111126070943(default18.1seconds) and11112607
 Configured review comments4171681331/4171681333 identify two actual native incomplete-provider no-ops: requested taxonomy terms are ignored and recognized content $media directives persist as literal JSON while seedComplete=true. Immutable public applySeed/applySeedWithinBudget/applySeedWrites signatures and complete private directive/reference/media/count helpers are hash-qualified in scripts/qualify-setup-seed-directives.mjs. Actual source helper execution confirms recursive recognized media resolves null/skipped without storage, ordinary malformed $media JSON stays literal, and includeContent=false ignores sample terms/content. This is selected helper/contract qualification, zero full public applySeed, storage/download or copied-test credit. Original test-first41a0e7e reaches six full persisted-state assertion failures on realNode/D1 for terms, direct media and nested-array media; four source-ignore/ordinary-JSON cases already pass (/tmp/setup-seed-capabilities-red.log). A bounded intentional native unsupported-provider400 prewrite rejection is planned; full taxonomy-term/media application remains incomplete.
 
 The configured seed findings are repaired by an explicit native unsupported-provider boundary: requested includeContent=true nonempty terms or recognized recursive $media:urlstring directives return400 UNSUPPORTED_SEED before any options, schema or seed writes. The complete immutable private media guard matches hashd7f49020db97b35bd33dd4ac64c41e6563e2cf243f65a022d5598c48ad5339ad; native recursive preflight and error mapping are new adapter code. Source includeContent=false ignored sample data and unrecognized ordinary media-shaped JSON are preserved. All30 composed Node/D1 cases pass (/tmp/setup-seed-capabilities-composed-green.log), including10 capability cases,8 legacy guards,2 whole source budget callbacks,6 rollback/completion/snapshot cases,2 actual default taxonomy/FTS cases and2 ordinary signed wizard/restart cases. Checker0/0 and normal build pass. This is an intentional bounded rejection while those requested domains remain incomplete: source full term application and media download/storage/null-skipped semantics are not ported or credited, and final PR acceptance/full gates remain pending.
+## Asynchronous local D1 fixture transport (proposed)
+
+EmDash 1.1.0 pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`,
+`packages/cloudflare/src/db/d1-dialect.ts`, remains the raw binding authority.
+The native shared test fixture replaces Miniflare's synchronous host proxy with
+`dispatchFetch` requests to actual Worker `env.DB.all/batch` operations. The
+application dialect and existing source/canonical callbacks stay unchanged.
+This is a test transport substitution, with zero additional source credit and
+no sessions/bookmarks or deployed D1 claim. A controlled execution of the actual
+Miniflare 4.20260507.1 worker reproduces a prior notification waking the next
+request; it does not prove the exact timing of the hosted auth-head failure.
+[The feature record](../../docs/d1-fixture-transport.md) separates completed native
+assertion reds, already-green parameter/rollback/restart controls, focused green
+runs and required final gates. Decision status: implementation authorized;
+specific PM acceptance and merge are pending.
