@@ -3,6 +3,29 @@
 // EmDash 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; provenance: docs/revision-maintenance-ports.json.
 import {describe,beforeEach,afterEach} from 'node:test';
 import {it,expect,RevisionRepository,setupTestDatabaseWithCollections} from './helpers/revision-maintenance/fixture.ts';
+class InsertAfterPruneSnapshotPlugin implements KyselyPlugin {
+	readonly #pruneSnapshots = new WeakSet<object>();
+	#inserted = false;
+
+	private readonly insertRevision: () => Promise<void>;
+ constructor(insertRevision: () => Promise<void>) { this.insertRevision=insertRevision; }
+
+	transformQuery(args: PluginTransformQueryArgs): RootOperationNode {
+		if (!this.#inserted && args.node.kind === "SelectQueryNode") {
+			this.#pruneSnapshots.add(args.queryId);
+		}
+		return args.node;
+	}
+
+	async transformResult(args: PluginTransformResultArgs): Promise<QueryResult<UnknownRow>> {
+		if (this.#pruneSnapshots.has(args.queryId)) {
+			this.#inserted = true;
+			await this.insertRevision();
+		}
+		return args.result;
+	}
+}
+
 
 for(const mode of ['reference','product'])for(const dialect of ['Node','D1'])describe('RV1 '+mode+' '+dialect+' complete repository pruning callbacks',()=>{
  let ctx;
