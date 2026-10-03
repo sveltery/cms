@@ -2,7 +2,7 @@
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "license": "MIT; Copyright 2026 Cloudflare Inc.; notices/emdash-MIT.txt",
   "approvedBase": "e75654834e5d3a1ddc10449504ee34db1d43c905",
-  "count": 79,
+  "count": 82,
   "selectedWholeFiles": 7,
   "assertionRule": "Whole callbacks, fixtures, expectations and deadlines are immutable; imports and host fixtures are recorded separately. Initial regex counts are inventory estimates, not parser counts or runtime evidence.",
   "protectedProbeRule": "Signed, concurrent-session, replay, two-valid-session and SC49 protected relation binding probes are inventoried and not newly executed. Ordinary non-auth repository CAS and reaction-race callbacks remain whole.",
@@ -756,6 +756,33 @@
       "bytes": 1077,
       "selected": false,
       "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/csrf.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/csrf.ts.txt",
+      "gitBlob": "d190c01e3bf3d83d9deea9512913259e737fe7c5",
+      "sha256": "b3b86da10fddc443671c064b1074b0e60a7967cfcf0e24edf2437dd7c201770a",
+      "bytes": 2337,
+      "selected": false,
+      "evidence": "inventory-only; no isolated auth/origin execution"
+    },
+    {
+      "source": "packages/core/src/astro/middleware/auth.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/middleware/auth.ts.txt",
+      "gitBlob": "3c23748f8d6ee8d02bac37e65d2537c3945548c6",
+      "sha256": "3b5d3cd2a14bc4de5149dbdbf98f9258ed4e3ac1859f511e48342c148c60ec46",
+      "bytes": 30262,
+      "selected": false,
+      "evidence": "inventory-only; no isolated auth/origin execution"
+    },
+    {
+      "source": "packages/core/tests/unit/api/csrf.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/unit/api/csrf.test.ts.txt",
+      "gitBlob": "13721757ae9291434db1ea89f3946d6f652a2e67",
+      "sha256": "323e7d4aa1db241fbba61ae5acf36974ef610ced4f65624e71e2127219e4dda7",
+      "bytes": 5616,
+      "selected": false,
+      "evidence": "inventory-only; no isolated auth/origin execution"
     }
   ],
   "productPorts": [
