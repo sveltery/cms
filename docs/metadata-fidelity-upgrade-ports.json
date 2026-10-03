@@ -95,20 +95,55 @@
       "pass": 40,
       "actualAssertionFailures": 0,
       "note": "Original qualification baseline first-run green, no inventedredcredit."
+    },
+    {
+      "commit": "9d54e47",
+      "log": "/tmp/metadata-historical-operators-red.log",
+      "cases": 4,
+      "pass": 0,
+      "actualAssertionFailures": 4,
+      "note": "Original prefix1/2 view/trigger composition assertions; historicalDDL and copied source assertions unchanged"
+    },
+    {
+      "commit": "778132e320b417a15f3b7e82a113865f1ba28d87",
+      "log": "/tmp/metadata-historical-operators-green.log",
+      "cases": 4,
+      "pass": 4,
+      "actualAssertionFailures": 0,
+      "note": "Optional native prelude validates the old catalogue before temporary removals and immutable3"
+    },
+    {
+      "commit": "0e632eab10100453a1dbbe2ec270892abfe1c5bf",
+      "log": "/tmp/metadata-historical-both-parents-red.log",
+      "cases": 50,
+      "pass": 26,
+      "actualAssertionFailures": 24,
+      "note": "Both actual historical rebuilt parents; existing/racing CASCADE/SET NULL/RESTRICT children; later collection children already supported"
+    },
+    {
+      "commit": "93b0495",
+      "log": "/tmp/metadata-historical-both-parents-green.log",
+      "cases": 50,
+      "pass": 50,
+      "actualAssertionFailures": 0
     }
   ],
   "integration": {
-    "genericMigrationFix": "27d71aad3796dcf9513b5bd14db990c96a607e11",
-    "mergedAs": "ee91059",
+    "genericMigrationFix": "9931749e38d86d8f47531eb914179cf733139295",
+    "mergedAs": "6f83248",
     "taxonomies": "09c8f69",
     "namedDevelopmentOnly": true,
-    "ordinaryRestart": "ActualNode/D1 fourcases passed; combined32first31pass1fixture prototype mismatch, normalized905dde1; focusedfinalrerunpending",
-    "taxonomyCallback": "TA1-owned unchanged stopsqueryingdeleted-other-isolate callback passed1/28(27skipped) at real8; no credit claimed here"
+    "ordinaryRestart": "Actual registered6/7/8 final startup, paired sourceDDL, historical/operator/FK/preservation/fault/winner cases and later-provider framework fixture pass130/130 on integrated993; checker0/0. Additional native prefix1/2 concurrent fieldmetadata drift guard cases pass4/4, first-run green/no inventedredcredit.",
+    "taxonomyCallback": "TA1-owned unchanged stopsqueryingdeleted-other-isolate callback passed1/28(27skipped) at real8; no credit claimed here",
+    "nativeCompositionOwnership": "Optional provider prepare/preconditions/prelude orchestration and lifecycle5 guard/IF EXISTS composition belong to forwardmetadata8. Generic two-pass descriptors and managed versionedFTS ownership are actual PR42 bodies.",
+    "latestFocusedLog": "/tmp/metadata-upgrade-latest-focused.log",
+    "historicalGuardLog": "/tmp/metadata-historical-prelude-guard.log",
+    "latestCheckerLog": "/tmp/metadata-upgrade-latest-check.log"
   },
   "nativeLimits": [
-    "Fieldchildforeignkeys require operator-supported cleanup beforeupgrade; failclosed exactdatabase preserved",
-    "Prefix7 operator views/triggers preservation qualified; historicalprovider3 dependentobjects notyetqualified",
-    "HistoricalDDL and legacycontentphysicaldefaults/unique/sourcebugs remain unchanged"
+    "External FK children of actually rebuilt metadata parents require operator-supported cleanup beforeupgrade; failclosed exactdatabase preserved",
+    "Prefix1/2/7 operator catalogue preservation qualified; historical1/3DDL unchanged",
+    "Legacycontentphysicaldefaults/unique/sourcebugs remain unchanged"
   ],
   "finalGates": {
     "normalFrozenBootstrap": "pending",
