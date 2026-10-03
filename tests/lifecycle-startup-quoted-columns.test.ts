@@ -17,7 +17,7 @@ for(const target of ['Node','D1'] as const) for(const {quoted,literalBefore} of 
         .replace(', author_id TEXT',', "author_id" TEXT');
       await database.atomicBatch([sql`DROP TABLE ec_post`.compile(database.db),sql.raw(layout).compile(database.db),...indexes.map(index=>sql.raw(index.sql).compile(database.db))]);
       await sql`INSERT INTO ec_post(id,slug,author_id) VALUES('retained','retained','owner')`.execute(database.db);
-      const before=(await sql`SELECT * FROM ec_post`.execute(database.db)).rows;
+      const before=(await sql<Record<string,unknown>>`SELECT * FROM ec_post`.execute(database.db)).rows.map(row=>({...row}));
       await assert.doesNotReject(()=>migrateCms(database));
       const columns=(await sql<{name:string;dflt_value:string|null;type:string;notnull:number}>`PRAGMA table_info(ec_post)`.execute(database.db)).rows;
       assert.equal(columns.find(column=>column.name==='title')?.dflt_value,literalBefore?"'author_id TEXT'":null);
