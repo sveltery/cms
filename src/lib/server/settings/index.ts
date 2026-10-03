@@ -1,5 +1,7 @@
 // Native storage adaptation of pinned EmDash settings/index.ts; MIT 2026 Cloudflare Inc.
 // 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; notices/emdash-MIT.txt.
+import {resolvePluginEncryptionKeys} from "./vendor/encryption-keys.ts";
+import {PluginSettingEncryptionError,decryptPluginSetting,isEncryptedPluginSetting} from "./vendor/plugin-settings.ts";
 import {sql,type Kysely,type CompiledQuery} from 'kysely';
 import type {CmsDatabase} from '../database/contract.ts';
 import {createSingleFlightCache,singleFlightCached,invalidateSingleFlightCache,type SingleFlightCache} from './vendor/single-flight-cache.ts';
@@ -104,4 +106,84 @@ export async function getSiteSetting<K extends SiteSettingKey>(key:K):Promise<Si
  const primed=peekRequestCache<Partial<SiteSettings>>('siteSettings');if(primed)return(await primed)[key];
  const context=getSettingsContext();if(!context)throw new Error('No configured site settings render context');
  return requestCached(`siteSetting:${key}`,()=>getSiteSettingWithDb(key,context.db));
+}
+
+
+
+function isPluginSettingEnvelopeRecord(value: unknown): value is Record<string, unknown> {
+	return (
+		typeof value === "object" &&
+		value !== null &&
+		!Array.isArray(value) &&
+		"$emdash" in value &&
+		value.$emdash === "plugin-setting"
+	);
+}
+
+
+async function decodePersistedPluginSetting(
+	pluginId: string,
+	key: string,
+	value: unknown,
+	encryptionKeys?: Awaited<ReturnType<typeof resolvePluginEncryptionKeys>>,
+): Promise<unknown> {
+	if (isEncryptedPluginSetting(value)) {
+		return decryptPluginSetting(pluginId, key, value, encryptionKeys);
+	}
+	if (isPluginSettingEnvelopeRecord(value)) {
+		throw new PluginSettingEncryptionError(
+			"PLUGIN_SETTING_DECRYPTION_FAILED",
+			"Plugin secret setting has an invalid encrypted envelope",
+		);
+	}
+	return value;
+}
+
+
+/**
+ * Get a single plugin setting by key (with explicit db).
+ *
+ * @internal Use `getPluginSetting()` in templates and plugin rendering code.
+ */
+export async function getPluginSettingWithDb<T = unknown>(
+	pluginId: string,
+	key: string,
+	db: Kysely<SettingsTables>,
+): Promise<T | undefined> {
+	const options = new OptionsRepository(db);
+	const value = await options.get(`plugin:${pluginId}:settings:${key}`);
+	if (value === null) return undefined;
+	// eslint-disable-next-line typescript/no-unsafe-type-assertion -- caller supplies the expected plugin setting type
+	return (await decodePersistedPluginSetting(pluginId, key, value)) as T;
+}
+
+
+/**
+ * Get all persisted plugin settings for a plugin (with explicit db).
+ *
+ * @internal Use `getPluginSettings()` in templates and plugin rendering code.
+ */
+export async function getPluginSettingsWithDb(
+	pluginId: string,
+	db: Kysely<SettingsTables>,
+): Promise<Record<string, unknown>> {
+	const prefix = `plugin:${pluginId}:settings:`;
+	const options = new OptionsRepository(db);
+	const allOptions = await options.getByPrefix(prefix);
+
+	const entries = [...allOptions].filter(([key]) => key.startsWith(prefix));
+	const encryptionKeys = entries.some(([, value]) => isEncryptedPluginSetting(value))
+		? await resolvePluginEncryptionKeys()
+		: undefined;
+	return Object.fromEntries(
+		await Promise.all(
+			entries.map(async ([storedKey, value]) => {
+				const key = storedKey.slice(prefix.length);
+				return [
+					key,
+					await decodePersistedPluginSetting(pluginId, key, value, encryptionKeys),
+				] as const;
+			}),
+		),
+	);
 }

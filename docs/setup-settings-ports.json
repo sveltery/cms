@@ -239,6 +239,12 @@
       "actualSourceAssertionFailures": 4,
       "actionTimeoutsBeforeAssertions": 3,
       "nodeTarget": "not reached"
+    },
+    "pluginHelperCallbacks": {
+      "count": 6,
+      "beforeImplementation": "2fbaf69 copies complete source callbacks before selected cryptographic helper closure; missing imports unexecuted, zero real assertion redcredit",
+      "green": "31total SQLite callbacks incl6pluginhelpers; checker0",
+      "omitted": "Configured plugin/runtime/API/UI integration remains future delivery"
     }
   },
   "pluginHelperCallbacks": {
@@ -270,5 +276,53 @@
       }
     ],
     "baseline": "Copied before encryption helper implementation; unexecuted at missing imports, zero real-red credit. Private server rendering/decoding scope only, no plugin runtime or admin registration."
+  },
+  "immutableModuleSources": [
+    {
+      "source": "packages/core/src/database/repositories/options.ts",
+      "blob": "d4f630ca0e24721dc25bed0189699daceccdb8ae"
+    },
+    {
+      "source": "packages/core/src/settings/index.ts",
+      "blob": "3e6266157579aa16c6338f9ceee02769bd413e4f"
+    },
+    {
+      "source": "packages/core/src/settings/types.ts",
+      "blob": "d8022348325841b0d5115533834ee6fe33510e5a"
+    },
+    {
+      "source": "packages/core/src/api/schemas/settings.ts",
+      "blob": "086e359af5c6e32dee241763402a46da13948bed"
+    },
+    {
+      "source": "packages/core/src/utils/init-lock.ts",
+      "blob": "a643cdff1232de2cf5e882ebc6680ad763c1686d"
+    },
+    {
+      "source": "packages/core/src/utils/single-flight-cache.ts",
+      "blob": "ac71f4c5148cf7d6f4c53fc5cb08fa606fc356e9"
+    },
+    {
+      "source": "packages/core/src/request-cache.ts",
+      "blob": "ab8f007b22ce601219ca1270d487342338de8634"
+    },
+    {
+      "source": "packages/core/src/config/secrets.ts",
+      "blob": "2d63c59613fa155faf0fbf1f2ba972181fe18556"
+    },
+    {
+      "source": "packages/core/src/plugins/settings.ts",
+      "blob": "6d6e23f596a4496b9cd673601be47087f6a9bdcc"
+    },
+    {
+      "source": "packages/core/src/utils/base64.ts",
+      "blob": "9dae6dade270b1c1291b21c8a90adc73f5dab294"
+    }
+  ],
+  "selectedModuleLimits": {
+    "config/secrets.ts": "Exact encryption-key parser/generator/fingerprint/runtime environment-reader declarations only; generated IP salt/preview secrets and their caches not copied or credited.",
+    "plugins/settings.ts": "Exact envelope checks/AES-GCM encrypt/decrypt helper closure only; plugin settings access/schema/redactor/runtime/admin registration not copied or credited.",
+    "settings/index.ts": "Native site settings atomic/renderer/media-query adaptation; exact private plugin-decoding/helper bodies with type/import substitution.",
+    "runtime": "Real SQLite31 whole source callback executions; localD1 source13 native HTTP callbacks26 executions. No encrypted-helper/caching workerd dataset execution claim."
   }
 }
