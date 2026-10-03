@@ -13,3 +13,14 @@ it('keeps asset deletion out of a content detail workspace',()=>{
 it('offers replacement for an editor inspecting a ready local image',()=>{
  const {body}=render(Details,{props:{item:image,permissions:mediaPermissionsForUser({role:40}),actorId:'editor',onclose:()=>{}}});expect(body).toContain('Replace image');expect(body).toContain('Choose replacement image');
 });
+// Original native render requirements; no copied Source callback credit.
+it('offers a metadata-loading audio player for a stored audio file',()=>{
+ const item:MediaItem={...image,id:'local-audio',filename:'recording.wav',mimeType:'audio/wav',storageKey:'recording.wav',url:'/_emdash/api/media/file/recording.wav',width:null,height:null};
+ const {body}=render(Details,{props:{item,onclose:()=>{}}});
+ expect(body).toContain('<audio');expect(body).toContain('src="/_emdash/api/media/file/recording.wav"');expect(body).toContain('controls');expect(body).toContain('preload="metadata"');expect(body).not.toContain('<img');
+});
+it('uses the stored video file URL directly in the video player',()=>{
+ const item:MediaItem={...image,id:'local-video',filename:'clip.mp4',mimeType:'video/mp4',storageKey:'clip.mp4',url:'/_emdash/api/media/file/clip.mp4'};
+ const {body}=render(Details,{props:{item,onclose:()=>{}}});
+ expect(body).toContain('<video');expect(body).toContain('src="/_emdash/api/media/file/clip.mp4"');expect(body).toContain('controls');expect(body).toContain('preload="metadata"');expect(body).not.toContain('<source');expect(body).not.toContain('<img');
+});
