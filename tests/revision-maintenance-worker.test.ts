@@ -1,7 +1,7 @@
 // Original local workerd scheduling requirement. No deployed/cron cadence credit.
 import assert from 'node:assert/strict';
 import {it} from 'node:test';
-import {mkdtemp,writeFile,readFile,rm} from 'node:fs/promises';
+import {mkdtemp,writeFile,readFile,symlink,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {build} from 'vite';
@@ -17,6 +17,7 @@ it('workerd: a real scheduled event anchors global pruning and keeps persistent 
     // This unpublished fixture's fetch API only seeds and observes test storage.
     // The product exports scheduled maintenance and no anonymous HTTP endpoint.
     const root=resolve('.');
+    await symlink(join(root,'node_modules'),join(directory,'node_modules'));
     await writeFile(join(directory,'fixture.ts'),`
 import {sql} from 'kysely';
 import {createRevisionMaintenanceScheduledHandler} from ${JSON.stringify(join(root,'src/lib/server/maintenance/runtime.ts'))};
