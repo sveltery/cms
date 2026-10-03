@@ -8,7 +8,7 @@ import type { Permission, ServerPrincipal } from '../database/service.ts';
 import type { CmsDatabase } from '../database/contract.ts';
 
 const servicePermissions: readonly Permission[] = Object.freeze([
-  'schema:read', 'schema:manage', 'content:read', 'content:read_drafts', 'content:create',
+  'settings:read', 'settings:manage', 'schema:read', 'schema:manage', 'content:read', 'content:read_drafts', 'content:create',
   'content:edit_own', 'content:edit_any', 'content:delete_own', 'content:delete_any'
 ]);
 
