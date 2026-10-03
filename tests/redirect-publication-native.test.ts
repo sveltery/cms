@@ -47,7 +47,7 @@ for(const mode of ['node','raw','scoped'] as const){
    assert.equal(published.slug,'new');assert.equal(published.data.title,'Promoted');assert.equal(published.draftRevisionId,null);
    assert.equal((await f.repository.findBySource('/blog/old'))?.destination,'/blog/new');
    assert.equal(f.deferred.length,1);await f.flush();
-   assert.ok((await f.db.selectFrom('_cms_redirect_state').select('active_generation').executeTakeFirstOrThrow()).active_generation);
+   assert.ok((await f.db.selectFrom('_cms_redirect_state').select('generation').executeTakeFirstOrThrow()).generation);
   }finally{await f.close();}
  });
  test(`ordinary ${mode} redirect write refusal rolls back publication and retains the actual draft`,{timeout:30_000},async()=>{
@@ -70,7 +70,7 @@ for(const mode of ['node','raw','scoped'] as const){
    assert.equal(published.slug,'new');assert.equal(published.data.title,'Promoted');
    assert.equal((await f.repository.findBySource('/blog/old'))?.destination,'/blog/new');assert.equal(physicalCommits,1);
    assert.equal(f.deferred.length,1);await f.flush();
-   assert.ok((await f.db.selectFrom('_cms_redirect_state').select('active_generation').executeTakeFirstOrThrow()).active_generation);
+   assert.ok((await f.db.selectFrom('_cms_redirect_state').select('generation').executeTakeFirstOrThrow()).generation);
   }finally{await f.close();}
  });
  test(`ordinary ${mode} unconfirmed pre-commit transport failure cannot publish content or artifacts`,{timeout:30_000},async()=>{
