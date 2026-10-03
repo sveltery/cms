@@ -1,11 +1,12 @@
 <script lang="ts">
- import {tick} from 'svelte';
+ import {tick,onMount} from 'svelte';
  import {goto} from '$app/navigation';
  import {base} from '$app/paths';
  import {buildNavItems,filterNavItems,type CommandPaletteManifest} from '$lib/search/command-palette-nav.ts';
  import type {SearchResult} from '$lib/search/types.ts';
  let {manifest,role}:{manifest:CommandPaletteManifest;role:number}=$props();
  let open=$state(false),query=$state(''),pending=$state(false),results=$state<SearchResult[]>([]),focused=$state(0);
+ let ready=$state(false);onMount(()=>{ready=true;});
  let input=$state<HTMLInputElement>(),dialog=$state<HTMLElement>();let invoker:HTMLElement|undefined;let timer:ReturnType<typeof setTimeout>|undefined;let controller:AbortController|undefined;
  const nav=$derived(filterNavItems(buildNavItems(manifest,role,value=>value),query,value=>value));
  const items=$derived([...nav.map(item=>({id:item.id,title:item.title,to:item.to.replace(/\$(\w+)/g,(_whole,key)=>item.params?.[key]??''),description:'Navigation'})),...results.map(item=>({id:`content-${item.collection}-${item.id}`,title:item.title??item.slug??item.id,to:`/content/${item.collection}/${item.id}`,description:manifest.collections[item.collection]?.label??item.collection}))]);
@@ -42,6 +43,7 @@
  }
 </script>
 <svelte:window onkeydown={keyboard}/>
+<span hidden data-cms-command-ready={ready}></span>
 {#if open}
  <div class="shade" role="presentation" onclick={event=>{if(event.target===event.currentTarget)close();}}>
   <div bind:this={dialog} role="dialog" aria-modal="true" aria-label="Search and navigation" tabindex="-1">

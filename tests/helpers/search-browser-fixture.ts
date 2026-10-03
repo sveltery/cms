@@ -37,7 +37,7 @@ export const test = base.extend<{
   admin: async ({ searchFixture:h, context, page }, use) => {
     await use({
       async devBypassAuth() { await context.addCookies([{name:'cms-session',value:h.tokens.admin,url:h.origin}]); },
-      async goToDashboard() { await page.goto(h.origin); }
+      async goToDashboard() { await page.goto(h.origin);await page.locator('[data-cms-command-ready="true"]').waitFor(); }
     });
   },
   serverInfo: async ({searchFixture:h},use) => {await use({baseUrl:h.origin,token:h.tokens.admin});}
