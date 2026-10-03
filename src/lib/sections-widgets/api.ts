@@ -13,6 +13,5 @@ export async function fetchManifest(): Promise<AdminManifest> {
 }
 export async function fetchMenus(): Promise<Menu[]> {
   const response = await apiFetch(`${API_BASE}/menus`);
-  const result = await parseApiResponse<{ items: Menu[] }>(response, 'Failed to fetch menus');
-  return result.items;
+  return parseApiResponse<Menu[]>(response, 'Failed to fetch menus');
 }
