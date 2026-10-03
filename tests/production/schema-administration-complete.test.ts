@@ -7,6 +7,25 @@ import {schemaAdminRemotes} from '../helpers/schema-admin-remotes.ts';
 const expected = (collection: any) => ({collection:collection.slug,version:String(collection.version),updatedAt:collection.updatedAt});
 
 for (const target of ['Node','D1'] as const) {
+  test(`${target}: native title selector and handler reject a raw unsupported field without changing its fallback projection`,{timeout:60_000},async()=>{
+    const h=await schemaAdminRemotes(target);
+    try {
+      await h.mutate('createSchemaCollection',{slug:'posts',label:'Posts'});
+      let c=await h.query('getSchemaCollection','posts');
+      await h.mutate('addSchemaField',{collection:'posts',expectedSchemaVersion:String(c.version),slug:'future',label:'Future',type:'string'});
+      await h.database.db.updateTable('_cms_fields').set({type:'future_field_type'}).where('slug','=','future').execute();
+      c=await h.query('getSchemaCollection','posts');
+      assert.equal(c.fields[0].type,'string'); assert.equal(c.fields[0].unsupportedType.type,'future_field_type');
+      const html=await (await h.request('/schema/posts')).text();
+      const selector=html.match(/<select[^>]*name="titleField"[^>]*>([\s\S]*?)<\/select>/)?.[1];
+      assert.ok(selector,'registered native title field selector');
+      assert.doesNotMatch(selector,/<option[^>]*value="future"/, 'unsupported raw type is not an eligible title alias');
+      const before=await h.snapshot();
+      const result=await h.remote('updateSchemaCollection','admin',{...expected(c),titleField:'future'});
+      assert.equal(result.type,'error'); assert.equal(result.error.code,'INVALID_TITLE_FIELD');
+      assert.deepEqual(await h.snapshot(),before);
+    }finally{await h.close();}
+  });
   test(`${target}: native field reorder preserves pinned partial duplicate and unknown-list behavior without metadata advancement`,{timeout:60_000},async()=>{
     const h=await schemaAdminRemotes(target);
     try {
