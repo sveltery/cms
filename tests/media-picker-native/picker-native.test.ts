@@ -1,6 +1,6 @@
 import {afterEach, expect, it, vi} from 'vitest';
 import {flushSync, mount, tick, unmount} from 'svelte';
-import MediaPicker from '../src/lib/media/MediaPickerModal.svelte';
+import MediaPicker from '../../src/lib/media/MediaPickerModal.svelte';
 
 const instances: ReturnType<typeof mount>[] = [];
 afterEach(async () => {
