@@ -112,10 +112,28 @@
         "genuineProductAssertionRedCredit": 0
       },
       "correction": "Original native fixture label/focus target follows complete pinned Source Edit asset; product and whole Source expectations unchanged."
+    },
+    {
+      "head": "24cd1a76308c377d1abee4c660ffb6db304d3e8a",
+      "run": 37113118236,
+      "job": 111174711318,
+      "logSha256": "fd95f9a4dce551a6cdf55c5275ec20baff016e5d0fb49f71d8f9016fcd5e247d",
+      "counts": {
+        "actualSupportedNativeAcceptancePassed": 7,
+        "sourcePassed": 53,
+        "sourceFailed": 0,
+        "previousNativePassed": 4,
+        "defaultMetadataSelectionPassed": 1,
+        "actualCanvasCopySelectionPassed": 1,
+        "originalNativeBackFocusCompletedAssertionReds": 1,
+        "browserCombinedPassed": 59,
+        "browserCombinedFailed": 1
+      },
+      "focusFailure": "Immediate141ms completed original native assertion: body activeElement instead of Edit asset; before narrow persistent-hidden-footer repair."
     }
   ],
   "pending": [
-    "New-head complete unchanged Source53, previous native4, corrected Details2 and supplemental Canvas1 secured replay",
+    "Unchanged Source53 + original native7 secured replay after Back focus repair",
     "Actual default embedded details through persisted editor caller and Canvas cropping",
     "Actual approved main/provider9 replay",
     "Full normal and secured browser gates",
@@ -159,5 +177,15 @@
         "sha256": "f0750bd0fc17ae9c728b17653c503f4eee5eebb04cffa8dea7deb2f453c5a892"
       }
     ]
+  },
+  "focusQualification": {
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "componentLines": "317\u2013321, 850\u2013853, 1570\u20131584",
+    "wholeSourceCallbackLines": "286\u2013312",
+    "repair": "Keep native action footer mounted and hidden through details; preserve existing awaited tick/focus and all callbacks/expectations/deadlines",
+    "newIntentionalDifference": false,
+    "genuineOriginalNativeFocusBaselineRed": 1,
+    "newSourceCausalCredit": 0,
+    "currentReplay": "pending"
   }
 }
