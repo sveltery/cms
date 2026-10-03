@@ -32,7 +32,10 @@
   "dependencies": {
     "@aws-sdk/client-s3": "3.1145.0",
     "@aws-sdk/s3-request-presigner": "3.1145.0",
+    "@oslojs/crypto": "1.0.1",
     "@oslojs/encoding": "1.1.0",
+    "@oslojs/webauthn": "1.0.0",
+    "@portabletext/toolkit": "5.0.1",
     "blurhash": "2.0.5",
     "image-size": "2.0.2",
     "jpeg-js": "0.4.4",
@@ -41,10 +44,7 @@
     "ulidx": "2.4.1",
     "upng-js": "2.1.0",
     "valibot": "1.5.0",
-    "zod": "4.5.4",
-    "@oslojs/crypto": "1.0.1",
-    "@portabletext/toolkit": "5.0.1",
-    "@oslojs/webauthn": "1.0.0"
+    "zod": "4.5.4"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20260507.1",
@@ -55,13 +55,19 @@
     "@sveltejs/kit": "2.70.3",
     "@sveltejs/vite-plugin-svelte": "7.3.1",
     "@types/node": "24.19.0",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitest/browser-playwright": "4.1.10",
     "devalue": "5.9.4",
     "miniflare": "4.20260507.1",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "svelte": "5.57.1",
     "svelte-check": "4.7.6",
     "typescript": "6.0.3",
     "vite": "8.3.2",
     "vitest": "4.1.10",
+    "vitest-browser-react": "2.2.0",
     "wrangler": "4.99.0"
   }
 }
