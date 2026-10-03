@@ -18,7 +18,7 @@ for(const target of ['Node','D1'] as const) {
       await database.db.updateTable('_cms_fields').set({default_value:JSON.stringify('Metadata changed')}).execute();
       await sql`INSERT INTO ec_legacy(id,title) VALUES ('entry','Retained text')`.execute(database.db);
       const fields=await database.db.selectFrom('_cms_fields').selectAll().execute();
-      const content=await sql`SELECT * FROM ec_legacy`.execute(database.db);
+      const content=await sql<Record<string,unknown>>`SELECT * FROM ec_legacy`.execute(database.db);
       await migrateCms(database);await migrateCms(database);
       const upgraded=await database.db.selectFrom('_cms_fields').selectAll().execute();
       for(const [key,value] of Object.entries(fields[0])) assert.deepEqual(upgraded[0][key as keyof typeof upgraded[0]],value,key);

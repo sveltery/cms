@@ -1,5 +1,21 @@
 # Current compatibility register and historical audit
 
+## Proposed forward metadata storage fidelity
+
+Source authority: EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`.
+The [feature record](../../docs/metadata-fidelity-upgrade.md) and
+[ledger](../../docs/metadata-fidelity-upgrade-ports.json) preserve exact source
+blobs, actual tests, native limits, and dependency status.
+
+| ID | Observable behavior and category | Decision/evidence |
+| --- | --- | --- |
+| META-01 | Source migration 003 fields use `ON DELETE CASCADE`; shipped native metadata uses `NO ACTION`. Provider 8 restores cascading raw collection deletion while retaining metadata rows and historical DDL. | Fidelity repair. Six initial native physical assertions failed; exact full source003/012 modules separately establish source SQLite/D1 behavior. Zero new copied declaration credit. Proposed; final review/landing pending. |
+| META-02 | Source012 adds nullable `TEXT search_config`; native metadata lacks it. Provider 8 adds the same nullable storage, without auto-enabling FTS or mapping the full search API. | Fidelity repair; search remains a dependent feature. Same original paired-source proof and native test-first evidence; proposed, final gates pending. |
+| META-03 | Native versioned metadata rebuild requires an atomic old-catalogue guard and exact view/trigger/index restoration. External child FKs reject with `MIGRATION_REQUIRED` before destructive writes. Source creates cascading fields directly and has no corresponding native historical rebuild. | Native framework/upgrade substitution; no shared upstream bug claim or parity credit. Actual Node/D1 operator, cascade-race, fault, and winner tests. Preservation qualified on prefix7; historical provider3 dependent-object composition remains unqualified. Specific acceptance not recorded; final PM decision pending. |
+
+All SF-02, C-05/C-07, source raw-type fallback issue #44, and existing native
+storage/transport decisions retain their separate scope.
+
 The default is the selected EmDash behavior on both self-hosted Node and Cloudflare. A passing scaffold build does not establish either hosting target. Keep differences visible and correct accidental divergence before widening the CMS surface.
 
 ## Current landed contracts
