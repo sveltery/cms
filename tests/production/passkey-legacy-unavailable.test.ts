@@ -43,6 +43,32 @@ async function fixture(target: 'Node' | 'D1', complete: boolean, mixed = false) 
     return { h, browser, database };
   } catch (cause) { await h.close(); throw cause; }
 }
+type Runtime = Awaited<ReturnType<typeof passkeyRuntime>>;
+async function blockedStarts(h: Runtime, browser: ReturnType<Runtime['browser']>) {
+  for (const [path, body] of [['/api/setup/admin', { email: 'ignored@example.com' }],
+    ['/api/setup/admin/verify', { credential: {} }], ['/api/auth/passkey/options', {}]] as const) {
+    const response = await browser.post(path, body);
+    assert.equal(response.status, 503);
+    assert.equal(failure.parse(await response.json()).error.code, 'LEGACY_IDENTITY_UNAVAILABLE');
+  }
+  for (const [name, fields] of [['beginSetup', { email: 'ignored@example.com' }], ['beginLogin', {}]] as const) {
+    const response = await h.request(`/_app/remote/${h.ids[name]}`, { method: 'POST',
+      headers: { origin: h.origin, 'content-type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(fields) });
+    assert.equal(response.status, 200);
+    const result = z.object({ status: z.literal(503), error: z.object({ code: z.literal('LEGACY_IDENTITY_UNAVAILABLE') }) }).parse(await response.json());
+    assert.equal(result.status, 503);
+  }
+}
+async function unavailablePages(browser: ReturnType<Runtime['browser']>) {
+  for (const path of ['/setup', '/login']) {
+    const response = await browser.get(path);
+    assert.equal(response.status, 200);
+    const html = await response.text();
+    assert.match(html, /Passkey authentication is unavailable for existing accounts/);
+    assert.doesNotMatch(html, /<form[^>]*action="[^"]*\/(?:beginSetup|beginLogin)/);
+    assert.doesNotMatch(html, /Set up your administrator account first/);
+  }
+}
 
 for (const target of ['Node', 'D1'] as const) {
   for (const complete of [false, true]) {
@@ -56,6 +82,8 @@ for (const target of ['Node', 'D1'] as const) {
           assert.deepEqual(success.parse(await response.json()).data, {
             needsSetup: false, unavailable: true, reason: 'LEGACY_IDENTITY_UNAVAILABLE'
           });
+          await blockedStarts(h, browser);
+          await unavailablePages(browser);
           assert.deepEqual(await snapshot(database), before);
         } finally { await h.close(); }
       });
@@ -65,19 +93,7 @@ for (const target of ['Node', 'D1'] as const) {
     const { h, browser, database } = await fixture(target, false);
     try {
       const before = await snapshot(database);
-      for (const [path, body] of [['/api/setup/admin', { email: 'ignored@example.com' }],
-        ['/api/setup/admin/verify', { credential: {} }], ['/api/auth/passkey/options', {}]] as const) {
-        const response = await browser.post(path, body);
-        assert.equal(response.status, 503);
-        assert.equal(failure.parse(await response.json()).error.code, 'LEGACY_IDENTITY_UNAVAILABLE');
-      }
-      for (const [name, fields] of [['beginSetup', { email: 'ignored@example.com' }], ['beginLogin', {}]] as const) {
-        const response = await h.request(`/_app/remote/${h.ids[name]}`, { method: 'POST',
-          headers: { origin: h.origin, 'content-type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(fields) });
-        assert.equal(response.status, 200);
-        const result = z.object({ status: z.literal(503), error: z.object({ code: z.literal('LEGACY_IDENTITY_UNAVAILABLE') }) }).parse(await response.json());
-        assert.equal(result.status, 503);
-      }
+      await blockedStarts(h, browser);
       assert.deepEqual(await snapshot(database), before);
     } finally { await h.close(); }
   });
@@ -85,14 +101,7 @@ for (const target of ['Node', 'D1'] as const) {
     const { h, browser, database } = await fixture(target, false);
     try {
       const before = await snapshot(database);
-      for (const path of ['/setup', '/login']) {
-        const response = await browser.get(path);
-        assert.equal(response.status, 200);
-        const html = await response.text();
-        assert.match(html, /Passkey authentication is unavailable for existing accounts/);
-        assert.doesNotMatch(html, /<form[^>]*action="[^"]*\/(?:beginSetup|beginLogin)/);
-        assert.doesNotMatch(html, /Set up your administrator account first/);
-      }
+      await unavailablePages(browser);
       assert.deepEqual(await snapshot(database), before);
     } finally { await h.close(); }
   });
