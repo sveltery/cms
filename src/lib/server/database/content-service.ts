@@ -1,3 +1,4 @@
+import {contentListSearch} from '../search/content-list.ts';
 import {sql,type CompiledQuery} from 'kysely';
 import {ulid} from 'ulidx';
 import {deserializeValue} from './field-value.ts';
@@ -58,7 +59,7 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
  async function listOptions(input:unknown){
   // Check existence before resolving indexed filter errors, as the pin does.
   const value=parse(genericContentList,input);const collection=await definition(value.type);
-  const where:FindManyOptions['where']={locale:value.locale};
+  const where:FindManyOptions['where']={locale:value.locale,...await contentListSearch(database.db as any,value.type,value.q)};
   if(value.status)where.status=value.status;if(value.authorId)where.authorId=value.authorId;
   if(value.fieldFilters&&Object.keys(value.fieldFilters).length)where.fieldFilters=value.fieldFilters as any;
   if(value.dateField&&(value.dateFrom||value.dateTo))where.dateFilter={field:value.dateField,from:bound(value.dateFrom,'start'),to:bound(value.dateTo,'end')};

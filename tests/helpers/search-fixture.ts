@@ -1,6 +1,7 @@
+import {contentListSearch} from '../../src/lib/server/search/content-list.ts';
 // Test-host substitutions only; all collection/content storage uses real CMS providers.
 import { describe } from 'vitest';
-import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
+import { schemaAdminStorage } from './schema-admin-storage.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry as NativeRegistry } from '../../src/lib/server/database/registry.ts';
 import { ContentRepository } from '../../src/lib/server/database/lifecycle/upstream/database/repositories/content.ts';
@@ -10,15 +11,18 @@ import type { Database } from '../../src/lib/server/database/lifecycle/upstream/
 import type { Kysely } from 'kysely';
 export { ContentRepository };
 const databases = new WeakMap<object, CmsDatabase>();
+const cleanup = new WeakMap<object, () => Promise<void>>();
+export function searchDatabase(db: object) { return databases.get(db)!; }
 export class SchemaRegistry extends NativeRegistry {
   constructor(db: Kysely<Database>) { super(databases.get(db)!); }
 }
 export async function setupTestDatabase(): Promise<Kysely<Database>> {
-  const database = openSqlite(':memory:');
+  const storage = await schemaAdminStorage(process.env.SVELTERY_SEARCH_STORAGE === 'D1' ? 'D1' : 'Node');
+  const database = storage.database;cleanup.set(database.db,storage.close);
   databases.set(database.db,database);registerLifecycleDatabase(database);
   await migrateCms(database);return database.db as unknown as Kysely<Database>;
 }
-export async function teardownTestDatabase(db: Kysely<Database>) { await databases.get(db)!.close(); }
+export async function teardownTestDatabase(db: Kysely<Database>) { await cleanup.get(db)!(); }
 export async function setupTestDatabaseWithCollections() {
   const db=await setupTestDatabase();const registry=new SchemaRegistry(db);
   for(const slug of ['post','page']) {
@@ -36,12 +40,12 @@ export type DialectTestContext = { db: Kysely<Database> };
 export async function setupForDialect(_dialect:string):Promise<DialectTestContext> {return {db:await setupTestDatabase()};}
 export async function teardownForDialect(ctx:DialectTestContext) {await teardownTestDatabase(ctx.db);}
 export async function handleContentCreate(db:Kysely<Database>, type:string, input:Record<string,unknown>) {
-  try{return {success:true,data:{item:await new ContentRepository(db).create({type,...input,data:input.data as Record<string,unknown>})}};}
-  catch(cause){return {success:false,error:{message:String(cause)}};}
+  try{return {success:true as const,data:{item:await new ContentRepository(db).create({type,...input,data:input.data as Record<string,unknown>})}};}
+  catch(cause){return {success:false as const,error:{message:String(cause)}};}
 }
 export async function handleContentList(db:Kysely<Database>,type:string,input:Record<string,unknown>) {
-  try{return {success:true,data:await new ContentRepository(db).findMany(type, {limit:input.limit as number|undefined})};}
-  catch(cause){return {success:false,error:{message:String(cause)}};}
+  try{return {success:true as const,data:await new ContentRepository(db).findMany(type, {limit:input.limit as number|undefined,where:await contentListSearch(db,type,input.q)})};}
+  catch(cause){return {success:false as const,error:{message:String(cause)}};}
 }
 // Byte-identical fixture function from immutable packages/core/tests/utils/fixtures.ts.
 export function createPostFixture(overrides: Partial<CreateContentInput> = {}): CreateContentInput {
