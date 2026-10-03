@@ -206,7 +206,15 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     async unpublish(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
       owner(item,actor,'content:publish_any');precondition(value.expected,item);
-      return translate(()=>content.unpublish(value.type,value.id,{version:item.version,updatedAt:item.updatedAt}));
+      const unpublished=await translate(()=>content.unpublish(value.type,value.id,{version:item.version,updatedAt:item.updatedAt}));
+      // Source cleanup consumes the actual queued boundary, including work
+      // already pending for an existing draft. This host binds that consumer
+      // to request-lifetime work; conditional acknowledgement preserves a
+      // newer queue write while the task is deferred.
+      const queued=await database.db.selectFrom('_cms_revision_prune_queue').select('revision_id')
+        .where('collection','=',value.type).where('entry_id','=',value.id).executeTakeFirst();
+      if(queued)prune(value.type,value.id,queued.revision_id);
+      return unpublished;
     },
     async discardDraft(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:edit_own','content:edit_any');const value=key(input);const item=await stored(value);
