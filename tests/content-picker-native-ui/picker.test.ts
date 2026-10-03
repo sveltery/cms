@@ -74,3 +74,44 @@ it('old search response cannot replace newer results after switching collections
   const { target } = await render({ client: api }); const select = target.querySelector('select')!; select.value = 'people'; select.dispatchEvent(new Event('change', { bubbles: true })); await settle();
   old({ items: [row('a', { title: 'Old collection' })], nextCursor: undefined }); await settle(); expect(target.textContent).toContain('New collection'); expect(target.textContent).not.toContain('Old collection');
 });
+it('simultaneous picker instances share metadata and one pending content read', async () => {
+  const api = client(); let resolveContent!: (value: any) => void, resolveCollections!: (value: any) => void, resolveManifest!: (value: any) => void;
+  api.fetchCollections.mockImplementation(() => new Promise(resolve => { resolveCollections = resolve; }));
+  api.fetchManifest.mockImplementation(() => new Promise(resolve => { resolveManifest = resolve; }));
+  api.fetchContentList.mockImplementationOnce(() => new Promise(resolve => { resolveContent = resolve; }));
+  const first = await render({ client: api }); const second = await render({ client: api });
+  expect(api.fetchCollections).toHaveBeenCalledTimes(1); expect(api.fetchManifest).toHaveBeenCalledTimes(1);
+  resolveCollections([{ slug: 'posts', label: 'Posts' }]); resolveManifest({ collections: { posts: {} } }); await settle();
+  expect(api.fetchContentList).toHaveBeenCalledTimes(1);
+  resolveContent({ items: [row()], nextCursor: undefined }); await settle();
+  expect(first.target.textContent).toContain('English'); expect(second.target.textContent).toContain('English');
+});
+it('switching collections detaches an old next-page loading state from the active query', async () => {
+  const api = client(); let finishOld!: (value: any) => void;
+  api.fetchContentList.mockResolvedValueOnce({ items: [row()], nextCursor: 'old-next' })
+    .mockImplementationOnce(() => new Promise(resolve => { finishOld = resolve; }))
+    .mockResolvedValueOnce({ items: [row('people', { title: 'Person' })], nextCursor: 'people-next' });
+  const { target } = await render({ client: api }); await click(target, 'Load more');
+  const select = target.querySelector('select')!; select.value = 'people'; select.dispatchEvent(new Event('change', { bubbles: true })); await settle();
+  expect(target.textContent).toContain('Person'); expect(target.textContent).toContain('Load more'); expect(target.textContent).not.toContain('Loading...');
+  const more = [...target.querySelectorAll<HTMLButtonElement>('button')].find(button => button.textContent === 'Load more')!; expect(more.disabled).toBe(false);
+  finishOld({ items: [row('old', { title: 'Old page' })], nextCursor: undefined }); await settle(); expect(target.textContent).not.toContain('Old page');
+});
+it('two instances observe one shared next-page loading state', async () => {
+  const api = client(); let finishMore!: (value: any) => void;
+  api.fetchContentList.mockResolvedValue({ items: [row()], nextCursor: 'next' });
+  const first = await render({ collection: 'posts', client: api }); const second = await render({ collection: 'posts', client: api });
+  api.fetchContentList.mockImplementationOnce(() => new Promise(resolve => { finishMore = resolve; }));
+  await click(first.target, 'Load more'); expect(second.target.textContent).toContain('Loading...');
+  expect([...second.target.querySelectorAll<HTMLButtonElement>('button')].find(button => button.textContent?.trim() === 'Loading...')!.disabled).toBe(true);
+  finishMore({ items: [row('second', { title: 'Second' })], nextCursor: undefined }); await settle();
+  expect(first.target.textContent).toContain('Second'); expect(second.target.textContent).toContain('Second');
+});
+it('locale references collapse translations that arrive on later cursor pages without filtering the server request', async () => {
+  const api = client(); api.fetchContentList.mockResolvedValueOnce({ items: [row('en', { title: 'English' })], nextCursor: 'next' })
+    .mockResolvedValueOnce({ items: [row('fr', { title: 'French' }, 'fr')], nextCursor: undefined });
+  const { target, state } = await render({ collection: 'posts', locale: 'fr', client: api });
+  await click(target, 'Load more'); expect(target.textContent).toContain('French'); expect(target.textContent).not.toContain('English');
+  expect(api.fetchContentList).toHaveBeenLastCalledWith('posts', { limit: 50, cursor: 'next', search: undefined });
+  await click(target, 'French'); expect(state.onConfirm).toHaveBeenCalledWith([expect.objectContaining({ id: 'fr', translationGroup: 'group', locale: 'fr' })]);
+});
