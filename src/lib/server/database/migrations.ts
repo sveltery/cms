@@ -49,11 +49,11 @@ const prerequisiteChanged = 'sveltery-cms-migration-prerequisite-changed';
 
 /** Validate the old layout before intentional provider upgrades change its DDL. */
 function prerequisiteGuard(database: CmsDatabase, version: number, names: readonly string[], rows: readonly PrerequisiteObject[]) {
-  const temporary = sql`name GLOB '_cms_*' AND length(rtrim(name,'0123456789')) < length(name)
-    AND rtrim(name,'0123456789') GLOB '_cms_*_v'`;
-  const selected = sql`(type <> 'trigger' AND name IN (${sql.join(names)})) OR (${temporary})
+  const temporary = sql`lower(name) GLOB '_cms_*' AND length(rtrim(name,'0123456789')) < length(name)
+    AND rtrim(lower(name),'0123456789') GLOB '_cms_*_v'`;
+  const selected = sql`(type <> 'trigger' AND lower(name) IN (${sql.join(names)})) OR (${temporary})
     ${version === 0 ? sql`OR name LIKE '_cms_%'` : sql``}`;
-  const snapshot = JSON.stringify(rows.filter(row => row.type !== 'trigger' && names.includes(row.name))
+  const snapshot = JSON.stringify(rows.filter(row => row.type !== 'trigger' && names.includes(row.name.toLowerCase()))
     .map(({name,type,sql}) => ({name,type,sql}))
     .sort((a,b) => a.name < b.name ? -1 : a.name > b.name ? 1 : a.type < b.type ? -1 : a.type > b.type ? 1 : 0));
   const versions = version === 0 ? sql`${'[]'}` : sql`(SELECT json_group_array(version)
@@ -72,10 +72,10 @@ async function migrationState(database: CmsDatabase): Promise<ValidatedMigration
   const staticNames = new Set(['_cms_migrations']);
   // Version zero descriptors declare every static name, including future
   // provider objects, without reading metadata tables which may not exist.
-  for (const provider of CMS_MIGRATIONS) for (const object of await provider.expectedObjects(database,0)) staticNames.add(object.name);
+  for (const provider of CMS_MIGRATIONS) for (const object of await provider.expectedObjects(database,0)) staticNames.add(object.name.toLowerCase());
   const names = [...staticNames];
   const probe = await sql<{name: string; type: string}>`SELECT name,type FROM sqlite_master
-    WHERE name LIKE '_cms_%' OR (type <> 'trigger' AND name IN (${sql.join(names)}))`.execute(db);
+    WHERE name LIKE '_cms_%' OR (type <> 'trigger' AND lower(name) IN (${sql.join(names)}))`.execute(db);
   if (!probe.rows.some(row => row.name === '_cms_migrations' && row.type === 'table')) {
     if (probe.rows.length) throw new CmsError('MIGRATION_REQUIRED');
     return {version:0,prerequisiteGuard:prerequisiteGuard(database,0,names,[])};
@@ -113,7 +113,7 @@ async function migrationState(database: CmsDatabase): Promise<ValidatedMigration
     }
     const descriptors = await provider.expectedObjects(database,version);
     for (const object of descriptors) {
-      owned.add(object.name);
+      owned.add(object.name.toLowerCase());
       if (provider.version <= version) expected.set(object.name,object);
     }
   }
@@ -121,7 +121,7 @@ async function migrationState(database: CmsDatabase): Promise<ValidatedMigration
   // rejected. No DROP/repair runs against an unknown layout.
   for (const object of rows) {
     const name=object.name;
-    if (/^_cms_.*_v[0-9]+$/.test(name) || (owned.has(name) && name !== '_cms_migrations' && !expected.has(name))) throw new CmsError('MIGRATION_REQUIRED');
+    if (/^_cms_.*_v[0-9]+$/i.test(name) || (owned.has(name.toLowerCase()) && name !== '_cms_migrations' && !expected.has(name))) throw new CmsError('MIGRATION_REQUIRED');
     if (object.type==='trigger') continue;
     const wanted = expected.get(name);
     if (wanted && (wanted.type !== object.type || normalizeMigrationSql(wanted.sql) !== normalizeMigrationSql(object.sql ?? ''))) throw new CmsError('MIGRATION_REQUIRED');
