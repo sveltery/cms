@@ -108,6 +108,28 @@ test('immutable source reorderFields accepts partial duplicate and unknown lists
  }
  }finally{await db.destroy();}
 });
+test('immutable Node field deletion checks column existence inside its transaction after a preflight deletion race',async()=>{
+ const db=storage();try{
+ await fixture(db);const registry=new SchemaRegistry(db);await registry.createCollection({slug:'posts',label:'Posts'});
+ await registry.createField('posts',{slug:'candidate',label:'Candidate',type:'string',searchable:false});
+ const before=await registry.getCollection('posts');
+ const transaction=db.transaction.bind(db);let raced=false;let committed;
+ db.transaction=()=>{
+  const builder=transaction();const execute=builder.execute.bind(builder);
+  builder.execute=async callback=>{
+   db.transaction=transaction;raced=true;
+   await registry.deleteField('posts','candidate');
+   assert.equal((await registry.getCollection('posts')).updatedAt,before.updatedAt);
+   committed={fields:await db.selectFrom('_emdash_fields').selectAll().execute(),collections:await db.selectFrom('_emdash_collections').selectAll().execute(),ddl:(await sql\`SELECT name,sql FROM sqlite_master ORDER BY name\`.execute(db)).rows};
+   return execute(callback);
+  };return builder;
+ };
+ await registry.deleteField('posts','candidate');
+ assert.equal(raced,true);assert.equal(await registry.getField('posts','candidate'),null);
+ assert.deepEqual({fields:await db.selectFrom('_emdash_fields').selectAll().execute(),collections:await db.selectFrom('_emdash_collections').selectAll().execute(),ddl:(await sql\`SELECT name,sql FROM sqlite_master ORDER BY name\`.execute(db)).rows},committed);
+ await assert.rejects(()=>registry.deleteField('posts','candidate'),error=>error.code==='FIELD_NOT_FOUND');
+ }finally{await db.destroy();}
+});
 test('immutable source rejects an indexed relation-bound reference before DDL or metadata writes',async()=>{
  const db=storage();try{
  await fixture(db);const registry=new SchemaRegistry(db);await registry.createCollection({slug:'posts',label:'Posts'});
