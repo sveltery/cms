@@ -1,7 +1,3 @@
-import {mediaMigration} from '../media/schema.ts';
-import {taxonomyMigration} from '../taxonomies/migration.ts';
-import {metadataFidelityMigration} from './metadata-fidelity-migration.ts';
-import { optionsMigration } from '../settings/migration.ts';
 import { sql, type CompiledQuery } from 'kysely';
 import { sqliteErrorMessage } from './errors.ts';
 import { CmsError, type CmsDatabase } from './contract.ts';
@@ -42,7 +38,7 @@ export const CMS_MIGRATIONS: readonly CmsMigrationProvider[] = [
   schemaMigration,
   {version:4,name:'auth-identity',async statements(database) {return authIdentitySchemaStatements(database.db);},
     async expectedObjects(database) {return authIdentitySchemaObjects(database.db);}},
-  lifecycleMigration, optionsMigration, taxonomyMigration, metadataFidelityMigration, mediaMigration
+  lifecycleMigration
 ];
 export const CMS_MIGRATION_VERSION = CMS_MIGRATIONS.at(-1)!.version;
 const trackingStatement = (database: CmsDatabase) =>
@@ -254,16 +250,12 @@ export async function migrateCms(database: CmsDatabase): Promise<void> {
     sql`DROP TABLE _cms_migrations_v1`.compile(db)
   ];
   statements.unshift(validated.prerequisiteGuard);
-  const providerPreconditions: CompiledQuery[] = [];
   const indexes = state > 0 ? await pendingTrashIndexStatements(database) : [];
   for (const provider of CMS_MIGRATIONS) {
     if (provider.version <= state) continue;
-    const prepared = await provider.prepare?.(database,state);
-    if (prepared) providerPreconditions.push(...prepared.preconditions);
-    statements.push(...(prepared?.statements ?? await provider.statements(database)),
+    statements.push(...await provider.statements(database),
       sql`INSERT INTO _cms_migrations (version) VALUES (${sql.lit(provider.version)})`.compile(db));
   }
-  statements.splice(1,0,...providerPreconditions);
   if (state > 0) statements.push(sql`DELETE FROM _cms_guards WHERE token = 'migration-upgrade'`.compile(db));
   statements.push(...indexes);
   try { await database.atomicBatch(statements); }

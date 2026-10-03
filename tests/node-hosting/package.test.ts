@@ -65,12 +65,10 @@ test('isolated production package starts, serves assets and denies anonymous HTT
   let running: ReturnType<typeof launch> | undefined;
   try {
     await cp(new URL('../../node-package/', import.meta.url), directory, { recursive: true });
-    assert.deepEqual((await readdir(directory)).sort(), ['.npmrc', 'LICENSE', 'README.md', 'build', 'notices', 'package.json', 'patches', 'pnpm-lock.yaml', 'pnpm-workspace.yaml']);
+    assert.deepEqual((await readdir(directory)).sort(), ['.npmrc', 'LICENSE', 'README.md', 'build', 'notices', 'package.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml']);
     for (const file of ['.npmrc', 'pnpm-lock.yaml', 'pnpm-workspace.yaml']) {
       assert.equal(await readFile(join(directory, file), 'utf8'), await readFile(new URL(`../../${file}`, import.meta.url), 'utf8'));
     }
-    assert.equal(await readFile(join(directory, 'patches/image-size@2.0.2.patch'), 'utf8'),
-      await readFile(new URL('../../patches/image-size@2.0.2.patch', import.meta.url), 'utf8'));
     const pkg = JSON.parse(await readFile(join(directory, 'package.json'), 'utf8'));
     assert.deepEqual(pkg.scripts, { start: 'node build/index.js' });
     assert.equal(pkg.type, 'module');
@@ -98,7 +96,7 @@ test('isolated production package starts, serves assets and denies anonymous HTT
       const { default: exports } = await (load as () => Promise<{ default: Record<string, unknown> }>)();
       for (const name of Object.keys(exports)) ids.set(name, `${hash}/${name}`);
     }
-    assert.deepEqual([...ids.keys()].sort(), ['addSchemaField', 'autosaveEditorContent', 'beginLogin', 'beginSetup', 'completeLogin', 'completeSetup', 'countTrashedContent', 'createContent', 'createEditorContent', 'createLifecycleContent', 'createSchemaCollection', 'deleteContent', 'discardContentDraft', 'dismissWelcome', 'getAuthenticatedState', 'getCollection', 'getContent', 'getCurrentUser', 'getDashboardStats', 'getEditorManifest', 'getLifecycleContent', 'getSchemaCollection', 'getSetupStatus', 'getSiteSettings', 'getSiteSetup', 'getTrashedContent', 'listCollections', 'listContent', 'listContentRevisions', 'listEditorContent', 'listSchemaCollections', 'listTrashedContent', 'logout', 'publishContent', 'restoreContent', 'restoreContentRevision', 'saveEditorContent', 'setupSiteConfiguration', 'unpublishContent', 'updateContent', 'updateSchemaCollection', 'updateSchemaFieldLabel', 'updateSchemaFieldOptions', 'updateSiteSettings']);
+    assert.deepEqual([...ids.keys()].sort(), ['addSchemaField', 'beginLogin', 'beginSetup', 'completeLogin', 'completeSetup', 'countTrashedContent', 'createContent', 'createLifecycleContent', 'createSchemaCollection', 'deleteContent', 'discardContentDraft', 'getAuthenticatedState', 'getCollection', 'getContent', 'getCurrentUser', 'getEditorManifest', 'getLifecycleContent', 'getSchemaCollection', 'getSetupStatus', 'getTrashedContent', 'getWorkspaceNavigation', 'listCollections', 'listContent', 'listContentRevisions', 'listSchemaCollections', 'listTrashedContent', 'logout', 'publishContent', 'restoreContent', 'restoreContentRevision', 'unpublishContent', 'updateContent', 'updateSchemaCollection', 'updateSchemaFieldLabel', 'updateSchemaFieldOptions']);
     const port = await unusedPort();
     const base = `http://127.0.0.1:${port}/`;
     running = launch(directory, port, new URL(base).origin);
@@ -263,7 +261,7 @@ test('isolated production package starts, serves assets and denies anonymous HTT
     });
     // Only installation artifacts and the synthetic .env were allowed to be added.
     assert.deepEqual((await readdir(directory)).filter(name => !['node_modules', '.env'].includes(name)).sort(),
-      ['.npmrc', 'LICENSE', 'README.md', 'build', 'notices', 'package.json', 'patches', 'pnpm-lock.yaml', 'pnpm-workspace.yaml']);
+      ['.npmrc', 'LICENSE', 'README.md', 'build', 'notices', 'package.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml']);
   } finally {
     if (running && running.child.exitCode === null) { running.child.kill('SIGKILL'); await running.exited; }
     await rm(temporary, { recursive: true, force: true });

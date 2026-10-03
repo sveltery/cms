@@ -1,8 +1,10 @@
 # Explicit Node hosting package
 
+The [revision hosting slice](revision-hosting.md) adds a callable trusted maintenance export to the same production-only installed package. Its single batch performs revision cleanup only; full Node scheduling remains unfinished.
+
 `pnpm build:node` selects the official `@sveltejs/adapter-node` **5.5.7**, compatible with the pinned SvelteKit **2.70.3**, and writes a standalone entry plus client/server output to `build/node/`. `pnpm start:node` runs that entry directly. The ordinary `build`, development and preview commands retain `adapter-auto`; no Cloudflare target is installed or implied. This is local HTTP hosting evidence, not deployed availability or a production-ready CMS.
 
-With Node 24 and pnpm 12.6.0:
+With Node 24.15.0 or newer within the Node 24 series and pnpm 12.6.0:
 
 ```sh
 pnpm install --frozen-lockfile

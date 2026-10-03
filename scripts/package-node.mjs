@@ -7,7 +7,7 @@ await readFile(new URL('build/node/index.js', root));
 await rm(destination, { recursive: true, force: true });
 await mkdir(destination);
 await cp(new URL('build/node/', root), new URL('build/', destination), { recursive: true });
-for (const path of ['.npmrc', 'pnpm-lock.yaml', 'pnpm-workspace.yaml', 'patches', 'LICENSE', 'notices']) {
+for (const path of ['.npmrc', 'pnpm-lock.yaml', 'pnpm-workspace.yaml', 'LICENSE', 'notices']) {
   await cp(new URL(path, root), new URL(path, destination), { recursive: true });
 }
 await cp(new URL('docs/node-hosting-package.md', root), new URL('README.md', destination));
@@ -29,5 +29,7 @@ const manifest = JSON.parse(await readFile(new URL('package.json', root), 'utf8'
 // Keep dependency declarations identical for a frozen production-only installation.
 // Remove source/build/prepare scripts: the runtime package contains no source tree.
 manifest.scripts = { start: 'node build/index.js' };
+// A server-only operator API, outside the HTTP handler and its route registry.
+manifest.exports = { './maintenance': './build/maintenance.js' };
 await writeFile(new URL('package.json', destination), `${JSON.stringify(manifest, null, 2)}\n`);
 console.log('Created node-package/; install frozen production dependencies before starting.');

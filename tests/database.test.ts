@@ -245,7 +245,7 @@ test('unique flags remain metadata across collection/field underscore boundaries
     await repository.create({ type: 'foo', data: { bar_baz: 'value' } }, 'author');
     assert.equal((await registry.getField('foo_bar', 'baz'))!.unique, true);
     assert.equal((await registry.getField('foo', 'bar_baz'))!.unique, true);
-    assert.equal((await sql`SELECT name FROM sqlite_master WHERE type = 'index' AND name LIKE '%_unique' AND tbl_name IN ('ec_foo_bar','ec_foo')`.execute(database.db)).rows.length, 0);
+    assert.equal((await sql`SELECT name FROM sqlite_master WHERE type = 'index' AND name LIKE '%_unique'`.execute(database.db)).rows.length, 0);
   } finally { await database.close(); }
 });
 

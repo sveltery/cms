@@ -1,5 +1,6 @@
 import * as v from 'valibot';
 import { ordinaryContentService } from './content-service.ts';
+import type { LifecycleDependencies } from './lifecycle/upstream/host.ts';
 import { editorManifest } from '../content/manifest.ts';
 import { CmsError, type CmsDatabase } from './contract.ts';
 import { DraftRepository } from './entries.ts';
@@ -9,7 +10,10 @@ import { countTrashedDraftInput, createDraftInput, deleteDraftInput, getDraftInp
 
 // Permission names and ownership rules follow EmDash auth/rbac.ts.
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
-export type Permission = 'taxonomies:read' | 'taxonomies:manage' | 'settings:read' | 'settings:manage' | 'schema:read' | 'schema:manage' | 'content:read' | 'content:read_drafts' | 'content:create' | 'content:edit_own' | 'content:edit_any' | 'content:delete_own' | 'content:delete_any' | 'content:publish_own' | 'content:publish_any' | 'search:manage' | 'media:read' | 'media:upload' | 'media:edit_own' | 'media:edit_any' | 'media:delete_own' | 'media:delete_any';
+export type Permission = 'schema:read' | 'schema:manage' | 'content:read' | 'content:read_drafts'
+  | 'content:create' | 'content:edit_own' | 'content:edit_any' | 'content:delete_own' | 'content:delete_any'
+  | 'content:publish_own' | 'content:publish_any'
+  | 'media:read' | 'media:upload' | 'media:edit_own' | 'media:edit_any' | 'media:delete_own' | 'media:delete_any';
 export interface ServerPrincipal { readonly id: string; readonly permissions: readonly Permission[] }
 const listInput = v.strictObject({
   type: identifier, locale: v.optional(localeInput, 'en'),
@@ -26,7 +30,7 @@ const addFieldInput = v.strictObject({
  * Inputs carry neither identity, roles, permissions nor ownership.
  * This module never installs a principal, database, hook or public write endpoint.
  */
-export function cmsService(database: CmsDatabase, principal: ServerPrincipal | null) {
+export function cmsService(database: CmsDatabase, principal: ServerPrincipal | null, dependencies: LifecycleDependencies = {}) {
   const identity = principal && typeof principal.id === 'string' && principal.id.length > 0 && principal.id.length <= 128
     && Array.isArray(principal.permissions)
     ? { id: principal.id, permissions: [...principal.permissions] } : null;
@@ -54,7 +58,7 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
     return actor.id;
   }
   return {
-    ...ordinaryContentService(database, principal),
+    ...ordinaryContentService(database, principal, dependencies),
     async getEditorManifest() { return editorManifest(database, identity); },
     async listCollections() { requirePermission('schema:read'); return registry.listCollections(); },
     async getCollection(input: unknown) {

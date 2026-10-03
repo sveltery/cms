@@ -28,7 +28,8 @@ export const createContent = form(createInput, ({ collection, ...input }) => con
 export const updateContent = form(updateInput, (input) => contentResponse(async () => {
   const service = requestContent('mutation');
   const { collection, _rev, ...value } = input;
-  const record = withRevision(await service.updateContent({ type: collection, ...value, expected: precondition(input) }));
+  const record = withRevision(await service.updateContent({ type: collection, ...value,
+    ...(value.slug === '' ? {slug:null} : {}), expected: precondition(input) }));
   await refreshContent(collection, value.locale, value.id);
   await refreshWorkflow(collection, value.locale, value.id);
   return receipt(record);

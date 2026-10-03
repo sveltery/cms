@@ -1,4 +1,3 @@
-import {contentListSearch} from '../search/content-list.ts';
 import {sql,type CompiledQuery} from 'kysely';
 import {ulid} from 'ulidx';
 import {deserializeValue} from './field-value.ts';
@@ -10,20 +9,21 @@ import {RevisionRepository} from './lifecycle/upstream/database/repositories/rev
 import {EmDashValidationError,ContentCollectionNotFoundError,InvalidCursorError,type ContentItem,type FindManyOptions} from './lifecycle/upstream/database/repositories/types.ts';
 import {InvalidCursorError as NativeInvalidCursorError} from './trash-cursor.ts';
 import {lifecycleService} from './lifecycle/service.ts';
-import {genericContentList} from './content-validation.ts';
-import {countTrashedDraftInput,deleteDraftInput,getDraftInput,getTrashedDraftInput,listTrashedDraftInput,parse,restoreDraftInput,tableName,updateDraftInput} from './validation.ts';
+import type {LifecycleDependencies} from './lifecycle/upstream/host.ts';
+import {genericContentList,genericContentUpdate} from './content-validation.ts';
+import {countTrashedDraftInput,deleteDraftInput,getDraftInput,getTrashedDraftInput,listTrashedDraftInput,parse,restoreDraftInput,tableName} from './validation.ts';
 
 // Pinned EmDashRuntime and content handlers/repository at
 // 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e. Copyright 2026 Cloudflare Inc.
 // MIT; notices/emdash-MIT.txt. Native bounded summaries and mandatory caller CAS
 // preserve this CMS's existing transport boundary; see docs/content-composition.md.
-export function ordinaryContentService(database:CmsDatabase,principal:ServerPrincipal|null){
+export function ordinaryContentService(database:CmsDatabase,principal:ServerPrincipal|null,dependencies:LifecycleDependencies={}){
  const actor=principal&&typeof principal.id==='string'&&principal.id.length>0&&principal.id.length<=128&&Array.isArray(principal.permissions)?{id:principal.id,permissions:[...principal.permissions]}:null;
  const registry=new SchemaRegistry(database);
  let storedRepository:ContentRepository|undefined;let storedRevisions:RevisionRepository|undefined;let storedLifecycle:ReturnType<typeof lifecycleService>|undefined;
  const repository=()=>storedRepository??=new ContentRepository(database.db as any);
  const revisions=()=>storedRevisions??=new RevisionRepository(database.db as any);
- const lifecycle=()=>storedLifecycle??=lifecycleService(database,principal);
+ const lifecycle=()=>storedLifecycle??=lifecycleService(database,actor,dependencies);
  function permission(name:Permission){if(!actor)throw new CmsError('UNAUTHENTICATED');if(!actor.permissions.includes(name))throw new CmsError('FORBIDDEN');return actor;}
  function read(){permission('content:read');permission('content:read_drafts');}
  function mutation(own:Permission,any:Permission){if(!actor)throw new CmsError('UNAUTHENTICATED');if(!actor.permissions.includes(own)&&!actor.permissions.includes(any))throw new CmsError('FORBIDDEN');return actor;}
@@ -35,9 +35,17 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
   return {...repository().mapRow(type,row),data};
  }
  async function hydrate(item:ContentItem):Promise<DraftEntry>{
-  if(!item.draftRevisionId)return entry(item);const revision=await revisions().findById(item.draftRevisionId);if(!revision)return entry(item);
-  const draftData=Object.fromEntries(Object.entries(revision.data).filter(([key])=>!key.startsWith('_')));
-  return entry({...item,data:{...item.data,...draftData},liveData:item.data});
+  const stored=entry(item);if(!item.draftRevisionId)return stored;
+  try{
+   const revision=await revisions().findById(item.draftRevisionId);if(!revision)return stored;
+   const draftData=Object.fromEntries(Object.entries(revision.data).filter(([key])=>!key.startsWith('_')));
+   return {...stored,data:{...item.data,...draftData},liveData:item.data};
+  }catch(cause){
+   // Pinned EmDashRuntime.hydrateDraftData uses this non-strict read fallback.
+   // Base-row/schema lookup and locale validation remain outside this catch.
+   console.error('[emdash] draft hydration failed:',cause);
+   return stored;
+  }
  }
  function summary(item:ContentItem,titleField='title'):DraftSummary{
   const {data,liveData,...value}=entry(item);const title=data[titleField];return{...value,title:typeof title==='string'?title.slice(0,200):null};
@@ -59,7 +67,7 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
  async function listOptions(input:unknown){
   // Check existence before resolving indexed filter errors, as the pin does.
   const value=parse(genericContentList,input);const collection=await definition(value.type);
-  const where:FindManyOptions['where']={locale:value.locale,...await contentListSearch(database.db as any,value.type,value.q)};
+  const where:FindManyOptions['where']={locale:value.locale};
   if(value.status)where.status=value.status;if(value.authorId)where.authorId=value.authorId;
   if(value.fieldFilters&&Object.keys(value.fieldFilters).length)where.fieldFilters=value.fieldFilters as any;
   if(value.dateField&&(value.dateFrom||value.dateTo))where.dateFilter={field:value.dateField,from:bound(value.dateFrom,'start'),to:bound(value.dateTo,'end')};
@@ -84,11 +92,11 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
   async getContent(input:unknown){read();const value=parse(getDraftInput,input);const item=await includingTrashed(value.type,value.id,value.locale);if(item.deletedAt)throw new CmsError('NOT_FOUND');const {deletedAt,...active}=item;return hydrate(active);},
   async updateContent(input:unknown){
    mutation('content:edit_own','content:edit_any');
-   // Preserve current required token, JSON and slug bounds. skipRevision is
-   // the only added save option; publication remains a separate operation.
+   // Preserve required caller CAS and JSON/slug bounds. Omitted data remains
+   // absent so the shared lifecycle can select its live-metadata save path.
    const source=input as Record<string,unknown>;const {skipRevision,...value}=source??{};
    if(skipRevision!==undefined&&typeof skipRevision!=='boolean')throw new CmsError('VALIDATION_ERROR');
-   const parsed=parse(updateDraftInput,value);return entry((await lifecycle().updateContent({...parsed,...(skipRevision===undefined?{}:{skipRevision})})).item);
+   const parsed=parse(genericContentUpdate,value);return entry((await lifecycle().updateContent({...parsed,...(skipRevision===undefined?{}:{skipRevision})})).item);
   },
   async listContent(input:unknown){read();const {value,collection,options}=await listOptions(input);
    const result=await translate(()=>repository().findMany(value.type,options));return{...result,items:result.items.map(item=>summary(item,collection.titleField??'title'))};

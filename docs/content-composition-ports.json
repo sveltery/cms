@@ -609,5 +609,101 @@
       "log": "/tmp/content-composition-mcp-trash-original-baseline.log",
       "note": "Additional complete source trash-visibility callbacks pass already on unchanged archived product; they require no implementation change and earn no new test-first failure credit."
     }
+  },
+  "approvedMainReplay": {
+    "base": "95668fb45b262c5e8df63ede20d712e71ebea771",
+    "preservedHistoricalPr": 50,
+    "excludedDevelopmentBase": "5a2923b933f01969d90faf9197ecf4c8385a7731",
+    "commits": [
+      {
+        "publishedOriginal": "3c1306a81de7f600bd12bc370b46227205853c06",
+        "cleanReplay": "da90483077d4c618ff8a5725252c97e9bb990641"
+      },
+      {
+        "publishedOriginal": "f7753f3740d40cfbcff8b877211474d31b4b3a08",
+        "cleanReplay": "522098e836f0dd070ba2cdacf0265e7559470188"
+      },
+      {
+        "publishedOriginal": "4404fa95cf866f69c24978f23793800ef4a7eb65",
+        "cleanReplay": "98ad470b9ae8cb1b6f1846bd38b699c85d7a9a30"
+      },
+      {
+        "publishedOriginal": "ad06984ee895ee9228170bb2a46bdd95e493d2ca",
+        "cleanReplay": "c5f68e45a985b1c47e317b5dce4e8e375de5b9b7"
+      },
+      {
+        "publishedOriginal": "bfd8252f02fc3b80970230c9566b13a749ab39f1",
+        "cleanReplay": "f9b7d0f2fbb8d9754e107d8a9940b985403ce42f"
+      },
+      {
+        "publishedOriginal": "76aaf90f317b2962c921b1aae98d73fb587c56f3",
+        "cleanReplay": "d322c90cb0f1ee547300647a70122c8008d1f9d8",
+        "originalLocal": "43cf36bc78e5ac8c190c3540bffa7e868c6b421b"
+      },
+      {
+        "publishedOriginal": "31ab0ff0b3c09bdf377268b3586c96955990b084",
+        "cleanReplay": "2045d04667b4be4fcbe6b837b43f9f111e7f84ca",
+        "originalLocal": "82127e8f45ab6aec501938c9ba89f9674b9f06d8"
+      }
+    ],
+    "nativeLifetimeSupplement": {
+      "testFirst": "d0bb67ce02c06773d899bad4d3c62411788a3152",
+      "repair": "3b500fab943d7bf6ab5c1ceb47e0d5376f7a34b4",
+      "red": "Actual registered generic HTTP save retained one task instead of expected two; 0 pass, 1 assertion failure, 0 cancellation",
+      "sourceCredit": 0
+    },
+    "qualification": "All 54 complete source bodies and 86 expressions unchanged. Node SQLite domain projections; zero whole MCP protocol or public authorization credit."
+  },
+  "compatibilityDecisions": {
+    "authority": "Root project manager scoped decision, 2026-10-03, existing PR68 review continuation",
+    "pullRequest": 68,
+    "CC-01": {
+      "state": "specifically accepted within stated scope",
+      "scope": [
+        "Existing native admin content:read + content:read_drafts boundary",
+        "Bounded native summary and mutation receipt envelopes",
+        "Mandatory caller version/timestamp CAS plus ownership predicates"
+      ],
+      "sourceCreditForDifferences": 0,
+      "unfinished": [
+        "Public/subscriber/external API/full MCP policy"
+      ],
+      "preserve": "Source live-column list versus current draft-hydrated get"
+    },
+    "CC-02": {
+      "state": "specifically accepted within stated scope",
+      "scope": [
+        "Native declared-field projection retains explicit stored SQL nulls for existing forms/defaults"
+      ],
+      "sourceCreditForDifferences": 0,
+      "preserve": [
+        "Source mapRow omits null values",
+        "Unchanged Source snapshots/callbacks",
+        "Omitted slug Source generation",
+        "Explicit empty native slug maps to null",
+        "Actual nonrevision physical fixtures",
+        "Separate revision staging/promotion requirements"
+      ]
+    },
+    "featureCompletion": "Not granted",
+    "pullRequestApproval": "Pending final gates and exact-head approval"
+  },
+  "reviewRepairQualification": "content-composition-review-qualification.json",
+  "slugOnlyReviewRepair": {
+    "qualification": "content-composition-review-qualification.json#slugOnlyUpdateRepair",
+    "testFirst": "7162e59a4d7adc41b1c7529ff286bf0823e66e09",
+    "repair": "8f6272932f805a97d7d4fa693dd91ba31477a020",
+    "additionalCopiedSourceCredit": 0,
+    "copiedBodiesAndAssertions": "All 54 complete declarations and 86 expressions unchanged",
+    "nativeSupplement": "Four genuine assertion reds on Node/actual Worker D1 domain and persisted-principal registered HTTP; four explicit empty-data controls already green."
+  },
+  "emptySlugReviewRepair": {
+    "qualification": "content-composition-empty-slug-qualification.json",
+    "testFirst": "fbccffe098f9d79014392a4c34121112759d0aa4",
+    "repair": "0920e070cf7bf27ee5e4aba37b5fd92a5b1f90be",
+    "CC-03": "Specifically accepted native HTML blank-to-null update substitution, within stated scope",
+    "additionalCopiedSourceCredit": 0,
+    "preserve": "All 54 whole source declarations and86 expressions; direct JSON null/empty-string distinction; canonical/lifecycle/auth/legacy validation bytes unchanged",
+    "decisionCitation": "https://github.com/sveltery/cms/pull/68#pullrequestreview-5400163266"
   }
 }

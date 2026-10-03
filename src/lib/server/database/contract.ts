@@ -8,7 +8,7 @@ export interface CollectionRow {
   id: string; slug: string; label: string; label_singular: string | null;
   description: string | null; supports: string; source: string;
   version: number; created_at: string; updated_at: string;
-  icon?: string | null; admin_config?: string | null; has_seo?: number; title_field?: string | null; search_config?: string | null;
+  icon?: string | null; admin_config?: string | null; has_seo?: number; title_field?: string | null;
   date_field?: string | null; url_pattern?: string | null; routable?: number; hidden?: number;
   sort_order?: number | null; nav_group?: string | null; comments_enabled?: number;
   comments_moderation?: string; comments_closed_after_days?: number; comments_auto_approve_users?: number; edit_locking?: number;

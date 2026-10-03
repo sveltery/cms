@@ -5,7 +5,7 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { sql } from 'kysely';
-import { migrateCms, CMS_MIGRATION_VERSION, CMS_MIGRATIONS } from '../src/lib/server/database/migrations.ts';
+import { migrateCms } from '../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
 import { DraftRepository } from '../src/lib/server/database/entries.ts';
 import { schemaAdminStorage } from './helpers/schema-admin-storage.ts';
@@ -34,7 +34,7 @@ for (const target of ['Node','D1'] as const) {
     } finally {await storage.close();}
   });
 
-  test(`${target}: immutable v1/v2 layouts reach latest canonical version with legacy data, metadata and foreign keys intact`, async () => {
+  test(`${target}: immutable v1/v2 layouts reach canonical v5 with legacy data, metadata and foreign keys intact`, async () => {
     for (const version of [1,2] as const) {
       const storage=await schemaAdminStorage(target);
       try {
@@ -45,7 +45,7 @@ for (const target of ['Node','D1'] as const) {
         await migrateCms(database); await migrateCms(database);
         assert.deepEqual(await registry.getCollectionWithFields('post'),definition);
         assert.deepEqual(await new DraftRepository(database).findById('post',entry.id),entry);
-        assert.deepEqual((await sql<{version:number}>`SELECT version FROM _cms_migrations ORDER BY version`.execute(database.db)).rows.map(row=>row.version),Array.from({length:CMS_MIGRATION_VERSION},(_,index)=>index+1));
+        assert.deepEqual((await sql<{version:number}>`SELECT version FROM _cms_migrations ORDER BY version`.execute(database.db)).rows.map(row=>row.version),[1,2,3,4,5]);
         assert.equal((await sql`SELECT * FROM _cms_auth_profiles`.execute(database.db)).rows.length,0);
         assert.equal((await sql`SELECT * FROM pragma_foreign_key_check`.execute(database.db)).rows.length,0);
         await sql`UPDATE ec_post SET status='published', primary_byline_id='byline_1' WHERE id=${entry.id}`.execute(database.db);
@@ -81,15 +81,11 @@ for (const target of ['Node','D1'] as const) {
         if (table.name === 'ec_post') for (const row of actual.rows as Record<string,unknown>[]) {
           assert.equal(row.primary_byline_id,null); delete row.primary_byline_id;
         }
-        // The real forward provider adds one nullable column; every historical
-        // row value still compares exactly, including all prior columns.
-        const expected=table.name==='_cms_collections'&&CMS_MIGRATIONS.some(provider=>provider.name==='metadata-storage-fidelity')
-          ? {...table,rows:(table.rows as Record<string,unknown>[]).map(row=>Object.assign(Object.create(Object.getPrototypeOf(row)),row,{search_config:null}))}:table;
-        assert.deepEqual(actual,expected,table.name);
+        assert.deepEqual(actual,table,table.name);
       }
       for (const object of before.objects.filter(row=>row.type==='index'||row.type==='trigger')) assert.deepEqual(after.objects.find(row=>row.name===object.name),object);
       assert.deepEqual(await registry.getCollectionWithFields('post'),definition);
-      assert.equal((await sql<{version:number}>`SELECT MAX(version) AS version FROM _cms_migrations`.execute(database.db)).rows[0].version,CMS_MIGRATION_VERSION);
+      assert.equal((await sql<{version:number}>`SELECT MAX(version) AS version FROM _cms_migrations`.execute(database.db)).rows[0].version,5);
       await storage.close(); storage = await schemaAdminStorage(target,directory);
       await migrateCms(storage.database);
       assert.equal((await sql<{status:string}>`SELECT status FROM ec_post WHERE id=${entry.id}`.execute(storage.database.db)).rows[0].status,'draft');
@@ -178,7 +174,7 @@ for (const target of ['Node','D1'] as const) {
         if (legacy) { await installVersion4(first.database); await legacyPost(first.database); }
         await Promise.all([migrateCms(first.database),migrateCms(second.database)]);
         await migrateCms(second.database);
-        assert.deepEqual((await sql<{version:number}>`SELECT version FROM _cms_migrations ORDER BY version`.execute(first.database.db)).rows.map(row=>row.version),Array.from({length:CMS_MIGRATION_VERSION},(_,index)=>index+1));
+        assert.deepEqual((await sql<{version:number}>`SELECT version FROM _cms_migrations ORDER BY version`.execute(first.database.db)).rows.map(row=>row.version),[1,2,3,4,5]);
         assert.equal((await sql`SELECT * FROM _cms_guards`.execute(first.database.db)).rows.length,0);
         assert.equal((await sql`SELECT * FROM _cms_revisions`.execute(second.database.db)).rows.length,0);
       } finally { await second.close(); await first.close(); await rm(directory,{recursive:true,force:true}); }

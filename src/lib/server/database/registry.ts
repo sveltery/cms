@@ -1,5 +1,3 @@
-import {planSchemaSearch,planDropCollectionSearch} from '../search/schema-plan.ts';
-import {newCollectionTaxonomyIndexes} from '../taxonomies/collection-indexes.ts';
 import { sql, type CompiledQuery } from 'kysely';
 import { sqliteErrorMessage } from './errors.ts';
 import { ulid } from 'ulidx';
@@ -94,7 +92,6 @@ export class SchemaRegistry {
           AND version = ${definition.version} AND updated_at = ${definition.updatedAt})
         THEN 1 ELSE 0 END`.compile(db),
       db.updateTable('_cms_collections').set(updates).where('id', '=', definition.id).returningAll().compile(),
-      ...await planSchemaSearch(this.database,definition.slug,value.supports ?? definition.supports,await this.listFields(definition.id)),
       sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
     ], 'CONFLICT');
     // Read the operation's own RETURNING row, rather than a later concurrent writer.
@@ -158,8 +155,7 @@ export class SchemaRegistry {
         .where('slug', '=', target.slug)
         .where('collection_id', 'in', db.selectFrom('_cms_collections').select('id')
           .where('id', '=', target.collectionId).where('slug', '=', parse(identifier, collectionSlug)))
-        .returningAll().compile(), ...indexStatements,
-      ...await planSchemaSearch(this.database,parse(identifier,collectionSlug),(await this.getCollection(collectionSlug))!.supports,(await this.listFields(target.collectionId)).map(field=>field.id===target.id?{...field,type:nextType,searchable:value.searchable??field.searchable}:field))
+        .returningAll().compile(), ...indexStatements
     ]);
     const row = results[0].rows[0] as FieldRow | undefined;
     if (!row) throw new CmsError('NOT_FOUND');
@@ -210,7 +206,6 @@ export class SchemaRegistry {
       )`.compile(db),
       db.schema.createIndex('idx_' + name + '_draft_list').on(name).columns(['locale', 'deleted_at', 'created_at', 'id']).compile(),
       trashIndexStatement(this.database, value.slug),
-      ...await newCollectionTaxonomyIndexes(this.database, value.slug),
       sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
     ];
     try { await this.batch(statements, 'LIMIT_EXCEEDED'); }
@@ -270,7 +265,6 @@ export class SchemaRegistry {
       db.updateTable('_cms_collections').set({ version: definition.version + 1, updated_at: new Date().toISOString() }).where('id', '=', definition.id).compile()
     ];
     if(value.indexed) statements.push(...this.fieldIndexStatements(definition.slug,id,value.slug));
-    statements.push(...await planSchemaSearch(this.database,definition.slug,definition.supports,[...fields,{slug:value.slug,type:value.type,searchable:value.searchable??false}]));
     statements.push(sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db));
     await this.batch(statements, 'CONFLICT');
     return (await this.getField(definition.slug, value.slug))!;
@@ -305,7 +299,7 @@ export class SchemaRegistry {
     const target = await this.getField(collectionSlug,fieldSlug); if(!target) throw new CmsError('NOT_FOUND');
     const definition = await this.getCollection(collectionSlug); if(!definition) throw new CmsError('NOT_FOUND');
     const db = this.database.db;
-    await this.database.atomicBatch([...await planSchemaSearch(this.database,definition.slug,definition.supports,(await this.listFields(definition.id)).filter(field=>field.id!==target.id)),...this.dropFieldIndexStatements(target.id),
+    await this.database.atomicBatch([...this.dropFieldIndexStatements(target.id),
       ...(isStoragelessField({type:target.type,validation:target.validation??undefined}) ? [] : [sql`ALTER TABLE ${sql.ref(tableName(collectionSlug))} DROP COLUMN ${sql.ref(target.slug)}`.compile(db)]),
       db.deleteFrom('_cms_fields').where('id','=',target.id).compile(),
       db.updateTable('_cms_collections').set({title_field:sql`CASE WHEN title_field = ${target.slug} THEN NULL ELSE title_field END`, date_field:sql`CASE WHEN date_field = ${target.slug} THEN NULL ELSE date_field END`, updated_at:nextMetadataTimestamp([definition])})
@@ -317,7 +311,6 @@ export class SchemaRegistry {
     const token = ulid();
     await this.batch([
       ...(options?.force ? [] : [sql`INSERT INTO _cms_guards(token,pass) SELECT ${token}, CASE WHEN NOT EXISTS (SELECT 1 FROM ${sql.ref(tableName(slug))} WHERE deleted_at IS NULL) THEN 1 ELSE 0 END`.compile(db)]),
-      ...await planDropCollectionSearch(this.database,target.slug,target.id),
       sql`DROP TABLE ${sql.ref(tableName(slug))}`.compile(db),db.deleteFrom('_cms_fields').where('collection_id','=',target.id).compile(),
       db.deleteFrom('_cms_collections').where('id','=',target.id).compile(), sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
     ],'COLLECTION_NOT_EMPTY');

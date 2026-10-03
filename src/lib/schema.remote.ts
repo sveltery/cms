@@ -1,5 +1,6 @@
 import { query, form } from '$app/server';
 import { getCollection, getEditorManifest, listCollections } from '$lib/content.remote';
+import { getWorkspaceNavigation } from '$lib/workspace.remote';
 import {
   collectionSlug, createInput, updateInput, addFieldInput,
   convertCollectionCreate, convertCollectionUpdate, convertFieldAdd, fieldLabelFormInput, convertFieldLabel,
@@ -42,4 +43,5 @@ function refreshSchema(collection: string) {
   void listCollections().refresh();
   void getCollection(collection).refresh();
   void getEditorManifest().refresh();
+  void getWorkspaceNavigation().refresh();
 }

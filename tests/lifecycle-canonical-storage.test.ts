@@ -5,7 +5,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {schemaAdminStorage} from './helpers/schema-admin-storage.ts';
 import {installVersion4,legacyPost} from './helpers/lifecycle-startup.ts';
-import {migrateCms,CMS_MIGRATION_VERSION} from '../src/lib/server/database/migrations.ts';
+import {migrateCms} from '../src/lib/server/database/migrations.ts';
 import {SchemaRegistry} from '../src/lib/server/database/registry.ts';
 import {DraftRepository} from '../src/lib/server/database/entries.ts';
 import {lifecycleService} from '../src/lib/server/database/lifecycle/service.ts';
@@ -56,7 +56,7 @@ for(const target of ['Node','D1'] as const)for(const layout of ['fresh','v4'] as
       for(const task of deferred.splice(0))await task();
       const before=await service.listRevisions(key);
       const markers=(await sql<{version:number}>`SELECT version FROM _cms_migrations ORDER BY version`.execute(storage.database.db)).rows.map(row=>row.version);
-      assert.deepEqual(markers,Array.from({length:CMS_MIGRATION_VERSION},(_,index)=>index+1));
+      assert.deepEqual(markers,[1,2,3,4,5]);
       await storage.close();storage=await schemaAdminStorage(target,directory);
       await migrateCms(storage.database);
       const reopened=lifecycleService(storage.database,actor);

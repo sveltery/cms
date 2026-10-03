@@ -1,2 +1,0 @@
-<script lang="ts">import {resolve} from '$app/paths';import WorkspaceShell from '$lib/ui/WorkspaceShell.svelte';</script>
-<WorkspaceShell homeHref={resolve('/')} activePage="settings"><h1>Settings</h1><ul><li><a href={resolve('/settings/[section]',{section:'general'})}>General</a></li><li><a href={resolve('/settings/[section]',{section:'social'})}>Social links</a></li><li><a href={resolve('/settings/[section]',{section:'seo'})}>SEO</a></li></ul></WorkspaceShell>

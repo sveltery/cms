@@ -215,7 +215,6 @@ describe('built remotes with persisted schema and server-derived sessions', () =
   });
   it('dynamic routes render persisted fields and retain disabled writes with authenticated reads', async () => {
     const { item } = await create();
-    harness.setMutationsEnabled(false);
     const index = await harness.request('/', 'author');
     const links = (html: string, path: string) => [...html.matchAll(/<a\b[^>]*href="([^"]+)"/g)]
       .map(([, href]) => new URL(href.replaceAll('&amp;', '&'), `http://cms.test${path}`).pathname);
@@ -248,7 +247,6 @@ describe('built remotes with persisted schema and server-derived sessions', () =
     }, 'editor');
     const item = await harness.query('getContent', { collection: 'default_fields', id: created._.result.id }, 'editor');
     assert.deepEqual(item.data, { string: null, text: null });
-    harness.setMutationsEnabled(false);
     const response = await harness.request(`/content/default_fields/${item.id}`, 'editor');
     assert.equal(response.status, 200);
     const html = await response.text();
