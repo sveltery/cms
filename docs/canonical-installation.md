@@ -127,3 +127,22 @@ capabilities, Source commands, CI and the 512-package/527-snapshot lock closure.
 Its complete normal and secured hosted gates, fresh final-head review,
 specific acceptance, publication and merge remain pending. Earlier isolated
 review and green receipts do not qualify that combined successor.
+
+## Combined normal gate
+
+The combined successor `03f29c6e96ab2c64094f9a20c936e1f3d29fb9aa`, with actual
+public Sections/widgets Main `2f1b74bdb9f368f5f5a75e4f0cfb065657924f56` as an
+ordinary merge parent, passed all thirteen unchanged normal stages. Frozen
+installation verified the complete 512-package/527-snapshot lock closure;
+the checker reported zero errors and warnings. All 1331 service, 261 production,
+15 Node hosting and seven Cloudflare Worker callbacks passed with zero failures,
+cancellations or skips. The complete retained Source/UI commands also passed,
+including the whole two-callback taxonomy pagination family. This contributes
+zero additional causal Source credit. The exact run receipt is
+`0d5c49abcb03e7b17b89f42028c63c0a91f1e086ea296f2ed1031138cd130cb8`.
+
+The earlier pending normal status records the development checkpoint before
+this run. Secured hosted browser gates, independent review of this final
+successor, specific acceptance, publication and merge remain pending. Both
+failed receipts remain retained; a complete normal run does not establish the
+remaining API/UI/plugin/FTS or deployed-hosting scope.

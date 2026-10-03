@@ -1080,3 +1080,7 @@ retaining its entire Source/CI/capability graph and512packages/527snapshots.
 The combined successor's complete normal/secured hosted gates and final
 independent/configured review, specific acceptance, publication and merge
 remain pending; earlier dc463b1 review/run receipts do not qualify it.
+
+### CNI combined normal receipt
+
+The combined `03f29c6e96ab2c64094f9a20c936e1f3d29fb9aa` ordinarily merged actual public Sections/widgets Main `2f1b74bdb9f368f5f5a75e4f0cfb065657924f56`. All thirteen unchanged normal stages passed with the complete 512-package/527-snapshot frozen closure, checker zero errors/warnings, service1331/1331, production261/261, Node hosting15/15 and Cloudflare Worker7/7, zero failures/cancellations/skips. Every retained Source/UI command passed, including the whole CNI pagination2 family; first greens and previous fixture-only Source baselines earn zero additional causal Source credit. Exact full run receipt SHA256: `0d5c49abcb03e7b17b89f42028c63c0a91f1e086ea296f2ed1031138cd130cb8`. Earlier failed21 and failed178/eight-assertion receipts remain retained. The previous pending-normal status is its pre-run checkpoint. Secured hosted browser gates, current-successor independent review, specific acceptance, publication and merge remain pending; API/UI/plugin/FTS/deployed-hosting omissions are unchanged.
