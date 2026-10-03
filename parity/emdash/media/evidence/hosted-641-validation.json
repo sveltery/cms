@@ -1,0 +1,84 @@
+{
+  "head": "641a27b340993ed7021d80a42723408f9f8f0001",
+  "tree": "77837e47ce0784ddb91c8694db9c81be8da0aa27",
+  "run": 37100717366,
+  "normalValidation": {
+    "job": 111139541208,
+    "workflowUrl": "https://github.com/sveltery/cms/actions/runs/37100717366/job/111139541208",
+    "rawLogSha256": "604fd8298128107d36a70f692f34c6d130c9e8555af85081859ea3beed4ae4d0",
+    "normalCommand": "sh scripts/bootstrap.sh",
+    "normalFrozenInstall": true,
+    "normalTypes": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "service": {
+      "tests": 1125,
+      "pass": 1125,
+      "fail": 0,
+      "cancel": 0,
+      "skip": 0
+    },
+    "sourcePorts": {
+      "files": 9,
+      "executions": 79
+    },
+    "mediaSource": {
+      "files": 33,
+      "executions": 346
+    },
+    "sourceHostTypes": true,
+    "defaultBuild": true,
+    "production": {
+      "tests": 351,
+      "pass": 351,
+      "fail": 0,
+      "cancel": 0,
+      "skip": 0
+    },
+    "nodePackageBuild": true,
+    "isolatedFrozenInstallAndRestart": {
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "cancel": 0,
+      "skip": 0
+    },
+    "cloudflareBuild": true,
+    "wranglerDryBundle": true,
+    "cloudflarePure": {
+      "files": 4,
+      "executions": 23
+    },
+    "actualOfficialWorker": {
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "cancel": 0,
+      "skip": 0,
+      "mediaOriginalCallbackPass": 1,
+      "mediaOriginalCallbackSeconds": 2.262840328,
+      "extendedReplacementReferencesIncluded": false
+    },
+    "fullBootstrapPass": true
+  },
+  "securedBrowser": {
+    "job": 111139541244,
+    "workflowUrl": "https://github.com/sveltery/cms/actions/runs/37100717366/job/111139541244",
+    "rawLogSha256": "22b0b1109e9b71bd1c3a81bd43d6838f4d2a3b08497aa6a20ca65b19f6da44cc",
+    "normalFrozenInstall": true,
+    "defaultBuild": true,
+    "securedChromium": true,
+    "completedExpectationFailures": {
+      "taxonomySection": 1,
+      "searchPalette": 3
+    },
+    "outerDeadlineSeconds": 180,
+    "nodeFullBrowserReached": false,
+    "overallPass": false,
+    "qualifiedCause": "The exact head lacks the Search development root layout/palette and the source taxonomy sidebar heading integration; Search6d and taxonomy3b are not ancestors. No source expectation or unowned production code changed."
+  },
+  "wholeME1ME2Complete": false,
+  "fullBrowserComplete": false,
+  "extendedWorkerNewHeadNormalEvidence": "Pending; the replacement/settings/count extension is later local test-only history."
+}
