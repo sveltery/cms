@@ -1,6 +1,9 @@
 <script lang="ts">
  import {flushSync,onDestroy,tick,untrack,type Snippet} from 'svelte';
  import MediaPickerItem from './MediaPickerItem.svelte';
+ import MediaDetails from './MediaDetails.svelte';
+ import {mediaPermissionsForUser} from './permissions';
+ import type {MediaItem as NativeMediaItem} from './types';
  import {nativeMediaPickerClient,fetchPickerCurrentUser,type MediaPickerClient,type MediaItem,type MediaProviderItem,type MediaProviderInfo,type MediaFolder} from './picker-client';
  import {URL_SOURCE,selectionKey,matchesAnyFilter,matchesFilenameSearch,intersectMimeFilters,filtersOverlap,appendUniqueSelections,withLocalMediaUrl,probeImageDimensions,type SelectedMedia,type UploadedMedia} from './picker-helpers';
  import {providerItemToMediaItem} from './source/picker-media-utils';
@@ -44,9 +47,11 @@
  });
  const visibleJobs=$derived(jobs.filter(job=>job.status!=='complete'&&targets.get(job.id)===source));
  const confirmText=$derived(confirmLabel??(multiple?`Add ${selected.length} ${mediaKind==='file'?'file':'image'}${selected.length===1?'':'s'}`:'Select'));
+ const detailsUser=$derived(currentUser??actor);
+ const detailsPermissions=$derived(mediaPermissionsForUser(detailsUser));
  const editable=$derived.by(()=>{
   const user=currentUser??actor,entry=selected.length===1?selected[0]:undefined;
-  if(!assetDetails||!user||entry?.providerId!=='local'||!entry.item.mimeType.startsWith('image/'))return null;
+  if(!user||entry?.providerId!=='local'||!entry.item.mimeType.startsWith('image/'))return null;
   const item=entry.item as MediaItem&{authorId?:string|null};
   return user.role>=40||(user.role>=30&&item.authorId===user.id)?item:null;
  });
@@ -70,7 +75,7 @@
   if(nextOpen&&(!wasOpen||nextLocalOnly!==wasLocalOnly))untrack(()=>{
    reset();
    if(!nextLocalOnly&&client.fetchMediaProviders)void client.fetchMediaProviders().then(value=>{if(open&&!dismissed)providers=value;},cause=>{error=cause instanceof Error?cause.message:'Media providers could not load';});
-   if(!currentUser&&assetDetails)void fetchPickerCurrentUser().then(value=>actor=value,()=>actor=undefined);
+   if(!currentUser)void fetchPickerCurrentUser().then(value=>actor=value,()=>actor=undefined);
   });
   if(!nextOpen)untrack(()=>{queue.reset();requestId++;folderRequestId++;invalidateProbe();assetItem=null;});
   wasOpen=nextOpen;wasLocalOnly=nextLocalOnly;
@@ -185,6 +190,10 @@
  async function back(){assetItem=null;await tick();editButton?.focus({preventScroll:true});}
  function refreshed(item:MediaItem){assetItem=item;items=items.map(entry=>entry.id===item.id?item:entry);selected=selected.map(entry=>entry.providerId==='local'&&entry.item.id===item.id?{...entry,item}:entry);pinned=pinned.map(entry=>entry.providerId==='local'&&entry.item.id===item.id?{...entry,item}:entry);}
  function cropped(item:MediaItem){const entry={key:selectionKey('local',item),providerId:'local',item};pinned=appendUniqueSelections(pinned,[entry]);selected=multiple?selected.map(value=>value.item.id===assetItem?.id?entry:value):[entry];assetItem=item;}
+ // The real local API returns complete native rows, including nullable fields.
+ // Keep those runtime values intact across the Source admin type-only boundary.
+ function nativeRefreshed(item:NativeMediaItem){refreshed(item as unknown as MediaItem);}
+ function nativeCropped(item:NativeMediaItem){cropped(item as unknown as MediaItem);}
  function unavailable(id:string){selected=selected.filter(entry=>entry.providerId!=='local'||entry.item.id!==id);pinned=pinned.filter(entry=>entry.providerId!=='local'||entry.item.id!==id);}
  const display=(item:MediaItem|MediaProviderItem)=>'url' in item?item as MediaItem:providerItemToMediaItem(source,item as MediaProviderItem);
  onDestroy(()=>{queue.reset();requestId++;folderRequestId++;invalidateProbe();});
@@ -193,8 +202,12 @@
 {#if open&&!dismissed}
  <!-- svelte-ignore a11y_no_redundant_roles (Pinned asset handoff selects the explicit dialog role.) -->
  <dialog bind:this={dialog} role="dialog" aria-label={title} oncancel={event=>{event.preventDefault();if(assetItem)void back();else close();}}>
-  {#if assetItem&&assetDetails}
-   {@render assetDetails({open:true,item:assetItem,embedded:true,context:'content',canCropOriginal:Boolean(editable),canDuplicateCrop:((currentUser??actor)?.role??0)>=20,onClose:back,onExit:close,onItemRefreshed:refreshed,onCroppedCopyCreated:cropped,onUnavailable:unavailable})}
+  {#if assetItem}
+   {#if assetDetails}
+    {@render assetDetails({open:true,item:assetItem,embedded:true,context:'content',canCropOriginal:Boolean(editable),canDuplicateCrop:((currentUser??actor)?.role??0)>=20,onClose:back,onExit:close,onItemRefreshed:refreshed,onCroppedCopyCreated:cropped,onUnavailable:unavailable})}
+   {:else}
+    <MediaDetails item={assetItem as unknown as NativeMediaItem} permissions={detailsPermissions} actorId={detailsUser?.id??''} embedded context="content" canDuplicateCrop={detailsPermissions.includes('media:upload')} onback={()=>void back()} onclose={close} onupdated={nativeRefreshed} oncreated={nativeCropped} onunavailable={unavailable} />
+   {/if}
   {:else}
    <header><div><h2>{title}</h2><p>Choose {mediaKind==='file'?'a file':'an image'} from the library or upload a new one.</p></div><button type="button" aria-label="Close" onclick={close}>×</button></header>
    <div class="toolbar">
