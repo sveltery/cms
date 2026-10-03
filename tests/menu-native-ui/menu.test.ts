@@ -11,7 +11,7 @@ const item = (id: string, label: string, parentId: string | null = null): MenuIt
 const menu: Menu = { id: 'main', name: 'main', label: 'Main Menu', createdAt: '', updatedAt: '', locale: 'en', translationGroup: 'main' };
 function client() {
   return { fetchMenus: vi.fn(async () => [{ ...menu, itemCount: 3 }]), fetchMenu: vi.fn(async () => ({ ...menu, items: [item('1', 'Home'), item('2', 'About'), item('3', 'Services', '1')] })),
-    createMenu: vi.fn(async () => menu), deleteMenu: vi.fn(async () => {}), createMenuItem: vi.fn(async () => item('4', 'New')),
+    createMenu: vi.fn(async () => menu), updateMenu: vi.fn(async () => menu), deleteMenu: vi.fn(async () => {}), createMenuItem: vi.fn(async () => item('4', 'New')),
     updateMenuItem: vi.fn(async () => item('1', 'Edited')), deleteMenuItem: vi.fn(async () => {}), reorderMenuItems: vi.fn(async () => []),
     fetchMenuTranslations: vi.fn(async () => ({ translationGroup: 'main', translations: [menu] })), createMenuTranslation: vi.fn(async () => ({ ...menu, locale: 'fr' })) } satisfies MenuClient;
 }
@@ -31,7 +31,7 @@ it('native list renders persisted menu counts and edit destinations', async () =
 it('native create dialog preserves a pending write through close and reopen', async () => {
   const api = client(); let finish!: (value: Menu) => void;
   api.createMenu.mockImplementation(() => new Promise(resolve => { finish = resolve; }));
-  const target = await render(MenuList, { client: api }); await click(target, 'Create Menu');
+  const target = await render(MenuList, { client: api, navigate: vi.fn() }); await click(target, 'Create Menu');
   const form = target.querySelector('form')!; (form.elements.namedItem('name') as HTMLInputElement).value = 'slow'; (form.elements.namedItem('label') as HTMLInputElement).value = 'Slow';
   form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })); await tick();
   await click(target, 'Cancel'); await click(target, 'Create Menu');

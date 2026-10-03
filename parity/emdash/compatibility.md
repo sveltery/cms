@@ -800,3 +800,29 @@ across SSR chunks. These framework substitutions are proposed; no final specific
 acceptance is recorded. Svelte checks pass using the previously approved private
 340 dependency copy, still zero own frozen/full-normal/hosted credit. Complete
 startup, cross-family runtime integration and native admin remain unfinished.
+
+
+The native production menu client and Svelte list/editor now connect to the real
+six REST route families. Five original DOM callbacks pass with real mounted
+production components; their first-green result earns zero value-red causality.
+The client preserves Source menu and item inputs, locale propagation, errors
+and the Source custom-link URL pattern. List creation retains pending state
+across dismissal/reopening; item rows preserve Source parent-first display,
+descendant exclusions, sibling reordering and immediate deletion. Native pages
+consume current trusted capabilities, readonly readiness and existing content
+queries. No page/request installs menu storage. Svelte checks and a default
+production build pass against the completed own ordinary frozen434 install.
+
+The complete Source MenuList and MenuEditor JSX files are hosted through a
+test-only React-to-production-Svelte mount transport. Their original API mocks,
+fixtures, expectations and deadlines remain unchanged. Real pinned TanStack
+providers are retained; Toasty and the test-render provider transport substitute
+for Kumo/Lingui provider composition, earning zero Source-provider/full-Kumo
+parity. The parameterized MenuList case expands the 24 static declarations to
+25 actual browser callbacks. All remain unexecuted locally because the approved
+official Chromium runtime is unavailable; only actual hosted CI can qualify
+them. Native content selection uses existing remote collection/content queries;
+full shared ContentPicker search/pagination and multilingual admin catalogs
+remain incomplete dependencies, not passed by these two menu suites. Canonical
+menu startup, MCP/seed/migration suites and whole-family integration stay in
+progress. No final framework difference acceptance or public PR exists yet.
