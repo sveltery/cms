@@ -3,7 +3,7 @@
  import {goto} from '$app/navigation';
  import {base} from '$app/paths';
  import {buildNavItems,filterNavItems,type CommandPaletteManifest} from '$lib/search/command-palette-nav.ts';
- import type {SearchResult} from '$lib/server/search/types.ts';
+ import type {SearchResult} from '$lib/search/types.ts';
  let {manifest,role}:{manifest:CommandPaletteManifest;role:number}=$props();
  let open=$state(false),query=$state(''),pending=$state(false),results=$state<SearchResult[]>([]),focused=$state(0);
  let input=$state<HTMLInputElement>();let timer:ReturnType<typeof setTimeout>|undefined;let controller:AbortController|undefined;

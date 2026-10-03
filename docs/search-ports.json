@@ -6,163 +6,1204 @@
       "blob": "a502022b020d670fc6e94422edca027c7e9d6eb1",
       "sha256": "dfa0bdd6e411cc2ad458223d7407fba08a60144dc28bc5755926cbbddedf8632",
       "port": "tests/source-search/tokenizer.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/search/tokenizer.test.ts",
+      "declarations": [
+        {
+          "title": "uses Porter stemming by default when tokenize is omitted",
+          "sourceDisabled": false,
+          "sha256": "34fbc13c738f0c8a041b4ffecbf2cdc32886d133c8a3a262cd0a16a713bf9978"
+        },
+        {
+          "title": "re-enables an existing collection with trigram and matches a mid-sentence Japanese term",
+          "sourceDisabled": false,
+          "sha256": "1df7f174731b9345d3a39d336247207919436a80a1dc44a4da949fbbd266b71d"
+        },
+        {
+          "title": "preserves existing weights when changing only the tokenizer",
+          "sourceDisabled": false,
+          "sha256": "9154b6fabf35a669a4676fe798f73ff1654fe5b9bc9ba566fa66d1e52b432bda"
+        },
+        {
+          "title": "preserves trigram through disable, re-enable, schema rebuild, and missing-index repair",
+          "sourceDisabled": false,
+          "sha256": "cc9d26fe86c21a4502bbf4bdb1781fab65cb69735ef2752454b448c8c2442a21"
+        },
+        {
+          "title": "rejects unsupported runtime tokenizer values without replacing config or the index",
+          "sourceDisabled": false,
+          "sha256": "8000a28329e48653bedead49bce00f012e49194b2fc9f4c3e2db61af61ca9e72"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/integration/search/title-scope.test.ts",
       "blob": "28670e1bff44f18d819d5eeecc03d4dd0f7f3a8f",
       "sha256": "bace076084c010ad063cd111638a3a33ad0548523bbe5d28dab5e81248080c9e",
       "port": "tests/source-search/title-scope.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/search/title-scope.test.ts",
+      "declarations": [
+        {
+          "title": "default scope matches body text",
+          "sourceDisabled": false,
+          "sha256": "20191b2799cd2a519a36796c04c209a7adfc28cf4b621cd63d78d126dc3eb95e"
+        },
+        {
+          "title": "title scope drops body-only matches",
+          "sourceDisabled": false,
+          "sha256": "6b00fcfcd49118d00eea7f50100e168f1b45717828cebeb7dc80a163d4194399"
+        },
+        {
+          "title": "title scope contains FTS5 operator queries inside the column filter",
+          "sourceDisabled": false,
+          "sha256": "6120d1ad60f787d83f86453860df9d583db9a68017db5e6f4bd549a7ed3a0868"
+        },
+        {
+          "title": "title scope applies to single-collection search",
+          "sourceDisabled": false,
+          "sha256": "7b294c1e094d9c2836147f7c161ad8dca61331b6d973d2e5e629d1b6003a41e7"
+        },
+        {
+          "title": "title scope uses the configured titleField",
+          "sourceDisabled": false,
+          "sha256": "78e9581508522bc0a8c3110417d26dfd43884cb316a0f9a67d6e59352f1bbb07"
+        },
+        {
+          "title": "title scope returns nothing when the title field is not indexed",
+          "sourceDisabled": false,
+          "sha256": "863613b87bd093f515ecd3b026dfa1fafdd2676f036a114e5b36ca58f2a8a64d"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/integration/search/title-less-collection.test.ts",
       "blob": "9d100728246ae6fa155db00ff2732d5971107efb",
       "sha256": "7793feab22c33945c906f38cd392b65844ade7db01bc0fa95e15f080ee9f1eb9",
       "port": "tests/source-search/title-less-collection.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/search/title-less-collection.test.ts",
+      "declarations": [
+        {
+          "title": "searches across all collections when one lacks a title field",
+          "sourceDisabled": false,
+          "sha256": "e2f6debdad51fd352bdbd849d252cfd03aefd840790a58bc93bb2184cd984c73"
+        },
+        {
+          "title": "returns suggestions across all collections, skipping ones without a title",
+          "sourceDisabled": false,
+          "sha256": "7fb414d2619b883601689b6b1853f68167ad8bd1a8748f3d3eefc19fdcd37a34"
+        },
+        {
+          "title": "bulk-resolves title-column membership for a mixed set of collections in one query",
+          "sourceDisabled": false,
+          "sha256": "2b2b5848ad7295116a712d9518519e002e640f46b7c5780642e9a83fad8a4bbd"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/integration/search/title-field-search.test.ts",
       "blob": "a97af4d2e2321640837ce5a31fde9bdd5a3a431d",
       "sha256": "4a03dfb795bda50cffad8da6c35e5d0f8e2f2984186e2dce5a4ef0521ad41060",
       "port": "tests/source-search/title-field-search.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/search/title-field-search.test.ts",
+      "declarations": [
+        {
+          "title": "returns the titleField value as the result title, not the title column",
+          "sourceDisabled": false,
+          "sha256": "569b73d6078cc8db9c3a2df56f71e52d0a18471c9f597e22fc038dc129784269"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/integration/search/suggest.test.ts",
       "blob": "8d5a61d2eaefd4b4a257bf329253beea37ebb7bd",
       "sha256": "733c71ace96b6e1b7b6d947309f8949218d1ed7759cb90376857ed6ca50dd4da",
       "port": "tests/source-search/suggest.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/search/suggest.test.ts",
+      "declarations": [
+        {
+          "title": "returns matching suggestions for a plain prefix query",
+          "sourceDisabled": false,
+          "sha256": "7b701d21007523ff4a9241ba65ee761684b7b1657684b037b8f7395147205115"
+        },
+        {
+          "title": "does not return draft content",
+          "sourceDisabled": false,
+          "sha256": "4fe616785a7b001c2f2b5a108492e4281f9d398a98108961ce446d02fbf2fd4c"
+        },
+        {
+          "title": "returns empty array for a non-matching query",
+          "sourceDisabled": false,
+          "sha256": "44e8f7660ca4c00fb83c1202f1133eac38455fdeaed35217b38e8544e1329a6e"
+        },
+        {
+          "title": "searches using the configured locale casing",
+          "sourceDisabled": false,
+          "sha256": "f62014aad58cc6c8afdb83803c6fbbdb58afbefe7aaa3232109b46c5914f0aa7"
+        },
+        {
+          "title": "suggests using the configured locale casing",
+          "sourceDisabled": false,
+          "sha256": "cb267dfbf8b3b59718a61d0b1d021463b2fd2426ad23463db00c37980333e1a9"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/integration/search/suggest-title-field.test.ts",
       "blob": "96aeeebf85f5e13c20bd37c7d63042d16281074a",
       "sha256": "ef704967a34944a3e8ed35eb3b1f22920e5b07f37b0e40c11a806ce4ad1cc889",
       "port": "tests/source-search/suggest-title-field.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/search/suggest-title-field.test.ts",
+      "declarations": [
+        {
+          "title": "suggests the entry and uses the titleField value as the title",
+          "sourceDisabled": false,
+          "sha256": "86788acc9fa95639135020d4a812d1d312a30c9cb2c0cefb8a2a77b3a3f796b3"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/integration/search/snippet-sanitization.test.ts",
       "blob": "a034c9b1294a55f767acb358dc508aa61fd71554",
       "sha256": "2acae3813cff80c51f0db5b972c48884e445dff9320698bd5de802c08052e309",
       "port": "tests/source-search/snippet-sanitization.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/search/snippet-sanitization.test.ts",
+      "declarations": [
+        {
+          "title": "escapes `<` and `>` in matched content so a `<script>` title cannot execute",
+          "sourceDisabled": false,
+          "sha256": "4531610a96728e5e714e586509ddd03696ec42e9b649bf2cac4f8dd2f71a766a"
+        },
+        {
+          "title": "escapes ampersands so `<3` and `&amp;` round-trip correctly",
+          "sourceDisabled": false,
+          "sha256": "76a006843ff9210e8cd6a537fbd0a36f1c293f2da307dfd25df025b3b1601be1"
+        },
+        {
+          "title": "does not crash when the snippet column is NULL",
+          "sourceDisabled": false,
+          "sha256": "17081c146849d0e547f7582214e98790f19a7ab76fa57d58fcd6bd32419a22af"
+        },
+        {
+          "title": "preserves `<mark>` highlight tags as live HTML",
+          "sourceDisabled": false,
+          "sha256": "e0dc9948cb220d6d70e3a43d39f1716d09defbc958834af8dc2f8a5045a6044f"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/integration/search/portable-text-indexing.test.ts",
       "blob": "8063d73434719ccba67f7d0997c8385064eb2155",
       "sha256": "1264ac8bef6ad6cada3c15f0255f124850feab6d8e6a4e5bb97e24779de209b0",
       "port": "tests/source-search/portable-text-indexing.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/search/portable-text-indexing.test.ts",
+      "declarations": [
+        {
+          "title": "does not match Portable Text structural tokens",
+          "sourceDisabled": false,
+          "sha256": "1f035a75c702ebf44b8b3148c4079ba871de60bc3bc8f2fedde2cfa21fa12e4a"
+        },
+        {
+          "title": "matches prose inside spans",
+          "sourceDisabled": false,
+          "sha256": "1aee669c64466a28fba0ebaf0e99a3c05be15a6f89eed77bfcb90df1139cb720"
+        },
+        {
+          "title": "matches image alt text, captions, and code content",
+          "sourceDisabled": false,
+          "sha256": "0958fb996ca8135a36b6f4ecbd39b191859a646c13fc1deaa73ba59f89281ca2"
+        },
+        {
+          "title": "keeps legacy scalar values searchable",
+          "sourceDisabled": false,
+          "sha256": "471e2a1bd9d2dfcebd4a416110d6cef7adcd3b2a1ac1e2b03150e4d02f30fdcf"
+        },
+        {
+          "title": "returns prose snippets, not JSON fragments",
+          "sourceDisabled": false,
+          "sha256": "388f254d12ff3a91c627af9e0140467ad5ec722e0841ec5009501e14a2a31235"
+        },
+        {
+          "title": "populates fields whose slug collides with a json_tree output column",
+          "sourceDisabled": false,
+          "sha256": "4875912d49ccb1d9f57a83a629f66ce23a616d18a010fad7759e8b13daea6fea"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/integration/search/pagination.test.ts",
       "blob": "2dfc09973bae9c4faf6fbd07cea9b91bc3c7b539",
       "sha256": "5ce5b50b92f97a347004e33fa1334cfdefee86992234e9db1d8d02261dee9535",
       "port": "tests/source-search/pagination.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/search/pagination.test.ts",
+      "declarations": [
+        {
+          "title": "returns a nextCursor when more results exist beyond the limit",
+          "sourceDisabled": false,
+          "sha256": "b9df6dbd6a6c7463b7a837023c067c7e8d4cf9b09f4113016edb1be071b88523"
+        },
+        {
+          "title": "omits nextCursor on the final page",
+          "sourceDisabled": false,
+          "sha256": "6d4e0b935c6e5a7e6b34165e66c4f0dbf065858cc96b529a59234d4f6b0eab66"
+        },
+        {
+          "title": "walks disjoint pages covering every match exactly once",
+          "sourceDisabled": false,
+          "sha256": "072b3bafe298f8aa57a227963ef5f22d6a93f3b9755f1c181f49b195922360cd"
+        },
+        {
+          "title": "rejects a malformed cursor instead of silently restarting",
+          "sourceDisabled": false,
+          "sha256": "ae3b4bc0dc9afc8de22c1e689ed01efa68d4a9fbd1d17376df30595fe73343a8"
+        },
+        {
+          "title": "rejects a cursor from another endpoint even if its orderValue is numeric",
+          "sourceDisabled": false,
+          "sha256": "cf170855cb9f03b1f55f220915981be02d88727a601ce0e0f332250d4096385b"
+        },
+        {
+          "title": "rejects a cursor whose offset exceeds the max search offset",
+          "sourceDisabled": false,
+          "sha256": "b73061ac994b4967a04aa3b76e6a778302e81469492933614b3fe05cf63e5e69"
+        },
+        {
+          "title": "paginates a single-collection search the same way",
+          "sourceDisabled": false,
+          "sha256": "1e3848cb2ca64afdb61a1e3098a7950f7e9deb96aa9959af6191efec1e32fc89"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/integration/search/fts-write-amplification.test.ts",
       "blob": "8127e468af5509dfad1c9ebf4a7d32b60cc6c3b4",
       "sha256": "20afb08c22af8865b86907f633351d38aab423398648a69a3a3899283e163021",
       "port": "tests/source-search/fts-write-amplification.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/search/fts-write-amplification.test.ts",
+      "declarations": [
+        {
+          "title": "does not re-tokenize on a metadata-only update",
+          "sourceDisabled": false,
+          "sha256": "0a44903891e74fe2def2cfd641baf7b6ec1c2807fbddf9d6fbc9964104262916"
+        },
+        {
+          "title": "does not re-tokenize when publish rewrites identical data values",
+          "sourceDisabled": false,
+          "sha256": "cb3e1f47b0ccae2ff4d22d3c2d60b7523d762b200a01a42114775f0aca6083ac"
+        },
+        {
+          "title": "still re-indexes when a searchable field changes",
+          "sourceDisabled": false,
+          "sha256": "b50328c6132e39dc4c6343584ae6da7a4e290b35160c4c76e30f336d2b393091"
+        },
+        {
+          "title": "still removes trashed entries from the index and restores them",
+          "sourceDisabled": false,
+          "sha256": "992e3c1ab7b85c98fe4f21100cd8002ba338f5180801b038db503e8c5a4c957b"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/integration/search/fts-repair.test.ts",
       "blob": "480297d8631853fe0ba655a884718de02dbfc0df",
       "sha256": "fa9ffe518568ed158a2a136db58d65a96541150eb34a1b94f8f68def1dfb6c94",
       "port": "tests/source-search/fts-repair.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/search/fts-repair.test.ts",
+      "declarations": [
+        {
+          "title": "recreates a missing FTS table when search remains enabled",
+          "sourceDisabled": false,
+          "sha256": "e5648ec296788636c7a786d3d9562a2e0261f60c6f6e0fb17d224f3093b92e76"
+        },
+        {
+          "title": "keeps the FTS index in sync after soft delete",
+          "sourceDisabled": false,
+          "sha256": "6391e24445fe804d6266537657454c584ecab603f2bdce8e270fcc77328737d9"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/integration/search/fts-corruption.test.ts",
       "blob": "2d3948fdbd0990d14cfde4f193fe05e3df38ece4",
       "sha256": "038ad8a0107f3b461681502c31b233f3b6b8be5e09142f9f8809e502af484687",
       "port": "tests/source-search/fts-corruption.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/search/fts-corruption.test.ts",
+      "declarations": [
+        {
+          "title": "does not corrupt the FTS index when a published page is edited and re-published",
+          "sourceDisabled": false,
+          "sha256": "dd4e921ecc3f5882e035a273e91e217633bada1b279960859261d22392a50701"
+        },
+        {
+          "title": "survives the full trash lifecycle (soft-delete -> restore -> integrity-check)",
+          "sourceDisabled": false,
+          "sha256": "a2b783aca742b20ff3a737f998afdbfb0ff509c1ad9e399f284ee72b5f9bb888"
+        },
+        {
+          "title": "survives permanent delete of a soft-deleted row without corrupting the index",
+          "sourceDisabled": false,
+          "sha256": "bdbd10bac5437f0d703a6ac1bf916c8bfa4ed967a5fc5bfe15e55bc2a82d2732"
+        },
+        {
+          "title": "survives editing a row while it's in the trash without corrupting the index",
+          "sourceDisabled": false,
+          "sha256": "f91479a22c7102c12e239f8f673f49cc1ff4d4ffaf761678d1c8df6711c2754f"
+        },
+        {
+          "title": "survives many edit/publish cycles without corrupting the index",
+          "sourceDisabled": false,
+          "sha256": "4f7f8ad47a1454cf0e6a1519240b885163667bc2de4ccc7682d26ae50e867fd5"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/integration/content/content-list-search.test.ts",
       "blob": "189ce97fc35f0d71ff96523b804f542da764980f",
       "sha256": "8442e85acf1d2ae0b89e71e894bdb1a652f63ceb2dd56de4df060097c5016f63",
       "port": "tests/source-search/content-content-list-search.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/content/content-list-search.test.ts",
+      "declarations": [
+        {
+          "title": "finds an entry that lives far past the first page",
+          "sourceDisabled": false,
+          "sha256": "53c9a88af58211eab7de661cdc744734c69dbc06195dec6bf863754ad3f934aa"
+        },
+        {
+          "title": "matches case-insensitively",
+          "sourceDisabled": false,
+          "sha256": "43063075398b0f1d10ab757c95a63b5e9615aabeee5573f38e1641e5954b1415"
+        },
+        {
+          "title": "searches the slug as well as the title",
+          "sourceDisabled": false,
+          "sha256": "53c0ff6d5e7729338f693a4321c8631066cc60eab0671c58b4a73c0519873b6f"
+        },
+        {
+          "title": "searches custom fields marked searchable",
+          "sourceDisabled": false,
+          "sha256": "bb5ac6e558ae911562756ab7ad50cf48bb4eb88ce1beaf7f65385bca80a7d371"
+        },
+        {
+          "title": "treats LIKE wildcards in the query literally",
+          "sourceDisabled": false,
+          "sha256": "ef30e721b7767944fb2a732d692eec88f493cfa7c27fe12f32a932c468dd458f"
+        },
+        {
+          "title": "returns the full unfiltered list when no query is given",
+          "sourceDisabled": false,
+          "sha256": "7cfbbddd66816fac1d36aca352bb0aa31f71ac573012da45259de1064f8efb9c"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/integration/content/content-list-search-title-field.test.ts",
       "blob": "244ea7d35f9c9ed928670cad672ac5d740f94bc3",
       "sha256": "c2577980a35f8efa36c059b59d7d2dc4df865e455e7ba16c1586fd6054021e29",
       "port": "tests/source-search/content-content-list-search-title-field.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/content/content-list-search-title-field.test.ts",
+      "declarations": [
+        {
+          "title": "finds an entry by its titleField value, past the first page",
+          "sourceDisabled": false,
+          "sha256": "a5fa0dfbbe1540f44a006a70e66f703f9ba5e4f1a810f00c48a87d41838ba7a1"
+        },
+        {
+          "title": "matches the titleField case-insensitively",
+          "sourceDisabled": false,
+          "sha256": "501e1fef714dbf74a8d1aa34cfe5d66d3999ffc7793d2e8c079d4367ad1e3e69"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
       "blob": "d9941279a7e9839ec2610b583c3a971704d94018",
       "sha256": "d8f7af95bb5360905fae212659c6d0346fdf3c725c21d4bf9493c0359c69af05",
       "port": "tests/source-search/content-content-list-search-fts.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "declarations": [
+        {
+          "title": "finds an entry by title token prefix",
+          "sourceDisabled": false,
+          "sha256": "150eb5b8eb791a374d6f9d9de73fddc9ba27378f4060ee8c5516930aec0f002c"
+        },
+        {
+          "title": "matches case-insensitively",
+          "sourceDisabled": false,
+          "sha256": "abbd57c7aa0849755b270d4b33e9e2f3cb7166660f1b15678f092faadf400cf1"
+        },
+        {
+          "title": "matches multi-word prefixes across the title",
+          "sourceDisabled": false,
+          "sha256": "3729830380d3c00e8d0507e3bf2c9fb6f622f585bedf5a030db33605725f3116"
+        },
+        {
+          "title": "finds an entry by slug prefix (slug is not in the FTS index)",
+          "sourceDisabled": false,
+          "sha256": "304b6a46326afe38de3f146654e5021adacd1bb95b5ccea7c5a57edf0e4505b7"
+        },
+        {
+          "title": "finds an entry by a searchable custom field",
+          "sourceDisabled": false,
+          "sha256": "5d5fae499fd39ae5edacb2fca99e99229e9be8b13091001cd14fd991c846fa4f"
+        },
+        {
+          "title": "returns a total that matches the filtered set, not the whole table",
+          "sourceDisabled": false,
+          "sha256": "7c1997eb7af25439d9a845daf008de29105187d1337c83bd632fb58ae55c64bb"
+        },
+        {
+          "title": "treats double quotes in the query literally instead of erroring",
+          "sourceDisabled": false,
+          "sha256": "44ec080b9886f7c0b5100a079db732751c7f4ae76b67356a5334873baa49f10a"
+        },
+        {
+          "title": "treats FTS operators as plain words",
+          "sourceDisabled": false,
+          "sha256": "92f51edb86b91f07a337a6cf7283e100e34a6f79615ab01cf8d6502119d3b09a"
+        },
+        {
+          "title": "excludes soft-deleted rows (FTS triggers keep the index in sync)",
+          "sourceDisabled": false,
+          "sha256": "7b02aa30a0ffa7b8fa66e69fb8b42b32b262317cac7dc165b8a6c643bba0cd7b"
+        },
+        {
+          "title": "still finds title matches via the LIKE fallback",
+          "sourceDisabled": false,
+          "sha256": "3cbf485f582fa88ec404a95d0d36478b5bb0a9a6550c5c70d0a6922292e057a0"
+        },
+        {
+          "title": "searches custom fields through the LIKE fallback",
+          "sourceDisabled": false,
+          "sha256": "2e20eec60d4181d1f2ac845c168ce6ab4c128a93ccef4a8a7093575f01557d12"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/unit/search/match.test.ts",
       "blob": "12e655d7d3b13044cae13ca056b2250e0a637f73",
       "sha256": "3661f64ad01e642db5686b7bff730fd86d3108929f3c7867d895d78ac212eff0",
       "port": "tests/source-search/match.test.ts",
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/unit/search/match.test.ts",
+      "declarations": [
+        {
+          "title": "quotes each term with prefix matching, implicit AND",
+          "sourceDisabled": false,
+          "sha256": "001826d1253ce34c0ec0cb6b1e1c14f791d8b8dd13b633187d9b08dc7fdad223"
+        },
+        {
+          "title": "escapes interior double quotes so no input can produce FTS5 syntax errors",
+          "sourceDisabled": false,
+          "sha256": "90a13c0e70d6808b91d5b8273fff3570dcc25d024a3b5fb6842bdd940342ccb4"
+        },
+        {
+          "title": "neutralizes FTS5 operators by quoting them",
+          "sourceDisabled": false,
+          "sha256": "c848c24433b0c09b686f79fa4bc1d339f00fd1a5579821c18968deaf3bdcf3c8"
+        },
+        {
+          "title": "returns empty string for whitespace-only input",
+          "sourceDisabled": false,
+          "sha256": "9ce79c810e5c2e0106ffcfbae38fe5083a513096379b5f55a378afab6d6e72ed"
+        },
+        {
+          "title": "lowercases and appends the prefix wildcard",
+          "sourceDisabled": false,
+          "sha256": "4b8bf4ff56f276d651829882101062bb29d78517cdd81e146992d5918709463c"
+        },
+        {
+          "title": "treats GLOB metacharacters literally via character classes",
+          "sourceDisabled": false,
+          "sha256": "60e392fa355a2bd03ebf0acf87e894f5f49b8bfe5ddef4c633189a514137532b"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/integration/mcp/search.test.ts",
       "blob": "96ac12298b3397c4ceb13198bddd5aff6177e3e4",
       "sha256": "f48ad16795bc01b1e5f9c306a0e590d286a16f43699d6f7b723a3151d767087d",
       "port": null,
-      "state": "committed-before-implementation; executable evidence pending"
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/packages/core/tests/integration/mcp/search.test.ts"
     },
     {
       "source": "e2e/tests/search.spec.ts",
       "blob": "81c8770134d0307f25b19945151956949e5e2dbc",
       "sha256": "4bf9e4df0d3d3ad740139c21c4f879e9db99750dfe00333d1ee1153400c58016",
-      "port": null,
-      "state": "committed-before-implementation; executable evidence pending"
+      "port": "tests/browser/search-upstream.spec.ts",
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "authority": "parity/emdash/search-source/e2e/tests/search.spec.ts",
+      "declarations": [
+        {
+          "title": "opens with Cmd+K keyboard shortcut",
+          "sourceDisabled": false,
+          "sha256": "65da6206ce7cb2f8781e595ce1562f1a7f7f070553426fa9a7fa36021959fad5"
+        },
+        {
+          "title": "closes with Escape",
+          "sourceDisabled": false,
+          "sha256": "2f1ad2aade1a518f216e6bcf0b77b4386a0b9b493d31d1ad5b6b5dc8c597bc45"
+        },
+        {
+          "title": "shows navigation items by default",
+          "sourceDisabled": false,
+          "sha256": "eac9b1850eea9f390ce89627601827ee8137dc38fde11d4f20f447ce5f7e7796"
+        },
+        {
+          "title": "filters navigation items when typing",
+          "sourceDisabled": false,
+          "sha256": "b03539c9c72f055d9e9519c23ba9f84945d32605481fbb637867c9b02109af03"
+        },
+        {
+          "title": "shows empty state for no matches",
+          "sourceDisabled": false,
+          "sha256": "8821ab25376ca5d9afea0ea6d145805223547ddeb65f9add8404be62e4baad0f"
+        },
+        {
+          "title": "navigates to a page when selecting a nav item",
+          "sourceDisabled": false,
+          "sha256": "0ab5f4124acba3fce065a39a5f390015360c6fa4528589d36ca2c2ccaf1ec4ed"
+        },
+        {
+          "title": "search endpoint is publicly accessible",
+          "sourceDisabled": false,
+          "sha256": "6e5822168712fd1c26b6b6eed511a8641f858ca95aacb5ffb7771da4834cd613"
+        },
+        {
+          "title": "search admin endpoints still require authentication",
+          "sourceDisabled": false,
+          "sha256": "2ef780ca6b84f200990cd21eff4136b19dd9015905709aa1f75fcfe2dd3d826b"
+        },
+        {
+          "title": "search endpoint requires a query parameter",
+          "sourceDisabled": false,
+          "sha256": "778379bb18de27837045b2379b680309ee33993b06cd6da722ad8618453abd8e"
+        },
+        {
+          "title": "search returns results after enabling search",
+          "sourceDisabled": false,
+          "sha256": "7d305b68e790e11f8cd3aa65a3b6c60e6487a6117e6fc332e9c59cc67b2f7c36"
+        },
+        {
+          "title": "search filters by collection",
+          "sourceDisabled": false,
+          "sha256": "c7e1e9084f0f269a8193a04565548868959e9139df84d31f96f3ec2dff9c9a87"
+        },
+        {
+          "title": "search returns empty for non-matching query",
+          "sourceDisabled": false,
+          "sha256": "6f15286d6b16af329ce983c11dbc78cd80dcc50077701004379465f796a987c6"
+        },
+        {
+          "title": "search respects limit parameter",
+          "sourceDisabled": false,
+          "sha256": "4c675e428defe52844be04382ed64a30aad97916cde4bf45df80587b4d1a552b"
+        },
+        {
+          "title": "returns suggestions for partial queries",
+          "sourceDisabled": true,
+          "sha256": "bb26f04da04de5cf4941eab178bee0e2cd01a46a4afd54860b2b2e7614593ea3"
+        },
+        {
+          "title": "suggestions require a query parameter",
+          "sourceDisabled": false,
+          "sha256": "81b92ed27b662880e890ef4d74f952e102e633f58f6cd1d5837e03c9afd354b8"
+        },
+        {
+          "title": "returns search index statistics",
+          "sourceDisabled": false,
+          "sha256": "2b51f0470f809a9145fca2d46b46e75cfb399a135944e17625804f0e43c60914"
+        },
+        {
+          "title": "enables search for a collection",
+          "sourceDisabled": false,
+          "sha256": "7033f5259ad702b218aa3adbaba1ac69107d6cb7266462e55fcddb54089e0eda"
+        },
+        {
+          "title": "disables search for a collection",
+          "sourceDisabled": false,
+          "sha256": "29a77145a04faf2de2340e262645a15005fc69554886314d21c664c2ab2fda30"
+        },
+        {
+          "title": "enable requires collection name",
+          "sourceDisabled": false,
+          "sha256": "873eca3e42440d43290ff68fd26cfad62bc0cc7cafc54a0d46884cab212d2e5f"
+        },
+        {
+          "title": "rebuilds the index for a collection",
+          "sourceDisabled": false,
+          "sha256": "2182ca476be7e02afaab630062b55a33886bd4512c116697bb6a5fcb143ac417"
+        },
+        {
+          "title": "rebuild fails for collection without search enabled",
+          "sourceDisabled": false,
+          "sha256": "8c2ab6069f60f65b141733800b889a5cefd9f35f7a96e6855d9168ac2e0e7804"
+        },
+        {
+          "title": "shows content results when searching with enabled collections",
+          "sourceDisabled": true,
+          "sha256": "628303c029064c5b6b4d098a4fb3f48eaf67d4070b2b92ed356d1473833e9426"
+        },
+        {
+          "title": "navigates to content editor when selecting a content result",
+          "sourceDisabled": true,
+          "sha256": "6e8c36bf33928afd7b34e81803c6c8bbb869634056eadfbd082d2daade08375e"
+        }
+      ]
     },
     {
       "source": "packages/core/tests/unit/schema/registry.test.ts",
       "blob": "7e1413acd99071e888693021224a9644efa2a8c5",
       "port": "tests/source-search/registry-fts.test.ts",
-      "scope": "13 complete callbacks in Search (FTS) Integration and atomicity: rollback on FTS sync failure; remainder schema registry explicitly uncredited"
+      "scope": "13 complete callbacks in Search (FTS) Integration and atomicity: rollback on FTS sync failure; remainder schema registry explicitly uncredited",
+      "authority": "parity/emdash/search-source/packages/core/tests/unit/schema/registry.test.ts",
+      "sha256": "31121e7e6be3db373e0d2c09985e1e11e46115a750a26d085fd1c6c70933e7ee",
+      "partial": true,
+      "state": "immutable authority verified; assertion history and runtime evidence recorded in docs/search.md",
+      "declarations": [
+        {
+          "title": "does not auto-enable FTS when adding a searchable field",
+          "sourceDisabled": false,
+          "sha256": "95a2995f80eb9f156e4bf8a78eebfeb1424f2f3b03e146c3dbef165cf2df7da6"
+        },
+        {
+          "title": "does not auto-enable FTS when adding search support to a collection",
+          "sourceDisabled": false,
+          "sha256": "cabc6a1df83081412fc074832a466289fbe91d1c2c34171428ee3093f061d1dd"
+        },
+        {
+          "title": "disables FTS when search support is removed from a collection",
+          "sourceDisabled": false,
+          "sha256": "cc5eb6a3d6afb2359a7b2f59dfda205ed57a249bd0e341a9dbc372a1b861dd32"
+        },
+        {
+          "title": "rebuilds FTS table to include a new searchable field when collection already has search enabled",
+          "sourceDisabled": false,
+          "sha256": "8355d940532723563f333d56f2bce0add8785e4cd4a8a5c7a4ce52107d8fa024"
+        },
+        {
+          "title": "deletes a searchable field from a search-enabled collection without error",
+          "sourceDisabled": false,
+          "sha256": "3ce5e9373469fcecde6c9875a33821cd09639d4366bcfca95841cf3904d054e5"
+        },
+        {
+          "title": "drops FTS table when deleting a search-enabled collection",
+          "sourceDisabled": false,
+          "sha256": "daa4d21064ffc7a895a158289c42d95d097a3e63c668e76ed102f705e8160efd"
+        },
+        {
+          "title": "disables FTS when the last searchable field is deleted",
+          "sourceDisabled": false,
+          "sha256": "308fc94838aef36cbc9dbfbd45c685f9aa0de1340ae579749d277dea9c6803ac"
+        },
+        {
+          "title": "does not create FTS table when collection supports search but has no searchable fields",
+          "sourceDisabled": false,
+          "sha256": "d15b572b0041461b05d09d042bc0cb7f3c88004a37551bf5c16927551e87b1a7"
+        },
+        {
+          "title": "preserves weights in config when search support is toggled off",
+          "sourceDisabled": false,
+          "sha256": "95c20156130c9cacfb8b90a6b6139f6e5ead147da93fb800e6a368e31f800926"
+        },
+        {
+          "title": "rolls back updateCollection when FTS disable fails",
+          "sourceDisabled": false,
+          "sha256": "aa060b2c5d186ff1bab04c58e52382462b77fe614de9bc9815ba2d4ad7e0933d"
+        },
+        {
+          "title": "rolls back updateField when FTS rebuild fails",
+          "sourceDisabled": false,
+          "sha256": "de4fb00386ed315ae8e56636dd601bd0f8d0e6b3175bb35bf66007097b53a138"
+        },
+        {
+          "title": "rolls back deleteField when FTS rebuild fails",
+          "sourceDisabled": false,
+          "sha256": "d595064ca17f6659b3f4351c89fe8223b806a3e7da0ff9430b6607f7dceeecf2"
+        },
+        {
+          "title": "rolls back createField when FTS rebuild fails",
+          "sourceDisabled": false,
+          "sha256": "75d343f665a379cdeac9cd2a499858daa806186fbc18eadd6a7428e60e8ede58"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/components/live-search-routing.test.ts",
+      "authority": "parity/emdash/search-source/packages/core/tests/unit/components/live-search-routing.test.ts",
+      "blob": "bb39d1ea6e7cd76aa5d138a0f61306169a361356",
+      "sha256": "f081f4f178ae77d38e9aa0e76850a90ec6fb1497f8968caf3e1185f18a760add",
+      "port": "tests/source-search/live-search-routing.test.ts",
+      "declarations": [
+        {
+          "title": "uses the default collection URL when no route template exists",
+          "sourceDisabled": false,
+          "sha256": "2ef35cc3cb04217728aab9235c454c08ca6a6a4cda03dd3f335cac563744e4ea"
+        },
+        {
+          "title": "falls back to the id when a result has no slug",
+          "sourceDisabled": false,
+          "sha256": "e502fde789c46a4f3ec20218d0355c6275438fbb80c8de70b4eeb75ff5c8a18a"
+        },
+        {
+          "title": "applies collection route templates",
+          "sourceDisabled": false,
+          "sha256": "d66d055830109acb1783da88ca3d9938761c79c4e759e3f335a78e8d4d267164"
+        },
+        {
+          "title": "replaces all supported route template tokens",
+          "sourceDisabled": false,
+          "sha256": "1615d2cf1e09d7ff11c60cfc5ad093de238cc92068977e2fdb02a8f50ec70588"
+        },
+        {
+          "title": "treats dollar signs in route values as literal text",
+          "sourceDisabled": false,
+          "sha256": "b48b2b83726d3c687aad416702be5cceeaf78993b9e3ecc8b2d0eaff827bf926"
+        },
+        {
+          "title": "treats dollar signs in fallback slug values as literal text",
+          "sourceDisabled": false,
+          "sha256": "254b681b1db09f38ec7822b9de4da84c901c9e5784c92bffc8310ca4451692dd"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "authority": "parity/emdash/search-source/packages/core/tests/unit/components/webmcp-search.test.ts",
+      "blob": "02ff5d0a5abe288feb54dd8ba8c1b1ecf6188ca3",
+      "sha256": "77eab36efbb40679c778ac6c3af919a44612f9e1908d214452e6c5c80d214da6",
+      "port": "tests/source-search/webmcp-search.test.ts",
+      "declarations": [
+        {
+          "title": "searches the public API with the configured scope and clamps the limit",
+          "sourceDisabled": false,
+          "sha256": "814adadb0bb35c56266ad1c2ae8cbd8c0202dbf1eb54fc5676778ed1a905c123"
+        },
+        {
+          "title": "returns absolute URLs and plain-text excerpts",
+          "sourceDisabled": false,
+          "sha256": "2e7c529a004c505661e2f6acb2d84629088883f1dba3d9eb7cc8e550e73d65d9"
+        },
+        {
+          "title": "reports an empty query or failed request as a tool error without throwing",
+          "sourceDisabled": false,
+          "sha256": "834f3624c4ad54594cc0a8f618aa99899aeee72670ae419386ce1fa854fe66a7"
+        },
+        {
+          "title": "keeps the configured limit within what the search API accepts",
+          "sourceDisabled": false,
+          "sha256": "2205e57668a3575d7faf4716e3b077d12e33c30dbf0420be40a124e17ba78eed"
+        },
+        {
+          "title": "prefers document.modelContext over the deprecated navigator location",
+          "sourceDisabled": false,
+          "sha256": "c78913aec9ec07fbeaa964decf1266c355e01f9573509fac82634bdc92cee940"
+        },
+        {
+          "title": "unregisters the tool when the signal aborts",
+          "sourceDisabled": false,
+          "sha256": "09411eb8b6850a79f06cb0523bf716f7d7b949fce6de2c6823197f32a419bfbb"
+        },
+        {
+          "title": "does not throw when the browser rejects the registration",
+          "sourceDisabled": false,
+          "sha256": "357dc6ddc72ed5cdbfd46a63a0d96b46a638ad08655594c298253e6b1017068b"
+        },
+        {
+          "title": "reports a rejected registration instead of leaving the promise unhandled",
+          "sourceDisabled": false,
+          "sha256": "f6c2934af85df2544b185cf432f956f05c003c9216deb2a8ac6ddfd613d5fb2a"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/utils/init-lock.test.ts",
+      "authority": "parity/emdash/search-source/packages/core/tests/unit/utils/init-lock.test.ts",
+      "blob": "40f515ce84c425c438764cbbfa9db2c3fd59958b",
+      "sha256": "ccbfda8feb393b9dceb8e61f673136cf67998e91ce632b7441f7609ff31ed026",
+      "port": "tests/source-search/init-lock.test.ts",
+      "declarations": [
+        {
+          "title": "returns the cached value without calling init",
+          "sourceDisabled": false,
+          "sha256": "328f3ccab3f44a38e6cf52c4c8722b9a10c1961749daa361326a2e7fea3668a5"
+        },
+        {
+          "title": "runs init once and shares the result with concurrent waiters",
+          "sourceDisabled": false,
+          "sha256": "64bc07953b0261b743d6328521212c0211363826f54ade6350e927a3d3b939fe"
+        },
+        {
+          "title": "reclaims the lock after the deadline when the owner is abandoned",
+          "sourceDisabled": false,
+          "sha256": "6e26388f7fc16c3035b829f904985ff9e01be299c0d85b11ef56bdbc1d00acb3"
+        },
+        {
+          "title": "releases the lock when init throws so the next caller can retry",
+          "sourceDisabled": false,
+          "sha256": "61cebe49a0585c4c809a8b74553d08777bcff06c29d0d8e6aba1798e080c26d7"
+        },
+        {
+          "title": "gives up after maxWaitMs instead of waiting forever",
+          "sourceDisabled": false,
+          "sha256": "ba815f4ba2d35d71a10ab2d136ab7f0c814ca32acd37e0b60e0c7cac046d2f25"
+        },
+        {
+          "title": "reclaims from a live-but-slow owner without running init more than twice",
+          "sourceDisabled": false,
+          "sha256": "57e1f6824591692e32f7462102faba7bd6f611bebbae8bca231f9fa97a400382"
+        },
+        {
+          "title": "gates publication so a reclaimed slow owner cannot overwrite the reclaimer's value",
+          "sourceDisabled": false,
+          "sha256": "a2a8fdc2a929d1354aa604c6ccf8879c057d9508788be05ca73ce65affc44e0b"
+        },
+        {
+          "title": "does not let a finished stale owner release the reclaimer's lock",
+          "sourceDisabled": false,
+          "sha256": "56c867eab7af6b86c4d3824147ed5a3a295919c06b08eacec5c47ba325327ced"
+        },
+        {
+          "title": "anchors the in-flight init promise and swallows its rejection",
+          "sourceDisabled": false,
+          "sha256": "050f6ea0c6120aa75f401285bca6c4e2f1f990706dfd00b053ad4b6b9f270327"
+        },
+        {
+          "title": "lets a waiter pick up a value cached by the owner mid-wait",
+          "sourceDisabled": false,
+          "sha256": "a94547e580f0e8ede862e8ec8ed784ebe94cde3200ccf0443c33739cea11644b"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/utils/single-flight-cache.test.ts",
+      "authority": "parity/emdash/search-source/packages/core/tests/unit/utils/single-flight-cache.test.ts",
+      "blob": "fa3ebc20738cb992eb626162ce3c817dc171eb68",
+      "sha256": "ccc497c7db000cf19353ab4d907bfe6b8469abf258e07620d374c4fa59a53aaa",
+      "port": "tests/source-search/single-flight-cache.test.ts",
+      "declarations": [
+        {
+          "title": "caches the resolved value across calls (one fetch)",
+          "sourceDisabled": false,
+          "sha256": "5a83798f29aaa2b395959c40e1617c4c8aaeff3df066047ec631cc1ee2bc9fdf"
+        },
+        {
+          "title": "caches a void/undefined result so it is not treated as a miss",
+          "sourceDisabled": false,
+          "sha256": "0fca2c6ce7a08e52d0e366619b1a54abe41b0c7e69285885526be8b72adeb257"
+        },
+        {
+          "title": "coalesces concurrent callers into a single fetch",
+          "sourceDisabled": false,
+          "sha256": "8fbbba5c5e24854d2506c5f6ad5ee3ae346bbb7a5642c778fa64888149b421e6"
+        },
+        {
+          "title": "invalidateSingleFlightCache forces a refetch",
+          "sourceDisabled": false,
+          "sha256": "740859fbaef378f66c4b7fa387c9a8888aeba389696cdac12f9fed8dae167ff2"
+        },
+        {
+          "title": "a stranded owner fetch does not poison later callers",
+          "sourceDisabled": false,
+          "sha256": "9ce978d35db801fbf0dfb8de406e4f60cd9a6943041e45da4f70efbeb0e2e565"
+        },
+        {
+          "title": "rejects the owner at ownerTimeoutMs instead of hanging forever",
+          "sourceDisabled": false,
+          "sha256": "ee17aa423aa3ee56404cd9561225ce9abc8887457b8e567f3d70a259a5c92bb5"
+        },
+        {
+          "title": "anchored fetch still publishes for a later caller after the owner times out",
+          "sourceDisabled": false,
+          "sha256": "f2206841751816799e8342661149c92d7d370785ffdb6f0856662a8c118a8cf8"
+        },
+        {
+          "title": "keeps the reclaim deadline above ownerTimeoutMs so a slow-but-live owner is not superseded",
+          "sourceDisabled": false,
+          "sha256": "1c82e7910e241aec734974f19eddf11c4c834d03cd84c71acb2159a1794d3c74"
+        },
+        {
+          "title": "invalidation frees the lock so a fresh reader doesn't wait out a stale owner",
+          "sourceDisabled": false,
+          "sha256": "32947ce3d982fb9f8b96bc6ca904449c0dab175e95dc91d0a2fc192789e1e225"
+        },
+        {
+          "title": "ignores a non-positive ownerTimeoutMs instead of rejecting instantly",
+          "sourceDisabled": false,
+          "sha256": "5a5888131bffb754968cd74acff0304f667977645c1cb26f5e5ee0ccc33f08f0"
+        },
+        {
+          "title": "propagates a fetch rejection to the caller and lets the next caller retry",
+          "sourceDisabled": false,
+          "sha256": "f8a0b6bd501749c461f7089b6be0324e5595115674f3cd3ef8923fd1ade135bd"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/AdminCommandPalette.test.ts",
+      "authority": "parity/emdash/search-source/packages/admin/tests/components/AdminCommandPalette.test.ts",
+      "blob": "1cba36fd0c74875860705cdd083f4f50fbc13be4",
+      "sha256": "1629d952b16117e61298d0d767e22e60200525d37140984ad1a477f42bbe2909",
+      "port": "tests/source-search/command-palette-nav.test.ts",
+      "declarations": [
+        {
+          "title": "uses collection overrides and the default collection icon",
+          "sourceDisabled": false,
+          "sha256": "208e37c9dd04273649a45e66eb50f795860cd91df212b1dd23014a3b893c54b2"
+        },
+        {
+          "title": "offers the calendar to contributors and above",
+          "sourceDisabled": false,
+          "sha256": "0d1135df832f6d0b3b47b0b0f75100e96fd5acb60a9aee259f9855d280090aea"
+        },
+        {
+          "title": "leaves hidden collections out of the navigation links",
+          "sourceDisabled": false,
+          "sha256": "1d5e6e092fbb66dca878f2f9bff63bc9c336408253aefb1606ad1dd9a739bcd3"
+        },
+        {
+          "title": "uses a plugin page's declared icon",
+          "sourceDisabled": false,
+          "sha256": "89b8f8ed31230666b556b9c25a63d8650a0b1d03bcd71b93cc9bc531f8ca61bb"
+        },
+        {
+          "title": "builds a navigable route for a plugin page declared without a leading slash",
+          "sourceDisabled": false,
+          "sha256": "0cdc27e79eb9a7fa131049507d217f1fcbde2f7b97d5aadd8567fe672025ef95"
+        },
+        {
+          "title": "keeps a native plugin root page in navigation",
+          "sourceDisabled": false,
+          "sha256": "90c545b897de3f5f327b406c0be51a729a36d7fcde24ff66d8ed981b7f193da2"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/repro/live-search-locale.render.test.ts",
+      "authority": "parity/emdash/search-source/packages/core/tests/repro/live-search-locale.render.test.ts",
+      "blob": "9a0cfc6922b69fdb15e5bb255572b622f3b6db87",
+      "sha256": "634bac684bf30cf2682e3f3bea5744653f96cef89e19d59ed69f8a44fa23419d",
+      "port": "tests/source-search/live-search-locale.render.test.ts",
+      "declarations": [
+        {
+          "title": "sends no locale when the site has no i18n configuration",
+          "sourceDisabled": false,
+          "sha256": "3350cc26acaf10c401d244378a5d1784a421d2a56f5203a830261df8c50878df"
+        },
+        {
+          "title": "forwards an explicit locale",
+          "sourceDisabled": false,
+          "sha256": "6dc66cf1355c4bb9473786ace1275d027962e56a155a45e6abd7994058a85e9e"
+        },
+        {
+          "title": "sends no locale when passed null, so results span every locale",
+          "sourceDisabled": false,
+          "sha256": "2c64cf39374b9816cb5b72656b1541296c6b2e0f13af79f21f3d863fc0e2cf0a"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/utils/fixtures.ts",
+      "authority": "parity/emdash/search-source/packages/core/tests/utils/fixtures.ts",
+      "blob": "70801b7bffcf977674c67f554ad289a6e4bf27b2",
+      "sha256": "7bca3d4ac15f3986c0cd9d1e826be6b64dda8cea8cf2a142284d912da3cfb95d",
+      "port": null,
+      "state": "preserved fixture authority; native real-provider fixture transport is explicitly substituted"
+    },
+    {
+      "source": "packages/core/tests/utils/test-db.ts",
+      "authority": "parity/emdash/search-source/packages/core/tests/utils/test-db.ts",
+      "blob": "b75bd5b5770e44050b2d0da28e87c155c603ed66",
+      "sha256": "0e6a59b5d2109e4134aed1277f82089725a53fe079ee0ec0c2622169d2480dc0",
+      "port": null,
+      "state": "preserved fixture authority; native real-provider fixture transport is explicitly substituted"
+    },
+    {
+      "source": "packages/core/tests/utils/mcp-runtime.ts",
+      "authority": "parity/emdash/search-source/packages/core/tests/utils/mcp-runtime.ts",
+      "blob": "bd13311dc203f41c22e709b13b5b74c531257c53",
+      "sha256": "57f330866a627bf5aed48ed2dea1e5f04c178021ec823ffcc78761624503ff8f",
+      "port": null,
+      "state": "preserved fixture authority; native real-provider fixture transport is explicitly substituted"
     }
   ],
   "limitations": [
-    "MCP harness and complete search e2e callbacks preserved but not yet executable; missing-import/setup failures earn zero red evidence.",
-    "Node and real local D1 runs recorded separately; PostgreSQL unavailable FTS remains pinned SQLite-only."
+    "MCP search whole callbacks remain original-only until the actual SDK gateway is composed; zero MCP product or source execution credit.",
+    "Secured browser baseline completed; changed API/UI hosted verification pending. All three pinned browser fixmes are retained.",
+    "Node and real local D1 are separate full runs. FTS is pinned SQLite-only; no PostgreSQL search claim.",
+    "Native icon identities/SSR fixture/framework presentation substitutions are documented; no React/Astro framework execution or installed plugin-navigation credit."
   ],
   "modules": [
     {
       "source": "packages/core/src/search/fts-manager.ts",
       "blob": "1de7650597123a72b11a2ca8ae45ce367a1fe290",
-      "local": "src/lib/server/search/fts-manager.ts"
+      "local": "src/lib/server/search/fts-manager.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/search/fts-manager.ts",
+      "sha256": "6cdb53024cdf6f7d95553d659cb8c904ec733889506b64837d3f177d1aac308d"
     },
     {
       "source": "packages/core/src/search/query.ts",
       "blob": "c65a7375bc9a975ae23217bb8cfaf23c21ec20e2",
-      "local": "src/lib/server/search/query.ts"
+      "local": "src/lib/server/search/query.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/search/query.ts",
+      "sha256": "86b8944331e7ade4fd8ecf605d6f19eff1e06d6ce9a5502bebf4320ab5e6036d"
     },
     {
       "source": "packages/core/src/search/types.ts",
       "blob": "a96af62d057f7e516208ca68181b891317e877f9",
-      "local": "src/lib/server/search/types.ts"
+      "local": "src/lib/search/types.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/search/types.ts",
+      "sha256": "eaa93697b80b39a064cb745594241f81d1ab49b13f389ced67dc805dafe69356"
     },
     {
       "source": "packages/core/src/search/text-extraction.ts",
       "blob": "e228060ff4f7c85b584c49195ea859a87d4e1fae",
-      "local": "src/lib/server/search/text-extraction.ts"
+      "local": "src/lib/server/search/text-extraction.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/search/text-extraction.ts",
+      "sha256": "dcae34d64aa687eb6946458b0f35f92f764ba01e3995e73fdc12486b95976518"
     },
     {
       "source": "packages/core/src/i18n/config.ts",
       "blob": "fe714e5ad514485fe1737585c663e470d50519df",
-      "local": "src/lib/server/search/i18n.ts"
+      "local": "src/lib/server/search/i18n.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/i18n/config.ts",
+      "sha256": "e354441e19a9013b520112fc1722a1e861ea0a381ceec7ff4e28218bc9c652f7"
+    },
+    {
+      "source": "packages/core/src/api/parse.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/api/parse.ts",
+      "blob": "46b250ce60d82f37fc30d006f3e8ed166c2227b0",
+      "sha256": "8b8271292e8d8d5b0d39701f28a5820e45e2a89ddc159e0f4ab6da7dd484735a",
+      "local": "src/lib/server/search/api/parse.ts"
+    },
+    {
+      "source": "packages/core/src/components/live-search-routing.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/components/live-search-routing.ts",
+      "blob": "352cbcc9758b72dd6197e291c11bc2067ae979f0",
+      "sha256": "25d3cdf74cf680bf352cf294db4271fc50c1f13cd01a79848349c759f9b7e464",
+      "local": "src/lib/search/live-search-routing.ts"
+    },
+    {
+      "source": "packages/core/src/components/webmcp-search.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/components/webmcp-search.ts",
+      "blob": "768edd6956d3f3f80bbecf90101edd236e77597d",
+      "sha256": "0cf479652e378599bea067f90fceccdf77d6fefffc0ba27f89bc3b2f1c8ff9aa",
+      "local": "src/lib/search/webmcp-search.ts"
+    },
+    {
+      "source": "packages/core/src/utils/init-lock.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/utils/init-lock.ts",
+      "blob": "a643cdff1232de2cf5e882ebc6680ad763c1686d",
+      "sha256": "9197eb1dab90b3f090e268b8279336efc9e9dbe567c0eec1c772066cab88f1d4",
+      "local": "src/lib/server/settings/vendor/init-lock.ts"
+    },
+    {
+      "source": "packages/core/src/utils/single-flight-cache.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/utils/single-flight-cache.ts",
+      "blob": "ac71f4c5148cf7d6f4c53fc5cb08fa606fc356e9",
+      "sha256": "3d417bddabf21f5099c9271114dc15c5a1f4e71de0657f26283157b27565c778",
+      "local": "src/lib/server/settings/vendor/single-flight-cache.ts"
+    },
+    {
+      "source": "packages/core/src/api/handlers/content.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/api/handlers/content.ts",
+      "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+      "sha256": "f31d9d08cf7ad3ba863ed0b2f9b9d91729a4ce364ce63024077d81f1c6a4969c",
+      "local": "src/lib/server/search/content-list.ts",
+      "functions": [
+        "resolveSearchColumns",
+        "canUseFtsForListFilter"
+      ]
+    },
+    {
+      "source": "packages/admin/src/components/AdminCommandPalette.tsx",
+      "authority": "parity/emdash/search-source/packages/admin/src/components/AdminCommandPalette.tsx",
+      "blob": "35189700c74ef5fcd76829162fd40c3a07d5b3ec",
+      "sha256": "97b4cc83a5a97cd5909308307ba9cff4ace39353c4048a7110c2996c3ff76f46",
+      "local": "src/lib/search/command-palette-nav.ts",
+      "functions": [
+        "buildNavItems",
+        "filterNavItems"
+      ]
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/search/index.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/astro/routes/api/search/index.ts",
+      "blob": "bc961150c37f7fb0020e4b6702ea84b42e79cd64",
+      "sha256": "f06ce9c966c6592848b8fc513fa6077b140f60de6b7b9990aae40dc024b596cc",
+      "local": "src/lib/server/search/api/index.ts",
+      "functions": [
+        "GET"
+      ]
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/search/suggest.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/astro/routes/api/search/suggest.ts",
+      "blob": "dc198fd2f4923291d78ed9013a92b21b4b990fcf",
+      "sha256": "b731738128bdc264438993651bd40b60765fbc6537194efb477f7cfde248b131",
+      "local": "src/lib/server/search/api/suggest.ts",
+      "functions": [
+        "GET"
+      ]
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/search/stats.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/astro/routes/api/search/stats.ts",
+      "blob": "8e834cfa2bf2a207a94e04a36e034a11e2c0e45d",
+      "sha256": "8778e09cec83fa50fcedb0f855e98f3ba4b002b54a54d818af204be1e7f344e2",
+      "local": "src/lib/server/search/api/stats.ts",
+      "functions": [
+        "GET"
+      ]
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/search/enable.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/astro/routes/api/search/enable.ts",
+      "blob": "b58ba06c35354bd9d678b3cff5261dd5e75ac66c",
+      "sha256": "1b96d234b1f2e61717cba27fe9e8c2bbbae5dc9739e536288d84609c90f1877b",
+      "local": "src/lib/server/search/api/enable.ts",
+      "functions": [
+        "POST"
+      ]
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/search/rebuild.ts",
+      "authority": "parity/emdash/search-source/packages/core/src/astro/routes/api/search/rebuild.ts",
+      "blob": "1b05389eb81cd52d308c18ee5f3bf44f63ff8384",
+      "sha256": "87bcc6bdc6ce4cbcdde1c30e7670726abe4278161c9eb0966aa65fa2712446bc",
+      "local": "src/lib/server/search/api/rebuild.ts",
+      "functions": [
+        "POST"
+      ]
+    },
+    {
+      "source": "packages/core/src/components/LiveSearch.astro",
+      "authority": "parity/emdash/search-source/packages/core/src/components/LiveSearch.astro",
+      "local": "src/lib/search/live-search-client.ts",
+      "blob": "dd5885c3e2e4343f26e87100f2ec1cfe357f3c80",
+      "sha256": "a8662dec6238aa6b5eb180650997ecad3870e1c72c0194043437154aad6bea26",
+      "sourceSection": "script"
+    },
+    {
+      "source": "packages/core/src/components/WebMcpSearch.astro",
+      "authority": "parity/emdash/search-source/packages/core/src/components/WebMcpSearch.astro",
+      "local": "src/lib/search/webmcp-client.ts",
+      "blob": "91c1cc7eba321310c3fac2cd324fab5c30f58514",
+      "sha256": "1547b014e69fc3ff1a5064edea29f884e31f2a3a40c522a47e5b05bd165f88f3",
+      "sourceSection": "script"
     }
   ]
 }

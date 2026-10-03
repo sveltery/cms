@@ -19,6 +19,11 @@ run_stage() {
 run_stage 'frozen dependency install' pnpm install --frozen-lockfile
 run_stage 'type and Svelte checks' pnpm check
 run_stage 'service tests' pnpm test
+run_stage 'source-port assertions' pnpm test:source-ports
+run_stage 'source-port strict typing' node node_modules/typescript/bin/tsc --project tsconfig.source-ports.json
+run_stage 'search source authority and callback audit' node scripts/check-search-source-ports.mjs
+run_stage 'Node search source tests' pnpm test:search
+run_stage 'D1 search source tests' env SVELTERY_SEARCH_STORAGE=D1 pnpm test:search
 run_stage 'default production build' pnpm build
 run_stage 'production remote tests' pnpm test:production
 run_stage 'Node package and build' pnpm package:node

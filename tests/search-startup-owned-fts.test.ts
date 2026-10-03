@@ -10,7 +10,7 @@ import type { Database } from '../src/lib/server/database/lifecycle/upstream/dat
 import type { Kysely } from 'kysely';
 // Original cross-feature acceptance, zero source declaration credit. A legal
 // source/native collection slug must not collide with internal upgrade temps.
-for (const target of ['Node','D1'] as const) for (const slug of ['notes','notes_v3']) {
+for (const target of ['Node','D1'] as const) for (const slug of ['notes','notes_v3','notes_v3_data','notes_v3_insert']) {
   test(`${target}: managed search ${slug} survives canonical restart`,async()=>{
     const storage=await schemaAdminStorage(target);
     try {

@@ -2,7 +2,7 @@
  import {base} from '$app/paths';
  import {invalidateAll} from '$app/navigation';
  import type {Collection,Field} from '$lib/server/database/contract.ts';
- import {SEARCH_TOKENIZERS,type SearchConfig} from '$lib/server/search/types.ts';
+ import {SEARCH_TOKENIZERS,type SearchConfig} from '$lib/search/types.ts';
  let {collections,mutationsEnabled}:{collections:(Collection&{fields:Field[];searchConfig:SearchConfig|null;stats:{indexed:number}|null})[];mutationsEnabled:boolean}=$props();
  let busy=$state<string>(),notice=$state(''),failure=$state('');
  async function operation(slug:string,endpoint:'enable'|'rebuild',body:Record<string,unknown>){
