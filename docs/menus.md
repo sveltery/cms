@@ -25,3 +25,19 @@ integration, Node/D1 execution, final CI and review remain unfinished.
 
 Source behavior, original native test evidence and framework substitutions are
 recorded separately in the [compatibility register](../parity/emdash/compatibility.md).
+
+At the first functional repository/handler staging checkpoint, two original
+native callbacks completed their assertions with `false !== true`: the Source
+SQL namespace did not yet resolve the real native descriptor tables. The
+fixtures applied the named `_cms_menus`/`_cms_menu_items` descriptor explicitly
+after existing canonical startup. Both failures are original native evidence,
+not executed upstream callbacks. An earlier fixture incorrectly expected menu
+registration from canonical providers1–5; it was corrected before execution
+and earns zero causal credit. Initial missing-module setup also earns zero.
+
+Local tests currently use a private copy of the exact thirty installed direct
+third-party versions from the previously qualified public Redirects PR75. Own
+package, lockfile and workspace policy bytes remain the exact d524 main base.
+This establishes no own frozen-install, complete bootstrap or hosted-browser
+pass. Two unchanged ordinary frozen installs failed on registry503 metadata
+requests before any callbacks.
