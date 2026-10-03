@@ -93,8 +93,31 @@
       "blob": "034d280abb48665d25cc195816f1b85d079adb6e",
       "bytes": 5548,
       "sha256": "53c3c767d931dc05d0315a50a01d57a3bfb507c4aa5bf1263d9db789ee8bc91f"
+    },
+    {
+      "source": "packages/admin/src/components/ContentEditor.tsx",
+      "local": "parity/emdash/date-time-widgets/source/packages/admin/src/components/ContentEditor.tsx",
+      "blob": "ad14c878697e9036558cbe521116a038c25c9eb0",
+      "bytes": 104216,
+      "sha256": "52547a10dcb248ec1776e8e1894625db5fe97ba34919b593d63a22cea02a3b25"
+    },
+    {
+      "source": "packages/admin/src/locales/locales.ts",
+      "local": "parity/emdash/date-time-widgets/source/packages/admin/src/locales/locales.ts",
+      "blob": "1b19442b41cac7fee4ef6cbaf2629f7b5f1bf4a2",
+      "bytes": 3967,
+      "sha256": "4d6d420f52f776cc92556adce7c78e8c92b047bf5428888772c52934dc74c94d"
     }
   ],
   "executed_callbacks": 0,
-  "source_credit": 0
+  "source_credit": 0,
+  "external_calendar_authority": {
+    "package": "@cloudflare/kumo",
+    "version": "2.6.0",
+    "source": "published sourcemap DatePicker source at pin package catalog2.6.0",
+    "local": "parity/emdash/date-time-widgets/kumo-2.6.0-DatePicker.tsx.source",
+    "sha256": "3b5ba736ee63430772e86ec57ba4d6d59e48440a507d1e4cd7af70ae7406c60d",
+    "bytes": 3517,
+    "behavior": "whole Kumo wrapper delegates DayPicker9.14.0 with showOutsideDays, animate, onSelect=onChange; noSourcecallbackcredit"
+  }
 }
