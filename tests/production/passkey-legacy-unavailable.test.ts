@@ -36,7 +36,7 @@ async function fixture(target: 'Node' | 'D1', complete: boolean, mixed = false) 
     const database = await h.database();
     await database.db.insertInto('_cms_auth_users').values({ id: 'preexisting-minimal-user', role: 50, disabled: 0 }).execute();
     // Dummy historical storage metadata only; no valid cookie or session issuance.
-    await database.db.insertInto('_cms_auth_sessions').values({ hash: 'dummy-preexisting-stored-hash',
+    await database.db.insertInto('_cms_auth_sessions').values({ hash: 'd'.repeat(43),
       user_id: 'preexisting-minimal-user', expires_at: Date.now() + 60_000 }).execute();
     if (complete) await identityOptions(database).set('emdash:setup_complete', true);
     else await identityOptions(database).delete('emdash:setup_complete');
