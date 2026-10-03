@@ -1,0 +1,68 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "source": "packages/core/tests/integration/mcp/settings.test.ts",
+  "blob": "14acd027c73a72a51c7251bdee8cf44e27dabdf1",
+  "adaptation": "Complete callback bodies; native JSON handlers using real current-role sessions and persistent Node/localD1. No MCP wire/PAT scope/declaration credit. Transport errors mapped to source isError/_meta/data shape in test-only host.",
+  "callbacks": [
+    {
+      "title": "returns an empty object when no settings are set",
+      "sha256": "0b71047639c4a8eac94926967a5debc6a623201da1b6ec8c9e2b63a045011f42"
+    },
+    {
+      "title": "returns previously-set settings",
+      "sha256": "714b2ddc2f2b77c82cf65619ae8e588089bc5a11c4c021758e209f41176d830c"
+    },
+    {
+      "title": "editor can read settings",
+      "sha256": "98e39cf574fb63b8de02640c8906cd9cd5d918213e52ebba48a7f3b64aee2e2b"
+    },
+    {
+      "title": "subscriber cannot read settings (INSUFFICIENT_PERMISSIONS)",
+      "sha256": "5a69607edd3884b21eed92b849b54f0c37bbd7c1d66cb2b6561cf8af4c783b1e"
+    },
+    {
+      "title": "updates title and tagline",
+      "sha256": "14b963037825ba0e31d73248c4dd067e0a4b787a91d59d39a417575f41da637e"
+    },
+    {
+      "title": "partial update preserves other fields",
+      "sha256": "56af14339a277705324f857c3414d76faecf667d75b7e98452e1408101070858"
+    },
+    {
+      "title": "accepts an http url and rejects javascript: scheme",
+      "sha256": "d92f0c8998177a940c41629994594265e7bfdd8c9b3308bfcd30079dd5c71f6e"
+    },
+    {
+      "title": "accepts empty string for url (clears it)",
+      "sha256": "de1b9a4b2f1d2a9ba25903281f236d92508dc2a16c6a91c301fbc0377b355331"
+    },
+    {
+      "title": "rejects out-of-range postsPerPage",
+      "sha256": "aeb46285e352173a48c7f3ca95af6e94d1133982eda146625e8c780517ee900a"
+    },
+    {
+      "title": "accepts nested seo and social objects",
+      "sha256": "67cd1c02db886141271b517f972540c1cae12b509f77589322cd730d3900aa1c"
+    },
+    {
+      "title": "removes media references while preserving sibling SEO settings",
+      "sha256": "67c811c8eccd132f28fd9f9c383f4d571af442e0e099a3c3cbb1810127bc83b7"
+    },
+    {
+      "title": "editor cannot update settings (INSUFFICIENT_PERMISSIONS \u2014 admin only)",
+      "sha256": "9327699533896cfd5a9d32c3fc22b0d1bd91ccd8e8344b6201ba4a0b15f5e40a"
+    },
+    {
+      "title": "subscriber cannot update settings",
+      "sha256": "196dc05b591e583be0b6dd095c02ff76271d9fdc5f8384006a077ef5a8cfc86e"
+    }
+  ],
+  "baseline": {
+    "sourceCallbacks": 13,
+    "expandedNodeD1": 26,
+    "result": "actual source assertions fail against built native HTTP 404; corrected runner before implementation",
+    "log": "/tmp/setup-settings-source-red-corrected-runner.log",
+    "earlierRunnerFailure": "/tmp/setup-settings-source-red.log included unsupported toBeFalsy; no red credit for runner TypeError",
+    "migrationSupplemental": "/tmp/setup-settings-migration-red.log genuine assertion missing options table"
+  }
+}
