@@ -87,3 +87,44 @@ assertion were corrected with zero causal credit. Startup registration and full
 family integration remain unfinished. The descriptor retains the Source MIT
 notice. All evidence remains local using the approved third-party dependency
 copy; own normal frozen installation and hosted checks remain unqualified.
+
+
+At the native-route checkpoint all 93 callbacks in the five whole core Source
+files pass, including the real native item-route PUT/DELETE/prerender exports.
+Fifty whole authorities retain exact Source bytes; the eleven immutable tests
+still contain 169 declarations and 436 direct expectations. Full Source admin,
+MCP, seed, Source036 and Source078 suites remain unexecuted.
+
+The additive principal projection appends only menus:read and menus:manage to
+the existing eleven capabilities. Existing RBAC already grants those at
+Subscriber and Editor. Whole ordinary service evidence first showed three
+strict original-array failures after the projection, then 1144/1144 passing
+callbacks after authorized original arrays/counts included the two literals.
+All previous identity, ordering and role assertions remain. These are original
+bridge updates, not altered Source assertions. The private third-party copy
+still earns no own frozen/full-normal/hosted credit.
+
+D1 clone batches now check the complete source menu identity, item count and
+all source item columns inside the same batch, after target-menu insertion.
+Eight ordinary SQL-trigger cases first reached missing-rejection assertions,
+then passed with rollback of the trigger changes and clone writes. Together
+with earlier storage/readiness cases, 34 original callbacks pass. No concurrency
+or protected probes were used. Source Node clones read items inside the callback
+transaction; Source D1's helper falls back to separate statements with no
+multi-statement atomicity. Native D1 uses atomic guarded snapshots and refuses
+changed source input with MENU_CREATE_ERROR instead of copying a later view.
+This intentional difference is proposed, with zero Source concurrency parity
+and no recorded final acceptance.
+
+The six actual native route families use current trusted locals, the existing
+mutation gate and the exact readonly readiness census. They return Source menu
+JSON envelopes/statuses and private, no-store headers. Unsafe native routes
+consume the existing trusted-origin helper; Source's request-header bypass and
+absent-Origin behavior are not reproduced. This framework difference remains
+proposed with zero Source-origin credit. No auth/session/signature changes or
+new auth/origin-denial tests are introduced. There is no request DDL, installer,
+canonical registration or retained first-request database. Supplemental HTTP
+fixtures preserve Source's historical GET lowest-locale choice and ambiguous
+mutation behavior; the initial mistaken ambiguous-GET fixture earns zero credit.
+The exact emdash:menu:name cache tag was restored after one original actual
+value-red comparison against the frozen Source tag function.

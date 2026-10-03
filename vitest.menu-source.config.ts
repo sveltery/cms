@@ -31,7 +31,8 @@ export default defineConfig({
         'src/loader.js': path.join(native, 'loader.ts'),
         'src/object-cache/index.js': path.join(native, 'object-cache.ts'),
         'src/request-context.js': path.join(native, 'context.ts'),
-        'src/astro/prefetch.js': path.join(native, 'prefetch.ts')
+        'src/astro/prefetch.js': path.join(native, 'prefetch.ts'),
+        'src/astro/routes/api/menus/[name]/items/[id].js': path.join(root, 'src/routes/api/menus/[name]/items/[id]/+server.ts')
       };
       return map[relative];
     }

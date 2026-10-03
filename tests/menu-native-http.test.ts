@@ -56,7 +56,9 @@ for (const backend of ['node', 'd1'] as const) {
       assert.equal(fr.data.translationGroup, created.data.translationGroup);
       const list = await result(await invoke(translations.GET, 'GET', '/api/menus/primary/translations?locale=en', { name: 'primary' }));
       assert.deepEqual(list.data.translations.map((value: any) => value.locale), ['en', 'fr']);
-      const ambiguous = await result(await invoke(menu.GET, 'GET', '/api/menus/primary', { name: 'primary' }), 400);
+      const unspecifiedRead = await result(await invoke(menu.GET, 'GET', '/api/menus/primary', { name: 'primary' }));
+      assert.equal(unspecifiedRead.data.locale, 'en'); // Source GET chooses the lowest locale.
+      const ambiguous = await result(await invoke(menu.PUT, 'PUT', '/api/menus/primary', { name: 'primary' }, { label: 'Ambiguous' }), 400);
       assert.equal(ambiguous.error.code, 'AMBIGUOUS_LOCALE');
       const conflict = await result(await invoke(collection.POST, 'POST', '/api/menus', {}, { name: 'primary', label: 'Duplicate', locale: 'en' }), 409);
       assert.equal(conflict.error.code, 'CONFLICT');

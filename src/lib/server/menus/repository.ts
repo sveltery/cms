@@ -40,6 +40,14 @@ export class MenuGoneError extends Error {
 	}
 }
 
+/** Native finite D1 batches refuse stale clone input instead of cloning it. */
+export class MenuCloneChangedError extends Error {
+	constructor(menuId: string) {
+		super(`Source menu ${menuId} changed before cloning`);
+		this.name = 'MenuCloneChangedError';
+	}
+}
+
 // ---------------------------------------------------------------------------
 // Entity shapes (camelCase — what the API returns)
 // ---------------------------------------------------------------------------
@@ -321,11 +329,13 @@ export class MenuRepository {
 
 		let translationGroup: string = id;
 		let sourceMenuId: string | null = null;
+		let sourceSnapshot: Menu | null = null;
 		if (input.translationOf) {
 			const source = await this.findById(input.translationOf);
 			if (!source) throw new Error("Source menu for translation not found");
 			translationGroup = source.translationGroup ?? source.id;
 			sourceMenuId = source.id;
+			sourceSnapshot = source;
 		}
 
 		const atomicBatch = menuAtomicBatch(this.db);
@@ -339,6 +349,24 @@ export class MenuRepository {
 				id, name: input.name, label: input.label,
 				...(input.locale !== undefined ? { locale: input.locale } : {}), translation_group: translationGroup
 			}).compile()];
+			const cloneToken = sourceSnapshot ? `menus-clone:${ulid()}` : null;
+			if (sourceSnapshot && cloneToken) {
+				// Verify the complete source identity and row set inside the batch,
+				// after menu insertion (including any real SQL insert triggers).
+				statements.push(sql`INSERT INTO _cms_guards(token, pass) SELECT ${cloneToken}, CASE WHEN EXISTS
+					(SELECT 1 FROM _cms_menus WHERE id IS ${sourceSnapshot.id} AND name IS ${sourceSnapshot.name}
+					 AND label IS ${sourceSnapshot.label} AND created_at IS ${sourceSnapshot.createdAt}
+					 AND updated_at IS ${sourceSnapshot.updatedAt} AND locale IS ${sourceSnapshot.locale}
+					 AND translation_group IS ${sourceSnapshot.translationGroup})
+					AND (SELECT COUNT(*) FROM _cms_menu_items WHERE menu_id = ${sourceSnapshot.id}) = ${sourceItems.length}
+					THEN 1 ELSE 0 END`.compile(this.db));
+				for (const item of sourceItems) {
+					const columns = Object.keys(item) as (keyof Selectable<MenuItemTable>)[];
+					statements.push(sql`UPDATE _cms_guards SET pass = CASE WHEN EXISTS
+						(SELECT 1 FROM _cms_menu_items WHERE ${sql.join(columns.map(column => sql`${sql.ref(column)} IS ${item[column]}`), sql` AND `)})
+						THEN 1 ELSE 0 END WHERE token = ${cloneToken}`.compile(this.db));
+				}
+			}
 			for (const item of sourceItems) statements.push(this.db.insertInto('_cms_menu_items').values({
 				id: idMap.get(item.id)!, menu_id: id,
 				parent_id: item.parent_id ? (idMap.get(item.parent_id) ?? null) : null,
@@ -349,7 +377,12 @@ export class MenuRepository {
 				...(input.locale !== undefined ? { locale: input.locale } : {}),
 				translation_group: item.translation_group ?? item.id
 			}).compile());
-			await atomicBatch(statements);
+			if (cloneToken) statements.push(sql`DELETE FROM _cms_guards WHERE token = ${cloneToken}`.compile(this.db));
+			try { await atomicBatch(statements); }
+			catch (error) {
+				if (sourceMenuId && error instanceof Error && /CHECK constraint failed:\s*pass\s*=\s*1/.test(error.message)) throw new MenuCloneChangedError(sourceMenuId);
+				throw error;
+			}
 		} else await withTransaction(this.db, async (trx) => {
 			await trx
 				.insertInto("_cms_menus")
