@@ -36,7 +36,7 @@ it('native create dialog preserves a pending write through close and reopen', as
   form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })); await tick();
   await click(target, 'Cancel'); await click(target, 'Create Menu');
   expect(target.querySelector<HTMLButtonElement>('button[type=submit]')?.disabled).toBe(true); expect(api.createMenu).toHaveBeenCalledTimes(1);
-  finish(menu); await Promise.resolve(); await tick(); expect(target.querySelector('[role=dialog]')).toBeNull();
+  finish(menu); await Promise.resolve(); await tick(); expect(target.querySelector('dialog')).toBeNull();
 });
 it('native editor indents children and constrains reorder controls to siblings', async () => {
   const target = await render(MenuEditor, { client: client(), name: 'main' });
@@ -52,5 +52,5 @@ it('native editor excludes itself and descendants from parent choices', async ()
 });
 it('native item deletion calls the backend immediately without confirmation', async () => {
   const api = client(); const target = await render(MenuEditor, { client: api, name: 'main' }); await click(target, 'Delete');
-  expect(api.deleteMenuItem).toHaveBeenCalledWith('main', '1', { locale: 'en' }); expect(target.querySelector('[role=dialog]')).toBeNull();
+  expect(api.deleteMenuItem).toHaveBeenCalledWith('main', '1', { locale: 'en' }); expect(target.querySelector('dialog')).toBeNull();
 });

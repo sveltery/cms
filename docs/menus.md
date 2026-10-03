@@ -175,3 +175,34 @@ full shared ContentPicker search/pagination and multilingual admin catalogs
 remain incomplete dependencies, not passed by these two menu suites. Canonical
 menu startup, MCP/seed/migration suites and whole-family integration stay in
 progress. No final framework difference acceptance or public PR exists yet.
+
+
+At the ordinary public-Main integration checkpoint, the feature branch merged
+`e75654834e5d3a1ddc10449504ee34db1d43c905` with ordered parents recorded in
+`ff31f707ed6279f6cfb45f58c2c88c3567d55249`. Its full 434-package/443-snapshot,
+two-document lock, dependencies, workspace policy and bootstrap were retained.
+Own normal `pnpm12.6.0 install --frozen-lockfile` then completed successfully;
+the earlier private dependency-copy limitation remains historical. Complete
+bootstrap and hosted browser qualification are still pending at this checkpoint.
+
+Native menu dialogs now use the browser's actual modal dialog focus, cancellation
+and backdrop behavior. Five original mounted UI callbacks pass and Svelte checks
+report zero errors and warnings. The two supplemental dialog selectors now use
+implicit native dialog semantics; no Source expectation changed. Source fixtures
+continue to preserve all twelve whole tests, 204 declarations and 495 direct
+expectations. The full object-cache test adds 35 unique callbacks relative to
+public Main: the Redirects ledger and other public gates contain no copy of that
+whole authority. Those callbacks remain first-green with zero causal value-red
+credit.
+
+The existing complete Source gate appends the six-file menu Source run and five
+native UI callbacks after all public Source115, Redirects203 and native bulk14
+checks. A separate secured hosted stage runs all 25 expanded menu admin Source
+callbacks with the existing official sandbox setting, DEBUG browser diagnostics
+and a 180-second command deadline. Existing production and 62-per-build browser
+checks remain intact. Navigation displays Menus through the already trusted
+menus:read capability. These additive gate/navigation edits have development
+approval; no final framework acceptance, hosted pass, public PR or whole-family
+completion is claimed. Real canonical integration, full shared ContentPicker,
+multilingual admin catalogs and the pending Source migration/MCP/seed suites
+remain explicit dependencies.

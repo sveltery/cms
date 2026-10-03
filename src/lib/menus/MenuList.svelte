@@ -3,6 +3,7 @@
   // and framework substitutions are recorded in docs/menus.md.
   // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
   import * as api from './client.ts';
+  import MenuDialog from './MenuDialog.svelte';
   import type { Menu, MenuClient } from './types.ts';
   let { client = api, basePath = '', locale, locales = [], mutationsEnabled = true, navigate = (url: string) => { location.href = url; } }:
     { client?: MenuClient; basePath?: string; locale?: string; locales?: string[]; mutationsEnabled?: boolean; navigate?: (url:string)=>void } = $props();
@@ -38,21 +39,21 @@
   <a href={`${basePath}/menus/${menu.name}?locale=${encodeURIComponent(menu.locale)}`}>Edit</a>
   <button disabled={!mutationsEnabled} aria-label={`Delete ${menu.name} menu`} onclick={() => { deleteName = menu.name; deleteError = ''; }}>Delete</button>
 </article></li>{/each}</ul>{/if}
-{#if createOpen}<div class="overlay"><div role="dialog" tabindex="-1" aria-modal="true" aria-labelledby={`${key}-create`}>
+{#if createOpen}<MenuDialog labelledBy={`${key}-create`} onClose={() => changeCreate(false)}>
   <h2 id={`${key}-create`}>Create menu</h2><button type="button" aria-label="Close" onclick={() => changeCreate(false)}>×</button>
   <form onsubmit={create}><label for={`${key}-label`}>Label</label><input id={`${key}-label`} name="label" required placeholder="Primary navigation" />
     <p>Shown in the admin menu list.</p><label for={`${key}-name`}>Name</label><input id={`${key}-name`} name="name" required pattern="[a-z0-9\-]+" title="Only lowercase letters, numbers, and hyphens" placeholder="primary" />
     <p>Stable identifier for your site, such as primary or footer.</p>{#if createError}<p role="alert">{createError}</p>{/if}
     <footer><button type="button" onclick={() => changeCreate(false)}>Cancel</button><button type="submit" disabled={createPending}>{createPending ? 'Creating...' : 'Create'}</button></footer>
   </form>
-</div></div>{/if}
-{#if deleteName}<div class="overlay"><div role="dialog" tabindex="-1" aria-modal="true" aria-labelledby={`${key}-delete`}>
+</MenuDialog>{/if}
+{#if deleteName}<MenuDialog labelledBy={`${key}-delete`} onClose={() => { deleteName = null; deleteError = ''; }}>
   <h2 id={`${key}-delete`}>Delete menu</h2><p>Are you sure you want to delete this menu? This will also delete all menu items. This action cannot be undone.</p>
   {#if deleteError}<p role="alert">{deleteError}</p>{/if}<footer><button onclick={() => { deleteName = null; deleteError = ''; }}>Cancel</button><button disabled={deletePending} onclick={remove}>{deletePending ? 'Deleting...' : 'Delete'}</button></footer>
-</div></div>{/if}
+</MenuDialog>{/if}
 
 <style>
   header,footer { display:flex; gap:1rem; align-items:center; justify-content:space-between; } .menus { list-style:none; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(16rem,1fr)); gap:1rem; }
-  article,.empty { border:1px solid #d4d4d8; border-radius:.7rem; padding:1.25rem; } article a { margin-inline-end:1rem; } .overlay { position:fixed; inset:0; z-index:40; display:grid; place-items:center; background:#0006; padding:1rem; }
-  [role=dialog] { background:white; color:#18181b; padding:1.5rem; border-radius:.75rem; width:min(32rem,100%); max-height:90dvh; overflow:auto; } form { display:grid; gap:.5rem; } input { padding:.6rem; border:1px solid #a1a1aa; border-radius:.35rem; } button { cursor:pointer; padding:.5rem .8rem; } button:disabled { cursor:default; opacity:.55; } [role=alert] { color:#b91c1c; }
+  article,.empty { border:1px solid #d4d4d8; border-radius:.7rem; padding:1.25rem; } article a { margin-inline-end:1rem; } 
+   form { display:grid; gap:.5rem; } input { padding:.6rem; border:1px solid #a1a1aa; border-radius:.35rem; } button { cursor:pointer; padding:.5rem .8rem; } button:disabled { cursor:default; opacity:.55; } [role=alert] { color:#b91c1c; }
 </style>

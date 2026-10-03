@@ -2,6 +2,7 @@
   // Native rendering of pinned EmDash MenuEditor, 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.
   // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
   import * as api from './client.ts';
+  import MenuDialog from './MenuDialog.svelte';
   import type { ContentClient, ContentChoice, MenuClient, MenuItem, MenuWithItems, MenuTranslation } from './types.ts';
   let { name, locale, client = api, basePath = '', locales = [], mutationsEnabled = true, contentClient,
     navigate = (url: string) => { location.href = url; } }:
@@ -74,14 +75,14 @@
   {/each}{/if}
 {/if}
 
-{#if addOpen}<div class="overlay"><div role="dialog" tabindex="-1" aria-modal="true" aria-labelledby={`${key}-add`}><h2 id={`${key}-add`}>Add Custom Link</h2><button aria-label="Close" onclick={() => { addOpen = false; addError = ''; }}>×</button>
+{#if addOpen}<MenuDialog labelledBy={`${key}-add`} onClose={() => { addOpen = false; addError = ''; }}><h2 id={`${key}-add`}>Add Custom Link</h2><button aria-label="Close" onclick={() => { addOpen = false; addError = ''; }}>×</button>
   <form onsubmit={add}><label for={`${key}-add-label`}>Label</label><input id={`${key}-add-label`} name="label" required placeholder="Home" />
     <label for={`${key}-add-url`}>URL</label><input id={`${key}-add-url`} name="url" type="text" required pattern="(https?://.+|/.*)" title="Enter a URL (https://…) or a relative path (/…)" placeholder="https://example.com or /about" />
     <label for={`${key}-add-target`}>Target</label><select id={`${key}-add-target`} name="target"><option value="">Same window</option><option value="_blank">New window</option></select>
     {#if addError}<p role="alert">{addError}</p>{/if}<footer><button type="button" onclick={() => { addOpen = false; addError = ''; }}>Cancel</button><button type="submit" disabled={addPending}>{addPending ? 'Adding...' : 'Add'}</button></footer>
   </form>
-</div></div>{/if}
-{#if editingItem}<div class="overlay"><div role="dialog" tabindex="-1" aria-modal="true" aria-labelledby={`${key}-edit`}><h2 id={`${key}-edit`}>Edit Menu Item</h2><button aria-label="Close" onclick={() => { editingItem = null; editError = ''; }}>×</button>
+</MenuDialog>{/if}
+{#if editingItem}<MenuDialog labelledBy={`${key}-edit`} onClose={() => { editingItem = null; editError = ''; }}><h2 id={`${key}-edit`}>Edit Menu Item</h2><button aria-label="Close" onclick={() => { editingItem = null; editError = ''; }}>×</button>
   <form onsubmit={save}><label for={`${key}-edit-label`}>Label</label><input id={`${key}-edit-label`} name="label" required value={editingItem.label} />
     {#if editingItem.type === 'custom'}<label for={`${key}-edit-url`}>URL</label><input id={`${key}-edit-url`} name="url" type="text" required pattern="(https?://.+|/.*)" title="Enter a URL (https://…) or a relative path (/…)" value={editingItem.customUrl ?? ''} />{/if}
     <label for={`${key}-edit-target`}>Target</label><select id={`${key}-edit-target`} name="target" value={editingItem.target ?? ''}><option value="">Same window</option><option value="_blank">New window</option></select>
@@ -90,13 +91,13 @@
     {#if parentOpen}<div role="listbox" id={`${key}-options`}><button role="option" aria-selected={parentId === ''} type="button" onclick={() => { parentId = ''; parentOpen = false; }}>No parent (top level)</button>{#each parentOptions as {item,depth}}<button role="option" aria-selected={parentId === item.id} type="button" style:margin-inline-start={`${depth*1.5}rem`} onclick={() => { parentId = item.id; parentOpen = false; }}>{item.label}</button>{/each}</div>{/if}
     {#if editError}<p role="alert">{editError}</p>{/if}<footer><button type="button" onclick={() => { editingItem = null; editError = ''; }}>Cancel</button><button type="submit" disabled={editPending}>{editPending ? 'Saving...' : 'Save'}</button></footer>
   </form>
-</div></div>{/if}
-{#if contentOpen}<div class="overlay"><div role="dialog" tabindex="-1" aria-modal="true" aria-labelledby={`${key}-content`}><h2 id={`${key}-content`}>Add Content</h2><button aria-label="Close" onclick={() => contentOpen = false}>×</button>
+</MenuDialog>{/if}
+{#if contentOpen}<MenuDialog labelledBy={`${key}-content`} onClose={() => contentOpen = false}><h2 id={`${key}-content`}>Add Content</h2><button aria-label="Close" onclick={() => contentOpen = false}>×</button>
   <label for={`${key}-collection`}>Collection</label><select id={`${key}-collection`} bind:value={collection} onchange={loadChoices}>{#each collections as value}<option value={value.slug}>{value.label}</option>{/each}</select>
   {#if contentLoading}<p>Loading content...</p>{:else}<ul>{#each choices as choice (choice.id)}<li><button disabled={addPending} onclick={() => chooseContent(choice)}>{choice.title}</button></li>{/each}</ul>{/if}
-</div></div>{/if}
+</MenuDialog>{/if}
 
 <style>
   header,.row,footer { display:flex; align-items:center; justify-content:space-between; gap:1rem; } .border { border:1px solid #d4d4d8; padding:1rem; margin-block:.5rem; border-radius:.5rem; } .empty { text-align:center; padding:3rem; } button { padding:.45rem .7rem; cursor:pointer; } button:disabled { cursor:default; opacity:.5; }
-  .overlay { position:fixed; inset:0; z-index:40; display:grid; place-items:center; background:#0006; padding:1rem; } [role=dialog] { background:white; color:#18181b; border-radius:.75rem; width:min(32rem,100%); max-height:90dvh; overflow:auto; padding:1.5rem; } form { display:grid; gap:.65rem; } input,select { padding:.6rem; border:1px solid #a1a1aa; border-radius:.35rem; } [role=listbox] { display:flex; flex-direction:column; border:1px solid #d4d4d8; } [role=option] { text-align:start; } [role=alert] { color:#b91c1c; } .translations { margin-block:1rem; }
+    form { display:grid; gap:.65rem; } input,select { padding:.6rem; border:1px solid #a1a1aa; border-radius:.35rem; } [role=listbox] { display:flex; flex-direction:column; border:1px solid #d4d4d8; } [role=option] { text-align:start; } [role=alert] { color:#b91c1c; } .translations { margin-block:1rem; }
 </style>
