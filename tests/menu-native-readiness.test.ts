@@ -34,7 +34,9 @@ for (const backend of ['node', 'd1'] as const) {
       await sql`DROP INDEX idx_menu_items_parent`.execute(storage.db);
       await sql`CREATE INDEX idx_menu_items_parent ON _cms_menu_items(label)`.execute(storage.db);
       assert.equal(await menuStorageReady(storage), false);
-      assert.deepEqual((await storage.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row => row.version), [1, 2, 3, 4, 5]);
+      const versions = (await storage.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row => row.version);
+      assert.deepEqual(versions.slice(0,5), [1, 2, 3, 4, 5]);
+      assert.deepEqual(versions, [1, 2, 3, 4, 5, 6, 7, 8]);
     } finally { await storage.close(); await worker?.dispose(); }
   });
 }
@@ -61,7 +63,9 @@ for (const backend of ['node', 'd1'] as const) {
         assert.equal(await menuStorageReady(storage, literal.expected), false);
         assert.equal(await menuStorageReady(storage, literal.actual), true);
         assert.deepEqual((await sql`SELECT name, type, sql FROM sqlite_master ORDER BY name`.execute(storage.db)).rows, before);
-        assert.deepEqual((await storage.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row => row.version), [1, 2, 3, 4, 5]);
+        const versions = (await storage.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row => row.version);
+        assert.deepEqual(versions.slice(0,5), [1, 2, 3, 4, 5]);
+        assert.deepEqual(versions, [1, 2, 3, 4, 5, 6, 7, 8]);
       } finally { await storage.close(); await worker?.dispose(); }
     });
   }

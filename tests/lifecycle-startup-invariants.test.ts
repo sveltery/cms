@@ -4,14 +4,17 @@ import assert from 'node:assert/strict';
 import { sql, type CompiledQuery } from 'kysely';
 import { migrateCms } from '../src/lib/server/database/migrations.ts';
 import type { CmsDatabase } from '../src/lib/server/database/contract.ts';
+import { assertCanonicalTriggerExtension } from './helpers/canonical-installation/triggers.ts';
+import { installCanonicalPublicVersion5 } from './helpers/canonical-installation/public-v5.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
 import { schemaAdminStorage } from './helpers/schema-admin-storage.ts';
 import { databaseSnapshot, installVersion4, legacyPost } from './helpers/lifecycle-startup.ts';
 
-async function prepare(database:CmsDatabase, stage:'fresh'|'v4'|'v5', race:boolean) {
+async function prepare(database:CmsDatabase, stage:'fresh'|'v4'|'v5'|'v8', race:boolean) {
   if (stage==='v4') {await installVersion4(database); await legacyPost(database);}
-  if (stage==='v5') {
-    await migrateCms(database);
+  if (stage==='v5'||stage==='v8') {
+    if (stage==='v5') await installCanonicalPublicVersion5(database);
+    else await migrateCms(database);
     const registry=new SchemaRegistry(database);
     await registry.createCollection({slug:'post',label:'Posts'});
     await registry.createField('post',{slug:'title',label:'Title',type:'string'});
@@ -50,7 +53,7 @@ async function rejectsUnchanged(database:CmsDatabase, create:()=>Promise<void>, 
 }
 
 for (const target of ['Node','D1'] as const) {
-  for (const stage of ['fresh','v4','v5'] as const) {
+  for (const stage of ['fresh','v4','v5','v8'] as const) {
     for (const race of [false,true]) {
       for (const kind of ['table','view','index'] as const) {
         test(`${target}: ${stage} ${race?'racing':'preinstalled'} reserved ${kind} names reject in both cases`, async () => {
@@ -85,8 +88,7 @@ for (const target of ['Node','D1'] as const) {
             BEGIN UPDATE operator_notes SET note='operator-'||NEW.note WHERE rowid=NEW.rowid; END`.execute(database.db);
           const before=await databaseSnapshot(database);
           await assert.doesNotReject(()=>migrateCms(database));
-          assert.deepEqual((await databaseSnapshot(database)).objects.filter(row=>row.type==='trigger'),
-            before.objects.filter(row=>row.type==='trigger'));
+          await assertCanonicalTriggerExtension(database,before.objects,(await databaseSnapshot(database)).objects);
           if (name.toLowerCase()!=='ec_post') await new SchemaRegistry(database).createCollection({slug:'reserved',label:'Reserved'});
           await sql`INSERT INTO operator_notes VALUES ('retained')`.execute(database.db);
           assert.equal((await sql<{note:string}>`SELECT note FROM operator_notes`.execute(database.db)).rows[0]?.note,'operator-retained');
@@ -96,7 +98,7 @@ for (const target of ['Node','D1'] as const) {
     });
   }
 
-  for (const stage of ['v4','v5'] as const) {
+  for (const stage of ['v4','v5','v8'] as const) {
     test(`${target}: ${stage} attached mixed-case trigger owners retain original SQL and effects`, async () => {
       const storage=await schemaAdminStorage(target);
       try {
@@ -106,8 +108,7 @@ for (const target of ['Node','D1'] as const) {
         await sql.raw("CREATE TRIGGER attached_case AFTER UPDATE OF title ON EC_POST BEGIN UPDATE ec_post SET author_id='triggered' WHERE id=NEW.id; END").execute(database.db);
         const before=await databaseSnapshot(database);
         await assert.doesNotReject(()=>migrateCms(database));
-        assert.deepEqual((await databaseSnapshot(database)).objects.filter(row=>row.type==='trigger'),
-          before.objects.filter(row=>row.type==='trigger'));
+        await assertCanonicalTriggerExtension(database,before.objects,(await databaseSnapshot(database)).objects);
         await sql`UPDATE ec_post SET title='After' WHERE id='retained'`.execute(database.db);
         assert.equal((await sql<{author_id:string}>`SELECT author_id FROM ec_post WHERE id='retained'`.execute(database.db)).rows[0]?.author_id,'triggered');
         await assert.doesNotReject(()=>migrateCms(database));

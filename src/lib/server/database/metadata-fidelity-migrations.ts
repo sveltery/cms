@@ -19,10 +19,21 @@ function companionQuery(excludedTriggers: readonly string[]) {
       OR (type='table' AND name<>'_cms_fields' AND instr(lower(sql),'_cms_fields')>0)
     ) ORDER BY rowid`;
 }
+// Frozen lifecycle5 can recreate content triggers before metadata8 in the same
+// batch. Compare exact object sets independent of rowid while keeping the
+// original captured creation order for the later dependency restoration.
+function sqliteNameOrder(a: RebuildObject, b: RebuildObject): number {
+  const encoder = new TextEncoder();
+  const left = encoder.encode(a.name), right = encoder.encode(b.name);
+  for (let index=0; index<Math.min(left.length,right.length); index++) {
+    if (left[index]!==right[index]) return left[index]-right[index];
+  }
+  return left.length-right.length || (a.type < b.type ? -1 : a.type > b.type ? 1 : 0);
+}
 function snapshotGuard(database: CmsDatabase, excludedTriggers: readonly string[], objects: readonly RebuildObject[]): CompiledQuery {
   return sql`SELECT json_extract('[]', CASE WHEN
     (SELECT json_group_array(json_object('name',name,'type',type,'tbl_name',tbl_name,'sql',sql))
-      FROM (${companionQuery(excludedTriggers)})) = ${JSON.stringify(objects.map(({name,type,tbl_name,sql}) => ({name,type,tbl_name,sql})))}
+      FROM (SELECT name,type,tbl_name,sql FROM (${companionQuery(excludedTriggers)}) ORDER BY name,type)) = ${JSON.stringify([...objects].sort(sqliteNameOrder).map(({name,type,tbl_name,sql}) => ({name,type,tbl_name,sql})))}
     THEN '$' ELSE 'sveltery-cms-metadata-rebuild-prerequisite-changed' END)`.compile(database.db);
 }
 
