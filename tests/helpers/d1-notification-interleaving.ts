@@ -44,7 +44,7 @@ Atomics.notify = function(handle, index, count) {
         Atomics.notify(control, 0);
       }
     }
-    return originalWait(handle, index, value, timeout);
+    return Reflect.apply(originalWait, Atomics, [handle, index, value, timeout]);
   };
   try { return await operation(() => Atomics.store(control, 0, 1)); }
   finally {

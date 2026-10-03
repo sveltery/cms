@@ -37,7 +37,7 @@ test('D1 fixture matches each response when a prior synchronous notification arr
 test('D1 fixture executes queries and atomic batches without synchronously blocking Node', { timeout: 15000 }, async () => {
   const originalWait = Atomics.wait;
   let waits = 0;
-  Atomics.wait = (...args) => { waits++; return originalWait(...args); };
+  Atomics.wait = (...args) => { waits++; return Reflect.apply(originalWait, Atomics, args); };
   try {
     const { schemaAdminStorage } = await import('./helpers/schema-admin-storage.ts');
     const storage = await schemaAdminStorage('D1');
@@ -86,7 +86,9 @@ test('D1 fixture owns disposal and preserves isolated real D1 storage across res
     let storage = await schemaAdminStorage('D1', directory);
     await sql`CREATE TABLE retained(value TEXT)`.execute(storage.database.db);
     await Promise.all(Array.from({ length: 8 }, (_, index) => sql`INSERT INTO retained VALUES (${String(index)})`.execute(storage.database.db)));
-    await storage.close();
+    const firstClose = storage.close();
+    assert.equal(storage.close(), firstClose, 'concurrent close calls share the owned runtime disposal');
+    await firstClose;
     await assert.rejects(() => sql`SELECT * FROM retained`.execute(storage.database.db));
     storage = await schemaAdminStorage('D1', directory);
     const isolated = await schemaAdminStorage('D1');
