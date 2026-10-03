@@ -1,6 +1,7 @@
 // Original secured-browser shared-bug probe; zero source declaration credit.
 // Genuine nonresident-only CDP authenticator; no seeded identity or credential.
 import { expect, test } from '@playwright/test';
+import {completeFullSetup} from '../helpers/full-setup-browser';
 import { passkeyRuntime } from '../helpers/passkey-runtime';
 
 test('shared-source limitation: nonresident setup succeeds with discoverable-only login options', async ({ page }) => {
@@ -13,8 +14,7 @@ test('shared-source limitation: nonresident setup succeeds with discoverable-onl
   });
   try {
     await page.goto(`${h.origin}/setup`);
-    await page.getByLabel('Email').fill('nonresident@example.com');
-    await page.getByRole('button', { name: 'Create administrator and passkey' }).click();
+    await completeFullSetup(page,'nonresident@example.com');
     await expect(page).toHaveURL(`${h.origin}/login`, { timeout: 30_000 });
     const { credentials } = await session.send('WebAuthn.getCredentials', { authenticatorId });
     expect(credentials).toHaveLength(1);

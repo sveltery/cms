@@ -1,9 +1,7 @@
 <script lang="ts">
-  import { resolve } from '$app/paths';
-  import { getSetupStatus } from '$lib/auth.remote';
-  import PasskeySetup from '$lib/ui/PasskeySetup.svelte';
-  const status = $derived(await getSetupStatus().then(data => ({ data, unavailable: false }), () => ({ data: null, unavailable: true })));
+ import {resolve} from '$app/paths';
+ import FullSetupWizard from '$lib/ui/FullSetupWizard.svelte';
 </script>
-
 <svelte:head><title>Setup · Sveltery CMS</title></svelte:head>
-<main><PasskeySetup unavailable={status.unavailable} completed={status.data?.needsSetup === false} loginHref={resolve('/login')} /></main>
+<main><FullSetupWizard loginHref={resolve('/login')} /></main>
+<style>main{max-width:32rem;margin:4rem auto;padding:2rem;}</style>

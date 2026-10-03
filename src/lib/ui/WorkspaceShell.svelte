@@ -10,6 +10,7 @@
   <aside>
     <a class="brand" href={homeHref}>Sveltery <span>CMS</span></a>
     <nav aria-label="Workspace">
+      <a href={`${homeHref.endsWith('/') ? homeHref : `${homeHref}/`}dashboard`} aria-current={activePage === 'dashboard' ? 'page' : undefined}>Dashboard</a>
       <a href={homeHref} aria-current={activePage === 'content' ? 'page' : undefined}>Content</a>
       <a href={schemaLink} aria-current={activePage === 'schema' ? 'page' : undefined}>Schema</a>
       <a href={`${homeHref.endsWith('/') ? homeHref : `${homeHref}/`}settings`} aria-current={activePage === 'settings' ? 'page' : undefined}>Settings</a>
