@@ -472,5 +472,23 @@
         "deployed scheduler/plugin runtime"
       ]
     }
+  },
+  "welcomeModal": {
+    "source": "e2e/tests/welcome-modal.spec.ts",
+    "blob": "437b186df5903044d6e9e51148c9a699d87cebba",
+    "completeCallbacks": 1,
+    "callbackBlockSha256": "fcd104295e960a24687aadb178b68fa1627ac291eaa6d9b55e269cc946881ab0",
+    "baseline": "committed before welcome UI; secured hosted source heading expectation pending",
+    "fixtures": [
+      "ordinary actual signed registration/login replaces source dev bypass",
+      "source route JSON current-user fixture maps to actual registered Kit query envelope",
+      "Astro hydration selector maps to actual native dashboard mount marker",
+      "source admin URL maps to native dashboard"
+    ],
+    "omissions": [
+      "source bypass endpoint",
+      "Astro hydration/wire",
+      "actual identity credit from mocked current-user fixture"
+    ]
   }
 }
