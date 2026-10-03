@@ -6,6 +6,7 @@ import { openD1 } from '../../../src/lib/server/database/d1.ts';
 import { migrateCms } from '../../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../../../src/lib/server/database/registry.ts';
 import { cmsService } from '../../../src/lib/server/database/service.ts';
+import { lifecycleService } from '../../../src/lib/server/database/lifecycle/service.ts';
 import { createCmsHandle } from '../../../src/lib/server/auth/composition.ts';
 import { hashSessionToken } from '../../../src/lib/server/auth/session.ts';
 import { commentSchemaStatements } from '../../../src/lib/server/comments/migrations.ts';
@@ -28,7 +29,7 @@ export async function registeredComments(target: 'Node SQLite' | 'raw D1') {
  await database.db.insertInto('_cms_auth_sessions').values({ hash: (await hashSessionToken(token))!, user_id: 'comments-admin', expires_at: Date.now() + 60_000 }).execute();
  const service = cmsService(database, { id: 'comments-admin', permissions: ['content:create', 'content:publish_any'] });
  const content = await service.createContent({ type: 'post', data: { title: 'Commented article' }, slug: 'commented-article' });
- await service.publish({ type: 'post', id: content.id });
+ await lifecycleService(database, { id: 'comments-admin', permissions: ['content:publish_any'] }).publish({ type: 'post', id: content.id });
  await sql`UPDATE _cms_collections SET comments_enabled = 1, comments_moderation = 'first_time',
    comments_closed_after_days = 90, comments_auto_approve_users = 1 WHERE slug = 'post'`.execute(database.db);
  await database.atomicBatch(commentSchemaStatements(database.db));
