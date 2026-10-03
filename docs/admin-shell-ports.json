@@ -8,14 +8,14 @@
       "destination": "tests/source-port/admin/sidebar-groups.test.ts",
       "sha256": "8e540c49f3c97a8764e400be7f84bc01cad69fd50f8ac3a930a9fb0636e72fe3",
       "gitBlob": "0ee8140fc984c5e144aa97a65221ffe314744d51",
-      "execution": "pending native import run"
+      "execution": "9 whole declarations pass across two files; initial missing imports yield0sourceRed"
     },
     {
       "source": "packages/admin/tests/lib/admin-version.test.ts",
       "destination": "tests/source-port/admin/admin-version.test.ts",
       "sha256": "bb452d638e0356b8f84d2651fc48e9015cd66e3a9790cf9294c59748f53f80de",
       "gitBlob": "2970952fa39242ffa3b7ab9e4786ba976ac93190",
-      "execution": "pending native import run"
+      "execution": "9 whole declarations pass across two files; initial missing imports yield0sourceRed"
     },
     {
       "source": "packages/admin/tests/components/NavFolderMenu.test.tsx",
@@ -46,8 +46,72 @@
       "execution": "inventory only; original React/Kumo browser host unimplemented"
     }
   ],
-  "sourceDeclarationsExecuted": 0,
+  "sourceDeclarationsExecuted": 9,
   "genuineSourceAssertionReds": 0,
   "sourceMIT": "notices/emdash-MIT.txt",
-  "status": "test-first checkpoint; implementation and validation incomplete"
+  "status": "draft PR66; focusedSource/native passes only; finalnormal/securedUI/gates/reviews/approval pending",
+  "nativeTDD": {
+    "testCommit": "4c14c8970572e990b214f779921ec3cfd0d4426e",
+    "assertionReds": 6,
+    "baselineGreen": 1,
+    "focusedGreen": 7,
+    "storageIntegrationGreen": 4,
+    "registeredTransportGreen": 1,
+    "sourceCredit": 0
+  },
+  "ui": {
+    "repository": "sveltery/ui",
+    "pin": "72c6d10e8a00003d2b721a22e0ca8601c96e787d",
+    "tree": "b8d28a99ad803e1a3d3e3dea8966ae89b0e2b55f",
+    "privatePackageVersion": "0.0.0",
+    "sourceCopy": [
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/Card.svelte",
+        "destination": "src/lib/ui/vendor/sveltery/card/Card.svelte",
+        "sha256": "7fd4bd4f5fcf8fd46103d42cb45064df8eab9c4bac571aad09cb76dddf95dc40"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/CardAction.svelte",
+        "destination": "src/lib/ui/vendor/sveltery/card/CardAction.svelte",
+        "sha256": "7f908a51ab8f78f77dfc09bfef666fd87f0366519569d08e7e58b93fcf3f8116"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/CardContent.svelte",
+        "destination": "src/lib/ui/vendor/sveltery/card/CardContent.svelte",
+        "sha256": "7efd0ba983ccc94d7d49def9c2e523021bc740cd03c50b30e7a7a843b290662a"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/CardDescription.svelte",
+        "destination": "src/lib/ui/vendor/sveltery/card/CardDescription.svelte",
+        "sha256": "0fa3798c9be205d519d0b71317caf505d84b5d2b4a6c23809d61ef7a2b8c6276"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/CardFooter.svelte",
+        "destination": "src/lib/ui/vendor/sveltery/card/CardFooter.svelte",
+        "sha256": "09f1bdc41f188ff2d53d1c169857abc7621c84cd7225807d9f0905a403e7d05c"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/CardHeader.svelte",
+        "destination": "src/lib/ui/vendor/sveltery/card/CardHeader.svelte",
+        "sha256": "b4b059129014da6f947544b7830fd932e9f76e2b9e31361688758fc3be2d4ea5"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/CardTitle.svelte",
+        "destination": "src/lib/ui/vendor/sveltery/card/CardTitle.svelte",
+        "sha256": "10c629f7806b6e2922f2e395f9aee63a62ec19622fa99304164f66a438170558"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/index.ts",
+        "destination": "src/lib/ui/vendor/sveltery/card/index.ts",
+        "sha256": "e949e07e2cef1b1eb7a2847cb4e335a47e3bf787adb1875319422a139b5f6692"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/types.ts",
+        "destination": "src/lib/ui/vendor/sveltery/card/types.ts",
+        "sha256": "0b64559c8279a601d063414f669dee275e6ee70ec9362050d35c20a24143f462"
+      }
+    ],
+    "cardDOM": "unexecuted; normal dependency addition and frozen source-lock install failed HTTP503 metadata before callbacks",
+    "sourceTestSHA256": "c44e5da062de4d3db65b0c7fe585ad892c8ee042ac08b64c7f0502b114e6e8e4"
+  }
 }

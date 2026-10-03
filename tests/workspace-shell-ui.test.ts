@@ -1,6 +1,6 @@
 import test, { after, before } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { compile } from 'svelte/compiler';
 import { render } from 'svelte/server';
@@ -22,7 +22,23 @@ before(async () => {
   directory = await mkdtemp(fileURLToPath(new URL('.workspace-shell-display-', import.meta.url)));
   const source = await readFile(new URL('../src/lib/ui/WorkspaceShell.svelte', import.meta.url), 'utf8');
   const compiled = compile(source, { filename: 'WorkspaceShell.svelte', generate: 'server' }).js.code;
-  await writeFile(`${directory}/WorkspaceShell.js`, compiled);
+  await mkdir(`${directory}/card`);
+  for (const name of ['Card', 'CardHeader', 'CardTitle', 'CardDescription', 'CardAction', 'CardContent', 'CardFooter']) {
+    const cardSource = await readFile(new URL(`../src/lib/ui/vendor/sveltery/card/${name}.svelte`, import.meta.url), 'utf8');
+    await writeFile(`${directory}/card/${name}.js`, compile(cardSource, { filename: `${name}.svelte`, generate: 'server' }).js.code
+      .replace('../shared/classes.js', '../classes.js'));
+  }
+  await cp(new URL('../src/lib/ui/vendor/sveltery/shared/classes.js', import.meta.url), `${directory}/classes.js`);
+  await writeFile(`${directory}/card/index.js`, "export {default as Card} from './Card.js';");
+  await writeFile(`${directory}/display-state.js`, "export const page = {url: new URL('https://display.example/')};");
+  await writeFile(`${directory}/display-remote.js`, "export function getWorkspaceNavigation() { throw new Error('SSR display props never call remote transport'); }");
+  await writeFile(`${directory}/WorkspaceShell.js`, compiled
+    .replace('$app/state', './display-state.js')
+    .replace('$lib/workspace.remote', './display-remote.js')
+    .replace('./nav/navigation', new URL('../src/lib/ui/nav/navigation.ts', import.meta.url).href)
+    .replace('./nav/admin-version', new URL('../src/lib/ui/nav/admin-version.ts', import.meta.url).href)
+    .replace('./vendor/sveltery/card/index', './card/index.js')
+    .replace("import './vendor/sveltery/themes-native.css';", ''));
   ({ default: Shell } = await import(`${directory}/WorkspaceShell.js`));
 });
 after(async () => { if (directory) await rm(directory, { recursive: true, force: true }); });

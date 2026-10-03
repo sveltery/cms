@@ -540,3 +540,12 @@ request; it does not prove the exact timing of the hosted auth-head failure.
 assertion reds, already-green parameter/rollback/restart controls, focused green
 runs and required final gates. Decision status: implementation authorized;
 specific PM acceptance and merge are pending.
+
+
+## UX1 native shell proposal — PR #66
+
+[The shell feature record](../../docs/admin-shell.md) and [source ledger](../../docs/admin-shell-ports.json) identify immutable EmDash 1.1.0 and Sveltery UI pins. The faithful grouping/version helpers execute nine unchanged whole source callbacks after initial import failures (zero genuine source reds). Six genuine original compiled-Svelte UI assertion reds become seven green native cases, with four Node/actual-D1 display-storage cases and one registered-query case. These native cases earn no source credit.
+
+UX1-01 replaces React/Kumo routing/sidebar/providers with base-aware Svelte links, native details/mobile controls and the existing trusted `schema:manage` display capability. This is an intentional framework/capability substitution; role filtering, icons, taxonomy/plugin navigation and the retained complete React browser callbacks remain unfinished. UX1-02 consumes immutable private/unreleased Sveltery UI Card sources and theme variables through source-copy, with scoped native CSS instead of its full Tailwind appearance. The source test-host dependency closure retains existing dependency graph entries; failed npm HTTP503 installs and unexecuted copied Card DOM cases are not passes. No unavailable Input/Base component or absent feature route is advertised.
+
+Status: proposed PR [#66](https://github.com/sveltery/cms/pull/66), implementation authorized; specific PM acceptance, final-head gates, review, merge and post-merge checks pending. Neither this proposal nor helper execution completes full admin UI or the CMS.
