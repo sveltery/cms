@@ -15,7 +15,10 @@ function nativeInternalPath(pathname: string, base: string): boolean {
 }
 
 /** Trusted native route/database adapter around the complete pinned rule engine. */
-export async function resolveCmsRedirects(event: RequestEvent, next: () => Promise<Response>): Promise<Response> {
+export async function resolveCmsRedirects(event: RequestEvent, next: () => Response | Promise<Response>): Promise<Response> {
+  // Existing runtime callers may supply a minimal event for a plain resolver.
+  // Real Kit events carry both; no redirect path can be selected without them.
+  if (!event.url || !event.request) return next();
   if (nativeInternalPath(event.url.pathname, event.locals.cmsRuntime?.basePath ?? '')) return next();
   const configured = event.locals.cms;
   if (!configured) return next();
@@ -40,7 +43,7 @@ export async function resolveCmsRedirects(event: RequestEvent, next: () => Promi
     keepAlive: configured.keepAlive,
     loadRedirects: source => currentCache.loadCachedRedirects(source, defer),
     createSource: sourceDb => createDatabaseRedirectSource(sourceDb, defer)
-  }, next);
+  }, () => Promise.resolve(next()));
   if (!disableCache) return response;
   const headers = new Headers(response.headers);
   headers.set('Cache-Control', 'no-store');

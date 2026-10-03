@@ -66,7 +66,14 @@ export interface NotFoundLogTable {
 }
 
 
+export interface OptionTable {
+	name: string;
+	value: string; // JSON
+	revision: Generated<string>;
+}
+
 export interface Database {
+ options: OptionTable;
  _cms_redirects: RedirectTable;
  _cms_redirect_write_lock: RedirectWriteLockTable;
  _cms_redirect_state: RedirectStateTable;

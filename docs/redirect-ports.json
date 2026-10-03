@@ -1970,6 +1970,12 @@
       "command": "node --test tests/redirect-runtime-native.test.ts tests/redirect-middleware-native.test.ts",
       "runtime": "Node24.19, actual trusted runtime persistentSQLite plus separate realSQLite public-wrapper fixtures, diagnostic installed closure",
       "result": "Same four original runtime callbacks and two original cache callbacks pass unchanged after the Root-approved exact shared resolver seam and adapter-owned cache invalidation. No registered redirect migration/startup/deployment/Source red credit. Source203 remains unchanged; full options/slug/admin/D1 artifact scope pending."
+    },
+    {
+      "phase": "anonymous-native-scoped-D1",
+      "command": "node --test tests/redirect-runtime-d1.test.ts",
+      "runtime": "Node24.19/real Miniflare-workerd D1Database binding, request session:auto, no authenticated principal, explicit standalone owned redirect-DDL fixture",
+      "result": "1 original supplemental callback passes actual308 redirect, scoped database identity, persisted deferred hit and deduplicated GET/POST404 logs with no-store response. Deferred tasks complete after anonymous commit on retained scoped DB. Actual automatic artifact repair logs D1 callback-transaction refusal; D1 artifact publication/repair remain unimplemented, zero Source/canonical/deployment credit."
     }
   ]
 }
