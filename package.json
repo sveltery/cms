@@ -29,6 +29,8 @@
     "test:ui-source": "vitest run --config vitest.ui-source.config.ts",
     "test:bulk-taxonomy-native": "vitest run --config vitest.bulk-taxonomy-native.config.ts",
     "test:bulk-taxonomy-source": "node scripts/check-bulk-taxonomy-source.mjs && vitest run --config vitest.bulk-taxonomy.config.ts",
+    "test:date-time": "node scripts/check-date-time-source-ports.mjs && TZ=America/New_York vitest run --config vitest.date-time.config.ts",
+    "test:date-time:browser": "node scripts/check-date-time-source-ports.mjs && vitest run --config vitest.date-time.browser.config.ts",
     "test:sections-widgets-core": "node scripts/check-sections-widgets-source.mjs && vitest run --config vitest.sections-widgets-core.config.ts",
     "test:sections-widgets-browser": "vitest run --config vitest.sections-widgets-browser.config.ts",
     "test:sections-widgets-native": "node --test tests/production/sections-widgets-native.test.ts"
@@ -42,6 +44,7 @@
     "ulidx": "2.4.1",
     "valibot": "1.5.0",
     "zod": "4.5.4",
+    "date-fns": "4.1.0",
     "@wordpress/block-serialization-default-parser": "5.38.0",
     "parse5": "7.3.0"
   },
@@ -76,6 +79,7 @@
     "@tanstack/react-router": "1.163.2",
     "@vitest/browser-playwright": "4.1.10",
     "vitest-browser-react": "2.2.0",
+    "@testing-library/react": "16.3.2",
     "@cloudflare/kumo": "2.6.0",
     "@lingui/react": "5.9.5"
   }
