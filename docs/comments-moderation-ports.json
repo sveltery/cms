@@ -2,7 +2,7 @@
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "license": "MIT; Copyright 2026 Cloudflare Inc.; notices/emdash-MIT.txt",
   "approvedBase": "e75654834e5d3a1ddc10449504ee34db1d43c905",
-  "count": 78,
+  "count": 79,
   "selectedWholeFiles": 7,
   "assertionRule": "Whole callbacks, fixtures, expectations and deadlines are immutable; imports and host fixtures are recorded separately. Initial regex counts are inventory estimates, not parser counts or runtime evidence.",
   "protectedProbeRule": "Signed, concurrent-session, replay, two-valid-session and SC49 protected relation binding probes are inventoried and not newly executed. Ordinary non-auth repository CAS and reaction-race callbacks remain whole.",
@@ -747,6 +747,15 @@
       "bytes": 556780,
       "selected": false,
       "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/plugins/conditional-storage.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/plugins/conditional-storage.ts.txt",
+      "gitBlob": "00345a5232ee8c06e050f72a6b3c34555053f33f",
+      "sha256": "74829ded184fb6762d5ed50d6dbee33a8e96dc23e3b2d42a0ab8825985d2835f",
+      "bytes": 1077,
+      "selected": false,
+      "evidence": "inventory-only"
     }
   ],
   "productPorts": [
@@ -929,6 +938,12 @@
       "product": "src/lib/server/comments/upstream/database/repositories/options.ts",
       "transformation": "MIT header and native TypeScript/module-alias imports only",
       "sourceBlob": "d4f630ca0e24721dc25bed0189699daceccdb8ae"
+    },
+    {
+      "source": "packages/core/src/plugins/conditional-storage.ts",
+      "product": "src/lib/server/comments/upstream/plugins/conditional-storage.ts",
+      "transformation": "MIT header only",
+      "sourceBlob": "00345a5232ee8c06e050f72a6b3c34555053f33f"
     }
   ],
   "evidence": {
