@@ -1,0 +1,268 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "modules": [
+    {
+      "source": "packages/core/src/schema/block-type-contract.ts",
+      "blob": "009d334027cc0964e4f1f34af381385958606884",
+      "sourceSha256": "ba83ce4aac224e29882b7109da2a2937581f9c389092692b0733551b2a1b5530",
+      "copiedPath": "src/lib/server/blocks/contract.ts",
+      "copiedSha256": "c05b7469eef83089bfdc12bafcda539c5c19fa510147a09fda353abcb674da90",
+      "scope": "complete module",
+      "transforms": [
+        "imports/native namespace/types",
+        "erasable parameter-property constructor where needed"
+      ]
+    },
+    {
+      "source": "packages/core/src/schema/block-type-registry.ts",
+      "blob": "605fb9fd221d1790a864777e51385a4f6885dd76",
+      "sourceSha256": "a5d269e5061ca73c5d7d5956b681a6aec6ae7bd3efda8748f1acf0f0fa47091d",
+      "copiedPath": "src/lib/server/blocks/registry.ts",
+      "copiedSha256": "fb97f300160501e08ee1a76b393885a8663574d47aafda6cd7e49a9ba00d7e39",
+      "scope": "complete module",
+      "transforms": [
+        "imports/native namespace/types",
+        "erasable parameter-property constructor where needed"
+      ]
+    },
+    {
+      "source": "packages/core/src/components/blocks.ts",
+      "blob": "be359753eb65514c1b06de80472cdd0b7137d8bd",
+      "sourceSha256": "b27373f7175e8f1ff1ade8b715116948b066dd5e7743423894a1c41fdaa45a85",
+      "copiedPath": "src/lib/blocks/render.ts",
+      "copiedSha256": "f127298f5921bc77f7b55d7572fbbfb7b403b8b8f7c1cef31357f196b47b9ae9",
+      "scope": "complete module",
+      "transforms": [
+        "imports/native namespace/types",
+        "erasable parameter-property constructor where needed"
+      ]
+    },
+    {
+      "source": "packages/admin/src/lib/block-field-state.ts",
+      "blob": "11ceb56757209ad611a3a7e9e85fe534b019965e",
+      "sourceSha256": "dde49d34d9cfca284f59d51dd599477f74b109872da85f88bb12078549e70cca",
+      "copiedPath": "src/lib/blocks/state.ts",
+      "copiedSha256": "29dd4658a3fee729acc678ab7373838fe92b08ebd184b2f0b92cfd442ee7b6cd",
+      "scope": "complete module",
+      "transforms": [
+        "imports/native namespace/types",
+        "erasable parameter-property constructor where needed"
+      ]
+    },
+    {
+      "source": "packages/core/src/api/handlers/block-types.ts",
+      "blob": "2fc3fdd352c3da5edf4a6e9a336bf67687849857",
+      "sourceSha256": "2a3685f1759d731f3a5fe7f3000c5c3aa194dd9461ae8623104af4e431e06a00",
+      "copiedPath": "src/lib/server/blocks/handlers.ts",
+      "copiedSha256": "db621216f5ef7d4dced3c6415d04fd02bb1c57a27f3e98090f4d2f843eb19599",
+      "scope": "complete module",
+      "transforms": [
+        "imports/native namespace/types",
+        "erasable parameter-property constructor where needed"
+      ]
+    },
+    {
+      "source": "packages/core/src/database/migrations/083_block_types.ts",
+      "blob": "5e685cc2fcc1b82ac0de8a13c737198bd562d885",
+      "sourceSha256": "6429246b2209c7da892ede761de84f6c7c765a5855c237d113414891b933bd37",
+      "copiedPath": "src/lib/server/blocks/source-migration.ts",
+      "copiedSha256": "3bb7c37f2655577fd1a49eee9ce9e71deb89b11bf0cece6e0bd9177a9169280c",
+      "scope": "complete module",
+      "transforms": [
+        "imports/native namespace/types",
+        "erasable parameter-property constructor where needed"
+      ]
+    },
+    {
+      "source": "packages/core/src/schema/block-values.ts",
+      "blob": "3c29fe8a9cd8a0846cb5873e78336a13aaaa67dc",
+      "sourceSha256": "0c38a01ff467735b1b136f72564270c0b2406dc9879001c1578914ba083e8d4b",
+      "copiedPath": "src/lib/server/blocks/values.ts",
+      "copiedSha256": "357c5b1d0ababf5cb844311a6b354c04fa5fca67a00c31caf4862c171b75a0fe",
+      "scope": "complete module",
+      "transforms": [
+        "module/type imports only"
+      ]
+    },
+    {
+      "source": "packages/core/src/schema/registry.ts",
+      "blob": "da7bbcdda224dfca8d9146b2f36659ab90bcac2e",
+      "sourceSha256": "db26cf5bd9c9442c3b41185c879281914410cd9ece94cf2f9716533eb6e71516",
+      "copiedPath": "src/lib/server/blocks/field-contract.ts",
+      "copiedSha256": "81d3816f7ab366eed246286390ebe5a0189954d95f0a3e67c096b8d5dd4170c6",
+      "scope": "complete collectionHasContent and normalizeBlocksFieldValidation methods (not the whole registry module)",
+      "transforms": [
+        "native class host/type imports/table namespace"
+      ]
+    },
+    {
+      "source": "packages/core/src/api/handlers/validate-media-fields.ts",
+      "blob": "62aa54d70295ef46fd0d7ba037c9d589843ebfe4",
+      "sourceSha256": "bde696804e5e89de54d2005d2fe51c91fd050ac8d02f37e6ad36aaca6729f99a",
+      "copiedPath": "src/lib/server/blocks/validate-media-fields.ts",
+      "copiedSha256": "e83e4adbd1e51dddade0919bf9f6a98516333e97e7315fd5380b01b31dfcc802",
+      "scope": "complete module",
+      "transforms": [
+        "native imports/table namespace only; complete request-cache algorithm uses the optional installed-host-context reader"
+      ]
+    },
+    {
+      "source": "packages/core/src/emdash-runtime.ts",
+      "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+      "sourceSha256": "7954be3d12857ff307e9d2b15846662814f092e49807bcfb3b188a8f2ae847fc",
+      "copiedPath": "src/lib/server/blocks/media-normalization.ts",
+      "copiedSha256": "8f7a791188f85e5dac75bbab066fa4e42e4e87f051d904d4f4818ad4a99a9a95",
+      "scope": "complete normalizeFieldValues method plus normalizeImageValue and normalizePrimaryImageValue functions; not whole EmDashRuntime",
+      "transforms": [
+        "native class host/public visibility/type imports",
+        "real local provider/native schema registry; plugin registry only if supplied"
+      ]
+    },
+    {
+      "source": "packages/core/src/cli/commands/export-seed.ts",
+      "blob": "c99aeb8fb34ed47b0211c4aad360e35e096db7fb",
+      "sourceSha256": "78c3bb027ac1e6a5d86f5b4ce552ac306f00a56c4e3a7b9fd0a384dfd8052eac",
+      "copiedPath": "src/lib/server/blocks/seed.ts",
+      "copiedSha256": "1694712549a39f046f6327a5bbf59c06cc8bf109c4cc2586a70a5f9e5ce634bc",
+      "scope": "complete exportBlockTypes/exportCollections functions plus native bounded content export; not whole exportSeed",
+      "transforms": [
+        "native registry constructor receives CmsDatabase",
+        "native bounded content loop does not claim full-site transfer"
+      ]
+    },
+    {
+      "source": "packages/admin/src/components/BlocksField.tsx",
+      "blob": "6e795c69bc9aa86bb8e224851af4707992cd9109",
+      "sourceSha256": "7f785b0ff49525e65220977a9765abab523cb5c4304423ef8702ea0b24ab595d",
+      "copiedPath": "src/lib/ui/BlocksField.svelte",
+      "copiedSha256": "50e7a88a4f6f2c722c96d642f45b841c32b6192f14bea28b130995a54eb5b087",
+      "scope": "native rendering transport of complete blocks field transitions; no React component/module-copy parity credit",
+      "transforms": [
+        "Svelte controls/snippet renderer/native pointer and keyboard drag transport",
+        "native presentation/English copy; source callbacks immutable",
+        "Svelte snapshot boundary unwraps reactive proxies before unchanged source structuredClone algorithms; site timezone forwarded to native widgets"
+      ]
+    },
+    {
+      "source": "packages/admin/src/components/BlockTypeList.tsx",
+      "blob": "5438764994be41f46f866a7c93f7755c1b711dd0",
+      "sourceSha256": "bcc69b3897b10531c2a8a1663f0c22704ec118588f98495a177be9adad081b9b",
+      "copiedPath": "src/lib/ui/BlockTypeList.svelte",
+      "copiedSha256": "8040cd605d33a7bd792e6acf69dce2ca710c08a30bada3e5c9b6bdfc1d15cb26",
+      "scope": "native Svelte rendering transport; no React component/module-copy parity credit",
+      "transforms": [
+        "Svelte/English/native presentation"
+      ]
+    },
+    {
+      "source": "packages/admin/src/lib/datetime-local.ts",
+      "blob": "33809e6d96f14193d13864880dc54ecfcb3dd6a3",
+      "sourceSha256": "59d35bb5731202191caefe3dcb0a8d8edfdae65802767f3832fbe5c12560d8ad",
+      "copiedPath": "src/lib/blocks/datetime-local.ts",
+      "copiedSha256": "59d35bb5731202191caefe3dcb0a8d8edfdae65802767f3832fbe5c12560d8ad",
+      "scope": "complete module",
+      "transforms": []
+    },
+    {
+      "source": "packages/admin/src/components/FieldEditor.tsx",
+      "blob": "f918b302b527d150f3f51fdfa1ebf1facc0fe7ba",
+      "sourceSha256": "2848aa488ef28fd8f15202de32c4352f5a0a8c83980fa823610e9460cfcedad0",
+      "copiedPath": "src/lib/ui/BlockSchemaFieldEditor.svelte",
+      "copiedSha256": "f957fd472c743d434ee4a0b85917dae118a5f38248ac4a07f27109ca8a63e149",
+      "scope": "native Svelte rendering transport of blocks-only selection, readonly version inventory, ordered allowed/retired types and sparse limits; not complete general React FieldEditor module",
+      "transforms": [
+        "Svelte known-blocks component and SvelteKit native form transport",
+        "complete immutable source callback invokes actual native controls; unrelated field families omitted"
+      ]
+    },
+    {
+      "source": "packages/admin/src/components/ImageFieldRenderer.tsx",
+      "blob": "9e65f32518fff181fe04163cc17d5b0f85e2a4f0",
+      "sourceSha256": "017439063ff9abb628ded35b269963a9cf11addc4125b424e9c561d732df5824",
+      "copiedPath": "src/lib/blocks/media-values.ts",
+      "copiedSha256": "d5170e55d449a8be3995e09a10db240d22d2c74a1638f51975c9e554e46969e6",
+      "scope": "complete ImageFieldValue declaration and complete mediaDisplayUrl/mediaItemToImageFieldValue functions; not full React ImageFieldRenderer",
+      "declarations": [
+        {
+          "sourceName": "ImageFieldValue",
+          "copiedName": "ImageFieldValue",
+          "kind": "interface",
+          "sourceBodySha256": "26bf47467a83b06139a20be2d072b8d46d6256f36113d499592b40759dee5aea"
+        },
+        {
+          "sourceName": "mediaDisplayUrl",
+          "copiedName": "mediaDisplayUrl",
+          "kind": "function",
+          "sourceBodySha256": "0b12f21be51b3fe735c5b1071a1b546740619035aa276deabb5736b2a1f644c8"
+        },
+        {
+          "sourceName": "mediaItemToImageFieldValue",
+          "copiedName": "mediaItemToImageFieldValue",
+          "kind": "function",
+          "sourceBodySha256": "f8014924fa07f8a381a28c4e4299af11949f3cbec2ed39a28d28f4d9a183b00e"
+        }
+      ],
+      "transforms": [
+        "native browser type imports and export visibility",
+        "native FileField closure wrapper; full source callback body unchanged"
+      ]
+    },
+    {
+      "source": "packages/admin/src/components/ContentEditor.tsx",
+      "blob": "ad14c878697e9036558cbe521116a038c25c9eb0",
+      "sourceSha256": "52547a10dcb248ec1776e8e1894625db5fe97ba34919b593d63a22cea02a3b25",
+      "copiedPath": "src/lib/blocks/media-values.ts",
+      "copiedSha256": "d5170e55d449a8be3995e09a10db240d22d2c74a1638f51975c9e554e46969e6",
+      "scope": "complete FileFieldValue interface, normalized display callback and handleSelect callback in native wrappers; not full ContentEditor/FileField React components",
+      "declarations": [
+        {
+          "sourceName": "handleSelect",
+          "sourceContainer": "FileFieldRenderer",
+          "copiedName": "handleSelect",
+          "copiedContainer": "selectFileField",
+          "kind": "callback",
+          "sourceBodySha256": "8eb08b1760afafb9646891e8f158a513458bb6035d571d31abd36072ff84def9"
+        },
+        {
+          "sourceName": "FileFieldValue",
+          "copiedName": "FileFieldValue",
+          "kind": "interface",
+          "sourceBodySha256": "0cb333d173d385542d117e4b518758c9efbdbc42eb645a0d3d6967415e7f540a"
+        },
+        {
+          "sourceName": "normalized",
+          "sourceContainer": "FileFieldRenderer",
+          "copiedName": "normalized",
+          "copiedContainer": "normalizeFileFieldValue",
+          "kind": "callback",
+          "sourceBodySha256": "dc33a8bad09589921c49ff0aad20e7ef7ae54b72ae4c83c8adc8fc7fa50c72ad"
+        }
+      ],
+      "transforms": [
+        "native browser type imports and export visibility",
+        "native FileField closure wrapper; full source callback body unchanged",
+        "native English message tag outside unchanged complete display callback; no Lingui runtime credit"
+      ]
+    },
+    {
+      "source": "packages/core/src/request-cache.ts",
+      "blob": "ab8f007b22ce601219ca1270d487342338de8634",
+      "sourceSha256": "b0a8094bbd5c9b987e3b8b00c1d7fdb3bdc542a0d2d4f244108fc8f5655d8d73",
+      "copiedPath": "src/lib/server/blocks/request-cache.ts",
+      "copiedSha256": "2d063bc0023ef4db7bb612ed4f5d7746a8e5ea3ba21266fd1227f6dd96f861e9",
+      "scope": "complete module; native context reader is a separate host adapter, not whole Source context implementation",
+      "transforms": [
+        "native type/getRequestContext imports only; pinned algorithms and shared global WeakMap Symbol unchanged"
+      ]
+    },
+    {
+      "source": "packages/admin/src/lib/url.ts",
+      "blob": "33d7329282c29dd2a275f6020a7077b0b0f7dbda",
+      "sourceSha256": "3c65bdcf038100e7a6076e7444f62f968771125320dc405d4a13e2e4f6d97730",
+      "copiedPath": "src/lib/blocks/source-url.ts",
+      "copiedSha256": "3c65bdcf038100e7a6076e7444f62f968771125320dc405d4a13e2e4f6d97730",
+      "scope": "complete pure module; field-display use only, no public-route/redirect/i18n runtime credit",
+      "transforms": []
+    }
+  ]
+}

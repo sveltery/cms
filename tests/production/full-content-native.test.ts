@@ -6,22 +6,26 @@ import { sql } from 'kysely';
 import { schemaAdminRemotes } from '../helpers/schema-admin-remotes.ts';
 import { FIELD_TYPES, type FieldType } from '../../src/lib/server/schema/types.ts';
 import { Role } from '../../src/lib/server/auth/roles.ts';
+import {BlockTypeRegistry} from '../../src/lib/server/blocks/registry.ts';
+import {blocksDatabase} from '../../src/lib/server/blocks/host.ts';
 
 const values: Record<FieldType, unknown> = {
   string: 'Title', text: 'Rich text', slug: 'title', url: 'https://example.test/', number: 1.25,
   integer: 3, boolean: true, datetime: '2026-09-18T10:00:00Z', select: 'news', multiSelect: ['news', 'guide'],
   portableText: [{ _type: 'block', children: [{ _type: 'span', text: 'Hello' }] }],
-  image: { id: 'image-id', alt: 'A picture', meta: { storageKey: 'photo' } },
-  file: { id: 'file-id', filename: 'file.pdf' }, reference: 'unbound-entry-id',
+  image: { provider: 'external', id: '', src: 'https://example.test/picture.png', alt: 'A picture', meta: { credit: 'fixture-author' } },
+  file: { provider: 'external', id: '', src: 'https://example.test/file.pdf', filename: 'file.pdf', mimeType: 'application/pdf' }, reference: 'unbound-entry-id',
   json: JSON.parse('{"deep":[null,{"count":2,"enabled":false}],"constructor":{"prototype":["safe",null]},"__proto__":{"allowed":true}}'),
-  repeater: [{ name: 'First', extra: { untouched: true } }], blocks: [{ _type: 'legacy', arbitrary: { items: [1, 2] } }]
+  repeater: [{ name: 'First', extra: { untouched: true } }], blocks: [{ _type: 'native_card', _version: 1, _key: 'native-fixture-block', body: 'Native block value' }]
 };
 async function fixture(target: 'Node' | 'D1') {
   const h = await schemaAdminRemotes(target);
   try {
-    await h.registry.createCollection({ slug: 'typed', label: 'Typed' });
+    await h.registry.createCollection({ slug: 'typed', label: 'Typed', supports: [] });
+    await new BlockTypeRegistry(blocksDatabase(h.database)).createBlockType({slug:'native_card',label:'Native card',fields:[{slug:'body',label:'Body',type:'text'}]});
     for (const type of FIELD_TYPES) await h.registry.createField('typed', {
       slug: `value_${type.toLowerCase()}`, label: type, type,
+      ...(type === 'blocks' ? {validation:{allowedTypes:['native_card']}} : {}),
       ...(type === 'select' || type === 'multiSelect' ? { validation: { options: ['news', 'guide'] } } : {}),
       ...(type === 'repeater' ? { validation: { subFields: [{ slug: 'name', label: 'Name', type: 'string', required: true }] } } : {})
     });

@@ -19,11 +19,11 @@ export async function contentResponse<T>(run: () => Promise<T>): Promise<T> {
     if (cause instanceof InvalidCursorError) error(400, { message: 'invalid-cursor', code: 'INVALID_CURSOR' });
     if (cause instanceof CmsError) {
       const status = cause.code === 'UNAUTHENTICATED' ? 401 : cause.code === 'FORBIDDEN' ? 403 :
-        cause.code === 'NOT_FOUND' ? 404 : cause.code === 'VALIDATION_ERROR' ? 400 :
+        cause.code === 'NOT_FOUND' ? 404 : ['VALIDATION_ERROR','INVALID_MIME_FOR_FIELD'].includes(cause.code) ? 400 :
           cause.code === 'MIGRATION_REQUIRED' ? 503 : 409;
       const message = cause.code === 'UNAUTHENTICATED' ? 'unauthenticated' :
         cause.code === 'FORBIDDEN' ? 'forbidden' : cause.code === 'NOT_FOUND' ? 'not-found' : cause.code.toLowerCase().replaceAll('_', '-');
-      if (cause.code === 'VALIDATION_ERROR' && cause.details) {
+      if (cause.code === 'VALIDATION_ERROR' && cause.details?.issues) {
         // Only the domain validator's public issue keys cross the boundary.
         // Never serialize exception stacks, SQL, Zod input or schema internals.
         const issues = cause.details.issues.map(({ path, code, message, origin, minimum, maximum, format }) => ({

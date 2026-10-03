@@ -8,7 +8,7 @@ export interface CollectionRow {
   id: string; slug: string; label: string; label_singular: string | null;
   description: string | null; supports: string; source: string;
   version: number; created_at: string; updated_at: string;
-  icon?: string | null; admin_config?: string | null; has_seo?: number; title_field?: string | null;
+  icon?: string | null; admin_config?: string | null; has_seo?: number; title_field?: string | null; search_config?: string | null;
   date_field?: string | null; url_pattern?: string | null; routable?: number; hidden?: number;
   sort_order?: number | null; nav_group?: string | null; comments_enabled?: number;
   comments_moderation?: string; comments_closed_after_days?: number; comments_auto_approve_users?: number; edit_locking?: number;
@@ -40,11 +40,11 @@ export interface CmsDatabase {
 }
 export type DatabaseErrorCode = 'UNAUTHENTICATED' | 'FORBIDDEN' | 'VALIDATION_ERROR'
   | 'INVALID_CURSOR' | 'NOT_FOUND' | 'CONFLICT' | 'COLLECTION_EXISTS' | 'COLLECTION_TABLE_ORPHANED'
-  | 'FIELD_EXISTS' | 'FIELD_TYPE_COLUMN_CHANGE' | 'FIELD_TYPE_CHANGE_REQUIRES_MIGRATION' | 'FIELD_UPDATE_REQUIRES_MIGRATION' | 'FIELD_NOT_INDEXABLE' | 'COLLECTION_NOT_EMPTY' | 'UNSUPPORTED_FIELD_TYPE' | 'INVALID_TITLE_FIELD' | 'INVALID_DATE_FIELD' | 'RESERVED_SLUG' | 'LIMIT_EXCEEDED' | 'MIGRATION_REQUIRED';
+  | 'INVALID_SLUG' | 'INVALID_MIME_FOR_FIELD' | 'BLOCK_TYPE_NOT_FOUND' | 'BLOCK_TYPE_EXISTS' | 'BLOCK_TYPE_BREAKING_CHANGE' | 'BLOCK_TYPE_VERSION_CONFLICT' | 'FIELD_EXISTS' | 'FIELD_TYPE_COLUMN_CHANGE' | 'FIELD_TYPE_CHANGE_REQUIRES_MIGRATION' | 'FIELD_UPDATE_REQUIRES_MIGRATION' | 'FIELD_NOT_INDEXABLE' | 'COLLECTION_NOT_EMPTY' | 'UNSUPPORTED_FIELD_TYPE' | 'INVALID_TITLE_FIELD' | 'INVALID_DATE_FIELD' | 'RESERVED_SLUG' | 'LIMIT_EXCEEDED' | 'MIGRATION_REQUIRED';
 export class CmsError extends Error {
   readonly code: DatabaseErrorCode;
-  readonly details?: {issues:ContentValidationIssue[]};
-  constructor(code: DatabaseErrorCode, message:string=code, details?:{issues:ContentValidationIssue[]}) { super(message); this.name='CmsError'; this.code=code; this.details=details; }
+  readonly details?: Record<string,unknown> & {issues?:ContentValidationIssue[]};
+  constructor(code: DatabaseErrorCode, message:string=code, details?:Record<string,unknown> & {issues?:ContentValidationIssue[]}) { super(message); this.name='CmsError'; this.code=code; this.details=details; }
 }
 export interface Collection {
   id: string; slug: string; label: string; labelSingular: string | null;

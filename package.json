@@ -25,14 +25,24 @@
     "build:cloudflare": "WRANGLER_LOG_PATH=.wrangler/logs SVELTERY_ADAPTER=cloudflare vite build && XDG_CONFIG_HOME=.wrangler/config WRANGLER_LOG_PATH=.wrangler/logs wrangler deploy --dry-run --outdir build/cloudflare/worker",
     "start:cloudflare": "XDG_CONFIG_HOME=.wrangler/config WRANGLER_LOG_PATH=.wrangler/logs wrangler dev --local",
     "test:cloudflare": "vitest run --config vitest.cloudflare.config.ts && node --test tests/cloudflare-hosting/*.test.ts",
-    "test:source-ports": "vitest run --config vitest.source-ports.config.ts"
+    "test:search": "vitest run --config vitest.search.config.ts",
+    "test:source-ports": "vitest run --config vitest.source-ports.config.ts",
+    "test:media": "vitest run --config vitest.media.config.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "3.1145.0",
+    "@aws-sdk/s3-request-presigner": "3.1145.0",
     "@oslojs/crypto": "1.0.1",
     "@oslojs/encoding": "1.1.0",
     "@oslojs/webauthn": "1.0.0",
+    "@portabletext/toolkit": "5.0.1",
+    "blurhash": "2.0.5",
+    "image-size": "2.0.2",
+    "jpeg-js": "0.4.4",
     "kysely": "0.29.2",
+    "mime": "4.1.0",
     "ulidx": "2.4.1",
+    "upng-js": "2.1.0",
     "valibot": "1.5.0",
     "zod": "4.5.4"
   },
@@ -45,13 +55,19 @@
     "@sveltejs/kit": "2.70.3",
     "@sveltejs/vite-plugin-svelte": "7.3.1",
     "@types/node": "24.19.0",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitest/browser-playwright": "4.1.10",
     "devalue": "5.9.4",
     "miniflare": "4.20260507.1",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "svelte": "5.57.1",
     "svelte-check": "4.7.6",
     "typescript": "6.0.3",
     "vite": "8.3.2",
     "vitest": "4.1.10",
+    "vitest-browser-react": "2.2.0",
     "wrangler": "4.99.0"
   }
 }

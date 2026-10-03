@@ -1,14 +1,11 @@
 import * as v from 'valibot';
+import {contentListOptions} from '../database/content-validation.ts';
 import { CmsError, type DraftEntry, type DraftSummary } from '../database/contract.ts';
 import { identifier, entryId, localeInput, revisionInput, schemaData, parse } from '../database/validation.ts';
 
 const qualified = { collection: identifier, locale: v.optional(localeInput, 'en') };
 export const contentKey = v.strictObject({ ...qualified, id: entryId });
-export const contentList = v.strictObject({
-  ...qualified,
-  limit: v.optional(v.pipe(v.number(), v.safeInteger(), v.minValue(1))),
-  cursor: v.optional(v.pipe(v.string(), v.maxLength(2048)))
-});
+export const contentList = v.strictObject({collection:identifier,...contentListOptions});
 // Unlike active reads and mutations, omitted locale means every trash locale.
 const trashQualified = { collection: identifier, locale: v.optional(localeInput) };
 export const trashedContentCount = v.strictObject(trashQualified);
@@ -43,7 +40,7 @@ const jsonValue = v.pipe(v.string(), v.maxLength(200_000), v.check(value => {
 // This transport-only map never reaches storage or the domain service.
 const jsonData = v.optional(v.record(identifier, jsonValue), {});
 const slug = v.optional(v.pipe(v.string(), v.maxLength(200)));
-const contentEntries = { data, jsonData, slug };
+const contentEntries = { data, jsonData, slug, migrateBlocks:v.optional(v.boolean()),replaceBlocks:v.optional(v.boolean()) };
 export const createInput = v.pipe(v.strictObject({ ...qualified, ...contentEntries }),
   v.forward(v.check(input => Object.keys(input.jsonData).every(key => !Object.hasOwn(input.data, key)),
     'Supply each field once'), ['jsonData']),
