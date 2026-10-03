@@ -15,7 +15,7 @@ const output=resolve(root,'build',worker?'cloudflare':'node');
 await build({
   configFile:false,root,logLevel:'warn',
   plugins:worker?[{
-    name:'sveltery-maintenance-cloudflare-storage',
+    name:'sveltery-maintenance-cloudflare-storage',enforce:'pre',
     resolveId(source,importer) {
       if(source==='../runtime/node.ts'&&importer?.endsWith('/maintenance/runtime.ts')) {
         return resolve(root,'src/lib/server/runtime/node-cloudflare.ts');
