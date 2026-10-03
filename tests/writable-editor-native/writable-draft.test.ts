@@ -26,14 +26,14 @@ it('the form submits actual edited values as bounded whole-record JSON', async (
   input.value = 'Edited'; input.dispatchEvent(new Event('input', { bubbles: true })); await tick();
   expect(JSON.parse(String(new FormData(target).get('data')))).toEqual({ title: 'Edited', body: 'Original', untouched: { nested: ['kept'] } });
 });
-it('pending writes disable submission and fields and announce saving', async () => {
+it('pending writes disable submission and announce saving', async () => {
   const target = await render({ pending: true });
   expect(target.querySelector('button')!.matches(':disabled')).toBe(true);
   expect(target.textContent).toContain('Saving...');
 });
 it('a rejected save shows issues while keeping the entered values readable', async () => {
   const target = await render({ values: { title: 'Rejected title', body: 'Keep this' }, issues: ['Title is required.'] });
-  expect(target.querySelector('[role=alert]')!.textContent).toContain('Title is required.');
+  expect(target.querySelector('[role=alert]')?.textContent).toContain('Title is required.');
   expect(target.querySelector<HTMLInputElement>('input[data-field=title]')!.value).toBe('Rejected title');
 });
 it('read-only capabilities retain disabled controls and no mutation payload', async () => {
