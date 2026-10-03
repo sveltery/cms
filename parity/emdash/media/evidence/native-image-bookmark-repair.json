@@ -1,0 +1,61 @@
+{
+  "baselineHead": "05adc37",
+  "kind": "original actual stored-image bookmark lifecycle repair",
+  "productionChanges": [
+    "src/lib/server/media/image/request.ts",
+    "src/lib/server/runtime/composition.ts"
+  ],
+  "results": {
+    "ordinaryRuntimeControls": {
+      "tests": 10,
+      "pass": 10
+    },
+    "wholePortableCloudflareSource": {
+      "files": 4,
+      "tests": 23,
+      "pass": 23,
+      "newCausalReds": 0
+    },
+    "actualOfficialKitWorkers": {
+      "tests": 5,
+      "pass": 5,
+      "mediaCallbackDurationMs": 2030.208211,
+      "completedNativeHeaderRedResolved": 1
+    },
+    "installedPackageDiagnosticCheck": "0errors/0warnings",
+    "installedPackageCloudflareBuildAndDryBundle": "PASS; not full bootstrap"
+  },
+  "logs": [
+    {
+      "path": "/tmp/media-image-bookmark-diagnostic-check.log",
+      "sha256": "dd9ebf966171e2a251cb2a5bc7c8a05573a527692fff4dc40a725e700298289b"
+    },
+    {
+      "path": "/tmp/media-image-bookmark-runtime-controls.log",
+      "sha256": "bf44fa7e9d11e6c79b72b7acee787ef12d9f8a9956aa7d08c0e93b977b9bfdd4"
+    },
+    {
+      "path": "/tmp/media-image-bookmark-cloudflare-build.log",
+      "sha256": "405bb00601b44e051cecbc9402f65624be4c48860bc25648bcc22b2a3068a276"
+    },
+    {
+      "path": "/tmp/media-image-bookmark-cloudflare-dry-bundle.log",
+      "sha256": "74a25a549d2dbdd1c952f81bb2d788c458c1562f74f56ce8d055faf691441c25"
+    },
+    {
+      "path": "/tmp/media-image-bookmark-current-official-workers.log",
+      "sha256": "105e0939d8cf94e7c6fbc42ca4a60a84f6770e69e85f6bfc00c66d405e168a50"
+    },
+    {
+      "path": "/tmp/media-image-bookmark-current-pure-cloudflare.log",
+      "sha256": "3d2d1943249426e0307d50afcfee1ce643a8dafd0b007fef97f10c38f11ed068"
+    }
+  ],
+  "scope": [
+    "Trusted Kit registered route.id /_image and GET/HEAD only. Ordinary route/query lookalikes retain bookmark commit.",
+    "Real ordinary session/principal and request-scoped database unchanged. Successful/throwing image paths skip only D1 lifecycle bookmark commit.",
+    "Actual official Worker R2/Images transformed byte dimensions/cache policy/no-bookmark assertions now pass before and after persistent restart.",
+    "Whole middleware fast path/runtime-init avoidance/storage fallback/source mock callbacks remain unimplemented; no new copied Source middleware callback credit.",
+    "Normal frozen install remains registry503 failed, no fullnormal/new secured browser or final review claimed."
+  ]
+}
