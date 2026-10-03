@@ -1,0 +1,39 @@
+# Revision maintenance in hosting artifacts
+
+The installed Node package contains a trusted server-only revision-maintenance export. The Cloudflare build wraps the complete official adapter fetch handler with the same revision-only scheduled handler before Wrangler creates the actual bundle. Neither entry adds an HTTP maintenance route. The [revision-maintenance dependency](revision-maintenance.md) retains pinned oldest-ten ordering, keep50 retention, protected pointers and conditional queue acknowledgement.
+
+After `pnpm package:node` and a frozen production installation in `node-package/`, an operator-owned ESM script can run one batch:
+
+```js
+import {runRevisionMaintenance} from '@sveltery/cms/maintenance';
+const result=await runRevisionMaintenance({kind:'sqlite',path:'./data/cms.db'});
+console.log(result.revisionsPruned);
+```
+
+The operator supplies the persistent path. Each call creates parent directories, opens and validates canonical storage, consumes one global batch, and closes its owned adapter. Startup refusal propagates; revision-subsystem failure returns only `{revisionsPruned:-1}`. The callable export installs no Node timer or request identity. Existing HTTP startup and the frozen production installation contract remain unchanged.
+
+`pnpm build:cloudflare` generates the official adapter artifact, builds the reviewed maintenance module, and adds its scheduled method beside the unchanged fetch method. Wrangler creates `build/cloudflare/worker/worker.js` from this combined entry. Scheduled events use the trusted `CMS_DB` raw D1 binding and forward the real promise to `ctx.waitUntil`. Binding lifetime stays caller-owned. Operators configure Cron Triggers when deploying their own Worker; this repository installs no trigger or external database. Adapter assets, manifest, session composition and ordinary request-lifetime cleanup remain unchanged.
+
+## Authority and adaptation
+
+The reference is EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. The [ports ledger](revision-hosting-ports.json) records the six complete inspected authorities: Cloudflare Worker and its scheduled-handler tests, core middleware, runtime, scheduler virtual module, and Node scheduler. Source merges its Astro fetch handler with full `createScheduledHandler`, driving scheduled publishing, cache invalidation, plugin cron and complete system cleanup. Node installs a long-lived scheduler.
+
+**RV2-01 is a proposed native hosting substitution; specific PM acceptance and final PR approval are pending.** This port exposes the implemented revision subsystem. Eight whole Source Cloudflare scheduler callbacks remain unported and unexecuted because they exercise the full omitted runtime. They are not rewritten into revision-only tests. New Source declaration and assertion credit is zero; the RV1 dependency's eight whole callbacks and 27 expressions stay unchanged.
+
+## Test-first evidence and checks
+
+Own test-only checkpoint `e29be31c174f58257bbf2197b8bd47d085e5bfb0` precedes implementation `e888f78`. Four native requirements complete assertion failures against existing artifacts: two production-only installed Node processes lack the callable package export, and two actual workerd executions observe `scheduled:undefined`. These are interface availability reds, zero Source behavior red credit. Initial missing package-manager environment and incorrect host executable path failures remain recorded with zero product credit. A later SQLite row prototype mismatch was corrected by projecting the same complete row values, without changing expectations.
+
+Native requirements exercise actual55→50 unreferenced revision pruning, another entry retaining50 plus two referenced older revisions, unchanged pointers, empty queue, process/Worker reopen and refusal preserving the real operator table/row. Worker observation counts the promise forwarded into real `waitUntil`; observer routes exist only in the test harness. Final receipts belong in the ledger. Focused installed diagnostics do not replace the unchanged normal bootstrap:
+
+```sh
+node scripts/check-revision-maintenance-source-ports.mjs /path/to/pinned-emdash
+node --test tests/revision-maintenance*.test.ts
+pnpm package:node
+pnpm test:node
+pnpm build:cloudflare
+pnpm test:cloudflare
+sh scripts/bootstrap.sh
+```
+
+Final-head normal bootstrap, secured hosted browsers, independent/configured review and author-owned expected-head merge remain required. Local workerd execution is separate from deployed scheduling and actual cadence. Full Node scheduler, plugin cron, scheduled content/cache invalidation, challenge/token/media/usage/404/transfer cleanup, backups, Durable Objects and Hyperdrive remain unfinished.

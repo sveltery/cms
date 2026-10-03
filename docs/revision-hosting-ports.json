@@ -1,0 +1,105 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "scope": "Official installed Node package export and generated Cloudflare Worker scheduled integration for the qualified RV1 revision-only dependency",
+  "approvedMain": "95668fb45b262c5e8df63ede20d712e71ebea771",
+  "dependency": {
+    "localHead": "dffe571f9dd77cf5d3fee6060ae7048a386eeec3",
+    "tree": "a7f6e2e84cffcdf3da12eaa7fc6e2cb13352ccb6",
+    "copiedWholeSourceDeclarations": 8,
+    "expectExpressions": 27,
+    "newDeclarationCredit": 0,
+    "ownedCheckpoint": "7a828fe"
+  },
+  "inspectedAuthority": [
+    {
+      "path": "packages/cloudflare/src/worker.ts",
+      "blob": "d2a1d0b66f81c2affca9d8c26122b5cede1d4518",
+      "sha256": "2ed70e4eb489a541def8ce9a294e9a6f6506cd29463be40a7a1785ae6474faa5"
+    },
+    {
+      "path": "packages/cloudflare/tests/worker-scheduled.test.ts",
+      "blob": "339de6ebc032a8bb30cfe124730253975c13a9b0",
+      "sha256": "489695ffeff069ec581208e4123b3a895c9d75bbc35af0227027aa89f7d77d79"
+    },
+    {
+      "path": "packages/core/src/astro/middleware.ts",
+      "blob": "1afddfd31ba611d7fbfd7adbf5de23feb096cc8d",
+      "sha256": "63d0a1b21c180ff9c730e312eeb0c23275baeefed965d3065148050c3110edf7"
+    },
+    {
+      "path": "packages/core/src/astro/integration/virtual-modules.ts",
+      "blob": "9573def7d1ac0b0da6ff2d5837c5152871780eda",
+      "sha256": "d9b479700e905f2d1091a7dd406bf466dc99bc283753880b49820b586fe214dd"
+    },
+    {
+      "path": "packages/core/src/emdash-runtime.ts",
+      "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+      "sha256": "7954be3d12857ff307e9d2b15846662814f092e49807bcfb3b188a8f2ae847fc"
+    },
+    {
+      "path": "packages/core/src/plugins/scheduler/node.ts",
+      "blob": "c4486c4b3deffe7eb70d0bc3a8617abcd1b21dc1",
+      "sha256": "11e01939ea5e548a0e214120c441f2c261047c97ed7ff8dc01b714e4b4f5ef95"
+    }
+  ],
+  "sourceHostingTests": {
+    "path": "packages/cloudflare/tests/worker-scheduled.test.ts",
+    "wholeCallbacks": 8,
+    "ported": 0,
+    "executed": 0,
+    "reason": "Original tests exercise full scheduled publishing/cache/plugin runtime, not revision-only host integration; no weakened substitutes or Source callback credit"
+  },
+  "testFirst": {
+    "head": "e29be31c174f58257bbf2197b8bd47d085e5bfb0",
+    "originalNativeRequirements": 4,
+    "genuineCompletedInterfaceAssertionFailures": 4,
+    "behavioralSourceRedCredit": 0,
+    "nodeRedLog": "/tmp/revision-hosting-node-ready-red.log",
+    "workerRedLog": "/tmp/revision-hosting-cloudflare-red.log",
+    "earlierNodeHostFailures": [
+      "npm_execpath absent under pnpm exec",
+      "incorrect guessed pnpm.cjs path"
+    ],
+    "hostFailureCredit": 0
+  },
+  "nativeSubstitution": {
+    "id": "RV2-01",
+    "source": "Pinned Astro package Worker merges official fetch with full createScheduledHandler; Node long-lived scheduler drives full SystemCleanup.",
+    "native": "Official adapter-node production package provides a trusted callable maintenance export; thin generated Worker wrapper preserves official adapter fetch and adds revision-only scheduled handler with real waitUntil. No automatic Node scheduler or Worker cron trigger is installed.",
+    "decision": "Pending specific ROOT acceptance and exact-head PR approval",
+    "sourceCredit": 0
+  },
+  "incomplete": [
+    "Full Node scheduler and actual cadence",
+    "Worker Cron Trigger configuration and deployed scheduling",
+    "Full runSystemCleanup: auth/challenges/media/usage/404/transfer/plugin subsystems",
+    "Scheduled publication and cache invalidation",
+    "Durable Objects and Hyperdrive",
+    "Secured hosted browser and configured final-head review"
+  ],
+  "nativeHostCorrections": {
+    "sqliteRows": "Null-prototype SQLite rows projected to identical full values; zero product red credit",
+    "assetsScheduled": "Miniflare4.20260507.1 combined assets RPCProxy fails before scheduled and anchors0; primary imports exact officialartifact and gets real event, real assets provided by separately service-bound actualassetsworker",
+    "failedAssetsLog": "/tmp/revision-hosting-cloudflare-green.log",
+    "failedAssetsFixture": "/tmp/revision-hosting-assets-router-original.test.ts",
+    "unchangedExpectedValues": true,
+    "newProductRedCredit": 0
+  },
+  "focusedGreen": {
+    "node": {
+      "head": "c87b18f",
+      "cases": 2,
+      "passed": 2,
+      "log": "/tmp/revision-hosting-node-row-green.log",
+      "exitCode": 0
+    },
+    "worker": {
+      "head": "08cfefb",
+      "cases": 2,
+      "passed": 2,
+      "log": "/tmp/revision-hosting-cloudflare-direct-event-green.log",
+      "exitCode": 0
+    },
+    "scope": "Actual product host IO; extra owned-connection observation added afterward; final required gates pending"
+  }
+}

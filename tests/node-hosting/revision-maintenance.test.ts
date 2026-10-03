@@ -28,9 +28,14 @@ async function install(directory:string) {
 
 async function runInstalled(app:string,body:string) {
   await writeFile(join(app,'operator.mjs'),`import assert from 'node:assert/strict';
+import {DatabaseSync} from 'node:sqlite';
 let maintenance;try{maintenance=await import('@sveltery/cms/maintenance');}catch(error){maintenance={unavailable:error.code};}
 assert.equal(typeof maintenance.runRevisionMaintenance,'function','The isolated production package must export callable revision maintenance');
-${body}\n`);
+const originalClose=DatabaseSync.prototype.close;const closed=[];
+DatabaseSync.prototype.close=function(){const result=Reflect.apply(originalClose,this,[]);closed.push(this.isOpen===false);return result;};
+${body}
+assert.deepEqual(closed,[true],'The installed maintenance call must close its actual owned SQLite connection');
+DatabaseSync.prototype.close=originalClose;\n`);
   return execFileSync(process.execPath,['operator.mjs'],{cwd:app,timeout:30_000,encoding:'utf8',stdio:'pipe',env:{PATH:process.env.PATH}});
 }
 
