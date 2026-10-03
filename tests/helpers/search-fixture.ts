@@ -1,4 +1,5 @@
 // Test-host substitutions only; all collection/content storage uses real CMS providers.
+import { describe } from 'vitest';
 import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry as NativeRegistry } from '../../src/lib/server/database/registry.ts';
@@ -29,7 +30,7 @@ export async function setupTestDatabaseWithCollections() {
 }
 export function describeEachDialect(title:string,callback:(dialect:string)=>void) {
   // This dedicated run selects SQLite; D1 is a separate real binding host run.
-  return import('vitest').then(({describe})=>describe(title,()=>callback('sqlite')));
+  return describe(title,()=>callback('sqlite'));
 }
 export type DialectTestContext = { db: Kysely<Database> };
 export async function setupForDialect(_dialect:string):Promise<DialectTestContext> {return {db:await setupTestDatabase()};}
@@ -39,7 +40,7 @@ export async function handleContentCreate(db:Kysely<Database>, type:string, inpu
   catch(cause){return {success:false,error:{message:String(cause)}};}
 }
 export async function handleContentList(db:Kysely<Database>,type:string,input:Record<string,unknown>) {
-  try{return {success:true,data:await new ContentRepository(db).findMany({type,...input})};}
+  try{return {success:true,data:await new ContentRepository(db).findMany(type, {limit:input.limit as number|undefined})};}
   catch(cause){return {success:false,error:{message:String(cause)}};}
 }
 // Byte-identical fixture function from immutable packages/core/tests/utils/fixtures.ts.

@@ -126,10 +126,43 @@
       "sha256": "4bf9e4df0d3d3ad740139c21c4f879e9db99750dfe00333d1ee1153400c58016",
       "port": null,
       "state": "committed-before-implementation; executable evidence pending"
+    },
+    {
+      "source": "packages/core/tests/unit/schema/registry.test.ts",
+      "blob": "7e1413acd99071e888693021224a9644efa2a8c5",
+      "port": "tests/source-search/registry-fts.test.ts",
+      "scope": "13 complete callbacks in Search (FTS) Integration and atomicity: rollback on FTS sync failure; remainder schema registry explicitly uncredited"
     }
   ],
   "limitations": [
     "MCP harness and complete search e2e callbacks preserved but not yet executable; missing-import/setup failures earn zero red evidence.",
     "Node and real local D1 runs recorded separately; PostgreSQL unavailable FTS remains pinned SQLite-only."
+  ],
+  "modules": [
+    {
+      "source": "packages/core/src/search/fts-manager.ts",
+      "blob": "1de7650597123a72b11a2ca8ae45ce367a1fe290",
+      "local": "src/lib/server/search/fts-manager.ts"
+    },
+    {
+      "source": "packages/core/src/search/query.ts",
+      "blob": "c65a7375bc9a975ae23217bb8cfaf23c21ec20e2",
+      "local": "src/lib/server/search/query.ts"
+    },
+    {
+      "source": "packages/core/src/search/types.ts",
+      "blob": "a96af62d057f7e516208ca68181b891317e877f9",
+      "local": "src/lib/server/search/types.ts"
+    },
+    {
+      "source": "packages/core/src/search/text-extraction.ts",
+      "blob": "e228060ff4f7c85b584c49195ea859a87d4e1fae",
+      "local": "src/lib/server/search/text-extraction.ts"
+    },
+    {
+      "source": "packages/core/src/i18n/config.ts",
+      "blob": "fe714e5ad514485fe1737585c663e470d50519df",
+      "local": "src/lib/server/search/i18n.ts"
+    }
   ]
 }
