@@ -38,7 +38,7 @@ export function searchStatementPlanner(database:CmsDatabase,collectionId:string,
 // transaction so the source's metadata/FTS rollback contract works on real D1.
 export interface SchemaSearchPlan {before:CompiledQuery[];statements:CompiledQuery[];after:CompiledQuery[]}
 const emptyPlan=():SchemaSearchPlan=>({before:[],statements:[],after:[]});
-export async function planSchemaSearch(database:CmsDatabase,slug:string,supports:readonly string[],fields:readonly SearchSchemaField[]):Promise<SchemaSearchPlan> {
+export async function planSchemaSearch(database:CmsDatabase,slug:string,supports:readonly string[],fields:readonly SearchSchemaField[],sourceFields:readonly SearchSchemaField[]):Promise<SchemaSearchPlan> {
   const collection=await database.db.selectFrom('_cms_collections').selectAll().where('slug','=',slug).executeTakeFirst();
   if(!collection) return emptyPlan();
   const token=ulid(),db=database.db;
@@ -55,8 +55,9 @@ export async function planSchemaSearch(database:CmsDatabase,slug:string,supports
   const real=new FTSManager(database.db as unknown as Kysely<Database>);
   const config=await real.getSearchConfig(slug);
   if(config?.enabled!==true) return inactivePlan();
-  const actualFields=await database.db.selectFrom('_cms_fields').select(['slug','type','searchable']).where('collection_id','=',collection.id).execute();
-  const snapshot=ftsMetadataGuard([{id:collection.id,slug:collection.slug,searchConfig:collection.search_config,fields:actualFields.map(field=>({...field,searchable:field.searchable??0}))}]);
+  // The caller's projection and this guard must use the very same read. A
+  // later metadata read could authorize an index compiled from stale fields.
+  const snapshot=ftsMetadataGuard([{id:collection.id,slug:collection.slug,searchConfig:collection.search_config,fields:sourceFields.map(field=>({slug:field.slug,type:field.type,searchable:Number(field.searchable)}))}]);
   const before=[sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN ${sql.raw(snapshot.sql)}
     AND EXISTS (SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND supports IS ${collection.supports} AND version=${collection.version} AND updated_at=${collection.updated_at}) THEN 1 ELSE 0 END`.compile(db)];
   // The pure ownership predicate uses positional JSON bindings. Compose those

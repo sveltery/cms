@@ -14,7 +14,8 @@
   {#if noResults}{@render noResults()}{:else}<div class="emdash-live-search-no-results">No results found</div>{/if}
   <template class="emdash-live-search-result-template">
    {#if result}{@render result()}{:else}
-    <a class={`emdash-live-search-result ${resultClass}`} href="/" aria-label="Search result">
+    <!-- svelte-ignore a11y_consider_explicit_label (the source client fills the visible title before inserting this inert template) -->
+    <a class={`emdash-live-search-result ${resultClass}`} href="/">
      <span class="emdash-live-search-result-title"></span>
      <span class="emdash-live-search-result-collection"></span>
      <span class="emdash-live-search-result-snippet"></span>
