@@ -67,7 +67,7 @@ jobs:
       - run: pnpm build:node
         if: matrix.target == 'node'
       - name: Exact source setup and welcome callback evidence
-        run: timeout --kill-after=30s 180s pnpm exec playwright test tests/browser/setup-wizard-source.spec.ts tests/browser/welcome-modal-source.spec.ts
+        run: timeout --kill-after=30s 180s pnpm exec playwright test tests/browser/setup-wizard-source.spec.ts tests/browser/welcome-modal-source.spec.ts tests/browser/welcome-native.spec.ts
         env:
           SVELTERY_BROWSER_TARGET: ${{ matrix.target }}
           DEBUG: pw:browser,pw:webserver

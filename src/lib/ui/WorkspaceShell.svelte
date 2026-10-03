@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
+  import WelcomeModal from './WelcomeModal.svelte';
   let { children, homeHref = '/', schemaHref, activePage = 'content' }: {
     children: Snippet; homeHref?: string; schemaHref?: string; activePage?: 'content' | 'schema' | 'settings' | 'dashboard' | 'media'
   } = $props();
@@ -20,6 +21,7 @@
   </aside>
   <main>{@render children()}</main>
 </div>
+<WelcomeModal/>
 
 <style>
   :global(body) { margin: 0; font-family: system-ui, sans-serif; background: #f5f6f8; color: #202735; }

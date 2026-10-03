@@ -8,4 +8,4 @@ export default defineConfig({plugins:[{
   if(specifier==='../../utils/mcp-runtime.js')return resolve(import.meta.dirname,'tests/helpers/settings-media-runtime.ts');
   if(specifier==='../../utils/test-db.js')return resolve(import.meta.dirname,'tests/helpers/settings-media-database.ts');
  }
-}],test: { include: ['tests/source-port/**/*.test.ts'], environment: 'node' } });
+}],test: { include: ['tests/source-port/**/*.test.ts'], environment: 'node', globalSetup:['tests/helpers/source-port-native-build.ts'] } });

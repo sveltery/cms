@@ -12,12 +12,31 @@ import {ContentDatetimeNormalizer,type DatetimeContextCache} from '../database/l
 import {createRevisionId} from '../database/lifecycle/upstream/database/repositories/revision.ts';
 import {registerLifecycleDatabase} from '../database/lifecycle/upstream/host.ts';
 import {getSiteSettingWithDb,setSiteSettings,settingsDb} from '../settings/index.ts';
-import type {SeedFile,SeedApplyResult,SeedTaxonomy,SeedContentEntry} from './upstream/types.ts';
+import type {SeedFile,SeedApplyResult,SeedTaxonomy,SeedContentEntry,SeedMediaReference} from './upstream/types.ts';
 export interface SetupSeedDependencies {
  applyTaxonomies?: (database:CmsDatabase,definitions:readonly SeedTaxonomy[],onConflict:'skip')=>Promise<{created:number;skipped:number}>;
  enableSearch?: (database:CmsDatabase,collection:string)=>Promise<unknown>;
 }
 export class SetupSeedError extends Error {constructor(message:string){super(message);this.name='SetupSeedError';}}
+export class SetupSeedUnsupportedError extends SetupSeedError {constructor(feature:string){super(`Seed ${feature} requires its real provider`);this.name='SetupSeedUnsupportedError';}}
+// Complete unchanged private guard from the immutable seed/apply.ts; MIT2026.
+function isSeedMediaReference(value: unknown): value is SeedMediaReference {
+	if (typeof value !== "object" || value === null || !("$media" in value)) {
+		return false;
+	}
+	const media = (value as Record<string, unknown>).$media;
+	return (
+		typeof media === "object" &&
+		media !== null &&
+		"url" in media &&
+		typeof (media as Record<string, unknown>).url === "string"
+	);
+}
+function hasSeedMediaReference(value:unknown):boolean{
+ if(isSeedMediaReference(value))return true;
+ if(Array.isArray(value))return value.some(hasSeedMediaReference);
+ return typeof value==='object'&&value!==null&&Object.values(value).some(hasSeedMediaReference);
+}
 /** The same pinned per-query threshold; each item that crosses it finishes. */
 class SeedBudget implements KyselyPlugin {
  #queries=0;
@@ -25,15 +44,17 @@ class SeedBudget implements KyselyPlugin {
  transformResult(args:PluginTransformResultArgs):Promise<QueryResult<UnknownRow>>{return Promise.resolve(args.result);}
  isSpent(){return this.#queries>=500;}
 }
-function assertSupportedSeed(seed:SeedFile){
+function assertSupportedSeed(seed:SeedFile,includeContent:boolean){
  if(!seed||seed.version!=='1')throw new SetupSeedError('Invalid seed version');
  // Feature integrations are explicit, rather than silently losing trusted seed data.
  for(const family of ['relations','blockTypes','menus','redirects','widgetAreas','sections','bylines'] as const)
   if(seed[family]?.length)throw new SetupSeedError(`Seed ${family} requires its real provider`);
+ if(includeContent&&seed.taxonomies?.some(taxonomy=>taxonomy.terms?.length))throw new SetupSeedUnsupportedError('taxonomy terms');
  for(const [type,entries]of Object.entries(seed.content??{})) {
   parse(identifier,type);
   for(const entry of entries){
    if(!entry||typeof entry.id!=='string'||!entry.data||typeof entry.data!=='object'||Array.isArray(entry.data))throw new SetupSeedError('Invalid seed content');
+   if(includeContent&&hasSeedMediaReference(entry.data))throw new SetupSeedUnsupportedError('media references');
    for(const field of ['taxonomies','bylines','translationOf'] as const)if(entry[field]!==undefined)throw new SetupSeedError(`Seed content ${field} requires its real provider`);
   }
  }
@@ -66,7 +87,7 @@ async function createSeedContent(database:CmsDatabase,type:string,entry:SeedCont
  return id;
 }
 export async function applySetupSeed(database:CmsDatabase,seed:SeedFile,includeContent:boolean,dependencies:SetupSeedDependencies={}) {
- assertSupportedSeed(seed);
+ assertSupportedSeed(seed,includeContent);
  if(seed.taxonomies?.length&&!dependencies.applyTaxonomies)throw new SetupSeedError('Taxonomy seed provider is not configured');
  if(seed.collections?.some(collection=>collection.supports?.includes('search'))&&!dependencies.enableSearch)throw new SetupSeedError('Search seed provider is not configured');
  const budget=new SeedBudget(),db=database.db.withPlugin(budget);

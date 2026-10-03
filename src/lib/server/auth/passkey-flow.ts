@@ -8,7 +8,7 @@ import { generateToken, secureCompare } from './vendor/tokens.ts';
 import { generateRegistrationOptions, registerPasskey, verifyRegistrationResponse } from './vendor/passkey/register.ts';
 import { authenticateWithPasskey, generateAuthenticationOptions } from './vendor/passkey/authenticate.ts';
 import { createChallengeStore, cleanupExpiredChallenges } from './challenges.ts';
-import { createFirstAdmin, identityAdapter, identityDb, identityOptions } from './identity-store.ts';
+import { createFirstAdmin, hasProfilelessUsers, identityAdapter, identityDb, identityOptions } from './identity-store.ts';
 import { hashSessionToken } from './session.ts';
 import { sql } from 'kysely';
 
@@ -31,13 +31,20 @@ function config(context: IdentityContext) {
   return { rpId: url.hostname, rpName: context.rpName, origins: [url.origin] };
 }
 const complete = (value: unknown) => value === true || value === 'true';
+async function requirePasskeyAvailable(context: IdentityContext) {
+  if (await hasProfilelessUsers(context.database)) throw new AuthFlowError('LEGACY_IDENTITY_UNAVAILABLE', 503);
+}
 async function setupGuard(context: IdentityContext) {
+  await requirePasskeyAvailable(context);
   const options = identityOptions(context.database);
   const isComplete = complete(await options.get('emdash:setup_complete'));
   if (await identityAdapter(context.database).countUsers() > 0) throw new AuthFlowError(isComplete ? 'SETUP_COMPLETE' : 'ADMIN_EXISTS');
   return options;
 }
 export async function setupStatus(context: IdentityContext) {
+  if (await hasProfilelessUsers(context.database)) {
+    return { needsSetup: false, unavailable: true, reason: 'LEGACY_IDENTITY_UNAVAILABLE' };
+  }
   const options = identityOptions(context.database);
   const isComplete = complete(await options.get('emdash:setup_complete'));
   const hasUsers = (await identityAdapter(context.database).countUsers()) > 0;
@@ -77,6 +84,7 @@ export async function finishAdminSetup(context: IdentityContext, cookieNonce: st
 }
 export async function authenticationOptions(context: IdentityContext, trustedIp: string | null,
   validateInput?: () => Promise<unknown>) {
+  await requirePasskeyAvailable(context);
   void cleanupExpiredChallenges(context.database).catch(() => {});
   // Pinned options.ts parses after cleanup and before consuming a rate slot.
   await validateInput?.();
@@ -97,6 +105,7 @@ export async function authenticationOptions(context: IdentityContext, trustedIp:
   return generateAuthenticationOptions(config(context), [], createChallengeStore(context.database));
 }
 export async function authenticatePasskey(context: IdentityContext, credential: AuthenticationResponse) {
+  await requirePasskeyAvailable(context);
   return authenticateWithPasskey(config(context), identityAdapter(context.database) as AuthAdapter, credential, createChallengeStore(context.database));
 }
 /** Canonical stored hash/absolute expiry; predecessor revocation and issuance share an atomic batch. */

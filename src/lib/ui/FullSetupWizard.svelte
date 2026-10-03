@@ -5,6 +5,7 @@
  import {createPasskey} from '$lib/auth/passkey-browser';
  let {loginHref='/login'}:{loginHref?:string}=$props();
  const status=await getSiteSetup().then(data=>({data,unavailable:false}),()=>({data:null,unavailable:true}));
+ const legacyUnavailable=$derived(status.data!==null&&'unavailable' in status.data&&status.data.unavailable===true);
  let step=$state<'site'|'admin'|'passkey'|'success'>('site');
  let title=$state(status.data?.seedInfo?.title??''),tagline=$state(status.data?.seedInfo?.tagline??'');
  let includeContent=$state(status.data?.seedInfo?.hasContent??false);
@@ -21,7 +22,9 @@
  }
 </script>
 
-{#if status.unavailable}
+{#if legacyUnavailable}
+ <h1>Set up your site</h1><p role="status">Passkey authentication is unavailable for existing accounts. Administrator enrollment support is not implemented.</p>
+{:else if status.unavailable}
  <h1>Set up your site</h1><p role="status">Setup is unavailable until the database and public URL are configured.</p>
 {:else}
  <h1>{step==='site'?'Set up your site':step==='admin'?'Create your account':step==='passkey'?'Secure your account':'Your account is ready'}</h1>

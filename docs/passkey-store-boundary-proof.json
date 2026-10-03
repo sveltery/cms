@@ -1,0 +1,59 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "modules": [
+    {
+      "path": "packages/core/src/auth/challenge-store.ts",
+      "sourceBlob": "64fc29557ebc476b034c8adedd96c86019ec2342",
+      "sha256": "452608d7d285c242725d721158f24429176080de6aefe70491091b719ff40a92",
+      "bytes": 2138
+    },
+    {
+      "path": "packages/core/src/database/types.ts",
+      "sourceBlob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7",
+      "sha256": "ebd3a2d8aded68ada1731adb4838d7eda5b85778d373b248211e0f8fe75c2b1d",
+      "bytes": 31530
+    },
+    {
+      "path": "packages/auth/src/passkey/types.ts",
+      "sourceBlob": "80ba6a36db6962f1f559a7b20bd36f3c134c8528",
+      "sha256": "be093f2238bb00d6e930d333dab9c719ee80cb4adb0a4c2999df953851fa6efa",
+      "bytes": 4422
+    },
+    {
+      "path": "packages/auth/src/types.ts",
+      "sourceBlob": "e5fc2ec92b399079aca96f08621b3d042a41fb15",
+      "sha256": "2764667f5a2552eda6f401ea63bfdccda5ef30508b71adaa049257fe733de7f5",
+      "bytes": 10246
+    },
+    {
+      "path": "LICENSE",
+      "sourceBlob": "02cc4b8b0a5f883c5243927e683b00c10588bf4c",
+      "sha256": "d5ab82c0225b0def1fa140af22ff2f3bed9791a527545be1b04ab4337dc88675",
+      "bytes": 1079
+    }
+  ],
+  "runtimeClosure": [
+    "packages/core/src/auth/challenge-store.ts"
+  ],
+  "typeClosure": [
+    "packages/core/src/database/types.ts",
+    "packages/auth/src/passkey/types.ts",
+    "packages/auth/src/types.ts"
+  ],
+  "observed": {
+    "cases": 8,
+    "sequentialReadsRetainUnexpiredMetadata": true,
+    "separateDeleteRemovesRow": true,
+    "expiredGetDeletesRow": true,
+    "consumeExposed": false,
+    "atomicBrandExposed": false
+  },
+  "boundaries": [
+    "Complete source helper, erased type-only imports; native Node/raw local D1 adapters and fixture DDL replace source migrations",
+    "Dedicated challenge tables and dummy strings only; no users, profiles, credentials, cookies or sessions",
+    "No algorithms, signed assertions, registration/authentication routes, concurrency, duplicate-session consequence or deployment executed"
+  ],
+  "copiedSourceCredit": 0,
+  "behavioralRedCredit": 0,
+  "authenticationConsequenceCredit": 0
+}

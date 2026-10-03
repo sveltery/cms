@@ -27,6 +27,12 @@ export function identityOptions(database: CmsDatabase) {
     async delete(key: string) { await db.deleteFrom('_cms_auth_setup').where('key', '=', key).execute(); }
   };
 }
+/** Older minimal users have no verified identity metadata to enroll automatically. */
+export async function hasProfilelessUsers(database: CmsDatabase): Promise<boolean> {
+  return !!await identityDb(database).selectFrom('_cms_auth_users as u')
+    .leftJoin('_cms_auth_profiles as p', 'p.user_id', 'u.id').select('u.id')
+    .where('p.user_id', 'is', null).limit(1).executeTakeFirst();
+}
 function credential(row: AuthIdentityTables['_cms_auth_credentials']): Credential {
   return { id: row.id, userId: row.user_id,
     publicKey: row.public_key instanceof Uint8Array ? row.public_key : new Uint8Array(row.public_key),

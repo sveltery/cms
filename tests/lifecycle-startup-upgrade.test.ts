@@ -5,7 +5,7 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { sql } from 'kysely';
-import { migrateCms, CMS_MIGRATION_VERSION } from '../src/lib/server/database/migrations.ts';
+import { migrateCms, CMS_MIGRATION_VERSION, CMS_MIGRATIONS } from '../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
 import { DraftRepository } from '../src/lib/server/database/entries.ts';
 import { schemaAdminStorage } from './helpers/schema-admin-storage.ts';
@@ -81,7 +81,11 @@ for (const target of ['Node','D1'] as const) {
         if (table.name === 'ec_post') for (const row of actual.rows as Record<string,unknown>[]) {
           assert.equal(row.primary_byline_id,null); delete row.primary_byline_id;
         }
-        assert.deepEqual(actual,table,table.name);
+        // The real forward provider adds one nullable column; every historical
+        // row value still compares exactly, including all prior columns.
+        const expected=table.name==='_cms_collections'&&CMS_MIGRATIONS.some(provider=>provider.name==='metadata-storage-fidelity')
+          ? {...table,rows:(table.rows as Record<string,unknown>[]).map(row=>Object.assign(Object.create(Object.getPrototypeOf(row)),row,{search_config:null}))}:table;
+        assert.deepEqual(actual,expected,table.name);
       }
       for (const object of before.objects.filter(row=>row.type==='index'||row.type==='trigger')) assert.deepEqual(after.objects.find(row=>row.name===object.name),object);
       assert.deepEqual(await registry.getCollectionWithFields('post'),definition);
