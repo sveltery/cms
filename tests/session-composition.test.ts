@@ -12,14 +12,14 @@ import type { Handle } from '@sveltejs/kit';
 test('server bridge derives supported settings, schema, content and publication permissions from a current role', () => {
   assert.equal(servicePrincipal(null), null);
   const author = servicePrincipal({ id: 'author', role: Role.AUTHOR });
-  assert.deepEqual(author, { id: 'author', permissions: ['taxonomies:read', 'content:read', 'content:read_drafts', 'content:create', 'content:edit_own', 'content:delete_own', 'content:publish_own'] });
+  assert.deepEqual(author, { id: 'author', permissions: ['content:read', 'content:read_drafts', 'content:create', 'content:edit_own', 'content:delete_own', 'media:read', 'media:upload', 'media:edit_own', 'media:delete_own', 'taxonomies:read', 'content:publish_own'] });
   assert.ok(Object.isFrozen(author)); assert.ok(Object.isFrozen(author!.permissions));
-  assert.deepEqual(servicePrincipal({ id: 'contributor', role: Role.CONTRIBUTOR })!.permissions, ['taxonomies:read', 'content:read', 'content:read_drafts', 'content:create']);
+  assert.deepEqual(servicePrincipal({ id: 'contributor', role: Role.CONTRIBUTOR })!.permissions, ['content:read', 'content:read_drafts', 'content:create', 'media:read', 'media:upload', 'taxonomies:read']);
   assert.equal(servicePrincipal({ id: 'bad', role: 999 as any }), null);
   assert.equal(servicePrincipal({ id: '', role: Role.ADMIN }), null);
   assert.equal(servicePrincipal({ id: 'x'.repeat(129), role: Role.ADMIN }), null);
   const admin=servicePrincipal({ id: 'admin', role: Role.ADMIN })!.permissions;
-  assert.deepEqual(admin,['taxonomies:read','taxonomies:manage','settings:read','settings:manage','schema:read','schema:manage','content:read','content:read_drafts','content:create','content:edit_own','content:edit_any','content:delete_own','content:delete_any','content:publish_own','content:publish_any','search:manage']);
+  assert.deepEqual(admin,['schema:read','schema:manage','content:read','content:read_drafts','content:create','content:edit_own','content:edit_any','content:delete_own','content:delete_any','media:read','media:upload','media:edit_own','media:edit_any','media:delete_own','media:delete_any','taxonomies:read','taxonomies:manage','settings:read','settings:manage','content:publish_own','content:publish_any','search:manage']);
   const editor=servicePrincipal({id:'editor',role:Role.EDITOR})!.permissions;
   assert.ok(editor.includes('settings:read'));assert.equal(editor.includes('settings:manage'),false);
 
@@ -47,7 +47,7 @@ test('request-scoped cookie resolution observes role changes, revocation and exp
     const first = await run(token);
     assert.equal(first.principal.id, 'author'); assert.equal(first.mutationsEnabled, false);
     await db.updateTable('_cms_auth_users').set({ role: Role.SUBSCRIBER }).execute();
-    assert.deepEqual((await run(token)).principal.permissions, ['taxonomies:read', 'content:read']);
+    assert.deepEqual((await run(token)).principal.permissions, ['content:read', 'media:read', 'taxonomies:read']);
     assert.ok(first.principal.permissions.includes('content:create'));
     await db.updateTable('_cms_auth_users').set({ disabled: 1 }).execute();
     assert.equal((await run(token)).principal, null);
