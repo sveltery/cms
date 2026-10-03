@@ -31,3 +31,13 @@ it('does not dispatch an upload after cancellation',async()=>{
  const transport=uploadTransport();const controller=new AbortController();controller.abort();
  await expect(uploadMediaFile(new File(['image'],'photo.png'),{signal:controller.signal})).rejects.toMatchObject({name:'AbortError'});expect(transport.fetch).not.toHaveBeenCalled();
 });
+it('returns the actual stored asset URL when deduplication reads a complete source row without a URL',async()=>{
+ const {url,...storedRow}=item;
+ vi.spyOn(globalThis,'fetch').mockImplementation(async(input)=>{
+  if(input==='/api/media/upload-url')return Response.json({success:true,data:{existing:true,mediaId:item.id}});
+  if(input==='/api/media/ready-media')return Response.json({success:true,data:{item:storedRow}});
+  throw new Error(`Unexpected transport: ${String(input)}`);
+ });
+ const result=await uploadMediaFile(new File(['existing image'],'existing.png',{type:'image/png'}));
+ expect(result.url).toBe(url);expect(result).toEqual(item);
+});

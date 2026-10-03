@@ -1,0 +1,44 @@
+{
+  "kind": "original ordinary credential HTTP/SQL/filesystem acceptance",
+  "baseHead": "b21a916",
+  "fixtureDependency": {
+    "head": "a43e01f0f23908f8e483a5df239befa6445fbfb6",
+    "tree": "38440225c9c7aa10020bd5c3fd296cf27b2f7680",
+    "files": {
+      "tests/helpers/passkey-runtime.ts": "58e68cbb072775aeab3d87b285ab88afd0cf590d",
+      "tests/helpers/passkey-runtime-server.mjs": "c139eeb9292b5413e995921c4becfa2b1c841cf4"
+    },
+    "qualification": "/tmp/root-blocks-supported-fixture-local-proof.json",
+    "scope": "test-only supported LocalStorage for Node Kit plus Node SQLite/workerd D1 SQL; no Blocks graph consumption"
+  },
+  "test": "tests/production/media-ordinary-details.test.ts",
+  "results": {
+    "tests": 2,
+    "pass": 2,
+    "copiedSourceCallbacks": 0,
+    "newCausalAssertionReds": 0
+  },
+  "log": {
+    "path": "/tmp/media-ordinary-details-local-final.log",
+    "sha256": "f7b6bda0e421dcfd4b32c381bb5ecd8e701b33a9702a63c8d20ad182579fd013"
+  },
+  "retainedOwnFixtureFailures": [
+    {
+      "path": "/tmp/media-ordinary-details-local-first.log",
+      "sha256": "5f1d085b7f5ae8d82a95ec63c5b3b05ac6b8339764f95a4f9b919fd85fdd7f80"
+    },
+    {
+      "path": "/tmp/media-ordinary-details-local-corrected.log",
+      "sha256": "83bae4aeda1fb442ed8510b9b1291c6ed6010e6aa96bb67333190630ca228185"
+    }
+  ],
+  "limits": [
+    "Initial request(undefined) from absent Source single-item GET url was own fixture error; prior persistence-regression credit withdrawn.",
+    "Initial cursor listing totalCount expectation was own fixture error; explicit source page mode requests total.",
+    "Real ordinary setup does not issue session, real signed login does; no user/session seed.",
+    "Real metadata/focal replacement and settings cache invalidation, exact local stored bytes and restart under real Node SQLite / workerd D1 SQL.",
+    "Prepared byte input gives zero Canvas or browser interaction credit.",
+    "LocalStorage in Node Kit is explicit; raw Node proxy to R2 known-length mismatch remains unsupported, actual Worker R2 evidence separate.",
+    "Installed-package current built-manifest diagnostic only; no new full normal/secured/final-review pass."
+  ]
+}
