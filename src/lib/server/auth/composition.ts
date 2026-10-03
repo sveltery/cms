@@ -8,9 +8,7 @@ import type { Permission, ServerPrincipal } from '../database/service.ts';
 import type { CmsDatabase } from '../database/contract.ts';
 
 const servicePermissions: readonly Permission[] = Object.freeze([
-  'schema:read', 'schema:manage', 'content:read', 'content:read_drafts', 'content:create',
-  'content:edit_own', 'content:edit_any', 'content:delete_own', 'content:delete_any',
-  'media:read', 'media:upload', 'media:edit_own', 'media:edit_any', 'media:delete_own', 'media:delete_any'
+  'schema:read', 'schema:manage', 'content:read', 'content:read_drafts', 'content:create', 'content:edit_own', 'content:edit_any', 'content:delete_own', 'content:delete_any', 'media:read', 'media:upload', 'media:edit_own', 'media:edit_any', 'media:delete_own', 'media:delete_any', 'taxonomies:read', 'taxonomies:manage', 'settings:read', 'settings:manage', 'content:publish_own', 'content:publish_any', 'search:manage'
 ]);
 
 /** Accept only a server-resolved principal; request claims never enter this bridge. */
