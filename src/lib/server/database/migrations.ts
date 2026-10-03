@@ -6,6 +6,8 @@ import { authSchemaStatements } from '../auth/schema.ts';
 import { pendingTrashIndexStatements } from './trash-index.ts';
 import { schemaMigration } from './schema-migrations.ts';
 import { migrationObjects, normalizeMigrationSql, type CmsMigrationProvider } from './migration-provider.ts';
+import { guardLifecycleIndexRepair, lifecycleMigration } from './lifecycle-migrations.ts';
+import { ftsMetadataGuard, recognizeCompanionNamedFtsOwner, recognizeVersionedFtsOwner, type FtsCatalogueObject, type ReadOnlyOwnershipGuard, type RecognizedFtsOwner } from '../search/fts-ownership.ts';
 
 function foundationStatements(database: CmsDatabase): CompiledQuery[] {
   const db = database.db;
@@ -35,31 +37,139 @@ export const CMS_MIGRATIONS: readonly CmsMigrationProvider[] = [
     async expectedObjects(database) { return migrationObjects(await this.statements(database)); } },
   schemaMigration,
   {version:4,name:'auth-identity',async statements(database) {return authIdentitySchemaStatements(database.db);},
-    async expectedObjects(database) {return authIdentitySchemaObjects(database.db);}}
+    async expectedObjects(database) {return authIdentitySchemaObjects(database.db);}},
+  lifecycleMigration
 ];
 export const CMS_MIGRATION_VERSION = CMS_MIGRATIONS.at(-1)!.version;
 const trackingStatement = (database: CmsDatabase) =>
   sql`CREATE TABLE _cms_migrations (version INTEGER PRIMARY KEY CHECK(version > 0))`.compile(database.db);
 
-async function migrationState(database: CmsDatabase): Promise<number> {
+interface ValidatedMigrationState { version: number; prerequisiteGuard: CompiledQuery }
+interface PrerequisiteObject { name: string; type: string; sql: string | null }
+const prerequisiteChanged = 'sveltery-cms-migration-prerequisite-changed';
+const shadowSuffixes=['data','idx','content','docsize','config'];
+const triggerSuffixes=['insert','update','delete'];
+function companionBase(object:PrerequisiteObject) {
+  const suffixes=object.type==='trigger' ? triggerSuffixes : shadowSuffixes;
+  return new RegExp('^(_cms_fts_[a-z][a-z0-9_]*_v[0-9]+)_(?:'+suffixes.join('|')+')$','i').exec(object.name)?.[1].toLowerCase();
+}
+function companionObjectsSql() {
+  return sql.join([...shadowSuffixes,...triggerSuffixes].map(suffix=>{
+    const length=sql.lit(suffix.length+1),stem=sql`substr(lower(name),1,length(name)-${length})`;
+    return sql`(${triggerSuffixes.includes(suffix) ? sql`type='trigger'` : sql`type<>'trigger'`}
+      AND substr(lower(name),-${length})=${sql.lit('_'+suffix)}
+      AND rtrim(${stem},'0123456789') GLOB '_cms_fts_*_v'
+      AND length(rtrim(${stem},'0123456789'))<length(${stem}))`;
+  }),sql` OR `);
+}
+
+/** Validate the old layout before intentional provider upgrades change its DDL. */
+function ownershipCondition(guard: ReadOnlyOwnershipGuard) {
+  const parts=guard.sql.split('?');
+  return sql.join(parts.flatMap((part,index)=>index<guard.parameters.length ? [sql.raw(part),sql`${guard.parameters[index]}`] : [sql.raw(part)]),sql``);
+}
+
+function prerequisiteGuard(database: CmsDatabase, version: number, names: readonly string[], rows: readonly PrerequisiteObject[], managed: readonly RecognizedFtsOwner[] = []) {
+  const triggers=managed.flatMap(owner=>owner.objects.filter(object=>object.type==='trigger').map(object=>object.name));
+  const guardedNames=[...names,...managed.flatMap(owner=>owner.objects.filter(object=>object.type!=='trigger').map(object=>object.name))];
+  const temporary = sql`lower(name) GLOB '_cms_*' AND length(rtrim(name,'0123456789')) < length(name)
+    AND rtrim(lower(name),'0123456789') GLOB '_cms_*_v'`;
+  const selected = sql`(type <> 'trigger' AND lower(name) IN (SELECT value FROM json_each(${JSON.stringify(guardedNames)}))) OR (${temporary}) OR (${companionObjectsSql()})
+    ${triggers.length ? sql`OR (type='trigger' AND name IN (SELECT value FROM json_each(${JSON.stringify(triggers)})))` : sql``}
+    ${version === 0 ? sql`OR lower(name) GLOB '_cms_*'` : sql``}`;
+  const snapshot = JSON.stringify(rows.filter(row => row.type !== 'trigger' ? guardedNames.includes(row.name.toLowerCase()) : triggers.includes(row.name))
+    .map(({name,type,sql}) => ({name,type,sql}))
+    .sort((a,b) => a.name < b.name ? -1 : a.name > b.name ? 1 : a.type < b.type ? -1 : a.type > b.type ? 1 : 0));
+  const versions = version === 0 ? sql`${'[]'}` : sql`(SELECT json_group_array(version)
+    FROM (SELECT version FROM _cms_migrations ORDER BY version))`;
+  // This read-only guard also works before the foundation/guard tables exist.
+  // A bad JSON path aborts the atomic batch before its first startup write.
+  return sql`SELECT json_extract('[]', CASE WHEN
+    (SELECT json_group_array(json_object('name',name,'type',type,'sql',sql)) FROM
+      (SELECT name,type,sql FROM sqlite_master WHERE ${selected} ORDER BY name,type)) = ${snapshot}
+    AND ${versions} = ${JSON.stringify(Array.from({length:version},(_,index)=>index+1))}
+    ${managed.length ? sql`AND (${ownershipCondition(ftsMetadataGuard(managed.map(group=>group.owner)))})` : sql``}
+    THEN '$' ELSE ${prerequisiteChanged} END)`.compile(database.db);
+}
+
+function validateObjects(rows: readonly PrerequisiteObject[], expected: ReadonlyMap<string,PrerequisiteObject>, owned: ReadonlySet<string>, managedTables: ReadonlySet<string> = new Set()) {
+  const objects=new Map(rows.filter(row=>row.type!=='trigger').map(row=>[row.name,row]));
+  for (const object of rows) {
+    const name=object.name;
+    if (/^_cms_.*_v[0-9]+$/i.test(name) && !(object.type==='table' && managedTables.has(name))) throw new CmsError('MIGRATION_REQUIRED');
+    if (object.type==='trigger') continue;
+    if (owned.has(name.toLowerCase()) && name!=='_cms_migrations' && !expected.has(name)) throw new CmsError('MIGRATION_REQUIRED');
+    const wanted=expected.get(name);
+    if (wanted && (wanted.type!==object.type || normalizeMigrationSql(wanted.sql ?? '')!==normalizeMigrationSql(object.sql ?? ''))) throw new CmsError('MIGRATION_REQUIRED');
+  }
+  if ([...expected.keys()].some(name=>!objects.has(name))) throw new CmsError('MIGRATION_REQUIRED');
+}
+
+/** Ownership is read only after all installed static metadata layouts validate. */
+async function managedFtsOwners(database:CmsDatabase, rows:readonly FtsCatalogueObject[], candidates:ReadonlySet<string>) {
+  const companions=rows.filter(object=>companionBase(object));
+  if (!candidates.size && !companions.length) return [];
+  const columns=(await sql<{name:string}>`PRAGMA table_info(_cms_collections)`.execute(database.db)).rows;
+  if (!columns.some(column=>column.name==='search_config')) throw new CmsError('MIGRATION_REQUIRED');
+  const managed=new Map<string,RecognizedFtsOwner>();
+  const discovered=new Set(candidates);
+  const recognize=async(table:string,ambiguous=false)=>{
+    const slug=table.slice('_cms_fts_'.length);
+    const owner=(await sql<{id:string;slug:string;search_config:string|null}>`SELECT id,slug,search_config FROM _cms_collections WHERE slug=${slug}`.execute(database.db)).rows[0];
+    if (!owner) return null;
+    const fields=(await sql<{slug:string;type:string;searchable:number}>`SELECT slug,type,searchable FROM _cms_fields WHERE collection_id=${owner.id}`.execute(database.db)).rows;
+    const tables=new Set(['','_data','_idx','_content','_docsize','_config'].map(suffix=>table+suffix));
+    const triggers=new Set(['_insert','_update','_delete'].map(suffix=>table+suffix));
+    // SQLite trigger names occupy their own namespace. An operator table with
+    // a trigger's name is not part of the managed group, or vice versa.
+    const group=rows.filter(object=>object.type==='trigger' ? triggers.has(object.name) : tables.has(object.name));
+    return (ambiguous ? recognizeCompanionNamedFtsOwner : recognizeVersionedFtsOwner)({id:owner.id,slug:owner.slug,searchConfig:owner.search_config,fields},group);
+  };
+  for(const object of companions) {
+    // A complete registered ordinary main named notes_v3_data is legitimate;
+    // it is not an orphan shadow of notes_v3. No prefix alone grants ownership.
+    const own=object.type==='table' ? await recognize(object.name,true) : null;
+    if(own) {managed.set(own.table,own);continue;}
+    discovered.add(companionBase(object)!);
+  }
+  for(const table of discovered) {
+    const recognized=await recognize(table);
+    if (!recognized) throw new CmsError('MIGRATION_REQUIRED');
+    managed.set(recognized.table,recognized);
+  }
+  return [...managed.values()];
+}
+
+async function migrationState(database: CmsDatabase): Promise<ValidatedMigrationState> {
   const db = database.db;
+  const staticNames = new Set(['_cms_migrations']);
+  // Version zero descriptors declare every static name, including future
+  // provider objects, without reading metadata tables which may not exist.
+  const staticObjects=new Map<CmsMigrationProvider,Awaited<ReturnType<CmsMigrationProvider['expectedObjects']>>>();
+  for (const provider of CMS_MIGRATIONS) {
+    const descriptors=await provider.expectedObjects(database,0);
+    staticObjects.set(provider,descriptors);
+    for (const object of descriptors) staticNames.add(object.name.toLowerCase());
+  }
+  const names = [...staticNames];
   const probe = await sql<{name: string; type: string}>`SELECT name,type FROM sqlite_master
-    WHERE name LIKE '_cms_%' OR name = 'idx_cms_auth_sessions_user' OR name = 'idx_cms_fields_collection'`.execute(db);
+    WHERE lower(name) GLOB '_cms_*' OR (type <> 'trigger' AND lower(name) IN (${sql.join(names)}))`.execute(db);
   if (!probe.rows.some(row => row.name === '_cms_migrations' && row.type === 'table')) {
     if (probe.rows.length) throw new CmsError('MIGRATION_REQUIRED');
-    return 0;
+    return {version:0,prerequisiteGuard:prerequisiteGuard(database,0,names,[])};
   }
   let rows;
   try {
     // Layout and all markers come from one SQLite statement snapshot. An
     // independent caller may commit between the probe and this snapshot.
-    rows = (await sql<{name: string; type: string; sql: string; versions: string}>`SELECT name,type,sql,
+    rows = (await sql<{name: string; type: string; tbl_name: string; sql: string; versions: string}>`SELECT name,type,tbl_name,sql,
       (SELECT json_group_array(version) FROM _cms_migrations) AS versions FROM sqlite_master`.execute(db)).rows;
   } catch (cause) {
     if (/no such (?:table|column):/.test(sqliteErrorMessage(cause) ?? '')) throw new CmsError('MIGRATION_REQUIRED');
     throw cause;
   }
-  const objects = new Map(rows.map(row => [row.name,row]));
+  // Trigger names occupy a separate SQLite namespace and can equal table names.
+  const objects = new Map(rows.filter(row=>row.type!=='trigger').map(row => [row.name,row]));
   const marker = objects.get('_cms_migrations');
   if (!marker || marker.type !== 'table') throw new CmsError('MIGRATION_REQUIRED');
   const versions: unknown = JSON.parse(marker.versions);
@@ -67,46 +177,66 @@ async function migrationState(database: CmsDatabase): Promise<number> {
   const ordered = [...versions].sort((a,b) => a-b);
   const version = ordered.length;
   if (!version || version > CMS_MIGRATION_VERSION || ordered.some((value,index) => value !== index+1)) throw new CmsError('MIGRATION_REQUIRED');
-  const expected = new Map<string,{name: string; type: string; sql: string}>();
-  const owned = new Set(['_cms_migrations']);
-  for (const provider of CMS_MIGRATIONS) {
-    const descriptors = await provider.expectedObjects(database);
-    for (const object of descriptors) {
-      owned.add(object.name);
-      if (provider.version <= version) expected.set(object.name,object);
-    }
-  }
-  // Intermediate rebuild objects and partially-installed future providers are
-  // rejected. No DROP/repair runs against an unknown layout.
-  for (const [name,object] of objects) {
-    if (/^_cms_.*_v[0-9]+$/.test(name) || (owned.has(name) && name !== '_cms_migrations' && !expected.has(name))) throw new CmsError('MIGRATION_REQUIRED');
-    const wanted = expected.get(name);
-    if (wanted && (wanted.type !== object.type || normalizeMigrationSql(wanted.sql) !== normalizeMigrationSql(object.sql ?? ''))) throw new CmsError('MIGRATION_REQUIRED');
-  }
-  if ([...expected.keys()].some(name => !objects.has(name))) throw new CmsError('MIGRATION_REQUIRED');
   // Accept immutable historical tracking layouts only before the v3 upgrade.
   const tracking = normalizeMigrationSql(marker.sql ?? '');
   const validTracking = [normalizeMigrationSql(trackingStatement(database).sql)];
   if (version <= 2) validTracking.push('CREATE TABLE _cms_migrations (version INTEGER PRIMARY KEY CHECK(version = 1))',
     'CREATE TABLE _cms_migrations (version INTEGER PRIMARY KEY CHECK(version IN (1, 2)))');
   if (!validTracking.includes(tracking)) throw new CmsError('MIGRATION_REQUIRED');
-  return version;
+  const expected = new Map<string,{name: string; type: string; sql: string}>();
+  const owned = new Set(staticNames);
+  // Resolve every installed static replacement before any dynamic provider
+  // reads metadata. A later provider can supersede an earlier table layout.
+  for (const provider of CMS_MIGRATIONS) if (provider.version<=version) {
+    for (const object of staticObjects.get(provider)!) expected.set(object.name,object);
+  }
+  // Defer only a possible real FTS5 table. This grants no ownership until its
+  // complete source-generated layout and registered metadata validate below.
+  const candidates=new Set(rows.filter(object=>object.type==='table' && /^_cms_fts_[a-z][a-z0-9_]*_v[0-9]+$/.test(object.name)
+    && /^CREATE\s+VIRTUAL\s+TABLE\b[\s\S]*\bUSING\s+fts5\s*\(/i.test(object.sql??'')).map(object=>object.name));
+  validateObjects(rows,expected,owned,candidates);
+  const managed=await managedFtsOwners(database,rows,candidates);
+  for (const provider of CMS_MIGRATIONS) {
+    if (provider.version>version) continue;
+    const descriptors = await provider.expectedObjects(database,version);
+    for (const object of descriptors) {
+      owned.add(object.name.toLowerCase());
+      expected.set(object.name,object);
+    }
+  }
+  // Intermediate rebuild objects and partially-installed future providers are
+  // rejected. No DROP/repair runs against an unknown layout.
+  validateObjects(rows,expected,owned,new Set(managed.map(owner=>owner.table)));
+  return {version,prerequisiteGuard:prerequisiteGuard(database,version,names,rows,managed)};
 }
 
-async function installIndexes(database: CmsDatabase) {
+function prerequisiteRace(message: string | null | undefined) {
+  return !!message && (message.includes(prerequisiteChanged) || /no such (?:table|column): (?:_cms_migrations|version)(?:$|\b)/.test(message));
+}
+
+async function installIndexes(database: CmsDatabase, state: ValidatedMigrationState) {
   const statements = await pendingTrashIndexStatements(database);
   if (!statements.length) return;
-  try { await database.atomicBatch(statements); }
+  const guarded=await guardLifecycleIndexRepair(database,statements);
+  try { await database.atomicBatch([state.prerequisiteGuard,...guarded]); }
   catch (cause) {
-    if (sqliteErrorMessage(cause) === 'CHECK constraint failed: pass = 1') throw new CmsError('MIGRATION_REQUIRED');
+    const message=sqliteErrorMessage(cause);
+    if (message === 'CHECK constraint failed: pass = 1' || prerequisiteRace(message)) {
+      // An exact concurrent index installer may win this snapshot. Accept it
+      // only after revalidating the complete latest layout and every index.
+      if ((await migrationState(database)).version===CMS_MIGRATION_VERSION&&
+        !(await pendingTrashIndexStatements(database)).length) return;
+      throw new CmsError('MIGRATION_REQUIRED');
+    }
     throw cause;
   }
 }
 
 /** Explicit migrations preserve existing content; startup supplies no seed identity. */
 export async function migrateCms(database: CmsDatabase): Promise<void> {
-  const state = await migrationState(database);
-  if (state === CMS_MIGRATION_VERSION) { await installIndexes(database); return; }
+  const validated = await migrationState(database);
+  const state = validated.version;
+  if (state === CMS_MIGRATION_VERSION) { await installIndexes(database,validated); return; }
   const db = database.db;
   const statements: CompiledQuery[] = state === 0 ? [trackingStatement(database)] : [
     // A stale caller must roll back all DDL. Its race is recovered only after a
@@ -119,6 +249,7 @@ export async function migrateCms(database: CmsDatabase): Promise<void> {
     sql`INSERT INTO _cms_migrations (version) SELECT version FROM _cms_migrations_v1`.compile(db),
     sql`DROP TABLE _cms_migrations_v1`.compile(db)
   ];
+  statements.unshift(validated.prerequisiteGuard);
   const indexes = state > 0 ? await pendingTrashIndexStatements(database) : [];
   for (const provider of CMS_MIGRATIONS) {
     if (provider.version <= state) continue;
@@ -130,11 +261,16 @@ export async function migrateCms(database: CmsDatabase): Promise<void> {
   try { await database.atomicBatch(statements); }
   catch (cause) {
     const message = sqliteErrorMessage(cause);
-    const race = state === 0 ? message === 'table _cms_migrations already exists' : message === 'CHECK constraint failed: pass = 1';
+    const race = message === 'CHECK constraint failed: pass = 1' ||
+      prerequisiteRace(message) ||
+      (state === 0 && message === 'table _cms_migrations already exists');
     if (race) {
       const current = await migrationState(database);
-      if (current === CMS_MIGRATION_VERSION) { await installIndexes(database); return; }
-      if (current === state && indexes.length) await pendingTrashIndexStatements(database);
+      if (current.version === CMS_MIGRATION_VERSION) { await installIndexes(database,current); return; }
+      if (current.version === state) {
+        if (indexes.length) await pendingTrashIndexStatements(database);
+        throw new CmsError('MIGRATION_REQUIRED');
+      }
     }
     throw cause;
   }

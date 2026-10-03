@@ -195,8 +195,8 @@ export class SchemaRegistry {
         })), ...(value.admin === undefined ? {} : {admin_config:JSON.stringify(value.admin)})
       }).compile(),
       sql`CREATE TABLE ${sql.ref(name)} (
-        id TEXT PRIMARY KEY NOT NULL, slug TEXT, status TEXT NOT NULL DEFAULT 'draft' CHECK(status = 'draft'),
-        author_id TEXT, created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+        id TEXT PRIMARY KEY NOT NULL, slug TEXT, status TEXT NOT NULL DEFAULT 'draft',
+        author_id TEXT, primary_byline_id TEXT, created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
         updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
         published_at TEXT, scheduled_at TEXT, deleted_at TEXT,
         version INTEGER NOT NULL DEFAULT 1 CHECK(version > 0),
