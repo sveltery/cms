@@ -1,5 +1,6 @@
-import { createCmsHandle } from '$lib/server/auth/composition';
+import { env } from '$env/dynamic/private';
+import { base } from '$app/paths';
+import { createEnvironmentCmsRuntime } from '$lib/server/runtime/environment';
 
-// Hosting composition supplies an already-migrated request adapter here in a later slice.
-// No storage, login, anonymous principal or write opt-in is configured by default.
-export const handle = createCmsHandle(() => undefined);
+const runtime = createEnvironmentCmsRuntime(() => env, base);
+export const handle = runtime.handle;

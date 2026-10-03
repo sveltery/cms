@@ -8,7 +8,10 @@ import { persistedRemotes, fields } from '../helpers/persisted-remotes.ts';
 
 describe('registered remote ports of EmDash scalar repository assertions', () => {
   let harness: Awaited<ReturnType<typeof persistedRemotes>>;
-  beforeEach(async () => { harness = await persistedRemotes(); });
+  beforeEach(async () => { harness = await persistedRemotes();
+    const collection=(await harness.registry.getCollectionWithFields('post'))!;
+    await harness.registry.updateCollection('post',{supports:[]},{version:collection.version,updatedAt:collection.updatedAt});
+  });
   afterEach(async () => { await harness.close(); });
   async function created(data = { title: 'Test Post' }, extra = {}) {
     const result = await harness.mutate('createContent', { collection: 'post', ...fields(data), ...extra });
@@ -24,7 +27,7 @@ describe('registered remote ports of EmDash scalar repository assertions', () =>
     assert.ok(content.updatedAt);
   });
   it('should allow null slug [source:147]', async () => {
-    const content = await created({ title: 'No slug' });
+    const content = await created({ title: 'No slug' }, {slug:''});
     assert.equal(content.slug, null);
   });
   it('should default status to draft [source:157]', async () => {

@@ -1,4 +1,5 @@
 import * as v from 'valibot';
+import { ordinaryContentService } from './content-service.ts';
 import { editorManifest } from '../content/manifest.ts';
 import { CmsError, type CmsDatabase } from './contract.ts';
 import { DraftRepository } from './entries.ts';
@@ -55,6 +56,7 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
     return actor.id;
   }
   return {
+    ...ordinaryContentService(database, principal),
     async getEditorManifest() { return editorManifest(database, identity); },
     async listCollections() { requirePermission('schema:read'); return registry.listCollections(); },
     async getCollection(input: unknown) {

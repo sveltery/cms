@@ -8,6 +8,12 @@ import { cp, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises'
 import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { parse, stringify } from 'devalue';
+import { encodeBase64urlNoPadding } from '@oslojs/encoding';
+import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
+import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
+import { hashSessionToken } from '../../src/lib/server/auth/session.ts';
+import { Role } from '../../src/lib/server/auth/roles.ts';
 import { remoteBoundaries } from '../helpers/remote.ts';
 
 async function unusedPort() {
@@ -20,11 +26,12 @@ async function unusedPort() {
   return address.port;
 }
 
-function launch(cwd: string, port: number, origin?: string) {
+function launch(cwd: string, port: number, origin?: string, databasePath?: string) {
   // Deliberately inherit no credentials, DB settings, proxy trust or session configuration.
   const child = spawn(process.execPath, ['build/index.js'], {
     cwd, env: { PATH: process.env.PATH, HOST: '127.0.0.1', PORT: String(port),
-      SHUTDOWN_TIMEOUT: '1', ...(origin === undefined ? {} : { ORIGIN: origin }) },
+      SHUTDOWN_TIMEOUT: '1', ...(origin === undefined ? {} : { ORIGIN: origin }),
+      ...(databasePath === undefined ? {} : { SVELTERY_DATABASE_PATH: databasePath }) },
     stdio: ['ignore', 'pipe', 'pipe']
   });
   const exited = once(child, 'exit');
@@ -66,7 +73,11 @@ test('isolated production package starts, serves assets and denies anonymous HTT
     assert.equal(pkg.type, 'module');
     const pnpm = process.env.npm_execpath;
     assert.ok(pnpm, 'run via pnpm test:node to use the pinned package manager');
-    const installArgs = ['install', '--prod', '--frozen-lockfile', '--ignore-scripts', '--store-dir', join(temporary, 'store')];
+    // Optional local acceptance uses the immutable store when the registry is unavailable.
+    // CI retains the ordinary online install into a fresh isolated store.
+    const installArgs = ['install', '--prod', '--frozen-lockfile', '--ignore-scripts', '--store-dir',
+      process.env.CMS_NODE_TEST_STORE ?? join(temporary, 'store'),
+      ...(process.env.CMS_NODE_TEST_OFFLINE === 'true' ? ['--offline'] : [])];
     const javascriptPnpm = /\.[cm]?js$/.test(pnpm);
     const transport = Object.fromEntries(['HTTP_PROXY', 'HTTPS_PROXY', 'NO_PROXY', 'http_proxy', 'https_proxy', 'no_proxy',
       'NODE_EXTRA_CA_CERTS', 'SSL_CERT_FILE'].filter(name => process.env[name] !== undefined).map(name => [name, process.env[name]]));
@@ -161,6 +172,48 @@ test('isolated production package starts, serves assets and denies anonymous HTT
         assert.match(running.output(), /Invalid ORIGIN/);
       } finally { clearTimeout(timer); }
       running = undefined;
+    });
+    await t.test('configured standalone runtime initializes persistent storage and keeps trusted session data across process restart', async () => {
+      const databasePath = join(temporary, 'configured-data', 'cms.db');
+      const token = encodeBase64urlNoPadding(crypto.getRandomValues(new Uint8Array(32)));
+      const origin = new URL(base).origin;
+      const remote = async (name: string, authenticated: boolean, argument?: unknown, input?: Record<string, string>) => {
+        const suffix = argument === undefined ? '' : `?payload=${Buffer.from(stringify(argument)).toString('base64url')}`;
+        const response = await fetch(new URL(`_app/remote/${ids.get(name)}${suffix}`, base), {
+          ...(input ? { method: 'POST', body: new URLSearchParams(input) } : {}),
+          headers: { origin, ...(authenticated ? { cookie: `cms-session=${token}` } : {}) }
+        });
+        assert.equal(response.status, 200);
+        return response.json();
+      };
+      running = launch(directory, port, origin, databasePath);
+      await running.ready();
+      // Configured storage still cannot authenticate an anonymous request.
+      assert.equal((await remote('getEditorManifest', false)).status, 401);
+      const operator = openSqlite(databasePath);
+      try {
+        const registry = new SchemaRegistry(operator);
+        await registry.createCollection({ slug: 'notes', label: 'Notes' });
+        await registry.createField('notes', { slug: 'headline', label: 'Headline', type: 'string', required: true });
+        await operator.db.insertInto('_cms_auth_users').values({ id: 'package-owner', role: Role.AUTHOR, disabled: 0 }).execute();
+        await operator.db.insertInto('_cms_auth_sessions').values({ hash: (await hashSessionToken(token))!, user_id: 'package-owner', expires_at: Date.now() + 60_000 }).execute();
+        const created = await remote('createContent', true, undefined, { collection: 'notes', 'data.headline': 'Standalone persisted draft' });
+        assert.equal(created.type, 'result');
+        const receipt = parse(created.data)._.result;
+        assert.ok(receipt.id);
+        const read = async () => parse((await remote('getContent', true, { collection: 'notes', id: receipt.id })).data)._;
+        const before = await read();
+        assert.equal(before.data.headline, 'Standalone persisted draft');
+        assert.equal(before.authorId, 'package-owner');
+        await running.stop('SIGTERM');
+        running = launch(directory, port, origin, databasePath);
+        await running.ready();
+        assert.deepEqual(await read(), before);
+        await operator.db.updateTable('_cms_auth_users').set({ role: Role.SUBSCRIBER }).where('id', '=', 'package-owner').execute();
+        assert.equal((await remote('getContent', true, { collection: 'notes', id: receipt.id })).status, 403);
+        await running.stop('SIGINT');
+        running = undefined;
+      } finally { await operator.close(); }
     });
     // Only installation artifacts and the synthetic .env were allowed to be added.
     assert.deepEqual((await readdir(directory)).filter(name => !['node_modules', '.env'].includes(name)).sort(),
