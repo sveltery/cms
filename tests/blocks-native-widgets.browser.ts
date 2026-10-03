@@ -85,5 +85,12 @@ describe('Native reusable block controls',()=>{
   const screen=await render(React.createElement(NativeBlockMediaField,{id:'attachment',label:'Attachment',value:{id:'local-file',provider:'local',src:'https://attacker.example/file.pdf',filename:'local.pdf',mimeType:'application/pdf',meta:{storageKey:'folder/a?b#c.pdf'}},onchange:vi.fn()}));
   expect([...screen.container.querySelectorAll('a')].map(link=>({text:link.textContent,href:link.getAttribute('href')}))).toEqual([{text:'local.pdf',href:'/_emdash/api/media/file/folder/a%3Fb%23c.pdf'}]);
  });
+ it('offers the file library without the image URL source',async()=>{
+  vi.stubGlobal('fetch',vi.fn().mockResolvedValue(new Response(JSON.stringify({success:true,data:{items:[],totalCount:0}}),{status:200})));
+  const screen=await render(React.createElement(NativeBlockMediaField,{id:'attachment',label:'Attachment',onchange:vi.fn()}));
+  (screen.getByRole('button',{name:'Choose from media library'}).element() as HTMLButtonElement).click();
+  await expect.element(screen.getByRole('dialog')).toBeInTheDocument();
+  expect([...screen.getByRole('dialog').element().querySelectorAll('button')].map(button=>button.textContent)).not.toContain('From URL');
+ });
 
 });

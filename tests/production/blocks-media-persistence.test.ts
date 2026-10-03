@@ -15,7 +15,7 @@ for(const target of ['Node','D1'] as const){
    const began=await browser.post('/api/setup/admin',{email:'blocks-media@example.com',name:'Blocks media'});assert.equal(began.status,200);
    const registered=await browser.post('/api/setup/admin/verify',{credential:credential.registration((await began.json()).data.options.challenge)});assert.equal(registered.status,200);
    const options=await browser.post('/api/auth/passkey/options',{});assert.equal(options.status,200);
-   const authenticated=await browser.post('/api/auth/passkey/verify',{credential:credential.assertion((await options.json()).data.options.challenge,1)});assert.equal(authenticated.status,200);
+   const authenticated=await browser.post('/api/auth/passkey/verify',{credential:credential.assertion((await options.json()).data.options.challenge,1)});assert.equal(authenticated.status,200,await authenticated.clone().text());
    const cookies=()=>[...browser.cookies].map(([key,value])=>`${key}=${value}`).join('; ');
    async function mutate(name:string,form:Record<string,string>){
     assert.ok(h.ids[name]);const response=await h.request(`/_app/remote/${h.ids[name]}`,{method:'POST',headers:{origin:h.origin,cookie:cookies()},body:new URLSearchParams(form)});
