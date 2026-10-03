@@ -111,7 +111,21 @@
         "sha256": "0b64559c8279a601d063414f669dee275e6ee70ec9362050d35c20a24143f462"
       }
     ],
-    "cardDOM": "unexecuted; normal dependency addition and frozen source-lock install failed HTTP503 metadata before callbacks",
-    "sourceTestSHA256": "c44e5da062de4d3db65b0c7fe585ad892c8ee042ac08b64c7f0502b114e6e8e4"
-  }
+    "cardDOM": "23 complete paired callbacks retained; b65 hosted frozen340 pass, then JSX/reference type host failure before callbacks; repaired host pending execution",
+    "sourceTestSHA256": "c44e5da062de4d3db65b0c7fe585ad892c8ee042ac08b64c7f0502b114e6e8e4",
+    "testHostAdaptations": [
+      "import-only paths",
+      "CMS jsx react-jsx compiler option for reference fixture",
+      "typed function-element factory bridge invokes React.createElement unchanged"
+    ]
+  },
+  "hostedCheckpoints": [
+    {
+      "head": "b65e01e37f2c21d256da6ebdfc480993cfa67d9c",
+      "run": 37102201556,
+      "frozenDependencies": "340 entries passed policy/integrity",
+      "validate": "type host failed before Card callback execution",
+      "browser": "58 default + 58 Node secured passed"
+    }
+  ]
 }

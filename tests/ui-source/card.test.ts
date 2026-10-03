@@ -1,7 +1,7 @@
 // Source-derived paired assertions execute pinned wrappers, not an upstream test inventory.
 import { afterEach, expect, it } from 'vitest';
 import { mount, tick, unmount } from 'svelte';
-import { createElement } from 'react';
+import { createElement } from '../helpers/ui-source-react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import * as Reference from './reference/card';
 import { Card, CardHeader, CardTitle, CardDescription, CardAction, CardContent, CardFooter } from '../../src/lib/ui/vendor/sveltery/card/index.ts';
