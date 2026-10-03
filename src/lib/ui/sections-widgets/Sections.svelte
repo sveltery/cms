@@ -2,10 +2,11 @@
   // Native Svelte port of pinned EmDash Sections.tsx; MIT notice in notices/emdash-MIT.txt.
   import * as nativeApi from '$lib/sections-widgets/api.ts';
   import { slugify } from '$lib/sections-widgets/slugify.ts';
+  import { navigateSection } from '$lib/sections-widgets/navigation.ts';
   import type { Section, SectionSource } from '$lib/sections-widgets/api.ts';
   import { modal } from './modal.ts';
   import './admin.css';
-  let { api = nativeApi, navigate = (slug: string) => { window.location.href = `/sections/${encodeURIComponent(slug)}`; }, canManage = true }:
+  let { api = nativeApi, navigate = navigateSection, canManage = true }:
     { api?: typeof nativeApi; navigate?: (slug: string) => void; canManage?: boolean } = $props();
   let sections = $state<Section[]>([]), loading = $state(true), loadError = $state(false);
   let search = $state(''), source = $state<SectionSource | ''>('');
