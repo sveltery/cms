@@ -2,12 +2,13 @@
 // 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; notices/emdash-MIT.txt.
 import {sql,type Kysely,type CompiledQuery} from 'kysely';
 import type {CmsDatabase} from '../database/contract.ts';
+import {getSettingsContext} from './context.ts';
 import {OptionsRepository} from './options.ts';
 import type {SettingsTables} from './tables.ts';
 import type {SiteSettings,SiteSettingsUpdate,SiteSettingKey,MediaReference} from './types.ts';
 const adapters=new WeakMap<object,CmsDatabase>();
-export function settingsDb(database:CmsDatabase):Kysely<SettingsTables> {
- const db=database.db as unknown as Kysely<SettingsTables>;adapters.set(db,database);return db;
+export function settingsDb(database:CmsDatabase,override?:Kysely<SettingsTables>):Kysely<SettingsTables> {
+ const db=override??database.db as unknown as Kysely<SettingsTables>;adapters.set(db,database);return db;
 }
 async function resolveMediaReference(reference:MediaReference|undefined,db:Kysely<SettingsTables>):Promise<MediaReference|undefined>{
  if(!reference?.mediaId)return reference;
@@ -73,4 +74,13 @@ export async function setSiteSettings(settings:SiteSettingsUpdate,db:Kysely<Sett
    }
   }
  }finally{invalidateSiteSettingsCache(db);}
+}
+/** Public server rendering helpers consume only the trusted render context. */
+export async function getSiteSettings():Promise<Partial<SiteSettings>>{
+ const context=getSettingsContext();if(!context)throw new Error('No configured site settings render context');
+ return getSiteSettingsWithDb(context.db);
+}
+export async function getSiteSetting<K extends SiteSettingKey>(key:K):Promise<SiteSettings[K]|undefined>{
+ const context=getSettingsContext();if(!context)throw new Error('No configured site settings render context');
+ return getSiteSettingWithDb(key,context.db);
 }
