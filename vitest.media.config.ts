@@ -10,6 +10,7 @@ export default defineConfig({ plugins:[{
     if (specifier==='#node-sqlite') return resolve(checkout,'src/lib/server/database/node-sqlite-compat.ts');
     if (!importer?.startsWith(frozen) || !specifier.startsWith('.')) return;
     const target=resolve(dirname(importer),specifier);
+    if (target===resolve(frozen,'src/astro/routes/api/media/file/[...key].js')) return resolve(vendor,'routes/media/file.ts');
     if (target===resolve(frozen,'src/schema/registry.js')) return resolve(checkout,'tests/helpers/media-source-registry.ts');
     if (target===resolve(frozen,'tests/utils/image-fixtures.js')) return resolve(checkout,'parity/emdash/media/source-fixtures/image-fixtures.ts');
     if (target===resolve(frozen,'tests/utils/test-db.js')) return resolve(checkout,'tests/helpers/media-source-database.ts');
@@ -25,7 +26,8 @@ export default defineConfig({ plugins:[{
     'parity/emdash/media/source-tests/packages/core/tests/unit/api/handlers/media-upload.test.ts',
     'parity/emdash/media/source-tests/packages/core/tests/unit/api/media-folders-routes.test.ts',
     'parity/emdash/media/source-tests/packages/core/tests/integration/astro/media-{asset-route,confirm-placeholder,replace,upload-deduplication,upload-placeholder,upload-widening}.test.ts',
-    'parity/emdash/media/source-tests/packages/core/tests/unit/media/{focal-point-normalize,media-value,mime,normalize,placeholder,responsive,thumbnail,url}.test.ts',
+    'parity/emdash/media/source-tests/packages/core/tests/unit/media/{enrich,focal-point-normalize,image-endpoint,media-allowlist,media-value,mime,normalize,placeholder,responsive,thumbnail,url}.test.ts',
+    'parity/emdash/media/source-tests/packages/core/tests/unit/api/media-file-private-keys.test.ts',
     'parity/emdash/media/source-tests/packages/core/tests/unit/storage/{local,s3}.test.ts'
   ]
 }});

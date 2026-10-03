@@ -65,8 +65,9 @@ test('official Worker streams, confirms and deduplicates R2 media with persisted
     assert.equal(item.status, 'ready'); assert.equal(item.width, 1); assert.equal(item.height, 1);
     assert.equal(item.folderId, folder.id); assert.equal(item.authorId, actor.id);
     assert.ok(item.blurhash); assert.equal(item.dominantColor, 'rgb(255,255,255)');
+    assert.notEqual(item.storageKey, upload.storageKey);
     const bucket = await worker.getR2Bucket('CMS_MEDIA');
-    const object = await bucket.get(upload.storageKey);
+    const object = await bucket.get(item.storageKey);
     assert.ok(object); assert.deepEqual(new Uint8Array(await object.arrayBuffer()), png);
     assert.equal(object.httpMetadata?.contentType, 'image/png');
     const served = await request(item.url);
@@ -84,7 +85,7 @@ test('official Worker streams, confirms and deduplicates R2 media with persisted
     await json(`/api/media/folders/${folder.id}`, 'DELETE', undefined);
     assert.equal((await json(`/api/media/${item.id}`, 'GET', undefined)).item.folderId, null);
     await json(`/api/media/${item.id}`, 'DELETE', undefined);
-    assert.equal(await (await worker.getR2Bucket('CMS_MEDIA')).get(upload.storageKey), null);
+    assert.equal(await (await worker.getR2Bucket('CMS_MEDIA')).get(item.storageKey), null);
     assert.equal((await request(item.url)).status, 404);
     assert.equal((await json('/api/media?page=1&limit=1', 'GET', undefined)).totalCount, 0);
     const database = await worker.getD1Database('CMS_DB');
