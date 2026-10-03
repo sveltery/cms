@@ -22,11 +22,13 @@
     "test": "node --test tests/*.test.ts",
     "test:production": "node --test tests/production/*.test.ts",
     "test:browser": "playwright test",
+    "test:taxonomy-history": "node scripts/snapshot-taxonomy-history.mjs && vitest run --config vitest.taxonomy-history.config.ts",
     "build:cloudflare": "WRANGLER_LOG_PATH=.wrangler/logs SVELTERY_ADAPTER=cloudflare vite build && XDG_CONFIG_HOME=.wrangler/config WRANGLER_LOG_PATH=.wrangler/logs wrangler deploy --dry-run --outdir build/cloudflare/worker",
     "start:cloudflare": "XDG_CONFIG_HOME=.wrangler/config WRANGLER_LOG_PATH=.wrangler/logs wrangler dev --local",
     "test:cloudflare": "vitest run --config vitest.cloudflare.config.ts && node --test tests/cloudflare-hosting/*.test.ts",
     "test:source-ports": "vitest run --config vitest.source-ports.config.ts",
-    "test:taxonomies:source": "vitest run --config vitest.taxonomies.config.ts"
+    "test:taxonomies:source": "vitest run --config vitest.taxonomies.config.ts",
+    "test:taxonomy-history:native": "SVELTERY_TAXONOMY_HISTORY_NATIVE_ROOT=. vitest run --config vitest.taxonomy-history.config.ts"
   },
   "dependencies": {
     "@oslojs/crypto": "1.0.1",
@@ -47,6 +49,7 @@
     "@sveltejs/vite-plugin-svelte": "7.3.1",
     "@types/node": "24.19.0",
     "devalue": "5.9.4",
+    "kysely-d1": "0.4.0",
     "miniflare": "4.20260507.1",
     "svelte": "5.57.1",
     "svelte-check": "4.7.6",

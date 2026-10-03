@@ -1,0 +1,1055 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "entries": [
+    "database/migrations/runner.ts",
+    "api/handlers/taxonomies.ts",
+    "database/repositories/content.ts",
+    "database/repositories/taxonomy.ts",
+    "schema/registry.ts"
+  ],
+  "externalRuntimeImports": [
+    "@emdash-cms/admin/slugify",
+    "@oslojs/crypto/sha2",
+    "@oslojs/encoding",
+    "kysely",
+    "kysely-d1",
+    "kysely/migration",
+    "node:async_hooks",
+    "node:path",
+    "ulidx",
+    "zod"
+  ],
+  "files": [
+    {
+      "source": "packages/core/src/after.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/after.ts",
+      "blob": "97f609ba4cb2e336cefd9bdc60e14284e7696ce0",
+      "sha256": "345127a88fa6b07c89ea52c64b0d3001138505cdffebbc50ba1fdb302df7e1ef"
+    },
+    {
+      "source": "packages/core/src/api/handlers/taxonomies.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/api/handlers/taxonomies.ts",
+      "blob": "9ac57c76f43de9de2951da2a1ea98028180be7f0",
+      "sha256": "290908d18c9b039b6451fa564d3485d6430ee73ef8696f312d8d3b82504bfffa"
+    },
+    {
+      "source": "packages/core/src/astro/dev-typegen.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/astro/dev-typegen.ts",
+      "blob": "3063442506e48e56a5c3497f0169b90d11191364",
+      "sha256": "7fd3db4b87ec5edb5071200277c4a135b5514f00218eb9d4b3f3e82d834f1909"
+    },
+    {
+      "source": "packages/core/src/cache/chrome-tags.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/cache/chrome-tags.ts",
+      "blob": "191d09bcf3eff9337068d602671ce8adf1d5d253",
+      "sha256": "56653c22f4a4697d75087f4b90203e7b30b6a77193f6813c1f0c45b10d69a392"
+    },
+    {
+      "source": "packages/core/src/content/known-fields.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/content/known-fields.ts",
+      "blob": "8fcc3c9a45bad4a664459a0ae753bbb1699bddfd",
+      "sha256": "88ea668a9936bb793eaed1148566f3d935ae6613c4108e0da51edbf5c1289efc"
+    },
+    {
+      "source": "packages/core/src/database/content-datetime.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/content-datetime.ts",
+      "blob": "06be050e17d7760ae1df2073632845ba15e034c2",
+      "sha256": "fe7788a24929b78efd2ae112c6111ed23d16eb838284945243a4cc4d272e8e9d"
+    },
+    {
+      "source": "packages/core/src/database/datetime-storage.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/datetime-storage.ts",
+      "blob": "6b93dd305703c95dbb7c18e0e7aeca5d701cd3c6",
+      "sha256": "435c5fbc47b3bfea91d51801ac2cb51c12db5023721140be1fab1d05cd51ef0f"
+    },
+    {
+      "source": "packages/core/src/database/dialect-helpers.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/dialect-helpers.ts",
+      "blob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24",
+      "sha256": "31606b29b5a98cb657078a9d89a8ab9b9f0be1694ac7410e34af6cbf49dda154"
+    },
+    {
+      "source": "packages/core/src/database/instrumentation.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/instrumentation.ts",
+      "blob": "df07d332a9da3180b154d93d917cc7504d01070e",
+      "sha256": "fa6cd40219a28e3326bae1fcd9d0ff8f1e22bb627db4e55c466273157499742e"
+    },
+    {
+      "source": "packages/core/src/database/json-recordset.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/json-recordset.ts",
+      "blob": "6680bc6640e02e845dfa4f97d972f26c7827be3d",
+      "sha256": "01974b67fc02440ce4700153ac8feb7bed3417a754f229c157829c7ac9d4c583"
+    },
+    {
+      "source": "packages/core/src/database/migration-lock.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migration-lock.ts",
+      "blob": "160cce48c64a6c815ec780bef8fc2646be5b5ec9",
+      "sha256": "ef5bda7b8b433a6fb7d0c8f9232d3d1398442eee884085c486d3545b8cbe9976"
+    },
+    {
+      "source": "packages/core/src/database/migrations/001_initial.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/001_initial.ts",
+      "blob": "aba2d82b24a34a721814e90c00dc0e34cd009911",
+      "sha256": "3c91298a957d40f5b576dfd5012e3ce66480db95516add28d45a5669e651fee9"
+    },
+    {
+      "source": "packages/core/src/database/migrations/002_media_status.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/002_media_status.ts",
+      "blob": "0bb5c112e4aa02b6bd2343254c637d91e04c92c0",
+      "sha256": "b856cea671c3c9889edd3de2b4003027481bb8a0417a69165f609be3c1089159"
+    },
+    {
+      "source": "packages/core/src/database/migrations/003_schema_registry.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/003_schema_registry.ts",
+      "blob": "8772c9615e69720581e4d50a0a28f34147943dc9",
+      "sha256": "ad355793aefcdb02e2d69f8f932d5452a8b89b66d3b180840d7aff278f481863"
+    },
+    {
+      "source": "packages/core/src/database/migrations/004_plugins.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/004_plugins.ts",
+      "blob": "5f4bb9f0ec354268f9c7d68e5b8685fb56a8bbb8",
+      "sha256": "a2829bdbc2cb400aa924f85639e444b63f13d8904d3ed9a543562af82c0f2a13"
+    },
+    {
+      "source": "packages/core/src/database/migrations/005_menus.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/005_menus.ts",
+      "blob": "8381107d097edde03283e44af438d21d0924e3c5",
+      "sha256": "d8243b376a0deccd756a6d2bc1afedf2ca5206897cb4b22d2290d986d887c177"
+    },
+    {
+      "source": "packages/core/src/database/migrations/006_taxonomy_defs.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/006_taxonomy_defs.ts",
+      "blob": "5dd2eb436dde912a4d0cbdabfdab5c300fd5e26a",
+      "sha256": "3dfc384200f6d1f71684a580c691b5908107a02dc45779a37c5f89a628d75fb8"
+    },
+    {
+      "source": "packages/core/src/database/migrations/007_widgets.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/007_widgets.ts",
+      "blob": "e82acfb7ab9823cd31e1ea7b3b963839b5773fac",
+      "sha256": "84c916b3759b7e11fde06ca2c694eda81e3fd9a9b970df371d493c2c645551b2"
+    },
+    {
+      "source": "packages/core/src/database/migrations/008_auth.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/008_auth.ts",
+      "blob": "70bc0f799c59ce72fac69aad24d2fc9cdd9ce1c0",
+      "sha256": "7698709e8bdc5a3de32b84be22368982829bc94aef6ce258fa2e6197a7ca82ba"
+    },
+    {
+      "source": "packages/core/src/database/migrations/009_user_disabled.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/009_user_disabled.ts",
+      "blob": "827db35e316bcf4af35ba7c36ea4d9436db837e1",
+      "sha256": "df12eb1b324686e8e3dd750ce1d0881dd276b9944ae74c97d12fd9ea6c61018b"
+    },
+    {
+      "source": "packages/core/src/database/migrations/011_sections.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/011_sections.ts",
+      "blob": "bc00ebb8a77b42279966801dfd2f8a6436d53605",
+      "sha256": "092e543760b4063704ba8bd15a934e2c9342201633a010a6d3de9c7cffab3575"
+    },
+    {
+      "source": "packages/core/src/database/migrations/012_search.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/012_search.ts",
+      "blob": "e543798005e0c44d7386f040937a6b41185df71e",
+      "sha256": "d8e8626fbf25ddd1208d45dab1ca31a350b05cbd79f2b41c24d8a4aea13cad18"
+    },
+    {
+      "source": "packages/core/src/database/migrations/013_scheduled_publishing.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/013_scheduled_publishing.ts",
+      "blob": "28484ea55bf3606d46731d7d88399e5711f118d5",
+      "sha256": "706ad2ed59dca8ed24de443ba3e2703bbe3a2d8cfa8ab44641a317a31a2e71f8"
+    },
+    {
+      "source": "packages/core/src/database/migrations/014_draft_revisions.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/014_draft_revisions.ts",
+      "blob": "eedccd10cee4f27215a1e52f4d7efeb93008e655",
+      "sha256": "261cadd6d01e293043e97cd038be94f132b9baf127b6cf2d50045a36fb8737a5"
+    },
+    {
+      "source": "packages/core/src/database/migrations/015_indexes.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/015_indexes.ts",
+      "blob": "b6fe3f7c51c6c542ffa65a3ddc5edca8556c139b",
+      "sha256": "ef39bef9497e644cc7214af4ba6f492a007d53a52b12bf83383044a6afb2ac76"
+    },
+    {
+      "source": "packages/core/src/database/migrations/016_api_tokens.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/016_api_tokens.ts",
+      "blob": "f61a4ba8e517279e7860d15ca6d64573b83759d7",
+      "sha256": "866150f8601a0887f116b94a8e9459432fc7eff7860f228b239e1f18d2ae9205"
+    },
+    {
+      "source": "packages/core/src/database/migrations/017_authorization_codes.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/017_authorization_codes.ts",
+      "blob": "3ff253bc132b83d92b24b8f8f0f0a78cd1a39001",
+      "sha256": "d9a0f9f94a5a0d201738ec036cadea6581f5130404e9ed0d1342faf63b66610b"
+    },
+    {
+      "source": "packages/core/src/database/migrations/018_seo.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/018_seo.ts",
+      "blob": "7fa68090d85e6171a765a2d024bc8f8ed656f4f6",
+      "sha256": "58e45277a633fa1d92740c26a69f3ab5f939dcd643a20cba315420902132e5ba"
+    },
+    {
+      "source": "packages/core/src/database/migrations/019_i18n.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/019_i18n.ts",
+      "blob": "45babc91b32945e72acf48ca72d9058f286f3185",
+      "sha256": "62133443d7e51e2ede2e78fee98f1f06052eeaa496f31e19dfac2aaf28c9adee"
+    },
+    {
+      "source": "packages/core/src/database/migrations/020_collection_url_pattern.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/020_collection_url_pattern.ts",
+      "blob": "107704f00782715f0d1a1705da9be46659818098",
+      "sha256": "023ac7ea042ab530491155745cd2edc743ff9f28263d35492d62e93fb85e8875"
+    },
+    {
+      "source": "packages/core/src/database/migrations/021_remove_section_categories.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/021_remove_section_categories.ts",
+      "blob": "fea51184264d19fe2531d05fd5de8062307204c9",
+      "sha256": "1e23f132e7221f2ba79a0b99f0acac23ad1ed33f40e9c9fb846d80339b140850"
+    },
+    {
+      "source": "packages/core/src/database/migrations/022_marketplace_plugin_state.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/022_marketplace_plugin_state.ts",
+      "blob": "5fb70ba47f9d56726c35e71cc18fdb137000f15f",
+      "sha256": "57a40175bbe3f68cd16118b5df95f98b0377eb5bc23f75c4d62aa1dedc69f363"
+    },
+    {
+      "source": "packages/core/src/database/migrations/023_plugin_metadata.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/023_plugin_metadata.ts",
+      "blob": "8c840efb3e940a97cec1861d3c68efa134fe5ddf",
+      "sha256": "972d7faf2417d833fc5b23398b8fea16760cac7a54d92fad87181481027a99e1"
+    },
+    {
+      "source": "packages/core/src/database/migrations/024_media_placeholders.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/024_media_placeholders.ts",
+      "blob": "df7705d487daafe16fab43a94d2adb2768c50933",
+      "sha256": "ade643eced9dc608c2fab67136819eda2d97884b1f470285ee73ca96099913b4"
+    },
+    {
+      "source": "packages/core/src/database/migrations/025_oauth_clients.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/025_oauth_clients.ts",
+      "blob": "f9a0bd6dfac5b4380bc2346b48044dff052e9d4e",
+      "sha256": "60e4b44a7072ebd7d9e9e70130aff28300f5962141706e99a92284ac36635c9c"
+    },
+    {
+      "source": "packages/core/src/database/migrations/026_cron_tasks.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/026_cron_tasks.ts",
+      "blob": "67f705793bafb8b5121486a7baf0e487ebf6ab5a",
+      "sha256": "6e867622e8e05b921482053ff4d532123c4492ee26deb50553e0f0c12d3e9876"
+    },
+    {
+      "source": "packages/core/src/database/migrations/027_comments.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/027_comments.ts",
+      "blob": "c575f4ac679e7ab0dbf1dc02a9ae03dfc3afba69",
+      "sha256": "ba8dea6c3f64f1ea6c96ea8dc7e58a974fa4e1064de2756ec451e2fa1f9f3438"
+    },
+    {
+      "source": "packages/core/src/database/migrations/028_drop_author_url.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/028_drop_author_url.ts",
+      "blob": "76f98ea7bb7281b784fca3f71330efff5eaf7dbc",
+      "sha256": "c18a8fe5e31ff1f9f42050d95f4de67994d659baba9a05fd98b8f388c26f42d1"
+    },
+    {
+      "source": "packages/core/src/database/migrations/029_redirects.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/029_redirects.ts",
+      "blob": "72e7e30685314fe35a214352580243c6a94ace06",
+      "sha256": "a39c37ab362268ee5643fd5063dea4c2c90359d08a342709389d70e18edf1a9a"
+    },
+    {
+      "source": "packages/core/src/database/migrations/030_widen_scheduled_index.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/030_widen_scheduled_index.ts",
+      "blob": "b8ee274442ffe0979bbe7cc50fe5bacb1f754b79",
+      "sha256": "4cd564ec247a0179cb8cd064adc91906dfc5e167ee1295032a03d174938f4bc7"
+    },
+    {
+      "source": "packages/core/src/database/migrations/031_bylines.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/031_bylines.ts",
+      "blob": "18f1bb0fbf4360fea9279dcd97dbb76b6d751d2f",
+      "sha256": "48b9e8875b47ace4dbbdb75cb0be236793e31d324b0cc80b968da71b06d41de3"
+    },
+    {
+      "source": "packages/core/src/database/migrations/032_rate_limits.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/032_rate_limits.ts",
+      "blob": "0d74368aeb26a4e7821706ae5fa1c44d539ca8a7",
+      "sha256": "fefb79d09cba0c6baa2df241301c69197c151363b97897832f454b07b5d23a55"
+    },
+    {
+      "source": "packages/core/src/database/migrations/033_optimize_content_indexes.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/033_optimize_content_indexes.ts",
+      "blob": "442e7f8f3a9bba0af3e094818f3813353df24bf2",
+      "sha256": "c84d484f14a2c0fa41e125ab2d5ecfac94ea496a1fab867bbba7a2e9fa1bde3e"
+    },
+    {
+      "source": "packages/core/src/database/migrations/034_published_at_index.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/034_published_at_index.ts",
+      "blob": "41117afb3b780655bbcbd7bf1e0e46bd112a21af",
+      "sha256": "36b901b9ce7e0ac26bfec01413cc4a35c4a86079c4a168258c98504bf9b24e8e"
+    },
+    {
+      "source": "packages/core/src/database/migrations/035_bounded_404_log.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/035_bounded_404_log.ts",
+      "blob": "70aaf80f26eec77cc0c3e3d058c5075e87538b17",
+      "sha256": "9cbea9ce220651951730965debe0bb3fdcca72d36d26034bbafefd57745b5ab3"
+    },
+    {
+      "source": "packages/core/src/database/migrations/036_i18n_menus_and_taxonomies.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/036_i18n_menus_and_taxonomies.ts",
+      "blob": "af434c0d6c84005facf35e4ed2a343304024e96c",
+      "sha256": "8fcdbdd60db69e67237cb5e2cd09d28e066a6b7d030467554806e958b108e761"
+    },
+    {
+      "source": "packages/core/src/database/migrations/037_credential_algorithm.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/037_credential_algorithm.ts",
+      "blob": "4185f250f702efe32887aa69bfa3898e898d95d5",
+      "sha256": "a4d749608420f5250a4462886d0fa6edde91d4d732565fbe829a905756620a1b"
+    },
+    {
+      "source": "packages/core/src/database/migrations/038_registry_plugin_state.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/038_registry_plugin_state.ts",
+      "blob": "f15ecfd8372c6c83cea166a7232054bf549a82c2",
+      "sha256": "2abdf7c1a74fa17aac613f3a4048ecbbf49e31793c592b8ba43ccdd3231db238"
+    },
+    {
+      "source": "packages/core/src/database/migrations/039_fix_fts5_triggers.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/039_fix_fts5_triggers.ts",
+      "blob": "a2fb9a043fc7c40a0f92b2002b052ea47d02741d",
+      "sha256": "9b3285608859cbd089b0d9fc99dcbd45da58ba1b750a9447b0f2836869aff015"
+    },
+    {
+      "source": "packages/core/src/database/migrations/040_byline_i18n.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/040_byline_i18n.ts",
+      "blob": "bafdbf56db00118c686c018e3eb7f4f24773bb21",
+      "sha256": "61c08479f877f914e77a0f8a3bd86dae76a5b1c814a19cac25ab7d15a5dde275"
+    },
+    {
+      "source": "packages/core/src/database/migrations/041_content_locale_list_index.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/041_content_locale_list_index.ts",
+      "blob": "98c7f40734a00b125b6edb29a9ec64b6440144e3",
+      "sha256": "0475b18033d2e117106402983c65c18fcb0a90b8520b123e68851b0f6b57776d"
+    },
+    {
+      "source": "packages/core/src/database/migrations/042_byline_fields.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/042_byline_fields.ts",
+      "blob": "42158a03aeccf066f94cdc2aba517f65b9a15b6f",
+      "sha256": "8b1c1447608a62e0e4d4862d5f60abe8fc7312a8eff15afe3161d8efa8403025"
+    },
+    {
+      "source": "packages/core/src/database/migrations/043_content_references.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/043_content_references.ts",
+      "blob": "914b086878b7088e0da7dd11b704df375a9b6d8c",
+      "sha256": "53bd16531be0cb5557b24862980fdfe2530b96b80342b99b9a50c1205541ef16"
+    },
+    {
+      "source": "packages/core/src/database/migrations/044_comment_reactions.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/044_comment_reactions.ts",
+      "blob": "897e83208f8f89047f6cfed07b9c3f944355dca4",
+      "sha256": "14eaf6309fee8995ac8c2d6c3b52d4d9aa0fe290ef6da2808e62f3099aeb7c21"
+    },
+    {
+      "source": "packages/core/src/database/migrations/045_taxonomy_parent_group.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/045_taxonomy_parent_group.ts",
+      "blob": "2abf0bc539cc410f880cd8f83142bd86f307c71d",
+      "sha256": "885ea6bf51624684af939bd35b9919bcca03d623f39e1e2c61368ac7fc7486f2"
+    },
+    {
+      "source": "packages/core/src/database/migrations/046_media_usage_index.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/046_media_usage_index.ts",
+      "blob": "dce7d6542448b2baf2ea7f05fccc9400f9d4a0d9",
+      "sha256": "3e4dd41dda9d42e6f5c9ca5b432280198bf01c0632927b3fc41a0ee442c4b324"
+    },
+    {
+      "source": "packages/core/src/database/migrations/047_restore_taxonomy_parent_index.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/047_restore_taxonomy_parent_index.ts",
+      "blob": "28361f562b6cf1b61ecf8d90151400f57872d024",
+      "sha256": "13ab119e02f725475626bc2934d6ae37e0ccb3836d6b35557e1bfcabf24bfece"
+    },
+    {
+      "source": "packages/core/src/database/migrations/048_restore_content_taxonomies_term_index.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/048_restore_content_taxonomies_term_index.ts",
+      "blob": "b495b710dc3f9069942c572fd95f199fc683635b",
+      "sha256": "1ebefbb8d7abdc61c45498033adb5f1d6ce3eab1b363dcdf402d357d2a0d7d35"
+    },
+    {
+      "source": "packages/core/src/database/migrations/049_taxonomies_name_locale_index.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/049_taxonomies_name_locale_index.ts",
+      "blob": "5d230d8e372de64da2fb36b55fafb2f10be0cd0e",
+      "sha256": "4e2f26209025314e305af7e19a54d563f3272aecd9a6abdd9539665ca2666573"
+    },
+    {
+      "source": "packages/core/src/database/migrations/050_media_usage_index_status.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/050_media_usage_index_status.ts",
+      "blob": "3a1272e6962a1c72440abe4c9c0d5a828591f9ae",
+      "sha256": "6010f6aadd827763b54d7b7feccc840798af570ae838e6575890f97a6db30eb6"
+    },
+    {
+      "source": "packages/core/src/database/migrations/051_content_taxonomies_denorm.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/051_content_taxonomies_denorm.ts",
+      "blob": "305d5126eda4166714320bc1ad8e6221002389eb",
+      "sha256": "c76addfa804fa9c7e52baf61532359043820e401ede814ef37c8a1dfe19d346e"
+    },
+    {
+      "source": "packages/core/src/database/migrations/052_media_usage_read_index.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/052_media_usage_read_index.ts",
+      "blob": "bc7c0e3e630715197212a46f7a52f67c20003308",
+      "sha256": "ab7d09bb9fa3f8eb3d491797452840ca307dd5168e42ef432ae456ffd8230e0c"
+    },
+    {
+      "source": "packages/core/src/database/migrations/053_plugin_mcp_tools.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/053_plugin_mcp_tools.ts",
+      "blob": "68115b1ced34ea4a3266d304433204c7e81f0532",
+      "sha256": "3147231ffa8f073fca0d2fdf98377976358009250b00712704d4593626c950b4"
+    },
+    {
+      "source": "packages/core/src/database/migrations/054_media_upload_attempts.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/054_media_upload_attempts.ts",
+      "blob": "8e75a90a31f60aad69a8a5e2c504f90b265d3456",
+      "sha256": "32be099488912f0c0f27948705e5ffb277b5105075a4d1ac3c6dc372c1249007"
+    },
+    {
+      "source": "packages/core/src/database/migrations/055_content_translation_group_locale_index.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/055_content_translation_group_locale_index.ts",
+      "blob": "2c08648a37fca1afabadba5e3cd2cf09cf4d77c5",
+      "sha256": "eba3c76bbcef82655d6ed613457a14d8ed0452a29cf2a81c0e06f45b001f133f"
+    },
+    {
+      "source": "packages/core/src/database/migrations/056_taxonomy_term_sort_order.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/056_taxonomy_term_sort_order.ts",
+      "blob": "7ac52f2bfca7ec9dee77e8315a86e8353f7392b3",
+      "sha256": "242953ab33016b23755974d91ba3bb920c33e9fcbed442b3065f3e4ebb29f265"
+    },
+    {
+      "source": "packages/core/src/database/migrations/057_collection_hidden.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/057_collection_hidden.ts",
+      "blob": "dfeade4978475792d3b36c49d32b6046d2c4cd90",
+      "sha256": "d6c280ddc2f22b3d22439259787b83bc26b45d16e3f4ef2a8ba4296cd25e7b66"
+    },
+    {
+      "source": "packages/core/src/database/migrations/058_collection_sort_order.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/058_collection_sort_order.ts",
+      "blob": "574f8a51fcfec061818e7df9f2ef1f907d28f74a",
+      "sha256": "5e5a38ebe9a879cc6a33e2a04487a00a6c15f2415ae40289df74e6627dc6a31a"
+    },
+    {
+      "source": "packages/core/src/database/migrations/059_revision_prune_queue.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/059_revision_prune_queue.ts",
+      "blob": "65522645c6fc88fbda9b7ad7a72de86225d319aa",
+      "sha256": "1f45cea03fd7d4442c268df4428f24f23aca208231de463549f27a8d69789a57"
+    },
+    {
+      "source": "packages/core/src/database/migrations/060_collection_admin_config.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/060_collection_admin_config.ts",
+      "blob": "22d51b26b44a8d25cac2aacf4151a09b344f7280",
+      "sha256": "73592c0a504a429d96bfcba10cfedb9e8fb80fdc1c694b4a4a71498e3d73080a"
+    },
+    {
+      "source": "packages/core/src/database/migrations/061_media_usage_cleanup.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/061_media_usage_cleanup.ts",
+      "blob": "1f4b586c7720fdf4743900d107d827bcb485c9db",
+      "sha256": "d128d8cfe029185300c84122819df75bbad30b348a2994b7553a8639109f01e4"
+    },
+    {
+      "source": "packages/core/src/database/migrations/062_media_usage_cleanup_fence.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/062_media_usage_cleanup_fence.ts",
+      "blob": "396ec45118487b3b86a001fd8e9a7f4e8c9c9898",
+      "sha256": "e2e765cbf87df76068ea25c9652df303430d9e1c5e116104405fd321cfea2c3b"
+    },
+    {
+      "source": "packages/core/src/database/migrations/063_media_usage_incremental_work.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/063_media_usage_incremental_work.ts",
+      "blob": "3086207e4824212cf587990cd88bc24b8ee0f9ec",
+      "sha256": "37198a44a318dcc115874b3673078dea565a3e3db928006c17d99676cb852dd1"
+    },
+    {
+      "source": "packages/core/src/database/migrations/064_fts_plain_text.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/064_fts_plain_text.ts",
+      "blob": "0d72ce7b82393aa449bf78c4306bedb920d59a1d",
+      "sha256": "e00d9d5738d56686341214b2605a858f831416955cd9f109ebc9fc27617d30df"
+    },
+    {
+      "source": "packages/core/src/database/migrations/065_media_usage_collection_deletion.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/065_media_usage_collection_deletion.ts",
+      "blob": "d02a3965531f8713eedc9206217ff5bae60f2c17",
+      "sha256": "c6646a9a6ec2923e12116e56f545e5d533ddd0084a4bf35cb379d6cefb74f7c8"
+    },
+    {
+      "source": "packages/core/src/database/migrations/066_media_usage_reconciliation.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/066_media_usage_reconciliation.ts",
+      "blob": "c97e409a355087a75dccc5d927af2d31f6be5e9d",
+      "sha256": "f37da78af62f4bfb62a0d7d19ac2fb80106a17d82ef2a565671ddb3c9af1c22b"
+    },
+    {
+      "source": "packages/core/src/database/migrations/067_indexed_content_fields.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/067_indexed_content_fields.ts",
+      "blob": "7e1b17ed0247305c9a05547a707116701d88e868",
+      "sha256": "034aed03dd22bb5bfa1948753dad52f12e9a5a1ec1563b2bfc5ef28f19042d23"
+    },
+    {
+      "source": "packages/core/src/database/migrations/068_content_taxonomy_entry_groups.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/068_content_taxonomy_entry_groups.ts",
+      "blob": "f1c4579ae89d66a99b4827c715913c4ef31bf4ca",
+      "sha256": "212287b9f56232e25b531020c54a847952d5710ee208e4895482e34d5a6a838d"
+    },
+    {
+      "source": "packages/core/src/database/migrations/069_collection_title_date_fields.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/069_collection_title_date_fields.ts",
+      "blob": "4639e771f3b619eec8455107530ab87d1740ea73",
+      "sha256": "23d4ba9315c8973d5572c01053e783c7e4ef34d1a081fe42109cc0b7c34ae9a1"
+    },
+    {
+      "source": "packages/core/src/database/migrations/070_collection_routable.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/070_collection_routable.ts",
+      "blob": "17bdfe263233990f3c697c6c6f24f7f58f94206a",
+      "sha256": "d8d9c5b8839bdd01f303d7ba5d9cb6ae360bf58e53a4158bc734b8e05a2e76e3"
+    },
+    {
+      "source": "packages/core/src/database/migrations/071_restore_content_bylines_table.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/071_restore_content_bylines_table.ts",
+      "blob": "200982122f2fb1aa9551049536ee64a9ba6ab0d6",
+      "sha256": "edc7e61355692995724c424ced8caef99010224378e9454491c6fe417ef1eb47"
+    },
+    {
+      "source": "packages/core/src/database/migrations/072_media_folders.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/072_media_folders.ts",
+      "blob": "db0003387a4fe977799ca38b361eaca84c561bfc",
+      "sha256": "2452ed2096aa697ee9a56b018d027f9aaab8f8a647450c7d5eaeffae2bda07bf"
+    },
+    {
+      "source": "packages/core/src/database/migrations/073_media_focal_point.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/073_media_focal_point.ts",
+      "blob": "ed11df9cdc8b3f5fb16daa3448c18349243d3c2d",
+      "sha256": "e157b0418c92f4203083840e619742e7d0dc51cbe7bc5e8af1a03ee40684e71e"
+    },
+    {
+      "source": "packages/core/src/database/migrations/074_content_deleted_scheduled_index.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/074_content_deleted_scheduled_index.ts",
+      "blob": "2b2d91c783880ebf1ebe9b185d6a735e3d28fc8f",
+      "sha256": "ccf1d0d8a184af09d1ea72ece6726f64d784c24f16f06581fcdf403013200133"
+    },
+    {
+      "source": "packages/core/src/database/migrations/075_entry_edit_locks.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/075_entry_edit_locks.ts",
+      "blob": "8ae70b00ff062f070bf17d0b7b6ac17ca51e31dd",
+      "sha256": "e112d08096878e44518b80624f1be03150f87269aa5a11b9f2deb5d7ce17ce2b"
+    },
+    {
+      "source": "packages/core/src/database/migrations/076_collection_nav_group.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/076_collection_nav_group.ts",
+      "blob": "53d02c5bf887744a1aeea933ac6e2a6174f61059",
+      "sha256": "3f588136fc0fa154930cb571842df04a46fc60683f4454d342df7cb5462f05ea"
+    },
+    {
+      "source": "packages/core/src/database/migrations/077_plugin_storage_revisions.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/077_plugin_storage_revisions.ts",
+      "blob": "0607219e6267e6d17cdf4a88169dec756cfc356f",
+      "sha256": "24573d23a151e9a99ee4e3c5a5fb1a18360f6f6d56ee0f3e8b62dae8528cf092"
+    },
+    {
+      "source": "packages/core/src/database/migrations/078_menu_item_translation_groups.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/078_menu_item_translation_groups.ts",
+      "blob": "8f808587f6fb5995af564560a84b3d062452cc6e",
+      "sha256": "fc4cb3ad8472ddff2d5dab669dab71a99fac8675850c4c4dc91e51e37ec62517"
+    },
+    {
+      "source": "packages/core/src/database/migrations/079_datetime_normalization.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/079_datetime_normalization.ts",
+      "blob": "deb3c0da7de19bca7ec0d7e66fa31c10df293dd8",
+      "sha256": "e1a3eeecd9a2860a14b8ee54f7cbcd04a4f5e38a6bd92cb3b8aca1e3791ba9bf"
+    },
+    {
+      "source": "packages/core/src/database/migrations/080_content_translation_locale_unique.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/080_content_translation_locale_unique.ts",
+      "blob": "9bb5a1f6ce0f43edf2224c557dde83aeef31d033",
+      "sha256": "bbf6e84df79ce09400af3ed44efd22ee3d8021388eb6a41827f21fe14ebc14bb"
+    },
+    {
+      "source": "packages/core/src/database/migrations/081_redirect_write_guards.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/081_redirect_write_guards.ts",
+      "blob": "1b1104168f4fe564ad477e7fd4e318e82bcfbace",
+      "sha256": "b7ac364d5103850586f96b9e477f69919f9d57001a5adad2f7a0aa9d7cbed169"
+    },
+    {
+      "source": "packages/core/src/database/migrations/082_taxonomy_translation_locale_unique.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/082_taxonomy_translation_locale_unique.ts",
+      "blob": "f25bd8c7506967805a351d3a8466f9b6d61cb551",
+      "sha256": "be1a684b5c2e484127c11704cb90d7bf0fc6bef095c95c413e553a0cffa5b6b9"
+    },
+    {
+      "source": "packages/core/src/database/migrations/083_block_types.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/083_block_types.ts",
+      "blob": "5e685cc2fcc1b82ac0de8a13c737198bd562d885",
+      "sha256": "6429246b2209c7da892ede761de84f6c7c765a5855c237d113414891b933bd37"
+    },
+    {
+      "source": "packages/core/src/database/migrations/084_site_transfer.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/084_site_transfer.ts",
+      "blob": "ec109b37e3a6aeaabdfa8e2adcdf792778a778ad",
+      "sha256": "f25514f705b030d10c7dfe3f14affed8f3d166dc04cc34268bad289bb3b9a5b8"
+    },
+    {
+      "source": "packages/core/src/database/migrations/085_taxonomy_def_groups.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/085_taxonomy_def_groups.ts",
+      "blob": "1333b9c38210b98d064a763cbfac6587ab6cfce2",
+      "sha256": "670f3dd867e3589abdf8d1107d6117e720b5e4b59e0ce1ffd3726627d14c5243"
+    },
+    {
+      "source": "packages/core/src/database/migrations/086_relations_structural.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/086_relations_structural.ts",
+      "blob": "ebf8969921c6b23b03159fcf9d49b6062ad7010a",
+      "sha256": "1531a8adf50bb35d19bccb5b42698066a6a22407ad2ea6285a3e3db3d54ca81b"
+    },
+    {
+      "source": "packages/core/src/database/migrations/087_reference_field_relations.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/087_reference_field_relations.ts",
+      "blob": "100316c2942f99d68e9c7dbef3f196e14bab9cdb",
+      "sha256": "adfcbee9d768dc364ad1e700c32fe8122abc393218f9f1a32f2f802c1cdf9d49"
+    },
+    {
+      "source": "packages/core/src/database/migrations/088_cron_oneshot_utc.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/088_cron_oneshot_utc.ts",
+      "blob": "da3036406f934bda4f7ac4f333b56a28a5f91331",
+      "sha256": "f992b5fc5da55c1118d77fd29274d5349111f17d48fafa41bd4db9d3525e58fe"
+    },
+    {
+      "source": "packages/core/src/database/migrations/089_auto_seed_completion.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/089_auto_seed_completion.ts",
+      "blob": "b902b187f8f0fbf3e2231b134ba0d2ccac21d4fe",
+      "sha256": "da526951d591c944309d5c6e31882cca6c3e33e30bdf5813aeb85a610ef0d7b8"
+    },
+    {
+      "source": "packages/core/src/database/migrations/090_redirect_enable_loop_guard.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/090_redirect_enable_loop_guard.ts",
+      "blob": "e2aa2ddb7bfc482b4ac1f421576102f11fd1062a",
+      "sha256": "d316604a6c4ea1126e4ce44d1b3510673d35efe8c7656c455b132764123b614f"
+    },
+    {
+      "source": "packages/core/src/database/migrations/091_redirect_artifacts.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/091_redirect_artifacts.ts",
+      "blob": "8952a759a6b7d2c25d81c9476d8615194500fbc4",
+      "sha256": "b46da981a94f7abdb314ede88d21d0a55e2d15a9b72f29a23d4d68b6e6c930eb"
+    },
+    {
+      "source": "packages/core/src/database/migrations/runner.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/migrations/runner.ts",
+      "blob": "252ce5d8fb5b683ba8c71d09cd27e51593ff0eac",
+      "sha256": "93fede33fd1223b501f7745f4ecc64034fd570951993f0c9b95d8ef44b8a0498"
+    },
+    {
+      "source": "packages/core/src/database/pg-migration-lock.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/pg-migration-lock.ts",
+      "blob": "cf8fd580c4549e50e1d6ef0a0cb8515579bb6bc3",
+      "sha256": "db06bd5eca4feae571184c50951c0369f6ea8a2f63abf52cc526f097602ae646"
+    },
+    {
+      "source": "packages/core/src/database/repositories/content.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/repositories/content.ts",
+      "blob": "29dab9decf9af0d9fb21b464dc185ed48ab958ea",
+      "sha256": "b334660e351c6953e41bde5058b29a7b1d00219c5afa96a0773d09bd251e63ee"
+    },
+    {
+      "source": "packages/core/src/database/repositories/media-usage-work.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/repositories/media-usage-work.ts",
+      "blob": "1b15a6821e6396eac7b7452a7478b0fba2253820",
+      "sha256": "cb02de1bd21a5d4c42680d15c4bec13df8901beaf7c05c77eed2cea0536a3428"
+    },
+    {
+      "source": "packages/core/src/database/repositories/media-usage.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/repositories/media-usage.ts",
+      "blob": "89dc87090b7cd555b6969e28abce96946d06ce77",
+      "sha256": "dc726347a6ad1652ccc8b0200020005ac266851dd9efee5cc07b8935ef9cbbd5"
+    },
+    {
+      "source": "packages/core/src/database/repositories/revision.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/repositories/revision.ts",
+      "blob": "e1fa0f08bf3affdb97367bea2261ef2fc6feb45f",
+      "sha256": "c6f680af45cdcd074e6dcc161487bff8f506fc48dbb45967e0cb131d0127e90c"
+    },
+    {
+      "source": "packages/core/src/database/repositories/taxonomy-def.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/repositories/taxonomy-def.ts",
+      "blob": "cc38a00bc5fa38c5473f1ba174e6c6d4ce0c4db6",
+      "sha256": "406a02132a4d17a6a6fa15c7a7bf1ab72bbd851d9835f32d1abfbc3cab12e764"
+    },
+    {
+      "source": "packages/core/src/database/repositories/taxonomy.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/repositories/taxonomy.ts",
+      "blob": "a1eaae54f6d887e5647be69ef3aab15ebe862705",
+      "sha256": "e5f1619a9aa1262a5ec752dacbc5006c555d4c8a4db53c15a8fc222636d529d5"
+    },
+    {
+      "source": "packages/core/src/database/repositories/types.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/repositories/types.ts",
+      "blob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7",
+      "sha256": "880e1ee7c6b2792d0f0316d4853dea590ce10f89073dd5a4f5ef56ebd118fa04"
+    },
+    {
+      "source": "packages/core/src/database/transaction.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/transaction.ts",
+      "blob": "69bf167998a2fa9cc228c3612a69c8fde5ed85fe",
+      "sha256": "a390fe445530a32efa8ab2b4041eb46517a157ac5f9d295ef848d58b69530a4a"
+    },
+    {
+      "source": "packages/core/src/database/validate.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/database/validate.ts",
+      "blob": "73d3b303764b473d4238e0cb17f1a904998671f8",
+      "sha256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4"
+    },
+    {
+      "source": "packages/core/src/datetime-normalization.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/datetime-normalization.ts",
+      "blob": "eb31fb99e2d1e41c6001c5aec3ae49d82e39c345",
+      "sha256": "96317452072327aa029ed4e01a4b7e7efc9aaf4ffed6bd401d7e3a73de01b31e"
+    },
+    {
+      "source": "packages/core/src/deferred-tasks.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/deferred-tasks.ts",
+      "blob": "8626b311e9ba22ae6c67be2f1fe4600afe8a530c",
+      "sha256": "5f52a76471d2e1dd84c742b96d7b84c9adfbaab74015b01c395452922f69c571"
+    },
+    {
+      "source": "packages/core/src/i18n/config.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/i18n/config.ts",
+      "blob": "fe714e5ad514485fe1737585c663e470d50519df",
+      "sha256": "e354441e19a9013b520112fc1722a1e861ea0a381ceec7ff4e28218bc9c652f7"
+    },
+    {
+      "source": "packages/core/src/i18n/resolve.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/i18n/resolve.ts",
+      "blob": "dcaea830fdeb480be623f7aa88e8942b1e4a1811",
+      "sha256": "4e407d71a536f4c1bde06f63cb7eef4aa4c9f975ceaf4d7d6aa74e90a9d43cae"
+    },
+    {
+      "source": "packages/core/src/loader.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/loader.ts",
+      "blob": "e686d071e9e9f76d6e11f3437117f336b8b02a93",
+      "sha256": "81acd040269ce126c3da272cd635cf1501b4874906eed52e362f6da952b6dd42"
+    },
+    {
+      "source": "packages/core/src/media/focal-point.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/focal-point.ts",
+      "blob": "e694d23eeafd7f502288890f12727b72e95c72c5",
+      "sha256": "43fafbabba063e924071232263de32bffdc054446134f297655e3466cf79004b"
+    },
+    {
+      "source": "packages/core/src/media/mime.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/mime.ts",
+      "blob": "4d865955bed1a12fc2799bcbfbe971bcc117537f",
+      "sha256": "3e50552e92594e3fec39ef49d3b7c8c90917360efd9d9ba0b135ff6490c90c38"
+    },
+    {
+      "source": "packages/core/src/media/normalize.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/normalize.ts",
+      "blob": "9344437721528d3a81db41a6ea760e7f1cda86b7",
+      "sha256": "b77395a2ef839891652bf8711f4d15cad4aecbcf9bac19fa30c5de4ffc14191b"
+    },
+    {
+      "source": "packages/core/src/media/usage/activation.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/activation.ts",
+      "blob": "2ae446a3c0987a3d733e23a11527a3573666778e",
+      "sha256": "18ea56921e5fd62b406a12bda937aa0f6e7bcc84c51c3e2e483fa13c19f5d1c1"
+    },
+    {
+      "source": "packages/core/src/media/usage/capture-triggers.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/capture-triggers.ts",
+      "blob": "620065f3858633a4d54d144fbd6ba1c3a50fcd2a",
+      "sha256": "6319d59395354d6364dcf008fd19947b9da60a7040879f035c85ea585c55d50e"
+    },
+    {
+      "source": "packages/core/src/media/usage/collection-deletion-processor.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/collection-deletion-processor.ts",
+      "blob": "c0334f87610d8842b662a65ea31059d6e5344810",
+      "sha256": "bc59c8adc04b7daf375af07330c2b0957e0311376a66f7de51b1ad2b8aa42aa4"
+    },
+    {
+      "source": "packages/core/src/media/usage/collection-deletion.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/collection-deletion.ts",
+      "blob": "94dde948337f540210ecebab4bb0998711e4d2b6",
+      "sha256": "76482a1ad175d1762e48508d5fb0c457000e0df45ae1f6adae6bb6f72df01621"
+    },
+    {
+      "source": "packages/core/src/media/usage/content-fields.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/content-fields.ts",
+      "blob": "6fdd4900f419fd1a64b789280bc06989b2fb84cb",
+      "sha256": "b9e9812efb173884a6644955c640b9bd288c4e0a75523082518c146546514ff8"
+    },
+    {
+      "source": "packages/core/src/media/usage/content-refresh.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/content-refresh.ts",
+      "blob": "4d619ac7d030d24cda9d7ebf9c4e0bcc3e2c83fa",
+      "sha256": "f08ddf0742f6a94c5df6fd79674ed4af5350409b2843684d5b32b33f120f975c"
+    },
+    {
+      "source": "packages/core/src/media/usage/content-snapshots.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/content-snapshots.ts",
+      "blob": "5f6b6e7196a35cdc609a5b41b977514e6a7ccc90",
+      "sha256": "ebac232fcdc4e52a1ad98443c4efe6cb57f2e6205ce157d86fcb7f2312474d2f"
+    },
+    {
+      "source": "packages/core/src/media/usage/extractor.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/extractor.ts",
+      "blob": "159b05546592b3220269274ec1100c354188b1bf",
+      "sha256": "0c96b5015da0005f0cb8866510951e1d24b82ffc73de69f8507c20f213b156ca"
+    },
+    {
+      "source": "packages/core/src/media/usage/maintenance-engine.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/maintenance-engine.ts",
+      "blob": "4a765a88b23eca6f2956b3a61fe1d9b44f5eeb36",
+      "sha256": "88d74fd12507ecca1e55c76164d7e641ef37487f82f6b475acde249fe66943c8"
+    },
+    {
+      "source": "packages/core/src/media/usage/projection-fingerprint.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/projection-fingerprint.ts",
+      "blob": "da455e68ba1745a235fd3d8752a5dc80d5e93dc3",
+      "sha256": "c2ec21cb10595c08dc9343f52a57e94a073ed0b82e9cc8cb58aafb518cd085f2"
+    },
+    {
+      "source": "packages/core/src/media/usage/reconciliation-processor.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/reconciliation-processor.ts",
+      "blob": "0f54c5d7d1bda47f8ff7609f36a42f89ae2eac74",
+      "sha256": "b2c685652e46051a0684fbbed3fcfbd8eba999ac32d56efc73fe99d823a6c41e"
+    },
+    {
+      "source": "packages/core/src/media/usage/reconciliation.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/reconciliation.ts",
+      "blob": "61b1d3131ff8faf2ca45fb8d102b6c1cebd6c45e",
+      "sha256": "c3aa6701e38cfe9bd5c9bf2018d916ff1488ef088401421ce4405514aed8cda7"
+    },
+    {
+      "source": "packages/core/src/media/usage/schema-invalidation.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/schema-invalidation.ts",
+      "blob": "8376d883ae78cbe30b98c54908f31b93f59721bc",
+      "sha256": "02e2cdd3d9f114194436b09c4a902339ff7499530a5d9cb89e375f7251c1170f"
+    },
+    {
+      "source": "packages/core/src/media/usage/source-key.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/source-key.ts",
+      "blob": "f0460270360a969858ee23c139dd577fa5dfeb89",
+      "sha256": "140f9aca1793fe6d308e5c505f97ff12adf7ab59c308200c57ce7fec13e076a2"
+    },
+    {
+      "source": "packages/core/src/media/usage/types.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/types.ts",
+      "blob": "c25b56f3ef56a90ae3f65502c66263726cfc799a",
+      "sha256": "f5647c22d2e783013e6b045b1791aff16ec929ac3699ad1367a4c170ab48d17a"
+    },
+    {
+      "source": "packages/core/src/media/usage/work-processor.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/media/usage/work-processor.ts",
+      "blob": "061161d771d534169627d97a0b074976d7019c6f",
+      "sha256": "5acf2169eb6b228410287534934223ca80552fd282992604335d3f4589c39937"
+    },
+    {
+      "source": "packages/core/src/object-cache/codec.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/object-cache/codec.ts",
+      "blob": "1068836c44ffacf851a185feebbb96fc9e6e7043",
+      "sha256": "63598ee305b16282fa53e48c54062873dde16efc11e9f33240ee7b25531704ef"
+    },
+    {
+      "source": "packages/core/src/object-cache/index.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/object-cache/index.ts",
+      "blob": "c2d72251ab09f1dedc6e1bf2ef086a38f6d99952",
+      "sha256": "ff248961d978eda9d8caf4172e12b532366c9e922bc0e35f537e9032edb5a8c4"
+    },
+    {
+      "source": "packages/core/src/page/seo-panel.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/page/seo-panel.ts",
+      "blob": "16d40c85c591cd1e37c5beba5270d1e2fccecbc5",
+      "sha256": "db169a8c057c16a87caa9004297ee00a281587ce791644840cd2c2c32afd8fa2"
+    },
+    {
+      "source": "packages/core/src/request-cache.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/request-cache.ts",
+      "blob": "ab8f007b22ce601219ca1270d487342338de8634",
+      "sha256": "b0a8094bbd5c9b987e3b8b00c1d7fdb3bdc542a0d2d4f244108fc8f5655d8d73"
+    },
+    {
+      "source": "packages/core/src/request-context.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/request-context.ts",
+      "blob": "4f140c77a1dca951defb43fd1a114e838b6f691f",
+      "sha256": "c18cdd22e012f26b109919cbd1c780406132ff2505d6245614e4040f215bae1f"
+    },
+    {
+      "source": "packages/core/src/schema/block-type-contract.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/schema/block-type-contract.ts",
+      "blob": "009d334027cc0964e4f1f34af381385958606884",
+      "sha256": "ba83ce4aac224e29882b7109da2a2937581f9c389092692b0733551b2a1b5530"
+    },
+    {
+      "source": "packages/core/src/schema/block-type-registry.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/schema/block-type-registry.ts",
+      "blob": "605fb9fd221d1790a864777e51385a4f6885dd76",
+      "sha256": "a5d269e5061ca73c5d7d5956b681a6aec6ae7bd3efda8748f1acf0f0fa47091d"
+    },
+    {
+      "source": "packages/core/src/schema/block-types.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/schema/block-types.ts",
+      "blob": "cc89213ee1815cf148a51ec927ab2d106828f5d3",
+      "sha256": "6286d0042546795ec210b8aa0b0e3617dd63624b78b95582e5c33cff8e9f0bc8"
+    },
+    {
+      "source": "packages/core/src/schema/collection-slugs-cache.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/schema/collection-slugs-cache.ts",
+      "blob": "66b072474514a233bf2c7d5af8aae1fd2d17cd26",
+      "sha256": "419650fac5beb227a54049ac124cdb82dd219ebf02eab9ef51490e6685a3ab6d"
+    },
+    {
+      "source": "packages/core/src/schema/registry.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/schema/registry.ts",
+      "blob": "da7bbcdda224dfca8d9146b2f36659ab90bcac2e",
+      "sha256": "db26cf5bd9c9442c3b41185c879281914410cd9ece94cf2f9716533eb6e71516"
+    },
+    {
+      "source": "packages/core/src/schema/types.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/schema/types.ts",
+      "blob": "0c2f44156cff829951c52b0dd259fc5ff45bc554",
+      "sha256": "92a76aa8192b98e9703ece4b72b5ba1377ca66454b97608b4dfc3804ab3bc698"
+    },
+    {
+      "source": "packages/core/src/schema/url-pattern.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/schema/url-pattern.ts",
+      "blob": "1b9776eb0ab18119c46bceeeff2459db555bc41e",
+      "sha256": "795db92e54d41afaaa992b4cc1379d09073dcf7287a8c8b84be3d303c301edae"
+    },
+    {
+      "source": "packages/core/src/schema/zod-generator.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/schema/zod-generator.ts",
+      "blob": "550d4918258aa52a0d0f272b69061c76e79d86ee",
+      "sha256": "aa54ab4a8a5b60c7ea76335f94e2d4df74d0e7beca1cbc8d38858d4cc5cb5c86"
+    },
+    {
+      "source": "packages/core/src/search/fts-manager.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/search/fts-manager.ts",
+      "blob": "1de7650597123a72b11a2ca8ae45ce367a1fe290",
+      "sha256": "6cdb53024cdf6f7d95553d659cb8c904ec733889506b64837d3f177d1aac308d"
+    },
+    {
+      "source": "packages/core/src/search/match.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/search/match.ts",
+      "blob": "e97c6611f3cc943857bbac75d1a3a9bc56ee26f1",
+      "sha256": "b32fffddc184fd2b4c7255d3c4941d8d9ec4b81a2f70c9b59107cb024e55b26e"
+    },
+    {
+      "source": "packages/core/src/search/types.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/search/types.ts",
+      "blob": "a96af62d057f7e516208ca68181b891317e877f9",
+      "sha256": "eaa93697b80b39a064cb745594241f81d1ab49b13f389ced67dc805dafe69356"
+    },
+    {
+      "source": "packages/core/src/taxonomies/index.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/taxonomies/index.ts",
+      "blob": "a62c13c03e505494b39684ecb617089ecf83ba70",
+      "sha256": "b35cf776399eb7b6b39137d8ff1c51b9008aff2f2fcd8c8595e3515e6c6377e9"
+    },
+    {
+      "source": "packages/core/src/taxonomies/term-counts.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/taxonomies/term-counts.ts",
+      "blob": "c62237a0b67a3942882c50c865c7c803ddc4344d",
+      "sha256": "1320e9021583e82bf01a672f71469f51d131e4faa47c1d2d3c71a136ba331429"
+    },
+    {
+      "source": "packages/core/src/transfer/errors.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/transfer/errors.ts",
+      "blob": "7d4d9abc0989ff3ea80e7ef41177b39a829e4bf0",
+      "sha256": "6f608fc23b7a93fdb2cce71e40f802faacf69308616140a4d361f8e90116d4b1"
+    },
+    {
+      "source": "packages/core/src/transfer/format/canonical.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/transfer/format/canonical.ts",
+      "blob": "96a6f1e91af0d0083fbcdaeb25fccfc8ad74ac7e",
+      "sha256": "a22d9e6bcad233eeddf0b70daf44e9ce1f3b4417cde8246bede38e2fc7d3e759"
+    },
+    {
+      "source": "packages/core/src/transfer/format/column-codec.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/transfer/format/column-codec.ts",
+      "blob": "c776bf7d894aebd878bfbbc886235e2861dcea12",
+      "sha256": "19e478e9ca87dee8b05f98158c8d59a1bd4340b0fa6623186904cb7ae9242b30"
+    },
+    {
+      "source": "packages/core/src/transfer/format/columns.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/transfer/format/columns.ts",
+      "blob": "cd9a7ad365243e2fc96fbe5bfef77577e916025b",
+      "sha256": "15e2f45b4f0c843d1adeb9e16eca2eda3f1bc0dd9700d02064eeb4f6ff08fd80"
+    },
+    {
+      "source": "packages/core/src/transfer/format/digest.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/transfer/format/digest.ts",
+      "blob": "e3ccf389e80bceda593009c15800446198460c4d",
+      "sha256": "f94b47f515b58e62db89e9794fba4c5cac747dec0b3d40cf3c103cd66c62d6c3"
+    },
+    {
+      "source": "packages/core/src/transfer/format/limits.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/transfer/format/limits.ts",
+      "blob": "d25096ed0fe035f26695c03eb5a361b5485be678",
+      "sha256": "c00d09fbb594dcd400dc459dcce57ae85020d467c4881d931ca4ea9de6ec8385"
+    },
+    {
+      "source": "packages/core/src/transfer/import/rows.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/transfer/import/rows.ts",
+      "blob": "3421d85cf3c79cfa0c11c327835863061a72674e",
+      "sha256": "dd017fb286f34310726f168b5b17af3c89cccb73ff1c275ee1920d9ab20fe777"
+    },
+    {
+      "source": "packages/core/src/transfer/import/sql.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/transfer/import/sql.ts",
+      "blob": "ff5ac621bfbb28d775dcc34e0b1ba1c051d03df3",
+      "sha256": "2eb9ae4ed8ae7a3be41f45b5e0163c43b527e9addb4f1b99582453c4db2cd2ad"
+    },
+    {
+      "source": "packages/core/src/utils/base64.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/utils/base64.ts",
+      "blob": "9dae6dade270b1c1291b21c8a90adc73f5dab294",
+      "sha256": "79a94b895668f729574cc25e50ad5e1f6db5998dc3f6e3e12e5c1fa661969a90"
+    },
+    {
+      "source": "packages/core/src/utils/chunks.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/utils/chunks.ts",
+      "blob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e",
+      "sha256": "d5c454b134d9727d0af1fa5befb786a781e65cdac964a668af6a8fab74b81877"
+    },
+    {
+      "source": "packages/core/src/utils/db-errors.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/utils/db-errors.ts",
+      "blob": "d0a051ad9d48003eeeeb38dd9d5cb7cedf4140e5",
+      "sha256": "2637fdc8b0b8d5f6c1d0816a788e5f6efb29748bd0096816f179ca185e3585e0"
+    },
+    {
+      "source": "packages/core/src/utils/hash.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/utils/hash.ts",
+      "blob": "93db9df4a2b88692d5772fa5e32d309d7f23fab8",
+      "sha256": "7245086a4e29bb0a82852cb63f477ba3ced6d89ab6bee8cbe9f716561e5eced3"
+    },
+    {
+      "source": "packages/core/src/utils/slugify.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/utils/slugify.ts",
+      "blob": "9872f3b9d2905dc1b4cd010347eed375ddeadf47",
+      "sha256": "b5a55cfc31c66166b59d7eb055aab8346ccee8588a183a57c5010d8f2fab1221"
+    },
+    {
+      "source": "packages/core/src/utils/url.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/core/src/utils/url.ts",
+      "blob": "5ea627417b29212beeb178863f7b2f4989f90d58",
+      "sha256": "6f410994ca25c960baa96256ffda0626289284f486a288bc2747bf479c4a9ff2"
+    },
+    {
+      "source": "packages/admin/src/slugify.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/admin/src/slugify.ts",
+      "blob": "19bee0f0f9eb2017c4014cfa482f51dfac0cada1",
+      "sha256": "b4bb5ea95436619a82f93da84762daeeb47c656c7a7f18d1a287847c1ea5a8cf"
+    },
+    {
+      "source": "packages/cloudflare/src/db/d1-dialect.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/cloudflare/src/db/d1-dialect.ts",
+      "blob": "b026d293554c5173e1447b5eff0d704e169d3384",
+      "sha256": "c37040b0868590d2467a9230b32a84ae421dec6d98fb31b1a480e18a38b39c6c"
+    },
+    {
+      "source": "packages/cloudflare/src/db/d1-introspector.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/cloudflare/src/db/d1-introspector.ts",
+      "blob": "4c40fc55aa449f46f887f9335d11b42633312225",
+      "sha256": "1435befb2c61a3a5a0b20a7c0724cbc79914f8d9528ab629c7869d849ccbf9d0"
+    }
+  ],
+  "hostEntrySources": [
+    "packages/admin/src/slugify.ts",
+    "packages/cloudflare/src/db/d1-dialect.ts",
+    "packages/cloudflare/src/db/d1-introspector.ts"
+  ]
+}
