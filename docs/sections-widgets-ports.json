@@ -200,6 +200,11 @@
       "path": "/tmp/sections-widgets-readiness-expressions-original-green.log",
       "sha256": "b87af4f8b93a6de716993301d416749e33dd619b2306cf13c7d70a33b2040857",
       "bytes": 2529
+    },
+    {
+      "path": "/tmp/sections-widgets-DateMain-full-bootstrap.log",
+      "sha256": "4596784cbbd0235bfc59f2507b7a63667601b7543bdb32a17c0c66846a3dbba4",
+      "bytes": 249753
     }
   ],
   "originalPalette": {
@@ -314,5 +319,47 @@
     "sourceCallbackCredit": 0,
     "normalization": "finite pinned owned identifiers + ASCII SQLite whitespace; all other quoted tokens/literals preserved",
     "sharedCanonicalNormalizerChanged": false
+  },
+  "latestNormalGate": {
+    "head": "3d93d08520c654da5700ff635bc17f1c88234053",
+    "main": "0cf347fc54cbe637bad63498b291d4ed5da42ef5",
+    "completedAllStages": true,
+    "phasesStarted": 13,
+    "phasesFinished": 13,
+    "exitCode": 0,
+    "frozenInstall": "pass",
+    "typeAndSvelteChecks": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "services": 1135,
+    "existingSource": 115,
+    "redirectSource": 203,
+    "bulkNative": 14,
+    "sectionsWidgetsCore": 38,
+    "sectionsWidgetsConverter": 140,
+    "originalTransport": 3,
+    "cardSource": 23,
+    "dateSource": 30,
+    "defaultBuild": "pass",
+    "production": 259,
+    "nodePackageAndBuild": "pass",
+    "nodeHosting": {
+      "completedCallbacks": 15,
+      "pass": 15,
+      "fail": 0,
+      "skip": 0
+    },
+    "cloudflareBuildAndDryBundle": "pass",
+    "cloudflareSource": 23,
+    "actualWorker": 7,
+    "allExecutedSuiteFailures": 0,
+    "allExecutedSuiteSkips": 0,
+    "securedHostedSourceUI": "pending35",
+    "unchangedDefaultAndNodeBrowserGates": "pending62each",
+    "configuredAutomaticReview": "pending",
+    "freshFinalPublicHeadReview": "pending",
+    "specificSW1FrameworkAcceptance": "pending",
+    "fullFamilyCompletionCredit": 0
   }
 }
