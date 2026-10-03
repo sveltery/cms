@@ -6,6 +6,8 @@ import {persistedRemotes} from '../helpers/persisted-remotes.ts';
 import {lifecycleService} from '../../src/lib/server/database/lifecycle/service.ts';
 import {withRevision} from '../../src/lib/server/content/schema.ts';
 import {contentEntry} from '../../src/lib/server/lifecycle/schema.ts';
+import {RevisionRepository} from '../../src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts';
+import {sql} from 'kysely';
 const actor={id:'user_author',permissions:['content:read','content:read_drafts','content:create','content:edit_own','content:delete_own','content:publish_own']} as any;
 const input=(item:any)=>({collection:item.type,id:item.id,locale:item.locale,_rev:withRevision(contentEntry(item))._rev});
 const denied=(result:any,status:number,code:string)=>{assert.equal(result.type,'error');assert.equal(result.status,status);assert.equal(result.error.code,code);};
@@ -66,4 +68,24 @@ test('generic save refreshes requested lifecycle entry and revision history quer
   assert.equal(result.q[keys[0]].v._rev,result._.result._rev);
   assert.ok(result.q[keys[1]].v.some((row:any)=>row.id===result.q[keys[0]].v.draftRevisionId));
  }finally{await f.close();}
+});
+test('generic registered save forwards trusted request lifetime to actual revision pruning',async()=>{
+ const anchored:Promise<void>[]=[];
+ const f=await persistedRemotes({persistedSessions:true,mutationsEnabled:true,keepAlive:task=>anchored.push(task)});
+ try{
+  const created=await f.mutate('createContent',{collection:'post','data.title':'Ordinary lifetime'});
+  const key={collection:'post',id:created._.result.id,locale:'en'};
+  const current=await f.query('getContent',key);
+  const revisions=new RevisionRepository(f.database.db as any);
+  for(let index=0;index<51;index++)await revisions.create({collection:'post',entryId:key.id,data:{title:`Old ${index}`}});
+  await Promise.all(anchored.splice(0));
+  const saved=await f.mutate('updateContent',{...key,_rev:current._rev,'data.title':'Retained ordinary edit'});
+  assert.equal(saved._.result.id,key.id);
+  assert.equal(anchored.length,2,'session resolution and generic revision cleanup both extend this request');
+  await Promise.all(anchored.splice(0));
+  const count=(await sql<{n:number}>`SELECT COUNT(*) AS n FROM _cms_revisions WHERE entry_id=${key.id}`.execute(f.database.db)).rows[0].n;
+  assert.equal(count,50);
+  assert.deepEqual((await sql`SELECT revision_id FROM _cms_revision_prune_queue WHERE entry_id=${key.id}`.execute(f.database.db)).rows,[]);
+  assert.equal((await f.query('getContent',key)).data.title,'Retained ordinary edit');
+ }finally{await Promise.allSettled(anchored.splice(0));await f.close();}
 });
