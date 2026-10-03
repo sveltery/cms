@@ -12,11 +12,12 @@
   let { api = nativeApi, editor, canManage = true }: { api?: typeof nativeApi; editor?: EditorRenderer; canManage?: boolean } = $props();
   let areas = $state<WidgetArea[]>([]), components = $state<WidgetComponent[]>([]), pluginBlocks = $state<PluginBlockDef[]>([]), loading = $state(true), loadError = $state(''), componentError = $state(''), manifestError = $state('');
   let createOpen = $state(false), deleteArea = $state<string | null>(null), expanded = $state(new Set<string>()), pending = $state(false), actionError = $state(''), status = $state(''), panel = $state<BlockSidebarPanel | null>(null);
+  let loaded = false;
   let drag = $state<{ source: 'palette'; input: CreateWidgetInput; label: string } | { source: 'area'; area: string; id: string } | null>(null);
   const palette = $derived(getWidgetPalette(components));
   async function load() {
-    loading = true; loadError = '';
-    try { areas = await api.fetchWidgetAreas(); } catch (cause) { loadError = cause instanceof Error ? cause.message : String(cause); } finally { loading = false; }
+    loading = !loaded; loadError = '';
+    try { areas = await api.fetchWidgetAreas(); loaded = true; } catch (cause) { loadError = cause instanceof Error ? cause.message : String(cause); } finally { loading = false; }
   }
   $effect(() => {
     void load(); let active = true;
