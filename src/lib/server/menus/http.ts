@@ -30,7 +30,8 @@ export async function withMenuRequest(
   if (!await menuStorageReady(configuration.database)) return apiError('MIGRATION_REQUIRED', 'Menu storage is not ready', 503);
   const db = configuration.database.db.withTables<{[Name in keyof Database]: Database[Name]}>().$pickTables<keyof Database>();
   try {
-    return await runWithContext({ db, locale: event.url.searchParams.get('locale') ?? undefined, editMode: false }, () => run(db));
+    return await runWithContext({ db, locale: event.url.searchParams.get('locale') ?? undefined, editMode: false,
+      keepAlive: configuration.keepAlive }, () => run(db));
   } catch (error) {
     console.error(`[${errorCode}]`, error);
     return apiError(errorCode, errorMessage, 500);

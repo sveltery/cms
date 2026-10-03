@@ -128,3 +128,24 @@ fixtures preserve Source's historical GET lowest-locale choice and ambiguous
 mutation behavior; the initial mistaken ambiguous-GET fixture earns zero credit.
 The exact emdash:menu:name cache tag was restored after one original actual
 value-red comparison against the frozen Source tag function.
+
+
+The bounded cache adapter is now replaced by the full pinned object-cache core,
+codec, memory backend and type contracts. The complete Source object-cache test
+was committed first; all six whole Source core files now pass 128 callbacks.
+The manifest preserves 51 authorities, twelve whole tests, 204 declarations and
+495 direct expectations; the original eleven whole tests are unchanged. The
+35 cache callbacks were first-green, with zero causal value-red credit; initial
+missing-codec setup earns zero. Every Source fixture deadline remains intact.
+
+Astro's generated object-cache module is replaced by an explicit trusted native
+startup factory descriptor, disabled by default. Source epoch invalidation,
+Date serialization, TTL, degraded backend reads, preview/edit/isolated/route-fill
+bypass and deferred writes are retained. Native Symbol namespaces keep this
+owned menu cache separate from other in-progress families. Current-request
+keepAlive and the already-public deferred-task tracker replace the Source
+virtual host callback; request context uses a Symbol-backed AsyncLocalStorage
+across SSR chunks. These framework substitutions are proposed; no final specific
+acceptance is recorded. Svelte checks pass using the previously approved private
+340 dependency copy, still zero own frozen/full-normal/hosted credit. Complete
+startup, cross-family runtime integration and native admin remain unfinished.

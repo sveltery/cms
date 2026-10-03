@@ -30,6 +30,8 @@ export default defineConfig({
         'tests/utils/test-db.js': path.join(helpers, 'test-db.ts'),
         'src/loader.js': path.join(native, 'loader.ts'),
         'src/object-cache/index.js': path.join(native, 'object-cache.ts'),
+        'src/object-cache/codec.js': path.join(native, 'object-cache-codec.ts'),
+        'src/object-cache/memory.js': path.join(native, 'object-cache-memory.ts'),
         'src/request-context.js': path.join(native, 'context.ts'),
         'src/astro/prefetch.js': path.join(native, 'prefetch.ts'),
         'src/astro/routes/api/menus/[name]/items/[id].js': path.join(root, 'src/routes/api/menus/[name]/items/[id]/+server.ts')
@@ -42,7 +44,8 @@ export default defineConfig({
     include: [
       'parity/emdash/menu-source/upstream/packages/core/tests/unit/menus/*.test.ts',
       'parity/emdash/menu-source/upstream/packages/core/tests/integration/database/menu-repository.test.ts',
-      'parity/emdash/menu-source/upstream/packages/core/tests/integration/api/menus-handlers.test.ts'
+      'parity/emdash/menu-source/upstream/packages/core/tests/integration/api/menus-handlers.test.ts',
+      'parity/emdash/menu-source/upstream/packages/core/tests/unit/object-cache.test.ts'
     ]
   }
 });
