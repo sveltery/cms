@@ -67,7 +67,7 @@ test('isolated Node maintenance startup refusal closes storage and preserves ope
     await runInstalled(app,`await assert.rejects(maintenance.runRevisionMaintenance({kind:'sqlite',path:${JSON.stringify(path)}}),error=>error.code==='MIGRATION_REQUIRED');
 await assert.rejects(maintenance.runRevisionMaintenance({kind:'sqlite',path:':memory:'}),/persistent SQLite/);`);
     database=openSqlite(path);
-    assert.deepEqual((await sql`SELECT * FROM _cms_operator_private`.execute(database.db)).rows,[{id:1,value:'preserved'}]);
-    assert.deepEqual((await sql`SELECT name FROM sqlite_master WHERE type='table' ORDER BY name`.execute(database.db)).rows,[{name:'_cms_operator_private'}]);
+    assert.deepEqual((await sql`SELECT * FROM _cms_operator_private`.execute(database.db)).rows.map(row=>({...row})),[{id:1,value:'preserved'}]);
+    assert.deepEqual((await sql`SELECT name FROM sqlite_master WHERE type='table' ORDER BY name`.execute(database.db)).rows.map(row=>({...row})),[{name:'_cms_operator_private'}]);
   }finally{await database?.close();await rm(directory,{recursive:true,force:true});}
 });

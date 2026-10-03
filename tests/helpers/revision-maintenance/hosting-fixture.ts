@@ -30,7 +30,7 @@ export async function observeMaintenance(database:CmsDatabase,protectedIds:strin
   assert.equal(await revisions.countByEntry('post','ordinary'),50);
   // The pinned policy retains the latest50 plus referenced older revisions.
   assert.equal(await revisions.countByEntry('post','protected'),52);
-  assert.deepEqual((await sql<{live_revision_id:string;draft_revision_id:string}>`SELECT live_revision_id,draft_revision_id FROM ec_post WHERE id='protected'`.execute(database.db)).rows,
+  assert.deepEqual((await sql<{live_revision_id:string;draft_revision_id:string}>`SELECT live_revision_id,draft_revision_id FROM ec_post WHERE id='protected'`.execute(database.db)).rows.map(row=>({...row})),
     [{live_revision_id:protectedIds[0],draft_revision_id:protectedIds[1]}]);
   for(const id of protectedIds)assert.ok(await revisions.findById(id));
   assert.equal((await sql`SELECT * FROM _cms_revision_prune_queue`.execute(database.db)).rows.length,0);
