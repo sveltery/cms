@@ -20,25 +20,25 @@ async function select(){
 function button(text:string){return Array.from(document.querySelectorAll('button')).find(value=>value.textContent?.trim()===text);}
 it('offers actual default asset details for an editable local image without a snippet',async()=>{
  await select();
- expect(button('Edit selected asset')).toBeInstanceOf(HTMLButtonElement);
- button('Edit selected asset')!.click();await tick();
+ expect(button('Edit asset')).toBeInstanceOf(HTMLButtonElement);
+ button('Edit asset')!.click();await tick();
  expect(document.querySelectorAll('dialog')).toHaveLength(1);
  expect(document.querySelector('[aria-label="Media details"]')).not.toBeNull();
  expect(button('Delete media')).toBeUndefined();
  button('Back')!.click();await tick();
  expect(document.querySelector('[aria-label="Media details"]')).toBeNull();
- expect(document.activeElement).toBe(button('Edit selected asset'));
+ expect(document.activeElement).toBe(button('Edit asset'));
 });
 it('keeps the complete refreshed asset metadata when confirming from the default workspace',async()=>{
  const {onSelect}=await select();
- expect(button('Edit selected asset')).toBeInstanceOf(HTMLButtonElement);
+ expect(button('Edit asset')).toBeInstanceOf(HTMLButtonElement);
  const refreshed={...item,alt:'Updated alt',caption:'Updated caption',focalX:0.3,focalY:0.6};
  const request=vi.spyOn(globalThis,'fetch').mockImplementation(async(input,init)=>{
   expect(input).toBe('/api/media/native-asset');expect(init?.method).toBe('PUT');
   expect(JSON.parse(String(init?.body))).toMatchObject({alt:refreshed.alt,caption:refreshed.caption,focalX:refreshed.focalX,focalY:refreshed.focalY});
   return Response.json({success:true,data:{item:refreshed}});
  });
- button('Edit selected asset')!.click();await tick();
+ button('Edit asset')!.click();await tick();
  const inputs=Array.from(document.querySelectorAll('input'));
  const alt=inputs.find(input=>input.closest('label')?.textContent?.includes('Alt text'))!;
  alt.value=refreshed.alt;alt.dispatchEvent(new Event('input',{bubbles:true}));
