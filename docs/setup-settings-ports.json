@@ -64,5 +64,93 @@
     "log": "/tmp/setup-settings-source-red-corrected-runner.log",
     "earlierRunnerFailure": "/tmp/setup-settings-source-red.log included unsupported toBeFalsy; no red credit for runner TypeError",
     "migrationSupplemental": "/tmp/setup-settings-migration-red.log genuine assertion missing options table"
+  },
+  "unitSource": {
+    "source": "packages/core/tests/unit/settings/settings.test.ts",
+    "blob": "ba5be15f19e7cba122a85112d9ad79b3e9826d4a",
+    "callbacks": [
+      {
+        "title": "should store settings with site: prefix",
+        "sha256": "2d74be3dba88b46c8d03b00519a95bedb78f6b3b4592166e61d8e034240b2459"
+      },
+      {
+        "title": "should merge with existing settings",
+        "sha256": "834d744fb48f324cb69fdde8a0cff54cbd60b3264f562953ba77e14651748352"
+      },
+      {
+        "title": "should store complex objects",
+        "sha256": "6f854398fd24433251eb21ec7f19783a14487db1ce3ff39d7f1aa12fe8626fcc"
+      },
+      {
+        "title": "should store logo with mediaId",
+        "sha256": "8363b9cd1eafae615abb3dfe06b8a1bcf83080e61aaf91695419d25022b7c85e"
+      },
+      {
+        "title": "deletes media settings while preserving sibling SEO settings",
+        "sha256": "ff241c68cd8ecb4c5844982f37dbbf9452c19dbd9ea349385c465d9755f6712b"
+      },
+      {
+        "title": "deletes the SEO option when its only media reference is removed",
+        "sha256": "ce55b7db569515a947d9804691829913b39fb226348831db6caec08118d2140c"
+      },
+      {
+        "title": "keeps the other SEO fields when updating one of them",
+        "sha256": "0dbec778a9b241045c54330b3c2ca3f8861852b016058f7fd0c77d8ecbac8110"
+      },
+      {
+        "title": "keeps the other social links when updating one of them",
+        "sha256": "a99e211ab9e853e9507dc956cd0c14cb12bcaf77910ca09920dc3fd663893860"
+      },
+      {
+        "title": "rolls back updates when a media-setting deletion fails",
+        "sha256": "5e8b997952e80f85234c17a49c494295e6728c0cc9af38c7b30d4a9d37eb3c4d"
+      },
+      {
+        "title": "should return undefined for unset values",
+        "sha256": "6b8ccdaec34e9bc63d8724f95f2c40054afae11bec33a632b9c7b5a3dc223181"
+      },
+      {
+        "title": "should return the stored value",
+        "sha256": "27b058497d80d7d0697be852375c81e6a8612c65b5fcf347ef31baa5e6953db4"
+      },
+      {
+        "title": "should return numbers correctly",
+        "sha256": "13da89cf2e3f0f5e9ed9f8816785acf17c586b2877b56e4a947b1adb85c95209"
+      },
+      {
+        "title": "should return nested objects",
+        "sha256": "0af2403fbc78fe42d22ef106adc808b975e21766802c2455dc0155d01cd453f4"
+      },
+      {
+        "title": "should return empty object for no settings",
+        "sha256": "beab9f47ac637a8c784c561c5f7b7fd78afbd257210c32d637a16ebfef2c2d8e"
+      },
+      {
+        "title": "should return all settings",
+        "sha256": "c96898ffca7bd0e367f5d28f84960db8eaa72a6f3bce3db4903395cd783ab10e"
+      },
+      {
+        "title": "should return partial object for partial settings",
+        "sha256": "e517e56c4d41cf8fc6572dd88f115a270bda8c8360541542ae7545d2f8899a01"
+      },
+      {
+        "title": "should handle multiple setting types",
+        "sha256": "ed0aab3fbda02732fd919722f031ca614f1f175da0cfa1ad29f7a730112f9a4a"
+      },
+      {
+        "title": "should store logo without URL",
+        "sha256": "a42c762249f68ee8fc9aa2c6ab84b6b995c8619e8b7147042161303ee44ca36d"
+      },
+      {
+        "title": "should store favicon without URL",
+        "sha256": "8165db5c186d8b71e1e558103fce328f0981af39a6619ee30cb23460629b8f90"
+      },
+      {
+        "title": "returns seo settings unchanged when no defaultOgImage is set",
+        "sha256": "c2d1eef19f3950811644b23450f1dfa55f2347aa5b03d0428187a491bb17d447"
+      }
+    ],
+    "status": "committed before implementation; unexecuted imports not baseline credit",
+    "omissions": "Plugin encryption six, actual media rows two, cache five and cross-media mutations three need their complete adapters/providers; selected callbacks retain all expectations."
   }
 }
