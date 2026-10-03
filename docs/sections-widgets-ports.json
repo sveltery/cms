@@ -22,10 +22,15 @@
     "wholeFiles": 4,
     "declarations": 34,
     "expandedCallbacks": 35,
-    "executed": 0,
+    "executed": 35,
     "localFailure": "official Chromium1243 executable absent",
     "completedCausalValueReds": 0,
-    "securedHostedGate": "pending"
+    "securedHostedGate": "pass at public PR79 head2cd42fd; renewed integrated-head gate pending",
+    "pass": 35,
+    "skip": 0,
+    "firstCompleteExecutionGreen": true,
+    "actualRichEditorAvailabilityCredit": 0,
+    "testOnlyNestedReactRootWarning": "observed in passing editor fixture; zero Source assertion-red credit"
   },
   "originalNativeHTTP": {
     "callbacks": 4,
@@ -205,6 +210,16 @@
       "path": "/tmp/sections-widgets-DateMain-full-bootstrap.log",
       "sha256": "4596784cbbd0235bfc59f2507b7a63667601b7543bdb32a17c0c66846a3dbba4",
       "bytes": 249753
+    },
+    {
+      "path": "/tmp/sections-widgets-PR79-2cd42fd-browser.log",
+      "bytes": 213512,
+      "sha256": "03e9e02e017f7e16ba74bbf2defc9854cdd79cfb78f297d7b42ddf284b10f731"
+    },
+    {
+      "path": "/tmp/sections-widgets-PR79-2cd42fd-validate.log",
+      "bytes": 363011,
+      "sha256": "0f3d20acb6c2597ed3b41257b09acd5d5c067a61d79c76f0c4f7d0899a9b1e88"
     }
   ],
   "originalPalette": {
@@ -304,8 +319,8 @@
     "authorities": 79,
     "wholeSourceFiles": 10,
     "expandedCallbacks": 213,
-    "executedSourceCallbacks": 178,
-    "unexecutedSourceUI": 35,
+    "executedSourceCallbacks": 213,
+    "unexecutedSourceUI": 0,
     "causalSourceReds": 0
   },
   "originalTimestampAndSQLiteWhitespace": {
@@ -360,6 +375,77 @@
     "configuredAutomaticReview": "pending",
     "freshFinalPublicHeadReview": "pending",
     "specificSW1FrameworkAcceptance": "pending",
+    "fullFamilyCompletionCredit": 0
+  },
+  "hostedPublicHeadGate": {
+    "pr": 79,
+    "head": "2cd42fd57ec06242c3da26f424397085e6bddb04",
+    "run": 37152313495,
+    "jobs": {
+      "browser": 111288536522,
+      "validate": 111288536673
+    },
+    "jobConclusions": "both success",
+    "receipts": [
+      {
+        "path": "/tmp/sections-widgets-PR79-2cd42fd-browser.log",
+        "bytes": 213512,
+        "sha256": "03e9e02e017f7e16ba74bbf2defc9854cdd79cfb78f297d7b42ddf284b10f731"
+      },
+      {
+        "path": "/tmp/sections-widgets-PR79-2cd42fd-validate.log",
+        "bytes": 363011,
+        "sha256": "0f3d20acb6c2597ed3b41257b09acd5d5c067a61d79c76f0c4f7d0899a9b1e88"
+      }
+    ],
+    "wholeSourceUI": {
+      "files": 4,
+      "pass": 35,
+      "firstCompleteExecutionGreen": true,
+      "causalSourceReds": 0,
+      "actualOfficialChromium1243Launch": true,
+      "forbiddenSandboxFlagsAbsent": true,
+      "existingSourceEditorMockPreserved": true,
+      "actualRichEditorAvailabilityCredit": 0,
+      "testOnlyNestedReactRootWarning": "observed; Source assertions all pass"
+    },
+    "browserStages": {
+      "bulkSource": 14,
+      "dateSource": 30,
+      "ownedSource": 35,
+      "default": 62,
+      "node": 62
+    },
+    "validate": {
+      "all13PhasesComplete": true,
+      "services": 1135,
+      "existingSource": 115,
+      "redirectSource": 203,
+      "bulkNative": 14,
+      "coreSource": 38,
+      "converterSource": 140,
+      "originalTransport": 3,
+      "cardSource": 23,
+      "dateSource": 30,
+      "production": 259,
+      "nodeHosting": 15,
+      "cloudflareSource": 23,
+      "realWorker": 7
+    },
+    "sourceCallbacksCombinedInventories": 213,
+    "fullFamilyCompletionCredit": 0,
+    "finalMergedHeadCredit": 0
+  },
+  "currentMenusMainIntegration": {
+    "main": "37d5ed93a553c6ddef86c50a0eb596acbc9da63b",
+    "priorPublicOwnHead": "2cd42fd57ec06242c3da26f424397085e6bddb04",
+    "allPriorMainPackageValuesPreserved": true,
+    "priorMainSourceCommandPrefixPreserved": true,
+    "sourceAdditions": "unchanged Core38 then converter140 then Original transport3",
+    "browserStages": "whole MainBulk14/Date30/Menus25 then own Source35 before unchanged builds/default62/Node62",
+    "originalProjection": "entire original11 plus Mainmenus2 then own4; strict arrays and identity checks retained; admin17",
+    "lock": "same Root-qualified512packages/527snapshots; Main445/458 unchanged; sole tslib requiredness exception",
+    "freshIntegratedNormalAndSecuredGates": "pending",
     "fullFamilyCompletionCredit": 0
   }
 }

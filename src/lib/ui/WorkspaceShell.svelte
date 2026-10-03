@@ -73,6 +73,7 @@
       {#if mediaHref}<a href={mediaHref} aria-current={activePage === 'media' ? 'page' : undefined}>Media</a>{/if}
       {#if blocksHref}<a href={blocksHref} aria-current={activePage === 'blocks' ? 'page' : undefined}>Block types</a>{/if}
       {#if usersHref}<a href={usersHref} aria-current={activePage === 'users' ? 'page' : undefined}>Users</a>{/if}
+      {#if navigationData.permissions.includes('menus:read')}<a href={`${prefix}menus`} aria-current={isItemActive(destinationPath(`${prefix}menus`), path) ? 'page' : undefined}>Menus</a>{/if}
       {#if showSchema}
         <h2>Administration</h2>
         <a href={schemaLink} aria-current={activePage === 'schema' ? 'page' : undefined}>Schema</a>
