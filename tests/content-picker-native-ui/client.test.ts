@@ -2,7 +2,7 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { createContentPickerClient } from '../../src/lib/content-picker/client.ts';
 afterEach(() => { vi.unstubAllGlobals(); });
 it('client retains mounted paths and safely encodes the Source query and cursor without adding a menu locale', async () => {
-  const fetch = vi.fn(async () => new Response(JSON.stringify({ success: true, data: { items: [], nextCursor: 'next' } }), { headers: { 'content-type': 'application/json' } }));
+  const fetch = vi.fn(async (_input: string, _init?: RequestInit) => new Response(JSON.stringify({ success: true, data: { items: [], nextCursor: 'next' } }), { headers: { 'content-type': 'application/json' } }));
   vi.stubGlobal('fetch', fetch);
   const result = await createContentPickerClient('/admin').fetchContentList('people', { limit: 50, search: '50% & needle', cursor: 'a/b?cursor' });
   const url = new URL(fetch.mock.calls[0][0], 'https://cms.test');

@@ -8,13 +8,14 @@ import { migrateCms } from '../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
 import { lifecycleService } from '../../src/lib/server/database/lifecycle/service.ts';
 import { contentPickerService } from '../../src/lib/server/content-picker/service.ts';
+import type { ServerPrincipal } from '../../src/lib/server/database/service.ts';
 
 // Ordinary storage behavior on a real raw workerd/D1 binding. Fixed trusted
 // principal only: no auth, session, concurrent request, or Origin probes.
 test('raw D1 picker retains full locale variants, cursor pages and literal search across reopen', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'cms-picker-d1-'));
   let storage = await schemaAdminStorage('D1', directory);
-  const principal = { id: 'picker-d1', permissions: ['content:read', 'content:read_drafts', 'content:create'] };
+  const principal: ServerPrincipal = { id: 'picker-d1', permissions: ['content:read', 'content:read_drafts', 'content:create'] };
   try {
     await migrateCms(storage.database); const registry = new SchemaRegistry(storage.database);
     await registry.createCollection({ slug: 'people', label: 'People', routable: false });
