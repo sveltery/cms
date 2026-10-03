@@ -28,9 +28,10 @@ const compiledCatalog=read('tests/comments-source/packages/admin/src/locales/en/
 assert.equal(/export const messages=(.*);\n$/.exec(compiledCatalog)[1],JSON.stringify(catalog),'Complete pinned English catalog');
 assert.equal(entries,3184,'Pinned English entry census');
 function declarations(path, content) {
+ if(path.endsWith('.astro'))content=/^---\r?\n([\s\S]*?)^---\s*$/m.exec(content)[1];
  const ast=ts.createSourceFile(path,content,ts.ScriptTarget.Latest,true,path.endsWith('.tsx')?ts.ScriptKind.TSX:ts.ScriptKind.TS);
  const found=new Map();
- function visit(node){if(node.name&&ts.isIdentifier(node.name))found.set(node.name.text,node.getText(ast));ts.forEachChild(node,visit);}
+ function visit(node){if(node.name&&ts.isIdentifier(node.name)&&!found.has(node.name.text))found.set(node.name.text,node.getText(ast));ts.forEachChild(node,visit);}
  visit(ast);return found;
 }
 for(const row of ledger.selectedDeclarations){
@@ -38,6 +39,15 @@ for(const row of ledger.selectedDeclarations){
  const product=declarations(row.product,read(row.product).toString());
  for(const name of row.names){assert.ok(source.has(name),`Source declaration ${name}`);assert.equal(product.get(name),source.get(name),`Complete selected Source declaration ${name}`);}
 }
+// Preserve the complete pinned submit callback body while adapting its attachment.
+const formAuthority=read(ledger.authorities.find(item=>item.source==='packages/core/src/components/CommentForm.astro').authority).toString();
+const formScript=ts.createSourceFile('CommentForm.ts',/<script>\s*([\s\S]*?)<\/script>/.exec(formAuthority)[1],ts.ScriptTarget.Latest,true);
+let sourceSubmit;
+function findSubmit(node){if(ts.isCallExpression(node)&&node.expression.getText(formScript)==='document.addEventListener'&&node.arguments[0].getText(formScript)==='"submit"')sourceSubmit=node.arguments[1].body.getText(formScript);ts.forEachChild(node,findSubmit);}
+findSubmit(formScript);
+const productSubmit=ts.createSourceFile('form-submission.ts',read('src/lib/comments/form-submission.ts').toString(),ts.ScriptTarget.Latest,true);
+assert.ok(sourceSubmit,'Whole Source submit callback exists');
+assert.equal(productSubmit.statements.find(node=>ts.isFunctionDeclaration(node)&&node.name?.text==='submitCommentForm').body.getText(productSubmit),sourceSubmit,'Complete selected Source submission callback body');
 const counts = [];
 for (const row of ledger.authorities.filter(item => item.selected)) {
  const source = ts.createSourceFile(row.source, read(row.authority).toString(), ts.ScriptTarget.Latest, true, row.source.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS);

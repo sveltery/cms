@@ -1,6 +1,7 @@
 import type { RequestEvent } from '@sveltejs/kit';
 import type { Permission } from '../database/service.ts';
 import { requireSessionMutationOrigin, SessionOriginError } from '../auth/request.ts';
+import { checkPublicCsrf } from './upstream/api/csrf.ts';
 import { commentsReady } from './readiness.ts';
 import { apiError, apiSuccess, handleError, unwrapResult } from './upstream/api/error.ts';
 import { parseBody, parseQuery, isParseError } from './upstream/api/parse.ts';
@@ -23,23 +24,26 @@ function denied(event: RequestEvent, permission: Permission): Response | null {
  if (!principal.permissions.includes(permission)) return apiError('FORBIDDEN', 'Insufficient permission', 403);
  return null;
 }
-async function withComments(event: RequestEvent, execute: (db: ReturnType<typeof nativeCommentDatabase>) => Promise<Response>): Promise<Response> {
+async function withComments(event: RequestEvent, routeKind: 'public'|'admin', execute: (db: ReturnType<typeof nativeCommentDatabase>) => Promise<Response>): Promise<Response> {
  const database=event.locals.cms?.database;
  if (!database || !await commentsReady(database)) return commentsUnavailable();
  if (!['GET','HEAD','OPTIONS'].includes(event.request.method)) {
   if (event.locals.cms?.mutationsEnabled !== true) return apiError('MUTATIONS_DISABLED','Mutations are disabled',503);
-  if (event.url.pathname.includes('/admin/')) {
+  if (routeKind === 'admin') {
    const origin=event.locals.cmsRuntime?.publicOrigin;
    if (!origin) return commentsUnavailable();
    try { requireSessionMutationOrigin(event.request,origin); }
    catch (error) { if(error instanceof SessionOriginError) return apiError(error.code,error.message,403); throw error; }
+  } else {
+   const rejected=checkPublicCsrf(event.request,event.url,event.locals.cmsRuntime?.publicOrigin);
+   if(rejected)return rejected;
   }
  }
  const db=nativeCommentDatabase(database);
  return runWithCommentDatabase(db,()=>execute(db));
 }
 export async function publicCommentsRequest(event: RequestEvent): Promise<Response> {
- return withComments(event,async db=> {
+ return withComments(event,'public',async db=> {
   const {collection,contentId}=event.params;
   if(!collection||!contentId) return apiError('VALIDATION_ERROR','Collection and content ID required',400);
   const runtime=nativeCommentRuntime(event,db);
@@ -53,7 +57,7 @@ export async function publicCommentsRequest(event: RequestEvent): Promise<Respon
  });
 }
 export async function reactionCommentsRequest(event: RequestEvent): Promise<Response> {
- return withComments(event,async db=> {
+ return withComments(event,'public',async db=> {
   const {collection,contentId}=event.params;
   if(!collection||!contentId) return apiError('VALIDATION_ERROR','Collection and content ID required',400);
   try {
@@ -69,11 +73,13 @@ export async function reactionCommentsRequest(event: RequestEvent): Promise<Resp
    const ip=extractRequestMeta(event.request,config).ip;
    const voterHash=ip?await hashIp(ip,(await resolveSecretsCached(db)).ipSalt):'unknown';
    return unwrapResult(await handleReactionCounts(db,collection,contentId,voterHash));
-  } catch(error) { return handleError(error,'Failed to read or toggle reactions','REACTION_ERROR'); }
+  } catch(error) { return event.request.method==='POST'
+    ? handleError(error,'Failed to toggle reaction','REACTION_TOGGLE_ERROR')
+    : handleError(error,'Failed to read reactions','REACTION_COUNTS_ERROR'); }
  });
 }
 export async function adminCommentsRequest(event: RequestEvent,operation:'inbox'|'counts'|'get'|'status'|'delete'|'bulk'): Promise<Response> {
- return withComments(event,async db=> {
+ return withComments(event,'admin',async db=> {
   try {
    if(operation==='bulk') {
     const body=await parseBody(event.request,commentBulkBody);if(isParseError(body))return body;
@@ -95,7 +101,9 @@ export async function adminCommentsRequest(event: RequestEvent,operation:'inbox'
    return updated?apiSuccess(updated):apiError('NOT_FOUND','Comment not found',404);
   } catch(error) {
    if(error instanceof CommentStatusConflictError)return apiError(error.code,error.message,409,{currentStatus:error.currentStatus});
-   return handleError(error,'Failed to perform comment operation','COMMENT_OPERATION_ERROR');
+   const failures={inbox:['Failed to list comments','COMMENT_INBOX_ERROR'],counts:['Failed to get comment counts','COMMENT_COUNTS_ERROR'],get:['Failed to get comment','COMMENT_GET_ERROR'],delete:['Failed to delete comment','COMMENT_DELETE_ERROR'],status:['Failed to update comment status','COMMENT_STATUS_ERROR'],bulk:['Failed to perform bulk operation','COMMENT_BULK_ERROR']} as const;
+   const [message,code]=failures[operation];
+   return handleError(error,message,code);
   }
  });
 }
