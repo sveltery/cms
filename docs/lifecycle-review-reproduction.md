@@ -1,0 +1,19 @@
+# Lifecycle review reproduction
+
+The immutable authority is EmDash 1.1.0 commit `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. Run `node scripts/reproduce-lifecycle-review-upstream.mjs /path/to/pinned-emdash-clone` after installing the documented dependencies. This diagnostic reads the Git blobs at that commit; it does not execute the clone's working tree.
+
+It executes the complete original `EmDashRuntime.handleContentUpdate`, `handleContentUnpublish`, `hydrateDraftData`, `normalizeFieldValues` and `dropUnknownKeysAlreadyStored` declarations; the complete original API update and unpublish handlers; the original content and revision repositories, transaction helper, validation module and Zod generator; and the complete original `cleanup.pruneQueuedRevisions` consumer. Source runtime blob: `055ed1307ba4029e120cad989bc9b0e8c2d72afe`; API content blob: `34c2528c51a54119cd1730e876d699319c9f3702`; cleanup blob: `21d6eabd50e690faac77865746c2c3b3c4c7ab44`. The command prints all loaded authority blobs.
+
+The bounded fixture uses real Node SQLite, the approved native canonical schema and registered scalar `title` definition. A Kysely namespace plugin maps source metadata/revision table names to the native names without changing the original repositories. An empty fixture `options(name,value)` table allows the original normalizer to select its UTC default. The registered schema provider supplies field definitions to the complete original validator. Hooks, cache, request context, blocks, media usage, bylines, SEO, i18n, references and plugin policy are inactive fixture boundaries. This is selected-method orchestration evidence; it earns zero additional copied-source declarations and does not certify the entire runtime, cleanup coordinator, plugins, source D1 adapter, scheduling or setup/settings.
+
+## Observed source behavior
+
+On the original runtime, a published revision entry saved with `{data:{title:"Rejected draft"},publishedAt:"not-a-date"}` returns `VALIDATION_ERROR`, but retains the newly staged draft pointer, its data and a version increment. Live title and publication date stay unchanged. Calling the complete API update handler with only that invalid metadata leaves the entire row unchanged: its transaction starts after the runtime has staged the draft. Atomicity of the API metadata operation does not establish atomicity of the complete mixed runtime save. The native Node and D1 regressions preserve this shared behavior; a stronger mixed-save transaction is separate work.
+
+After discarding the failed-save draft, 55 original runtime unpublish/republish cycles leave 57 revision rows queued for cleanup. The complete source cleanup consumer removes seven, retains 50, preserves the live pointer and acknowledges the captured queue row. It reads the oldest ten queued entries per cleanup invocation and acknowledges only the exact captured revision ID. The native host currently lacks an alternate consumer for unpublish work.
+
+## TDD receipt
+
+Before a native implementation edit, `node --test tests/lifecycle-review-regressions.test.ts` on PR45 base `b5ec2454e125a3f6318d79d639d56b6554e96727` executed six original supplemental regressions: two shared-behavior cases passed; four genuine assertion failures exposed missing retention on Node and D1. Cycle cases observed `56 !== 50`; delayed captured-boundary cases observed `55 !== 51`. No loading error, skipped assertion, raised timeout, changed source expectation or manual cleanup produced these failures. These original tests earn zero copied-source parity credit. Original source declaration inventory remains 29 declarations / 31 executions.
+
+Focused logs: `/tmp/pr45-review-source-runtime.log` and `/tmp/pr45-review-native-red.log`. Installed-dependency evidence is separate from a clean frozen bootstrap; final hosted gates must run again after the repair.
