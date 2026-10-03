@@ -19,6 +19,8 @@ run_stage() {
 run_stage 'frozen dependency install' pnpm install --frozen-lockfile
 run_stage 'type and Svelte checks' pnpm check
 run_stage 'service tests' pnpm test
+run_stage 'auth source assertions' pnpm test:source-ports
+run_stage 'auth source type assertions' node node_modules/typescript/bin/tsc --project tsconfig.source-ports.json
 run_stage 'default production build' pnpm build
 run_stage 'production remote tests' pnpm test:production
 run_stage 'Node package and build' pnpm package:node
