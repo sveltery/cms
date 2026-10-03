@@ -4,7 +4,9 @@ import {resolvePluginEncryptionKeys} from "./vendor/encryption-keys.ts";
 import {PluginSettingEncryptionError,decryptPluginSetting,isEncryptedPluginSetting} from "./vendor/plugin-settings.ts";
 import {sql,type Kysely,type CompiledQuery} from 'kysely';
 import type {CmsDatabase} from '../database/contract.ts';
-import {createSingleFlightCache,singleFlightCached,invalidateSingleFlightCache,type SingleFlightCache} from './vendor/single-flight-cache.ts';
+import {singleFlightCached} from './vendor/single-flight-cache.ts';
+import {siteCache,invalidateSiteSettingsCache} from './cache.ts';
+export {invalidateSiteSettingsCache} from './cache.ts';
 import {requestCached,peekRequestCache} from './vendor/request-cache.ts';
 import {getSettingsContext} from './context.ts';
 import {OptionsRepository} from './options.ts';
@@ -42,14 +44,6 @@ export async function getSiteSettingWithDb<K extends SiteSettingKey>(key:K,db:Ky
  return value;
 }
 const nestedKeys=new Set(['seo','social']);
-const cacheKey=Symbol.for('sveltery:site-settings-values');
-const sharedGlobal=globalThis as unknown as Record<symbol,unknown>;
-const cacheState=(sharedGlobal[cacheKey]??={values:new WeakMap<object,SingleFlightCache<Partial<SiteSettings>>>()}) as {values:WeakMap<object,SingleFlightCache<Partial<SiteSettings>>>};
-function siteCache(db:Kysely<SettingsTables>){let cache=cacheState.values.get(db);if(!cache){cache=createSingleFlightCache<Partial<SiteSettings>>();cacheState.values.set(db,cache);}return cache;}
-export function invalidateSiteSettingsCache(db?:Kysely<SettingsTables>){
- if(db){const cache=cacheState.values.get(db);if(cache)invalidateSingleFlightCache(cache);}
- else cacheState.values=new WeakMap();
-}
 class PlannedOptions extends OptionsRepository {
  private readonly databaseDb:Kysely<SettingsTables>;
  readonly statements:CompiledQuery[]=[];
