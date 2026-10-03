@@ -1,7 +1,7 @@
 <script lang="ts">
   // EmDash 1.1.0 segmented-time behavior, MIT Copyright 2026 Cloudflare Inc.
   // Source pin 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; notices/emdash-MIT.txt.
-  import { format } from 'date-fns';
+  import { addDays, addMonths, addWeeks, addYears, startOfWeek, endOfWeek, format } from 'date-fns';
   import { untrack } from 'svelte';
   import { getDayPickerLocale } from './date-time-locales';
   import { getPublishingTimeZone, resolvePublishingLocalDateTime } from './publishing-datetime';
@@ -76,15 +76,15 @@
   }
   const calendarLocale = $derived(getDayPickerLocale(locale));
   const direction = $derived(locale === 'ar' || locale === 'fa' ? 'rtl' : 'ltr');
-  const startOfWeek = $derived(calendarLocale.options?.weekStartsOn ?? 0);
+  const weekStartsOn = $derived(calendarLocale.options?.weekStartsOn ?? 0);
   const caption = $derived(format(month, 'LLLL y', { locale: calendarLocale }));
   const days = $derived.by(() => {
     const first = new Date(month.getFullYear(), month.getMonth(), 1);
-    const offset = (first.getDay() - startOfWeek + 7) % 7;
+    const offset = (first.getDay() - weekStartsOn + 7) % 7;
     const count = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
     return Array.from({ length: Math.ceil((offset + count) / 7) * 7 }, (_, index) => new Date(first.getFullYear(), first.getMonth(), index - offset + 1));
   });
-  const weekdays = $derived(Array.from({ length: 7 }, (_, index) => new Date(2020, 10, 1 + (startOfWeek + index) % 7)));
+  const weekdays = $derived(Array.from({ length: 7 }, (_, index) => new Date(2020, 10, 1 + (weekStartsOn + index) % 7)));
   const resolution = $derived(resolvePublishingLocalDateTime(date, time));
   const zone = $derived(getPublishingTimeZone(resolution.success ? resolution.date : date ?? new Date(), locale));
   const zoneValue = $derived(zone.timeZone ? zone.shortName ? `${zone.timeZone} (${zone.shortName})` : zone.timeZone : 'Local time');
@@ -93,6 +93,10 @@
   const id = $props.id();
   let focusedDay = $state<Date | undefined>(untrack(() => date ?? today()));
   const blocked = (day: Date) => disabled || restrictToFuture && day.getTime() < today().getTime();
+  const focusTarget = $derived.by(() => {
+    const available = days.filter(day => day.getMonth() === month.getMonth() && !blocked(day));
+    return available.find(day => sameDay(focusedDay, day)) ?? available.find(day => sameDay(date, day)) ?? available.find(day => sameDay(today(), day)) ?? available[0];
+  });
   function changeMonth(delta: number) { month = new Date(month.getFullYear(), month.getMonth() + delta, 1); }
   function selectDay(day: Date) { if (!blocked(day)) onDateChange?.(sameDay(date, day) ? undefined : day); }
   function focusDay(day: Date) {
@@ -102,21 +106,24 @@
     queueMicrotask(() => document.getElementById(`${id}-${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`)?.focus());
   }
   function calendarKey(event: KeyboardEvent, day: Date) {
-    let next: Date;
+    let move: (reference: Date) => Date;
+    const before = direction === 'rtl' ? 1 : -1, after = -before;
     switch (event.key) {
-      case 'ArrowLeft': next = new Date(day.getFullYear(), day.getMonth(), day.getDate() + (direction === 'rtl' ? 1 : -1)); break;
-      case 'ArrowRight': next = new Date(day.getFullYear(), day.getMonth(), day.getDate() + (direction === 'rtl' ? -1 : 1)); break;
-      case 'ArrowUp': next = new Date(day.getFullYear(), day.getMonth(), day.getDate() - 7); break;
-      case 'ArrowDown': next = new Date(day.getFullYear(), day.getMonth(), day.getDate() + 7); break;
-      case 'Home': next = new Date(day.getFullYear(), day.getMonth(), day.getDate() - (day.getDay() - startOfWeek + 7) % 7); break;
-      case 'End': next = new Date(day.getFullYear(), day.getMonth(), day.getDate() + 6 - (day.getDay() - startOfWeek + 7) % 7); break;
-      case 'PageUp': next = new Date(day.getFullYear() - (event.shiftKey ? 1 : 0), day.getMonth() - (event.shiftKey ? 0 : 1), 1); next.setDate(Math.min(day.getDate(), new Date(next.getFullYear(), next.getMonth() + 1, 0).getDate())); break;
-      case 'PageDown': next = new Date(day.getFullYear() + (event.shiftKey ? 1 : 0), day.getMonth() + (event.shiftKey ? 0 : 1), 1); next.setDate(Math.min(day.getDate(), new Date(next.getFullYear(), next.getMonth() + 1, 0).getDate())); break;
+      case 'ArrowLeft': move = reference => event.shiftKey ? addMonths(reference, before) : addDays(reference, before); break;
+      case 'ArrowRight': move = reference => event.shiftKey ? addMonths(reference, after) : addDays(reference, after); break;
+      case 'ArrowUp': move = reference => event.shiftKey ? addYears(reference, -1) : addWeeks(reference, -1); break;
+      case 'ArrowDown': move = reference => event.shiftKey ? addYears(reference, 1) : addWeeks(reference, 1); break;
+      case 'Home': move = reference => startOfWeek(reference, { locale: calendarLocale }); break;
+      case 'End': move = reference => endOfWeek(reference, { locale: calendarLocale }); break;
+      case 'PageUp': move = reference => event.shiftKey ? addYears(reference, -1) : addMonths(reference, -1); break;
+      case 'PageDown': move = reference => event.shiftKey ? addYears(reference, 1) : addMonths(reference, 1); break;
       default: return;
     }
     event.preventDefault();
-    while (blocked(next) && !disabled) next = new Date(next.getFullYear(), next.getMonth(), next.getDate() + 1);
-    if (!disabled) focusDay(next);
+    // Same direction/unit and 365-retry ceiling as pinned getNextFocus.
+    let next = move(day);
+    for (let attempt = 0; attempt <= 365 && blocked(next); attempt++) next = move(next);
+    if (!blocked(next)) focusDay(next);
   }
   function choosePeriod(period: DayPeriod) { updateTimeParts({ ...timeParts, period }); periodOpen = false; periodButton?.focus(); }
 </script>
@@ -137,7 +144,7 @@
               aria-label={`${format(day, 'PPPP', { locale: calendarLocale })}${sameDay(date, day) ? ', selected' : ''}`}
               aria-current={sameDay(today(), day) ? 'date' : undefined}
               class:selected={sameDay(date, day)} disabled={blocked(day)}
-              tabindex={sameDay(focusedDay, day) || !days.some(value => sameDay(focusedDay, value)) && day.getDate() === 1 && day.getMonth() === month.getMonth() ? 0 : -1}
+              tabindex={sameDay(focusTarget, day) ? 0 : -1}
               onclick={() => selectDay(day)} onfocus={() => { focusedDay = day; }} onkeydown={event => calendarKey(event, day)}>{day.getDate()}</button>
           </td>
         {/each}</tr>

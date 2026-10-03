@@ -26,7 +26,9 @@
     "start:cloudflare": "XDG_CONFIG_HOME=.wrangler/config WRANGLER_LOG_PATH=.wrangler/logs wrangler dev --local",
     "test:cloudflare": "vitest run --config vitest.cloudflare.config.ts && node --test tests/cloudflare-hosting/*.test.ts",
     "test:source-ports": "node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts",
-    "test:ui-source": "vitest run --config vitest.ui-source.config.ts"
+    "test:ui-source": "vitest run --config vitest.ui-source.config.ts",
+    "test:date-time": "node scripts/check-date-time-source-ports.mjs && TZ=America/New_York vitest run --config vitest.date-time.config.ts",
+    "test:date-time:browser": "node scripts/check-date-time-source-ports.mjs && vitest run --config vitest.date-time.browser.config.ts"
   },
   "dependencies": {
     "@oslojs/crypto": "1.0.1",
