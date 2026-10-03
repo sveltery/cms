@@ -52,13 +52,13 @@ for (const target of ['Node','D1'] as const) {
       const initial = await h.snapshot();
       for (const [name,input] of [
         ['createSchemaCollection',{ slug:'bad-slug',label:'Bad' }],
-        ['createSchemaCollection',{ slug:'other',label:'Other',supports:'["preview"]' }],
+        ['createSchemaCollection',{ slug:'other',label:'Other',supports:'["unknown_feature"]' }],
         ['createSchemaCollection',{ slug:'other',label:'Other',principal:'admin' }],
         ['updateSchemaCollection',{ ...expected(c),version:'1e0',label:'Bad' }],
         ['updateSchemaCollection',{ ...expected(c),labelSingular:'' }],
         ['updateSchemaCollection',{ ...expected(c),id:'other',label:'Mismatch' }],
         ['updateSchemaCollection',{ ...expected(c),_rev:'opaque',label:'Content token' }],
-        ['addSchemaField',{ collection:'notes',expectedSchemaVersion:'1',slug:'count',label:'Count',type:'integer' }],
+        ['addSchemaField',{ collection:'notes',expectedSchemaVersion:'1',slug:'count',label:'Count',type:'unknown_type' }],
         ['addSchemaField',{ collection:'notes',expectedSchemaVersion:'1',slug:'title',label:'Title',type:'string',minLength:'2',maxLength:'1' }],
         ['addSchemaField',{ collection:'notes',expectedSchemaVersion:'1',slug:'title',label:'Title',type:'string',_rev:'opaque' }],
         ['addSchemaField',{ collection:'notes',expectedSchemaVersion:'1',id:'other',slug:'title',label:'Title',type:'string' }],

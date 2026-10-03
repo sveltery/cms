@@ -30,6 +30,8 @@ for (const base of ['', '/cms']) for (const enhanced of [false, true]) {
       await expect(title.getByLabel('Validation pattern', { exact: true })).toHaveValue('^cat\ndog$');
       await expect(body.getByLabel('Replacement pattern metadata', { exact: true })).toHaveValue('set');
       await expect(body.getByLabel('Validation pattern', { exact: true })).toHaveValue('');
+      await expect(create.getByLabel('Validation format', { exact: true })).toHaveValue('omit');
+      await create.getByLabel('Validation format', { exact: true }).selectOption('text');
       await expect(create.getByLabel('Pattern metadata', { exact: true })).toHaveValue('omit');
       for (const form of [title, body]) {
         await expect(form).toHaveAttribute('method', 'POST');
@@ -69,6 +71,7 @@ for (const base of ['', '/cms']) for (const enhanced of [false, true]) {
       await title.getByRole('button', { name: 'Save field options' }).click();
       await expect.poll(async () => (await h.query('getSchemaCollection', 'notes')).fields[0].validation).toBeNull();
       expect((await h.query('getSchemaCollection', 'notes')).fields[1].validation).toEqual({ pattern: '' });
+      await create.getByLabel('Validation format', { exact: true }).selectOption('text');
       await create.getByLabel('Field slug', { exact: true }).fill('extra');
       await create.getByLabel('Field label', { exact: true }).fill('Extra');
       await create.getByLabel('Pattern metadata', { exact: true }).selectOption('set');
@@ -94,7 +97,9 @@ for (const base of ['', '/cms']) test(`${base || '/'} scalar pattern controls st
     await login(context, h); await page.goto(`${h.origin}${base}/schema/notes`);
     const title = options(page, 'title');
     for (const name of ['Replacement pattern metadata', 'Validation pattern']) await expect(title.getByLabel(name, { exact: true })).toBeDisabled();
-    for (const name of ['Pattern metadata', 'Validation pattern']) await expect(add(page).getByLabel(name, { exact: true })).toBeDisabled();
+    await expect(add(page).getByLabel('Validation format', { exact: true })).toBeDisabled();
+    await expect(add(page).getByLabel('Pattern metadata', { exact: true })).toHaveCount(0);
+    await expect(add(page).getByLabel('Validation pattern', { exact: true })).toHaveCount(0);
     const before = await h.snapshot();
     await title.locator('fieldset').evaluate(fieldset => { (fieldset as HTMLFieldSetElement).disabled = false; });
     await title.getByLabel('Validation update', { exact: true }).selectOption('set');

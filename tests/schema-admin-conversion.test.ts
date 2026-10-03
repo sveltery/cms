@@ -43,7 +43,7 @@ test('native supports preserve omission, explicit empty arrays and supported fla
     ['drafts', 'revisions']);
   assert.equal(Object.hasOwn(convertCollectionUpdate(v.parse(updateInput, metadata)).input, 'supports'), false);
   assert.deepEqual(convertCollectionUpdate(v.parse(updateInput, { ...metadata, supports: '[]' })).input.supports, []);
-  for (const supports of ['', 'null', '{}', '["preview"]', '["drafts","revisions","drafts"]', ' '.repeat(65)]) {
+  for (const supports of ['', 'null', '{}', '["unknown_feature"]', ' '.repeat(65)]) {
     assert.equal(v.safeParse(createInput, { ...base, supports }).success, false, supports);
   }
 });

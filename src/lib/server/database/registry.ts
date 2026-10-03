@@ -12,6 +12,20 @@ export const MAX_FIELDS = 32;
 const fieldMax = (input: { type: string; validation?: { maxLength?: number } | null }) =>
   Math.min(input.validation?.maxLength ?? (input.type === 'string' ? 200 : 100_000), 100_000);
 
+// EmDash 1.1.0 pin 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e,
+// registry.ts:2153–2189 early blocks descriptor restrictions.
+// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt. The rest
+// of block type/validation normalization and lifecycle remains unimplemented.
+function assertBlocksDescriptor(input:{required?:boolean;unique?:boolean;indexed?:boolean;searchable?:boolean;
+  widget?:string;options?:unknown;defaultValue?:unknown}) {
+  if(input.required || input.unique) throw new CmsError('VALIDATION_ERROR');
+  if(input.indexed) throw new CmsError('FIELD_NOT_INDEXABLE');
+  if(input.searchable || input.widget!==undefined || input.options!==undefined ||
+    input.defaultValue!==undefined && (!Array.isArray(input.defaultValue) || input.defaultValue.length>0)) {
+    throw new CmsError('VALIDATION_ERROR');
+  }
+}
+
 function collection(row: CollectionRow): Collection {
   return { id: row.id, slug: row.slug, label: row.label, labelSingular: row.label_singular,
     description: row.description, supports: JSON.parse(row.supports), source: (row.source ?? 'manual') as CollectionSource,
@@ -78,24 +92,33 @@ export class SchemaRegistry {
       const item = value[key as keyof typeof value];
       if (item !== undefined) (updates as Record<string,unknown>)[column] = typeof item === 'boolean' ? Number(item) : (item === '' ? null : item);
     }
+    const displayGuards: CompiledQuery[] = [];
     if (value.titleField) {
-      const field = await this.getField(definition.slug,value.titleField);
+      // Source validateTitleDateFields checks the stored type, before the read
+      // mapper can project an unknown future type as a fallback string.
+      const field = await db.selectFrom('_cms_fields').select('type').where('collection_id','=',definition.id).where('slug','=',value.titleField).executeTakeFirst();
       if(!field || !['string','text','slug'].includes(field.type)) throw new CmsError('INVALID_TITLE_FIELD');
+      displayGuards.push(sql`UPDATE _cms_guards SET pass = CASE WHEN EXISTS (
+        SELECT 1 FROM _cms_fields WHERE collection_id=${definition.id} AND slug=${value.titleField}
+          AND type IN ('string','text','slug')) THEN 1 ELSE 0 END WHERE token=${token}`.compile(db));
     }
     if (value.dateField) {
-      const field = await this.getField(definition.slug,value.dateField);
+      const field = await db.selectFrom('_cms_fields').select('type').where('collection_id','=',definition.id).where('slug','=',value.dateField).executeTakeFirst();
       if(!field || field.type !== 'datetime') throw new CmsError('INVALID_DATE_FIELD');
+      displayGuards.push(sql`UPDATE _cms_guards SET pass = CASE WHEN EXISTS (
+        SELECT 1 FROM _cms_fields WHERE collection_id=${definition.id} AND slug=${value.dateField}
+          AND type='datetime') THEN 1 ELSE 0 END WHERE token=${token}`.compile(db));
     }
     const results = await this.batch([
       sql`INSERT INTO _cms_guards(token, pass) SELECT ${token},
         CASE WHEN EXISTS (SELECT 1 FROM _cms_collections WHERE id = ${definition.id}
           AND version = ${definition.version} AND updated_at = ${definition.updatedAt})
-        THEN 1 ELSE 0 END`.compile(db),
+        THEN 1 ELSE 0 END`.compile(db), ...displayGuards,
       db.updateTable('_cms_collections').set(updates).where('id', '=', definition.id).returningAll().compile(),
       sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
     ], 'CONFLICT');
     // Read the operation's own RETURNING row, rather than a later concurrent writer.
-    return collection(results[1].rows[0] as CollectionRow);
+    return collection(results[1 + displayGuards.length].rows[0] as CollectionRow);
   }
   async listFields(collectionId: string): Promise<Field[]> {
     const rows = await this.database.db.selectFrom('_cms_fields').selectAll().where('collection_id', '=', collectionId)
@@ -115,7 +138,7 @@ export class SchemaRegistry {
     return definition ? { ...definition, fields: await this.listFields(definition.id) } : null;
   }
 
-  // String/text metadata subset of EmDash 1.1.0 registry.ts updateField:1542,
+  // Persisted metadata subset of EmDash 1.1.0 registry.ts updateField:1542,
   // pinned at 913cb1bb. Supplied keys only; no DDL or content-row changes.
   // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
   async updateField(collectionSlug: unknown, fieldSlug: unknown, input: unknown): Promise<Field> {
@@ -124,6 +147,7 @@ export class SchemaRegistry {
     if (!target) throw new CmsError('NOT_FOUND');
     const updates: Partial<FieldRow> = {};
     if(target.unsupportedType) throw new CmsError('UNSUPPORTED_FIELD_TYPE');
+    if(target.type==='blocks') assertBlocksDescriptor(value);
     const nextType = value.type ?? target.type;
     if(value.type && value.type !== target.type) {
       if(FIELD_TYPE_TO_COLUMN[value.type] !== target.columnType) throw new CmsError('FIELD_TYPE_COLUMN_CHANGE');
@@ -132,7 +156,9 @@ export class SchemaRegistry {
     }
     if((value.required !== undefined && value.required !== target.required) || (value.unique !== undefined && value.unique !== target.unique) || (value.translatable === false && target.translatable)) throw new CmsError('FIELD_UPDATE_REQUIRES_MIGRATION');
     const nextIndexed = value.indexed ?? target.indexed;
-    if(nextIndexed && !isIndexableFieldType(nextType)) throw new CmsError('FIELD_NOT_INDEXABLE');
+    const nextValidation = value.validation === undefined ? target.validation : value.validation;
+    // Pinned registry.ts assertIndexableField checks both type and storage.
+    if(nextIndexed && (!isIndexableFieldType(nextType) || isStoragelessField({type:nextType,validation:nextValidation}))) throw new CmsError('FIELD_NOT_INDEXABLE');
     if(value.required !== undefined) updates.required = Number(value.required);
     if(value.unique !== undefined) updates.unique = Number(value.unique);
     if(value.translatable !== undefined) updates.translatable = Number(value.translatable);
@@ -149,15 +175,56 @@ export class SchemaRegistry {
     // Preserve the resolved identity, and return this write's row even if a later writer wins.
     // No schema/metadata precondition or collection touch: fields are last-writer-wins.
     const indexStatements = value.indexed === undefined ? [] : value.indexed ? this.fieldIndexStatements(parse(identifier,collectionSlug),target.id,target.slug) : this.dropFieldIndexStatements(target.id);
-    const results = await this.database.atomicBatch([
+    // Source updateField resolves membership within its transaction. Prevent
+    // index DDL after a missing/replaced identity before the native UPDATE can
+    // affect zero rows. Non-index metadata keeps its existing RETURNING path.
+    const indexToken=ulid();
+    const indexGuard=indexStatements.length ? [sql`INSERT INTO _cms_guards(token,pass) SELECT ${indexToken},CASE WHEN EXISTS (
+      SELECT 1 FROM _cms_fields f JOIN _cms_collections c ON c.id=f.collection_id
+      WHERE f.id=${target.id} AND f.collection_id=${target.collectionId} AND f.slug=${target.slug}
+        AND c.slug=${parse(identifier,collectionSlug)}) THEN 1 ELSE 0 END`.compile(db)] : [];
+    // Partial writes must validate their proposed index/type/storage combination
+    // against the current row, not the preflight snapshot. This is validation,
+    // not field CAS: compatible independent metadata edits still compose.
+    const stateToken=ulid();
+    const effectiveIndexed=value.indexed === undefined ? sql.ref('f.indexed') : sql`${Number(value.indexed)}`;
+    const effectiveType=value.type === undefined ? sql.ref('f.type') : sql`${value.type}`;
+    const effectiveValidation=value.validation === undefined ? sql.ref('f.validation') : sql`${value.validation === null ? null : JSON.stringify(value.validation)}`;
+    const stateGuard=value.indexed === undefined && value.type === undefined && value.validation === undefined ? [] : [
+      sql`INSERT INTO _cms_guards(token,pass) SELECT ${stateToken},CASE WHEN NOT EXISTS (
+        SELECT 1 FROM (SELECT ${effectiveIndexed} AS next_indexed,${effectiveType} AS next_type,${effectiveValidation} AS next_validation
+          FROM _cms_fields f JOIN _cms_collections c ON c.id=f.collection_id
+          WHERE f.id=${target.id} AND f.collection_id=${target.collectionId} AND f.slug=${target.slug}
+            AND c.slug=${parse(identifier,collectionSlug)}) proposed
+        WHERE next_indexed=1 AND (next_type NOT IN ('string','url','number','integer','boolean','datetime','select','reference','slug')
+          OR (next_type='reference' AND CASE WHEN json_valid(next_validation)
+            THEN json_type(next_validation,'$.relation')='text' AND json_extract(next_validation,'$.relation')<>'' ELSE 0 END)))
+        THEN 1 ELSE 0 END`.compile(db)
+    ];
+    const statements = [...indexGuard,...stateGuard,
       db.updateTable('_cms_fields').set(updates)
         .where('id', '=', target.id).where('collection_id', '=', target.collectionId)
         .where('slug', '=', target.slug)
         .where('collection_id', 'in', db.selectFrom('_cms_collections').select('id')
           .where('id', '=', target.collectionId).where('slug', '=', parse(identifier, collectionSlug)))
-        .returningAll().compile(), ...indexStatements
-    ]);
-    const row = results[0].rows[0] as FieldRow | undefined;
+        .returningAll().compile(), ...indexStatements,
+      ...(indexGuard.length ? [sql`DELETE FROM _cms_guards WHERE token=${indexToken}`.compile(db)] : []),
+      ...(stateGuard.length ? [sql`DELETE FROM _cms_guards WHERE token=${stateToken}`.compile(db)] : [])
+    ];
+    let results;
+    try {
+      results = stateGuard.length ? await this.batch(statements,'FIELD_NOT_INDEXABLE')
+        : indexGuard.length ? await this.batch(statements,'NOT_FOUND') : await this.database.atomicBatch(statements);
+    } catch (cause) {
+      // Both guards share the native table. After rollback, preserve the missing
+      // identity error independently of the incompatible effective-state code.
+      if (indexGuard.length && cause instanceof CmsError && cause.code==='FIELD_NOT_INDEXABLE') {
+        const current=await this.getField(collectionSlug,fieldSlug);
+        if(!current || current.id!==target.id || current.collectionId!==target.collectionId) throw new CmsError('NOT_FOUND');
+      }
+      throw cause;
+    }
+    const row = results[indexGuard.length+stateGuard.length].rows[0] as FieldRow | undefined;
     if (!row) throw new CmsError('NOT_FOUND');
     return field(row);
   }
@@ -230,6 +297,7 @@ export class SchemaRegistry {
     if (expectedSchemaVersion !== undefined && (!Number.isSafeInteger(expectedSchemaVersion) || expectedSchemaVersion < 1)) throw new CmsError('VALIDATION_ERROR');
     if (expectedSchemaVersion !== undefined && definition.version !== expectedSchemaVersion) throw new CmsError('CONFLICT');
     if (await this.getField(definition.slug, value.slug)) throw new CmsError('FIELD_EXISTS');
+    if(value.type==='blocks') assertBlocksDescriptor(value);
     const maximum = fieldMax(value);
     const minimum = value.validation?.minLength ?? 0;
     if (minimum > maximum) throw new CmsError('VALIDATION_ERROR');
@@ -240,7 +308,7 @@ export class SchemaRegistry {
     const name = tableName(definition.slug);
     const fields = await this.listFields(definition.id);
     if (fields.length >= MAX_FIELDS) throw new CmsError('LIMIT_EXCEEDED');
-    if(value.indexed && !isIndexableFieldType(value.type)) throw new CmsError('FIELD_NOT_INDEXABLE');
+    if(value.indexed && (!isIndexableFieldType(value.type) || isStoragelessField(value))) throw new CmsError('FIELD_NOT_INDEXABLE');
     const columnType = FIELD_TYPE_TO_COLUMN[value.type];
     const column = sql`ALTER TABLE ${sql.ref(name)} ADD COLUMN ${sql.ref(value.slug)} ${sql.raw(columnType)}
       ${value.type === 'blocks' ? sql`NOT NULL DEFAULT '[]'` : value.required ?
@@ -281,41 +349,82 @@ export class SchemaRegistry {
   async listCollectionsWithFields(): Promise<(Collection & {fields: Field[]})[]> {
     return Promise.all((await this.listCollections()).map(async collection => ({...collection,fields: await this.listFields(collection.id)})));
   }
-  async reorderCollections(input: unknown): Promise<void> {
+  async reorderCollections(input: unknown, expected?: Array<{slug:string} & RevisionPrecondition>): Promise<void> {
     if(!Array.isArray(input) || new Set(input).size !== input.length) throw new CmsError('VALIDATION_ERROR');
     const slugs = input.map(slug => parse(identifier,slug)); const collections = await this.listCollections();
     if(slugs.some(slug => !collections.some(collection => collection.slug===slug))) throw new CmsError('NOT_FOUND');
     const positions = new Map(slugs.map((slug,index) => [slug,index]));
     const updatedAt = nextMetadataTimestamp(collections);
-    await this.database.atomicBatch(collections.map(collection => this.database.db.updateTable('_cms_collections')
-      .set({sort_order:positions.get(collection.slug) ?? null, updated_at:updatedAt}).where('id','=',collection.id).compile()));
+    if (expected && (expected.length !== collections.length || new Set(expected.map(snapshot => snapshot.slug)).size !== expected.length || expected.some(snapshot => !collections.some(collection => collection.slug === snapshot.slug && collection.version === snapshot.version && collection.updatedAt === snapshot.updatedAt)))) throw new CmsError('CONFLICT');
+    const token=ulid(); const db=this.database.db;
+    // D1 limits bound parameters per statement. Keep each CAS check bounded,
+    // before any order write, inside the same atomic batch and guard lifetime.
+    const checks=collections.map(collection => sql`UPDATE _cms_guards SET pass = CASE WHEN EXISTS (SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${collection.version} AND updated_at=${collection.updatedAt}) THEN 1 ELSE 0 END WHERE token=${token}`.compile(db));
+    await this.batch([
+      ...(expected ? [sql`INSERT INTO _cms_guards(token,pass) SELECT ${token}, CASE WHEN (SELECT COUNT(*) FROM _cms_collections)=${collections.length} THEN 1 ELSE 0 END`.compile(db), ...checks] : []),
+      ...collections.map(collection => db.updateTable('_cms_collections')
+      .set({sort_order:positions.get(collection.slug) ?? null, updated_at:updatedAt}).where('id','=',collection.id).compile()),
+      ...(expected ? [sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)] : [])
+    ],'CONFLICT');
   }
-  async reorderFields(collectionSlug: unknown, input: unknown): Promise<void> {
+  async reorderFields(collectionSlug: unknown, input: unknown, expected?: RevisionPrecondition): Promise<void> {
     if(!Array.isArray(input)) throw new CmsError('VALIDATION_ERROR');
     const definition = await this.getCollection(collectionSlug); if(!definition) throw new CmsError('NOT_FOUND');
-    await this.database.atomicBatch(input.map((slug,index) => this.database.db.updateTable('_cms_fields').set({sort_order:index}).where('collection_id','=',definition.id).where('slug','=',parse(identifier,slug)).compile()));
+    const guard=this.collectionGuard(definition,expected);
+    await this.batch([...guard.before,...input.map((slug,index) => this.database.db.updateTable('_cms_fields').set({sort_order:index}).where('collection_id','=',definition.id).where('slug','=',parse(identifier,slug)).compile()),...guard.after],'CONFLICT');
   }
-  async deleteField(collectionSlug: unknown, fieldSlug: unknown): Promise<void> {
+  async deleteField(collectionSlug: unknown, fieldSlug: unknown, expected?: RevisionPrecondition): Promise<void> {
     const target = await this.getField(collectionSlug,fieldSlug); if(!target) throw new CmsError('NOT_FOUND');
     const definition = await this.getCollection(collectionSlug); if(!definition) throw new CmsError('NOT_FOUND');
     const db = this.database.db;
-    await this.database.atomicBatch([...this.dropFieldIndexStatements(target.id),
-      ...(isStoragelessField({type:target.type,validation:target.validation??undefined}) ? [] : [sql`ALTER TABLE ${sql.ref(tableName(collectionSlug))} DROP COLUMN ${sql.ref(target.slug)}`.compile(db)]),
+    // Source registry.deleteField uses the physical row's column existence: a
+    // bound legacy reference can retain its frozen pre-binding TEXT column.
+    const columns=(await sql<{name:string}>`PRAGMA table_info(${sql.ref(tableName(collectionSlug))})`.execute(db)).rows;
+    const guard=this.collectionGuard(definition,expected);
+    // An unused field deletion leaves the collection revision unchanged. The
+    // native expected-revision operation must also guard the exact field row
+    // inside this batch before cached column/index DDL can run. Generic calls
+    // without a precondition retain their existing behavior.
+    const fieldToken=ulid();
+    const fieldBefore=expected === undefined ? [] : [sql`INSERT INTO _cms_guards(token,pass) SELECT ${fieldToken},CASE WHEN EXISTS (
+      SELECT 1 FROM _cms_fields WHERE id=${target.id}) THEN 1 ELSE 0 END`.compile(db)];
+    const fieldAfter=expected === undefined ? [] : [sql`DELETE FROM _cms_guards WHERE token=${fieldToken}`.compile(db)];
+    await this.batch([...guard.before,...fieldBefore,...this.dropFieldIndexStatements(target.id),
+      ...(columns.some(column=>column.name===target.slug) ? [sql`ALTER TABLE ${sql.ref(tableName(collectionSlug))} DROP COLUMN ${sql.ref(target.slug)}`.compile(db)] : []),
       db.deleteFrom('_cms_fields').where('id','=',target.id).compile(),
       db.updateTable('_cms_collections').set({title_field:sql`CASE WHEN title_field = ${target.slug} THEN NULL ELSE title_field END`, date_field:sql`CASE WHEN date_field = ${target.slug} THEN NULL ELSE date_field END`, updated_at:nextMetadataTimestamp([definition])})
-        .where('id','=',target.collectionId).where(eb => eb.or([eb('title_field','=',target.slug),eb('date_field','=',target.slug)])).compile()]);
+        .where('id','=',target.collectionId).where(eb => eb.or([eb('title_field','=',target.slug),eb('date_field','=',target.slug)])).compile(),...fieldAfter,...guard.after],'CONFLICT');
   }
-  async deleteCollection(slug: unknown, options?: {force?:boolean}): Promise<void> {
+  async deleteCollection(slug: unknown, options?: {force?:boolean}, expected?: RevisionPrecondition): Promise<void> {
     const target = await this.getCollection(slug); if(!target) throw new CmsError('NOT_FOUND');
     const db = this.database.db;
     const token = ulid();
-    await this.batch([
+    const guard=this.collectionGuard(target,expected);
+    const statements = [...guard.before,
       ...(options?.force ? [] : [sql`INSERT INTO _cms_guards(token,pass) SELECT ${token}, CASE WHEN NOT EXISTS (SELECT 1 FROM ${sql.ref(tableName(slug))} WHERE deleted_at IS NULL) THEN 1 ELSE 0 END`.compile(db)]),
       sql`DROP TABLE ${sql.ref(tableName(slug))}`.compile(db),db.deleteFrom('_cms_fields').where('collection_id','=',target.id).compile(),
-      db.deleteFrom('_cms_collections').where('id','=',target.id).compile(), sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
-    ],'COLLECTION_NOT_EMPTY');
+      db.deleteFrom('_cms_collections').where('id','=',target.id).compile(), sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db),...guard.after
+    ];
+    try { await this.batch(statements,options?.force ? 'CONFLICT' : 'COLLECTION_NOT_EMPTY'); }
+    catch (cause) {
+      // Both content and metadata guards share the existing guard table. An
+      // atomic CAS race must retain the native CONFLICT contract, independently
+      // of the collection's content. Foreign-key/DDL errors remain untouched.
+      if (cause instanceof CmsError && cause.code === 'COLLECTION_NOT_EMPTY' && expected) {
+        const current = await this.getCollection(slug);
+        if (!current || current.version !== expected.version || current.updatedAt !== expected.updatedAt) throw new CmsError('CONFLICT');
+      }
+      throw cause;
+    }
   }
-  private async batch(statements: CompiledQuery[], guardCode: 'LIMIT_EXCEEDED' | 'CONFLICT' | 'COLLECTION_NOT_EMPTY') {
+  private collectionGuard(collection: Collection, expected?: RevisionPrecondition) {
+    if(expected === undefined) return {before:[],after:[]} as {before:CompiledQuery[];after:CompiledQuery[]};
+    const value=parse(revisionInput,expected);
+    if(value.version !== collection.version || value.updatedAt !== collection.updatedAt) throw new CmsError('CONFLICT');
+    const token=ulid(); const db=this.database.db;
+    return { before:[sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN EXISTS(SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${value.version} AND updated_at=${value.updatedAt}) THEN 1 ELSE 0 END`.compile(db)],after:[sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)] };
+  }
+  private async batch(statements: CompiledQuery[], guardCode: 'LIMIT_EXCEEDED' | 'CONFLICT' | 'COLLECTION_NOT_EMPTY' | 'NOT_FOUND' | 'FIELD_NOT_INDEXABLE') {
     try { return await this.database.atomicBatch(statements); }
     catch (cause) {
       // Only the deliberate SQL guard's CHECK failure becomes a domain conflict.

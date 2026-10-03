@@ -41,9 +41,9 @@ test('schema native form preserves omitted supports, explicit empty supports and
   await page.getByLabel('Supports', { exact: true }).selectOption('set');
   await page.getByLabel('Drafts', { exact: true }).uncheck();
   await page.getByLabel('Revisions', { exact: true }).uncheck();
-  expect(await page.locator('form').evaluate(form => new FormData(form as HTMLFormElement).get('supports'))).toBe('[]');
+  expect(await page.locator('form').evaluate(form => { const data=new FormData(form as HTMLFormElement); return [data.get('supportsMode'),data.has('b:supportDrafts'),data.has('b:supportRevisions')]; })).toEqual(['set',false,false]);
   await page.getByLabel('Drafts', { exact: true }).check();
-  expect(await page.locator('form').evaluate(form => new FormData(form as HTMLFormElement).get('supports'))).toBe('["drafts"]');
+  expect(await page.locator('form').evaluate(form => new FormData(form as HTMLFormElement).has('b:supportDrafts'))).toBe(true);
   const result = await page.locator('form').evaluate(async form => {
     const id = new URL((form as HTMLFormElement).action).searchParams.get('/remote');
     const response = await fetch(new URL(`_app/remote/${id}`, location.origin), {
@@ -104,9 +104,9 @@ test.describe('configured isolated schema forms', () => {
     await expect(page.locator('input[name="_rev"]')).toHaveCount(0);
     expect(await metadata.evaluate(form => new FormData(form as HTMLFormElement).has('supports'))).toBe(false);
     await page.getByLabel('Collection label', { exact: true }).fill('Editorial articles');
-    await page.getByLabel('Set singular label', { exact: true }).check();
+    await page.getByLabel('Singular label update', { exact: true }).selectOption('set');
     await page.getByLabel('Singular label', { exact: true }).fill('Article');
-    await page.getByLabel('Set description', { exact: true }).check();
+    await page.getByLabel('Description update', { exact: true }).selectOption('set');
     await page.getByLabel('Description', { exact: true }).fill('Editorial writing');
     await page.getByRole('button', { name: 'Save metadata' }).click();
     await expect(page.getByRole('heading', { name: 'Editorial articles', exact: true })).toBeVisible();
@@ -120,12 +120,13 @@ test.describe('configured isolated schema forms', () => {
     await page.getByLabel('Supports', { exact: true }).selectOption('set');
     await page.getByLabel('Drafts', { exact: true }).uncheck();
     await page.getByLabel('Revisions', { exact: true }).uncheck();
-    expect(await metadata.evaluate(form => new FormData(form as HTMLFormElement).get('supports'))).toBe('[]');
+    expect(await metadata.evaluate(form => {const data=new FormData(form as HTMLFormElement);return [data.get('supportsMode'),data.has('b:supportDrafts'),data.has('b:supportRevisions')];})).toEqual(['set',false,false]);
     await page.getByRole('button', { name: 'Save metadata' }).click();
     await expect(page.getByText('Current supports: none.', { exact: true })).toBeVisible();
     await field.getByLabel('Field slug', { exact: true }).fill('headline');
     await page.getByLabel('Field label', { exact: true }).fill('Headline');
     await page.getByLabel('Field type', { exact: true }).selectOption('string');
+    await page.getByLabel('Validation format', { exact: true }).selectOption('text');
     await page.getByLabel('Required', { exact: true }).check();
     await page.getByLabel('Minimum length', { exact: true }).fill('2');
     await page.getByLabel('Maximum length', { exact: true }).fill('80');
@@ -138,6 +139,7 @@ test.describe('configured isolated schema forms', () => {
     await field.getByLabel('Field slug', { exact: true }).fill('details');
     await page.getByLabel('Field label', { exact: true }).fill('Details');
     await page.getByLabel('Field type', { exact: true }).selectOption('text');
+    await page.getByLabel('Validation format', { exact: true }).selectOption('text');
     await page.getByLabel('Required', { exact: true }).uncheck();
     await page.getByLabel('Minimum length', { exact: true }).fill('');
     await page.getByLabel('Maximum length', { exact: true }).fill('100001');
@@ -151,7 +153,7 @@ test.describe('configured isolated schema forms', () => {
     expect(await fixture.snapshot()).toEqual(before);
     await page.getByLabel('Minimum length', { exact: true }).fill('');
     await page.getByLabel('Maximum length', { exact: true }).fill('');
-    await page.getByLabel('Set default value', { exact: true }).check();
+    await page.getByLabel('Default format', { exact: true }).selectOption('text');
     await page.getByLabel('Default value', { exact: true }).fill('');
     await page.getByRole('button', { name: 'Add field' }).click();
     await expect(page.getByRole('list', { name: 'Collection fields' })).toContainText('Details');

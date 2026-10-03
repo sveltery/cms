@@ -4,7 +4,7 @@ import { CmsError, type CmsDatabase } from './contract.ts';
 import { DraftRepository } from './entries.ts';
 import { SchemaRegistry } from './registry.ts';
 import { updateFieldInput } from './field-edit-validation.ts';
-import { countTrashedDraftInput, createDraftInput, deleteDraftInput, getDraftInput, getTrashedDraftInput, identifier, listTrashedDraftInput, localeInput, parse, restoreDraftInput, updateCollectionInput, updateDraftInput, updateFieldLabelInput } from './validation.ts';
+import { countTrashedDraftInput, createDraftInput, deleteDraftInput, getDraftInput, getTrashedDraftInput, identifier, listTrashedDraftInput, localeInput, parse, restoreDraftInput, revisionInput, updateCollectionInput, updateDraftInput, updateFieldLabelInput } from './validation.ts';
 
 // Permission names and ownership rules follow EmDash auth/rbac.ts.
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
@@ -20,6 +20,11 @@ const addFieldInput = v.strictObject({
   collection: identifier, input: v.unknown(),
   expectedSchemaVersion: v.pipe(v.number(), v.safeInteger(), v.minValue(1))
 });
+const collectionSnapshot=v.strictObject({slug:identifier,version:revisionInput.entries.version,updatedAt:revisionInput.entries.updatedAt});
+const reorderCollectionsInput=v.strictObject({slugs:v.array(identifier),expected:v.array(collectionSnapshot)});
+const reorderFieldsInput=v.strictObject({collection:identifier,fields:v.array(identifier),expected:revisionInput});
+const deleteFieldInput=v.strictObject({collection:identifier,field:identifier,expected:revisionInput});
+const deleteCollectionInput=v.strictObject({collection:identifier,expected:revisionInput,force:v.optional(v.boolean(),false)});
 
 /**
  * Compose only with a principal resolved by trusted server authentication.
@@ -82,6 +87,57 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
       requirePermission('schema:manage');
       const { collection, field, ...metadata } = parse(updateFieldInput, input);
       return registry.updateField(collection, field, metadata);
+    },
+    async updateScalarFieldOptions(input: unknown) {
+      requirePermission('schema:manage');
+      const { collection, field, ...metadata } = parse(updateFieldInput, input);
+      const target = await registry.getField(collection, field);
+      if (!target) throw new CmsError('NOT_FOUND');
+      // The legacy native form represents defaults as strings and only length
+      // and pattern rules. Keep the full JSON metadata API unchanged.
+      if (target.unsupportedType || !['string', 'text', 'slug'].includes(target.type)) {
+        throw new CmsError('UNSUPPORTED_FIELD_TYPE');
+      }
+      return registry.updateField(collection, field, metadata);
+    },
+    async updateFieldMetadata(input: unknown) {
+      requirePermission('schema:manage');
+      const { collection, field, ...metadata } = parse(updateFieldInput, input);
+      const existing = await registry.getField(collection, field);
+      if (!existing) throw new CmsError('NOT_FOUND');
+      if (existing.type === 'reference' && existing.validation?.relation) {
+        const nextTarget = metadata.validation?.targetCollection;
+        if (nextTarget !== undefined && nextTarget !== existing.validation.targetCollection) throw new CmsError('VALIDATION_ERROR');
+        if (metadata.validation !== undefined) metadata.validation = { ...metadata.validation,
+          relation: existing.validation.relation, relationSide: existing.validation.relationSide,
+          targetCollection: existing.validation.targetCollection };
+      }
+      return registry.updateField(collection, field, metadata);
+    },
+    async reorderCollections(input: unknown) {
+      requirePermission('schema:manage');
+      const value=parse(reorderCollectionsInput,input);
+      await registry.reorderCollections(value.slugs,value.expected);
+      // Successful CAS validates complete unique coverage (at most 100). Every
+      // collection timestamp changes, including omitted partial-order entries.
+      // Return only those already supplied identities for native cache refresh;
+      // no read permission or second listing is required for the mutation.
+      return value.expected.map(snapshot => snapshot.slug);
+    },
+    async reorderFields(input: unknown) {
+      requirePermission('schema:manage');
+      const value=parse(reorderFieldsInput,input);
+      return registry.reorderFields(value.collection,value.fields,value.expected);
+    },
+    async deleteField(input: unknown) {
+      requirePermission('schema:manage');
+      const value=parse(deleteFieldInput,input);
+      return registry.deleteField(value.collection,value.field,value.expected);
+    },
+    async deleteCollection(input: unknown) {
+      requirePermission('schema:manage');
+      const value=parse(deleteCollectionInput,input);
+      return registry.deleteCollection(value.collection,{force:value.force},value.expected);
     },
     async createDraft(input: unknown) {
       const actor = requirePermission('content:create');

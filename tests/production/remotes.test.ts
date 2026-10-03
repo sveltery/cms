@@ -11,7 +11,14 @@ test('production build registers CMS remotes and enforces HTTP boundaries', asyn
     const { default: exports } = await (load as () => Promise<{ default: Record<string, unknown> }>)();
     for (const name of Object.keys(exports)) ids.set(name, `${hash}/${name}`);
   }
-  assert.deepEqual([...ids.keys()].sort(), ['addSchemaField', 'countTrashedContent', 'createContent', 'createSchemaCollection', 'deleteContent', 'getCollection', 'getContent', 'getEditorManifest', 'getSchemaCollection', 'getTrashedContent', 'listCollections', 'listContent', 'listSchemaCollections', 'listTrashedContent', 'restoreContent', 'updateContent', 'updateSchemaCollection', 'updateSchemaFieldLabel', 'updateSchemaFieldOptions']);
+  assert.deepEqual([...ids.keys()].sort(), [
+    'addSchemaField', 'countTrashedContent', 'createContent', 'createSchemaCollection',
+    'deleteContent', 'deleteSchemaCollection', 'deleteSchemaField', 'getCollection', 'getContent',
+    'getEditorManifest', 'getSchemaCollection', 'getTrashedContent', 'listCollections', 'listContent',
+    'listSchemaCollections', 'listTrashedContent', 'reorderSchemaCollections', 'reorderSchemaFields',
+    'restoreContent', 'updateContent', 'updateSchemaCollection', 'updateSchemaFieldLabel',
+    'updateSchemaFieldMetadata', 'updateSchemaFieldOptions'
+  ]);
   const server = await preview({ preview: { host: '127.0.0.1', port: 0 }, clearScreen: false });
   try {
     assert.ok(server.resolvedUrls);

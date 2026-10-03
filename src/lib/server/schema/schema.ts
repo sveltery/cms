@@ -5,16 +5,61 @@ import {
 import { updateFieldInput } from '../database/field-edit-validation.ts';
 
 // Native forms keep omitted support flags distinct from an explicit JSON [].
-const supportsValue = v.pipe(v.array(v.picklist(['drafts', 'revisions'])), v.maxLength(2));
-const supports = v.optional(v.pipe(v.string(), v.maxLength(64), v.check(value => {
-  try { return v.safeParse(supportsValue, JSON.parse(value)).success; } catch { return false; }
-}), v.transform(value => parse(supportsValue, JSON.parse(value)))));
+const supportsValue = collectionInput.entries.supports.wrapped;
+const supports = v.optional(v.pipe(v.string(), v.maxLength(512)));
+const formBoolean = v.pipe(v.union([v.boolean(), v.picklist(['true', 'false'])]), v.transform(value => value === true || value === 'true'));
+const optionalBoolean = v.optional(formBoolean);
+const optionalJson = v.optional(v.pipe(v.string(), v.maxLength(200_000), v.check(value => { try { JSON.parse(value); return true; } catch { return false; } }), v.transform(value => JSON.parse(value))));
+const clearableIdentifier = v.optional(v.pipe(v.string(), v.transform(value => value === '' ? null : value), v.nullable(identifier)));
 const metadata = {
   label: v.optional(collectionInput.entries.label),
-  labelSingular: collectionInput.entries.labelSingular,
-  description: collectionInput.entries.description,
-  supports
+  labelSingular: v.optional(v.string()),
+  description: v.optional(v.string()),
+  supports, icon: v.optional(v.string()), group: v.optional(v.pipe(v.string(), v.transform(value => value === '' ? null : value))),
+  routable: optionalBoolean, hidden: optionalBoolean, hasSeo: optionalBoolean, editLocking: optionalBoolean,
+  commentsEnabled: optionalBoolean, listColumns: optionalJson, quickCreate: optionalBoolean,
+  urlPattern: v.optional(v.pipe(v.string(), v.transform(value => value === '' ? null : value)))
 };
+const optionalEditMode = v.optional(v.picklist(['keep', 'set']));
+const collectionControls = {
+  supportsMode: optionalEditMode, labelSingularMode: optionalEditMode, descriptionMode: optionalEditMode,
+  supportDrafts:v.optional(v.boolean()),supportRevisions:v.optional(v.boolean()),supportPreview:v.optional(v.boolean()),
+  supportScheduling:v.optional(v.boolean()),supportSearch:v.optional(v.boolean()),supportSeo:v.optional(v.boolean())
+};
+type CollectionControls = {
+  supportsMode?:'keep'|'set';labelSingularMode?:'keep'|'set';descriptionMode?:'keep'|'set';
+  supports?:string;labelSingular?:string;description?:string;
+  supportDrafts?:boolean;supportRevisions?:boolean;supportPreview?:boolean;
+  supportScheduling?:boolean;supportSearch?:boolean;supportSeo?:boolean;
+};
+function validSupports(input:CollectionControls) {
+  if(input.supportsMode!==undefined || input.supports===undefined) return true;
+  try{return v.safeParse(supportsValue,JSON.parse(input.supports)).success;}catch{return false;}
+}
+function validSingular(input:CollectionControls) {
+  return input.labelSingularMode==='keep' || (input.labelSingularMode!=='set' || input.labelSingular!==undefined) &&
+    v.safeParse(collectionInput.entries.labelSingular,input.labelSingular).success;
+}
+function validDescription(input:CollectionControls) {
+  return input.descriptionMode==='keep' || (input.descriptionMode!=='set' || input.description!==undefined) &&
+    v.safeParse(collectionInput.entries.description,input.description).success;
+}
+function selectedCollectionControls<T extends CollectionControls>(input:T) {
+  const {supportsMode,labelSingularMode,descriptionMode,supportDrafts,supportRevisions,supportPreview,
+    supportScheduling,supportSearch,supportSeo,supports:rawSupports,labelSingular,description,...value}=input;
+  return {...value,
+    ...(supportsMode==='keep' || supportsMode===undefined && rawSupports===undefined ? {} : {supports:parse(supportsValue,
+      supportsMode==='set' ? [...(supportDrafts?['drafts']:[]),...(supportRevisions?['revisions']:[]),...(supportPreview?['preview']:[]),
+        ...(supportScheduling?['scheduling']:[]),...(supportSearch?['search']:[]),...(supportSeo?['seo']:[])] : JSON.parse(rawSupports!))}),
+    ...(labelSingularMode==='keep' || labelSingular===undefined ? {} : {labelSingular:parse(collectionInput.entries.labelSingular,labelSingular)}),
+    ...(descriptionMode==='keep' || description===undefined ? {} : {description:parse(collectionInput.entries.description,description)})};
+}
+const rawJson = v.optional(v.pipe(v.string(),v.maxLength(200_000)));
+function selectedJson(mode:'keep'|'set'|undefined,value:string|undefined) {
+  if(mode === 'keep') return true;
+  if(value === undefined) return mode !== 'set';
+  try {JSON.parse(value); return true;} catch {return false;}
+}
 const decimalVersion = v.pipe(v.string(), v.maxLength(16), v.regex(/^[1-9][0-9]*$/),
   v.transform(Number), v.safeInteger(), v.minValue(1));
 const optionalLength = v.optional(v.pipe(v.string(), v.maxLength(6),
@@ -98,23 +143,58 @@ export function convertFieldOptions(input: v.InferOutput<typeof fieldOptionsForm
     } })
   });
 }
-export const createInput = v.strictObject({
-  slug: identifier, ...metadata, label: collectionInput.entries.label
-});
+export const createInput = v.pipe(v.strictObject({
+  slug: identifier, ...metadata, ...collectionControls, label: collectionInput.entries.label, settingsMode: optionalEditMode,
+  listColumns: rawJson
+}),v.forward(v.check(input=>validSupports(input),'Selected supports must be a valid supported list'),['supports']),
+v.forward(v.check(input=>validSingular(input),'Selected singular label must contain valid text'),['labelSingular']),
+v.forward(v.check(input=>validDescription(input),'Selected description must contain valid text'),['description']),
+v.forward(v.check(input => selectedJson(input.settingsMode === 'keep' ? 'keep' : undefined, input.listColumns),
+  'Selected list columns must be valid JSON'), ['listColumns']),v.transform(input=>selectedCollectionControls(input)));
 export const updateInput = v.pipe(v.strictObject({
   // Kit form.for(collection) injects this instance key on native and enhanced submissions.
-  id: v.optional(identifier), collection: identifier, ...metadata,
-  version: decimalVersion, updatedAt: revisionInput.entries.updatedAt
-}), v.forward(v.check(input => input.id === undefined || input.id === input.collection,
-  'Form instance must match the collection'), ['id']));
-export const addFieldInput = v.pipe(v.strictObject({
-  id: v.optional(identifier), collection: identifier, expectedSchemaVersion: decimalVersion,
-  slug: fieldInput.entries.slug, label: fieldInput.entries.label, type: v.picklist(['string','text']),
-  required: fieldInput.entries.required, unique: fieldInput.entries.unique,
-  defaultValue: v.optional(v.pipe(v.string(),v.maxLength(100_000),v.check(value => !value.includes('\0')))),
-  minLength: optionalLength, maxLength: optionalLength, patternMode, pattern: editString
+  id: v.optional(identifier), collection: identifier, ...metadata, ...collectionControls,
+  version: decimalVersion, updatedAt: revisionInput.entries.updatedAt,
+  titleField: clearableIdentifier, dateField: clearableIdentifier,
+  sortOrder: v.optional(v.pipe(v.string(), v.transform(value => value === '' ? null : Number(value)), v.nullable(v.pipe(v.number(), v.safeInteger())))),
+  commentsModeration: collectionMetadataInput.pipe[1].entries.commentsModeration,
+  commentsClosedAfterDays: v.optional(v.pipe(v.string(), v.transform(Number), v.number(), v.safeInteger(), v.minValue(0))),
+  commentsAutoApproveUsers: optionalBoolean,
+  settingsMode: optionalEditMode, displayMode: optionalEditMode, adminMode: optionalEditMode,
+  listColumns: rawJson
 }), v.forward(v.check(input => input.id === undefined || input.id === input.collection,
   'Form instance must match the collection'), ['id']),
+v.forward(v.check(input=>validSupports(input),'Selected supports must be a valid supported list'),['supports']),
+v.forward(v.check(input=>validSingular(input),'Selected singular label must contain valid text'),['labelSingular']),
+v.forward(v.check(input=>validDescription(input),'Selected description must contain valid text'),['description']),
+v.forward(v.check(input => selectedJson(input.adminMode === 'keep' ? 'keep' : undefined, input.listColumns),
+  'Selected list columns must be valid JSON'), ['listColumns']),v.transform(input=>selectedCollectionControls(input)));
+const creationFormat = v.optional(v.picklist(['omit','text','json']));
+const addFieldEntries = {
+  id: v.optional(identifier), collection: identifier, expectedSchemaVersion: decimalVersion,
+  slug: fieldInput.entries.slug, label: fieldInput.entries.label, type: fieldInput.entries.type,
+  required: fieldInput.entries.required, unique: fieldInput.entries.unique,
+  defaultValue: v.optional(v.pipe(v.string(),v.maxLength(100_000),v.check(value => !value.includes('\0')))),
+  minLength: optionalLength, maxLength: optionalLength, patternMode, pattern: editString,
+  defaultValueJson: optionalJson, validationJson: optionalJson, optionsJson: optionalJson,
+  widget: v.optional(v.string()), indexed: v.optional(v.boolean()), searchable: v.optional(v.boolean()), translatable: optionalBoolean,
+  defaultValueFormat: creationFormat, validationFormat: creationFormat, optionsMode: optionalEditMode, widgetMode:optionalEditMode
+};
+const parsedFieldAdd = v.pipe(v.strictObject(addFieldEntries), v.forward(v.check(input => input.id === undefined || input.id === input.collection,
+  'Form instance must match the collection'), ['id']),
+v.forward(v.check(input => input.defaultValue === undefined || input.defaultValueJson === undefined,
+  'Choose either a text default or a JSON default'), ['defaultValueJson']),
+v.forward(v.check(input => input.validationJson === undefined ||
+  (input.minLength === undefined && input.maxLength === undefined && input.patternMode !== 'set'),
+  'Choose either text rules or JSON validation'), ['validationJson']),
+v.forward(v.check(input => ['string','text','slug'].includes(input.type) || input.defaultValue === undefined,
+  'Use a JSON default for this field type'), ['defaultValue']),
+v.forward(v.check(input => ['string','text','slug'].includes(input.type) || input.minLength === undefined,
+  'Use JSON validation for this field type'), ['minLength']),
+v.forward(v.check(input => ['string','text','slug'].includes(input.type) || input.maxLength === undefined,
+  'Use JSON validation for this field type'), ['maxLength']),
+v.forward(v.check(input => ['string','text','slug'].includes(input.type) || input.patternMode !== 'set',
+  'Use JSON validation for this field type'), ['patternMode']),
 v.forward(v.check(input => input.patternMode !== 'set' || validPattern(input.pattern),
   'Invalid validation pattern'), ['pattern']),
 v.forward(v.check(input => (input.minLength ?? 0) <=
@@ -125,19 +205,88 @@ v.forward(v.check(input => input.defaultValue === undefined ||
     Math.min(input.maxLength ?? (input.type === 'string' ? 200 : 100_000), 100_000)),
   'Default value must satisfy the field length bounds'), ['defaultValue']));
 
+export const addFieldInput = v.pipe(v.strictObject({ ...addFieldEntries,
+  expectedSchemaVersion: v.string(), minLength: editString, maxLength: editString,
+  defaultValueJson: rawJson, validationJson: rawJson, optionsJson: rawJson
+}), v.transform((input): v.InferInput<typeof parsedFieldAdd> => {
+  const selected: v.InferInput<typeof parsedFieldAdd> = { ...input };
+  if(input.widgetMode==='keep') delete selected.widget;
+  if (input.defaultValueFormat === 'omit' || input.defaultValueFormat === 'json') delete selected.defaultValue;
+  if (input.defaultValueFormat === 'omit' || input.defaultValueFormat === 'text') delete selected.defaultValueJson;
+  if (input.defaultValueFormat === 'json') selected.defaultValueJson ??= '';
+  if (input.validationFormat === 'omit' || input.validationFormat === 'json') {
+    delete selected.minLength; delete selected.maxLength; delete selected.patternMode; delete selected.pattern;
+  }
+  if (input.validationFormat === 'omit' || input.validationFormat === 'text') delete selected.validationJson;
+  if (input.validationFormat === 'json') selected.validationJson ??= '';
+  if (input.optionsMode === 'keep') delete selected.optionsJson;
+  if (input.optionsMode === 'set') selected.optionsJson ??= '';
+  return selected;
+}), parsedFieldAdd);
+
 /** Form validation/conversion precedes the service; the service revalidates domain inputs. */
 export function convertCollectionCreate(input: v.InferOutput<typeof createInput>) {
-  return parse(collectionInput, input);
+  const { settingsMode, ...settings } = input;
+  const metadata = {...settings};
+  if (settingsMode === 'keep') for (const key of ['icon','group','routable','hidden','hasSeo','urlPattern','editLocking','commentsEnabled','listColumns','quickCreate'] as const) delete metadata[key];
+  const { listColumns, quickCreate, ...value } = metadata;
+  return parse(collectionInput, { ...value, ...(listColumns === undefined && quickCreate === undefined ? {} : {admin: { ...(listColumns === undefined ? {} : {listColumns: JSON.parse(listColumns)}), ...(quickCreate === undefined ? {} : {quickCreate}) }}) });
 }
 export function convertCollectionUpdate(input: v.InferOutput<typeof updateInput>) {
-  const { id: _id, collection, version, updatedAt, ...metadata } = input;
-  return { collection, input: parse(collectionMetadataInput, metadata), expected: { version, updatedAt } };
+  const { id: _id, collection, version, updatedAt, settingsMode, displayMode, adminMode, ...value } = input;
+  const metadata = {...value};
+  if (settingsMode === 'keep') for (const key of ['icon','group','routable','hidden','hasSeo','urlPattern','editLocking','commentsEnabled','commentsModeration','commentsClosedAfterDays','commentsAutoApproveUsers','sortOrder'] as const) delete metadata[key];
+  if (displayMode === 'keep') {delete metadata.titleField; delete metadata.dateField;}
+  if (adminMode === 'keep') {delete metadata.listColumns; delete metadata.quickCreate;}
+  const {listColumns,quickCreate,...rest} = metadata;
+  return { collection, input: parse(collectionMetadataInput, { ...rest, ...(listColumns === undefined && quickCreate === undefined ? {} : {admin: { ...(listColumns === undefined ? {} : {listColumns: JSON.parse(listColumns)}), ...(quickCreate === undefined ? {} : {quickCreate}) }}) }), expected: { version, updatedAt } };
 }
 export function convertFieldAdd(input: v.InferOutput<typeof addFieldInput>) {
-  const { id: _id, collection, expectedSchemaVersion, minLength, maxLength, patternMode, pattern, ...field } = input;
+  const { id: _id, collection, expectedSchemaVersion, minLength, maxLength, patternMode, pattern, defaultValueJson, validationJson, optionsJson,
+    defaultValueFormat: _defaultFormat, validationFormat: _validationFormat, optionsMode: _optionsMode, widgetMode:_widgetMode, ...field } = input;
   const validation = minLength === undefined && maxLength === undefined && patternMode !== 'set' ? {} : {
     validation: { ...(minLength === undefined ? {} : { minLength }), ...(maxLength === undefined ? {} : { maxLength }),
       ...(patternMode === 'set' ? { pattern } : {}) }
   };
-  return { collection, expectedSchemaVersion, input: parse(fieldInput, { ...field, ...validation }) };
+  return { collection, expectedSchemaVersion, input: parse(fieldInput, { ...field, ...validation,
+    ...(defaultValueJson === undefined ? {} : {defaultValue:defaultValueJson}),
+    ...(validationJson === undefined ? {} : {validation:validationJson}), ...(optionsJson === undefined ? {} : {options:optionsJson}) }) };
+}
+
+const fieldIdentity = { id: v.optional(v.string()), collection: identifier, field: identifier };
+export const fieldMetadataFormInput = v.pipe(v.strictObject({ ...fieldIdentity,
+  type: v.optional(fieldInput.entries.type), widget: v.optional(v.string()),
+  defaultValueJson: rawJson, validationJson: rawJson, optionsJson: rawJson,
+  required: optionalBoolean, unique: optionalBoolean, searchable: optionalBoolean, indexed: optionalBoolean, translatable: optionalBoolean,
+  typeMode: optionalEditMode, widgetMode: optionalEditMode, defaultValueMode: optionalEditMode,
+  validationMode: optionalEditMode, optionsMode: optionalEditMode, searchableMode: optionalEditMode,
+  indexedMode: optionalEditMode, translatableMode: optionalEditMode
+}),v.forward(v.check(input => input.id === undefined || input.id === `${input.collection}/${input.field}`,
+  'Form instance must match the collection and field'), ['id']),
+v.forward(v.check(input=>selectedJson(input.defaultValueMode,input.defaultValueJson),'Selected default must be valid JSON'),['defaultValueJson']),
+v.forward(v.check(input=>selectedJson(input.validationMode,input.validationJson),'Selected validation must be valid JSON'),['validationJson']),
+v.forward(v.check(input=>selectedJson(input.optionsMode,input.optionsJson),'Selected options must be valid JSON'),['optionsJson']));
+export function convertFieldMetadata(input: v.InferOutput<typeof fieldMetadataFormInput>) {
+  const {id:_id, defaultValueJson, validationJson, optionsJson, typeMode, widgetMode,
+    defaultValueMode,validationMode,optionsMode,searchableMode,indexedMode,translatableMode,...value} = input;
+  const metadata={...value};
+  if(typeMode === 'keep') delete metadata.type;
+  if(widgetMode === 'keep') delete metadata.widget;
+  if(searchableMode === 'keep') delete metadata.searchable;
+  if(indexedMode === 'keep') delete metadata.indexed;
+  if(translatableMode === 'keep') delete metadata.translatable;
+  return parse(updateFieldInput, { ...metadata, ...(defaultValueMode === 'keep' || defaultValueJson === undefined ? {} : {defaultValue:JSON.parse(defaultValueJson)}),
+    ...(validationMode === 'keep' || validationJson === undefined ? {} : {validation:JSON.parse(validationJson)}), ...(optionsMode === 'keep' || optionsJson === undefined ? {} : {options:JSON.parse(optionsJson)}) });
+}
+const precondition = { version: decimalVersion, updatedAt: revisionInput.entries.updatedAt };
+export const fieldOrderInput = v.pipe(v.strictObject({ id:v.optional(identifier), collection:identifier, fields:optionalJson, ...precondition }),
+  v.forward(v.check(input => input.id === undefined || input.id === input.collection,'Form instance must match the collection'),['id']));
+export const fieldDeleteInput = v.pipe(v.strictObject({ ...fieldIdentity, ...precondition }),
+  v.forward(v.check(input => input.id === undefined || input.id === `${input.collection}/${input.field}`,'Form instance must match the collection and field'),['id']));
+export const collectionDeleteInput = v.pipe(v.strictObject({ id:v.optional(identifier), collection:identifier, force:v.optional(v.boolean(),false), ...precondition }),
+  v.forward(v.check(input => input.id === undefined || input.id === input.collection,'Form instance must match the collection'),['id']));
+export const collectionOrderInput = v.strictObject({ slugs:optionalJson, expected:optionalJson });
+export function convertAdminOperation(input: {id?:string;collection:string;version:number;updatedAt:string;[key:string]:unknown}) {
+  const {id:_id,version,updatedAt,...value}=input;
+  return {...value,expected:{version,updatedAt}};
 }
