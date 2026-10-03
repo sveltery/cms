@@ -113,7 +113,13 @@ async function installIndexes(database: CmsDatabase) {
   const guarded=await guardLifecycleIndexRepair(database,statements);
   try { await database.atomicBatch(guarded); }
   catch (cause) {
-    if (sqliteErrorMessage(cause) === 'CHECK constraint failed: pass = 1') throw new CmsError('MIGRATION_REQUIRED');
+    if (sqliteErrorMessage(cause) === 'CHECK constraint failed: pass = 1') {
+      // An exact concurrent index installer may win this snapshot. Accept it
+      // only after revalidating the complete latest layout and every index.
+      if (await migrationState(database)===CMS_MIGRATION_VERSION&&
+        !(await pendingTrashIndexStatements(database)).length) return;
+      throw new CmsError('MIGRATION_REQUIRED');
+    }
     throw cause;
   }
 }
