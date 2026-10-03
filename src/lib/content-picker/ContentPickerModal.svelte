@@ -21,7 +21,7 @@
   let data = $state.raw<InfiniteData<FindManyResult<ContentItem>> | undefined>();
   let loading = $state(false), error = $state<unknown>(), fetchingNext = $state(false), hasNextPage = $state(false);
   let searchInput = $state<HTMLInputElement | undefined>();
-  type ContentObserver = InfiniteQueryObserver<FindManyResult<ContentItem>, Error, InfiniteData<FindManyResult<ContentItem>>, readonly [string, string, string], string | undefined>;
+  type ContentObserver = InfiniteQueryObserver<FindManyResult<ContentItem>, Error, InfiniteData<FindManyResult<ContentItem>>, readonly ['content-picker', string, string], string | undefined>;
   let contentObserver = $state.raw<ContentObserver | undefined>();
   const activeCollection = $derived(collection ?? dropdownCollection);
   const trimmedSearch = $derived(debouncedSearch.trim());

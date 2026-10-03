@@ -26,13 +26,13 @@ export class SchemaRegistry extends NativeRegistry {
   }
 }
 export async function handleContentCreate(db: CmsDatabase['db'], collection: string, input: any) {
-  try { return { success: true, data: { item: await lifecycleService(bindings.get(db)!, principal, { after: () => {} }).createContent({ type: collection, ...input }) } }; }
-  catch (error: any) { return { success: false, error: { code: error.code ?? 'CONTENT_CREATE_ERROR', message: error.message } }; }
+  try { return { success: true as const, data: { item: await lifecycleService(bindings.get(db)!, principal, { after: () => {} }).createContent({ type: collection, ...input }) } }; }
+  catch (error: any) { return { success: false as const, error: { code: error.code ?? 'CONTENT_CREATE_ERROR', message: error.message } }; }
 }
 export async function handleContentList(db: CmsDatabase['db'], collection: string, params: any = {}) {
   try {
-    return { success: true, data: await contentPickerService(bindings.get(db)!, principal).list(collection, params) };
+    return { success: true as const, data: await contentPickerService(bindings.get(db)!, principal).list(collection, params) };
   } catch (error: any) {
-    return { success: false, error: { code: error.code ?? 'CONTENT_LIST_ERROR', message: error.message } };
+    return { success: false as const, error: { code: error.code ?? 'CONTENT_LIST_ERROR', message: error.message } };
   }
 }
