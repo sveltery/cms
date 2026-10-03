@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {sql,OperationNodeTransformer,type RootOperationNode,type QueryResult,type RawNode} from 'kysely';
+import {sql,OperationNodeTransformer,type RootOperationNode,type PluginTransformResultArgs,type RawNode} from 'kysely';
 import {schemaAdminStorage} from './helpers/schema-admin-storage.ts';
 import {migrateCms} from '../src/lib/server/database/migrations.ts';
 import {SchemaRegistry} from '../src/lib/server/database/registry.ts';
@@ -151,7 +151,7 @@ for(const target of ['Node','D1'] as const) {
       const transformer=new CaptureFault();
       const database={...f.storage.database,db:f.storage.database.db.withPlugin({
         transformQuery({node}:{node:RootOperationNode}){return transformer.transformNode(node);},
-        async transformResult({result}:{result:QueryResult<unknown>}){return result;}
+        async transformResult({result}:PluginTransformResultArgs){return result;}
       })};
       const service=lifecycleService(database,principal,{after:task=>f.pending.push(task)});
       let rejection:unknown;let result:Awaited<ReturnType<typeof service.unpublish>>|undefined;
