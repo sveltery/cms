@@ -46,7 +46,7 @@
     <label class="toggle"><input type="checkbox" bind:checked={setSingular} /> Set singular label</label>
     <label>Singular label <input {...metadataForm.fields.labelSingular.as('text', definition.labelSingular ?? '')} disabled={!setSingular} required={setSingular} maxlength="200" /></label>
     <label class="toggle"><input type="checkbox" bind:checked={setDescription} /> Set description</label>
-    <label>Description <textarea {...metadataForm.fields.description.as('text', definition.description ?? '')} disabled={!setDescription} maxlength="2000"></textarea></label>
+    <label>Description <textarea aria-label="Description" {...metadataForm.fields.description.as('text', definition.description ?? '')} disabled={!setDescription} maxlength="2000"></textarea></label>
     <label for={`${controlsId}-supports`}>Supports</label>
     <select id={`${controlsId}-supports`} bind:value={supportsMode}>
       <option value="keep">Keep existing supports</option>
@@ -63,24 +63,24 @@
       <label class="toggle"><input type="checkbox" bind:checked={seo} /> SEO</label>
       <p>Leaving all unchecked stores an empty supports list.</p>
     {/if}
-    <label>Collection settings update <select {...metadataForm.fields.settingsMode.as('select','keep')}><option value="keep">Keep collection settings</option><option value="set">Set collection settings</option></select></label>
+    <label>Collection settings update <select aria-label="Collection settings update" {...metadataForm.fields.settingsMode.as('select','keep')}><option value="keep">Keep collection settings</option><option value="set">Set collection settings</option></select></label>
     <label>Icon <input {...metadataForm.fields.icon.as('text',definition.icon??'')} /></label>
     <label>Navigation group <input {...metadataForm.fields.group.as('text',definition.group??'')} /></label>
     <label>URL pattern <input {...metadataForm.fields.urlPattern.as('text',definition.urlPattern??'')} /></label>
-    <label>Routable <select {...metadataForm.fields.routable.as('select',String(definition.routable))}><option value="true">Yes</option><option value="false">No</option></select></label>
-    <label>SEO settings <select {...metadataForm.fields.hasSeo.as('select',String(definition.hasSeo))}><option value="true">Yes</option><option value="false">No</option></select></label>
-    <label>Hidden from navigation <select {...metadataForm.fields.hidden.as('select',String(definition.hidden))}><option value="true">Yes</option><option value="false">No</option></select></label>
-    <label>Edit locking <select {...metadataForm.fields.editLocking.as('select',String(definition.editLocking))}><option value="true">Yes</option><option value="false">No</option></select></label>
-    <label>Enable comments <select {...metadataForm.fields.commentsEnabled.as('select',String(definition.commentsEnabled))}><option value="true">Yes</option><option value="false">No</option></select></label>
-    <label>Comment moderation <select {...metadataForm.fields.commentsModeration.as('select',definition.commentsModeration)}><option value="all">All comments</option><option value="first_time">First comment</option><option value="none">No moderation</option></select></label>
+    <label>Routable <select aria-label="Routable" {...metadataForm.fields.routable.as('select',String(definition.routable))}><option value="true">Yes</option><option value="false">No</option></select></label>
+    <label>SEO settings <select aria-label="SEO settings" {...metadataForm.fields.hasSeo.as('select',String(definition.hasSeo))}><option value="true">Yes</option><option value="false">No</option></select></label>
+    <label>Hidden from navigation <select aria-label="Hidden from navigation" {...metadataForm.fields.hidden.as('select',String(definition.hidden))}><option value="true">Yes</option><option value="false">No</option></select></label>
+    <label>Edit locking <select aria-label="Edit locking" {...metadataForm.fields.editLocking.as('select',String(definition.editLocking))}><option value="true">Yes</option><option value="false">No</option></select></label>
+    <label>Enable comments <select aria-label="Enable comments" {...metadataForm.fields.commentsEnabled.as('select',String(definition.commentsEnabled))}><option value="true">Yes</option><option value="false">No</option></select></label>
+    <label>Comment moderation <select aria-label="Comment moderation" {...metadataForm.fields.commentsModeration.as('select',definition.commentsModeration)}><option value="all">All comments</option><option value="first_time">First comment</option><option value="none">No moderation</option></select></label>
     <label>Close comments after days <input {...metadataForm.fields.commentsClosedAfterDays.as('text',String(definition.commentsClosedAfterDays))} inputmode="numeric" /></label>
-    <label>Auto approve signed-in comments <select {...metadataForm.fields.commentsAutoApproveUsers.as('select',String(definition.commentsAutoApproveUsers))}><option value="true">Yes</option><option value="false">No</option></select></label>
-    <label>Display fields update <select {...metadataForm.fields.displayMode.as('select','keep')}><option value="keep">Keep display fields</option><option value="set">Set display fields</option></select></label>
-    <label>Title field <select {...metadataForm.fields.titleField.as('select',definition.titleField??'')}><option value="">Default title</option>{#each definition.fields.filter(field=>['string','text','slug'].includes(field.type)) as field}<option value={field.slug}>{field.label}</option>{/each}</select></label>
-    <label>Date field <select {...metadataForm.fields.dateField.as('select',definition.dateField??'')}><option value="">Default date</option>{#each definition.fields.filter(field=>field.type==='datetime') as field}<option value={field.slug}>{field.label}</option>{/each}</select></label>
-    <label>List display update <select {...metadataForm.fields.adminMode.as('select','keep')}><option value="keep">Keep list display</option><option value="set">Set list display</option></select></label>
-    <label>List columns <textarea {...metadataForm.fields.listColumns.as('text',JSON.stringify(definition.admin?.listColumns??[]))} value={metadataForm.fields.listColumns.value()??JSON.stringify(definition.admin?.listColumns??[])}></textarea></label>
-    <label>Quick create <select {...metadataForm.fields.quickCreate.as('select',String(definition.admin?.quickCreate??true))}><option value="true">Yes</option><option value="false">No</option></select></label>
+    <label>Auto approve signed-in comments <select aria-label="Auto approve signed-in comments" {...metadataForm.fields.commentsAutoApproveUsers.as('select',String(definition.commentsAutoApproveUsers))}><option value="true">Yes</option><option value="false">No</option></select></label>
+    <label>Display fields update <select aria-label="Display fields update" {...metadataForm.fields.displayMode.as('select','keep')}><option value="keep">Keep display fields</option><option value="set">Set display fields</option></select></label>
+    <label>Title field <select aria-label="Title field" {...metadataForm.fields.titleField.as('select',definition.titleField??'')}><option value="">Default title</option>{#each definition.fields.filter(field=>['string','text','slug'].includes(field.type)) as field}<option value={field.slug}>{field.label}</option>{/each}</select></label>
+    <label>Date field <select aria-label="Date field" {...metadataForm.fields.dateField.as('select',definition.dateField??'')}><option value="">Default date</option>{#each definition.fields.filter(field=>field.type==='datetime') as field}<option value={field.slug}>{field.label}</option>{/each}</select></label>
+    <label>List display update <select aria-label="List display update" {...metadataForm.fields.adminMode.as('select','keep')}><option value="keep">Keep list display</option><option value="set">Set list display</option></select></label>
+    <label>List columns <textarea aria-label="List columns" {...metadataForm.fields.listColumns.as('text',JSON.stringify(definition.admin?.listColumns??[]))} value={metadataForm.fields.listColumns.value()??JSON.stringify(definition.admin?.listColumns??[])}></textarea></label>
+    <label>Quick create <select aria-label="Quick create" {...metadataForm.fields.quickCreate.as('select',String(definition.admin?.quickCreate??true))}><option value="true">Yes</option><option value="false">No</option></select></label>
     <button type="submit" disabled={metadataForm.pending > 0}>Save metadata</button>
   </fieldset>
   {#if metadataForm.fields.allIssues()?.length}
@@ -106,7 +106,7 @@
     <input {...orderForm.fields.collection.as('hidden',definition.slug)} />
     <input {...orderForm.fields.version.as('hidden',String(definition.version))} />
     <input {...orderForm.fields.updatedAt.as('hidden',definition.updatedAt)} />
-    <label>Ordered field slugs <textarea {...orderForm.fields.fields.as('text',JSON.stringify(definition.fields.map(field=>field.slug)))} value={orderForm.fields.fields.value()??JSON.stringify(definition.fields.map(field=>field.slug))}></textarea></label>
+    <label>Ordered field slugs <textarea aria-label="Ordered field slugs" {...orderForm.fields.fields.as('text',JSON.stringify(definition.fields.map(field=>field.slug)))} value={orderForm.fields.fields.value()??JSON.stringify(definition.fields.map(field=>field.slug))}></textarea></label>
     <button type="submit">Save field order</button>
   </fieldset>
   {#if orderForm.fields.allIssues()?.length}<ul aria-label="Field order errors">{#each orderForm.fields.allIssues()??[] as issue}<li>{issue.message}</li>{/each}</ul>{/if}
@@ -125,17 +125,17 @@
     <label class="toggle"><input {...fieldForm.fields.required.as('checkbox')} /> Required</label>
     <label class="toggle"><input {...fieldForm.fields.unique.as('checkbox')} /> Unique</label>
     <label class="toggle"><input type="checkbox" bind:checked={setDefault} /> Set default value</label>
-    <label>Default value <textarea {...fieldForm.fields.defaultValue.as('text')} disabled={!setDefault} maxlength="100000"></textarea></label>
+    <label>Default value <textarea aria-label="Default value" {...fieldForm.fields.defaultValue.as('text')} disabled={!setDefault} maxlength="100000"></textarea></label>
     <label class="toggle"><input type="checkbox" bind:checked={setTypedDefault} /> Set typed default</label>
-    <label>Typed default value (JSON) <textarea {...fieldForm.fields.defaultValueJson.as('text')} disabled={!setTypedDefault}></textarea></label>
+    <label>Typed default value (JSON) <textarea aria-label="Typed default value (JSON)" {...fieldForm.fields.defaultValueJson.as('text')} disabled={!setTypedDefault}></textarea></label>
     <label class="toggle"><input type="checkbox" bind:checked={setRules} /> Set validation rules</label>
-    <label>Validation rules (JSON) <textarea {...fieldForm.fields.validationJson.as('text')} disabled={!setRules}></textarea></label>
+    <label>Validation rules (JSON) <textarea aria-label="Validation rules (JSON)" {...fieldForm.fields.validationJson.as('text')} disabled={!setRules}></textarea></label>
     <label class="toggle"><input type="checkbox" bind:checked={setOptions} /> Set field options</label>
-    <label>Field options (JSON) <textarea {...fieldForm.fields.optionsJson.as('text')} disabled={!setOptions}></textarea></label>
+    <label>Field options (JSON) <textarea aria-label="Field options (JSON)" {...fieldForm.fields.optionsJson.as('text')} disabled={!setOptions}></textarea></label>
     <label>Widget <input {...fieldForm.fields.widget.as('text')} /></label>
     <label class="toggle"><input {...fieldForm.fields.indexed.as('checkbox')} /> Indexed</label>
     <label class="toggle"><input {...fieldForm.fields.searchable.as('checkbox')} /> Searchable</label>
-    <label>Translatable <select {...fieldForm.fields.translatable.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
+    <label>Translatable <select aria-label="Translatable" {...fieldForm.fields.translatable.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
     <label>Minimum length <input {...fieldForm.fields.minLength.as('text')} inputmode="numeric" pattern="[0-9]*" /></label>
     <label>Maximum length <input {...fieldForm.fields.maxLength.as('text')} inputmode="numeric" pattern="[0-9]*" /></label>
     <label for={`${controlsId}-pattern-mode`}>Pattern metadata</label>

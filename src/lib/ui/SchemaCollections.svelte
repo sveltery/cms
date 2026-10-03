@@ -32,7 +32,7 @@
   <fieldset disabled={disabled || reorderSchemaCollections.pending>0}>
     <legend>Collection order</legend>
     <input {...reorderSchemaCollections.fields.expected.as('hidden',JSON.stringify(collections.map(({slug,version,updatedAt})=>({slug,version,updatedAt}))))} />
-    <label>Ordered collection slugs <textarea {...reorderSchemaCollections.fields.slugs.as('text',JSON.stringify(collections.map(collection=>collection.slug)))} value={reorderSchemaCollections.fields.slugs.value()??JSON.stringify(collections.map(collection=>collection.slug))}></textarea></label>
+    <label>Ordered collection slugs <textarea aria-label="Ordered collection slugs" {...reorderSchemaCollections.fields.slugs.as('text',JSON.stringify(collections.map(collection=>collection.slug)))} value={reorderSchemaCollections.fields.slugs.value()??JSON.stringify(collections.map(collection=>collection.slug))}></textarea></label>
     <button type="submit">Save collection order</button>
   </fieldset>
   {#if reorderSchemaCollections.fields.allIssues()?.length}<ul>{#each reorderSchemaCollections.fields.allIssues()??[] as issue}<li>{issue.message}</li>{/each}</ul>{/if}
@@ -47,7 +47,7 @@
     <label class="toggle"><input type="checkbox" bind:checked={setSingular} /> Set singular label</label>
     <label>Singular label <input {...createSchemaCollection.fields.labelSingular.as('text')} disabled={!setSingular} required={setSingular} maxlength="200" /></label>
     <label class="toggle"><input type="checkbox" bind:checked={setDescription} /> Set description</label>
-    <label>Description <textarea {...createSchemaCollection.fields.description.as('text')} disabled={!setDescription} maxlength="2000"></textarea></label>
+    <label>Description <textarea aria-label="Description" {...createSchemaCollection.fields.description.as('text')} disabled={!setDescription} maxlength="2000"></textarea></label>
     <label for={`${controlsId}-supports`}>Supports</label>
     <select id={`${controlsId}-supports`} bind:value={supportsMode}>
       <option value="keep">Use default supports</option>
@@ -65,17 +65,17 @@
     {/if}
     <details>
       <summary>Collection settings</summary>
-      <label>Collection settings update <select {...createSchemaCollection.fields.settingsMode.as('select','keep')}><option value="keep">Use default settings</option><option value="set">Set collection settings</option></select></label>
+      <label>Collection settings update <select aria-label="Collection settings update" {...createSchemaCollection.fields.settingsMode.as('select','keep')}><option value="keep">Use default settings</option><option value="set">Set collection settings</option></select></label>
       <label>Icon <input {...createSchemaCollection.fields.icon.as('text')} /></label>
       <label>Navigation group <input {...createSchemaCollection.fields.group.as('text')} /></label>
       <label>URL pattern <input {...createSchemaCollection.fields.urlPattern.as('text')} /></label>
-      <label>Routable <select {...createSchemaCollection.fields.routable.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
-      <label>SEO settings <select {...createSchemaCollection.fields.hasSeo.as('select','false')}><option value="true">Yes</option><option value="false">No</option></select></label>
-      <label>Hidden from navigation <select {...createSchemaCollection.fields.hidden.as('select','false')}><option value="true">Yes</option><option value="false">No</option></select></label>
-      <label>Edit locking <select {...createSchemaCollection.fields.editLocking.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
-      <label>Enable comments <select {...createSchemaCollection.fields.commentsEnabled.as('select','false')}><option value="true">Yes</option><option value="false">No</option></select></label>
-      <label>List columns <textarea {...createSchemaCollection.fields.listColumns.as('text','[]')} value={createSchemaCollection.fields.listColumns.value()??'[]'}></textarea></label>
-      <label>Quick create <select {...createSchemaCollection.fields.quickCreate.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>Routable <select aria-label="Routable" {...createSchemaCollection.fields.routable.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>SEO settings <select aria-label="SEO settings" {...createSchemaCollection.fields.hasSeo.as('select','false')}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>Hidden from navigation <select aria-label="Hidden from navigation" {...createSchemaCollection.fields.hidden.as('select','false')}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>Edit locking <select aria-label="Edit locking" {...createSchemaCollection.fields.editLocking.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>Enable comments <select aria-label="Enable comments" {...createSchemaCollection.fields.commentsEnabled.as('select','false')}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>List columns <textarea aria-label="List columns" {...createSchemaCollection.fields.listColumns.as('text','[]')} value={createSchemaCollection.fields.listColumns.value()??'[]'}></textarea></label>
+      <label>Quick create <select aria-label="Quick create" {...createSchemaCollection.fields.quickCreate.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
     </details>
     <button type="submit" disabled={createSchemaCollection.pending > 0}>Create collection</button>
   </fieldset>

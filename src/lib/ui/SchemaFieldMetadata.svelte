@@ -17,7 +17,7 @@
       <legend>Settings for {field.label}</legend>
       <input {...edit.fields.collection.as('hidden',collection)} />
       <input {...edit.fields.field.as('hidden',field.slug)} />
-      <label>Field type update <select {...edit.fields.typeMode.as('select','keep')}><option value="keep">Keep field type</option><option value="set">Change field type</option></select></label>
+      <label>Field type update <select aria-label="Field type update" {...edit.fields.typeMode.as('select','keep')}><option value="keep">Keep field type</option><option value="set">Change field type</option></select></label>
       <label>New field type
         <select {...edit.fields.type.as('select',field.type)}>
           {#each schemaFieldTypes as [value,label]}<option {value}>{label}</option>{/each}
@@ -25,21 +25,21 @@
       </label>
       <p>Short text, long text and slug can change between one another. Other type changes require a content migration.</p>
       <p>Required: {field.required?'Yes':'No'}. Unique: {field.unique?'Yes':'No'}. Changing these settings requires a content migration.</p>
-      <label>Widget update <select {...edit.fields.widgetMode.as('select','keep')}><option value="keep">Keep widget</option><option value="set">Set widget</option></select></label>
+      <label>Widget update <select aria-label="Widget update" {...edit.fields.widgetMode.as('select','keep')}><option value="keep">Keep widget</option><option value="set">Set widget</option></select></label>
       <label>Widget <input {...edit.fields.widget.as('text',field.widget??'')} /></label>
-      <label>Searchable update <select {...edit.fields.searchableMode.as('select','keep')}><option value="keep">Keep searchable</option><option value="set">Set searchable</option></select></label>
-      <label>Searchable <select {...edit.fields.searchable.as('select',String(field.searchable))}><option value="true">Yes</option><option value="false">No</option></select></label>
-      <label>Index update <select {...edit.fields.indexedMode.as('select','keep')}><option value="keep">Keep index</option><option value="set">Set indexed</option></select></label>
-      <label>Indexed <select {...edit.fields.indexed.as('select',String(field.indexed))}><option value="true">Yes</option><option value="false">No</option></select></label>
-      <label>Translation update <select {...edit.fields.translatableMode.as('select','keep')}><option value="keep">Keep translatable</option><option value="set">Set translatable</option></select></label>
-      <label>Translatable <select {...edit.fields.translatable.as('select',String(field.translatable))}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>Searchable update <select aria-label="Searchable update" {...edit.fields.searchableMode.as('select','keep')}><option value="keep">Keep searchable</option><option value="set">Set searchable</option></select></label>
+      <label>Searchable <select aria-label="Searchable" {...edit.fields.searchable.as('select',String(field.searchable))}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>Index update <select aria-label="Index update" {...edit.fields.indexedMode.as('select','keep')}><option value="keep">Keep index</option><option value="set">Set indexed</option></select></label>
+      <label>Indexed <select aria-label="Indexed" {...edit.fields.indexed.as('select',String(field.indexed))}><option value="true">Yes</option><option value="false">No</option></select></label>
+      <label>Translation update <select aria-label="Translation update" {...edit.fields.translatableMode.as('select','keep')}><option value="keep">Keep translatable</option><option value="set">Set translatable</option></select></label>
+      <label>Translatable <select aria-label="Translatable" {...edit.fields.translatable.as('select',String(field.translatable))}><option value="true">Yes</option><option value="false">No</option></select></label>
       <p>Making an existing field non-translatable requires a content migration.</p>
-      <label>Default update <select {...edit.fields.defaultValueMode.as('select','keep')}><option value="keep">Keep default value</option><option value="set">Replace default value</option></select></label>
-      <label>Default value (JSON) <textarea {...edit.fields.defaultValueJson.as('text',JSON.stringify(field.defaultValue??null))} value={edit.fields.defaultValueJson.value()??JSON.stringify(field.defaultValue??null)}></textarea></label>
-      <label>Validation update <select {...edit.fields.validationMode.as('select','keep')}><option value="keep">Keep validation rules</option><option value="set">Replace validation rules</option></select></label>
-      <label>Validation rules (JSON) <textarea {...edit.fields.validationJson.as('text',JSON.stringify(field.validation??null,null,2))} value={edit.fields.validationJson.value()??JSON.stringify(field.validation??null,null,2)}></textarea></label>
-      <label>Options update <select {...edit.fields.optionsMode.as('select','keep')}><option value="keep">Keep field options</option><option value="set">Replace field options</option></select></label>
-      <label>Field options (JSON) <textarea {...edit.fields.optionsJson.as('text',JSON.stringify(field.options??{},null,2))} value={edit.fields.optionsJson.value()??JSON.stringify(field.options??{},null,2)}></textarea></label>
+      <label>Default update <select aria-label="Default update" {...edit.fields.defaultValueMode.as('select','keep')}><option value="keep">Keep default value</option><option value="set">Replace default value</option></select></label>
+      <label>Default value (JSON) <textarea aria-label="Default value (JSON)" {...edit.fields.defaultValueJson.as('text',JSON.stringify(field.defaultValue??null))} value={edit.fields.defaultValueJson.value()??JSON.stringify(field.defaultValue??null)}></textarea></label>
+      <label>Validation update <select aria-label="Validation update" {...edit.fields.validationMode.as('select','keep')}><option value="keep">Keep validation rules</option><option value="set">Replace validation rules</option></select></label>
+      <label>Validation rules (JSON) <textarea aria-label="Validation rules (JSON)" {...edit.fields.validationJson.as('text',JSON.stringify(field.validation??null,null,2))} value={edit.fields.validationJson.value()??JSON.stringify(field.validation??null,null,2)}></textarea></label>
+      <label>Options update <select aria-label="Options update" {...edit.fields.optionsMode.as('select','keep')}><option value="keep">Keep field options</option><option value="set">Replace field options</option></select></label>
+      <label>Field options (JSON) <textarea aria-label="Field options (JSON)" {...edit.fields.optionsJson.as('text',JSON.stringify(field.options??{},null,2))} value={edit.fields.optionsJson.value()??JSON.stringify(field.options??{},null,2)}></textarea></label>
       <p>Rules and options use the selected field's schema. Unselected settings keep their stored values.</p>
       <button type="submit">Save field settings</button>
     </fieldset>
