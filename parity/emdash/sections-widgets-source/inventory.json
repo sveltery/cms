@@ -1,6 +1,6 @@
 {
   "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
-  "authorityCount": 54,
+  "authorityCount": 67,
   "sourceTestStatus": "not-executed",
   "entries": [
     {
@@ -27,7 +27,7 @@
           "line": 135,
           "title": "opens the image settings panel when a block requests the sidebar",
           "wholeDeclarationSha256": "af80cf857ebe5e528f5cbb92147d16dead62873d865ccdfedd4af78f8854452d",
-          "expression": "it(\"opens the image settings panel when a block requests the sidebar\", async () => {\n\t\tconst screen = await render(<SectionEditor />, { wrapper: Wrapper });\n\n\t\t// Editor must mount (and capture its props) before we can simulate.\n\t\tawait expect.element(screen.getByTestId(\"portable-text-editor\")).toBeInTheDocument();\n\n\t\tconst onBlockSidebarOpen = portableTextProps.current?.onBlockSidebarOpen as\n\t\t\t| ((panel: unknown) => void)\n\t\t\t| undefined;\n\t\tconst onBlockSidebarClose = portableTextProps.current?.onBlockSidebarClose as\n\t\t\t| (() => void)\n\t\t\t| undefined;\n\n\t\t// Both callbacks must be wired — without them, clicking the image-settings\n\t\t// icon in the editor is a silent no-op (#845).\n\t\texpect(typeof onBlockSidebarOpen).toBe(\"function\");\n\t\texpect(typeof onBlockSidebarClose).toBe(\"function\");\n\n\t\t// Simulate the image node view asking for sidebar space, the same shape\n\t\t// it sends from ImageNode.openSidebar(). expect.element below polls until\n\t\t// React flushes the state update, so we don't need an explicit act wrapper.\n\t\tonBlockSidebarOpen!({\n\t\t\ttype: \"image\",\n\t\t\tattrs: {\n\t\t\t\tsrc: \"https://example.com/logo.png\",\n\t\t\t\talt: \"Logo\",\n\t\t\t\tmediaId: \"media-1\",\n\t\t\t\twidth: 400,\n\t\t\t\theight: 200,\n\t\t\t},\n\t\t\tonUpdate: vi.fn(),\n\t\t\tonReplace: vi.fn(),\n\t\t\tonDelete: vi.fn(),\n\t\t\tonClose: vi.fn(),\n\t\t});\n\n\t\t// The Image Settings panel should now be rendered in the sidebar slot.\n\t\t// The panel renders the image preview using the src we passed.\n\t\tawait expect.element(screen.getByRole(\"img\", { name: \"Logo\" })).toBeInTheDocument();\n\t})"
+          "expression": "it(\"opens the image settings panel when a block requests the sidebar\", async () => {\n\t\tconst screen = await render(<SectionEditor />, { wrapper: Wrapper });\n\n\t\t// Editor must mount (and capture its props) before we can simulate.\n\t\tawait expect.element(screen.getByTestId(\"portable-text-editor\")).toBeInTheDocument();\n\n\t\tconst onBlockSidebarOpen = portableTextProps.current?.onBlockSidebarOpen as\n\t\t\t| ((panel: unknown) => void)\n\t\t\t| undefined;\n\t\tconst onBlockSidebarClose = portableTextProps.current?.onBlockSidebarClose as\n\t\t\t| (() => void)\n\t\t\t| undefined;\n\n\t\t// Both callbacks must be wired \u2014 without them, clicking the image-settings\n\t\t// icon in the editor is a silent no-op (#845).\n\t\texpect(typeof onBlockSidebarOpen).toBe(\"function\");\n\t\texpect(typeof onBlockSidebarClose).toBe(\"function\");\n\n\t\t// Simulate the image node view asking for sidebar space, the same shape\n\t\t// it sends from ImageNode.openSidebar(). expect.element below polls until\n\t\t// React flushes the state update, so we don't need an explicit act wrapper.\n\t\tonBlockSidebarOpen!({\n\t\t\ttype: \"image\",\n\t\t\tattrs: {\n\t\t\t\tsrc: \"https://example.com/logo.png\",\n\t\t\t\talt: \"Logo\",\n\t\t\t\tmediaId: \"media-1\",\n\t\t\t\twidth: 400,\n\t\t\t\theight: 200,\n\t\t\t},\n\t\t\tonUpdate: vi.fn(),\n\t\t\tonReplace: vi.fn(),\n\t\t\tonDelete: vi.fn(),\n\t\t\tonClose: vi.fn(),\n\t\t});\n\n\t\t// The Image Settings panel should now be rendered in the sidebar slot.\n\t\t// The panel renders the image preview using the src we passed.\n\t\tawait expect.element(screen.getByRole(\"img\", { name: \"Logo\" })).toBeInTheDocument();\n\t})"
         },
         {
           "line": 176,
@@ -83,7 +83,7 @@
           "line": 101,
           "title": "search input filters results",
           "wholeDeclarationSha256": "fa2ef42519c214c182dd9e72552939d3b76122f3b3e059afb9348b2a68deb65f",
-          "expression": "it(\"search input filters results\", async () => {\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={true} onOpenChange={vi.fn()} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait expect.element(screen.getByText(\"Hero Section\")).toBeInTheDocument();\n\t\tconst searchInput = screen.getByPlaceholder(\"Search sections...\");\n\t\tawait searchInput.fill(\"cta\");\n\t\t// Search is debounced — wait for the query to fire\n\t\tawait vi.waitFor(() => {\n\t\t\texpect(mockFetchSections).toHaveBeenCalledWith(expect.objectContaining({ search: \"cta\" }));\n\t\t});\n\t})"
+          "expression": "it(\"search input filters results\", async () => {\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={true} onOpenChange={vi.fn()} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait expect.element(screen.getByText(\"Hero Section\")).toBeInTheDocument();\n\t\tconst searchInput = screen.getByPlaceholder(\"Search sections...\");\n\t\tawait searchInput.fill(\"cta\");\n\t\t// Search is debounced \u2014 wait for the query to fire\n\t\tawait vi.waitFor(() => {\n\t\t\texpect(mockFetchSections).toHaveBeenCalledWith(expect.objectContaining({ search: \"cta\" }));\n\t\t});\n\t})"
         },
         {
           "line": 116,
@@ -101,7 +101,7 @@
           "line": 142,
           "title": "state resets when modal reopens",
           "wholeDeclarationSha256": "956d3a101a7c89b050702ed6dd03aebd77845e7b46c16a48e0e03fc0d4ed4042",
-          "expression": "it(\"state resets when modal reopens\", async () => {\n\t\tconst onOpenChange = vi.fn();\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={true} onOpenChange={onOpenChange} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\t// Type something in search\n\t\tconst searchInput = screen.getByPlaceholder(\"Search sections...\");\n\t\tawait searchInput.fill(\"test\");\n\t\t// Close and reopen\n\t\tawait screen.rerender(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={false} onOpenChange={onOpenChange} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait screen.rerender(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={true} onOpenChange={onOpenChange} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\t// Search should be reset — the input should have an empty value\n\t\tawait vi.waitFor(() => {\n\t\t\tconst input = document.querySelector(\n\t\t\t\t'input[placeholder=\"Search sections...\"]',\n\t\t\t) as HTMLInputElement | null;\n\t\t\texpect(input?.value ?? \"\").toBe(\"\");\n\t\t});\n\t})"
+          "expression": "it(\"state resets when modal reopens\", async () => {\n\t\tconst onOpenChange = vi.fn();\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={true} onOpenChange={onOpenChange} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\t// Type something in search\n\t\tconst searchInput = screen.getByPlaceholder(\"Search sections...\");\n\t\tawait searchInput.fill(\"test\");\n\t\t// Close and reopen\n\t\tawait screen.rerender(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={false} onOpenChange={onOpenChange} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait screen.rerender(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={true} onOpenChange={onOpenChange} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\t// Search should be reset \u2014 the input should have an empty value\n\t\tawait vi.waitFor(() => {\n\t\t\tconst input = document.querySelector(\n\t\t\t\t'input[placeholder=\"Search sections...\"]',\n\t\t\t) as HTMLInputElement | null;\n\t\t\texpect(input?.value ?? \"\").toBe(\"\");\n\t\t});\n\t})"
         },
         {
           "line": 172,
@@ -170,7 +170,7 @@
           "line": 178,
           "title": "create button opens dialog with title/slug form",
           "wholeDeclarationSha256": "1c77e3c919715fedf95999a9cc6d2b9658a6c375bd57943c10280837f78c7af1",
-          "expression": "it(\"create button opens dialog with title/slug form\", async () => {\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<Sections />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait screen.getByText(\"New section\").click();\n\t\tawait expect\n\t\t\t.element(screen.getByRole(\"heading\", { name: \"Create section\" }))\n\t\t\t.toBeInTheDocument();\n\t\t// Check form fields exist — InputArea uses label prop but may not be associated via aria\n\t\tawait expect.element(screen.getByLabelText(\"Title\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByLabelText(\"Slug\")).toBeInTheDocument();\n\t})"
+          "expression": "it(\"create button opens dialog with title/slug form\", async () => {\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<Sections />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait screen.getByText(\"New section\").click();\n\t\tawait expect\n\t\t\t.element(screen.getByRole(\"heading\", { name: \"Create section\" }))\n\t\t\t.toBeInTheDocument();\n\t\t// Check form fields exist \u2014 InputArea uses label prop but may not be associated via aria\n\t\tawait expect.element(screen.getByLabelText(\"Title\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByLabelText(\"Slug\")).toBeInTheDocument();\n\t})"
         },
         {
           "line": 193,
@@ -283,19 +283,19 @@
           "line": 127,
           "title": "widget expand/collapse toggles editor form",
           "wholeDeclarationSha256": "9d196259875ef69a61cce37c2442852cd29686c739cfcf37b5285b9584cd1edf",
-          "expression": "it(\"widget expand/collapse toggles editor form\", async () => {\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\tawait expect.element(screen.getByText(\"Quick Links\")).toBeInTheDocument();\n\n\t\t// Initially collapsed — editor form should not be visible\n\t\texpect(screen.getByText(\"Save\").query()).toBeNull();\n\n\t\t// Click the widget title area to expand (it's a <button> wrapping the title)\n\t\tconst expandButtons = document.querySelectorAll(\"button.text-start\");\n\t\texpect(expandButtons.length).toBeGreaterThanOrEqual(1);\n\t\t(expandButtons[0] as HTMLButtonElement).click();\n\n\t\t// Now the editor should be visible with a Title field and Save button\n\t\tawait expect.element(screen.getByLabelText(\"Title\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"Save\")).toBeInTheDocument();\n\t})"
+          "expression": "it(\"widget expand/collapse toggles editor form\", async () => {\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\tawait expect.element(screen.getByText(\"Quick Links\")).toBeInTheDocument();\n\n\t\t// Initially collapsed \u2014 editor form should not be visible\n\t\texpect(screen.getByText(\"Save\").query()).toBeNull();\n\n\t\t// Click the widget title area to expand (it's a <button> wrapping the title)\n\t\tconst expandButtons = document.querySelectorAll(\"button.text-start\");\n\t\texpect(expandButtons.length).toBeGreaterThanOrEqual(1);\n\t\t(expandButtons[0] as HTMLButtonElement).click();\n\n\t\t// Now the editor should be visible with a Title field and Save button\n\t\tawait expect.element(screen.getByLabelText(\"Title\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"Save\")).toBeInTheDocument();\n\t})"
         },
         {
           "line": 145,
           "title": "content widget editor shows portable text editor",
           "wholeDeclarationSha256": "b8ec169bc31a624350a3df7f7e445efd5e0c5882978ab221a841ac6cd517dadb",
-          "expression": "it(\"content widget editor shows portable text editor\", async () => {\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\t// Wait for widget type badge to render — indicates widgets are loaded\n\t\tawait expect.element(screen.getByText(\"(content)\")).toBeInTheDocument();\n\n\t\t// Expand the first widget (content type — \"Recent Posts\")\n\t\tconst expandButtons = document.querySelectorAll(\"button.text-start\");\n\t\texpect(expandButtons.length).toBeGreaterThanOrEqual(1);\n\t\t(expandButtons[0] as HTMLButtonElement).click();\n\n\t\t// Content widget should show the Save button and Title input in the editor\n\t\tawait expect.element(screen.getByText(\"Save\")).toBeInTheDocument();\n\t})"
+          "expression": "it(\"content widget editor shows portable text editor\", async () => {\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\t// Wait for widget type badge to render \u2014 indicates widgets are loaded\n\t\tawait expect.element(screen.getByText(\"(content)\")).toBeInTheDocument();\n\n\t\t// Expand the first widget (content type \u2014 \"Recent Posts\")\n\t\tconst expandButtons = document.querySelectorAll(\"button.text-start\");\n\t\texpect(expandButtons.length).toBeGreaterThanOrEqual(1);\n\t\t(expandButtons[0] as HTMLButtonElement).click();\n\n\t\t// Content widget should show the Save button and Title input in the editor\n\t\tawait expect.element(screen.getByText(\"Save\")).toBeInTheDocument();\n\t})"
         },
         {
           "line": 160,
           "title": "menu widget editor shows menu select",
           "wholeDeclarationSha256": "f3f867630c75b51b95993b0500a08f531bda7b1dda3b8b8efb7fe7c6d55c8544",
-          "expression": "it(\"menu widget editor shows menu select\", async () => {\n\t\tvi.mocked(api.fetchMenus).mockResolvedValue([\n\t\t\t{\n\t\t\t\tid: \"m1\",\n\t\t\t\tname: \"main-nav\",\n\t\t\t\tlabel: \"Main Navigation\",\n\t\t\t\titemCount: 3,\n\t\t\t\tcreated_at: \"2025-01-01T00:00:00Z\",\n\t\t\t\tupdated_at: \"2025-01-01T00:00:00Z\",\n\t\t\t},\n\t\t\t{\n\t\t\t\tid: \"m2\",\n\t\t\t\tname: \"footer\",\n\t\t\t\tlabel: \"Footer Menu\",\n\t\t\t\titemCount: 2,\n\t\t\t\tcreated_at: \"2025-01-01T00:00:00Z\",\n\t\t\t\tupdated_at: \"2025-01-01T00:00:00Z\",\n\t\t\t},\n\t\t]);\n\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\t// Expand the second widget (menu type — \"Quick Links\")\n\t\tawait expect.element(screen.getByText(\"Quick Links\")).toBeInTheDocument();\n\t\tconst expandButtons = document.querySelectorAll(\"button.text-start\");\n\t\texpect(expandButtons.length).toBeGreaterThanOrEqual(2);\n\t\t(expandButtons[1] as HTMLButtonElement).click();\n\n\t\t// Menu widget should show the Menu select\n\t\tawait expect.element(screen.getByLabelText(\"Menu\")).toBeInTheDocument();\n\t})"
+          "expression": "it(\"menu widget editor shows menu select\", async () => {\n\t\tvi.mocked(api.fetchMenus).mockResolvedValue([\n\t\t\t{\n\t\t\t\tid: \"m1\",\n\t\t\t\tname: \"main-nav\",\n\t\t\t\tlabel: \"Main Navigation\",\n\t\t\t\titemCount: 3,\n\t\t\t\tcreated_at: \"2025-01-01T00:00:00Z\",\n\t\t\t\tupdated_at: \"2025-01-01T00:00:00Z\",\n\t\t\t},\n\t\t\t{\n\t\t\t\tid: \"m2\",\n\t\t\t\tname: \"footer\",\n\t\t\t\tlabel: \"Footer Menu\",\n\t\t\t\titemCount: 2,\n\t\t\t\tcreated_at: \"2025-01-01T00:00:00Z\",\n\t\t\t\tupdated_at: \"2025-01-01T00:00:00Z\",\n\t\t\t},\n\t\t]);\n\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\t// Expand the second widget (menu type \u2014 \"Quick Links\")\n\t\tawait expect.element(screen.getByText(\"Quick Links\")).toBeInTheDocument();\n\t\tconst expandButtons = document.querySelectorAll(\"button.text-start\");\n\t\texpect(expandButtons.length).toBeGreaterThanOrEqual(2);\n\t\t(expandButtons[1] as HTMLButtonElement).click();\n\n\t\t// Menu widget should show the Menu select\n\t\tawait expect.element(screen.getByLabelText(\"Menu\")).toBeInTheDocument();\n\t})"
         },
         {
           "line": 192,
@@ -1238,7 +1238,7 @@
           "line": 370,
           "title": "points a menu item at the translation group of multi-locale content",
           "wholeDeclarationSha256": "c78cad51219f49fecc14ffffc8861f3561586caec94fd8cff945fdf9036a1d58",
-          "expression": "it(\"points a menu item at the translation group of multi-locale content\", async () => {\n\t\tconst registry = new SchemaRegistry(db);\n\t\tawait registry.createCollection({ slug: \"pages\", label: \"Pages\" });\n\t\tawait registry.createField(\"pages\", { slug: \"title\", label: \"Title\", type: \"string\" });\n\n\t\tconst contentRepo = new ContentRepository(db);\n\t\tconst about = await contentRepo.create({\n\t\t\ttype: \"pages\",\n\t\t\tslug: \"about\",\n\t\t\tstatus: \"published\",\n\t\t\tlocale: \"en\",\n\t\t\tdata: { title: \"About\" },\n\t\t});\n\t\tawait contentRepo.create({\n\t\t\ttype: \"pages\",\n\t\t\tslug: \"a-propos\",\n\t\t\tstatus: \"published\",\n\t\t\tlocale: \"fr\",\n\t\t\ttranslationOf: about.id,\n\t\t\tdata: { title: \"À propos\" },\n\t\t});\n\n\t\tconst menuId = ulid();\n\t\tawait db\n\t\t\t.insertInto(\"_emdash_menus\")\n\t\t\t.values({ id: menuId, name: \"primary\", label: \"Primary\", locale: \"fr\" })\n\t\t\t.execute();\n\t\tawait db\n\t\t\t.insertInto(\"_emdash_menu_items\")\n\t\t\t.values({\n\t\t\t\tid: ulid(),\n\t\t\t\tmenu_id: menuId,\n\t\t\t\tsort_order: 0,\n\t\t\t\ttype: \"page\",\n\t\t\t\treference_collection: \"pages\",\n\t\t\t\treference_id: about.translationGroup ?? about.id,\n\t\t\t\tlabel: \"À propos\",\n\t\t\t\tlocale: \"fr\",\n\t\t\t})\n\t\t\t.execute();\n\n\t\tconst seed = await exportSeed(db, \"all\");\n\n\t\tawait applyToFreshDatabase(seed, async (restored) => {\n\t\t\tconst restoredRepo = new ContentRepository(restored);\n\t\t\tconst restoredEn = await restoredRepo.findBySlug(\"pages\", \"about\", \"en\");\n\t\t\tconst restoredFr = await restoredRepo.findBySlug(\"pages\", \"a-propos\", \"fr\");\n\t\t\texpect(restoredFr?.translationGroup).toBe(restoredEn?.translationGroup);\n\n\t\t\tconst item = await restored\n\t\t\t\t.selectFrom(\"_emdash_menu_items\")\n\t\t\t\t.select(\"reference_id\")\n\t\t\t\t.executeTakeFirstOrThrow();\n\t\t\texpect(item.reference_id).toBe(restoredEn?.translationGroup);\n\t\t});\n\t})"
+          "expression": "it(\"points a menu item at the translation group of multi-locale content\", async () => {\n\t\tconst registry = new SchemaRegistry(db);\n\t\tawait registry.createCollection({ slug: \"pages\", label: \"Pages\" });\n\t\tawait registry.createField(\"pages\", { slug: \"title\", label: \"Title\", type: \"string\" });\n\n\t\tconst contentRepo = new ContentRepository(db);\n\t\tconst about = await contentRepo.create({\n\t\t\ttype: \"pages\",\n\t\t\tslug: \"about\",\n\t\t\tstatus: \"published\",\n\t\t\tlocale: \"en\",\n\t\t\tdata: { title: \"About\" },\n\t\t});\n\t\tawait contentRepo.create({\n\t\t\ttype: \"pages\",\n\t\t\tslug: \"a-propos\",\n\t\t\tstatus: \"published\",\n\t\t\tlocale: \"fr\",\n\t\t\ttranslationOf: about.id,\n\t\t\tdata: { title: \"\u00c0 propos\" },\n\t\t});\n\n\t\tconst menuId = ulid();\n\t\tawait db\n\t\t\t.insertInto(\"_emdash_menus\")\n\t\t\t.values({ id: menuId, name: \"primary\", label: \"Primary\", locale: \"fr\" })\n\t\t\t.execute();\n\t\tawait db\n\t\t\t.insertInto(\"_emdash_menu_items\")\n\t\t\t.values({\n\t\t\t\tid: ulid(),\n\t\t\t\tmenu_id: menuId,\n\t\t\t\tsort_order: 0,\n\t\t\t\ttype: \"page\",\n\t\t\t\treference_collection: \"pages\",\n\t\t\t\treference_id: about.translationGroup ?? about.id,\n\t\t\t\tlabel: \"\u00c0 propos\",\n\t\t\t\tlocale: \"fr\",\n\t\t\t})\n\t\t\t.execute();\n\n\t\tconst seed = await exportSeed(db, \"all\");\n\n\t\tawait applyToFreshDatabase(seed, async (restored) => {\n\t\t\tconst restoredRepo = new ContentRepository(restored);\n\t\t\tconst restoredEn = await restoredRepo.findBySlug(\"pages\", \"about\", \"en\");\n\t\t\tconst restoredFr = await restoredRepo.findBySlug(\"pages\", \"a-propos\", \"fr\");\n\t\t\texpect(restoredFr?.translationGroup).toBe(restoredEn?.translationGroup);\n\n\t\t\tconst item = await restored\n\t\t\t\t.selectFrom(\"_emdash_menu_items\")\n\t\t\t\t.select(\"reference_id\")\n\t\t\t\t.executeTakeFirstOrThrow();\n\t\t\texpect(item.reference_id).toBe(restoredEn?.translationGroup);\n\t\t});\n\t})"
         },
         {
           "line": 480,
@@ -1518,6 +1518,97 @@
       "sha256": "d9df43b9844a099ed9e2c142be9ee499d14a34b41b415d03ceb29eafc05e69eb",
       "bytes": 6003,
       "authorityPath": "parity/emdash/sections-widgets-source/authority/pnpm-workspace.yaml.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/api/parse.ts",
+      "sourceBlob": "46b250ce60d82f37fc30d006f3e8ed166c2227b0",
+      "sha256": "8b8271292e8d8d5b0d39701f28a5820e45e2a89ddc159e0f4ab6da7dd484735a",
+      "bytes": 3620,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/api/parse.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/api/error.ts",
+      "sourceBlob": "cac556e93bb76d42e7a36353cd045ce22638f3ef",
+      "sha256": "e191417b83c8314a6a7623f7e35dad793760a66ae8edc2f817042901587ca868",
+      "bytes": 3644,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/api/error.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/api/errors.ts",
+      "sourceBlob": "2e99070d97edc14d2797795e13cc82636a0cf500",
+      "sha256": "e1d2ffcf77f31ffef22c8a18c4ea6cbb0cd86bb8d950c02d7ca82de3e2f2aed5",
+      "bytes": 21806,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/api/errors.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/transfer/errors.ts",
+      "sourceBlob": "7d4d9abc0989ff3ea80e7ef41177b39a829e4bf0",
+      "sha256": "6f608fc23b7a93fdb2cce71e40f802faacf69308616140a4d361f8e90116d4b1",
+      "bytes": 5330,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/transfer/errors.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/database/instrumentation.ts",
+      "sourceBlob": "df07d332a9da3180b154d93d917cc7504d01070e",
+      "sha256": "fa6cd40219a28e3326bae1fcd9d0ff8f1e22bb627db4e55c466273157499742e",
+      "bytes": 4780,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/database/instrumentation.ts.txt"
+    },
+    {
+      "sourcePath": "packages/gutenberg-to-portable-text/package.json",
+      "sourceBlob": "4c0651dd0835ce5aff6f9452ca8338cf8a94b44f",
+      "sha256": "49aee000c7695e9803b205de8e55e574edab39e9e085a2da0d9c7c450c9dba29",
+      "bytes": 1387,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/gutenberg-to-portable-text/package.json.txt"
+    },
+    {
+      "sourcePath": "packages/gutenberg-to-portable-text/src/index.ts",
+      "sourceBlob": "b704a74cdf0386b0a4f3dbd4f41ee75b29dfe007",
+      "sha256": "d0dfb072131ec52d00d4ae319f662af59f6b448cc8e5eeefaf76cfd389a9b6c5",
+      "bytes": 12979,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/gutenberg-to-portable-text/src/index.ts.txt"
+    },
+    {
+      "sourcePath": "packages/gutenberg-to-portable-text/src/types.ts",
+      "sourceBlob": "da617b627d0a1aad50060ba57cfdef9af5a51d88",
+      "sha256": "221485a69f1b783f02d1b068c933f417260d9a32ab580778eb65731f5aea4a9a",
+      "bytes": 6963,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/gutenberg-to-portable-text/src/types.ts.txt"
+    },
+    {
+      "sourcePath": "packages/gutenberg-to-portable-text/src/inline.ts",
+      "sourceBlob": "a88721ebc2016f08741ea86b5f875f80f454b150",
+      "sha256": "c8a9b4f92ac503f13aa648d30c8bdaf46449a2b7c1ad7fad17c03852c3732b20",
+      "bytes": 8349,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/gutenberg-to-portable-text/src/inline.ts.txt"
+    },
+    {
+      "sourcePath": "packages/gutenberg-to-portable-text/src/url.ts",
+      "sourceBlob": "4e270825301833384dfd01a7a2ebd44b7ac415b9",
+      "sha256": "3bdd4c0eec46f903a361a968f5ce30d6d6379869407fbe618e1073e610ce2525",
+      "bytes": 796,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/gutenberg-to-portable-text/src/url.ts.txt"
+    },
+    {
+      "sourcePath": "packages/gutenberg-to-portable-text/src/transformers/index.ts",
+      "sourceBlob": "c395941f6bebeabae99c30e7598a4fae4e3c0354",
+      "sha256": "0f1a7449cefe811a07ada2d5b82dcc5dbaf6f8e797483d234f56e586986899fa",
+      "bytes": 2789,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/gutenberg-to-portable-text/src/transformers/index.ts.txt"
+    },
+    {
+      "sourcePath": "packages/gutenberg-to-portable-text/src/transformers/core.ts",
+      "sourceBlob": "f7c00e667e17fa7b2e0f35f252c011449901c920",
+      "sha256": "50513a1c9c41c6c7923da6d254148eda75e3d6c78f8884e1be43490ecafa5412",
+      "bytes": 25146,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/gutenberg-to-portable-text/src/transformers/core.ts.txt"
+    },
+    {
+      "sourcePath": "packages/gutenberg-to-portable-text/src/transformers/embed.ts",
+      "sourceBlob": "ad8b03636c1f41f1e2c793a207fb1d80843cbb3f",
+      "sha256": "dcb19e155e688783bc7cbae25142e5b6fd99dfb4716c091ff5576b741b23f55f",
+      "bytes": 3641,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/gutenberg-to-portable-text/src/transformers/embed.ts.txt"
     }
   ],
   "selectedWholeTestFiles": [
