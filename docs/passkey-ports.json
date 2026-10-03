@@ -503,7 +503,9 @@
     "tests/passkey-parser.test.ts",
     "tests/production/passkey-site-state-source.test.ts",
     "tests/production/passkey-parser-source.test.ts",
-    "tests/production/passkey-setup-guards-source.test.ts"
+    "tests/production/passkey-setup-guards-source.test.ts",
+    "tests/production/passkey-discoverability-source.test.ts",
+    "tests/browser/passkey-nonresident-shared-bug.spec.ts"
   ],
   "supplementalParityCredit": 0,
   "sourceExecution": {
@@ -525,12 +527,18 @@
         "script": "scripts/reproduce-passkey-setup-guards-upstream.mjs",
         "copiedSourceCredit": 0,
         "boundary": "Five guard-order probes execute unchanged pinned setup handlers with controlled DB/framework dependencies; zero parses before source guard responses, no WebAuthn reference execution."
+      },
+      {
+        "script": "scripts/reproduce-passkey-discoverability-upstream.mjs",
+        "copiedSourceCredit": 0,
+        "boundary": "Seven full pinned hashes; unchanged option-generating algorithms and options handler with explicit DB/parser/rate/framework substitutes. No full source Astro/browser ceremony."
       }
     ]
   },
   "limitations": [
     "Typed-context algorithms are tested but production has no atomic typed-context store/endpoint.",
     "Astro session-driver storage/renewal and full setup site/seed wizard are unported.",
-    "The copied runtime suites do not prove deployed Cloudflare, full auth-product parity or first-party credential management."
+    "The copied runtime suites do not prove deployed Cloudflare, full auth-product parity or first-party credential management.",
+    "Verified shared pinned issue #52: preferred-residency setup can accept a nonresident credential that discoverable-only login cannot find; preserved for a separate explicit bug-fix PR."
   ]
 }
