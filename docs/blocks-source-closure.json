@@ -1,9 +1,9 @@
 {
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "method": "Full pinned tracked packages reusable-block symbol roots plus complete transitive relative/local-package static and literal-dynamic import closure. Inventory only; cross-family dependencies have no inferred execution or feature credit.",
-  "symbolExpression": "BlockTypeRegistry|BlockFieldDefinition|BlockTypeVersion|BLOCK_FIELD_TYPES|normalizeBlocksData|block_type_versions|retiredTypes|allowedTypes|BlocksField|BlockTypeList|\"blocks\"",
-  "symbolRootFiles": 98,
-  "transitiveClosureFiles": 955,
+  "symbolExpression": "BlockType|BlockField|BLOCK_FIELD|BlocksField|BlockTypeList|block-types|block_types|normalizeBlocks|retiredTypes|allowedTypes|\"blocks\"",
+  "symbolRootFiles": 168,
+  "transitiveClosureFiles": 1076,
   "externalImportSpecifiers": [
     "#api/authorize.js",
     "#api/error.js",
@@ -72,6 +72,7 @@
     "@oslojs/encoding",
     "@oslojs/webauthn",
     "@phosphor-icons/react",
+    "@playwright/test",
     "@portabletext/toolkit",
     "@sigstore/bundle",
     "@sigstore/protobuf-specs",
@@ -84,6 +85,7 @@
     "@tiptap/extension-code-block-lowlight",
     "@tiptap/extension-drag-handle-react",
     "@tiptap/extension-focus",
+    "@tiptap/extension-image",
     "@tiptap/extension-link",
     "@tiptap/extension-list",
     "@tiptap/extension-placeholder",
@@ -95,6 +97,7 @@
     "@tiptap/extension-table-row",
     "@tiptap/extension-text-align",
     "@tiptap/extension-typography",
+    "@tiptap/extension-underline",
     "@tiptap/pm/gapcursor",
     "@tiptap/pm/history",
     "@tiptap/pm/model",
@@ -108,9 +111,14 @@
     "@tiptap/suggestion",
     "@wordpress/block-serialization-default-parser",
     "astro",
+    "astro-portabletext",
+    "astro-portabletext/types",
+    "astro/container",
     "astro/jsx-runtime",
     "astro/loaders",
+    "astro/types",
     "astro/zod",
+    "astro:assets",
     "astro:config/server",
     "astro:content",
     "blurhash",
@@ -167,13 +175,16 @@
     "modern-tar",
     "node:async_hooks",
     "node:crypto",
+    "node:fs",
     "node:fs/promises",
     "node:http",
     "node:https",
+    "node:module",
     "node:os",
     "node:path",
     "node:sqlite",
     "node:stream",
+    "node:url",
     "parse5",
     "pg",
     "react",
@@ -183,6 +194,7 @@
     "react-dom/client",
     "react-hotkeys-hook",
     "react-image-crop",
+    "sanitize-html",
     "sax",
     "semver/functions/compare.js",
     "semver/functions/satisfies.js",
@@ -192,8 +204,10 @@
     "typescript",
     "ulidx",
     "upng-js",
+    "virtual:emdash/block-components",
     "virtual:emdash/config",
     "virtual:emdash/dialect",
+    "virtual:emdash/media-providers",
     "virtual:emdash/object-cache",
     "virtual:emdash/seed",
     "virtual:emdash/wait-until",
@@ -205,6 +219,59 @@
   ],
   "unresolvedRelativeImports": [],
   "files": [
+    {
+      "path": "e2e/fixtures/admin.ts",
+      "blob": "32f7bc2475085f2cf41865c2f22ba35661f6088f",
+      "sha256": "5d6090b18172cde8cc6b4b0c70fe3cce10d57af647aab85ff7a6be2101d25f0a",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "e2e/fixtures/index.ts",
+      "blob": "a17c004a499930ed56e177ba96b0f9756e467eaa",
+      "sha256": "cdbdc66c80b4e08bdb0de205af1a25a124f9dc999da9dac2369ef2489747b3c1",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "./admin",
+          "path": "e2e/fixtures/admin.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "e2e/tests/content-types.spec.ts",
+      "blob": "836c3569e25e967a0b47dd895a518833bd3645ff",
+      "sha256": "ac0f835fd4ae2a908cde58277aca7648c80ea87e185f9793214eaa27c8911b4b",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../fixtures",
+          "path": "e2e/fixtures/index.ts"
+        }
+      ],
+      "testSelection": "parity/emdash/blocks/source-tests/e2e/tests/content-types.spec.ts",
+      "runtimeScope": "committed immutable source; not yet executed / owning runtime family explicit"
+    },
+    {
+      "path": "e2e/tests/field-widgets.spec.ts",
+      "blob": "af231e7e425ecc084c5da22533df0c305b034993",
+      "sha256": "a52c354bc807da55c66b0336768bc888b4f8009e3a341f9de02bec458ef8ef60",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../fixtures",
+          "path": "e2e/fixtures/index.ts"
+        }
+      ],
+      "testSelection": "parity/emdash/blocks/source-tests/e2e/tests/field-widgets.spec.ts",
+      "runtimeScope": "committed immutable source; not yet executed / owning runtime family explicit"
+    },
     {
       "path": "packages/admin/CHANGELOG.md",
       "blob": "762012bd89f96bd93f2a32bf5511fec4846a9e71",
@@ -1822,7 +1889,7 @@
       "path": "packages/admin/src/components/PortableTextEditor.tsx",
       "blob": "3a262115208af50bbdff84a099bd9c3b7b00ab8e",
       "sha256": "f63023aa7f553b64bac11754b3f16fded3a56a4d50afabd67d6d6db2041a05bb",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -3940,7 +4007,7 @@
       "path": "packages/admin/src/components/editor/iframe-embed.ts",
       "blob": "9a985ff531f4f73658e9871b66080db74ab6da2b",
       "sha256": "8f671eb937bc510fbabcc7db785b8c3dfdbe1092d216f11eedca0ec5b43da323",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [],
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
@@ -4871,7 +4938,7 @@
       "path": "packages/admin/src/html-block.ts",
       "blob": "800273519f12e55a1eee5e42ffcd25c8cf927fe0",
       "sha256": "ec640fe322cfe9301f2a85f885cc15221846be5d1be0561653b19cc76bc2ef98",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [],
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
@@ -5120,7 +5187,7 @@
       "path": "packages/admin/src/lib/api/index.ts",
       "blob": "c9090610e32de3ac38624d2a08d319e98fce7074",
       "sha256": "a73f0caf86b73603d78f2ce78d98a80a070a2df4ed27dd5c7daee0ef176409b4",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -5497,7 +5564,7 @@
       "path": "packages/admin/src/lib/block-field-state.ts",
       "blob": "11ceb56757209ad611a3a7e9e85fe534b019965e",
       "sha256": "dde49d34d9cfca284f59d51dd599477f74b109872da85f88bb12078549e70cca",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -5609,7 +5676,7 @@
       "path": "packages/admin/src/lib/datetime-local.ts",
       "blob": "33809e6d96f14193d13864880dc54ecfcb3dd6a3",
       "sha256": "59d35bb5731202191caefe3dcb0a8d8edfdae65802767f3832fbe5c12560d8ad",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [],
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly",
@@ -5953,6 +6020,33 @@
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
+      "path": "packages/admin/src/locales/ar/messages.po",
+      "blob": "f3f237ca193f8805b81d3a69cd9c682d04198b8c",
+      "sha256": "7c653a73bdca0f10e4c6fe0f1df5b819686cbe8c17b328375c8a93a6b28382c7",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/bn/messages.po",
+      "blob": "422140d2e93eddf7adeb06ba2686bb2e117828d7",
+      "sha256": "76468b6d5a664d515f06a00c25f4d016cb48de8f50070ecdae3db86cf334e16d",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/ca/messages.po",
+      "blob": "914ad4a18e609f3e530222f2b5494191658510d1",
+      "sha256": "e1bc4da9c7a84a3e91d182a29cbdb50be48532b12bf63b790834bfba262b487b",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
       "path": "packages/admin/src/locales/config.ts",
       "blob": "58d06d1d01c212cec2d56688e77f88cbd152f6b6",
       "sha256": "17a66d6430680ad9fada949e84405e408a0bdad2c35b430ee237b2196f033e84",
@@ -5967,10 +6061,37 @@
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
+      "path": "packages/admin/src/locales/cs/messages.po",
+      "blob": "bbcc7695c06b2c0433e28d3e5b7818e9c2162224",
+      "sha256": "df2378ebf28902646ce828dd32c8ff082f5cff518763b84d34034758de0f7ea8",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/da/messages.po",
+      "blob": "6dbbdb5bb1ce65daaabb992ef4f17d92b551a781",
+      "sha256": "b4f6e3d6a12392d64677655851d79d432ca91464dd3c4c3d836ede1fc1723503",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
       "path": "packages/admin/src/locales/day-picker.ts",
       "blob": "c43dacdb902396c31b7e3520c67cf246483ace58",
       "sha256": "cd214e13b7783e0a0dbf5d9551599ba667d253663dedc1d425628cf0fe499f57",
       "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/de/messages.po",
+      "blob": "619e4e6b12e2af8195e22175bc114c8605b3a6fb",
+      "sha256": "614ea2aacd975cea33e9ff12f2467edd6538be5d4b1a0d3acca2256bf1bdf367",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [],
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
@@ -5987,6 +6108,96 @@
           "path": "packages/admin/src/locales/loadMessages.ts"
         }
       ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/en-GB/messages.po",
+      "blob": "be30b8a866ef864ddddc4485a6def920dc00bb69",
+      "sha256": "1868fb7e57c820454749fd92a22927cdb07ccf5f673d5926c34b646f5fbf3257",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/en/messages.po",
+      "blob": "367f4c2371d2aee77e8d1bb2b32f19f45c371dac",
+      "sha256": "3fac87cdd54f13c31dfd7393bcf2a1297d2582e3e6431dd8e9fd5d7bd9248a55",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/es-419/messages.po",
+      "blob": "a7b848b5552f9dfe8045a68b04f30a69f22bdb92",
+      "sha256": "fb8b02bf41b81a6ee6c1adc5c735c8b2199900625ada9a91fa45762067204044",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/es-ES/messages.po",
+      "blob": "ee3933ce65ea5454d273d8377b2870a4c76b64e1",
+      "sha256": "3e605564548f1d3ae30650976c7acc7e39072e72e993bb1a1f2c02538c53d375",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/eu/messages.po",
+      "blob": "b53c5d40cfbc4b699aee033e852c1d211334fdf9",
+      "sha256": "95a3aec39932980f5cf3e78a63a8bfcd1d1232bc29a34141249be32ffd638a70",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/fa/messages.po",
+      "blob": "279849fc31a54ec2f1e39b590cc62c520eeca314",
+      "sha256": "fe4ac30372579af57c857d342294f57a8d150f935cb778afba69e7516957ff0e",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/fr/messages.po",
+      "blob": "cb0cc995ddbbc6e88de478376c4424f4699244fb",
+      "sha256": "38a894ff450427b84f4da651d920ef8ad53a5511125d6ce4a47198cc9484ca74",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/hi/messages.po",
+      "blob": "15df9c10b3b75f4bc45adef3e497bce41f8ce3db",
+      "sha256": "2763ce613126fde1a86bc265b5fa465c355a6e15f062621de43aade9d7162875",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/hu/messages.po",
+      "blob": "d9978675e0b72c0a44f661d2b12ed605dd230e53",
+      "sha256": "f0ac494bb55100b82ad064a5e3dbd412baf32c3009a47d56c51707d1b8f6f760",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/id/messages.po",
+      "blob": "888caf71242e6480a2c4c399793f0c616a8564fd",
+      "sha256": "c85667075cb1489fbb0f471db242395047a220cb83c6281632b71c74760300a8",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
@@ -6020,6 +6231,33 @@
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
+      "path": "packages/admin/src/locales/ja/messages.po",
+      "blob": "8c41fa08d76c05d33046482b27ddbf1910341d04",
+      "sha256": "4165ab971cb44344b4948b99320bae62aed2efd01f2953a8b5d0f0f333574961",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/ka/messages.po",
+      "blob": "5994d5c5620eff150782780ff338a1468c4a2535",
+      "sha256": "86ea696c2864e1a1ca8baa96fb67faa7fe6d5c940972e8555c35b98d1aa8dc6e",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/ko/messages.po",
+      "blob": "61cc1217e52df51857c7349c83cea3d8642f8f7d",
+      "sha256": "f8ac5d9ddbb266a3a6ef56711929152129af504c9d2a190f7dd9ae1d44323822",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
       "path": "packages/admin/src/locales/loadMessages.ts",
       "blob": "aa16230b533fd54a84ba5ed2c838138ddfa3e773",
       "sha256": "80ff92d0f1c9db282906cdbfc3497d08e6e8978b53af209e5045e065f805bf10",
@@ -6043,6 +6281,96 @@
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
+      "path": "packages/admin/src/locales/nb/messages.po",
+      "blob": "9e6a8ed302c27517315a3f3cdb8378eaceb613fa",
+      "sha256": "0caead3ab19254ced93aa28d16402d25d91ad36f9227f16f8835fda4857f5d0b",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/nl/messages.po",
+      "blob": "a835bdab6e8fad652d84c8bdd97b026f08fd30f3",
+      "sha256": "3755246ec3d1d30abe0444172a415ebdc4ea67a480a4834f459960f3c6df2cc4",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/pl/messages.po",
+      "blob": "212908b82b34a5a6d8d8de4a5e317d00fbaf775a",
+      "sha256": "be59ae305630c7a4d7249070c5b370b510fbf0840b0b2a359971aa9153252700",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/pseudo/messages.po",
+      "blob": "7054bef907be21b97ff68204f289d6e649da2083",
+      "sha256": "61c06316124c0bfe6f00ba22080e8ca3f620f965f49f6d0c93a6780511efdbfe",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/pt-BR/messages.po",
+      "blob": "d99cc0601d095ea49b1097aeffd1e6fb890f37af",
+      "sha256": "27f0253250a0c00d7f3b61e10b2a82b70c3474908e69aa65269ec904c44f02bf",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/sr-Latn/messages.po",
+      "blob": "d590e40643c63b1bfa97893487caf30c90e77930",
+      "sha256": "34edcb3101968b255319b454b47fff596e6b9ea7ef166b52ddd5e7f2526825b6",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/sv/messages.po",
+      "blob": "e3245ddf80f92024b351fba275fd6102b6c3fb85",
+      "sha256": "f1a625c3c9742ac23e37ce4d7b37cc5ae0c7596269bf4058e0ce03a2d704a314",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/th/messages.po",
+      "blob": "185ecd99bb6170b89410136c82d3abb27d4608b3",
+      "sha256": "dd147a1b473dd08a281f090dd08b1fff2d185705b08312cb35078718276f8554",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/tr/messages.po",
+      "blob": "6b415125c22d23d86ea7947edb65376e9314b84d",
+      "sha256": "7bb6b25799b8f9376ca3f9ff44d2cecd06838bb0bd5942f9d90a46785a67a773",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/uk/messages.po",
+      "blob": "6e14b80c173cba089d34ed339dcfcca05e9888c8",
+      "sha256": "cd4bccff71805e5df240d939fbee36b30f4249dd1e9dd6262ca76ef0d7f640d9",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
       "path": "packages/admin/src/locales/useLocale.ts",
       "blob": "c181ef34a9bb234274dbf3d21e0d44aef7563729",
       "sha256": "c393e4df48b24092beb52e1aee432218e3695d9b22d9740f8a244091bcc64fb0",
@@ -6058,6 +6386,24 @@
           "path": "packages/admin/src/locales/loadMessages.ts"
         }
       ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/zh-CN/messages.po",
+      "blob": "2dd3c9d2382b359c11e65eb919c3fcab38526e01",
+      "sha256": "88683b9a13b9ee2d5ebe90aff1c78a1737f66eb19b96356ae8db0cf087524b3f",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/src/locales/zh-TW/messages.po",
+      "blob": "804df0e953c96b2573db0b8e661787a62b36585b",
+      "sha256": "72f537551e13e92ff2d21904903f35623adcc0a767f8f2b753600c70f3c4e3ab",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
@@ -6581,6 +6927,54 @@
       "runtimeScope": "committed immutable source; not yet executed / owning runtime family explicit"
     },
     {
+      "path": "packages/admin/tests/editor/linked-code.test.ts",
+      "blob": "fc58110369f1fe676cd7d641028298a60cc95945",
+      "sha256": "4dfaf447128c3c15820d66dfa446c9630db6f8077d10f672d750ca400e2b5934",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../src/components/editor/CodeMarkExtension",
+          "path": "packages/admin/src/components/editor/CodeMarkExtension.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/admin/tests/lib/block-field-state.test.ts",
+      "blob": "29aca6b5e04b0c92f5341de610a86b4889a5d1e6",
+      "sha256": "1f26c3cc45d6b45890945da51f4f74faab61601bf07d1d0c74faa76e2e7eb167",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../src/lib/api/schema.js",
+          "path": "packages/admin/src/lib/api/schema.ts"
+        },
+        {
+          "specifier": "../../src/lib/block-field-state.js",
+          "path": "packages/admin/src/lib/block-field-state.ts"
+        }
+      ],
+      "testSelection": "parity/emdash/blocks/source-tests/packages/admin/tests/lib/block-field-state.test.ts",
+      "runtimeScope": "whole callbacks passed on native Node/actual D1 where dialect-parametrized; source host transport explicit"
+    },
+    {
+      "path": "packages/admin/tests/lib/datetime-local.test.ts",
+      "blob": "012a85fa4169f4497188a17705e80c567b24cf18",
+      "sha256": "2cb0b983789e12c3ffc9f947963bdbe85ece34f5077d5d78785fb1fe8e392655",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../src/lib/datetime-local",
+          "path": "packages/admin/src/lib/datetime-local.ts"
+        }
+      ],
+      "testSelection": "parity/emdash/blocks/source-tests/packages/admin/tests/lib/datetime-local.test.ts",
+      "runtimeScope": "whole nine expanded callbacks pass on complete byte-identical pinned helper; baseline green, zero causal red credit"
+    },
+    {
       "path": "packages/admin/tests/lib/sandboxed-editor-extensions.test.ts",
       "blob": "f9dc3281f6b69514cb6942a70ce5928800c2bc6a",
       "sha256": "ed14333d0682926cc739e327ef482c88f048abdb95c7f43058c007300a45a09d",
@@ -6973,6 +7367,15 @@
       "blob": "e5fc2ec92b399079aca96f08621b3d042a41fb15",
       "sha256": "2764667f5a2552eda6f401ea63bfdccda5ef30508b71adaa049257fe733de7f5",
       "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/blocks/package.json",
+      "blob": "e52fb0a1a2b6c4ce5548b0c734947ee30e870d39",
+      "sha256": "8f2865d11b85266ef962090701d4fdbf119e5085cfaf591ef06cde7df4ba1599",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [],
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
@@ -9158,7 +9561,7 @@
       "path": "packages/core/src/api/handlers/schema.ts",
       "blob": "abe31215af8f40b3df4ae4d1be5d06ebbe9342e0",
       "sha256": "b9b06fd887c066a8724608963424205517442440fdc844243b24ab1765b11e4a",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -10257,7 +10660,7 @@
       "path": "packages/core/src/api/types.ts",
       "blob": "462b0800408c270a8ac0b7e59b89adb46426fc3f",
       "sha256": "8ee06f5fee0b47ab8891eb4b2980d06d3ad5317464db33d637f7c1b33aa28974",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -10278,6 +10681,29 @@
       "closureRole": "full transitive local package/import dependency",
       "inventoryOnly": true,
       "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/astro/integration/route-naming.ts",
+      "blob": "fadc9e5377f021f0239b338bb857577b12f88e8a",
+      "sha256": "ce9fe172935d0d23aedbea0f66cf4ed933e28459a07475d79e03222c6a834b64",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/astro/integration/routes.ts",
+      "blob": "052e4189b3fdff83a9dd103d9bde34b94675fd6f",
+      "sha256": "901d7504170991ecd69bc2d8639177d2a9a62559d0436ba3844584180998eef4",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "./route-naming.js",
+          "path": "packages/core/src/astro/integration/route-naming.ts"
+        }
+      ],
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
@@ -10347,6 +10773,15 @@
           "path": "packages/core/src/astro/routes/api/import/wordpress/rewrite-url-helpers.ts"
         }
       ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/astro/routes/api/schema/block-types/[slug]/index.ts",
+      "blob": "29777468b941395e81573247b241cf28da45a22c",
+      "sha256": "f477a3a9772935c67a73bbbf4f476aca08f8128096186f80391e97a67a3daabc",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
@@ -11051,6 +11486,1013 @@
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
+      "path": "packages/core/src/components/Block.astro",
+      "blob": "d32a0b7c1b1ca38fd707aa8150d020a7b3556c5f",
+      "sha256": "6785a7485a418998156c411d57ce8db178e1df5326446a5f4bf9f82dd1e6ae87",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "./portable-text-text-align.js",
+          "path": "packages/core/src/components/portable-text-text-align.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/BlockquoteGroup.astro",
+      "blob": "5eaa7f84bd126b2a3e2637879ee0ccd0ce985218",
+      "sha256": "85fbb230f52c8c50b32c54629c63536d14e66a66942d903a5b2f47ea09a44ebb",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "./portable-text-blockquote-group.js",
+          "path": "packages/core/src/components/portable-text-blockquote-group.ts"
+        },
+        {
+          "specifier": "./Block.astro",
+          "path": "packages/core/src/components/Block.astro"
+        },
+        {
+          "specifier": "./marks.js",
+          "path": "packages/core/src/components/marks.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/Blocks.astro",
+      "blob": "5df9a04fbc4fde814c380a52cb0453f049c7fa19",
+      "sha256": "32ca8accde65f7d5da8a71803af409aad8c33b6b588b699d47d9738b061655c9",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "./blocks.js",
+          "path": "packages/core/src/components/blocks.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/Break.astro",
+      "blob": "efd14f773bf65fc588dd8ec86e991c5eb1bdcea1",
+      "sha256": "9f7015465eaa5151599a371f016c510f7d9c96d11282353d95aceb410fd18773",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/Button.astro",
+      "blob": "6c2a7a9349b002e1bbd9f48f2bc5e4f2dc973d82",
+      "sha256": "7f7787651e5fce4bf30d94cf8c97fc2a103bcbe6977f5ffb0b0adb2deaaf951e",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../utils/url.js",
+          "path": "packages/core/src/utils/url.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/Buttons.astro",
+      "blob": "df4d203ea40643c3d84cd95e5595ccbb9c296fad",
+      "sha256": "79378910e2ffea4beaf6f9e29327511236de1c96b4c47d1fc908d78cef13efed",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "./Button.astro",
+          "path": "packages/core/src/components/Button.astro"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/Code.astro",
+      "blob": "4de9c83a136e01c108380cf6af79cbae4c087cbd",
+      "sha256": "6a21c380b5b121109e677e26fa93734f6bead430d48788bfb054d278a7797284",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/Columns.astro",
+      "blob": "f8537c0849ae512e09805e2685934c59d9688c39",
+      "sha256": "82ade020da86ff63cc4d17d9fd67e8bba2db2931bea7a4dd349653099ba3f23b",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "./marks.js",
+          "path": "packages/core/src/components/marks.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/Cover.astro",
+      "blob": "4f4bb550ea0696644997e3e0ae87a08e81183c39",
+      "sha256": "06676680a9934681aabceb7e8a19da52d625d85abc836dd94d7970ea729f74cc",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "./marks.js",
+          "path": "packages/core/src/components/marks.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/EmDashBodyEnd.astro",
+      "blob": "a03baa9a2b0dd4eea32faf713ed48da1734e02e2",
+      "sha256": "48aad9b71346a4629feeb87e9a3d475c6190e0dd439dede51bd122eae3a52e79",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../plugins/types.js",
+          "path": "packages/core/src/plugins/types.ts"
+        },
+        {
+          "specifier": "../page/fragments.js",
+          "path": "packages/core/src/page/fragments.ts"
+        },
+        {
+          "specifier": "../page/index.js",
+          "path": "packages/core/src/page/index.ts"
+        },
+        {
+          "specifier": "../page/seo-contributions.js",
+          "path": "packages/core/src/page/seo-contributions.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/EmDashBodyStart.astro",
+      "blob": "de3319df590da64687cc1832f7973935d55842b4",
+      "sha256": "93300d8e072aef4db2ec2d35a243cd64ad80660aac8d511a7a3ec560be6247e5",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../plugins/types.js",
+          "path": "packages/core/src/plugins/types.ts"
+        },
+        {
+          "specifier": "../page/fragments.js",
+          "path": "packages/core/src/page/fragments.ts"
+        },
+        {
+          "specifier": "../page/index.js",
+          "path": "packages/core/src/page/index.ts"
+        },
+        {
+          "specifier": "../page/seo-contributions.js",
+          "path": "packages/core/src/page/seo-contributions.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/EmDashHead.astro",
+      "blob": "de0d039e9dcae73126993b2d4ed8221ecc8bdcf6",
+      "sha256": "bd1da22c5a0370a246b560185c8841d4e2d5d043196de32617a4bf38859e42d4",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../plugins/types.js",
+          "path": "packages/core/src/plugins/types.ts"
+        },
+        {
+          "specifier": "../page/metadata.js",
+          "path": "packages/core/src/page/metadata.ts"
+        },
+        {
+          "specifier": "../page/fragments.js",
+          "path": "packages/core/src/page/fragments.ts"
+        },
+        {
+          "specifier": "./JsonLdScript.astro",
+          "path": "packages/core/src/components/JsonLdScript.astro"
+        },
+        {
+          "specifier": "../page/seo-contributions.js",
+          "path": "packages/core/src/page/seo-contributions.ts"
+        },
+        {
+          "specifier": "../page/site-identity.js",
+          "path": "packages/core/src/page/site-identity.ts"
+        },
+        {
+          "specifier": "../page/index.js",
+          "path": "packages/core/src/page/index.ts"
+        },
+        {
+          "specifier": "../settings/index.js",
+          "path": "packages/core/src/settings/index.ts"
+        },
+        {
+          "specifier": "../page/absolute-url.js",
+          "path": "packages/core/src/page/absolute-url.ts"
+        },
+        {
+          "specifier": "../seo/hreflang.js",
+          "path": "packages/core/src/seo/hreflang.ts"
+        },
+        {
+          "specifier": "../i18n/config.js",
+          "path": "packages/core/src/i18n/config.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/EmDashImage.astro",
+      "blob": "ff4853d8651fff5db056eef279c542ffbb99677c",
+      "sha256": "48e2ed8b995b9d448555757e6f61058b15eabff56c6ef62f87b2b086de8f98a3",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "emdash/ui",
+          "path": "packages/core/src/ui.ts"
+        },
+        {
+          "specifier": "../fields/types.js",
+          "path": "packages/core/src/fields/types.ts"
+        },
+        {
+          "specifier": "../media/types.js",
+          "path": "packages/core/src/media/types.ts"
+        },
+        {
+          "specifier": "../media/provider-loader.js",
+          "path": "packages/core/src/media/provider-loader.ts"
+        },
+        {
+          "specifier": "../media/normalize.js",
+          "path": "packages/core/src/media/normalize.ts"
+        },
+        {
+          "specifier": "../media/url.js",
+          "path": "packages/core/src/media/url.ts"
+        },
+        {
+          "specifier": "../media/responsive.js",
+          "path": "packages/core/src/media/responsive.ts"
+        },
+        {
+          "specifier": "../api/public-url.js",
+          "path": "packages/core/src/api/public-url.ts"
+        },
+        {
+          "specifier": "../media/focal-point.js",
+          "path": "packages/core/src/media/focal-point.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/EmDashMedia.astro",
+      "blob": "c73c17151a93878f9dbf7bd5d2f6db95af256917",
+      "sha256": "070ffe79422f0e9dce762ce4a81f061d994c8558bf0f4cdc951c22bbb6d9fbf8",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "emdash/ui",
+          "path": "packages/core/src/ui.ts"
+        },
+        {
+          "specifier": "../fields/types.js",
+          "path": "packages/core/src/fields/types.ts"
+        },
+        {
+          "specifier": "../media/types.js",
+          "path": "packages/core/src/media/types.ts"
+        },
+        {
+          "specifier": "../media/provider-loader.js",
+          "path": "packages/core/src/media/provider-loader.ts"
+        },
+        {
+          "specifier": "../media/normalize.js",
+          "path": "packages/core/src/media/normalize.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/Embed.astro",
+      "blob": "9225660ed7fad3b6a1d3faaf7dca2ee57843631b",
+      "sha256": "80257522df8ab6e07b56cdc0bcc0f0039bdd8c3500ed87e0f5fc68ba8df0c261",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../utils/url.js",
+          "path": "packages/core/src/utils/url.ts"
+        },
+        {
+          "specifier": "../utils/sanitize.js",
+          "path": "packages/core/src/utils/sanitize.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/File.astro",
+      "blob": "a55f77ec2094cc1d5878321a8d4e77c9e6f496bc",
+      "sha256": "df52b744feaaf845bbc7dd101541bdff9c428b3b1ee54d03fcaa734a15c6a062",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../utils/url.js",
+          "path": "packages/core/src/utils/url.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/Gallery.astro",
+      "blob": "a3a2b80559c02720765aa452bc8e120324df0945",
+      "sha256": "ce4e04dbc75a47b39b509c79ab26a7694b20392e29adb727c3268b44e95b73b8",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../media/types.js",
+          "path": "packages/core/src/media/types.ts"
+        },
+        {
+          "specifier": "../media/provider-loader.js",
+          "path": "packages/core/src/media/provider-loader.ts"
+        },
+        {
+          "specifier": "../media/url.js",
+          "path": "packages/core/src/media/url.ts"
+        },
+        {
+          "specifier": "../media/responsive.js",
+          "path": "packages/core/src/media/responsive.ts"
+        },
+        {
+          "specifier": "../api/public-url.js",
+          "path": "packages/core/src/api/public-url.ts"
+        },
+        {
+          "specifier": "../content/converters/gallery.js",
+          "path": "packages/core/src/content/converters/gallery.ts"
+        },
+        {
+          "specifier": "../media/focal-point.js",
+          "path": "packages/core/src/media/focal-point.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/HtmlBlock.astro",
+      "blob": "85aa4fefc8e709cf9fd1b7c79e0cafb95673c252",
+      "sha256": "2a49b20e88f12651919f5d6b440b95dba482c6c7c27e3f85e700bb3732403af8",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "@emdash-cms/admin/html-block",
+          "path": "packages/admin/src/html-block.ts"
+        },
+        {
+          "specifier": "../utils/sanitize.js",
+          "path": "packages/core/src/utils/sanitize.ts"
+        },
+        {
+          "specifier": "./HtmlBlockFrame.astro",
+          "path": "packages/core/src/components/HtmlBlockFrame.astro"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/HtmlBlockFrame.astro",
+      "blob": "af40e3857846ae08841c5f9a440e1bd98308220f",
+      "sha256": "f6ff8ea719e09c31506e004b8216cc45284f6ea0609e6f58a5353f453854bc2e",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "@emdash-cms/admin/html-block",
+          "path": "packages/admin/src/html-block.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/Iframe.astro",
+      "blob": "bc7f331bc89d191d11808a4e2e6b68fbf8b23715",
+      "sha256": "b9ad31516c798300c5b04263b0d23df15bfe434f06cf946b072f833133efdbbb",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/Image.astro",
+      "blob": "4bf47ce5088bd54a9588ccd94e728c01b9a60f13",
+      "sha256": "69f2f89fa0ffb87036412cc54f4fb5a4eaa7543bb969651f03a49fdbb57e43e8",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../media/types.js",
+          "path": "packages/core/src/media/types.ts"
+        },
+        {
+          "specifier": "../media/provider-loader.js",
+          "path": "packages/core/src/media/provider-loader.ts"
+        },
+        {
+          "specifier": "../media/url.js",
+          "path": "packages/core/src/media/url.ts"
+        },
+        {
+          "specifier": "../media/responsive.js",
+          "path": "packages/core/src/media/responsive.ts"
+        },
+        {
+          "specifier": "../api/public-url.js",
+          "path": "packages/core/src/api/public-url.ts"
+        },
+        {
+          "specifier": "../utils/url.js",
+          "path": "packages/core/src/utils/url.ts"
+        },
+        {
+          "specifier": "../content/converters/image-link.js",
+          "path": "packages/core/src/content/converters/image-link.ts"
+        },
+        {
+          "specifier": "../content/converters/gallery.js",
+          "path": "packages/core/src/content/converters/gallery.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/InlineEditor.astro",
+      "blob": "7c749b9a6adeb62bde37a91a83fa29aa41b14007",
+      "sha256": "97eadcb4005913f2975af1dde3a3a8c5244c9bd67ae3bdc3dd9c92e6aa988f2e",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "./InlinePortableTextEditor",
+          "path": "packages/core/src/components/InlinePortableTextEditor.tsx"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/InlinePortableTextEditor.tsx",
+      "blob": "07d40bd6a65d969c740ba572ba85a79388430495",
+      "sha256": "fa888e1e4bd6c5ccc6e486bd5687a00df6b12b8811f832a30cb1dffc5ace304e",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "@emdash-cms/admin/html-block",
+          "path": "packages/admin/src/html-block.ts"
+        },
+        {
+          "specifier": "../content/converters/gallery.js",
+          "path": "packages/core/src/content/converters/gallery.ts"
+        },
+        {
+          "specifier": "../content/converters/numbered-list.js",
+          "path": "packages/core/src/content/converters/numbered-list.ts"
+        },
+        {
+          "specifier": "../media/thumbnail.js",
+          "path": "packages/core/src/media/thumbnail.ts"
+        },
+        {
+          "specifier": "./code-mark.js",
+          "path": "packages/core/src/components/code-mark.ts"
+        },
+        {
+          "specifier": "./inline-code-block.js",
+          "path": "packages/core/src/components/inline-code-block.tsx"
+        },
+        {
+          "specifier": "./ordered-list.js",
+          "path": "packages/core/src/components/ordered-list.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/JsonLdScript.astro",
+      "blob": "7f3b6f66030183395cb7dd506c9c52c15c157032",
+      "sha256": "3625942321a8e44987116ed9888a3b37458fa8be829d33114c8f8e9013a6acaa",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/OrderedList.astro",
+      "blob": "cdb2b6ea55981127913e869e9178c4df283af0b5",
+      "sha256": "38144aafccbd85dd040139619ac07298a4fd053427462d4f2f56ccd718b40162",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../content/converters/numbered-list.js",
+          "path": "packages/core/src/content/converters/numbered-list.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/PortableText.astro",
+      "blob": "afe1f439f25ba3c2365365ae15dc112a1d82cc65",
+      "sha256": "a1d8535c72fcc2d737dc6c61c3ec6ec4240537b19fd330fee90d5dac47c893fc",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../content/portable-text-lists.js",
+          "path": "packages/core/src/content/portable-text-lists.ts"
+        },
+        {
+          "specifier": "../query.js",
+          "path": "packages/core/src/query.ts"
+        },
+        {
+          "specifier": "./index.js",
+          "path": "packages/core/src/components/index.ts"
+        },
+        {
+          "specifier": "./InlineEditor.astro",
+          "path": "packages/core/src/components/InlineEditor.astro"
+        },
+        {
+          "specifier": "./portable-text-blockquote-group.js",
+          "path": "packages/core/src/components/portable-text-blockquote-group.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/Pullquote.astro",
+      "blob": "bc91871c30bb6c3d575481dd2d055632d94ff6a9",
+      "sha256": "7351477fe0ab4349825e767a9cdd4d810637330e0d62637396afcea026f6a509",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/Table.astro",
+      "blob": "d7b9e923e030a991fbc259bacd64e26754f04c0d",
+      "sha256": "b082aabb925724e7f02f85f3020ad00bab7f5fc34ae70a54d0b1b6def9faccda",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "@emdash-cms/admin/portable-text-table",
+          "path": "packages/admin/src/portable-text-table.ts"
+        },
+        {
+          "specifier": "./marks.js",
+          "path": "packages/core/src/components/marks.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/WidgetArea.astro",
+      "blob": "c8c26f92c139396447aef7812fdf2e4b9590cc20",
+      "sha256": "cc6add78b972217cc2e4b1b2f63d9643e4426fc8a5fadfd753990c28b161ede5",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../widgets/index.js",
+          "path": "packages/core/src/widgets/index.ts"
+        },
+        {
+          "specifier": "./WidgetRenderer.astro",
+          "path": "packages/core/src/components/WidgetRenderer.astro"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/WidgetRenderer.astro",
+      "blob": "74be9729074666eb251df289efe6a9cfedf8e05f",
+      "sha256": "7a306b4388861cb4f8f1702da8eac2565b137b64b4f3802919bfc5932af423bc",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../widgets/types.js",
+          "path": "packages/core/src/widgets/types.ts"
+        },
+        {
+          "specifier": "../menus/index.js",
+          "path": "packages/core/src/menus/index.ts"
+        },
+        {
+          "specifier": "../utils/url.js",
+          "path": "packages/core/src/utils/url.ts"
+        },
+        {
+          "specifier": "./PortableText.astro",
+          "path": "packages/core/src/components/PortableText.astro"
+        },
+        {
+          "specifier": "./widgets/RecentPosts.astro",
+          "path": "packages/core/src/components/widgets/RecentPosts.astro"
+        },
+        {
+          "specifier": "./widgets/Categories.astro",
+          "path": "packages/core/src/components/widgets/Categories.astro"
+        },
+        {
+          "specifier": "./widgets/Tags.astro",
+          "path": "packages/core/src/components/widgets/Tags.astro"
+        },
+        {
+          "specifier": "./widgets/Search.astro",
+          "path": "packages/core/src/components/widgets/Search.astro"
+        },
+        {
+          "specifier": "./widgets/Archives.astro",
+          "path": "packages/core/src/components/widgets/Archives.astro"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/blocks.ts",
+      "blob": "be359753eb65514c1b06de80472cdd0b7137d8bd",
+      "sha256": "b27373f7175e8f1ff1ade8b715116948b066dd5e7743423894a1c41fdaa45a85",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly",
+      "implementationScope": "complete module",
+      "nativePath": "src/lib/blocks/render.ts"
+    },
+    {
+      "path": "packages/core/src/components/code-mark.ts",
+      "blob": "7a970c4cb13e0ba2344b7a0c08b918129a77471e",
+      "sha256": "12600455828ee824e9898d04cbb9266f8edac27cdbf0666b1df377bdb3d55e07",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/index.ts",
+      "blob": "4733779807a131831474282acc197f37d338c01e",
+      "sha256": "be9ea25e0b4b65cd907e31c6b64121a5e759e6592f1334f8798fa34fd9dfcd83",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "./PortableText.astro",
+          "path": "packages/core/src/components/PortableText.astro"
+        },
+        {
+          "specifier": "./Blocks.astro",
+          "path": "packages/core/src/components/Blocks.astro"
+        },
+        {
+          "specifier": "./blocks.js",
+          "path": "packages/core/src/components/blocks.ts"
+        },
+        {
+          "specifier": "./WidgetArea.astro",
+          "path": "packages/core/src/components/WidgetArea.astro"
+        },
+        {
+          "specifier": "./EmDashImage.astro",
+          "path": "packages/core/src/components/EmDashImage.astro"
+        },
+        {
+          "specifier": "./EmDashMedia.astro",
+          "path": "packages/core/src/components/EmDashMedia.astro"
+        },
+        {
+          "specifier": "./Block.astro",
+          "path": "packages/core/src/components/Block.astro"
+        },
+        {
+          "specifier": "./Image.astro",
+          "path": "packages/core/src/components/Image.astro"
+        },
+        {
+          "specifier": "./Code.astro",
+          "path": "packages/core/src/components/Code.astro"
+        },
+        {
+          "specifier": "./Embed.astro",
+          "path": "packages/core/src/components/Embed.astro"
+        },
+        {
+          "specifier": "./Gallery.astro",
+          "path": "packages/core/src/components/Gallery.astro"
+        },
+        {
+          "specifier": "./Columns.astro",
+          "path": "packages/core/src/components/Columns.astro"
+        },
+        {
+          "specifier": "./Break.astro",
+          "path": "packages/core/src/components/Break.astro"
+        },
+        {
+          "specifier": "./HtmlBlock.astro",
+          "path": "packages/core/src/components/HtmlBlock.astro"
+        },
+        {
+          "specifier": "./Iframe.astro",
+          "path": "packages/core/src/components/Iframe.astro"
+        },
+        {
+          "specifier": "./Table.astro",
+          "path": "packages/core/src/components/Table.astro"
+        },
+        {
+          "specifier": "./Button.astro",
+          "path": "packages/core/src/components/Button.astro"
+        },
+        {
+          "specifier": "./Buttons.astro",
+          "path": "packages/core/src/components/Buttons.astro"
+        },
+        {
+          "specifier": "./Cover.astro",
+          "path": "packages/core/src/components/Cover.astro"
+        },
+        {
+          "specifier": "./File.astro",
+          "path": "packages/core/src/components/File.astro"
+        },
+        {
+          "specifier": "./Pullquote.astro",
+          "path": "packages/core/src/components/Pullquote.astro"
+        },
+        {
+          "specifier": "./marks/Superscript.astro",
+          "path": "packages/core/src/components/marks/Superscript.astro"
+        },
+        {
+          "specifier": "./marks/Subscript.astro",
+          "path": "packages/core/src/components/marks/Subscript.astro"
+        },
+        {
+          "specifier": "./marks/Underline.astro",
+          "path": "packages/core/src/components/marks/Underline.astro"
+        },
+        {
+          "specifier": "./marks/StrikeThrough.astro",
+          "path": "packages/core/src/components/marks/StrikeThrough.astro"
+        },
+        {
+          "specifier": "./marks/Link.astro",
+          "path": "packages/core/src/components/marks/Link.astro"
+        },
+        {
+          "specifier": "./BlockquoteGroup.astro",
+          "path": "packages/core/src/components/BlockquoteGroup.astro"
+        },
+        {
+          "specifier": "./marks.js",
+          "path": "packages/core/src/components/marks.ts"
+        },
+        {
+          "specifier": "./OrderedList.astro",
+          "path": "packages/core/src/components/OrderedList.astro"
+        },
+        {
+          "specifier": "./EmDashHead.astro",
+          "path": "packages/core/src/components/EmDashHead.astro"
+        },
+        {
+          "specifier": "./EmDashBodyStart.astro",
+          "path": "packages/core/src/components/EmDashBodyStart.astro"
+        },
+        {
+          "specifier": "./EmDashBodyEnd.astro",
+          "path": "packages/core/src/components/EmDashBodyEnd.astro"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/inline-code-block.tsx",
+      "blob": "d31e3b70f1ba9f3f10c24288606ed8cc7c93de45",
+      "sha256": "15d682b054e1581b1f67641786129ddd0a45a6867f44e2451b63bd209858bb50",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/marks.ts",
+      "blob": "715c04df4b36813a2166d7c602183b5cb7742864",
+      "sha256": "f5b326f500b3ab3fd473900182113957d579db60739e6838ff86623ba7d8feb8",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "./marks/Link.astro",
+          "path": "packages/core/src/components/marks/Link.astro"
+        },
+        {
+          "specifier": "./marks/StrikeThrough.astro",
+          "path": "packages/core/src/components/marks/StrikeThrough.astro"
+        },
+        {
+          "specifier": "./marks/Subscript.astro",
+          "path": "packages/core/src/components/marks/Subscript.astro"
+        },
+        {
+          "specifier": "./marks/Superscript.astro",
+          "path": "packages/core/src/components/marks/Superscript.astro"
+        },
+        {
+          "specifier": "./marks/Underline.astro",
+          "path": "packages/core/src/components/marks/Underline.astro"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/marks/Link.astro",
+      "blob": "7fdcbf0fbb16d00477c2369d9df28bd21b757540",
+      "sha256": "345282cd23d781e89e2b24d2ef53d73ba3ee393bc5b68d5bd8cb897fedec287e",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../utils/url.js",
+          "path": "packages/core/src/utils/url.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/marks/StrikeThrough.astro",
+      "blob": "b2488197582a6460fd547e306712818cf1eba3fb",
+      "sha256": "ae8d4aa19a83d6ebcc17611bf01c294ff52951b44a58b496e00dd5072000cacc",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/marks/Subscript.astro",
+      "blob": "6fd9b156700fb33c153d216c6a25c7c1d9d96ed9",
+      "sha256": "56b5a5c7540658b53b9376115fe46d9c4f28d17b77133ccbafb5cddd9455676b",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/marks/Superscript.astro",
+      "blob": "3c140ada58de1b7fd5f46686340bd24d08a9f353",
+      "sha256": "15bcb7bdcedfcc8baa59f124e6c9435e643a32ccedd085ba8a8b63dc82cf4dd8",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/marks/Underline.astro",
+      "blob": "769555e352ed694628fa7e06c36d9474f480f6d1",
+      "sha256": "49b37137f6aa844736d24f31794ef6ae108abfab5d0dc2b9baa9be1a71aa24b7",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/ordered-list.ts",
+      "blob": "d14217775f38cafe548a3ba78ba708797cb64441",
+      "sha256": "d16342e92e3b1aec83a7327ada04ab3d1677185357b9604dfe43cd9f2f2c9597",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../content/converters/numbered-list.js",
+          "path": "packages/core/src/content/converters/numbered-list.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/portable-text-blockquote-group.ts",
+      "blob": "8f43d455aa55a88cdd6652bb3fab519054661c54",
+      "sha256": "f767f7e29fa039e792956c9be17a6cd1c74a1782f0b9a48fce2dde18b2b7f66e",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/portable-text-text-align.ts",
+      "blob": "42164989b29f431bd60deda481b3d7ca1563cf12",
+      "sha256": "c3261e62f11863f2642884843f1d5964976441162961125b540fe2bc57394d32",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/widgets/Archives.astro",
+      "blob": "df244b6a1e73352d8a1aa57a4050620721aa4650",
+      "sha256": "af7816ef5eed0c78daca1bf932e5798fe93c4556d9b46c93e347d28edb3db27b",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../query.js",
+          "path": "packages/core/src/query.ts"
+        },
+        {
+          "specifier": "../../widgets/archives.js",
+          "path": "packages/core/src/widgets/archives.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/widgets/Categories.astro",
+      "blob": "9d7cf682cb5c82d773030db31297059d91ed1e33",
+      "sha256": "ed5b1a355ec3ef9bdf93519a6a4256d1d1e80a44124af251a21eda791019d8cc",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../taxonomies/index.js",
+          "path": "packages/core/src/taxonomies/index.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/widgets/RecentPosts.astro",
+      "blob": "cef0090a0aeaf52c8b0b74f6505fdb73b57aa94f",
+      "sha256": "d920f436b01fcfc2fab8beca467e78ecc4182a794f2d6f97cc8c56f27422f511",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../query.js",
+          "path": "packages/core/src/query.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/widgets/Search.astro",
+      "blob": "483dc9962aa4558b1f178718f21da8c125b638d3",
+      "sha256": "2f3429132f0b0c5f648abb613af78b35bf0b2ef1e1f59f3339ebd499910ebcbe",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/components/widgets/Tags.astro",
+      "blob": "9ec35f956bfa75d7dfb0828a935833fb91e2c239",
+      "sha256": "ed2d85a9c69917285ef7898f99a05fbe48be7c739b9b6d084923c5a213b5f485",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../taxonomies/index.js",
+          "path": "packages/core/src/taxonomies/index.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
       "path": "packages/core/src/config/errors.ts",
       "blob": "ab95f3ff6057f33cb474dfa1c1d5698ebbcd97b3",
       "sha256": "dcd33fdc263c724c12cbd13e772576b0d95b841666d8dafca0d13f049931b21a",
@@ -11210,7 +12652,7 @@
       "path": "packages/core/src/content/converters/portable-text-to-prosemirror.ts",
       "blob": "731e1851ba1a3f36e6ba7581081e9fd1e29b282b",
       "sha256": "806c69ed7208969da11fad64aad1bd849f0ed850959dcbcae348efd902f8c5a9",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -11252,7 +12694,7 @@
       "path": "packages/core/src/content/converters/prosemirror-to-portable-text.ts",
       "blob": "cef3d3d0bf564e1d6402de99ead6e69a12748ae2",
       "sha256": "774653bfdb0b5ae0846b1d2dbfe1071a6e0ba685c05575b1d2d8dc8b8af9561d",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -11321,6 +12763,20 @@
       "closureRole": "full transitive local package/import dependency",
       "inventoryOnly": true,
       "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/content/portable-text-lists.ts",
+      "blob": "36ea4198864740d85b540e129b46529977dd09ec",
+      "sha256": "849a69198bbb2a2f577efd9dd2ee19fb6f15afd8c6d74209f397e1661bfd9f31",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "./converters/numbered-list.js",
+          "path": "packages/core/src/content/converters/numbered-list.ts"
+        }
+      ],
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
@@ -12729,7 +14185,7 @@
       "path": "packages/core/src/database/migrations/runner.ts",
       "blob": "252ce5d8fb5b683ba8c71d09cd27e51593ff0eac",
       "sha256": "93fede33fd1223b501f7745f4ecc64034fd570951993f0c9b95d8ef44b8a0498",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -15524,6 +16980,38 @@
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
+      "path": "packages/core/src/media/provider-loader.ts",
+      "blob": "63020df91eeb9569e976a8262bd601ab02ac35f9",
+      "sha256": "c6fdda08cbf135da84b28beab53618627cdaee0fac7c34ffa016fb4a323899c7",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "./types.js",
+          "path": "packages/core/src/media/types.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/media/responsive.ts",
+      "blob": "de13119f6761b1be8fb6ee37ca913f8264f766dc",
+      "sha256": "5336c9ff604b3801ce5b130e09c0b830bffbb1fd177a7adfc20dcb3fee0afe1a",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/media/thumbnail.ts",
+      "blob": "67769fcf54a89627e99e3bd9571b4e933c73f608",
+      "sha256": "e680830b8bf582e59706201611120840ef9d3eca8b93c16cd674f5214e991007",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
       "path": "packages/core/src/media/types.ts",
       "blob": "34abda177065eb7e51e8592897f4ecf93565924d",
       "sha256": "3482d45e65d67dde0c5bb6e617b8d5c51eb775fb289be9cd7a678991c05d94a3",
@@ -16074,7 +17562,7 @@
       "path": "packages/core/src/media/usage/types.ts",
       "blob": "c25b56f3ef56a90ae3f65502c66263726cfc799a",
       "sha256": "f5647c22d2e783013e6b045b1791aff16ec929ac3699ad1367a4c170ab48d17a",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -16234,6 +17722,152 @@
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
+      "path": "packages/core/src/page/absolute-url.ts",
+      "blob": "cb8bcfe36ea42c3bc79a8c1a746820d8ef8d0967",
+      "sha256": "85820b0feba0ff5fb87e2b44cd68f6b529c41edee0f0b5f537f8815a44af44e1",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../plugins/types.js",
+          "path": "packages/core/src/plugins/types.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/page/context.ts",
+      "blob": "c0ea603d92a8da39d076ee264853ce4d13c006ed",
+      "sha256": "e0ade4e9195f552fd5f4d8f8461724c2dea33f4919293f2e9449f271e603e513",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../plugins/types.js",
+          "path": "packages/core/src/plugins/types.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/page/fragments.ts",
+      "blob": "c826575065ee3ca92b0f57dbdaabaf2f22ddc06b",
+      "sha256": "d0f61ab58a590137c6b42a8f59a1729254e63f7d601c07d288b2cae9df130b83",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../plugins/types.js",
+          "path": "packages/core/src/plugins/types.ts"
+        },
+        {
+          "specifier": "./metadata.js",
+          "path": "packages/core/src/page/metadata.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/page/index.ts",
+      "blob": "d5b4f74c6eb5634cf5f95c24d570b00109a206bd",
+      "sha256": "e2b9d6f50e395dad5260f1dfe2006a4edb0fe64ed7bda45059480f1b5b4155a0",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../plugins/types.js",
+          "path": "packages/core/src/plugins/types.ts"
+        },
+        {
+          "specifier": "./context.js",
+          "path": "packages/core/src/page/context.ts"
+        },
+        {
+          "specifier": "./metadata.js",
+          "path": "packages/core/src/page/metadata.ts"
+        },
+        {
+          "specifier": "./fragments.js",
+          "path": "packages/core/src/page/fragments.ts"
+        },
+        {
+          "specifier": "./seo-contributions.js",
+          "path": "packages/core/src/page/seo-contributions.ts"
+        },
+        {
+          "specifier": "./jsonld.js",
+          "path": "packages/core/src/page/jsonld.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/page/jsonld.ts",
+      "blob": "2a2be7f77d4083729dd279829a17dc66bbeba14b",
+      "sha256": "cd674c9fb2eb41674cbf955398b58c870a34525146b562c84116cc5277bf46fc",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../plugins/types.js",
+          "path": "packages/core/src/plugins/types.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/page/metadata.ts",
+      "blob": "487feceef1c6d91ca1ea043de79c0d16df541a7b",
+      "sha256": "f9ca2bc563e2e48d7105d0f1b2a71f689038ab40df75c55091c16b415ea1c3f7",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../plugins/types.js",
+          "path": "packages/core/src/plugins/types.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/page/seo-contributions.ts",
+      "blob": "069b8eaa84ba5fa1da0d4497eb98b86956dcc580",
+      "sha256": "7234c4988d4179106eccd9b4a07fe91e6fd69bac49e26cb66dbac6afd2688c29",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../database/repositories/types.js",
+          "path": "packages/core/src/database/repositories/types.ts"
+        },
+        {
+          "specifier": "../plugins/types.js",
+          "path": "packages/core/src/plugins/types.ts"
+        },
+        {
+          "specifier": "../seo/media-url.js",
+          "path": "packages/core/src/seo/media-url.ts"
+        },
+        {
+          "specifier": "../settings/index.js",
+          "path": "packages/core/src/settings/index.ts"
+        },
+        {
+          "specifier": "../settings/types.js",
+          "path": "packages/core/src/settings/types.ts"
+        },
+        {
+          "specifier": "./jsonld.js",
+          "path": "packages/core/src/page/jsonld.ts"
+        },
+        {
+          "specifier": "./seo-panel.js",
+          "path": "packages/core/src/page/seo-panel.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
       "path": "packages/core/src/page/seo-panel.ts",
       "blob": "16d40c85c591cd1e37c5beba5270d1e2fccecbc5",
       "sha256": "db169a8c057c16a87caa9004297ee00a281587ce791644840cd2c2c32afd8fa2",
@@ -16247,6 +17881,24 @@
         {
           "specifier": "../request-cache.js",
           "path": "packages/core/src/request-cache.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/page/site-identity.ts",
+      "blob": "5ea0e156b49bb2e9b7a118cc8244621724fbe44e",
+      "sha256": "91c82deec0f790636c219e906bdfee0159e9200dc209e158e6b99c5e2ebadf16",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../settings/types.js",
+          "path": "packages/core/src/settings/types.ts"
+        },
+        {
+          "specifier": "./metadata.js",
+          "path": "packages/core/src/page/metadata.ts"
         }
       ],
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
@@ -16884,7 +18536,7 @@
       "path": "packages/core/src/plugins/index.ts",
       "blob": "8a1231dc487d68d1a7bf723994ceecebbe1d9c29",
       "sha256": "8476c56ceea196fcca37befd7a5660531d28e34069cd40c1db3b401ddfcce9f9",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -17509,7 +19161,7 @@
       "path": "packages/core/src/plugins/types.ts",
       "blob": "4c70d4438aebb76eb711482a8ed1e312b452fe1a",
       "sha256": "89a8ec1e885481dafd1bca969ad4da8a085d240f1071adcb16b02a2d89958e3b",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -18242,6 +19894,32 @@
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
+      "path": "packages/core/src/schema/env-types.ts",
+      "blob": "fbb26177d20670bde4e04754d02b34064c49b660",
+      "sha256": "de9f9f1f6f9ee2cc52381f956285e1ee6f04b41bea9dc7952312be4c0c40a354",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../database/types.js",
+          "path": "packages/core/src/database/types.ts"
+        },
+        {
+          "specifier": "./block-values.js",
+          "path": "packages/core/src/schema/block-values.ts"
+        },
+        {
+          "specifier": "./registry.js",
+          "path": "packages/core/src/schema/registry.ts"
+        },
+        {
+          "specifier": "./zod-generator.js",
+          "path": "packages/core/src/schema/zod-generator.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
       "path": "packages/core/src/schema/index.ts",
       "blob": "98020c30e5c28313b9f0c40dc29b57846e28a62a",
       "sha256": "11c6f190ce8de1d30416400ae87da9f6aeb80c83169bae1b166f40cd32d7304e",
@@ -18893,7 +20571,7 @@
       "path": "packages/core/src/seed/validate.ts",
       "blob": "2bc35f373cf589b760670623e643e674f3ff53e9",
       "sha256": "148a70822e19e70d46cdbfa75d457389c7a464a422aad8e922df3d3d8affa36d",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -19793,7 +21471,7 @@
       "path": "packages/core/src/transfer/domain.ts",
       "blob": "295ae53cd0d174101c8af8c54197e599b26436ac",
       "sha256": "d29a720c88861a10a18a02a6a0ee19a1618396a0c2d4d613df5bbb5d4be96ba9",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -21617,6 +23295,20 @@
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
+      "path": "packages/core/src/ui.ts",
+      "blob": "c55f10b7682ed0f351baf8558aa8a76b9a1c8a56",
+      "sha256": "69d894509c354572645783ae5b68efd1e61ed9f074f7ad098bd260d2e9e7188d",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "./components/index.js",
+          "path": "packages/core/src/components/index.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
       "path": "packages/core/src/utils/base64.ts",
       "blob": "9dae6dade270b1c1291b21c8a90adc73f5dab294",
       "sha256": "79a94b895668f729574cc25e50ad5e1f6db5998dc3f6e3e12e5c1fa661969a90",
@@ -21659,6 +23351,20 @@
       "closureRole": "full transitive local package/import dependency",
       "inventoryOnly": true,
       "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/utils/sanitize.ts",
+      "blob": "c709af5d3ab373928d90ef50fd375f71f390834c",
+      "sha256": "f2cdf75296f000f3bf31049f13dcec2b322e54aa67f9262442f98e8045bd99e6",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "@emdash-cms/admin/html-block",
+          "path": "packages/admin/src/html-block.ts"
+        }
+      ],
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
@@ -21711,6 +23417,15 @@
       "path": "packages/core/src/visual-editing/editable.ts",
       "blob": "4e017e9412a2f9c0c0241fb7d0ec5d997b193fa1",
       "sha256": "fc012f8a5ec5e07ed6e9449037184f56a00dde7f71c629ebf4ac9ae7c22dd48a",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/src/widgets/archives.ts",
+      "blob": "cab20d4e12ef8219818427d1c0a2b4166628b630",
+      "sha256": "3098bf981aee49779a591e75db8c9be17c9d4f6de8301725dc490c1383612dc8",
       "closureRole": "full transitive local package/import dependency",
       "inventoryOnly": true,
       "dependencies": [],
@@ -21887,6 +23602,33 @@
         }
       ],
       "testSelection": "parity/emdash/blocks/source-tests/packages/core/tests/integration/content/media-field-validation.test.ts",
+      "runtimeScope": "whole callbacks passed on native Node/actual D1 where dialect-parametrized; source host transport explicit"
+    },
+    {
+      "path": "packages/core/tests/integration/content/repeater-media-normalize.test.ts",
+      "blob": "6d9617918d550589a5ddc3ebf26187b80e10592b",
+      "sha256": "0c511be1930a7ec2653c2c734133b80eaa737224a4428ef5e6b0b3c897e2568f",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../../src/emdash-runtime.js",
+          "path": "packages/core/src/emdash-runtime.ts"
+        },
+        {
+          "specifier": "../../../src/schema/registry.js",
+          "path": "packages/core/src/schema/registry.ts"
+        },
+        {
+          "specifier": "../../utils/mcp-runtime.js",
+          "path": "packages/core/tests/utils/mcp-runtime.ts"
+        },
+        {
+          "specifier": "../../utils/test-db.js",
+          "path": "packages/core/tests/utils/test-db.ts"
+        }
+      ],
+      "testSelection": "parity/emdash/blocks/source-tests/packages/core/tests/integration/content/repeater-media-normalize.test.ts",
       "runtimeScope": "whole callbacks passed on native Node/actual D1 where dialect-parametrized; source host transport explicit"
     },
     {
@@ -22136,6 +23878,32 @@
         {
           "specifier": "../../../src/seed/types.js",
           "path": "packages/core/src/seed/types.ts"
+        },
+        {
+          "specifier": "../../utils/test-db.js",
+          "path": "packages/core/tests/utils/test-db.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/tests/integration/database/taxonomy-def-groups-migration.test.ts",
+      "blob": "78d22e851a9a16403de7faa04f897739b3d5c6fe",
+      "sha256": "652c9a2b22b705b2cc79a7fd235386847609662958984bb6f346a77e91d4ff1a",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../../src/api/handlers/taxonomies.js",
+          "path": "packages/core/src/api/handlers/taxonomies.ts"
+        },
+        {
+          "specifier": "../../../src/database/migrations/085_taxonomy_def_groups.js",
+          "path": "packages/core/src/database/migrations/085_taxonomy_def_groups.ts"
+        },
+        {
+          "specifier": "../../../src/database/migrations/runner.js",
+          "path": "packages/core/src/database/migrations/runner.ts"
         },
         {
           "specifier": "../../utils/test-db.js",
@@ -22853,6 +24621,143 @@
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
+      "path": "packages/core/tests/repro/BlockHero.astro",
+      "blob": "fcb73211c714dcb41fc58e16f58a2b6c3b585daa",
+      "sha256": "8e8e1bbe66716b7e97b6c2030daf511ea7cf98057dbd853e2b473eb2f2413aac",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/tests/repro/BlockQuote.astro",
+      "blob": "83dee2fdcb6e789522976f6de5c6c3027387a954",
+      "sha256": "9f0377748ad5702823bdb423e19c9dfae6631b985a2e89b32e3c63a014fdecf3",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/tests/repro/HomeFeatures.astro",
+      "blob": "d3ac8b1b8e99613ccc19df6947c4df747a7c75cf",
+      "sha256": "511159f86bbaa9c968a2115220fb89ab403188c8fe3d12986ea2c9dd26c17e4e",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/tests/repro/HomeHero.astro",
+      "blob": "a99bc9d1d7895cc47e3240671492954d65490002",
+      "sha256": "341685c0a21d8dd3ec5636144f12f55f6ad99d6400aa8181f2a7bd42dae77d4c",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../src/ui.js",
+          "path": "packages/core/src/ui.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/tests/repro/HomeQuote.astro",
+      "blob": "ae879737db43aa374deb227415bfba96579f599e",
+      "sha256": "a945850575651a8870f9f971dcdab4fcf21b6681b4612ca48a58e57ff40d0738",
+      "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/tests/repro/blocks-homepage.render.test.ts",
+      "blob": "0ce81a7a0065bb6712ce13e67303a8dfa455387c",
+      "sha256": "f30d1d02b52a71c054278b9bbb3a44e5d86ed5bd5d849c5a8064e441b9e2c921",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../src/ui.js",
+          "path": "packages/core/src/ui.ts"
+        },
+        {
+          "specifier": "./HomeFeatures.astro",
+          "path": "packages/core/tests/repro/HomeFeatures.astro"
+        },
+        {
+          "specifier": "./HomeHero.astro",
+          "path": "packages/core/tests/repro/HomeHero.astro"
+        },
+        {
+          "specifier": "./HomeQuote.astro",
+          "path": "packages/core/tests/repro/HomeQuote.astro"
+        }
+      ],
+      "testSelection": "parity/emdash/blocks/source-tests/packages/core/tests/repro/blocks-homepage.render.test.ts",
+      "runtimeScope": "committed immutable source; not yet executed / owning runtime family explicit"
+    },
+    {
+      "path": "packages/core/tests/repro/blocks.render.test.ts",
+      "blob": "de4b7b5b5d6b0a316495f354f87ce4547736389d",
+      "sha256": "22c8a65a1d10389916c5d59cefd7bd91c3730c80c6bc639973724c7b8bb1c12b",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../src/ui.js",
+          "path": "packages/core/src/ui.ts"
+        },
+        {
+          "specifier": "./BlockHero.astro",
+          "path": "packages/core/tests/repro/BlockHero.astro"
+        },
+        {
+          "specifier": "./BlockQuote.astro",
+          "path": "packages/core/tests/repro/BlockQuote.astro"
+        }
+      ],
+      "testSelection": "parity/emdash/blocks/source-tests/packages/core/tests/repro/blocks.render.test.ts",
+      "runtimeScope": "committed immutable source; not yet executed / owning runtime family explicit"
+    },
+    {
+      "path": "packages/core/tests/unit/api/block-type-route-registration.test.ts",
+      "blob": "5ace90551420373604629bc79ea1d4a23f0cd104",
+      "sha256": "1237576ba84a0b8e78092ab87d254879302b39b582b7517d98f0a9817c57e3af",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../../src/astro/integration/routes.js",
+          "path": "packages/core/src/astro/integration/routes.ts"
+        },
+        {
+          "specifier": "../../../src/astro/routes/api/schema/block-types/[slug]/index.js",
+          "path": "packages/core/src/astro/routes/api/schema/block-types/[slug]/index.ts"
+        }
+      ],
+      "testSelection": "parity/emdash/blocks/source-tests/packages/core/tests/unit/api/block-type-route-registration.test.ts",
+      "runtimeScope": "committed immutable source; not yet executed / owning runtime family explicit"
+    },
+    {
+      "path": "packages/core/tests/unit/api/openapi.test.ts",
+      "blob": "bd2046b68b28ec011cd0600fd6ff3fb57892db7f",
+      "sha256": "a9a9d45c960b56ae90961c735ee597c3f68a7a278319b09afeb995598acb7d75",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../../src/api/openapi/document.js",
+          "path": "packages/core/src/api/openapi/document.ts"
+        },
+        {
+          "specifier": "../../../src/api/schemas/media-usage.js",
+          "path": "packages/core/src/api/schemas/media-usage.ts"
+        }
+      ],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
       "path": "packages/core/tests/unit/cli/seed-commands.test.ts",
       "blob": "a432814b219f8c41ac4d0a322dfd8ba5339f73ca",
       "sha256": "54f24fbc59bc4ea916ffbc7f945d21722d8a9cdb53b088658353a5c7d59500e7",
@@ -22907,6 +24812,36 @@
         }
       ],
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/core/tests/unit/components/blocks-renderer.test-d.ts",
+      "blob": "470afaf5f4fd264c9b9487a377c4bebdf690355e",
+      "sha256": "c50a3784a7926ef3decf72603529146031e3cda87ea3208343a6a7cb905263f2",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../../src/components/blocks.js",
+          "path": "packages/core/src/components/blocks.ts"
+        }
+      ],
+      "testSelection": "parity/emdash/blocks/source-tests/packages/core/tests/unit/components/blocks-renderer.test-d.ts",
+      "runtimeScope": "committed immutable source; not yet executed / owning runtime family explicit"
+    },
+    {
+      "path": "packages/core/tests/unit/components/blocks-renderer.test.ts",
+      "blob": "de4b9d504466e3238a0fd8b6254398a6b0bc9645",
+      "sha256": "be1b4f1d241cbd0297b58ef104129a7a95cf0862911ead5aa6efbb4a4b3c489d",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../../src/components/blocks.js",
+          "path": "packages/core/src/components/blocks.ts"
+        }
+      ],
+      "testSelection": "parity/emdash/blocks/source-tests/packages/core/tests/unit/components/blocks-renderer.test.ts",
+      "runtimeScope": "whole callbacks passed on native Node/actual D1 where dialect-parametrized; source host transport explicit"
     },
     {
       "path": "packages/core/tests/unit/fields/file-image-builders.test.ts",
@@ -23514,10 +25449,19 @@
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
+      "path": "packages/gutenberg-to-portable-text/package.json",
+      "blob": "4c0651dd0835ce5aff6f9452ca8338cf8a94b44f",
+      "sha256": "49aee000c7695e9803b205de8e55e574edab39e9e085a2da0d9c7c450c9dba29",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
       "path": "packages/gutenberg-to-portable-text/src/index.ts",
       "blob": "b704a74cdf0386b0a4f3dbd4f41ee75b29dfe007",
       "sha256": "d0dfb072131ec52d00d4ae319f662af59f6b448cc8e5eeefaf76cfd389a9b6c5",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -23802,6 +25746,15 @@
       "blob": "f9d2901e88bb857a54a798eed4502f549ed36cb4",
       "sha256": "13f22512784520744ed7219c0af16277b7a8efe51286beecb64c701d21818855",
       "closureRole": "full transitive local package/import dependency",
+      "inventoryOnly": true,
+      "dependencies": [],
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+    },
+    {
+      "path": "packages/plugins/embeds/src/schemas.ts",
+      "blob": "68c7fcda42c40098fb3fe9802b5b0fb473b65f89",
+      "sha256": "0d121ea740d601bc8c2e9fa86907119ef051149260747455eec3ea5642d110d7",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [],
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
