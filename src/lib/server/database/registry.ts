@@ -78,26 +78,33 @@ export class SchemaRegistry {
       const item = value[key as keyof typeof value];
       if (item !== undefined) (updates as Record<string,unknown>)[column] = typeof item === 'boolean' ? Number(item) : (item === '' ? null : item);
     }
+    const displayGuards: CompiledQuery[] = [];
     if (value.titleField) {
       // Source validateTitleDateFields checks the stored type, before the read
       // mapper can project an unknown future type as a fallback string.
       const field = await db.selectFrom('_cms_fields').select('type').where('collection_id','=',definition.id).where('slug','=',value.titleField).executeTakeFirst();
       if(!field || !['string','text','slug'].includes(field.type)) throw new CmsError('INVALID_TITLE_FIELD');
+      displayGuards.push(sql`UPDATE _cms_guards SET pass = CASE WHEN EXISTS (
+        SELECT 1 FROM _cms_fields WHERE collection_id=${definition.id} AND slug=${value.titleField}
+          AND type IN ('string','text','slug')) THEN 1 ELSE 0 END WHERE token=${token}`.compile(db));
     }
     if (value.dateField) {
       const field = await db.selectFrom('_cms_fields').select('type').where('collection_id','=',definition.id).where('slug','=',value.dateField).executeTakeFirst();
       if(!field || field.type !== 'datetime') throw new CmsError('INVALID_DATE_FIELD');
+      displayGuards.push(sql`UPDATE _cms_guards SET pass = CASE WHEN EXISTS (
+        SELECT 1 FROM _cms_fields WHERE collection_id=${definition.id} AND slug=${value.dateField}
+          AND type='datetime') THEN 1 ELSE 0 END WHERE token=${token}`.compile(db));
     }
     const results = await this.batch([
       sql`INSERT INTO _cms_guards(token, pass) SELECT ${token},
         CASE WHEN EXISTS (SELECT 1 FROM _cms_collections WHERE id = ${definition.id}
           AND version = ${definition.version} AND updated_at = ${definition.updatedAt})
-        THEN 1 ELSE 0 END`.compile(db),
+        THEN 1 ELSE 0 END`.compile(db), ...displayGuards,
       db.updateTable('_cms_collections').set(updates).where('id', '=', definition.id).returningAll().compile(),
       sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
     ], 'CONFLICT');
     // Read the operation's own RETURNING row, rather than a later concurrent writer.
-    return collection(results[1].rows[0] as CollectionRow);
+    return collection(results[1 + displayGuards.length].rows[0] as CollectionRow);
   }
   async listFields(collectionId: string): Promise<Field[]> {
     const rows = await this.database.db.selectFrom('_cms_fields').selectAll().where('collection_id', '=', collectionId)
