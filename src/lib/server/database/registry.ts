@@ -340,11 +340,19 @@ export class SchemaRegistry {
     // bound legacy reference can retain its frozen pre-binding TEXT column.
     const columns=(await sql<{name:string}>`PRAGMA table_info(${sql.ref(tableName(collectionSlug))})`.execute(db)).rows;
     const guard=this.collectionGuard(definition,expected);
-    await this.batch([...guard.before,...this.dropFieldIndexStatements(target.id),
+    // An unused field deletion leaves the collection revision unchanged. The
+    // native expected-revision operation must also guard the exact field row
+    // inside this batch before cached column/index DDL can run. Generic calls
+    // without a precondition retain their existing behavior.
+    const fieldToken=ulid();
+    const fieldBefore=expected === undefined ? [] : [sql`INSERT INTO _cms_guards(token,pass) SELECT ${fieldToken},CASE WHEN EXISTS (
+      SELECT 1 FROM _cms_fields WHERE id=${target.id}) THEN 1 ELSE 0 END`.compile(db)];
+    const fieldAfter=expected === undefined ? [] : [sql`DELETE FROM _cms_guards WHERE token=${fieldToken}`.compile(db)];
+    await this.batch([...guard.before,...fieldBefore,...this.dropFieldIndexStatements(target.id),
       ...(columns.some(column=>column.name===target.slug) ? [sql`ALTER TABLE ${sql.ref(tableName(collectionSlug))} DROP COLUMN ${sql.ref(target.slug)}`.compile(db)] : []),
       db.deleteFrom('_cms_fields').where('id','=',target.id).compile(),
       db.updateTable('_cms_collections').set({title_field:sql`CASE WHEN title_field = ${target.slug} THEN NULL ELSE title_field END`, date_field:sql`CASE WHEN date_field = ${target.slug} THEN NULL ELSE date_field END`, updated_at:nextMetadataTimestamp([definition])})
-        .where('id','=',target.collectionId).where(eb => eb.or([eb('title_field','=',target.slug),eb('date_field','=',target.slug)])).compile(),...guard.after],'CONFLICT');
+        .where('id','=',target.collectionId).where(eb => eb.or([eb('title_field','=',target.slug),eb('date_field','=',target.slug)])).compile(),...fieldAfter,...guard.after],'CONFLICT');
   }
   async deleteCollection(slug: unknown, options?: {force?:boolean}, expected?: RevisionPrecondition): Promise<void> {
     const target = await this.getCollection(slug); if(!target) throw new CmsError('NOT_FOUND');
