@@ -3,41 +3,58 @@ import type { CmsDatabase } from '../database/contract.ts';
 import { commentSchemaSql } from './migrations.ts';
 import { commentRuntimeSchemaSql } from './runtime-migrations.ts';
 
-/** Fold SQL syntax outside string literals; literal values remain byte-exact. */
-export function normalizeCommentSchemaSql(value: string): string {
-  let result = '';
+type SqlToken = { text: string; quotedIdentifier?: string };
+const ownedIdentifiers = new Set([
+  '_cms_comments', '_cms_comment_reactions', '_cms_comment_options', '_cms_comment_rate_limits', '_cms_auth_users',
+  'id', 'collection', 'content_id', 'parent_id', 'author_name', 'author_email', 'author_user_id', 'body', 'status',
+  'ip_hash', 'user_agent', 'moderation_metadata', 'created_at', 'updated_at', 'comment_id', 'reaction', 'voter_hash',
+  'name', 'value', 'revision', 'key', 'window', 'count', 'pk_comment_rate_limits',
+  ...[...commentSchemaSql, ...commentRuntimeSchemaSql].map(statement => /^CREATE (?:UNIQUE )?(?:TABLE|INDEX|TRIGGER) (\w+)/.exec(statement)![1])
+]);
+/** SQLite whitespace excludes NBSP and vertical tab. Every token boundary is retained. */
+function schemaTokens(value: string): SqlToken[] {
+  const tokens: SqlToken[] = [];
   for (let index = 0; index < value.length;) {
     const character = value[index];
-    if (character === "'") {
+    if (/[ \t\n\f\r]/.test(character)) { index++; continue; }
+    if (character === "'" || character === '"' || character === '`' || character === '[') {
       const start = index++;
+      const closing = character === '[' ? ']' : character;
+      let content = '';
       while (index < value.length) {
-        if (value[index++] !== "'") continue;
-        if (value[index] === "'") { index++; continue; }
+        const next = value[index++];
+        if (next !== closing) { content += next; continue; }
+        if (character !== '[' && value[index] === closing) { content += closing; index++; continue; }
         break;
       }
-      result += value.slice(start, index);
-    } else if (character === '"' || character === '`' || character === '[') {
-      const closing = character === '[' ? ']' : character;
-      index++;
-      while (index < value.length) {
-        if (value[index] === closing) {
-          index++;
-          if (value[index] === closing) { result += closing; index++; continue; }
-          break;
-        }
-        result += value[index++].toLowerCase();
-      }
+      tokens.push({ text: value.slice(start, index), ...(character === "'" ? {} : { quotedIdentifier: content.replace(/[A-Z]/g, letter => letter.toLowerCase()) }) });
+    } else if (/[A-Za-z0-9_\u0080-\uffff]/.test(character)) {
+      const start = index++;
+      while (index < value.length && /[A-Za-z0-9_\u0080-\uffff]/.test(value[index])) index++;
+      tokens.push({ text: value.slice(start, index).replace(/[A-Z]/g, letter => letter.toLowerCase()) });
     } else {
-      if (!/\s/.test(character)) result += character.toLowerCase();
+      tokens.push({ text: character });
       index++;
     }
   }
-  return result;
+  return tokens;
+}
+/** Quoted tokens remain exact unless the reference places a known owned identifier there. */
+export function normalizeCommentSchemaSql(value: string, reference?: string): string {
+  const tokens = schemaTokens(value);
+  const expectedTokens = reference === undefined ? undefined : schemaTokens(reference);
+  return JSON.stringify(tokens.map((token, index) => {
+    const expectedToken = expectedTokens?.[index];
+    // PRIMARY KEY is syntax; the separately declared rate-limit key is an identifier.
+    const identifierPosition = expectedToken && ownedIdentifiers.has(expectedToken.text)
+      && !(expectedToken.text === 'key' && expectedTokens?.[index - 1]?.text === 'primary');
+    return identifierPosition && token.quotedIdentifier === expectedToken.text ? expectedToken.text : token.text;
+  }));
 }
 const normalize = normalizeCommentSchemaSql;
 const expected = new Map([...commentSchemaSql, ...commentRuntimeSchemaSql].map(statement => {
   const match = /^CREATE (?:UNIQUE )?(TABLE|INDEX|TRIGGER) (\w+)/.exec(statement)!;
-  return [match[2], { type: match[1].toLowerCase(), sql: normalize(statement) }];
+  return [match[2], { type: match[1].toLowerCase(), sql: statement }];
 }));
 
 /** One read-only schema census; no migrations, writes or cross-request memoization. */
@@ -61,12 +78,12 @@ export async function commentsReady(database: CmsDatabase): Promise<boolean> {
   const collectionColumns = rows.filter(row => row.type === 'column');
   if (collectionColumns.length !== settings.size || !collectionColumns.every(row => {
     const source = settings.get(row.name);
-    return source && row.tbl_name.toUpperCase() === source.type && row.sql !== null && normalize(row.sql) === source.value;
+    return source && row.tbl_name.toUpperCase() === source.type && row.sql !== null && normalize(row.sql) === normalize(source.value);
   })) return false;
   const actual = rows.filter(row => row.type !== 'column' && !row.name.startsWith('sqlite_autoindex_'));
   if (actual.length !== expected.size) return false;
   return actual.every(row => {
     const source = expected.get(row.name);
-    return source && row.type === source.type && row.sql !== null && normalize(row.sql) === source.sql;
+    return source && row.type === source.type && row.sql !== null && normalize(row.sql, source.sql) === normalize(source.sql);
   });
 }
