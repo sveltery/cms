@@ -7,6 +7,7 @@ import { ulid } from "ulidx";
 
 import { invalidateTaxonomyObjectCache } from "../../object-cache/index.ts";
 import { slugify } from "../../utils/slugify.ts";
+import { chunks } from "../../utils/chunks.ts";
 import { atomicTaxonomyQueries } from "../../../atomic.ts";
 import type { Database, TaxonomyTable } from "../types.ts";
 import { validateIdentifier } from "../validate.ts";
@@ -802,28 +803,12 @@ export class NativeTaxonomyRepository {
 
 		const queries = [];
 		const toRemove = [...currentGroups].filter((g) => !newGroups.has(g));
-		if (toRemove.length > 0) {
-			queries.push(this.db
-				.deleteFrom("content_taxonomies")
-				.where("collection", "=", collection)
-				.where("entry_id", "=", entryGroup)
-				.where("taxonomy_id", "in", toRemove)
-				.compile());
+		for (const remove of chunks(toRemove, 64)) {
+			queries.push(this.db.deleteFrom("content_taxonomies").where("collection", "=", collection).where("entry_id", "=", entryGroup).where("taxonomy_id", "in", remove).compile());
 		}
-
 		const toAdd = [...newGroups].filter((g) => !currentGroups.has(g));
-		if (toAdd.length > 0) {
-			queries.push(this.db
-				.insertInto("content_taxonomies")
-				.values(
-					toAdd.map((taxonomy_id) => ({
-						collection,
-						entry_id: entryGroup,
-						taxonomy_id,
-					})),
-				)
-				.onConflict((oc) => oc.doNothing())
-				.compile());
+		for (const add of chunks(toAdd, 30)) {
+			queries.push(this.db.insertInto("content_taxonomies").values(add.map(taxonomy_id => ({collection, entry_id:entryGroup, taxonomy_id}))).onConflict(oc=>oc.doNothing()).compile());
 		}
 
 		await atomicTaxonomyQueries(this.db, queries);

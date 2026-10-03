@@ -10,6 +10,9 @@ pnpm install --frozen-lockfile
 pnpm check
 pnpm test
 pnpm test:source-ports
+pnpm test:taxonomies:source
+node scripts/check-taxonomy-source-ports.mjs
+node node_modules/typescript/bin/tsc --project tsconfig.taxonomy-ports.json
 node node_modules/typescript/bin/tsc --project tsconfig.source-ports.json
 pnpm build
 pnpm test:production

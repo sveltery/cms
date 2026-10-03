@@ -1,7 +1,7 @@
 {
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "license": "Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt",
-  "state": "Complete immutable snapshots; scoped supplemental Node execution and secured source checkbox baseline. Entire family and D1 not yet green.",
+  "state": "Complete immutable core snapshots; configured23-file412 expanded source-domain executions green on installed Node fixtures. Three historical files, secured native browsers and actualD1 remain incomplete.",
   "files": [
     {
       "source": "packages/core/tests/integration/content/content-taxonomies.test.ts",
@@ -13,51 +13,52 @@
           "id": "packages/core/tests/integration/content/content-taxonomies.test.ts:62",
           "title": "attaches taxonomy terms on create by slug",
           "callbackSha256": "88163cb99332ccd20201206281956e578858b05ca6e63a172e1c3acd23d7a0ad",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/content/content-taxonomies.test.ts:79",
           "title": "returns VALIDATION_ERROR and rolls back the whole write when a slug is unknown",
           "callbackSha256": "5c1eab3c03e2da35345a2db375aace9b19d98db56d4b5cda662a9b8ba3f642de",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/content/content-taxonomies.test.ts:101",
           "title": "rejects taxonomies with a non-array value",
           "callbackSha256": "0cbe085ee3de1da0e826af849b3c7570a600f055351f513954a21a512d7c1491",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/content/content-taxonomies.test.ts:113",
           "title": "replaces existing assignments on update (setTermsForEntry semantics)",
           "callbackSha256": "556ca4187cd5b91323df3f52cfc4c80f42720f75d5f6319f05e9b2f4d187d95c",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/content/content-taxonomies.test.ts:136",
           "title": "clears a taxonomy when passed an empty array",
           "callbackSha256": "fd0b9f718c92a655fc7cc7ba4adbd652ca90ead921070a941cefd2d7f7fec70b",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/content/content-taxonomies.test.ts:155",
           "title": "leaves untouched taxonomies alone (only rewrites named ones)",
           "callbackSha256": "7338031a064f9bb00db8ca27eada80a7d437a6d42ef160f9e6d3d57863446f9e",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/content/content-taxonomies.test.ts:177",
           "title": "resolves slugs in the entry's locale for i18n sites",
           "callbackSha256": "65fb062e965000e73b2fd40c8b6937148c3d5036246d28719d994fc5765d90d2",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 14,
-        "passed": 2,
-        "failed": 12
+        "passed": 14,
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -130,21 +131,22 @@
           "id": "packages/core/tests/integration/database/taxonomy-repository-pagination.test.ts:53",
           "title": "pages by sort order, label, and id",
           "callbackSha256": "615e933ffd6b5f56d26fbc793bfaada1d7f0205420e8cc2b99baa92487926e24",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/database/taxonomy-repository-pagination.test.ts:80",
           "title": "caps each page at 100 items",
           "callbackSha256": "a74074c416795568cd6325e7b3f7e5a3075181cbda1ba9569e4c2fa7966066dd",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 4,
         "passed": 4,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -175,294 +177,298 @@
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:63",
           "title": "returns only the seeded defaults when no extra taxonomies are added",
           "callbackSha256": "3600db75767e1af2f4d318f418ce86828c21a839365e6ea90da9f09c93a53e19",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:80",
           "title": "lists user-created taxonomies alongside the defaults",
           "callbackSha256": "606e8440a671c0b58f79575557b378c38cc27be9bebe9a2c9dd223daf4e149ce",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:112",
           "title": "any logged-in user (SUBSCRIBER) can read taxonomies",
           "callbackSha256": "5d0bd13ff375e6a0a7cb93b17266b381bf95228f21756041c9c525f9948b8df8",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:121",
           "title": "bug #7: orphaned collection slugs are filtered from taxonomy_list output",
           "callbackSha256": "ef421a2cc38ba7dafff1925152de3ef9a9c3fb07381f756064a555d409f4ed1b",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:170",
           "title": "returns empty list when taxonomy has no terms",
           "callbackSha256": "bbbfcf751c89d5e70a1f4c00f630455483023ecc15ab273302358e592d1fdcb3",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:181",
           "title": "returns terms after creation",
           "callbackSha256": "e4b6bd78c1d2f35f543f7e4a2f0d88696fd83096014ab83478029f915ec8b017",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:203",
           "title": "returns clear error for missing taxonomy name",
           "callbackSha256": "fc55d72cdbd7fea24bfc7286961e7d9d08b93d2a4ac8cf6fb46f3ceed9681d19",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:214",
           "title": "paginates with limit + cursor",
           "callbackSha256": "fc9280307b5113e2a51578ec276bed48c9d936647cd57e78c5c3283dac941046",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:246",
           "title": "paginates in manual term order",
           "callbackSha256": "20c10c83a87aee17797bad3980439eb431a8fa1719a894dd1fcd73cc560ae23c",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:274",
           "title": "paginates correctly when multiple terms share the same label",
           "callbackSha256": "123b5a11cabe47676b54d77731467004299ef581edc2ef4eed0d9354362ddc85",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:308",
           "title": "rejects a current cursor after its term is deleted",
           "callbackSha256": "1e6293a9d2501c53acac24311b229c6e0612196ce180ddf82376cdbc23c3635c",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:345",
           "title": "rejects a cursor from another taxonomy",
           "callbackSha256": "c31e7e62c596332aa468da73e2c4f7f0e379141de3a7067ef1f7fed5b76e5f73",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:361",
           "title": "rejects a cursor from another locale",
           "callbackSha256": "5a122e21a9e082cb6eb0de3c61f64c628871e075b8124cef5c593277d84b00df",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:383",
           "title": "resumes a legacy cursor in manual term order",
           "callbackSha256": "17b250ac963a60ac6160f69c2bc81abeb218353a95306ff7e5fb1118d15f21d3",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:413",
           "title": "rejects a legacy cursor after its term is deleted",
           "callbackSha256": "edb95097b7a16ba827ceeb75679f7febf4fced1d5b5b3962a1b651a9d62dcc8c",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:436",
           "title": "accepts every cursor it emits for a long term label",
           "callbackSha256": "86d878f7ba06a215f5a1633d7552282fc8e038171c0831959b97edd66a9ee687",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:464",
           "title": "malformed cursor returns INVALID_CURSOR",
           "callbackSha256": "06c07fe000850a98f56e4ed854a74b4a1b4834bbb33c8d5c0bef5d22aca5cbc7",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:480",
           "title": "rejects a cursor with %s",
           "callbackSha256": "689922b610458678a276bc6a135d6c30c4a75af35f22a176a5ac6bd19bc232db",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:499",
           "title": "rejects a legacy cursor with %s",
           "callbackSha256": "a5dcf4f8d105b4856b91ca6b9fefaf32e84056ddfb7e7964650407de427c6c8b",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:512",
           "title": "any logged-in user (SUBSCRIBER) can read terms",
           "callbackSha256": "4c57febc95a3930db6286097f0780bade1ce4dcde2a2a62c2701ac7542418f4d",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:541",
           "title": "creates a term with minimal arguments",
           "callbackSha256": "f7aaf5979c8e3075e391bc5df2e1d2e2c24703fa727a67541e06d42c9bd5f010",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:553",
           "title": "derives a Unicode slug when omitted",
           "callbackSha256": "48fd74cbb9f69e60d3be481ce1a6fba29ffed08e5130a45d2764b52334ac5172",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:565",
           "title": "creates a child term with parentId",
           "callbackSha256": "7adcf0f166bd15c1aa50fb26d5e990400edd189f8c2964d37bf803f31df0d475",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:587",
           "title": "rejects duplicate slug within the same taxonomy",
           "callbackSha256": "daf97c75a168e2079984b73a9de1d050404cdfe22b65d8bd4c5f731c9d1ad964",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:601",
           "title": "allows same slug across different taxonomies",
           "callbackSha256": "778daf4e450122dd6a6ba2ceb52616b29c91d319cefd59752fb2098189676552",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:615",
           "title": "rejects creating a term in a non-existent taxonomy",
           "callbackSha256": "3372a1bd1b7dbe2b4fffe446739c27d5158296155a228938313f18c32856210b",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:626",
           "title": "rejects parentId pointing to a different taxonomy",
           "callbackSha256": "356b0f9a3d48a98cdb8c768bf408dcb3c31df2b80e4a03682669a7fb0622ec99",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:646",
           "title": "rejects parentId pointing to a non-existent term",
           "callbackSha256": "9a534322d150e84a49ad7423f242ecb21e11cc3e78c0ef435f8862047b060c21",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:660",
           "title": "requires EDITOR role (AUTHOR is blocked)",
           "callbackSha256": "b07763c5f8c0e1fa348a94763bb7b2c8e41408762371a50b20f8586996c066dc",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:709",
           "title": "MCP exposes taxonomy_update_term and taxonomy_delete_term",
           "callbackSha256": "7b915df125b5ef168d8ff19485b7bf4a0b92316b5df6776c210dfbebf0b4fd76",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:716",
           "title": "renames the slug when the new slug is free",
           "callbackSha256": "6b36a57d0401146c1f8616ca2ad16b3d0026f64cbb0cb205bfabce0bcb324375",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:727",
           "title": "changes the label",
           "callbackSha256": "b6b974e7e22e57e7f39ae52363b1abe52f1e764098ccbe3cd2b4ae55a8f83bb9",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:738",
           "title": "updates only the translation named by locale when translations share a slug",
           "callbackSha256": "48f3121b0e30e77760e918d3ef960b4b78a5913c8ad32d49783c8efd8977b0c0",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:757",
           "title": "reparents a term and detaches via parentId: null",
           "callbackSha256": "7c699e9b937fdea5886586efe31378c5ff8deb2a698a1309fe24f74e11e2f2b2",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:778",
           "title": "rejects parents from a different taxonomy",
           "callbackSha256": "39fbd0448feccdd468a2c982525c0c04cbbe6ba979841e4c2c55d2adb7bdaf8e",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:789",
           "title": "rejects self-parent",
           "callbackSha256": "c3441eb8c82194126d61a9e2e01ee63520e1a42fbba483d2af531e52ff848a28",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:799",
           "title": "rejects a 2-cycle (descendant becoming ancestor)",
           "callbackSha256": "d2e6b9807d947830af5421add65c8f092aed0ac46cebc9d25fc8406f0287c6f2",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:811",
           "title": "rejects empty-string parentId on create",
           "callbackSha256": "d3b1f687861075a92125cf259487fa422959ee5e5ff786d617d851af2c5daa84",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:834",
           "title": "accepts a chain of exactly MAX_DEPTH (100) ancestors",
           "callbackSha256": "fd7097ac8e809b0df7cfcc2b3410418eec4a1ff491d6e4c426d6e508b51b810a",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:864",
           "title": "rejects a chain that exceeds MAX_DEPTH",
           "callbackSha256": "c9ac4a29431910c38856df7017e234aa81aa33812b9f1aa94f0e9b4c8656c428",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:909",
           "title": "rejects deletion when children exist (matches handler behavior)",
           "callbackSha256": "29b05dbaa738be5ab8482aa30d17ecd143f319e85b963d1a104326060f6f4eab",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:928",
           "title": "deletes a leaf term and the row is actually gone",
           "callbackSha256": "8ae783996e82cd65117b0611c665b2c5d2de6f6b85417aeb73e5b61ab7149167",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:963",
           "title": "deletes only the translation named by locale when translations share a slug",
           "callbackSha256": "b9973517474e8983c2a9836c2ba97f92c00da7235192ecc9aa3bf588027f7031",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:999",
           "title": "MCP exposes taxonomy_get, taxonomy_create, taxonomy_update, taxonomy_delete",
           "callbackSha256": "1eff51bbe01696679e7f3d60d807bd06aff73d51830161586539be4550733ab1",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:1008",
           "title": "taxonomy_create + taxonomy_get round-trip",
           "callbackSha256": "c4e13048a4d0734a73f572e795d9cadeeb15272ecc99282d06c739985c80e59c",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:1035",
           "title": "taxonomy_create with translationOf inherits hierarchical and collections (#2525)",
           "callbackSha256": "66cd63f46481b1301668808952370a4964f98570c28bdf7bec3fb667a25ee19e",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:1069",
           "title": "taxonomy_update changes label, collections and hierarchical flag",
           "callbackSha256": "2da195fbc65ca44ad5b3704c5499f7bf2b695e1ecc77bb7664d50c21dd1c3624",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/mcp/taxonomy.test.ts:1107",
           "title": "taxonomy_delete removes the definition, its terms, and their assignments",
           "callbackSha256": "9493a9bda7b062a2c0f631de9e3191b9cd2ba3f468e213700a3714827b7b133b",
-          "state": "not run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "state": "not executed; historical migration/MCP harness pending"
+        "log": "/tmp/taxonomy-source-with-mcp.json",
+        "expandedExecutions": 53,
+        "passed": 53,
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -475,87 +481,88 @@
           "id": "packages/core/tests/integration/taxonomies/bulk-tag.test.ts:42",
           "title": "previews selected posts, adds without replacing tags, and skips repeat requests",
           "callbackSha256": "f8af5c1aff648d3bade0faf5294ac1c72452c150f4f372c73b891d25a1fcdc9b",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/bulk-tag.test.ts:70",
           "title": "matches only canonical published URLs on this origin, including date and locale",
           "callbackSha256": "cef3cabbdf8f0bd40f83e12e3ca70d1a3a00446ca6330ec62a5f085a3bffdbb2",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/bulk-tag.test.ts:117",
           "title": "does not match an archived post through its former public URL",
           "callbackSha256": "a705baa8b19c01b5c761e9176de177aef28cc47c06a2dfa875cf95603f553bff",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/bulk-tag.test.ts:139",
           "title": "applies to the reviewed ID when its former URL now belongs to another post",
           "callbackSha256": "c6b8cf4d339663bd247625ad0f350b9ac9486f9ed53cf928925ad34785ea53b8",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/bulk-tag.test.ts:179",
           "title": "bounds database round trips for a fifteen-post URL backfill",
           "callbackSha256": "87f72427ec23073e4c2dc156c7e1854ec418d887131d2dbd04125e7d1606d6b3",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/bulk-tag.test.ts:227",
           "title": "fails before writing if cache metadata cannot be read",
           "callbackSha256": "02e7437e2fa91649d8defe3f3b491c3d5deef6befe998dfd611cdf46422337ee",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/bulk-tag.test.ts:247",
           "title": "reports committed assignments separately from a cache purge failure and permits retry",
           "callbackSha256": "ddce6fab2586c9c1683de54e2b66c7823c5936126fc3a003e53677894aedcdfa",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/bulk-tag.test.ts:272",
           "title": "deduplicates translated siblings and purges both entry caches",
           "callbackSha256": "aac876e2c46915a91aabbbab1e8764c22d19b34ccc3c4bee0af7a67c20ca50e7",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/bulk-tag.test.ts:322",
           "title": "does not tag missing or disallowed posts, but continues with valid ones",
           "callbackSha256": "9632c8e931c18a150e023153693067a630ee49d8c5a3a3c9ce74bd90d9133711",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/bulk-tag.test.ts:342",
           "title": "assigns terms from any taxonomy to the collections it applies to",
           "callbackSha256": "f58fd117158f439863cb6f4766295d092e5197be5e31ccd1fbe8405440943a21",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/bulk-tag.test.ts:388",
           "title": "flags a URL shared by two collections instead of choosing one",
           "callbackSha256": "aa1f4a4b4eb72ce5f0496baaa62cc6b9bbff206744c53ea56743b567a810970d",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/bulk-tag.test.ts:428",
           "title": "refreshes cache without attempting an idempotent write that now fails",
           "callbackSha256": "a265f8b0742eceecf164b6788dcd6052484f83c0b98dcd2cf61f180ca605b6f0",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/bulk-tag.test.ts:458",
           "title": "reports a failed write without stopping other posts, then retries only that post",
           "callbackSha256": "6c2b96c942295130afe11fdc043cca7ac7bfa13bc9bf87fb4d41494f21a085dc",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 24,
         "passed": 24,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -568,51 +575,52 @@
           "id": "packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts:59",
           "title": "applies a structure change made through one locale to every locale",
           "callbackSha256": "2bfab97f48cf74f1890b6078f4b89758609f11c5b9cf34aba28da54607bb0139",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts:99",
           "title": "joins the existing taxonomy when a locale is added without translationOf",
           "callbackSha256": "af879d8fc2f7a09f01f077723356490a89137d213f002f55ec64a06211f405f7",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts:117",
           "title": "rejects a new translation that sends a different structure",
           "callbackSha256": "c9a79c73f5ac425d2bf7c159479510951dad0cd6b650ede01af0a546d009fc22",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts:139",
           "title": "lists the terms of a locale that has no definition of its own",
           "callbackSha256": "bd0a2b6982c765c2cfbc691a98cc1520ae47af3ee543c3949adf30bd16fb5bc8",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts:151",
           "title": "changes only the structure fields a write names",
           "callbackSha256": "1a528d2f314ec18a20baba20ebcd574fe54e6ef4566677d11d9b23613ea872c1",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts:171",
           "title": "keeps an existing taxonomy's structure when a write names no field",
           "callbackSha256": "7ec7921bc6def0d829ffdf9e6bfc2f985c591ea6952c55887fc6c92da1d230f4",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts:193",
           "title": "lets a new locale send back the structure a read returns",
           "callbackSha256": "a7ddca0ecb37be148bfe079035c4534278e0880d153abe068153800517e38e7a",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 14,
         "passed": 14,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -625,159 +633,160 @@
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:185",
           "title": "persists the configured default instead of the database column default",
           "callbackSha256": "ff9f0442817c1d25514b4bd62ada3949af5100567488e02d9bceb71697ec95e2",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:225",
           "title": "uses the implicit English locale when i18n is not configured",
           "callbackSha256": "6f14e2da7555c476e5ed101a0ed61469dbf94e84ff135fb52fb8a4255590ac1b",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:245",
           "title": "stores term locales with the configured casing",
           "callbackSha256": "a00c459a90f96a9fd7bc384f15ebd94bdcc63e036f228d720458bea703698b3a",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:259",
           "title": "rejects a parent when creating a term in a flat taxonomy",
           "callbackSha256": "d3d930226f748580af572c8158ac1612a575f45945f1ab3fa61436061204c30e",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:294",
           "title": "rejects a new parent when updating a term in a flat taxonomy",
           "callbackSha256": "67fa7b457262f82f8a9e227e23ed14ef9251c1365c8e77815a26a8025f0effb5",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:335",
           "title": "resolves taxonomy reads with the configured locale casing",
           "callbackSha256": "71237277e07a015d4cf1a1d32e7f9393f0d28c0bd5de3a15bba5e36aa5708ccb",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:380",
           "title": "repository resolves only the entry-locale variant when locale is given",
           "callbackSha256": "387be95428ac17f7cd930baff73a6bca71bd024fb6e2eb408416e810f0d68374",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:392",
           "title": "GET returns only the FR variant for the FR entry",
           "callbackSha256": "25313eb1862f4659c72d8564f77e29c95b46f6a25dca49a30b60040bf70c4688",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:405",
           "title": "GET returns only the EN variant for the EN entry",
           "callbackSha256": "b7ebda89088303a5da905f9d1dd025c9fec929d6fbcb9c79be5a8671649fa37e",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:417",
           "title": "GET by slug returns only the FR variant for the FR entry",
           "callbackSha256": "bebab3ef9005a2a8b4f13dd5f980c52f7f6fcceb4d0bd830f80167b556b9fecf",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:430",
           "title": "POST response echoes only the entry-locale variant",
           "callbackSha256": "716db740f5841267989f31f87bc5156f604aed4b8e1459aab21ab6a78703fa9b",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:446",
           "title": "POST refreshes published translations and taxonomy facets",
           "callbackSha256": "cc2780d2397ca15652f62cc07e096619acbedde0361fe0493afaba64b1cedb41",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:475",
           "title": "batches cache purges for large translation groups",
           "callbackSha256": "f3d390ea8429c404b3666bd444051943db75a2395a51f29b8ba5a7bcb67730d0",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:508",
           "title": "falls back to the configured default-locale term and exposes its actual locale",
           "callbackSha256": "b77a508f45964d359c1269eb6b893d6c86e26db5d818466fa91d9b3d429a9b5c",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:542",
           "title": "keeps an assignment unresolved when neither exact nor default locale exists",
           "callbackSha256": "00e3fdaa02d9bb30978bbdb3b4a84d2b755d7bf6d8076838077c85b9c2bc4c35",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:585",
           "title": "keeps a newly assigned unresolved group visible on every content sibling",
           "callbackSha256": "82406271bcfe1a6cd027555cdb39d3e2bc07edf7b878e0183e7bcb112d73b27f",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:627",
           "title": "reports the implicit English default for existing mixed-locale data",
           "callbackSha256": "606c63dccbaedc8b10de0b94bb0a73eba1df0a8021a7b13ad856257fbdeee895",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:658",
           "title": "lists exact variants first and default-locale variants for untranslated groups",
           "callbackSha256": "bbf2d53d59a15e877dc3c7278078fa0e027e24da007916a27ceb66fa79cfbabd",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:695",
           "title": "rejects fallback-resolved term lists without a requested locale",
           "callbackSha256": "5e5cd8d04b029aed7d09de05acc85b3324779e889fbd2c15e72444294af4e90c",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:752",
           "title": "nests a child under a parent translated AFTER the child",
           "callbackSha256": "4ebfcd0cedb93ef8ae2ea952229fb6d1bc882ab992a5258e7f57db0b02a06dae",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:800",
           "title": "keeps each locale's child under its own parent in an unfiltered list",
           "callbackSha256": "3e4b1abf7ffbb6c4951d4c902a954a916ae4ae257aa91b069e21dbb26366ce89",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:843",
           "title": "rejects a translation parented to its own translation group",
           "callbackSha256": "0235a3947937bcb9ca85867985e49d0a66ae68098c1704f4df18d6080c880093",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:861",
           "title": "rejects a parent that belongs to a different taxonomy",
           "callbackSha256": "89a89334aac642cc8544899930ed5ffd82cbda835960f933137e822157f8ac8b",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:877",
           "title": "backfills legacy locale-bound parent_id to the translation_group",
           "callbackSha256": "e8578eaa1f3cac53362befaa9e2a3ffdc1ae6a49a7bb9ac2e52432037a649511",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:948",
           "title": "leaves a group where only one row has a parent split across locales",
           "callbackSha256": "1ec850296c031f62af3802722807cd8657b91327ba4df48cdb8004f73bcb9072",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 50,
-        "passed": 30,
-        "failed": 20
+        "passed": 50,
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -790,15 +799,16 @@
           "id": "packages/core/tests/integration/taxonomies/taxonomy-translation-group-assignments.test.ts:23",
           "title": "reflects assignment changes across sibling locales with locale-correct terms",
           "callbackSha256": "a542d5b423828b5450d5074a9fe9b7a37431e1cc2fa395c04f44befc1a86e1c9",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 2,
         "passed": 2,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -811,39 +821,40 @@
           "id": "packages/core/tests/integration/taxonomy-reorder-writes.test.ts:69",
           "title": "writes a whole sibling group in one statement",
           "callbackSha256": "6737b84fd3db6b06356b328b57fc5c3563ca0c4117ded1e572158137a3d3ecd7",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomy-reorder-writes.test.ts:79",
           "title": "chunks a renumbering that exceeds the parameter budget",
           "callbackSha256": "8d2e4d8dc33e354fbd3f7a9bd01f6839ab28a898c9ec013a04c8592907e92440",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomy-reorder-writes.test.ts:92",
           "title": "orders correctly across a chunk boundary",
           "callbackSha256": "47dd612c18e5215d3eb4a1d04e08b525fe375b92996bd564843710387f7d412d",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomy-reorder-writes.test.ts:103",
           "title": "keeps every position distinct after a chunked reorder",
           "callbackSha256": "51ddf866054c32c1b27e7a1176211ca6391524f9608bb58c9b4f1c2e5c210e12",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomy-reorder-writes.test.ts:112",
           "title": "stays within D1's bound-parameter ceiling per statement",
           "callbackSha256": "e5725f8357252f4141e6bec8b4ebef128a71664ec7286b4bce94a02e3208a6fc",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 5,
         "passed": 5,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -856,21 +867,22 @@
           "id": "packages/core/tests/integration/taxonomy-term-counts-plan.test.ts:97",
           "title": "seeks the terms on a content_taxonomies index rather than probing the pivot per entry",
           "callbackSha256": "6805519fed267cb5ce263e13033e586f77c675f354831f4987a18611aa653b78",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomy-term-counts-plan.test.ts:106",
           "title": "seeks content rows by translation group",
           "callbackSha256": "705eade66a09509c685622e174ec40cc48b8216b85020b58dd19f2ddbae49e64",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 2,
         "passed": 2,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -883,27 +895,28 @@
           "id": "packages/core/tests/integration/taxonomy-term-order-plan.test.ts:107",
           "title": "seeks findByName through the composite index rather than scanning the locale",
           "callbackSha256": "0436a57a0e7f60cfbf80e230a13b11bbea6da70f7846024feb24ce664cf51940",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomy-term-order-plan.test.ts:119",
           "title": "bounds manual keyset pages while seeking the taxonomy index",
           "callbackSha256": "df2a786844c9cbdad31dcd458194bc62861830949dfb8a0367dfce276662d0b5",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/integration/taxonomy-term-order-plan.test.ts:144",
           "title": "seeks findChildren through the parent index",
           "callbackSha256": "05e392c431766bfc1d54bfb27bc90f89236ce47c8b6b8d67a2ec805da327e308",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 3,
         "passed": 3,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -916,39 +929,40 @@
           "id": "packages/core/tests/unit/taxonomies/defs-cache.test.ts:87",
           "title": "queries once per isolate, serving later requests from cache",
           "callbackSha256": "18d0ab07e592e609ea3010231594c245d4aef88affc313a88e7f515510f5a731",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/defs-cache.test.ts:99",
           "title": "re-queries after invalidateTaxonomyDefsCache()",
           "callbackSha256": "d8f43686f33a49f2c6c936ea1f1fe167755e81ba9e2ecbf21d742bbaa8b0f1b5",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/defs-cache.test.ts:109",
           "title": "reflects a newly inserted def only after invalidation (in-memory invalidation semantics)",
           "callbackSha256": "41104a08e46c7cf9caf0592601952e82d3cca9822062e6af3561085249c41bc0",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/defs-cache.test.ts:125",
           "title": "serves every locale, and single-definition lookups, from one query",
           "callbackSha256": "c3f2ca7db737150088a75563d2d35bcba455758ce2cf446df379f40e89c6c7be",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/defs-cache.test.ts:138",
           "title": "bypasses the isolate cache for isolated databases (playground / DO preview)",
           "callbackSha256": "fc01b97260b8f5556591d8169b3e3e57276bbd9c04878b2945bc76cfc1ce9b37",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 5,
         "passed": 5,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -961,21 +975,22 @@
           "id": "packages/core/tests/unit/taxonomies/entry-terms-object-cache.test.ts:72",
           "title": "getEntryTerms serves the second read from KV without touching D1",
           "callbackSha256": "a0eabab87f34d24e5f0de4f9c35a80e0b24b37a04a0d07a79335ecb1176377d0",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/entry-terms-object-cache.test.ts:88",
           "title": "getTermsForEntries round-trips its Map through the cache (no D1 on hit)",
           "callbackSha256": "5ff8c9818d9caa33e56fb90b23b4fb0e28db87511bd148457a18a482f07d6fbc",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 2,
         "passed": 2,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -988,63 +1003,64 @@
           "id": "packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts:42",
           "title": "returns empty map for empty entry list",
           "callbackSha256": "9501f7c07c1d6cbdfd95edbcd45e54307f16d96ee5f5a1b0e7eb6e1dee8fa3a2",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts:47",
           "title": "short-circuits without querying when no assignments exist",
           "callbackSha256": "55f218f3be6f6523566a5acad1b1738cbcfab46dd6e99cda1ac4744e15ebd8dd",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts:63",
           "title": "hydrates terms grouped by taxonomy name in a single query",
           "callbackSha256": "dd76a89bb82f795d532f21e5dfbe45179522ba74b36b59b6a9e68c39a333e004",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts:101",
           "title": "scopes results to the requested collection",
           "callbackSha256": "b624a628e745823c7a3b497a1854b4ae19ebca8231cd050150dc4de3fa0800f5",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts:127",
           "title": "returns empty arrays for entries with no terms",
           "callbackSha256": "b78ef70f2c0f31ccaa555514d1af926e25e4ba95c75b4d31d9125980c889f9d4",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts:148",
           "title": "primes the request cache so getEntryTerms doesn't re-query",
           "callbackSha256": "f0c4e7937a658d63b68dcedff5cd211fc87f718b100ae7e10df8c9e237b6458a",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts:196",
           "title": "does not leak primed entries across requests",
           "callbackSha256": "480b49a38d792288ef5702c3b5e7af0dc26f6b27c3062f75cfbf8bdf524d1a2c",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts:230",
           "title": "getTermsForEntries serves primed entries from cache without re-querying",
           "callbackSha256": "a95b178e3e272fdf7de6d83d31bb97367053cca449cf7de31777e0e670cdb2ac",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts:258",
           "title": "getTermsForEntries returns private copies that can't poison the cache",
           "callbackSha256": "f286a14d32e5e632fbe73d6bfa07bc9a6d1255ac763533c25007105add31023f",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 9,
         "passed": 9,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -1057,21 +1073,22 @@
           "id": "packages/core/tests/unit/taxonomies/get-taxonomy-terms.test.ts:36",
           "title": "includes the description for flat (non-hierarchical) taxonomies",
           "callbackSha256": "e4f9b5f8b766bcd0caefcdf16893c85c2bc6c2e51450b84f075466d9edf59474",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/get-taxonomy-terms.test.ts:53",
           "title": "includes the description for hierarchical taxonomies (control)",
           "callbackSha256": "677d2249921b28e536a0cb2412c81a854ea9c8640b8adad1a181172224fac4d6",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 4,
         "passed": 4,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -1084,33 +1101,34 @@
           "id": "packages/core/tests/unit/taxonomies/get-term.test.ts:77",
           "title": "returns the term with usage count and children",
           "callbackSha256": "f7cdcce3125b8588c62d9fdedbe1f80b4851aef20cce981a6438580f9964b30e",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/get-term.test.ts:126",
           "title": "returns null for a non-existent term",
           "callbackSha256": "ffa518764ae7ac948a3f02022c3c69a24461c1749763329efde914134386c8fe",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/get-term.test.ts:131",
           "title": "only returns children in the term's locale",
           "callbackSha256": "70fa827a67d89375a86bfc0ee4e2b3ce12512b6e9a7c1545744e0187dd18f988",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/get-term.test.ts:162",
           "title": "resolves the term in four queries (def, term, count, children)",
           "callbackSha256": "aea5fdfbe91d13e10975a8fed254bb26e41a827b08cde22d4ec59dba088b7705",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 8,
         "passed": 8,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -1123,219 +1141,220 @@
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:24",
           "title": "should load seeded taxonomy definitions ordered by name",
           "callbackSha256": "c4215de1c3c6b70530417e42a611b665747deaf555ef4f814b4921ae9bea060b",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:50",
           "title": "should include custom taxonomy definitions in manifest",
           "callbackSha256": "a5d774f5acb15b5a0c3ab589f07d064bd958d956100412c460fbbac45a7a10ce",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:99",
           "title": "should create a taxonomy term",
           "callbackSha256": "61f2f0db5b04d2b1f6e1b2b134859ce3326ddfdd21eb75272dc0298ec003c67f",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:113",
           "title": "should create a term with parent",
           "callbackSha256": "e5667bd1ec7ddbdcf11ad53ffd3d0c0b9bfdd14d6e2a3d652f2bf7a7523b9870",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:130",
           "title": "should create a term with data",
           "callbackSha256": "0b0f3cad64fb251d565fae7cc02ee57efebbd851c2c4852669b46670258dab28",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:146",
           "title": "should find term by ID",
           "callbackSha256": "28e6ddfd0f4a17d1bf0df31ea7fbb67eb1ec70a9429da7376ab630e3cd3d000e",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:159",
           "title": "should return null for non-existent ID",
           "callbackSha256": "a8359ec70e6a630ab7a80de5bcdaf1ad747768444381cf0395a6a128239b2e8c",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:166",
           "title": "should find term by name and slug",
           "callbackSha256": "fc506b12974b6157109de4893ed3c547fcd725003f44668d019361b4783644b0",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:179",
           "title": "should not find term with wrong name",
           "callbackSha256": "2f3fe1207b404bb458a2ebeda5edf2db0b7d95acee7a0f41ae9bcf76ae2ee7ef",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:191",
           "title": "should return null for non-existent slug",
           "callbackSha256": "cd93ab64ad7ac72e0335e89b72414bd37254a546a101ce242a6bcf8764349f86",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:198",
           "title": "should find all terms for a taxonomy",
           "callbackSha256": "fd8eedd506887d42dd574eb0e60849845619c18dd029419886be313d4ec68383",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:210",
           "title": "should filter by parentId",
           "callbackSha256": "fd7e3a2dd13c91b432cc8d1887382f15445818968174f56260ab7a34ffc19e85",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:243",
           "title": "should return terms in their manual order, not by label",
           "callbackSha256": "77e4337afef2b9a9ecd20f6b3a765a07f29bbccfe8b0020c5a13b9eed58535e7",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:260",
           "title": "should find children of a term",
           "callbackSha256": "ab00345f6cd6d9c893c99528bb1670f86df695e98bdde3ed7592f5f75ea189d3",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:284",
           "title": "should return empty array for term with no children",
           "callbackSha256": "a86c6823aeaf2fbc5bd9a59b9bdb4d063886b39d978c29013837005b6690a71b",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:297",
           "title": "should update term label",
           "callbackSha256": "c6808a8d98a4d08278627948d21659db9e602fa62e6f3f24ebca97b2fc9941c5",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:310",
           "title": "should update term slug",
           "callbackSha256": "7a6afbd1245a87cd6e993863a6abe3fc24410804f7cd43447946f0ca47fa30bf",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:322",
           "title": "should update parentId",
           "callbackSha256": "84b1a306f40f3f22d90771a0354f1f834893ed7ec28ae8163d6e46569b6df13f",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:339",
           "title": "should clear parentId when set to null",
           "callbackSha256": "f291e5811eddd074cea7204aa21dbd841c668768e5aa0ffb2020b8c97a4f29ed",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:357",
           "title": "should update data",
           "callbackSha256": "c5dde7888b6003f341e27e401adbfb6c75dbf0f741797dfe07e93cceb74fbcdb",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:372",
           "title": "should return null for non-existent term",
           "callbackSha256": "6c902a52b0b4a692da5b571a4069f5d0fd11bf4be707045a7cba7aeecf416451",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:379",
           "title": "should delete a term",
           "callbackSha256": "43e119c3ce2f14fbd53024ccaf871b7885faa88313f842975d4f6d053b29e8a3",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:392",
           "title": "should return false for non-existent term",
           "callbackSha256": "11e475e34cf154aed1d23f23529974988505adda041260dd90f480163ade9362",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:397",
           "title": "should remove content associations when deleted",
           "callbackSha256": "da70fad1c3df96ac2be96b82fce16f74e92eb998103bec6d99948b3f80e37be6",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:449",
           "title": "should attach a term to content",
           "callbackSha256": "933dd0060642b5fd5e431bb852903272b745c483483e10e5d5fc1eb0bf865de3",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:463",
           "title": "should be idempotent (no duplicate attachments)",
           "callbackSha256": "ad95a983abac5d1c2a728e238d1e501ad6164fcc6633eca5eee377124ebbb05e",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:480",
           "title": "should detach a term from content",
           "callbackSha256": "c7be1434d6a1fe735d8e5b0a4b87fa7ae08a6427bfc7ee1613ec55dca1b73318",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:494",
           "title": "should not throw when detaching non-attached term",
           "callbackSha256": "c2b844b21fb05da194ce8835855eb9d03b8543a24279279d7fc77a553ad787c9",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:507",
           "title": "should get all terms for an entry",
           "callbackSha256": "9ecf8fa6737a60dbfa9c6823b5d9af2d94d25a12a62f61eb27272ce115d112e8",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:532",
           "title": "should filter by taxonomy name",
           "callbackSha256": "b542b347f51cc4fb048ec2317525c831b8e76a1f9cf2216492c5c8a020d7d5b9",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:558",
           "title": "should replace all terms for a taxonomy",
           "callbackSha256": "c874bd5b0e8c2775f8ab282e6af9d04994ed1be0bd9481816123cad264a2d0f3",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:587",
           "title": "should not affect other taxonomies",
           "callbackSha256": "b255132a2c962e813e1202eeb444217b85ad7564b6df2a22520598ac8bf15d33",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:614",
           "title": "should remove all terms from an entry",
           "callbackSha256": "294c8e8ee73827628a2b5b7015107255f9fc7292b3d524ecdd7b6204a9e2ede7",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:639",
           "title": "should count entries with a term",
           "callbackSha256": "1ac8416db8f63a6a70e7daeafaa227ccca1ce8a6304abb721a61bc2e04a0f3a8",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomies.test.ts:666",
           "title": "should return 0 for unused term",
           "callbackSha256": "79131537673591106b92b38c825a7fe4b4399270dbc99977920a2bd978ceed9d",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 35,
         "passed": 35,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -1348,165 +1367,166 @@
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:107",
           "title": "rejects a translation whose name differs from its source",
           "callbackSha256": "88c302622c8d9d242ae929a2004395dfccfcb89ecb1473c3d4f86fb4a81dac87",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:128",
           "title": "returns the definition",
           "callbackSha256": "5f5a452adc57d3066b1a5b377f4129f2cf5f6bb7ce15adaa87563c3c17dfb5f9",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:142",
           "title": "reports NOT_FOUND for an unknown name",
           "callbackSha256": "fdadd7dca7f3c717d901271b5c357a42496fd5de1b069b3b8ea33ac312a1b1c5",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:150",
           "title": "falls back to the default locale when the requested locale has no definition",
           "callbackSha256": "af9e93edc8409f3a5483f1855f0e0882186e1f30673d0ed0a41195b984d5d53c",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:169",
           "title": "returns the requested locale's definition",
           "callbackSha256": "a637b853bb3d262e0ba16ab051eb5067bb558af1dd2328e7d85e0a7c08dbe5d3",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:187",
           "title": "drops collection references whose collection is gone",
           "callbackSha256": "424c943526bb2a6ae3cdc693f036a64d0a29251083d76a98621f69fcd7ff13f5",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:199",
           "title": "updates the fields it is given",
           "callbackSha256": "a480e2e91d0bcaa1ca629fcb7e498d1109855341cf09f0a4b3c955ffc65c83df",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:221",
           "title": "leaves omitted fields alone",
           "callbackSha256": "b6dc5aa2569125b1bb53ef325b08e2eda19d1ee91c7dbccbbb0d10205b72e1bb",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:234",
           "title": "clears labelSingular when passed null",
           "callbackSha256": "20f105eb6e32d43034bf902505d4084c3b09ee6c40c70cd0423ab1a1bbf74a74",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:242",
           "title": "rejects unknown collections without writing",
           "callbackSha256": "4a820930a777c7b468b301a0f6cfee885a630a01ae761cec17a1febc01f05b6d",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:257",
           "title": "writes only the addressed locale's definition",
           "callbackSha256": "3f29742b3140d304cb2987c4ce3785348e2e6602e3fa435433a53a223dea88d2",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:281",
           "title": "does not fall back when the addressed locale has no definition",
           "callbackSha256": "9d9d0cc6034f820b9382a5646eb5a3e882611795435f0102ffccbeda4e6063b2",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:297",
           "title": "reports NOT_FOUND for an unknown name",
           "callbackSha256": "334ff2f2f5587127d30865e2638049bdab68a8ebe957f8e9bdfb11609012dcee",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:325",
           "title": "removes the definition, its terms, and their assignments",
           "callbackSha256": "c91876698f2115456b419b74904ebf4696de5852c06cc4c113cbdf89ce491b49",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:338",
           "title": "leaves other taxonomies untouched",
           "callbackSha256": "4bc16042551995f1c3a7ca6865b09f9e1de356dcb7f4889181ff7dd4bc98e7f0",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:346",
           "title": "removes every locale of the definition and of its terms",
           "callbackSha256": "9041d130d154dc71d7de8b711a35cc39513c18aca13307991f4b7125c106ba54",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:374",
           "title": "removes a parent term along with its children",
           "callbackSha256": "e795543d75077ab2fb696ddc5476ad3dd8e1df2e6e87f3b16364ec1ecfcc69dd",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:390",
           "title": "reports NOT_FOUND for an unknown name",
           "callbackSha256": "ec7b62610c6c9a2e49ebdca46e6026ec7cd779314f143dbdf210c4da3bd3ca20",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:401",
           "title": "GET returns the definition",
           "callbackSha256": "5f21298e6082479e566f70279436338a5fae07afd78a00b9e1b1da4b7c30e83b",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:409",
           "title": "GET 404s for an unknown taxonomy",
           "callbackSha256": "3890956d089c8ed399176401d63c5ed1573664e52cab4789daab490a7d035d7f",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:415",
           "title": "PUT updates the definition",
           "callbackSha256": "3c7e6dc872775a3bc23a8bdc1b49b933b180bdcee2c3518727dddc383d424783",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:425",
           "title": "PUT rejects a body that tries to rename the taxonomy",
           "callbackSha256": "6c48f72708f33a3f738cdc1158c4f2d215ee27ec64a842e273b451f233191268",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:435",
           "title": "DELETE removes the definition, its terms, and their assignments",
           "callbackSha256": "1e825deee63fd538379d4ecb4a966a2cb6384ae906a9196a1b13c4dcf79c9d64",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:456",
           "title": "lists the definition's translations",
           "callbackSha256": "a3843d2c869a94547be319c02c3ce2de9a679f896c749318059dd9e5a96644ea",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:476",
           "title": "refuses a writer without taxonomies:manage",
           "callbackSha256": "8dda8c331999bacc114765831c60c0f5ee2c4376de463d8dfdc2fdca88d1e1c5",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:517",
           "title": "deletes a term tree and its assignments",
           "callbackSha256": "84e3b8f29bb3814cc6b31f701803754a34bf9134d7df43fe3d05429cbc10023c",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 51,
         "passed": 51,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -1519,51 +1539,52 @@
           "id": "packages/core/tests/unit/taxonomies/term-count-demand.test.ts:115",
           "title": "does not aggregate counts during the layout prefetch",
           "callbackSha256": "bf081083f8cb150c489e582614d66cd9dea961f2eebb698145ecd5dcc198e28f",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-count-demand.test.ts:126",
           "title": "reuses the prefetched term list and aggregates once for a caller that wants counts",
           "callbackSha256": "6e8e8c765fb43506ce993029f1c8481cd4116b287190bbf4d209a8cfff8a7304",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-count-demand.test.ts:145",
           "title": "keeps hierarchy, description and locale on the count-free list",
           "callbackSha256": "8590fcc35af735012b83c8c34572895ff079b7cf37c44ceffe4ba5d013e364ff",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-count-demand.test.ts:157",
           "title": "recomputes counts per request with no object-cache backend, and never without",
           "callbackSha256": "2a0be6ab21ba70a34c88ced1dab57149585989b9296b730dc4a2c31f94a4093a",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-count-demand.test.ts:171",
           "title": "does not aggregate counts for a getTerm caller that opts out",
           "callbackSha256": "565f8afa611a608b263578b95d8b7e6cf7f80987c47db7250443aa66c70c1df0",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-count-demand.test.ts:183",
           "title": "aggregates once for a getTerm caller that wants counts",
           "callbackSha256": "0753db5572b322f3b7beb656ed49a217da74566ca9c89584d830f344270bdecd",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-count-demand.test.ts:193",
           "title": "shares one request-cached count map across getTerm calls",
           "callbackSha256": "08e400527d20e032761da5dfa9b1bac3e0230d8bbbd258d1244e25112a7b49aa",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 7,
         "passed": 7,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -1576,117 +1597,118 @@
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:111",
           "title": "counts only visible entries on every path (widget, term page, admin)",
           "callbackSha256": "672d17e99009b37ece5329564768973d56a05cdecbee58429ffe965aa18f1ec7",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:154",
           "title": "aggregates across the taxonomy's declared collections in one map",
           "callbackSha256": "a4b2ccb675b437b35b291aaa5431532c61dbde6cfcecbd51691b79ca7c084a35",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:169",
           "title": "excludes assignments in collections the taxonomy does not declare",
           "callbackSha256": "5b5ca7e41cf10b13f0d2054df3e14d5d3d49ec5ecf345822052796ba5d2cdd15",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:183",
           "title": "does not mix counts between taxonomies sharing a collection",
           "callbackSha256": "d1142ab27b446b1b55abfc43cba72bb553f6843c233768063e431f4e6b8568ba",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:202",
           "title": "counts one logical content group once for each assigned term group",
           "callbackSha256": "8a4a8ff9266133af469ac74720b3717ae7305bf13dade68522f8807c87fb4332",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:273",
           "title": "counts only entry rows in the requested locale, keyed by translation_group",
           "callbackSha256": "0e922f738873df9bf7d3152a5fef1c161ac2e24b7b11757749e0453778a32050",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:307",
           "title": "skips missing ec_* tables and returns a partial count",
           "callbackSha256": "78762c343c46043d2c025ee5a55a659c1842836729a4bf6c51b8b8b18a33fae8",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:327",
           "title": "does not share request-cached counts across differing collection scopes",
           "callbackSha256": "7c841b69a74f02fc9cdac2be55075d442d6c9ad1bbd0129d1f0e46f5769a6ef1",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:385",
           "title": "falls back to an existing definition when the requested locale has none",
           "callbackSha256": "20f5c6b815377ba3cc9c4e34dae476029b4463fa362189b5b14d1dcd9de156b7",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:418",
           "title": "returns an empty map when the taxonomy declares no collections",
           "callbackSha256": "03194cc17020d3747edf5ad0fd73b0eea6617425d0415f19ab5eb7c92ade3bfb",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:493",
           "title": "aggregates every declared collection when there are more than one statement can carry",
           "callbackSha256": "f24535bde3efdb741baa0139aff380964f52fbf0069e7567fce63aae8fcef269",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:507",
           "title": "still skips a missing ec_* table when it falls beyond the first batch",
           "callbackSha256": "1e0de17ad3e3412a8b66610a40bbfc472338de334f7034e3856557bf85373f99",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:522",
           "title": "takes a single statement on a backend that declares no ceiling",
           "callbackSha256": "c9c72f5090a82283703cf309d6242390ba7b18ce6b98edd3c0aec66dbe571af7",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:532",
           "title": "never sends a statement referencing a declared collection that was never created",
           "callbackSha256": "6f8a0a3ccc2c60afa4603c56640288edc7c7214bcee882aa1327c7730371b4a8",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:541",
           "title": "counts a collection created on this isolate immediately",
           "callbackSha256": "defc8af83746d238328785a240fd77c409ff9960fac9c4b60c54943cb66fb394",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:565",
           "title": "revalidates a stale slug set so another isolate's create is counted within the window",
           "callbackSha256": "6a1fda21534c8043717c041a4a6d7e033ad21c04c34896b8d56f637851ab1339",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:592",
           "title": "stops querying a collection deleted on another isolate within the window",
           "callbackSha256": "0df2093a05fd085b196e6223c3b55b46504a594e5c61f8fa25e21745931940ad",
-          "state": "expanded cases fail; classify assertion/harness evidence in feature document"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-counts.test.ts:612",
           "title": "degrades to a partial count when a registered collection's table is missing (drift backstop)",
           "callbackSha256": "3e039821ba00fa7c07481587b2796d2d4811cdf9a2533f4fc52f98f796d0bc84",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 28,
-        "passed": 27,
-        "failed": 1
+        "passed": 28,
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -1699,33 +1721,34 @@
           "id": "packages/core/tests/unit/taxonomies/term-list-counts.test.ts:95",
           "title": "counts by default, so existing callers are unaffected",
           "callbackSha256": "81c5d3d327a125d1790721315bf8a3c8f96754bd3f0c972059f5ff812135ae79",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-list-counts.test.ts:105",
           "title": "omits the aggregate and the count field when the caller opts out",
           "callbackSha256": "e9d3a96e939a2e8340cdb88e75b2c820c63a8a235dd0a3c697174fd77f1c3afd",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-list-counts.test.ts:116",
           "title": "honours ?includeCounts=false on the route",
           "callbackSha256": "801c56b1d6441e3bb64dddfe7dc59cf6d51b063f192d056b14546168741ca90a",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-list-counts.test.ts:127",
           "title": "still counts on the route when the param is absent",
           "callbackSha256": "0bde2baf317d224744cc93e739f36f1b91c3ab3e1141a42f91473a88f24f2b48",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 4,
         "passed": 4,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -1738,21 +1761,22 @@
           "id": "packages/core/tests/unit/taxonomies/term-list-object-cache.test.ts:76",
           "title": "serves the new order after a reorder rather than the cached one",
           "callbackSha256": "376b97e8afdd332b366d0247fd8cb635f185aa8e9b713fa7f90879ba8f634765",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-list-object-cache.test.ts:95",
           "title": "serves a warm term list to a write that never invalidated",
           "callbackSha256": "3c0c9a3965cae84c46e1cb49aa63d649f56d06b26101144ae1d69218bb6d0e94",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 2,
         "passed": 2,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -1765,195 +1789,196 @@
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:90",
           "title": "lists a group in the order its terms were created",
           "callbackSha256": "781a0dc53394b72307f3492c5ead3b92d18a1b68fd6dd633302b660823630d24",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:96",
           "title": "lists a group in the order it was given",
           "callbackSha256": "062f77c5559239eb138cc861006088082348b6a9992b53e422fe57663f84451d",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:110",
           "title": "orders the public runtime helper by the stored position",
           "callbackSha256": "21bd3c1752533c01adf46259be43b390407d6b01786c284efba13b62280661ac",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:119",
           "title": "adds a new term to the end of its group",
           "callbackSha256": "b375f8e7bb445535b30decce727e7dc3a16cf350356987fdfa34332196494899",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:129",
           "title": "orders each parent's children independently of the roots",
           "callbackSha256": "ac1cdd67fd18f9e3ee72e98768fea47d8f90d96fac6339c7e16bb95df41b1629",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:158",
           "title": "appends a reparented term to the group it lands in",
           "callbackSha256": "1d0e96a4903a17bb6357550b4c97e87673cc8cd01a7599439134064714271bfa",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:184",
           "title": "rejects a term that is not in the group, without reordering",
           "callbackSha256": "8b48cd6858d17bdd944db40a7b76c5135602a9773556d63fff5c712ea98fd5d3",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:203",
           "title": "rejects a list naming the same term twice",
           "callbackSha256": "440c1a6a4d90c33e025e3e4cf44f4af56c27819859654cc0f6161d36b7c7dc26",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:216",
           "title": "rejects a term that belongs to another taxonomy",
           "callbackSha256": "514b06ef082ae2e4899f8cd04bb7af32277560098a77964fe4f609962d10a2c3",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:253",
           "title": "gives a translation the position of the term it translates",
           "callbackSha256": "cc6751d0ea0e03f2cd080b957b6652b5ecab85b75e63050c97186035f0eae0a7",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:263",
           "title": "applies an order set from one locale to every other locale",
           "callbackSha256": "13c94f5f0dd40f904a8bb8656c42a9f6ce501c261684f390a5c75d1bfc522468",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:275",
           "title": "accepts a translation_group in place of a row id",
           "callbackSha256": "cfe0c7f4566894587904adba70123f2c53578ac93add9eda0542292bf328c04f",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:286",
           "title": "keeps every row of a reparented term at one position",
           "callbackSha256": "c8b67ea93a9fd5537bffc59e99015c5d5bcbc004e114c7fba9b2030070ae5320",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:297",
           "title": "permutes a partly visible group within the slots it occupies",
           "callbackSha256": "e5854fe1228c3aae57c8caa09c96340fd0f8d49929a47d9cae287dc76d1de479",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:313",
           "title": "leaves a term out of the list alone rather than burying it",
           "callbackSha256": "1c3fc83f44770efd87ec42c0148610e073f3067f9995ed11573cb2f6b1365d7f",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:325",
           "title": "refuses to reorder a child whose parent is not translated as a root",
           "callbackSha256": "c125b522a34ce6bbe407e82c102cc961cf81d89e8317785cf0629d9e714c727d",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:358",
           "title": "moves every locale of a term reparented from one of them",
           "callbackSha256": "a6b493879639943e4f6fda5a95c9f961735e728ce7d9737ff4da011fcb020bc1",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:372",
           "title": "still reorders the roots a locale keeps after a term leaves them",
           "callbackSha256": "2c725202e03f94040ea6e5a8e2a22a4474173c53899d7b17157033b76d882edb",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:389",
           "title": "appends a translation created under a parent the source is not in",
           "callbackSha256": "3d735cd2ca9d4b331a6376edf926e6290cdb0c59be31484469df51b696b35412",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:424",
           "title": "gives a translation created without a parent the parent and position of its term",
           "callbackSha256": "566d82d4ca44ca80ea30e0667c71cd4f824bda372060571ce8bfed58107a585e",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:447",
           "title": "moves every locale of a term translated under a parent the source is not in",
           "callbackSha256": "59d34044711cf2789cc283a5d5df264e480fee5d4f66af58e41ac0d5cb0d5772",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:465",
           "title": "brings every locale to the parent an update names when the addressed row already has it",
           "callbackSha256": "afeeaf7e638cc1511155b3ee9a2d110b3b4bef35c4c389154cf1124c8abc768f",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:483",
           "title": "rejects a translation under a child of the term it translates",
           "callbackSha256": "891b5e66cd095614cd83fddc694a48a4ae42e85e464785fe6d95314d795762b6",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:504",
           "title": "renumbers a group whose stored positions tie",
           "callbackSha256": "5d1f716f607baca3843e7f0f91f00a9c65771ad62f37b8b77bc231b7a8835ba0",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:529",
           "title": "keeps an unlisted member in place when renumbering a tied group",
           "callbackSha256": "11bd31df3ad265f32ae8cfd2b155b70684c0e8501bd1cd8b495bff019f9497db",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:551",
           "title": "mints positions that preserve the alphabetical order terms had before",
           "callbackSha256": "f46c1ac40314b7320b155296af264e41bc67b074268555beb8692ce33cd37200",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:575",
           "title": "numbers every group when the column is already there from a failed run",
           "callbackSha256": "0b27ca612e7f25f4c8e059d81a3d4718514873d64b348daeb415ddddedc1ed8a",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:603",
           "title": "gives a group one parent before numbering it",
           "callbackSha256": "9ef96c63655b1d7c0b900830fa9e97e4cd5af604f86792150cfe83c515ed949e",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:625",
           "title": "numbers a group larger than one batch",
           "callbackSha256": "7d07cd626e8e9851d17e916ba87c94c8bd766467d98bc151e64e3921547d24ad",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:637",
           "title": "mints one position per translation group",
           "callbackSha256": "85b6ff8cb69a925b58fa0be8b963eb832a948e78e95db0c08129e2edb0eb61c6",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-reorder.test.ts:654",
           "title": "seeds a translation_group the term never got, so it can be reordered",
           "callbackSha256": "d5da02823e77960273843fe4669c39bd74a0240b0ff29d0573ac73131a931b52",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 62,
         "passed": 62,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     },
     {
@@ -1966,57 +1991,58 @@
           "id": "packages/core/tests/unit/taxonomies/term-slug-generation.test.ts:28",
           "title": "derives a native-script slug for %s",
           "callbackSha256": "cea40b71af8dec619aa39bcfd66e93f0bbac8a8f61549c6cc0cd0b4e472d3a1e",
-          "state": "parameterized declaration; dataset expansion recorded separately, not inferred from title"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-slug-generation.test.ts:44",
           "title": "uses a deterministic fallback for emoji-only labels",
           "callbackSha256": "053c18a1335a20a3ee26002339bcf6d93119065105a249af570927a4a79d0b82",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-slug-generation.test.ts:52",
           "title": "adds a numeric suffix for generated slug collisions",
           "callbackSha256": "cb02ff292d705da58592ce5bcdb82154d1117195beda97c71f42dba65861cbea",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-slug-generation.test.ts:62",
           "title": "recovers when concurrent generated slugs collide",
           "callbackSha256": "70a207279091eea556a79e033f272e73fe557a31c9bf4038a620c41093fc17f5",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-slug-generation.test.ts:76",
           "title": "keeps generated slug uniqueness scoped to the locale",
           "callbackSha256": "5febd73be5817fb13d70f3f09cf400d91e80f42e592441e42a39169937ae4ff9",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         },
         {
           "id": "packages/core/tests/unit/taxonomies/term-slug-generation.test.ts:87",
           "title": "still rejects a colliding explicit slug",
           "callbackSha256": "c49610e6d91959e5588b3fb2ce186b35d2a549a0348408bbb3b3f5f721b2bae2",
-          "state": "all expanded cases pass in this scoped Node run"
+          "state": "all registered expanded cases pass in scoped Node run; omitted runtimes remain unexecuted"
         }
       ],
       "runtime": "native Node SQLite and separately labeled five-branch SQLite budget fixture; not workerd",
       "latestRun": {
-        "log": "/tmp/taxonomy-current-source-report.json",
+        "log": "/tmp/taxonomy-source-with-mcp.json",
         "expandedExecutions": 24,
         "passed": 24,
-        "failed": 0
+        "failed": 0,
+        "pending": 0
       }
     }
   ],
   "omissions": [
     "PostgreSQL and libSQL execution targets; no runtime credit",
-    "MCP callbacks are planned native domain adapters, not an MCP product surface",
-    "Historical EmDash 091-version database migrations are not a CMS import path"
+    "Source MCP-domain callbacks run through a native in-process registrar; no SDK/network MCP product credit",
+    "Three complete historical migration files remain unexecuted pending real091-version source runner closure; no CMS import/legacy-upgrade credit"
   ],
   "browser": {
     "source": "e2e/tests/form-data-loss.spec.ts:113",
     "callbackSha256": "cf6c265e94bc1fd610e9ccf265e89aef88761771c6636cb09028359acab44da0",
-    "state": "copied before UI; fixture and secured browser baseline pending"
+    "state": "complete unchanged callback has published secured first-heading assertion-red at6d55857; new native UI acceptance pending"
   },
   "runs": [
     {
@@ -2042,10 +2068,27 @@
       "head": "6d55857be6343957d0d1300bffd8f362a425b813",
       "source": "e2e/tests/form-data-loss.spec.ts:113",
       "state": "first copied assertion fails: missing Taxonomies heading; later unrelated settings cases exhaust unchanged 180s job timeout"
+    },
+    {
+      "runtime": "installed Node SQLite and separate five-branch Node SQLite budget fixture; not workerd or SDK/networkMCP",
+      "log": "/tmp/taxonomy-source-with-mcp.json",
+      "files": 23,
+      "executions": 412,
+      "passed": 412,
+      "failed": 0,
+      "pending": 0
     }
   ],
   "excludedEvidence": [
     "/tmp/taxonomy-content-source-first-red.log: test adapter nonexistent API names; no genuine product red credit",
-    "initial missing tsconfig, route framing, prefetch exports, budget exports and clone registration: harness failures, no product red credit"
-  ]
+    "initial missing tsconfig, route framing, prefetch exports, budget exports and clone registration: harness failures, no product red credit",
+    "/tmp/taxonomy-mcp-domain-first.log:53 missing-schema-import registration failures; no assertion-red/product credit",
+    "/tmp/taxonomy-native-remotes-first.log: two fixture boolean encoding/status traversal failures, no product-red credit"
+  ],
+  "browserDeletion": {
+    "source": "e2e/tests/admin-fixes.spec.ts:190",
+    "target": "tests/browser/native-taxonomy-delete-source.spec.ts",
+    "snapshot": "parity/emdash/taxonomies/admin-term-delete.callback.ts.txt",
+    "state": "complete unchanged callback published514a48e before production UI commit; separate baseline/green execution pending"
+  }
 }

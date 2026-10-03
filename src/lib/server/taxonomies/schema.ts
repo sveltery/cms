@@ -1,0 +1,15 @@
+import * as v from 'valibot';
+import {identifier,localeInput,entryId} from '../database/validation.ts';
+const text=v.pipe(v.string(),v.maxLength(100_000)),short=v.pipe(v.string(),v.maxLength(200));
+const jsonStrings=v.pipe(text,v.transform(value=>{try{const parsed:unknown=JSON.parse(value);return parsed;}catch{return null;}}),v.array(v.pipe(v.string(),v.minLength(1),v.maxLength(200))));
+export const taxonomyQuery=v.strictObject({taxonomy:identifier,locale:v.optional(localeInput,'en')});
+export const definitionQuery=v.strictObject({locale:v.optional(localeInput)});
+export const entryTaxonomiesInput=v.strictObject({collection:identifier,id:entryId,locale:v.optional(localeInput,'en')});
+export const setTermsInput=v.strictObject({...entryTaxonomiesInput.entries,taxonomy:identifier,termIds:jsonStrings});
+export const createDefinitionInput=v.strictObject({name:identifier,label:v.pipe(short,v.minLength(1)),labelSingular:v.optional(short),hierarchical:v.optional(v.boolean(),false),collections:jsonStrings,locale:v.optional(localeInput,'en'),translationOf:v.optional(short)});
+export const updateDefinitionInput=v.strictObject({...createDefinitionInput.entries});
+export const deleteDefinitionInput=v.strictObject({taxonomy:identifier});
+export const createTermInput=v.strictObject({taxonomy:identifier,label:v.pipe(short,v.minLength(1)),slug:v.optional(short),parentId:v.optional(short),description:v.optional(text),locale:v.optional(localeInput,'en'),translationOf:v.optional(short)});
+export const updateTermInput=v.strictObject({...createTermInput.entries,originalSlug:v.pipe(short,v.minLength(1))});
+export const reorderTermsInput=v.strictObject({taxonomy:identifier,parentId:v.optional(short),ids:jsonStrings});
+export const bulkTagInput=v.strictObject({termId:entryId,apply:v.optional(v.boolean(),false),items:v.pipe(text,v.transform(value=>{try{return JSON.parse(value);}catch{return null;}}),v.array(v.union([v.strictObject({collection:identifier,id:entryId}),v.strictObject({url:v.pipe(v.string(),v.minLength(1),v.maxLength(2048))})])))});

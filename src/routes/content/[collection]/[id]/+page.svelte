@@ -4,6 +4,7 @@
   import WorkspaceShell from '$lib/ui/WorkspaceShell.svelte';
   import DraftPreview from '$lib/ui/DraftPreview.svelte';
   import EditScalarContent from '$lib/ui/EditScalarContent.svelte';
+  import TaxonomySidebar from '$lib/ui/TaxonomySidebar.svelte';
   import type { PageData } from './$types';
   let { data }: { data: PageData } = $props();
   import { previewFields } from '$lib/ui/preview-fields';
@@ -34,6 +35,8 @@
         <EditScalarContent collection={page.params.collection ?? ''} definition={content.definition} item={content.item}
           disabled={!(data.editAny || (data.editOwn && data.principalId === content.item.authorId))} />
       {/key}
+      <TaxonomySidebar collection={page.params.collection ?? ''} id={content.item.id} locale={content.item.locale}
+        disabled={!(data.editAny || (data.editOwn && data.principalId === content.item.authorId))} />
     {:else}<form {...saveEditorContent}>
       <input type="hidden" name="collection" value={page.params.collection} />
       <input type="hidden" name="id" value={content.item.id} />

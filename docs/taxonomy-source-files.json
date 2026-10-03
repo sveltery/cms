@@ -243,8 +243,16 @@
       "target": "src/lib/server/taxonomies/upstream/database/repositories/taxonomy-native.ts",
       "blob": "a1eaae54f6d887e5647be69ef3aab15ebe862705",
       "sourceSha256": "e5f1619a9aa1262a5ec752dacbc5006c555d4c8a4db53c15a8fc222636d529d5",
-      "targetSha256": "27df837de368eb36f549d670210833c51527387541936bd8d2eb755812dbe603",
+      "targetSha256": "3a3c2fdee31252b72fbc557a51f05d1420ab9c06c553fd9bbc15dd5e4fbb901a",
       "host": "Separate native atomic write host copied from whole pinned repository; pure source repository preserved separately. C07 intentional failure atomicity differences earn zero divergent source credit."
+    },
+    {
+      "source": "packages/core/src/mcp/server.ts",
+      "target": "tests/helpers/taxonomy-tool-source.ts",
+      "blob": "fed5af6d6cf36c4f86f5ed7d3b51d121c5afdb2c",
+      "sourceSha256": "3742c3fb46df82936af831348799009cbeaf6957b355a4718eb00e415529cee7",
+      "targetSha256": "47fdd4cddc1ee11100b83459357049c6829a889ff3991589e40df23803183ec9",
+      "host": "Extracted ten complete taxonomy registration expressions and nineteen pure helpers with source schemas; dynamic import paths bind to real native modules. This is a test-only native registrar, not the whole MCP server/SDK/transport or plugin runtime."
     }
   ],
   "hostEdges": [
