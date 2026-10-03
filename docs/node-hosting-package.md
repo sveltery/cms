@@ -1,6 +1,6 @@
 # Sveltery CMS Node package
 
-This standalone HTTP package for Node 24 uses the official SvelteKit Node adapter. With no database configuration, anonymous requests fail closed. Explicit `SVELTERY_DATABASE_PATH` plus the public `ORIGIN` configures persistent SQLite and trusted stored-session resolution; the first request creates parent directories and runs reviewed forward migrations. Configuration creates no accounts, credentials or sessions. Real passkey setup/login, writable editors and Cloudflare hosting are separate complete-product features.
+This standalone HTTP package for Node 24.15.0 or newer within the Node 24 series uses the official SvelteKit Node adapter. With no database configuration, anonymous requests fail closed. Explicit `SVELTERY_DATABASE_PATH` plus the public `ORIGIN` configures persistent SQLite and trusted stored-session resolution; the first request creates parent directories and runs reviewed forward migrations. Configuration creates no accounts, credentials or sessions. Real passkey setup/login, writable editors and Cloudflare hosting are separate complete-product features.
 
 Install with pnpm 12.6.0, then run locally:
 

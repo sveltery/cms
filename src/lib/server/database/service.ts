@@ -1,4 +1,6 @@
 import * as v from 'valibot';
+import { ordinaryContentService } from './content-service.ts';
+import type { LifecycleDependencies } from './lifecycle/upstream/host.ts';
 import { editorManifest } from '../content/manifest.ts';
 import { CmsError, type CmsDatabase } from './contract.ts';
 import { DraftRepository } from './entries.ts';
@@ -27,7 +29,7 @@ const addFieldInput = v.strictObject({
  * Inputs carry neither identity, roles, permissions nor ownership.
  * This module never installs a principal, database, hook or public write endpoint.
  */
-export function cmsService(database: CmsDatabase, principal: ServerPrincipal | null) {
+export function cmsService(database: CmsDatabase, principal: ServerPrincipal | null, dependencies: LifecycleDependencies = {}) {
   const identity = principal && typeof principal.id === 'string' && principal.id.length > 0 && principal.id.length <= 128
     && Array.isArray(principal.permissions)
     ? { id: principal.id, permissions: [...principal.permissions] } : null;
@@ -55,6 +57,7 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
     return actor.id;
   }
   return {
+    ...ordinaryContentService(database, principal, dependencies),
     async getEditorManifest() { return editorManifest(database, identity); },
     async listCollections() { requirePermission('schema:read'); return registry.listCollections(); },
     async getCollection(input: unknown) {

@@ -163,7 +163,11 @@
       "source": "Full Astro system-cleanup scheduler calls runSystemCleanup(db, storage); private revision subfunction selects one oldest-ten batch",
       "native": "Trusted server storage-owning function initializes approved canonical provider1\u20135, returns only revisionsPruned, closes its own adapter. Optional Worker scheduled wrapper anchors the same function in actual waitUntil; it installs no schedule or HTTP route",
       "reason": "Native Node and Worker host boundary; absent cleanup subsystems must not return invented successes",
-      "decision": "Pending specific PM acceptance; zero Source full-system/scheduler credit"
+      "decision": "Specifically accepted by PM for the trusted native revision host; final PR merge approval remains pending; zero Source full-system/scheduler/native-host credit",
+      "decisionUrl": "https://github.com/sveltery/cms/pull/71#pullrequestreview-5400502433",
+      "acceptedHead": "0bcbe275cc68d4bc721dbea46beecf14f29dcccf",
+      "acceptedTree": "a7f6e2e84cffcdf3da12eaa7fc6e2cb13352ccb6",
+      "nativeHostSourceCredit": 0
     }
   ],
   "canonicalFilesUnchanged": [
@@ -190,14 +194,22 @@
     "log": "/tmp/revision-maintenance-normal-bootstrap.log",
     "headReceipt": "/tmp/revision-maintenance-normal-bootstrap.head",
     "exitReceipt": "/tmp/revision-maintenance-normal-bootstrap.exit",
-    "securedHostedBrowsers": "Pending publication and exact-head hosted execution",
+    "securedHostedBrowsers": "Historical local receipt; both sandboxed default/Node targets subsequently passed on public 0bcbe275 in hosted CI37118977136",
     "deployedHosting": false,
     "scopedScheduledModuleBundledInOwnTest": true,
     "officialCmsWorkerAutomaticallyRegistersScheduledHandler": false,
     "isolatedNodePackageMaintenanceEntryIncluded": false
   },
   "publication": {
-    "status": "Local only while PM-required public source-audit permission remains pending; no public ref or PR created; no rejection retry or alternate writer used"
+    "status": "Own draft PR published; final integrated-head gates and explicit PM merge approval remain pending",
+    "pullRequest": "https://github.com/sveltery/cms/pull/71",
+    "head": "0bcbe275cc68d4bc721dbea46beecf14f29dcccf",
+    "tree": "a7f6e2e84cffcdf3da12eaa7fc6e2cb13352ccb6",
+    "orderedOriginalTreesPreserved": 10,
+    "originalLocalCommitTrailers": true,
+    "originalLocalHistoryPreserved": true,
+    "scopedDecisionUrl": "https://github.com/sveltery/cms/pull/71#pullrequestreview-5400502433",
+    "merged": false
   },
   "refactoredFocusedGreen": {
     "head": "7ada02e22bba68effae4c4491616bd0787e26395",
@@ -208,5 +220,111 @@
     "sourceDeclarationCreditUnchanged": 8,
     "log": "/tmp/revision-maintenance-refactored-focused.log",
     "exitCode": 0
+  },
+  "hostedPublicationGate": {
+    "run": "https://github.com/sveltery/cms/actions/runs/37118977136",
+    "head": "0bcbe275cc68d4bc721dbea46beecf14f29dcccf",
+    "base": "95668fb45b262c5e8df63ede20d712e71ebea771",
+    "validateJob": 111191216216,
+    "browserJob": 111191216382,
+    "normalStatus": "success; all eleven phases finished",
+    "serviceCases": 997,
+    "authSourceCases": 34,
+    "productionCases": 236,
+    "isolatedNodeHostingCases": 13,
+    "cloudflareSourceCases": 23,
+    "officialCloudflareWorkerCases": 4,
+    "checkerErrors": 0,
+    "checkerWarnings": 0,
+    "sandboxedDefaultBrowserCases": 57,
+    "sandboxedNodeBrowserCases": 57,
+    "validateLog": "/tmp/revision-maintenance-public-0bc-hosted-validate.log",
+    "browserLog": "/tmp/revision-maintenance-public-0bc-hosted-browser.log",
+    "newSourceOrProductCredit": 0,
+    "syntheticMerge": "41fbe1b8af9080ef4e31016c606e93fa4c5647a6"
+  },
+  "laterLocalNormalFailures": [
+    {
+      "head": "dffe571f9dd77cf5d3fee6060ae7048a386eeec3",
+      "exitCode": 1,
+      "phase": "frozen dependency install",
+      "reason": "Registry HTTP503 for @cloudflare/unenv-preset; checks not reached",
+      "log": "/tmp/revision-maintenance-dffe-normal-bootstrap.log",
+      "fullGateCredit": 0
+    },
+    {
+      "head": "0bcbe275cc68d4bc721dbea46beecf14f29dcccf",
+      "exitCode": 1,
+      "phase": "isolated Node hosting tests",
+      "reason": "Isolated production package dependency install timed out at its unchanged 120-second deadline; production tests passed, remaining phases not reached",
+      "log": "/tmp/revision-maintenance-public-head-normal-bootstrap.log",
+      "fullGateCredit": 0
+    },
+    {
+      "head": "a164452f53c82df658bcf61a3af2f10959c1dc92",
+      "exitCode": 1,
+      "phase": "isolated Node hosting tests",
+      "reason": "Isolated production package dependency install timed out at its unchanged 120-second deadline; remaining phases not reached",
+      "log": "/tmp/revision-maintenance-integrated-final-normal-bootstrap.log",
+      "fullGateCredit": 0
+    }
+  ],
+  "approvedMainIntegration": {
+    "main": "eaab85f097f3cdfab49f105cda2a1f21a4bf5592",
+    "mainPullRequest": "https://github.com/sveltery/cms/pull/68",
+    "integrationCommit": "9731ed0570be0191129a02eac3a7aeab2d5e2788",
+    "mergeParents": [
+      "dd42d84afe3ba044eb42df5f702e4f94351e30bc",
+      "eaab85f097f3cdfab49f105cda2a1f21a4bf5592"
+    ],
+    "mergeMethod": "Ordinary two-parent merge, preserving all approved-main and original own history",
+    "approvedMainApplicationFilesByteIdentical": 134,
+    "ownNonDocumentationFilesByteIdentical": 11,
+    "protectedCanonicalAndLifecycleFilesUnchanged": true,
+    "bothCompatibilitySectionsPreserved": true,
+    "newSourceCredit": 0,
+    "finalHeadGates": "Pending normal/secured checks, independent delta review, configured review or recorded quota exception, explicit PM approval and author-owned expected-head merge"
+  },
+  "latestApprovedMainIntegration": {
+    "main": "129a6fdd78cd6d30ba56a8a02a56ee74da4751bd",
+    "mainPullRequest": "https://github.com/sveltery/cms/pull/66",
+    "integrationCommit": "2f143949e341c85e61ddfdd2c7de05749e3df184",
+    "integrationTree": "b2c4437961110c615259b8a3d571f36a9d1530c9",
+    "mergeParents": [
+      "a164452f53c82df658bcf61a3af2f10959c1dc92",
+      "129a6fdd78cd6d30ba56a8a02a56ee74da4751bd"
+    ],
+    "approvedMainApplicationFilesByteIdentical": 151,
+    "ownNonDocumentationFilesByteIdentical": 11,
+    "approvedMainDependenciesNormalBootstrapAndNodePackageTestUnchanged": true,
+    "bothCompatibilityAppendsPreserved": true,
+    "newSourceCredit": 0,
+    "finalHeadGates": "Current normal/secured gates, independent final review, verified configured quota exception if actually exhausted, explicit PM approval and author merge pending"
+  },
+  "secondHostedPublicationGate": {
+    "run": "https://github.com/sveltery/cms/actions/runs/37120753006",
+    "featureHead": "a164452f53c82df658bcf61a3af2f10959c1dc92",
+    "actuallyCheckedOutBase": "129a6fdd78cd6d30ba56a8a02a56ee74da4751bd",
+    "syntheticMerge": "455afed1a7515865fe3e8e519176e713851566fb",
+    "syntheticTree": "b2c4437961110c615259b8a3d571f36a9d1530c9",
+    "sameTreeAsOrdinaryIntegration": true,
+    "validateJob": 111196221597,
+    "browserJob": 111196221711,
+    "normalStatus": "success; all twelve phases finished",
+    "checkerErrors": 0,
+    "checkerWarnings": 0,
+    "serviceCases": 1091,
+    "pinnedAuthAndAdminSourceCases": 43,
+    "pinnedSourceTypeAssertions": "passed",
+    "supplementaryCardSourceCases": 23,
+    "productionCases": 255,
+    "isolatedNodeHostingCases": 13,
+    "cloudflareSourceCases": 23,
+    "officialCloudflareWorkerCases": 4,
+    "sandboxedDefaultBrowserCases": 61,
+    "sandboxedNodeBrowserCases": 61,
+    "validateLog": "/tmp/revision-maintenance-public-a164-hosted-validate.log",
+    "browserLog": "/tmp/revision-maintenance-public-a164-hosted-browser.log",
+    "newSourceOrProductCredit": 0
   }
 }
