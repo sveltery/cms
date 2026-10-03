@@ -25,6 +25,7 @@ for (const target of ['node','d1']) {
   });
 }
 
+
 // The public pinned createFtsTable helper accepts explicit field order and may
 // create a complete owned group before enableSearch writes search_config.
 for (const target of ['Node','D1'] as const) {
