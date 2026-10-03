@@ -116,7 +116,9 @@ test('D1: deterministic stale fresh/v1 callers recover the actual binding error 
       assert.deepEqual((await Promise.allSettled([migrateCms(caller(a)), migrateCms(caller(b))])).map(value => value.status), ['fulfilled', 'fulfilled']);
       assert.equal(arrivals, 2); assert.equal(errors.length, 1, 'both preflights reach a real failing batch');
       assert.match(errors[0].message, /^D1_ERROR:/);
-      assert.match(errors[0].message, upgrade ? /CHECK constraint failed: pass = 1/ : /table _cms_migrations already exists/);
+      // The first read-only prerequisite guard now precedes either startup's
+      // old CREATE/upgrade guard. Its real binding failure remains observable.
+      assert.match(errors[0].message, /^D1_ERROR: bad JSON path: 'sveltery-cms-migration-prerequisite-changed': SQLITE_ERROR$/);
       assert.deepEqual(await versions(a), Array.from({length:CMS_MIGRATION_VERSION},(_,index)=>index+1));
       assert.deepEqual(await a.db.selectFrom('_cms_guards').selectAll().execute(), []);
     } finally { await b.close(); await a.close(); await runtime.dispose(); }

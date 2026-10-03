@@ -38,7 +38,7 @@ Pinned-reference execution is separate from native taxonomy product evidence.
 The same seven callbacks pass against native taxonomy development head
 `3bdeb244156fdfcd58a973fbb19722ff2a01ac30`: they invoke its production
 068/082/085 algorithms, taxonomy get/update handlers, and canonical native
-registry/content repository for068. The other six historical cases still use
+registry/content repository for 068. The other six historical cases still use
 the test-only source Runner to generate real historical prestate. There is
 zero new assertion-red or causal TDD credit: those native algorithms already
 existed. The uniform `_emdash_`→`_cms_` system namespace transformation is the
@@ -46,12 +46,12 @@ same disclosed host substitution used by the taxonomy suite; stored raw
 callbacks and their expectation bodies are unchanged.
 
 Actual local workerd/D1 passes six callbacks in both reference and native modes.
-The remaining definition-group callback inserts30historical rows with240bound
+The remaining definition-group callback inserts 30 historical rows with 240 bound
 parameters in one statement. D1 rejects that original fixture before migration
 085 or its assertions. The source's dialect selection is SQLite/PostgreSQL,
 and the fixture remains unchanged: no chunked substitute, deadline increase,
 source bug, assertion-red credit or whole seven-case D1 pass is claimed.
-The complete pinned D1 dialect/introspector and kysely-d10.4.0 supply the
+The complete pinned D1 dialect/introspector and `kysely-d1 0.4.0` supply the
 reference migration host; the native canonical068 fixture uses its actual
 CmsDatabase batch adapter. D1 algorithms run on Node over actual workerd SQL;
 this is separate from native Cloudflare HTTP application evidence.
@@ -61,7 +61,7 @@ implement an EmDash database importer, establish full legacy upgrade support,
 execute PostgreSQL, or grant media, relation, block, transfer, authentication,
 or other feature credit merely because their migration modules are loaded.
 Normal frozen installation failed npm registry503 metadata verification and
-is not claimed green. Installed-library typechecking reports0errors/0warnings.
+is not claimed green. Installed-library typechecking reports 0 errors and 0 warnings.
 Final-approved-main integration, normal/secured-browser checks, review,
 project-manager approval, owned merge and post-merge verification remain pending.
 

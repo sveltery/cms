@@ -1,0 +1,2 @@
+import type {LayoutServerLoad} from './$types';
+export const load:LayoutServerLoad=({locals})=>{const context=locals.cms,principal=context?.principal;const canRead=Boolean(principal?.permissions.includes('taxonomies:read'));const canManage=Boolean(principal?.permissions.includes('taxonomies:manage'));return{canReadTaxonomies:canRead,canManageTaxonomies:canManage&&context?.mutationsEnabled===true&&Boolean(context.database)};};

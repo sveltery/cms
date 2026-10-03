@@ -1,0 +1,81 @@
+	test("deleting a taxonomy term shows a dialog instead of browser confirm", async ({
+		admin,
+		page,
+		serverInfo,
+	}) => {
+		baseUrl = serverInfo.baseUrl;
+		headers = apiHeaders(serverInfo.token, baseUrl);
+
+		// Check if any taxonomies exist
+		const taxRes = await fetch(`${baseUrl}/_emdash/api/taxonomies`, { headers });
+		const taxData: any = await taxRes.json();
+
+		if (!taxData.data?.taxonomies || taxData.data.taxonomies.length === 0) {
+			test.skip();
+			return;
+		}
+
+		const taxonomy = taxData.data.taxonomies[0];
+
+		// Create a term to delete
+		const termRes = await fetch(`${baseUrl}/_emdash/api/taxonomies/${taxonomy.name}/terms`, {
+			method: "POST",
+			headers,
+			body: JSON.stringify({
+				slug: `e2e-delete-test-${Date.now()}`,
+				label: "E2E Delete Test Term",
+			}),
+		});
+
+		if (!termRes.ok) {
+			test.skip();
+			return;
+		}
+
+		// Navigate to the taxonomy page
+		await admin.goto(`/taxonomies/${taxonomy.name}`);
+		await admin.waitForShell();
+		await admin.waitForLoading();
+
+		// Ensure the term we created is visible
+		await expect(page.locator("text=E2E Delete Test Term")).toBeVisible({ timeout: 5000 });
+
+		// Set up a listener to ensure NO browser dialog appears
+		let browserDialogAppeared = false;
+		page.on("dialog", async (dialog) => {
+			browserDialogAppeared = true;
+			await dialog.dismiss();
+		});
+
+		// Click the delete button for the term
+		await page.getByRole("button", { name: "Delete E2E Delete Test Term" }).click();
+
+		// A ConfirmDialog (React dialog) should appear — NOT a browser confirm()
+		// The dialog title is "Delete {labelSingular}?" e.g. "Delete Category?"
+		const confirmDialog = page.locator('[role="dialog"]').filter({ hasText: "permanently" });
+		await expect(confirmDialog).toBeVisible({ timeout: 3000 });
+
+		// The dialog should have a "Delete" button and "Cancel" button
+		await expect(confirmDialog.getByRole("button", { name: "Delete" })).toBeVisible();
+		await expect(confirmDialog.getByRole("button", { name: "Cancel" })).toBeVisible();
+
+		// The dialog should mention the term name (rendered in curly quotes)
+		await expect(confirmDialog.getByText("E2E Delete Test Term")).toBeVisible();
+
+		// No browser dialog should have appeared
+		expect(browserDialogAppeared).toBe(false);
+
+		// Actually delete it (confirm)
+		const deleteResponse = page.waitForResponse(
+			(res) => TAXONOMY_DELETE_PATTERN.test(res.url()) && res.request().method() === "DELETE",
+			{ timeout: 10000 },
+		);
+		await confirmDialog.getByRole("button", { name: "Delete" }).click();
+		await deleteResponse;
+
+		// Dialog should close
+		await expect(confirmDialog).not.toBeVisible({ timeout: 5000 });
+
+		// Term should be gone
+		await expect(page.locator("text=E2E Delete Test Term")).not.toBeVisible({ timeout: 5000 });
+	});

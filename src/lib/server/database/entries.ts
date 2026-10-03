@@ -63,7 +63,7 @@ export class DraftRepository {
     if (!definition) throw new CmsError('NOT_FOUND');
     return definition;
   }
-  async create(input: unknown, authorId: string): Promise<DraftEntry> {
+  async create(input: unknown, authorId: string, effects?: (id: string) => readonly CompiledQuery[]): Promise<DraftEntry> {
     const value = parse(createDraftInput, input);
     if (!authorId || authorId.length > 128) throw new CmsError('VALIDATION_ERROR');
     const definition = await this.definition(value.type);
@@ -78,7 +78,7 @@ export class DraftRepository {
     const query = sql<EntryRow>`INSERT INTO ${sql.ref(tableName(value.type))}
       (${sql.join(columns.map(column => sql.ref(column)))})
       VALUES (${sql.join(values.map(item => sql`${item}`))}) RETURNING *`.compile(db);
-    const result = await this.withSchemaGuard(definition.id, definition.version, query);
+    const result = await this.withSchemaGuard(definition.id, definition.version, query, effects?.(id));
     return entry(value.type, result[1].rows[0] as EntryRow, definition.fields);
   }
   async findById(typeInput: unknown, idInput: unknown, locale = 'en'): Promise<DraftEntry | null> {
@@ -216,13 +216,13 @@ export class DraftRepository {
     if (!await this.findById(type, id, locale)) throw new CmsError('NOT_FOUND');
     throw new CmsError('CONFLICT');
   }
-  private async withSchemaGuard(collectionId: string, version: number, query: CompiledQuery) {
+  private async withSchemaGuard(collectionId: string, version: number, query: CompiledQuery, effects: readonly CompiledQuery[] = []) {
     const db = this.database.db; const token = ulid();
     try {
       return await this.database.atomicBatch([
         sql`INSERT INTO _cms_guards(token, pass) SELECT ${token},
           CASE WHEN EXISTS (SELECT 1 FROM _cms_collections WHERE id = ${collectionId} AND version = ${version}) THEN 1 ELSE 0 END`.compile(db),
-        query, sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
+        query, ...effects, sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
       ]);
     } catch (cause) {
       if (cause instanceof Error && /CHECK constraint failed: pass = 1|UNIQUE constraint failed:/.test(cause.message)) throw new CmsError('CONFLICT');

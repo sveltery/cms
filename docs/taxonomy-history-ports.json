@@ -102,7 +102,7 @@
       "assertionRedCredit": 0,
       "causalTddCredit": 0,
       "omission": {
-        "sourceId": "packages/core/tests/integration/database/taxonomy-def-groups-migration.test.ts:225",
+        "sourceId": "packages/core/tests/integration/database/taxonomy-def-groups-migration.test.ts:229",
         "title": "gives every name a group when there are more names than one insert holds",
         "cause": "Original30-row fixture INSERT binds240parameters and D1 rejects it before migration085 or assertions. Source dialect selection isSQLite/Pg, notD1.",
         "callbackEdited": false,
@@ -149,7 +149,7 @@
       ],
       "fixtureBoundary": "Six081/083 historical cases use complete test-only SourceRunner prestate;068 uses canonical native collection setup. No full native90-migration/importer credit.",
       "omission": {
-        "sourceId": "packages/core/tests/integration/database/taxonomy-def-groups-migration.test.ts:225",
+        "sourceId": "packages/core/tests/integration/database/taxonomy-def-groups-migration.test.ts:229",
         "title": "gives every name a group when there are more names than one insert holds",
         "cause": "Original30-row fixture INSERT binds240parameters and D1 rejects it before migration085 or assertions. Source dialect selection isSQLite/Pg, notD1.",
         "callbackEdited": false,
