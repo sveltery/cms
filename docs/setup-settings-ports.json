@@ -324,5 +324,28 @@
     "plugins/settings.ts": "Exact envelope checks/AES-GCM encrypt/decrypt helper closure only; plugin settings access/schema/redactor/runtime/admin registration not copied or credited.",
     "settings/index.ts": "Native site settings atomic/renderer/media-query adaptation; exact private plugin-decoding/helper bodies with type/import substitution.",
     "runtime": "Real SQLite31 whole source callback executions; localD1 source13 native HTTP callbacks26 executions. No encrypted-helper/caching workerd dataset execution claim."
+  },
+  "setupBudget": {
+    "source": "packages/core/tests/integration/astro/setup-seed-budget.test.ts",
+    "sourceBlob": "cb46df9dbee5bb367efb6f6d9038d02ef7013be0",
+    "completeCallbacks": 1,
+    "datasets": 1,
+    "runtimes": [
+      "native built Node SQLite",
+      "native built local D1"
+    ],
+    "callbackSha256": "dc047f00681cb7e15f90b15f6115ed9225ef2cf6c8452c0a4e3d51d92ea98643",
+    "nativeAdapters": [
+      "Astro API context becomes actual built Kit /api/setup JSON request",
+      "trusted source virtual seed becomes trusted test request-local seed",
+      "source options setup-state key maps solely to canonical auth identityOptions"
+    ],
+    "baseline": "Actual built /api/setup returns404; both complete source callbacks reach unchanged expect(response.status).toBe(200) and fail ERR_ASSERTION on Node and local D1. Missing import/type-transform run is excluded.",
+    "omissions": [
+      "Astro route registration and virtual module loader",
+      "external auth completion",
+      "media, bylines, relations, blocks, menus, widgets, sections, redirects seed families"
+    ],
+    "redLog": "/tmp/setup-budget-http-red.log"
   }
 }

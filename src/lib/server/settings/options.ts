@@ -23,7 +23,8 @@ function escapeLike(value: string): string {
  * Values are stored as JSON for flexibility.
  */
 export class OptionsRepository {
-	constructor(private db: Kysely<Database>) {}
+	private db: Kysely<Database>;
+	constructor(db: Kysely<Database>) { this.db = db; }
 
 	/**
 	 * Get an option value
