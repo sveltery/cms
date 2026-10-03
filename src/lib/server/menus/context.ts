@@ -9,6 +9,7 @@ export interface RequestContext {
   trailingSlash?: 'always' | 'never' | 'ignore';
   metrics?: { cacheHits: number; cacheMisses: number };
 }
+export type EmDashRequestContext = RequestContext;
 const context = new AsyncLocalStorage<RequestContext>();
 export function runWithContext<T>(value: RequestContext, run: () => T): T { return context.run(value, run); }
 export function getRequestContext(): RequestContext | undefined { return context.getStore(); }

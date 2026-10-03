@@ -12,7 +12,7 @@ export async function prefetchMenus(): Promise<void> {
     key: `names:${locale ?? '*'}`,
     async load() {
       const db = await getDb();
-      let query = db.selectFrom('_emdash_menus').select('name').distinct();
+      let query = db.selectFrom('_cms_menus').select('name').distinct();
       if (locale !== undefined) query = query.where('locale', '=', locale);
       return (await query.execute()).map(row => row.name);
     }

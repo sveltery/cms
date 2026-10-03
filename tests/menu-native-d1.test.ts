@@ -16,7 +16,7 @@ async function fixture() {
   const storage = openD1(await worker.getD1Database('CMS_DB'));
   await migrateCms(storage);
   await storage.atomicBatch(menuSchemaStatements(storage));
-  return { storage, worker, db: storage.db.withTables<Database>() };
+  return { storage, worker, db: storage.db.withTables<{[Name in keyof Database]:Database[Name]}>().$pickTables<keyof Database>() };
 }
 
 test('real D1 menu create succeeds and persists', { timeout: 30_000 }, async () => {

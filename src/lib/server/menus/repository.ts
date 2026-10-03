@@ -4,7 +4,7 @@
 /**
  * Menu repository
  *
- * Owns every SQL touch for `_emdash_menus` and `_emdash_menu_items`, plus the
+ * Owns every SQL touch for `_cms_menus` and `_cms_menu_items`, plus the
  * row→entity mapping. Matches the architecture used by every other resource
  * (content, taxonomies, redirects, comments, media): handlers stay thin and
  * orchestrate; the repository is the single place where snake_case DB columns
@@ -209,8 +209,8 @@ export class MenuRepository {
 	async findMany(options: { locale?: string } = {}): Promise<MenuListItem[]> {
 		// Single LEFT JOIN + GROUP BY for the per-menu count. Avoids N+1.
 		let query = this.db
-			.selectFrom("_emdash_menus as m")
-			.leftJoin("_emdash_menu_items as i", "i.menu_id", "m.id")
+			.selectFrom("_cms_menus as m")
+			.leftJoin("_cms_menu_items as i", "i.menu_id", "m.id")
 			.select(({ fn }) => [
 				"m.id",
 				"m.name",
@@ -256,7 +256,7 @@ export class MenuRepository {
 	 */
 	async findByName(name: string, options: { locale?: string } = {}): Promise<Menu[]> {
 		let query = this.db
-			.selectFrom("_emdash_menus")
+			.selectFrom("_cms_menus")
 			.selectAll()
 			.where("name", "=", name)
 			.orderBy("locale", "asc");
@@ -267,7 +267,7 @@ export class MenuRepository {
 
 	async findById(id: string): Promise<Menu | null> {
 		const row = await this.db
-			.selectFrom("_emdash_menus")
+			.selectFrom("_cms_menus")
 			.selectAll()
 			.where("id", "=", id)
 			.executeTakeFirst();
@@ -284,7 +284,7 @@ export class MenuRepository {
 
 	async findItems(menuId: string): Promise<MenuItem[]> {
 		const rows = await this.db
-			.selectFrom("_emdash_menu_items")
+			.selectFrom("_cms_menu_items")
 			.selectAll()
 			.where("menu_id", "=", menuId)
 			.orderBy("sort_order", "asc")
@@ -298,7 +298,7 @@ export class MenuRepository {
 	 */
 	async existsByNameAndLocale(name: string, locale: string): Promise<boolean> {
 		const row = await this.db
-			.selectFrom("_emdash_menus")
+			.selectFrom("_cms_menus")
 			.select("id")
 			.where("name", "=", name)
 			.where("locale", "=", locale)
@@ -329,7 +329,7 @@ export class MenuRepository {
 
 		await withTransaction(this.db, async (trx) => {
 			await trx
-				.insertInto("_emdash_menus")
+				.insertInto("_cms_menus")
 				.values({
 					id,
 					name: input.name,
@@ -341,7 +341,7 @@ export class MenuRepository {
 
 			if (sourceMenuId) {
 				const sourceItems = await trx
-					.selectFrom("_emdash_menu_items")
+					.selectFrom("_cms_menu_items")
 					.selectAll()
 					.where("menu_id", "=", sourceMenuId)
 					.orderBy("sort_order", "asc")
@@ -352,7 +352,7 @@ export class MenuRepository {
 					for (const item of sourceItems) idMap.set(item.id, ulid());
 
 					await trx
-						.insertInto("_emdash_menu_items")
+						.insertInto("_cms_menu_items")
 						.values(
 							sourceItems.map((item) => ({
 								id: idMap.get(item.id)!,
@@ -391,7 +391,7 @@ export class MenuRepository {
 		if (input.label !== undefined) values.label = input.label;
 
 		if (Object.keys(values).length > 0) {
-			await this.db.updateTable("_emdash_menus").set(values).where("id", "=", id).execute();
+			await this.db.updateTable("_cms_menus").set(values).where("id", "=", id).execute();
 			invalidateMenuObjectCache();
 		}
 
@@ -402,7 +402,7 @@ export class MenuRepository {
 	 * Delete a menu. Items are deleted explicitly to avoid relying on the
 	 * `ON DELETE CASCADE` FK declared in migration 005, which migration 036
 	 * removed: that FK is what made #1021 destructive on D1 (the cascade
-	 * fired when the i18n migration dropped `_emdash_menus`), so dropping
+	 * fired when the i18n migration dropped `_cms_menus`), so dropping
 	 * the FK was the fix. The explicit delete keeps the runtime working
 	 * the same way before and after the migration.
 	 */
@@ -411,8 +411,8 @@ export class MenuRepository {
 		if (!existing) return false;
 
 		await withTransaction(this.db, async (trx) => {
-			await trx.deleteFrom("_emdash_menu_items").where("menu_id", "=", id).execute();
-			await trx.deleteFrom("_emdash_menus").where("id", "=", id).execute();
+			await trx.deleteFrom("_cms_menu_items").where("menu_id", "=", id).execute();
+			await trx.deleteFrom("_cms_menus").where("id", "=", id).execute();
 		});
 		invalidateMenuObjectCache();
 		return true;
@@ -428,7 +428,7 @@ export class MenuRepository {
 		idOrGroup: string,
 	): Promise<{ translationGroup: string | null; translations: MenuTranslation[] } | null> {
 		const anchor = await this.db
-			.selectFrom("_emdash_menus")
+			.selectFrom("_cms_menus")
 			.selectAll()
 			.where((eb) => eb.or([eb("id", "=", idOrGroup), eb("translation_group", "=", idOrGroup)]))
 			.executeTakeFirst();
@@ -436,7 +436,7 @@ export class MenuRepository {
 
 		const group = anchor.translation_group ?? anchor.id;
 		const rows = await this.db
-			.selectFrom("_emdash_menus")
+			.selectFrom("_cms_menus")
 			.selectAll()
 			.where("translation_group", "=", group)
 			.orderBy("locale", "asc")
@@ -458,7 +458,7 @@ export class MenuRepository {
 
 	/**
 	 * Insert a menu item. `locale` is propagated from the parent menu so
-	 * `_emdash_menu_items.locale` mirrors the menu's locale (queries can scope
+	 * `_cms_menu_items.locale` mirrors the menu's locale (queries can scope
 	 * by locale without a join).
 	 *
 	 * When `sortOrder` is omitted, the next position within the same parent
@@ -469,7 +469,7 @@ export class MenuRepository {
 		let sortOrder = input.sortOrder ?? 0;
 		if (input.sortOrder === undefined) {
 			const maxOrder = await this.db
-				.selectFrom("_emdash_menu_items")
+				.selectFrom("_cms_menu_items")
 				.select(({ fn }) => fn.max("sort_order").as("max"))
 				.where("menu_id", "=", menuId)
 				.where("parent_id", "is", input.parentId ?? null)
@@ -480,7 +480,7 @@ export class MenuRepository {
 
 		const id = ulid();
 		await this.db
-			.insertInto("_emdash_menu_items")
+			.insertInto("_cms_menu_items")
 			.values({
 				id,
 				menu_id: menuId,
@@ -502,7 +502,7 @@ export class MenuRepository {
 		invalidateMenuObjectCache();
 
 		const row = await this.db
-			.selectFrom("_emdash_menu_items")
+			.selectFrom("_cms_menu_items")
 			.selectAll()
 			.where("id", "=", id)
 			.executeTakeFirstOrThrow();
@@ -520,7 +520,7 @@ export class MenuRepository {
 		input: UpdateMenuItemInput,
 	): Promise<MenuItem | null> {
 		const existing = await this.db
-			.selectFrom("_emdash_menu_items")
+			.selectFrom("_cms_menu_items")
 			.select("id")
 			.where("id", "=", itemId)
 			.where("menu_id", "=", menuId)
@@ -538,7 +538,7 @@ export class MenuRepository {
 
 		if (Object.keys(values).length > 0) {
 			await this.db
-				.updateTable("_emdash_menu_items")
+				.updateTable("_cms_menu_items")
 				.set(values)
 				.where("id", "=", itemId)
 				.execute();
@@ -546,7 +546,7 @@ export class MenuRepository {
 		}
 
 		const row = await this.db
-			.selectFrom("_emdash_menu_items")
+			.selectFrom("_cms_menu_items")
 			.selectAll()
 			.where("id", "=", itemId)
 			.executeTakeFirstOrThrow();
@@ -556,7 +556,7 @@ export class MenuRepository {
 	/** Delete an item scoped to its menu. Returns false if nothing was deleted. */
 	async deleteItem(menuId: string, itemId: string): Promise<boolean> {
 		const result = await this.db
-			.deleteFrom("_emdash_menu_items")
+			.deleteFrom("_cms_menu_items")
 			.where("id", "=", itemId)
 			.where("menu_id", "=", menuId)
 			.execute();
@@ -587,13 +587,13 @@ export class MenuRepository {
 			// rollback fires and the handler returns NOT_FOUND with the
 			// original menu name in the message.
 			const stillThere = await trx
-				.selectFrom("_emdash_menus")
+				.selectFrom("_cms_menus")
 				.select("id")
 				.where("id", "=", menuId)
 				.executeTakeFirst();
 			if (!stillThere) throw new MenuGoneError(menuId);
 
-			await trx.deleteFrom("_emdash_menu_items").where("menu_id", "=", menuId).execute();
+			await trx.deleteFrom("_cms_menu_items").where("menu_id", "=", menuId).execute();
 
 			const insertedIds: string[] = [];
 			for (let i = 0; i < items.length; i++) {
@@ -603,7 +603,7 @@ export class MenuRepository {
 				const parentId =
 					item.parentIndex !== undefined ? (insertedIds[item.parentIndex] ?? null) : null;
 				await trx
-					.insertInto("_emdash_menu_items")
+					.insertInto("_cms_menu_items")
 					.values({
 						id,
 						translation_group: id,
@@ -625,7 +625,7 @@ export class MenuRepository {
 			}
 
 			await trx
-				.updateTable("_emdash_menus")
+				.updateTable("_cms_menus")
 				.set({ updated_at: new Date().toISOString() })
 				.where("id", "=", menuId)
 				.execute();
@@ -644,7 +644,7 @@ export class MenuRepository {
 		return withTransaction(this.db, async (trx) => {
 			for (const item of items) {
 				await trx
-					.updateTable("_emdash_menu_items")
+					.updateTable("_cms_menu_items")
 					.set({ parent_id: item.parentId, sort_order: item.sortOrder })
 					.where("id", "=", item.id)
 					.where("menu_id", "=", menuId)
@@ -652,7 +652,7 @@ export class MenuRepository {
 			}
 
 			const rows = await trx
-				.selectFrom("_emdash_menu_items")
+				.selectFrom("_cms_menu_items")
 				.selectAll()
 				.where("menu_id", "=", menuId)
 				.orderBy("sort_order", "asc")

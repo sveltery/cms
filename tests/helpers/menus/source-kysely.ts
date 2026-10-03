@@ -29,8 +29,7 @@ export class Kysely<DB> extends NativeKysely<DB> {
     const real = super.introspection;
     return {
       getSchemas: () => real.getSchemas(),
-      getTables: async options => (await real.getTables(options)).map(table => ({ ...table, name: table.name.replaceAll('_cms_', '_emdash_') })),
-      getMetadata: async options => ({ tables: (await real.getMetadata(options)).tables.map(table => ({ ...table, name: table.name.replaceAll('_cms_', '_emdash_') })) })
+      getTables: async options => (await real.getTables(options)).map(table => ({ ...table, name: table.name.replaceAll('_cms_', '_emdash_') }))
     };
   }
 }

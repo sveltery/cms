@@ -12,7 +12,7 @@ async function fixture() {
   const storage = openSqlite(':memory:');
   await migrateCms(storage);
   await storage.atomicBatch(menuSchemaStatements(storage));
-  return { storage, db: storage.db.withTables<Database>() };
+  return { storage, db: storage.db.withTables<{[Name in keyof Database]:Database[Name]}>().$pickTables<keyof Database>() };
 }
 
 test('actual native menu handler lists empty persisted storage successfully', async () => {

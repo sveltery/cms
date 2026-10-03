@@ -31,8 +31,8 @@ export interface MenuItemTable {
 
 
 export interface Database {
- _emdash_menus: MenuTable;
- _emdash_menu_items: MenuItemTable;
- _emdash_collections: CollectionRow;
+ _cms_menus: MenuTable;
+ _cms_menu_items: MenuItemTable;
+ _cms_collections: CollectionRow & {url_pattern: string | null};
  taxonomies: {id:string;name:string;slug:string;label:string;parent_id:string|null;data:string|null;locale:string;translation_group:string|null};
 }

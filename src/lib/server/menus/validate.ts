@@ -46,12 +46,11 @@ const MAX_IDENTIFIER_LENGTH = 128;
  * Error thrown when an identifier fails validation.
  */
 export class IdentifierError extends Error {
-	constructor(
-		message: string,
-		public identifier: string,
-	) {
+	readonly identifier: string;
+	constructor(message: string, identifier: string) {
 		super(message);
 		this.name = "IdentifierError";
+		this.identifier = identifier;
 	}
 }
 

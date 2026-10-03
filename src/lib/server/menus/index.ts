@@ -79,8 +79,8 @@ export async function getMenuWithDb(
 	const chain = resolveLocaleChain(options.locale);
 
 	let query = db
-		.selectFrom("_emdash_menus as m")
-		.leftJoin("_emdash_menu_items as i", "i.menu_id", "m.id")
+		.selectFrom("_cms_menus as m")
+		.leftJoin("_cms_menu_items as i", "i.menu_id", "m.id")
 		.selectAll("i")
 		.select([
 			"m.id as m_id",
@@ -140,7 +140,7 @@ export async function getMenusWithDb(
 ): Promise<Array<{ id: string; name: string; label: string; locale: string }>> {
 	const locale = resolveLocale(options.locale);
 	let query = db
-		.selectFrom("_emdash_menus")
+		.selectFrom("_cms_menus")
 		.select(["id", "name", "label", "locale"])
 		.orderBy("name", "asc");
 	if (locale !== undefined) query = query.where("locale", "=", locale);
@@ -266,7 +266,7 @@ function getCollectionUrlPatterns(
 	const key = `menu-collection-patterns:${[...collectionSlugs].toSorted().join(",")}`;
 	return requestCached(key, async () => {
 		const rows = await db
-			.selectFrom("_emdash_collections")
+			.selectFrom("_cms_collections")
 			.select(["slug", "url_pattern"])
 			.where("slug", "in", [...collectionSlugs])
 			.execute();

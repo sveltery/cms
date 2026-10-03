@@ -41,3 +41,20 @@ package, lockfile and workspace policy bytes remain the exact d524 main base.
 This establishes no own frozen-install, complete bootstrap or hosted-browser
 pass. Two unchanged ordinary frozen installs failed on registry503 metadata
 requests before any callbacks.
+
+The first whole core run after normal local Kit sync executed five complete
+files:92callbacks passed; the 93rd callback failed at dynamic native item-route
+import before its expectations. These first-green Source callbacks establish
+no behavioral red causality. Whole source SQL, fixtures and expectations remain
+unchanged. A test-only Kysely facade translates the logical Source namespace
+onto actual native tables and maps introspection/query-log names back for those
+contracts; it establishes zero physical Source namespace/DDL equivalence.
+PostgreSQL, full migration036, Source078, seed export, MCP and the24admin
+callbacks remain unexecuted.
+
+The native namespace repair preserved the two original list/create callbacks
+and changed their result from false to true (2/2green). Four new original
+raw-binding local D1 callbacks each reached the same false-versus-true assertion
+against real storage before atomic write adaptation; no fixture/setup failure
+is counted for those four. These are original Node/workerd cases, not extra
+upstream callbacks or production startup.
