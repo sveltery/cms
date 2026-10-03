@@ -13,16 +13,21 @@ export async function requestMediaStorage(event:RequestEvent):Promise<Storage|un
     return new R2Storage(bucket as import('@cloudflare/workers-types').R2Bucket,setting('SVELTERY_MEDIA_PUBLIC_URL'));
   }
   const explicitDirectory=setting('SVELTERY_MEDIA_DIRECTORY');
-  const databasePath=setting('SVELTERY_DATABASE_PATH');
-  const directory=explicitDirectory ?? (databasePath && databasePath!==':memory:' ? (await import('node:path')).join((await import('node:path')).dirname(databasePath),'media'):undefined);
-  if(directory) {
+  if(explicitDirectory) {
     const {LocalStorage}=await import('./source/storage/local.ts');
-    return new LocalStorage({directory,baseUrl:`${event.locals.cmsRuntime?.basePath ?? ''}/_emdash/api/media/file`});
+    return new LocalStorage({directory:explicitDirectory,baseUrl:`${event.locals.cmsRuntime?.basePath ?? ''}/_emdash/api/media/file`});
   }
   const endpoint=setting('S3_ENDPOINT');
   if(endpoint) {
     const {createStorage}=await import('./source/storage/s3.ts');
     return createStorage({endpoint,bucket:setting('S3_BUCKET'),accessKeyId:setting('S3_ACCESS_KEY_ID'),secretAccessKey:setting('S3_SECRET_ACCESS_KEY'),region:setting('S3_REGION'),publicUrl:setting('S3_PUBLIC_URL')});
+  }
+  // An adjacent directory is a hosting default, after explicit storage settings.
+  const databasePath=setting('SVELTERY_DATABASE_PATH');
+  if(databasePath && databasePath!==':memory:') {
+    const path=await import('node:path');
+    const {LocalStorage}=await import('./source/storage/local.ts');
+    return new LocalStorage({directory:path.join(path.dirname(databasePath),'media'),baseUrl:`${event.locals.cmsRuntime?.basePath ?? ''}/_emdash/api/media/file`});
   }
   return undefined;
 }

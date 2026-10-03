@@ -36,3 +36,14 @@ it('constructs the complete Source S3 adapter when no local default applies',asy
 it('leaves storage unavailable when no host storage configuration exists',async()=>{
  expect(await requestMediaStorage(event())).toBeUndefined();
 });
+it('generates a genuine AWS SDK signed PUT URL from the selected synthetic S3 configuration',async()=>{
+ Object.assign(env,syntheticS3,{SVELTERY_DATABASE_PATH:'/tmp/cms-fixture/database.sqlite'});
+ const storage=await requestMediaStorage(event());expect(storage).toBeInstanceOf(S3Storage);
+ const before=Date.now();const signed=await storage!.getSignedUploadUrl({key:'prepared/image 01.png',contentType:'image/png',size:17,expiresIn:90});
+ const url=new URL(signed.url);
+ expect(url.origin).toBe('https://storage.example.test');expect(decodeURIComponent(url.pathname)).toBe('/fixture-media/prepared/image 01.png');
+ expect(url.searchParams.get('X-Amz-Algorithm')).toBe('AWS4-HMAC-SHA256');expect(url.searchParams.get('X-Amz-Expires')).toBe('90');
+ expect(url.searchParams.get('X-Amz-Credential')).toMatch(/^fixture-key\/[0-9]{8}\/us-east-1\/s3\/aws4_request$/);
+ expect(url.searchParams.get('X-Amz-Signature')).toMatch(/^[0-9a-f]{64}$/);
+ expect(signed.method).toBe('PUT');expect(signed.headers).toEqual({'Content-Type':'image/png','Content-Length':'17'});expect(Date.parse(signed.expiresAt)).toBeGreaterThanOrEqual(before+90_000);
+});
