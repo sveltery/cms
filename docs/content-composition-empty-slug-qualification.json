@@ -6,7 +6,7 @@
   "testFirst": "fbccffe098f9d79014392a4c34121112759d0aa4",
   "repair": "0920e070cf7bf27ee5e4aba37b5fd92a5b1f90be",
   "CC-03": {
-    "state": "proposed; specific root acceptance pending",
+    "state": "specifically accepted within stated scope",
     "scope": "Registered native HTML update blank slug maps to JSON null, matching native create and previous legacy form representation",
     "sourceDifference": "Source JSON empty string is distinct from null for draft staging and nonroutable live metadata; this is an intentional native form substitution, not a Source bug or JSON equivalence",
     "preserve": [
@@ -17,7 +17,9 @@
       "Strict validation and creation defaults"
     ],
     "divergentSourceCredit": 0,
-    "publicRoutabilityPolicy": "Source rejects routable published metadata clear with either null or empty string. This form substitution does not establish native public route or guard parity."
+    "publicRoutabilityPolicy": "Source rejects routable published metadata clear with either null or empty string. This form substitution does not establish native public route or guard parity.",
+    "authority": "Root project manager specific CC03 decision, 2026-10-03, actual PR68 checkpoint e48b858",
+    "decisionCitation": "https://github.com/sveltery/cms/pull/68#pullrequestreview-5400163266"
   },
   "nativeRed": {
     "registeredHTTP": {
@@ -505,5 +507,5 @@
     "additionalCopiedSourceCredit": 0,
     "hosts": "Real Node SQLite; namespace-only remapping and registered scalar schema, no successful redirects/localization, Source D1, entry locks, auth middleware, plugins/hooks, references, SEO/bylines, cache, settings, scheduling or native public API credit. Genuine sibling old-slug rows retain original redirect refusal control; new falsey slugs do not enter that branch."
   },
-  "finalApproval": "Pending current final-head normal/secured/configured/independent checks, specific CC03 acceptance and exact root approval."
+  "finalApproval": "Specific CC03 scope accepted; exact-head PR approval remains pending current final normal/secured/configured/independent checks."
 }
