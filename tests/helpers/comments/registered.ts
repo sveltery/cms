@@ -15,6 +15,7 @@ import type { Handle } from '@sveltejs/kit';
 export async function registeredComments(target: 'Node SQLite' | 'raw D1') {
  const worker = target === 'raw D1' ? await asyncD1Storage() : undefined;
  const database = worker ? openD1(worker.binding) : openSqlite(':memory:');
+ try {
  await migrateCms(database);
  const registry = new SchemaRegistry(database);
  await registry.createCollection({ slug: 'post', label: 'Posts' });
@@ -53,4 +54,9 @@ export async function registeredComments(target: 'Node SQLite' | 'raw D1') {
    },
    async close() { options.hooks.handle = originalHandle; await database.close(); await worker?.runtime.dispose(); }
  };
+ } catch (cause) {
+   await database.close();
+   await worker?.runtime.dispose();
+   throw cause;
+ }
 }
