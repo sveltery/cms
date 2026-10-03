@@ -92,6 +92,6 @@ test('ordinary interrupted Source guard migration preserves nullable raw configu
   const saved=await f.service().updateContent({type:'posts',id:f.item.id,slug:'new',expected:{version:f.item.version,updatedAt:f.item.updatedAt}});
   assert.equal(saved.slug,'new');const redirected=await f.repository.findById(f.manual.id);assert.ok(redirected);
   assert.equal(redirected.destination,'/posts/new');assert.equal(redirected.id,f.manual.id);assert.equal(redirected.enabled,false);
-  assert.equal((await f.repository.findWithConfigRevision(f.manual.id))?.configRevision===null,false);
+  assert.equal((await f.repository.findVersionedById(f.manual.id))?.configRevision===null,false);
  }finally{await f.close();}
 });
