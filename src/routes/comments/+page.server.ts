@@ -20,5 +20,5 @@ export const load: PageServerLoad = async ({locals,url})=>{
  const counts=available?await handleCommentCounts(db):null;
  if(inbox&&!inbox.success)error(500,inbox.error.message);
  if(counts&&!counts.success)error(500,counts.error.message);
- return {available,comments:inbox?.success?inbox.data.items:[],nextCursor:inbox?.success?inbox.data.nextCursor:undefined,counts:counts?.success?counts.data:{pending:0,approved:0,spam:0,trash:0},collections,activeStatus,collectionFilter,searchQuery,isAdmin:principal.permissions.includes('comments:delete'),basePath:locals.cmsRuntime?.basePath??''};
+ return {canManageSettings:principal.permissions.includes('comments:settings')&&principal.permissions.includes('schema:manage'),available,comments:inbox?.success?inbox.data.items:[],nextCursor:inbox?.success?inbox.data.nextCursor:undefined,counts:counts?.success?counts.data:{pending:0,approved:0,spam:0,trash:0},collections,activeStatus,collectionFilter,searchQuery,isAdmin:principal.permissions.includes('comments:delete'),basePath:locals.cmsRuntime?.basePath??''};
 };
