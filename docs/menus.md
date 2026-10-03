@@ -272,3 +272,13 @@ The shared canonical normalizer and all owned descriptors/defaults remain
 byte-unchanged. The eight new actual value-reds are original native evidence,
 not additional Source callbacks. The repaired successor still requires complete
 hosted normal/browser gates, same-task review and specific framework acceptance.
+
+
+The shared content-picker successor is documented in [Content picker](content-picker.md).
+It replaces the predecessor first-page/routable/menu-locale controls with the
+actual reusable Svelte picker, all-collection full-data reads, cross-locale
+choices, query-core caching, search and cursor50 accumulation. Native UI24 passes;
+Node search still requires the real public canonical search metadata migration,
+and complete Source/browser/normal/final-review acceptance remains pending.
+The existing content-picker limitation paragraph records the predecessor
+checkpoint rather than the current implementation's verified UI behavior.
