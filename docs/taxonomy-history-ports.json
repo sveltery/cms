@@ -1,6 +1,6 @@
 {
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
-  "state": "Seven source/native Node baseline callbacks green. Initial nativeD1 claim withdrawn to5/7. Repaired native fixture verified6actualD1/7, plus unchanged240-binding fixture omission; source rerun retains a separate068 fixture host error. Full gates/review/integration pending.",
+  "state": "Seven complete source/native Node baseline callbacks green. Corrected actualworkerd source/native6/7 plus2/2 supplemental binding guards; unchanged240-binding source fixture remains unsupported. Initial false native068 count and reference fixture host error retained. Full current gates/integration/review pending.",
   "testFiles": [
     {
       "source": "packages/core/tests/integration/database/taxonomy-translation-locale-migration.test.ts",
@@ -259,6 +259,52 @@
       "additionalHostError": "068 beforeEach STACK_TRACE_ERROR before source callback assertions; exact cause unresolved, isolated reproduction pending",
       "sourceAssertionRedCredit": 0,
       "knownFixture240BindFailureRetained": true
+    },
+    {
+      "phase": "reference068 isolated qualification on original synchronous host",
+      "runtime": "actual Miniflare rawD1 below unchanged pinned dialect/introspector/Runner",
+      "result": {
+        "tests": 1,
+        "passed": 1,
+        "failed": 0,
+        "pending": 0
+      },
+      "previousBeforeEachHostErrorRetained": true,
+      "naturalErrorCauseEstablished": false,
+      "assertionRedCredit": 0,
+      "sourceCallbackAndExpectationEdits": 0
+    },
+    {
+      "phase": "approved asynchronous binding below complete source dialect",
+      "approvedDependency": "34d4d2a1160e525eeab7f9eb0e973b3c1b513d0b",
+      "transportConsumers": "Only prepare/bind/all/batch; complete pinnedRawBindingD1Dialect/D1Introspector/MigrationLock/Runner and real migration applied suffix unchanged",
+      "referenceResult": {
+        "sourceCallbacks": 7,
+        "sourcePassed": 6,
+        "sourceFixtureFailed": 1,
+        "originalGuards": 2,
+        "guardsPassed": 2,
+        "runnerRegistered": 9,
+        "runnerPassed": 8,
+        "runnerFailed": 1,
+        "pending": 0
+      },
+      "nativeResult": {
+        "sourceCallbacks": 7,
+        "sourcePassed": 6,
+        "sourceFixtureFailed": 1,
+        "originalGuards": 2,
+        "guardsPassed": 2,
+        "runnerRegistered": 9,
+        "runnerPassed": 8,
+        "runnerFailed": 1,
+        "pending": 0
+      },
+      "omission": "Unchanged source declaration taxonomy-def-groups:229 inserts240boundparameters before migration085/assertions; no chunk/skip/deadline change",
+      "hostErrorRetained": "Original reference068 beforeEachSTACK_TRACE_ERROR remains in prior evidence; async transport does not establish its natural cause",
+      "sourceDeclarationRedCredit": 0,
+      "causalSourceTddCredit": 0,
+      "transportOnlyExtraSourceCredit": 0
     }
   ],
   "limits": [

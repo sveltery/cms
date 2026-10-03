@@ -63,9 +63,16 @@ Both original binding guards pass; the unchanged native 068 callback now passes
 on actual workerd D1, restoring six real D1 passes with the same one 240-binding
 source-fixture omission. No source assertion, callback, fixture SQL, transport
 chunk, or deadline was changed. The original incorrect count remains recorded.
-A separate reference rerun records a 068 setup STACK_TRACE_ERROR before assertions
-plus the known binding-limit fixture; that host failure is retained and under
-qualification, with zero assertion-red credit.
+A reference rerun on the original synchronous host recorded a 068 beforeEach
+STACK_TRACE_ERROR before assertions plus the known binding-limit fixture. The
+complete prior failure is retained; an isolated unchanged 068 callback then
+passed. Neither result proves the error's natural cause or earns assertion-red
+credit. The approved asynchronous binding is now also below the unchanged pinned
+RawBindingD1Dialect, D1Introspector, MigrationLock and complete Runner. Their
+verified runtime binding consumers use only prepare/bind/all/batch; no other D1
+API is fabricated. Complete reference and native workerd runs each pass six of
+seven source callbacks and both original binding guards (8/9 total), failing
+only the unchanged 240-binding fixture. These remain failed seven-case D1 runs.
 
 The remaining definition-group callback inserts 30 historical rows with 240 bound
 parameters in one statement. D1 rejects that original fixture before migration
@@ -73,7 +80,7 @@ parameters in one statement. D1 rejects that original fixture before migration
 and the fixture remains unchanged: no chunked substitute, deadline increase,
 source bug, assertion-red credit or whole seven-case D1 pass is claimed.
 The complete pinned D1 dialect/introspector and `kysely-d1 0.4.0` supply the
-reference migration host. D1 algorithms run on Node over actual workerd SQL;
+reference migration host above the approved actual-Worker test transport. D1 algorithms run on Node over actual workerd SQL;
 this is separate from native Cloudflare HTTP application evidence.
 
 This fixture does not
@@ -89,7 +96,9 @@ project-manager approval, owned merge and post-merge verification remain pending
 For the separate native development integration, set
 `SVELTERY_TAXONOMY_HISTORY_NATIVE_ROOT` to the verified native checkout. Set
 `SVELTERY_TAXONOMY_HISTORY_TARGET=workerd-d1` for the complete seven-case D1
-qualification run; its one fixture failure remains an honest failed run.
+qualification run; its one fixture failure remains an honest failed run. The two
+original transport guards also run in the normal Node history stages and earn
+zero copied source-declaration credit.
 
 See the [compatibility register](../parity/emdash/compatibility.md) for the
 fixture boundary and the distinction between reference and product evidence.

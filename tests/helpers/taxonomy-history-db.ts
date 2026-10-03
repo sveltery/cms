@@ -1,7 +1,7 @@
 // Native test host for complete pinned historical fixtures; not an import engine.
 import {describe} from 'vitest';
 import {Kysely,SqliteDialect,type CompiledQuery} from 'kysely';
-import {Miniflare} from 'miniflare';
+import {asyncD1Storage} from './async-d1-storage.ts';
 import {NodeSqliteCompatDatabase} from '../../src/lib/server/database/node-sqlite-compat.ts';
 import {RawBindingD1Dialect} from '../fixtures/taxonomy-history/packages/cloudflare/src/db/d1-dialect.ts';
 import {runMigrations} from '../fixtures/taxonomy-history/packages/core/src/database/migrations/runner.ts';
@@ -50,10 +50,12 @@ export async function createForDialect(dialect:DialectName):Promise<DialectTestC
   if(dialect==='workerd-d1'){
     // Kysely's pinned Runner needs the pinned introspector and migration lock.
     // Native migrateCms deliberately supplies neither; it is not used here.
-    const runtime=new Miniflare({modules:true,script:'export default {fetch(){return new Response("historical fixture");}}',
-      compatibilityDate:'2026-05-07',host:'127.0.0.1',port:0,cf:false,d1Databases:{DB:'taxonomy-history'},d1Persist:false});
+    // Complete pinned consumers use only prepare/bind/all/batch. This approved
+    // test transport sends those operations to actual Worker env.DB; the pinned
+    // dialect, introspector, lock and Runner remain unchanged.
+    const {runtime,binding}=await asyncD1Storage();
     try {
-      const db=new Kysely<any>({dialect:new RawBindingD1Dialect({database:await runtime.getD1Database('DB') as any})});
+      const db=new Kysely<any>({dialect:new RawBindingD1Dialect({database:binding as any})});
       return registerNative({db,dialect,async closeRuntime(){try{await db.destroy();}finally{await runtime.dispose();}}});
     } catch(error){await runtime.dispose();throw error;}
   }
