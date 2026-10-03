@@ -4,6 +4,7 @@ import ts from 'typescript';
 const root=new URL('../',import.meta.url);
 const ledger=JSON.parse(await readFile(new URL('docs/blocks-source-files.json',root),'utf8'));
 let declarations=0,assertions=0;
+for(const file of ledger.supportFiles??[]){const bytes=await readFile(new URL(file.copiedPath,root));if(createHash('sha256').update(bytes).digest('hex')!==file.sha256||createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex')!==file.blob)throw new Error(`Immutable source helper changed: ${file.path}`);}
 for(const file of ledger.files){
  const bytes=await readFile(new URL(file.copiedPath,root));
  if(createHash('sha256').update(bytes).digest('hex')!==file.sha256||createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex')!==file.blob)throw new Error(`Immutable source changed: ${file.path}`);

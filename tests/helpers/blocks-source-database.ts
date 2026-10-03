@@ -9,6 +9,7 @@ import type {CmsDatabase} from '../../src/lib/server/database/contract.ts';
 import type {Database} from '../../src/lib/server/media/source/database/types.ts';
 export interface DialectTestContext {db:Kysely<Database>;database:CmsDatabase;dialect:string;runtime?:Awaited<ReturnType<typeof asyncD1Storage>>}
 const contexts=new WeakMap<object,DialectTestContext>();
+export function registerSourceBlocksContext(ctx:DialectTestContext){contexts.set(ctx.db,ctx);}
 export function sourceBlocksContext(db:object){const ctx=contexts.get(db);if(!ctx)throw new Error('Unregistered native block fixture');return ctx;}
 export function describeEachDialect(title:string,callback:(dialect:string)=>void){for(const dialect of ['sqlite','d1'])describe(`${title} [actual ${dialect}]`,()=>callback(dialect));}
 export async function createForDialect(dialect:string):Promise<DialectTestContext>{

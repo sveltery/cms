@@ -5,6 +5,7 @@ const frozen=resolve(root,'parity/emdash/blocks/source-tests');
 export default defineConfig({plugins:[{
   name:'immutable-blocks-native-host',enforce:'pre',
   resolveId(specifier,importer) {
+    if(specifier==='cloudflare:test'&&importer?.startsWith(frozen))return resolve(root,'tests/helpers/blocks-source-worker-env.ts');
     if(!importer?.startsWith(frozen)||!specifier.startsWith('.'))return;
     const target=resolve(dirname(importer),specifier);
     if(target.includes('/packages/core/tests/utils/test-db.js'))return resolve(root,'tests/helpers/blocks-source-database.ts');
@@ -18,13 +19,16 @@ export default defineConfig({plugins:[{
     if(target.includes('/packages/core/src/api/handlers/content.js'))return resolve(root,'tests/helpers/blocks-source-content-handlers.ts');
     if(target.includes('/packages/core/src/media/local-runtime.js'))return resolve(root,'src/lib/server/media/source/media/local-runtime.ts');
     if(target.includes('/packages/core/src/database/migrations/083_block_types.js'))return resolve(root,'src/lib/server/blocks/source-migration.ts');
+    if(target.includes('/packages/core/src/database/migrations/runner.js'))return resolve(root,'tests/helpers/blocks-source-worker-migrations.ts');
+    if(target.includes('/packages/cloudflare/src/db/d1-dialect.js'))return resolve(root,'tests/helpers/blocks-source-worker-dialect.ts');
+    if(target.endsWith('/d1-schema.js'))return target.slice(0,-3)+'.ts';
     if(target.includes('/packages/core/src/seed/apply.js'))return resolve(root,'tests/helpers/blocks-source-seed.ts');
     if(target.includes('/packages/core/src/cli/commands/export-seed.js'))return resolve(root,'tests/helpers/blocks-source-seed.ts');
     if(target.includes('/packages/core/src/i18n/config.js'))return resolve(root,'src/lib/server/taxonomies/upstream/i18n/config.ts');
     if(target.includes('/packages/core/src/components/blocks.js'))return resolve(root,'src/lib/blocks/render.ts');
     if(target.includes('/packages/admin/src/lib/block-field-state.js'))return resolve(root,'src/lib/blocks/state.ts');
   },
-  transform(code,id){if(id.startsWith(frozen)&&id.endsWith('.test.ts'))return {code:code.replaceAll('_emdash_','_cms_'),map:null};}
+  transform(code,id){if(id.startsWith(frozen)&&id.endsWith('.ts'))return {code:code.replaceAll('_emdash_','_cms_'),map:null};}
 }],test:{globals:true,fileParallelism:false,maxWorkers:1,include:[
   'parity/emdash/blocks/source-tests/packages/core/tests/unit/schema/block-type-contract.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/integration/schema/{block-type-registry,blocks-field-schema}.test.ts',
@@ -32,5 +36,6 @@ export default defineConfig({plugins:[{
   'parity/emdash/blocks/source-tests/packages/core/tests/unit/components/blocks-renderer.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/integration/database/block-types-migration.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/unit/seed/blocks.test.ts',
+  'parity/emdash/blocks/source-tests/packages/core/tests/workerd/{block-type-registry-d1,blocks-content-d1,blocks-seed-d1}.test.ts',
   'parity/emdash/blocks/source-tests/packages/admin/tests/lib/block-field-state.test.ts'
 ]}});
