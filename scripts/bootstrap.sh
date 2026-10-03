@@ -9,7 +9,11 @@ fi
 pnpm install --frozen-lockfile
 pnpm check
 pnpm test
+pnpm test:source-ports
+node node_modules/typescript/bin/tsc --project tsconfig.source-ports.json
 pnpm build
 pnpm test:production
 pnpm package:node
 pnpm test:node
+pnpm build:cloudflare
+pnpm test:cloudflare

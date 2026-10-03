@@ -1,0 +1,205 @@
+{
+  "upstream": "https://github.com/emdash-cms/emdash",
+  "commit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "tag": "emdash@1.1.0",
+  "feature": "configured-runtime-composition",
+  "scope": "Node persistent SQLite runtime and trusted raw D1 request configuration; native Cloudflare hosting is incomplete",
+  "sourceDeclarations": [
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/db/sqlite.test.ts:25",
+      "sourceBlob": "d0cc2b8eda2b4b13674e9177fd0bc5ad732b55a5",
+      "sourceSha256": "bc454f5ee6061b9a63cda40649810f89b03f19d4459ed805ca65ac2107f28d53",
+      "title": "opens a fresh database file in WAL mode",
+      "assertions": [
+        {
+          "line": 34,
+          "expression": "expect(rows).toEqual([{ journal_mode: \"wal\" }])",
+          "localExpected": [
+            {
+              "journal_mode": "wal"
+            }
+          ]
+        },
+        {
+          "line": 37,
+          "expression": "expect(synchronous.rows).toEqual([{ synchronous: 1 }])",
+          "localExpected": [
+            {
+              "synchronous": 1
+            }
+          ]
+        }
+      ],
+      "localFile": "tests/runtime-composition.test.ts",
+      "setupAdaptations": [
+        "Pinned SQLite adapter assertions run through trusted configured CMS initialization instead of calling upstream createDialect directly; the original constructor has a separate immutable-source probe.",
+        "Vitest toEqual becomes Node strict equality after spreading SQLite null-prototype rows into plain records; expected values and SQL are unchanged."
+      ],
+      "baselineRed": {
+        "commit": "a9d302010d0ae3f69a3a4571b8b694b5f58f6139",
+        "url": "https://github.com/sveltery/cms/commit/a9d302010d0ae3f69a3a4571b8b694b5f58f6139",
+        "originalLocalCommit": "02fa246",
+        "rebasedLocalCommit": "2b96b2d",
+        "verifiedPublicationTree": "0e4cff1027b8a481605930c969c100b144f22daf",
+        "provenance": "Original-local-commit trailer; exact tree identity verified before adopting remote headers",
+        "result": "0 passed, 2 failed at assertions; WAL expected row absent and supplemental trusted database absent; synchronous assertion follows WAL and was not reached in the red case",
+        "originalLog": "/tmp/cms-runtime-baseline-red.log",
+        "rebasedLog": "/tmp/cms-runtime-rebased-red.log"
+      },
+      "implementationGreen": {
+        "commit": "df5072060004a29391c65e9ba97900dcb9895194",
+        "url": "https://github.com/sveltery/cms/commit/df5072060004a29391c65e9ba97900dcb9895194",
+        "originalLocalCommit": "67d1b26",
+        "rebasedLocalCommit": "30bbf31",
+        "verifiedPublicationTree": "168011f3d9654fd582534957007879f56609e252",
+        "result": "7 passed, 0 failed; both source assertions preserve expected SQL/values"
+      },
+      "originalSourceProbe": {
+        "result": "Both expected rows passed against original pinned createDialect and NodeSqliteCompatDatabase",
+        "script": "scripts/reproduce-runtime-upstream.mjs",
+        "implementationBlob": "7767c114295d08c9f62a4128a69b058cc47a3e86",
+        "nodeCompatBlob": "f9487f8a86262d8c28b0780cbdd097e0b4252a3b"
+      },
+      "catalogStatus": "original selected 118-file inventory excludes this source file; this PR grants no formal catalog credit",
+      "omissions": []
+    }
+  ],
+  "supplementalCoverage": [
+    "Configured canonical migrations and anonymous/current-role session resolution",
+    "Concurrent first requests share a migrated adapter and retain request-specific principals",
+    "Nested persistent file path, actual content storage and runtime restart",
+    "Current role promotion/demotion and disabled-user denial",
+    "Exact trusted public origin and invalid-origin rejection before file creation",
+    "Unconfigured fail-closed application behavior and stale-local clearing",
+    "Real local workerd/D1 storage via trusted platform binding and request waitUntil forwarding",
+    "Built application hooks and real registered create/read remotes without replacement test handle",
+    "Production artifact fixture exclusion and client/private-runtime separation",
+    "Asynchronous configuration/initialization shutdown, concurrent close completion and route-dispatch lifetime"
+  ],
+  "incomplete": [
+    "Actual setup/login/passkey credential flow is owned by the auth feature",
+    "Native writable editor is owned by the editor feature",
+    "Further lifecycle migrations and wider schema subsystems remain separate features; expanded schema and empty identity migrations are integrated from main",
+    "Adapter-cloudflare application hosting, D1 Sessions/bookmarks, Durable Object and Hyperdrive",
+    "libSQL and PostgreSQL runtime adapters",
+    "External deployed runtime evidence"
+  ],
+  "specificDeviationAcceptance": "not recorded",
+  "validation": {
+    "fullBootstrap": {
+      "checkerErrors": 0,
+      "servicePassed": 458,
+      "productionPassed": 104,
+      "originalNodePackagePassed": 11,
+      "log": "/tmp/cms-runtime-bootstrap.log",
+      "scope": "historical initial local checkpoint before schema39 integration"
+    },
+    "configuredPackageSubtest": "ordinary frozen hosted CI37061652357 passed all12 isolated Node package cases, including configured stored-session HTTP/restart; final integrated-head CI remains required",
+    "isolatedConfiguredProcessProbe": {
+      "script": "/tmp/cms-runtime-configured-process-proof.mjs",
+      "runtimeLibraries": [
+        "@oslojs/encoding@1.1.0",
+        "kysely@0.29.2",
+        "ulidx@2.4.1",
+        "layerr@3.0.0",
+        "valibot@1.5.0"
+      ],
+      "passed": [
+        "configured startup",
+        "anonymous denial",
+        "stored-session HTTP create/read",
+        "actual process restart persistence",
+        "current role demotion",
+        "SIGTERM/SIGINT shutdown"
+      ],
+      "installationVerification": "historical cached-library supplementary proof; ordinary fresh pnpm verification subsequently passed in hosted CI37061652357"
+    },
+    "finalHeadCi": "pending",
+    "securedBrowsers": "pending",
+    "independentReview": "pending",
+    "parentApproval": "pending",
+    "historicalHostedCheckpoint": {
+      "head": "f641e7c0fff765dceeefc0e76d6d969cffccf751",
+      "run": "https://github.com/sveltery/cms/actions/runs/37061652357",
+      "result": "success",
+      "checkerErrors": 0,
+      "checkerWarnings": 0,
+      "servicePassed": 478,
+      "productionPassed": 108,
+      "nodePackagePassed": 12,
+      "securedDefaultBrowserPassed": 48,
+      "securedNodeBrowserPassed": 48,
+      "validateJob": 111019471624,
+      "browserJob": 111019471373,
+      "countEvidence": "dedicated github_fetch_workflow_job_logs read; pre-final-main integration only"
+    },
+    "integrationInstallAttempt": {
+      "result": "blocked before checker/tests at pnpm supply-chain metadata HTTP503; no frozen bootstrap pass claimed",
+      "log": "/tmp/cms-runtime-final-bootstrap.log",
+      "supplementalDependencies": "schema owner installed frozen-version Zod4.5.4 reused for execution only; no policy change"
+    },
+    "supplementalInstalledExecution": {
+      "scope": "main745 runtime candidate; direct installed tools after pnpm policy lookup blocked, not a fresh frozen bootstrap",
+      "checkerErrors": 0,
+      "checkerWarnings": 0,
+      "servicePassed": 629,
+      "productionPassed": 108,
+      "defaultBuild": "passed",
+      "pinnedProbeAssertionsPassed": 2,
+      "logs": [
+        "/tmp/cms-runtime-final-installed-check.log",
+        "/tmp/cms-runtime-final-installed-service.log",
+        "/tmp/cms-runtime-final-installed-production.log",
+        "/tmp/cms-runtime-final-installed-build.log"
+      ]
+    },
+    "integratedHostedCheckpoint": {
+      "head": "34cf84180f8ed0b154916d0f3ea88ae56abbabb1",
+      "base": "745a3469cf92de3f8b8f672d59cf58f36a053caf",
+      "run": "https://github.com/sveltery/cms/actions/runs/37068737345",
+      "result": "success",
+      "checkerErrors": 0,
+      "checkerWarnings": 0,
+      "servicePassed": 629,
+      "productionPassed": 108,
+      "nodePackagePassed": 12,
+      "securedDefaultBrowserPassed": 53,
+      "securedNodeBrowserPassed": 53,
+      "validateJob": 111042844805,
+      "browserJob": 111042844657,
+      "countEvidence": "dedicated workflow job logs; ordinary frozen installation and configured standalone process/restart passed; subsequent evidence-only documentation head still requires CI and review"
+    }
+  },
+  "landing": "pending",
+  "integration": {
+    "base": "745a3469cf92de3f8b8f672d59cf58f36a053caf",
+    "pr": "https://github.com/sveltery/cms/pull/36",
+    "freshRebasedSourceRed": {
+      "commit": "11eef57f914431c5959a934b33f86bffe77befc1",
+      "result": "0 passed, 2 assertion failures; no import/fixture blockers",
+      "log": "/tmp/cms-runtime-final-rebased-red.log"
+    },
+    "scope": "runtime product files/tests unchanged from published f641e7c; new main contributes native37 and schema39"
+  },
+  "supplementalLifetimeRegression": {
+    "source": "independent PR36 reviewer regression plus actual local D1 migration barrier",
+    "localFile": "tests/runtime-lifetime.test.ts",
+    "baselineRed": {
+      "commit": "f185e3d1209abb5460c9e63fac7a1561b15dd696",
+      "originalLocalCommit": "0df059e",
+      "result": "0 passed, 2 assertion failures",
+      "log": "/tmp/cms-runtime-lifetime-red.log"
+    },
+    "implementationGreen": {
+      "commit": "949c4cc1cbe13a27d32dfe89719bb9555d6f720e",
+      "originalLocalCommit": "ee3dfbe",
+      "result": "10 focused cases passed"
+    },
+    "refactorGreen": {
+      "commit": "f641e7c0fff765dceeefc0e76d6d969cffccf751",
+      "originalLocalCommit": "c10f225",
+      "result": "10 focused, 9 actual-hook/remote production, 2 original pinned probe assertions passed"
+    },
+    "sourceAssertionCredit": 0
+  }
+}

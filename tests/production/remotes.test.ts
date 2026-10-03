@@ -11,7 +11,7 @@ test('production build registers CMS remotes and enforces HTTP boundaries', asyn
     const { default: exports } = await (load as () => Promise<{ default: Record<string, unknown> }>)();
     for (const name of Object.keys(exports)) ids.set(name, `${hash}/${name}`);
   }
-  assert.deepEqual([...ids.keys()].sort(), ['addSchemaField', 'countTrashedContent', 'createContent', 'createLifecycleContent', 'createSchemaCollection', 'deleteContent', 'discardContentDraft', 'getCollection', 'getContent', 'getEditorManifest', 'getLifecycleContent', 'getSchemaCollection', 'getTrashedContent', 'listCollections', 'listContent', 'listContentRevisions', 'listSchemaCollections', 'listTrashedContent', 'publishContent', 'restoreContent', 'restoreContentRevision', 'unpublishContent', 'updateContent', 'updateSchemaCollection', 'updateSchemaFieldLabel', 'updateSchemaFieldOptions']);
+  assert.deepEqual([...ids.keys()].sort(), ['addSchemaField', 'autosaveEditorContent', 'beginLogin', 'beginSetup', 'completeLogin', 'completeSetup', 'countTrashedContent', 'createContent', 'createEditorContent', 'createLifecycleContent', 'createSchemaCollection', 'deleteContent', 'discardContentDraft', 'getCollection', 'getContent', 'getCurrentUser', 'getEditorManifest', 'getLifecycleContent', 'getSchemaCollection', 'getSetupStatus', 'getTrashedContent', 'listCollections', 'listContent', 'listContentRevisions', 'listEditorContent', 'listSchemaCollections', 'listTrashedContent', 'logout', 'publishContent', 'restoreContent', 'restoreContentRevision', 'saveEditorContent', 'unpublishContent', 'updateContent', 'updateSchemaCollection', 'updateSchemaFieldLabel', 'updateSchemaFieldOptions']);
   const server = await preview({ preview: { host: '127.0.0.1', port: 0 }, clearScreen: false });
   try {
     assert.ok(server.resolvedUrls);
@@ -21,16 +21,18 @@ test('production build registers CMS remotes and enforces HTTP boundaries', asyn
   }
 });
 
-test('production artifacts contain neither the trusted-session fixture nor a Node SQLite opener', async () => {
-  async function inspect(path: string) {
+test('production artifacts exclude trusted-session fixtures and keep configured SQLite opening server-only', async () => {
+  async function inspect(path: string, client = false) {
     for (const entry of await readdir(path, { withFileTypes: true })) {
       const child = `${path}/${entry.name}`;
-      if (entry.isDirectory()) await inspect(child);
+      if (entry.isDirectory()) await inspect(child, client);
       else if (/\.(?:js|json|html)$/.test(entry.name)) {
         const source = await readFile(child, 'utf8');
-        assert.doesNotMatch(source, /cms-test-session|cms-remotes-|user_writer|node:sqlite|openSqlite/);
+        assert.doesNotMatch(source, /cms-test-session|cms-remotes-|user_writer/);
+        if (client) assert.doesNotMatch(source, /node:sqlite|openSqlite|SVELTERY_DATABASE_PATH|SVELTERY_PUBLIC_ORIGIN/);
       }
     }
   }
   await inspect(new URL('../../.svelte-kit/output', import.meta.url).pathname);
+  await inspect(new URL('../../.svelte-kit/output/client', import.meta.url).pathname, true);
 });

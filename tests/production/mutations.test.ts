@@ -6,7 +6,10 @@ import { persistedRemotes, fields } from '../helpers/persisted-remotes.ts';
 
 describe('built remotes with persisted schema and server-derived sessions', () => {
   let harness: Awaited<ReturnType<typeof persistedRemotes>>;
-  beforeEach(async () => { harness = await persistedRemotes(); });
+  beforeEach(async () => { harness = await persistedRemotes();
+    const collection=(await harness.registry.getCollectionWithFields('notes'))!;
+    await harness.registry.updateCollection('notes',{supports:[]},{version:collection.version,updatedAt:collection.updatedAt});
+  });
   afterEach(async () => { await harness.close(); });
   const refreshed = (data: any, name: string) => Object.entries(data.q ?? {}).filter(([key]) => key.includes(`/${name}/`)).map(([, value]) => value as any);
   async function create(session = 'author') {
@@ -86,7 +89,10 @@ describe('built remotes with persisted schema and server-derived sessions', () =
       { collection: 'notes', ...fields({ headline: 'Valid', unknown: 'bad' }) }
     ]) {
       const result = await harness.remote('createContent', 'author', input);
-      assert.deepEqual(result, { type: 'error', status: 400, error: { message: 'validation-error', code: 'VALIDATION_ERROR' } });
+      assert.equal(result.type, 'error'); assert.equal(result.status, 400); assert.equal(result.error.code, 'VALIDATION_ERROR');
+      const issues = result.error.details.issues;
+      assert.ok(issues.length > 0);
+      assert.equal(result.error.message, issues.map((issue: { path: string; message: string }) => `${issue.path}: ${issue.message}`).join('; '));
     }
     for (const claim of ['principal', 'permissions', 'authorId', 'createdAt', 'publishedAt', 'status', 'expected']) {
       const result = await harness.remote('createContent', 'author', { collection: 'notes', ...fields({ headline: 'Valid' }), [claim]: 'admin' });
@@ -209,6 +215,7 @@ describe('built remotes with persisted schema and server-derived sessions', () =
   });
   it('dynamic routes render persisted fields and retain disabled writes with authenticated reads', async () => {
     const { item } = await create();
+    harness.setMutationsEnabled(false);
     const index = await harness.request('/', 'author');
     const links = (html: string, path: string) => [...html.matchAll(/<a\b[^>]*href="([^"]+)"/g)]
       .map(([, href]) => new URL(href.replaceAll('&amp;', '&'), `http://cms.test${path}`).pathname);
@@ -241,6 +248,7 @@ describe('built remotes with persisted schema and server-derived sessions', () =
     }, 'editor');
     const item = await harness.query('getContent', { collection: 'default_fields', id: created._.result.id }, 'editor');
     assert.deepEqual(item.data, { string: null, text: null });
+    harness.setMutationsEnabled(false);
     const response = await harness.request(`/content/default_fields/${item.id}`, 'editor');
     assert.equal(response.status, 200);
     const html = await response.text();

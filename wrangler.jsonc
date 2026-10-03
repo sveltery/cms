@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sveltery-cms",
+  "main": "build/cloudflare/worker.js",
+  "compatibility_date": "2026-05-07",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": { "directory": "build/cloudflare/assets", "binding": "ASSETS" },
+  "vars": {
+    "CMS_PUBLIC_ORIGIN": "http://127.0.0.1:8787",
+    "SVELTERY_D1_SESSION": "auto",
+    "SVELTERY_D1_COALESCE": "true"
+  },
+  "d1_databases": [{
+    "binding": "CMS_DB",
+    "database_name": "sveltery-cms",
+    "database_id": "00000000-0000-4000-8000-000000000000"
+  }]
+}
