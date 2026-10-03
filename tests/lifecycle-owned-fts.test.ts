@@ -14,6 +14,16 @@ const table='_cms_fts_notes_v3';
 async function catalogue(database:CmsDatabase) {
   return (await sql`SELECT name,type,tbl_name,sql FROM sqlite_master ORDER BY name,type`.execute(database.db)).rows;
 }
+async function snapshot(database:CmsDatabase) {
+  const objects=await catalogue(database),tables=[];
+  for(const object of objects) if(object.type==='table' && !String(object.name).startsWith('sqlite_') && object.name!=='_cf_METADATA') {
+    // A deliberately removed shadow leaves an unusable virtual table; the
+    // supported owner DROP removes all shadows together, so every row is readable.
+    const rows=(await sql`SELECT * FROM ${sql.id(String(object.name))}`.execute(database.db)).rows;
+    tables.push({name:object.name,rows:rows.map(row=>JSON.stringify(row)).sort()});
+  }
+  return {objects,tables};
+}
 async function fixture(target:'Node'|'D1',config:string|null=JSON.stringify({enabled:true})) {
   const storage=await schemaAdminStorage(target);const database=storage.database;
   await migrateCms(database);
@@ -66,15 +76,17 @@ for(const target of ['Node','D1'] as const) {
     for(const change of changes) {
       const storage=await fixture(target);const database=storage.database;
       try {
-        await sql.raw(change).execute(database.db);const before=await catalogue(database);
+        await sql.raw(change).execute(database.db);const before=await snapshot(database);
         let batches=0;const subject={...database,async atomicBatch(statements:Parameters<CmsDatabase['atomicBatch']>[0]) {batches++;return database.atomicBatch(statements);}};
         await assert.rejects(()=>migrateCms(subject),{code:'MIGRATION_REQUIRED'});
-        assert.equal(batches,0);assert.deepEqual(await catalogue(database),before);
+        assert.equal(batches,0);assert.deepEqual(await snapshot(database),before);
       } finally {await storage.close();}
     }
   });
-  test(`${target}: every managed DDL and metadata race aborts before index backfill`,async()=>{
-    const changes=[...['','_data','_idx','_content','_docsize','_config'].map(suffix=>`DROP TABLE "${table+suffix}"`),
+  test(`${target}: managed group, trigger and metadata races abort before index backfill`,async()=>{
+    // SQLite forbids independent shadow DROP/ALTER; dropping its owner
+    // is the genuine public operation which removes all six managed tables.
+    const changes=[`DROP TABLE "${table}"`,
       ...['_insert','_update','_delete'].map(suffix=>`DROP TRIGGER "${table+suffix}"`),
       "UPDATE _cms_collections SET search_config=NULL WHERE slug='notes_v3'",
       "UPDATE _cms_fields SET searchable=0 WHERE slug='title'",
@@ -84,14 +96,49 @@ for(const target of ['Node','D1'] as const) {
       try {
         await sql`DROP INDEX idx_ec_notes_v3_deleted_status`.execute(database.db);
         let batches=0,before:unknown;const subject={...database,async atomicBatch(statements:Parameters<CmsDatabase['atomicBatch']>[0]) {
-          batches++;await sql.raw(change).execute(database.db);before=await catalogue(database);
+          batches++;await sql.raw(change).execute(database.db);before=await snapshot(database);
           return database.atomicBatch(statements);
         }};
         await assert.rejects(()=>migrateCms(subject),{code:'MIGRATION_REQUIRED'});
-        assert.equal(batches,1);assert.deepEqual(await catalogue(database),before);
+        assert.equal(batches,1);assert.deepEqual(await snapshot(database),before);
         assert.equal((await sql`SELECT name FROM sqlite_master WHERE name='idx_ec_notes_v3_deleted_status'`.execute(database.db)).rows.length,0);
         assert.equal((await database.db.selectFrom('_cms_guards').selectAll().execute()).length,0);
       } finally {await storage.close();}
     }
+  });
+  test(`${target}: unrelated operator and live search row writes remain allowed during backfill`,async()=>{
+    const storage=await fixture(target);const database=storage.database;
+    try {
+      await sql`DROP INDEX idx_ec_notes_v3_deleted_status`.execute(database.db);
+      let batches=0;const subject={...database,async atomicBatch(statements:Parameters<CmsDatabase['atomicBatch']>[0]) {
+        batches++;
+        await sql`CREATE TABLE operator_notes(note TEXT)`.execute(database.db);
+        await sql`INSERT INTO operator_notes VALUES('retained')`.execute(database.db);
+        await sql`INSERT INTO ec_notes_v3(id,title) VALUES('concurrent','Searchable')`.execute(database.db);
+        await sql`UPDATE _cms_fields SET label='Changed label',sort_order=sort_order+100`.execute(database.db);
+        return database.atomicBatch(statements);
+      }};
+      await assert.doesNotReject(()=>migrateCms(subject));assert.equal(batches,1);
+      assert.equal((await sql`SELECT note FROM operator_notes`.execute(database.db)).rows[0]?.note,'retained');
+      assert.equal((await sql`SELECT id FROM ${sql.id(table)} WHERE ${sql.id(table)} MATCH 'Searchable'`.execute(database.db)).rows[0]?.id,'concurrent');
+      await migrateCms(database);
+    } finally {await storage.close();}
+  });
+  test(`${target}: maximum declared fields fit the native D1 binding budget during backfill`,async()=>{
+    const storage=await fixture(target);const database=storage.database;
+    try {
+      const registry=new SchemaRegistry(database);
+      for(let index=0;index<30;index++) await registry.createField('notes_v3',{slug:'extra_'+index,label:'Extra',type:'string'});
+      await sql`DROP INDEX idx_ec_notes_v3_deleted_status`.execute(database.db);
+      let batches=0;const subject={...database,async atomicBatch(statements:Parameters<CmsDatabase['atomicBatch']>[0]) {
+        batches++;
+        // Cloudflare D1's documented maximum is 100 bound values per query.
+        // The real native registry permits 32 fields, including unindexed ones.
+        for(const statement of statements) assert.ok(statement.parameters.length<=100,`D1 query bound values: ${statement.parameters.length}`);
+        return database.atomicBatch(statements);
+      }};
+      await assert.doesNotReject(()=>migrateCms(subject));assert.equal(batches,1);
+      await migrateCms(database);
+    } finally {await storage.close();}
   });
 }
