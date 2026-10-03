@@ -23,6 +23,10 @@ export default defineConfig({
       if (target === path.join(frozenRoot, 'src/database/migrations/runner.js')) return path.join(root, 'tests/helpers/redirects/migration-runner.ts');
       if (target === path.join(frozenRoot, 'tests/utils/test-db.js')) return path.join(root, 'tests/helpers/redirects/test-db.ts');
       if (target === path.join(frozenRoot, 'src/database/repositories/redirect.js')) return path.join(nativeRoot, 'repository.ts');
+      if (target === path.join(frozenRoot, 'src/database/repositories/content.js')) return path.join(root, 'src/lib/server/database/lifecycle/upstream/database/repositories/content.ts');
+      if (target === path.join(frozenRoot, 'src/api/handlers/content.js')) return path.join(root, 'tests/helpers/redirects/source-content.ts');
+      if (target === path.join(frozenRoot, 'src/schema/registry.js')) return path.join(root, 'tests/helpers/redirects/source-schema.ts');
+      if (target === path.join(frozenRoot, 'src/i18n/config.js')) return path.join(nativeRoot, 'i18n-config.ts');
       if (target.endsWith('/src/database/migrations/081_redirect_write_guards.js') && importer.includes('/unit/database/migrations/')) return path.join(root, 'tests/helpers/redirects/migration-namespace.ts');
       if (target.startsWith(path.join(frozenRoot, 'src/database/migrations/')) && !target.endsWith('/runner.js')) return path.join(nativeRoot, 'migrations', path.basename(target).replace(/\.js$/, '.ts'));
       if (target === path.join(frozenRoot, 'src/api/schemas/redirects.js')) return path.join(nativeRoot, 'schemas.ts');

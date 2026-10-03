@@ -6,7 +6,7 @@ import { runRedirectMiddleware } from './engine.ts';
 import { after } from './after.ts';
 import { redirectSchemaPresent } from './readiness.ts';
 
-const internalPaths = ['/schema', '/content', '/trash', '/setup', '/login', '/api', '/redirects'];
+const internalPaths = ['/schema', '/content', '/trash', '/setup', '/login', '/api', '/redirects', '/_app'];
 
 function nativeInternalPath(pathname: string, base: string): boolean {
   const path = base && pathname === base ? '/' :
