@@ -215,5 +215,30 @@
       "title": "invalidateSiteSettingsCache() drops the cached value",
       "sha256": "4d400994da6a190c4fc2fbfa7bec94b88734095ca6e1f1066043f23853fda9d8"
     }
-  ]
+  ],
+  "runtimeEvidence": {
+    "serviceCallbacks": {
+      "count": 13,
+      "expanded": 26,
+      "red": "42dffdd: 2pass24actualassertionfail",
+      "green": "5b997cd:26pass"
+    },
+    "unitCallbacks": {
+      "count": 20,
+      "red": "unexecuted at missing imports:0credit",
+      "green": "20pass realSQLite"
+    },
+    "cacheCallbacks": {
+      "count": 5,
+      "red": "300e47f:3realassertfail2pass",
+      "green": "6fcf0a5:5pass realSQLite"
+    },
+    "browserBaseline": {
+      "head": "e2a13e47a478959911852eccb31a75019be74398",
+      "ci": 37083831823,
+      "actualSourceAssertionFailures": 4,
+      "actionTimeoutsBeforeAssertions": 3,
+      "nodeTarget": "not reached"
+    }
+  }
 }
