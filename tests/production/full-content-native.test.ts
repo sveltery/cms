@@ -19,7 +19,7 @@ const values: Record<FieldType, unknown> = {
 async function fixture(target: 'Node' | 'D1') {
   const h = await schemaAdminRemotes(target);
   try {
-    await h.registry.createCollection({ slug: 'typed', label: 'Typed' });
+    await h.registry.createCollection({ slug: 'typed', label: 'Typed', supports: [] });
     for (const type of FIELD_TYPES) await h.registry.createField('typed', {
       slug: `value_${type.toLowerCase()}`, label: type, type,
       ...(type === 'select' || type === 'multiSelect' ? { validation: { options: ['news', 'guide'] } } : {}),
