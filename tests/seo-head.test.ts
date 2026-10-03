@@ -4,6 +4,7 @@ import {readFile,writeFile,rm}from 'node:fs/promises';
 import {randomUUID}from 'node:crypto';
 import {compile}from 'svelte/compiler';
 import {render}from 'svelte/server';
+import {JSDOM}from 'jsdom';
 import type {PublicPageContext,PageMetadataContribution,SeoSettings}from '../src/lib/seo/types.ts';
 
 // Original native SSR requirements. No copied Source declaration credit.
@@ -21,7 +22,8 @@ const page:PublicPageContext={url:'https://example.com/post/hello',path:'/post/h
 
 test('native head renders the supplied document title and description safely',async()=>{
  const head=await renderHead({page});
- assert.match(head,/<title>Hello &lt;World&gt; \| Site<\/title>/);
+ const document=new JSDOM('<!doctype html><html><head>'+head+'</head><body></body></html>').window.document;
+ assert.equal(document.title,page.title);
  assert.match(head,/<meta name="description" content="Description &amp; details">/);
 });
 test('native head renders the canonical, noindex and Open Graph URL',async()=>{

@@ -1674,6 +1674,19 @@
       "passes": 4,
       "failures": 0
     },
-    "wholeSourcePersistedAndIntegrationExecuted": 0
+    "wholeSourcePersistedAndIntegrationExecuted": 0,
+    "nativeHeadBefore": {
+      "executed": 6,
+      "completedFailures": 6,
+      "retainedUnchangedAssertionReds": 5,
+      "incorrectTitleEncodingAssumption": 1
+    },
+    "nativeHeadAfter": {
+      "executed": 6,
+      "passes": 6,
+      "failures": 0,
+      "titleDOMRequirementHasZeroCausalCredit": true
+    },
+    "nativeClientHeadBrowser": "pending; local Chromium unavailable"
   }
 }
