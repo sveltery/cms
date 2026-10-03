@@ -6,6 +6,7 @@ import { lifecycleService } from '../../src/lib/server/database/lifecycle/servic
 import { withRevision } from '../../src/lib/server/content/schema.ts';
 import { contentEntry } from '../../src/lib/server/lifecycle/schema.ts';
 import { RevisionRepository } from '../../src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts';
+import {sql} from 'kysely';
 
 // Supplemental native HTTP evidence. Source lifecycle assertions are preserved
 // separately in lifecycle-upstream.test.ts and the immutable source ledger.
@@ -127,4 +128,26 @@ test('lifecycle remotes preserve the default-disabled trusted mutation gate',asy
       collection:'post',id:'entry',_rev:'opaque',...(name==='restoreContentRevision'?{revisionId:'revision'}:{})
     }),503,'MUTATIONS_DISABLED');
   } finally {await fixture.close();}
+});
+
+test('actual lifecycle HTTP unpublish forwards the trusted request lifetime to real queued pruning',async()=>{
+  const anchored:Promise<void>[]=[];
+  const fixture=await persistedRemotes({persistedSessions:true,mutationsEnabled:true,keepAlive:task=>anchored.push(task)});
+  try {
+    const service=lifecycleService(fixture.database,actor,{after:()=>{}});
+    const initial=await service.createContent({type:'post',data:{title:'Worker lifetime'},slug:'worker-lifetime'});
+    const published=await service.publish({type:'post',id:initial.id});
+    const revisions=new RevisionRepository(fixture.database.db as any);
+    for(let index=0;index<51;index++)await revisions.create({collection:'post',entryId:initial.id,data:{title:`Old ${index}`}});
+    const before=anchored.length;
+    const result=await fixture.mutate('unpublishContent',{collection:'post',id:initial.id,locale:'en',_rev:withRevision(contentEntry(published))._rev});
+    assert.equal(result._.result.id,initial.id);
+    assert.equal(anchored.length-before,2,'session resolution and actual revision cleanup both extend this request');
+    await Promise.all(anchored.splice(0));
+    const count=(await sql<{n:number}>`SELECT COUNT(*) AS n FROM _cms_revisions WHERE entry_id=${initial.id}`.execute(fixture.database.db)).rows[0].n;
+    assert.equal(count,50);
+    assert.deepEqual((await sql`SELECT revision_id FROM _cms_revision_prune_queue WHERE entry_id=${initial.id}`.execute(fixture.database.db)).rows,[]);
+    const item=await service.getContent({type:'post',id:initial.id});assert.equal(item.status,'draft');
+    assert.ok(await revisions.findById(item.draftRevisionId!));
+  } finally {await Promise.allSettled(anchored.splice(0));await fixture.close();}
 });

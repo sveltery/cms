@@ -36,7 +36,7 @@ try {
   const extra=['packages/core/src/schema/types.ts','packages/core/src/schema/zod-generator.ts','packages/core/src/utils/hash.ts','packages/core/src/api/handlers/validation.ts','packages/core/src/request-cache.ts',
     'packages/core/src/api/schemas/content.ts','packages/core/src/api/schemas/common.ts','packages/core/src/api/schemas/bylines.ts','packages/core/src/api/schemas/relations.ts','packages/core/src/i18n/config.ts',
     'packages/core/src/api/parse.ts','packages/core/src/api/error.ts','packages/core/src/api/errors.ts','packages/core/src/api/authorize.ts','packages/core/src/transfer/errors.ts',
-    'packages/auth/src/rbac.ts','packages/auth/src/types.ts','packages/core/src/astro/routes/api/content/[collection]/[id].ts'];
+    'packages/auth/src/rbac.ts','packages/auth/src/types.ts','packages/core/src/astro/routes/api/content/[collection]/[id].ts','packages/core/src/astro/routes/api/content/[collection]/[id]/unpublish.ts'];
   for(const path of extra)await put(path,source(path));
   // No configured cache or request context is part of this fixture.
   await put('packages/core/src/object-cache/index.ts','export function invalidateCollectionCache() {}');
@@ -51,11 +51,13 @@ try {
   const runtime=source('packages/core/src/emdash-runtime.ts','055ed1307ba4029e120cad989bc9b0e8c2d72afe');
   const api=source('packages/core/src/api/handlers/content.ts');
   const cleanup=source('packages/core/src/cleanup.ts');
-  const helpers=['hasApiError','decodeRevisionPrecondition','collectionHasSeo','resolveId','handleContentUpdate','handleContentUnpublish'].map(name=>declaration(api,name)).join('\n');
+  const helpers=['hasApiError','decodeRevisionPrecondition','collectionHasSeo','getCollectionPublishConfig','requireRoutablePublishSlug','resolveId','slugStillTaken','createSlugChangeRedirect','handleContentUpdate','handleContentUnpublish'].map(name=>declaration(api,name)).join('\n');
   const methods=['handleContentUpdate','hydrateDraftData','normalizeFieldValues','dropUnknownKeysAlreadyStored','handleContentUnpublish'].map(name=>declaration(runtime,name,true)).join('\n');
   const constants=['DRAFT_ONLY_UPDATE_KEYS','ARRAY_FIELD_TYPES','MAX_DRAFT_STAGE_ATTEMPTS'].map(name=>declaration(runtime,name)).join('\n');
   await put('packages/core/src/review-runtime.ts',`
 import assert from 'node:assert/strict';
+import {sql} from 'kysely';
+import {validateIdentifier} from './database/validate.js';
 import {ContentRepository} from './database/repositories/content.js';
 import {RevisionRepository} from './database/repositories/revision.js';
 import {ContentMutationConflictError,EmDashValidationError} from './database/repositories/types.js';
@@ -100,6 +102,7 @@ import {migrateCms} from '${join(root,'src/lib/server/database/migrations.ts')}'
 import {SchemaRegistry} from '${join(root,'src/lib/server/database/registry.ts')}';
 import {SourceRuntime,ContentRepository,RevisionRepository,apiUpdate,pruneQueuedRevisions} from './packages/core/src/review-runtime.ts';
 import {PUT} from './packages/core/src/astro/routes/api/content/[collection]/[id].ts';
+import {POST as unpublishPost} from './packages/core/src/astro/routes/api/content/[collection]/[id]/unpublish.ts';
 class Namespace extends OperationNodeTransformer {
   transformIdentifier(node){return {...node,name:node.name==='revisions'?'_cms_revisions':node.name.replace(/^_emdash_/,'_cms_')};}
   transformRaw(node){return {...super.transformRaw(node),sqlFragments:node.sqlFragments.map(part=>part.replaceAll('_emdash_','_cms_').replace(/\\brevisions\\b/g,'_cms_revisions'))};}
@@ -146,6 +149,18 @@ try {
   await sql\x60DROP TRIGGER review_metadata_fault\x60.execute(storage.database.db);
   for(const task of globalThis.__lifecycleReviewAfter.splice(0))await task();
   await content.discardDraft('post',created.id);
+  // A real sibling keeps the old slug, so the complete original redirect
+  // helper takes its documented early refusal branch before redirect storage.
+  // This proves a string-slug save without inventing a redirect provider.
+  await content.create({type:'post',slug:'mixed',locale:'fr',data:{title:'Sibling holds old URL'}});
+  const slugBefore=await content.findById('post',created.id);
+  const slugOnly=await invokePut({slug:'slug-only-new'});assert.equal(slugOnly.status,200);
+  const slugResult=await slugOnly.json();assert.equal(slugResult.success,true);
+  const slugAfter=await content.findById('post',created.id);
+  assert.equal(slugAfter.slug,'slug-only-new');assert.equal(slugAfter.draftRevisionId,null);
+  assert.equal(slugAfter.liveRevisionId,slugBefore.liveRevisionId);assert.equal(slugAfter.version,slugBefore.version+1);
+  for(const task of globalThis.__lifecycleReviewAfter.splice(0))await task();
+  await content.discardDraft('post',created.id);
   // Repeated source unpublish/republish writes queue new revision snapshots.
   for(let index=0;index<55;index++) {
     const unpublished=await runtime.handleContentUnpublish('post',created.id);assert.equal(unpublished.success,true);
@@ -167,7 +182,19 @@ try {
   const remaining=await db.selectFrom('_emdash_revision_prune_queue').selectAll().execute();
   assert.equal(remaining.length,1);assert.equal(remaining[0].entry_id,orderedEntries[10].entryId);
   assert.equal(remaining[0].revision_id,orderedEntries[10].revisionId);
-  console.log(JSON.stringify({pin:${JSON.stringify(pin)},target:'Node',mixedWrite:{error:result.error.code,draftPersists:true,versionDelta:after.version-before.version,liveUnchanged:true,apiOnlyUnchanged:true},publicPut:{invalidDateRejectedBeforeWrite:true,acceptedIsoFaultStatus:500,draftPersists:true,versionDelta:publicAfter.version-publicBefore.version,liveUnchanged:true},unpublishRetention:{cycles:55,beforeCleanup,afterCleanup:await count(),pruned,queueAcknowledged:true,livePointerPreserved:true},cleanupOrder:{queued:11,oldestAcknowledged:10,newestRemaining:1},completeRuntimeMethods:5,completeApiHandlers:2,completePublicPutCallback:1,completeCleanupConsumer:1,newParityCredit:0}));
+  await sql\x60CREATE TRIGGER review_prune_fault BEFORE DELETE ON _cms_revisions BEGIN SELECT RAISE(ABORT,'review prune fault'); END\x60.execute(storage.database.db);
+  const unpublishUrl='https://source.example/_emdash/api/content/post/'+created.id+'/unpublish';
+  const unpublishResponse=await unpublishPost({params:{collection:'post',id:created.id},request:new Request(unpublishUrl,{method:'POST',headers:{'content-type':'application/json'},body:'{}'}),url:new URL(unpublishUrl),locals:{emdash:runtime,user:{id:'review-admin',role:50}},cache:{enabled:false}});
+  assert.equal(unpublishResponse.status,200);const unpublished=await unpublishResponse.json();assert.equal(unpublished.success,true);
+  const queuedFault=await db.selectFrom('_emdash_revision_prune_queue').selectAll().where('entry_id','=',created.id).executeTakeFirst();
+  assert.equal(await count(),51);await pruneQueuedRevisions(db);
+  assert.equal(unpublished.success,true);assert.equal(await count(),51);
+  assert.deepEqual(await db.selectFrom('_emdash_revision_prune_queue').selectAll().where('entry_id','=',created.id).executeTakeFirst(),queuedFault);
+  assert.ok(await revisions.findById(unpublished.data.item.draftRevisionId));
+  await sql\x60DROP TRIGGER review_prune_fault\x60.execute(storage.database.db);
+  await pruneQueuedRevisions(db);assert.equal(await count(),50);
+  assert.equal(await db.selectFrom('_emdash_revision_prune_queue').selectAll().where('entry_id','=',created.id).executeTakeFirst(),undefined);
+  console.log(JSON.stringify({pin:${JSON.stringify(pin)},target:'Node',mixedWrite:{error:result.error.code,draftPersists:true,versionDelta:after.version-before.version,liveUnchanged:true,apiOnlyUnchanged:true},publicPut:{invalidDateRejectedBeforeWrite:true,acceptedIsoFaultStatus:500,draftPersists:true,versionDelta:publicAfter.version-publicBefore.version,liveUnchanged:true,slugOnlyLiveWrite:true,slugOnlyDraftCreated:false},unpublishRetention:{cycles:55,beforeCleanup,afterCleanup:await count(),pruned,queueAcknowledged:true,livePointerPreserved:true},cleanupOrder:{queued:11,oldestAcknowledged:10,newestRemaining:1},cleanupFailure:{publicUnpublishStatus:200,unpublishSucceeded:true,sqlDeleteFaultIsolated:true,queuePreserved:true,pointerPreserved:true,retryRestores50:true},completeRuntimeMethods:5,completeApiHandlers:2,completePublicPutCallback:1,completePublicUnpublishCallback:1,completeCleanupConsumer:1,newParityCredit:0}));
 } finally {await storage.close();}
 `);
   await build({configFile:false,root:directory,logLevel:'warn',resolve:{alias:{

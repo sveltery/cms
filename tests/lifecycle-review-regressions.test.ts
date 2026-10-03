@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {sql} from 'kysely';
+import {sql,OperationNodeTransformer,type RootOperationNode,type QueryResult,type RawNode} from 'kysely';
 import {schemaAdminStorage} from './helpers/schema-admin-storage.ts';
 import {migrateCms} from '../src/lib/server/database/migrations.ts';
 import {SchemaRegistry} from '../src/lib/server/database/registry.ts';
@@ -41,6 +41,17 @@ for(const target of ['Node','D1'] as const) {
       assert.equal((await f.revisions.findById(after.draftRevisionId!))?.data.title,'Rejected draft');
       assert.equal(after.data.title,'Live');assert.equal(after.publishedAt,before.publishedAt);
       await f.flush();
+    } finally {await f.storage.close();}
+  });
+  test(`${target}: slug-only update preserves the pinned public runtime live write`,async()=>{
+    const f=await fixture(target);
+    try {
+      const before=(await f.content.findById('post',f.key.id))!;
+      const receipt=await f.service.updateContent({...f.key,expected:expected(before),slug:'slug-only-new'});
+      assert.equal(receipt.item.slug,'slug-only-new');assert.equal(receipt.item.draftRevisionId,null);
+      assert.equal(receipt.item.liveRevisionId,before.liveRevisionId);assert.equal(receipt.item.version,before.version+1);
+      assert.equal((await f.service.readPublished(f.key))?.slug,'slug-only-new');
+      assert.equal(receipt.liveContentChanged,true);await f.flush();
     } finally {await f.storage.close();}
   });
   test(`${target}: unpublish cycles drain actual queued history at the source retention cap`,async()=>{
@@ -100,6 +111,57 @@ for(const target of ['Node','D1'] as const) {
       const current=(await f.content.findById('post',f.key.id))!;assert.equal(current.version,draft.version);
       assert.equal(current.draftRevisionId,draft.draftRevisionId);
       assert.equal((await sql<{n:number}>`SELECT COUNT(*) AS n FROM ec_post WHERE id=${f.key.id}`.execute(f.storage.database.db)).rows[0]?.n,1);
+    } finally {await f.storage.close();}
+  });
+  test(`${target}: accepted unpublish isolates a real prune fault and retains queued work for retry`,async()=>{
+    const f=await fixture(target);
+    try {
+      for(let index=0;index<51;index++)await f.revisions.create({collection:'post',entryId:f.key.id,data:{title:`Old ${index}`}});
+      await sql`CREATE TRIGGER review_prune_fault BEFORE DELETE ON _cms_revisions
+        BEGIN SELECT RAISE(ABORT,'review prune fault'); END`.execute(f.storage.database.db);
+      const draft=await f.service.unpublish(f.key);assert.equal(draft.status,'draft');
+      const queued=await f.queue();const count=await f.count();
+      let rejected:unknown;
+      try {await f.flush();}catch(cause){rejected=cause;}
+      assert.equal(rejected,undefined,'source bookkeeping errors are isolated after successful unpublish');
+      assert.deepEqual(await f.queue(),queued);assert.equal(await f.count(),count);
+      assert.ok(await f.revisions.findById(draft.draftRevisionId!));
+      await sql`DROP TRIGGER review_prune_fault`.execute(f.storage.database.db);
+      const repeated=await f.service.unpublish({...f.key,expected:expected(draft)});
+      assert.equal(repeated.version,draft.version);await f.flush();
+      assert.equal(await f.count(),50);assert.deepEqual(await f.queue(),[]);
+    } finally {await f.storage.close();}
+  });
+  test(`${target}: a real queue-capture SELECT fault cannot reject an accepted unpublish`,async()=>{
+    const f=await fixture(target);
+    try {
+      // Change only the maintenance read's selected column. The database raises
+      // an actual missing-column error; source mutation/queue statements and
+      // canonical schema stay intact. No successful cleanup is simulated.
+      let reads=0;
+      class CaptureFault extends OperationNodeTransformer {
+        protected transformRaw(node:RawNode) {
+          const transformed=super.transformRaw(node);
+          if(node.sqlFragments.join('').includes('SELECT revision_id FROM _cms_revision_prune_queue')) {
+            reads++;return {...transformed,sqlFragments:node.sqlFragments.map((part:string)=>part.replace('SELECT revision_id','SELECT missing_capture_column'))};
+          }
+          return transformed;
+        }
+      }
+      const transformer=new CaptureFault();
+      const database={...f.storage.database,db:f.storage.database.db.withPlugin({
+        transformQuery({node}:{node:RootOperationNode}){return transformer.transformNode(node);},
+        async transformResult({result}:{result:QueryResult<unknown>}){return result;}
+      })};
+      const service=lifecycleService(database,principal,{after:task=>f.pending.push(task)});
+      let rejection:unknown;let result:Awaited<ReturnType<typeof service.unpublish>>|undefined;
+      try {result=await service.unpublish(f.key);}catch(cause){rejection=cause;}
+      assert.equal(rejection,undefined,'maintenance capture failure must not convert a committed write into rejection');
+      assert.equal(reads,1);assert.equal(result?.status,'draft');
+      const stored=(await f.content.findById('post',f.key.id))!;
+      assert.equal(stored.version,result?.version);assert.ok(await f.revisions.findById(stored.draftRevisionId!));
+      assert.equal((await f.queue())[0]?.revision_id,stored.draftRevisionId);
+      await f.service.unpublish({...f.key,expected:expected(stored)});await f.flush();assert.deepEqual(await f.queue(),[]);
     } finally {await f.storage.close();}
   });
 }
