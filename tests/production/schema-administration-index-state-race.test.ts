@@ -20,7 +20,7 @@ for (const target of ['Node', 'D1'] as const) {
           await h.registry.updateField('posts', 'candidate', indexing ? incompatible : { indexed: true });
           concurrent = await h.snapshot(); return original(statements);
         };
-        const input = indexing ? { indexedMode: 'set', indexed: 'true' }
+        const input: Record<string,string> = indexing ? { indexedMode: 'set', indexed: 'true' }
           : binding ? { validationMode: 'set', validationJson: JSON.stringify(incompatible.validation) } : { type: 'text' };
         const result = await h.remote('updateSchemaFieldMetadata', 'admin', { collection: 'posts', field: 'candidate', ...input });
         assert.equal(result.type, 'error', 'the effective stored combination is revalidated inside the atomic write');
@@ -30,4 +30,35 @@ for (const target of ['Node', 'D1'] as const) {
       } finally { await h.close(); }
     });
   }
+  test(`${target}: compatible independent type and metadata edits compose without field CAS`, async () => {
+    const h = await schemaAdminRemotes(target);
+    try {
+      await h.registry.createCollection({ slug: 'posts', label: 'Posts' });
+      await h.registry.createField('posts', { slug: 'candidate', label: 'Candidate', type: 'string' });
+      const c = (await h.registry.getCollection('posts'))!;
+      const original = h.database.atomicBatch.bind(h.database);
+      h.database.atomicBatch = async statements => {
+        h.database.atomicBatch = original;
+        await h.registry.updateField('posts', 'candidate', { type: 'slug', label: 'Concurrent label' });
+        return original(statements);
+      };
+      await h.mutate('updateSchemaFieldMetadata', { collection: 'posts', field: 'candidate', indexedMode: 'set', indexed: 'true',
+        optionsMode: 'set', optionsJson: '{"custom":true}' });
+      const field = (await h.registry.getField('posts', 'candidate'))!;
+      assert.equal(field.type, 'slug'); assert.equal(field.label, 'Concurrent label'); assert.equal(field.indexed, true);
+      assert.deepEqual(field.options, { custom: true });
+      const after = (await h.registry.getCollection('posts'))!;
+      assert.equal(after.version, c.version); assert.equal(after.updatedAt, c.updatedAt);
+      assert.deepEqual((await h.snapshot()).guards, []);
+      await h.registry.createField('posts', { slug: 'unbound', label: 'Unbound', type: 'reference' });
+      for (const validation of [null, {}, { multiple: false }, { targetCollection: 'posts' }]) {
+        await h.mutate('updateSchemaFieldMetadata', { collection: 'posts', field: 'unbound', indexedMode: 'set', indexed: 'true',
+          validationMode: 'set', validationJson: JSON.stringify(validation),
+          defaultValueMode: 'set', defaultValueJson: '{"custom":true}', optionsMode: 'set', optionsJson: '{"custom":true}' });
+        const unbound = (await h.registry.getField('posts', 'unbound'))!;
+        assert.deepEqual(unbound.validation, validation, 'supported unbound validation preserves null/empty/partial values');
+        assert.deepEqual(unbound.defaultValue, { custom: true }); assert.deepEqual(unbound.options, { custom: true });
+      }
+    } finally { await h.close(); }
+  });
 }

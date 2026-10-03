@@ -158,7 +158,12 @@ test('immutable Node metadata rechecks combined index type and storage after ser
   await registry.updateField('posts',slug,indexing?incompatible:{indexed:true});
   const before={fields:await db.selectFrom('_emdash_fields').selectAll().execute(),collections:await db.selectFrom('_emdash_collections').selectAll().execute(),ddl:(await sql\`SELECT name,sql FROM sqlite_master ORDER BY name\`.execute(db)).rows};
   await assert.rejects(()=>registry.updateField('posts',slug,indexing?{indexed:true}:incompatible),error=>error.code==='FIELD_NOT_INDEXABLE');
-  assert.deepEqual({fields:await db.selectFrom('_emdash_fields').selectAll().execute(),collections:await db.selectFrom('_emdash_collections').selectAll().execute(),ddl:(await sql\`SELECT name,sql FROM sqlite_master ORDER BY name\`.execute(db)).rows},before);
+ assert.deepEqual({fields:await db.selectFrom('_emdash_fields').selectAll().execute(),collections:await db.selectFrom('_emdash_collections').selectAll().execute(),ddl:(await sql\`SELECT name,sql FROM sqlite_master ORDER BY name\`.execute(db)).rows},before);
+ }
+ await registry.createField('posts',{slug:'unbound',label:'Unbound',type:'reference',searchable:false});
+ for(const relation of [null,'',123,[]]){
+  await registry.updateField('posts','unbound',{indexed:true,validation:{relation,custom:true}});
+  assert.deepEqual((await registry.getField('posts','unbound')).validation,{relation,custom:true});
  }
  }finally{await db.destroy();}
 });

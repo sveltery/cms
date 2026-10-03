@@ -183,17 +183,48 @@ export class SchemaRegistry {
       SELECT 1 FROM _cms_fields f JOIN _cms_collections c ON c.id=f.collection_id
       WHERE f.id=${target.id} AND f.collection_id=${target.collectionId} AND f.slug=${target.slug}
         AND c.slug=${parse(identifier,collectionSlug)}) THEN 1 ELSE 0 END`.compile(db)] : [];
-    const statements = [...indexGuard,
+    // Partial writes must validate their proposed index/type/storage combination
+    // against the current row, not the preflight snapshot. This is validation,
+    // not field CAS: compatible independent metadata edits still compose.
+    const stateToken=ulid();
+    const effectiveIndexed=value.indexed === undefined ? sql.ref('f.indexed') : sql`${Number(value.indexed)}`;
+    const effectiveType=value.type === undefined ? sql.ref('f.type') : sql`${value.type}`;
+    const effectiveValidation=value.validation === undefined ? sql.ref('f.validation') : sql`${value.validation === null ? null : JSON.stringify(value.validation)}`;
+    const stateGuard=value.indexed === undefined && value.type === undefined && value.validation === undefined ? [] : [
+      sql`INSERT INTO _cms_guards(token,pass) SELECT ${stateToken},CASE WHEN NOT EXISTS (
+        SELECT 1 FROM (SELECT ${effectiveIndexed} AS next_indexed,${effectiveType} AS next_type,${effectiveValidation} AS next_validation
+          FROM _cms_fields f JOIN _cms_collections c ON c.id=f.collection_id
+          WHERE f.id=${target.id} AND f.collection_id=${target.collectionId} AND f.slug=${target.slug}
+            AND c.slug=${parse(identifier,collectionSlug)}) proposed
+        WHERE next_indexed=1 AND (next_type NOT IN ('string','url','number','integer','boolean','datetime','select','reference','slug')
+          OR (next_type='reference' AND CASE WHEN json_valid(next_validation)
+            THEN json_type(next_validation,'$.relation')='text' AND json_extract(next_validation,'$.relation')<>'' ELSE 0 END)))
+        THEN 1 ELSE 0 END`.compile(db)
+    ];
+    const statements = [...indexGuard,...stateGuard,
       db.updateTable('_cms_fields').set(updates)
         .where('id', '=', target.id).where('collection_id', '=', target.collectionId)
         .where('slug', '=', target.slug)
         .where('collection_id', 'in', db.selectFrom('_cms_collections').select('id')
           .where('id', '=', target.collectionId).where('slug', '=', parse(identifier, collectionSlug)))
         .returningAll().compile(), ...indexStatements,
-      ...(indexGuard.length ? [sql`DELETE FROM _cms_guards WHERE token=${indexToken}`.compile(db)] : [])
+      ...(indexGuard.length ? [sql`DELETE FROM _cms_guards WHERE token=${indexToken}`.compile(db)] : []),
+      ...(stateGuard.length ? [sql`DELETE FROM _cms_guards WHERE token=${stateToken}`.compile(db)] : [])
     ];
-    const results = indexGuard.length ? await this.batch(statements,'NOT_FOUND') : await this.database.atomicBatch(statements);
-    const row = results[indexGuard.length].rows[0] as FieldRow | undefined;
+    let results;
+    try {
+      results = stateGuard.length ? await this.batch(statements,'FIELD_NOT_INDEXABLE')
+        : indexGuard.length ? await this.batch(statements,'NOT_FOUND') : await this.database.atomicBatch(statements);
+    } catch (cause) {
+      // Both guards share the native table. After rollback, preserve the missing
+      // identity error independently of the incompatible effective-state code.
+      if (indexGuard.length && cause instanceof CmsError && cause.code==='FIELD_NOT_INDEXABLE') {
+        const current=await this.getField(collectionSlug,fieldSlug);
+        if(!current || current.id!==target.id || current.collectionId!==target.collectionId) throw new CmsError('NOT_FOUND');
+      }
+      throw cause;
+    }
+    const row = results[indexGuard.length+stateGuard.length].rows[0] as FieldRow | undefined;
     if (!row) throw new CmsError('NOT_FOUND');
     return field(row);
   }
@@ -393,7 +424,7 @@ export class SchemaRegistry {
     const token=ulid(); const db=this.database.db;
     return { before:[sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN EXISTS(SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${value.version} AND updated_at=${value.updatedAt}) THEN 1 ELSE 0 END`.compile(db)],after:[sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)] };
   }
-  private async batch(statements: CompiledQuery[], guardCode: 'LIMIT_EXCEEDED' | 'CONFLICT' | 'COLLECTION_NOT_EMPTY' | 'NOT_FOUND') {
+  private async batch(statements: CompiledQuery[], guardCode: 'LIMIT_EXCEEDED' | 'CONFLICT' | 'COLLECTION_NOT_EMPTY' | 'NOT_FOUND' | 'FIELD_NOT_INDEXABLE') {
     try { return await this.database.atomicBatch(statements); }
     catch (cause) {
       // Only the deliberate SQL guard's CHECK failure becomes a domain conflict.
