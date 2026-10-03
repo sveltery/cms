@@ -150,6 +150,21 @@
       "path": "/tmp/sections-widgets-native-palette-order-check.log",
       "sha256": "18ab7e64e1265e0e084d0c401ad6a95f5063f0fd2f791c5755d020ecd2f25df3",
       "bytes": 202
+    },
+    {
+      "path": "/tmp/sections-widgets-readiness-literals-original-red.log",
+      "sha256": "83bb6bbaf7d3e7f29253e1edd21f7b2a1c4282983716b06874d657a75d0c51bf",
+      "bytes": 2649
+    },
+    {
+      "path": "/tmp/sections-widgets-readiness-literals-original-green.log",
+      "sha256": "7a0601df9c2b180d6fce9f46e4451d2e47e7bd3371aeb67d7530373b790e4d8f",
+      "bytes": 1600
+    },
+    {
+      "path": "/tmp/sections-widgets-DateMain-frozen-closure.log",
+      "sha256": "a14cb048a936eed3c83403e34276300e3c3c3d20c931323a467515abd91b68e1",
+      "bytes": 576
     }
   ],
   "originalPalette": {
@@ -171,9 +186,12 @@
     "cardSource": 23,
     "production": 259,
     "nodeHosting": {
-      "pass": 12,
+      "completedTopLevelCallbacks": 3,
+      "pass": 0,
       "fail": 3,
-      "failure": "all three fresh isolated pnpm installs exceeded unchanged120s before app/maintenance execution"
+      "dependentSubtests": "unexecuted",
+      "failure": "all three fresh isolated pnpm installs exceeded unchanged120s before app/maintenance execution",
+      "correction": "previous12-pass statement was unsupported; frozen historical log retained"
     },
     "cloudflareStages": "not reached in bootstrap; subsequent complete normal Cloudflare build and23+7 suites pass separately"
   },
@@ -192,5 +210,31 @@
     "actualSvelteComponentsCompiled": 8,
     "warnings": 0,
     "coverageCredit": 0
+  },
+  "originalLiteralReadiness": {
+    "callbacks": 10,
+    "completedInitialValueReds": 2,
+    "firstGreenControls": 8,
+    "pass": 10,
+    "existingReadinessAndFinalSchemaPass": 4,
+    "testFirstCommit": "95cef4a",
+    "runtime": "actual Node SQLite and raw D1",
+    "sourceCallbackCredit": 0,
+    "sharedCanonicalNormalizerChanged": false
+  },
+  "currentDateMainClosure": {
+    "main": "0cf347fc54cbe637bad63498b291d4ed5da42ef5",
+    "mergeCommit": "349e5ab",
+    "packages": 512,
+    "snapshots": 527,
+    "allMain445PackageDataAndRawBlocksPreserved": true,
+    "allMain458SnapshotIdentitiesRetained": true,
+    "unchangedMainSnapshotRawBlocks": 457,
+    "onlyMainSnapshotMetadataException": "tslib2.8.1 becomes required",
+    "actualMainImporterSelectionsUnchanged": true,
+    "unpublishedOwnDateFnsResolution": "react-day-picker9.14 same snapshot now selects actual Main direct4.1 rather than prior4.4; unused4.4 records retained",
+    "missingDependencyOrOptionalReferences": 0,
+    "frozenInstall": "pass6.1s",
+    "sourceParityCredit": 0
   }
 }
