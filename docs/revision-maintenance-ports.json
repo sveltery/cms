@@ -163,7 +163,11 @@
       "source": "Full Astro system-cleanup scheduler calls runSystemCleanup(db, storage); private revision subfunction selects one oldest-ten batch",
       "native": "Trusted server storage-owning function initializes approved canonical provider1\u20135, returns only revisionsPruned, closes its own adapter. Optional Worker scheduled wrapper anchors the same function in actual waitUntil; it installs no schedule or HTTP route",
       "reason": "Native Node and Worker host boundary; absent cleanup subsystems must not return invented successes",
-      "decision": "Pending specific PM acceptance; zero Source full-system/scheduler credit"
+      "decision": "Specifically accepted by PM for the trusted native revision host; final PR merge approval remains pending; zero Source full-system/scheduler/native-host credit",
+      "decisionUrl": "https://github.com/sveltery/cms/pull/71#pullrequestreview-5400502433",
+      "acceptedHead": "0bcbe275cc68d4bc721dbea46beecf14f29dcccf",
+      "acceptedTree": "a7f6e2e84cffcdf3da12eaa7fc6e2cb13352ccb6",
+      "nativeHostSourceCredit": 0
     }
   ],
   "canonicalFilesUnchanged": [
@@ -190,14 +194,22 @@
     "log": "/tmp/revision-maintenance-normal-bootstrap.log",
     "headReceipt": "/tmp/revision-maintenance-normal-bootstrap.head",
     "exitReceipt": "/tmp/revision-maintenance-normal-bootstrap.exit",
-    "securedHostedBrowsers": "Pending publication and exact-head hosted execution",
+    "securedHostedBrowsers": "Historical local receipt; both sandboxed default/Node targets subsequently passed on public 0bcbe275 in hosted CI37118977136",
     "deployedHosting": false,
     "scopedScheduledModuleBundledInOwnTest": true,
     "officialCmsWorkerAutomaticallyRegistersScheduledHandler": false,
     "isolatedNodePackageMaintenanceEntryIncluded": false
   },
   "publication": {
-    "status": "Local only while PM-required public source-audit permission remains pending; no public ref or PR created; no rejection retry or alternate writer used"
+    "status": "Own draft PR published; final integrated-head gates and explicit PM merge approval remain pending",
+    "pullRequest": "https://github.com/sveltery/cms/pull/71",
+    "head": "0bcbe275cc68d4bc721dbea46beecf14f29dcccf",
+    "tree": "a7f6e2e84cffcdf3da12eaa7fc6e2cb13352ccb6",
+    "orderedOriginalTreesPreserved": 10,
+    "originalLocalCommitTrailers": true,
+    "originalLocalHistoryPreserved": true,
+    "scopedDecisionUrl": "https://github.com/sveltery/cms/pull/71#pullrequestreview-5400502433",
+    "merged": false
   },
   "refactoredFocusedGreen": {
     "head": "7ada02e22bba68effae4c4491616bd0787e26395",
@@ -208,5 +220,45 @@
     "sourceDeclarationCreditUnchanged": 8,
     "log": "/tmp/revision-maintenance-refactored-focused.log",
     "exitCode": 0
-  }
+  },
+  "hostedPublicationGate": {
+    "run": "https://github.com/sveltery/cms/actions/runs/37118977136",
+    "head": "0bcbe275cc68d4bc721dbea46beecf14f29dcccf",
+    "base": "95668fb45b262c5e8df63ede20d712e71ebea771",
+    "validateJob": 111191216216,
+    "browserJob": 111191216382,
+    "normalStatus": "success; all eleven phases finished",
+    "serviceCases": 997,
+    "authSourceCases": 34,
+    "productionCases": 236,
+    "isolatedNodeHostingCases": 13,
+    "cloudflareSourceCases": 23,
+    "officialCloudflareWorkerCases": 4,
+    "checkerErrors": 0,
+    "checkerWarnings": 0,
+    "sandboxedDefaultBrowserCases": 57,
+    "sandboxedNodeBrowserCases": 57,
+    "validateLog": "/tmp/revision-maintenance-public-0bc-hosted-validate.log",
+    "browserLog": "/tmp/revision-maintenance-public-0bc-hosted-browser.log",
+    "newSourceOrProductCredit": 0,
+    "syntheticMerge": "41fbe1b8af9080ef4e31016c606e93fa4c5647a6"
+  },
+  "laterLocalNormalFailures": [
+    {
+      "head": "dffe571f9dd77cf5d3fee6060ae7048a386eeec3",
+      "exitCode": 1,
+      "phase": "frozen dependency install",
+      "reason": "Registry HTTP503 for @cloudflare/unenv-preset; checks not reached",
+      "log": "/tmp/revision-maintenance-dffe-normal-bootstrap.log",
+      "fullGateCredit": 0
+    },
+    {
+      "head": "0bcbe275cc68d4bc721dbea46beecf14f29dcccf",
+      "exitCode": 1,
+      "phase": "isolated Node hosting tests",
+      "reason": "Isolated production package dependency install timed out at its unchanged 120-second deadline; production tests passed, remaining phases not reached",
+      "log": "/tmp/revision-maintenance-public-head-normal-bootstrap.log",
+      "fullGateCredit": 0
+    }
+  ]
 }
