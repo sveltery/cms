@@ -2,7 +2,7 @@
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "approvedMain": "d524733376c286ce7c67be586f20ae16b08ec070",
   "status": "source-first immutable inventory; no new callbacks executed or passing behavior credited",
-  "declarations": 16,
+  "declarations": 18,
   "authority": [
     {
       "path": "packages/admin/tests/components/Redirects.test.tsx",
@@ -179,6 +179,62 @@
       "blob": "060ffbaea9ac438508775005aa8c390fde29d918",
       "bytes": 13462,
       "sha256": "ad1abbe5b15d85b55d7e54e4db530c83a23a863df01b983bedd5af2d98d8d104"
+    },
+    {
+      "path": "packages/core/tests/integration/content/atomic-publication.test.ts",
+      "local": "parity/emdash/redirect-integration-source/upstream/packages/core/tests/integration/content/atomic-publication.test.ts",
+      "kind": "whole-source-test",
+      "blob": "6fe90e11b17a7d0e334644191f199b0541095b20",
+      "bytes": 2768,
+      "sha256": "9bbcf9e1c1394c3ae4eb63168ddb2f38374ad83c048d9efc0a252489df85d957"
+    },
+    {
+      "path": "packages/core/tests/utils/fixtures.ts",
+      "local": "parity/emdash/redirect-integration-source/upstream/packages/core/tests/utils/fixtures.ts",
+      "kind": "whole-authority",
+      "blob": "70801b7bffcf977674c67f554ad289a6e4bf27b2",
+      "bytes": 965,
+      "sha256": "7bca3d4ac15f3986c0cd9d1e826be6b64dda8cea8cf2a142284d912da3cfb95d"
+    },
+    {
+      "path": "packages/core/tests/utils/test-db.ts",
+      "local": "parity/emdash/redirect-integration-source/authority/packages/core/tests/utils/test-db.ts.txt",
+      "kind": "whole-authority",
+      "blob": "b75bd5b5770e44050b2d0da28e87c155c603ed66",
+      "bytes": 18803,
+      "sha256": "0e6a59b5d2109e4134aed1277f82089725a53fe079ee0ec0c2622169d2480dc0"
+    },
+    {
+      "path": "packages/core/src/database/repositories/content.ts",
+      "local": "parity/emdash/redirect-integration-source/authority/packages/core/src/database/repositories/content.ts.txt",
+      "kind": "whole-authority",
+      "blob": "29dab9decf9af0d9fb21b464dc185ed48ab958ea",
+      "bytes": 106516,
+      "sha256": "b334660e351c6953e41bde5058b29a7b1d00219c5afa96a0773d09bd251e63ee"
+    },
+    {
+      "path": "packages/core/src/database/repositories/revision.ts",
+      "local": "parity/emdash/redirect-integration-source/authority/packages/core/src/database/repositories/revision.ts.txt",
+      "kind": "whole-authority",
+      "blob": "e1fa0f08bf3affdb97367bea2261ef2fc6feb45f",
+      "bytes": 10687,
+      "sha256": "c6f680af45cdcd074e6dcc161487bff8f506fc48dbb45967e0cb131d0127e90c"
+    },
+    {
+      "path": "packages/core/src/api/handlers/content.ts",
+      "local": "parity/emdash/redirect-integration-source/authority/packages/core/src/api/handlers/content.ts.txt",
+      "kind": "whole-authority",
+      "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+      "bytes": 88776,
+      "sha256": "f31d9d08cf7ad3ba863ed0b2f9b9d91729a4ce364ce63024077d81f1c6a4969c"
+    },
+    {
+      "path": "packages/core/src/api/handlers/revision.ts",
+      "local": "parity/emdash/redirect-integration-source/authority/packages/core/src/api/handlers/revision.ts.txt",
+      "kind": "whole-authority",
+      "blob": "20199be02ae52b26f483d03bbfbad86a94356c0e",
+      "bytes": 5041,
+      "sha256": "faaf8a1fe3b422bb1b26de047ecfb7e799469615e64775bb61f90519e2c7559b"
     }
   ],
   "unimplemented": [
@@ -331,9 +387,27 @@
       "expectExpressions": 1,
       "elementExpressions": 0,
       "typeExpressions": 0
+    },
+    {
+      "path": "packages/core/tests/integration/content/atomic-publication.test.ts",
+      "line": 29,
+      "title": "rolls back every promoted column when the staged slug constraint rejects",
+      "sha256": "03f21e07c27bf43be1bbb6986fe0f7cf4e7574e8d76b48f5c85d660a02e318e2",
+      "expectExpressions": 2,
+      "elementExpressions": 0,
+      "typeExpressions": 0
+    },
+    {
+      "path": "packages/core/tests/integration/content/atomic-publication.test.ts",
+      "line": 54,
+      "title": "never leaves a dangling pointer when staging races guarded revision deletion",
+      "sha256": "e658d638027e2660788b4ce2a7b08a700a743812040746a2ec60fa6f66f12569",
+      "expectExpressions": 3,
+      "elementExpressions": 0,
+      "typeExpressions": 0
     }
   ],
-  "expectExpressions": 37,
+  "expectExpressions": 42,
   "elementExpressions": 9,
   "typeExpressions": 1
 }
