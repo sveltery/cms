@@ -180,7 +180,7 @@
       "blob": "9e65f32518fff181fe04163cc17d5b0f85e2a4f0",
       "sourceSha256": "017439063ff9abb628ded35b269963a9cf11addc4125b424e9c561d732df5824",
       "copiedPath": "src/lib/blocks/media-values.ts",
-      "copiedSha256": "78137cd9e48674b1e938129369adf4960cab159c92f4a7136fac4e566f08a86d",
+      "copiedSha256": "d5170e55d449a8be3995e09a10db240d22d2c74a1638f51975c9e554e46969e6",
       "scope": "complete ImageFieldValue declaration and complete mediaDisplayUrl/mediaItemToImageFieldValue functions; not full React ImageFieldRenderer",
       "declarations": [
         {
@@ -212,8 +212,8 @@
       "blob": "ad14c878697e9036558cbe521116a038c25c9eb0",
       "sourceSha256": "52547a10dcb248ec1776e8e1894625db5fe97ba34919b593d63a22cea02a3b25",
       "copiedPath": "src/lib/blocks/media-values.ts",
-      "copiedSha256": "78137cd9e48674b1e938129369adf4960cab159c92f4a7136fac4e566f08a86d",
-      "scope": "complete FileField handleSelect callback in native selection closure; not full ContentEditor/FileField React components",
+      "copiedSha256": "d5170e55d449a8be3995e09a10db240d22d2c74a1638f51975c9e554e46969e6",
+      "scope": "complete FileFieldValue interface, normalized display callback and handleSelect callback in native wrappers; not full ContentEditor/FileField React components",
       "declarations": [
         {
           "sourceName": "handleSelect",
@@ -222,11 +222,26 @@
           "copiedContainer": "selectFileField",
           "kind": "callback",
           "sourceBodySha256": "8eb08b1760afafb9646891e8f158a513458bb6035d571d31abd36072ff84def9"
+        },
+        {
+          "sourceName": "FileFieldValue",
+          "copiedName": "FileFieldValue",
+          "kind": "interface",
+          "sourceBodySha256": "0cb333d173d385542d117e4b518758c9efbdbc42eb645a0d3d6967415e7f540a"
+        },
+        {
+          "sourceName": "normalized",
+          "sourceContainer": "FileFieldRenderer",
+          "copiedName": "normalized",
+          "copiedContainer": "normalizeFileFieldValue",
+          "kind": "callback",
+          "sourceBodySha256": "dc33a8bad09589921c49ff0aad20e7ef7ae54b72ae4c83c8adc8fc7fa50c72ad"
         }
       ],
       "transforms": [
         "native browser type imports and export visibility",
-        "native FileField closure wrapper; full source callback body unchanged"
+        "native FileField closure wrapper; full source callback body unchanged",
+        "native English message tag outside unchanged complete display callback; no Lingui runtime credit"
       ]
     },
     {
@@ -239,6 +254,15 @@
       "transforms": [
         "native type/getRequestContext imports only; pinned algorithms and shared global WeakMap Symbol unchanged"
       ]
+    },
+    {
+      "source": "packages/admin/src/lib/url.ts",
+      "blob": "33d7329282c29dd2a275f6020a7077b0b0f7dbda",
+      "sourceSha256": "3c65bdcf038100e7a6076e7444f62f968771125320dc405d4a13e2e4f6d97730",
+      "copiedPath": "src/lib/blocks/source-url.ts",
+      "copiedSha256": "3c65bdcf038100e7a6076e7444f62f968771125320dc405d4a13e2e4f6d97730",
+      "scope": "complete pure module; field-display use only, no public-route/redirect/i18n runtime credit",
+      "transforms": []
     }
   ]
 }

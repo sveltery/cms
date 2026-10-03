@@ -17,7 +17,7 @@
 {#if field.type==='image'||field.type==='file'}
  <BlockMediaField {id} label={field.label} {value} {onchange} {readOnly} image={field.type==='image'} allowedMimeTypes={field.validation?.allowedMimeTypes}/>
  {#if field.type==='image'&&field.options?.darkVariant&&primaryImage&&mediaDisplayUrl(primaryImage)}
-  <BlockMediaField id={`${id}.darkVariant`} label={`${field.label} (dark variant)`} value={value&&typeof value==='object'&&'darkVariant'in value?value.darkVariant:undefined} onchange={darkVariant=>{const next:Record<string,unknown>={...primaryImage};if(darkVariant===null)delete next.darkVariant;else next.darkVariant=darkVariant;onchange(next);}} {readOnly} image/>
+  <BlockMediaField id={`${id}.darkVariant`} label={`${field.label} (dark variant)`} value={value&&typeof value==='object'&&'darkVariant'in value?value.darkVariant:undefined} onchange={darkVariant=>{const next:Record<string,unknown>={...primaryImage};if(darkVariant===null)delete next.darkVariant;else next.darkVariant=darkVariant;onchange(next);}} {readOnly} image allowedMimeTypes={field.validation?.allowedMimeTypes}/>
  {/if}
 {:else if field.type==='repeater'}
  <fieldset disabled={readOnly}><legend>{field.label}</legend>

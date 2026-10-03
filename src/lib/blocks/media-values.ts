@@ -1,7 +1,10 @@
 // Complete selected ImageFieldValue/mediaDisplayUrl/mediaItemToImageFieldValue declarations
-// and complete FileFieldRenderer handleSelect callback from EmDash913cb1bb.
+// and complete FileFieldRenderer value/display/selection declarations from EmDash913cb1bb.
 // Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
 // Native exports/imports/closure wrapper; no whole React component/module credit.
+import {isSafeUrl} from './source-url';
+// Native English tag for the complete selected display callback; no Lingui runtime credit.
+const t=(strings:TemplateStringsArray)=>strings.join('');
 import type {MediaItem} from '../media/picker-client';
 import {canonicalMediaProviderId,localMediaFileUrl,metaString} from '../media/source/picker-media-utils';
 export interface ImageFieldValue {
@@ -77,4 +80,47 @@ const handleSelect = (item: MediaItem) => {
 		});
 	};
 return handleSelect;
+}
+
+export interface FileFieldValue {
+	id: string;
+	/** Provider ID (e.g., "local", "s3") */
+	provider?: string;
+	/** Direct URL for non-local media */
+	src?: string;
+	/** Legacy cached URL */
+	url?: string;
+	filename?: string;
+	mimeType?: string;
+	size?: number;
+	/** Provider-specific metadata */
+	meta?: Record<string, unknown>;
+}
+
+export function normalizeFileFieldValue(value: FileFieldValue | undefined) {
+const normalized = () => {
+		if (!value) return null;
+		const isLocal = !value.provider || value.provider === "local";
+		const storageKey =
+			typeof value.meta?.storageKey === "string" ? value.meta.storageKey : undefined;
+		const directUrl = value.src ?? value.url;
+		const localSrc =
+			typeof directUrl === "string" && directUrl.startsWith("/_emdash/") ? directUrl : undefined;
+		// Clients can write meta.storageKey, so it is encoded per path segment: query or
+		// fragment delimiters cannot escape the route path, and a key with folders still
+		// reaches the [...key] route.
+		const localUrl = isLocal
+			? storageKey
+				? localMediaFileUrl(storageKey)
+				: (localSrc ?? localMediaFileUrl(value.id))
+			: undefined;
+		const externalUrl = !isLocal && directUrl && isSafeUrl(directUrl) ? directUrl : undefined;
+		return {
+			displayUrl: localUrl ?? externalUrl,
+			filename: value.filename || t`Untitled file`,
+			mimeType: value.mimeType || "",
+			size: value.size,
+		};
+	};
+return normalized();
 }
