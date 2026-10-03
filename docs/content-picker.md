@@ -99,3 +99,8 @@ so the planned combined successor retains the whole Source render and English
 setup unchanged. Actual combined Source/browser/normal validation, public
 canonical8, exact-head review and acceptance remain pending. The incoming
 Sections gates and dependency/lock records remain intact.
+
+
+The actual combined author `dcc0b5d0fc4979c1670f31e8835a973b49cf4476` passes own frozen512 policy verification and checker0/0. Its secured hosted run37161695883 browser111316287098 passes all whole Source Bulk14/Date30/Menu25/Redirect3/Sections35/Picker3 and default62/Node62 against synthetic merge872b6981f26c32ee8a8ddc8f495b68c1893bfec0. Official1243 sandboxed launches and original180s/30s limits are retained. Picker3's first passes after real provider setup repair add0Source causal credit; the original missing-provider receipt is preserved. Full native Kumo/multilingual behavior and CP acceptance remain pending. Browser log SHA256: e92e5cac3a19e79057ea2241475f8f44c59df89229441f306c502fb8222f9318.
+
+The same hosted validate111316287232 passes frozen512/check0, all1246 Main services and every inherited normal stage through Sections rawD1Core38, then fails whole ownedcore22 with3passes/19failures:18 Source pre-expectation errors at missing public search_config and the original Nativeq value assertion still false. The nativeUI24 suffix and later phases do not execute; complete normal and public canonical8 remain pending. Validate log SHA256: ed93e4f3ef1c19498602c325e352ff84a7dab9edeae5ef5fea7f07abfca3d613. Own local frozen/check logs: df9ca6f3146e56595fd4a26d352d3a28d7123f4d4d4d43a10b803ac8c748f2bb /436187189056e00739b204d33cd2c727e0715cd7d5f2732830fee47af391bf75. Earlier445/local503 failures remain historical failures.

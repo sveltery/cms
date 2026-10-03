@@ -289,3 +289,6 @@ its own browser callbacks stopped before assertions at missing provider setup.
 The owned provider correction and complete31-authority record preserve zero
 Source causal credit; see the paired picker record for actual pending combined
 Main512/527 validation and the public canonical search prerequisite.
+
+
+At combined picker author dcc0b5d0fc4979c1670f31e8835a973b49cf4476, secured run37161695883 passes all inherited Source browser families including complete Menu25, whole Picker3, default62 and Node62 with official1243 sandboxing and unchanged180s/30s deadlines. Own local/hosted frozen512 and checker0 pass. Complete normal remains blocked by missing public search_config in whole ownedcore22; canonical8 and final picker acceptance/merge remain pending. Picker Source first greens after provider setup repair earn0causal credit, and the earlier setup/local503 failures remain retained. Whole browser/validate SHA256 receipts: e92e5cac3a19e79057ea2241475f8f44c59df89229441f306c502fb8222f9318 /ed93e4f3ef1c19498602c325e352ff84a7dab9edeae5ef5fea7f07abfca3d613.
