@@ -548,6 +548,8 @@ Exact `bc9c2b5` [CI37092191766](https://github.com/sveltery/cms/actions/runs/370
 
 Corrected Kit boolean encoding repeats six genuine failures against complete compiled immutable bc9, zero cancellations. The explicit baseline output and installed-dependency build are supplemental; its initial pnpm metadata stall is excluded and supplies no clean bootstrap claim. Expected values remain unchanged; initial malformed checkbox requests earn no product-red credit.
 
+Final schema integration merges actual approved main `7076e03d81bc4039092d674b5aef3d26a73e4219`, including separately owned canonical lifecycle-startup42. It retains that provider/source inventory and all earlier normal/secured/Cloudflare gates. This composition earns no extra schema or full FTS/relation/media lifecycle credit, and requires new exact-head checks and review before approval.
+
 ## RT2: native Cloudflare D1 runtime ([PR #47](https://github.com/sveltery/cms/pull/47), proposed)
 
 | ID | Observable substitution or limit | Decision and evidence |
