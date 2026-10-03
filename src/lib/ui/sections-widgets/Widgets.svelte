@@ -4,6 +4,7 @@
   import type { WidgetArea, WidgetComponent, CreateWidgetInput, UpdateWidgetInput } from '$lib/sections-widgets/api.ts';
   import type { EditorRenderer, PluginBlockDef, BlockSidebarPanel } from '$lib/sections-widgets/editor.ts';
   import { getPluginBlocks } from '$lib/sections-widgets/plugin-blocks.ts';
+  import { getWidgetPalette } from '$lib/sections-widgets/palette.ts';
   import WidgetEditor from './WidgetEditor.svelte';
   import BlockSettings from './BlockSettings.svelte';
   import { modal } from './modal.ts';
@@ -12,7 +13,7 @@
   let areas = $state<WidgetArea[]>([]), components = $state<WidgetComponent[]>([]), pluginBlocks = $state<PluginBlockDef[]>([]), loading = $state(true), loadError = $state(''), componentError = $state(''), manifestError = $state('');
   let createOpen = $state(false), deleteArea = $state<string | null>(null), expanded = $state(new Set<string>()), pending = $state(false), actionError = $state(''), status = $state(''), panel = $state<BlockSidebarPanel | null>(null);
   let drag = $state<{ source: 'palette'; input: CreateWidgetInput; label: string } | { source: 'area'; area: string; id: string } | null>(null);
-  const palette = $derived([{ label: 'Content Block', description: 'Rich text content', input: { type: 'content' } as CreateWidgetInput }, { label: 'Menu', description: 'Display a navigation menu', input: { type: 'menu' } as CreateWidgetInput }, ...components.map(component => ({ label: component.label, description: component.description, input: { type: 'component', componentId: component.id, componentProps: Object.fromEntries(Object.entries(component.props).map(([key, def]) => [key, def.default ?? ''])) } as CreateWidgetInput }))]);
+  const palette = $derived(getWidgetPalette(components));
   async function load() {
     loading = true; loadError = '';
     try { areas = await api.fetchWidgetAreas(); } catch (cause) { loadError = cause instanceof Error ? cause.message : String(cause); } finally { loading = false; }
