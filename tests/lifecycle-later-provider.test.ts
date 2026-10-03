@@ -1,23 +1,11 @@
 // Original framework integration; zero copied-source declaration credit.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
-import {stripTypeScriptTypes} from 'node:module';
 import {sql} from 'kysely';
 import {schemaAdminStorage} from './helpers/schema-admin-storage.ts';
 import {lifecycleMigration} from '../src/lib/server/database/lifecycle-migrations.ts';
 
-// Exercise the actual framework with only its provider registration extended.
-// The real proposed8 physicalDDL is aliased to contiguous6 after actual5.
-// No production provider is registered, no empty provider or marker is forged.
-const path=new URL('../src/lib/server/database/migrations.ts',import.meta.url);
-let source=readFileSync(path,'utf8');
-const registration=/  lifecycleMigration(?:,[^\n]*)?\n\];/;
-assert.ok(registration.test(source));
-source=source.replace(registration,'  lifecycleMigration,\n  laterMetadataFixture\n];')
-  .replace(/from (['"])([^'"]+)\1/g,(_whole,_quote,reference)=>'from '+JSON.stringify(reference.startsWith('.') ? new URL(reference,path).href : import.meta.resolve(reference)));
-source='import {metadataFidelityMigration as laterMetadataFixture} from '+JSON.stringify(new URL('./fixtures/later-metadata-provider.ts',import.meta.url).href)+';\n'+source;
-const {migrateCms}=await import('data:text/javascript;base64,'+Buffer.from(stripTypeScriptTypes(source,{mode:'transform'})).toString('base64')) as typeof import('../src/lib/server/database/migrations.ts');
+import {migrateCms} from './helpers/later-migration-framework.ts';
 for(const target of ['Node','D1'] as const) {
   test(`${target}: real later metadata replacement is accepted on canonical restart`,async()=>{
     const storage=await schemaAdminStorage(target);
