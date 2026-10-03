@@ -1,0 +1,17 @@
+.media-image-cropper-frame{display:flex;height:320px;min-width:0;width:100%;align-items:center;justify-content:center;overflow:hidden;border-radius:.75rem;background:#eef0f4}
+.emdash-react-image-crop{position:relative;max-height:100%;max-width:100%}
+.emdash-react-image-crop img{display:block;width:100%;height:100%;object-fit:contain;transform:none}
+.ReactCrop__crop-selection{position:absolute;box-sizing:border-box;border:2px solid #4465ce;animation:none;container-type:size;touch-action:none;cursor:move}
+.ReactCrop__crop-selection:focus-visible{outline:2px solid #4465ce;outline-offset:2px}
+.ReactCrop__rule-of-thirds-vt,.ReactCrop__rule-of-thirds-hz{position:absolute;inset:0;pointer-events:none}
+.ReactCrop__rule-of-thirds-vt::before,.ReactCrop__rule-of-thirds-vt::after{content:'';position:absolute;top:0;bottom:0;border-left:1px dashed #4465ce}
+.ReactCrop__rule-of-thirds-vt::before{left:33.333%}.ReactCrop__rule-of-thirds-vt::after{left:66.667%}
+.ReactCrop__rule-of-thirds-hz::before,.ReactCrop__rule-of-thirds-hz::after{content:'';position:absolute;left:0;right:0;border-top:1px dashed #4465ce}
+.ReactCrop__rule-of-thirds-hz::before{top:33.333%}.ReactCrop__rule-of-thirds-hz::after{top:66.667%}
+.ReactCrop__drag-handle{position:absolute;width:min(24px,33.333cqw,33.333cqh);height:min(24px,33.333cqw,33.333cqh);padding:0;border:0;background:transparent;touch-action:none}
+.fixed-aspect .ReactCrop__drag-handle{width:min(24px,50cqw,50cqh);height:min(24px,50cqw,50cqh)}
+.ReactCrop__drag-handle::after{content:'';position:absolute;width:min(10px,20cqw,20cqh);height:min(10px,20cqw,20cqh);top:50%;left:50%;transform:translate(-50%,-50%);border-radius:1px;background:#4465ce;box-shadow:0 0 0 1px white}
+.ReactCrop__drag-handle:focus-visible{outline:2px solid #4465ce;outline-offset:2px}
+.ord-nw{top:0;left:0;cursor:nw-resize}.ord-ne{top:0;right:0;cursor:ne-resize}.ord-se{bottom:0;right:0;cursor:se-resize}.ord-sw{bottom:0;left:0;cursor:sw-resize}
+.ord-n{top:0;left:50%;transform:translateX(-50%);cursor:n-resize}.ord-e{top:50%;right:0;transform:translateY(-50%);cursor:e-resize}.ord-s{bottom:0;left:50%;transform:translateX(-50%);cursor:s-resize}.ord-w{top:50%;left:0;transform:translateY(-50%);cursor:w-resize}
+.media-cropper-announcement{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
