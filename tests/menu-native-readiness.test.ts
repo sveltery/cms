@@ -38,3 +38,31 @@ for (const backend of ['node', 'd1'] as const) {
     } finally { await storage.close(); await worker?.dispose(); }
   });
 }
+
+// Literal identity is part of the owned SQL contract; quoted identifier and
+// formatting normalization must never rewrite a literal's contents.
+const literalCases = [
+  { name: 'embedded double quotes', actual: '"en"', expected: 'en' },
+  { name: 'repeated literal whitespace', actual: 'en  US', expected: 'en US' },
+  { name: 'escaped single quote followed by double quotes', actual: 'en\'"tail"', expected: 'en\'tail' }
+];
+for (const backend of ['node', 'd1'] as const) {
+  for (const [index, literal] of literalCases.entries()) {
+    test(`${backend}: menu readiness preserves ${literal.name} in locale defaults`, { timeout: 30_000 }, async () => {
+      const worker = backend === 'node' ? undefined : new Miniflare({ modules: true,
+        script: 'export default {fetch() {return new Response("fixture")}}',
+        compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0,
+        d1Databases: { CMS_DB: `cms-menu-readiness-literal-${index}` }, cf: false });
+      const storage = worker ? openD1(await worker.getD1Database('CMS_DB')) : openSqlite(':memory:');
+      try {
+        await migrateCms(storage);
+        await storage.atomicBatch(menuSchemaStatements(storage, literal.actual));
+        const before = (await sql`SELECT name, type, sql FROM sqlite_master ORDER BY name`.execute(storage.db)).rows;
+        assert.equal(await menuStorageReady(storage, literal.expected), false);
+        assert.equal(await menuStorageReady(storage, literal.actual), true);
+        assert.deepEqual((await sql`SELECT name, type, sql FROM sqlite_master ORDER BY name`.execute(storage.db)).rows, before);
+        assert.deepEqual((await storage.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row => row.version), [1, 2, 3, 4, 5]);
+      } finally { await storage.close(); await worker?.dispose(); }
+    });
+  }
+}
