@@ -4,12 +4,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn, execFileSync } from 'node:child_process';
 import { once } from 'node:events';
-import { cp, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { parse, stringify } from 'devalue';
 import { encodeBase64urlNoPadding } from '@oslojs/encoding';
+import { imageSize } from 'image-size';
+import { PNG_4x4 } from '../../parity/emdash/media/source-fixtures/image-fixtures.ts';
 import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
 import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
 import { hashSessionToken } from '../../src/lib/server/auth/session.ts';
@@ -27,12 +29,13 @@ async function unusedPort() {
   return address.port;
 }
 
-function launch(cwd: string, port: number, origin?: string, databasePath?: string) {
+function launch(cwd: string, port: number, origin?: string, databasePath?: string, mediaDirectory?: string) {
   // Deliberately inherit no credentials, DB settings, proxy trust or session configuration.
   const child = spawn(process.execPath, ['build/index.js'], {
     cwd, env: { PATH: process.env.PATH, HOST: '127.0.0.1', PORT: String(port),
       SHUTDOWN_TIMEOUT: '1', ...(origin === undefined ? {} : { ORIGIN: origin }),
-      ...(databasePath === undefined ? {} : { SVELTERY_DATABASE_PATH: databasePath }) },
+      ...(databasePath === undefined ? {} : { SVELTERY_DATABASE_PATH: databasePath }),
+      ...(mediaDirectory === undefined ? {} : { SVELTERY_MEDIA_DIRECTORY: mediaDirectory }) },
     stdio: ['ignore', 'pipe', 'pipe']
   });
   const exited = once(child, 'exit');
@@ -150,6 +153,33 @@ test('isolated production package starts, serves assets and denies anonymous HTT
     assert.equal((await (await fetch(endpoint)).json()).status, 401);
     await running.stop('SIGINT');
     running = undefined;
+
+    await t.test('fresh production dependencies resize an actual stored image outside the checkout', async () => {
+      const mediaDirectory = join(temporary, 'image-media');
+      await mkdir(mediaDirectory);
+      const original = join(mediaDirectory, 'packaged-image.png');
+      await writeFile(original, PNG_4x4);
+      running = launch(directory, port, new URL(base).origin, undefined, mediaDirectory);
+      await running.ready();
+      const href = new URL('_emdash/api/media/file/packaged-image.png', base).href;
+      const request = new URL('_image', base);
+      request.searchParams.set('href', href);
+      request.searchParams.set('w', '2');
+      request.searchParams.set('f', 'webp');
+      const response = await fetch(request);
+      assert.equal(response.status, 200);
+      assert.equal(response.headers.get('content-type'), 'image/webp');
+      const bytes = new Uint8Array(await response.arrayBuffer());
+      assert.ok(bytes.length > 12);
+      assert.equal(new TextDecoder().decode(bytes.slice(0, 4)), 'RIFF');
+      assert.equal(new TextDecoder().decode(bytes.slice(8, 12)), 'WEBP');
+      const dimensions = imageSize(bytes);
+      assert.equal(dimensions.width, 2);
+      assert.equal(dimensions.height, 2);
+      assert.deepEqual(new Uint8Array(await readFile(original)), PNG_4x4);
+      await running.stop('SIGTERM');
+      running = undefined;
+    });
 
     await t.test('unset ORIGIN preserves adapter HTTPS inference; forwarded headers are not trusted by default', async () => {
       running = launch(directory, port);
