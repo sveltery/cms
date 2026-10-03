@@ -19,6 +19,7 @@ run_stage() {
 run_stage 'frozen dependency install' pnpm install --frozen-lockfile
 run_stage 'type and Svelte checks' pnpm check
 run_stage 'service tests' pnpm test
+run_stage 'historical taxonomy reference fixtures' pnpm test:taxonomy-history
 run_stage 'default production build' pnpm build
 run_stage 'production remote tests' pnpm test:production
 run_stage 'Node package and build' pnpm package:node

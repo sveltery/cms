@@ -54,14 +54,17 @@ for(const relative of [...seen].sort()){
   assert.equal(gitBlob(raw),blob(path));
   manifest.files.push({source:path,target,blob:blob(path),sha256:sha(raw)});
 }
-// Full shared pure helper behind the admin package export; no UI code.
-const adminPath='packages/admin/src/slugify.ts',adminRaw=source(adminPath);
-const adminTarget=`tests/fixtures/taxonomy-history/${adminPath}`;
-if(write){mkdirSync(dirname(adminTarget),{recursive:true});writeFileSync(adminTarget,Buffer.concat([Buffer.from(notice),adminRaw]));}
-assert.ok(readFileSync(adminTarget,'utf8').startsWith(notice));
-assert.equal(readFileSync(adminTarget).subarray(Buffer.byteLength(notice)).compare(adminRaw),0);
-assert.equal(gitBlob(adminRaw),blob(adminPath));
-manifest.files.push({source:adminPath,target:adminTarget,blob:blob(adminPath),sha256:sha(adminRaw)});
+// Complete shared slug helper and pinned D1 host; no UI/Cloudflare runtime.
+manifest.hostEntrySources=['packages/admin/src/slugify.ts','packages/cloudflare/src/db/d1-dialect.ts','packages/cloudflare/src/db/d1-introspector.ts'];
+for(const hostPath of manifest.hostEntrySources){
+  const raw=source(hostPath),target=`tests/fixtures/taxonomy-history/${hostPath}`;
+  if(write){mkdirSync(dirname(target),{recursive:true});writeFileSync(target,Buffer.concat([Buffer.from(notice),raw]));}
+  assert.ok(readFileSync(target,'utf8').startsWith(notice));
+  assert.equal(readFileSync(target).subarray(Buffer.byteLength(notice)).compare(raw),0);
+  assert.equal(gitBlob(raw),blob(hostPath));
+  manifest.files.push({source:hostPath,target,blob:blob(hostPath),sha256:sha(raw)});
+}
+externals.add('kysely-d1');
 manifest.externalRuntimeImports=[...externals].sort();
 if(write)writeFileSync(manifestPath,JSON.stringify(manifest,null,2)+'\n');
 else assert.deepEqual(JSON.parse(readFileSync(manifestPath,'utf8')),manifest);

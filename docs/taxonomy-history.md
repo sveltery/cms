@@ -35,11 +35,40 @@ pnpm exec vitest run --config vitest.taxonomy-history.config.ts
 ```
 
 Pinned-reference execution is separate from native taxonomy product evidence.
-The named native taxonomy integration is still pending. This fixture does not
+The same seven callbacks pass against native taxonomy development head
+`3bdeb244156fdfcd58a973fbb19722ff2a01ac30`: they invoke its production
+068/082/085 algorithms, taxonomy get/update handlers, and canonical native
+registry/content repository for068. The other six historical cases still use
+the test-only source Runner to generate real historical prestate. There is
+zero new assertion-red or causal TDD credit: those native algorithms already
+existed. The uniform `_emdash_`→`_cms_` system namespace transformation is the
+same disclosed host substitution used by the taxonomy suite; stored raw
+callbacks and their expectation bodies are unchanged.
+
+Actual local workerd/D1 passes six callbacks in both reference and native modes.
+The remaining definition-group callback inserts30historical rows with240bound
+parameters in one statement. D1 rejects that original fixture before migration
+085 or its assertions. The source's dialect selection is SQLite/PostgreSQL,
+and the fixture remains unchanged: no chunked substitute, deadline increase,
+source bug, assertion-red credit or whole seven-case D1 pass is claimed.
+The complete pinned D1 dialect/introspector and kysely-d10.4.0 supply the
+reference migration host; the native canonical068 fixture uses its actual
+CmsDatabase batch adapter. D1 algorithms run on Node over actual workerd SQL;
+this is separate from native Cloudflare HTTP application evidence.
+
+This fixture does not
 implement an EmDash database importer, establish full legacy upgrade support,
 execute PostgreSQL, or grant media, relation, block, transfer, authentication,
 or other feature credit merely because their migration modules are loaded.
-Local D1 execution and final-head normal/secured-browser checks remain pending.
+Normal frozen installation failed npm registry503 metadata verification and
+is not claimed green. Installed-library typechecking reports0errors/0warnings.
+Final-approved-main integration, normal/secured-browser checks, review,
+project-manager approval, owned merge and post-merge verification remain pending.
+
+For the separate native development integration, set
+`SVELTERY_TAXONOMY_HISTORY_NATIVE_ROOT` to the verified native checkout. Set
+`SVELTERY_TAXONOMY_HISTORY_TARGET=workerd-d1` for the complete seven-case D1
+qualification run; its one fixture failure remains an honest failed run.
 
 See the [compatibility register](../parity/emdash/compatibility.md) for the
 fixture boundary and the distinction between reference and product evidence.

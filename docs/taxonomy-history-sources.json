@@ -12,6 +12,7 @@
     "@oslojs/crypto/sha2",
     "@oslojs/encoding",
     "kysely",
+    "kysely-d1",
     "kysely/migration",
     "node:async_hooks",
     "node:path",
@@ -1032,6 +1033,23 @@
       "target": "tests/fixtures/taxonomy-history/packages/admin/src/slugify.ts",
       "blob": "19bee0f0f9eb2017c4014cfa482f51dfac0cada1",
       "sha256": "b4bb5ea95436619a82f93da84762daeeb47c656c7a7f18d1a287847c1ea5a8cf"
+    },
+    {
+      "source": "packages/cloudflare/src/db/d1-dialect.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/cloudflare/src/db/d1-dialect.ts",
+      "blob": "b026d293554c5173e1447b5eff0d704e169d3384",
+      "sha256": "c37040b0868590d2467a9230b32a84ae421dec6d98fb31b1a480e18a38b39c6c"
+    },
+    {
+      "source": "packages/cloudflare/src/db/d1-introspector.ts",
+      "target": "tests/fixtures/taxonomy-history/packages/cloudflare/src/db/d1-introspector.ts",
+      "blob": "4c40fc55aa449f46f887f9335d11b42633312225",
+      "sha256": "1435befb2c61a3a5a0b20a7c0724cbc79914f8d9528ab629c7869d849ccbf9d0"
     }
+  ],
+  "hostEntrySources": [
+    "packages/admin/src/slugify.ts",
+    "packages/cloudflare/src/db/d1-dialect.ts",
+    "packages/cloudflare/src/db/d1-introspector.ts"
   ]
 }

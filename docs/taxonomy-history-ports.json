@@ -1,6 +1,6 @@
 {
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
-  "state": "Complete seven-callback pinned-reference Node fixture green; native product integration and D1 qualification pending.",
+  "state": "All seven complete source and native Node callbacks green. Actual workerd D1 executes six; one unchanged240-bind source fixture is unsupported. Final integration/review/CI pending.",
   "testFiles": [
     {
       "source": "packages/core/tests/integration/database/taxonomy-translation-locale-migration.test.ts",
@@ -89,11 +89,98 @@
       "assertionRedCredit": 0,
       "productParityCredit": 0,
       "fixtureBoundary": "Complete pinned Runner/001\u2013091, complete pinned SchemaRegistry/Repo/handlers; native Node SQLite host and pinned core Vitest virtual defaults."
+    },
+    {
+      "phase": "pinned-reference",
+      "runtime": "Node-hosted pinned algorithms over actual local workerd/D1",
+      "result": {
+        "tests": 7,
+        "passed": 6,
+        "failed": 1,
+        "pending": 0
+      },
+      "assertionRedCredit": 0,
+      "causalTddCredit": 0,
+      "omission": {
+        "sourceId": "packages/core/tests/integration/database/taxonomy-def-groups-migration.test.ts:225",
+        "title": "gives every name a group when there are more names than one insert holds",
+        "cause": "Original30-row fixture INSERT binds240parameters and D1 rejects it before migration085 or assertions. Source dialect selection isSQLite/Pg, notD1.",
+        "callbackEdited": false,
+        "assertionsEdited": false,
+        "deadlineChanged": false,
+        "hostErrorRedCredit": 0
+      }
+    },
+    {
+      "phase": "native taxonomy",
+      "runtime": "Node24SQLite",
+      "result": {
+        "tests": 7,
+        "passed": 7,
+        "failed": 0,
+        "pending": 0
+      },
+      "assertionRedCredit": 0,
+      "causalTddCredit": 0,
+      "nativeDependency": "3bdeb244156fdfcd58a973fbb19722ff2a01ac30",
+      "invokedProductionScope": [
+        "taxonomy068/082/085 algorithms",
+        "taxonomy get/update handlers",
+        "canonical native registry and content repository for068"
+      ],
+      "fixtureBoundary": "Six081/083 historical cases use complete test-only SourceRunner prestate;068 uses canonical native collection setup. No full native90-migration/importer credit."
+    },
+    {
+      "phase": "native taxonomy",
+      "runtime": "Node-hosted native algorithms over actual local workerd/D1",
+      "result": {
+        "tests": 7,
+        "passed": 6,
+        "failed": 1,
+        "pending": 0
+      },
+      "assertionRedCredit": 0,
+      "causalTddCredit": 0,
+      "nativeDependency": "3bdeb244156fdfcd58a973fbb19722ff2a01ac30",
+      "invokedProductionScope": [
+        "taxonomy068/082/085 algorithms",
+        "taxonomy get/update handlers",
+        "canonical native registry and content repository for068"
+      ],
+      "fixtureBoundary": "Six081/083 historical cases use complete test-only SourceRunner prestate;068 uses canonical native collection setup. No full native90-migration/importer credit.",
+      "omission": {
+        "sourceId": "packages/core/tests/integration/database/taxonomy-def-groups-migration.test.ts:225",
+        "title": "gives every name a group when there are more names than one insert holds",
+        "cause": "Original30-row fixture INSERT binds240parameters and D1 rejects it before migration085 or assertions. Source dialect selection isSQLite/Pg, notD1.",
+        "callbackEdited": false,
+        "assertionsEdited": false,
+        "deadlineChanged": false,
+        "hostErrorRedCredit": 0
+      }
+    },
+    {
+      "phase": "normal frozen installation",
+      "command": "pnpm install --frozen-lockfile",
+      "result": "Failed supply-chain metadata lookup after2m32.6s: npm registry503 for @rollup/rollup-freebsd-x64. Installation and normal bootstrap not passed.",
+      "policyBypassed": false,
+      "newD1Dependency": "Exactkysely-d1@0.4.0 importer/package/peer entries reconstructed from immutable upstream lock after resolver503; mandatory frozen verification retained."
+    },
+    {
+      "phase": "installed-library development typecheck",
+      "command": "svelte-check --tsconfig ./tsconfig.json",
+      "result": {
+        "errors": 0,
+        "warnings": 0
+      },
+      "normalFrozenPass": false
     }
   ],
   "limits": [
     "Complete callbacks are preserved; test registration/fixture errors earn no assertion-red credit.",
     "Pinned fixture execution is reference evidence, not execution of the native product.",
-    "PostgreSQL and legacy import/media engine execution remain outside this bounded fixture."
+    "PostgreSQL and legacy import/media engine execution remain outside this bounded fixture.",
+    "One D1 source fixture240-bind insertion remains unsupported and earns zero product/assertion-red credit.",
+    "The native named-dependency executions are not final-approved-main evidence; CI/review/approval/merge/post-merge remain pending.",
+    "D1 JavaScript algorithms execute on Node with actual workerd SQL, not inside a native Cloudflare HTTP application."
   ]
 }
