@@ -1,0 +1,9 @@
+# Validation diagnostics
+
+Run `sh scripts/bootstrap.sh` with Node 24 and pnpm 12.6.0. The script runs the same frozen dependency install, type checks, service tests, default build, production remote tests, Node package/hosting checks, and Cloudflare build/source/Worker checks, in that order. Each phase prints `[validate] start:` and `[validate] finished:`. A command failure keeps its exit status and stops before the finished marker or later commands.
+
+The GitHub Actions `validate` job has a **15-minute deadline**, including setup. Previously it inherited GitHub's six-hour job default. Exceeding the deadline fails the job; it does not establish a passing test result or fix a hang. The script itself does not impose an additional total deadline on local runs. The secured browser job keeps its existing 15-minute job deadline and 180-second command limits.
+
+No test files, source assertions, callback bodies, per-test timeouts, file scheduling, runtime cleanup, dependency versions, browser sandbox settings, or product behavior change with these diagnostics. Every original bootstrap command remains mandatory. Test cancellations, assertion failures, and inherited Miniflare failures remain failures; an isolated passing case does not replace a failed full run.
+
+Two editor validation jobs, [37082703026](https://github.com/sveltery/cms/actions/runs/37082703026) and [37085581067](https://github.com/sveltery/cms/actions/runs/37085581067), were still executing their bootstrap step when this change was proposed. Their live logs were unavailable through GitHub's completed-job log endpoint. The unfinished phase and cause were therefore unverified. Multiple concurrent local suites can contend for the shared executor, but those observations do not establish the cause of either hosted job. This change supplies a finite failure bound and useful phase evidence for the next run; it claims no runtime repair or new EmDash parity.
