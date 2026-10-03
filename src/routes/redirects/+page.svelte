@@ -7,6 +7,6 @@
   const api=createRedirectClient(resolve('/api/redirects').slice(0,-'/redirects'.length));
 </script>
 <svelte:head><title>Redirects · Sveltery CMS</title></svelte:head>
-<WorkspaceShell homeHref={resolve('/')}>
+<WorkspaceShell homeHref={resolve('/')} activePage="redirects">
   <RedirectsPanel {api} canManage={data.canManage} />
 </WorkspaceShell>

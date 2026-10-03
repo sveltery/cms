@@ -8,7 +8,7 @@
   import './vendor/sveltery/themes-native.css';
   let { children, homeHref = '/', schemaHref, activePage = 'content', currentPath, navigation, additionalNavigation, mediaHref, blocksHref, usersHref, version, footerLabel = 'Sveltery CMS' }: {
     children: Snippet; homeHref?: string; schemaHref?: string;
-    activePage?: 'content' | 'schema' | 'settings' | 'dashboard' | 'media' | 'blocks' | 'users';
+    activePage?: 'content' | 'schema' | 'settings' | 'dashboard' | 'media' | 'blocks' | 'users' | 'redirects';
     currentPath?: string; navigation?: WorkspaceNavigation;
     /** Owned features mount real links/palette without advertising absent routes. */
     additionalNavigation?: Snippet;
@@ -76,6 +76,9 @@
       {#if showSchema}
         <h2>Administration</h2>
         <a href={schemaLink} aria-current={activePage === 'schema' ? 'page' : undefined}>Schema</a>
+      {/if}
+      {#if navigationData.permissions.includes('redirects:read')}
+        <a href={`${prefix}redirects`} aria-current={activePage === 'redirects' ? 'page' : undefined}>Redirects</a>
       {/if}
       {@render additionalNavigation?.()}
     </nav>

@@ -31,7 +31,7 @@ const LEASE_BUSY='sveltery-redirect-lease-occupied';
 const SNAPSHOT_CHANGED='sveltery-redirect-snapshot-changed';
 const FENCE_CHANGED='sveltery-redirect-generation-changed';
 const INVALID_TIMESTAMP='sveltery-redirect-invalid-timestamp';
-interface ExistingRedirectSnapshot {id:string;updated_at:string;config_revision:string;destination:string}
+interface ExistingRedirectSnapshot {id:string;updated_at:string|null;config_revision:string;destination:string}
 
 /** Called before mutation; no DDL, lease, content or redirect write occurs here. */
 export async function prepareContentSlugRedirect(
@@ -42,25 +42,27 @@ export async function prepareContentSlugRedirect(
  validateIdentifier(input.collection,'collection slug');
  const oldUrl=interpolateUrlPattern({pattern:input.urlPattern,collection:input.collection,slug:input.oldSlug,id:input.id,date:input.oldPublishedAt});
  const newUrl=interpolateUrlPattern({pattern:input.urlPattern,collection:input.collection,slug:input.newSlug,id:input.id,date:input.newPublishedAt});
- if(oldUrl===newUrl)return null;
+ const equalUrls=oldUrl===newUrl;
  const db=database.db,table=sql.ref(`ec_${input.collection}`);
  const token=ulid(),casGuard=ulid(),snapshotGuard=ulid(),leaseGuard=ulid(),finalGuard=ulid(),generationPrefix=ulid()+':';
  const now=new Date().toISOString(),clock=Date.now();
  const survives=sql`EXISTS(SELECT 1 FROM ${table} WHERE slug=${input.oldSlug} AND id!=${input.id} AND deleted_at IS NULL)`;
  const held=await sql<{survives:number}>`SELECT CASE WHEN ${survives} THEN 1 ELSE 0 END AS survives`.execute(db);
  const survivor=held.rows[0]?.survives===1;
- const selected=survivor?undefined:(await sql<ExistingRedirectSnapshot>`SELECT id,updated_at,config_revision,destination
+ const selected=survivor||equalUrls?undefined:(await sql<ExistingRedirectSnapshot>`SELECT id,updated_at,config_revision,destination
   FROM _cms_redirects WHERE source=${oldUrl} LIMIT 1`.execute(db)).rows[0];
  // Source updates the selected old-source row AFTER chain collapse. Collapse
  // replaces even a future/invalid timestamp when this row points to oldUrl.
  // JS Date parsing/truncation/RangeError must not be approximated by SQLite.
  let updatedAt=now,timestampError:RangeError|undefined;
- if(selected)try{updatedAt=new Date(Math.max(Date.now(),new Date(selected.destination===oldUrl?now:selected.updated_at).getTime()+1)).toISOString();}
+ // The Source base column is nullable. The erased assertion preserves NULL
+ // into the exact JS expression (Date(null) is the epoch), without a default.
+ if(selected)try{updatedAt=new Date(Math.max(Date.now(),new Date(selected.destination===oldUrl?now:selected.updated_at!).getTime()+1)).toISOString();}
  catch(cause){if(!(cause instanceof RangeError))throw cause;timestampError=cause;}
  const timestampValue=timestampError?sql`json_extract('[]',${INVALID_TIMESTAMP})`:sql`${updatedAt}`;
- const snapshot=selected?sql`EXISTS(SELECT 1 FROM _cms_redirects WHERE id=${selected.id}
+ const snapshot=equalUrls?sql`1`:selected?sql`EXISTS(SELECT 1 FROM _cms_redirects WHERE id=${selected.id}
   AND id=(SELECT id FROM _cms_redirects WHERE source=${oldUrl} LIMIT 1)
-  AND source=${oldUrl} AND updated_at=${selected.updated_at} AND config_revision=${selected.config_revision} AND destination=${selected.destination})`
+  AND source=${oldUrl} AND updated_at IS ${selected.updated_at} AND config_revision=${selected.config_revision} AND destination=${selected.destination})`
   :sql`NOT EXISTS(SELECT 1 FROM _cms_redirects WHERE source=${oldUrl})`;
  const generation=sql`(SELECT CAST(substr(token,${generationPrefix.length+1}) AS INTEGER)
   FROM _cms_guards WHERE substr(token,1,${generationPrefix.length})=${generationPrefix})`;
@@ -79,6 +81,9 @@ export async function prepareContentSlugRedirect(
   sql`UPDATE _cms_redirect_write_lock SET token=${token},expires_at=${clock+30_000},generation=generation+1
    WHERE id=1 AND (token='' OR expires_at<${clock}) AND NOT ${survives}`.compile(db),
   sql`INSERT INTO _cms_guards(token,pass) VALUES(${leaseGuard},CASE WHEN ${survives} OR changes()=1 THEN 1 ELSE json_extract('[]',${LEASE_BUSY}) END)`.compile(db),
+  // Source acquires its lease before equal-URL early return. Such plans contain
+  // no shadow/chain/source writes and have no redirect result indices.
+  ...(equalUrls?[]:[
   // Source's surviving-locale check applies to drafts as well as published rows.
   // It precedes all shadow removal/chain changes; deleted holders do not count.
   sql`DELETE FROM _cms_redirects WHERE source=${newUrl} AND ${fence}`.compile(db),
@@ -94,14 +99,14 @@ export async function prepareContentSlugRedirect(
    SELECT ${ulid()},${oldUrl},${newUrl},301,0,1,0,NULL,'Auto: slug change',1,${ulid()},1,${generation},${now},${now}
    FROM _cms_redirect_write_lock WHERE id=1 AND ${fence}
     AND NOT EXISTS(SELECT 1 FROM _cms_redirects WHERE source=${oldUrl})
-   RETURNING id`.compile(db),
+   RETURNING id`.compile(db)]),
   sql`INSERT INTO _cms_guards(token,pass) VALUES(${finalGuard},CASE WHEN ${survives} OR ${fence}
    THEN 1 ELSE json_extract('[]',${FENCE_CHANGED}) END)`.compile(db),
   sql`UPDATE _cms_redirect_write_lock SET token='',expires_at=0 WHERE id=1 AND token=${token}`.compile(db),
   sql`DELETE FROM _cms_guards WHERE token IN (${casGuard},${snapshotGuard},${leaseGuard},${finalGuard})
    OR substr(token,1,${generationPrefix.length})=${generationPrefix}`.compile(db)
  ];
- return {input,timestampError,statements,redirectResultIndices:[7,8]};
+ return {input,timestampError,statements,redirectResultIndices:equalUrls?[]:[7,8]};
 }
 
 /** Only the owned rollback sentinels retry; content/schema CAS remains strict. */
