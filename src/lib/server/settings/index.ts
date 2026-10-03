@@ -51,8 +51,12 @@ export function invalidateSiteSettingsCache(db?:Kysely<SettingsTables>){
  else cacheState.values=new WeakMap();
 }
 class PlannedOptions extends OptionsRepository {
+ private readonly databaseDb:Kysely<SettingsTables>;
  readonly statements:CompiledQuery[]=[];
- constructor(private readonly databaseDb:Kysely<SettingsTables>){super(databaseDb);}
+ constructor(databaseDb:Kysely<SettingsTables>){
+  super(databaseDb);
+  this.databaseDb=databaseDb;
+ }
  override async set(name:string,value:unknown):Promise<void>{
   this.statements.push(this.databaseDb.insertInto('options').values({name,value:JSON.stringify(value),revision:crypto.randomUUID()})
    .onConflict(oc=>oc.column('name').doUpdateSet(eb=>({value:eb.ref('excluded.value'),revision:eb.ref('excluded.revision')}))).compile());
