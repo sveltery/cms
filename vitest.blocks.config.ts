@@ -15,6 +15,9 @@ export default defineConfig({plugins:[{
     if(target.includes('/packages/core/src/schema/registry.js'))return resolve(root,'tests/helpers/blocks-source-schema.ts');
     if(target.includes('/packages/core/src/database/repositories/content.js'))return resolve(root,'tests/helpers/blocks-source-content.ts');
     if(target.includes('/packages/core/src/api/errors.js'))return resolve(root,'src/lib/server/blocks/errors.ts');
+    if(target.includes('/packages/core/src/database/migrations/083_block_types.js'))return resolve(root,'src/lib/server/blocks/source-migration.ts');
+    if(target.includes('/packages/core/src/seed/apply.js'))return resolve(root,'tests/helpers/blocks-source-seed.ts');
+    if(target.includes('/packages/core/src/cli/commands/export-seed.js'))return resolve(root,'tests/helpers/blocks-source-seed.ts');
     if(target.includes('/packages/core/src/i18n/config.js'))return resolve(root,'src/lib/server/taxonomies/upstream/i18n/config.ts');
     if(target.includes('/packages/core/src/components/blocks.js'))return resolve(root,'src/lib/blocks/render.ts');
     if(target.includes('/packages/admin/src/lib/block-field-state.js'))return resolve(root,'src/lib/blocks/state.ts');
@@ -25,5 +28,7 @@ export default defineConfig({plugins:[{
   'parity/emdash/blocks/source-tests/packages/core/tests/integration/schema/{block-type-registry,blocks-field-schema}.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/integration/content/blocks-content.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/unit/components/blocks-renderer.test.ts',
+  'parity/emdash/blocks/source-tests/packages/core/tests/integration/database/block-types-migration.test.ts',
+  'parity/emdash/blocks/source-tests/packages/core/tests/unit/seed/blocks.test.ts',
   'parity/emdash/blocks/source-tests/packages/admin/tests/lib/block-field-state.test.ts'
 ]}});
