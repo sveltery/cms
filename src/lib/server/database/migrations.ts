@@ -282,7 +282,12 @@ export async function migrateCms(database: CmsDatabase): Promise<void> {
   }
   if (state > 0) statements.push(sql`DELETE FROM _cms_guards WHERE token = 'migration-upgrade'`.compile(db));
   statements.push(...indexes);
-  try { await database.atomicBatch(statements); }
+  // After frozen5 is installed, every forward upgrade can still rebuild
+  // metadata. Keep its exact content/field prerequisite guard before all
+  // startup writes, as latest trash-index repair already does.
+  const guarded = state >= 5 ? [validated.prerequisiteGuard,
+    ...await guardLifecycleIndexRepair(database, statements.slice(1))] : statements;
+  try { await database.atomicBatch(guarded); }
   catch (cause) {
     const message = sqliteErrorMessage(cause);
     const race = message === 'CHECK constraint failed: pass = 1' ||
