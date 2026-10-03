@@ -15,7 +15,7 @@ export function describeEachDialect(name: string, run: (dialect: 'sqlite') => vo
 export async function setupTestDatabase() {
   const database = openSqlite(':memory:'); await migrateCms(database); bindings.set(database.db, database); return database.db;
 }
-export async function teardownTestDatabase(db: CmsDatabase['db']) { await bindings.get(db)?.destroy(); }
+export async function teardownTestDatabase(db: CmsDatabase['db']) { await bindings.get(db)?.close(); }
 export async function setupForDialect(_dialect: 'sqlite'): Promise<DialectTestContext> { return { db: await setupTestDatabase(), dialect: 'sqlite' }; }
 export async function teardownForDialect(ctx: DialectTestContext) { await teardownTestDatabase(ctx.db); }
 export class SchemaRegistry extends NativeRegistry {
