@@ -1976,6 +1976,18 @@
       "command": "node --test tests/redirect-runtime-d1.test.ts",
       "runtime": "Node24.19/real Miniflare-workerd D1Database binding, request session:auto, no authenticated principal, explicit standalone owned redirect-DDL fixture",
       "result": "1 original supplemental callback passes actual308 redirect, scoped database identity, persisted deferred hit and deduplicated GET/POST404 logs with no-store response. Deferred tasks complete after anonymous commit on retained scoped DB. Actual automatic artifact repair logs D1 callback-transaction refusal; D1 artifact publication/repair remain unimplemented, zero Source/canonical/deployment credit."
+    },
+    {
+      "phase": "whole-handler-local9",
+      "command": "node node_modules/vitest/vitest.mjs run --config vitest.redirect-source.config.ts",
+      "runtime": "LOCAL /workspace/cms-redirects-metadata-local commit81ec359, exact nine Root-qualified metadata products04f932d; real NativeNodeSQLite canonical1-8 local startup plus explicit owned redirect-DDL; diagnostic installed closure",
+      "result": "13 whole Source files /215 callbacks pass unchanged, including all12 redirect-handlers callbacks with real complete OptionsRepository/options revision storage. First execution green, zero causal Source red. Source explicit narrower Native fixture does not execute complete Source1-93 initialization; zero public canonical redirect/startup/settings-family/nativeHTTP/deployment credit. Remaining two whole slug modules have2+3callbacks."
+    },
+    {
+      "phase": "original-native-D1-artifact-before",
+      "command": "node --test tests/redirect-runtime-d1.test.ts",
+      "runtime": "Node24.19/real Miniflare-workerd D1 explicit owned redirect-DDL, no identity/session principal fixture",
+      "result": "Anonymous request callback already passes. New real persisted artifact-repair assertion completes red: repaired.version is null instead of a nonnull published generation after real deferred repair. Actual callback-transaction refusal logged; original native value-red, zero Source/canonical/deployment credit."
     }
   ]
 }

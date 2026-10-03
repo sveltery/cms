@@ -9,6 +9,9 @@ import { createCmsRuntime } from '../src/lib/server/runtime/composition.ts';
 import { installRedirectTables } from '../src/lib/server/redirects/migrations/index.ts';
 import { RedirectRepository } from '../src/lib/server/redirects/repository.ts';
 import type { Database } from '../src/lib/server/redirects/database-types.ts';
+import { openD1 } from '../src/lib/server/database/d1.ts';
+import { createDatabaseRedirectSource } from '../src/lib/server/redirects/artifacts.ts';
+import { after } from '../src/lib/server/redirects/after.ts';
 
 test('anonymous scoped D1 redirects retain deferred hits and deduplicated misses', { timeout: 30_000 }, async () => {
   const worker = new Miniflare({ modules: true,
@@ -52,4 +55,25 @@ test('anonymous scoped D1 redirects retain deferred hits and deduplicated misses
     assert.deepEqual(rows, [{ path: '/missing', hits: 2 }]);
     assert.ok(deferred.length >= 3);
   } finally { await Promise.allSettled(deferred); await runtime.close(); await worker.dispose(); }
+});
+
+test('real D1 repairs and serves a published redirect generation', { timeout: 30_000 }, async () => {
+  const worker = new Miniflare({ modules: true,
+    script: 'export default {fetch() {return new Response("fixture")}}',
+    compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0,
+    d1Databases: { CMS_DB: 'cms-redirect-artifacts-d1' }, cf: false });
+  const storage = openD1(await worker.getD1Database('CMS_DB'));
+  const tasks: Promise<void>[] = [];
+  try {
+    await installRedirectTables(storage.db as unknown as Kysely<unknown>);
+    const db = storage.db.withTables<{ [Name in keyof Database]: Database[Name] }>().$pickTables<keyof Database>();
+    await new RedirectRepository(db).create({ source: '/old', destination: '/new', type: 308 });
+    const source = createDatabaseRedirectSource(db, fn => after(fn, task => tasks.push(task)));
+    await source.load();
+    await Promise.all(tasks);
+    const repaired = await source.load();
+    assert.notEqual(repaired.version, null);
+    assert.deepEqual(repaired.exact.map(rule => ({ source: rule.source, destination: rule.destination })),
+      [{ source: '/old', destination: '/new' }]);
+  } finally { await Promise.allSettled(tasks); await storage.close(); await worker.dispose(); }
 });
