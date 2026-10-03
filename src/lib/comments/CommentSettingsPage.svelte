@@ -7,4 +7,4 @@
   const payload=await response.json();if(!response.ok||!payload.success)throw new Error(payload.error?.message??'Comment settings could not be saved.');return payload.data as CommentSettingsCollection;
  }
 </script>
-<Settings collection={data.collection} onSave={save} disabled={!data.mutationsEnabled}/>
+{#key data.collection.slug}<Settings collection={data.collection} onSave={save} disabled={!data.mutationsEnabled}/>{/key}
