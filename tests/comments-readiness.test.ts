@@ -12,7 +12,7 @@ import { commentRuntimeSchemaStatements } from '../src/lib/server/comments/runti
 import { asyncD1Storage } from './helpers/async-d1-storage.ts';
 
 for (const target of ['Node SQLite', 'raw D1'] as const) {
-  for (const variant of ['correct', 'default case', 'default whitespace', 'partial index case', 'collection default case', 'source auto approval default', 'comments quoted timestamp', 'reactions quoted timestamp', 'multiword type', 'non-ASCII type whitespace'] as const) {
+  for (const variant of ['correct', 'default case', 'default whitespace', 'partial index case', 'collection default case', 'source auto approval default', 'comments quoted timestamp', 'reactions quoted timestamp', 'multiword type', 'non-ASCII type whitespace', 'collection Unicode type'] as const) {
     test(`comments ${target} readiness preserves SQL literals: ${variant}`, { timeout: 30000 }, async () => {
       const worker = target === 'raw D1' ? await asyncD1Storage() : undefined;
       const database = worker ? openD1(worker.binding) : openSqlite(':memory:');
@@ -34,6 +34,9 @@ for (const target of ['Node SQLite', 'raw D1'] as const) {
           ...(variant === 'collection default case' ? [
             sql`ALTER TABLE _cms_collections DROP COLUMN comments_moderation`.compile(database.db),
             sql`ALTER TABLE _cms_collections ADD COLUMN comments_moderation TEXT DEFAULT 'FIRST_TIME'`.compile(database.db)
+          ] : variant === 'collection Unicode type' ? [
+            sql`ALTER TABLE _cms_collections DROP COLUMN comments_enabled`.compile(database.db),
+            sql`ALTER TABLE _cms_collections ADD COLUMN comments_enabled ınteger NOT NULL DEFAULT 0`.compile(database.db)
           ] : variant === 'source auto approval default' ? [
             sql`ALTER TABLE _cms_collections DROP COLUMN comments_auto_approve_users`.compile(database.db),
             sql`ALTER TABLE _cms_collections ADD COLUMN comments_auto_approve_users INTEGER DEFAULT 1`.compile(database.db)
