@@ -28,7 +28,7 @@
  const size=(bytes:number|null)=>bytes===null?'Unknown':bytes<1024?`${bytes} B`:`${(bytes/1024).toFixed(1)} KB`;
  function failed(cause:unknown){message=cause instanceof Error?cause.message:'Media request failed';if(cause instanceof MediaRequestError&&cause.status===404){unavailable=true;onunavailable?.(selected.id);}}
  async function save(){if(busy||!canEdit||unavailable)return;busy=true;message='';const id=selected.id;
-  try{const result=await mediaRequest<{item:MediaItem}>(`/api/media/${encodeURIComponent(id)}`,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify({alt,caption,focalX:focalX??null,focalY:focalY??null})});if(item.id===id){selected={...result.item,url:result.item.url||selected.url};onupdated?.(selected);message='Media details saved';}}
+  try{const result=await mediaRequest<{item:MediaItem}>(`/api/media/${encodeURIComponent(id)}`,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify({alt,caption,focalX:focalX??null,focalY:focalY??null})});if(item.id===id){selected={...selected,...result.item,url:result.item.url||selected.url};onupdated?.(selected);message='Media details saved';}}
   catch(cause){if(item.id===id)failed(cause);}finally{busy=false;}
  }
  async function remove(){if(busy||!canDelete||unavailable||!confirm(`Delete ${selected.filename}?`))return;busy=true;message='';const id=selected.id;
