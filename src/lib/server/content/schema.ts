@@ -1,14 +1,11 @@
 import * as v from 'valibot';
+import {contentListOptions} from '../database/content-validation.ts';
 import { CmsError, type DraftEntry, type DraftSummary } from '../database/contract.ts';
 import { identifier, entryId, localeInput, revisionInput, schemaData, parse } from '../database/validation.ts';
 
 const qualified = { collection: identifier, locale: v.optional(localeInput, 'en') };
 export const contentKey = v.strictObject({ ...qualified, id: entryId });
-export const contentList = v.strictObject({
-  ...qualified,
-  limit: v.optional(v.pipe(v.number(), v.safeInteger(), v.minValue(1))),
-  cursor: v.optional(v.pipe(v.string(), v.maxLength(2048)))
-});
+export const contentList = v.strictObject({collection:identifier,...contentListOptions});
 // Unlike active reads and mutations, omitted locale means every trash locale.
 const trashQualified = { collection: identifier, locale: v.optional(localeInput) };
 export const trashedContentCount = v.strictObject(trashQualified);
@@ -24,7 +21,7 @@ export const collectionSlug = identifier;
 // Kit's static form-field typing cannot express dynamic JSON/nulls and treats
 // booleans inside arrays as required checkboxes. Only this input adapter uses
 // `any`; the actual shared JSON guard and domain output stay bounded/unknown.
-const data = v.optional(v.pipe(v.custom<string | Record<string, any>>(value => {
+const contentData = v.pipe(v.custom<string | Record<string, any>>(value => {
   if (typeof value !== 'string') return v.safeParse(schemaData, value).success;
   if (value.length > 200_000) return false;
   try { return v.safeParse(schemaData, JSON.parse(value)).success; } catch { return false; }
@@ -35,7 +32,8 @@ const data = v.optional(v.pipe(v.custom<string | Record<string, any>>(value => {
       addIssue({ message: 'Content text is too long', path: [{ type: 'object', origin: 'value', input: dataset.value, key, value }] });
     }
   }),
-  v.transform(value => typeof value === 'string' ? parse(schemaData, JSON.parse(value)) : value as Record<string, unknown>)), {});
+  v.transform(value => typeof value === 'string' ? parse(schemaData, JSON.parse(value)) : value as Record<string, unknown>));
+const data = v.optional(contentData, {});
 const jsonValue = v.pipe(v.string(), v.maxLength(200_000), v.check(value => {
   try { JSON.parse(value); return true; } catch { return false; }
 }, 'Enter valid JSON'), v.transform(value => JSON.parse(value) as unknown));
@@ -50,11 +48,14 @@ export const createInput = v.pipe(v.strictObject({ ...qualified, ...contentEntri
   v.transform(({ jsonData, ...input }) => ({ ...input, data: { ...input.data, ...jsonData } })),
   v.forward(v.check(input => v.safeParse(schemaData, input.data).success, 'Invalid content data'), ['data']));
 export const revisionToken = v.pipe(v.string(), v.minLength(1), v.maxLength(2048), v.regex(/^[A-Za-z0-9_-]+$/));
-export const updateInput = v.pipe(v.strictObject({ ...contentKey.entries, _rev: revisionToken, ...contentEntries }),
-  v.forward(v.check(input => Object.keys(input.jsonData).every(key => !Object.hasOwn(input.data, key)),
+export const updateInput = v.pipe(v.strictObject({ ...contentKey.entries, _rev: revisionToken, ...contentEntries, data: v.optional(contentData) }),
+  v.forward(v.check(input => Object.keys(input.jsonData).every(key => !Object.hasOwn(input.data ?? {}, key)),
     'Supply each field once'), ['jsonData']),
-  v.transform(({ jsonData, ...input }) => ({ ...input, data: { ...input.data, ...jsonData } })),
-  v.forward(v.check(input => v.safeParse(schemaData, input.data).success, 'Invalid content data'), ['data']));
+  // Omission selects Source's live-metadata path. An explicitly supplied empty
+  // record still selects revision staging, as do actual per-field JSON values.
+  v.transform(({ data, jsonData, ...input }) => ({ ...input,
+    ...(data === undefined && Object.keys(jsonData).length === 0 ? {} : { data: { ...data, ...jsonData } }) })),
+  v.forward(v.check(input => input.data === undefined || v.safeParse(schemaData, input.data).success, 'Invalid content data'), ['data']));
 export const trashInput = v.strictObject({ ...contentKey.entries, _rev: revisionToken });
 export const restoreInput = v.strictObject({ ...contentKey.entries, _rev: revisionToken });
 const token = v.strictObject({ ...contentKey.entries, expected: revisionInput });

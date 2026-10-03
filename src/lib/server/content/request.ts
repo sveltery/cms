@@ -10,7 +10,10 @@ export function requestContent(operation: 'read' | 'mutation' = 'read') {
   if (!context?.principal) throw new CmsError('UNAUTHENTICATED');
   if (operation === 'mutation' && context.mutationsEnabled !== true) error(503, { message: 'Content mutations are disabled', code: 'MUTATIONS_DISABLED' });
   if (!context.database) error(503, { message: 'Content storage is not configured', code: 'NOT_CONFIGURED' });
-  return cmsService(context.database, context.principal);
+  const keepAlive = context.keepAlive;
+  return cmsService(context.database, context.principal, keepAlive ? {
+    after: task => keepAlive(Promise.resolve().then(task))
+  } : {});
 }
 
 export async function contentResponse<T>(run: () => Promise<T>): Promise<T> {
