@@ -1,0 +1,31 @@
+import { afterEach, expect, it } from 'vitest';
+import { mount, unmount, flushSync } from 'svelte';
+import * as React from 'react';
+import { createRoot } from 'react-dom/client';
+import { flushSync as reactFlushSync } from 'react-dom';
+import { Nav } from '../../parity/emdash/date-time-widgets/calendar-reference/dist/esm/components/Nav.js';
+import { PreviousMonthButton } from '../../parity/emdash/date-time-widgets/calendar-reference/dist/esm/components/PreviousMonthButton.js';
+import { NextMonthButton } from '../../parity/emdash/date-time-widgets/calendar-reference/dist/esm/components/NextMonthButton.js';
+import { dayPickerContext } from '../../parity/emdash/date-time-widgets/calendar-reference/dist/esm/useDayPicker.js';
+import Harness from '../helpers/date-time/NativeHarness.svelte';
+import { bridgeState } from '../helpers/date-time/state.svelte';
+const targets:HTMLElement[]=[];
+let reactRoot: ReturnType<typeof createRoot> | undefined;
+let native: ReturnType<typeof mount> | undefined;
+afterEach(async()=>{if(reactRoot)reactFlushSync(()=>reactRoot!.unmount());if(native)await unmount(native);for(const target of targets.splice(0))target.remove();});
+it('preserves pinned calendar navigation when date selection is disabled',()=>{
+  const sourceTarget=document.createElement('div'), nativeTarget=document.createElement('div');document.body.append(sourceTarget,nativeTarget);targets.push(sourceTarget,nativeTarget);
+  let moved=0;reactRoot=createRoot(sourceTarget);
+  const components={Button:(props:Record<string,unknown>)=>React.createElement('button',props),Chevron:()=>null,PreviousMonthButton,NextMonthButton};
+  const value={components,classNames:{},labels:{labelPrevious:()=> 'Previous',labelNext:()=> 'Next'}};
+  // Exact pinned DayPicker render passes these Nav props independently of props.disabled.
+  reactFlushSync(()=>reactRoot!.render(React.createElement(dayPickerContext.Provider,{value},React.createElement(Nav,{previousMonth:new Date(2035,4,1),nextMonth:new Date(2035,6,1),onNextClick:()=>{moved++;}}))));
+  const sourceNext=sourceTarget.querySelectorAll<HTMLButtonElement>('button')[1]!;
+  expect(sourceNext.disabled).toBe(false);sourceNext.click();expect(moved).toBe(1);
+  flushSync(()=>{native=mount(Harness,{target:nativeTarget,props:{state:bridgeState({date:new Date(2035,5,15,12),time:'09:00',disabled:true,dateAriaLabel:'Publication date'})}});});
+  const nativeNext=nativeTarget.querySelector<HTMLButtonElement>('.calendar-nav button:last-child')!;
+  expect(nativeNext.disabled).toBe(sourceNext.disabled);
+  flushSync(()=>nativeNext.click());
+  expect(nativeTarget.querySelector(".calendar-nav span")?.textContent).toBe("July 2035");
+  expect([...nativeTarget.querySelectorAll<HTMLButtonElement>("td button")].every(button=>button.disabled)).toBe(true);
+});
