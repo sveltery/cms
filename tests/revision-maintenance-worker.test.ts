@@ -48,7 +48,7 @@ export default {
 `);
     await build({configFile:false,root,logLevel:'warn',ssr:{noExternal:true},build:{ssr:true,target:'es2022',outDir:join(directory,'build'),rollupOptions:{input:join(directory,'fixture.ts'),external:[/^node:/],output:{inlineDynamicImports:true,entryFileNames:'worker.mjs'}}}});
     const contents=await readFile(join(directory,'build/worker.mjs'),'utf8');
-    const options={modules:[{type:'ESModule' as const,path:join(directory,'worker.mjs'),contents}],compatibilityDate:'2026-05-07',compatibilityFlags:['nodejs_compat'],cf:false,host:'127.0.0.1',port:0,d1Databases:{CMS_DB:'revision-scheduled'},d1Persist:join(directory,'d1')};
+    const options={modulesRoot:directory,modules:[{type:'ESModule' as const,path:join(directory,'worker.mjs'),contents}],compatibilityDate:'2026-05-07',compatibilityFlags:['nodejs_compat'],cf:false,host:'127.0.0.1',port:0,d1Databases:{CMS_DB:'revision-scheduled'},d1Persist:join(directory,'d1')};
     worker=new Miniflare(options);await worker.ready;
     assert.deepEqual(await (await worker.dispatchFetch('http://fixture.invalid/seed')).json(),{anchors:0,count:55,queued:1});
     const scheduled=await worker.dispatchFetch(`http://fixture.invalid${CorePaths.SCHEDULED}?cron=*+*+*+*+*&time=1780272000000`);

@@ -49,7 +49,7 @@ for(const target of ['Node','D1'] as const) {
         snapshots.push({collection,entry_id:id,revision_id:revision.id});
       }
       assert.equal(await (await coordinator())(stored.db),0);
-      assert.deepEqual((await sql`SELECT collection,entry_id,revision_id FROM _cms_revision_prune_queue`.execute(stored.db)).rows.map(row=>({...row})),[snapshots[10]]);
+      assert.deepEqual((await sql<{collection:string;entry_id:string;revision_id:string}>`SELECT collection,entry_id,revision_id FROM _cms_revision_prune_queue`.execute(stored.db)).rows.map(row=>({...row})),[snapshots[10]]);
       assert.equal(await (await coordinator())(stored.db),0);
       assert.equal((await sql`SELECT * FROM _cms_revision_prune_queue`.execute(stored.db)).rows.length,0);
     }finally{await stored.close();}
@@ -65,7 +65,7 @@ for(const target of ['Node','D1'] as const) {
       assert.equal(await (await coordinator())(stored.db),6);
       assert.equal(await stored.revisions.countByEntry('post','failed'),56);
       assert.equal(await stored.revisions.countByEntry('page','healthy'),50);
-      assert.deepEqual((await sql`SELECT entry_id FROM _cms_revision_prune_queue`.execute(stored.db)).rows.map(row=>({...row})),[{entry_id:'failed'}]);
+      assert.deepEqual((await sql<{entry_id:string}>`SELECT entry_id FROM _cms_revision_prune_queue`.execute(stored.db)).rows.map(row=>({...row})),[{entry_id:'failed'}]);
       assert.equal(errors.length,1);
       assert.match(String(errors[0][0]),/post\/failed/);
       await sql`DROP TRIGGER native_prune_failure`.execute(stored.db);
@@ -90,7 +90,7 @@ for(const target of ['Node','D1'] as const) {
       assert.equal(await (await coordinator())(stored.db.withPlugin(plugin)),1);
       assert.equal(await stored.revisions.countByEntry('post','snapshot'),51);
       assert.ok(await stored.revisions.findById(newId!));
-      assert.deepEqual((await sql`SELECT revision_id FROM _cms_revision_prune_queue WHERE entry_id='snapshot'`.execute(stored.db)).rows.map(row=>({...row})),[{revision_id:newId}]);
+      assert.deepEqual((await sql<{revision_id:string}>`SELECT revision_id FROM _cms_revision_prune_queue WHERE entry_id='snapshot'`.execute(stored.db)).rows.map(row=>({...row})),[{revision_id:newId}]);
       assert.equal((await sql`SELECT * FROM _cms_revision_prune_queue WHERE entry_id='later-entry'`.execute(stored.db)).rows.length,1);
       assert.equal(await (await coordinator())(stored.db),1);
       assert.equal(await stored.revisions.countByEntry('post','snapshot'),50);
