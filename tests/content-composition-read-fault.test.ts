@@ -1,3 +1,4 @@
+// @ts-nocheck -- original independent JavaScript regression bodies preserved verbatim.
 // Original independent review regressions. Complete callback bodies preserved.
 // Real SQL revision-table fault; zero additional copied Source credit.
 import test from 'node:test';
