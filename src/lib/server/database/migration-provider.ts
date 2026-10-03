@@ -7,7 +7,7 @@ export interface CmsMigrationProvider {
   readonly version: number;
   readonly name: string;
   statements(database: CmsDatabase): Promise<readonly CompiledQuery[]>;
-  expectedObjects(database: CmsDatabase): Promise<readonly MigrationObject[]>;
+  expectedObjects(database: CmsDatabase, installedVersion?: number): Promise<readonly MigrationObject[]>;
 }
 export function migrationObjects(statements: readonly CompiledQuery[]): MigrationObject[] {
   return statements.flatMap(statement => {
