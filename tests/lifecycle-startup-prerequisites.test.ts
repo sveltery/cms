@@ -93,6 +93,36 @@ for (const target of ['Node','D1'] as const) {
       }
     });
 
+    if (version<5) test(`${target}: v${version} future static names use SQLite case-insensitive shared namespace`, async () => {
+      const reference=await schemaAdminStorage(target);
+      let absent:{name:string;type:string;sql:string}[];
+      try {
+        await prepare(reference.database,version);
+        const present=new Set((await sql<{name:string}>`SELECT name FROM sqlite_master`.execute(reference.database.db)).rows.map(row=>row.name));
+        const known=new Map<string,{name:string;type:string;sql:string}>();
+        for (const provider of CMS_MIGRATIONS) for (const object of await provider.expectedObjects(reference.database,0)) known.set(object.name,object);
+        absent=[...known.values()].filter(row=>!present.has(row.name));
+      } finally {await reference.close();}
+      for (const object of absent!) for (const race of [false,true]) {
+        const storage=await schemaAdminStorage(target);
+        try {
+          const database=storage.database;await prepare(database,version);
+          const write=async () => {
+            if (object.type==='index') {
+              await sql`CREATE TABLE operator_notes (note TEXT)`.execute(database.db);
+              await sql`CREATE INDEX ${sql.id(object.name.toUpperCase())} ON operator_notes (note)`.execute(database.db);
+            } else await sql.raw(object.sql.replace(object.name,object.name.toUpperCase())).execute(database.db);
+          };
+          if (race) await rejectRace(database,write);
+          else {
+            await write();const before=await databaseSnapshot(database);
+            let result:unknown='success';try {await migrateCms(database);}catch(cause){result=(cause as {code?:unknown;message?:unknown}).code??(cause as {message?:unknown}).message;}
+            assert.equal(result,'MIGRATION_REQUIRED');assert.deepEqual(await databaseSnapshot(database),before);
+          }
+        } finally {await storage.close();}
+      }
+    });
+
     test(`${target}: v${version} intermediate metadata/lifecycle names cannot appear before startup writes`, async () => {
       for (const name of ['_cms_fields_v3','_cms_collections_v3','_cms_lifecycle_ec_post_v5']) {
         const storage=await schemaAdminStorage(target);
