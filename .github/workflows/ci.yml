@@ -46,6 +46,10 @@ jobs:
         run: timeout --kill-after=30s 180s pnpm test:menu-browser-source
         env:
           DEBUG: pw:browser
+      - name: Run complete redirect admin Source callbacks in sandboxed Chromium
+        run: timeout --kill-after=30s 180s pnpm test:redirect-integration-source-browser
+        env:
+          DEBUG: pw:browser
       - run: pnpm build
       - name: Run sandboxed browser tests
         run: timeout --kill-after=30s 180s pnpm test:browser
