@@ -157,7 +157,17 @@ try {
   const pruned=await pruneQueuedRevisions(db);assert.ok(pruned>0);assert.equal(await count(),50);
   assert.deepEqual(await db.selectFrom('_emdash_revision_prune_queue').selectAll().execute(),[]);
   const current=await content.findById('post',created.id);assert.ok(await revisions.findById(current.liveRevisionId));
-  console.log(JSON.stringify({pin:${JSON.stringify(pin)},target:'Node',mixedWrite:{error:result.error.code,draftPersists:true,versionDelta:after.version-before.version,liveUnchanged:true,apiOnlyUnchanged:true},publicPut:{invalidDateRejectedBeforeWrite:true,acceptedIsoFaultStatus:500,draftPersists:true,versionDelta:publicAfter.version-publicBefore.version,liveUnchanged:true},unpublishRetention:{cycles:55,beforeCleanup,afterCleanup:await count(),pruned,queueAcknowledged:true,livePointerPreserved:true},completeRuntimeMethods:5,completeApiHandlers:2,completePublicPutCallback:1,completeCleanupConsumer:1,newParityCredit:0}));
+  const orderedEntries=[];
+  for(let index=0;index<11;index++) {
+    const entry=await content.create({type:'post',slug:'queue-'+index,locale:'en',data:{title:'Queue '+index}});
+    const revision=await revisions.create({collection:'post',entryId:entry.id,data:{title:'Queue '+index}});
+    orderedEntries.push({entryId:entry.id,revisionId:revision.id});
+  }
+  await pruneQueuedRevisions(db);
+  const remaining=await db.selectFrom('_emdash_revision_prune_queue').selectAll().execute();
+  assert.equal(remaining.length,1);assert.equal(remaining[0].entry_id,orderedEntries[10].entryId);
+  assert.equal(remaining[0].revision_id,orderedEntries[10].revisionId);
+  console.log(JSON.stringify({pin:${JSON.stringify(pin)},target:'Node',mixedWrite:{error:result.error.code,draftPersists:true,versionDelta:after.version-before.version,liveUnchanged:true,apiOnlyUnchanged:true},publicPut:{invalidDateRejectedBeforeWrite:true,acceptedIsoFaultStatus:500,draftPersists:true,versionDelta:publicAfter.version-publicBefore.version,liveUnchanged:true},unpublishRetention:{cycles:55,beforeCleanup,afterCleanup:await count(),pruned,queueAcknowledged:true,livePointerPreserved:true},cleanupOrder:{queued:11,oldestAcknowledged:10,newestRemaining:1},completeRuntimeMethods:5,completeApiHandlers:2,completePublicPutCallback:1,completeCleanupConsumer:1,newParityCredit:0}));
 } finally {await storage.close();}
 `);
   await build({configFile:false,root:directory,logLevel:'warn',resolve:{alias:{
