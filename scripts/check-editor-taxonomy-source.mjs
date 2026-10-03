@@ -1,0 +1,7 @@
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import ts from 'typescript';
+const manifest=JSON.parse(readFileSync(new URL('../docs/editor-taxonomy-source.json',import.meta.url),'utf8'));
+let declarations=0,expects=0,elements=0;
+for(const file of manifest.files){const bytes=readFileSync(new URL('../'+file.copiedPath,import.meta.url));if(createHash('sha256').update(bytes).digest('hex')!==file.sha256)throw new Error('Immutable source changed: '+file.path);if(!file.path.includes('/tests/')||file.path.endsWith('/utils/render.tsx'))continue;const source=ts.createSourceFile(file.path,bytes.toString(),ts.ScriptTarget.Latest,true,file.path.endsWith('tsx')?ts.ScriptKind.TSX:ts.ScriptKind.TS);function visit(node){if(ts.isCallExpression(node)&&ts.isIdentifier(node.expression)&&['it','test'].includes(node.expression.text))declarations++;if(ts.isCallExpression(node)&&ts.isIdentifier(node.expression)&&node.expression.text==='expect')expects++;if(ts.isCallExpression(node)&&ts.isPropertyAccessExpression(node.expression)&&ts.isIdentifier(node.expression.expression)&&node.expression.expression.text==='expect'&&node.expression.name.text==='element')elements++;ts.forEachChild(node,visit);}visit(source);}
+if(!readFileSync(new URL('../notices/emdash-MIT.txt',import.meta.url),'utf8').includes('Cloudflare'))throw new Error('MIT notice missing');console.log(JSON.stringify({immutableFiles:manifest.files.length,declarations,expectCalls:expects,elementExpects:elements,productTestsRun:0}));
