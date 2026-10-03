@@ -1,0 +1,621 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "implementationHeadAtEvidence": "c3325accb7c7385c6dc6952dedd93ac8aa475989",
+  "authorityCount": 77,
+  "sourceWholeSelected": {
+    "files": 8,
+    "declarations": 72,
+    "expandedCallbacks": 73
+  },
+  "sourceCore": {
+    "wholeFiles": 4,
+    "callbacks": 38,
+    "finalFixture": "actual Node SQLite with full Source007 and Source011\u2192021; native namespace reversed by test-only AST host",
+    "completed": 38,
+    "pass": 38,
+    "skip": 0,
+    "completedCausalValueReds": 0,
+    "firstExecutionGreen": true,
+    "postgresExecuted": false,
+    "rawD1": {
+      "wholeFiles": 4,
+      "callbacks": 38,
+      "initialPass": 36,
+      "initialBackendErrorsBeforeAssertions": 2,
+      "initialFailure": "actual D1 authorizer rejects stock SQLite introspector reads of reserved Cloudflare _cf_ metadata",
+      "completedCausalValueReds": 0,
+      "finalPass": 38,
+      "skip": 0,
+      "additionalUniqueSourceCallbacks": 0,
+      "SourceFixturesOrAssertionsChanged": false,
+      "actualBackend": "fresh real Miniflare raw D1 per Source fixture; existing production RawBindingD1Dialect queries/results/batches with real forwarding",
+      "testOnlyMetadataAdapter": "actual SqliteIntrospector filters only case-insensitive reserved _cf_ prefix in sqlite_master SELECT nodes; all permitted rows remain actual",
+      "productionIntrospectionContract": "unchanged explicitly unsupported",
+      "canonicalStartupCredit": 0
+    }
+  },
+  "sourceUI": {
+    "wholeFiles": 4,
+    "declarations": 34,
+    "expandedCallbacks": 35,
+    "executed": 35,
+    "localFailure": "official Chromium1243 executable absent",
+    "completedCausalValueReds": 0,
+    "securedHostedGate": "pass at public PR79 head2cd42fd; renewed integrated-head gate pending",
+    "pass": 35,
+    "skip": 0,
+    "firstCompleteExecutionGreen": true,
+    "actualRichEditorAvailabilityCredit": 0,
+    "testOnlyNestedReactRootWarning": "observed in passing editor fixture; zero Source assertion-red credit"
+  },
+  "originalNativeHTTP": {
+    "callbacks": 4,
+    "completedInitialValueReds": 4,
+    "nodeAndRawD1Pass": 4,
+    "fixture": "explicit final SourceDDL, ordinary single persisted Editor, actual built Kit HTTP process",
+    "canonicalStartupCredit": 0,
+    "menuClientIntegration": {
+      "testFirstHead": "1ca0ed9f0b0d4a1c41ec94759e28eb484f449b5a",
+      "originalCallbacksUnchanged": 4,
+      "additionalUniqueCallbacks": 0,
+      "genuineCompletedValueReds": 2,
+      "baseline": "actual owned fetchMenus returned undefined instead of actual native Main API Menu[] on Node/rawD1",
+      "greenPass": 4,
+      "skip": 0,
+      "actualBackend": "real configured built Kit HTTP; explicit named Main menu descriptor fixture; existing sole persisted Editor per widget callback",
+      "clientHost": "actual Vite SSR production client with explicit empty framework base and captured real fetch URL/cookie transport",
+      "SourceAssertionCredit": 0,
+      "canonicalStartupCredit": 0,
+      "newAuthOrSessionProbes": 0,
+      "frameworkBaseCredit": "explicit empty-base fixture only; earlier /cms rejecting-fetch requirements remain separate"
+    }
+  },
+  "originalReadiness": {
+    "callbacks": 2,
+    "completedInitialValueReds": 2,
+    "nodeAndRawD1Pass": 2,
+    "note": "first green used intermediate011; renewed green uses final011\u2192021 with all original assertions retained"
+  },
+  "originalFinalSchema": {
+    "callbacks": 2,
+    "completedInitialValueReds": 2,
+    "nodeAndRawD1Pass": 2,
+    "sourceFixtureAlterations": "none; copied whole021 used directly"
+  },
+  "guardsProductCredit": 0,
+  "realEditorAvailability": false,
+  "canonicalProviderRegistered": false,
+  "fullFamilyStatus": "unfinished: ordinary canonical/menu/media/plugin/public-renderer/editor and secured SourceUI integration required",
+  "receipts": [
+    {
+      "path": "/tmp/sections-widgets-whole-source-baseline.log",
+      "sha256": "ec9bf038a3ceb283f0a4541a383e7a7f20bdeeaa430f7ab0d9cca9af6441ef1d",
+      "bytes": 4284
+    },
+    {
+      "path": "/tmp/sections-widgets-native-runtime-baseline.log",
+      "sha256": "c08faccf0de16799ffa8e0cd34b5e5ae961e56ecc90f201a672daf22836aa3d5",
+      "bytes": 3596
+    },
+    {
+      "path": "/tmp/sections-widgets-readiness-original-red.log",
+      "sha256": "f0ca57f8cd4d284e9c52038017e1ad07e970a0375af8c215ec81513665a361b2",
+      "bytes": 3103
+    },
+    {
+      "path": "/tmp/sections-widgets-readiness-original-green.log",
+      "sha256": "37b5852f52b83a3a755fe2f81e21e8c42aac500d06465b9a2754467b5bf4903e",
+      "bytes": 344
+    },
+    {
+      "path": "/tmp/sections-widgets-whole-core-first-run.log",
+      "sha256": "d3338d9361af9c1858b26eace6c7527b7c8fb3949475e14a60b2e71cc50db47c",
+      "bytes": 218
+    },
+    {
+      "path": "/tmp/sections-widgets-final-schema-owned-sentinel-red.log",
+      "sha256": "5ed51f464a76adf7a9ed6a9d8286b21c5a491bbf661f18f83a6ad1c54993bd55",
+      "bytes": 3061
+    },
+    {
+      "path": "/tmp/sections-widgets-final-schema-original-green.log",
+      "sha256": "f69bf6fdaf4b504026bae95b8c83dd15fcda9c029fdba420038a5f4734e10d78",
+      "bytes": 541
+    },
+    {
+      "path": "/tmp/sections-widgets-whole-core-final-schema.log",
+      "sha256": "9d61b70c6c1a99606c2dcebbf9f58fd7baad2459fad39644e12eec3e0a07af6c",
+      "bytes": 488
+    },
+    {
+      "path": "/tmp/sections-widgets-final-schema-native-runtime.log",
+      "sha256": "fb006bf4a1777af9772560e693252f90f7efe63b740d8138ea04e0896992cee2",
+      "bytes": 522
+    },
+    {
+      "path": "/tmp/sections-widgets-source-browser-local-baseline.log",
+      "sha256": "465d2e31cad33e9be9cc027b9098f97495402b51eebc71380d80f5f9f29438b1",
+      "bytes": 14732
+    },
+    {
+      "path": "/tmp/sections-widgets-native-ui-check.log",
+      "sha256": "18ab7e64e1265e0e084d0c401ad6a95f5063f0fd2f791c5755d020ecd2f25df3",
+      "bytes": 202
+    },
+    {
+      "path": "/tmp/sections-widgets-palette-original-red.log",
+      "sha256": "95e0039250e2c41b9dee453234c2c51c82c889c530b24ee350f2668fb14ecd40",
+      "bytes": 4931
+    },
+    {
+      "path": "/tmp/sections-widgets-palette-original-green.log",
+      "sha256": "4380f9b31e30680fe38e949cad51adbf1433b037471fe2e9837127f599733c0c",
+      "bytes": 368
+    },
+    {
+      "path": "/tmp/sections-widgets-main434-full-bootstrap.log",
+      "sha256": "4170cbe0c6a32be62d5655157623e34e5c33bc080549a87783acdbec3e7d9069",
+      "bytes": 229700
+    },
+    {
+      "path": "/tmp/sections-widgets-main434-cloudflare-build.log",
+      "sha256": "7affe3b657c42fb10adb02cac1a71b2909d208afc0c420d5171b97634d8a85d9",
+      "bytes": 21632
+    },
+    {
+      "path": "/tmp/sections-widgets-main434-cloudflare-tests.log",
+      "sha256": "a8a58dff66c268f4ca55258f64ee2a84e45060964cf2fa3bf7516b39c151d3df",
+      "bytes": 1264
+    },
+    {
+      "path": "/tmp/sections-widgets-widget-final-check.log",
+      "sha256": "18ab7e64e1265e0e084d0c401ad6a95f5063f0fd2f791c5755d020ecd2f25df3",
+      "bytes": 202
+    },
+    {
+      "path": "/tmp/sections-widgets-source-host-module-compile.log",
+      "sha256": "f0eef87d1f53d21db507a821a3d67ef59a206e17330a3921fad9b053013088dd",
+      "bytes": 271
+    },
+    {
+      "path": "/tmp/sections-widgets-source-host-component-compile.log",
+      "sha256": "9a6de4fc40dcb96b37fe8b41e7dcbf2e57bcad46e7e2b10a7760755dae36a2dd",
+      "bytes": 656
+    },
+    {
+      "path": "/tmp/sections-widgets-native-palette-order-check.log",
+      "sha256": "18ab7e64e1265e0e084d0c401ad6a95f5063f0fd2f791c5755d020ecd2f25df3",
+      "bytes": 202
+    },
+    {
+      "path": "/tmp/sections-widgets-readiness-literals-original-red.log",
+      "sha256": "83bb6bbaf7d3e7f29253e1edd21f7b2a1c4282983716b06874d657a75d0c51bf",
+      "bytes": 2649
+    },
+    {
+      "path": "/tmp/sections-widgets-readiness-literals-original-green.log",
+      "sha256": "7a0601df9c2b180d6fce9f46e4451d2e47e7bd3371aeb67d7530373b790e4d8f",
+      "bytes": 1600
+    },
+    {
+      "path": "/tmp/sections-widgets-DateMain-frozen-closure.log",
+      "sha256": "a14cb048a936eed3c83403e34276300e3c3c3d20c931323a467515abd91b68e1",
+      "bytes": 576
+    },
+    {
+      "path": "/tmp/sections-widgets-base-path-original-red.log",
+      "sha256": "4bf3a1e3b4f9a9bd03c4c5a2d35d6e2242992308df2a695e37ff582269d469df",
+      "bytes": 4207
+    },
+    {
+      "path": "/tmp/sections-widgets-base-path-original-green.log",
+      "sha256": "035cd5b2c0ba93453d056311e6ab445948046a1def3ad345e5c12d5329ef67d5",
+      "bytes": 215
+    },
+    {
+      "path": "/tmp/sections-widgets-DateMain-base-path-check.log",
+      "sha256": "18ab7e64e1265e0e084d0c401ad6a95f5063f0fd2f791c5755d020ecd2f25df3",
+      "bytes": 202
+    },
+    {
+      "path": "/tmp/sections-widgets-converter-whole-guard.log",
+      "sha256": "b7fbbdea6de0685435aa3d7c655597ad2ffe802ee47878ca88260feb805a33b2",
+      "bytes": 128
+    },
+    {
+      "path": "/tmp/sections-widgets-converter-whole-first-run.log",
+      "sha256": "eb7af90221dbec7a43a19f94cbd0ea17837a14811b9e2f6724ad8a51263acbce",
+      "bytes": 219
+    },
+    {
+      "path": "/tmp/sections-widgets-readiness-expressions-original-red.log",
+      "sha256": "aa69d494ed0d6c227694eb24be51c6ac67fe3514a8956584701732bd1d51cb74",
+      "bytes": 7099
+    },
+    {
+      "path": "/tmp/sections-widgets-readiness-expressions-original-green.log",
+      "sha256": "b87af4f8b93a6de716993301d416749e33dd619b2306cf13c7d70a33b2040857",
+      "bytes": 2529
+    },
+    {
+      "path": "/tmp/sections-widgets-DateMain-full-bootstrap.log",
+      "sha256": "4596784cbbd0235bfc59f2507b7a63667601b7543bdb32a17c0c66846a3dbba4",
+      "bytes": 249753
+    },
+    {
+      "path": "/tmp/sections-widgets-PR79-2cd42fd-browser.log",
+      "bytes": 213512,
+      "sha256": "03e9e02e017f7e16ba74bbf2defc9854cdd79cfb78f297d7b42ddf284b10f731"
+    },
+    {
+      "path": "/tmp/sections-widgets-PR79-2cd42fd-validate.log",
+      "bytes": 363011,
+      "sha256": "0f3d20acb6c2597ed3b41257b09acd5d5c067a61d79c76f0c4f7d0899a9b1e88"
+    },
+    {
+      "path": "/tmp/sections-widgets-whole-core-D1-first-run.log",
+      "bytes": 4738,
+      "sha256": "c8be25354706b11851c07b8edee9c0722a0cc427fcf04910ae5fc7fc7cfc3c6c"
+    },
+    {
+      "path": "/tmp/sections-widgets-whole-core-D1-metadata-successor.log",
+      "bytes": 219,
+      "sha256": "6f3e5bca20036ca5a2ac970836316a31e0f52a51ebd6a1bdac9284d3a483e806"
+    },
+    {
+      "path": "/tmp/sections-widgets-MenusMain-D1-full-bootstrap.log",
+      "bytes": 8042,
+      "sha256": "37246ecda1191a8759d5a7009137e12428de31ee039a9c3affc076ddd8cb3b8c"
+    },
+    {
+      "path": "/tmp/sections-widgets-MenusMain-D1-full-bootstrap-retry.log",
+      "bytes": 242062,
+      "sha256": "2ace304567cf60eaf76882d955a8267a9c0a37da48adcd861bc31435fafcde34"
+    },
+    {
+      "path": "/tmp/sections-widgets-menu-client-original-red.log",
+      "bytes": 3855,
+      "sha256": "6054c742054a9ac7925eb3cc63db8904f0a545e3a2e062af04e196cafcdae4a2"
+    },
+    {
+      "path": "/tmp/sections-widgets-menu-client-original-green.log",
+      "bytes": 527,
+      "sha256": "abc87326c63c145a0e2c9c6f5c7b03e6ff3a0f44c54d3bb018e02ee7e0ca46fd"
+    },
+    {
+      "path": "/tmp/sections-widgets-menu-client-full-bootstrap.log",
+      "bytes": 264721,
+      "sha256": "afbad51539ad7c79c28a266c07e4ebc491d2edafb86afcf39d0070abfb0d77b0"
+    }
+  ],
+  "originalPalette": {
+    "callbacks": 3,
+    "completedInitialValueReds": 3,
+    "pass": 3,
+    "credit": "Original pure native payload only; no Source/browser/HTTP credit",
+    "testFirstCommit": "f7f2185",
+    "implementationCommit": "a40fc02"
+  },
+  "normalGate": {
+    "head": "fc68504",
+    "completedAllStages": false,
+    "services": 1114,
+    "existingSource": 115,
+    "redirectSource": 203,
+    "bulkNative": 14,
+    "sectionsWidgetsCore": 38,
+    "cardSource": 23,
+    "production": 259,
+    "nodeHosting": {
+      "completedTopLevelCallbacks": 3,
+      "pass": 0,
+      "fail": 3,
+      "dependentSubtests": "unexecuted",
+      "failure": "all three fresh isolated pnpm installs exceeded unchanged120s before app/maintenance execution",
+      "correction": "previous12-pass statement was unsupported; frozen historical log retained"
+    },
+    "cloudflareStages": "not reached in bootstrap; subsequent complete normal Cloudflare build and23+7 suites pass separately"
+  },
+  "separateCloudflareEvidence": {
+    "head": "70ca96011325fc696b48332c60a565f6409f9b9e",
+    "build": "pass",
+    "source": 23,
+    "actualWorker": 7,
+    "skip": 0,
+    "completeBootstrapCredit": 0
+  },
+  "sourceHostCompilation": {
+    "sourceCallbacksExecuted": 0,
+    "initialSetupError": "test-only reactive props bridge returned $state outside an allowed initializer",
+    "fixed": "initialize local reactive value then return it",
+    "actualSvelteComponentsCompiled": 8,
+    "warnings": 0,
+    "coverageCredit": 0
+  },
+  "originalLiteralReadiness": {
+    "callbacks": 10,
+    "completedInitialValueReds": 2,
+    "firstGreenControls": 8,
+    "pass": 10,
+    "existingReadinessAndFinalSchemaPass": 4,
+    "testFirstCommit": "95cef4a",
+    "runtime": "actual Node SQLite and raw D1",
+    "sourceCallbackCredit": 0,
+    "sharedCanonicalNormalizerChanged": false
+  },
+  "currentDateMainClosure": {
+    "main": "0cf347fc54cbe637bad63498b291d4ed5da42ef5",
+    "mergeCommit": "349e5ab",
+    "packages": 512,
+    "snapshots": 527,
+    "allMain445PackageDataAndRawBlocksPreserved": true,
+    "allMain458SnapshotIdentitiesRetained": true,
+    "unchangedMainSnapshotRawBlocks": 457,
+    "onlyMainSnapshotMetadataException": "tslib2.8.1 becomes required",
+    "actualMainImporterSelectionsUnchanged": true,
+    "unpublishedOwnDateFnsResolution": "react-day-picker9.14 same snapshot now selects actual Main direct4.1 rather than prior4.4; unused4.4 records retained",
+    "missingDependencyOrOptionalReferences": 0,
+    "frozenInstall": "pass6.1s",
+    "sourceParityCredit": 0
+  },
+  "originalBasePath": {
+    "callbacks": 3,
+    "completedInitialValueReds": 3,
+    "pass": 3,
+    "testFirstCommit": "18661e0",
+    "credit": "Original API transport/SSR links/navigation only; explicit /cms framework fixture; fetch rejects; zero HTTP/auth/browser/Source credit",
+    "actualProductionFramework": "$app/paths.base",
+    "sourceHostFrameworkFixture": "explicit empty base only"
+  },
+  "sourceConverterDependency": {
+    "wholeFiles": 2,
+    "declarations": 127,
+    "expandedCallbacks": 140,
+    "expectExpressions": 231,
+    "pass": 140,
+    "skip": 0,
+    "completedCausalValueReds": 0,
+    "firstExecutionGreen": true,
+    "wholeSelectionBeforeHostCommit": "6ec85e5",
+    "implementationPredatesStandaloneTestSelection": true,
+    "separateInventory": "parity/emdash/sections-widgets-source/converter-inventory.json",
+    "original77AuthorityReceiptsUnchanged": true
+  },
+  "combinedInventories": {
+    "authorities": 79,
+    "wholeSourceFiles": 10,
+    "expandedCallbacks": 213,
+    "executedSourceCallbacks": 213,
+    "unexecutedSourceUI": 0,
+    "causalSourceReds": 0
+  },
+  "originalTimestampAndSQLiteWhitespace": {
+    "callbacks": 8,
+    "completedInitialValueReds": 8,
+    "pass": 8,
+    "existingReadinessCallbacksAlsoPass": 14,
+    "totalWholeReadinessPass": 22,
+    "testFirstCommit": "b419ca5",
+    "runtime": "actual Node SQLite and raw D1, both sections andwidgets",
+    "sourceCallbackCredit": 0,
+    "normalization": "finite pinned owned identifiers + ASCII SQLite whitespace; all other quoted tokens/literals preserved",
+    "sharedCanonicalNormalizerChanged": false
+  },
+  "latestNormalGate": {
+    "head": "3d93d08520c654da5700ff635bc17f1c88234053",
+    "main": "0cf347fc54cbe637bad63498b291d4ed5da42ef5",
+    "completedAllStages": true,
+    "phasesStarted": 13,
+    "phasesFinished": 13,
+    "exitCode": 0,
+    "frozenInstall": "pass",
+    "typeAndSvelteChecks": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "services": 1135,
+    "existingSource": 115,
+    "redirectSource": 203,
+    "bulkNative": 14,
+    "sectionsWidgetsCore": 38,
+    "sectionsWidgetsConverter": 140,
+    "originalTransport": 3,
+    "cardSource": 23,
+    "dateSource": 30,
+    "defaultBuild": "pass",
+    "production": 259,
+    "nodePackageAndBuild": "pass",
+    "nodeHosting": {
+      "completedCallbacks": 15,
+      "pass": 15,
+      "fail": 0,
+      "skip": 0
+    },
+    "cloudflareBuildAndDryBundle": "pass",
+    "cloudflareSource": 23,
+    "actualWorker": 7,
+    "allExecutedSuiteFailures": 0,
+    "allExecutedSuiteSkips": 0,
+    "securedHostedSourceUI": "pending35",
+    "unchangedDefaultAndNodeBrowserGates": "pending62each",
+    "configuredAutomaticReview": "pending",
+    "freshFinalPublicHeadReview": "pending",
+    "specificSW1FrameworkAcceptance": "pending",
+    "fullFamilyCompletionCredit": 0
+  },
+  "hostedPublicHeadGate": {
+    "pr": 79,
+    "head": "2cd42fd57ec06242c3da26f424397085e6bddb04",
+    "run": 37152313495,
+    "jobs": {
+      "browser": 111288536522,
+      "validate": 111288536673
+    },
+    "jobConclusions": "both success",
+    "receipts": [
+      {
+        "path": "/tmp/sections-widgets-PR79-2cd42fd-browser.log",
+        "bytes": 213512,
+        "sha256": "03e9e02e017f7e16ba74bbf2defc9854cdd79cfb78f297d7b42ddf284b10f731"
+      },
+      {
+        "path": "/tmp/sections-widgets-PR79-2cd42fd-validate.log",
+        "bytes": 363011,
+        "sha256": "0f3d20acb6c2597ed3b41257b09acd5d5c067a61d79c76f0c4f7d0899a9b1e88"
+      }
+    ],
+    "wholeSourceUI": {
+      "files": 4,
+      "pass": 35,
+      "firstCompleteExecutionGreen": true,
+      "causalSourceReds": 0,
+      "actualOfficialChromium1243Launch": true,
+      "forbiddenSandboxFlagsAbsent": true,
+      "existingSourceEditorMockPreserved": true,
+      "actualRichEditorAvailabilityCredit": 0,
+      "testOnlyNestedReactRootWarning": "observed; Source assertions all pass"
+    },
+    "browserStages": {
+      "bulkSource": 14,
+      "dateSource": 30,
+      "ownedSource": 35,
+      "default": 62,
+      "node": 62
+    },
+    "validate": {
+      "all13PhasesComplete": true,
+      "services": 1135,
+      "existingSource": 115,
+      "redirectSource": 203,
+      "bulkNative": 14,
+      "coreSource": 38,
+      "converterSource": 140,
+      "originalTransport": 3,
+      "cardSource": 23,
+      "dateSource": 30,
+      "production": 259,
+      "nodeHosting": 15,
+      "cloudflareSource": 23,
+      "realWorker": 7
+    },
+    "sourceCallbacksCombinedInventories": 213,
+    "fullFamilyCompletionCredit": 0,
+    "finalMergedHeadCredit": 0
+  },
+  "currentMenusMainIntegration": {
+    "main": "37d5ed93a553c6ddef86c50a0eb596acbc9da63b",
+    "priorPublicOwnHead": "2cd42fd57ec06242c3da26f424397085e6bddb04",
+    "allPriorMainPackageValuesPreserved": true,
+    "priorMainSourceCommandPrefixPreserved": true,
+    "sourceAdditions": "unchanged Core38 then converter140 then Original transport3 then whole same Core38 on actual raw D1 (zero new unique Source callbacks)",
+    "browserStages": "whole MainBulk14/Date30/Menus25 then own Source35 before unchanged builds/default62/Node62",
+    "originalProjection": "entire original11 plus Mainmenus2 then own4; strict arrays and identity checks retained; admin17",
+    "lock": "same Root-qualified512packages/527snapshots; Main445/458 unchanged; sole tslib requiredness exception",
+    "freshIntegratedNormalAndSecuredGates": "normal13 PASS at9f17; final exact public successor hosted/secured gates pending",
+    "fullFamilyCompletionCredit": 0
+  },
+  "combinedMenusMainNormalAttempts": {
+    "head": "661cf80d9b8bb907ecc9c0fd403d6895604e832b",
+    "main": "37d5ed93a553c6ddef86c50a0eb596acbc9da63b",
+    "firstAttempt": {
+      "exitCode": 1,
+      "completedAllStages": false,
+      "phasesStarted": 1,
+      "phasesFinished": 0,
+      "failure": "ordinary pnpm12.6 frozen install supply-chain metadata fetch mdn-data registry HTTP503; no checks/tests/builds reached",
+      "completedCoverage": 0
+    },
+    "ordinaryRetry": {
+      "exitCode": 1,
+      "completedAllStages": false,
+      "phasesStarted": 11,
+      "phasesFinished": 10,
+      "frozenInstall": "pass",
+      "typeAndSvelteChecks": {
+        "errors": 0,
+        "warnings": 0
+      },
+      "services": 1180,
+      "existingSource": 115,
+      "redirectSource": 203,
+      "bulkNative": 14,
+      "menuSource": 128,
+      "menuNativeUI": 6,
+      "sectionsWidgetsCoreNode": 38,
+      "sectionsWidgetsConverter": 140,
+      "originalTransport": 3,
+      "sameSectionsWidgetsCoreRawD1": 38,
+      "additionalUniqueSourceCallbacks": 0,
+      "cardSource": 23,
+      "dateSource": 30,
+      "defaultBuild": "pass",
+      "production": 259,
+      "nodePackageAndBuild": "pass",
+      "nodeHosting": {
+        "reportedTests": 15,
+        "pass": 14,
+        "fail": 1,
+        "skip": 0,
+        "setupFailures": 1,
+        "failure": "only maintenance-export fresh isolated pnpm install exceeded unchanged120s deadline with ETIMEDOUT; its application/operator assertions unexecuted",
+        "applicationCallbackAnd12NestedAssertions": "pass",
+        "startupRefusalMaintenanceCallback": "pass"
+      },
+      "cloudflareStages": "not reached in this bootstrap"
+    },
+    "finalSuccessorCredit": 0,
+    "fullFamilyCompletionCredit": 0
+  },
+  "latestCombinedMenusMainNormalGate": {
+    "runtimeHead": "9f17ee8a57ca41b6ecf1e3fe895c9ddbd3b97da7",
+    "main": "37d5ed93a553c6ddef86c50a0eb596acbc9da63b",
+    "completedAllStages": true,
+    "phasesStarted": 13,
+    "phasesFinished": 13,
+    "exitCode": 0,
+    "frozenInstall": "pass",
+    "typeAndSvelteChecks": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "services": 1180,
+    "existingSource": 115,
+    "redirectSource": 203,
+    "bulkNative": 14,
+    "menuSource": 128,
+    "menuNativeUI": 6,
+    "sectionsWidgetsCoreNode": 38,
+    "sectionsWidgetsConverter": 140,
+    "originalTransport": 3,
+    "sameSectionsWidgetsCoreRawD1": 38,
+    "additionalUniqueSourceCallbacks": 0,
+    "cardSource": 23,
+    "dateSource": 30,
+    "defaultBuild": "pass",
+    "production": 259,
+    "wholeOriginalNativeHTTP": 4,
+    "realMenuClientNodeAndRawD1": "pass; existing widget callbacks retain actual menu array with sole existing Editor fixture",
+    "nodePackageAndBuild": "pass",
+    "nodeHosting": {
+      "reportedTests": 15,
+      "pass": 15,
+      "fail": 0,
+      "skip": 0
+    },
+    "cloudflareBuildAndDryBundle": "pass",
+    "cloudflareSource": 23,
+    "actualWorker": 7,
+    "allExecutedSuiteFailures": 0,
+    "allExecutedSuiteSkips": 0,
+    "securedFinalPublicHeadBrowserGate": "pending new public successor",
+    "configuredAutomaticReview": "pending",
+    "freshFinalPublicHeadReview": "pending",
+    "specificSW1FrameworkAcceptance": "pending",
+    "fullFamilyCompletionCredit": 0,
+    "receipt": {
+      "path": "/tmp/sections-widgets-menu-client-full-bootstrap.log",
+      "bytes": 264721,
+      "sha256": "afbad51539ad7c79c28a266c07e4ebc491d2edafb86afcf39d0070abfb0d77b0"
+    }
+  }
+}
