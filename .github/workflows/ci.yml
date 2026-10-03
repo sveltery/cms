@@ -34,6 +34,10 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
+      - name: Run complete bulk taxonomy Source callbacks in sandboxed Chromium
+        run: pnpm test:bulk-taxonomy-source
+        env:
+          DEBUG: pw:browser
       - run: pnpm build
       - name: Run sandboxed browser tests
         run: timeout --kill-after=30s 180s pnpm test:browser
