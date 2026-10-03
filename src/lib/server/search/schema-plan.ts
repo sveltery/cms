@@ -1,3 +1,6 @@
+import {ulid} from 'ulidx';
+import {sql} from 'kysely';
+import {ftsMetadataGuard} from './fts-ownership.ts';
 import {Kysely,SqliteQueryCompiler,SqliteIntrospector,type CompiledQuery,type DatabaseConnection,type Driver,type Dialect,type QueryResult} from 'kysely';
 import type {CmsDatabase,Field} from '../database/contract.ts';
 import type {Database} from '../database/lifecycle/upstream/database/types.ts';
@@ -33,18 +36,29 @@ export function searchStatementPlanner(database:CmsDatabase,collectionId:string,
 
 // Pinned registry.ts syncSearchState, with compilation replacing its callback
 // transaction so the source's metadata/FTS rollback contract works on real D1.
-export async function planSchemaSearch(database:CmsDatabase,slug:string,supports:readonly string[],fields:readonly SearchSchemaField[]):Promise<CompiledQuery[]> {
+export interface SchemaSearchPlan {before:CompiledQuery[];statements:CompiledQuery[];after:CompiledQuery[]}
+const emptyPlan=():SchemaSearchPlan=>({before:[],statements:[],after:[]});
+export async function planSchemaSearch(database:CmsDatabase,slug:string,supports:readonly string[],fields:readonly SearchSchemaField[]):Promise<SchemaSearchPlan> {
   const collection=await database.db.selectFrom('_cms_collections').selectAll().where('slug','=',slug).executeTakeFirst();
-  if(!collection?.search_config) return [];
+  if(!collection?.search_config) return emptyPlan();
   const real=new FTSManager(database.db as unknown as Kysely<Database>);
   const config=await real.getSearchConfig(slug);
-  if(config?.enabled!==true) return [];
+  if(config?.enabled!==true) return emptyPlan();
+  const actualFields=await database.db.selectFrom('_cms_fields').select(['slug','type','searchable']).where('collection_id','=',collection.id).execute();
+  const snapshot=ftsMetadataGuard([{id:collection.id,slug:collection.slug,searchConfig:collection.search_config,fields:actualFields.map(field=>({...field,searchable:field.searchable??0}))}]);
+  const token=ulid(),db=database.db;
+  const before=[sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN ${sql.raw(snapshot.sql)}
+    AND EXISTS (SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND supports IS ${collection.supports} AND version=${collection.version} AND updated_at=${collection.updated_at}) THEN 1 ELSE 0 END`.compile(db)];
+  // The pure ownership predicate uses positional JSON bindings. Compose those
+  // bindings in SQL order before the ordinary collection snapshot parameters.
+  before[0]={...before[0],parameters:[token,...snapshot.parameters,...before[0].parameters.slice(1)]};
+  const after=[sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)];
   const plan=searchStatementPlanner(database,collection.id,fields);
   try {
     const searchable=fields.filter(field=>field.searchable).map(field=>field.slug);
     if(supports.includes('search')&&searchable.length) await plan.manager.rebuildIndex(slug,searchable,config.weights,config.tokenize);
     else await plan.manager.disableSearch(slug);
-    return plan.statements;
+    return {before,statements:plan.statements,after};
   } finally {await plan.close();}
 }
 export async function planDropCollectionSearch(database:CmsDatabase,slug:string,collectionId:string):Promise<CompiledQuery[]> {
