@@ -10,7 +10,7 @@ const png=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI1
 for(const target of ['Node','D1'] as const){
  test(`${target}: reusable blocks retain versions keys order and selected media across ordinary editor saves`,async({page})=>{
   test.setTimeout(90_000);
-  const h=await passkeyRuntime(target,{media:true}),removeAuth=await addVirtualWebAuthnAuthenticator(page);
+  const h=await passkeyRuntime(target,{media:'local'}),removeAuth=await addVirtualWebAuthnAuthenticator(page);
   try{
    await page.goto(`${h.origin}/setup`);await completeFullSetup(page,'blocks-editor@example.com','Blocks editor');
    await expect(page).toHaveURL(`${h.origin}/login`);await page.getByRole('button',{name:'Sign in with a passkey'}).click();

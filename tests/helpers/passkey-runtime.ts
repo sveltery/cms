@@ -8,7 +8,7 @@ import { join } from 'node:path';
 import { stringify, parse } from 'devalue';
 import { schemaAdminStorage } from './schema-admin-storage.ts';
 
-export async function passkeyRuntime(target: 'Node' | 'D1' = 'Node', options: {media?:true} = {}) {
+export async function passkeyRuntime(target: 'Node' | 'D1' = 'Node', options: {media?:true|'local'|'r2'} = {}) {
   const directory = await mkdtemp(join(tmpdir(), 'cms-passkey-runtime-'));
   const socket = createServer(); socket.listen(0, '127.0.0.1'); await once(socket, 'listening');
   const address = socket.address(); assert.ok(address && typeof address === 'object');
@@ -25,7 +25,8 @@ export async function passkeyRuntime(target: 'Node' | 'D1' = 'Node', options: {m
       cwd: new URL('../../', import.meta.url), stdio: ['ignore', 'pipe', 'pipe', 'ipc'],
       env: { PATH: process.env.PATH, CMS_AUTH_TARGET: target, CMS_AUTH_DIRECTORY: directory,
         SVELTERY_PUBLIC_ORIGIN: origin,
-        ...(options.media ? {CMS_AUTH_MEDIA:'true'} : {}),
+        ...(options.media===true||options.media==='r2' ? {CMS_AUTH_MEDIA:'true'} : {}),
+        ...(options.media==='local' ? {SVELTERY_MEDIA_DIRECTORY:join(directory,'media-local')} : {}),
         ...(target === 'Node' ? { SVELTERY_DATABASE_PATH: join(directory, 'schema.sqlite') } : {}) }
     });
     exited = once(child, 'exit');

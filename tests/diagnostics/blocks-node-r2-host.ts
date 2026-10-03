@@ -1,3 +1,5 @@
+// Retained unsupported Node-built Kit + raw R2 binding host diagnostic.
+// Real Worker R2 behavior remains owned by the separate Media Worker family.
 // Original native composition acceptance; zero copied Source/authentication credit.
 // Signed WebAuthn setup/login, real media upload and actual Node/D1/R2 persistence.
 import test from 'node:test';
@@ -9,7 +11,7 @@ import {webauthnCredential} from '../helpers/webauthn-credential.ts';
 const png=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4z8AAAAMBAAX+1O8AAAAASUVORK5CYII=','base64');
 for(const target of ['Node','D1'] as const){
  test(`${target}: ordinary signed administrator uploads and retains canonical nested media across reopen`,async()=>{
-  const h=await passkeyRuntime(target,{media:'local'}),browser=h.browser();
+  const h=await passkeyRuntime(target,{media:true}),browser=h.browser();
   try{
    const credential=webauthnCredential(h.origin);
    const began=await browser.post('/api/setup/admin',{email:'blocks-media@example.com',name:'Blocks media'});assert.equal(began.status,200);
