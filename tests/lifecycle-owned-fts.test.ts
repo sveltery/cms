@@ -12,7 +12,7 @@ import type {FtsCatalogueObject} from '../src/lib/server/search/fts-ownership.ts
 
 const table='_cms_fts_notes_v3';
 async function catalogue(database:CmsDatabase) {
-  return (await sql`SELECT name,type,tbl_name,sql FROM sqlite_master ORDER BY name,type`.execute(database.db)).rows;
+  return (await sql<FtsCatalogueObject>`SELECT name,type,tbl_name,sql FROM sqlite_master ORDER BY name,type`.execute(database.db)).rows;
 }
 async function snapshot(database:CmsDatabase) {
   const objects=await catalogue(database),tables=[];
@@ -119,8 +119,8 @@ for(const target of ['Node','D1'] as const) {
         return database.atomicBatch(statements);
       }};
       await assert.doesNotReject(()=>migrateCms(subject));assert.equal(batches,1);
-      assert.equal((await sql`SELECT note FROM operator_notes`.execute(database.db)).rows[0]?.note,'retained');
-      assert.equal((await sql`SELECT id FROM ${sql.id(table)} WHERE ${sql.id(table)} MATCH 'Searchable'`.execute(database.db)).rows[0]?.id,'concurrent');
+      assert.equal((await sql<{note:string}>`SELECT note FROM operator_notes`.execute(database.db)).rows[0]?.note,'retained');
+      assert.equal((await sql<{id:string}>`SELECT id FROM ${sql.id(table)} WHERE ${sql.id(table)} MATCH 'Searchable'`.execute(database.db)).rows[0]?.id,'concurrent');
       await migrateCms(database);
     } finally {await storage.close();}
   });
