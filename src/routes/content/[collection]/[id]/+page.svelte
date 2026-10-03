@@ -29,6 +29,7 @@
   {#if content}
     {const fields = $derived(previewFields(content.definition.fields))}
     {#if data.mutationsEnabled}
+      <a href={resolve('/content/[collection]/[id]/workflow', { collection: page.params.collection ?? '', id: content.item.id }) + (locale === 'en' ? '' : `?locale=${encodeURIComponent(locale)}`)}>Publishing and revisions</a>
       {#key JSON.stringify([page.params.collection, content.item.id, content.item.locale])}
         <EditScalarContent collection={page.params.collection ?? ''} definition={content.definition} item={content.item}
           disabled={!(data.editAny || (data.editOwn && data.principalId === content.item.authorId))} />
