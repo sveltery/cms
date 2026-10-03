@@ -364,7 +364,1486 @@
       "execution": "unexecuted"
     }
   ],
-  "copiedDeclarations": 0,
-  "expectExpressions": 0,
-  "status": "Source tests committed before native implementation; missing imports/setup have zero behavioral-red credit. Canonical migration 14 is unregistered; source DDL fixture execution grants zero application migration credit."
+  "copiedDeclarations": 211,
+  "expectExpressions": 484,
+  "status": "Source tests committed before native implementation; missing imports/setup have zero behavioral-red credit. Canonical migration 14 is unregistered; source DDL fixture execution grants zero application migration credit.",
+  "callbacks": [
+    {
+      "path": "packages/core/tests/unit/redirects/cache.test.ts",
+      "line": 70,
+      "title": "compiles exact and pattern rules from one load",
+      "sha256": "af6ef46cea17ff9e0b528540b45a4ea28675936d3fbcf188967f6161f1fcca75",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/cache.test.ts",
+      "line": 81,
+      "title": "skips pattern rules that do not validate",
+      "sha256": "2ac56ec16216be49999fd6608e1e50c1788e6cc52b86a993a3324ed2db3c70ed",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/cache.test.ts",
+      "line": 96,
+      "title": "coalesces concurrent cold loads into one source load",
+      "sha256": "8b6e5038740ff53cb44ebe5cce25eebf21e02613250278d97baf86ae7d172cd2",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/cache.test.ts",
+      "line": 109,
+      "title": "does not install rules loaded before an invalidation",
+      "sha256": "ad4a210796411cd39f50773dcbf1ade5ff5db3e15243c6c051b68433d4b17fd4",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/cache.test.ts",
+      "line": 125,
+      "title": "bounds cold-load retries when writes keep invalidating the cache",
+      "sha256": "d6588e3c37ca1a32f30d2605a117e8cef64bdf42a703a046e92338e37191a36e",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/cache.test.ts",
+      "line": 139,
+      "title": "serves warm rules without consulting the source until they expire",
+      "sha256": "31dae65b7c4d7a16b7a3d6a2e528ff4d70a283e9419b88db2b306bd586e69e47",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/cache.test.ts",
+      "line": 151,
+      "title": "extends expired rules that are still current without reloading them",
+      "sha256": "69de5caf849a7df6270d4b334f698b84d8c507fc8659c219fe536c7189a7c5e4",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/cache.test.ts",
+      "line": 168,
+      "title": "keeps serving expired rules while it reloads a changed source in the background",
+      "sha256": "ae15d1240986382f99055ace9d96dc9b5add212da43ffee271c60fed957ff790",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/cache.test.ts",
+      "line": 182,
+      "title": "reloads expired rules that have no version",
+      "sha256": "47c1f0f88748b7765145ec9843916af0b8f91ca002deae08ed28792742975293",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/cache.test.ts",
+      "line": 196,
+      "title": "starts one background revalidation for concurrent requests",
+      "sha256": "c6c6f48a6c511e7447cae1a0642b68b6ef3a2cdf4af5b41dbaf038bc501bccbd",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/cache.test.ts",
+      "line": 209,
+      "title": "waits a full cache period before retrying a failed revalidation",
+      "sha256": "f318c4e5220b6db36a569fbf10365eb4c26bfb95dd6a57b6585091a02b9f0a0e",
+      "assertions": 5
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/cache.test.ts",
+      "line": 235,
+      "title": "does not install a background reload that an invalidation overtook",
+      "sha256": "ff6f0c24edad9d9ff517efdd9e52a86ec95ef071fa315df4cbebb572bac5a1b5",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 16,
+      "title": "detects a simple 2-node loop",
+      "sha256": "0bc1168caa021203516a64e65794ff968fbba0e1175ff683996873645d6d711e",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 23,
+      "title": "detects a 3-node loop",
+      "sha256": "09c76e1b9c9a31b70d5889288e6ae9cbaf0f431454f1003f7bb462d6a8a8e02f",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 33,
+      "title": "returns no loops for a clean chain",
+      "sha256": "ff57bc3824a9fdd813b39cb7803730cd7beef35c437dc08d10821653cfeb19e5",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 39,
+      "title": "ignores disabled redirects",
+      "sha256": "386b2b1da3959521f9e447af5e9be6b4d7955471a773f7cda7696f96d70d961d",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 45,
+      "title": "detects loop when exact redirect destination matches a pattern source",
+      "sha256": "d207c8ab7df78def2b0c554be1705f9bb61e3695e6f3fa182d8269ec092d6c5c",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 55,
+      "title": "detects loops in pattern redirects with matching templates",
+      "sha256": "e0813bc48c63cae8efb660079e2240243b303ea745031cb4f064d35c11c4a642",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 65,
+      "title": "detects loops between pattern and exact redirects",
+      "sha256": "03da5f38733936246462b8bd44afa48d7f580743d5bf341e30c55f7bf952a4f2",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 75,
+      "title": "detects multiple independent loops",
+      "sha256": "998167b90fb73a565a7aabfa36270a4e7807d260a1d1044292b946634733988b",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 86,
+      "title": "returns empty array for no redirects",
+      "sha256": "681c6bc11bee7dabae3bf35e90508f1ed4ea429813784dcea7efbc7e2c45f8cd",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 91,
+      "title": "skips malformed stored patterns",
+      "sha256": "fe39c35653b5cb8deed8b34db8eb4f0952866d29bd6c79d0c2cb5f853ded9f7a",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 103,
+      "title": "returns null for a safe redirect",
+      "sha256": "52540eeedcabb513fafa65ead14ab556aa469593bdcd50d3cbc8343fc10cec01",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 109,
+      "title": "detects a direct loop",
+      "sha256": "791768817256b0f9dfe5531a19cc6093248dfc867c0d911634e2c55c6ea48d35",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 116,
+      "title": "detects a loop through an existing chain",
+      "sha256": "c22d8c745d0bb047cc35fd7ac4638bbf422e135afc25d98a647de474a67fcf5f",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 124,
+      "title": "excludes the redirect being updated",
+      "sha256": "544a36801ef849fcba77632b01147cc22fb41510eb5db6c83c278af193801689",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 131,
+      "title": "detects loop even when updating",
+      "sha256": "4c6ab2531c2e6cfdd8c510f72a44aea1655f2cb84a351157443e414704fdbf09",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 138,
+      "title": "returns null when destination has no further redirects",
+      "sha256": "fa68015e52d9eb7efeb6069b14c6f4fb9f8ce3994db85e914b51b99ba77e347c",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 144,
+      "title": "detects loop when exact destination matches a pattern source",
+      "sha256": "ef6e693fffbaaf42509fa29c4a73d4bba26c38a942d192d89d6f21d77477a03f",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 153,
+      "title": "detects loop when pattern source redirect destination resolves back to itself",
+      "sha256": "400817b76d7a722485dd686318379fc09f6974aee1aa135c7ba6db8bf4a14780",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 162,
+      "title": "detects loop between catch-all [...path] and [slug] patterns via representatives",
+      "sha256": "eb81f4ba4e11628e0cd4a1f18e4daf23da677c8dfc78188cc676fb70920b4be7",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 172,
+      "title": "detects loop with multiple overlapping patterns and exact redirects",
+      "sha256": "2710633e37e2fee2fd56be838224605023d84416dc5b484dbfbeace177f826fc",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 193,
+      "title": "exact redirects coexisting with patterns do not prevent loop detection",
+      "sha256": "7ec0b2144b7649d4f10def265e76a12130ae3fa0d73d0172834f81f467a2e16a",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/loops.test.ts",
+      "line": 205,
+      "title": "does not compile an ambiguous destination template",
+      "sha256": "198671a2b5cae359a787a702e2adcd6d8c2f502baaa5b74873b150e92ad62e8a",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 14,
+      "title": "returns true for [param] patterns",
+      "sha256": "ed77014d17965a3b88d45eef15157a2ff1fe984b8185ff8c30e55abe97ee18b7",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 18,
+      "title": "returns true for [...rest] patterns",
+      "sha256": "416d5408b3462c591ebd88b061d8b26df4c9371b845beed2616d4a2bfd320799",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 22,
+      "title": "returns false for literal paths",
+      "sha256": "ee90925db3a4d21dbd6942f44eb653545e8d338abc56ecc6ee76d5016cf4bc8f",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 27,
+      "title": "returns false for empty string",
+      "sha256": "60664a42388e99fa9625594153907c050513ac488d493c1c930c43ec1a72eb3e",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 33,
+      "title": "accepts valid patterns",
+      "sha256": "3ef919dd078727ab28f204bd44e1a32381f14005fa8444fc35a7bf8b0cbeb35a",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 40,
+      "title": "rejects patterns not starting with /",
+      "sha256": "457c629ee7f3680ab02612bae15f4ebd1e71ba794acbb55b2e33f91218ced61c",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 44,
+      "title": "rejects nested brackets",
+      "sha256": "d638d375ee1a6bd2dea59eb21d194a774c33c9d3d68179756492eb32c374acda",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 48,
+      "title": "rejects empty brackets",
+      "sha256": "f7c5b8553166ce3ab409649431639f7c5c5aa3bd0bf8d5c5ce973823ab8db9b7",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 52,
+      "title": "rejects unmatched brackets",
+      "sha256": "5894ae2746bc4fa0837340235df305a324be73174c6369e03ec3a902dfb47e07",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 57,
+      "title": "rejects [...splat] not in last segment",
+      "sha256": "006fa694d1c07118b5421b4c945d068dbaad05e7cb6ec6e4216106d9bcf144c5",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 63,
+      "title": "allows [...splat] in last segment",
+      "sha256": "4647cf9e4f07f0982056761401bcfd585b5565208c4e743cbbf0c020142da309",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 67,
+      "title": "rejects multiple placeholders per segment",
+      "sha256": "d827e811af4255033e37e13e73d27f14812709b640a102b40fc33fee8767fddc",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 71,
+      "title": "rejects mixed literal and placeholder in segment",
+      "sha256": "7a072376ad958cb99cf7ef0af5c95084d105f220c31d3958870297985471f072",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 77,
+      "title": "rejects duplicate parameter names",
+      "sha256": "87db347fd0190b0cf4b7777e70c21f6c938bd3535f1fe06788da5c4d499f3dc9",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 81,
+      "title": "validates consecutively without regex state leaking",
+      "sha256": "abdbb059edcc786b35d58a16098ae039bc936a4ffc3458a51e790bbe0f604a89",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 90,
+      "title": "returns null when destination params are subset of source",
+      "sha256": "220d7b73a001925f6b6919a3a6c8b223e103c5eddbe23a139d6366be50d7ad5d",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 95,
+      "title": "returns null for destinations with no placeholders",
+      "sha256": "55b252dcbf51a2fd77c5b48198bb4d10b5ea7b542d86738b1d74841a98bbea84",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 99,
+      "title": "returns error for unknown destination param",
+      "sha256": "c448f4d16690ed6486c110a73a2eff5aec81f8142dd16198a45b1e924d082029",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 105,
+      "title": "allows [...rest] params in destination when in source",
+      "sha256": "04f68d021a9986421c60674fa0f1335e92e3a852cccf5102380129d629ad1a41",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 111,
+      "title": "compiles [param] to single-segment capture",
+      "sha256": "750c2a4b85983f29011a0db5e9f3c49e496d1570fb019c23f67c44937d880093",
+      "assertions": 5
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 120,
+      "title": "compiles [...rest] to multi-segment capture",
+      "sha256": "bd049908c05f63e679f12f12a7e820ebf58395d729ba1117cc8aa8ebf692bf40",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 128,
+      "title": "compiles multiple params",
+      "sha256": "928bad00ed869db9ddf1ca7ce13d8d1444d44994d8268b9b274fa34024d10758",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 135,
+      "title": "compiles literal-only paths",
+      "sha256": "30bf7d1253b4aff933ab7983db544c3973a56eb128ba37afec34f04a3559d3f1",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 142,
+      "title": "escapes regex-special characters in literal parts",
+      "sha256": "c8f938936c56db9745e18c1136c15b547d3dc6634174f8a58fa31936cae43c72",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 149,
+      "title": "treats parentheses in literal parts as literal characters",
+      "sha256": "353fbc6461e826ad455ca0400d64bc9ab8cc6d1819b0a02c8ea477b971ad8bcc",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 159,
+      "title": "assigns captures to the right names when a [param] precedes a [...splat]",
+      "sha256": "bf614e990a20994bf4be537ad21965086427bfaff7315b45b2231513264f51c8",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 164,
+      "title": "compiles a source with unbalanced literal parentheses",
+      "sha256": "50e7f05b184dc0f61bea2737baff28ab62cce2246c6553bbe76547d4913c685d",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 171,
+      "title": "captures [param] values",
+      "sha256": "2af4c068cbe9dd58711959f177ad6a2d4d364b0f49ad615b5155385141cfdbb2",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 176,
+      "title": "captures [...rest] values",
+      "sha256": "69ab8922ba4ac42298a5010b5e2b285d166064c92bc7880c238bd2af15230c7f",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 183,
+      "title": "captures multiple params",
+      "sha256": "e774c01a6235a10527b152877cfdd25b59189d46699138b413cebcabe056c779",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 191,
+      "title": "returns null on no match",
+      "sha256": "d2da97c2f44fb4836252360fba70b2998ae5bd447343ebb53095a42488493b2d",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 197,
+      "title": "returns empty object for literal paths",
+      "sha256": "16598b527d09784255e0652c9827c36a8142ecb115def8786995612f90a89a85",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 202,
+      "title": "handles URL-encoded segments",
+      "sha256": "b1ce73ea22a8bf8fe4bde73693fc9192026fd691a13197c99a7072e5a96e9030",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 209,
+      "title": "replaces [param] with captured values",
+      "sha256": "7d66cee1b90555ea90fda28476e9b0cdc8e3d813070b10b4d31548efbffd28dc",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 213,
+      "title": "replaces [...rest] with captured values",
+      "sha256": "fb1f4150ed610b2b00f142832220ec6611f8824813b8dcf7e4c650e3159aa09a",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 219,
+      "title": "replaces multiple params",
+      "sha256": "e39141ea738adefcb386d41fb7587e0c0dee1b07df047eaf07f908dfdc8b0c78",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 228,
+      "title": "replaces missing params with empty string",
+      "sha256": "dcc906619dca08d6a765e18ab0494fb51de933c18e572d7def10dae98b1c2cad",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 232,
+      "title": "leaves literal destinations unchanged",
+      "sha256": "ac566b07822b58ca9fd280c27b72b4ad70890ac45598e5ddfa6c8d1505f97058",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 238,
+      "title": "handles blog migration pattern",
+      "sha256": "69af55856ed9141e2ed6fe277362c9cf9d69270647066fe38eaa6efddb94d834",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 247,
+      "title": "handles category restructure pattern",
+      "sha256": "196b923fd85ede011040832b9e3bf64a4bddfd1a52e4301783a967912c2d306b",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/redirects/patterns.test.ts",
+      "line": 256,
+      "title": "handles pattern with params dropped in destination",
+      "sha256": "3f8713f21db582a9e415d7c577decd8bd495526c88ca5abee6b65ea4434c6fb8",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/schemas/redirects.test.ts",
+      "line": 6,
+      "title": "accepts a 301 redirect with a destination",
+      "sha256": "227cdc5a24fea343d9a3741383543598fdb1b3bac6d48bcf5b4e15e94d3c0f6b",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/schemas/redirects.test.ts",
+      "line": 15,
+      "title": "rejects a redirect type (301) without a destination",
+      "sha256": "ed9cd2332183c584c0145911bc5abc37be76a345c823596f7bb03f64a77b4355",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/schemas/redirects.test.ts",
+      "line": 20,
+      "title": "accepts a 410 Gone rule without a destination",
+      "sha256": "7b7a4bd8b812f97cbdc604688ffce4bcb34626d499241a1539512833e497f86d",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/schemas/redirects.test.ts",
+      "line": 25,
+      "title": "accepts a 451 rule without a destination",
+      "sha256": "803167ae396e217998c592c33afa155454f4ef2bbff025f9aed3fe7936df5969",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/schemas/redirects.test.ts",
+      "line": 30,
+      "title": "rejects an unsupported status code",
+      "sha256": "13a77f256cd8fba53197f2488949d096bf1fb3e89d8cc4c14f99a8035d9eb8a7",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/schemas/redirects.test.ts",
+      "line": 37,
+      "title": "accepts minute-precision ISO datetimes",
+      "sha256": "3dd8c39fde6778ac5f93d6b2b3d91ca635efa0be7d25b29907e9a1a8e0f55b6f",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/api/redirect.test.ts",
+      "line": 6,
+      "title": "accepts simple relative paths",
+      "sha256": "1455a3950a29258d873ef4aed65cf453ba15605b25bb43c334672b72fe542fe7",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/unit/api/redirect.test.ts",
+      "line": 13,
+      "title": "rejects protocol-relative URLs (double slash)",
+      "sha256": "44b19fa134a43ca1471d8236d86696811a40a3d8d54697b23cc717009df26e6b",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/api/redirect.test.ts",
+      "line": 18,
+      "title": "rejects backslash bypass (/\\evil.com normalizes to //evil.com)",
+      "sha256": "d09d4d58e0d8e563a96f71a6b3b5f55fc494e123ee2a5ed228a19de6542bbd1c",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/unit/api/redirect.test.ts",
+      "line": 24,
+      "title": "rejects control characters that browsers strip from URLs",
+      "sha256": "2b6c703b1def0e24a74b6bd5687621c30f0aa1a92f58c946c1c63a52a0e8d219",
+      "assertions": 6
+    },
+    {
+      "path": "packages/core/tests/unit/api/redirect.test.ts",
+      "line": 33,
+      "title": "rejects URLs that do not start with /",
+      "sha256": "9d82a1afe3f16c5539a69c1fb9fcb325268a956d9d4eac0f2ae479ae52c6c2ef",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/unit/api/redirect.test.ts",
+      "line": 40,
+      "title": "rejects null and undefined",
+      "sha256": "5b5bfd6811177655b85d2c7e65f2cb792bba754233f59fc37559f5967aa7c29c",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 93,
+      "title": "fires for an unauthenticated visitor on a public path (no locals.emdash.db)",
+      "sha256": "ef852546d3601087f8385510fdfc5719db615ca4384d8d3c35ff67595933beae",
+      "assertions": 5
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 106,
+      "title": "fires pattern matches for unauthenticated visitors",
+      "sha256": "7e57e0c7d35e5e2e82c111e80e6500c6a524e63a5311c2be18e36ea065209cf9",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 116,
+      "title": "still uses locals.emdash.db when present (authenticated/edit-mode/preview path)",
+      "sha256": "3e4cb9783381cc58e9ec91fbd1cbc90f7168741894021043688449884fbd062c",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 128,
+      "title": "skips silently when no database is available at all",
+      "sha256": "0d2ec9bf5c8473260e6f151008de895571ceb5389085848d7c1c40709725c73a",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 140,
+      "title": "loads published redirects in one query and reuses them across requests",
+      "sha256": "f3143894a5646afcc5f93bad98f9ca202fc806ddd427d1459dfff549184127fe",
+      "assertions": 6
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 187,
+      "title": "picks up redirects another Worker isolate published once the cache expires",
+      "sha256": "30177225476dccd9b401c0b50844d38910b6242853bb4fa7bcfec3461949e120",
+      "assertions": 5
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 233,
+      "title": "does not intercept /_emdash routes",
+      "sha256": "22b8976c35490a5e8da54922ba9f9e5280e79ec87a6b29956b870c12f03df48d",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 259,
+      "title": "logs an unmatched path exactly once",
+      "sha256": "7f42ebed03bb1dd7cf286ed5a6ad4885baf96ff5a749f09538366604b18ac06a",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 274,
+      "title": "logs a content miss under its real path across the redirect-to-/404 flow",
+      "sha256": "06d2264eeb7b7f52d9c701d483a07906e571b69f80fa7ff2caac101cab132f46",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 297,
+      "title": "keeps 404 responses out of the route cache",
+      "sha256": "9dd981988237988b29a33ebe5c06651143797a61f6dcad6d547054bc3355d5cb",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 307,
+      "title": "does not log ordinary redirects",
+      "sha256": "5ca54b09cc1a19da4b89ffbd96f0d79a164ba72d7801522078e506b9ecf8c7df",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 319,
+      "title": "does not log the site's own /404 error page render",
+      "sha256": "0892fbafd3f94d87dc1459b198439a217516280c351ef6455a1834d1e4b97627",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 359,
+      "title": "matches an unslashed request when the redirect source has a trailing slash",
+      "sha256": "7e0b1326599389ac4bd0503aada8b41c0ff304500569282027ab5bc7ff3ce82c",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 373,
+      "title": "matches a slashed request when the redirect source has no trailing slash",
+      "sha256": "44433a8a80af0ff7386853d9f93e3b5b5b4e70011d81d24b83532b3253909e22",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 387,
+      "title": "prefers an exact match over the alternate slash form",
+      "sha256": "decf23b8db15bc50b06b9db0d1386dae156155854061ea97eafe636d5b6ab246",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 434,
+      "title": "skips a stored exact rule whose destination is %j",
+      "sha256": "03f256809a317bdfa1011910d681cb136c21c1eff9cfbe9019292794e3d1c7cc",
+      "assertions": 5
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 460,
+      "title": "skips a stored pattern rule that resolves to an external URL",
+      "sha256": "54408494419d8c34ba0c865148c2e88a2ee8d0f85754138be559ef2d1a3d0e93",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 477,
+      "title": "skips a pattern rule whose captured path makes the destination protocol-relative",
+      "sha256": "bc02b122b4d34c0bf681eb04d65cf59e175dc981a36067154693533b6de49817",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 494,
+      "title": "still redirects to site-relative paths with a query string and fragment",
+      "sha256": "28f25fb02feae9500244c5ea3e5875f88231c0194e7e82d62ab05718a4082a61",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/astro/middleware-redirect.test.ts",
+      "line": 506,
+      "title": "ignores a stored pattern rule whose source is not a valid pattern",
+      "sha256": "3ec35b9e38d6d97eaf7a47389bd428258fb066eb0fbbbd2ade13c6e5885a98a8",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/log404-bounded.test.ts",
+      "line": 81,
+      "title": "dedups repeat hits by path instead of inserting new rows",
+      "sha256": "1db40ce857a5d6626eb3481ad1bc6ab94cbf455ae14bbdabc4f0e5e38cf087f8",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/log404-bounded.test.ts",
+      "line": 97,
+      "title": "handles concurrent inserts for the same new path atomically",
+      "sha256": "e0c35b4717b0137bc3f104b8299192975dede5470abfc8762d30612054db4a28",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/log404-bounded.test.ts",
+      "line": 126,
+      "title": "scheduled cleanup evicts the oldest entry after the table exceeds capacity",
+      "sha256": "5736a43a1ff4fc1b08b2651ff840c7423d91b59068b141408a5c6b7561d22e36",
+      "assertions": 6
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/log404-bounded.test.ts",
+      "line": 176,
+      "title": "overlapping cleanup runs preserve the newest rows at capacity",
+      "sha256": "94e2c073f36902a19d93cdb4ed3bf1314b06bf7c6fbd0a8f74a8cb403df43f01",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/log404-bounded.test.ts",
+      "line": 198,
+      "title": "does not evict when an existing path is hit again, even at capacity",
+      "sha256": "4ec49330d64dc5d2f697a4f03b076d69a1b7fbd93cb7c06979b2b14bde7e0206",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/log404-bounded.test.ts",
+      "line": 233,
+      "title": "truncates oversize referrer and user_agent on insert",
+      "sha256": "35c498838ab7a48f6b0fb348b4c267fe1511343c68de7c9fef05f41832268941",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/log404-bounded.test.ts",
+      "line": 256,
+      "title": "preserves null referrer / user_agent without coercing to empty string",
+      "sha256": "123ea3330ca6a417d7dec98251fc6841faeea6a5ac3d5689fea8afa9aaebad0e",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/log404-bounded.test.ts",
+      "line": 269,
+      "title": "never counts the full table on the request path",
+      "sha256": "a8e2e77711a4679af95213b45c77661b574ba3d80bf91fee10fe0a4248f8de20",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-artifacts.test.ts",
+      "line": 95,
+      "title": "restarts the migration without disturbing existing state",
+      "sha256": "d6351c368344b98a7ffa9672b46745e733f2c28fdd0e5b0452a49ddd4e5ea272",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-artifacts.test.ts",
+      "line": 106,
+      "title": "bumps the revision only for changes that affect enabled rules",
+      "sha256": "b2d80bd4a7852234d76ebb4b16a10cac3558bb245653e97f5485fbc2fd73a63f",
+      "assertions": 9
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-artifacts.test.ts",
+      "line": 138,
+      "title": "loads the published rules in one query",
+      "sha256": "23245e1610c6f734e4a712a22dcc5b206d7f5abfe82efd9d5288484ff2cfb208",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-artifacts.test.ts",
+      "line": 166,
+      "title": "publishes an empty rule set that loads without falling back",
+      "sha256": "3503d74420a5a4ae6cd0e6b7c55fff7e2826d0b8f20a1d45403217b93b6d94a5",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-artifacts.test.ts",
+      "line": 183,
+      "title": "splits large rule sets and keeps pattern precedence across chunks",
+      "sha256": "5a6f5ffcdb45d9ff46196705ecd56d473c79d32bcc340bf90caa6c1a7c32398f",
+      "assertions": 5
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-artifacts.test.ts",
+      "line": 216,
+      "title": "rewrites one exact shard when one exact rule changes",
+      "sha256": "ec7cc1a17ef21af4e13235562b5b103785df920a12bb92a2c3da69c3b5cf874c",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-artifacts.test.ts",
+      "line": 240,
+      "title": "reads the rules table while the generation is stale and repairs it in the background",
+      "sha256": "a72d8dc3338e60407ebedf55a30be3b07bd52460b455dafd4a73e75024e48829",
+      "assertions": 6
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-artifacts.test.ts",
+      "line": 260,
+      "title": "reads the rules table when a rule was reordered after publishing",
+      "sha256": "f29b9c745e5d71dd96d84932bd0fe77fdd9c15dbb4ac3fdf64842d1c7b31873a",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-artifacts.test.ts",
+      "line": 286,
+      "title": "reports a published generation as current until another one replaces it",
+      "sha256": "3a475682cb4bfc6e9881c014058de3780df246b78d3d2f311b347107bb8977c0",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-artifacts.test.ts",
+      "line": 301,
+      "title": "falls back to the rules table when an artifact payload was altered, then republishes",
+      "sha256": "4e026dde4b113466437f92ffc9128c98c93a4421c567319b9baa9f71fe3b67e6",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-artifacts.test.ts",
+      "line": 321,
+      "title": "falls back to the rules table when an artifact link is missing",
+      "sha256": "1f8955e508e6b37defc5cc39afd70510f06112832b8cd2d2085c5a8c9cb2fe79",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-artifacts.test.ts",
+      "line": 340,
+      "title": "repairs a generation whose links point at the wrong artifacts",
+      "sha256": "9aa9c260d524f47207f6c1bba2d2114256e076013cbd1606d1d0b651a19ab6cd",
+      "assertions": 5
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-artifacts.test.ts",
+      "line": 372,
+      "title": "reads the rules table before the artifact tables exist",
+      "sha256": "a4a1764c9602a99f058de8c452cfb3e3fe6c8ac20a60871fc1cd0ae293859b10",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-handlers.test.ts",
+      "line": 33,
+      "title": "fails closed while another redirect writer owns the database lease",
+      "sha256": "1272a8e60519064c2d76ed8b64b3d8be59b956c8bafffca2f7afbf8e076fe3f8",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-handlers.test.ts",
+      "line": 46,
+      "title": "rejects a redirect that would create a direct 2-node loop",
+      "sha256": "eb27971083f5a0f43a882cda9d3dd3b5cfe45fc4d556b597bb52cdb2d1b85fc9",
+      "assertions": 5
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-handlers.test.ts",
+      "line": 63,
+      "title": "rejects a redirect that would create a 3-node loop",
+      "sha256": "9d0585b94b46a2b4303af68e65a102fb84d756ca7fe1573ff9fc9f0cb688f016",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-handlers.test.ts",
+      "line": 79,
+      "title": "allows a redirect that does not create a loop",
+      "sha256": "cbaabd90821edc489e244c94b17db45ef820c80ffbc0887f4fafeabdcfca3158",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-handlers.test.ts",
+      "line": 90,
+      "title": "allows a redirect that extends a chain without looping",
+      "sha256": "7c657f8f746e54757b4122747294fd6156d3de8782722e91e2afd6127822df65",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-handlers.test.ts",
+      "line": 103,
+      "title": "rejects an update that would create a loop",
+      "sha256": "5ece816126130c5c324c42347af17c89a50f4fcb437f125489b9ec5c8c9a7969",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-handlers.test.ts",
+      "line": 121,
+      "title": "rejects an update that creates a cycle",
+      "sha256": "627caba8936055dc54cce09aaff2b2950e7ef1887107bb68015e435b76a9251c",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-handlers.test.ts",
+      "line": 146,
+      "title": "supports changing between redirect and terminal statuses",
+      "sha256": "1d928249feb771d6b8fcedfb758cf50688f2dfb5f279e318f9b349507f20c622",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-handlers.test.ts",
+      "line": 171,
+      "title": "rejects enabling a redirect that would close a loop",
+      "sha256": "f038f0daef4d8c62a811c1a104e4c495b18a77df01bb7ba305baafb10426311c",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-handlers.test.ts",
+      "line": 188,
+      "title": "uses the expected configuration revision as an atomic mutation precondition",
+      "sha256": "416d1a0cf65f1b3d24aae2ff944abe5ce80a49476c08c04b7feeb7affffa616e",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-handlers.test.ts",
+      "line": 220,
+      "title": "does not include loopRedirectIds when no loops exist",
+      "sha256": "bd1cd391e431d40dc950dea90354488fa0861388f0e68d113c01c8f59d5a20b1",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-handlers.test.ts",
+      "line": 233,
+      "title": "invalidates after successful writes but not rejected writes",
+      "sha256": "d76f88ce9f7c9db52816c722f0b789079c4b12fc67281d21a05aa654e6d10b7c",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-pattern-precedence.test.ts",
+      "line": 63,
+      "title": "matches the earliest-created overlapping pattern regardless of row order",
+      "sha256": "f5635f85cb555de1866d1b7c30c0aa73a48a8e51aa0bfd2d3ab8323c6e8747ac",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-pattern-precedence.test.ts",
+      "line": 78,
+      "title": "breaks created_at ties by id",
+      "sha256": "02b5b40a707840c3771fca5322a0a15c21f0267e224eb876ed07a0c082d8c347",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 24,
+      "title": "fences an expired writer before it can commit",
+      "sha256": "2369675e51417b8c3522e819180f0e2e60f629a3e3f8d9befcf67cf1f08eda83",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 57,
+      "title": "creates a redirect with defaults",
+      "sha256": "3d7b7d532823ee9891eebdb2e8f2b6fe60ffe90eeda4beec3905c0aa44bd9431",
+      "assertions": 9
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 74,
+      "title": "creates a redirect with custom values",
+      "sha256": "92ce2c571a83cede74c0efe3ff794d935d5583b49662a9cd2004b701859d2a92",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 90,
+      "title": "auto-detects pattern sources",
+      "sha256": "e99abbb69bbee507dbde7a12837beb1f73752b9eb829e693e8c9bf57ef857092",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 99,
+      "title": "respects explicit isPattern=false override",
+      "sha256": "c4b89090ace3d13db1df4d3a0758e204d0133385b7ace8f4e792869212ae7666",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 109,
+      "title": "creates a 410 Gone rule with an empty destination",
+      "sha256": "4d826b39c79e9dd84b1a4c638e70381826b9a10088a428b45984a1824f04c9f4",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 125,
+      "title": "returns null for non-existent id",
+      "sha256": "00e46e7baee0b7a038087d03bbb3369045dd595b972ee4cdc0a4d7e8b0d685ea",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 129,
+      "title": "finds a redirect by id",
+      "sha256": "7f7c41ed00f61306803f268a639a1e4e152aa6771ab3d6309deadcc4e4d060a4",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 140,
+      "title": "returns null for non-existent source",
+      "sha256": "a9ed7ec80535eda3953026647853577ba682e1f59c3f108100994e24c701878f",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 144,
+      "title": "finds a redirect by source",
+      "sha256": "bcec2cca84da73b082daeb6233f001c62231690f9ef45a89b9d4369701787769",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 152,
+      "title": "returns null for non-existent id",
+      "sha256": "ee579db676de8cbaf181c149f5accc9b8edae3b7e90f8ec03e0b782fd7c97e01",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 156,
+      "title": "updates destination",
+      "sha256": "580e965804d273f706881f458df8f4216ac610eced2a726d97f62f3cc302e02d",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 165,
+      "title": "updates type and enabled",
+      "sha256": "67e30655ba573da5999f753d2f96046d2e7efb01c23b079e1ba3aa0a7dba542a",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 179,
+      "title": "auto-detects isPattern when source changes",
+      "sha256": "714b0a8e8e6947b72cb9159ded7c23275c1e82c65f5cff98d92598eef474e0e4",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 194,
+      "title": "returns false for non-existent id",
+      "sha256": "20523196dbb5357a68525e98863169f24a93d54d49ec5550fed6e51b894710f4",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 198,
+      "title": "deletes and returns true",
+      "sha256": "68a7ce11ffc58e41576ec0c47654a9f98dc170a31ef25527677222b83256333b",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 209,
+      "title": "returns empty list when no redirects",
+      "sha256": "1e4735c45ecef3522996d295daf033a553f61bb2a1e2803fe798cb1c26dc118e",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 215,
+      "title": "returns all redirects",
+      "sha256": "17069ad8ebb78737d47ab8a5bcdbd145d60739d60f884e498607b74441e7f551",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 222,
+      "title": "paginates with cursor",
+      "sha256": "a871835d1cddf3495ac238a9162fa7bb2585cd0a462df0e7ae2b0ea84964cabe",
+      "assertions": 5
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 242,
+      "title": "filters by search term",
+      "sha256": "ca1a4023ab9f099bc9a1bc8dafc17f192758932a59d57bd22aa94108a72a0bad",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 251,
+      "title": "filters by enabled status",
+      "sha256": "4c6191076f5f298063522cfb91708b0b97cc870f4e7b2c708bfcb998b5241034",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 264,
+      "title": "filters by group",
+      "sha256": "913ff988c7b9a20389eb8a7bba677577ea6a5301066c189c6198084a158451e2",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 277,
+      "title": "filters by auto flag",
+      "sha256": "510fbd2a859783bf09a1026f04c88b229e7ffb717603b9da69ad3957501270d4",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 286,
+      "title": "clamps limit to 1-100",
+      "sha256": "5fadef8f503e721ab276c460c2e17a1f1f8157f9807e40c83bab1f48b9179a82",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 304,
+      "title": "returns only enabled redirects",
+      "sha256": "8d626d837286f2e1e6cf384c3c6771653d7d161863804df4e648a76f199dbaeb",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 314,
+      "title": "returns empty array when no enabled redirects",
+      "sha256": "9deede6cdbf0e75d656d872173a9aaecbce3f99d40c807d1886c843823b8d313",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 324,
+      "title": "returns null when no redirects exist",
+      "sha256": "e27cbc01d5b759808551905e0cf711f4bc5025a951b74b5d4c0183b28d2224db",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 328,
+      "title": "matches exact paths",
+      "sha256": "446bbfda38c93330c8e7f30a97a61b3342e00843a43b20e2e8744005440e61a2",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 335,
+      "title": "does not match disabled redirects",
+      "sha256": "db32fa1eedc727bc758ed386221b491f5940d2fedd4861e9c1ea098d1f6bc520",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 344,
+      "title": "matches pattern redirects",
+      "sha256": "9f9bdd681780eed3276027a94395ffea3e1c7b8c78d66f94de90198c16bac06a",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 354,
+      "title": "prefers exact match over pattern match",
+      "sha256": "71c4ac499a4952dc6d59d277c44caf01bf4300f2574d316e2bcccc9997633248",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 368,
+      "title": "matches [param] in single segment",
+      "sha256": "b194b588646525df5be988a139338221534b0333fe95a8331e8e8df1d6f93eff",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 380,
+      "title": "skips unsafe destinations written outside the repository",
+      "sha256": "8e989c711aad62b3e17df20e7c520a35061a644b22da6c17beef12cced433ad6",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 401,
+      "title": "skips malformed patterns written outside the repository",
+      "sha256": "ea32ef930511c8210ea75c92bf74c2166219b697ac7980b9e106f6f265d42830",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 419,
+      "title": "increments hit count and updates lastHitAt",
+      "sha256": "5ff95bbc56eada42cc3cbcf746d09bfd95bb655afd3667659958a08cc7eb6781",
+      "assertions": 5
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 437,
+      "title": "does not change the configuration revision",
+      "sha256": "73eafd52d0fe8521b630da9bbf5d14e1dcb0f475e5265359826c9d19a7594fc1",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 448,
+      "title": "creates a redirect for slug change with url pattern",
+      "sha256": "c5e01c601da882f92ffa4e845004bd501695278ce9b87d68fd4011d084b48f22",
+      "assertions": 5
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 464,
+      "title": "resolves date tokens from the publish date (#1526)",
+      "sha256": "2acc129ebae1869489f1bed0929f2bcb71ddd4d79c252f75768065493795f615",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 479,
+      "title": "builds the source from the old publish date and the destination from the new one",
+      "sha256": "a7f92446370db889056a87972c12a2642bbc166e541a718c556ee2292dcee0d6",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 494,
+      "title": "keeps date tokens literal without a publish date",
+      "sha256": "d70ae41950a834480239b4a3cad61eeb8bf76ef5d3f35a05fcb33100d804f3b9",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 509,
+      "title": "uses fallback URL when no url pattern",
+      "sha256": "dc4d136b83a296675192c801249df7c9c03fad4fdb91712e1315285bcfe2e903",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 516,
+      "title": "collapses existing chains",
+      "sha256": "5afc7b89f7d54e96d1166539e6a6dad873ab99be1022535530ef93d155f4f91d",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 536,
+      "title": "removes redirects from the new URL before collapsing chains",
+      "sha256": "b10fae32813b04b36a223bb15749e1b7767e87f1bad409094f1a62d4e379ca7b",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 550,
+      "title": "updates existing redirect from same source instead of duplicating",
+      "sha256": "d3062c978769891b0c050cbbd6bb2b324a0840b18ddeab9d51f8db579ca875c8",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 567,
+      "title": "does not create a loop when a slug rename is reverted (#1986)",
+      "sha256": "5b204eb5e3eddf3989c9143d76247d5aa9515382b761cf19a38c26e91a332101",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 586,
+      "title": "does not create a loop when reverting after a rename chain",
+      "sha256": "8419cb66a030486ace0f31a9e5e5dfce973c3b30ac1e2c8378a7b966a4ab4476",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 601,
+      "title": "is a no-op when old and new slug resolve to the same URL",
+      "sha256": "23737c049cbb0fc14cfd6fc460f1a1231e3096454f2da80f9baca7e153ffc417",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 613,
+      "title": "logs a 404 entry",
+      "sha256": "e6049f4c0e916f65deb4bd456c63d70b17179efb2ef9f8d1877596efd62645d3",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 620,
+      "title": "logs with metadata",
+      "sha256": "f424ad2473b3436fe8494d7d1a3818cc4569b7fe431de0a4702672fb68b992e5",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 636,
+      "title": "filters by search",
+      "sha256": "fc3b7c523e97f1a7954b8caf29a4698832e609391d28cc7da8bbafa4451f8bb4",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 645,
+      "title": "paginates",
+      "sha256": "1cdfe675201146a957dd6843b9399c1a3e1056a2cde9d017fa5a33bcfc0c39af",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 660,
+      "title": "groups by path and counts",
+      "sha256": "729aaa7a28bde8b275317dfe883bb439d605b11fc9bd60d76f48cdf470cf8bd5",
+      "assertions": 5
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 675,
+      "title": "includes the most recently seen referrer",
+      "sha256": "ea0b602ad20c7417ca9825ebc3a2b85fff72371d64b4c3fa6ba11224d1fe94d9",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 688,
+      "title": "deletes a single 404 entry",
+      "sha256": "534011f248d911331898f27fc1b527d7bd3c8018dae7ccb73b8cda5f23b76e85",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 702,
+      "title": "removes all 404 entries",
+      "sha256": "a65ccb82c429d24983361830bfad4d46ca0d1d7832da1214969d066dfb417908",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 715,
+      "title": "removes entries older than cutoff",
+      "sha256": "a433a022c3277b6593671c5bce83e8c22c5ea3d6f3f305d3f5fde8a2e36a1150",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/redirect-repository.test.ts",
+      "line": 722,
+      "title": "keeps entries newer than cutoff",
+      "sha256": "94c09d5ee64f18dbe37570f5d877cbfbcedc2cf4f4cf360e7da7b731e5444c97",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/slug-change-redirect-dialect.test.ts",
+      "line": 37,
+      "title": "creates an automatic redirect inside the content update transaction",
+      "sha256": "74c7ca5432e33e89f13ca3df0f5b535bd13614cf31c26f450c380d9b79bfb1fb",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/slug-change-redirect-dialect.test.ts",
+      "line": 59,
+      "title": "removes a redirect from the new URL before collapsing chains",
+      "sha256": "6a888078623ba0bedd87c4ab22e330965de6ff4782d617538cee0ebd3882b578",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/slug-change-redirect-locale.test.ts",
+      "line": 58,
+      "title": "does not redirect the canonical URL when a translation sharing its slug is renamed",
+      "sha256": "dc11e67c362b0e9b7fd19ed99f0e3813d31f82e638d5f93e4e98952ab3bf8278",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/slug-change-redirect-locale.test.ts",
+      "line": 82,
+      "title": "does not redirect a URL still held by a translation when the canonical is renamed",
+      "sha256": "a5419b32af48a9e7921a87cf7bf6ba5629a7aa5920a59cdc451eec0305fd1d32",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/redirects/slug-change-redirect-locale.test.ts",
+      "line": 105,
+      "title": "still redirects when the renamed entry owned the URL outright",
+      "sha256": "baf101ff91ac6a30c4df0e86aa120408fd5c50e2e4704a89c3b2a2e199fc603a",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/database/migrations/081_redirect_write_guards.test.ts",
+      "line": 15,
+      "title": "preserves duplicate rows, guards one source, and can restart",
+      "sha256": "02afae17de442d5f32c1cf36c48d76b29817ec696b56469316b17bb8214cdff9",
+      "assertions": 5
+    },
+    {
+      "path": "packages/core/tests/unit/database/migrations/081_redirect_write_guards.test.ts",
+      "line": 64,
+      "title": "allows previous-runtime writes when an enabled pattern redirect exists",
+      "sha256": "dd31f02bd920954c41bb7ac7dc95d65f4cc16075390ba2af7e40e6d9bcb32242",
+      "assertions": 3
+    },
+    {
+      "path": "packages/core/tests/unit/database/migrations/081_redirect_write_guards.test.ts",
+      "line": 98,
+      "title": "creates triggers the D1 HTTP API can apply",
+      "sha256": "733e44ec1b21046dda7f3a155b8a314f0188ba13aa874170fee1fdda753517ae",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/unit/database/migrations/081_redirect_write_guards.test.ts",
+      "line": 123,
+      "title": "rejects redirect loops written directly to the table",
+      "sha256": "465ef57b2d6812429b8c1ca1a862c5e73a616151c5927dde9075077b415b1078",
+      "assertions": 4
+    },
+    {
+      "path": "packages/core/tests/integration/database/redirect-enable-loop-guard-migration.test.ts",
+      "line": 33,
+      "title": "rejects enabling a redirect that closes a loop, and can restart",
+      "sha256": "7d5dcbd79dd2c8335eaa82dd0560a05a953e0ce74cb870e995c65e81c38a2c1e",
+      "assertions": 2
+    },
+    {
+      "path": "packages/core/tests/integration/database/redirect-enable-loop-guard-migration.test.ts",
+      "line": 47,
+      "title": "allows enabling a redirect that does not close a loop",
+      "sha256": "1e1519feb44c857fbf4e995b7d3c905cc96aed5693d8621f7a674a0b9c6e8bd7",
+      "assertions": 1
+    },
+    {
+      "path": "packages/core/tests/integration/database/redirect-enable-loop-guard-migration.test.ts",
+      "line": 55,
+      "title": "allows disabling and re-enabling a redirect that is not in a loop",
+      "sha256": "def65f6d1f13a78b282eb00c7e04367650ecbbee6bf22aceefef48171d909058",
+      "assertions": 1
+    }
+  ]
 }
