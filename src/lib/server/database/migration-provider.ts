@@ -10,6 +10,8 @@ export interface CmsMigrationProvider {
   /** Optional atomic plan: read-only old-state guards run before any startup writes. */
   prepare?(database: CmsDatabase, installedVersion: number): Promise<{
     preconditions: readonly CompiledQuery[];
+    /** Ordered preparation writes after all old-state guards, before provider DDL. */
+    prelude?: readonly CompiledQuery[];
     statements: readonly CompiledQuery[];
   }>;
   /** Version zero declares this provider's static names/DDL without metadata reads. */

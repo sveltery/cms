@@ -19,7 +19,7 @@ const operatorObjects=sql`SELECT name,type,tbl_name,sql FROM sqlite_master WHERE
   (type='table' AND lower(name)<>'_cms_fields' AND instr(lower(sql),'_cms_fields')>0
     AND instr(upper(sql),'REFERENCES')>0) ORDER BY name,type`;
 
-async function prepareMetadata(database:CmsDatabase) {
+async function prepareMetadata(database:CmsDatabase,installedVersion=8) {
   const objects=(await operatorObjects.execute(database.db)).rows as unknown as OperatorObject[];
   for(const object of objects.filter(object=>object.type==='table')) {
     const foreignKeys=(await sql<{table:string}>`PRAGMA foreign_key_list(${sql.id(object.name)})`.execute(database.db)).rows;
@@ -38,11 +38,18 @@ async function prepareMetadata(database:CmsDatabase) {
   const views=objects.filter(object=>object.type==='view'&&object.sql!==null);
   const triggers=objects.filter(object=>object.type==='trigger'&&object.sql!==null);
   const indexes=objects.filter(object=>object.type==='index'&&object.sql!==null);
+  const removeCatalogue=[
+    ...triggers.map(object=>sql`DROP TRIGGER IF EXISTS ${sql.id(object.name)}`.compile(database.db)),
+    ...views.map(object=>sql`DROP VIEW ${sql.id(object.name)}`.compile(database.db))
+  ];
+  const historical=installedVersion===1||installedVersion===2;
   return {
     preconditions:[guard],
+    prelude:historical ? removeCatalogue : [],
     statements:[
-      ...triggers.map(object=>sql`DROP TRIGGER IF EXISTS ${sql.id(object.name)}`.compile(database.db)),
-      ...views.map(object=>sql`DROP VIEW ${sql.id(object.name)}`.compile(database.db)),
+      // Lifecycle can restore its attached content triggers after the early
+      // metadata preparation. Remove those again only for the actual rebuild.
+      ...(historical ? triggers.map(object=>sql`DROP TRIGGER IF EXISTS ${sql.id(object.name)}`.compile(database.db)) : removeCatalogue),
       sql.raw(fields.sql.replace('"_cms_fields"','"_cms_fields_v8"')).compile(database.db),
       sql`INSERT INTO _cms_fields_v8 (${sql.join(columns)}) SELECT ${sql.join(columns)} FROM _cms_fields`.compile(database.db),
       sql`DROP TABLE _cms_fields`.compile(database.db),
@@ -65,7 +72,7 @@ export const metadataFidelityMigration: CmsMigrationProvider = {
       return object;
     });
   },
-  async prepare(database) {return prepareMetadata(database);},
+  async prepare(database,installedVersion) {return prepareMetadata(database,installedVersion);},
   async statements(database) {
     const plan=await prepareMetadata(database);
     return [...plan.preconditions,...plan.statements];
