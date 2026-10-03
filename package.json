@@ -25,8 +25,10 @@
     "build:cloudflare": "WRANGLER_LOG_PATH=.wrangler/logs SVELTERY_ADAPTER=cloudflare vite build && node scripts/build-revision-maintenance.mjs cloudflare && XDG_CONFIG_HOME=.wrangler/config WRANGLER_LOG_PATH=.wrangler/logs wrangler deploy --dry-run --outdir build/cloudflare/worker",
     "start:cloudflare": "XDG_CONFIG_HOME=.wrangler/config WRANGLER_LOG_PATH=.wrangler/logs wrangler dev --local",
     "test:cloudflare": "vitest run --config vitest.cloudflare.config.ts && node --test tests/cloudflare-hosting/*.test.ts",
-    "test:source-ports": "node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts",
-    "test:ui-source": "vitest run --config vitest.ui-source.config.ts"
+    "test:source-ports": "node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && pnpm test:bulk-taxonomy-native",
+    "test:ui-source": "vitest run --config vitest.ui-source.config.ts",
+    "test:bulk-taxonomy-native": "vitest run --config vitest.bulk-taxonomy-native.config.ts",
+    "test:bulk-taxonomy-source": "node scripts/check-bulk-taxonomy-source.mjs && vitest run --config vitest.bulk-taxonomy.config.ts"
   },
   "dependencies": {
     "@oslojs/crypto": "1.0.1",
@@ -60,6 +62,12 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "jsdom": "30.1.1",
-    "@types/jsdom": "30.0.0"
+    "@types/jsdom": "30.0.0",
+    "@babel/core": "7.29.7",
+    "@lingui/babel-plugin-lingui-macro": "5.9.5",
+    "@lingui/core": "5.9.5",
+    "@tanstack/react-query": "5.90.21",
+    "@vitest/browser-playwright": "4.1.10",
+    "vitest-browser-react": "2.2.0"
   }
 }
