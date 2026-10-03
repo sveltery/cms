@@ -44,8 +44,12 @@ export const updateSchemaFieldMetadata = form(fieldMetadataFormInput, input => s
   return { collection:input.collection, field:field.slug };
 }));
 export const reorderSchemaCollections = form(collectionOrderInput, input => schemaResponse(async () => {
-  await requestSchema('mutation').reorderCollections(input);
+  const affected = await requestSchema('mutation').reorderCollections(input);
   refreshSchemaList();
+  for (const collection of affected) {
+    void getSchemaCollection(collection).refresh();
+    void getCollection(collection).refresh();
+  }
   return { reordered:true };
 }));
 export const reorderSchemaFields = form(fieldOrderInput, input => schemaResponse(async () => {

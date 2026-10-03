@@ -50,3 +50,17 @@ test('schema administration denies untrusted and nonmanager identities before pa
     }
   } finally { await database.close(); }
 });
+test('collection reorder returns only validated affected identities without requiring or granting schema reads', async () => {
+  const database = openSqlite(':memory:');
+  try {
+    await migrateCms(database); const registry = new SchemaRegistry(database);
+    for (const slug of ['posts', 'pages']) await registry.createCollection({ slug, label: slug });
+    const before = await registry.listCollections();
+    const expected = before.map(({slug, version, updatedAt}) => ({slug, version, updatedAt}));
+    const manager = cmsService(database, { id: 'manager', permissions: ['schema:manage'] });
+    assert.deepEqual(await manager.reorderCollections({ slugs: ['posts'], expected }), expected.map(value => value.slug));
+    await assert.rejects(() => manager.listCollections(), {code:'FORBIDDEN'});
+    await assert.rejects(() => manager.getCollection('posts'), {code:'FORBIDDEN'});
+    assert.ok((await registry.listCollections()).every(collection => collection.updatedAt > before.find(old => old.slug === collection.slug)!.updatedAt));
+  } finally { await database.close(); }
+});

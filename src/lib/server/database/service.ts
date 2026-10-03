@@ -91,7 +91,12 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
     async reorderCollections(input: unknown) {
       requirePermission('schema:manage');
       const value=parse(reorderCollectionsInput,input);
-      return registry.reorderCollections(value.slugs,value.expected);
+      await registry.reorderCollections(value.slugs,value.expected);
+      // Successful CAS validates complete unique coverage (at most 100). Every
+      // collection timestamp changes, including omitted partial-order entries.
+      // Return only those already supplied identities for native cache refresh;
+      // no read permission or second listing is required for the mutation.
+      return value.expected.map(snapshot => snapshot.slug);
     },
     async reorderFields(input: unknown) {
       requirePermission('schema:manage');
