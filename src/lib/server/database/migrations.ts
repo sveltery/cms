@@ -73,14 +73,16 @@ function ownershipCondition(guard: ReadOnlyOwnershipGuard) {
 }
 
 function prerequisiteGuard(database: CmsDatabase, version: number, names: readonly string[], rows: readonly PrerequisiteObject[], managed: readonly RecognizedFtsOwner[] = [], registeredTriggers: readonly string[] = []) {
-  const triggers=[...registeredTriggers,...managed.flatMap(owner=>owner.objects.filter(object=>object.type==='trigger').map(object=>object.name))];
+  // Declare future absence as well as installed ownership in SQLite's
+  // case-insensitive trigger namespace before any startup writes.
+  const triggers=[...registeredTriggers,...managed.flatMap(owner=>owner.objects.filter(object=>object.type==='trigger').map(object=>object.name))].map(name=>name.toLowerCase());
   const guardedNames=[...names,...managed.flatMap(owner=>owner.objects.filter(object=>object.type!=='trigger').map(object=>object.name))];
   const temporary = sql`lower(name) GLOB '_cms_*' AND length(rtrim(name,'0123456789')) < length(name)
     AND rtrim(lower(name),'0123456789') GLOB '_cms_*_v'`;
   const selected = sql`(type <> 'trigger' AND lower(name) IN (SELECT value FROM json_each(${JSON.stringify(guardedNames)}))) OR (${temporary}) OR (${companionObjectsSql()})
-    ${triggers.length ? sql`OR (type='trigger' AND name IN (SELECT value FROM json_each(${JSON.stringify(triggers)})))` : sql``}
+    ${triggers.length ? sql`OR (type='trigger' AND lower(name) IN (SELECT value FROM json_each(${JSON.stringify(triggers)})))` : sql``}
     ${version === 0 ? sql`OR lower(name) GLOB '_cms_*'` : sql``}`;
-  const snapshot = JSON.stringify(rows.filter(row => row.type !== 'trigger' ? guardedNames.includes(row.name.toLowerCase()) : triggers.includes(row.name))
+  const snapshot = JSON.stringify(rows.filter(row => row.type !== 'trigger' ? guardedNames.includes(row.name.toLowerCase()) : triggers.includes(row.name.toLowerCase()))
     .map(({name,type,sql}) => ({name,type,sql}))
     .sort((a,b) => a.name < b.name ? -1 : a.name > b.name ? 1 : a.type < b.type ? -1 : a.type > b.type ? 1 : 0));
   const versions = version === 0 ? sql`${'[]'}` : sql`(SELECT json_group_array(version)
@@ -229,7 +231,7 @@ async function migrationState(database: CmsDatabase): Promise<ValidatedMigration
   // Intermediate rebuild objects and partially-installed future providers are
   // rejected. No DROP/repair runs against an unknown layout.
   validateObjects(rows,expected,owned,new Set(managed.map(owner=>owner.table)));
-  return {version,prerequisiteGuard:prerequisiteGuard(database,version,names,rows,managed,[...expectedTriggers.keys()])};
+  return {version,prerequisiteGuard:prerequisiteGuard(database,version,names,rows,managed,[...triggerNames])};
 }
 
 function prerequisiteRace(message: string | null | undefined) {
