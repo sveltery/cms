@@ -490,5 +490,32 @@
       "Astro hydration/wire",
       "actual identity credit from mocked current-user fixture"
     ]
+  },
+  "welcomePersistence": {
+    "source": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+    "blob": "ba3b7a413e01f59cf21f831badf694120e7d6a3d",
+    "completeCallbacks": 2,
+    "sourceFileSha256": "ccd11fb00a967ab4e1649755b3d86416b1d2a07464fb78acad8708ab6dbcb0b5",
+    "baseline": {
+      "log": "/tmp/setup-welcome-persistence-red-corrected.log",
+      "completeCallbacks": 2,
+      "actualAssertions": "source initial GET and profile-lookup redaction pass; source POST200 expectation fails actual404 before own dismissal implementation",
+      "runtimes": [
+        "real Node canonical storage/built HTTP"
+      ],
+      "excluded": "earlier wrong helper import suite failure0red/sourcecredit"
+    },
+    "fixtures": [
+      "actual canonical Node storage and real built HTTP",
+      "source user profile fixture uses existing firstAdmin and actual persisted session",
+      "source users profile drop maps to actual split _cms_auth_profiles; authority remains real persisted row",
+      "source trusted locals/session become actual authenticated HTTP; stale session mock never reaches product"
+    ],
+    "omissions": [
+      "Astro playground/session registration",
+      "whole source UserRepository create algorithm",
+      "real signed WebAuthn identity credit from seeded source profile fixture"
+    ],
+    "wholeSuiteSha256": "13d7f194d66a6338235121b78938838b062bbc754447008f9b89fc3096a35e34"
   }
 }
