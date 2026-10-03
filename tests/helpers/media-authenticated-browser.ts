@@ -6,7 +6,7 @@ import {completeFullSetup} from './full-setup-browser';
 type MediaAdmin={page:Page;goToMedia:()=>Promise<unknown>;waitForLoading:()=>Promise<void>;expectPageTitle:(title:string)=>Promise<void>};
 export const test=base.extend<{admin:MediaAdmin}>({admin:async({page,context},use)=>{
  const h=await passkeyRuntime('Node');const removeAuthenticator=await addVirtualWebAuthnAuthenticator(page);
- try{await page.goto(h.origin+'/setup');await completeFullSetup(page,'media@example.com','Media Admin');
+ try{await page.goto(h.origin+'/setup');await page.waitForLoadState('networkidle');await completeFullSetup(page,'media@example.com','Media Admin');
  await page.getByRole('button',{name:'Sign in with a passkey',exact:true}).click();
  await expect(page).toHaveURL(h.origin+'/');
  const current=await page.request.get(h.origin+'/api/auth/me');expect(current.status()).toBe(200);expect((await current.json()).data.role).toBe(50);
