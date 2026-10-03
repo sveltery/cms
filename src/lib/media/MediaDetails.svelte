@@ -60,7 +60,11 @@
 {#snippet details()}
  <header><h2>Media details</h2><div>{#if onback}<button disabled={busy} onclick={onback}>Back</button>{/if}<button disabled={busy} aria-label="Close media details" onclick={onclose}>Close</button></div></header>
  {#if unavailable}<p role="alert">This media file is no longer available.</p>{:else}
-  {#if selected.mimeType.startsWith('image/')}<img class="preview" src={preview} alt={selected.alt??selected.filename} />{/if}
+  {#if selected.mimeType.startsWith('image/')}<img class="preview" src={preview} alt={selected.alt??selected.filename} />
+  {:else if selected.mimeType.startsWith('video/')}
+   <!-- svelte-ignore a11y_media_has_caption (Local media rows have no caption-track metadata; this preview preserves the pinned local video player.) -->
+   <video class="preview" src={mediaHref(selected.url)} controls preload="metadata" aria-label={selected.filename}></video>
+  {:else if selected.mimeType.startsWith('audio/')}<audio class="audio-preview" src={mediaHref(selected.url)} controls preload="metadata" aria-label={selected.filename}></audio>{/if}
   <p>{selected.filename} · {size(selected.size)} · {selected.width??'—'} × {selected.height??'—'}</p>
   {#if canUpload&&canDuplicateCrop&&selected.status==='ready'&&['image/jpeg','image/png','image/webp'].includes(selected.mimeType)}<button disabled={busy||dirty} onclick={()=>{cancelInspection();replacement=null;cropOpen=true;}}>Crop image</button>{/if}
   {#if canReplace}<button disabled={busy||dirty} onclick={()=>{cancelInspection();replacement=null;message='';replacementInput?.click();}}>Replace image</button><input hidden type="file" accept={normalizeCropMime(selected.mimeType)} aria-label="Choose replacement image" bind:this={replacementInput} onchange={event=>void inspectReplacement(event)} />{/if}
@@ -71,4 +75,4 @@
 {#if embedded}<section aria-label="Media details">{@render details()}</section>{:else}<MediaDialog label="Media details" dismissible={!busy} {onclose}>{@render details()}</MediaDialog>{/if}
 {#if cropOpen&&!unavailable}<MediaCropDialog item={selected} src={preview} oncreate={create} onclose={()=>cropOpen=false} />{/if}
 {#if replacement&&!unavailable}<MediaDialog label="Replace original image?" role="alertdialog" dismissible={!busy} onclose={()=>replacement=null}><h2>Replace original image?</h2><p>Every place using this image will update to the selected version.</p><button disabled={busy||dirty} onclick={()=>void replace()}>Replace image</button><button disabled={busy} onclick={()=>replacement=null}>Cancel</button></MediaDialog>{/if}
-<style>header,header>div{display:flex;align-items:center;justify-content:space-between;gap:.5rem}header{margin:1rem 0}.preview{width:100%;max-height:300px;object-fit:contain}form,label{display:grid;gap:.4rem}form{gap:1rem}fieldset{display:flex;gap:1rem;border:1px solid #dfe3e9;border-radius:.5rem}fieldset label{flex:1}input,textarea,button{font:inherit;padding:.65rem;border:1px solid #c8ced8;border-radius:.5rem}button{cursor:pointer;background:white;color:inherit}button:disabled{cursor:default;opacity:.5}@media(max-width:600px){fieldset{flex-direction:column}}</style>
+<style>header,header>div{display:flex;align-items:center;justify-content:space-between;gap:.5rem}header{margin:1rem 0}.preview{width:100%;max-height:300px;object-fit:contain}.audio-preview{width:100%}form,label{display:grid;gap:.4rem}form{gap:1rem}fieldset{display:flex;gap:1rem;border:1px solid #dfe3e9;border-radius:.5rem}fieldset label{flex:1}input,textarea,button{font:inherit;padding:.65rem;border:1px solid #c8ced8;border-radius:.5rem}button{cursor:pointer;background:white;color:inherit}button:disabled{cursor:default;opacity:.5}@media(max-width:600px){fieldset{flex-direction:column}}</style>
