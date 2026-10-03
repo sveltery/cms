@@ -19,6 +19,18 @@ test.describe('complete schema administration',()=>{
     await page.getByRole('list',{name:'Schema collections'}).getByRole('link',{name:'Schema Complete',exact:true}).click();
     const add=page.locator('form').filter({has:page.locator('legend',{hasText:'Add field'})});
     await expect(add.getByLabel('Field type',{exact:true}).locator('option')).toHaveCount(17);
+    await add.getByLabel('Set default value',{exact:true}).check();
+    await add.getByLabel('Set typed default',{exact:true}).check();
+    await expect(add.getByLabel('Set default value',{exact:true})).not.toBeChecked();
+    await expect(add.getByLabel('Default value',{exact:true})).toBeDisabled();
+    await add.getByLabel('Set default value',{exact:true}).check();
+    await expect(add.getByLabel('Set typed default',{exact:true})).not.toBeChecked();
+    await expect(add.getByLabel('Typed default value (JSON)',{exact:true})).toBeDisabled();
+    await add.getByLabel('Set validation rules',{exact:true}).check();
+    await expect(add.getByLabel('Minimum length',{exact:true})).toHaveCount(0);
+    await expect(add.getByLabel('Pattern metadata',{exact:true})).toHaveCount(0);
+    await add.getByLabel('Set validation rules',{exact:true}).uncheck();
+    await expect(add.getByLabel('Minimum length',{exact:true})).toHaveCount(1);
     await add.getByLabel('Field slug',{exact:true}).fill('priority');
     await add.getByLabel('Field label',{exact:true}).fill('Priority');
     await add.getByLabel('Field type',{exact:true}).selectOption('integer');
