@@ -2,6 +2,8 @@
 // 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; notices/emdash-MIT.txt.
 import {sql,type Kysely,type CompiledQuery} from 'kysely';
 import type {CmsDatabase} from '../database/contract.ts';
+import {createSingleFlightCache,singleFlightCached,invalidateSingleFlightCache,type SingleFlightCache} from './vendor/single-flight-cache.ts';
+import {requestCached,peekRequestCache} from './vendor/request-cache.ts';
 import {getSettingsContext} from './context.ts';
 import {OptionsRepository} from './options.ts';
 import type {SettingsTables} from './tables.ts';
@@ -38,35 +40,52 @@ export async function getSiteSettingWithDb<K extends SiteSettingKey>(key:K,db:Ky
  return value;
 }
 const nestedKeys=new Set(['seo','social']);
-const caches=new WeakMap<object,Partial<SiteSettings>>();
-export function invalidateSiteSettingsCache(db?:Kysely<SettingsTables>){if(db)caches.delete(db);}
+const cacheKey=Symbol.for('sveltery:site-settings-values');
+const sharedGlobal=globalThis as unknown as Record<symbol,unknown>;
+const cacheState=(sharedGlobal[cacheKey]??={values:new WeakMap<object,SingleFlightCache<Partial<SiteSettings>>>()}) as {values:WeakMap<object,SingleFlightCache<Partial<SiteSettings>>>};
+function siteCache(db:Kysely<SettingsTables>){let cache=cacheState.values.get(db);if(!cache){cache=createSingleFlightCache<Partial<SiteSettings>>();cacheState.values.set(db,cache);}return cache;}
+export function invalidateSiteSettingsCache(db?:Kysely<SettingsTables>){
+ if(db){const cache=cacheState.values.get(db);if(cache)invalidateSingleFlightCache(cache);}
+ else cacheState.values=new WeakMap();
+}
+class PlannedOptions extends OptionsRepository {
+ readonly statements:CompiledQuery[]=[];
+ constructor(private readonly databaseDb:Kysely<SettingsTables>){super(databaseDb);}
+ override async set(name:string,value:unknown):Promise<void>{
+  this.statements.push(this.databaseDb.insertInto('options').values({name,value:JSON.stringify(value),revision:crypto.randomUUID()})
+   .onConflict(oc=>oc.column('name').doUpdateSet(eb=>({value:eb.ref('excluded.value'),revision:eb.ref('excluded.revision')}))).compile());
+ }
+ override async delete(name:string):Promise<boolean>{this.statements.push(this.databaseDb.deleteFrom('options').where('name','=',name).compile());return true;}
+ override async deleteMany(names:string[]):Promise<number>{if(names.length)this.statements.push(this.databaseDb.deleteFrom('options').where('name','in',names).compile());return names.length;}
+}
 /** Pinned nested merge/deletion semantics, executed through the adapter's guarded atomic batch. */
 export async function setSiteSettings(settings:SiteSettingsUpdate,db:Kysely<SettingsTables>):Promise<void>{
  const database=adapters.get(db);if(!database)throw new Error('Settings require the registered CMS database adapter');
  try{
   for(let attempt=0;attempt<4;attempt++){
-   const statements:CompiledQuery[]=[];const guards:CompiledQuery[]=[];
+   const transactionOptions=new PlannedOptions(db);const guards:CompiledQuery[]=[];
+   const updates:Record<string,unknown>={};const deletions:string[]=[];const nestedPatches:Array<[string,Record<string,unknown>]>=[];
    const token=`settings-${crypto.randomUUID()}`;
-   for(const [key,value] of Object.entries(settings)){
+   for(const [key,value]of Object.entries(settings)){
     if(value===undefined)continue;
+    if(value===null)deletions.push(`site:${key}`);
+    else if(nestedKeys.has(key)&&typeof value==='object'&&!Array.isArray(value))nestedPatches.push([key,value as Record<string,unknown>]);
+    else updates[`site:${key}`]=value;
+   }
+   await transactionOptions.setMany(updates);await transactionOptions.deleteMany(deletions);
+   for(const [key,patch]of nestedPatches){
     const name=`site:${key}`;
-    let next:unknown=value;
-    if(value!==null&&nestedKeys.has(key)&&typeof value==='object'&&!Array.isArray(value)){
-     const previous=await new OptionsRepository(db).getVersioned<Record<string,unknown>>(name);
-     guards.push(sql`INSERT INTO _cms_guards(token,pass) SELECT ${`${token}-${key}`},CASE WHEN
-       ${previous?sql`EXISTS(SELECT 1 FROM options WHERE name=${name} AND revision=${previous.revision})`:sql`NOT EXISTS(SELECT 1 FROM options WHERE name=${name})`} THEN 1 ELSE 0 END`.compile(db));
-     const record={...previous?.value};
-     for(const [field,fieldValue] of Object.entries(value)){
-      if(fieldValue===null)delete record[field];else if(fieldValue!==undefined)Object.defineProperty(record,field,{value:fieldValue,enumerable:true,writable:true,configurable:true});
-     }
-     next=Object.keys(record).length?record:null;
+    const previous=await transactionOptions.getVersioned<Record<string,unknown>>(name);
+    guards.push(sql`INSERT INTO _cms_guards(token,pass) SELECT ${`${token}-${key}`},CASE WHEN
+     ${previous?sql`EXISTS(SELECT 1 FROM options WHERE name=${name} AND revision=${previous.revision})`:sql`NOT EXISTS(SELECT 1 FROM options WHERE name=${name})`} THEN 1 ELSE 0 END`.compile(db));
+    const next={...previous?.value};
+    for(const [field,fieldValue]of Object.entries(patch)){
+     if(fieldValue===null)delete next[field];else if(fieldValue!==undefined)next[field]=fieldValue;
     }
-    if(next===null)statements.push(db.deleteFrom('options').where('name','=',name).compile());
-    else statements.push(db.insertInto('options').values({name,value:JSON.stringify(next),revision:crypto.randomUUID()})
-     .onConflict(oc=>oc.column('name').doUpdateSet(eb=>({value:eb.ref('excluded.value'),revision:eb.ref('excluded.revision')}))).compile());
+    if(Object.keys(next).length===0)await transactionOptions.delete(name);else await transactionOptions.set(name,next);
    }
    try{
-    await database.atomicBatch([...guards,...statements,
+    await database.atomicBatch([...guards,...transactionOptions.statements,
      sql`DELETE FROM _cms_guards WHERE token LIKE ${`${token}-%`}`.compile(db)]);return;
    }catch(cause){
     if(attempt<3&&cause instanceof Error&&cause.message.includes('CHECK constraint failed: pass = 1'))continue;
@@ -76,11 +95,13 @@ export async function setSiteSettings(settings:SiteSettingsUpdate,db:Kysely<Sett
  }finally{invalidateSiteSettingsCache(db);}
 }
 /** Public server rendering helpers consume only the trusted render context. */
-export async function getSiteSettings():Promise<Partial<SiteSettings>>{
+export function getSiteSettings():Promise<Partial<SiteSettings>>{
  const context=getSettingsContext();if(!context)throw new Error('No configured site settings render context');
- return getSiteSettingsWithDb(context.db);
+ return requestCached('siteSettings',()=>singleFlightCached(siteCache(context.db),()=>getSiteSettingsWithDb(context.db),
+  {anchor:promise=>context.keepAlive?.(promise),ownerTimeoutMs:30_000}));
 }
 export async function getSiteSetting<K extends SiteSettingKey>(key:K):Promise<SiteSettings[K]|undefined>{
+ const primed=peekRequestCache<Partial<SiteSettings>>('siteSettings');if(primed)return(await primed)[key];
  const context=getSettingsContext();if(!context)throw new Error('No configured site settings render context');
- return getSiteSettingWithDb(key,context.db);
+ return requestCached(`siteSetting:${key}`,()=>getSiteSettingWithDb(key,context.db));
 }
