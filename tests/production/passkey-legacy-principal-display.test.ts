@@ -45,7 +45,10 @@ for (const target of ['Node', 'D1'] as const) {
         assert.equal((await database.db.selectFrom('_cms_auth_credentials').selectAll().execute()).length, 0);
 
         // Ordinary native sign-out revokes only this isolated fixture row.
-        const signedOut = await browser.submitNative(`/_app/remote/${h.ids.logout}`);
+        const action = html.match(/<form[^>]*action="([^"]*\/logout)"/)?.[1];
+        assert.ok(action, 'rendered native sign-out action');
+        const nativeUrl = new URL(action.replaceAll('&amp;', '&'), `${h.origin}/login`);
+        const signedOut = await browser.submitNative(nativeUrl.pathname + nativeUrl.search);
         assert.equal(signedOut.status, 303);
         assert.equal(signedOut.headers.get('location'), '/login');
         assert.equal((await database.db.selectFrom('_cms_auth_sessions').selectAll().execute()).length, 0);
