@@ -67,4 +67,3 @@ export function interpolateUrlPattern(options: {
 	if (!path.startsWith("/")) path = `/${path}`;
 	return path;
 }
-

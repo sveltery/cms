@@ -6,4 +6,3 @@ export type ApiResult<T, E extends string = string> =
 			success: false;
 			error: { code: E; message: string; details?: Record<string, unknown> };
 	  };
-

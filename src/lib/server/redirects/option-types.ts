@@ -11,4 +11,3 @@ export type ConditionalWriteResult = { applied: true; revision: string } | { app
 export interface ConditionalDeleteResult {
 	applied: boolean;
 }
-
