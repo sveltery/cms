@@ -124,7 +124,7 @@ for (const target of ['Node','D1'] as const) {
     });
 
     test(`${target}: v${version} intermediate metadata/lifecycle names cannot appear before startup writes`, async () => {
-      for (const name of ['_cms_fields_v3','_cms_collections_v3','_cms_lifecycle_ec_post_v5']) {
+      for (const name of ['_cms_fields_v3','_cms_collections_v3','_cms_lifecycle_ec_post_v5'].flatMap(name=>[name,name.toUpperCase()])) {
         const storage=await schemaAdminStorage(target);
         try {
           const database=storage.database;await prepare(database,version);
