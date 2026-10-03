@@ -49,7 +49,7 @@
   "sourceDeclarationsExecuted": 9,
   "genuineSourceAssertionReds": 0,
   "sourceMIT": "notices/emdash-MIT.txt",
-  "status": "ready PR66; normal/secured repaired-head gates, reviews and approval pending",
+  "status": "ready PR66; UX1-01/02/03 specifically accepted within bounded scope; new decision-head gates/review, exact-head PM approval, author merge and post-merge checks pending",
   "nativeTDD": {
     "testCommit": "4c14c8970572e990b214f779921ec3cfd0d4426e",
     "assertionReds": 6,
@@ -122,7 +122,7 @@
       "jsdomVersion": "30.1.1",
       "immutableSourceEngine": "^22.22.2 || ^24.15.0 || >=26.0.0",
       "projectEngine": ">=24.15.0 <25",
-      "PMAuthorization": "explicit authorized floor in UX1 review correction; whole feature acceptance pending",
+      "PMAuthorization": "UX1-03 explicitly accepted >=24.15.0 <25; full admin/UI scope remains incomplete",
       "actualLocal": "24.19.0",
       "actualHosted": "24.21.0",
       "minimumBinaryRun": "unverified"
@@ -156,6 +156,18 @@
       "normal": "all phases green: frozen340/checker0/service909/pinned43/Card23/production223/Node13/Cloudflare23+4/builds/package/drybundle",
       "browser": "59 default+59 Node secured green",
       "configuredReview": "two material P2 findings SSR and engine range; repaired final qualification pending"
+    },
+    {
+      "head": "58b448e0738d732ea3087acbe010fd0f5df0eb78",
+      "tree": "78cb4dca138fcb72214ae438b636b7d52bd11561",
+      "run": 37106591233,
+      "validateJob": 111156215350,
+      "normal": "SUCCESS: frozen340 policy/integrity, checker0, service974, pinned43, supplementaryCard23, production240, Node13, Cloudflare23+4, all builds/packages/dry bundle",
+      "browserJob": 111156215596,
+      "browser": "SUCCESS: sandboxed59 default+59 Node; no --no-sandbox flag",
+      "configuredReview": "https://github.com/sveltery/cms/pull/66#issuecomment-5966824135",
+      "configuredResult": "exact58 completed with no major issues",
+      "evidenceStatus": "historical prior-head qualification; new decision-document head gates/review pending"
     }
   ],
   "reactiveNavigationTDD": {
@@ -166,7 +178,7 @@
     "job": 111145886153,
     "failure": "workspace-navigation.spec.ts:20 renamed sidebar link absent after actual editor heading and persisted registry label changed",
     "baselineBrowserGreen": 58,
-    "repairedHeadGreen": "de36280 normal+59 default+59 Node green; later SSR repair gates pending"
+    "repairedHeadGreen": "58b448e all normal+59 default+59 Node green; historical until new decision-head verification"
   },
   "approvedIntegrationBase": "95668fb45b262c5e8df63ede20d712e71ebea771",
   "SSRReviewTDD": {
@@ -178,10 +190,56 @@
     "sourceCredit": 0,
     "SSRRedBuild": "existing historical prerepair registered build; shell still onMount-only, not current frozen-install evidence",
     "focusedGreen": "12 compiled async shell/storage cases, 4 registered cases on fresh installed-runtime Vite build",
-    "normalAndSecuredGates": "pending repaired final head",
+    "normalAndSecuredGates": "58b448e run37106591233 passed all normal+59 default+59 Node; new decision-document head requires its own gates",
     "originalRemoteRefreshTestCommit": "00be4b3d30309487afd5ae8a7560f93b38fbb766",
     "originalRelativeActiveTestCommit": "f535f55cdc8b124ac77e1a302ad909762e696744",
     "remoteRefreshRed": "actual authorized POST schema refresh returned collections empty under the blanket page-method guard; Kit-owned isRemoteRequest preserves refreshes",
     "relativeActiveRed": "actual /content/notes SSR href ../content/notes had no aria-current; display href resolution preserves the unchanged pinned matcher"
+  },
+  "specificPMDecisions": {
+    "actor": "project manager /root",
+    "date": "2026-10-03",
+    "proposedPR": "https://github.com/sveltery/cms/pull/66",
+    "reviewedHead": "58b448e0738d732ea3087acbe010fd0f5df0eb78",
+    "independentReview": {
+      "record": "/workspace/pr66-admin-shell-final-review.md",
+      "visibility": "workspace-only; not a public review post",
+      "findingStatus": "no unresolved material finding in bounded scope",
+      "supplementaryPersistedNodeD1Cases": 4,
+      "sourceCredit": 0,
+      "cryptographicCredit": 0
+    },
+    "configuredReview": "https://github.com/sveltery/cms/pull/66#issuecomment-5966824135",
+    "decisions": [
+      {
+        "id": "UX1-01",
+        "status": "accepted bounded framework/capability substitution",
+        "scope": "native routing/base hrefs, SSR display query/reactive refresh, details/mobile/skip HTML controls, trusted capability presentation"
+      },
+      {
+        "id": "UX1-02",
+        "status": "accepted bounded source-copy/style/test-host substitution",
+        "scope": "seven copied Card parts/class/themes, scoped native CSS and recorded import/test-host adaptations",
+        "EmDashCredit": 0,
+        "causalSourceRedCredit": 0,
+        "fullUICredit": 0
+      },
+      {
+        "id": "UX1-03",
+        "status": "accepted",
+        "scope": "Node >=24.15.0 <25"
+      }
+    ],
+    "unfinishedScope": [
+      "full source Sidebar/Header/Shell/NavFolderMenu role filtering",
+      "icons",
+      "plugin/taxonomy navigation",
+      "branding",
+      "locales/RTL",
+      "Input/BaseField",
+      "theme switching",
+      "all widgets"
+    ],
+    "mergeApproval": "not granted; await new exact-head gates/review and explicit PM approval"
   }
 }
