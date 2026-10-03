@@ -1,3 +1,4 @@
+import {searchHealth} from '../search/health.ts';
 import type { D1Database } from '@cloudflare/workers-types';
 import { createRequestScopedDb, type D1Config } from './cloudflare-d1.ts';
 import { SESSION_COOKIE_NAME } from '../auth/request.ts';
@@ -101,6 +102,7 @@ export function createCmsRuntime(
     const database = await databaseFor(config);
     assertOpen();
     event.locals.cmsRuntime = Object.freeze({ publicOrigin, basePath, rpName });
+    event.locals.cmsSearch = Object.freeze({ensureHealthy:searchHealth(database,config.keepAlive)});
     configurations.set(event, config);
     return { database, mutationsEnabled: config.mutationsEnabled !== false, keepAlive: config.keepAlive };
   });
@@ -108,6 +110,7 @@ export function createCmsRuntime(
   return {
     handle: async input => {
       delete input.event.locals.cmsRuntime;
+      delete input.event.locals.cmsSearch;
       try {
         return await sessionHandle({ ...input, resolve: async (event, options) => {
           assertOpen();
@@ -168,6 +171,7 @@ export function createCmsRuntime(
         if (closed) {
           delete input.event.locals.cms;
           delete input.event.locals.cmsRuntime;
+          delete input.event.locals.cmsSearch;
         }
         throw cause;
       } finally { configurations.delete(input.event); }

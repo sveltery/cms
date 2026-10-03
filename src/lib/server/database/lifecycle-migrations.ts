@@ -254,6 +254,16 @@ export async function guardLifecycleIndexRepair(database:CmsDatabase,statements:
 
 export const lifecycleMigration:CmsMigrationProvider = {
   version:5, name:'content-lifecycle',
+  async prepare(database,installedVersion) {
+    const statements=await this.statements(database);
+    if(installedVersion!==1&&installedVersion!==2) return {preconditions:[],statements};
+    // Later metadata preparation can temporarily remove operator views and
+    // triggers before the immutable v3 rebuild. Validate the original content
+    // snapshot first; retain the same guard/token/cleanup and statement bodies.
+    const [guard,...body]=statements;
+    return {preconditions:[],prelude:[guard],statements:body.map(statement=>
+      /^DROP TRIGGER /.test(statement.sql) ? {...statement,sql:statement.sql.replace(/^DROP TRIGGER /,'DROP TRIGGER IF EXISTS ')} : statement)};
+  },
   async statements(database) {
     const content=await contentSnapshot(database,false);
     const statements=staticStatements(database);

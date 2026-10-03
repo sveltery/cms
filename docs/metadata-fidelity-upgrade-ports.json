@@ -1,0 +1,158 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "license": "Copyright 2026 Cloudflare Inc.; MIT; notices/emdash-MIT.txt",
+  "scope": "Real forward provider8: fields collection FK CASCADE and nullable collections.search_config",
+  "sourceFiles": [
+    {
+      "source": "packages/core/src/database/dialect-helpers.ts",
+      "fixture": "tests/fixtures/metadata-upgrade-source/dialect-helpers.ts.txt",
+      "blob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24",
+      "sha256": "31606b29b5a98cb657078a9d89a8ab9b9f0be1694ac7410e34af6cbf49dda154",
+      "transformation": "None in stored fixture; runtime TypeScript erasure and host import URL resolution only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/003_schema_registry.ts",
+      "fixture": "tests/fixtures/metadata-upgrade-source/migrations/003_schema_registry.ts.txt",
+      "blob": "8772c9615e69720581e4d50a0a28f34147943dc9",
+      "sha256": "ad355793aefcdb02e2d69f8f932d5452a8b89b66d3b180840d7aff278f481863",
+      "transformation": "None in stored fixture; runtime TypeScript erasure and host import URL resolution only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/012_search.ts",
+      "fixture": "tests/fixtures/metadata-upgrade-source/migrations/012_search.ts.txt",
+      "blob": "e543798005e0c44d7386f040937a6b41185df71e",
+      "sha256": "d8e8626fbf25ddd1208d45dab1ca31a350b05cbd79f2b41c24d8a4aea13cad18",
+      "transformation": "None in stored fixture; runtime TypeScript erasure and host import URL resolution only"
+    },
+    {
+      "source": "packages/core/src/database/validate.ts",
+      "fixture": "tests/fixtures/metadata-upgrade-source/validate.ts.txt",
+      "blob": "73d3b303764b473d4238e0cb17f1a904998671f8",
+      "sha256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4",
+      "transformation": "None in stored fixture; runtime TypeScript erasure and host import URL resolution only"
+    }
+  ],
+  "sourceDeclarationCredit": 0,
+  "sourceAssertionExpressionCredit": 0,
+  "pairedSourceProof": {
+    "test": "tests/metadata-source-ddl-proof.test.ts",
+    "runtimes": [
+      "Node SQLite",
+      "actual local workerd/D1"
+    ],
+    "cases": 2,
+    "sourceModules": "Complete immutable003/012 plus complete dialect-helpers/validate closure",
+    "limits": [
+      "No full upstream runner/migration-name universe",
+      "Original paired probes, not copied source callbacks",
+      "No deployed-provider claim"
+    ]
+  },
+  "tdd": [
+    {
+      "commit": "31458d9",
+      "log": "/tmp/metadata-upgrade-source-and-red.log",
+      "cases": 8,
+      "pass": 2,
+      "actualAssertionFailures": 6,
+      "note": "Two source paired probes pass; six original physical/final-version assertions fail. Earlier _cf_METADATA snapshot fixture failure was corrected before this checkpoint; no credit."
+    },
+    {
+      "commit": "2d34f6a",
+      "log": "/tmp/metadata-installed-startup-ebb-red.log",
+      "cases": 4,
+      "pass": 2,
+      "actualAssertionFailures": 2,
+      "note": "Actualregistered6/7/8 ordinaryrestart rejects valid finalmetadata before generic42fix. Malformed metadata fails before dynamicreads."
+    },
+    {
+      "commit": "daebff8",
+      "log": "/tmp/metadata-upgrade-operators-red.log",
+      "cases": 20,
+      "pass": 2,
+      "actualAssertionFailures": 18,
+      "note": "Original bounded rejection probes; subsequent stronger preservation behavior replaces eight view/trigger expectedrejections beforeimplementation."
+    },
+    {
+      "commit": "8078a5d",
+      "log": "/tmp/metadata-upgrade-views-preservation-red.log",
+      "cases": 8,
+      "pass": 0,
+      "actualAssertionFailures": 8,
+      "note": "Strengthened originaldependentview/trigger preservation probes; no copiedsource expectations changed."
+    },
+    {
+      "commit": "ac37abb",
+      "log": "/tmp/metadata-upgrade-operators-green.log",
+      "cases": 20,
+      "pass": 20,
+      "actualAssertionFailures": 0
+    },
+    {
+      "commit": "7d6c0cf",
+      "log": "/tmp/metadata-upgrade-atomic-first.log",
+      "cases": 40,
+      "pass": 40,
+      "actualAssertionFailures": 0,
+      "note": "Original qualification baseline first-run green, no inventedredcredit."
+    },
+    {
+      "commit": "9d54e47",
+      "log": "/tmp/metadata-historical-operators-red.log",
+      "cases": 4,
+      "pass": 0,
+      "actualAssertionFailures": 4,
+      "note": "Original prefix1/2 view/trigger composition assertions; historicalDDL and copied source assertions unchanged"
+    },
+    {
+      "commit": "778132e320b417a15f3b7e82a113865f1ba28d87",
+      "log": "/tmp/metadata-historical-operators-green.log",
+      "cases": 4,
+      "pass": 4,
+      "actualAssertionFailures": 0,
+      "note": "Optional native prelude validates the old catalogue before temporary removals and immutable3"
+    },
+    {
+      "commit": "0e632eab10100453a1dbbe2ec270892abfe1c5bf",
+      "log": "/tmp/metadata-historical-both-parents-red.log",
+      "cases": 50,
+      "pass": 26,
+      "actualAssertionFailures": 24,
+      "note": "Both actual historical rebuilt parents; existing/racing CASCADE/SET NULL/RESTRICT children; later collection children already supported"
+    },
+    {
+      "commit": "93b0495",
+      "log": "/tmp/metadata-historical-both-parents-green.log",
+      "cases": 50,
+      "pass": 50,
+      "actualAssertionFailures": 0
+    }
+  ],
+  "integration": {
+    "genericMigrationFix": "9931749e38d86d8f47531eb914179cf733139295",
+    "mergedAs": "6f83248",
+    "taxonomies": "09c8f69",
+    "namedDevelopmentOnly": true,
+    "ordinaryRestart": "Actual registered6/7/8 final startup, paired sourceDDL, historical/operator/FK/preservation/fault/winner cases and later-provider framework fixture pass130/130 on integrated993; checker0/0. Additional native prefix1/2 concurrent fieldmetadata drift guard cases pass4/4, first-run green/no inventedredcredit.",
+    "taxonomyCallback": "TA1-owned unchanged stopsqueryingdeleted-other-isolate callback passed1/28(27skipped) at real8; no credit claimed here",
+    "nativeCompositionOwnership": "Optional provider prepare/preconditions/prelude orchestration and lifecycle5 guard/IF EXISTS composition belong to forwardmetadata8. Generic two-pass descriptors and managed versionedFTS ownership are actual PR42 bodies.",
+    "latestFocusedLog": "/tmp/metadata-upgrade-latest-focused.log",
+    "historicalGuardLog": "/tmp/metadata-historical-prelude-guard.log",
+    "latestCheckerLog": "/tmp/metadata-upgrade-latest-check.log"
+  },
+  "nativeLimits": [
+    "External FK children of actually rebuilt metadata parents require operator-supported cleanup beforeupgrade; failclosed exactdatabase preserved",
+    "Prefix1/2/7 operator catalogue preservation qualified; historical1/3DDL unchanged",
+    "Legacycontentphysicaldefaults/unique/sourcebugs remain unchanged"
+  ],
+  "finalGates": {
+    "normalFrozenBootstrap": "pending",
+    "requiredCI": "pending",
+    "securedBrowsers": "pending",
+    "independentReview": "pending",
+    "configuredReview": "pending",
+    "PMExactHeadApproval": "pending",
+    "authorGuardedMerge": "pending",
+    "postMergeCI": "pending"
+  }
+}

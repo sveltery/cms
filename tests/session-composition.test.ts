@@ -9,16 +9,24 @@ import { migrateCms } from '../src/lib/server/database/migrations.ts';
 import { Role } from '../src/lib/server/auth/roles.ts';
 import type { Handle } from '@sveltejs/kit';
 
-test('server bridge derives only the nine supported permissions from a current role', () => {
+test('server bridge derives supported settings, schema, content and publication permissions from a current role', () => {
   assert.equal(servicePrincipal(null), null);
   const author = servicePrincipal({ id: 'author', role: Role.AUTHOR });
-  assert.deepEqual(author, { id: 'author', permissions: ['content:read', 'content:read_drafts', 'content:create', 'content:edit_own', 'content:delete_own'] });
+  assert.deepEqual(author, { id: 'author', permissions: ['content:read', 'content:read_drafts', 'content:create', 'content:edit_own', 'content:delete_own', 'content:publish_own'] });
   assert.ok(Object.isFrozen(author)); assert.ok(Object.isFrozen(author!.permissions));
   assert.deepEqual(servicePrincipal({ id: 'contributor', role: Role.CONTRIBUTOR })!.permissions, ['content:read', 'content:read_drafts', 'content:create']);
   assert.equal(servicePrincipal({ id: 'bad', role: 999 as any }), null);
   assert.equal(servicePrincipal({ id: '', role: Role.ADMIN }), null);
   assert.equal(servicePrincipal({ id: 'x'.repeat(129), role: Role.ADMIN }), null);
-  assert.equal(servicePrincipal({ id: 'admin', role: Role.ADMIN })!.permissions.length, 9);
+  const admin=servicePrincipal({ id: 'admin', role: Role.ADMIN })!.permissions;
+  assert.deepEqual(admin,['taxonomies:read','taxonomies:manage','settings:read','settings:manage','schema:read','schema:manage','content:read','content:read_drafts','content:create','content:edit_own','content:edit_any','content:delete_own','content:delete_any','content:publish_own','content:publish_any']);
+  const editor=servicePrincipal({id:'editor',role:Role.EDITOR})!.permissions;
+  assert.ok(editor.includes('settings:read'));assert.equal(editor.includes('settings:manage'),false);
+
+  // Supplemental bridge assertions, grounded in pinned RBAC thresholds.
+  assert.ok(servicePrincipal({id:'editor',role:Role.EDITOR})!.permissions.includes('content:publish_own'));
+  assert.ok(servicePrincipal({id:'editor',role:Role.EDITOR})!.permissions.includes('content:publish_any'));
+  assert.ok(!author!.permissions.includes('content:publish_any'));
 });
 
 test('request-scoped cookie resolution observes role changes, revocation and expiry, with writes disabled by default', async () => {
