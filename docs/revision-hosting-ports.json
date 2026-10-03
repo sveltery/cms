@@ -119,5 +119,31 @@
     "exitCode": 143,
     "testsExecuted": 0,
     "status": "Author explicitly stopped obsolete candidate during frozen dependency metadata wait to repair newly qualified trusted-binding requirement; not a passing or final-head gate"
+  },
+  "workerArtifactRegression": {
+    "beforeProductionFix": "48d5366",
+    "existingWholeNativeGuard": "Cloudflare artifact excludes unsupported Node SQLite and trusted-session fixtures",
+    "completedNativeAssertionRed": 1,
+    "sourceRedCredit": 0,
+    "sourceAssertionsPassed": 23,
+    "actualWorkerPassed": 6,
+    "actualWorkerFailed": 1,
+    "log": "/tmp/revision-hosting-cloudflare-final-suite.log",
+    "exitCode": 1,
+    "cause": "Separate library Vite resolver omitted enforce pre, allowing Node SQLite loader into Worker graph",
+    "repair": "Match the already-approved official Cloudflare loader resolver order; no compatibility flag or Source helper changes"
+  },
+  "currentHostLimits": {
+    "nodeOnlineFullSuite": "Three outer declarations fail frozen production metadata install timeout120s before HTTP/maintenance assertions",
+    "nodeOnlineLog": "/tmp/revision-hosting-node-final-suite.log",
+    "nodeOnlineExitCode": 1,
+    "nodeOfflineAttempt": "Optional@esbuild metadata unavailable before callbacks",
+    "nodeOfflineLog": "/tmp/revision-hosting-node-close-installed-diagnostic.log",
+    "nodeOfflineExitCode": 1,
+    "checkerBeforeTypedRepair": "2 Native SQL result spread diagnostics only,0productred",
+    "checkerTypedRepair": "48d5366;0errors/0warnings",
+    "checkerLog": "/tmp/revision-hosting-typed-check.log",
+    "superseded7e86Normal": "Explicit author stop during frozen dependency metadata beforetests actual143; not final/passing gate",
+    "superseded7e86Log": "/tmp/revision-hosting-final-normal-bootstrap.log"
   }
 }

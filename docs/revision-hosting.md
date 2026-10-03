@@ -41,3 +41,5 @@ sh scripts/bootstrap.sh
 ```
 
 Final-head normal bootstrap, secured hosted browsers, independent/configured review and author-owned expected-head merge remain required. Local workerd execution is separate from deployed scheduling and actual cadence. Full Node scheduler, plugin cron, scheduled content/cache invalidation, challenge/token/media/usage/404/transfer cleanup, backups, Durable Objects and Hyperdrive remain unfinished.
+
+The complete hosting suite also catches a native build regression: all23 unchanged Cloudflare Source assertions and six actual Worker cases pass, but the existing whole artifact guard detects an unsupported `node:sqlite` import. The separate library resolver initially ran after Vite default resolution. Its host-only repair uses the same `enforce:pre` ordering as the approved official Cloudflare build; no flag, shim, Source callback or SQLite provider changes. The ledger retains this actual assertion red, zero Source credit, and subsequent gate status. Fresh Node online/offline metadata failures occur before maintenance callbacks and are not product reds or passing installed gates.
