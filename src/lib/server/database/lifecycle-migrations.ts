@@ -25,7 +25,7 @@ interface SchemaObject { name:string; type:string; tbl_name:string; sql:string|n
 interface RegisteredCollection { id:string; slug:string; version:number }
 interface RegisteredField { collection_id:string; slug:string; type:string; column_type:string; validation:string|null }
 const contentObjectsSql = sql`SELECT name,type,tbl_name,sql FROM sqlite_master
-  WHERE lower(tbl_name) GLOB 'ec_*' OR lower(name) GLOB '_cms_lifecycle_*'
+  WHERE lower(tbl_name) GLOB 'ec_*' OR lower(name) GLOB 'ec_*' OR lower(name) GLOB '_cms_lifecycle_*'
     OR type IN ('view','trigger')
     OR (type='table' AND instr(upper(sql),'REFERENCES')>0 AND instr(lower(sql),'ec_')>0) ORDER BY name`;
 const collectionsSql = sql`SELECT id,slug,version FROM _cms_collections ORDER BY slug`;
@@ -203,22 +203,40 @@ async function contentSnapshot(database:CmsDatabase, installed:boolean) {
   if (collections.length>100 || objects.some(row=>row.name.toLowerCase().startsWith('_cms_lifecycle_'))) throw new CmsError('MIGRATION_REQUIRED');
   const tables=[];
   const names=new Set(collections.map(row=>'ec_'+row.slug));
-  if (objects.some(row=>(row.type==='table'||row.type==='view')&&
-    (row.name.toLowerCase().startsWith('ec_') ? !names.has(row.name) : referencesContent(row.sql)))) throw new CmsError('MIGRATION_REQUIRED');
-  if (objects.some(row=>['view','trigger'].includes(row.type)&&!names.has(row.tbl_name)&&dependsOnContent(row.sql))) throw new CmsError('MIGRATION_REQUIRED');
+  const collectionIds=new Set(collections.map(row=>row.id));
+  if (fields.some(row=>!collectionIds.has(row.collection_id))) throw new CmsError('MIGRATION_REQUIRED');
+  // Tables, views and indexes share SQLite's case-insensitive namespace;
+  // triggers have a separate namespace and may share a content table's name.
+  if (objects.some(row=>['table','view','index'].includes(row.type)&&
+    (row.name.toLowerCase().startsWith('ec_') ? row.type!=='table'||!names.has(row.name.toLowerCase()) :
+      row.type==='table'&&referencesContent(row.sql)))) throw new CmsError('MIGRATION_REQUIRED');
+  if (objects.some(row=>['view','trigger'].includes(row.type)&&!names.has(row.tbl_name.toLowerCase())&&dependsOnContent(row.sql))) throw new CmsError('MIGRATION_REQUIRED');
   // Candidate operator FK tables remain in the atomic schema snapshot, but only
   // actual REFERENCES targets in the reserved namespace reject: DROP could
   // activate cascading actions. External views/triggers can also invalidate the
   // rebuild. Unrelated operator objects remain untouched; their DDL is guarded.
   for (const collection of collections) {
     if (!identifier.test(collection.slug)) throw new CmsError('MIGRATION_REQUIRED');
-    const name='ec_'+collection.slug; const object=objects.find(row=>row.name===name);
+    const name='ec_'+collection.slug; const object=objects.find(row=>row.type==='table'&&row.name.toLowerCase()===name);
     if (!object) throw new CmsError('MIGRATION_REQUIRED');
     const registeredFields=fields.filter(row=>row.collection_id===collection.id);
     if (registeredFields.length>32) throw new CmsError('MIGRATION_REQUIRED');
     tables.push({object,target:validateTable(object,registeredFields,installed)});
   }
   return {snapshot,objects,tables};
+}
+
+function snapshotGuard(database:CmsDatabase,snapshot:{objects:string;collections:string;fields:string},token:string) {
+  return sql`INSERT INTO _cms_guards(token,pass) SELECT ${token}, CASE WHEN EXISTS
+    (SELECT 1 FROM (${snapshotQuery()}) WHERE objects=${snapshot.objects}
+      AND collections=${snapshot.collections} AND fields=${snapshot.fields}) THEN 1 ELSE 0 END`.compile(database.db);
+}
+
+/** Latest startup can backfill indexes; guard that write against layout races too. */
+export async function guardLifecycleIndexRepair(database:CmsDatabase,statements:readonly CompiledQuery[]) {
+  const content=await contentSnapshot(database,true); const token=ulid();
+  return [snapshotGuard(database,content.snapshot,token),...statements,
+    sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(database.db)];
 }
 
 export const lifecycleMigration:CmsMigrationProvider = {
@@ -230,9 +248,7 @@ export const lifecycleMigration:CmsMigrationProvider = {
     // Execute before lifecycle DDL in the same batch as foundation. A writer
     // after fresh or legacy preflight cannot install unvalidated content objects
     // or have its new fields/indexes overwritten.
-    statements.unshift(sql`INSERT INTO _cms_guards(token,pass) SELECT ${token}, CASE WHEN EXISTS
-      (SELECT 1 FROM (${snapshotQuery()}) WHERE objects=${content.snapshot.objects}
-        AND collections=${content.snapshot.collections} AND fields=${content.snapshot.fields}) THEN 1 ELSE 0 END`.compile(database.db));
+    statements.unshift(snapshotGuard(database,content.snapshot,token));
     const rebuilding=content.tables.filter(({object,target})=>target!==object.sql);
     const contentNames=new Set(content.tables.map(({object})=>object.name.toLowerCase()));
     const triggers=rebuilding.length ? content.objects.filter(row=>row.type==='trigger'&&
@@ -248,7 +264,7 @@ export const lifecycleMigration:CmsMigrationProvider = {
         const match=/^(?:"([a-z0-9_]+)"|([a-z0-9_]+))\s+/i.exec(definition);
         return match ? [sql.ref(match[1] ?? match[2])] : [];
       });
-      const retained=content.objects.filter(row=>row.tbl_name===object.name&&row.type==='index'&&row.sql!==null);
+      const retained=content.objects.filter(row=>row.tbl_name.toLowerCase()===object.name.toLowerCase()&&row.type==='index'&&row.sql!==null);
       statements.push(sql.raw(create).compile(database.db),
         sql`INSERT INTO ${sql.ref(temporary)} (${sql.join(columns)}) SELECT ${sql.join(columns)} FROM ${sql.ref(object.name)}`.compile(database.db),
         sql`DROP TABLE ${sql.ref(object.name)}`.compile(database.db),
