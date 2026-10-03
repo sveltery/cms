@@ -16,7 +16,23 @@
     "skip": 0,
     "completedCausalValueReds": 0,
     "firstExecutionGreen": true,
-    "postgresExecuted": false
+    "postgresExecuted": false,
+    "rawD1": {
+      "wholeFiles": 4,
+      "callbacks": 38,
+      "initialPass": 36,
+      "initialBackendErrorsBeforeAssertions": 2,
+      "initialFailure": "actual D1 authorizer rejects stock SQLite introspector reads of reserved Cloudflare _cf_ metadata",
+      "completedCausalValueReds": 0,
+      "finalPass": 38,
+      "skip": 0,
+      "additionalUniqueSourceCallbacks": 0,
+      "SourceFixturesOrAssertionsChanged": false,
+      "actualBackend": "fresh real Miniflare raw D1 per Source fixture; existing production RawBindingD1Dialect queries/results/batches with real forwarding",
+      "testOnlyMetadataAdapter": "actual SqliteIntrospector filters only case-insensitive reserved _cf_ prefix in sqlite_master SELECT nodes; all permitted rows remain actual",
+      "productionIntrospectionContract": "unchanged explicitly unsupported",
+      "canonicalStartupCredit": 0
+    }
   },
   "sourceUI": {
     "wholeFiles": 4,
@@ -220,6 +236,16 @@
       "path": "/tmp/sections-widgets-PR79-2cd42fd-validate.log",
       "bytes": 363011,
       "sha256": "0f3d20acb6c2597ed3b41257b09acd5d5c067a61d79c76f0c4f7d0899a9b1e88"
+    },
+    {
+      "path": "/tmp/sections-widgets-whole-core-D1-first-run.log",
+      "bytes": 4738,
+      "sha256": "c8be25354706b11851c07b8edee9c0722a0cc427fcf04910ae5fc7fc7cfc3c6c"
+    },
+    {
+      "path": "/tmp/sections-widgets-whole-core-D1-metadata-successor.log",
+      "bytes": 219,
+      "sha256": "6f3e5bca20036ca5a2ac970836316a31e0f52a51ebd6a1bdac9284d3a483e806"
     }
   ],
   "originalPalette": {
