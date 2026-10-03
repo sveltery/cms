@@ -146,5 +146,154 @@
     "public API/admin and canonical redirect startup",
     "cleanup scheduling",
     "complete transfer pipeline and plugin sandbox composition"
-  ]
+  ],
+  "callbacks": [
+    {
+      "path": "packages/admin/tests/components/Redirects.test.tsx",
+      "line": 50,
+      "title": "loads redirects beyond the first page",
+      "sha256": "f249b899194a38eebd7be9dde0a038734d70c6525f13b900f982a21370fddeef",
+      "expectExpressions": 2,
+      "elementExpressions": 2,
+      "typeExpressions": 0
+    },
+    {
+      "path": "packages/admin/tests/components/Redirects.test.tsx",
+      "line": 63,
+      "title": "restarts pagination after a redirect mutation",
+      "sha256": "50764fac4688cc1a89e331eedb425a7d1423eb88ecfa7877fcab89066b556fbd",
+      "expectExpressions": 1,
+      "elementExpressions": 3,
+      "typeExpressions": 0
+    },
+    {
+      "path": "packages/admin/tests/components/Redirects.test.tsx",
+      "line": 76,
+      "title": "uses accessible tabs to switch between redirects and 404 errors",
+      "sha256": "17907c62f15dd608ad2ffd562ae7cc889e83ebb6ec51cfffaa84932047fef53e",
+      "expectExpressions": 5,
+      "elementExpressions": 4,
+      "typeExpressions": 0
+    },
+    {
+      "path": "packages/core/tests/unit/database/migrations/035_bounded_404_log.test.ts",
+      "line": 40,
+      "title": "keeps the freshest row per path with the rolled-up hit count",
+      "sha256": "768db4111ddb3772d6e5d3dd39c4443a1f4fb3b1db2ae438583074ebec5a6532",
+      "expectExpressions": 1,
+      "elementExpressions": 0,
+      "typeExpressions": 0
+    },
+    {
+      "path": "packages/core/tests/unit/database/migrations/035_bounded_404_log.test.ts",
+      "line": 60,
+      "title": "finishes deduplicating when a previous run stopped after adding the columns",
+      "sha256": "a50ab544fc521742a61e1d80f95df7d6c6d68fcda40841090145887c6368a44a",
+      "expectExpressions": 1,
+      "elementExpressions": 0,
+      "typeExpressions": 0
+    },
+    {
+      "path": "packages/core/tests/unit/database/migrations/035_bounded_404_log.test.ts",
+      "line": 78,
+      "title": "deduplicates a large log without timing out",
+      "sha256": "3dca21c55801f66ec9e6226f83bf4f14b33dad3af335ccd11fc2461958ad9b0e",
+      "expectExpressions": 3,
+      "elementExpressions": 0,
+      "typeExpressions": 0
+    },
+    {
+      "path": "packages/core/tests/integration/transfer/redirect-loops.test.ts",
+      "line": 51,
+      "title": "imports the redirect that closes a loop disabled",
+      "sha256": "b2f8da850f53453708661f635b1d4ecb7db8a7faac5ef49ea3bc99301446fa6d",
+      "expectExpressions": 4,
+      "elementExpressions": 0,
+      "typeExpressions": 0
+    },
+    {
+      "path": "packages/core/tests/integration/plugins/redirect-access-dialect.test.ts",
+      "line": 29,
+      "title": "guards configuration writes without conflicting on hit tracking",
+      "sha256": "f4d727caaeefd3e73baed262142e15aadd05345f78a40ca28d9eba86e6698dd6",
+      "expectExpressions": 2,
+      "elementExpressions": 0,
+      "typeExpressions": 0
+    },
+    {
+      "path": "packages/core/tests/integration/plugins/redirect-access-dialect.test.ts",
+      "line": 47,
+      "title": "serializes concurrent duplicate and loop-forming creates",
+      "sha256": "a1289071fe2f0a7b9c7ac4a0c96215aab9efa7563c7656be7bc80f0587dd33c2",
+      "expectExpressions": 5,
+      "elementExpressions": 0,
+      "typeExpressions": 0
+    },
+    {
+      "path": "packages/core/tests/integration/plugins/redirect-access-dialect.test.ts",
+      "line": 76,
+      "title": "serializes concurrent updates to different rows",
+      "sha256": "6ed1228e0bb15f692c38a2a2d398f943779561c0fd03804988db37463a9fa1b7",
+      "expectExpressions": 3,
+      "elementExpressions": 0,
+      "typeExpressions": 0
+    },
+    {
+      "path": "packages/core/tests/integration/plugins/redirect-access-dialect.test.ts",
+      "line": 101,
+      "title": "serializes legacy-shaped concurrent inserts after the schema expands",
+      "sha256": "1c911587bed2497db5d9c53a2ebdcc00e9a8b0a92fa6be2452a00a4ef550be3a",
+      "expectExpressions": 3,
+      "elementExpressions": 0,
+      "typeExpressions": 0
+    },
+    {
+      "path": "packages/core/tests/integration/plugins/redirect-access-dialect.test.ts",
+      "line": 118,
+      "title": "allows previous-runtime writes when an enabled pattern redirect exists",
+      "sha256": "73b3cb09fd93814adca2684c5d742eaefd33a1efbdcdd779d7e12f591817650f",
+      "expectExpressions": 1,
+      "elementExpressions": 0,
+      "typeExpressions": 0
+    },
+    {
+      "path": "packages/core/tests/integration/plugins/redirect-access-dialect.test.ts",
+      "line": 137,
+      "title": "allows a previous-runtime update after a current-runtime write",
+      "sha256": "4998ff5c4cab2ebd4ed63efd31b1e21890e39e130f946abc50056cb8de2a1d6b",
+      "expectExpressions": 4,
+      "elementExpressions": 0,
+      "typeExpressions": 0
+    },
+    {
+      "path": "packages/core/tests/unit/plugins/redirect-types.test.ts",
+      "line": 18,
+      "title": "type-checks the documented redirect update pattern",
+      "sha256": "b39bb60d196a6460d3b12a1625db59133a1f62e6638c0621e7228f7d54f47b94",
+      "expectExpressions": 0,
+      "elementExpressions": 0,
+      "typeExpressions": 1
+    },
+    {
+      "path": "packages/cloudflare/tests/sandbox/bridge-redirect.test.ts",
+      "line": 31,
+      "title": "does not grant redirect reads from unrelated content authority",
+      "sha256": "017e9da4ea68435e5b0dede0e939d54ca43b905d07e07e1c77c2270b0a67f4d8",
+      "expectExpressions": 1,
+      "elementExpressions": 0,
+      "typeExpressions": 0
+    },
+    {
+      "path": "packages/cloudflare/tests/sandbox/bridge-redirect.test.ts",
+      "line": 37,
+      "title": "does not grant redirect writes from redirects:read",
+      "sha256": "6ee3bf557325d4d929d5e267ab571452057a2d7cf9b586c616369b051b1fb2e4",
+      "expectExpressions": 1,
+      "elementExpressions": 0,
+      "typeExpressions": 0
+    }
+  ],
+  "expectExpressions": 37,
+  "elementExpressions": 9,
+  "typeExpressions": 1
 }
