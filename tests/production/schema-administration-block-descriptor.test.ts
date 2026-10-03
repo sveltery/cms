@@ -44,3 +44,25 @@ for(const target of ['Node','D1'] as const) test(`${target}: empty blocks defaul
     assert.deepEqual((await h.registry.getField('posts','generic'))!.options,{custom:true});
   }finally{await h.close();}
 });
+for(const target of ['Node','D1'] as const) test(`${target}: actual native blocks creation omits inactive widgets and renders protected settings`,async()=>{
+  const h=await schemaAdminRemotes(target);
+  try {
+    await h.registry.createCollection({slug:'posts',label:'Posts'});
+    const html=await(await h.request('/schema/posts')).text();
+    assert.match(html,/<select[^>]*name="widgetMode"/);
+    const action=[...html.matchAll(/<form[^>]*action="([^"]+)"/g)].find(m=>m[1].includes(h.ids.get('addSchemaField')!))![1];
+    const url=new URL(action.replaceAll('&amp;','&'),h.origin+'/schema/posts');
+    const c=(await h.registry.getCollection('posts'))!;
+    const response=await h.request(url.pathname+url.search,'admin',{method:'POST',headers:{origin:h.origin,accept:'text/html'},body:new URLSearchParams({
+      collection:'posts',expectedSchemaVersion:String(c.version),slug:'body',label:'Body',type:'blocks',defaultValueFormat:'json',defaultValueJson:'[]',
+      widgetMode:'keep',widget:'unselected custom widget',optionsMode:'keep',optionsJson:'{}'})});
+    assert.equal(response.status,200);const field=await h.registry.getField('posts','body');assert.ok(field);
+    assert.equal(field.widget,undefined);assert.equal(field.options,undefined);assert.deepEqual(field.defaultValue,[]);
+    const after=await(await h.request('/schema/posts')).text();
+    const settings=[...after.matchAll(/<form[^>]*>([\s\S]*?)<\/form>/g)].find(m=>m[1].includes('>Settings for Body</legend>'))![1];
+    for(const name of ['widgetMode','widget','indexedMode','indexed','searchableMode','searchable','optionsMode','optionsJson']) {
+      const tag=settings.match(new RegExp(`<(?:input|select|textarea)[^>]*name="${name}"[^>]*>`))?.[0];
+      assert.ok(tag && /\bdisabled\b/.test(tag),`${name} is disabled for blocks`);
+    }
+  }finally{await h.close();}
+});

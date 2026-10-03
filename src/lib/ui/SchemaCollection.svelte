@@ -14,6 +14,7 @@
   const metadataForm = $derived(updateSchemaCollection.for(definition.slug));
   const fieldForm = $derived(addSchemaField.for(definition.slug));
   const scalarField = $derived(['string','text','slug'].includes(fieldForm.fields.type.value() ?? 'string'));
+  const blocksField = $derived(fieldForm.fields.type.value()==='blocks');
   const orderForm = $derived(reorderSchemaFields.for(definition.slug));
   const deleteForm = $derived(deleteSchemaCollection.for(definition.slug));
   const supportsMode = $derived(metadataForm.fields.supportsMode.value() ?? 'keep');
@@ -24,6 +25,7 @@
   const defaultFormat = $derived(fieldForm.fields.defaultValueFormat.value() ?? 'omit');
   const validationFormat = $derived(fieldForm.fields.validationFormat.value() ?? 'omit');
   const optionsMode = $derived(fieldForm.fields.optionsMode.value() ?? 'keep');
+  const widgetMode = $derived(fieldForm.fields.widgetMode.value() ?? 'keep');
 </script>
 
 <a href={collectionsHref}>Schema collections</a>
@@ -112,8 +114,8 @@
     <label>Field label <input {...fieldForm.fields.label.as('text')} required maxlength="200" /></label>
     <label for={`${controlsId}-field-type`}>Field type</label>
     <select id={`${controlsId}-field-type`} {...fieldForm.fields.type.as('select', 'string')}>{#each schemaFieldTypes as [value,label]}<option {value}>{label}</option>{/each}</select>
-    <label class="toggle"><input {...fieldForm.fields.required.as('checkbox')} /> Required</label>
-    <label class="toggle"><input {...fieldForm.fields.unique.as('checkbox')} /> Unique</label>
+    <label class="toggle"><input {...fieldForm.fields.required.as('checkbox')} disabled={blocksField} /> Required</label>
+    <label class="toggle"><input {...fieldForm.fields.unique.as('checkbox')} disabled={blocksField} /> Unique</label>
     <label>Default format <select aria-label="Default format" {...fieldForm.fields.defaultValueFormat.as('select','omit')}><option value="omit">No default</option>{#if scalarField}<option value="text">Text default</option>{/if}<option value="json">JSON default</option></select></label>
     {#if scalarField}
     <label>Default value <textarea aria-label="Default value" {...fieldForm.fields.defaultValue.as('text')} value={fieldForm.fields.defaultValue.value() ?? ''} disabled={hydrated && defaultFormat !== 'text'} maxlength="100000"></textarea></label>
@@ -121,11 +123,13 @@
     <label>Typed default value (JSON) <textarea aria-label="Typed default value (JSON)" {...fieldForm.fields.defaultValueJson.as('text')} value={fieldForm.fields.defaultValueJson.value() ?? ''} disabled={hydrated && defaultFormat !== 'json'}></textarea></label>
     <label>Validation format <select aria-label="Validation format" {...fieldForm.fields.validationFormat.as('select','omit')}><option value="omit">No validation</option>{#if scalarField}<option value="text">Text rules</option>{/if}<option value="json">JSON rules</option></select></label>
     <label>Validation rules (JSON) <textarea aria-label="Validation rules (JSON)" {...fieldForm.fields.validationJson.as('text')} value={fieldForm.fields.validationJson.value() ?? ''} disabled={hydrated && validationFormat !== 'json'}></textarea></label>
-    <label>Field options update <select aria-label="Field options update" {...fieldForm.fields.optionsMode.as('select','keep')}><option value="keep">No options</option><option value="set">Set options</option></select></label>
-    <label>Field options (JSON) <textarea aria-label="Field options (JSON)" {...fieldForm.fields.optionsJson.as('text')} value={fieldForm.fields.optionsJson.value() ?? ''} disabled={hydrated && optionsMode !== 'set'}></textarea></label>
-    <label>Widget <input {...fieldForm.fields.widget.as('text')} /></label>
-    <label class="toggle"><input {...fieldForm.fields.indexed.as('checkbox')} /> Indexed</label>
-    <label class="toggle"><input {...fieldForm.fields.searchable.as('checkbox')} /> Searchable</label>
+    <label>Field options update <select aria-label="Field options update" {...fieldForm.fields.optionsMode.as('select','keep')} disabled={blocksField}><option value="keep">No options</option><option value="set">Set options</option></select></label>
+    <label>Field options (JSON) <textarea aria-label="Field options (JSON)" {...fieldForm.fields.optionsJson.as('text')} value={fieldForm.fields.optionsJson.value() ?? ''} disabled={blocksField || hydrated && optionsMode !== 'set'}></textarea></label>
+    <label>Widget settings update <select aria-label="Widget settings update" {...fieldForm.fields.widgetMode.as('select','keep')} disabled={blocksField}><option value="keep">Use default widget</option><option value="set">Set widget</option></select></label>
+    <label>Widget <input {...fieldForm.fields.widget.as('text')} disabled={blocksField || hydrated && widgetMode!=='set'} /></label>
+    <label class="toggle"><input {...fieldForm.fields.indexed.as('checkbox')} disabled={blocksField} /> Indexed</label>
+    <label class="toggle"><input {...fieldForm.fields.searchable.as('checkbox')} disabled={blocksField} /> Searchable</label>
+    <p>Blocks defaults must be an empty array. Required, unique, indexed, searchable, custom widget and options settings are unavailable.</p>
     <label>Translatable <select aria-label="Translatable" {...fieldForm.fields.translatable.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
     {#if scalarField && (!hydrated || validationFormat === 'text')}
     <label>Minimum length <input {...fieldForm.fields.minLength.as('text')} inputmode="numeric" pattern="[0-9]*" /></label>

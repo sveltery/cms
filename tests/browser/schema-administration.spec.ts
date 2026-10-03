@@ -30,6 +30,10 @@ test.describe('complete schema administration',()=>{
     await expect(add.getByLabel('Minimum length',{exact:true})).toHaveCount(1);
     await add.getByLabel('Field slug',{exact:true}).fill('priority');
     await add.getByLabel('Field label',{exact:true}).fill('Priority');
+    await add.getByLabel('Field type',{exact:true}).selectOption('blocks');
+    for(const label of ['Required','Unique','Indexed','Searchable','Widget settings update','Widget','Field options update','Field options (JSON)']) {
+      await expect(add.getByLabel(label,{exact:true})).toBeDisabled();
+    }
     await add.getByLabel('Field type',{exact:true}).selectOption('integer');
     for (const label of ['Default value','Minimum length','Maximum length','Pattern metadata','Validation pattern']) {
       await expect(add.getByLabel(label,{exact:true})).toHaveCount(0);
@@ -124,6 +128,23 @@ test.describe('complete schema administration',()=>{
       await add.getByRole('button',{name:'Add field',exact:true}).click();
       const native=await fixture.query('getSchemaCollection','schema_native');
       expect(native.fields[0].defaultValue).toBe(2);expect(native.fields[0].validation).toEqual({min:0,max:10});expect(native.fields[0].options).toEqual({custom:true});
+      await add.getByLabel('Field slug',{exact:true}).fill('body');
+      await add.getByLabel('Field label',{exact:true}).fill('Body');
+      await add.getByLabel('Field type',{exact:true}).selectOption('blocks');
+      await add.getByLabel('Default format',{exact:true}).selectOption('json');
+      await add.getByLabel('Typed default value (JSON)',{exact:true}).fill('[]');
+      await add.getByLabel('Validation format',{exact:true}).selectOption('omit');
+      await add.getByLabel('Field options update',{exact:true}).selectOption('keep');
+      await add.getByLabel('Widget settings update',{exact:true}).selectOption('keep');
+      for(const flag of ['Required','Unique','Indexed','Searchable']) await add.getByLabel(flag,{exact:true}).uncheck();
+      await add.getByRole('button',{name:'Add field',exact:true}).click();
+      const blocks=await fixture.query('getSchemaCollection','schema_native');
+      expect(blocks.fields[1].defaultValue).toEqual([]);expect(blocks.fields[1].widget).toBeUndefined();expect(blocks.fields[1].options).toBeUndefined();
+      await page.getByText('Field settings for Body',{exact:true}).click();
+      const blockSettings=page.locator('form').filter({has:page.locator('legend',{hasText:'Settings for Body'})});
+      for(const label of ['Widget update','Widget','Searchable update','Searchable','Index update','Indexed','Options update','Field options (JSON)']) {
+        await expect(blockSettings.getByLabel(label,{exact:true})).toBeDisabled();
+      }
       const drop=page.locator('form').filter({has:page.locator('legend',{hasText:'Delete collection'})});
       await drop.getByLabel('Confirm deleting this collection',{exact:true}).check();
       await drop.getByRole('button',{name:'Delete collection',exact:true}).click();

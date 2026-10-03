@@ -178,7 +178,7 @@ const addFieldEntries = {
   minLength: optionalLength, maxLength: optionalLength, patternMode, pattern: editString,
   defaultValueJson: optionalJson, validationJson: optionalJson, optionsJson: optionalJson,
   widget: v.optional(v.string()), indexed: v.optional(v.boolean()), searchable: v.optional(v.boolean()), translatable: optionalBoolean,
-  defaultValueFormat: creationFormat, validationFormat: creationFormat, optionsMode: optionalEditMode
+  defaultValueFormat: creationFormat, validationFormat: creationFormat, optionsMode: optionalEditMode, widgetMode:optionalEditMode
 };
 const parsedFieldAdd = v.pipe(v.strictObject(addFieldEntries), v.forward(v.check(input => input.id === undefined || input.id === input.collection,
   'Form instance must match the collection'), ['id']),
@@ -210,6 +210,7 @@ export const addFieldInput = v.pipe(v.strictObject({ ...addFieldEntries,
   defaultValueJson: rawJson, validationJson: rawJson, optionsJson: rawJson
 }), v.transform((input): v.InferInput<typeof parsedFieldAdd> => {
   const selected: v.InferInput<typeof parsedFieldAdd> = { ...input };
+  if(input.widgetMode==='keep') delete selected.widget;
   if (input.defaultValueFormat === 'omit' || input.defaultValueFormat === 'json') delete selected.defaultValue;
   if (input.defaultValueFormat === 'omit' || input.defaultValueFormat === 'text') delete selected.defaultValueJson;
   if (input.defaultValueFormat === 'json') selected.defaultValueJson ??= '';
@@ -242,7 +243,7 @@ export function convertCollectionUpdate(input: v.InferOutput<typeof updateInput>
 }
 export function convertFieldAdd(input: v.InferOutput<typeof addFieldInput>) {
   const { id: _id, collection, expectedSchemaVersion, minLength, maxLength, patternMode, pattern, defaultValueJson, validationJson, optionsJson,
-    defaultValueFormat: _defaultFormat, validationFormat: _validationFormat, optionsMode: _optionsMode, ...field } = input;
+    defaultValueFormat: _defaultFormat, validationFormat: _validationFormat, optionsMode: _optionsMode, widgetMode:_widgetMode, ...field } = input;
   const validation = minLength === undefined && maxLength === undefined && patternMode !== 'set' ? {} : {
     validation: { ...(minLength === undefined ? {} : { minLength }), ...(maxLength === undefined ? {} : { maxLength }),
       ...(patternMode === 'set' ? { pattern } : {}) }

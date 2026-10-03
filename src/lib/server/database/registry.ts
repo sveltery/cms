@@ -12,6 +12,20 @@ export const MAX_FIELDS = 32;
 const fieldMax = (input: { type: string; validation?: { maxLength?: number } | null }) =>
   Math.min(input.validation?.maxLength ?? (input.type === 'string' ? 200 : 100_000), 100_000);
 
+// EmDash 1.1.0 pin 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e,
+// registry.ts:2153–2189 early blocks descriptor restrictions.
+// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt. The rest
+// of block type/validation normalization and lifecycle remains unimplemented.
+function assertBlocksDescriptor(input:{required?:boolean;unique?:boolean;indexed?:boolean;searchable?:boolean;
+  widget?:string;options?:unknown;defaultValue?:unknown}) {
+  if(input.required || input.unique) throw new CmsError('VALIDATION_ERROR');
+  if(input.indexed) throw new CmsError('FIELD_NOT_INDEXABLE');
+  if(input.searchable || input.widget!==undefined || input.options!==undefined ||
+    input.defaultValue!==undefined && (!Array.isArray(input.defaultValue) || input.defaultValue.length>0)) {
+    throw new CmsError('VALIDATION_ERROR');
+  }
+}
+
 function collection(row: CollectionRow): Collection {
   return { id: row.id, slug: row.slug, label: row.label, labelSingular: row.label_singular,
     description: row.description, supports: JSON.parse(row.supports), source: (row.source ?? 'manual') as CollectionSource,
@@ -133,6 +147,7 @@ export class SchemaRegistry {
     if (!target) throw new CmsError('NOT_FOUND');
     const updates: Partial<FieldRow> = {};
     if(target.unsupportedType) throw new CmsError('UNSUPPORTED_FIELD_TYPE');
+    if(target.type==='blocks') assertBlocksDescriptor(value);
     const nextType = value.type ?? target.type;
     if(value.type && value.type !== target.type) {
       if(FIELD_TYPE_TO_COLUMN[value.type] !== target.columnType) throw new CmsError('FIELD_TYPE_COLUMN_CHANGE');
@@ -241,6 +256,7 @@ export class SchemaRegistry {
     if (expectedSchemaVersion !== undefined && (!Number.isSafeInteger(expectedSchemaVersion) || expectedSchemaVersion < 1)) throw new CmsError('VALIDATION_ERROR');
     if (expectedSchemaVersion !== undefined && definition.version !== expectedSchemaVersion) throw new CmsError('CONFLICT');
     if (await this.getField(definition.slug, value.slug)) throw new CmsError('FIELD_EXISTS');
+    if(value.type==='blocks') assertBlocksDescriptor(value);
     const maximum = fieldMax(value);
     const minimum = value.validation?.minLength ?? 0;
     if (minimum > maximum) throw new CmsError('VALIDATION_ERROR');
