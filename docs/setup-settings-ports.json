@@ -152,5 +152,46 @@
     ],
     "status": "committed before implementation; unexecuted imports not baseline credit",
     "omissions": "Plugin encryption six, actual media rows two, cache five and cross-media mutations three need their complete adapters/providers; selected callbacks retain all expectations."
+  },
+  "browserCallbacks": {
+    "callbacks": [
+      {
+        "source": "e2e/tests/settings-pages.spec.ts",
+        "title": "page renders with heading and form",
+        "sha256": "c813872b4d014636613e01840a87455456092e27c58157f43a13f5dd8747012f"
+      },
+      {
+        "source": "e2e/tests/settings-pages.spec.ts",
+        "title": "displays all social input fields",
+        "sha256": "499f72cbbc0da3e9df303f133a879c30f3d78ff8fafe8dac948064752cdd5630"
+      },
+      {
+        "source": "e2e/tests/settings-pages.spec.ts",
+        "title": "saves a social link and persists across reload",
+        "sha256": "1a5be6a9aa213eccbbeb608e80074f0e97fa1a5e85aadbf6de7c00d758d2dcaa"
+      },
+      {
+        "source": "e2e/tests/settings-pages.spec.ts",
+        "title": "page renders with heading and form",
+        "sha256": "7381ee2c827b08acd326c28a0e4cd60b40d8b4ff0ca864a1c37255a06361a562"
+      },
+      {
+        "source": "e2e/tests/settings-pages.spec.ts",
+        "title": "displays expected SEO fields",
+        "sha256": "72f6725341520461822b0f0732220f95c4ca475f3c4063f9211884deaa409920"
+      },
+      {
+        "source": "e2e/tests/settings-pages.spec.ts",
+        "title": "saves SEO settings and persists across reload",
+        "sha256": "935d3e685705852b961dde6d40f63f688e22533b7cd77cb49b6ed695686dda09"
+      },
+      {
+        "source": "e2e/tests/form-data-loss.spec.ts",
+        "title": "settings edits survive window blur/focus",
+        "sha256": "93dc81de18e96d228c3516ce7e4df8c2cb798899ac276f0ca5fa3a3880a99ec6"
+      }
+    ],
+    "status": "copied before UI implementation; actual secured hosted red not yet run",
+    "omissions": "Email provider settings/language localization/welcome UX require future owners. Only complete social/SEO/settings blur callbacks selected here."
   }
 }
