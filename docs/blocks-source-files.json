@@ -1106,6 +1106,136 @@
         }
       ],
       "literalExpectCalls": 37
+    },
+    {
+      "path": "packages/core/tests/integration/content/media-field-validation.test.ts",
+      "blob": "55d1f686f90f766f82e41de89b84cdeef58747ec",
+      "sha256": "b9bfc51b17ac5e7a6c6be00ccb402e912deeda8db4148f34a4612b01a1074e05",
+      "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/integration/content/media-field-validation.test.ts",
+      "execution": "not executed; native host baseline pending",
+      "declarations": [
+        {
+          "title": "accepts a PDF in a PDF-only field",
+          "line": 111,
+          "callbackSha256": "d29c9004509bebde5df726308da38857f21b8ec88b52c9decaa585fa98e1cb2c"
+        },
+        {
+          "title": "validates nested block media and image dark variants",
+          "line": 122,
+          "callbackSha256": "d5ca7c0630ee1bd8e839c95d3dd9bf4c23ec7a090a98cd0a54af08caa39b01ed"
+        },
+        {
+          "title": "rejects a zip in a PDF-only field on create",
+          "line": 204,
+          "callbackSha256": "9901620536f404cae7ec07b62c6bb2c773e2d4593bd14c5b6f8aea7383a50003"
+        },
+        {
+          "title": "rejects a zip in a PDF-only field on update",
+          "line": 217,
+          "callbackSha256": "0c8a2d7626dc69e47edf3b39b7c553ace26c2bef7454b1b1430c401163afbdec"
+        },
+        {
+          "title": "rejects external-provider ref when mimeType is present and does not match allowlist",
+          "line": 234,
+          "callbackSha256": "550c7584c7a6b62849b88fe9bd83b6cfdcff27387bb43556572806ec15d4070d"
+        },
+        {
+          "title": "accepts external-provider ref when mimeType matches the allowlist",
+          "line": 253,
+          "callbackSha256": "e5aafd41b218b2ab5f7e71f1edf4ef00764537d5ef4fb5923f43595fde3c7a2b"
+        },
+        {
+          "title": "rejects external-provider ref with no mimeType when field is constrained",
+          "line": 270,
+          "callbackSha256": "46e4aa7a21bb0e9b4bbf87ad29365c50c99cff617151a02ea75f59b33c6d6d15"
+        },
+        {
+          "title": "rejects local-provider ref with non-string id when field is constrained",
+          "line": 288,
+          "callbackSha256": "104300bbfd4fb7719366a8fe47cab3623fd7132b997e9c85fa397460d0ef4cb7"
+        },
+        {
+          "title": "file/image field without allowedMimeTypes is not validated",
+          "line": 301,
+          "callbackSha256": "4b180ac7f48e4f71b5a8b8a0323451ed82bf78c06705443d195ca5b65db21b79"
+        },
+        {
+          "title": "local media ID not found in DB returns INVALID_MIME_FOR_FIELD",
+          "line": 344,
+          "callbackSha256": "ac5bb7b9785d74dbfce24bbc6fa8ee6877b788930f17705a4a65b87c3c58ef69"
+        }
+      ],
+      "literalExpectCalls": 17
+    },
+    {
+      "path": "packages/core/tests/integration/content/image-dark-variant-normalize.test.ts",
+      "blob": "17d5f3ce50b95072b0274dd0fd152da3db24e5c8",
+      "sha256": "80260b56fc63de786b698991dda89028806adb1ce1378d2cb19240cc85a05a37",
+      "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/integration/content/image-dark-variant-normalize.test.ts",
+      "execution": "not executed; native host baseline pending",
+      "declarations": [
+        {
+          "title": "keeps the dark variant on save and normalizes it like the primary image",
+          "line": 97,
+          "callbackSha256": "1c946f6dd958a7712a5bcd10e53cdcdaddfb5d1589c22c2e3651fa5a678d2264"
+        },
+        {
+          "title": "accepts a bare media id as the dark variant",
+          "line": 121,
+          "callbackSha256": "ebd59e253727c942c50bb9ec7630813dc4f9d1ac243f60153fa3505b2261d024"
+        },
+        {
+          "title": "resolves a legacy string primary that was upgraded to carry a variant",
+          "line": 133,
+          "callbackSha256": "56bf0a16cdcf27f3dc3042c643e94c3cb98be0c90654c244168a278d284b8f40"
+        },
+        {
+          "title": "keeps the provider linkage of an upgraded legacy local id",
+          "line": 154,
+          "callbackSha256": "bc3593a0ccf2ff2b64cb2a761abc5e6f804e201d992d9dcb67facef6475e222d"
+        },
+        {
+          "title": "keeps an upgraded legacy string primary that carries no variant",
+          "line": 170,
+          "callbackSha256": "4c02d76c87d5514d910c1e4f5b6a3bcdfb9f9a534b5f679873688c0cd5f2e491"
+        },
+        {
+          "title": "keeps the provider linkage of an upgraded legacy local id that carries no variant",
+          "line": 200,
+          "callbackSha256": "eb153f8d3f0538f93ba261aa23bee3bb7dec261472b06725f22935e9fececcdd"
+        },
+        {
+          "title": "does not apply dark variant handling to file fields",
+          "line": 212,
+          "callbackSha256": "e08d6cfc14cb7576354d96f01803ae1eee6ffb2d04717471d3c7522b9511e72a"
+        },
+        {
+          "title": "removes the dark variant when an update clears it",
+          "line": 235,
+          "callbackSha256": "09f3114df5557a64467cb3606ce17dcfe1934a90db7efae22b390f28a5ac654b"
+        },
+        {
+          "title": "normalizes image, dark variant, file, and repeater image values inside blocks",
+          "line": 259,
+          "callbackSha256": "d2f22656ee64159b881d37fa3a9c2ff7cb2361ff66603bed8e66f853d328d01d"
+        }
+      ],
+      "literalExpectCalls": 34
+    },
+    {
+      "path": "packages/core/tests/integration/content/repeater-media-normalize.test.ts",
+      "blob": "6d9617918d550589a5ddc3ebf26187b80e10592b",
+      "sha256": "0c511be1930a7ec2653c2c734133b80eaa737224a4428ef5e6b0b3c897e2568f",
+      "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/integration/content/repeater-media-normalize.test.ts",
+      "execution": "not executed; native host baseline pending",
+      "declarations": [
+        {
+          "title": "normalizes a bare media id inside a repeater image sub-field like a top-level field",
+          "line": 61,
+          "callbackSha256": "beb4a790b6b3d5bb41524e5e4ceaf1ac652838e9c73411d0c824ceba59c07d81"
+        }
+      ],
+      "literalExpectCalls": 4
     }
   ],
   "sourceTestsRun": 0,

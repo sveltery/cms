@@ -15,6 +15,8 @@ export default defineConfig({plugins:[{
     if(target.includes('/packages/core/src/schema/registry.js'))return resolve(root,'tests/helpers/blocks-source-schema.ts');
     if(target.includes('/packages/core/src/database/repositories/content.js'))return resolve(root,'tests/helpers/blocks-source-content.ts');
     if(target.includes('/packages/core/src/api/errors.js'))return resolve(root,'src/lib/server/blocks/errors.ts');
+    if(target.includes('/packages/core/src/api/handlers/content.js'))return resolve(root,'tests/helpers/blocks-source-content-handlers.ts');
+    if(target.includes('/packages/core/src/media/local-runtime.js'))return resolve(root,'src/lib/server/media/source/media/local-runtime.ts');
     if(target.includes('/packages/core/src/database/migrations/083_block_types.js'))return resolve(root,'src/lib/server/blocks/source-migration.ts');
     if(target.includes('/packages/core/src/seed/apply.js'))return resolve(root,'tests/helpers/blocks-source-seed.ts');
     if(target.includes('/packages/core/src/cli/commands/export-seed.js'))return resolve(root,'tests/helpers/blocks-source-seed.ts');
@@ -26,7 +28,7 @@ export default defineConfig({plugins:[{
 }],test:{fileParallelism:false,maxWorkers:1,include:[
   'parity/emdash/blocks/source-tests/packages/core/tests/unit/schema/block-type-contract.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/integration/schema/{block-type-registry,blocks-field-schema}.test.ts',
-  'parity/emdash/blocks/source-tests/packages/core/tests/integration/content/blocks-content.test.ts',
+  'parity/emdash/blocks/source-tests/packages/core/tests/integration/content/{blocks-content,media-field-validation,image-dark-variant-normalize,repeater-media-normalize}.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/unit/components/blocks-renderer.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/integration/database/block-types-migration.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/unit/seed/blocks.test.ts',
