@@ -15,21 +15,29 @@ taxonomy rows, and migration history remain intact. Startup resolves final
 installed static descriptors before lifecycle metadata reads; that generic
 repair is supplied by the migration PR.
 
-The native atomic plan snapshots the old view/trigger catalogue, operator field
+The native atomic plan snapshots the old view/trigger catalogue, operator metadata
 indexes, and candidate foreign-child DDL. Its read-only precondition executes
 after the existing static prerequisite guard and before the first startup write.
 Views and triggers are removed during the metadata replacement and restored from
 their original SQL after both final tables exist. They are never rewritten.
-Actual operator child tables referencing `_cms_fields` reject with
+Actual operator child tables referencing a rebuilt parent reject with
 `MIGRATION_REQUIRED`, preserving the entire database rather than disabling
-foreign-key enforcement or cascading child rows during the rebuild. Independent
+foreign-key enforcement or cascading child rows during the rebuild. Prefixes
+1/2 guard both `_cms_fields` and `_cms_collections`, since immutable provider 3
+rebuilds both; prefixes 3–7 guard fields only. External collection children
+remain valid when provider 8 only adds the search column. Independent
 catalogue changes abort the whole startup batch. Ordinary operator/auth row
 writes are outside the catalogue snapshot.
 
-Operator view/trigger preservation is currently qualified for a provider-7
-upgrade. The older provider-3 rebuild can encounter metadata-dependent operator
-objects before provider 8 runs; that historical composition edge is not yet
-qualified. This is a native upgrade limit, not a verified shared EmDash bug.
+Operator catalogue preservation is qualified for prefixes 1/2 and 7. For the
+earlier layouts, an optional provider preparation phase validates every old
+catalogue before any metadata objects are temporarily removed; the removals run
+before immutable provider 3. Provider 5 supplies its unchanged content snapshot
+guard to the same preparation phase, and tolerates already removed triggers
+with `DROP TRIGGER IF EXISTS`. Its snapshot, token, cleanup and rebuild SQL remain
+unchanged. These narrowly scoped native composition changes belong to this
+forward-upgrade feature; the generic static-descriptor and managed-FTS startup
+repairs belong to PR42. This is not a verified shared EmDash bug.
 Normal fresh setup and actual prefixes 1 through 7 retain stored rows/defaults.
 Existing content-column uniqueness/default divergence, unsupported raw-type
 fallback issue #44, and earlier atomicity decisions remain separate.
@@ -46,11 +54,22 @@ for its unchanged term-count callback; this provider supplies its missing FK.
 Tests first committed six actual native assertion failures on both databases.
 The operator baseline then recorded 18 real assertion failures and two unrelated
 object passes; preserving dependent objects strengthened those original probes
-before implementation. Forty prefix/preservation/fault/concurrency cases passed
+before implementation. Four historical view/trigger assertions then failed
+before the preparation-phase repair; full Node/D1 upgrades retain chained
+views, attached metadata/content triggers and operator indexes on both metadata
+tables. The 50-case foreign-child matrix initially passed 26 and failed 24 real
+assertions for collection children; after repair all 50 pass, including
+independently committed raced child rows with CASCADE, SET NULL and RESTRICT.
+Forty prefix/preservation/fault/concurrency cases passed
 on their first run and receive no invented red credit. The startup restart
 integration separately failed two genuine assertions before the migration
 developer's generic descriptor repair. A fixture-only null-prototype mismatch
-was normalized and is not a product defect or source assertion change.
+was normalized and is not a product defect or source assertion change. The
+latest integrated PR42 checkpoint passes 130 focused cases with checker 0/0.
+Four additional first-run native guard probes verify that independently
+committed field metadata edits abort prefixes1/2 before catalogue removals,
+retaining both the writer's change and the complete original catalogue. They
+earn no assertion-red credit.
 
 This PR currently consumes named, unapproved migration/options/taxonomy/auth/
 lifecycle/editor development dependencies. Final replay will contain only its
