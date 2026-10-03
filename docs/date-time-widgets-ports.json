@@ -40,7 +40,7 @@
               "await expect.element(screen.getByText(zoneDetails!, { exact: true })).toBeVisible()",
               "expect(screen.container.querySelector('input[type=\"time\"]')).toBeNull()"
             ],
-            "baseline": "absent-control operation failure; zero value-red credit",
+            "baseline": "completed native DOM assertion failure",
             "current": "native mounted DOM pass; secured hosted execution pending"
           },
           {
@@ -304,7 +304,7 @@
     }
   },
   "gates": {
-    "normal": "complete bootstrap running; final outcome pending",
+    "normal": "Failed: frozen366/check0/0/services1101/Source115+types/Card23/widget27/build/production255/Nodepackage complete; Node hosting3 isolated dependency installs terminate at unchanged120s deadlines before product callbacks; Cloudflare phases unexecuted.",
     "securedLocal": "Official Chromium1243 executable absent; zero callbacks executed and zero browser credit",
     "securedHosted": "pending",
     "independentReview": "pending",
