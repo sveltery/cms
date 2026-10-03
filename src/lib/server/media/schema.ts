@@ -37,7 +37,11 @@ export function mediaSchemaStatements(database: CmsDatabase): CompiledQuery[] {
       .addColumn('updated_at','text',column=>column.notNull().defaultTo(currentTimestamp(db))).compile(),
     db.schema.createIndex('idx_media_upload_attempts_media_id').on('_cms_media_upload_attempts').column('media_id').compile(),
     db.schema.createIndex('idx_media_upload_attempts_status_created_at').on('_cms_media_upload_attempts').columns(['status','created_at']).compile()
-  ];
+  ].map(statement=>({...statement,
+    // SQLite canonicalizes these catalogue prefixes on creation. Preserve
+    // every identifier, literal and remaining token for strict startup checks.
+    sql:statement.sql.replace(/^create (table|index)\b/,prefix=>prefix.toUpperCase())
+  }));
 }
 
 export const mediaMigration: CmsMigrationProvider = {
