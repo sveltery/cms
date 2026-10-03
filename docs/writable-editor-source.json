@@ -81,8 +81,8 @@
       "bytes": 4014,
       "sha256": "351e61e7979c56db5ca1d6628d81b5cf84a46d98d369121b519b929cb65fea7f",
       "gitBlob": "1f95c5fc459eb885593adcfc02453f856c405eb1",
-      "execution": "unexecuted",
-      "causalSourceCredit": 0
+      "execution": "native transport/English host: whole7callbacks executed; initial6completed value failures+1control, unchanged7green",
+      "causalSourceCredit": 6
     },
     {
       "path": "e2e/tests/content-crud.spec.ts",
@@ -136,5 +136,52 @@
     "Held media-utils59068082 authority excluded; no private editor history reused"
   ],
   "notice": "notices/emdash-MIT.txt",
-  "assertionCredit": 0
+  "assertionCredit": 6,
+  "evidence": [
+    {
+      "file": "writable-editor-source-validation-red.log",
+      "bytes": 5937,
+      "sha256": "6f41d77eb6f8a07f161b556b28278608474e34b1b8d495b416f8b6b1f1e4ab12"
+    },
+    {
+      "file": "writable-editor-source-validation-green.log",
+      "bytes": 220,
+      "sha256": "43b186bd8af21183e22fe210f60c5ba98541db29e4e5fa8b0b85e349af13bdd9"
+    },
+    {
+      "file": "writable-editor-native-fields-complete-red.log",
+      "bytes": 4228,
+      "sha256": "437807d8035bf1d6afc0ef87de9f8fd470ce9ab8e813daeeb45e6a37b26b7f15"
+    },
+    {
+      "file": "writable-editor-native-fields-green.log",
+      "bytes": 224,
+      "sha256": "621f0918937870030221cd8e4d5065cb59ddab50bf8581d960689c062e6158f7"
+    },
+    {
+      "file": "writable-editor-state-seven-green.log",
+      "bytes": 857,
+      "sha256": "f642e6531f53318fd647d83fdb672df678eb92b8542e18623886245e69ad53fc"
+    },
+    {
+      "file": "writable-editor-frozen-install.log",
+      "bytes": 1844,
+      "sha256": "78c8425967ce09ee05dd063665d3b4a576f9891ad66a57b06074a49e50f76518"
+    },
+    {
+      "file": "writable-editor-owned-composition-check-green.log",
+      "bytes": 209,
+      "sha256": "cd5465193353a03ad23609bdb5dfb17a3889f9d021da4865b476070161cc9375"
+    }
+  ],
+  "execution": {
+    "wholeSourceFamilies": 1,
+    "uniqueSourceCallbacks": 7,
+    "sourceValueRedThenUnchangedGreen": 6,
+    "nativeMountedFormTests": 5,
+    "nativeFormValueRedThenUnchangedGreen": 4,
+    "nativeStateTests": 7,
+    "nativeStateValueRedCredit": 0,
+    "nativeStateOmissions": "Initial module/Node strip/API fixture failures preceded first7greens; zero causal credit. Actual Node/rawD1 persistence tested; hosted UI still unexecuted."
+  }
 }
