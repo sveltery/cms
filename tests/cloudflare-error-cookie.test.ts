@@ -30,7 +30,7 @@ for (const invalidateSetter of [false, true]) {
       await operator.db.insertInto('_cms_auth_sessions').values({ hash: (await hashSessionToken(token))!, user_id: 'error-cookie-owner', expires_at: Date.now() + 60_000 }).execute();
       const f = fixture(token);
       const original = new Error('original render failure');
-      await assert.rejects(runtime.handle({ event: f.event, resolve: async event => {
+      await assert.rejects(async () => runtime.handle({ event: f.event, resolve: async event => {
         assert.equal(event.locals.cms!.principal!.id, 'error-cookie-owner');
         event.cookies.set('other-cookie', 'preserved', { path: '/' });
         await event.locals.cms!.database.db.insertInto('_cms_auth_users').values({ id: 'committed-before-error', role: Role.SUBSCRIBER, disabled: 0 }).execute();
@@ -40,7 +40,7 @@ for (const invalidateSetter of [false, true]) {
           event.cookies.set = () => { throw new Error('Cannot use cookies.set after the response has been generated'); };
         }
         throw original;
-      } }), cause => cause === original);
+      } }), (cause: unknown) => cause === original);
       assert.ok(await operator.db.selectFrom('_cms_auth_users').select('id').where('id', '=', 'committed-before-error').executeTakeFirst());
       const errorResponse = new Response('error body', { status: 500, headers: { 'x-error-header': 'preserved' } });
       add_cookies_to_headers(errorResponse.headers, f.jar.new_cookies.values());
