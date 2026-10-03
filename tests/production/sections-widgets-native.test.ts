@@ -10,6 +10,7 @@ import { passkeyRuntime } from '../helpers/passkey-runtime.ts';
 import { sourceNamespace } from '../helpers/sections-widgets-namespace.ts';
 import { up as widgetsFixture } from '../../parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/007_widgets.ts';
 import { up as sectionsFixture } from '../../parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/011_sections.ts';
+import { up as removeCategories } from '../../parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/021_remove_section_categories.ts';
 
 for (const target of ['Node', 'D1'] as const) {
   test(`${target}: real section API reports absent storage and preserves reusable content CRUD`, async t => {
@@ -30,6 +31,7 @@ for (const target of ['Node', 'D1'] as const) {
     // Explicit named Source DDL is a test fixture, never canonical startup credit.
     const fixtureDb = database.db.withPlugin(sourceNamespace);
     await sectionsFixture(fixtureDb as unknown as Kysely<unknown>);
+    await removeCategories(fixtureDb as unknown as Kysely<unknown>);
     const content = [{ _type: 'block', _key: 'b1', style: 'h2', children: [{ _type: 'span', _key: 's1', text: 'Reusable hero', marks: [] }], markDefs: [] }];
     const create = await request('/api/sections', 'POST', { slug: 'hero', title: 'Hero Section', content, keywords: ['welcome'] });
     assert.equal(create.status, 201);

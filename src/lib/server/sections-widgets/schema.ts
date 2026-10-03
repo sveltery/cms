@@ -1,4 +1,4 @@
-// Native descriptors preserve Source007_widgets and011_sections DDL semantics.
+// Native descriptors preserve Source007_widgets and final Source011→021 sections DDL.
 // EmDash1.1.0 pin913cb1bb9b7f08c3ff0d258b4420e53835b6a58e, MIT Cloudflare2026; notices/emdash-MIT.txt.
 import { sql, type Kysely, type CompiledQuery } from 'kysely';
 import { migrationObjects, type CmsMigrationProvider } from '../database/migration-provider.ts';
@@ -24,25 +24,17 @@ export function widgetSchemaStatements<DB>(db: Kysely<DB>): CompiledQuery[] {
 }
 export function sectionSchemaStatements<DB>(db: Kysely<DB>): CompiledQuery[] {
   return [
-    db.schema.createTable('_cms_section_categories')
-      .addColumn('id', 'text', c => c.primaryKey())
-      .addColumn('slug', 'text', c => c.notNull().unique())
-      .addColumn('label', 'text', c => c.notNull())
-      .addColumn('sort_order', 'integer', c => c.defaultTo(0))
-      .addColumn('created_at', 'text', c => c.defaultTo(sql`CURRENT_TIMESTAMP`)).compile(),
     db.schema.createTable('_cms_sections')
       .addColumn('id', 'text', c => c.primaryKey())
       .addColumn('slug', 'text', c => c.notNull().unique())
       .addColumn('title', 'text', c => c.notNull())
       .addColumn('description', 'text')
-      .addColumn('category_id', 'text', c => c.references('_cms_section_categories.id').onDelete('set null'))
       .addColumn('keywords', 'text').addColumn('content', 'text', c => c.notNull())
       .addColumn('preview_media_id', 'text')
       .addColumn('source', 'text', c => c.notNull().defaultTo('user'))
       .addColumn('theme_id', 'text')
       .addColumn('created_at', 'text', c => c.defaultTo(sql`CURRENT_TIMESTAMP`))
       .addColumn('updated_at', 'text', c => c.defaultTo(sql`CURRENT_TIMESTAMP`)).compile(),
-    db.schema.createIndex('idx_sections_category').on('_cms_sections').columns(['category_id']).compile(),
     db.schema.createIndex('idx_sections_source').on('_cms_sections').columns(['source']).compile()
   ];
 }

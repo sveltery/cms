@@ -4,6 +4,7 @@ import { OperationNodeTransformer, type IdentifierNode, type RawNode, type Kysel
 import { openSqlite } from '../../../src/lib/server/database/sqlite.ts';
 import { up as widgets } from '../../../parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/007_widgets.ts';
 import { up as sections } from '../../../parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/011_sections.ts';
+import { up as removeCategories } from '../../../parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/021_remove_section_categories.ts';
 class SourceNames extends OperationNodeTransformer {
   protected override transformIdentifier(node: IdentifierNode): IdentifierNode { return { ...node, name: node.name.replace(/^_cms_/, '_emdash_') }; }
   protected override transformRaw(node: RawNode): RawNode {
@@ -20,7 +21,7 @@ export function createDatabase(options: { url: string }): Kysely<SourceTables> {
   return openSqlite(':memory:').db.withTables<SourceTables>().withPlugin(plugin) as unknown as Kysely<SourceTables>;
 }
 export async function runMigrations(db: Kysely<unknown>): Promise<void> {
-  await widgets(db); await sections(db);
+  await widgets(db); await sections(db); await removeCategories(db);
 }
 export async function setupForDialect(dialect: 'sqlite'): Promise<DialectTestContext> {
   const db = createDatabase({ url: ':memory:' });

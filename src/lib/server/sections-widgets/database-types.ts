@@ -2,9 +2,8 @@ import type { Generated } from 'kysely';
 import type { WidgetType } from './widgets/types.ts';
 /** Owned Source-shaped storage fields; canonical CmsTables and migrations remain unchanged. */
 export interface Database {
-  _cms_section_categories: { id: string; slug: string; label: string; sort_order: Generated<number>; created_at: Generated<string> };
   _cms_sections: {
-    id: string; slug: string; title: string; description: string | null; category_id: string | null;
+    id: string; slug: string; title: string; description: string | null;
     keywords: string | null; content: string; preview_media_id: string | null;
     source: Generated<string>; theme_id: string | null; created_at: Generated<string>; updated_at: Generated<string>;
   };

@@ -24,6 +24,6 @@ export default defineConfig({
     include: ['parity/emdash/sections-widgets-source/upstream/packages/admin/tests/components/*.test.tsx'],
     setupFiles: ['tests/helpers/sections-widgets/browser/setup.ts'],
     fileParallelism: false,
-    browser: { enabled: true, provider: playwright(), headless: true, instances: [{ browser: 'chromium' }] }
+    browser: { enabled: true, provider: playwright({ launchOptions: { chromiumSandbox: true, timeout: 30_000 } }), headless: true, instances: [{ browser: 'chromium' }] }
   }
 });

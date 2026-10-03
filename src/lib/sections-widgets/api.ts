@@ -16,7 +16,3 @@ export async function fetchMenus(): Promise<Menu[]> {
   const result = await parseApiResponse<{ items: Menu[] }>(response, 'Failed to fetch menus');
   return result.items;
 }
-export async function fetchSectionCategories(): Promise<unknown[]> {
-  const response = await apiFetch(`${API_BASE}/section-categories`);
-  return parseApiResponse<unknown[]>(response, 'Failed to fetch section categories');
-}
