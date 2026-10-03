@@ -1,0 +1,613 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "runner": "Node 24 built-in test runner",
+  "boundary": "CMS generic service via explicit source-shaped repository/handler/tool host projections; no MCP protocol or Astro runtime execution",
+  "setupAdaptations": [
+    "Canonical migrateCms with real SchemaRegistry; fixtures are created through lifecycleService and actually published where specified, never fake published rows",
+    "Published trash source callbacks run against a supplemental published-status fixture; no translation linkage credit",
+    "Date fixtures set actual canonical created_at through parameterized SQL after lifecycle create, matching source createdAt input, without source handler execution",
+    "Baseline adapters use existing legacy methods only when generic methods are absent, omitting unsupported filter arguments which the legacy parser does not accept; no filter implementation or simulated success",
+    "Runner adds Vitest-compatible less-than-or-equal, regex and ordinary-object prototype comparison; source expressions remain unchanged",
+    "Tool-shaped content_create uses actual lifecycle creation at the baseline to preserve omitted-slug source fixture viability; create callbacks gain no separate creation parity credit. Failed mutations report the actual retained row for diagnostics, without successful mutation simulation."
+  ],
+  "omissions": [
+    "PostgreSQL",
+    "Actual MCP protocol",
+    "Source create-at-published behavior",
+    "Translations and inference",
+    "SEO, bylines, references, media",
+    "Plugins/content access",
+    "Full repository create/status update families"
+  ],
+  "declarations": [
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 319,
+      "label": "should return all content by default",
+      "declarationSha256": "fb3435a1a8c0cef0323d046c134cfce672048dd0c85565185d5260d84296307e",
+      "assertionExpressions": [
+        "expect(result.items).toHaveLength(5)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 325,
+      "label": "should filter by status",
+      "declarationSha256": "4bf89d5e877838ea97c8bebd31bec0bbf0f5988879c67a8cefb89a9e6f51683b",
+      "assertionExpressions": [
+        "expect(result.items).toHaveLength(3)",
+        "expect(result.items.every((item) => item.status === \"published\")).toBe(true)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 334,
+      "label": "should filter by authorId",
+      "declarationSha256": "aa8ca456c5a5aad81df1a75aef6fbb3df06b4bd2e953398805a0349ca4223bf3",
+      "assertionExpressions": [
+        "expect(result.items).toHaveLength(3)",
+        "expect(result.items.every((item) => item.authorId === \"author-1\")).toBe(true)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 343,
+      "label": "should filter by both status and authorId",
+      "declarationSha256": "0adc04191dc5b263a9553b8705e6325e1c9c14408f44b67bd3fdfa4ee73ed872",
+      "assertionExpressions": [
+        "expect(result.items).toHaveLength(2)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 354,
+      "label": "should apply limit",
+      "declarationSha256": "29eaf6a951368abb920332e2d25bed1d42c23f9e938b44883c3ab22cd7291af9",
+      "assertionExpressions": [
+        "expect(result.items).toHaveLength(2)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 360,
+      "label": "should support cursor pagination",
+      "declarationSha256": "94d43a1ec973dcdc8cc0eb7bb8fa0b0bbbf773c720350ec5e92f95c2f7ed4959",
+      "assertionExpressions": [
+        "expect(page1.items).toHaveLength(2)",
+        "expect(page1.nextCursor).toBeDefined()",
+        "expect(page2.items).toHaveLength(2)",
+        "expect(page1Ids).not.toEqual(page2Ids)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 377,
+      "label": "should not include nextCursor when no more items",
+      "declarationSha256": "c23dba74c66904413617bcb5fef04c2e4426bbe7770984065e0119c205474396",
+      "assertionExpressions": [
+        "expect(result.items).toHaveLength(5)",
+        "expect(result.nextCursor).toBeUndefined()"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 384,
+      "label": "should order by createdAt desc by default",
+      "declarationSha256": "63c91fa27a1f085657f55582743fd16622b6a248893f4fbe0b2ccf74dfefa242",
+      "assertionExpressions": [
+        "expect(result.items[i - 1].createdAt >= result.items[i].createdAt).toBe(true)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 393,
+      "label": "should support custom ordering",
+      "declarationSha256": "4d77547883bc2b7ff470f80d66b771b66f3e41dc8e11ca552391c6282953be82",
+      "assertionExpressions": [
+        "expect(result.items[i - 1].createdAt <= result.items[i].createdAt).toBe(true)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 407,
+      "label": "should default limit to 50",
+      "declarationSha256": "4a660e9d39db7e58fcc100592eb1b2b80a08b84577f110d7f450fe27327295e8",
+      "assertionExpressions": [
+        "expect(result.items.length).toBeLessThanOrEqual(50)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 421,
+      "label": "should cap limit at 100",
+      "declarationSha256": "0a0b905648989e339c4b7ac55867d6d67fecf7538b711a77c3cb01cdba362ccb",
+      "assertionExpressions": [
+        "expect(result.items.length).toBeLessThanOrEqual(100)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 428,
+      "label": "should not include soft-deleted content",
+      "declarationSha256": "a449948447addf037a10842f18487657735847815c4602b0ba346a9fdc302c63",
+      "assertionExpressions": [
+        "expect(result.items.every((item) => item.id !== toDelete.id)).toBe(true)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 441,
+      "label": "should return empty array when no items match",
+      "declarationSha256": "d2d0630d108a03d87abe1256f8f035f076aaf8db93dc083761c9c19bd9c0519b",
+      "assertionExpressions": [
+        "expect(result.items).toEqual([])",
+        "expect(result.nextCursor).toBeUndefined()"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 850,
+      "label": "reports total rows regardless of limit",
+      "declarationSha256": "5ed41bf946fff3d1155df1cc23d4555d39f6bf0aba1b5bc5dd9f86b580e1f080",
+      "assertionExpressions": [
+        "expect(result.items).toHaveLength(2)",
+        "expect(result.total).toBe(5)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 857,
+      "label": "total respects the where clause",
+      "declarationSha256": "f249475804ce2106d3890f930f6fc1949315c82cd67c60abdc071856866dd77a",
+      "assertionExpressions": [
+        "expect(result.total).toBe(3)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 866,
+      "label": "total stays stable across cursor pages",
+      "declarationSha256": "1d2aee2b529fe472045e54026a2eb92a6604ffb27463ea140fb03e738f99d790",
+      "assertionExpressions": [
+        "expect(page1.total).toBe(5)",
+        "expect(page2.total).toBe(5)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 1121,
+      "label": "should count all content of a type",
+      "declarationSha256": "51fba561c23aa286afd4dcb961cfb4b3ae716a33668fcf5ba864ea0cf42f6592",
+      "assertionExpressions": [
+        "expect(count).toBe(10)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 1127,
+      "label": "should count by status",
+      "declarationSha256": "33a065357409e51b05566373f16d2c1223c46552663c1e8ff894a50b31c0fb9f",
+      "assertionExpressions": [
+        "expect(count).toBe(5)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 1133,
+      "label": "should count by authorId",
+      "declarationSha256": "bf530f71f64795799ec5d3edd67a943b9ba944890bc46add5bf264414d4ccc5d",
+      "assertionExpressions": [
+        "expect(count).toBe(5)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 1139,
+      "label": "should count by both status and authorId",
+      "declarationSha256": "763508d8f29a0d57909439d815acf3811119b66e7e8726bd0e52aa03dc64e251",
+      "assertionExpressions": [
+        "expect(count).toBe(3)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 1149,
+      "label": "should return 0 when no items match",
+      "declarationSha256": "5e8d061f4569285b649354c04f7ed4140a46474bc50d9fe30c2c2c55425b4c3b",
+      "assertionExpressions": [
+        "expect(count).toBe(0)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/database/repositories/content.test.ts",
+      "blob": "d324b01d391f8a598cf837d7f0ad645e0bb0a88f",
+      "line": 1155,
+      "label": "should not count soft-deleted content",
+      "declarationSha256": "289287a507d1430df2adcd7166123408fa73b7b4b90127820239bd9ec09d4ddd",
+      "assertionExpressions": [
+        "expect(count).toBe(10)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "line": 92,
+      "label": "filters by author",
+      "declarationSha256": "7173e9b6af5e560188f830f85d3ed34ef54b34c7122c4638f01b90155fc3acf6",
+      "assertionExpressions": [
+        "expect(slugs).toEqual([\"y2023\", \"y2025\"])",
+        "expect(result.data.total).toBe(2)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "line": 101,
+      "label": "passes indexed custom-field filters through the list handler",
+      "declarationSha256": "46c9e00a125d252d7afbc44fe76da93722f24a1b6dc6d8925fec5dbbb69ba850",
+      "assertionExpressions": [
+        "expect(slugsOf(result).toSorted()).toEqual([\"y2024\", \"y2025\"])",
+        "expect(result.data.total).toBe(2)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "line": 111,
+      "label": "reports a missing collection the same way with and without field filters",
+      "declarationSha256": "ebd223ab7a9c39bc6c78985ab4b79f44f15484656165d917116a1a80a9cb913c",
+      "assertionExpressions": [
+        "expect(withFilters.success).toBe(false)",
+        "expect(withoutFilters.success).toBe(false)",
+        "expect(withFilters.error.code).toBe(\"COLLECTION_NOT_FOUND\")",
+        "expect(withFilters.error.code).toBe(withoutFilters.error.code)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "line": 124,
+      "label": "reports a missing collection ahead of an invalid field filter name",
+      "declarationSha256": "4ce8bf8fb60b3bea220998a416d90212edd4ca00451004f4b480dae5ecdede9b",
+      "assertionExpressions": [
+        "expect(result.success).toBe(false)",
+        "expect(result.error.code).toBe(\"COLLECTION_NOT_FOUND\")"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "line": 134,
+      "label": "reports a missing collection ahead of an oversized filter set",
+      "declarationSha256": "52ddda494d48f1aa500b62a52990f174a910e6a7b3197cc5e48d1485cdd96b9b",
+      "assertionExpressions": [
+        "expect(result.success).toBe(false)",
+        "expect(result.error.code).toBe(\"COLLECTION_NOT_FOUND\")"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "line": 145,
+      "label": "rejects an oversized filter set on a collection that exists",
+      "declarationSha256": "2b5eedc4f470361768cfd24f261722ce0362bf500a0836668d78b4305492600f",
+      "assertionExpressions": [
+        "expect(result.success).toBe(false)",
+        "expect(result.error.code).toBe(\"VALIDATION_ERROR\")"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "line": 156,
+      "label": "rejects an invalid field filter name on a collection that exists",
+      "declarationSha256": "8c1d0e01bb55807a1c849bafd0f8a9889bbd9b72725198ac8927e09d5b2374fa",
+      "assertionExpressions": [
+        "expect(result.success).toBe(false)",
+        "expect(result.error.code).toBe(\"VALIDATION_ERROR\")"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "line": 176,
+      "label": "filters by an inclusive createdAt date range",
+      "declarationSha256": "c874c01d2ee077344a3c8468f726791eef50886e2530b9329afe317ed0b97be1",
+      "assertionExpressions": [
+        "expect(slugsOf(result)).toEqual([\"y2024\"])"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "line": 185,
+      "label": "normalizes offset-bearing date bounds before comparing canonical storage",
+      "declarationSha256": "8cf1ec6895ab98906115a4318ee0f20cb4dfe07a9a46c074c36d7e254152aadf",
+      "assertionExpressions": [
+        "expect(slugsOf(result)).toEqual([\"y2024\"])"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "line": 194,
+      "label": "includes a boundary timestamp when the upper bound is end-of-day",
+      "declarationSha256": "5e6a222270ff14e34a5b4a1666340d4eda60d310717cbab5abde3a980660c19b",
+      "assertionExpressions": [
+        "expect(slugsOf(result)).toEqual([\"y2025\"])"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "line": 204,
+      "label": "treats a date-only upper bound as inclusive of the whole day",
+      "declarationSha256": "23419ad7bca655d629827683e5a3f2be2178b3c05891034d7707b7416abb7a68",
+      "assertionExpressions": [
+        "expect(slugsOf(result)).toEqual([\"y2024\"])"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "line": 216,
+      "label": "supports an open-ended (from-only) range",
+      "declarationSha256": "67c1e5348cf95b57bef1c42f23e2ea0636314aae8dfec78bec47df04f62b150f",
+      "assertionExpressions": [
+        "expect(slugsOf(result).toSorted()).toEqual([\"y2024\", \"y2025\"])"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "line": 224,
+      "label": "combines author and date range filters",
+      "declarationSha256": "140b1178825346fe7cac39bcd88230e6999a306614278ab137b5c3562a448b9f",
+      "assertionExpressions": [
+        "expect(slugsOf(result)).toEqual([\"y2025\"])"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "line": 233,
+      "label": "ignores a date range with no field",
+      "declarationSha256": "106f0a45a7e05661f09bd660f3c84359d54b191957650f6ddd95ca4476da3815",
+      "assertionExpressions": [
+        "expect(slugsOf(result)).toHaveLength(3)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76",
+      "line": 242,
+      "label": "a publishedAt range excludes never-published rows",
+      "declarationSha256": "0118079530da76cebab62711d5ccf01de924e0b4ac828bf6c1003b177a613ed8",
+      "assertionExpressions": [
+        "expect(slugsOf(result)).toHaveLength(0)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/trash-locale-filter.test.ts",
+      "blob": "49f5ea1a533750f2c1a6b7bf78d12c468030c6e6",
+      "line": 57,
+      "label": "lists only the trashed entries in the requested locale",
+      "declarationSha256": "112d67a941d78ee310491faa9496d411fe09dfad8ee1b4a42f2dce8a30eadbd4",
+      "assertionExpressions": [
+        "expect(result.success).toBe(true)",
+        "expect(result.data.items.map((item) => item.slug)).toEqual([\"hello-fr\"])"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/trash-locale-filter.test.ts",
+      "blob": "49f5ea1a533750f2c1a6b7bf78d12c468030c6e6",
+      "line": 65,
+      "label": "lists every locale when no locale is given",
+      "declarationSha256": "b6d068916f45ecfae9ea746b5e61738c715f0e1b3a000e100dbd765e5774163f",
+      "assertionExpressions": [
+        "expect(result.success).toBe(true)",
+        "expect(new Set(result.data.items.map((item) => item.slug))).toEqual(\n\t\t\tnew Set([\"hello-en\", \"hello-fr\", \"hallo-de\"]),\n\t\t)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/trash-locale-filter.test.ts",
+      "blob": "49f5ea1a533750f2c1a6b7bf78d12c468030c6e6",
+      "line": 75,
+      "label": "returns each item's locale so the trash list can display it",
+      "declarationSha256": "beeb592931d98ff8e8ecfc99f9def7c428fff45ff024227c176ed44f975e6441",
+      "assertionExpressions": [
+        "expect(result.success).toBe(true)",
+        "expect(result.data.items[0]?.locale).toBe(\"de\")"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/trash-locale-filter.test.ts",
+      "blob": "49f5ea1a533750f2c1a6b7bf78d12c468030c6e6",
+      "line": 83,
+      "label": "counts only the trashed entries in the requested locale",
+      "declarationSha256": "7d4478116d7bbe8891b8deaf8537e248c62dd65f7ac7656abd729adab25e5fdd",
+      "assertionExpressions": [
+        "expect(scoped.success && scoped.data.count).toBe(1)",
+        "expect(all.success && all.data.count).toBe(3)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/drafts.test.ts",
+      "blob": "784519bb37c35c7c3ca7cbb2a89bf4b2919d3bc0",
+      "line": 103,
+      "label": "content_update response data reflects the new title",
+      "declarationSha256": "7954249096528560ff4aa69ebaa4cfab5970917dadaa7bac86c8c2ed4f2e28bd",
+      "assertionExpressions": [
+        "expect(updated.isError, extractText(updated)).toBeFalsy()",
+        "expect(readTitle(updatedItem.item)).toBe(\"Updated\")"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/drafts.test.ts",
+      "blob": "784519bb37c35c7c3ca7cbb2a89bf4b2919d3bc0",
+      "line": 126,
+      "label": "content_get returns the latest draft data after update",
+      "declarationSha256": "cc1672b176bc3d590927a7018fbdfb845584dffc5efac1c2d7ff4689be3bbdb7",
+      "assertionExpressions": [
+        "expect(readTitle(gotItem.item)).toBe(\"Updated via draft\")"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/drafts.test.ts",
+      "blob": "784519bb37c35c7c3ca7cbb2a89bf4b2919d3bc0",
+      "line": 152,
+      "label": "multiple sequential updates all reflect on read",
+      "declarationSha256": "0bcaad73a34625e26929b3e0fd2f65ac23dff18d439538d7ae6187e641c240a0",
+      "assertionExpressions": [
+        "expect(readTitle(extractJson<ItemEnvelope>(got).item)).toBe(\"v4\")"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/drafts.test.ts",
+      "blob": "784519bb37c35c7c3ca7cbb2a89bf4b2919d3bc0",
+      "line": 178,
+      "label": "publishing a draft makes its data the new live data on read",
+      "declarationSha256": "6b8ff2afe6aebd04d6494d6460f0da910a3a164c515dcd71665578a907e38533",
+      "assertionExpressions": [
+        "expect(publishedItem.liveRevisionId).toBe(draftRevisionId)",
+        "expect(publishedItem.draftRevisionId).toBeNull()",
+        "expect(readTitle(extractJson<ItemEnvelope>(got).item)).toBe(\"Draft change\")"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/drafts.test.ts",
+      "blob": "784519bb37c35c7c3ca7cbb2a89bf4b2919d3bc0",
+      "line": 219,
+      "label": "partial updates merge with current draft (only title changes, body preserved)",
+      "declarationSha256": "e607abe8571838a580ae59e1599edc05505b56e4b5ef4182a2bc24f58b717daf",
+      "assertionExpressions": [
+        "expect(readTitle(item)).toBe(\"T2\")",
+        "expect(body).toBe(\"B1\")"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/drafts.test.ts",
+      "blob": "784519bb37c35c7c3ca7cbb2a89bf4b2919d3bc0",
+      "line": 446,
+      "label": "content_update on collection without revisions support reflects on read",
+      "declarationSha256": "fd1928fb926eb9c5e474462a6978257cc515cd1669e9ba2baca1097367305395",
+      "assertionExpressions": [
+        "expect(readTitle(extractJson<ItemEnvelope>(got).item)).toBe(\"Page A Updated\")"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/drafts.test.ts",
+      "blob": "784519bb37c35c7c3ca7cbb2a89bf4b2919d3bc0",
+      "line": 764,
+      "label": "liveData is undefined when there is no draft revision",
+      "declarationSha256": "8e3c19ca7621871ff4d52b9d85cb5cfaceb9663b311cb54aaa815f9df7882f7d",
+      "assertionExpressions": [
+        "expect(item.data.title).toBe(\"First\")",
+        "expect(item.liveData).toBeUndefined()"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/drafts.test.ts",
+      "blob": "784519bb37c35c7c3ca7cbb2a89bf4b2919d3bc0",
+      "line": 782,
+      "label": "liveData carries the published values when a draft revision exists",
+      "declarationSha256": "48037be5bf803e50e0a07512a2552e7cfc89430f9868f475af31db0df660afa8",
+      "assertionExpressions": [
+        "expect(item.data.title).toBe(\"draft title\")",
+        "expect(item.liveData?.title).toBe(\"published title\")"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/content-misc.test.ts",
+      "blob": "6b26daf2af90ba75a063835a8fd6a513a7aea28d",
+      "line": 551,
+      "label": "content_get on a trashed item returns NOT_FOUND (not the item)",
+      "declarationSha256": "fc27e1ef20257661f4e2ecb96ac4e3514d24f91db966998eda27553f25f1ddfd",
+      "assertionExpressions": [
+        "expect(got.isError).toBe(true)",
+        "expect(extractText(got)).toMatch(/\\bNOT_FOUND\\b|\\bnot found\\b/i)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/content-misc.test.ts",
+      "blob": "6b26daf2af90ba75a063835a8fd6a513a7aea28d",
+      "line": 571,
+      "label": "content_list does NOT include trashed items by default",
+      "declarationSha256": "3ac33fad069d95de1a5ed1940f500476f22a7662e286adbe6f88a4c94bd2fe3d",
+      "assertionExpressions": [
+        "expect(ids).not.toContain(trashedId)",
+        "expect(ids).toContain(extractJson<{ item: { id: string } }>(a).item.id)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/content-misc.test.ts",
+      "blob": "6b26daf2af90ba75a063835a8fd6a513a7aea28d",
+      "line": 596,
+      "label": "content_list_trashed returns only trashed items",
+      "declarationSha256": "5453404e6a94c070db3136f908a87d6bcdd9cc9e81a16edd49743af929481498",
+      "assertionExpressions": [
+        "expect(items).toHaveLength(1)",
+        "expect(items[0]?.id).toBe(extractJson<{ item: { id: string } }>(b).item.id)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/content-misc.test.ts",
+      "blob": "6b26daf2af90ba75a063835a8fd6a513a7aea28d",
+      "line": 637,
+      "label": "content_update on a trashed item is rejected (item not visible)",
+      "declarationSha256": "036195f21a2dad13370fe43611a2cfa69f947ca4beebbd48fdcc1d61aab853e7",
+      "assertionExpressions": [
+        "expect(updated.isError).toBe(true)",
+        "expect(extractText(updated)).toMatch(/\\bNOT_FOUND\\b|\\bnot found\\b|trash/i)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/content-misc.test.ts",
+      "blob": "6b26daf2af90ba75a063835a8fd6a513a7aea28d",
+      "line": 664,
+      "label": "content_publish on a trashed item is rejected",
+      "declarationSha256": "6752a3bb9de61a1150908551e5a33adddd731a7690c28056e8fefc3c69e01fa6",
+      "assertionExpressions": [
+        "expect(result.isError).toBe(true)"
+      ]
+    }
+  ],
+  "baseline": {
+    "commit": "5a2923b933f01969d90faf9197ecf4c8385a7731",
+    "command": "node --test tests/content-composition-*-upstream.test.ts",
+    "declarations": 49,
+    "pass": 20,
+    "assertionFailures": 29,
+    "importOrSetupFailures": 0,
+    "log": "/tmp/content-composition-source-first-red.log",
+    "note": "Product source implementations are unchanged. Core catalog totals are not expanded by this local ledger.",
+    "additionalSourceFamily": {
+      "declarations": 5,
+      "pass": 5,
+      "assertionFailures": 0,
+      "log": "/tmp/content-composition-mcp-trash-original-baseline.log",
+      "note": "Additional complete source trash-visibility callbacks pass already on unchanged archived product; they require no implementation change and earn no new test-first failure credit."
+    }
+  }
+}

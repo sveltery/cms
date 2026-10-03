@@ -19,7 +19,7 @@ test('server bridge derives supported settings, schema, content and publication 
   assert.equal(servicePrincipal({ id: '', role: Role.ADMIN }), null);
   assert.equal(servicePrincipal({ id: 'x'.repeat(129), role: Role.ADMIN }), null);
   const admin=servicePrincipal({ id: 'admin', role: Role.ADMIN })!.permissions;
-  assert.deepEqual(admin,['settings:read','settings:manage','schema:read','schema:manage','content:read','content:read_drafts','content:create','content:edit_own','content:edit_any','content:delete_own','content:delete_any','content:publish_own','content:publish_any']);
+  assert.deepEqual(admin,['taxonomies:read','taxonomies:manage','settings:read','settings:manage','schema:read','schema:manage','content:read','content:read_drafts','content:create','content:edit_own','content:edit_any','content:delete_own','content:delete_any','content:publish_own','content:publish_any']);
   const editor=servicePrincipal({id:'editor',role:Role.EDITOR})!.permissions;
   assert.ok(editor.includes('settings:read'));assert.equal(editor.includes('settings:manage'),false);
 

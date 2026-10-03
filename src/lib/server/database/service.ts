@@ -1,4 +1,5 @@
 import * as v from 'valibot';
+import { ordinaryContentService } from './content-service.ts';
 import { editorManifest } from '../content/manifest.ts';
 import { CmsError, type CmsDatabase } from './contract.ts';
 import { DraftRepository } from './entries.ts';
@@ -8,7 +9,7 @@ import { countTrashedDraftInput, createDraftInput, deleteDraftInput, getDraftInp
 
 // Permission names and ownership rules follow EmDash auth/rbac.ts.
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
-export type Permission = 'settings:read' | 'settings:manage' | 'schema:read' | 'schema:manage' | 'content:read' | 'content:read_drafts'
+export type Permission = 'taxonomies:read' | 'taxonomies:manage' | 'settings:read' | 'settings:manage' | 'schema:read' | 'schema:manage' | 'content:read' | 'content:read_drafts'
   | 'content:create' | 'content:edit_own' | 'content:edit_any' | 'content:delete_own' | 'content:delete_any'
   | 'content:publish_own' | 'content:publish_any';
 export interface ServerPrincipal { readonly id: string; readonly permissions: readonly Permission[] }
@@ -55,6 +56,7 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
     return actor.id;
   }
   return {
+    ...ordinaryContentService(database, principal),
     async getEditorManifest() { return editorManifest(database, identity); },
     async listCollections() { requirePermission('schema:read'); return registry.listCollections(); },
     async getCollection(input: unknown) {

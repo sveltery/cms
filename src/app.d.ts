@@ -11,6 +11,8 @@ declare global {
     }
     interface Error { code?: string; details?: { issues: ContentValidationIssue[] } }
     interface Locals {
+      /** Seed configuration supplied only by trusted server composition, never request JSON. */
+      cmsSetupSeed?: import('./lib/server/setup/upstream/types').SeedFile;
       // Explicit adapter injection, populated only by trusted server session composition.
       cms?: { database: CmsDatabase; principal: ServerPrincipal | null; mutationsEnabled?: boolean };
       cmsRuntime?: { readonly publicOrigin: string; readonly basePath: string; readonly rpName: string };

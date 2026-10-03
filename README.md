@@ -10,9 +10,7 @@ Run `sh scripts/bootstrap.sh` for frozen installation, checks, service/developme
 
 No deployment, cloud resources, secrets, or package publishing are part of repository setup.
 
-For a standalone local Node process, use `pnpm build:node` then `HOST=127.0.0.1 PORT=3000 ORIGIN=http://127.0.0.1:3000 SVELTERY_DATABASE_PATH=./data/cms.db pnpm start:node`. The first configured request opens and migrates the persistent file; the exact public origin is trusted host configuration. `pnpm package:node` stages an isolated runtime package for a frozen production-only install. See [the Node hosting contract](docs/node-hosting.md) and [runtime configuration](docs/runtime-composition.md) for commands, source references, packaging contents and limitations. This explicit target leaves default adapter-auto builds intact. Use `/setup` to create the first administrator with a passkey, then `/login` to sign in. The complete site/seed wizard, writable content UI remain unfinished.
-
-For local D1 hosting, use `pnpm build:cloudflare` then `pnpm start:cloudflare`; see the [Cloudflare contract](docs/cloudflare-runtime.md).
+For a standalone local Node process, use `pnpm build:node` then `HOST=127.0.0.1 PORT=3000 ORIGIN=http://127.0.0.1:3000 SVELTERY_DATABASE_PATH=./data/cms.db pnpm start:node`. The first configured request opens and migrates the persistent file; the exact public origin is trusted host configuration. `pnpm package:node` stages an isolated runtime package for a frozen production-only install. See [the Node hosting contract](docs/node-hosting.md) and [runtime configuration](docs/runtime-composition.md) for commands, source references, packaging contents and limitations. This explicit target leaves default adapter-auto builds intact. For local D1 hosting, use `pnpm build:cloudflare` then `pnpm start:cloudflare`; the [Cloudflare contract](docs/cloudflare-runtime.md) documents trusted bindings, local Worker evidence and pending deployment scope. Credential setup/login and writable content UI remain separate features.
 
 With Node.js 24 and pnpm 12.6.0 installed:
 

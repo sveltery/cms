@@ -346,6 +346,95 @@
       "external auth completion",
       "media, bylines, relations, blocks, menus, widgets, sections, redirects seed families"
     ],
-    "redLog": "/tmp/setup-budget-http-red.log"
+    "redLog": "/tmp/setup-budget-http-red.log",
+    "green": {
+      "log": "/tmp/setup-seed-green.log",
+      "sourceExecutions": 2,
+      "nativeSupplemental": 4,
+      "normalBuild": "/tmp/setup-seed-corrected-build.log",
+      "remaining": "Default source taxonomy/search providers are not integrated; broader seed families reject explicitly."
+    }
+  },
+  "seedImplementation": {
+    "classification": "native fixed-statement adapter; zero complete applySeed declaration credit",
+    "source": "packages/core/src/seed/apply.ts",
+    "sourceBlob": "94077bb605bda8b1c61d398ea05e7dd92d62ec78",
+    "behavior": "500-query threshold, actual source ContentRepository lookup, source datetime normalization, atomic row/revision/promotion/prune batch, source write-once site URL and non-fatal setup-state save",
+    "dependencies": {
+      "42": "ca39019c94af1c1890e5655ba8ae9ea868765846",
+      "48": "cef5aa2baaebaad37d898bad1ba36170eedb1277",
+      "45": "19fdd636e7a8eb54c9d9ee9f74af00911641505a",
+      "taxonomy": "09c8f69abfffef672771a1a0dca43fd39cd264f2",
+      "search": "9d794bc7539551f9331e676d1cd43b916d0594f4"
+    },
+    "copiedPureFiles": [
+      {
+        "source": "seed/default.ts",
+        "blob": "f33fdb45b2176e354815417e80fc541d6029b4ad",
+        "substitutions": "MIT/pin header and .ts/native type-only imports"
+      },
+      {
+        "source": "seed/types.ts",
+        "blob": "b36b50ebc6d179d5c25c53dcc2d4ac1d78df19d1",
+        "substitutions": "MIT/pin header and .ts/native type-only imports"
+      },
+      {
+        "source": "storage/types.ts",
+        "blob": "d8ffcd99f9c4c544306d986be7534345442e41be",
+        "substitutions": "MIT/pin header and .ts/native type-only imports"
+      }
+    ],
+    "snapshotRepair": {
+      "redCommit": "89aeeae",
+      "redLog": "/tmp/setup-seed-snapshot-red.log",
+      "greenLog": "/tmp/setup-seed-snapshot-green.log",
+      "greenCount": 8,
+      "behavior": "Initial live revision snapshots actual stored affinities/defaults, omits nulls and decodes object/array-shaped strings exactly as pinned ContentRepository.mapRow; SQL JSON1 inside fixed batch.",
+      "sourceCredit": 0
+    }
+  },
+  "browserGreen": {
+    "head": "c967e93e494926bfd253f5b8028a7edafb6d2fef",
+    "run": 37084572148,
+    "job": 111092077670,
+    "defaultSecured": 64,
+    "nodeSecured": 64,
+    "selectedUnchangedCallbacks": 7
+  },
+  "setupWizard": {
+    "source": "e2e/tests/setup-wizard.spec.ts",
+    "blob": "671da60f7f270994571ed71f7d74ba4339350deb",
+    "completeCallbacks": 6,
+    "callbackBlockSha256": "6462f07843b73466572b0ba9e53c164eaf702baba8dc170a89be457e71bde1f9",
+    "frameworkSubstitutions": [
+      "Astro admin URLs map to native /setup and /dashboard",
+      "each callback owns an actual fresh configured database/server",
+      "source dev-reset/dev-bypass fixture replaced by fresh isolation and ordinary signed credential registration/login",
+      "native action wait3s and whole-case20s; source expectation timeout expressions unchanged"
+    ],
+    "baseline": "pending secured hosted source expectations before wizard UI implementation",
+    "omissions": [
+      "real source dev reset/bypass endpoints",
+      "source PAT refresh fixture",
+      "source Astro React presentation"
+    ]
+  },
+  "dashboard": {
+    "source": "packages/core/tests/unit/api/dashboard-handlers.test.ts",
+    "blob": "1e00d69b67a66bb9d26988bc21c309b87c5448ee",
+    "completeCallbacks": 16,
+    "callbackBlockSha256": "bb77ec90a61ee519e9c30c795ec18c49bd24121f6b6815234602205212704241",
+    "runtimes": [
+      "actual built native HTTP Node",
+      "actual built native HTTP local D1"
+    ],
+    "fixtures": "Complete source createPostFixture/createPageFixture; real canonical empty content database and real source ContentRepository. Authority is current stored admin in separate trusted auth fixture; content storage mounted by trusted test hook, zero product bypass endpoints. Explicit trusted test clock preserves source optional now.",
+    "baseline": "32 genuine unchanged source success assertion failures against actual404 /api/dashboard on Node and local D1; canonical domain fixtures complete before route implementation.",
+    "omissions": [
+      "Astro route/wire registration",
+      "actual media/user seeded domain datasets outside these16callbacks",
+      "deployed scheduler/plugin runtime"
+    ],
+    "redLog": "/tmp/setup-dashboard-http-red.log"
   }
 }
