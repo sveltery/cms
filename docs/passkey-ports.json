@@ -505,7 +505,9 @@
     "tests/production/passkey-parser-source.test.ts",
     "tests/production/passkey-setup-guards-source.test.ts",
     "tests/production/passkey-discoverability-source.test.ts",
-    "tests/browser/passkey-nonresident-shared-bug.spec.ts"
+    "tests/browser/passkey-nonresident-shared-bug.spec.ts",
+    "tests/production/passkey-first-credential-fault-source.test.ts",
+    "tests/cloudflare-hosting/passkey.test.ts"
   ],
   "supplementalParityCredit": 0,
   "sourceExecution": {
@@ -532,6 +534,11 @@
         "script": "scripts/reproduce-passkey-discoverability-upstream.mjs",
         "copiedSourceCredit": 0,
         "boundary": "Seven full pinned hashes; unchanged option-generating algorithms and options handler with explicit DB/parser/rate/framework substitutes. No full source Astro/browser ceremony."
+      },
+      {
+        "script": "scripts/reproduce-passkey-first-credential-fault-upstream.mjs",
+        "copiedSourceCredit": 0,
+        "boundary": "Full pinned hashes; unchanged setup/first-admin/credential/crypto/options code with actual source Node SQLite and SQL abort/reopen. Parser/rate/origin/errors/framework/seed/email and options/challenge DDL substitutes explicit. Recovery guards executed in default no-email/OAuth; optional provider paths and recovery test family inspected, not executed. No full Astro/source D1/process-kill claim."
       }
     ]
   },
@@ -539,6 +546,7 @@
     "Typed-context algorithms are tested but production has no atomic typed-context store/endpoint.",
     "Astro session-driver storage/renewal and full setup site/seed wizard are unported.",
     "The copied runtime suites do not prove deployed Cloudflare, full auth-product parity or first-party credential management.",
-    "Verified shared pinned issue #52: preferred-residency setup can accept a nonresident credential that discoverable-only login cannot find; preserved for a separate explicit bug-fix PR."
+    "Verified shared pinned issue #52: preferred-residency setup can accept a nonresident credential that discoverable-only login cannot find; preserved for a separate explicit bug-fix PR.",
+    "Verified shared pinned issue #54: first-credential persistence failure leaves a first user without a credential or complete flag and default passkey retry returns ADMIN_EXISTS. Preserved for separate explicit hardening; configured email/OAuth recovery is a different source configuration."
   ]
 }
