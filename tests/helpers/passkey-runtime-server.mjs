@@ -18,8 +18,10 @@ if (process.env.CMS_AUTH_TARGET === 'D1') {
   d1 = new Miniflare({ modules: true,
     script: 'export default { fetch() { return new Response("passkey raw D1 runtime fixture"); } }',
     compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0, cf: false,
-    d1Databases: { DB: 'cms-schema-admin' }, d1Persist: process.env.CMS_AUTH_DIRECTORY });
-  platform = { env: { CMS_DB: await d1.getD1Database('DB'), CMS_PUBLIC_ORIGIN: publicOrigin } };
+    d1Databases: { DB: 'cms-schema-admin' }, d1Persist: process.env.CMS_AUTH_DIRECTORY,
+    ...(process.env.CMS_AUTH_MEDIA==='true' ? {r2Buckets:['CMS_MEDIA'],r2Persist:resolve(process.env.CMS_AUTH_DIRECTORY,'media-r2')} : {}) });
+  platform = { env: { CMS_DB: await d1.getD1Database('DB'), CMS_PUBLIC_ORIGIN: publicOrigin,
+    ...(process.env.CMS_AUTH_MEDIA==='true' ? {CMS_MEDIA:await d1.getR2Bucket('CMS_MEDIA')} : {}) } };
 }
 const { manifest } = await built('manifest.js');
 const { Server } = await built('index.js');
