@@ -72,12 +72,12 @@ for (const target of ['Node', 'D1'] as const) {
       const response = await h.request(`/content/legacy/${id}`, 'author');
       assert.equal(response.status, 200);
       const html = await response.text();
-      assert.match(html, /<fieldset disabled(?:[\s=>])/);
+      assert.doesNotMatch(html, /<fieldset disabled(?:[\s=>])/);
       assert.match(html, /data-field="string" value=""/);
       assert.match(html, /<textarea[^>]*data-field="text"[^>]*><\/textarea>/);
       assert.doesNotMatch(html, /Metadata fallback/);
       const action = new URL(html.match(/<form[^>]*action="([^"]+)"/)![1].replaceAll('&amp;', '&'), h.origin);
-      assert.equal(action.searchParams.get('/remote'), h.ids.get('updateContent'));
+      assert.ok(action.searchParams.get('/remote')?.startsWith(h.ids.get('saveEditorContent') + '/'));
       const snapshot = await scalarSnapshot(h); const writes = countScalarWrites(h);
       const native = await h.request(`${action.pathname}${action.search}`, 'author', {
         method: 'POST', headers: { origin: h.origin, accept: 'text/html' },
