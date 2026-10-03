@@ -10,7 +10,7 @@ test('registered picker HTTP lists all collections and real full content across 
     await fixture.registry.createCollection({ slug: 'people', label: 'People', routable: false });
     await fixture.registry.createField('people', { slug: 'full_name', label: 'Full name', type: 'string' });
     const definition = (await fixture.registry.getCollection('people'))!;
-    await fixture.registry.updateCollection('people', { titleField: 'full_name' }, definition.version);
+    await fixture.registry.updateCollection('people', { titleField: 'full_name' }, { version: definition.version, updatedAt: definition.updatedAt });
     for (const locale of ['en', 'fr']) await fixture.mutate('createContent', { collection: 'people', locale, slug: `person-${locale}`, 'data.full_name': `${locale} Person` });
     const collections = await fixture.request('/api/content-picker/collections', 'author');
     assert.equal(collections.status, 200); assert.equal(collections.headers.get('cache-control'), 'private, no-store');

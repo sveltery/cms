@@ -255,5 +255,308 @@
       "kind": "whole-authority",
       "execution": "not-run"
     }
-  ]
+  ],
+  "declarations": [
+    {
+      "source": "packages/admin/tests/components/ContentPickerModal.test.tsx",
+      "line": 45,
+      "title": "disables an entry already linked through another locale variant",
+      "sha256": "cc7873be41766d19cdfbc0b2084ba0ad5160e015ab9019d40b794c5e25d2a7f7",
+      "expectations": []
+    },
+    {
+      "source": "packages/admin/tests/components/ContentPickerModal.test.tsx",
+      "line": 71,
+      "title": "matches by row id when no locale is given (menu picker)",
+      "sha256": "dacf1cca3f716d59a9af2516e9953e0cacc50991aae0c0b4a8c8d4ba2ee60c1b",
+      "expectations": []
+    },
+    {
+      "source": "packages/admin/tests/components/ContentPickerModal.test.tsx",
+      "line": 88,
+      "title": "says the list could not be loaded rather than that the collection is empty",
+      "sha256": "bbdb8acfaca3d5eb43e92776eddccc4ebf27e494278a3826c9111b75c8b23c82",
+      "expectations": [
+        {
+          "line": 106,
+          "expression": "expect(screen.getByText(\"No content in this collection\").query()).toBeNull()",
+          "sha256": "b04862c3cb93599a391b396d889e0dc6899845d72ce25814445dc115ae3ca7a1"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 76,
+      "title": "finds an entry by title token prefix",
+      "sha256": "7f46d93831b7e2e57e965d3adc2ef2f882865a9f0b63ca12c6755c8401e22a2f",
+      "expectations": [
+        {
+          "line": 78,
+          "expression": "expect(titlesOf(result)).toEqual([\"zzz Needle Headline\"])",
+          "sha256": "17951071613f862da3204a65effc29c8dcc2a9658f45aa6c7333b7331e4cbc0e"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 81,
+      "title": "matches case-insensitively",
+      "sha256": "5af92a0b13671a69688b59220b88eb4d2bc0dd58c83958fa793bafd209500829",
+      "expectations": [
+        {
+          "line": 83,
+          "expression": "expect(titlesOf(lower)).toContain(\"zzz Needle Headline\")",
+          "sha256": "4493c21f9dcda126f7efab7afb6e1dfddd65b7b575882031b0aa976c4547b0cc"
+        },
+        {
+          "line": 86,
+          "expression": "expect(titlesOf(upper)).toContain(\"zzz Needle Headline\")",
+          "sha256": "8ef555418057aa408127ebbed8367bb1fbcbd119bd0d5d383b2d5c1aa149a11c"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 89,
+      "title": "matches multi-word prefixes across the title",
+      "sha256": "8626329740eb1a3603e4e88464396775d44e5af995fd0b95ab1854dc77c929a3",
+      "expectations": [
+        {
+          "line": 91,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 94,
+      "title": "finds an entry by slug prefix (slug is not in the FTS index)",
+      "sha256": "26d201e6c97b004b7e3af2e5f7aea883a4a2d66b42c862c4b2acf8850d5b0388",
+      "expectations": [
+        {
+          "line": 96,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 99,
+      "title": "finds an entry by a searchable custom field",
+      "sha256": "b3a3ecf0e1a0c1965e32568a5037e44657ee30eecc22b86fa9d78f08d1eab311",
+      "expectations": [
+        {
+          "line": 101,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 104,
+      "title": "returns a total that matches the filtered set, not the whole table",
+      "sha256": "e651bba9c30278c51176ec48c48af4cd76006a8bbf5cf75d8f87d5d0cd348dcf",
+      "expectations": [
+        {
+          "line": 107,
+          "expression": "expect(result.data.total).toBe(1)",
+          "sha256": "6b155338b2fff029951fa3814d7620c39d5daa89d277da6da9e10109522c8b26"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 110,
+      "title": "treats double quotes in the query literally instead of erroring",
+      "sha256": "fd6e5fbf596025678f506e648616a2c6a3951ea0964ff90af1fb926cda95749d",
+      "expectations": [
+        {
+          "line": 113,
+          "expression": "expect(titlesOf(result)).toContain('He said \"quoted\" loudly')",
+          "sha256": "7e892c2cbf3eadff9e346a907da33f018f4e84ef457c49e142f1a2acf53ee1f5"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 116,
+      "title": "treats FTS operators as plain words",
+      "sha256": "e22b0257a432948fcdf07dd7ded950d0ed770da7f85ea874e94a511c9e3452d6",
+      "expectations": [
+        {
+          "line": 120,
+          "expression": "expect(titlesOf(result)).not.toContain(\"Ordinary Post 0\")",
+          "sha256": "f0cc0ff054f44b79b45827b3dd6407fc45ad17cf0c34754b96a7da6f7c801b90"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 123,
+      "title": "excludes soft-deleted rows (FTS triggers keep the index in sync)",
+      "sha256": "79c61ee60e5f1e9bc5f6e95f255ee0e93c406f30046dc53840f2fb820c9d87d4",
+      "expectations": [
+        {
+          "line": 137,
+          "expression": "expect(after.data.items).toHaveLength(0)",
+          "sha256": "1c718ba3ed0f0c244aa008d08a810a7441f8ff576917dda5e0f92704aa9fdbc9"
+        },
+        {
+          "line": 138,
+          "expression": "expect(after.data.total).toBe(0)",
+          "sha256": "b88bc2ca899b5dfe18d1b6fb6b4c6b125575f1e3bc2e188e9c6c6c549b92d68b"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 172,
+      "title": "still finds title matches via the LIKE fallback",
+      "sha256": "ea9ebfe743e652a6fa9ffdc01061104ebb25ac42c77843f8f6f821fec301391d",
+      "expectations": [
+        {
+          "line": 176,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 179,
+      "title": "searches custom fields through the LIKE fallback",
+      "sha256": "fa0e608ed11599fbf7a66662a59916079e6b65449ba4a5752b83bdfac4fd48a0",
+      "expectations": [
+        {
+          "line": 181,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-title-field.test.ts",
+      "line": 62,
+      "title": "finds an entry by its titleField value, past the first page",
+      "sha256": "70fb3e891ea1f052e17b67b6925628b12c4efa598b7eee26d6631a10b3029487",
+      "expectations": [
+        {
+          "line": 64,
+          "expression": "expect(namesOf(result)).toContain(\"Jane Doe\")",
+          "sha256": "d07c16dc1f68d5c74576b102f4a6c09dec1a71d8fbad7f812dd25926d6236350"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-title-field.test.ts",
+      "line": 67,
+      "title": "matches the titleField case-insensitively",
+      "sha256": "6f6241c4a2d531cbb1bf9fb5f5acd4d96b7c6194235d112a2b04920661356b8b",
+      "expectations": [
+        {
+          "line": 69,
+          "expression": "expect(namesOf(result)).toContain(\"Jane Doe\")",
+          "sha256": "d07c16dc1f68d5c74576b102f4a6c09dec1a71d8fbad7f812dd25926d6236350"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search.test.ts",
+      "line": 64,
+      "title": "finds an entry that lives far past the first page",
+      "sha256": "8dee95ba49964294e760beb81f83fb60dd617e81678a19b1d58d07c353814080",
+      "expectations": [
+        {
+          "line": 66,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search.test.ts",
+      "line": 69,
+      "title": "matches case-insensitively",
+      "sha256": "472247fa4e849af18afeb79c97330e620ab9299c8f829a3efe54f96c6b7be524",
+      "expectations": [
+        {
+          "line": 71,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        },
+        {
+          "line": 74,
+          "expression": "expect(titlesOf(upper)).toContain(\"zzz Needle Headline\")",
+          "sha256": "8ef555418057aa408127ebbed8367bb1fbcbd119bd0d5d383b2d5c1aa149a11c"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search.test.ts",
+      "line": 77,
+      "title": "searches the slug as well as the title",
+      "sha256": "e0b5c038382001870685513c4e91b68e327e6b52599823924a46213f7f971169",
+      "expectations": [
+        {
+          "line": 79,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search.test.ts",
+      "line": 82,
+      "title": "searches custom fields marked searchable",
+      "sha256": "acc89578943f78b6d97525f39dfcfd7aaab79bcc2a4230e9ad7b4f159b396d62",
+      "expectations": [
+        {
+          "line": 84,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search.test.ts",
+      "line": 87,
+      "title": "treats LIKE wildcards in the query literally",
+      "sha256": "cafba49ada9f82b680ff60f5514fc3f45dee13f057b463502fb940b9e2b02783",
+      "expectations": [
+        {
+          "line": 92,
+          "expression": "expect(titles).toContain(\"50% off sale\")",
+          "sha256": "1d87c145d1842376180c6d2e0c318b6ccace8cf74bee4fbd2209d9ae07e33c01"
+        },
+        {
+          "line": 93,
+          "expression": "expect(titles).not.toContain(\"Ordinary Post 0\")",
+          "sha256": "37f8fac830b19bbf21bb00d65ee785d86620feb7b981646cf2a59dd5afa3a3c7"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search.test.ts",
+      "line": 96,
+      "title": "returns the full unfiltered list when no query is given",
+      "sha256": "cae793745cba82b90b2ae74ff5afae22c5009967b00f2cb27c5f53e2f37e84c0",
+      "expectations": [
+        {
+          "line": 100,
+          "expression": "expect(result.data.items).toHaveLength(20)",
+          "sha256": "16dc6eb3cf05ef4e436da733069a094f90dff1e74deda5f2e24d912fcea39743"
+        },
+        {
+          "line": 101,
+          "expression": "expect(result.data.total).toBe(62)",
+          "sha256": "da0f10ffc862296da781a4a92eeead770ce00d274113cf7db51377cb42bd1d74"
+        }
+      ]
+    }
+  ],
+  "testDeclarations": 22,
+  "expectExpressions": 25
 }

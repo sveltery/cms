@@ -22,7 +22,7 @@ export class SchemaRegistry extends NativeRegistry {
   constructor(db: CmsDatabase['db']) { super(bindings.get(db)!); }
   override async updateCollection(slug: string, input: any) {
     const collection = await this.getCollection(slug); if (!collection) throw new Error('Collection not found');
-    return super.updateCollection(slug, input, collection.version);
+    return super.updateCollection(slug, input, { version: collection.version, updatedAt: collection.updatedAt });
   }
 }
 export async function handleContentCreate(db: CmsDatabase['db'], collection: string, input: any) {

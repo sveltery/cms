@@ -13,7 +13,7 @@ async function settle() { for (let i = 0; i < 8; i++) { await Promise.resolve();
 async function render(props: Record<string, any>) { const target = document.createElement('div'); document.body.append(target);
   const state = pickerState({ open: true, onOpenChange: vi.fn(), onConfirm: vi.fn(), ...props });
   instances.push(flushSync(() => mount(Host, { target, props: { state } }))); await settle(); return { target, state }; }
-async function click(target: HTMLElement, title: string) { const button = [...target.querySelectorAll<HTMLButtonElement>('button')].find(button => button.textContent?.trim() === title || button.getAttribute('aria-label') === title);
+async function click(target: HTMLElement, title: string) { const button = [...target.querySelectorAll<HTMLButtonElement>('button')].find(button => button.textContent?.trim() === title || button.getAttribute('aria-label') === title || [...button.children].some(child => child.textContent === title));
   expect(button).toBeDefined(); button!.click(); await settle(); }
 it('locked collection hides the selector and skips collection discovery', async () => {
   const api = client(); const { target } = await render({ collection: 'posts', client: api });
