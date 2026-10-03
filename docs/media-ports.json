@@ -1087,6 +1087,30 @@
       "frozenPath": "parity/emdash/media/source-tests/packages/core/tests/workerd/media-usage-projection-admission-d1.test.ts",
       "status": "inventory-only",
       "executed": false
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/MediaImageCropper.test.tsx",
+      "blob": "30d8de3abd728409cc475290bcd836d1b5bae368",
+      "sha256": "8a81697c52d948f773a275037376f237b416cc329a9df957aeb828b7437da0b4",
+      "frozenPath": "parity/emdash/media/source-tests/packages/admin/tests/components/MediaImageCropper.test.tsx",
+      "status": "inventory-only-before-native-crop-component-implementation",
+      "executed": false
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/MediaDetailPanel.test.tsx",
+      "blob": "c3f4021e501ed5c64b41cf13c23b3919c67c178f",
+      "sha256": "09e5a30be1d31bc33b06b2da4b7a9d4b27963f6d138503b675ddd1f5c96c36e9",
+      "frozenPath": "parity/emdash/media/source-tests/packages/admin/tests/components/MediaDetailPanel.test.tsx",
+      "status": "inventory-only-before-native-crop-component-implementation",
+      "executed": false
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/MediaDetailPanelNavigation.test.tsx",
+      "blob": "7753f437ac881538ca0ba3cc4ac092eea08d1a0f",
+      "sha256": "faaab82bdb226052a9db1e8958bc99ecad97743fb41ae49fcbb45678a5af168b",
+      "frozenPath": "parity/emdash/media/source-tests/packages/admin/tests/components/MediaDetailPanelNavigation.test.tsx",
+      "status": "inventory-only-before-native-crop-component-implementation",
+      "executed": false
     }
   ],
   "runs": [
@@ -1257,12 +1281,19 @@
       "receipt": "parity/emdash/media/evidence/approved-main45-settings109-composition.json",
       "copiedCallbackChanges": 0,
       "futureMediaUsageProvider": 12
+    },
+    {
+      "id": "hosted-crop-before-ui-red",
+      "receipt": "parity/emdash/media/evidence/hosted-crop-before-ui-red.json",
+      "nativeUniqueGenuineAssertionReds": 1,
+      "nativeTargetAssertionExecutions": 2,
+      "copiedSourceAssertionRedCredit": 0
     }
   ],
   "inventoryCounts": {
-    "files": 119,
-    "callbackDeclarations": 1049,
-    "literalExpectCalls": 3109,
+    "files": 122,
+    "callbackDeclarations": 1149,
+    "literalExpectCalls": 3325,
     "productParityCredit": 0
   }
 }
