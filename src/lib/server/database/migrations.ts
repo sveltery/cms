@@ -121,8 +121,9 @@ async function migrationState(database: CmsDatabase): Promise<ValidatedMigration
   // rejected. No DROP/repair runs against an unknown layout.
   for (const object of rows) {
     const name=object.name;
-    if (/^_cms_.*_v[0-9]+$/i.test(name) || (owned.has(name.toLowerCase()) && name !== '_cms_migrations' && !expected.has(name))) throw new CmsError('MIGRATION_REQUIRED');
+    if (/^_cms_.*_v[0-9]+$/i.test(name)) throw new CmsError('MIGRATION_REQUIRED');
     if (object.type==='trigger') continue;
+    if (owned.has(name.toLowerCase()) && name !== '_cms_migrations' && !expected.has(name)) throw new CmsError('MIGRATION_REQUIRED');
     const wanted = expected.get(name);
     if (wanted && (wanted.type !== object.type || normalizeMigrationSql(wanted.sql) !== normalizeMigrationSql(object.sql ?? ''))) throw new CmsError('MIGRATION_REQUIRED');
   }
