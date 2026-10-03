@@ -66,3 +66,25 @@ for (const backend of ['node', 'd1'] as const) {
     });
   }
 }
+
+for (const backend of ['node', 'd1'] as const) {
+  test(`${backend}: menu readiness distinguishes a quoted timestamp default from the SQL expression`, { timeout: 30_000 }, async () => {
+    const worker = backend === 'node' ? undefined : new Miniflare({ modules: true,
+      script: 'export default {fetch() {return new Response("fixture")}}',
+      compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0,
+      d1Databases: { CMS_DB: 'cms-menu-readiness-timestamp-literal' }, cf: false });
+    const storage = worker ? openD1(await worker.getD1Database('CMS_DB')) : openSqlite(':memory:');
+    try {
+      await migrateCms(storage);
+      const wrongDefaults = menuSchemaStatements(storage).map(statement =>
+        sql.raw(statement.sql.replaceAll('DEFAULT CURRENT_TIMESTAMP', 'DEFAULT "CURRENT_TIMESTAMP"')).compile(storage.db));
+      await storage.atomicBatch(wrongDefaults);
+      await sql`INSERT INTO _cms_menus (id, name, label) VALUES ('literal', 'literal', 'Literal')`.execute(storage.db);
+      const row = (await sql<{created_at:string}>`SELECT created_at FROM _cms_menus WHERE id = 'literal'`.execute(storage.db)).rows[0];
+      assert.equal(row.created_at, 'CURRENT_TIMESTAMP');
+      const before = (await sql`SELECT name, type, sql FROM sqlite_master ORDER BY name`.execute(storage.db)).rows;
+      assert.equal(await menuStorageReady(storage), false);
+      assert.deepEqual((await sql`SELECT name, type, sql FROM sqlite_master ORDER BY name`.execute(storage.db)).rows, before);
+    } finally { await storage.close(); await worker?.dispose(); }
+  });
+}
