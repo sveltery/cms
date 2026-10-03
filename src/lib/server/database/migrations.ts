@@ -180,12 +180,16 @@ export async function migrateCms(database: CmsDatabase): Promise<void> {
     sql`DROP TABLE _cms_migrations_v1`.compile(db)
   ];
   statements.unshift(validated.prerequisiteGuard);
+  const providerPreconditions: CompiledQuery[] = [];
   const indexes = state > 0 ? await pendingTrashIndexStatements(database) : [];
   for (const provider of CMS_MIGRATIONS) {
     if (provider.version <= state) continue;
-    statements.push(...await provider.statements(database),
+    const prepared = await provider.prepare?.(database,state);
+    if (prepared) providerPreconditions.push(...prepared.preconditions);
+    statements.push(...(prepared?.statements ?? await provider.statements(database)),
       sql`INSERT INTO _cms_migrations (version) VALUES (${sql.lit(provider.version)})`.compile(db));
   }
+  statements.splice(1,0,...providerPreconditions);
   if (state > 0) statements.push(sql`DELETE FROM _cms_guards WHERE token = 'migration-upgrade'`.compile(db));
   statements.push(...indexes);
   try { await database.atomicBatch(statements); }
