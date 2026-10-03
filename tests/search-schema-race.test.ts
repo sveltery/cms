@@ -25,3 +25,22 @@ for(const target of ['Node','D1'] as const)test(`${target}: a concurrent search 
   assert.equal(await manager.ftsTableExists('notes'),false);
  }finally{await storage.close();}
 });
+for(const target of ['Node','D1'] as const)for(const state of ['unconfigured','disabled'] as const)test(`${target}: concurrent enable cannot leave a ${state} schema change outside the live index`,async()=>{
+ const storage=await schemaAdminStorage(target);try{
+  const database=storage.database;await migrateCms(database);
+  const registry=new SchemaRegistry(database);await registry.createCollection({slug:'notes',label:'Notes',supports:['search']});
+  await registry.createField('notes',{slug:'title',label:'Title',type:'string',searchable:true});
+  const manager=new FTSManager(database.db as unknown as Kysely<Database>);
+  if(state==='disabled'){await manager.enableSearch('notes');await manager.disableSearch('notes');}
+  let raced=false;
+  const writer=new SchemaRegistry({...database,async atomicBatch(statements){
+   if(!raced){raced=true;await manager.enableSearch('notes');}
+   return database.atomicBatch(statements);
+  }});
+  await assert.rejects(()=>writer.createField('notes',{slug:'body',label:'Body',type:'text',searchable:true}),cause=>cause instanceof CmsError&&cause.code==='CONFLICT');
+  assert.equal(await registry.getField('notes','body'),null);
+  assert.equal((await manager.getSearchConfig('notes'))?.enabled,true);
+  assert.equal(await manager.ftsTableExists('notes'),true);
+  assert.deepEqual(await manager.getSearchableFields('notes'),['title']);
+ }finally{await storage.close();}
+});
