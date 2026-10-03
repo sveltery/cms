@@ -211,8 +211,8 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       // already pending for an existing draft. This host binds that consumer
       // to request-lifetime work; conditional acknowledgement preserves a
       // newer queue write while the task is deferred.
-      const queued=await database.db.selectFrom('_cms_revision_prune_queue').select('revision_id')
-        .where('collection','=',value.type).where('entry_id','=',value.id).executeTakeFirst();
+      const queued=(await sql<{revision_id:string}>`SELECT revision_id FROM _cms_revision_prune_queue
+        WHERE collection=${value.type} AND entry_id=${value.id}`.execute(database.db)).rows[0];
       if(queued)prune(value.type,value.id,queued.revision_id);
       return unpublished;
     },

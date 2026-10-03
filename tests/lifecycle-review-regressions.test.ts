@@ -25,8 +25,8 @@ async function fixture(target:'Node'|'D1') {
   const content=new ContentRepository(storage.database.db as any);
   const revisions=new RevisionRepository(storage.database.db as any);
   const flush=async()=>{for(const task of pending.splice(0))await task();};
-  const count=async()=>Number((await storage.database.db.selectFrom('_cms_revisions').select(eb=>eb.fn.countAll().as('n')).where('entry_id','=',initial.id).executeTakeFirstOrThrow()).n);
-  const queue=()=>storage.database.db.selectFrom('_cms_revision_prune_queue').selectAll().where('entry_id','=',initial.id).execute();
+  const count=async()=>Number((await sql<{n:number}>`SELECT COUNT(*) AS n FROM _cms_revisions WHERE entry_id=${initial.id}`.execute(storage.database.db)).rows[0].n);
+  const queue=async()=>(await sql<{revision_id:string}>`SELECT revision_id FROM _cms_revision_prune_queue WHERE entry_id=${initial.id}`.execute(storage.database.db)).rows;
   return {storage,service,content,revisions,key,pending,flush,count,queue};
 }
 for(const target of ['Node','D1'] as const) {
@@ -99,7 +99,7 @@ for(const target of ['Node','D1'] as const) {
       assert.equal(f.pending.length,pendingBefore);
       const current=(await f.content.findById('post',f.key.id))!;assert.equal(current.version,draft.version);
       assert.equal(current.draftRevisionId,draft.draftRevisionId);
-      assert.equal((await sql`SELECT COUNT(*) AS n FROM ec_post WHERE id=${f.key.id}`.execute(f.storage.database.db)).rows[0]?.n,1);
+      assert.equal((await sql<{n:number}>`SELECT COUNT(*) AS n FROM ec_post WHERE id=${f.key.id}`.execute(f.storage.database.db)).rows[0]?.n,1);
     } finally {await f.storage.close();}
   });
 }
