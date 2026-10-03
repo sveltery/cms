@@ -49,7 +49,7 @@ for (const target of ['Node', 'D1'] as const) {
       assert.deepEqual(field('typed').defaultValue, { arbitrary: 2 });
       assert.deepEqual(field('typed').validation, { minLength: 3, maxLength: 4 });
       assert.deepEqual(field('typed').options, { custom: true });
-      assert.equal(field('slug_alias').defaultValue, ''); assert.equal(field('slug_alias').validation, undefined);
+      assert.equal(field('slug_alias').defaultValue, ''); assert.equal(field('slug_alias').validation, null);
     } finally { await h.close(); }
   });
 }
