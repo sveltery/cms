@@ -1,11 +1,12 @@
 import { schemaAdminRemotes } from './schema-admin-remotes.ts';
 import { sql } from 'kysely';
+import {CMS_MIGRATION_VERSION} from '../../src/lib/server/database/migrations.ts';
 
 /** Real built Kit server and persisted database; only trusted runtime composition is test-owned. */
 export async function passkeyRemotes(target: 'Node' | 'D1', publicOrigin?: string) {
   const h = await schemaAdminRemotes(target);
   const markers = await sql<{ version: number }>`SELECT version FROM _cms_migrations ORDER BY version`.execute(h.database.db);
-  if (markers.rows.map(row => row.version).join() !== '1,2,3,4') throw new Error('Canonical identity migration is required');
+  if (markers.rows.map(row => row.version).join() !== Array.from({length:CMS_MIGRATION_VERSION},(_,index)=>index+1).join()) throw new Error('Canonical identity migration is required');
   // Setup source fixtures start with no users; remove this helper's synthetic sessions first.
   await h.database.db.deleteFrom('_cms_auth_sessions').execute();
   await h.database.db.deleteFrom('_cms_auth_users').execute();

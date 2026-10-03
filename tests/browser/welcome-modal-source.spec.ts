@@ -1,6 +1,6 @@
 // Complete immutable EmDash1.1.0 source callback; native page/query fixture only.
 // Copyright2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
-import {test as base,expect} from '@playwright/test';
+import {test as base,expect,type Page,type Route} from '@playwright/test';
 import {stringify} from 'devalue';
 import {passkeyRuntime} from '../helpers/passkey-runtime';
 import {webauthnCredential} from '../helpers/webauthn-credential';
@@ -11,15 +11,15 @@ const MAX_LINE_BOX_OVERLAP_RATIO=0.1;
 const test=base.extend({page:async({page},use)=>{
  const h=await passkeyRuntime('Node');
  const adapted=new Proxy(page,{get(target,key){
-  if(key==='route')return async(pattern,callback)=>{
-   await page.route(pattern===CURRENT_USER_PATTERN?`**/_app/remote/${h.ids.getCurrentUser}`:pattern,route=>callback(new Proxy(route,{get(original,member){
-    if(member==='fulfill')return async(options)=>{const body=JSON.parse(options.body);return original.fulfill({...options,body:JSON.stringify({type:'result',data:stringify({_:body.data})})});};
+  if(key==='route')return async(pattern:Parameters<Page['route']>[0],callback:Parameters<Page['route']>[1])=>{
+   await page.route(pattern===CURRENT_USER_PATTERN?`**/_app/remote/${h.ids.getCurrentUser}`:pattern,(route,request)=>callback(new Proxy(route,{get(original,member){
+    if(member==='fulfill')return async(options:Parameters<Route['fulfill']>[0]={})=>{const body=JSON.parse(String(options.body));return original.fulfill({...options,body:JSON.stringify({type:'result',data:stringify({_:body.data})})});};
     const value=Reflect.get(original,member);return typeof value==='function'?value.bind(original):value;
-   }})));
+   }}),request));
   };
-  if(key==='goto')return async(url,options)=>{
+  if(key==='goto')return async(url:string,options?:Parameters<Page['goto']>[1])=>{
    if(url.startsWith('/_emdash/api/setup/dev-bypass')){
-    const credential=webauthnCredential(h.origin),post=(path,body)=>page.request.post(h.origin+path,{headers:{origin:h.origin},data:body});
+    const credential=webauthnCredential(h.origin),post=(path:string,body:unknown)=>page.request.post(h.origin+path,{headers:{origin:h.origin},data:body});
     let response=await post('/api/setup/admin',{email:'welcome@example.com',name:'Welcome User'});expect(response.status()).toBe(200);let body=await response.json();
     response=await post('/api/setup/admin/verify',{credential:credential.registration(body.data.options.challenge)});expect(response.status()).toBe(200);
     response=await post('/api/auth/passkey/options',{});expect(response.status()).toBe(200);body=await response.json();
@@ -27,8 +27,8 @@ const test=base.extend({page:async({page},use)=>{
     return page.goto(h.origin+'/dashboard',options);
    }return page.goto(url,options);
   };
-  if(key==='waitForURL')return (pattern,options)=>page.waitForURL(pattern===ADMIN_ROOT_PATTERN?/\/dashboard\/?$/:pattern,options);
-  if(key==='waitForSelector')return (selector,options)=>page.waitForSelector(selector==='astro-island:not([ssr])'?'[data-native-dashboard=true]':selector,options);
+  if(key==='waitForURL')return (pattern:Parameters<Page['waitForURL']>[0],options?:Parameters<Page['waitForURL']>[1])=>page.waitForURL(pattern===ADMIN_ROOT_PATTERN?/\/dashboard\/?$/:pattern,options);
+  if(key==='waitForSelector')return (selector:string,options?:Parameters<Page['waitForSelector']>[1])=>page.waitForSelector(selector==='astro-island:not([ssr])'?'[data-native-dashboard=true]':selector,options??{});
   const value=Reflect.get(target,key);return typeof value==='function'?value.bind(target):value;
  }});
  try{await use(adapted);}finally{await h.close();}

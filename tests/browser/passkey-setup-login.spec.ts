@@ -1,9 +1,10 @@
 // Actual configured runtime; real CDP WebAuthn registration/assertion, no seeded identity.
 // Native presentation adaptation of EmDash 1.1.0
 // e2e/tests/passkey-full-setup-virtual-auth.spec.ts:48 and original login/session supplements.
-// Site-title/seed wizard, source headings and Astro navigation are not claimed as a port.
+// Full native site/account/passkey fixture now composes real seed; source Astro navigation and whole auth callback credit remain excluded.
 import { expect, test } from '@playwright/test';
 import { passkeyRuntime } from '../helpers/passkey-runtime';
+import {completeFullSetup} from '../helpers/full-setup-browser';
 import { addVirtualWebAuthnAuthenticator } from '../helpers/virtual-authenticator';
 import { identityAdapter } from '../../src/lib/server/auth/identity-store';
 import { verifyAuthenticationResponse } from '../../src/lib/server/auth/vendor/passkey/authenticate';
@@ -28,10 +29,7 @@ for (const repetition of [1, 2, 3]) test(`real passkey setup then login persists
   });
   try {
     await page.goto(`${h.origin}/setup`);
-    await expect(page.getByLabel('Email')).toBeVisible({ timeout: 3_000 });
-    await page.getByLabel('Email').fill('virtual-auth@example.com');
-    await page.getByLabel('Name', { exact: true }).fill('Virtual Auth User');
-    await page.getByRole('button', { name: 'Create administrator and passkey' }).click();
+    await completeFullSetup(page,'virtual-auth@example.com','Virtual Auth User');
     await expect(page).toHaveURL(`${h.origin}/login`, { timeout: 30_000 });
     const db = await h.database();
     expect((await db.db.selectFrom('_cms_auth_users').selectAll().execute())).toHaveLength(1);
