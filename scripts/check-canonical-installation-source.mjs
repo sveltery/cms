@@ -1,0 +1,81 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
+import ts from 'typescript';
+
+const root = fileURLToPath(new URL('..', import.meta.url));
+const snapshot = resolve(root, 'parity/emdash/canonical-installation/source');
+const pin = '913cb1bb9b7f08c3ff0d258b4420e53835b6a58e';
+const digest = bytes => createHash('sha256').update(bytes).digest('hex');
+const read = path => readFileSync(resolve(root, path));
+const inventory = JSON.parse(read('docs/canonical-installation-source.json'));
+assert.equal(inventory.sourcePin, pin);
+assert.equal(inventory.publicBase, '37d5ed93a553c6ddef86c50a0eb596acbc9da63b');
+assert.equal(inventory.authorities.length, 38);
+assert.equal(digest(JSON.stringify(inventory.authorities)), 'e302a96d754feffe1d6e6e11230c051a57696a37fefb77253d9494991c90b329');
+for (const authority of inventory.authorities) {
+  const bytes = readFileSync(resolve(snapshot, authority.path));
+  assert.equal(bytes.length, authority.bytes, authority.path + ' complete length');
+  assert.equal(digest(bytes), authority.sha256, authority.path + ' complete SHA256');
+  const blob = createHash('sha1').update(Buffer.from(`blob ${bytes.length}\0`)).update(bytes).digest('hex');
+  assert.equal(blob, authority.gitBlob, authority.path + ' pinned Git blob');
+}
+const licenseHash = 'd5ab82c0225b0def1fa140af22ff2f3bed9791a527545be1b04ab4337dc88675';
+assert.equal(digest(readFileSync(resolve(snapshot, 'LICENSE'))), licenseHash);
+assert.equal(digest(read('notices/emdash-MIT.txt')), licenseHash);
+
+// Compare the ENTIRE Source and product text. Only module-specifier strings
+// and exactly two added attribution lines may differ; no statement slicing.
+function importsNormalized(body, path) {
+  const file = ts.createSourceFile(path, body, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  assert.deepEqual(file.parseDiagnostics, [], path + ' parse');
+  const ranges = [];
+  function visit(node) {
+    if ((ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) &&
+        node.moduleSpecifier && ts.isStringLiteralLike(node.moduleSpecifier)) {
+      ranges.push([node.moduleSpecifier.getStart(file), node.moduleSpecifier.end]);
+    }
+    if (ts.isCallExpression(node) && node.expression.kind === ts.SyntaxKind.ImportKeyword &&
+        node.arguments.length === 1 && ts.isStringLiteralLike(node.arguments[0])) {
+      ranges.push([node.arguments[0].getStart(file), node.arguments[0].end]);
+    }
+    ts.forEachChild(node, visit);
+  }
+  visit(file);
+  ranges.sort((a,b) => a[0]-b[0]);
+  let position = 0;
+  const normalized = ranges.map(([start,end],index) => {
+    const text = body.slice(position,start) + JSON.stringify(`__source_import_${index}__`);
+    position = end;
+    return text;
+  }).join('') + body.slice(position);
+  return {normalized,imports:ranges.length};
+}
+const runtime = [
+  ['src/lib/server/options/repository.ts','packages/core/src/database/repositories/options.ts'],
+  ['src/lib/server/options/conditional-storage.ts','packages/core/src/plugins/conditional-storage.ts'],
+  ['src/lib/server/taxonomies/repository.ts','packages/core/src/database/repositories/taxonomy.ts'],
+  ['src/lib/server/taxonomies/definitions.ts','packages/core/src/database/repositories/taxonomy-def.ts'],
+  ['src/lib/server/taxonomies/slugify.ts','packages/admin/src/slugify.ts']
+];
+for (const [native,source] of runtime) {
+  const text = read(native).toString();
+  const lines = text.split('\n');
+  assert.equal(lines[0], '// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.');
+  assert.ok(lines[1].includes(pin + ':' + source), native + ' full Source attribution');
+  const product = importsNormalized(lines.slice(2).join('\n'),native);
+  const reference = importsNormalized(readFileSync(resolve(snapshot,source),'utf8'),source);
+  assert.deepEqual(product,reference,native + ' entire import-adapted Source body');
+}
+const selected = 'packages/core/tests/integration/database/taxonomy-repository-pagination.test.ts';
+const protectedFamilies = [
+  'packages/core/tests/integration/database/options-repository.test.ts',
+  'packages/core/tests/integration/database/plugin-storage-revisions-migration.test.ts',
+  'packages/core/tests/utils/plugin-storage-revision-cases.ts'
+];
+const config = read('vitest.canonical-installation.config.ts').toString();
+assert.ok(config.includes("include: ['parity/emdash/canonical-installation/source/" + selected + "']"));
+for (const path of protectedFamilies) assert.equal(config.includes(path),false,path + ' remains unexecuted');
+console.log('Canonical source guard:38 whole pinned authorities, MIT and5 whole runtime bodies exact; only the whole pagination2-callback/6-expression family selected. Protected whole families remain unexecuted. This byte check grants zero product/test parity credit.');

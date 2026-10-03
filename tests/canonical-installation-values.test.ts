@@ -117,6 +117,9 @@ for (const target of storageTargets) {
       assert.deepEqual((await sql`SELECT * FROM operator_audit`.execute(h.database.db)).rows, []);
       await sql`UPDATE _cms_fields SET label='Updated' WHERE slug='name'`.execute(h.database.db);
       assert.deepEqual((await sql<{message:string}>`SELECT * FROM operator_audit`.execute(h.database.db)).rows.map(row => ({...row})), [{message:'it\'s  "preserved"'}]);
+      // Keep the physical content layout coherent when exercising the new
+      // metadata FK directly; provider5 correctly refuses orphan ec tables.
+      await sql`DROP TABLE ec_preserved`.execute(h.database.db);
       await sql`DELETE FROM _cms_collections WHERE slug='preserved'`.execute(h.database.db);
       assert.deepEqual(await metadata(h.database), []);
       await h.reopen();

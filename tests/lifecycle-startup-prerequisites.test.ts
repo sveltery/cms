@@ -2,6 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { sql } from 'kysely';
+import { installCanonicalPublicVersion5 } from './helpers/canonical-installation/public-v5.ts';
 import { CMS_MIGRATIONS, migrateCms } from '../src/lib/server/database/migrations.ts';
 import type { CmsDatabase } from '../src/lib/server/database/contract.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
@@ -21,7 +22,7 @@ async function prepare(database:CmsDatabase,version:number) {
   }
   if (version===4) {await installVersion4(database);await legacyPost(database);}
   if (version===5) {
-    await migrateCms(database);
+    await installCanonicalPublicVersion5(database);
     await new SchemaRegistry(database).createCollection({slug:'post',label:'Posts'});
     await sql`DROP INDEX idx_ec_post_deleted_status`.execute(database.db);
   }
