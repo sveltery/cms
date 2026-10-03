@@ -227,7 +227,7 @@
       "blob": "a03b630f27c0ea262d11e5b60c176852693bfeb7",
       "sha256": "55c0dc479ebc6af90c3017e2cfff2d365b689115b70eb8e6e5daf70cb46b1b3d",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/workerd/block-type-registry-d1.test.ts",
-      "state": "committed immutable source; not yet executed / owning runtime family explicit",
+      "state": "whole six callbacks passed through native Node Vitest and actual asynchronous workerd/D1 binding; baseline green, zero causal red or Cloudflare Vitest-pool parity credit",
       "declarations": [
         {
           "title": "resumes when the version table is missing after a partial migration",
@@ -252,7 +252,7 @@
       "blob": "3d44d6ec2516c97d8ce8ddb1bc92eaa027495abc",
       "sha256": "fa1e10e6c58532bf3336a74a239ef9e7e6c4b5c66696f46a65e5b7bf0d756988",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/workerd/blocks-content-d1.test.ts",
-      "state": "committed immutable source; not yet executed / owning runtime family explicit",
+      "state": "whole six callbacks passed through native Node Vitest and actual asynchronous workerd/D1 binding; baseline green, zero causal red or Cloudflare Vitest-pool parity credit",
       "declarations": [
         {
           "title": "normalizes and updates versioned block values",
@@ -272,7 +272,7 @@
       "blob": "f5e0c40dad73a74b5132019fa937434afe58c7c2",
       "sha256": "b51713d277200e2e26e6fe16d1e35a83db8b80c56ce5ce5cebeb7f48de9c6a97",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/workerd/blocks-seed-d1.test.ts",
-      "state": "committed immutable source; not yet executed / owning runtime family explicit",
+      "state": "whole six callbacks passed through native Node Vitest and actual asynchronous workerd/D1 binding; baseline green, zero causal red or Cloudflare Vitest-pool parity credit",
       "declarations": [
         {
           "title": "applies exact retained versions and active pointer idempotently",
@@ -1242,7 +1242,7 @@
       "blob": "012a85fa4169f4497188a17705e80c567b24cf18",
       "sha256": "2cb0b983789e12c3ffc9f947963bdbe85ece34f5077d5d78785fb1fe8e392655",
       "copiedPath": "parity/emdash/blocks/source-tests/packages/admin/tests/lib/datetime-local.test.ts",
-      "state": "whole immutable callbacks imported before helper integration; host unresolved, zero behavioral red credit",
+      "state": "whole nine expanded callbacks pass on complete byte-identical pinned helper; baseline green, zero causal red credit",
       "declarations": [
         {
           "title": "returns empty for non-string and empty values",
@@ -1286,6 +1286,706 @@
         }
       ],
       "literalExpectCalls": 12
+    },
+    {
+      "path": "packages/admin/tests/components/ContentEditor.test.tsx",
+      "blob": "ce4890bec449d547a5ab53c7eaf1c6302cd7af54",
+      "sha256": "4c14f1c91700aa780c2ea2273e4b8bf05fd6f68b1b887c2b75bdd1c4959c8de4",
+      "copiedPath": "parity/emdash/blocks/source-tests/packages/admin/tests/components/ContentEditor.test.tsx",
+      "state": "whole immutable file imported; blocks autosave callback3090–3178 requires actual native editor host; other callbacks owned by broader editor families, zero runtime/red credit",
+      "declarations": [
+        {
+          "title": "uses a task-oriented placeholder for portable text fields",
+          "line": 257,
+          "callbackSha256": "dc038b91bcf345bf0e99293c4d12b87f34695d139d6d8df66a8796bfbf1a977b"
+        },
+        {
+          "title": "blocks manual save and autosave while a Portable Text field has unsupported marks",
+          "line": 267,
+          "callbackSha256": "eeff25d2826cd763a2df5d32e0c8ca9b37002499d9ba1d707864a328bc0f9b8b"
+        },
+        {
+          "title": "makes an entry read-only when its schema contains an unsupported field type",
+          "line": 309,
+          "callbackSha256": "0edb9804f0cccd227be9b45641531813b65ff7cff219f5e1decfb633a67689c3"
+        },
+        {
+          "title": "uses one label and spacing rhythm across editor field types",
+          "line": 342,
+          "callbackSha256": "267f63a979cd61b4938983752d01306d45b32c2081594f0c3a0d9728ade08a2e"
+        },
+        {
+          "title": "shows featured image guidance in the shared instant help tooltip",
+          "line": 372,
+          "callbackSha256": "0a09f85ce5d87bc3c6ce2c9378ea84dfc3099d5e40ea735ca587ec1fab89fb7b"
+        },
+        {
+          "title": "auto-opens the sheet for a block panel below lg and re-closes it after",
+          "line": 420,
+          "callbackSha256": "e67d48257d175c833b5b2a58c89e3ca0eba6af75672e5c691c18b61e6cccb05c"
+        },
+        {
+          "title": "keeps the sheet closed for block panels in distraction-free mode",
+          "line": 455,
+          "callbackSha256": "d358d1a1ccfba6d91318452719e80ed5bb99e6bea6fdfef115eddc46f65bf757"
+        },
+        {
+          "title": "closes the sheet but keeps the block panel when crossing to desktop",
+          "line": 486,
+          "callbackSha256": "db562fa34c92856c41ad0a1c4023ac93dc3a64dff3eccf24341c96453a701b6b"
+        },
+        {
+          "title": "auto-generates slug from title for new items",
+          "line": 512,
+          "callbackSha256": "eeaf24ed7034ecc0a274cbba9a1ac3054f7a083caf5653888c81518adadfe01f"
+        },
+        {
+          "title": "slug accepts manual override",
+          "line": 521,
+          "callbackSha256": "fd7d75eb862bcaaca66415d4776fb6dced5c77601341d650551f4936cea3a3eb"
+        },
+        {
+          "title": "slug is editable for new items",
+          "line": 533,
+          "callbackSha256": "b8fc8552d91cedec418da2deed1af90b75ba090e54b0ab8b6bd303bb3a161a03"
+        },
+        {
+          "title": "renders string fields as text inputs",
+          "line": 541,
+          "callbackSha256": "25fcb28f37e18125daf4d652a9fbc7e9110f4aaabebdc4b0bf7b4e26772eab7f"
+        },
+        {
+          "title": "renders boolean fields as switches",
+          "line": 549,
+          "callbackSha256": "377ea6990774942a7e67596f0d031adb31c985d59bd732738f6bc559f8bba24c"
+        },
+        {
+          "title": "renders number fields as number inputs",
+          "line": 557,
+          "callbackSha256": "5677e24664cc4eed0f7949ba15b4c788a31c42e875c3c3dea29e9b9f9b954d1b"
+        },
+        {
+          "title": "renders select fields as select dropdowns",
+          "line": 565,
+          "callbackSha256": "ceb7a337b1e5cf3a0cd056f0e1dda7b60cc6d318bf36964c84abc3e4cd770f73"
+        },
+        {
+          "title": "renders multiSelect fields as checkbox group",
+          "line": 583,
+          "callbackSha256": "0fae614401cabff777ba1688835754a7be39834ed0bbec2dc310360e6e32bd11"
+        },
+        {
+          "title": "toggling a multiSelect checkbox updates the saved value",
+          "line": 605,
+          "callbackSha256": "a54f19f6c0559ba9587b638adc02bd3bd6c073f67020d506fee9aa87310a4f7e"
+        },
+        {
+          "title": "saves %j in a url field as %j",
+          "line": 652,
+          "callbackSha256": "3907e0042ee7a0b2554330a9293eb6165f867673e796907bd28f001492e51696"
+        },
+        {
+          "title": "refuses to save %j in a url field",
+          "line": 682,
+          "callbackSha256": "bc139434b6decb4746b1b12305dad6846712c3ab2cdddb2c28eec13e6cf74f98"
+        },
+        {
+          "title": "keeps URL values left-to-right inside an RTL editor",
+          "line": 706,
+          "callbackSha256": "a0f794010d8ea07a55fe4ad22e280bbebca30ec1296176a28fe999d59beeb2e6"
+        },
+        {
+          "title": "multiSelect checkboxes reflect existing values",
+          "line": 724,
+          "callbackSha256": "fd6b86e99b88340e49b486d48bb2d93287cc9fae69e07f73b6e47a302471ce00"
+        },
+        {
+          "title": "renders file fields with a Select file button (not a plain text input)",
+          "line": 755,
+          "callbackSha256": "78c40d1ece27f15d8c43e69fab608d4f9fdc4c938cb9dbfed0feb4a014138465"
+        },
+        {
+          "title": "renders existing file field values as a filename, not a text input",
+          "line": 780,
+          "callbackSha256": "ea9ebc3a93658fd1a85ac8c69cc3cdec43edb134469eba09afe7a4aac79c5cb7"
+        },
+        {
+          "title": "renders 0-byte file size instead of hiding it",
+          "line": 810,
+          "callbackSha256": "b5e8487a83f5ccb324508a4049e14036c23280d486239f4da238a32beda9a402"
+        },
+        {
+          "title": "falls back to value.src and then value.id for local files without meta.storageKey",
+          "line": 840,
+          "callbackSha256": "6b33f03de149db6364d570ad283b8efb1acc3072ed0799f0999e3e9ec92cb64a"
+        },
+        {
+          "title": "renders a legacy external file URL when src is absent",
+          "line": 894,
+          "callbackSha256": "945cf97999b56384ce8d48cc5e00bf19076e106e72ac179c998a07b4f6fcd496"
+        },
+        {
+          "title": "does not trust external URLs on local file snapshots",
+          "line": 922,
+          "callbackSha256": "569d51503511ffd0954717eb39cd7e5a188c7dc4515107ce435c6e9d6a030acf"
+        },
+        {
+          "title": "does not render data: or javascript: URLs from external providers as links",
+          "line": 949,
+          "callbackSha256": "07237509172d72dcd99eae0fdb114e888c3752bcf06adcebc9db00ec2b6a2343"
+        },
+        {
+          "title": "encodes path-unsafe characters in storageKey when building the local URL",
+          "line": 984,
+          "callbackSha256": "894f7df58db1543e947d879949f87b618437ac9991bed3a284b2ac3c326929cf"
+        },
+        {
+          "title": "Remove button clears the file field value",
+          "line": 1015,
+          "callbackSha256": "383119c4b0e393e235aaa7f383887081f9f9277b8314720a9083f1ed069b167f"
+        },
+        {
+          "title": "renders datetime fields as datetime-local inputs",
+          "line": 1053,
+          "callbackSha256": "26a5e73de07488c8d05db586a0a654397f6d3f8a4d623e0740438b0b70a08649"
+        },
+        {
+          "title": "displays a stored ISO datetime in the datetime-local input",
+          "line": 1061,
+          "callbackSha256": "928193ad9cf7a00213342e0efb380f97f0e112db505eaad75be7251d24eafe36"
+        },
+        {
+          "title": "saves datetime fields back as full ISO 8601 with Z and milliseconds",
+          "line": 1080,
+          "callbackSha256": "b65a25924dd2764dead34e39a328cb807c2c1a6cd7d51ed68842d82daea342a3"
+        },
+        {
+          "title": "renders json fields as a textarea",
+          "line": 1112,
+          "callbackSha256": "2306cbfa70fea40d674a41bc6fc1c3aab519ee3b195660911af7637df48c0a0f"
+        },
+        {
+          "title": "renders json fields with object values as formatted JSON",
+          "line": 1123,
+          "callbackSha256": "62dfcaa478d92b6d66b9c3b58453907aac799bbc1078196a70468bfd506a207d"
+        },
+        {
+          "title": "caps string fields at maxLength and counts characters against it",
+          "line": 1135,
+          "callbackSha256": "353c43357ff66f499042411a88163d8994262ec11dc601e9188d99120470f941"
+        },
+        {
+          "title": "flags string content that already exceeds maxLength",
+          "line": 1152,
+          "callbackSha256": "2fc9fb5df30194d2f48f4989dbe7e3f90213cbd46a2fc86d9e788b503a62c3d5"
+        },
+        {
+          "title": "flags a cleared field against minLength, not an untouched one",
+          "line": 1165,
+          "callbackSha256": "b5312eb9587925a1392cdbc79ddc8c3721cd93bf1a15b42dd3e91df99feeb97c"
+        },
+        {
+          "title": "caps text fields at maxLength",
+          "line": 1183,
+          "callbackSha256": "3453d4a84696a281976a02606e5a353e2fbe8b71525c9ca73bbb230e7744653e"
+        },
+        {
+          "title": "shows the allowed range on number fields and flags values outside it",
+          "line": 1196,
+          "callbackSha256": "3c0eb679231068d136b7aa559f5175ee066ee2d8a9e90c4d25051616ce503543"
+        },
+        {
+          "title": "renders no hint when a field declares no bounds",
+          "line": 1214,
+          "callbackSha256": "581ebebb30ac5a37b6f6e633d76d30b853dc466dee1802d75d6034adace0a1ba"
+        },
+        {
+          "title": "passes the field's validation to plugin field widgets",
+          "line": 1223,
+          "callbackSha256": "3c59e8b5896ca41b507d4ab12b40f4f3c90a44a4991e6d563b7410631fa2e56d"
+        },
+        {
+          "title": "save form calls onSave with formData including slug",
+          "line": 1259,
+          "callbackSha256": "3db3e2967a4071ecb94f12511991d02d17fc6a26b6841ab4faf537fa8cbf9eac"
+        },
+        {
+          "title": "SaveButton shows correct dirty state for new items",
+          "line": 1278,
+          "callbackSha256": "16ce4b52749f3447fd0f17072b26456465bcd8014d817f507f50c7cdee5d10d2"
+        },
+        {
+          "title": "SaveButton is disabled for existing item with no changes",
+          "line": 1285,
+          "callbackSha256": "669b979f7db9509e67e99f6713178d22ebc74b4b0707b60a9d524005da8d6306"
+        },
+        {
+          "title": "omits bylines from save payload when the user did not touch the byline editor",
+          "line": 1299,
+          "callbackSha256": "7cff24c2fed2893a3428c23125ec5b6627202e3e02fca834028e3c4ad0e6508d"
+        },
+        {
+          "title": "shows an owner-inferred byline as an automatic credit",
+          "line": 1315,
+          "callbackSha256": "ea22dfb4c151a05f840b494b3bf6a58399b30ad7125cebbc23a02cf4e49af790"
+        },
+        {
+          "title": "does not reveal an inferred credit from a malformed mixed response",
+          "line": 1325,
+          "callbackSha256": "2182546564b79bb46948d87b682ad85a8e63a85874b2cbc229abc1dd51a3388a"
+        },
+        {
+          "title": "never saves an inferred byline as an explicit credit",
+          "line": 1345,
+          "callbackSha256": "d51d58eeaf2fff7364de7c6fba2888e37780d68e43247a700db235156f047637"
+        },
+        {
+          "title": "keeps a credit without a source editable for backwards compatibility",
+          "line": 1369,
+          "callbackSha256": "9ea0ebb17599ba3dc3b476ca75a4184eec779e779c392add737189ac951b00b5"
+        },
+        {
+          "title": "suppresses the locale empty-state CTA until the picker query resolves",
+          "line": 1380,
+          "callbackSha256": "217b1abe72246198a4860f887659762cbeee972cf0e08013471f5add42057f77"
+        },
+        {
+          "title": "shows the locale empty-state CTA once the picker query resolves empty",
+          "line": 1397,
+          "callbackSha256": "4d6a9d8cfc7a2ef28f66650b3262cf35513b0d5af816fce09d4d95c64d494dab"
+        },
+        {
+          "title": "includes bylines: [] in save payload for new entries even when untouched",
+          "line": 1412,
+          "callbackSha256": "81bcdee0a20f5f3d998ccd379a7d3211b8e3a5b9d2f6487423810de8e93c7341"
+        },
+        {
+          "title": "keeps edited values after autosave completes without queuing another autosave",
+          "line": 1425,
+          "callbackSha256": "f15e8c43dceff7d51a10e47b15a0a18dd95c9b939f2b298e387a237ddedf1900"
+        },
+        {
+          "title": "does not resend a rejected autosave payload until the content changes",
+          "line": 1472,
+          "callbackSha256": "d2bc2df7e501b3c5b46f2995e48df3989b26f10b9832a293aaf9194fe7e5b707"
+        },
+        {
+          "title": "shows delete button for existing items",
+          "line": 1523,
+          "callbackSha256": "91f9c8a291a10d2a75eaf63d460e192c0a2029a625628186508d0320ba93814a"
+        },
+        {
+          "title": "delete button opens confirmation dialog and confirming calls onDelete",
+          "line": 1531,
+          "callbackSha256": "4b0b95917dce1307df5d9ab588456fa4ff2cc1ce0815b1ee8b12393753ebd14b"
+        },
+        {
+          "title": "does not show delete button for new items",
+          "line": 1555,
+          "callbackSha256": "b402ed5d2fc571a71798d1ce3ccb98003d0ea9bbcf847258d0ee0d619feb898c"
+        },
+        {
+          "title": "resizes through its bounded keyboard separator without collapsing",
+          "line": 1565,
+          "callbackSha256": "858acd8107696e9fa966c64c69bc99044c8d25b1b9b5f22de26c2a56c869173c"
+        },
+        {
+          "title": "uses the physical growth key for $dir",
+          "line": 1591,
+          "callbackSha256": "cff7eaa7c321b3a9ab713cb08bdf912da593f99433adda30f43ead089c74d4d7"
+        },
+        {
+          "title": "hides resizing across a mobile round trip without losing the desktop width",
+          "line": 1622,
+          "callbackSha256": "5476b56018a1922575f846617afa6a6831cd548be1db20377d7145c2b6b6b80c"
+        },
+        {
+          "title": "uses the elevated surface for the full-bleed canvas and settings panel",
+          "line": 1651,
+          "callbackSha256": "101383b8c5795b4c1f7a6d9387fe6472c4a940aefeb917a1f1852b6fdd214b6e"
+        },
+        {
+          "title": "shows Publish now for draft items",
+          "line": 1661,
+          "callbackSha256": "380f4123de4d24da035af5a5996c279f531eb7f0fe4e7964b83447c9493a39ba"
+        },
+        {
+          "title": "publish button confirms before calling onPublish",
+          "line": 1669,
+          "callbackSha256": "0c519cec5ba4b5167e6d45dc87be7741d7c56f8d64c2e9a0c59995eba0e281bd"
+        },
+        {
+          "title": "shows Preview in normal mode when previews are supported",
+          "line": 1684,
+          "callbackSha256": "45dff52f61c00d7ea040e11ba2dadf34f8b7dbf5cd970fff43c56b79b9955b02"
+        },
+        {
+          "title": "keeps one publish action reachable below lg",
+          "line": 1691,
+          "callbackSha256": "e93dce48c1476e47a0dbdee3c25ef5cf0d32e6a953c8fe0d7c3dfda89f60c0c6"
+        },
+        {
+          "title": "keeps the editor header in the document flow below lg",
+          "line": 1709,
+          "callbackSha256": "01391e5c69a08ee994d0f338d3266351e67f613700529e7c5228269bed8a690c"
+        },
+        {
+          "title": "labels and closes the settings sheet below lg",
+          "line": 1723,
+          "callbackSha256": "cbe7e20626f3966bd8e85b81629fcb4fc9d6672b6ace8d5d63aaf8bd18993175"
+        },
+        {
+          "title": "keeps the settings sheet open when a sortable handle restores focus after drop",
+          "line": 1742,
+          "callbackSha256": "47b84dd67587c001dc58cde944d1a82381eb8d3bcee2d9cd072ad4ce114aa0ee"
+        },
+        {
+          "title": "keeps the settings sheet open when the byline chooser replaces its trigger",
+          "line": 1761,
+          "callbackSha256": "6b4aa406a7d0b8b4434fda09c31893d9217e2d13441d5d2c949903587ab2486f"
+        },
+        {
+          "title": "keeps the settings sheet open when keyboard sorting is cancelled",
+          "line": 1780,
+          "callbackSha256": "cacadedbffbe03591e0ded6f8d07dfd8fa66ceec89aa7fdba1e51600a2dc06e3"
+        },
+        {
+          "title": "lets Escape close the settings sheet when sorting is idle",
+          "line": 1803,
+          "callbackSha256": "f9354d6536870004faf40b8de2482be99714ca18b7af07f2a7c45da6e1e629a2"
+        },
+        {
+          "title": "keeps nested dialogs above the settings sheet and dismisses only the dialog",
+          "line": 1822,
+          "callbackSha256": "d0e6b54a2008838a2445542572fa6529e560f5304eb3f7c0c18ff4ea43b33955"
+        },
+        {
+          "title": "keeps nested tooltips above the settings sheet below lg",
+          "line": 1855,
+          "callbackSha256": "dd825f725af151a20510359fecdcb12cba983c93007de3f9b9583a797e8bd26b"
+        },
+        {
+          "title": "keeps live view and unpublish reachable below lg",
+          "line": 1882,
+          "callbackSha256": "6f63943e3ebd289ee7dd06fc7d54d0c31d09e8c9e86d25369ecfd1835bf21389"
+        },
+        {
+          "title": "links live translated content to its locale-prefixed path",
+          "line": 1909,
+          "callbackSha256": "2b135680f23bdf94b2dd1a8fc682e2d4f48f9f30b83150ddb06a3cd3ac2fc64c"
+        },
+        {
+          "title": "keeps actions reachable when crossing from mobile to desktop layout",
+          "line": 1932,
+          "callbackSha256": "d051dcd60a41c234d9eddbcc7dce8f39d6bf4710b33f790d53edd575c5b5e413"
+        },
+        {
+          "title": "shows Unpublish for published items with supportsDrafts",
+          "line": 1961,
+          "callbackSha256": "57e0f5b272b6716c87bfa6d83174cbc224388af0b6f39a1f8819ff6e5423d6eb"
+        },
+        {
+          "title": "unpublish button calls onUnpublish",
+          "line": 1981,
+          "callbackSha256": "bf2ea68705ab578b8ffa58f6e39b85e18064720a72aaf542fc7593c059f55212"
+        },
+        {
+          "title": "toggles in and out with the advertised keyboard shortcut",
+          "line": 2026,
+          "callbackSha256": "740b126dbe3632ac30b54597673ecb4c3f84c61dee811c60812d27c0389e1ba6"
+        },
+        {
+          "title": "keeps the normal editor width and field chrome",
+          "line": 2038,
+          "callbackSha256": "59b2bdeea36fca2cdcc4e1fabee58c1c315b758f7977ad6642ae2cf6d8b078d3"
+        },
+        {
+          "title": "matches the settings action order and size",
+          "line": 2069,
+          "callbackSha256": "6785794066a41d9043e64181b5440fdfe27995c5fa5a23dd723d97c8fda645bc"
+        },
+        {
+          "title": "keeps the editor canvas and distraction-free header on the elevated surface",
+          "line": 2104,
+          "callbackSha256": "51a88e6b3d1f4257321250b5c4c6e72604746e7e357ee6ef2668af212dfd04be"
+        },
+        {
+          "title": "toggle adds fixed class for distraction-free mode",
+          "line": 2119,
+          "callbackSha256": "f25617750b7c67de74ac1db55c8473be4ad97888c44484336488a4d0f2711a83"
+        },
+        {
+          "title": "does not exit distraction-free mode with Escape",
+          "line": 2129,
+          "callbackSha256": "badc95187d12dbf140b269d16f7453b60b009ffa62e7521a744b8d6708036115"
+        },
+        {
+          "title": "keeps Live View available in distraction-free mode",
+          "line": 2148,
+          "callbackSha256": "7530ee31614c362d2581d63a0120c1ed506ff56d22532b383bf68384ff497eb9"
+        },
+        {
+          "title": "keeps scheduling available in distraction-free mode",
+          "line": 2163,
+          "callbackSha256": "6c49dac50bdd6d74c753a424402da306cf207d1e3541110f4d2b53d88967d023"
+        },
+        {
+          "title": "keeps scheduled-entry actions available in distraction-free mode",
+          "line": 2184,
+          "callbackSha256": "4be73a661d60b9178297c67435e17feda95209bd3528d1135b8b2ecf1a186b24"
+        },
+        {
+          "title": "keeps draft scheduling separate from confirmed publishing",
+          "line": 2212,
+          "callbackSha256": "7d6c660309407136458e79e833ce8909be99ba717cc3110a06256a98628f7e02"
+        },
+        {
+          "title": "labels schedule and publish actions for live draft changes",
+          "line": 2236,
+          "callbackSha256": "213b793041c4a69b5d407d3b0cbedf249b9be188b264a59446ebd357812b1cb9"
+        },
+        {
+          "title": "keeps scheduled management in one two-button row",
+          "line": 2259,
+          "callbackSha256": "be30ce8b08d679828dee7b623fba89342da723284f1968cb7834de17cfc3b8a9"
+        },
+        {
+          "title": "confirms immediate publication of a scheduled item",
+          "line": 2281,
+          "callbackSha256": "207f7df680747d2c31c5d3f174fcaf244127c9c21aa8b9d405eba32ffbb3e625"
+        },
+        {
+          "title": "blocks immediate publishing while a schedule change is pending",
+          "line": 2300,
+          "callbackSha256": "0beceb1606ae80346d7bf1fa368e85e4466e53e9f1c58c9e098a7ad4c8955065"
+        },
+        {
+          "title": "preserves configured collection label casing",
+          "line": 2320,
+          "callbackSha256": "33bf256879d54a79fdaa5be59d84136575d98bd4ad0ffe0398d8c470027febf3"
+        },
+        {
+          "title": "shows a quiet heading for new items",
+          "line": 2329,
+          "callbackSha256": "2e56527aea74a402660865794ef3880bbb8e8c8049549722db0093e21caf41a9"
+        },
+        {
+          "title": "shows a quiet heading for existing items",
+          "line": 2338,
+          "callbackSha256": "0c45005d0f2bdd7e6228b02a9c49f9ad4f870200df3f83cc13959af35876c851"
+        },
+        {
+          "title": "remounts the portable text editor when item.id changes (translation switch)",
+          "line": 2388,
+          "callbackSha256": "a4efdcc68d89d5d0081d2912bb077fe67d07b30c26d847d2b29a12f839e3ef00"
+        },
+        {
+          "title": "wires onEditorReady through for the 'content' field so DocumentOutline tracks remounts",
+          "line": 2426,
+          "callbackSha256": "7a8800ba8eb34d7668ca491aa7562d145a0d2df07faa26e2a9bcb60dbab2551d"
+        },
+        {
+          "title": "keeps search behind one choose action for an automatic credit",
+          "line": 2530,
+          "callbackSha256": "dec851ae733816626e0b5bbd59ccff1133656715340c508afc9afc2865507ae6"
+        },
+        {
+          "title": "searches the server and adds a byline from outside the initial list",
+          "line": 2541,
+          "callbackSha256": "658000b9d618e16c5e29eb36bc2818cdcd280695f9b6c759d238cfa24b0650a6"
+        },
+        {
+          "title": "renders a credited byline that is not in the initial picker list",
+          "line": 2576,
+          "callbackSha256": "a294dabb04c610500bdb67d746a92f66870ccfa0e029c1a42895f9c9120bbc02"
+        },
+        {
+          "title": "offers a retry instead of spinning forever when a page fails",
+          "line": 2639,
+          "callbackSha256": "c5b4aa6a32e4c62a967f299ab6fe9bf22fa17b6bab2c503c53cd291466b5d564"
+        },
+        {
+          "title": "retries the same cursor and recovers the field",
+          "line": 2646,
+          "callbackSha256": "bc394b7e35bca51979704115ec6afa009d780732581fcc07bd487304526e847a"
+        },
+        {
+          "title": "re-enables editing once the retried page lands",
+          "line": 2674,
+          "callbackSha256": "6f39952a8689ff0869136155a7d3be67b9b928c2a5d1e91c68d9724606171eca"
+        },
+        {
+          "title": "autosaves a reference change made after a rejected autosave",
+          "line": 2684,
+          "callbackSha256": "578558c5b23984bab746296a9ea23c415a7a8bb377c87d2c848b30429d9db8a7"
+        },
+        {
+          "title": "says a required reference field needs an entry while none is selected",
+          "line": 2753,
+          "callbackSha256": "7decb4cea0f55060cec5197e933c7717caa2eabd1e0996e767f766f76ef0be25"
+        },
+        {
+          "title": "marks an optional reference field the way every other field is marked",
+          "line": 2759,
+          "callbackSha256": "62a2a2f64c968790777a645aaac6aa51adf9f8f119308c75c21d6fe3b634c383"
+        },
+        {
+          "title": "edits its stored entry id in a text input",
+          "line": 2775,
+          "callbackSha256": "c3d6785af271c0442159fe179ca7793aec1d51aa17dd33130be6ba5ea4094afb"
+        },
+        {
+          "title": "points at the schema editor instead of claiming it is misconfigured",
+          "line": 2794,
+          "callbackSha256": "c3880932e2b1f7ec8fd90ec0f39bd746f9ec80491ea551a9617953a54fa25da9"
+        },
+        {
+          "title": "does not accept edits while another editor holds the entry",
+          "line": 2808,
+          "callbackSha256": "ec96656e46f4bb0b1eee1844d008fde77f1ad62c783692a780cecdf809c304b9"
+        },
+        {
+          "title": "stops autosaving as soon as the entry is taken away",
+          "line": 2819,
+          "callbackSha256": "9f6d3604e25e775136555d9f094041590d588e6756792da185bf0c929f227ed7"
+        },
+        {
+          "title": "retries a refused autosave once the entry is taken back",
+          "line": 2846,
+          "callbackSha256": "52cef676be929268fd175735d1d92ea14ba6431be6b1948634bd0473f151368a"
+        },
+        {
+          "title": "keeps the entry editable when nobody else holds it",
+          "line": 2891,
+          "callbackSha256": "c7a462c97d4e481690bc5d3ef4c7d7af09145786036afc7c489bcc5e05d7b5a6"
+        },
+        {
+          "title": "stops the rich text editor accepting input in read-only",
+          "line": 2899,
+          "callbackSha256": "c97beac012b6ba52866f7840f8fec3ef8d1156be6a0fbb6a9309610e2c3d4ecb"
+        },
+        {
+          "title": "can still leave distraction-free mode while the entry is read-only",
+          "line": 2910,
+          "callbackSha256": "af0e7e7f034076f50143b028b466430249e91e5f91b266548fbb3875f7ebbeac"
+        },
+        {
+          "title": "does not offer to save over a newer version while the entry is read-only",
+          "line": 2921,
+          "callbackSha256": "d17fd10de33f9a87b4cb1af7be3659ec26ed047096736d97f19f5d21b7b97c37"
+        },
+        {
+          "title": "offers to save over a newer version when the entry is not locked",
+          "line": 2932,
+          "callbackSha256": "32674d481842f99ac773f52061288fd9d036e0a0b8ed0b01327893e4bff08ef5"
+        },
+        {
+          "title": "leaves the rich text editor writable when the entry is not locked",
+          "line": 2943,
+          "callbackSha256": "dc76b7735936be71974116035e063be166ac88340592376f370cbab229474f36"
+        },
+        {
+          "title": "keeps a $kind field's stored value through an unrelated edit and save",
+          "line": 2994,
+          "callbackSha256": "8db63edf42c4f4db418370e1ccd20d3e1522302603d956da3648a8c5369d527f"
+        },
+        {
+          "title": "replaces a $kind field's stored value only through the replace action",
+          "line": 3014,
+          "callbackSha256": "c3ff89cdc2418f631e973eab715a2aaabceda4ca0a0e58f9baa8b0927fdafcae"
+        },
+        {
+          "title": "shows a stored object read-only as JSON",
+          "line": 3030,
+          "callbackSha256": "1ff0fabcbe8a834bd977ab7920eb413619055e5e0228c31459629aa468c48f5f"
+        },
+        {
+          "title": "opens a blank stored string as an empty list",
+          "line": 3039,
+          "callbackSha256": "32df0a80bd066e2c5e0f3b01bdf8bcdb9be86103079ce3f7bd4789e31b0252d5"
+        },
+        {
+          "title": "does not overwrite a sub-field input with a stale autosave payload",
+          "line": 3048,
+          "callbackSha256": "73792227d21cbf294c924f6aa5e0f5196732c7a55202d410dc308c37237d4fdd"
+        },
+        {
+          "title": "preserves newer nested edits, order, keys, and versions",
+          "line": 3091,
+          "callbackSha256": "574084b5b2a865a7bf5cc01b0870ab26fcbeb5966a2b7024f54e09c743055fc9"
+        }
+      ],
+      "literalExpectCalls": 152
+    },
+    {
+      "path": "packages/core/tests/integration/snapshot/snapshot.test.ts",
+      "blob": "5216d5b490b4a6dd52869d0596df8b4fe238ebf7",
+      "sha256": "979f576ecce45373350aec25f367ef8ae6221c5c694f93c7cc1613659d39d06a",
+      "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/integration/snapshot/snapshot.test.ts",
+      "state": "whole immutable file imported; retained block definitions/current pointer callback requires qualified full snapshot family, zero runtime/red credit",
+      "declarations": [
+        {
+          "title": "returns empty tables when no content exists",
+          "line": 22,
+          "callbackSha256": "e7545b600a89f4a0dc577508557d32978ffeb7629bb5069c1438cfd174c849d8"
+        },
+        {
+          "title": "includes published content and excludes drafts by default",
+          "line": 44,
+          "callbackSha256": "3fca80fa51c2ab3df210ba6f3b7a6f64b0360c2d7966a6df9ca69d50f3ebf1f8"
+        },
+        {
+          "title": "includes drafts when includeDrafts is true",
+          "line": 64,
+          "callbackSha256": "42eac6e0cbc0d3789d2a82fad69e144aa5fd7e8b3ccda9c3ae964dbc5459924d"
+        },
+        {
+          "title": "excludes scheduled posts whose scheduled_at has passed",
+          "line": 83,
+          "callbackSha256": "beab12cdf94c3987883476a1073c852e9d9edfe5c74eea1f22ecc3cc6bcb56c9"
+        },
+        {
+          "title": "excludes soft-deleted content",
+          "line": 96,
+          "callbackSha256": "404d3d790a66609efa9742cee70fe349a0e0de9b490283f2872ae896ac3c9193"
+        },
+        {
+          "title": "excludes auth and security tables",
+          "line": 115,
+          "callbackSha256": "77206ff7a511693370750a90ea31ea7bd9494d7e9c1496ffb9e1fcb4d9990623"
+        },
+        {
+          "title": "includes system tables needed for rendering",
+          "line": 127,
+          "callbackSha256": "3e5a923a94701acba137f44a126d14bc520e8458768ce431768bc40a2087ee31"
+        },
+        {
+          "title": "includes block type definitions and retained versions",
+          "line": 139,
+          "callbackSha256": "b87196241e7c267cd1602d47f17d62602b37ca75f54c6d69cac487639918fc63"
+        },
+        {
+          "title": "includes column type info in schema",
+          "line": 162,
+          "callbackSha256": "4389f32859950202396e79b8b48e44b91819bee7f04e5059367b65440223ae6f"
+        },
+        {
+          "title": "snapshot shape matches DO expectation",
+          "line": 174,
+          "callbackSha256": "6ed934e4510a44fbcb6f52b5508131dcacd733bc0df9dd14a4fe75ad4347f53b"
+        },
+        {
+          "title": "filters options table to safe rendering prefixes only",
+          "line": 207,
+          "callbackSha256": "84cf2e9f79633d4f9339a7df58658088458dd3f0157d1c4cf3e2abdda44e06a5"
+        },
+        {
+          "title": "discovers content tables dynamically",
+          "line": 243,
+          "callbackSha256": "faa22b70280f05e236d7cbbbfe6580c3577421efc5e5a6e0c78bec795057d2e9"
+        }
+      ],
+      "literalExpectCalls": 60
     }
   ],
   "sourceTestsRun": 0,
