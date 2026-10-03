@@ -18,7 +18,7 @@ test('server bridge derives the supported content and publication permissions fr
   assert.equal(servicePrincipal({ id: 'bad', role: 999 as any }), null);
   assert.equal(servicePrincipal({ id: '', role: Role.ADMIN }), null);
   assert.equal(servicePrincipal({ id: 'x'.repeat(129), role: Role.ADMIN }), null);
-  assert.equal(servicePrincipal({ id: 'admin', role: Role.ADMIN })!.permissions.length, 17);
+  assert.equal(servicePrincipal({ id: 'admin', role: Role.ADMIN })!.permissions.length, 19);
   // Supplemental bridge assertions, grounded in pinned RBAC thresholds.
   assert.ok(servicePrincipal({id:'editor',role:Role.EDITOR})!.permissions.includes('content:publish_own'));
   assert.ok(servicePrincipal({id:'editor',role:Role.EDITOR})!.permissions.includes('content:publish_any'));
