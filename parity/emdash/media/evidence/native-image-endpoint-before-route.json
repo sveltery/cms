@@ -1,0 +1,25 @@
+{
+  "kind": "original native preimplementation requirement",
+  "baseHead": "153d1a2d8ed214f65dedaef0d5f8e92f4d2ea504",
+  "test": "tests/production/media-image-endpoint.test.ts",
+  "testSha256": "e501cde8e930c0076c1ec9688bc835b34c968fc05e4bbb49ec5e58c701c11dee",
+  "log": "/tmp/media-image-native-before-endpoint-strengthened.log",
+  "logSha256": "79fef9f2cd055ab94453977b41e1e39085244da213fb99350c05baa529ef8666",
+  "results": {
+    "tests": 2,
+    "pass": 1,
+    "fail": 1,
+    "completedAssertionReds": 1,
+    "copiedSourceCallbacks": 0
+  },
+  "failedValue": {
+    "actual": 404,
+    "expected": 200
+  },
+  "limits": [
+    "Real built Kit request reads trusted filesystem fixture; endpoint absent.",
+    "Output dimensions and bytes assertions are downstream unreached, zero additional red credit.",
+    "Missing route returns404 for non-flat and encoded traversal keys: baseline only, zero established fence credit.",
+    "No browser, Source e2e, Astro middleware, image codec or deployment parity credit."
+  ]
+}
