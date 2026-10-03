@@ -105,6 +105,46 @@
       "path": "/tmp/sections-widgets-native-ui-check.log",
       "sha256": "18ab7e64e1265e0e084d0c401ad6a95f5063f0fd2f791c5755d020ecd2f25df3",
       "bytes": 202
+    },
+    {
+      "path": "/tmp/sections-widgets-palette-original-red.log",
+      "sha256": "95e0039250e2c41b9dee453234c2c51c82c889c530b24ee350f2668fb14ecd40",
+      "bytes": 4931
+    },
+    {
+      "path": "/tmp/sections-widgets-palette-original-green.log",
+      "sha256": "4380f9b31e30680fe38e949cad51adbf1433b037471fe2e9837127f599733c0c",
+      "bytes": 368
+    },
+    {
+      "path": "/tmp/sections-widgets-main434-full-bootstrap.log",
+      "sha256": "4170cbe0c6a32be62d5655157623e34e5c33bc080549a87783acdbec3e7d9069",
+      "bytes": 229700
     }
-  ]
+  ],
+  "originalPalette": {
+    "callbacks": 3,
+    "completedInitialValueReds": 3,
+    "pass": 3,
+    "credit": "Original pure native payload only; no Source/browser/HTTP credit",
+    "testFirstCommit": "f7f2185",
+    "implementationCommit": "a40fc02"
+  },
+  "normalGate": {
+    "head": "fc68504",
+    "completedAllStages": false,
+    "services": 1114,
+    "existingSource": 115,
+    "redirectSource": 203,
+    "bulkNative": 14,
+    "sectionsWidgetsCore": 38,
+    "cardSource": 23,
+    "production": 259,
+    "nodeHosting": {
+      "pass": 12,
+      "fail": 3,
+      "failure": "all three fresh isolated pnpm installs exceeded unchanged120s before app/maintenance execution"
+    },
+    "cloudflareStages": "not reached"
+  }
 }
