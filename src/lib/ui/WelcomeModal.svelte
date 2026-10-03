@@ -25,6 +25,7 @@
  }
 </script>
 
+{#if open}
 <dialog bind:this={dialog} aria-labelledby="welcome-title" aria-describedby="welcome-description" oncancel={event=>{event.preventDefault();void dismiss();}}>
  <div class="header"><WelcomeMark/><button class="close" type="button" aria-label="Close" onclick={()=>void dismiss()}>×</button></div>
  <h2 id="welcome-title">{firstName?`Welcome to EmDash, ${firstName}!`:'Welcome to EmDash!'}</h2>
@@ -35,9 +36,10 @@
   {#if role>=50}<p class="description">As an administrator, you can invite other users from the Users section.</p>{/if}
  </div>
  <form {...dismissWelcome.enhance(async({submit})=>{try{await submit();}catch{/* Source closes on error. */}finally{open=false;}})}>
-  <button class="start" disabled={dismissWelcome.pending>0}>{dismissWelcome.pending>0?'Getting Started…':'Get Started'}</button>
+  <button class="start" disabled={dismissWelcome.pending>0} aria-busy={dismissWelcome.pending>0}>Get Started</button>
  </form>
 </dialog>
+{/if}
 
 <style>
  dialog{width:calc(100vw - 2rem);max-width:28rem;padding:1.5rem;border:1px solid #dfe3e9;border-radius:1rem;background:white;color:#202735;box-shadow:0 1.5rem 5rem #0004;}
