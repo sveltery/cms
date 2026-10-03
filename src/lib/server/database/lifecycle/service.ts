@@ -125,10 +125,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     catch(cause){
       if(cause instanceof ContentMutationConflictError)throw new CmsError('CONFLICT',cause.message);
       if(cause instanceof EmDashValidationError){
-        const details=cause.details;
-        if(typeof details==='object'&&details!==null&&'code' in details&&details.code==='SLUG_CONFLICT')
-          throw new LifecycleSlugConflictError(cause.message);
-        throw new CmsError('VALIDATION_ERROR',cause.message);
+        throw LifecycleSlugConflictError.fromValidation(cause)??new CmsError('VALIDATION_ERROR',cause.message);
       }
       throw cause;
     }
