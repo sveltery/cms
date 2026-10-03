@@ -206,3 +206,14 @@ approval; no final framework acceptance, hosted pass, public PR or whole-family
 completion is claimed. Real canonical integration, full shared ContentPicker,
 multilingual admin catalogs and the pending Source migration/MCP/seed suites
 remain explicit dependencies.
+
+
+Fresh independent review found that the native read-only editor exposed an
+enabled action for a missing translation. One additional original mounted UI
+fixture was committed before the repair and reached an actual false-versus-true
+disabled-state assertion; the complete native UI run changed from 5 pass/1 fail
+to 6/6 pass. Creation now follows mutationsEnabled while an existing translation
+remains navigable. This repairs the existing native capability presentation,
+changes no role/session/API authorization and earns no additional Source parity
+credit. All whole Source admin assertions remain unchanged. Final-head review
+and hosted qualification continue on the successor head.
