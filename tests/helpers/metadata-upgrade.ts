@@ -17,7 +17,7 @@ export async function snapshot(database: CmsDatabase) {
   const objects = (await sql<{name:string;type:string;sql:string|null}>`SELECT name,type,sql FROM sqlite_master ORDER BY name,type`.execute(database.db)).rows;
   const tables = [];
   for (const object of objects.filter(object => object.type === 'table' && !object.name.startsWith('sqlite_') && !object.name.startsWith('_cf_'))) {
-    tables.push({name: object.name, rows: (await sql`SELECT * FROM ${sql.id(object.name)} ORDER BY rowid`.execute(database.db)).rows});
+    tables.push({name: object.name, rows: (await sql`SELECT * FROM ${sql.id(object.name)} ORDER BY rowid`.execute(database.db)).rows.map(row=>({...row}))});
   }
   return {objects, tables};
 }

@@ -12,11 +12,11 @@ import {lifecycleMigration} from '../src/lib/server/database/lifecycle-migration
 // No production provider is registered, no empty provider or marker is forged.
 const path=new URL('../src/lib/server/database/migrations.ts',import.meta.url);
 let source=readFileSync(path,'utf8');
-const registration='  lifecycleMigration\n];';
-assert.ok(source.includes(registration));
-source=source.replace(registration,'  lifecycleMigration,\n  metadataFidelityMigration\n];')
+const registration=/  lifecycleMigration(?:,[^\n]*)?\n\];/;
+assert.ok(registration.test(source));
+source=source.replace(registration,'  lifecycleMigration,\n  laterMetadataFixture\n];')
   .replace(/from (['"])([^'"]+)\1/g,(_whole,_quote,reference)=>'from '+JSON.stringify(reference.startsWith('.') ? new URL(reference,path).href : import.meta.resolve(reference)));
-source='import {metadataFidelityMigration} from '+JSON.stringify(new URL('./fixtures/later-metadata-provider.ts',import.meta.url).href)+';\n'+source;
+source='import {metadataFidelityMigration as laterMetadataFixture} from '+JSON.stringify(new URL('./fixtures/later-metadata-provider.ts',import.meta.url).href)+';\n'+source;
 const {migrateCms}=await import('data:text/javascript;base64,'+Buffer.from(stripTypeScriptTypes(source,{mode:'transform'})).toString('base64')) as typeof import('../src/lib/server/database/migrations.ts');
 for(const target of ['Node','D1'] as const) {
   test(`${target}: real later metadata replacement is accepted on canonical restart`,async()=>{
