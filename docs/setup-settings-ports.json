@@ -390,5 +390,40 @@
     "defaultSecured": 64,
     "nodeSecured": 64,
     "selectedUnchangedCallbacks": 7
+  },
+  "setupWizard": {
+    "source": "e2e/tests/setup-wizard.spec.ts",
+    "blob": "671da60f7f270994571ed71f7d74ba4339350deb",
+    "completeCallbacks": 6,
+    "callbackBlockSha256": "6462f07843b73466572b0ba9e53c164eaf702baba8dc170a89be457e71bde1f9",
+    "frameworkSubstitutions": [
+      "Astro admin URLs map to native /setup and /dashboard",
+      "each callback owns an actual fresh configured database/server",
+      "source dev-reset/dev-bypass fixture replaced by fresh isolation and ordinary signed credential registration/login",
+      "native action wait3s and whole-case20s; source expectation timeout expressions unchanged"
+    ],
+    "baseline": "pending secured hosted source expectations before wizard UI implementation",
+    "omissions": [
+      "real source dev reset/bypass endpoints",
+      "source PAT refresh fixture",
+      "source Astro React presentation"
+    ]
+  },
+  "dashboard": {
+    "source": "packages/core/tests/unit/api/dashboard-handlers.test.ts",
+    "blob": "1e00d69b67a66bb9d26988bc21c309b87c5448ee",
+    "completeCallbacks": 16,
+    "callbackBlockSha256": "bb77ec90a61ee519e9c30c795ec18c49bd24121f6b6815234602205212704241",
+    "runtimes": [
+      "actual built native HTTP Node",
+      "actual built native HTTP local D1"
+    ],
+    "fixtures": "Complete source createPostFixture/createPageFixture; real canonical empty content database and real source ContentRepository. Authority is current stored admin in separate trusted auth fixture; content storage mounted by trusted test hook, zero product bypass endpoints. Explicit trusted test clock preserves source optional now.",
+    "baseline": "pending actual source success assertions before dashboard implementation",
+    "omissions": [
+      "Astro route/wire registration",
+      "actual media/user seeded domain datasets outside these16callbacks",
+      "deployed scheduler/plugin runtime"
+    ]
   }
 }
