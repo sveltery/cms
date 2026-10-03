@@ -2,8 +2,8 @@
   import { beginSetup, completeSetup } from '$lib/auth.remote';
   import { createPasskey } from '$lib/auth/passkey-browser';
   import { tick } from 'svelte';
-  let { unavailable = false, completed = false, loginHref = '/login' }: {
-    unavailable?: boolean; completed?: boolean; loginHref?: string;
+  let { unavailable = false, legacyUnavailable = false, completed = false, loginHref = '/login' }: {
+    unavailable?: boolean; legacyUnavailable?: boolean; completed?: boolean; loginHref?: string;
   } = $props();
   let failure = $state('');
   let pending = $state(false);
@@ -11,7 +11,9 @@
 </script>
 
 <h1>Set up Sveltery CMS</h1>
-{#if unavailable}
+{#if legacyUnavailable}
+  <p role="status">Passkey authentication is unavailable for existing accounts. Administrator enrollment support is not implemented.</p>
+{:else if unavailable}
   <p role="status">Setup is unavailable until the database and public URL are configured.</p>
 {:else if completed}
   <p>Setup is complete. <a href={loginHref}>Sign in with your passkey.</a></p>
