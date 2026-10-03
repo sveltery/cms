@@ -4,12 +4,14 @@ import {test as base,expect} from '@playwright/test';
 import {schemaAdminRemotes} from '../helpers/schema-admin-remotes';
 const SETTINGS_API_PATTERN=/\/remote\/[^?]+\/updateSiteSettings(?:\?|$)/;
 const test=base.extend({admin:async({page},use)=>{
- const h=await schemaAdminRemotes('Node',true,{output:process.env.SVELTERY_BROWSER_TARGET==='node'?'.svelte-kit/node-output/':undefined});
+ const h=await schemaAdminRemotes('Node');
  try{
   await page.context().addCookies([{name:'cms-session',value:h.tokens.admin,url:h.origin}]);
   await use({page,goto:path=>page.goto(h.origin+path),waitForShell:async()=>{},waitForLoading:async()=>{}});
+test.beforeEach(()=>test.setTimeout(20_000));
  }finally{await h.close();}
 }});
+test.beforeEach(()=>test.setTimeout(20_000));
 	test("page renders with heading and form", async ({ admin, page }) => {
 		await admin.goto("/settings/social");
 		await admin.waitForShell();
