@@ -193,5 +193,284 @@
     ],
     "status": "copied before UI implementation; actual secured hosted red not yet run",
     "omissions": "Email provider settings/language localization/welcome UX require future owners. Only complete social/SEO/settings blur callbacks selected here."
+  },
+  "cacheCallbacks": [
+    {
+      "title": "getSiteSetting() does not hit the DB after getSiteSettings() in the same request",
+      "sha256": "1b6fb0b6a2b290782fd02e7bf90b53e44893ada65a19c803fddc1f76f5773df0"
+    },
+    {
+      "title": "globalThis cache survives across requests within an isolate",
+      "sha256": "f11f80b191e64b6333e0f72e9538a4fa836eb48f016774a64013e12db6f61cdc"
+    },
+    {
+      "title": "setSiteSettings() invalidates the globalThis cache",
+      "sha256": "97b6f4e69f969d6e30ba96b2654a757fcb04d1d634e1aa8219fbacfd98a47de0"
+    },
+    {
+      "title": "setSiteSettings() invalidates the cache even when the write throws",
+      "sha256": "bcad93bbac345918f2090a0e372aa706f8bb9d643bf440c55e146be436b9940c"
+    },
+    {
+      "title": "invalidateSiteSettingsCache() drops the cached value",
+      "sha256": "4d400994da6a190c4fc2fbfa7bec94b88734095ca6e1f1066043f23853fda9d8"
+    }
+  ],
+  "runtimeEvidence": {
+    "serviceCallbacks": {
+      "count": 13,
+      "expanded": 26,
+      "red": "42dffdd: 2pass24actualassertionfail",
+      "green": "5b997cd:26pass"
+    },
+    "unitCallbacks": {
+      "count": 20,
+      "red": "unexecuted at missing imports:0credit",
+      "green": "20pass realSQLite"
+    },
+    "cacheCallbacks": {
+      "count": 5,
+      "red": "300e47f:3realassertfail2pass",
+      "green": "6fcf0a5:5pass realSQLite"
+    },
+    "browserBaseline": {
+      "head": "e2a13e47a478959911852eccb31a75019be74398",
+      "ci": 37083831823,
+      "actualSourceAssertionFailures": 4,
+      "actionTimeoutsBeforeAssertions": 3,
+      "nodeTarget": "not reached"
+    },
+    "pluginHelperCallbacks": {
+      "count": 6,
+      "beforeImplementation": "2fbaf69 copies complete source callbacks before selected cryptographic helper closure; missing imports unexecuted, zero real assertion redcredit",
+      "green": "31total SQLite callbacks incl6pluginhelpers; checker0",
+      "omitted": "Configured plugin/runtime/API/UI integration remains future delivery"
+    }
+  },
+  "pluginHelperCallbacks": {
+    "count": 6,
+    "callbacks": [
+      {
+        "title": "should return undefined for unset plugin settings",
+        "sha256": "c19326c4868fa222efe3e030cdb884c64e455463621c23c4dd6193279af60d7c"
+      },
+      {
+        "title": "should return stored plugin settings",
+        "sha256": "edb8faad232ae8cf2291f527c71a5b0305a8d9cdf00920f2191e2df10e8832c3"
+      },
+      {
+        "title": "returns versioned plugin JSON that is not an encryption envelope",
+        "sha256": "e1fa69b85cd282b602ecb945c6b0e26a1bacdf359741cf0e15c06a3c781d17ef"
+      },
+      {
+        "title": "decrypts encrypted plugin settings from the public read helpers",
+        "sha256": "d872a22bb82909020696aa99a5e7466c751defe4546624cddc8cbd9f7f6696d2"
+      },
+      {
+        "title": "rejects structurally malformed encrypted settings instead of returning envelopes",
+        "sha256": "2c47cc41f341672bcefc609154a14080a3d6bdcaea57b7949d56fdca8829a4c5"
+      },
+      {
+        "title": "treats wildcard characters in plugin IDs as literal prefix text",
+        "sha256": "d70f7150694ef8deee96799ba03e6aa98cdba22f2037c6c5b3a0ffd17b142d34"
+      }
+    ],
+    "baseline": "Copied before encryption helper implementation; unexecuted at missing imports, zero real-red credit. Private server rendering/decoding scope only, no plugin runtime or admin registration."
+  },
+  "immutableModuleSources": [
+    {
+      "source": "packages/core/src/database/repositories/options.ts",
+      "blob": "d4f630ca0e24721dc25bed0189699daceccdb8ae"
+    },
+    {
+      "source": "packages/core/src/settings/index.ts",
+      "blob": "3e6266157579aa16c6338f9ceee02769bd413e4f"
+    },
+    {
+      "source": "packages/core/src/settings/types.ts",
+      "blob": "d8022348325841b0d5115533834ee6fe33510e5a"
+    },
+    {
+      "source": "packages/core/src/api/schemas/settings.ts",
+      "blob": "086e359af5c6e32dee241763402a46da13948bed"
+    },
+    {
+      "source": "packages/core/src/utils/init-lock.ts",
+      "blob": "a643cdff1232de2cf5e882ebc6680ad763c1686d"
+    },
+    {
+      "source": "packages/core/src/utils/single-flight-cache.ts",
+      "blob": "ac71f4c5148cf7d6f4c53fc5cb08fa606fc356e9"
+    },
+    {
+      "source": "packages/core/src/request-cache.ts",
+      "blob": "ab8f007b22ce601219ca1270d487342338de8634"
+    },
+    {
+      "source": "packages/core/src/config/secrets.ts",
+      "blob": "2d63c59613fa155faf0fbf1f2ba972181fe18556"
+    },
+    {
+      "source": "packages/core/src/plugins/settings.ts",
+      "blob": "6d6e23f596a4496b9cd673601be47087f6a9bdcc"
+    },
+    {
+      "source": "packages/core/src/utils/base64.ts",
+      "blob": "9dae6dade270b1c1291b21c8a90adc73f5dab294"
+    }
+  ],
+  "selectedModuleLimits": {
+    "config/secrets.ts": "Exact encryption-key parser/generator/fingerprint/runtime environment-reader declarations only; generated IP salt/preview secrets and their caches not copied or credited.",
+    "plugins/settings.ts": "Exact envelope checks/AES-GCM encrypt/decrypt helper closure only; plugin settings access/schema/redactor/runtime/admin registration not copied or credited.",
+    "settings/index.ts": "Native site settings atomic/renderer/media-query adaptation; exact private plugin-decoding/helper bodies with type/import substitution.",
+    "runtime": "Real SQLite31 whole source callback executions; localD1 source13 native HTTP callbacks26 executions. No encrypted-helper/caching workerd dataset execution claim."
+  },
+  "setupBudget": {
+    "source": "packages/core/tests/integration/astro/setup-seed-budget.test.ts",
+    "sourceBlob": "cb46df9dbee5bb367efb6f6d9038d02ef7013be0",
+    "completeCallbacks": 1,
+    "datasets": 1,
+    "runtimes": [
+      "native built Node SQLite",
+      "native built local D1"
+    ],
+    "callbackSha256": "dc047f00681cb7e15f90b15f6115ed9225ef2cf6c8452c0a4e3d51d92ea98643",
+    "nativeAdapters": [
+      "Astro API context becomes actual built Kit /api/setup JSON request",
+      "trusted source virtual seed becomes trusted test request-local seed",
+      "source options setup-state key maps solely to canonical auth identityOptions"
+    ],
+    "baseline": "Actual built /api/setup returns404; both complete source callbacks reach unchanged expect(response.status).toBe(200) and fail ERR_ASSERTION on Node and local D1. Missing import/type-transform run is excluded.",
+    "omissions": [
+      "Astro route registration and virtual module loader",
+      "external auth completion",
+      "media, bylines, relations, blocks, menus, widgets, sections, redirects seed families"
+    ],
+    "redLog": "/tmp/setup-budget-http-red.log",
+    "green": {
+      "log": "/tmp/setup-seed-green.log",
+      "sourceExecutions": 2,
+      "nativeSupplemental": 4,
+      "normalBuild": "/tmp/setup-seed-corrected-build.log",
+      "remaining": "Default source taxonomy/search providers are not integrated; broader seed families reject explicitly."
+    }
+  },
+  "seedImplementation": {
+    "classification": "native fixed-statement adapter; zero complete applySeed declaration credit",
+    "source": "packages/core/src/seed/apply.ts",
+    "sourceBlob": "94077bb605bda8b1c61d398ea05e7dd92d62ec78",
+    "behavior": "500-query threshold, actual source ContentRepository lookup, source datetime normalization, atomic row/revision/promotion/prune batch, source write-once site URL and non-fatal setup-state save",
+    "dependencies": {
+      "42": "ca39019c94af1c1890e5655ba8ae9ea868765846",
+      "48": "cef5aa2baaebaad37d898bad1ba36170eedb1277",
+      "45": "19fdd636e7a8eb54c9d9ee9f74af00911641505a",
+      "taxonomy": "09c8f69abfffef672771a1a0dca43fd39cd264f2",
+      "search": "9d794bc7539551f9331e676d1cd43b916d0594f4"
+    },
+    "copiedPureFiles": [
+      {
+        "source": "seed/default.ts",
+        "blob": "f33fdb45b2176e354815417e80fc541d6029b4ad",
+        "substitutions": "MIT/pin header and .ts/native type-only imports"
+      },
+      {
+        "source": "seed/types.ts",
+        "blob": "b36b50ebc6d179d5c25c53dcc2d4ac1d78df19d1",
+        "substitutions": "MIT/pin header and .ts/native type-only imports"
+      },
+      {
+        "source": "storage/types.ts",
+        "blob": "d8ffcd99f9c4c544306d986be7534345442e41be",
+        "substitutions": "MIT/pin header and .ts/native type-only imports"
+      }
+    ],
+    "snapshotRepair": {
+      "redCommit": "89aeeae",
+      "redLog": "/tmp/setup-seed-snapshot-red.log",
+      "greenLog": "/tmp/setup-seed-snapshot-green.log",
+      "greenCount": 8,
+      "behavior": "Initial live revision snapshots actual stored affinities/defaults, omits nulls and decodes object/array-shaped strings exactly as pinned ContentRepository.mapRow; SQL JSON1 inside fixed batch.",
+      "sourceCredit": 0
+    }
+  },
+  "browserGreen": {
+    "head": "c967e93e494926bfd253f5b8028a7edafb6d2fef",
+    "run": 37084572148,
+    "job": 111092077670,
+    "defaultSecured": 64,
+    "nodeSecured": 64,
+    "selectedUnchangedCallbacks": 7
+  },
+  "setupWizard": {
+    "source": "e2e/tests/setup-wizard.spec.ts",
+    "blob": "671da60f7f270994571ed71f7d74ba4339350deb",
+    "completeCallbacks": 6,
+    "callbackBlockSha256": "6462f07843b73466572b0ba9e53c164eaf702baba8dc170a89be457e71bde1f9",
+    "frameworkSubstitutions": [
+      "Astro admin URLs map to native /setup and /dashboard",
+      "each callback owns an actual fresh configured database/server",
+      "source dev-reset/dev-bypass fixture replaced by fresh isolation and ordinary signed credential registration/login",
+      "native action wait3s and whole-case20s; source expectation timeout expressions unchanged"
+    ],
+    "baseline": {
+      "run": 37087710468,
+      "job": 111101324222,
+      "head": "f6ab85a66e1764653a3725447b527ee37b398fda",
+      "defaultSecured": "one unchanged source heading expectation fails; one native URL helper expectation fails on callback redirect; three locator-action timeouts and final waitForURL timeout earn zero assertion-red credit",
+      "nodeSecured": "not reached after default failure",
+      "otherFailures": "taxonomy heading callback also fails; dependency checker8errors in validate, preserved"
+    },
+    "omissions": [
+      "real source dev reset/bypass endpoints",
+      "source PAT refresh fixture",
+      "source Astro React presentation"
+    ]
+  },
+  "dashboard": {
+    "source": "packages/core/tests/unit/api/dashboard-handlers.test.ts",
+    "blob": "1e00d69b67a66bb9d26988bc21c309b87c5448ee",
+    "completeCallbacks": 16,
+    "callbackBlockSha256": "bb77ec90a61ee519e9c30c795ec18c49bd24121f6b6815234602205212704241",
+    "runtimes": [
+      "actual built native HTTP Node",
+      "actual built native HTTP local D1"
+    ],
+    "fixtures": "Complete source createPostFixture/createPageFixture; real canonical empty content database and real source ContentRepository. Authority is current stored admin in separate trusted auth fixture; content storage mounted by trusted test hook, zero product bypass endpoints. Explicit trusted test clock preserves source optional now.",
+    "baseline": "32 genuine unchanged source success assertion failures against actual404 /api/dashboard on Node and local D1; canonical domain fixtures complete before route implementation.",
+    "omissions": [
+      "Astro route/wire registration",
+      "actual media/user seeded domain datasets outside these16callbacks",
+      "deployed scheduler/plugin runtime"
+    ],
+    "redLog": "/tmp/setup-dashboard-http-red.log",
+    "green": {
+      "cases": 32,
+      "runtimes": [
+        "Node",
+        "local D1"
+      ],
+      "log": "/tmp/setup-dashboard-http-green.log",
+      "scope": "all16 copied complete callback bodies unchanged; actual native HTTP service"
+    },
+    "implementation": {
+      "handler": {
+        "source": "packages/core/src/api/handlers/dashboard.ts",
+        "blob": "6eff245e36cb194ff0e07013d7f80453abda87ef",
+        "substitutions": [
+          "native imports/table namespace",
+          "native ApiResult type-only union",
+          "real native media/user count adapters"
+        ]
+      },
+      "pureModules": [
+        "source complete scheduler-health.ts",
+        "source complete plugins/content-policy.ts"
+      ],
+      "remaining": [
+        "native dashboard UI",
+        "populated media provider datasets",
+        "deployed scheduler/plugin runtime"
+      ]
+    }
   }
 }

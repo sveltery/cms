@@ -6,7 +6,7 @@ import { pathToFileURL } from 'node:url';
 import { createServer } from 'node:http';
 import { Readable } from 'node:stream';
 import { parse, stringify } from 'devalue';
-import type { Handle } from '@sveltejs/kit';
+import type { Handle, RequestEvent } from '@sveltejs/kit';
 import type { CmsDatabase } from '../../src/lib/server/database/contract.ts';
 import { encodeBase64urlNoPadding } from '@oslojs/encoding';
 import { sql } from 'kysely';
@@ -19,7 +19,7 @@ import { schemaAdminStorage } from './schema-admin-storage.ts';
 
 /** Isolated persisted trusted test sessions and actual built Kit remotes; no app imports this. */
 export async function schemaAdminRemotes(target: 'Node' | 'D1', mutationsEnabled = true,
-  fixture: { output?: string; base?: string } = {}) {
+  fixture: { output?: string; base?: string; configureRequest?: (event: RequestEvent) => void } = {}) {
   const output = fixture.output ?? new URL('../../.svelte-kit/output/', import.meta.url).pathname;
   const base = fixture.base ?? '';
   const directory = await mkdtemp(join(tmpdir(), 'cms-schema-admin-'));
@@ -53,6 +53,7 @@ export async function schemaAdminRemotes(target: 'Node' | 'D1', mutationsEnabled
       event.locals.cms = { principal: context.principal, mutationsEnabled: context.mutationsEnabled,
         get database() { storageReads++; if (storageProbe === 'throw') throw new Error('schema storage reached'); return undefined as unknown as CmsDatabase; } };
     }
+    fixture.configureRequest?.(event);
     return input.resolve(event, options);
   } });
   options.hooks.handle = handle;
