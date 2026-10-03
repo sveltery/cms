@@ -9,10 +9,18 @@ test('development HTTP remote boundaries fail closed', async (t) => {
     await server.listen();
     const base = server.resolvedUrls!.local[0];
     // Read Kit's generated client IDs; production tests use only the built registry.
-    const source = await (await fetch(new URL('src/lib/content.remote.ts', base))).text();
-    const ids = new Map([...source.matchAll(/export const (\w+) = __remote\.(?:query|form)\('([^']+)'\)/g)]
-      .map((match) => [match[1], match[2]]));
-    assert.deepEqual([...ids.keys()].sort(), ['countTrashedContent', 'createContent', 'deleteContent', 'getCollection', 'getContent', 'getEditorManifest', 'getTrashedContent', 'listCollections', 'listContent', 'listTrashedContent', 'restoreContent', 'updateContent']);
+    const sources = await Promise.all(['content', 'schema'].map(async module =>
+      (await fetch(new URL(`src/lib/${module}.remote.ts`, base))).text()));
+    const ids = new Map(sources.flatMap(source => [...source.matchAll(/export const (\w+) = __remote\.(?:query|form)\('([^']+)'\)/g)]
+      .map((match) => [match[1], match[2]] as const)));
+    assert.deepEqual([...ids.keys()].sort(), [
+      'addSchemaField', 'countTrashedContent', 'createContent', 'createSchemaCollection',
+      'deleteContent', 'deleteSchemaCollection', 'deleteSchemaField', 'getCollection', 'getContent',
+      'getEditorManifest', 'getSchemaCollection', 'getTrashedContent', 'listCollections', 'listContent',
+      'listSchemaCollections', 'listTrashedContent', 'reorderSchemaCollections', 'reorderSchemaFields',
+      'restoreContent', 'updateContent', 'updateSchemaCollection', 'updateSchemaFieldLabel',
+      'updateSchemaFieldMetadata', 'updateSchemaFieldOptions'
+    ]);
     await remoteBoundaries(t, base, ids, false);
   } finally {
     await server.close();

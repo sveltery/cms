@@ -79,11 +79,13 @@ export class SchemaRegistry {
       if (item !== undefined) (updates as Record<string,unknown>)[column] = typeof item === 'boolean' ? Number(item) : (item === '' ? null : item);
     }
     if (value.titleField) {
-      const field = await this.getField(definition.slug,value.titleField);
+      // Source validateTitleDateFields checks the stored type, before the read
+      // mapper can project an unknown future type as a fallback string.
+      const field = await db.selectFrom('_cms_fields').select('type').where('collection_id','=',definition.id).where('slug','=',value.titleField).executeTakeFirst();
       if(!field || !['string','text','slug'].includes(field.type)) throw new CmsError('INVALID_TITLE_FIELD');
     }
     if (value.dateField) {
-      const field = await this.getField(definition.slug,value.dateField);
+      const field = await db.selectFrom('_cms_fields').select('type').where('collection_id','=',definition.id).where('slug','=',value.dateField).executeTakeFirst();
       if(!field || field.type !== 'datetime') throw new CmsError('INVALID_DATE_FIELD');
     }
     const results = await this.batch([
@@ -287,7 +289,7 @@ export class SchemaRegistry {
     if(slugs.some(slug => !collections.some(collection => collection.slug===slug))) throw new CmsError('NOT_FOUND');
     const positions = new Map(slugs.map((slug,index) => [slug,index]));
     const updatedAt = nextMetadataTimestamp(collections);
-    if (expected && (expected.length !== collections.length || expected.some(snapshot => !collections.some(collection => collection.slug === snapshot.slug && collection.version === snapshot.version && collection.updatedAt === snapshot.updatedAt)))) throw new CmsError('CONFLICT');
+    if (expected && (expected.length !== collections.length || new Set(expected.map(snapshot => snapshot.slug)).size !== expected.length || expected.some(snapshot => !collections.some(collection => collection.slug === snapshot.slug && collection.version === snapshot.version && collection.updatedAt === snapshot.updatedAt)))) throw new CmsError('CONFLICT');
     const token=ulid(); const db=this.database.db;
     // D1 limits bound parameters per statement. Keep each CAS check bounded,
     // before any order write, inside the same atomic batch and guard lifetime.

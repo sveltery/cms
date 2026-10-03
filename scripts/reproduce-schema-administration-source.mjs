@@ -58,6 +58,16 @@ async function fixture(db){
  await sql\`CREATE TABLE _emdash_collections(id TEXT PRIMARY KEY,slug TEXT UNIQUE,label TEXT,label_singular TEXT,description TEXT,supports TEXT,source TEXT,created_at TEXT DEFAULT '2000-01-01T00:00:00.000Z',updated_at TEXT DEFAULT '2000-01-01T00:00:00.000Z',icon TEXT,admin_config TEXT,has_seo INTEGER,title_field TEXT,date_field TEXT,url_pattern TEXT,routable INTEGER,hidden INTEGER,sort_order INTEGER,nav_group TEXT,comments_enabled INTEGER,comments_moderation TEXT,comments_closed_after_days INTEGER,comments_auto_approve_users INTEGER,edit_locking INTEGER)\`.execute(db);
  await sql\`CREATE TABLE _emdash_fields(id TEXT PRIMARY KEY,collection_id TEXT REFERENCES _emdash_collections(id) ON DELETE CASCADE,slug TEXT,label TEXT,type TEXT,column_type TEXT,required INTEGER,\"unique\" INTEGER,default_value TEXT,validation TEXT,widget TEXT,options TEXT,sort_order INTEGER,searchable INTEGER,indexed INTEGER,translatable INTEGER,created_at TEXT DEFAULT '2000-01-01T00:00:00.000Z',UNIQUE(collection_id,slug))\`.execute(db);
 }
+test('immutable source rejects raw unsupported title aliases despite its string fallback projection',async()=>{
+ const db=storage();try{
+ await fixture(db);const registry=new SchemaRegistry(db);const collection=await registry.createCollection({slug:'posts',label:'Posts'});
+ await db.insertInto('_emdash_fields').values({id:'future',collection_id:collection.id,slug:'future',label:'Future',type:'future_field_type',column_type:'TEXT',required:0,unique:0,sort_order:0,searchable:0,indexed:0,translatable:1}).execute();
+ const projected=await registry.getField('posts','future');
+ assert.equal(projected.type,'string');assert.equal(projected.unsupportedType.type,'future_field_type');
+ await assert.rejects(()=>registry.updateCollection('posts',{titleField:'future'}),error=>error.code==='INVALID_TITLE_FIELD');
+ assert.equal((await registry.getCollection('posts')).titleField,undefined);
+ }finally{await db.destroy();}
+});
 test('immutable source reorderFields accepts partial duplicate and unknown lists without advancing collection metadata',async()=>{
  const db=storage();try{
  await fixture(db);const registry=new SchemaRegistry(db);await registry.createCollection({slug:'posts',label:'Posts'});
