@@ -200,5 +200,23 @@
       "bodySha256": "5c73a6ba71477d626087150fad0fefa2f0584e1ef6ff1f54bd4687d353c9f889",
       "expectationLocations": 3
     }
-  ]
+  ],
+  "developmentIntegrationEvidence": {
+    "commit": "d06bf6e706af1fde153eb8f32b9fa13205bb9752",
+    "tree": "0bb7d723c450eed2cbbde57265e0a378dfe9c8fb",
+    "run": "37082703026",
+    "browserJob": "111086467987",
+    "browserResult": "67/67 on each secured default and standalone Node target, including ten unchanged source callbacks and actual passkey scalar-editor acceptance",
+    "validateJob": "111086468159",
+    "validateResult": "still in progress at evidence recording; no bootstrap pass or failure claim",
+    "checkoutCommit": "e10e21975328bcab6d00df70a230e949cd7590cd",
+    "checkoutTreeVerifiedEqual": true,
+    "diagnostics": [
+      "Stale dependency setup: 789 passing cases and three missing-auth-package module failures; zero product/source red credit.",
+      "Corrected integration full-suite diagnostic: outer 180-second exit124, 727 passing and eleven canceled cases, zero assertion failures; not a passing gate.",
+      "Unchanged pattern/required/scalar D1 cases run alone: 25/25 passing in 68.37 seconds. Cause of retained hosted bootstrap stall remains unproven."
+    ],
+    "approvedRuntimeIntegration": "e159b4bdf964960d2eab116af462d0eba7fdcf8b merges actual approved main 2d5727ae; raw D1 binding path remains unchanged, scoped session/coalescing facade is opt-in",
+    "finalGates": "actual approved lifecycle/migration/auth/composer main integration, normal final-head CI, fresh reviews and PM exact-head approval remain pending"
+  }
 }
