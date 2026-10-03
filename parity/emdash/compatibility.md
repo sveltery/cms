@@ -522,3 +522,19 @@ Exact059 CI37095494891 passes secured browsers but fails the service phase (893 
 ## Validation execution diagnostics (proposed)
 
 The native validation harness labels its nine mandatory bootstrap phases and proposes a 15-minute GitHub Actions validation job deadline in place of the inherited six-hour default. This is infrastructure behavior, with no EmDash algorithm or product-contract change and zero source-parity credit. Commands, assertion inventories, source callback bodies, test timeouts, file concurrency, runtime cleanup and secured browser limits remain unchanged. A timed-out job fails; bounded termination does not establish a runtime fix. See [validation diagnostics and evidence limits](../../docs/validation.md). Decision status: proposed; no project-manager acceptance or merge is recorded yet.
+
+## Asynchronous local D1 fixture transport (proposed)
+
+EmDash 1.1.0 pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`,
+`packages/cloudflare/src/db/d1-dialect.ts`, remains the raw binding authority.
+The native shared test fixture replaces Miniflare's synchronous host proxy with
+`dispatchFetch` requests to actual Worker `env.DB.all/batch` operations. The
+application dialect and existing source/canonical callbacks stay unchanged.
+This is a test transport substitution, with zero additional source credit and
+no sessions/bookmarks or deployed D1 claim. A controlled execution of the actual
+Miniflare 4.20260507.1 worker reproduces a prior notification waking the next
+request; it does not prove the exact timing of the hosted auth-head failure.
+[The feature record](../../docs/d1-fixture-transport.md) separates completed native
+assertion reds, already-green parameter/rollback/restart controls, focused green
+runs and required final gates. Decision status: implementation authorized;
+specific PM acceptance and merge are pending.
