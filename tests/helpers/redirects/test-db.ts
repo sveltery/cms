@@ -20,6 +20,11 @@ export const redirectNamespacePlugin: KyselyPlugin={
  async transformResult(args:PluginTransformResultArgs):Promise<QueryResult<UnknownRow>>{return args.result;}
 };
 const owned = new WeakMap<object,ReturnType<typeof openSqlite>>();
+export function redirectFixtureStorage(db: object) {
+ const storage=owned.get(db);
+ if(!storage)throw new Error('Source-shaped redirect fixture storage owner missing');
+ return storage;
+}
 export interface DialectTestContext {db:Kysely<Database>;dialect:'sqlite'}
 export async function createForDialect(_dialect:'sqlite'):Promise<DialectTestContext> {
  const storage=openSqlite(':memory:');
