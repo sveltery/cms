@@ -1,0 +1,15 @@
+# Date and time editing widgets
+
+`DatetimeField` displays a stored instant in a caller-supplied site timezone and emits the pinned UTC ISO value after editing. As in EmDash, ambiguous or nonexistent local input remains local text in the draft when conversion fails; the save validator remains responsible for rejecting it.
+
+`PublishingDateTimeFields` provides a calendar and separate hour/minute controls, with localized numerals, locale-selected 12/24-hour clocks, optional AM/PM selection, calendar keyboard navigation, disabled/future-date controls and the browser timezone. The controls receive values and callbacks from their owner. They do not schedule or publish content themselves.
+
+The reference is EmDash 1.1.0 [`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`](https://github.com/emdash-cms/emdash/tree/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e). [The port ledger](date-time-widgets-ports.json) retains whole-source identities and separates Source callbacks, original requirements and unavailable runs. The immutable guard checks 22 complete authorities, 18 test declarations and 43 assertion expressions; it executes no product tests.
+
+The complete Source suites expand to 19 cases: four publishing controls, six publishing helpers and nine datetime conversion cases. All pass in the native mounted DOM host, alongside eight original requirements. The fifteen helper cases are first-execution greens with zero causal credit. Before implementation, six original datetime value assertions fail against the existing preview; two additional shifted calendar-focus assertions fail against the first native implementation. The publishing baseline has two completed Source DOM assertion failures and two unavailable-control errors. Initial missing modules and host setup failures earn zero assertion-red credit.
+
+The local secured Chromium run cannot launch the absent official browser executable and executes zero callbacks. Secured hosted validation, the complete normal bootstrap, independent final-head review, specific framework acceptance and manager-approved author merge remain required. This feature is not yet merged.
+
+Run `pnpm test:date-time` for the guarded native DOM suites and `pnpm test:date-time:browser` for their secured Chromium host in the original New York timezone. `sh scripts/bootstrap.sh` includes the DOM suites while retaining every existing validation phase. Hosted CI additionally requires the widget browser suite and both existing application browser targets.
+
+DT-01 substitutes Svelte and native HTML calendar/period controls for React/Kumo. The preserved fixture assertions do not establish complete Kumo/DayPicker geometry, animations, translated messages or provider behavior. This framework decision is proposed; specific manager acceptance is not yet recorded. Site timezone/locale configuration, enabled persisted-editor composition, publication/scheduling dialogs, automatic scheduling, full localization and deployment remain unfinished. The components are available for those integrations without changing the current editor/save contract.

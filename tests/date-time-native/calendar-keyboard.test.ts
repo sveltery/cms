@@ -3,9 +3,10 @@ import { mount, unmount, flushSync, tick } from 'svelte';
 import Harness from '../helpers/date-time/NativeHarness.svelte';
 import { bridgeState } from '../helpers/date-time/state.svelte';
 const mounted: ReturnType<typeof mount>[] = [];
-afterEach(async () => { for (const component of mounted.splice(0)) await unmount(component); document.body.replaceChildren(); });
+const containers: HTMLElement[] = [];
+afterEach(async () => { for (const component of mounted.splice(0)) await unmount(component); for (const container of containers.splice(0)) container.remove(); });
 function calendar() {
-  const target = document.createElement('div'); document.body.append(target);
+  const target = document.createElement('div'); document.body.append(target); containers.push(target);
   flushSync(() => mounted.push(mount(Harness, { target, props: { state: bridgeState({ date: new Date(2035, 5, 15, 12), time: '09:00', dateAriaLabel: 'Publication date' }) } })));
   return [...document.querySelectorAll<HTMLButtonElement>('td button')].find(button => button.textContent === '15')!;
 }
