@@ -16,12 +16,13 @@
  * single menu item survives content translations.
  */
 
-import type { Kysely, Selectable } from "kysely";
+import { sql, type Kysely, type Selectable, type CompiledQuery } from "kysely";
 import { ulid } from "ulidx";
 
 import { invalidateMenuObjectCache } from "./object-cache.ts";
 import { withTransaction } from "./transaction.ts";
 import type { Database, MenuItemTable, MenuTable } from "./database-types.ts";
+import { menuAtomicBatch } from './atomic-batch.ts';
 
 /**
  * Thrown from inside a repository transaction when the menu the caller
@@ -327,7 +328,29 @@ export class MenuRepository {
 			sourceMenuId = source.id;
 		}
 
-		await withTransaction(this.db, async (trx) => {
+		const atomicBatch = menuAtomicBatch(this.db);
+		if (atomicBatch) {
+			// D1 cannot pause a batch for a JS read. Snapshot the clone mapping,
+			// then commit creation and every cloned item together in one real batch.
+			const sourceItems = sourceMenuId ? await this.db.selectFrom('_cms_menu_items')
+				.selectAll().where('menu_id', '=', sourceMenuId).orderBy('sort_order', 'asc').execute() : [];
+			const idMap = new Map(sourceItems.map(item => [item.id, ulid()]));
+			const statements: CompiledQuery[] = [this.db.insertInto('_cms_menus').values({
+				id, name: input.name, label: input.label,
+				...(input.locale !== undefined ? { locale: input.locale } : {}), translation_group: translationGroup
+			}).compile()];
+			for (const item of sourceItems) statements.push(this.db.insertInto('_cms_menu_items').values({
+				id: idMap.get(item.id)!, menu_id: id,
+				parent_id: item.parent_id ? (idMap.get(item.parent_id) ?? null) : null,
+				sort_order: item.sort_order, type: item.type,
+				reference_collection: item.reference_collection, reference_id: item.reference_id,
+				custom_url: item.custom_url, label: item.label, title_attr: item.title_attr,
+				target: item.target, css_classes: item.css_classes,
+				...(input.locale !== undefined ? { locale: input.locale } : {}),
+				translation_group: item.translation_group ?? item.id
+			}).compile());
+			await atomicBatch(statements);
+		} else await withTransaction(this.db, async (trx) => {
 			await trx
 				.insertInto("_cms_menus")
 				.values({
@@ -410,7 +433,12 @@ export class MenuRepository {
 		const existing = await this.findById(id);
 		if (!existing) return false;
 
-		await withTransaction(this.db, async (trx) => {
+		const atomicBatch = menuAtomicBatch(this.db);
+		if (atomicBatch) await atomicBatch([
+			this.db.deleteFrom('_cms_menu_items').where('menu_id', '=', id).compile(),
+			this.db.deleteFrom('_cms_menus').where('id', '=', id).compile()
+		]);
+		else await withTransaction(this.db, async (trx) => {
 			await trx.deleteFrom("_cms_menu_items").where("menu_id", "=", id).execute();
 			await trx.deleteFrom("_cms_menus").where("id", "=", id).execute();
 		});
@@ -577,7 +605,37 @@ export class MenuRepository {
 		locale: string,
 		items: SetMenuItem[],
 	): Promise<{ itemCount: number }> {
-		await withTransaction(this.db, async (trx) => {
+		const atomicBatch = menuAtomicBatch(this.db);
+		if (atomicBatch) {
+			const token = `menus:${ulid()}`;
+			const statements: CompiledQuery[] = [
+				sql`INSERT INTO _cms_guards(token, pass) SELECT ${token}, CASE WHEN EXISTS
+					(SELECT 1 FROM _cms_menus WHERE id = ${menuId}) THEN 1 ELSE 0 END`.compile(this.db),
+				this.db.deleteFrom('_cms_menu_items').where('menu_id', '=', menuId).compile()
+			];
+			const insertedIds: string[] = [];
+			for (let i = 0; i < items.length; i++) {
+				const item = items[i];
+				if (!item) continue;
+				const id = ulid();
+				statements.push(this.db.insertInto('_cms_menu_items').values({
+					id, translation_group: id, menu_id: menuId,
+					parent_id: item.parentIndex !== undefined ? (insertedIds[item.parentIndex] ?? null) : null,
+					sort_order: i, type: item.type,
+					reference_collection: item.referenceCollection ?? null, reference_id: item.referenceId ?? null,
+					custom_url: item.customUrl ?? null, label: item.label, title_attr: item.titleAttr ?? null,
+					target: item.target ?? null, css_classes: item.cssClasses ?? null, locale
+				}).compile());
+				insertedIds.push(id);
+			}
+			statements.push(this.db.updateTable('_cms_menus').set({ updated_at: new Date().toISOString() }).where('id', '=', menuId).compile(),
+				sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(this.db));
+			try { await atomicBatch(statements); }
+			catch (error) {
+				if (error instanceof Error && /CHECK constraint failed:\s*pass\s*=\s*1/.test(error.message)) throw new MenuGoneError(menuId);
+				throw error;
+			}
+		} else await withTransaction(this.db, async (trx) => {
 			// Re-check menu existence INSIDE the transaction. The handler
 			// resolved by (name, locale) before this call; if a concurrent
 			// menu_delete landed in between, inserting new items would
@@ -641,6 +699,16 @@ export class MenuRepository {
 	 */
 	async reorderItems(menuId: string, items: ReorderItem[]): Promise<MenuItem[]> {
 		invalidateMenuObjectCache();
+		const atomicBatch = menuAtomicBatch(this.db);
+		if (atomicBatch) {
+			const statements = items.map(item => this.db.updateTable('_cms_menu_items')
+				.set({ parent_id: item.parentId, sort_order: item.sortOrder }).where('id', '=', item.id)
+				.where('menu_id', '=', menuId).compile());
+			statements.push(this.db.selectFrom('_cms_menu_items').selectAll().where('menu_id', '=', menuId)
+				.orderBy('sort_order', 'asc').compile());
+			const results = await atomicBatch(statements);
+			return (results[results.length - 1]!.rows as Selectable<MenuItemTable>[]).map(rowToMenuItem);
+		}
 		return withTransaction(this.db, async (trx) => {
 			for (const item of items) {
 				await trx

@@ -58,3 +58,32 @@ raw-binding local D1 callbacks each reached the same false-versus-true assertion
 against real storage before atomic write adaptation; no fixture/setup failure
 is counted for those four. These are original Node/workerd cases, not extra
 upstream callbacks or production startup.
+
+
+The finite native D1 transport now commits create/clone/delete/replace/reorder
+through the current adapter's real atomic batch, preserving its connection
+scope. Twenty-four original storage callbacks pass: two SQLite handler cases,
+four raw D1 handler cases, and six atomicity cases on each of SQLite, raw D1 and
+the ordinary scoped D1 dialect. Real SQL triggers prove rollback for replacement,
+cloning and reorder; missing-menu guards prevent orphan replacement; foreign
+items and other locales remain scoped. The four original D1 handler assertions
+changed from false to true; first-green and setup-operation failures from the
+additional cases establish no extra Source causality. A mistaken scoped-dialect
+constructor in the supplemental fixture was corrected with zero causal credit.
+
+D1 clones take an immutable item/ULID mapping before the finite batch. Node reads
+those source items inside its transaction. This timing substitution is proposed
+for review, earns zero Source concurrency parity, and is not an acceptance
+claim. No concurrency, signed, replay or protected-relation probes were run.
+The complete five Source core files still run with unchanged expectations:
+92 pass and one native item-route import remains unfinished.
+
+Native request readiness now compares all eight owned table/index SQL
+descriptors and attached objects in a readonly sqlite_master census. Named
+original Node and D1 fixtures prove absent, partial, complete, unexpected-index
+and wrong-index states; readiness neither applies DDL nor changes the canonical
+versions 1–5. An initial missing-export setup and a mistaken first migration-row
+assertion were corrected with zero causal credit. Startup registration and full
+family integration remain unfinished. The descriptor retains the Source MIT
+notice. All evidence remains local using the approved third-party dependency
+copy; own normal frozen installation and hosted checks remain unqualified.

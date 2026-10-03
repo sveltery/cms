@@ -34,7 +34,7 @@ for (const backend of ['node', 'd1'] as const) {
       await sql`DROP INDEX idx_menu_items_parent`.execute(storage.db);
       await sql`CREATE INDEX idx_menu_items_parent ON _cms_menu_items(label)`.execute(storage.db);
       assert.equal(await menuStorageReady(storage), false);
-      assert.equal((await storage.db.selectFrom('_cms_migrations').select('version').executeTakeFirst())?.version, 5);
+      assert.deepEqual((await storage.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row => row.version), [1, 2, 3, 4, 5]);
     } finally { await storage.close(); await worker?.dispose(); }
   });
 }

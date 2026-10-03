@@ -1,3 +1,6 @@
+// EmDash 1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:
+// Source005 menus + menu shapes from Source036 + Source078 translation groups.
+// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 import { sql, type CompiledQuery } from 'kysely';
 import type { CmsDatabase } from '../database/contract.ts';
 
