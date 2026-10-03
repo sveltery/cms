@@ -10,10 +10,14 @@ export default defineConfig({
   resolveId(id,importer) {
    if(!importer?.startsWith(frozen)||!id.startsWith('.'))return;
    const target=path.resolve(path.dirname(importer),id);
+   if(importer.endsWith('/tests/integration/content/atomic-publication.test.ts')&&target===path.join(frozen,'tests/utils/test-db.js'))
+    return path.join(root,'tests/helpers/redirects/publication-source-fixture.ts');
    const aliases:Record<string,string>={
     'tests/utils/test-db.js':'tests/helpers/redirects/test-db.ts',
     'src/database/migrations/035_bounded_404_log.js':'src/lib/server/redirects/migrations/035_bounded_404_log.ts',
     'src/database/repositories/redirect.js':'src/lib/server/redirects/repository.ts',
+    'src/database/repositories/content.js':'src/lib/server/database/lifecycle/upstream/database/repositories/content.ts',
+    'src/database/repositories/revision.js':'src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts',
     'src/plugins/context.js':'src/lib/server/redirects/access.ts',
     'src/plugins/types.js':'src/lib/server/redirects/plugin-types.ts',
     'src/redirects/loops.js':'src/lib/server/redirects/loops.ts'
@@ -25,6 +29,7 @@ export default defineConfig({
  test:{environment:'node',fileParallelism:false,include:[
   'parity/emdash/redirect-integration-source/upstream/packages/core/tests/unit/database/migrations/035_bounded_404_log.test.ts',
   'parity/emdash/redirect-integration-source/upstream/packages/core/tests/integration/plugins/redirect-access-dialect.test.ts',
-  'parity/emdash/redirect-integration-source/upstream/packages/core/tests/unit/plugins/redirect-types.test.ts'
+  'parity/emdash/redirect-integration-source/upstream/packages/core/tests/unit/plugins/redirect-types.test.ts',
+  'parity/emdash/redirect-integration-source/upstream/packages/core/tests/integration/content/atomic-publication.test.ts'
  ]}
 });
