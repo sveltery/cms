@@ -25,7 +25,7 @@ export default defineConfig({plugins:[{
     if(target.includes('/packages/admin/src/lib/block-field-state.js'))return resolve(root,'src/lib/blocks/state.ts');
   },
   transform(code,id){if(id.startsWith(frozen)&&id.endsWith('.test.ts'))return {code:code.replaceAll('_emdash_','_cms_'),map:null};}
-}],test:{fileParallelism:false,maxWorkers:1,include:[
+}],test:{globals:true,fileParallelism:false,maxWorkers:1,include:[
   'parity/emdash/blocks/source-tests/packages/core/tests/unit/schema/block-type-contract.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/integration/schema/{block-type-registry,blocks-field-schema}.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/integration/content/{blocks-content,media-field-validation,image-dark-variant-normalize,repeater-media-normalize}.test.ts',
