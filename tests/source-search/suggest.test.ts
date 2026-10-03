@@ -6,7 +6,7 @@ import { describe, it, expect, beforeEach, afterEach } from "vitest";
 
 import { ContentRepository } from "../helpers/search-fixture.ts";
 import type { Database } from "../../src/lib/server/database/lifecycle/upstream/database/types.ts";
-import { setI18nConfig } from "../../../src/i18n/config.js";
+import { setI18nConfig } from "../../src/lib/server/search/i18n.ts";
 import { SchemaRegistry } from "../helpers/search-fixture.ts";
 import { FTSManager } from "../../src/lib/server/search/fts-manager.ts";
 import { getSuggestions, searchWithDb } from "../../src/lib/server/search/query.ts";

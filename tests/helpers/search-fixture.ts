@@ -36,12 +36,12 @@ export type DialectTestContext = { db: Kysely<Database> };
 export async function setupForDialect(_dialect:string):Promise<DialectTestContext> {return {db:await setupTestDatabase()};}
 export async function teardownForDialect(ctx:DialectTestContext) {await teardownTestDatabase(ctx.db);}
 export async function handleContentCreate(db:Kysely<Database>, type:string, input:Record<string,unknown>) {
-  try{return {success:true,data:{item:await new ContentRepository(db).create({type,...input,data:input.data as Record<string,unknown>})}};}
-  catch(cause){return {success:false,error:{message:String(cause)}};}
+  try{return {success:true as const,data:{item:await new ContentRepository(db).create({type,...input,data:input.data as Record<string,unknown>})}};}
+  catch(cause){return {success:false as const,error:{message:String(cause)}};}
 }
 export async function handleContentList(db:Kysely<Database>,type:string,input:Record<string,unknown>) {
-  try{return {success:true,data:await new ContentRepository(db).findMany(type, {limit:input.limit as number|undefined})};}
-  catch(cause){return {success:false,error:{message:String(cause)}};}
+  try{return {success:true as const,data:await new ContentRepository(db).findMany(type, {limit:input.limit as number|undefined})};}
+  catch(cause){return {success:false as const,error:{message:String(cause)}};}
 }
 // Byte-identical fixture function from immutable packages/core/tests/utils/fixtures.ts.
 export function createPostFixture(overrides: Partial<CreateContentInput> = {}): CreateContentInput {

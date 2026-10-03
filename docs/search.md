@@ -1,0 +1,9 @@
+# Full-text search
+
+This work ports EmDash 1.1.0, immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, to the native SvelteKit CMS. It is in progress. The [source ledger](search-ports.json) records preserved source tests and exact modules; the original files are retained under `parity/emdash/search-source/` with [MIT attribution](../notices/emdash-MIT.txt).
+
+The pinned manager uses dynamic `_cms_fts_<collection>` SQLite FTS5 tables and attached content insert/update/delete triggers. Porter/unicode61/trigram tokenizers, field weights, visible-row indexing, Portable Text SQL extraction, repair, pagination, title scope, sanitized snippets and suggestions retain the source algorithms. Search configuration requires a nullable `_cms_collections.search_config` column. The historical schema3 did not contain it; the separate forward metadata migration owns that prerequisite. No empty search migration or manual schema alteration is supplied here.
+
+The source tests were committed before implementation. Initial missing imports, the first missing generated Kit tsconfig, missing search_config setup errors, and provisional content-list test-host routing errors earn zero behavioral red credit. Six source match tests already passed the baseline and earn no invented red history. The original canonical storage regression failed its assertion that `search_config` exists. Whole source search/registry callbacks and the complete search browser file remain unchanged except imports and the explicit `_emdash_` to `_cms_` system namespace mapping. Browser test bearer tokens map only in the test host to ordinary stored session cookies; the public external PAT/MCP product is a separate feature.
+
+The native search API, schema synchronization, public search page, admin index controls and command palette remain under implementation. No final-head, hosted browser, D1, approval, merge or complete search parity claim is made by this checkpoint.
