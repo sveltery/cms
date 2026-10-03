@@ -5,7 +5,22 @@ import { sql } from 'kysely';
 import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { Miniflare } from 'miniflare';
 import { withPriorD1Notification } from './helpers/d1-notification-interleaving.ts';
+
+test('control: installed Miniflare proxy exposes the delayed prior-notification race', { timeout: 15000 }, async () => {
+  await withPriorD1Notification(async arm => {
+    const runtime = new Miniflare({ modules: true, script: 'export default { fetch() { return new Response("control"); } }',
+      compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0, cf: false, d1Databases: { DB: 'notification-control' } });
+    try {
+      const binding = await runtime.getD1Database('DB');
+      arm();
+      await assert.rejects(async () => binding.prepare('SELECT 42 AS answer').all(),
+        error => error instanceof Error && 'code' in error && error.code === 'ERR_ASSERTION'
+          && error.message.includes('message?.id === id'));
+    } finally { await runtime.dispose(); }
+  });
+});
 
 test('D1 fixture matches each response when a prior synchronous notification arrives late', { timeout: 15000 }, async () => {
   await withPriorD1Notification(async arm => {
