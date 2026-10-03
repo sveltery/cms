@@ -16,3 +16,14 @@ it('provides a datetime-local editor with the field label', () => {
   expect(input()?.type).toBe('datetime-local');
   expect(document.querySelector('label')?.textContent).toContain('Starts');
 });
+it.each([
+  ['2026-02-26T18:30', 'Asia/Tokyo', '2026-02-26T09:30:00.000Z'],
+  ['', 'UTC', ''],
+  ['2026-11-01T01:30', 'America/New_York', '2026-11-01T01:30'],
+  ['2026-03-08T02:30', 'America/New_York', '2026-03-08T02:30']
+])('emits the pinned datetime field value for %s in %s', (edited, timezone, expected) => {
+  const values: string[] = [], target = document.createElement('div'); document.body.append(target);
+  flushSync(() => components.push(mount(ScalarHarness, { target, props: { state: bridgeState({ id: 'starts_at', label: 'Starts', value: '', timezone, onChange: (value: string) => values.push(value) }) } })));
+  flushSync(() => { input()!.value = edited; input()!.dispatchEvent(new Event('input', { bubbles: true })); });
+  expect(values).toEqual([expected]);
+});
