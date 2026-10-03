@@ -412,7 +412,14 @@
       "source dev-reset/dev-bypass fixture replaced by fresh isolation and ordinary signed credential registration/login",
       "native action wait3s and whole-case20s; source expectation timeout expressions unchanged"
     ],
-    "baseline": "pending secured hosted source expectations before wizard UI implementation",
+    "baseline": {
+      "run": 37087710468,
+      "job": 111101324222,
+      "head": "f6ab85a66e1764653a3725447b527ee37b398fda",
+      "defaultSecured": "one unchanged source heading expectation fails; one native URL helper expectation fails on callback redirect; three locator-action timeouts and final waitForURL timeout earn zero assertion-red credit",
+      "nodeSecured": "not reached after default failure",
+      "otherFailures": "taxonomy heading callback also fails; dependency checker8errors in validate, preserved"
+    },
     "omissions": [
       "real source dev reset/bypass endpoints",
       "source PAT refresh fixture",
@@ -435,6 +442,35 @@
       "actual media/user seeded domain datasets outside these16callbacks",
       "deployed scheduler/plugin runtime"
     ],
-    "redLog": "/tmp/setup-dashboard-http-red.log"
+    "redLog": "/tmp/setup-dashboard-http-red.log",
+    "green": {
+      "cases": 32,
+      "runtimes": [
+        "Node",
+        "local D1"
+      ],
+      "log": "/tmp/setup-dashboard-http-green.log",
+      "scope": "all16 copied complete callback bodies unchanged; actual native HTTP service"
+    },
+    "implementation": {
+      "handler": {
+        "source": "packages/core/src/api/handlers/dashboard.ts",
+        "blob": "6eff245e36cb194ff0e07013d7f80453abda87ef",
+        "substitutions": [
+          "native imports/table namespace",
+          "native ApiResult type-only union",
+          "real native media/user count adapters"
+        ]
+      },
+      "pureModules": [
+        "source complete scheduler-health.ts",
+        "source complete plugins/content-policy.ts"
+      ],
+      "remaining": [
+        "native dashboard UI",
+        "populated media provider datasets",
+        "deployed scheduler/plugin runtime"
+      ]
+    }
   }
 }
