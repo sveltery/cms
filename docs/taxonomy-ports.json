@@ -1,7 +1,7 @@
 {
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "license": "Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt",
-  "state": "test-first snapshots; initial executable harness pending",
+  "state": "Complete immutable snapshots; scoped supplemental Node execution and secured source checkbox baseline. Entire family and D1 not yet green.",
   "files": [
     {
       "source": "packages/core/tests/integration/content/content-taxonomies.test.ts",
@@ -1847,5 +1847,35 @@
     "source": "e2e/tests/form-data-loss.spec.ts:113",
     "callbackSha256": "cf6c265e94bc1fd610e9ccf265e89aef88761771c6636cb09028359acab44da0",
     "state": "copied before UI; fixture and secured browser baseline pending"
-  }
+  },
+  "runs": [
+    {
+      "runtime": "supplemental installed Node SQLite + five-branch Node SQLite budget fixture; not workerd",
+      "log": "/tmp/taxonomy-domain-host-fix.log",
+      "executions": 177,
+      "passed": 176,
+      "failed": 1,
+      "failure": "term-counts source callback collection delete blocked by native metadata FK NO ACTION versus pinned CASCADE; forward provider8 reserved by PM"
+    },
+    {
+      "runtime": "supplemental installed Node SQLite and budget fixture, corrected real lifecycle adapter",
+      "log": "/tmp/taxonomy-content-source-corrected-red.log",
+      "executions": 14,
+      "passed": 2,
+      "assertionFailures": 8,
+      "downstreamSetupFailures": 4,
+      "failure": "actual native lifecycle explicitly rejects taxonomies"
+    },
+    {
+      "runtime": "normal frozen hosted secured Chromium default adapter",
+      "run": "https://github.com/sveltery/cms/actions/runs/37084972148",
+      "head": "6d55857be6343957d0d1300bffd8f362a425b813",
+      "source": "e2e/tests/form-data-loss.spec.ts:113",
+      "state": "first copied assertion fails: missing Taxonomies heading; later unrelated settings cases exhaust unchanged 180s job timeout"
+    }
+  ],
+  "excludedEvidence": [
+    "/tmp/taxonomy-content-source-first-red.log: test adapter nonexistent API names; no genuine product red credit",
+    "initial missing tsconfig, route framing, prefetch exports, budget exports and clone registration: harness failures, no product red credit"
+  ]
 }

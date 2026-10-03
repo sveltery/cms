@@ -27,3 +27,12 @@ export async function setupForDialectWithCollections(dialect:DialectName){const 
 export async function teardownTestDatabase(db:Kysely<any>){await waitForDeferredTasks();await db.destroy();}
 export async function teardownForDialect(ctx:DialectTestContext){if(ctx)await teardownTestDatabase(ctx.db);}
 export function describeEachDialect(name:string,callback:(name:DialectName)=>void){describe(`${name} (native Node SQLite)`,()=>callback('sqlite'));describe(`${name} (native Node SQLite with five-branch D1 budget; not workerd)`,()=>callback('sqlite-d1-budget'));}
+// The unchanged source demand/count family requires this real SQLite budget fixture.
+export async function setupTestDatabaseWithCompoundSelectLimit(limit:number|null=5){
+ resetTaxonomyDefsCacheForTests();resetRegisteredCollectionsCacheForTests();
+ const sqlite=new NodeSqliteCompatDatabase(':memory:'),statements:string[]=[];
+ const prepare=sqlite.prepare.bind(sqlite);
+ sqlite.prepare=(source:string)=>{statements.push(source);if(limit!==null&&source.split(/\b(?:UNION|INTERSECT|EXCEPT)\b/i).length>limit)throw new Error('too many terms in compound SELECT: SQLITE_ERROR');return prepare(source);};
+ class LimitedDialect extends SqliteDialect {createAdapter(){const adapter=new SqliteAdapter();if(limit!==null)Object.assign(adapter,{compoundSelectLimit:limit});return adapter;}}
+ const db=new Kysely<any>({dialect:new LimitedDialect({database:sqlite})});await runMigrations(db);return{db,statements};
+}

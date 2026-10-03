@@ -1,3 +1,4 @@
+import {newCollectionTaxonomyIndexes} from '../taxonomies/collection-indexes.ts';
 import { sql, type CompiledQuery } from 'kysely';
 import { sqliteErrorMessage } from './errors.ts';
 import { ulid } from 'ulidx';
@@ -206,6 +207,7 @@ export class SchemaRegistry {
       )`.compile(db),
       db.schema.createIndex('idx_' + name + '_draft_list').on(name).columns(['locale', 'deleted_at', 'created_at', 'id']).compile(),
       trashIndexStatement(this.database, value.slug),
+      ...await newCollectionTaxonomyIndexes(this.database, value.slug),
       sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
     ];
     try { await this.batch(statements, 'LIMIT_EXCEEDED'); }

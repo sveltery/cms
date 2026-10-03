@@ -233,7 +233,9 @@ async function readAstroI18nConfig(): Promise<AstroI18nConfig | null> {
 			};
 		};
 		if (!mod.i18n) {
-			astroI18nCache = null;
+			// Native Kit has no Astro config virtual module; use the same source fallback.
+			const nativeConfig = getI18nConfig();
+			astroI18nCache = nativeConfig ? {...nativeConfig, prefixDefaultLocale:nativeConfig.prefixDefaultLocale ?? false} : null;
 			return null;
 		}
 		const routing = mod.i18n.routing;

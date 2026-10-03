@@ -1,5 +1,6 @@
 // Test-only source-shaped route fixture. This is not an Astro/REST product surface.
 import * as handlers from '../../src/lib/server/taxonomies/upstream/api/handlers/taxonomies.ts';
+import {updateTaxonomyDefBody} from '../../src/lib/server/taxonomies/upstream/api/schemas/taxonomies.ts';
 import {hasPermission} from '../../src/lib/server/auth/permissions.ts';
 const route='__NATIVE_SOURCE_ROUTE__';
 async function execute(method:string,context:any):Promise<Response>{
@@ -9,10 +10,10 @@ async function execute(method:string,context:any):Promise<Response>{
  const db=locals.emdash?.db;if(!db)return Response.json({success:false,error:{code:'DATABASE_UNAVAILABLE'}},{status:503});
  const query=Object.fromEntries(new URL(request.url).searchParams),name=params.name;
  let result:any;
- if(method==='GET'&&route.endsWith('/translations.ts'))result=await handlers.handleTaxonomyDefTranslations(db,name,query);
+ if(method==='GET'&&route.endsWith('/translations.ts')){const anchor=await handlers.handleTaxonomyGet(db,name,query);result=anchor.success?await handlers.handleTaxonomyDefTranslations(db,anchor.data.taxonomy.id):anchor;}
  else if(method==='GET'&&route.endsWith('/terms/index.ts'))result=await handlers.handleTermList(db,name,{...query,includeCounts:query.includeCounts!=='false',resolveFallback:query.resolveFallback==='true'});
  else if(method==='GET')result=await handlers.handleTaxonomyGet(db,name,query);
- else if(method==='PUT')result=await handlers.handleTaxonomyUpdate(db,name,await request.json());
+ else if(method==='PUT'){const parsed=updateTaxonomyDefBody.safeParse(await request.json());if(!parsed.success)return Response.json({success:false,error:{code:'VALIDATION_ERROR',message:parsed.error.message}},{status:400});result=await handlers.handleTaxonomyUpdate(db,name,parsed.data);}
  else if(method==='DELETE')result=await handlers.handleTaxonomyDelete(db,name);
  else throw new Error('Source-shaped native route adapter not implemented for '+route);
  const status=result.success?200:result.error?.code==='NOT_FOUND'?404:result.error?.code==='CONFLICT'?409:400;
