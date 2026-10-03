@@ -37,4 +37,15 @@ for(const authority of ledger.authority){
  }
 }
 assert.equal(copied,ledger.copiedDeclarations);assert.equal(expressions,ledger.expectExpressions);
+for(const port of ledger.algorithms??[]){
+ const authority=ledger.authority.find(item=>item.path===port.authority);
+ assert.ok(authority,port.authority);
+ const original=ts.createSourceFile('source.ts',await readFile(authority.local,'utf8'),ts.ScriptTarget.Latest,true);
+ const product=ts.createSourceFile('product.ts',await readFile(port.product,'utf8'),ts.ScriptTarget.Latest,true);
+ for(const name of port.functions){
+  const declaration=ast=>ast.statements.find(statement=>ts.isFunctionDeclaration(statement)&&statement.name?.text===name);
+  assert.ok(declaration(original),name);assert.ok(declaration(product),name);
+  assert.equal(declaration(product).getText(product),declaration(original).getText(original),name);
+ }
+}
 console.log(JSON.stringify({pin:ledger.pin,wholeAuthorities:ledger.authority.length,wholeSourceFiles:ledger.sourceTestFiles,inventoryDeclarations:ledger.inventoryDeclarations,inventoryExpectExpressions:ledger.inventoryExpectExpressions,copiedDeclarations:copied,copiedExpectExpressions:expressions,productTestsRun:0}));

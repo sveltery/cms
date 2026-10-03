@@ -1572,10 +1572,11 @@
   "expectExpressions": 110,
   "inventoryDeclarations": 169,
   "inventoryExpectExpressions": 351,
-  "status": "test-first; pure contracts import native metadata modules; persisted suites remain inventoried, unported and unexecuted",
+  "status": "pure metadata: 72 unchanged Source cases pass after 60 completed value reds and 12 initial passes; persistent and integration suites remain unported",
   "differences": [
     "React/Astro rendering will use native SvelteKit head output; exact source callbacks and assertions remain unchanged.",
-    "Bare media IDs retain the source /_emdash/api/media/file/ URL until a reviewed native media substitution exists."
+    "Bare media IDs retain the source /_emdash/api/media/file/ URL until a reviewed native media substitution exists.",
+    "Pure resolver ContentSeo is a type-only Partial<stored ContentSeo> alias so unchanged pinned tests accepting partial SEO objects type-check; persistent SEO remains complete. Runtime Source functions are unchanged."
   ],
   "omissions": [
     "Persistent SEO migration/repository and content mutation hydration",
@@ -1583,5 +1584,96 @@
     "Sitemap/hreflang published translation, routing and site-settings integration",
     "Plugin execution and configured persisted site settings",
     "Redirects are owned by a separate feature family"
-  ]
+  ],
+  "algorithms": [
+    {
+      "authority": "packages/core/src/seo/index.ts",
+      "product": "src/lib/seo/meta.ts",
+      "functions": [
+        "getSeoMeta",
+        "getContentSeo"
+      ]
+    },
+    {
+      "authority": "packages/core/src/seo/media-url.ts",
+      "product": "src/lib/seo/media-url.ts",
+      "functions": [
+        "buildSeoImageUrl",
+        "resolveSeoCanonicalUrl"
+      ]
+    },
+    {
+      "authority": "packages/core/src/page/jsonld.ts",
+      "product": "src/lib/seo/jsonld.ts",
+      "functions": [
+        "cleanJsonLd",
+        "buildBlogPostingJsonLd",
+        "buildWebSiteJsonLd"
+      ]
+    },
+    {
+      "authority": "packages/core/src/page/metadata.ts",
+      "product": "src/lib/seo/metadata.ts",
+      "functions": [
+        "escapeHtmlAttr",
+        "safeJsonLdSerialize",
+        "createSha256CspHash",
+        "registerJsonLdCspHashes",
+        "resolvePageMetadata",
+        "renderPageMetadata"
+      ]
+    },
+    {
+      "authority": "packages/core/src/page/seo-contributions.ts",
+      "product": "src/lib/seo/contributions.ts",
+      "functions": [
+        "generateBaseSeoContributions",
+        "applySeoPanelToPageContext",
+        "generateSiteSeoContributions"
+      ]
+    },
+    {
+      "authority": "packages/core/src/page/seo-panel.ts",
+      "product": "src/lib/server/seo/panel.ts",
+      "functions": [
+        "primeSeoPanel",
+        "peekSeoPanel"
+      ]
+    },
+    {
+      "authority": "packages/core/src/request-cache.ts",
+      "product": "src/lib/server/seo/request-cache.ts",
+      "functions": [
+        "requestCached",
+        "peekRequestCache",
+        "setRequestCacheEntry",
+        "clearRequestCacheEntry"
+      ]
+    }
+  ],
+  "evidence": {
+    "testFirst": "58fc4edf5a6d6541d1e740efefda54a8d82733a6",
+    "typedBaseline": "8e01e85",
+    "runtime": "Node 24.19.0 and Vitest 4.1.10; ordinary diagnostics against approved-main installed closure, zero fresh install credit",
+    "sourceBefore": {
+      "executed": 72,
+      "assertionFailures": 60,
+      "passes": 12
+    },
+    "sourceAfter": {
+      "executed": 72,
+      "passes": 72,
+      "failures": 0
+    },
+    "nativeAvailabilityBefore": {
+      "executed": 4,
+      "assertionFailures": 4
+    },
+    "nativeAvailabilityAfter": {
+      "executed": 4,
+      "passes": 4,
+      "failures": 0
+    },
+    "wholeSourcePersistedAndIntegrationExecuted": 0
+  }
 }
