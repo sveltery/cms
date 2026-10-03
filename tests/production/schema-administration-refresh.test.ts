@@ -30,13 +30,15 @@ for (const target of ['Node', 'D1'] as const) {
       await h.mutate('createSchemaCollection', { slug: 'private_posts', label: 'Private schema label' });
       const c = await h.query('getSchemaCollection', 'private_posts');
       const before = await h.snapshot();
-      h.probeStorage();
       for (const name of ['getSchemaCollection', 'getCollection']) {
         const denied = await h.remote(name, 'author', undefined, 'private_posts');
         assert.equal(denied.status, 403);
         assert.equal(denied.error.code, 'INSUFFICIENT_PERMISSIONS');
         assert.equal(denied.data, undefined);
       }
+      // Generic content reads compose their service after the storage getter;
+      // the schema mutation's earlier permission gate is the probed boundary.
+      h.probeStorage();
       const result = await h.remote('reorderSchemaCollections', 'author', { slugs: '["private_posts"]', expected: JSON.stringify([{ slug: c.slug, version: c.version, updatedAt: c.updatedAt }]) });
       assert.equal(result.type, 'error'); assert.equal(result.status, 403);
       assert.equal(result.error.code, 'INSUFFICIENT_PERMISSIONS');
