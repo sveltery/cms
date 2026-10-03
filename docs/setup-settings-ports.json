@@ -363,7 +363,9 @@
     "dependencies": {
       "42": "ca39019c94af1c1890e5655ba8ae9ea868765846",
       "48": "cef5aa2baaebaad37d898bad1ba36170eedb1277",
-      "45": "19fdd636e7a8eb54c9d9ee9f74af00911641505a"
+      "45": "19fdd636e7a8eb54c9d9ee9f74af00911641505a",
+      "taxonomy": "09c8f69abfffef672771a1a0dca43fd39cd264f2",
+      "search": "9d794bc7539551f9331e676d1cd43b916d0594f4"
     },
     "copiedPureFiles": [
       {
@@ -381,7 +383,15 @@
         "blob": "d8ffcd99f9c4c544306d986be7534345442e41be",
         "substitutions": "MIT/pin header and .ts/native type-only imports"
       }
-    ]
+    ],
+    "snapshotRepair": {
+      "redCommit": "89aeeae",
+      "redLog": "/tmp/setup-seed-snapshot-red.log",
+      "greenLog": "/tmp/setup-seed-snapshot-green.log",
+      "greenCount": 8,
+      "behavior": "Initial live revision snapshots actual stored affinities/defaults, omits nulls and decodes object/array-shaped strings exactly as pinned ContentRepository.mapRow; SQL JSON1 inside fixed batch.",
+      "sourceCredit": 0
+    }
   },
   "browserGreen": {
     "head": "c967e93e494926bfd253f5b8028a7edafb6d2fef",
@@ -419,11 +429,12 @@
       "actual built native HTTP local D1"
     ],
     "fixtures": "Complete source createPostFixture/createPageFixture; real canonical empty content database and real source ContentRepository. Authority is current stored admin in separate trusted auth fixture; content storage mounted by trusted test hook, zero product bypass endpoints. Explicit trusted test clock preserves source optional now.",
-    "baseline": "pending actual source success assertions before dashboard implementation",
+    "baseline": "32 genuine unchanged source success assertion failures against actual404 /api/dashboard on Node and local D1; canonical domain fixtures complete before route implementation.",
     "omissions": [
       "Astro route/wire registration",
       "actual media/user seeded domain datasets outside these16callbacks",
       "deployed scheduler/plugin runtime"
-    ]
+    ],
+    "redLog": "/tmp/setup-dashboard-http-red.log"
   }
 }

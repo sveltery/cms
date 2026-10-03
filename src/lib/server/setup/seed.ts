@@ -53,7 +53,12 @@ async function createSeedContent(database:CmsDatabase,type:string,entry:SeedCont
  const statements=[sql`INSERT INTO ${sql.ref(name)} (${sql.join(columns.map(column=>sql.ref(column)))}) VALUES (${sql.join(values.map(value=>sql`${value}`))})`.compile(db)];
  if(status==='published'){
   const revisionId=createRevisionId();
-  statements.push(sql`INSERT INTO _cms_revisions(id,collection,entry_id,data,author_id,created_at) VALUES(${revisionId},${type},${id},${JSON.stringify(data)},NULL,${now})`.compile(db));
+  // Source publication snapshots ContentRepository.mapRow after SQLite stores
+  // defaults/affinities, omits nulls and decodes object/array-shaped strings.
+  const storedFields=[...writable];
+  const rawData=storedFields.length?sql`json_object(${sql.join(storedFields.flatMap(field=>[sql`${field}`,sql.ref(field)]))})`:sql`'{}'`;
+  const snapshot=sql`(SELECT json_group_object(key,CASE WHEN type='text' AND substr(value,1,1) IN ('{','[') AND json_valid(value) THEN json(value) ELSE value END) FROM json_each(${rawData}) WHERE type!='null')`;
+  statements.push(sql`INSERT INTO _cms_revisions(id,collection,entry_id,data,author_id,created_at) SELECT ${revisionId},${type},${id},${snapshot},NULL,${now} FROM ${sql.ref(name)} WHERE id=${id}`.compile(db));
   statements.push(sql`UPDATE ${sql.ref(name)} SET live_revision_id=${revisionId},draft_revision_id=NULL,status='published',scheduled_at=NULL,published_at=${now},updated_at=${now},version=version+1 WHERE id=${id}`.compile(db));
   statements.push(sql`INSERT INTO _cms_revision_prune_queue(collection,entry_id,revision_id) VALUES(${type},${id},${revisionId}) ON CONFLICT(collection,entry_id) DO UPDATE SET revision_id=excluded.revision_id`.compile(db));
  }
