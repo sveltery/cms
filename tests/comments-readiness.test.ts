@@ -12,7 +12,7 @@ import { commentRuntimeSchemaStatements } from '../src/lib/server/comments/runti
 import { asyncD1Storage } from './helpers/async-d1-storage.ts';
 
 for (const target of ['Node SQLite', 'raw D1'] as const) {
-  for (const variant of ['correct', 'default case', 'default whitespace', 'partial index case', 'collection default case', 'source auto approval default'] as const) {
+  for (const variant of ['correct', 'default case', 'default whitespace', 'partial index case', 'collection default case', 'source auto approval default', 'comments quoted timestamp', 'reactions quoted timestamp', 'multiword type', 'non-ASCII type whitespace'] as const) {
     test(`comments ${target} readiness preserves SQL literals: ${variant}`, { timeout: 30000 }, async () => {
       const worker = target === 'raw D1' ? await asyncD1Storage() : undefined;
       const database = worker ? openD1(worker.binding) : openSqlite(':memory:');
@@ -22,6 +22,10 @@ for (const target of ['Node SQLite', 'raw D1'] as const) {
           if (variant === 'default case') return statement.replace("DEFAULT 'pending'", "DEFAULT 'PENDING'");
           if (variant === 'default whitespace') return statement.replace("DEFAULT 'pending'", "DEFAULT 'pend ing'");
           if (variant === 'partial index case') return statement.replace("WHERE status = 'pending'", "WHERE status = 'PENDING'");
+          if (variant === 'comments quoted timestamp' && statement.startsWith('CREATE TABLE _cms_comments ')) return statement.replaceAll('DEFAULT CURRENT_TIMESTAMP', 'DEFAULT "CURRENT_TIMESTAMP"');
+          if (variant === 'reactions quoted timestamp' && statement.startsWith('CREATE TABLE _cms_comment_reactions ')) return statement.replaceAll('DEFAULT CURRENT_TIMESTAMP', 'DEFAULT "CURRENT_TIMESTAMP"');
+          if (variant === 'multiword type') return statement.replace('collection TEXT NOT NULL', 'collection TE XT NOT NULL');
+          if (variant === 'non-ASCII type whitespace') return statement.replace('collection TEXT NOT NULL', 'collection TE\u00a0XT NOT NULL');
           return statement;
         });
         await database.atomicBatch([
