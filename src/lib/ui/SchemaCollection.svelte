@@ -23,7 +23,7 @@
   let hydrated = $state(false);
   onMount(() => { hydrated = true; });
   const defaultFormat = $derived(fieldForm.fields.defaultValueFormat.value() ?? 'omit');
-  const validationFormat = $derived(fieldForm.fields.validationFormat.value() ?? (scalarField ? 'text' : 'omit'));
+  const validationFormat = $derived(fieldForm.fields.validationFormat.value() ?? 'omit');
   const optionsMode = $derived(fieldForm.fields.optionsMode.value() ?? 'keep');
   let setSingular = $state(false);
   let setDescription = $state(false);
@@ -134,7 +134,7 @@
     <label>Default value <textarea aria-label="Default value" {...fieldForm.fields.defaultValue.as('text')} value={fieldForm.fields.defaultValue.value() ?? ''} disabled={hydrated && defaultFormat !== 'text'} maxlength="100000"></textarea></label>
     {/if}
     <label>Typed default value (JSON) <textarea aria-label="Typed default value (JSON)" {...fieldForm.fields.defaultValueJson.as('text')} value={fieldForm.fields.defaultValueJson.value() ?? ''} disabled={hydrated && defaultFormat !== 'json'}></textarea></label>
-    <label>Validation format <select aria-label="Validation format" {...fieldForm.fields.validationFormat.as('select',scalarField?'text':'omit')}><option value="omit">No validation</option>{#if scalarField}<option value="text">Text rules</option>{/if}<option value="json">JSON rules</option></select></label>
+    <label>Validation format <select aria-label="Validation format" {...fieldForm.fields.validationFormat.as('select','omit')}><option value="omit">No validation</option>{#if scalarField}<option value="text">Text rules</option>{/if}<option value="json">JSON rules</option></select></label>
     <label>Validation rules (JSON) <textarea aria-label="Validation rules (JSON)" {...fieldForm.fields.validationJson.as('text')} value={fieldForm.fields.validationJson.value() ?? ''} disabled={hydrated && validationFormat !== 'json'}></textarea></label>
     <label>Field options update <select aria-label="Field options update" {...fieldForm.fields.optionsMode.as('select','keep')}><option value="keep">No options</option><option value="set">Set options</option></select></label>
     <label>Field options (JSON) <textarea aria-label="Field options (JSON)" {...fieldForm.fields.optionsJson.as('text')} value={fieldForm.fields.optionsJson.value() ?? ''} disabled={hydrated && optionsMode !== 'set'}></textarea></label>

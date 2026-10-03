@@ -126,6 +126,7 @@ test.describe('configured isolated schema forms', () => {
     await field.getByLabel('Field slug', { exact: true }).fill('headline');
     await page.getByLabel('Field label', { exact: true }).fill('Headline');
     await page.getByLabel('Field type', { exact: true }).selectOption('string');
+    await page.getByLabel('Validation format', { exact: true }).selectOption('text');
     await page.getByLabel('Required', { exact: true }).check();
     await page.getByLabel('Minimum length', { exact: true }).fill('2');
     await page.getByLabel('Maximum length', { exact: true }).fill('80');
@@ -138,6 +139,7 @@ test.describe('configured isolated schema forms', () => {
     await field.getByLabel('Field slug', { exact: true }).fill('details');
     await page.getByLabel('Field label', { exact: true }).fill('Details');
     await page.getByLabel('Field type', { exact: true }).selectOption('text');
+    await page.getByLabel('Validation format', { exact: true }).selectOption('text');
     await page.getByLabel('Required', { exact: true }).uncheck();
     await page.getByLabel('Minimum length', { exact: true }).fill('');
     await page.getByLabel('Maximum length', { exact: true }).fill('100001');

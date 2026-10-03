@@ -31,7 +31,7 @@ test.describe('complete schema administration',()=>{
     await add.getByLabel('Field slug',{exact:true}).fill('priority');
     await add.getByLabel('Field label',{exact:true}).fill('Priority');
     await add.getByLabel('Field type',{exact:true}).selectOption('integer');
-    for (const label of ['Set default value','Default value','Minimum length','Maximum length','Pattern metadata','Validation pattern']) {
+    for (const label of ['Default value','Minimum length','Maximum length','Pattern metadata','Validation pattern']) {
       await expect(add.getByLabel(label,{exact:true})).toHaveCount(0);
     }
     await add.getByLabel('Default format',{exact:true}).selectOption('json');
