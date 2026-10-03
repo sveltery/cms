@@ -77,28 +77,18 @@ interface RedirectCacheState {
 
 const REDIRECT_CACHE_TTL_MS = 30_000;
 const REDIRECT_CACHE_MAX_REFRESH_ATTEMPTS = 3;
-const REDIRECT_CACHE_KEY = Symbol.for("sveltery:redirect-cache");
-const g = globalThis as Record<symbol, unknown>;
-const cacheState: RedirectCacheState =
-	// eslint-disable-next-line typescript/no-unsafe-type-assertion -- globalThis singleton pattern (see request-context.ts)
-	(g[REDIRECT_CACHE_KEY] as RedirectCacheState | undefined) ??
-	(() => {
-		const state: RedirectCacheState = {
-			redirects: null,
-			expiresAt: 0,
-			generation: 0,
-			refresh: createSingleFlightCache<CachedRedirects>(),
-			revalidatingUntil: 0,
-		};
-		g[REDIRECT_CACHE_KEY] = state;
-		return state;
-	})();
+function createCacheState(): RedirectCacheState {
+ return {redirects:null,expiresAt:0,generation:0,refresh:createSingleFlightCache<CachedRedirects>(),revalidatingUntil:0};
+}
+
+export function createRedirectCache() {
+ const cacheState = createCacheState();
 
 /**
  * Invalidate the cached redirects (both exact and pattern).
  * Call when redirects are created, updated, or deleted.
  */
-export function invalidateRedirectCache(): void {
+function invalidateRedirectCache(): void {
 	cacheState.generation++;
 	cacheState.redirects = null;
 	cacheState.expiresAt = 0;
@@ -128,12 +118,12 @@ function installCachedRedirects(redirects: CachedRedirects): CachedRedirects {
 	return cacheState.redirects;
 }
 
-function revalidateInBackground(source: RedirectSource, cached: CachedRedirects): void {
+function revalidateInBackground(source: RedirectSource, cached: CachedRedirects, defer: typeof after): void {
 	const now = Date.now();
 	if (cacheState.revalidatingUntil > now) return;
 	cacheState.revalidatingUntil = now + REDIRECT_CACHE_TTL_MS;
 	const generation = cacheState.generation;
-	after(async () => {
+	defer(async () => {
 		try {
 			if (cached.version !== null && (await source.isCurrent(cached.version))) {
 				if (generation === cacheState.generation) {
@@ -149,11 +139,11 @@ function revalidateInBackground(source: RedirectSource, cached: CachedRedirects)
 	});
 }
 
-export async function loadCachedRedirects(source: RedirectSource): Promise<CachedRedirects> {
+async function loadCachedRedirects(source: RedirectSource, defer: typeof after = after): Promise<CachedRedirects> {
 	for (let attempt = 0; attempt < REDIRECT_CACHE_MAX_REFRESH_ATTEMPTS; attempt++) {
 		const cached = cacheState.redirects;
 		if (cached) {
-			if (Date.now() >= cacheState.expiresAt) revalidateInBackground(source, cached);
+			if (Date.now() >= cacheState.expiresAt) revalidateInBackground(source, cached, defer);
 			return cached;
 		}
 
@@ -161,7 +151,7 @@ export async function loadCachedRedirects(source: RedirectSource): Promise<Cache
 		const loaded = await singleFlightCached(
 			cacheState.refresh,
 			async () => compileRedirects(await source.load()),
-			{ anchor: (promise) => after(() => promise), ownerTimeoutMs: 30_000 },
+			{ anchor: (promise) => defer(() => promise), ownerTimeoutMs: 30_000 },
 		);
 
 		if (generation === cacheState.generation) {
@@ -175,6 +165,16 @@ export async function loadCachedRedirects(source: RedirectSource): Promise<Cache
 
 	throw new Error("Redirect cache refresh exhausted without loading rules");
 }
+
+ return {invalidateRedirectCache,loadCachedRedirects};
+}
+
+const REDIRECT_CACHE_KEY = Symbol.for("sveltery:redirect-cache");
+const g = globalThis as Record<symbol, unknown>;
+const defaultCache = (g[REDIRECT_CACHE_KEY] as ReturnType<typeof createRedirectCache> | undefined) ?? createRedirectCache();
+g[REDIRECT_CACHE_KEY] = defaultCache;
+export const invalidateRedirectCache = defaultCache.invalidateRedirectCache;
+export const loadCachedRedirects = defaultCache.loadCachedRedirects;
 
 /**
  * Match a path against the cached pattern rules.

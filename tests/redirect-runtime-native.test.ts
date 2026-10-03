@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { sql } from 'kysely';
+import { sql, type Kysely } from 'kysely';
+import { installRedirectTables } from '../src/lib/server/redirects/migrations/index.ts';
 import type { RequestEvent } from '@sveltejs/kit';
 import { createCmsRuntime } from '../src/lib/server/runtime/composition.ts';
 
@@ -20,16 +21,7 @@ async function fixture() {
   await runtime.handle({event:initial,resolve:async()=>new Response('ok')});
   const database = initial.locals.cms!.database;
   // Explicit native test fixture, never a registered application migration.
-  await sql`CREATE TABLE _cms_redirects (
-    id TEXT PRIMARY KEY, source TEXT NOT NULL, destination TEXT NOT NULL, type INTEGER NOT NULL DEFAULT 301,
-    is_pattern INTEGER NOT NULL DEFAULT 0, enabled INTEGER NOT NULL DEFAULT 1, hits INTEGER NOT NULL DEFAULT 0,
-    last_hit_at TEXT, group_name TEXT, auto INTEGER NOT NULL DEFAULT 0, created_at TEXT, updated_at TEXT,
-    config_revision TEXT NOT NULL DEFAULT '0', source_guard INTEGER NOT NULL DEFAULT 1, write_generation INTEGER NOT NULL DEFAULT 0
-  )`.execute(database.db);
-  await sql`CREATE TABLE _cms_404_log (
-    id TEXT PRIMARY KEY, path TEXT NOT NULL UNIQUE, referrer TEXT, user_agent TEXT, ip TEXT,
-    created_at TEXT, hits INTEGER NOT NULL DEFAULT 1, last_seen_at TEXT
-  )`.execute(database.db);
+  await installRedirectTables(database.db as unknown as Kysely<unknown>);
   return {runtime,database,deferred,async close(){await Promise.allSettled(deferred);await runtime.close();await rm(directory,{recursive:true,force:true});}};
 }
 

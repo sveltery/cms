@@ -26,6 +26,8 @@ export default defineConfig({
       if (target.endsWith('/src/database/migrations/081_redirect_write_guards.js') && importer.includes('/unit/database/migrations/')) return path.join(root, 'tests/helpers/redirects/migration-namespace.ts');
       if (target.startsWith(path.join(frozenRoot, 'src/database/migrations/')) && !target.endsWith('/runner.js')) return path.join(nativeRoot, 'migrations', path.basename(target).replace(/\.js$/, '.ts'));
       if (target === path.join(frozenRoot, 'src/api/schemas/redirects.js')) return path.join(nativeRoot, 'schemas.ts');
+      if (target === path.join(frozenRoot, 'src/loader.js')) return path.join(root, 'tests/helpers/redirects/loader.ts');
+      if (target === path.join(frozenRoot, 'src/astro/middleware/redirect.js')) return path.join(root, 'tests/helpers/redirects/source-middleware.ts');
     }
   }],
   test: {
@@ -33,11 +35,13 @@ export default defineConfig({
     include: ['parity/emdash/redirect-source/upstream/packages/core/tests/unit/redirects/*.test.ts',
       'parity/emdash/redirect-source/upstream/packages/core/tests/unit/schemas/redirects.test.ts',
       'parity/emdash/redirect-source/upstream/packages/core/tests/unit/api/redirect.test.ts',
+      'parity/emdash/redirect-source/upstream/packages/core/tests/unit/astro/middleware-redirect.test.ts',
       'parity/emdash/redirect-source/upstream/packages/core/tests/integration/redirects/redirect-repository.test.ts',
       'parity/emdash/redirect-source/upstream/packages/core/tests/unit/database/migrations/081_redirect_write_guards.test.ts',
       'parity/emdash/redirect-source/upstream/packages/core/tests/integration/redirects/redirect-artifacts.test.ts',
       'parity/emdash/redirect-source/upstream/packages/core/tests/integration/redirects/redirect-pattern-precedence.test.ts',
-      'parity/emdash/redirect-source/upstream/packages/core/tests/integration/redirects/log404-bounded.test.ts'],
+      'parity/emdash/redirect-source/upstream/packages/core/tests/integration/redirects/log404-bounded.test.ts',
+      'parity/emdash/redirect-source/upstream/packages/core/tests/integration/database/redirect-enable-loop-guard-migration.test.ts'],
     fileParallelism: false
   }
 });
