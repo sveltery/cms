@@ -4,7 +4,9 @@
 // Field batching follows schema/registry.ts:418 and utils/chunks.ts at the same pin.
 // Local ordering, field caps and error behavior: docs/editor-manifest-batching.md.
 import { MAX_COLLECTION_LIST_COLUMNS, type CollectionSupport, type FieldType, type FieldValidation, type FieldWidgetOptions, type RepeaterSubField, type UnsupportedFieldType } from '../schema/types.ts';
-import { sql } from 'kysely';
+import { sql, type Kysely } from 'kysely';
+import {OptionsRepository} from '../settings/options.ts';
+import type {SettingsTables} from '../settings/tables.ts';
 import { CmsError, type CmsDatabase, type Field, type FieldRow } from '../database/contract.ts';
 import { MAX_FIELDS, SchemaRegistry, fieldFromRow } from '../database/registry.ts';
 import type { ServerPrincipal } from '../database/service.ts';
@@ -44,7 +46,7 @@ export interface EditorCollection {
   listColumns?: string[];
   fields: Record<string, EditorField>;
 }
-export interface EditorManifest { collections: Record<string, EditorCollection> }
+export interface EditorManifest { collections: Record<string, EditorCollection>; timezone:string }
 
 // Pinned api/handlers/manifest.ts:51 and :349. Text is a legacy richText
 // string; portableText is an array and has its own editor kind.
@@ -145,5 +147,12 @@ export async function editorManifest(database: CmsDatabase, principal: ServerPri
       listColumns: listColumns.length ? listColumns : undefined, fields
     };
   }
-  return { collections };
+  // Pinned astro/routes/api/manifest.ts:44–70 supplies persisted site timezone
+  // to every datetime editor. Native metadata has no Astro branding context;
+  // this is a bounded transport, with zero whole-source route parity credit.
+  let timezone='UTC';
+  try {timezone=(await new OptionsRepository(database.db as unknown as Kysely<SettingsTables>)
+    .getMany<string>(['site:timezone'])).get('site:timezone')||'UTC';}
+  catch {/* Pinned pre-setup options failure retains the UTC fallback. */}
+  return { collections, timezone };
 }

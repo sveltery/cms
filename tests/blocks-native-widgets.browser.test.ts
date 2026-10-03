@@ -28,9 +28,9 @@ describe('Native reusable block controls',()=>{
   const dark={provider:'external',id:'',src:'https://example.com/dark.png'};const onchange=vi.fn();
   vi.stubGlobal('fetch',vi.fn().mockResolvedValue(new Response(JSON.stringify({success:true,data:{items:[{id:'asset',filename:'new.png',storageKey:'new.png',mimeType:'image/png',width:40,height:30,alt:'Replacement'}],totalCount:1}}),{status:200})));
   const screen=await render(React.createElement(NativeBlockMediaField,{id:'photo',label:'Photo',image:true,value:{provider:'external',id:'',src:'https://example.com/old.png',darkVariant:dark},onchange}));
-  screen.getByRole('button',{name:'Choose from media library'}).element().click();
+  (screen.getByRole('button',{name:'Choose from media library'}).element() as HTMLButtonElement).click();
   await expect.element(screen.getByRole('button',{name:'new.png'})).toBeInTheDocument();
-  screen.getByRole('button',{name:'new.png'}).element().click();
+  (screen.getByRole('button',{name:'new.png'}).element() as HTMLButtonElement).click();
   expect(onchange).toHaveBeenLastCalledWith(expect.objectContaining({provider:'local',id:'asset',darkVariant:dark}));
  });
 });
