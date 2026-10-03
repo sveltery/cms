@@ -12,12 +12,16 @@
   let search=$state(''),debouncedSearch=$state(''),filterEnabled=$state('all'),filterAuto=$state('all');
   let showForm=$state(false),edit=$state<Redirect|null>(null),deleteId=$state<string|null>(null);
   let source=$state(''),destination=$state(''),type=$state('301'),enabled=$state(true),groupName=$state('');
-  let formError=$state(''),formBusy=$state(false),mounted=$state(false),requestGeneration=0;
+  let formError=$state(''),formBusy=$state(false),mounted=$state(false),requestGeneration=0,loadedQueryKey='';
   const terminal=$derived(type==='410'||type==='451');
   function options(cursor?:string):RedirectListOptions{return {search:debouncedSearch||undefined,
     enabled:filterEnabled==='all'?undefined:filterEnabled==='true',auto:filterAuto==='all'?undefined:filterAuto==='true',cursor,limit:100};}
   async function loadRedirects(append=false){
     const generation=++requestGeneration;loading=true;error='';
+    const queryKey=JSON.stringify([debouncedSearch,filterEnabled,filterAuto]);
+    // A new Source query key has no previous-filter data while loading.
+    // Same-query mutation refreshes and pagination retain their current rows.
+    if(!append&&queryKey!==loadedQueryKey){redirects=[];loops=[];nextCursor=undefined;loadedQueryKey=queryKey;}
     try{const page=await api.fetchRedirects(options(append?nextCursor:undefined));if(generation!==requestGeneration)return;
       redirects=append?[...redirects,...page.items]:page.items;nextCursor=page.nextCursor;
       loops=append?[...new Set([...loops,...page.loopRedirectIds??[]])]:page.loopRedirectIds??[];
