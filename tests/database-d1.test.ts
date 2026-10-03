@@ -148,7 +148,7 @@ test('D1: startup accepts a complete upgrade between actual preflight reads', { 
 });
 test('D1: one actual batch forwards parameters/order, RETURNING rows, zero/positive changes and insert IDs', { timeout: 30000 }, async () => {
   const { runtime, binding, database } = await localD1(); const calls: string[][] = [];
-  const tracked: D1Binding = { prepare: query => binding.prepare(query), async batch(statements) { calls.push(statements.map(() => 'statement')); return binding.batch(statements); } };
+  const tracked: D1Binding = { prepare: query => binding.prepare(query), async batch(statements) { calls.push(statements.map(() => 'statement')); return binding.batch(statements as Parameters<typeof binding.batch>[0]); } };
   const cms = openD1(tracked);
   try {
     await sql`CREATE TABLE media (id INTEGER PRIMARY KEY, status TEXT, storage_key TEXT)`.execute(cms.db);

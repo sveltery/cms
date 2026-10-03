@@ -53,7 +53,7 @@ test('all close callers await an already-started migration and its request canno
   }
   const binding: D1Binding = {
     prepare: query => wrap(original.prepare(query)),
-    batch: values => original.batch(values.map(value => statements.get(value)!))
+    batch: values => original.batch(values.map(value => statements.get(value)!) as Parameters<typeof original.batch>[0])
   };
   const runtime = createCmsRuntime(() => ({ kind: 'd1', binding, publicOrigin: 'https://cms.example' }));
   const event = { locals: {}, cookies: { get() {} } } as unknown as RequestEvent;
