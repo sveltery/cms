@@ -40,7 +40,9 @@ export interface SchemaSearchPlan {before:CompiledQuery[];statements:CompiledQue
 const emptyPlan=():SchemaSearchPlan=>({before:[],statements:[],after:[]});
 export async function planSchemaSearch(database:CmsDatabase,slug:string,supports:readonly string[],fields:readonly SearchSchemaField[],sourceFields:readonly SearchSchemaField[]):Promise<SchemaSearchPlan> {
   const collection=await database.db.selectFrom('_cms_collections').selectAll().where('slug','=',slug).executeTakeFirst();
-  if(!collection) return emptyPlan();
+  // Historical prefixes deliberately lack the forward search column. Ordinary
+  // pre-upgrade metadata writes cannot bind an index configuration there.
+  if(!collection||!('search_config' in collection)) return emptyPlan();
   const token=ulid(),db=database.db;
   const after=[sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)];
   // Even a currently inactive index can be enabled between planning and the
