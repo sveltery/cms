@@ -5,9 +5,8 @@ import assert from 'node:assert/strict';
 import { sql,type Kysely } from 'kysely';
 import { openSqlite } from '../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../src/lib/server/database/migrations.ts';
-import { cmsService } from '../src/lib/server/database/service.ts';
+import { cmsService,type ServerPrincipal } from '../src/lib/server/database/service.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
-import { Permissions } from '../src/lib/server/auth/permissions.ts';
 import { installRedirectTables } from '../src/lib/server/redirects/migrations/index.ts';
 import { RedirectRepository } from '../src/lib/server/redirects/repository.ts';
 import type { Database } from '../src/lib/server/redirects/database-types.ts';
@@ -19,7 +18,10 @@ async function fixture({redirects=true,revisions=false}={}) {
  await registry.createCollection({slug:'posts',label:'Posts',supports:revisions?['revisions']:[]});
  await registry.createField('posts',{slug:'title',label:'Title',type:'string'});
  if(redirects)await installRedirectTables(database.db as unknown as Kysely<unknown>);
- const principal={id:'author-redirects',permissions:Object.keys(Permissions) as Array<keyof typeof Permissions>};
+ const principal:ServerPrincipal={id:'author-redirects',permissions:[
+  'schema:read','schema:manage','content:create','content:read','content:read_drafts',
+  'content:edit_any','content:delete_any','content:publish_any'
+ ]};
  const deferred:Array<()=>void|Promise<void>>=[];
  const service=cmsService(database,principal,{after:task=>deferred.push(task)});
  const db=database.db.withTables<{[Name in keyof Database]:Database[Name]}>().$pickTables<keyof Database>();
