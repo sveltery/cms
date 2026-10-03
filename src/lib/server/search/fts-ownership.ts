@@ -5,7 +5,7 @@ export interface FtsOwnerMetadata {
   id: string;
   slug: string;
   searchConfig: string | null;
-  /** The actual source getSearchableFields query order, not UI sort_order. */
+  /** Complete declared fields; indexed order is read from the actual virtual SQL. */
   fields: readonly {slug: string; type: string; searchable: number}[];
 }
 export interface FtsCatalogueObject { name: string; type: string; tbl_name: string; sql: string | null }
@@ -38,20 +38,28 @@ function normalized(value: string): string {
 
 /** Exact source-generated nine-object layout, limited to the reserved vN collision.
  * The source enableSearch requires searchable fields; it does not require supports.
- * Unknown operators, disabled configs, partial groups and legacy trigger SQL fail.
+ * Unknown operators, malformed configs, partial groups and legacy trigger SQL fail.
  */
 export function recognizeVersionedFtsOwner(owner: FtsOwnerMetadata, objects: readonly FtsCatalogueObject[]): RecognizedFtsOwner | null {
   if (!identifier.test(owner.slug) || !/_v[0-9]+$/.test(owner.slug) || !owner.id) return null;
-  let config: {enabled?: unknown; tokenize?: unknown};
-  try { config = JSON.parse(owner.searchConfig ?? 'null'); } catch { return null; }
-  if (typeof config !== 'object' || config === null || config.enabled !== true) return null;
-  const tokenize = config.tokenize ?? 'porter unicode61';
-  if (!SEARCH_TOKENIZERS.includes(tokenize as SearchTokenizer)) return null;
+  if (owner.searchConfig !== null) {
+    let config: unknown;
+    try { config = JSON.parse(owner.searchConfig); } catch { return null; }
+    if (typeof config !== 'object' || config === null || !('enabled' in config) || typeof config.enabled !== 'boolean') return null;
+    if ('tokenize' in config && !SEARCH_TOKENIZERS.includes(config.tokenize as SearchTokenizer)) return null;
+  }
   if (owner.fields.some(field => !identifier.test(field.slug))) return null;
-  const fields = owner.fields.filter(field => field.searchable === 1);
-  if (!fields.length || new Set(fields.map(field=>field.slug)).size !== fields.length) return null;
+  const declared = owner.fields.filter(field => field.searchable === 1);
+  if (!declared.length || new Set(declared.map(field=>field.slug)).size !== declared.length) return null;
   const table = `_cms_fts_${owner.slug}`, contentTable = `ec_${owner.slug}`;
-  const names = fields.map(field=>field.slug), columns = ['id UNINDEXED','locale UNINDEXED',...names].join(', ');
+  const main = objects.find(object=>object.name===table);
+  if(!main?.sql) return null;
+  const virtual = normalized(main.sql).match(new RegExp(`^CREATEVIRTUALTABLE"${table}"USINGfts5\\(idUNINDEXED,localeUNINDEXED,([a-z0-9_,]+),tokenize='(porter unicode61|unicode61|trigram)'\\)$`));
+  if(!virtual) return null;
+  const names = virtual[1].split(','), tokenize = virtual[2];
+  if(names.length !== declared.length || new Set(names).size !== names.length || names.some(name=>!declared.some(field=>field.slug===name))) return null;
+  const fields = names.map(name=>declared.find(field=>field.slug===name)!);
+  const columns = ['id UNINDEXED','locale UNINDEXED',...names].join(', ');
   const value = (field: typeof fields[number]) => {
     const ref = `NEW.${field.slug}`;
     return field.type !== 'portableText' ? ref : `CASE WHEN ${ref} IS NULL THEN NULL WHEN json_valid(${ref}) AND json_type(${ref}) IN ('array', 'object') THEN (SELECT group_concat(j.value, ' ') FROM json_tree(${ref}) AS j WHERE j.key IN ('text', 'alt', 'caption', 'code') AND j.type = 'text') ELSE ${ref} END`;

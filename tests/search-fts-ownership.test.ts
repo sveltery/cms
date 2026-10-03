@@ -12,7 +12,9 @@ for (const target of ['node','d1']) {
     assert.equal(recognized?.objects.length,9);
     assert.equal(recognized?.contentTable,'ec_notes_v3');
     assert.equal(recognizeVersionedFtsOwner({...owner,slug:'notes'},objects),null);
-    assert.equal(recognizeVersionedFtsOwner({...owner,searchConfig:JSON.stringify({enabled:false})},objects),null);
+    assert.equal(recognizeVersionedFtsOwner({...owner,searchConfig:JSON.stringify({enabled:false})},objects)?.objects.length,9);
+    assert.equal(recognizeVersionedFtsOwner({...owner,searchConfig:'malformed'},objects),null);
+    assert.equal(recognizeVersionedFtsOwner({...owner,searchConfig:JSON.stringify({enabled:true,tokenize:'unknown'})},objects),null);
     assert.equal(recognizeVersionedFtsOwner({...owner,fields:owner.fields.slice(0,1)},objects),null);
     assert.equal(recognizeVersionedFtsOwner(owner,objects.slice(1)),null);
     assert.equal(recognizeVersionedFtsOwner(owner,[...objects,{...objects[0],name:'_cms_fts_notes_v3_extra'}]),null);
