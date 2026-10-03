@@ -138,7 +138,7 @@ export class SchemaRegistry {
     return definition ? { ...definition, fields: await this.listFields(definition.id) } : null;
   }
 
-  // String/text metadata subset of EmDash 1.1.0 registry.ts updateField:1542,
+  // Persisted metadata subset of EmDash 1.1.0 registry.ts updateField:1542,
   // pinned at 913cb1bb. Supplied keys only; no DDL or content-row changes.
   // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
   async updateField(collectionSlug: unknown, fieldSlug: unknown, input: unknown): Promise<Field> {
@@ -175,15 +175,25 @@ export class SchemaRegistry {
     // Preserve the resolved identity, and return this write's row even if a later writer wins.
     // No schema/metadata precondition or collection touch: fields are last-writer-wins.
     const indexStatements = value.indexed === undefined ? [] : value.indexed ? this.fieldIndexStatements(parse(identifier,collectionSlug),target.id,target.slug) : this.dropFieldIndexStatements(target.id);
-    const results = await this.database.atomicBatch([
+    // Source updateField resolves membership within its transaction. Prevent
+    // index DDL after a missing/replaced identity before the native UPDATE can
+    // affect zero rows. Non-index metadata keeps its existing RETURNING path.
+    const indexToken=ulid();
+    const indexGuard=indexStatements.length ? [sql`INSERT INTO _cms_guards(token,pass) SELECT ${indexToken},CASE WHEN EXISTS (
+      SELECT 1 FROM _cms_fields f JOIN _cms_collections c ON c.id=f.collection_id
+      WHERE f.id=${target.id} AND f.collection_id=${target.collectionId} AND f.slug=${target.slug}
+        AND c.slug=${parse(identifier,collectionSlug)}) THEN 1 ELSE 0 END`.compile(db)] : [];
+    const statements = [...indexGuard,
       db.updateTable('_cms_fields').set(updates)
         .where('id', '=', target.id).where('collection_id', '=', target.collectionId)
         .where('slug', '=', target.slug)
         .where('collection_id', 'in', db.selectFrom('_cms_collections').select('id')
           .where('id', '=', target.collectionId).where('slug', '=', parse(identifier, collectionSlug)))
-        .returningAll().compile(), ...indexStatements
-    ]);
-    const row = results[0].rows[0] as FieldRow | undefined;
+        .returningAll().compile(), ...indexStatements,
+      ...(indexGuard.length ? [sql`DELETE FROM _cms_guards WHERE token=${indexToken}`.compile(db)] : [])
+    ];
+    const results = indexGuard.length ? await this.batch(statements,'NOT_FOUND') : await this.database.atomicBatch(statements);
+    const row = results[indexGuard.length].rows[0] as FieldRow | undefined;
     if (!row) throw new CmsError('NOT_FOUND');
     return field(row);
   }
@@ -383,7 +393,7 @@ export class SchemaRegistry {
     const token=ulid(); const db=this.database.db;
     return { before:[sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN EXISTS(SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${value.version} AND updated_at=${value.updatedAt}) THEN 1 ELSE 0 END`.compile(db)],after:[sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)] };
   }
-  private async batch(statements: CompiledQuery[], guardCode: 'LIMIT_EXCEEDED' | 'CONFLICT' | 'COLLECTION_NOT_EMPTY') {
+  private async batch(statements: CompiledQuery[], guardCode: 'LIMIT_EXCEEDED' | 'CONFLICT' | 'COLLECTION_NOT_EMPTY' | 'NOT_FOUND') {
     try { return await this.database.atomicBatch(statements); }
     catch (cause) {
       // Only the deliberate SQL guard's CHECK failure becomes a domain conflict.
