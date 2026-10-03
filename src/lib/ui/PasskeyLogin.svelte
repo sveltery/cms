@@ -2,8 +2,8 @@
   import { beginLogin, completeLogin, logout } from '$lib/auth.remote';
   import { usePasskey } from '$lib/auth/passkey-browser';
   import { tick } from 'svelte';
-  let { unavailable = false, homeHref = '/', setupHref = '/setup', needsSetup = false, user = null, loginHref = '/login' }: {
-    unavailable?: boolean; homeHref?: string; setupHref?: string; needsSetup?: boolean;
+  let { unavailable = false, legacyUnavailable = false, authenticated = false, homeHref = '/', setupHref = '/setup', needsSetup = false, user = null, loginHref = '/login' }: {
+    unavailable?: boolean; legacyUnavailable?: boolean; authenticated?: boolean; homeHref?: string; setupHref?: string; needsSetup?: boolean;
     user?: { name: string | null; email: string } | null; loginHref?: string;
   } = $props();
   let failure = $state('');
@@ -12,17 +12,20 @@
 </script>
 
 <h1>Sign in</h1>
-{#if unavailable}
+{#if legacyUnavailable}
+  <p role="status">Passkey authentication is unavailable for existing accounts. Administrator enrollment support is not implemented.</p>
+{/if}
+{#if unavailable && !legacyUnavailable}
   <p role="status">Sign-in is unavailable until the database and public URL are configured.</p>
-{:else if needsSetup}
+{:else if needsSetup && !legacyUnavailable}
   <p><a href={setupHref}>Set up your administrator account first.</a></p>
-{:else if user}
-  <p>Signed in as {user.name ?? user.email}.</p>
+{:else if authenticated || user}
+  {#if user}<p>Signed in as {user.name ?? user.email}.</p>{:else}<p>Signed in.</p>{/if}
   <p><a href={homeHref}>Open your workspace</a></p>
   <form {...logout.enhance(async ({ submit }) => { await submit(); window.location.assign(loginHref); })}>
     <button disabled={logout.pending > 0}>Sign out</button>
   </form>
-{:else}
+{:else if !legacyUnavailable}
   <p>Use the passkey saved for your account.</p>
   <noscript><p>Passkeys require JavaScript. Enable JavaScript to sign in.</p></noscript>
   <form {...beginLogin.enhance(async ({ submit }) => {
