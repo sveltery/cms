@@ -259,6 +259,14 @@
       "reason": "Isolated production package dependency install timed out at its unchanged 120-second deadline; production tests passed, remaining phases not reached",
       "log": "/tmp/revision-maintenance-public-head-normal-bootstrap.log",
       "fullGateCredit": 0
+    },
+    {
+      "head": "a164452f53c82df658bcf61a3af2f10959c1dc92",
+      "exitCode": 1,
+      "phase": "isolated Node hosting tests",
+      "reason": "Isolated production package dependency install timed out at its unchanged 120-second deadline; remaining phases not reached",
+      "log": "/tmp/revision-maintenance-integrated-final-normal-bootstrap.log",
+      "fullGateCredit": 0
     }
   ],
   "approvedMainIntegration": {
@@ -276,5 +284,47 @@
     "bothCompatibilitySectionsPreserved": true,
     "newSourceCredit": 0,
     "finalHeadGates": "Pending normal/secured checks, independent delta review, configured review or recorded quota exception, explicit PM approval and author-owned expected-head merge"
+  },
+  "latestApprovedMainIntegration": {
+    "main": "129a6fdd78cd6d30ba56a8a02a56ee74da4751bd",
+    "mainPullRequest": "https://github.com/sveltery/cms/pull/66",
+    "integrationCommit": "2f143949e341c85e61ddfdd2c7de05749e3df184",
+    "integrationTree": "b2c4437961110c615259b8a3d571f36a9d1530c9",
+    "mergeParents": [
+      "a164452f53c82df658bcf61a3af2f10959c1dc92",
+      "129a6fdd78cd6d30ba56a8a02a56ee74da4751bd"
+    ],
+    "approvedMainApplicationFilesByteIdentical": 151,
+    "ownNonDocumentationFilesByteIdentical": 11,
+    "approvedMainDependenciesNormalBootstrapAndNodePackageTestUnchanged": true,
+    "bothCompatibilityAppendsPreserved": true,
+    "newSourceCredit": 0,
+    "finalHeadGates": "Current normal/secured gates, independent final review, verified configured quota exception if actually exhausted, explicit PM approval and author merge pending"
+  },
+  "secondHostedPublicationGate": {
+    "run": "https://github.com/sveltery/cms/actions/runs/37120753006",
+    "featureHead": "a164452f53c82df658bcf61a3af2f10959c1dc92",
+    "actuallyCheckedOutBase": "129a6fdd78cd6d30ba56a8a02a56ee74da4751bd",
+    "syntheticMerge": "455afed1a7515865fe3e8e519176e713851566fb",
+    "syntheticTree": "b2c4437961110c615259b8a3d571f36a9d1530c9",
+    "sameTreeAsOrdinaryIntegration": true,
+    "validateJob": 111196221597,
+    "browserJob": 111196221711,
+    "normalStatus": "success; all twelve phases finished",
+    "checkerErrors": 0,
+    "checkerWarnings": 0,
+    "serviceCases": 1091,
+    "pinnedAuthAndAdminSourceCases": 43,
+    "pinnedSourceTypeAssertions": "passed",
+    "supplementaryCardSourceCases": 23,
+    "productionCases": 255,
+    "isolatedNodeHostingCases": 13,
+    "cloudflareSourceCases": 23,
+    "officialCloudflareWorkerCases": 4,
+    "sandboxedDefaultBrowserCases": 61,
+    "sandboxedNodeBrowserCases": 61,
+    "validateLog": "/tmp/revision-maintenance-public-a164-hosted-validate.log",
+    "browserLog": "/tmp/revision-maintenance-public-a164-hosted-browser.log",
+    "newSourceOrProductCredit": 0
   }
 }
