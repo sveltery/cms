@@ -107,6 +107,14 @@ it('two instances observe one shared next-page loading state', async () => {
   finishMore({ items: [row('second', { title: 'Second' })], nextCursor: undefined }); await settle();
   expect(first.target.textContent).toContain('Second'); expect(second.target.textContent).toContain('Second');
 });
+it('a metadata refresh updates already open observers of the same cached manifest', async () => {
+  vi.useFakeTimers(); const api = client([row('a', { title: 'Fallback', display_name: 'Manifest title' } as any)]);
+  api.fetchManifest.mockResolvedValueOnce({ collections: { posts: { titleField: 'title' } } })
+    .mockResolvedValueOnce({ collections: { posts: { titleField: 'display_name' } } });
+  const first = await render({ collection: 'posts', client: api }); expect(first.target.textContent).toContain('Fallback');
+  await vi.advanceTimersByTimeAsync(60_001); const second = await render({ collection: 'posts', client: api });
+  expect(second.target.textContent).toContain('Manifest title'); expect(first.target.textContent).toContain('Manifest title'); expect(first.target.textContent).not.toContain('Fallback');
+});
 it('locale references collapse translations that arrive on later cursor pages without filtering the server request', async () => {
   const api = client(); api.fetchContentList.mockResolvedValueOnce({ items: [row('en', { title: 'English' })], nextCursor: 'next' })
     .mockResolvedValueOnce({ items: [row('fr', { title: 'French' }, 'fr')], nextCursor: undefined });
