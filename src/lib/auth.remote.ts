@@ -31,6 +31,8 @@ async function authResponse<T>(action: () => Promise<T>): Promise<T> {
 }
 export const getSetupStatus = query(() => authResponse(() => setupStatus(requestIdentity(getRequestEvent()))));
 export const getCurrentUser = query(() => authResponse(() => currentUser(getRequestEvent())));
+// Profile availability is independent of the principal already resolved by the hook.
+export const getAuthenticatedState = query(() => ({ authenticated: getRequestEvent().locals.cms?.principal != null }));
 export const beginSetup = form(v.strictObject({ email: emailInput, name: v.optional(v.string()) }),
   input => authResponse(async () => {
     const event = getRequestEvent(), context = requestIdentity(event, true);
