@@ -26,6 +26,11 @@
   const path = $derived(currentPath ?? page.url.pathname);
   const entries = $derived(collectionNavigation(navigationData, homeHref));
   const showSchema = $derived(navigationData.permissions.includes('schema:manage'));
+  // Kit resolves links relative to the rendered route; source matching consumes paths.
+  function destinationPath(href: string) {
+    return new URL(href, new URL(path, page.url)).pathname;
+  }
+  const homeActive = $derived(activePage === 'content' && destinationPath(homeHref).replace(/\/$/, '') === path.replace(/\/$/, ''));
   function saveFolder(label: string, open: boolean) {
     folders = { ...folders, [label]: open };
     try { localStorage.setItem('emdash-sidebar-folders', JSON.stringify(folders)); } catch { /* Optional display preference. */ }
@@ -44,19 +49,19 @@
   <aside id="workspace-sidebar" class:mobile-open={navigationOpen}>
     <a class="brand desktop-brand" href={homeHref}>Sveltery <span>CMS</span></a>
     <nav aria-label="Workspace">
-      <a href={homeHref} aria-current={activePage === 'content' ? 'page' : undefined}>Content</a>
+      <a href={homeHref} aria-current={homeActive ? 'page' : undefined}>Content</a>
       {#if entries.length}
         <h2>Collections</h2>
         {#each entries as entry}
           {#if entry.kind === 'item'}
-            <a href={entry.item.href} aria-current={isItemActive(entry.item.href, path) ? 'page' : undefined}>{entry.item.label}</a>
+            <a href={entry.item.href} aria-current={isItemActive(destinationPath(entry.item.href), path) ? 'page' : undefined}>{entry.item.label}</a>
           {:else}
-            {@const folderOpen = folders[entry.label] ?? entry.items.some(item => isItemActive(item.href, path))}
+            {@const folderOpen = folders[entry.label] ?? entry.items.some(item => isItemActive(destinationPath(item.href), path))}
             <details open={folderOpen}>
               <summary onclick={event => { event.preventDefault(); saveFolder(entry.label, !folderOpen); }}>{entry.label}</summary>
               <div class="folder-members">
                 {#each entry.items as item (item.href)}
-                  <a href={item.href} aria-current={isItemActive(item.href, path) ? 'page' : undefined}>{item.label}</a>
+                  <a href={item.href} aria-current={isItemActive(destinationPath(item.href), path) ? 'page' : undefined}>{item.label}</a>
                 {/each}
               </div>
             </details>

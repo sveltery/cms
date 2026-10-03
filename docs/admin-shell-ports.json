@@ -49,14 +49,14 @@
   "sourceDeclarationsExecuted": 9,
   "genuineSourceAssertionReds": 0,
   "sourceMIT": "notices/emdash-MIT.txt",
-  "status": "draft PR66; normal/secured repaired-head gates, reviews and approval pending",
+  "status": "ready PR66; normal/secured repaired-head gates, reviews and approval pending",
   "nativeTDD": {
     "testCommit": "4c14c8970572e990b214f779921ec3cfd0d4426e",
     "assertionReds": 6,
     "baselineGreen": 1,
     "focusedGreen": 7,
     "storageIntegrationGreen": 5,
-    "registeredTransportGreen": 2,
+    "registeredTransportGreen": 4,
     "sourceCredit": 0
   },
   "ui": {
@@ -174,10 +174,14 @@
     "publishedTestCommit": "99b1e7ea27119d24b02794aebd37753325ae7f11",
     "originalQualifiedURLFixtureCommit": "1f29b70eabef2a573408f4a2415c7f6665aed297",
     "publishedQualifiedURLFixtureCommit": "28a653333192a56927f983fbc9ecda6b8d6272a4",
-    "genuineNativeAssertionReds": 2,
+    "genuineNativeAssertionReds": 4,
     "sourceCredit": 0,
     "SSRRedBuild": "existing historical prerepair registered build; shell still onMount-only, not current frozen-install evidence",
-    "focusedGreen": "12 compiled async shell/storage cases, 2 registered cases on fresh installed-runtime Vite build",
-    "normalAndSecuredGates": "pending repaired final head"
+    "focusedGreen": "12 compiled async shell/storage cases, 4 registered cases on fresh installed-runtime Vite build",
+    "normalAndSecuredGates": "pending repaired final head",
+    "originalRemoteRefreshTestCommit": "00be4b3d30309487afd5ae8a7560f93b38fbb766",
+    "originalRelativeActiveTestCommit": "f535f55cdc8b124ac77e1a302ad909762e696744",
+    "remoteRefreshRed": "actual authorized POST schema refresh returned collections empty under the blanket page-method guard; Kit-owned isRemoteRequest preserves refreshes",
+    "relativeActiveRed": "actual /content/notes SSR href ../content/notes had no aria-current; display href resolution preserves the unchanged pinned matcher"
   }
 }
