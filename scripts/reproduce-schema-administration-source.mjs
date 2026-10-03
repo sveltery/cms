@@ -63,6 +63,28 @@ async function fixture(db){
  await sql\`CREATE TABLE _emdash_collections(id TEXT PRIMARY KEY,slug TEXT UNIQUE,label TEXT,label_singular TEXT,description TEXT,supports TEXT,source TEXT,created_at TEXT DEFAULT '2000-01-01T00:00:00.000Z',updated_at TEXT DEFAULT '2000-01-01T00:00:00.000Z',icon TEXT,admin_config TEXT,has_seo INTEGER,title_field TEXT,date_field TEXT,url_pattern TEXT,routable INTEGER,hidden INTEGER,sort_order INTEGER,nav_group TEXT,comments_enabled INTEGER,comments_moderation TEXT,comments_closed_after_days INTEGER,comments_auto_approve_users INTEGER,edit_locking INTEGER)\`.execute(db);
  await sql\`CREATE TABLE _emdash_fields(id TEXT PRIMARY KEY,collection_id TEXT REFERENCES _emdash_collections(id) ON DELETE CASCADE,slug TEXT,label TEXT,type TEXT,column_type TEXT,required INTEGER,\"unique\" INTEGER,default_value TEXT,validation TEXT,widget TEXT,options TEXT,sort_order INTEGER,searchable INTEGER,indexed INTEGER,translatable INTEGER,created_at TEXT DEFAULT '2000-01-01T00:00:00.000Z',UNIQUE(collection_id,slug))\`.execute(db);
 }
+test('immutable complete blocks normalization rejects disallowed descriptor settings before create and update writes',async()=>{
+ const db=storage();try{
+ await fixture(db);const registry=new SchemaRegistry(db);await registry.createCollection({slug:'posts',label:'Posts'});
+ const valid=await registry.createField('posts',{slug:'body',label:'Body',type:'blocks',required:false,unique:false,indexed:false,searchable:false,defaultValue:[]});
+ assert.deepEqual(valid.defaultValue,[]);
+ assert.deepEqual(valid.validation,{allowedTypes:[],retiredTypes:[],minItems:0,maxItems:100});
+ const settings=[{required:true},{unique:true},{indexed:true},{searchable:true},{widget:''},{options:{}},{defaultValue:2},{defaultValue:null},{defaultValue:[{}]},{defaultValue:{}}];
+ for(let index=0;index<settings.length;index++){
+  const input=settings[index];const code=input.indexed?'FIELD_NOT_INDEXABLE':'VALIDATION_ERROR';
+  const before=await db.selectFrom('_emdash_collections').selectAll().execute();
+  const fields=await db.selectFrom('_emdash_fields').selectAll().execute();
+  const ddl=(await sql\`SELECT name,sql FROM sqlite_master ORDER BY name\`.execute(db)).rows;
+  await assert.rejects(()=>registry.createField('posts',{slug:'invalid_'+index,label:'Invalid',type:'blocks',...input}),error=>error.code===code);
+  await assert.rejects(()=>registry.updateField('posts','body',input),error=>error.code===code);
+  assert.deepEqual(await db.selectFrom('_emdash_collections').selectAll().execute(),before);
+  assert.deepEqual(await db.selectFrom('_emdash_fields').selectAll().execute(),fields);
+  assert.deepEqual((await sql\`SELECT name,sql FROM sqlite_master ORDER BY name\`.execute(db)).rows,ddl);
+ }
+ await registry.updateField('posts','body',{required:false,unique:false,indexed:false,searchable:false,defaultValue:[]});
+ assert.deepEqual((await registry.getField('posts','body')).defaultValue,[]);
+ }finally{await db.destroy();}
+});
 test('immutable source rejects raw unsupported title aliases despite its string fallback projection',async()=>{
  const db=storage();try{
  await fixture(db);const registry=new SchemaRegistry(db);const collection=await registry.createCollection({slug:'posts',label:'Posts'});
