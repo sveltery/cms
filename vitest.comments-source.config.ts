@@ -26,7 +26,8 @@ export default defineConfig({
   }],
   test: {
     include: ['tests/comments-source/packages/core/tests/unit/comments/*.test.ts',
-      'tests/comments-source/packages/core/tests/integration/comments/*.test.ts'],
+      'tests/comments-source/packages/core/tests/integration/comments/*.test.ts',
+      'tests/comments-source/packages/core/tests/unit/api/csrf.test.ts'],
     environment: 'node',
     setupFiles: ['tests/helpers/comments/vite-host.ts'],
     fileParallelism: false

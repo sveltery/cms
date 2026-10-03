@@ -3,7 +3,7 @@
   "license": "MIT; Copyright 2026 Cloudflare Inc.; notices/emdash-MIT.txt",
   "approvedBase": "e75654834e5d3a1ddc10449504ee34db1d43c905",
   "count": 82,
-  "selectedWholeFiles": 7,
+  "selectedWholeFiles": 8,
   "assertionRule": "Whole callbacks, fixtures, expectations and deadlines are immutable; imports and host fixtures are recorded separately. Initial regex counts are inventory estimates, not parser counts or runtime evidence.",
   "protectedProbeRule": "Signed, concurrent-session, replay, two-valid-session and SC49 protected relation binding probes are inventoried and not newly executed. Ordinary non-auth repository CAS and reaction-race callbacks remain whole.",
   "authorities": [
@@ -781,8 +781,9 @@
       "gitBlob": "13721757ae9291434db1ea89f3946d6f652a2e67",
       "sha256": "323e7d4aa1db241fbba61ae5acf36974ef610ced4f65624e71e2127219e4dda7",
       "bytes": 5616,
-      "selected": false,
-      "evidence": "inventory-only; no isolated auth/origin execution"
+      "selected": true,
+      "evidence": "whole pure unsigned Request/URL family eligible by exact Root qualification; no credentials/session/concurrency",
+      "executable": "tests/comments-source/packages/core/tests/unit/api/csrf.test.ts"
     }
   ],
   "productPorts": [
