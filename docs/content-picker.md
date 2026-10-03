@@ -4,13 +4,13 @@ The target is EmDash 1.1.0's shared content picker, used by menu editing and
 available for single or multiple collection references. The behavior authority
 is [EmDash 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e](https://github.com/emdash-cms/emdash/commit/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e).
 The [immutable inventory](../parity/emdash/content-picker-source/manifest.json)
-retains 29 whole authorities and four unchanged whole test files: 19 core search
+retains 31 whole authorities and four unchanged whole test files: 19 core search
 callbacks and three picker browser callbacks. Its 22 declaration fingerprints,
 25 ordinary expectation expressions and six browser element expectations remain
 unchanged. Inventory checks establish identity, with zero execution credit.
 
-The native Svelte picker uses the actual pinned TanStack Query 5.90.21 core,
-re-exported by the existing direct dependency. The production query client
+The native Svelte picker uses actual query-core classes re-exported by the
+existing pinned `@tanstack/react-query` 5.90.21 dependency. The production query client
 preserves the whole Source App's one-minute freshness and one-retry defaults.
 Collection, manifest and infinite-content observers preserve Source query keys,
 50-entry pages, a 300ms search debounce, shared requests and query state,
@@ -83,3 +83,19 @@ with no specific acceptance recorded and zero full Source-provider/REST credit.
 Multilingual admin catalogs, reference-field write integration, global search,
 search-index admin UI and PostgreSQL execution remain with their owning feature
 families. Passing this picker does not complete those contracts.
+
+
+The first own hosted run at008f140 installed the frozen445 graph successfully,
+passed checker0/0,1221 Main services and all inherited normal Source stages,
+then stopped at the documented whole Node search prerequisite. This establishes
+historical own hosted installation only; complete normal execution and later
+heads remain unqualified. Its secured job passed inherited Bulk14/Date30/Menu25/
+Redirect3, then picker Source3 stopped before expectations: the reused bare
+menu render helper omitted the Source default QueryClient provider. The earlier
+provider statement was premature for that head, with zero Source causal credit.
+Owned ec44b6a restored the query wrapper; its checker passed0/0. Current public
+Main2f1 supplies the complete512/527 dependency graph, including LinguiReact,
+so the planned combined successor retains the whole Source render and English
+setup unchanged. Actual combined Source/browser/normal validation, public
+canonical8, exact-head review and acceptance remain pending. The incoming
+Sections gates and dependency/lock records remain intact.

@@ -13,6 +13,6 @@ export default defineConfig({ plugins: [svelte({ configFile: false }), {
     if (target === resolve(frozen, 'tests/utils/render')) return resolve(root, 'tests/helpers/content-picker/browser-render.tsx');
   }
 }], resolve: { conditions: ['browser'] }, oxc: { jsx: { runtime: 'automatic' } },
-  test: { fileParallelism: false, include: ['parity/emdash/content-picker-source/upstream/packages/admin/tests/components/ContentPickerModal.test.tsx'],
-    browser: { enabled: true, headless: true, provider: playwright({ launchOptions: { chromiumSandbox: true, timeout: 30000 } }),
+  test: { fileParallelism: false, setupFiles: ['tests/helpers/content-picker/browser-setup.ts'], include: ['parity/emdash/content-picker-source/upstream/packages/admin/tests/components/ContentPickerModal.test.tsx'],
+    browser: { enabled: true, headless: true, provider: playwright({ contextOptions: { timezoneId: 'America/New_York' }, launchOptions: { chromiumSandbox: true, timeout: 30000 } }),
       instances: [{ browser: 'chromium' }], viewport: { width: 1280, height: 800 } } } });

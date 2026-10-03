@@ -1,6 +1,5 @@
-// Whole Source render.tsx QueryClient provider, EmDash1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.
-// Native Svelte labels replace Lingui rendering; the real Source QueryClient/options stay intact.
-// Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
+import { i18n } from "@lingui/core";
+import { I18nProvider } from "@lingui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import * as React from "react";
 import { render as baseRender, type ComponentRenderOptions } from "vitest-browser-react";
@@ -15,7 +14,9 @@ const ProvidersWrapper = (InnerWrapper: RenderWrapper = React.Fragment) => {
 		);
 		return (
 			<QueryClientProvider client={queryClient}>
+				<I18nProvider i18n={i18n}>
 					<InnerWrapper>{children}</InnerWrapper>
+				</I18nProvider>
 			</QueryClientProvider>
 		);
 	};

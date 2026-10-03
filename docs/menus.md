@@ -282,3 +282,10 @@ Node search still requires the real public canonical search metadata migration,
 and complete Source/browser/normal/final-review acceptance remains pending.
 The existing content-picker limitation paragraph records the predecessor
 checkpoint rather than the current implementation's verified UI behavior.
+
+
+The first picker hosted run installed445 and passed all inherited suites, but
+its own browser callbacks stopped before assertions at missing provider setup.
+The owned provider correction and complete31-authority record preserve zero
+Source causal credit; see the paired picker record for actual pending combined
+Main512/527 validation and the public canonical search prerequisite.
