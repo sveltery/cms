@@ -113,3 +113,31 @@ for (const backend of ['node', 'raw-d1', 'scoped-d1'] as const) {
     } finally { await f.close(); }
   });
 }
+
+// Ordinary SQL triggers change the source within a single batch. These cases
+// verify the native guarded-snapshot contract, not Source latest-read parity
+// or concurrent/protected request behavior.
+for (const backend of ['raw-d1', 'scoped-d1'] as const) {
+  for (const [change, statement] of [
+    ['edited item', "UPDATE _cms_menu_items SET label = 'Changed' WHERE label = 'Source'"],
+    ['moved item', "UPDATE _cms_menu_items SET menu_id = 'other' WHERE label = 'Source'"],
+    ['reordered item', "UPDATE _cms_menu_items SET sort_order = 99 WHERE label = 'Source'"],
+    ['deleted source', "DELETE FROM _cms_menus WHERE locale = 'en'"]
+  ] as const) {
+    test(`${backend}: cloning refuses a source ${change} during its batch`, { timeout: 30_000 }, async () => {
+      const f = await fixture(backend);
+      try {
+        const menu = await f.repo.create({ name: 'primary', label: 'Primary', locale: 'en' });
+        await f.repo.createItem(menu.id, 'en', { label: 'Source', type: 'custom' });
+        const beforeMenus = await f.db.selectFrom('_cms_menus').selectAll().execute();
+        const beforeItems = await f.db.selectFrom('_cms_menu_items').selectAll().execute();
+        await sql.raw(`CREATE TRIGGER change_menu_clone_source BEFORE INSERT ON _cms_menus
+          WHEN NEW.locale = 'fr' BEGIN ${statement}; END`).execute(f.db);
+        await assert.rejects(f.repo.create({ name: 'primary', label: 'Principal', locale: 'fr', translationOf: menu.id }), /Source menu .* changed before cloning/);
+        assert.deepEqual(await f.db.selectFrom('_cms_menus').selectAll().execute(), beforeMenus);
+        assert.deepEqual(await f.db.selectFrom('_cms_menu_items').selectAll().execute(), beforeItems);
+        assert.deepEqual((await sql`SELECT * FROM _cms_guards`.execute(f.db)).rows, []);
+      } finally { await f.close(); }
+    });
+  }
+}
