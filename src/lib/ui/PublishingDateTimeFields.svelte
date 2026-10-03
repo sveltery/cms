@@ -120,7 +120,6 @@
       default: return;
     }
     event.preventDefault();
-    event.stopPropagation();
     // Same direction/unit and 365-retry ceiling as pinned getNextFocus.
     let next = move(day);
     for (let attempt = 0; attempt <= 365 && blocked(next); attempt++) next = move(next);
