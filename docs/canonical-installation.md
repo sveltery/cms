@@ -146,3 +146,16 @@ this run. Secured hosted browser gates, independent review of this final
 successor, specific acceptance, publication and merge remain pending. Both
 failed receipts remain retained; a complete normal run does not establish the
 remaining API/UI/plugin/FTS or deployed-hosting scope.
+
+## Actual public Comments integration checkpoint
+
+The next combined successor ordinarily adopts actual public Comments Main
+`311ec0cb1bb33a66fb937d876f9387cca37b3087`. All incoming public capabilities,
+Source authorities and commands, the secured Comments browser gate and the
+512-package/527-snapshot lock closure are retained. The complete normal Source
+sequence, including Comments105/Native14, runs before the terminal CNI
+byte guard and whole pagination2 command. The earlier thirteen-stage green
+on03f29 remains its actual historical receipt. The new combined normal and
+secured hosted gates, current independent review, specific acceptance,
+publication and merge remain pending. This ordinary integration changes no
+Source assertions, frozen provider1–5 or browser policy.
