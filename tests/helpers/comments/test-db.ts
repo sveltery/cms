@@ -21,7 +21,7 @@ export async function setupTestDatabase(): Promise<Kysely<Database>> {
     INSERT INTO _cms_auth_profiles(user_id, email, name, email_verified, created_at, updated_at)
     VALUES(NEW.id, NEW.email, NEW.name, COALESCE(NEW.email_verified, 0), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
   END`.execute(database.db);
-  const db = database.db.withTables<Database>().$pickTables<keyof Database>().withPlugin(commentNamespacePlugin);
+  const db = database.db.withTables<{ [Name in keyof Database]: Database[Name] }>().$pickTables<keyof Database>().withPlugin(commentNamespacePlugin);
   owned.set(db, database);
   return db;
 }
