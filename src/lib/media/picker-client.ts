@@ -88,7 +88,9 @@ export async function uploadMedia(file:File,options?:{fieldId?:string;signal?:Ab
  signal?.throwIfAborted();
  const pending=await api<{mediaId:string;uploadUrl:string;method:'PUT';headers:Record<string,string>;existing?:boolean}>('/api/media/upload-url',{method:'POST',headers:{'content-type':'application/json'},signal,body:JSON.stringify({filename:file.name,contentType:file.type,size:file.size,...(contentHash?{contentHash}:{}),...(options?.fieldId?{fieldId:options.fieldId}:{})})});
  if(pending.existing){const result=await api<{item:MediaItem}>(`/api/media/${encodeURIComponent(pending.mediaId)}`,{signal});return mediaItem(result.item);}
- const response=await fetch(href(pending.uploadUrl),{method:pending.method,headers:{...pending.headers,...(file.type?{'content-type':file.type}:{})},body:file,signal});
+ const headers={...pending.headers};
+ if(file.type)headers['Content-Type']=file.type;
+ const response=await fetch(href(pending.uploadUrl),{method:pending.method,headers,body:file,signal});
  if(!response.ok)throw new Error('File upload failed');
  const dimensions=file.type.startsWith('image/')?await getImageDimensions(file,options):await getVideoDimensions(file,options);
  const result=await api<{item:MediaItem}>(`/api/media/${encodeURIComponent(pending.mediaId)}/confirm`,{method:'POST',headers:{'content-type':'application/json'},signal,body:JSON.stringify({size:file.size,width:dimensions?.width,height:dimensions?.height})});
