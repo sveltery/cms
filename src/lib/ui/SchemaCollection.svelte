@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { getSchemaCollection, updateSchemaCollection, addSchemaField, reorderSchemaFields, deleteSchemaCollection } from '$lib/schema.remote';
   import SchemaFieldLabel from './SchemaFieldLabel.svelte';
   import SchemaFieldOptions from './SchemaFieldOptions.svelte';
@@ -19,10 +20,13 @@
   let drafts = $state(false);
   let revisions = $state(false);
   let preview=$state(false); let scheduling=$state(false); let search=$state(false); let seo=$state(false);
-  let setTypedDefault=$state(false); let setRules=$state(false); let setOptions=$state(false);
+  let hydrated = $state(false);
+  onMount(() => { hydrated = true; });
+  const defaultFormat = $derived(fieldForm.fields.defaultValueFormat.value() ?? 'omit');
+  const validationFormat = $derived(fieldForm.fields.validationFormat.value() ?? (scalarField ? 'text' : 'omit'));
+  const optionsMode = $derived(fieldForm.fields.optionsMode.value() ?? 'keep');
   let setSingular = $state(false);
   let setDescription = $state(false);
-  let setDefault = $state(false);
   $effect(() => {
     if (supportsMode === 'keep') {
       drafts = definition.supports.includes('drafts');
@@ -125,22 +129,20 @@
     <select id={`${controlsId}-field-type`} {...fieldForm.fields.type.as('select', 'string')}>{#each schemaFieldTypes as [value,label]}<option {value}>{label}</option>{/each}</select>
     <label class="toggle"><input {...fieldForm.fields.required.as('checkbox')} /> Required</label>
     <label class="toggle"><input {...fieldForm.fields.unique.as('checkbox')} /> Unique</label>
+    <label>Default format <select aria-label="Default format" {...fieldForm.fields.defaultValueFormat.as('select','omit')}><option value="omit">No default</option>{#if scalarField}<option value="text">Text default</option>{/if}<option value="json">JSON default</option></select></label>
     {#if scalarField}
-    <label class="toggle"><input type="checkbox" bind:checked={setDefault} onchange={(event) => { if (event.currentTarget.checked) setTypedDefault = false; }} /> Set default value</label>
-    <label>Default value <textarea aria-label="Default value" {...fieldForm.fields.defaultValue.as('text')} disabled={!setDefault || setTypedDefault} maxlength="100000"></textarea></label>
+    <label>Default value <textarea aria-label="Default value" {...fieldForm.fields.defaultValue.as('text')} value={fieldForm.fields.defaultValue.value() ?? ''} disabled={hydrated && defaultFormat !== 'text'} maxlength="100000"></textarea></label>
     {/if}
-    <label class="toggle"><input type="checkbox" bind:checked={setTypedDefault} onchange={(event) => { if (event.currentTarget.checked) setDefault = false; }} /> Set typed default</label>
-    <label>Typed default value (JSON) <textarea aria-label="Typed default value (JSON)" {...fieldForm.fields.defaultValueJson.as('text')} disabled={!setTypedDefault || (scalarField && setDefault)}></textarea></label>
-    {#if scalarField}<p>Choose one default format: text or JSON.</p>{/if}
-    <label class="toggle"><input type="checkbox" bind:checked={setRules} /> Set validation rules</label>
-    <label>Validation rules (JSON) <textarea aria-label="Validation rules (JSON)" {...fieldForm.fields.validationJson.as('text')} disabled={!setRules}></textarea></label>
-    <label class="toggle"><input type="checkbox" bind:checked={setOptions} /> Set field options</label>
-    <label>Field options (JSON) <textarea aria-label="Field options (JSON)" {...fieldForm.fields.optionsJson.as('text')} disabled={!setOptions}></textarea></label>
+    <label>Typed default value (JSON) <textarea aria-label="Typed default value (JSON)" {...fieldForm.fields.defaultValueJson.as('text')} value={fieldForm.fields.defaultValueJson.value() ?? ''} disabled={hydrated && defaultFormat !== 'json'}></textarea></label>
+    <label>Validation format <select aria-label="Validation format" {...fieldForm.fields.validationFormat.as('select',scalarField?'text':'omit')}><option value="omit">No validation</option>{#if scalarField}<option value="text">Text rules</option>{/if}<option value="json">JSON rules</option></select></label>
+    <label>Validation rules (JSON) <textarea aria-label="Validation rules (JSON)" {...fieldForm.fields.validationJson.as('text')} value={fieldForm.fields.validationJson.value() ?? ''} disabled={hydrated && validationFormat !== 'json'}></textarea></label>
+    <label>Field options update <select aria-label="Field options update" {...fieldForm.fields.optionsMode.as('select','keep')}><option value="keep">No options</option><option value="set">Set options</option></select></label>
+    <label>Field options (JSON) <textarea aria-label="Field options (JSON)" {...fieldForm.fields.optionsJson.as('text')} value={fieldForm.fields.optionsJson.value() ?? ''} disabled={hydrated && optionsMode !== 'set'}></textarea></label>
     <label>Widget <input {...fieldForm.fields.widget.as('text')} /></label>
     <label class="toggle"><input {...fieldForm.fields.indexed.as('checkbox')} /> Indexed</label>
     <label class="toggle"><input {...fieldForm.fields.searchable.as('checkbox')} /> Searchable</label>
     <label>Translatable <select aria-label="Translatable" {...fieldForm.fields.translatable.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
-    {#if scalarField && !setRules}
+    {#if scalarField && (!hydrated || validationFormat === 'text')}
     <label>Minimum length <input {...fieldForm.fields.minLength.as('text')} inputmode="numeric" pattern="[0-9]*" /></label>
     <label>Maximum length <input {...fieldForm.fields.maxLength.as('text')} inputmode="numeric" pattern="[0-9]*" /></label>
     <label for={`${controlsId}-pattern-mode`}>Pattern metadata</label>
@@ -152,7 +154,7 @@
       value={fieldForm.fields.pattern.value() ?? ''}></textarea>
     <p>Save pattern stores the exact source, including an empty string. The server uses JavaScript regular expressions without flags; matching is case sensitive and unanchored unless you include anchors.</p>
     {/if}
-    {#if scalarField}<p>Choose text rules or select Set validation rules to use JSON.</p>{/if}
+    <p>Only the selected default, validation and options formats are saved.</p>
     <button type="submit" disabled={fieldForm.pending > 0}>Add field</button>
   </fieldset>
   {#if fieldForm.fields.allIssues()?.length}

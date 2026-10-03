@@ -39,7 +39,7 @@ export const updateSchemaFieldOptions = form(fieldOptionsFormInput, input => sch
   return { collection: input.collection, field: field.slug };
 }));
 export const updateSchemaFieldMetadata = form(fieldMetadataFormInput, input => schemaResponse(async () => {
-  const field = await requestSchema('mutation').updateField(convertFieldMetadata(input));
+  const field = await requestSchema('mutation').updateFieldMetadata(convertFieldMetadata(input));
   refreshSchema(input.collection);
   return { collection:input.collection, field:field.slug };
 }));

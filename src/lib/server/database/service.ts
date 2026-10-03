@@ -100,6 +100,20 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
       }
       return registry.updateField(collection, field, metadata);
     },
+    async updateFieldMetadata(input: unknown) {
+      requirePermission('schema:manage');
+      const { collection, field, ...metadata } = parse(updateFieldInput, input);
+      const existing = await registry.getField(collection, field);
+      if (!existing) throw new CmsError('NOT_FOUND');
+      if (existing.type === 'reference' && existing.validation?.relation) {
+        const nextTarget = metadata.validation?.targetCollection;
+        if (nextTarget !== undefined && nextTarget !== existing.validation.targetCollection) throw new CmsError('VALIDATION_ERROR');
+        if (metadata.validation !== undefined) metadata.validation = { ...metadata.validation,
+          relation: existing.validation.relation, relationSide: existing.validation.relationSide,
+          targetCollection: existing.validation.targetCollection };
+      }
+      return registry.updateField(collection, field, metadata);
+    },
     async reorderCollections(input: unknown) {
       requirePermission('schema:manage');
       const value=parse(reorderCollectionsInput,input);

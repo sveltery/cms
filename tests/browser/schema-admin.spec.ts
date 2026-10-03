@@ -151,7 +151,7 @@ test.describe('configured isolated schema forms', () => {
     expect(await fixture.snapshot()).toEqual(before);
     await page.getByLabel('Minimum length', { exact: true }).fill('');
     await page.getByLabel('Maximum length', { exact: true }).fill('');
-    await page.getByLabel('Set default value', { exact: true }).check();
+    await page.getByLabel('Default format', { exact: true }).selectOption('text');
     await page.getByLabel('Default value', { exact: true }).fill('');
     await page.getByRole('button', { name: 'Add field' }).click();
     await expect(page.getByRole('list', { name: 'Collection fields' })).toContainText('Details');

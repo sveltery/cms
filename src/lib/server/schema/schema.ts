@@ -132,15 +132,18 @@ export const updateInput = v.pipe(v.strictObject({
   'Form instance must match the collection'), ['id']),
 v.forward(v.check(input => selectedJson(input.adminMode === 'keep' ? 'keep' : undefined, input.listColumns),
   'Selected list columns must be valid JSON'), ['listColumns']));
-export const addFieldInput = v.pipe(v.strictObject({
+const creationFormat = v.optional(v.picklist(['omit','text','json']));
+const addFieldEntries = {
   id: v.optional(identifier), collection: identifier, expectedSchemaVersion: decimalVersion,
   slug: fieldInput.entries.slug, label: fieldInput.entries.label, type: fieldInput.entries.type,
   required: fieldInput.entries.required, unique: fieldInput.entries.unique,
   defaultValue: v.optional(v.pipe(v.string(),v.maxLength(100_000),v.check(value => !value.includes('\0')))),
   minLength: optionalLength, maxLength: optionalLength, patternMode, pattern: editString,
   defaultValueJson: optionalJson, validationJson: optionalJson, optionsJson: optionalJson,
-  widget: v.optional(v.string()), indexed: v.optional(v.boolean()), searchable: v.optional(v.boolean()), translatable: optionalBoolean
-}), v.forward(v.check(input => input.id === undefined || input.id === input.collection,
+  widget: v.optional(v.string()), indexed: v.optional(v.boolean()), searchable: v.optional(v.boolean()), translatable: optionalBoolean,
+  defaultValueFormat: creationFormat, validationFormat: creationFormat, optionsMode: optionalEditMode
+};
+const parsedFieldAdd = v.pipe(v.strictObject(addFieldEntries), v.forward(v.check(input => input.id === undefined || input.id === input.collection,
   'Form instance must match the collection'), ['id']),
 v.forward(v.check(input => input.defaultValue === undefined || input.defaultValueJson === undefined,
   'Choose either a text default or a JSON default'), ['defaultValueJson']),
@@ -165,6 +168,24 @@ v.forward(v.check(input => input.defaultValue === undefined ||
     Math.min(input.maxLength ?? (input.type === 'string' ? 200 : 100_000), 100_000)),
   'Default value must satisfy the field length bounds'), ['defaultValue']));
 
+export const addFieldInput = v.pipe(v.strictObject({ ...addFieldEntries,
+  expectedSchemaVersion: v.string(), minLength: editString, maxLength: editString,
+  defaultValueJson: rawJson, validationJson: rawJson, optionsJson: rawJson
+}), v.transform((input): v.InferInput<typeof parsedFieldAdd> => {
+  const selected: v.InferInput<typeof parsedFieldAdd> = { ...input };
+  if (input.defaultValueFormat === 'omit' || input.defaultValueFormat === 'json') delete selected.defaultValue;
+  if (input.defaultValueFormat === 'omit' || input.defaultValueFormat === 'text') delete selected.defaultValueJson;
+  if (input.defaultValueFormat === 'json') selected.defaultValueJson ??= '';
+  if (input.validationFormat === 'omit' || input.validationFormat === 'json') {
+    delete selected.minLength; delete selected.maxLength; delete selected.patternMode; delete selected.pattern;
+  }
+  if (input.validationFormat === 'omit' || input.validationFormat === 'text') delete selected.validationJson;
+  if (input.validationFormat === 'json') selected.validationJson ??= '';
+  if (input.optionsMode === 'keep') delete selected.optionsJson;
+  if (input.optionsMode === 'set') selected.optionsJson ??= '';
+  return selected;
+}), parsedFieldAdd);
+
 /** Form validation/conversion precedes the service; the service revalidates domain inputs. */
 export function convertCollectionCreate(input: v.InferOutput<typeof createInput>) {
   const { settingsMode, ...settings } = input;
@@ -183,7 +204,8 @@ export function convertCollectionUpdate(input: v.InferOutput<typeof updateInput>
   return { collection, input: parse(collectionMetadataInput, { ...rest, ...(listColumns === undefined && quickCreate === undefined ? {} : {admin: { ...(listColumns === undefined ? {} : {listColumns: JSON.parse(listColumns)}), ...(quickCreate === undefined ? {} : {quickCreate}) }}) }), expected: { version, updatedAt } };
 }
 export function convertFieldAdd(input: v.InferOutput<typeof addFieldInput>) {
-  const { id: _id, collection, expectedSchemaVersion, minLength, maxLength, patternMode, pattern, defaultValueJson, validationJson, optionsJson, ...field } = input;
+  const { id: _id, collection, expectedSchemaVersion, minLength, maxLength, patternMode, pattern, defaultValueJson, validationJson, optionsJson,
+    defaultValueFormat: _defaultFormat, validationFormat: _validationFormat, optionsMode: _optionsMode, ...field } = input;
   const validation = minLength === undefined && maxLength === undefined && patternMode !== 'set' ? {} : {
     validation: { ...(minLength === undefined ? {} : { minLength }), ...(maxLength === undefined ? {} : { maxLength }),
       ...(patternMode === 'set' ? { pattern } : {}) }

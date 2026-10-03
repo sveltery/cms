@@ -15,16 +15,18 @@ if (!upstream) throw new Error('Usage: node scripts/reproduce-schema-administrat
 const root=fileURLToPath(new URL('../',import.meta.url));
 const directory=await mkdtemp(join(tmpdir(),'cms-schema-admin-delete-source-'));
 const registryPath=join(directory,'schema/registry.ts');
+const handlerPath=join(directory,'api/handlers/schema.ts');
 const realImports=new Set(['kysely','ulidx','../database/transaction.js','./types.js','./url-pattern.js','../database/dialect-helpers.js','../database/validate.js']);
 const sources=[];
 try {
   await writeFile(join(directory,'package.json'),'{"type":"module"}');
   await symlink(join(root,'node_modules'),join(directory,'node_modules'),'dir');
-  for (const path of ['schema/registry.ts','schema/types.ts','schema/url-pattern.ts','database/transaction.ts','database/dialect-helpers.ts','database/validate.ts']) {
+  for (const path of ['schema/registry.ts','schema/types.ts','schema/url-pattern.ts','database/transaction.ts','database/dialect-helpers.ts','database/validate.ts','api/handlers/schema.ts']) {
     const source='packages/core/src/'+path;
     const raw=execFileSync('git',['show',pin+':'+source],{cwd:upstream,encoding:'utf8'});
     const blob=execFileSync('git',['rev-parse',pin+':'+source],{cwd:upstream,encoding:'utf8'}).trim();
     if (path==='schema/registry.ts') assert.equal(blob,'da7bbcdda224dfca8d9146b2f36659ab90bcac2e');
+    if (path==='api/handlers/schema.ts') assert.equal(blob,'abe31215af8f40b3df4ae4d1be5d06ebbe9342e0');
     const destination=join(directory,path); await mkdir(dirname(destination),{recursive:true}); await writeFile(destination,raw);
     sources.push({source,blob});
   }
@@ -37,7 +39,9 @@ try {
     prepareMediaUsageCollectionCapture:'async (_db,input) => ({collectionId:input.collectionId,captureRequired:false})',
     deleteActivatedMediaUsageCollection:'async () => "inactive"',
     deleteContentMediaUsageCollection:'async () => {}',
-    FTSManager:'class { async dropFtsTable() {} }'};
+    FTSManager:'class { async dropFtsTable() {} }',
+    invalidateContentMediaUsageSchemaChange:'async () => false',
+    markContentMediaUsageCollectionStaleSafely:'async () => {}'};
   for (const statement of ast.statements) {
     if (!ts.isImportDeclaration(statement)||statement.importClause?.isTypeOnly) continue;
     const path=statement.moduleSpecifier.text; if(realImports.has(path)) continue;
@@ -48,6 +52,7 @@ try {
 import test from 'node:test'; import assert from 'node:assert/strict';
 import {Kysely,SqliteDialect,sql} from 'kysely'; import {DatabaseSync} from 'node:sqlite';
 import {SchemaRegistry} from './schema/registry.ts';
+import {handleSchemaFieldUpdate} from './api/handlers/schema.ts';
 function storage(){
  const sqlite=new DatabaseSync(':memory:'); sqlite.exec('PRAGMA foreign_keys=ON');
  const db=new Kysely({dialect:new SqliteDialect({database:{close:()=>sqlite.close(),prepare(query){const statement=sqlite.prepare(query);return {reader:statement.columns().length>0,all:parameters=>statement.all(...parameters),run:parameters=>statement.run(...parameters)};}}})});
@@ -108,6 +113,26 @@ test('immutable source also rejects enabling a bound reference index or binding 
  }
  }finally{await db.destroy();}
 });
+
+for(const replacement of [null,{multiple:false}]) test('complete immutable schema handler preserves bound identity for '+JSON.stringify(replacement),async()=>{
+ const db=storage();try{
+ await fixture(db);const registry=new SchemaRegistry(db);const collection=await registry.createCollection({slug:'posts',label:'Posts'});
+ const binding={relation:'post_links',relationSide:'child',targetCollection:'posts'};
+ await db.insertInto('_emdash_fields').values({id:'bound',collection_id:collection.id,slug:'bound',label:'Bound',type:'reference',column_type:'TEXT',required:0,unique:0,sort_order:0,indexed:0,validation:JSON.stringify({...binding,multiple:true})}).execute();
+ const result=await handleSchemaFieldUpdate(db,'posts','bound',{validation:replacement});
+ assert.equal(result.success,true,JSON.stringify(result));
+ assert.deepEqual(result.data.item.validation,{...(replacement??{}),...binding});
+ assert.deepEqual((await registry.getField('posts','bound')).validation,{...(replacement??{}),...binding});
+ const before=await db.selectFrom('_emdash_fields').selectAll().execute();
+ const rejected=await handleSchemaFieldUpdate(db,'posts','bound',{validation:{targetCollection:'other'}});
+ assert.equal(rejected.success,false);assert.equal(rejected.error.code,'VALIDATION_ERROR');
+ assert.deepEqual(await db.selectFrom('_emdash_fields').selectAll().execute(),before);
+ await registry.updateField('posts','bound',{validation:null});
+ assert.equal((await registry.getField('posts','bound')).validation,undefined,'source projection represents cleared validation as undefined');
+ assert.equal((await db.selectFrom('_emdash_fields').select('validation').where('id','=','bound').executeTakeFirst()).validation,null,'generic registry retains SQL null replacement; protected merge belongs to the API handler');
+ }finally{await db.destroy();}
+});
+
 for (const action of ['CASCADE','RESTRICT']) test('immutable Node registry force delete preserves external FK '+action,async()=>{
  const db=storage();try{
  await fixture(db);const registry=new SchemaRegistry(db);await registry.createCollection({slug:'posts',label:'Posts'});
@@ -128,9 +153,27 @@ for (const action of ['CASCADE','RESTRICT']) test('immutable Node registry force
 });
 `);
   await build({configFile:false,logLevel:'error',plugins:[{name:'inactive-subsystem-fixture',
-    resolveId(source,importer){if(importer===registryPath&&fixtures.has(source))return '\0fixture:'+source;},
-    load(id){if(id.startsWith('\0fixture:'))return fixtures.get(id.slice('\0fixture:'.length));}
+    resolveId(source,importer){
+      if(importer===handlerPath) {
+        if(source==='../../database/transaction.js')return join(directory,'database/transaction.ts');
+        if(source==='../../schema/index.js')return '\0handler-schema-bridge';
+        return '\0handler-inactive:'+source;
+      }
+      if(importer===registryPath&&fixtures.has(source))return '\0fixture:'+source;
+    },
+    load(id){
+      if(id==='\0handler-schema-bridge')return `export {SchemaRegistry,SchemaError} from ${JSON.stringify(registryPath)};export function invalidateSchemaCache(){};export function expandCollectionBlockFields(){throw new Error('inactive block expansion');}`;
+      if(id.startsWith('\0handler-inactive:')) {
+        const path=id.slice('\0handler-inactive:'.length);
+        if(path==='../../object-cache/index.js')return 'export function invalidateCollectionCache(){};export function invalidateSchemaObjectCache(){};';
+        if(path==='../../database/repositories/relation.js')return `export class RelationRepository{constructor(){throw new Error('inactive relation repository');}}`;
+        if(path==='../../database/reference-backfill.js')return `export function backfillReferenceEdges(){throw new Error('inactive edge backfill');}`;
+        if(path==='./relations.js')return `export function fieldsBoundToRelation(){throw new Error('inactive relation lifecycle');};export function handleRelationDelete(){throw new Error('inactive relation lifecycle');}`;
+        throw new Error('Unexpected handler runtime fixture '+path);
+      }
+      if(id.startsWith('\0fixture:'))return fixtures.get(id.slice('\0fixture:'.length));
+    }
   }],build:{target:'node24',minify:false,outDir:directory,emptyOutDir:false,lib:{entry:join(directory,'entry.ts'),formats:['es'],fileName:()=> 'bundle.mjs'},rollupOptions:{external:['node:test','node:assert/strict','node:sqlite','kysely','ulidx']}}});
   execFileSync(process.execPath,['--test',join(directory,'bundle.mjs')],{stdio:'inherit'});
-  console.log(JSON.stringify({pin,sources,inactiveFixtures:['FTS drop','media activation and cleanup','registered-collection cache','development type generation'],declarations:0},null,2));
+  console.log(JSON.stringify({pin,sources,inactiveFixtures:['FTS drop','media activation and cleanup','registered-collection/object caches','development type generation','relation repository/lifecycle','reference edge backfill','block expansion'],declarations:0},null,2));
 }finally{await rm(directory,{recursive:true,force:true});}

@@ -19,17 +19,14 @@ test.describe('complete schema administration',()=>{
     await page.getByRole('list',{name:'Schema collections'}).getByRole('link',{name:'Schema Complete',exact:true}).click();
     const add=page.locator('form').filter({has:page.locator('legend',{hasText:'Add field'})});
     await expect(add.getByLabel('Field type',{exact:true}).locator('option')).toHaveCount(17);
-    await add.getByLabel('Set default value',{exact:true}).check();
-    await add.getByLabel('Set typed default',{exact:true}).check();
-    await expect(add.getByLabel('Set default value',{exact:true})).not.toBeChecked();
+    await add.getByLabel('Default format',{exact:true}).selectOption('json');
     await expect(add.getByLabel('Default value',{exact:true})).toBeDisabled();
-    await add.getByLabel('Set default value',{exact:true}).check();
-    await expect(add.getByLabel('Set typed default',{exact:true})).not.toBeChecked();
+    await add.getByLabel('Default format',{exact:true}).selectOption('text');
     await expect(add.getByLabel('Typed default value (JSON)',{exact:true})).toBeDisabled();
-    await add.getByLabel('Set validation rules',{exact:true}).check();
+    await add.getByLabel('Validation format',{exact:true}).selectOption('json');
     await expect(add.getByLabel('Minimum length',{exact:true})).toHaveCount(0);
     await expect(add.getByLabel('Pattern metadata',{exact:true})).toHaveCount(0);
-    await add.getByLabel('Set validation rules',{exact:true}).uncheck();
+    await add.getByLabel('Validation format',{exact:true}).selectOption('text');
     await expect(add.getByLabel('Minimum length',{exact:true})).toHaveCount(1);
     await add.getByLabel('Field slug',{exact:true}).fill('priority');
     await add.getByLabel('Field label',{exact:true}).fill('Priority');
@@ -37,11 +34,11 @@ test.describe('complete schema administration',()=>{
     for (const label of ['Set default value','Default value','Minimum length','Maximum length','Pattern metadata','Validation pattern']) {
       await expect(add.getByLabel(label,{exact:true})).toHaveCount(0);
     }
-    await add.getByLabel('Set typed default',{exact:true}).check();
+    await add.getByLabel('Default format',{exact:true}).selectOption('json');
     await add.getByLabel('Typed default value (JSON)',{exact:true}).fill('2');
-    await add.getByLabel('Set validation rules',{exact:true}).check();
+    await add.getByLabel('Validation format',{exact:true}).selectOption('json');
     await add.getByLabel('Validation rules (JSON)',{exact:true}).fill('{"min":0,"max":10}');
-    await add.getByLabel('Set field options',{exact:true}).check();
+    await add.getByLabel('Field options update',{exact:true}).selectOption('set');
     await add.getByLabel('Field options (JSON)',{exact:true}).fill('{"helpText":"Rank"}');
     await add.getByLabel('Translatable',{exact:true}).selectOption('false');
     await add.getByRole('button',{name:'Add field',exact:true}).click();
@@ -93,6 +90,19 @@ test.describe('complete schema administration',()=>{
       await metadata.getByLabel('Close comments after days',{exact:true}).fill('10');
       await metadata.getByRole('button',{name:'Save metadata',exact:true}).click();
       const c=await fixture.query('getSchemaCollection','schema_native');expect(c.commentsModeration).toBe('first_time');expect(c.commentsClosedAfterDays).toBe(10);
+      const add=page.locator('form').filter({has:page.locator('legend',{hasText:'Add field'})});
+      await add.getByLabel('Field slug',{exact:true}).fill('priority');
+      await add.getByLabel('Field label',{exact:true}).fill('Priority');
+      await add.getByLabel('Field type',{exact:true}).selectOption('integer');
+      await add.getByLabel('Default format',{exact:true}).selectOption('json');
+      await add.getByLabel('Typed default value (JSON)',{exact:true}).fill('2');
+      await add.getByLabel('Validation format',{exact:true}).selectOption('json');
+      await add.getByLabel('Validation rules (JSON)',{exact:true}).fill('{"min":0,"max":10}');
+      await add.getByLabel('Field options update',{exact:true}).selectOption('set');
+      await add.getByLabel('Field options (JSON)',{exact:true}).fill('{"custom":true}');
+      await add.getByRole('button',{name:'Add field',exact:true}).click();
+      const native=await fixture.query('getSchemaCollection','schema_native');
+      expect(native.fields[0].defaultValue).toBe(2);expect(native.fields[0].validation).toEqual({min:0,max:10});expect(native.fields[0].options).toEqual({custom:true});
       const drop=page.locator('form').filter({has:page.locator('legend',{hasText:'Delete collection'})});
       await drop.getByLabel('Confirm deleting this collection',{exact:true}).check();
       await drop.getByRole('button',{name:'Delete collection',exact:true}).click();
