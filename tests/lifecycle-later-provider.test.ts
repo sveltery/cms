@@ -15,7 +15,7 @@ let source=readFileSync(path,'utf8');
 const registration='  lifecycleMigration\n];';
 assert.ok(source.includes(registration));
 source=source.replace(registration,'  lifecycleMigration,\n  metadataFidelityMigration\n];')
-  .replace(/from (['"])(\.[^'"]+)\1/g,(_whole,_quote,relative)=>'from '+JSON.stringify(new URL(relative,path).href));
+  .replace(/from (['"])([^'"]+)\1/g,(_whole,_quote,reference)=>'from '+JSON.stringify(reference.startsWith('.') ? new URL(reference,path).href : import.meta.resolve(reference)));
 source='import {metadataFidelityMigration} from '+JSON.stringify(new URL('./fixtures/later-metadata-provider.ts',import.meta.url).href)+';\n'+source;
 const {migrateCms}=await import('data:text/javascript;base64,'+Buffer.from(stripTypeScriptTypes(source,{mode:'transform'})).toString('base64')) as typeof import('../src/lib/server/database/migrations.ts');
 for(const target of ['Node','D1'] as const) {
