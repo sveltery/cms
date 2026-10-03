@@ -1,0 +1,323 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "authorities": "../parity/emdash/date-time-widgets/source-manifest.json",
+  "sourceFirstCommit": "a34c7af",
+  "approvedMain": "2edeb444afcca379ffa32b3fd5d910eb13de6103",
+  "source": {
+    "declarations": 18,
+    "assertionExpressions": 43,
+    "expandedCases": 19,
+    "files": [
+      {
+        "source": "packages/admin/tests/components/PublishingDateTimeEditor.test.tsx",
+        "local": "parity/emdash/date-time-widgets/source/packages/admin/tests/components/PublishingDateTimeEditor.test.tsx",
+        "blob": "5beabfee4ec130c6d87e2faf50dd668c210cdba2",
+        "bytes": 4676,
+        "sha256": "7a336a56e901f674ef6d74bc63a2ade7472ca77a80be75a48e97bd726385fb11",
+        "declarations": [
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/PublishingDateTimeEditor.test.tsx:11",
+            "title": "\"returns the calendar to the current month when a new entry has no saved date\"",
+            "registrationSha256": "608da4f19f038ce573ff37149eec639d92f98bded8029e0648414227f54092ed",
+            "callbackSha256": "9da1cd01df2ae293aaa1be7ff805a0349064c4dec93fd89e1d67e6b805abcc48",
+            "assertions": [
+              "await expect.element(screen.getByText(\"June 2035\", { exact: true })).toBeVisible()",
+              "await expect.element(screen.getByText(currentMonth, { exact: true })).toBeVisible()"
+            ],
+            "baseline": "completed native DOM assertion failure",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/PublishingDateTimeEditor.test.tsx:49",
+            "title": "\"uses Kumo segmented time fields without a browser picker\"",
+            "registrationSha256": "998e6be8bc0d1e09513c53c70cd780ffab3fceaebdcc36e9715c32e717c7596f",
+            "callbackSha256": "e38d097da7d806d3fb3a7ed7ac4e7223f46d559a49e35e83c066c2b2048b7de2",
+            "assertions": [
+              "await expect.element(screen.getByRole(\"textbox\", { name: \"Hour\" })).toHaveValue(\"09\")",
+              "await expect.element(screen.getByRole(\"textbox\", { name: \"Minute\" })).toHaveValue(\"05\")",
+              "await expect\n\t\t.element(screen.getByRole(\"combobox\", { name: \"Period\" }))\n\t\t.toHaveTextContent(dayPeriodLabel(13))",
+              "expect(zoneDetails).not.toBeNull()",
+              "await expect.element(screen.getByText(zoneDetails!, { exact: true })).toBeVisible()",
+              "expect(screen.container.querySelector('input[type=\"time\"]')).toBeNull()"
+            ],
+            "baseline": "absent-control operation failure; zero value-red credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/PublishingDateTimeEditor.test.tsx:73",
+            "title": "\"accepts localized numerals in the time fields\"",
+            "registrationSha256": "a5c828dd4b76a682c107a5e25c44203c9182266fbc5805003e2308bb3dcfb436",
+            "callbackSha256": "d785c50cf395e0b3c84f10d6cff0af445fbe7628ede2abd25a49646f16616a65",
+            "assertions": [
+              "await expect.element(minute).toHaveFocus()",
+              "await expect.element(screen.getByText(\"10:30\", { exact: true })).toBeVisible()",
+              "await expect.element(minute).toHaveFocus()",
+              "await expect.element(screen.getByText(\"11:45\", { exact: true })).toBeVisible()",
+              "await expect.element(minute).toHaveFocus()",
+              "await expect.element(screen.getByText(\"00:59\", { exact: true })).toBeVisible()"
+            ],
+            "baseline": "absent-control operation failure; zero value-red credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/PublishingDateTimeEditor.test.tsx:110",
+            "title": "\"moves focus to minutes and converts the selected day period\"",
+            "registrationSha256": "976b9a5474e170d43225add6f79ec649088d0d973d2b5d5fc53f6236d84e40c7",
+            "callbackSha256": "46b4b3f1fe6d80355fec0a9b1839f239c4b26f47d70bb5754c93edc920e31067",
+            "assertions": [
+              "await expect.element(minute).toHaveFocus()",
+              "await expect.element(periodOption).toBeInTheDocument()",
+              "await expect.element(screen.getByText(\"22:30\", { exact: true })).toBeVisible()"
+            ],
+            "baseline": "absent-control operation failure; zero value-red credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          }
+        ]
+      },
+      {
+        "source": "packages/admin/tests/lib/publishing-datetime.test.ts",
+        "local": "parity/emdash/date-time-widgets/source/packages/admin/tests/lib/publishing-datetime.test.ts",
+        "blob": "f6834ae745bbb04d3a0196c6c574f56e7b5f10b1",
+        "bytes": 2648,
+        "sha256": "00d7882a4a248ce480c116e84f69e036ddc5c8fe4336ff7611f2d789740d382b",
+        "declarations": [
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/publishing-datetime.test.ts:14",
+            "title": "\"round-trips an instant through browser-local minute fields\"",
+            "registrationSha256": "777ed72e4c28fa63471b4ce74a9681631ee53ea13300d79aebbd49dfe3144874",
+            "callbackSha256": "d8a02d7d54296cbdfc58022856b04dee3497fe49ad428e10742b9bad7c16f97f",
+            "assertions": [
+              "expect(fields.date).toBeInstanceOf(Date)",
+              "expect(fields.date?.getFullYear()).toBe(2026)",
+              "expect(fields.date?.getMonth()).toBe(6)",
+              "expect(fields.date?.getDate()).toBe(1)",
+              "expect(fields.time).toBe(\"09:30\")",
+              "expect(\n\t\t\tserializeFuturePublishingDateTime(\n\t\t\t\tfields.date,\n\t\t\t\tfields.time,\n\t\t\t\tnew Date(\"2026-07-01T12:00:00.000Z\"),\n\t\t\t),\n\t\t).toEqual({\n\t\t\tsuccess: true,\n\t\t\tdate: new Date(\"2026-07-01T13:30:00.000Z\"),\n\t\t\tvalue: \"2026-07-01T13:30:00.000Z\",\n\t\t})"
+            ],
+            "baseline": "first-execution green; zero causal credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/publishing-datetime.test.ts:35",
+            "title": "\"rejects a local time skipped by daylight saving\"",
+            "registrationSha256": "93749610629a6b50e1be8c15e00f39f6162a28ed99d4c6ef18984a0f7e0d66c7",
+            "callbackSha256": "20e01512adb92e7828802cf1c621910fbcef14106edf888828434060aaeaccbf",
+            "assertions": [
+              "expect(result).toEqual({ success: false, error: \"nonexistent-time\" })"
+            ],
+            "baseline": "first-execution green; zero causal credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/publishing-datetime.test.ts:45",
+            "title": "\"rejects a resolved instant that is not in the future\"",
+            "registrationSha256": "68c76876e2ae53250e7129736d6ebf8596a1464b61f34813566e55825158fe34",
+            "callbackSha256": "635a33b45b42b53363fe80b11efa9f47ea2b92bd3988d0e7fa757fe635af87bb",
+            "assertions": [
+              "expect(result).toEqual({ success: false, error: \"past\" })"
+            ],
+            "baseline": "first-execution green; zero causal credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/publishing-datetime.test.ts:55",
+            "title": "\"uses the earlier offset for a repeated fall-back time\"",
+            "registrationSha256": "d11591c757a8b07e1a14e9b6f2b39627b0cdb03edba37cd678ef82e35f3f064a",
+            "callbackSha256": "fd4aaaa23ef714787e58a500405827403678cb72ed8acdee04ffe16f1c69dfb6",
+            "assertions": [
+              "expect(result).toEqual({\n\t\t\tsuccess: true,\n\t\t\tdate: new Date(\"2026-11-01T05:30:00.000Z\"),\n\t\t\tvalue: \"2026-11-01T05:30:00.000Z\",\n\t\t})",
+              "expect(result.success && getPublishingTimeZone(result.date, \"en-US\").shortName).toBe(\"EDT\")"
+            ],
+            "baseline": "first-execution green; zero causal credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/publishing-datetime.test.ts:66",
+            "title": "\"compares persisted values at the UI's minute precision\"",
+            "registrationSha256": "156898bb44e2e8e5526c71063660d01f786118466f41831c967001e697f6ade3",
+            "callbackSha256": "fcfc849430c8a01f017c1e39c40f0a2d18e46eb0b1ffe43e3997bf9c89c5a1c7",
+            "assertions": [
+              "expect(publishingFieldsMatchInstant(\"2026-07-01T13:30:45.123Z\", fields.date, fields.time)).toBe(\n\t\t\ttrue,\n\t\t)"
+            ],
+            "baseline": "first-execution green; zero causal credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/publishing-datetime.test.ts:74",
+            "title": "\"formats the instant and reports the browser time zone\"",
+            "registrationSha256": "5289464beea41126697f12bab80b7709af168241a7476508f1d6fd3ffb048152",
+            "callbackSha256": "72b6a4a4882b0aa0417f70435132f4a4eed3d2b63141e62aeda549a7a68419fe",
+            "assertions": [
+              "expect(formatPublishingInstant(\"2026-07-01T13:30:00.000Z\", \"en-US\")).toContain(\"9:30 AM\")",
+              "expect(formatPublishingInstantWithZone(\"2026-07-01T13:30:00.000Z\", \"en-US\")).toContain(\n\t\t\t\"9:30 AM (EDT)\",\n\t\t)",
+              "expect(getPublishingTimeZone(new Date(\"2026-07-01T13:30:00.000Z\"), \"en-US\")).toEqual({\n\t\t\ttimeZone: \"America/New_York\",\n\t\t\tshortName: \"EDT\",\n\t\t})"
+            ],
+            "baseline": "first-execution green; zero causal credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          }
+        ]
+      },
+      {
+        "source": "packages/admin/tests/lib/datetime-local.test.ts",
+        "local": "parity/emdash/date-time-widgets/source/packages/admin/tests/lib/datetime-local.test.ts",
+        "blob": "012a85fa4169f4497188a17705e80c567b24cf18",
+        "bytes": 1925,
+        "sha256": "2cb0b983789e12c3ffc9f947963bdbe85ece34f5077d5d78785fb1fe8e392655",
+        "declarations": [
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/datetime-local.test.ts:9",
+            "title": "\"returns empty for non-string and empty values\"",
+            "registrationSha256": "7bf8f4c2d7bc0fc2884dbf57fcebcbd7035d52b9d43f621a6c5273bf75bebac0",
+            "callbackSha256": "c5b7eab18d56b9c04e9fe1d55b3378423a9bff27d31fc9fb246d527cc523d222",
+            "assertions": [
+              "expect(toDatetimeLocalInputValue(undefined)).toBe(\"\")",
+              "expect(toDatetimeLocalInputValue(null)).toBe(\"\")",
+              "expect(toDatetimeLocalInputValue(0)).toBe(\"\")",
+              "expect(toDatetimeLocalInputValue(\"\")).toBe(\"\")"
+            ],
+            "baseline": "first-execution green; zero causal credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/datetime-local.test.ts:16",
+            "title": "\"displays a stored instant in the configured site timezone\"",
+            "registrationSha256": "1065464572704299492d67e0ee7f5da9acaea4a20616c0401516a6a10dbcbe0a",
+            "callbackSha256": "2a241669c6b0388188dcdfe9ce1bebddeb800bbd94ee6bbad0be095ad917fa4e",
+            "assertions": [
+              "expect(toDatetimeLocalInputValue(\"2026-02-26T09:30:00.000Z\", \"Asia/Tokyo\")).toBe(\n\t\t\t\"2026-02-26T18:30\",\n\t\t)"
+            ],
+            "baseline": "first-execution green; zero causal credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/datetime-local.test.ts:22",
+            "title": "\"keeps legacy naive values readable without applying the browser timezone\"",
+            "registrationSha256": "6f4604e1d25460a04a766dbd7f53b2644688bee5fd3c20c79d97ae578a7ad611",
+            "callbackSha256": "c56aa8d3f5cea6c9c3916919cdbd656f212830cf9e6bc39926564ec1fc24c135",
+            "assertions": [
+              "expect(toDatetimeLocalInputValue(\"2026-02-26T09:30\", \"Asia/Tokyo\")).toBe(\"2026-02-26T09:30\")",
+              "expect(toDatetimeLocalInputValue(\"2026-02-26\", \"Asia/Tokyo\")).toBe(\"2026-02-26T00:00\")"
+            ],
+            "baseline": "first-execution green; zero causal credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/datetime-local.test.ts:27",
+            "title": "\"preserves a value already in datetime-local shape\"",
+            "registrationSha256": "7ad3eea4644f43531f420194e58d6b374f35087ad3a7afb1e381651032ff0d9a",
+            "callbackSha256": "aa989004ace9ae9f56c7bc0c4625ab5613337169284756a6362aa5b2e709502b",
+            "assertions": [
+              "expect(toDatetimeLocalInputValue(\"2026-02-26T09:30\")).toBe(\"2026-02-26T09:30\")"
+            ],
+            "baseline": "first-execution green; zero causal credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/datetime-local.test.ts:33",
+            "title": "\"returns empty for empty input\"",
+            "registrationSha256": "6c53249e2ac2435be7807f7b67266d1c67d94b48e1c86ac2ae1c60ad828f6f0b",
+            "callbackSha256": "28e5d943d5edfeb7d6f079572fd7ad4cb1e09e405a2a31626157b50e19daeb21",
+            "assertions": [
+              "expect(fromDatetimeLocalInputValue(\"\")).toBe(\"\")"
+            ],
+            "baseline": "first-execution green; zero causal credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/datetime-local.test.ts:37",
+            "title": "\"converts site-local input to a canonical UTC instant\"",
+            "registrationSha256": "86fd972305b553721043426ab6c149fc1003975fdc05db8cbda9251bcd0189b1",
+            "callbackSha256": "99193372dfff23bdb8a3c91385b8823902007e4c1269b9a23c7e3c5502db648b",
+            "assertions": [
+              "expect(fromDatetimeLocalInputValue(\"2026-02-26T09:30\", \"Asia/Tokyo\")).toBe(\n\t\t\t\"2026-02-26T00:30:00.000Z\",\n\t\t)"
+            ],
+            "baseline": "first-execution green; zero causal credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/datetime-local.test.ts:43",
+            "title": "\"round-trips a stored ISO value without drift\"",
+            "registrationSha256": "de159ec6677ea143931bd97087a35b2580e5f70c1414ceb919462f23c21236de",
+            "callbackSha256": "e993cf0e4fe0328ce2a7eb36e5b963c48aa9894a9e3473fc877c6d9ce744d482",
+            "assertions": [
+              "expect(\n\t\t\tfromDatetimeLocalInputValue(\n\t\t\t\ttoDatetimeLocalInputValue(stored, \"America/New_York\"),\n\t\t\t\t\"America/New_York\",\n\t\t\t),\n\t\t).toBe(stored)"
+            ],
+            "baseline": "first-execution green; zero causal credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/datetime-local.test.ts:53",
+            "title": "\"refuses ambiguous or nonexistent site-local input: %s\"",
+            "registrationSha256": "f847be788c86d233849ca6b5e878ecc9aeafa37186b2f5434da8357253107b96",
+            "callbackSha256": "b3d26bb214f50c3d9b50b8808bf0b332cd1bb9bd1ec65e61e1d6f39015a51531",
+            "assertions": [
+              "expect(() => fromDatetimeLocalInputValue(value, \"America/New_York\")).toThrow()"
+            ],
+            "baseline": "first-execution green; zero causal credit",
+            "current": "native mounted DOM pass; secured hosted execution pending"
+          }
+        ]
+      }
+    ],
+    "untouched": "Every chosen whole Source fixture/callback/expectation is preserved; test-only resolver maps product imports and framework renderer.",
+    "runtime": "Native mounted Svelte DOM with actual React-controlled JSX fixtures, TZ America/New_York.",
+    "initialSetupFailures": {
+      "commit": "823e85d",
+      "completedCases": 0,
+      "credit": 0
+    },
+    "beforeWidget": {
+      "commit": "8b105b3",
+      "sourcePass": 15,
+      "sourceFail": 4,
+      "completedSourceAssertionFailures": 2,
+      "unavailableControlOperations": 2,
+      "originalValueFailures": 6
+    },
+    "afterWidget": {
+      "commit": "6f01a2f",
+      "sourcePass": 18,
+      "sourceFail": 1,
+      "originalPass": 6,
+      "remaining": "Unawaited Source fireEvent followed by synchronous host lookup; fixed test-only Svelte flush, no Source callback change."
+    },
+    "current": {
+      "commit": "c3e44f3",
+      "sourcePass": 19,
+      "originalPass": 8,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "original": {
+    "datetimeRequirements": {
+      "testFirst": "e917b73",
+      "baselineNativeComponent": "approved legacy DraftPreview",
+      "completedValueReds": 6,
+      "green": 6
+    },
+    "shiftedKeyboard": {
+      "testFirst": "7cc0d91",
+      "baseline": "first actual native calendar",
+      "completedValueReds": 2,
+      "green": 2
+    }
+  },
+  "gates": {
+    "normal": "complete bootstrap running; final outcome pending",
+    "securedLocal": "Official Chromium1243 executable absent; zero callbacks executed and zero browser credit",
+    "securedHosted": "pending",
+    "independentReview": "pending",
+    "configuredReview": "pending",
+    "managerScopeAcceptance": "DT-01 proposed; additive validation stage/job accepted separately",
+    "managerExactHeadApproval": "pending",
+    "merge": "pending"
+  },
+  "limits": [
+    "No complete Kumo/DayPicker geometry or animation parity",
+    "No translated-message, original provider or renderer parity",
+    "No persisted enabled editor composition/site setting integration",
+    "Publication/scheduling dialogs and automatic scheduling unfinished",
+    "No deployed-hosting credit"
+  ]
+}
