@@ -135,6 +135,21 @@
       "path": "/tmp/sections-widgets-widget-final-check.log",
       "sha256": "18ab7e64e1265e0e084d0c401ad6a95f5063f0fd2f791c5755d020ecd2f25df3",
       "bytes": 202
+    },
+    {
+      "path": "/tmp/sections-widgets-source-host-module-compile.log",
+      "sha256": "f0eef87d1f53d21db507a821a3d67ef59a206e17330a3921fad9b053013088dd",
+      "bytes": 271
+    },
+    {
+      "path": "/tmp/sections-widgets-source-host-component-compile.log",
+      "sha256": "9a6de4fc40dcb96b37fe8b41e7dcbf2e57bcad46e7e2b10a7760755dae36a2dd",
+      "bytes": 656
+    },
+    {
+      "path": "/tmp/sections-widgets-native-palette-order-check.log",
+      "sha256": "18ab7e64e1265e0e084d0c401ad6a95f5063f0fd2f791c5755d020ecd2f25df3",
+      "bytes": 202
     }
   ],
   "originalPalette": {
@@ -169,5 +184,13 @@
     "actualWorker": 7,
     "skip": 0,
     "completeBootstrapCredit": 0
+  },
+  "sourceHostCompilation": {
+    "sourceCallbacksExecuted": 0,
+    "initialSetupError": "test-only reactive props bridge returned $state outside an allowed initializer",
+    "fixed": "initialize local reactive value then return it",
+    "actualSvelteComponentsCompiled": 8,
+    "warnings": 0,
+    "coverageCredit": 0
   }
 }
