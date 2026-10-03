@@ -441,3 +441,7 @@ Historical exact `f641e7c` [CI37061652357](https://github.com/sveltery/cms/actio
 ## Validation execution diagnostics (proposed)
 
 The native validation harness labels its nine mandatory bootstrap phases and proposes a 15-minute GitHub Actions validation job deadline in place of the inherited six-hour default. This is infrastructure behavior, with no EmDash algorithm or product-contract change and zero source-parity credit. Commands, assertion inventories, source callback bodies, test timeouts, file concurrency, runtime cleanup and secured browser limits remain unchanged. A timed-out job fails; bounded termination does not establish a runtime fix. See [validation diagnostics and evidence limits](../../docs/validation.md). Decision status: proposed; no project-manager acceptance or merge is recorded yet.
+
+## Media family: test-first checkpoint
+
+Authority is EmDash 1.1.0, immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. [Media documentation](../../docs/media.md) and [source ledger](../../docs/media-ports.json) preserve complete selected tests and immutable blobs/MIT attribution. This checkpoint implements zero media behavior and earns zero passing source declaration credit. Library/storage/native UI and usage maintenance remain incomplete. Namespace, transport, provider and UI substitutions require explicit records and actual Node/workerd/browser evidence before any completion claim.

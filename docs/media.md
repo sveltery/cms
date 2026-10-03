@@ -1,0 +1,11 @@
+# Media implementation
+
+The media work follows EmDash 1.1.0 at immutable commit `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. The complete source tests selected for library, storage, native asset delivery, image metadata, administrative workflows, and usage maintenance are preserved in [the source ledger](media-ports.json). Copyright 2026 Cloudflare Inc.; [MIT notice](../notices/emdash-MIT.txt).
+
+This first checkpoint is test-first inventory and native acceptance coverage. It implements no media behavior and grants no passing source declaration credit. Source tests with missing imports are setup failures, not behavioral assertion reds. Actual baseline results are recorded separately before implementation.
+
+ME1 covers persisted library records, upload/confirm/deduplication/replace/delete, filters/pagination/folders and image metadata. ME2 covers local filesystem, R2 and S3 contracts, asset delivery, streaming/signed uploads and image optimization. ME3 usage capture, indexing, activation, maintenance, repair and collection deletion remains separately owned work. Native transport and UI substitutions receive their own evidence; live external providers, deployed resources and external MCP/PAT/plugin surfaces are not established by local tests.
+
+Provider 9 is reserved for the real media schema after lifecycle/options/taxonomy/metadata providers 5–8. Historical providers are immutable. Future usage schema must compose with the real media provider without placeholder migrations or successful no-op hooks. No provider is registered at this checkpoint.
+
+Baseline on approved `b253294` used Node 24.19.0 and the actual default built SvelteKit server. All four native schema requirements failed with `ERR_ASSERTION`; actual asset streaming and authenticated library routes failed with HTTP 404 versus required 200/401, while private-prefix/missing-file checks were already green. The 18 initial source files failed before test execution because their product imports were absent; this is zero source red credit. The source checker verifies 119 exact files, 1,049 callback declarations and 3,109 literal `expect` calls as inventory, with zero executable parity credit. Frozen dependency installation and the baseline default build passed.
