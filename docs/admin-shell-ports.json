@@ -49,7 +49,7 @@
   "sourceDeclarationsExecuted": 9,
   "genuineSourceAssertionReds": 0,
   "sourceMIT": "notices/emdash-MIT.txt",
-  "status": "ready PR66; accepted bounded UX1-01/02/03; UX1-04 two genuine native browser reds qualified and narrow fallback implemented, with current exact-head gates/review/specific acceptance/merge approval pending",
+  "status": "ready PR66; accepted bounded UX1-01/02/03/04; exact713 normal and secured gates and independent review passed; resulting documentation head gates/review, configured-review quota resolution and merge approval pending",
   "nativeTDD": {
     "testCommit": "4c14c8970572e990b214f779921ec3cfd0d4426e",
     "assertionReds": 6,
@@ -245,7 +245,7 @@
   },
   "mobileProgressiveTDD": {
     "id": "UX1-04",
-    "status": "proposed stronger native progressive-host substitution; not specifically accepted",
+    "status": "accepted bounded stronger native progressive-host substitution; not final merge approval",
     "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
     "sourceContext": [
       {
@@ -304,13 +304,26 @@
     "sourceCredit": 0,
     "cryptographicCredit": 0,
     "repair": "SSR navigation visible until component enhancement; inert toggle hidden before enhancement; existing mobile collapse/toggle applies after onMount, including storage denial",
-    "specificPMAcceptance": "pending actual qualification",
+    "specificPMAcceptance": "accepted by project manager /root on 2026-10-03 only for visible pre-enhancement narrow-screen navigation, hidden inert toggle and unchanged enhanced controls; zero Source/full-admin/cryptographic credit",
+    "decisionRecord": "https://github.com/sveltery/cms/pull/66#pullrequestreview-5400453845",
+    "reviewedHead": "713cfafe99e9071c9dc584a4c853cc3f4e891edb",
+    "reviewedTree": "f6019b90bbbf19924bd98f5772c9f0c97c4555a5",
     "testSHA256": "a7bc44bdf59f5cedded93cd8f3c4cd47d4d04562fa4cd26214e04e8d1fa95657",
     "originalTestCommit": "4ea2e4942c96957f1c67fd27fa5625b8a7299ed5",
     "publishedTestCommit": "692dfe3c3efda38ee5370f59c63523e17cf424db",
     "testFirstTree": "56ad70ae3028a9f20c5dfd908512e75a0bd7345a",
     "focusedGreen": "12 compiled shell/Node+D1/storage-method cases plus4 actual built-server SSR/navigation/refresh/active cases; installed-runtime diagnosis, no local browser callbacks",
-    "newExactHeadQualification": "normal and secured default/Node gates, independent review and UX1-04 specific acceptance pending",
+    "implementationHeadQualification": {
+      "run": 37117839915,
+      "validateJob": 111187981966,
+      "normal": "SUCCESS: checker 0/0, services 974, selected Source 43, supplementary Card 23, production 240, Node 13, Cloudflare 23 plus Worker 4, all frozen installation/build/package/dry-bundle phases",
+      "browserJob": 111187981964,
+      "browser": "SUCCESS: secured 61 default and 61 Node; unchanged original 59 plus two progressive callbacks each; sandbox intact",
+      "independentReview": "clean exact713 bounded implementation review; local detailed report remains uncommitted",
+      "visibility": "public PM decision records independent-review outcome and successful exact713 checks",
+      "status": "historical implementation-head evidence; resulting documentation commit needs its own checks and independent review"
+    },
+    "newExactHeadQualification": "resulting documentation-head normal and secured default/Node gates and independent review pending; configured-review quota gate unresolved; explicit final PM approval, author expected-head merge and post-merge checks pending",
     "configuredReview": "final status pending PM coordination; account quota block is not a pass or an assumed waiver"
   }
 }
