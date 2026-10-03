@@ -22,7 +22,7 @@ export interface D1Result {
 }
 
 // Matches the pinned mapper, including undefined for zero affected rows.
-function mapD1Result<Row>(result: D1Result): QueryResult<Row> {
+export function mapD1Result<Row>(result: D1Result): QueryResult<Row> {
   if (result.error) throw new Error(result.error);
   return {
     rows: (result.results ?? []) as Row[],
@@ -31,7 +31,7 @@ function mapD1Result<Row>(result: D1Result): QueryResult<Row> {
   };
 }
 
-class RawBindingD1Adapter extends SqliteAdapter {
+export class RawBindingD1Adapter extends SqliteAdapter {
   readonly compoundSelectLimit = 5;
   private readonly database: D1Binding;
   constructor(database: D1Binding) { super(); this.database = database; }
@@ -70,8 +70,8 @@ class D1Driver implements Driver {
 export class RawBindingD1Dialect implements Dialect {
   private readonly database: D1Binding;
   constructor(database: D1Binding) { this.database = database; }
-  createAdapter() { return new RawBindingD1Adapter(this.database); }
-  createDriver() { return new D1Driver(this.database); }
+  createAdapter(): RawBindingD1Adapter { return new RawBindingD1Adapter(this.database); }
+  createDriver(): Driver { return new D1Driver(this.database); }
   createQueryCompiler() { return new SqliteQueryCompiler(); }
   createIntrospector(): never { throw new Error('D1 introspection is outside the bounded CMS adapter'); }
 }
@@ -89,4 +89,16 @@ export function openD1(binding: D1Binding): CmsDatabase {
     },
     async close() { await db.destroy(); }
   };
+}
+
+/** A single request's session must serialize physical queries to protect its bookmark. */
+export class SessionD1Dialect extends RawBindingD1Dialect {
+  private readonly sessionBinding: D1Binding;
+  constructor(config: { database: D1Binding }) { super(config.database); this.sessionBinding = config.database; }
+  override createAdapter(): RawBindingD1Adapter {
+    const binding = this.sessionBinding;
+    return new class extends RawBindingD1Adapter {
+      override get supportsMultipleConnections() { return false; }
+    }(binding);
+  }
 }

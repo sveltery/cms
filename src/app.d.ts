@@ -4,6 +4,11 @@ import type { ContentValidationIssue } from './lib/server/schema/validate-conten
 
 declare global {
   namespace App {
+    interface Platform {
+      env?: Record<string, unknown>;
+      ctx?: { waitUntil(task: Promise<unknown>): void };
+      context?: { waitUntil(task: Promise<unknown>): void };
+    }
     interface Error { code?: string; details?: { issues: ContentValidationIssue[] } }
     interface Locals {
       // Explicit adapter injection, populated only by trusted server session composition.
