@@ -24,3 +24,17 @@ test('registered navigation query reflects persisted metadata with actual truste
     assert.deepEqual(denied.collections, {});
   } finally { await h.close(); }
 });
+
+test('authenticated workspace HTML includes real collection navigation before JavaScript runs', async () => {
+  const h = await persistedRemotes();
+  try {
+    const response = await h.request('/', 'editor');
+    assert.equal(response.status, 200);
+    const html = await response.text();
+    const navigation = html.match(/<nav[^>]*aria-label="Workspace"[^>]*>([^]*?)<\/nav>/)?.[1];
+    assert.ok(navigation, 'actual workspace navigation landmark');
+    assert.match(navigation, /href="\/content\/notes"[^>]*>[^<]*Notes/);
+    assert.match(html, /Your account/);
+    assert.doesNotMatch(navigation, /href="\/schema"/);
+  } finally { await h.close(); }
+});

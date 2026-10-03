@@ -39,3 +39,17 @@ test('authenticated unconfigured navigation preserves the principal and explicit
   const event = { locals: { cms: { principal: { id: 'native-unconfigured', permissions: ['content:read', 'content:read_drafts'] } } } } as unknown as Pick<RequestEvent, 'locals'>;
   assert.deepEqual(await workspaceNavigation(event), { authenticated: true, permissions: ['content:read', 'content:read_drafts'], collections: {}, unavailable: true });
 });
+
+test('non-GET page rendering preserves principal display state without inspecting storage', async () => {
+  let reads = 0;
+  const event = { request: new Request('http://display.test/schema', { method: 'POST' }), locals: { cms: {
+    principal: { id: 'native-post', permissions: ['content:read', 'content:read_drafts'] },
+    get database() { reads++; throw new Error('non-GET display must not inspect storage'); }
+  } } } as unknown as Pick<RequestEvent, 'locals' | 'request'>;
+  await assert.doesNotReject(async () => {
+    assert.deepEqual(await workspaceNavigation(event), {
+      authenticated: true, permissions: ['content:read', 'content:read_drafts'], collections: {}, unavailable: true
+    });
+  });
+  assert.equal(reads, 0);
+});
