@@ -13,7 +13,7 @@ const actor={id:'review-admin',permissions:['content:read','content:read_drafts'
 const expected=item=>({version:item.version,updatedAt:item.updatedAt});
 const faultMessage='Review diagnostic: revision storage read unavailable';
 function contains(node,name){if(!node||typeof node!=='object')return false;if(node.kind==='IdentifierNode'&&node.name===name)return true;return Object.values(node).some(value=>Array.isArray(value)?value.some(v=>contains(v,name)):contains(value,name));}
-function failingReads(table){return {transformQuery({node}){if(node.kind==='SelectQueryNode'&&contains(node,table))throw new Error(faultMessage);return node;},transformResult:async({result})=>result};}
+function failingReads(table){return {transformQuery({node}){if((node.kind==='SelectQueryNode'||node.kind==='RawNode')&&contains(node,table))throw new Error(faultMessage);return node;},transformResult:async({result})=>result};}
 test('registered persisted-principal ordinary query returns the existing item when revision hydration fails',async()=>{
  const tasks=[];const f=await persistedRemotes({persistedSessions:true,mutationsEnabled:true,keepAlive:task=>tasks.push(task)});
  const database=f.database,healthyDb=database.db;
