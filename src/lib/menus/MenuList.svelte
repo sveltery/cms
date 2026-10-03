@@ -54,6 +54,6 @@
 
 <style>
   header,footer { display:flex; gap:1rem; align-items:center; justify-content:space-between; } .menus { list-style:none; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(16rem,1fr)); gap:1rem; }
-  article,.empty { border:1px solid #d4d4d8; border-radius:.7rem; padding:1.25rem; } article a { margin-inline-end:1rem; } 
+  article,.empty { border:1px solid #d4d4d8; border-radius:.7rem; padding:1.25rem; } article a { margin-inline-end:1rem; }
    form { display:grid; gap:.5rem; } input { padding:.6rem; border:1px solid #a1a1aa; border-radius:.35rem; } button { cursor:pointer; padding:.5rem .8rem; } button:disabled { cursor:default; opacity:.55; } [role=alert] { color:#b91c1c; }
 </style>
