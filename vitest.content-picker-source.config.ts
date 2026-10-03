@@ -9,4 +9,4 @@ export default defineConfig({ plugins: [{ name: 'whole-content-picker-core-nativ
     if (['src/api/handlers/content.ts', 'src/schema/registry.ts', 'tests/utils/test-db.ts'].some(path => target === resolve(frozen, path))) return resolve(root, 'tests/helpers/content-picker/source-host.ts');
     if (target === resolve(frozen, 'src/search/fts-manager.ts')) return resolve(root, 'src/lib/server/content-picker/fts-manager.ts');
   }
-}], test: { fileParallelism: false, include: ['parity/emdash/content-picker-source/upstream/packages/core/tests/integration/content/*.test.ts', 'tests/content-picker-native.test.ts'] } });
+}], test: { fileParallelism: false, include: ['parity/emdash/content-picker-source/upstream/packages/core/tests/integration/content/*.test.ts', 'tests/content-picker-native-backend/*.test.ts'] } });

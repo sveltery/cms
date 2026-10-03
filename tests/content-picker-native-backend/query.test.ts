@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, expect, it } from 'vitest';
-import { SchemaRegistry, setupTestDatabase, teardownTestDatabase, handleContentCreate, handleContentList } from './helpers/content-picker/source-host.ts';
-import type { CmsDatabase } from '../src/lib/server/database/contract.ts';
+import { SchemaRegistry, setupTestDatabase, teardownTestDatabase, handleContentCreate, handleContentList } from '../helpers/content-picker/source-host.ts';
+import type { CmsDatabase } from '../../src/lib/server/database/contract.ts';
 let db: CmsDatabase['db'];
 beforeEach(async () => {
   db = await setupTestDatabase(); const registry = new SchemaRegistry(db);
