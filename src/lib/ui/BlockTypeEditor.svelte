@@ -4,6 +4,7 @@
  import {untrack} from 'svelte';
  import type {BlockType,BlockFieldDefinition} from '$lib/server/schema/block-types';
  import {BLOCK_FIELD_TYPES} from '$lib/blocks/field-types';
+ const controlsId=$props.id();
  let {type,oncomplete}:{type?:BlockType;oncomplete?:()=>void}=$props();
  let slug=$state(untrack(()=>type?.slug??'')),label=$state(untrack(()=>type?.label??'')),description=$state(untrack(()=>type?.description??'')),category=$state(untrack(()=>type?.category??'')),icon=$state(untrack(()=>type?.icon??''));
  const openedFingerprint=untrack(()=>type?.versions.find(version=>version.version===type.currentVersion)?.fingerprint);
@@ -26,7 +27,7 @@
  {#each fields as field,index(index)}<fieldset><legend>Field {index+1}</legend>
   <label>Field slug<input required pattern="[a-z][a-z0-9_]*" maxlength="63" value={field.slug} oninput={event=>change(index,{slug:event.currentTarget.value})}/></label>
   <label>Field label<input required value={field.label} oninput={event=>change(index,{label:event.currentTarget.value})}/></label>
-  <label>Field type<select value={field.type} onchange={event=>change(index,{type:event.currentTarget.value as BlockFieldDefinition['type'],validation:undefined,options:undefined})}>{#each BLOCK_FIELD_TYPES as option}<option value={option}>{option}</option>{/each}</select></label>
+  <label for={`${controlsId}-${index}-type`}>Field type</label><select id={`${controlsId}-${index}-type`} value={field.type} onchange={event=>change(index,{type:event.currentTarget.value as BlockFieldDefinition['type'],validation:undefined,options:undefined})}>{#each BLOCK_FIELD_TYPES as option}<option value={option}>{option}</option>{/each}</select>
   <label><input type="checkbox" checked={field.required??false} onchange={event=>change(index,{required:event.currentTarget.checked})}/>Required</label>
   {#if field.type==='select'||field.type==='multiSelect'}<label>Options, one per line<textarea value={(field.validation?.options??[]).join('\n')} oninput={event=>validation(index,'options',event.currentTarget.value.split('\n').filter(Boolean))}></textarea></label>{/if}
   {#if ['string','text','url'].includes(field.type)}<label>Minimum length<input type="number" min="0" value={field.validation?.minLength??''} oninput={event=>validation(index,'minLength',event.currentTarget.value?Number(event.currentTarget.value):undefined)}/></label><label>Maximum length<input type="number" min="0" value={field.validation?.maxLength??''} oninput={event=>validation(index,'maxLength',event.currentTarget.value?Number(event.currentTarget.value):undefined)}/></label><label>Pattern<input value={field.validation?.pattern??''} oninput={event=>validation(index,'pattern',event.currentTarget.value||undefined)}/></label>{/if}
