@@ -110,9 +110,14 @@ test('official Worker streams, confirms and deduplicates R2 media with persisted
     for (const reference of [replacementSettings.logo, replacementSettings.favicon, replacementSettings.seo.defaultOgImage]) {
       assert.equal(reference.url, item.url); assert.equal(reference.width, 4); assert.equal(reference.height, 4);
     }
+    // Query strings that resemble the image endpoint never suppress ordinary API bookmarks.
+    const ordinaryMedia = await request(`/api/media?page=1&limit=1&href=${encodeURIComponent('/_image')}`);
+    assert.equal(ordinaryMedia.status, 200);
+    assert.ok(ordinaryMedia.headers.getSetCookie().some(value => value.startsWith('__em_d1_bookmark=')));
     const optimized = await request(`/_image?href=${encodeURIComponent(item.url)}&w=2&f=webp`);
     assert.equal(optimized.status, 200); assert.equal(optimized.headers.get('content-type'), 'image/webp');
     assert.equal(optimized.headers.get('cache-control'), 'public, max-age=0, must-revalidate');
+    assert.equal(optimized.headers.getSetCookie().some(value => value.startsWith('__em_d1_bookmark=')), false);
     const optimizedBytes = new Uint8Array(await optimized.arrayBuffer());
     assert.equal(imageSize(optimizedBytes).width, 2); assert.equal(imageSize(optimizedBytes).height, 2);
     await worker.dispose(); worker = start();
