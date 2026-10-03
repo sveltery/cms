@@ -1,0 +1,509 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "reviewedBaseline": "9072d73222ed21bd6aa77ff2c2a044c7353abcbd",
+  "configuredThread": "PRRT_kwDOU3hVUc6olzzK",
+  "configuredTopComment": 4172463744,
+  "testFirst": "fbccffe098f9d79014392a4c34121112759d0aa4",
+  "repair": "0920e070cf7bf27ee5e4aba37b5fd92a5b1f90be",
+  "CC-03": {
+    "state": "proposed; specific root acceptance pending",
+    "scope": "Registered native HTML update blank slug maps to JSON null, matching native create and previous legacy form representation",
+    "sourceDifference": "Source JSON empty string is distinct from null for draft staging and nonroutable live metadata; this is an intentional native form substitution, not a Source bug or JSON equivalence",
+    "preserve": [
+      "Omitted/nonempty form slug semantics",
+      "Direct generic/lifecycle JSON null and empty-string semantics",
+      "Absent versus explicit empty data",
+      "Required caller CAS and ownership",
+      "Strict validation and creation defaults"
+    ],
+    "divergentSourceCredit": 0,
+    "publicRoutabilityPolicy": "Source rejects routable published metadata clear with either null or empty string. This form substitution does not establish native public route or guard parity."
+  },
+  "nativeRed": {
+    "registeredHTTP": {
+      "pass": 0,
+      "assertionFailures": 4,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "domainControlsAlreadyGreen": 8,
+    "fixture": "Real lifecycle created/published same-locale entries, nonroutable collections with routable:false/urlPattern:null; Node and actual Worker D1, persisted-principal registered HTTP",
+    "sourceCredit": 0
+  },
+  "focusedGreen": {
+    "sourceAndService": 82,
+    "registeredHTTP": 15,
+    "checkerErrors": 0,
+    "checkerWarnings": 0,
+    "defaultBuild": "pass"
+  },
+  "sourceQualification": {
+    "script": "scripts/reproduce-content-composition-slug-update-upstream.mjs",
+    "scriptSHA256": "a3c90f7f74a31c21ae925e7bc6345100a62aacb659b2693d2bf907f4e23602d3",
+    "qualifiedBeforeProductionRepair": true,
+    "assertionBackedExit": 0,
+    "authorityCount": 47,
+    "immutableAuthorities": "content-composition-review-qualification.json#/slugOnlyUpdateRepair/sourceQualification/authorities",
+    "authoritiesByteEqualPriorQualification": true,
+    "declarationFingerprints": {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "completeDeclarationCount": 28,
+      "hashes": [
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+          "name": "hasApiError",
+          "method": false,
+          "sha256": "c452acec2a6abb06f8c938bb506e0c732ad71df2b77612cf94767f3607080265"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+          "name": "decodeRevisionPrecondition",
+          "method": false,
+          "sha256": "721ce65b5bd0084ce59e960c8a17c9cad849f47cc284c221db44d87b732a3843"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+          "name": "collectionHasSeo",
+          "method": false,
+          "sha256": "9a797fee8029abb02859ab875141aaecc90e3485ae249aedc0d19ea061e68c1a"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+          "name": "getCollectionPublishConfig",
+          "method": false,
+          "sha256": "bcfb836fd587d8dfa6e9a2b355351efb143b460e9baa4ce6bf150c2b12b7f791"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+          "name": "requireRoutablePublishSlug",
+          "method": false,
+          "sha256": "97b3fe476f9d61e5ab9eadcd8b1f369d3a61244999569b9a0b99b63eebdc36a6"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+          "name": "resolveId",
+          "method": false,
+          "sha256": "163df2aab347154dc347b12b2aeae325e72103457aeb56fd16165eee1b43aabd"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+          "name": "slugStillTaken",
+          "method": false,
+          "sha256": "d49593a7148b77dd0af4a57e55dba67db768a2099387cf8660fe37bdad36a778"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+          "name": "createSlugChangeRedirect",
+          "method": false,
+          "sha256": "702a704bbc91a7c649dcf83bcb4617d50ff92653c038ac6516c696de618ec205"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+          "name": "handleContentUpdate",
+          "method": false,
+          "sha256": "9df8af53862e7651c94b4ab6f9c203b72ba3a49130a0284fb11dec9d35ea3b21"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+          "name": "handleContentUnpublish",
+          "method": false,
+          "sha256": "506088555269831687baf608d030373de0a0ca11addb30951b7377acfb91ce58"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+          "name": "handleContentPublish",
+          "method": false,
+          "sha256": "f3720e1365e2bb68ce545f4ac9eff74b7db7a5ac96d3446ac9adc53cfec0cdd0"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+          "name": "handleContentGet",
+          "method": false,
+          "sha256": "a418414e21e252cb5c33314ffeb5bb5bc29f103c7f43b2986f1b06caadd960af"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+          "name": "hydrateReferences",
+          "method": false,
+          "sha256": "ef1f5fc3b7d8b0846ed4581ee8ae4919a5f17de0c0caf76726e68451f4891590"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702",
+          "name": "isRecord",
+          "method": false,
+          "sha256": "e955a2a2d3f529f3bf5d7ab05e8eae517cf30c88a7ea0fd1b7668f43472ab9a6"
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+          "name": "handleContentGet",
+          "method": true,
+          "sha256": "6e849ac71ee10eeaa896378dbf63db153dc8d4df127c66166785281e57b578e1"
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+          "name": "handleContentUpdate",
+          "method": true,
+          "sha256": "410b3a77cba1dd687f103a8aa85d3a290011e4716a0b7a26ea90512225bacfed"
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+          "name": "hydrateDraftData",
+          "method": true,
+          "sha256": "851ddbe45bee1dee7efac400b497e07a888dc489aa25d9315c7bc4c540787fb6"
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+          "name": "normalizeFieldValues",
+          "method": true,
+          "sha256": "846b7c85ca35de2da1cb60231a2a6a87a27ec4497aedf6799e855de61df2510d"
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+          "name": "dropUnknownKeysAlreadyStored",
+          "method": true,
+          "sha256": "2f613b09e34717560b76fccb24c6199470b5be1995df7cdaac47cda04b823423"
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+          "name": "handleContentUnpublish",
+          "method": true,
+          "sha256": "ba20e44d852678742cc966cb8a9fda85ab97dc6d4f34a82ee29cdb92e4ecb0e4"
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+          "name": "handleContentPublish",
+          "method": true,
+          "sha256": "066edf1296ee1693aee126ce7f045aeffcb3b5ad2b1154b6f13956d6ff8f6069"
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+          "name": "getScheduledPolicyRejectionRevision",
+          "method": true,
+          "sha256": "4f976451317a1b08ae4e257abaadf8c23c8f2dc9b1d9ad8546d8e650d196c782"
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+          "name": "checkContentPolicy",
+          "method": true,
+          "sha256": "45b8cde07ef0bb43380ea5099af8d26770d19587822bfe04f45c581dc68b93a7"
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+          "name": "DRAFT_ONLY_UPDATE_KEYS",
+          "method": false,
+          "sha256": "f842433cd22c92d67196b00ca0f7642b1138e98ef6af93831938d16da6348a31"
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+          "name": "ARRAY_FIELD_TYPES",
+          "method": false,
+          "sha256": "83c105366a9ae1cbfa0efeec67d3acb9552de4d7f2ea62e41582dbc98c91385e"
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+          "name": "MAX_DRAFT_STAGE_ATTEMPTS",
+          "method": false,
+          "sha256": "ee1b300eb11592d582ddde0233ce48cccb18022cab2390cffc9f4118f72d9a3d"
+        },
+        {
+          "path": "packages/core/src/cleanup.ts",
+          "blob": "21d6eabd50e690faac77865746c2c3b3c4c7ab44",
+          "name": "pruneQueuedRevisions",
+          "method": false,
+          "sha256": "2c17fa35dd7f2388891dab9dfa7006664804bc00603a960c4408c1d19f27d145"
+        },
+        {
+          "path": "packages/auth/src/tokens.ts",
+          "blob": "c96ef3c7ad026bfd31117f2db2ce0378d570dc4f",
+          "name": "hasScope",
+          "method": false,
+          "sha256": "b239c8dd13e43cbfc5f746ff25405f3c5f14a4e3c29cf6869bb7e33ee9dc8c1e"
+        }
+      ],
+      "newSourceTestCredit": 0
+    },
+    "originalNonemptyCallbackUnchanged": true,
+    "originalNonemptyCallbackSHA256": "2f919ab06fd85d3c031f7a5b1c6132ff819fd656d4012b2c85ba4ce20414320f",
+    "originalScriptAtPublic9072SHA256": "3cae8e0209af46edb2d4980dd85a8f0084d24df01c74de42139b04eebc68ae06",
+    "sourceObservations": [
+      {
+        "routable": true,
+        "body": {
+          "slug": null
+        },
+        "repetition": 1,
+        "status": 400,
+        "versionDelta": 0,
+        "historyDelta": 0,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": false,
+        "liveSlug": "null-absent-data-1-live",
+        "error": "VALIDATION_ERROR"
+      },
+      {
+        "routable": true,
+        "body": {
+          "slug": null
+        },
+        "repetition": 2,
+        "status": 400,
+        "versionDelta": 0,
+        "historyDelta": 0,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": false,
+        "liveSlug": "null-absent-data-2-live",
+        "error": "VALIDATION_ERROR"
+      },
+      {
+        "routable": true,
+        "body": {
+          "data": {},
+          "slug": null
+        },
+        "repetition": 1,
+        "status": 200,
+        "versionDelta": 1,
+        "historyDelta": 1,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": true,
+        "stagedSlug": null
+      },
+      {
+        "routable": true,
+        "body": {
+          "data": {},
+          "slug": null
+        },
+        "repetition": 2,
+        "status": 200,
+        "versionDelta": 1,
+        "historyDelta": 1,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": true,
+        "stagedSlug": null
+      },
+      {
+        "routable": true,
+        "body": {
+          "slug": ""
+        },
+        "repetition": 1,
+        "status": 400,
+        "versionDelta": 0,
+        "historyDelta": 0,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": false,
+        "liveSlug": "empty-string-absent-data-1-live",
+        "error": "VALIDATION_ERROR"
+      },
+      {
+        "routable": true,
+        "body": {
+          "slug": ""
+        },
+        "repetition": 2,
+        "status": 400,
+        "versionDelta": 0,
+        "historyDelta": 0,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": false,
+        "liveSlug": "empty-string-absent-data-2-live",
+        "error": "VALIDATION_ERROR"
+      },
+      {
+        "routable": true,
+        "body": {
+          "data": {},
+          "slug": ""
+        },
+        "repetition": 1,
+        "status": 200,
+        "versionDelta": 1,
+        "historyDelta": 1,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": true,
+        "stagedSlug": ""
+      },
+      {
+        "routable": true,
+        "body": {
+          "data": {},
+          "slug": ""
+        },
+        "repetition": 2,
+        "status": 200,
+        "versionDelta": 1,
+        "historyDelta": 1,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": true,
+        "stagedSlug": ""
+      },
+      {
+        "routable": false,
+        "body": {
+          "slug": null
+        },
+        "repetition": 1,
+        "status": 200,
+        "versionDelta": 1,
+        "historyDelta": 0,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": false,
+        "liveSlug": null
+      },
+      {
+        "routable": false,
+        "body": {
+          "slug": null
+        },
+        "repetition": 2,
+        "status": 200,
+        "versionDelta": 1,
+        "historyDelta": 0,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": false,
+        "liveSlug": null
+      },
+      {
+        "routable": false,
+        "body": {
+          "data": {},
+          "slug": null
+        },
+        "repetition": 1,
+        "status": 200,
+        "versionDelta": 1,
+        "historyDelta": 1,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": true,
+        "stagedSlug": null
+      },
+      {
+        "routable": false,
+        "body": {
+          "data": {},
+          "slug": null
+        },
+        "repetition": 2,
+        "status": 200,
+        "versionDelta": 1,
+        "historyDelta": 1,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": true,
+        "stagedSlug": null
+      },
+      {
+        "routable": false,
+        "body": {
+          "slug": ""
+        },
+        "repetition": 1,
+        "status": 200,
+        "versionDelta": 1,
+        "historyDelta": 0,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": false,
+        "liveSlug": ""
+      },
+      {
+        "routable": false,
+        "body": {
+          "slug": ""
+        },
+        "repetition": 2,
+        "status": 409,
+        "versionDelta": 0,
+        "historyDelta": 0,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": false,
+        "liveSlug": "empty-string-absent-data-2-live",
+        "error": "SLUG_CONFLICT"
+      },
+      {
+        "routable": false,
+        "body": {
+          "data": {},
+          "slug": ""
+        },
+        "repetition": 1,
+        "status": 200,
+        "versionDelta": 1,
+        "historyDelta": 1,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": true,
+        "stagedSlug": ""
+      },
+      {
+        "routable": false,
+        "body": {
+          "data": {},
+          "slug": ""
+        },
+        "repetition": 2,
+        "status": 200,
+        "versionDelta": 1,
+        "historyDelta": 1,
+        "priorHistoryUnchanged": true,
+        "livePointerPreserved": true,
+        "stagedSlugPresent": true,
+        "stagedSlug": ""
+      }
+    ],
+    "physicalUniqueness": {
+      "sameLocaleNullRows": 2,
+      "sameLocaleEmptyStringRows": 1,
+      "secondEmptyStringWrite": {
+        "status": 409,
+        "code": "SLUG_CONFLICT"
+      },
+      "secondNullWrite": {
+        "status": 200
+      }
+    },
+    "fixtureCorrection": "Initial supplemental metadata deepStrictEqual failed solely because actual SQLite row null prototype differs from literal plain object. Corrected supplemental guard to compare scalars routable=0 and url_pattern=null; Source algorithms/expectations and original prior callback unchanged. Failed log retained; no added red/parity credit.",
+    "additionalCopiedSourceCredit": 0,
+    "hosts": "Real Node SQLite; namespace-only remapping and registered scalar schema, no successful redirects/localization, Source D1, entry locks, auth middleware, plugins/hooks, references, SEO/bylines, cache, settings, scheduling or native public API credit. Genuine sibling old-slug rows retain original redirect refusal control; new falsey slugs do not enter that branch."
+  },
+  "finalApproval": "Pending current final-head normal/secured/configured/independent checks, specific CC03 acceptance and exact root approval."
+}

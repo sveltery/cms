@@ -180,6 +180,120 @@ try {
   assert.deepEqual(await history(),revisionsAfter);
   observations.push({body,responseStatus:response.status,before:{slug:before.slug,version:before.version,liveRevisionId:before.liveRevisionId,draftRevisionId:before.draftRevisionId,revisionRows:revisionsBefore.length},after:{slug:after.slug,version:after.version,liveRevisionId:after.liveRevisionId,draftRevisionId:after.draftRevisionId,revisionRows:revisionsAfter.length,stagedSlug},versionDelta:after.version-before.version,historyDelta:revisionsAfter.length-revisionsBefore.length,liveDataUnchanged:true,priorHistoryUnchanged:true});
  }
+ const blankObservations=[];
+ for (const clearSlug of [null,'']) {
+  for (const explicitData of [false,true]) {
+   for (let repetition=1;repetition<=2;repetition++) {
+    const prefix=(clearSlug===null?'null':'empty-string')+'-'+(explicitData?'explicit-data':'absent-data')+'-'+repetition;
+    const oldSlug=prefix+'-live';
+    const created=await content.create({type:'post',slug:oldSlug,locale:'en',authorId:'review-admin',data:{title:prefix+' title'}});
+    await content.publish('post',created.id);
+    await content.create({type:'post',slug:oldSlug,locale:'fr',data:{title:'Sibling holds old URL'}});
+    const before=await content.findById('post',created.id);
+    const history=()=>db.selectFrom('revisions').selectAll().where('entry_id','=',created.id).orderBy('id').execute();
+    const revisionsBefore=await history();
+    const body=explicitData?{data:{},slug:clearSlug}:{slug:clearSlug};
+    const response=await PUT({params:{collection:'post',id:created.id},request:new Request('https://source.example/_emdash/api/content/post/'+created.id,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify(body)}),locals:{emdash:runtime,user:{id:'review-admin',role:50}},cache:{enabled:false}});
+    const result=await response.json();
+    const after=await content.findById('post',created.id),revisionsAfter=await history();
+    const draft=after.draftRevisionId?await revisions.findById(after.draftRevisionId):null;
+    assert.equal(before.draftRevisionId,null);assert.ok(before.liveRevisionId);
+    assert.equal(after.liveRevisionId,before.liveRevisionId);
+    assert.equal(after.status,'published');assert.equal(after.data.title,before.data.title);
+    const expectedStatus=explicitData?200:400;
+    assert.equal(response.status,expectedStatus);
+    if (expectedStatus!==200) {
+     assert.equal(result.success,false);
+     assert.equal(result.error.code,expectedStatus===400?'VALIDATION_ERROR':'SLUG_CONFLICT');
+     assert.equal(result.error.message,expectedStatus===400?'Cannot publish routable content without a slug':"Slug '' already exists in collection 'nonroute'");
+     assert.deepEqual(after,before);assert.deepEqual(revisionsAfter,revisionsBefore);
+    } else {
+     assert.equal(result.success,true);assert.equal(after.version,before.version+1);
+     assert.equal(result.data.item.data.title,before.data.title);
+     if (explicitData) {
+      assert.equal(after.slug,oldSlug);assert.ok(after.draftRevisionId);
+      assert.equal(revisionsAfter.length,revisionsBefore.length+1);
+      assert.deepEqual(revisionsAfter.filter(row=>row.id!==after.draftRevisionId),revisionsBefore);
+      assert.equal(Object.hasOwn(draft.data,'_slug'),true);
+      assert.equal(draft.data._slug,clearSlug);assert.equal(draft.data.title,before.data.title);
+      assert.equal(result.data.item.slug,oldSlug);assert.equal(result.data.item.liveData.title,before.data.title);
+     } else {
+      assert.equal(after.slug,clearSlug);assert.equal(after.draftRevisionId,null);
+      assert.deepEqual(revisionsAfter,revisionsBefore);assert.equal(result.data.item.slug,clearSlug);
+      assert.equal(result.data.item.liveData,undefined);
+     }
+    }
+
+    for (const task of globalThis.__lifecycleReviewAfter.splice(0))await task();
+    assert.deepEqual(await history(),revisionsAfter);
+    blankObservations.push({body,repetition,responseStatus:response.status,result,before:{slug:before.slug,version:before.version,liveRevisionId:before.liveRevisionId,draftRevisionId:before.draftRevisionId,revisionRows:revisionsBefore.length},after:{slug:after.slug,version:after.version,liveRevisionId:after.liveRevisionId,draftRevisionId:after.draftRevisionId,revisionRows:revisionsAfter.length,stagedSlugPresent:draft?Object.hasOwn(draft.data,'_slug'):false,stagedSlug:draft?.data._slug},versionDelta:after.version-before.version,historyDelta:revisionsAfter.length-revisionsBefore.length,priorHistoryUnchanged:JSON.stringify(revisionsAfter.filter(row=>row.id!==after.draftRevisionId))===JSON.stringify(revisionsBefore)});
+   }
+  }
+ }
+ console.log(JSON.stringify({blankObservations,assertionBacked:true,newSourceTestCredit:0}));
+ await registry.createCollection({slug:'nonroute',label:'Nonroutable',routable:false,urlPattern:null});
+ await registry.createField('nonroute',{slug:'title',label:'Title',type:'string'});
+ const nonrouteMetadata=await db.selectFrom('_emdash_collections').select(['routable','url_pattern']).where('slug','=','nonroute').executeTakeFirst();
+ assert.equal(nonrouteMetadata.routable,0);assert.equal(nonrouteMetadata.url_pattern,null);
+ const nonroutableObservations=[];
+ for (const clearSlug of [null,'']) {
+  for (const explicitData of [false,true]) {
+   for (let repetition=1;repetition<=2;repetition++) {
+    const prefix=(clearSlug===null?'null':'empty-string')+'-'+(explicitData?'explicit-data':'absent-data')+'-'+repetition;
+    const oldSlug=prefix+'-live';
+    const created=await content.create({type:'nonroute',slug:oldSlug,locale:'en',authorId:'review-admin',data:{title:prefix+' title'}});
+    await content.publish('nonroute',created.id);
+    await content.create({type:'nonroute',slug:oldSlug,locale:'fr',data:{title:'Sibling holds old URL'}});
+    const before=await content.findById('nonroute',created.id);
+    const history=()=>db.selectFrom('revisions').selectAll().where('entry_id','=',created.id).orderBy('id').execute();
+    const revisionsBefore=await history();
+    const body=explicitData?{data:{},slug:clearSlug}:{slug:clearSlug};
+    const response=await PUT({params:{collection:'nonroute',id:created.id},request:new Request('https://source.example/_emdash/api/content/nonroute/'+created.id,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify(body)}),locals:{emdash:runtime,user:{id:'review-admin',role:50}},cache:{enabled:false}});
+    const result=await response.json();
+    const after=await content.findById('nonroute',created.id),revisionsAfter=await history();
+    const draft=after.draftRevisionId?await revisions.findById(after.draftRevisionId):null;
+    assert.equal(before.draftRevisionId,null);assert.ok(before.liveRevisionId);
+    assert.equal(after.liveRevisionId,before.liveRevisionId);
+    assert.equal(after.status,'published');assert.equal(after.data.title,before.data.title);
+    const expectedStatus=explicitData?200:(clearSlug===''&&repetition===2?409:200);
+    assert.equal(response.status,expectedStatus);
+    if (expectedStatus!==200) {
+     assert.equal(result.success,false);
+     assert.equal(result.error.code,expectedStatus===400?'VALIDATION_ERROR':'SLUG_CONFLICT');
+     assert.equal(result.error.message,expectedStatus===400?'Cannot publish routable content without a slug':"Slug '' already exists in collection 'nonroute'");
+     assert.deepEqual(after,before);assert.deepEqual(revisionsAfter,revisionsBefore);
+    } else {
+     assert.equal(result.success,true);assert.equal(after.version,before.version+1);
+     assert.equal(result.data.item.data.title,before.data.title);
+     if (explicitData) {
+      assert.equal(after.slug,oldSlug);assert.ok(after.draftRevisionId);
+      assert.equal(revisionsAfter.length,revisionsBefore.length+1);
+      assert.deepEqual(revisionsAfter.filter(row=>row.id!==after.draftRevisionId),revisionsBefore);
+      assert.equal(Object.hasOwn(draft.data,'_slug'),true);
+      assert.equal(draft.data._slug,clearSlug);assert.equal(draft.data.title,before.data.title);
+      assert.equal(result.data.item.slug,oldSlug);assert.equal(result.data.item.liveData.title,before.data.title);
+     } else {
+      assert.equal(after.slug,clearSlug);assert.equal(after.draftRevisionId,null);
+      assert.deepEqual(revisionsAfter,revisionsBefore);assert.equal(result.data.item.slug,clearSlug);
+      assert.equal(result.data.item.liveData,undefined);
+     }
+    }
+
+    for (const task of globalThis.__lifecycleReviewAfter.splice(0))await task();
+    assert.deepEqual(await history(),revisionsAfter);
+    nonroutableObservations.push({body,repetition,responseStatus:response.status,result,before:{slug:before.slug,version:before.version,liveRevisionId:before.liveRevisionId,draftRevisionId:before.draftRevisionId,revisionRows:revisionsBefore.length},after:{slug:after.slug,version:after.version,liveRevisionId:after.liveRevisionId,draftRevisionId:after.draftRevisionId,revisionRows:revisionsAfter.length,stagedSlugPresent:draft?Object.hasOwn(draft.data,'_slug'):false,stagedSlug:draft?.data._slug},versionDelta:after.version-before.version,historyDelta:revisionsAfter.length-revisionsBefore.length,priorHistoryUnchanged:JSON.stringify(revisionsAfter.filter(row=>row.id!==after.draftRevisionId))===JSON.stringify(revisionsBefore)});
+   }
+  }
+ }
+ console.log(JSON.stringify({nonroutableObservations,assertionBacked:true,newSourceTestCredit:0}));
+
+ const persistedNulls=await db.selectFrom('ec_nonroute').select(['id','slug','locale','draft_revision_id']).where('locale','=','en').where('slug','is',null).execute();
+ const persistedEmpty=await db.selectFrom('ec_nonroute').select(['id','slug','locale','draft_revision_id']).where('locale','=','en').where('slug','=','').execute();
+ assert.equal(persistedNulls.length,2);assert.equal(persistedEmpty.length,1);
+ for (const row of persistedNulls) {assert.equal(row.slug,null);assert.equal(row.draft_revision_id,null);}
+ assert.equal(persistedEmpty[0].slug,'');assert.equal(persistedEmpty[0].draft_revision_id,null);
+ console.log(JSON.stringify({assertionBacked:true,physicalUniqueness:{sameLocaleNullRows:persistedNulls.length,sameLocaleEmptyStringRows:persistedEmpty.length,secondEmptyStringWrite:{status:409,code:'SLUG_CONFLICT'},secondNullWrite:{status:200}},nativeTransportSubstitution:'Native HTML blank may intentionally mean Source JSON null; it does not equal Source JSON empty string. Source routable published metadata guard and public native parity remain outside native ordinary-admin proof.',newSourceTestCredit:0}));
+
  console.log(JSON.stringify({pin:'913cb1bb9b7f08c3ff0d258b4420e53835b6a58e',target:'Node SQLite',observations,completePublicPut:1,completeRuntimeGet:1,completeRuntimeUpdate:1,completeRuntimeHydration:1,completeApiGet:1,completeApiUpdate:1,completeRepositories:['content','revision'],completeDecoder:true,completeUpdateSchema:true,newSourceTestCredit:0,scope:'scalar title, real persisted source-created/source-published separate entries, unchanged Source optional revision behavior; namespace-only table remapping, explicit native schema registry and scalar guards; original redirect helper early-refuses on real sibling old slug; no successful redirect, localization, authentication middleware, entry locks, plugins/hooks, SEO/bylines, references, cache, settings, scheduling, Source D1 or public native API parity credit'}));
 } finally {await storage.close();}
 `);
