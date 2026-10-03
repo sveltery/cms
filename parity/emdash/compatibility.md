@@ -1,5 +1,7 @@
 # Current compatibility register and historical audit
 
+PR53's native `PlannedOptions` adapter uses an explicit readonly field and erasable constructor assignment immediately after `super()` for plain Node24 composition. The complete pinned `packages/core/src/settings/index.ts` at `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e` has no such class; this is a host syntax repair, not new source functionality. The observed original import fails before assertions, so it earns zero behavioral/copied red credit. Whole-module ES2022 emitted JavaScript is byte-identical after the repair; unchanged focused source callbacks pass 26/26, Node/D1 HTTP cases pass 32/32, and normal checker/build pass. Full normal gates, approved-dependency integration, final review and PM acceptance remain pending; no full PR53 parity or approval claim is made.
+
 ## Proposed forward metadata storage fidelity
 
 Source authority: EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`.
