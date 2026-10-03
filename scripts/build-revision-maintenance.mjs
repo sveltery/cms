@@ -22,7 +22,7 @@ await build({
       }
     }
   }]:[],
-  ssr:{noExternal:worker},
+  ssr:worker?{noExternal:true}:{},
   build:{ssr:true,target:'es2022',outDir:output,emptyOutDir:false,
     rollupOptions:{input:resolve(root,'src/lib/server/maintenance/runtime.ts'),external:[/^node:/],
       output:{inlineDynamicImports:true,entryFileNames:'maintenance.js'}}}
