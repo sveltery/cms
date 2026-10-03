@@ -39,8 +39,8 @@ for (const target of ['Node', 'D1'] as const) {
         assert.match(html, /<button[^>]*>Sign out<\/button>/);
         assert.doesNotMatch(html, /Signed in as|Sign in with a passkey|Set up your administrator account/);
         assert.deepEqual(state.parse((await browser.query('getAuthenticatedState')).data), { authenticated: true });
-        assert.deepEqual(await database.db.selectFrom('_cms_auth_users').selectAll().execute(), [user]);
-        assert.deepEqual(await database.db.selectFrom('_cms_auth_sessions').selectAll().execute(), [session]);
+        assert.deepEqual((await database.db.selectFrom('_cms_auth_users').selectAll().execute()).map(row => ({ ...row })), [user]);
+        assert.deepEqual((await database.db.selectFrom('_cms_auth_sessions').selectAll().execute()).map(row => ({ ...row })), [session]);
         assert.equal((await database.db.selectFrom('_cms_auth_profiles').selectAll().execute()).length, 0);
         assert.equal((await database.db.selectFrom('_cms_auth_credentials').selectAll().execute()).length, 0);
 
@@ -57,7 +57,7 @@ for (const target of ['Node', 'D1'] as const) {
         const anonymousHtml = await anonymous.text();
         assert.match(anonymousHtml, /Administrator enrollment support is not implemented/);
         assert.doesNotMatch(anonymousHtml, /Open your workspace|Sign out|Sign in with a passkey/);
-        assert.deepEqual(await database.db.selectFrom('_cms_auth_users').selectAll().execute(), [user]);
+        assert.deepEqual((await database.db.selectFrom('_cms_auth_users').selectAll().execute()).map(row => ({ ...row })), [user]);
         assert.equal((await database.db.selectFrom('_cms_auth_profiles').selectAll().execute()).length, 0);
         assert.equal((await database.db.selectFrom('_cms_auth_credentials').selectAll().execute()).length, 0);
       } finally { await h.close(); }
