@@ -24,6 +24,10 @@ for(const file of ledger.files){
  if(process.argv.includes('--inventory')){file.declarations=ids;file.literalExpectCalls=expects;}
 }
 if(process.argv.includes('--inventory'))await writeFile(new URL('docs/blocks-source-files.json',root),JSON.stringify(ledger,null,2)+'\n');
+const closure=JSON.parse(await readFile(new URL('docs/blocks-source-closure.json',root),'utf8'));
+if(closure.pin!==ledger.pin||closure.files.length!==closure.transitiveClosureFiles)throw new Error('Source closure pin/count differs');
+const closureByPath=new Map(closure.files.map(file=>[file.path,file]));
+for(const file of ledger.files){const entry=closureByPath.get(file.path);if(!entry||entry.blob!==file.blob||entry.sha256!==file.sha256)throw new Error(`Source selection is outside full pinned closure: ${file.path}`);}
 const modules=JSON.parse(await readFile(new URL('docs/blocks-source-modules.json',root),'utf8'));
 for(const module of modules.modules){const bytes=await readFile(new URL(module.copiedPath,root));if(createHash('sha256').update(bytes).digest('hex')!==module.copiedSha256)throw new Error(`Module provenance changed: ${module.copiedPath}`);}
-console.log(JSON.stringify({pin:ledger.pin,immutableTestFiles:ledger.files.length,declarations,literalExpectCalls:assertions,verifiedModuleCopies:modules.modules.length,productTestsRun:0}));
+console.log(JSON.stringify({pin:ledger.pin,immutableTestFiles:ledger.files.length,declarations,literalExpectCalls:assertions,verifiedModuleProvenanceScopes:modules.modules.length,sourceDependencyInventoryFiles:closure.files.length,productTestsRun:0}));
