@@ -15,6 +15,7 @@ import { keepKnownFields, staleStoredKeys } from './upstream/content/known-field
 import { ContentDatetimeNormalizer } from './upstream/database/content-datetime.ts';
 import { LifecycleSlugConflictError } from './errors.ts';
 import {prepareContentSlugRedirect,executeContentSlugBatch,completeContentSlugRedirect} from '../../redirects/content-atomic.ts';
+import {publicationStatementExecutor} from '../../redirects/publication-atomic.ts';
 import * as v from 'valibot';
 
 // Runtime draft-stage, hydration and retention algorithms adapted from
@@ -222,7 +223,12 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
       owner(item,actor,'content:publish_any');precondition(value.expected,item);const collection=await definition(value.type);
       publicationDatePermission(value);
-      return translate(()=>content.publish(value.type,value.id,value.publishedAt,false,undefined,collection.supports.includes('revisions'),collection.routable,{version:item.version,updatedAt:item.updatedAt}));
+      let redirectCreated=false;
+      const executePublication=publicationStatementExecutor(database,{id:collection.id,slug:value.type,version:collection.version,urlPattern:collection.urlPattern??null},candidate=>{redirectCreated=candidate;});
+      const published=await translate(()=>content.publish(value.type,value.id,value.publishedAt,false,undefined,collection.supports.includes('revisions'),collection.routable,
+        {version:item.version,updatedAt:item.updatedAt},undefined,executePublication));
+      if(redirectCreated)completeContentSlugRedirect(database,dependencies.after);
+      return published;
     },
     async unpublish(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);

@@ -23,6 +23,8 @@ export interface ContentSlugRedirectInput {
 export interface ContentSlugRedirectBatch {
  readonly input:ContentSlugRedirectInput;
  readonly timestampError?:RangeError;
+ /** Exact final-plan condition for a source write if this whole batch commits. */
+ readonly redirectWritePlanned:boolean;
  readonly statements:readonly CompiledQuery[];
  /** Index inside statements, not the caller's surrounding atomic batch. */
  readonly redirectResultIndices:readonly number[];
@@ -106,14 +108,15 @@ export async function prepareContentSlugRedirect(
   sql`DELETE FROM _cms_guards WHERE token IN (${casGuard},${snapshotGuard},${leaseGuard},${finalGuard})
    OR substr(token,1,${generationPrefix.length})=${generationPrefix}`.compile(db)
  ];
- return {input,timestampError,statements,redirectResultIndices:equalUrls?[]:[7,8]};
+ return {input,timestampError,statements,redirectWritePlanned:!survivor&&!equalUrls,redirectResultIndices:equalUrls?[]:[7,8]};
 }
 
 /** Only the owned rollback sentinels retry; content/schema CAS remains strict. */
 export async function executeContentSlugBatch(database:CmsDatabase,prefix:readonly CompiledQuery[],
- plan:ContentSlugRedirectBatch,suffix:readonly CompiledQuery[]):Promise<readonly QueryResult<unknown>[]> {
+ plan:ContentSlugRedirectBatch,suffix:readonly CompiledQuery[],
+ attemptedPlan?:((actualPlan:ContentSlugRedirectBatch)=>void)):Promise<readonly QueryResult<unknown>[]> {
  for(let attempt=0;attempt<5;attempt++) {
-  try{return await database.atomicBatch([...prefix,...plan.statements,...suffix]);}
+  try{attemptedPlan?.(plan);return await database.atomicBatch([...prefix,...plan.statements,...suffix]);}
   catch(cause){
    if(!(cause instanceof Error))throw cause;
    const occupied=cause.message.includes(LEASE_BUSY),changed=cause.message.includes(SNAPSHOT_CHANGED);

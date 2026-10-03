@@ -1,10 +1,14 @@
-import type { Kysely } from 'kysely';
+import type { Kysely, RawBuilder, QueryResult } from 'kysely';
+import type { ContentItem } from './database/repositories/types.ts';
 import type { CmsDatabase } from '../../contract.ts';
 
 export interface LifecycleDependencies {
   after?: (task: () => void | Promise<void>) => void;
   timezone?: () => Promise<string | undefined>;
 }
+/** Trusted native publication transport; omitted callers retain Source execution. */
+export type PublicationStatementExecutor = (statement: RawBuilder<unknown>, existing: ContentItem,
+  intendedSlug: string | null, intendedPublishedAt: string) => Promise<QueryResult<unknown>>;
 const databases = new WeakMap<object, CmsDatabase>();
 const dependencies = new WeakMap<object, LifecycleDependencies>();
 export function registerLifecycleDatabase(database: CmsDatabase, values: LifecycleDependencies = {}) {
