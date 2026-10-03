@@ -23,6 +23,12 @@ const metadata = {
   urlPattern: v.optional(v.pipe(v.string(), v.transform(value => value === '' ? null : value)))
 };
 const optionalEditMode = v.optional(v.picklist(['keep', 'set']));
+const rawJson = v.optional(v.pipe(v.string(),v.maxLength(200_000)));
+function selectedJson(mode:'keep'|'set'|undefined,value:string|undefined) {
+  if(mode === 'keep') return true;
+  if(value === undefined) return mode !== 'set';
+  try {JSON.parse(value); return true;} catch {return false;}
+}
 const decimalVersion = v.pipe(v.string(), v.maxLength(16), v.regex(/^[1-9][0-9]*$/),
   v.transform(Number), v.safeInteger(), v.minValue(1));
 const optionalLength = v.optional(v.pipe(v.string(), v.maxLength(6),
@@ -172,13 +178,16 @@ export function convertFieldAdd(input: v.InferOutput<typeof addFieldInput>) {
 const fieldIdentity = { id: v.optional(v.string()), collection: identifier, field: identifier };
 export const fieldMetadataFormInput = v.pipe(v.strictObject({ ...fieldIdentity,
   type: v.optional(fieldInput.entries.type), widget: v.optional(v.string()),
-  defaultValueJson: optionalJson, validationJson: optionalJson, optionsJson: optionalJson,
+  defaultValueJson: rawJson, validationJson: rawJson, optionsJson: rawJson,
   required: optionalBoolean, unique: optionalBoolean, searchable: optionalBoolean, indexed: optionalBoolean, translatable: optionalBoolean,
   typeMode: optionalEditMode, widgetMode: optionalEditMode, defaultValueMode: optionalEditMode,
   validationMode: optionalEditMode, optionsMode: optionalEditMode, searchableMode: optionalEditMode,
   indexedMode: optionalEditMode, translatableMode: optionalEditMode
 }),v.forward(v.check(input => input.id === undefined || input.id === `${input.collection}/${input.field}`,
-  'Form instance must match the collection and field'), ['id']));
+  'Form instance must match the collection and field'), ['id']),
+v.forward(v.check(input=>selectedJson(input.defaultValueMode,input.defaultValueJson),'Selected default must be valid JSON'),['defaultValueJson']),
+v.forward(v.check(input=>selectedJson(input.validationMode,input.validationJson),'Selected validation must be valid JSON'),['validationJson']),
+v.forward(v.check(input=>selectedJson(input.optionsMode,input.optionsJson),'Selected options must be valid JSON'),['optionsJson']));
 export function convertFieldMetadata(input: v.InferOutput<typeof fieldMetadataFormInput>) {
   const {id:_id, defaultValueJson, validationJson, optionsJson, typeMode, widgetMode,
     defaultValueMode,validationMode,optionsMode,searchableMode,indexedMode,translatableMode,...value} = input;
@@ -188,8 +197,8 @@ export function convertFieldMetadata(input: v.InferOutput<typeof fieldMetadataFo
   if(searchableMode === 'keep') delete metadata.searchable;
   if(indexedMode === 'keep') delete metadata.indexed;
   if(translatableMode === 'keep') delete metadata.translatable;
-  return parse(updateFieldInput, { ...metadata, ...(defaultValueMode === 'keep' || defaultValueJson === undefined ? {} : {defaultValue:defaultValueJson}),
-    ...(validationMode === 'keep' || validationJson === undefined ? {} : {validation:validationJson}), ...(optionsMode === 'keep' || optionsJson === undefined ? {} : {options:optionsJson}) });
+  return parse(updateFieldInput, { ...metadata, ...(defaultValueMode === 'keep' || defaultValueJson === undefined ? {} : {defaultValue:JSON.parse(defaultValueJson)}),
+    ...(validationMode === 'keep' || validationJson === undefined ? {} : {validation:JSON.parse(validationJson)}), ...(optionsMode === 'keep' || optionsJson === undefined ? {} : {options:JSON.parse(optionsJson)}) });
 }
 const precondition = { version: decimalVersion, updatedAt: revisionInput.entries.updatedAt };
 export const fieldOrderInput = v.pipe(v.strictObject({ id:v.optional(identifier), collection:identifier, fields:optionalJson, ...precondition }),
