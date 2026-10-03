@@ -58,3 +58,15 @@ test('ordinary changing selected-row snapshot exhausts exactly five complete att
   assert.equal((await sql`SELECT token FROM _cms_guards`.execute(f.db)).rows.length,0);
  }finally{await f.close();}
 });
+test('ordinary legacy null redirect timestamp follows Source JS acceptance with an exact null snapshot',async()=>{
+ const f=await fixture();try {
+  const reference=await f.repository.create({source:'/reference/old',destination:'/manual-reference',enabled:false});
+  await sql`UPDATE _cms_redirects SET updated_at=NULL WHERE id IN (${f.manual.id},${reference.id})`.execute(f.db);
+  const source=await f.repository.createAutoRedirect('reference','old','new','ordinary-reference',null);assert.ok(source);
+  assert.equal(Number.isNaN(new Date(source.updatedAt).getTime()),false);
+  const saved=await f.service().updateContent({type:'posts',id:f.item.id,slug:'new',expected:{version:f.item.version,updatedAt:f.item.updatedAt}});
+  assert.equal(saved.slug,'new');const redirected=await f.repository.findById(f.manual.id);assert.ok(redirected);
+  assert.equal(redirected.destination,'/posts/new');assert.equal(Number.isNaN(new Date(redirected.updatedAt).getTime()),false);
+  assert.equal(redirected.id,f.manual.id);assert.equal(redirected.enabled,false);
+ }finally{await f.close();}
+});
