@@ -1,9 +1,11 @@
 import type { Kysely } from 'kysely';
 import type { CmsDatabase } from '../../contract.ts';
+import type {MediaProvider} from '../../../media/source/media/types.ts';
 
 export interface LifecycleDependencies {
   after?: (task: () => void | Promise<void>) => void;
   timezone?: () => Promise<string | undefined>;
+  mediaProviders?: ReadonlyMap<string,MediaProvider>;
 }
 const databases = new WeakMap<object, CmsDatabase>();
 const dependencies = new WeakMap<object, LifecycleDependencies>();

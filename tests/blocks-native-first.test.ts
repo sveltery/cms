@@ -1,9 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {sql} from 'kysely';
-import {Miniflare} from 'miniflare';
-import {openSqlite} from '../src/lib/server/database/sqlite.ts';
-import {openD1} from '../src/lib/server/database/d1.ts';
+import {schemaAdminStorage} from './helpers/schema-admin-storage.ts';
 import {migrateCms} from '../src/lib/server/database/migrations.ts';
 import {SchemaRegistry} from '../src/lib/server/database/registry.ts';
 
@@ -11,12 +9,12 @@ import {SchemaRegistry} from '../src/lib/server/database/registry.ts';
 // assertions supplement the separately copied complete pinned declarations.
 for(const dialect of ['sqlite','d1']) {
   async function fixture() {
-    const worker=dialect==='d1'?new Miniflare({modules:true,script:'export default {fetch(){return new Response("ok")}}',d1Databases:{DB:'blocks-native-first'}}):undefined;
-    const database=worker?openD1(await worker.getD1Database('DB')):openSqlite(':memory:');
+    const storage=await schemaAdminStorage(dialect==='d1'?'D1':'Node');
+    const database=storage.database;
     await migrateCms(database);
     const registry=new SchemaRegistry(database);
     await registry.createCollection({slug:'pages',label:'Pages'});
-    return {database,registry,async close(){await database.close();await worker?.dispose();}};
+    return {database,registry,close:storage.close};
   }
   test(`${dialect}: block fields reject unavailable reusable types before schema writes`,async()=>{
     const f=await fixture();try {

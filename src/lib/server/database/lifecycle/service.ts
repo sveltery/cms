@@ -1,5 +1,7 @@
 import {normalizeBlocksData} from '../../blocks/values.ts';
 import {blocksDatabase} from '../../blocks/host.ts';
+import {NativeFieldNormalizer} from '../../blocks/media-normalization.ts';
+import {validateMediaFields} from '../../blocks/validate-media-fields.ts';
 import { sql, type CompiledQuery } from 'kysely';
 import { ulid } from 'ulidx';
 import { CmsError, type CmsDatabase, type RevisionPrecondition } from '../contract.ts';
@@ -40,6 +42,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
   const content=new ContentRepository(database.db as any);
   const revisions=new RevisionRepository(database.db as any);
   const datetimes=new ContentDatetimeNormalizer(database.db as any);
+  const mediaNormalizer=new NativeFieldNormalizer(database,dependencies.mediaProviders);
   function authenticated() {if(!identity)throw new CmsError('UNAUTHENTICATED');return identity;}
   function requirePermission(permission:string) {const actor=authenticated();if(!actor.permissions.has(permission))throw new CmsError('FORBIDDEN');return actor;}
   function mutationPermission(own:string,any:string) {
@@ -82,6 +85,8 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
   }
   async function checked(type:string,data:Record<string,unknown>,partial:boolean) {
     parse(schemaData,data);
+    const mime=await validateMediaFields(blocksDatabase(database),type,data);
+    if(!mime.success)throw new CmsError(mime.error.code as any,mime.error.message);
     const validation=await validateContentData(database,type,data,{partial});
     if(!validation.ok)throw new CmsError(validation.error.code==='COLLECTION_NOT_FOUND'?'NOT_FOUND':validation.error.code,validation.error.message,validation.error.details);
   }
@@ -151,7 +156,11 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const collection=await definition(type);
       const translationSource=value.translationOf===undefined?undefined:await content.findById(type,value.translationOf);
       if(value.translationOf!==undefined&&!translationSource)throw new CmsError('NOT_FOUND');
-      const data=await normalizeBlocksData(blocksDatabase(database),collection as any,normalizeBlankArrays(parse(schemaData,value.data),collection.fields),translationSource?.data??{},{migrateBlocks:value.migrateBlocks,replaceBlocks:value.replaceBlocks},false);
+      const blocks=await normalizeBlocksData(blocksDatabase(database),collection as any,normalizeBlankArrays(parse(schemaData,value.data),collection.fields),translationSource?.data??{},{migrateBlocks:value.migrateBlocks,replaceBlocks:value.replaceBlocks},false);
+      // The source media normalizer can emit optional undefined keys. Apply the
+      // same JSON storage codec before the native strict JSON input boundary.
+      const data=parse(schemaData,JSON.parse(JSON.stringify(await mediaNormalizer.normalizeFieldValues(type,blocks,collection as any))));
+      await checked(type,data,false);
       const slug=value.slug===undefined?await content.generateUniqueSlug(type,typeof data.title==='string'?data.title:'',locale):value.slug;
       const item=value.translationOf===undefined?await drafts.create({type,locale,data,slug},actor.id):await content.create({type,locale,data,slug,authorId:actor.id,translationOf:value.translationOf});
       return stored({type,id:item.id,locale});
@@ -179,6 +188,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       if(data){
         const base=existing.draftRevisionId?(await revisions.findById(existing.draftRevisionId))?.data??existing.data:existing.data;
         data=await normalizeBlocksData(blocksDatabase(database),collection as any,data,base,{migrateBlocks:value.migrateBlocks,replaceBlocks:value.replaceBlocks});
+        data=parse(schemaData,JSON.parse(JSON.stringify(await mediaNormalizer.normalizeFieldValues(value.type,data,collection as any))));
         const stale=staleStoredKeys(data,base,fields);if(stale.length){data={...data};for(const field of stale)delete data[field];}
         await checked(value.type,data,true);
       }

@@ -6,6 +6,32 @@ on:
 permissions:
   contents: read
 jobs:
+  blocks-source-evidence:
+    # Component fixture evidence is separate from the built adapter/browser gate.
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec vitest run --config vitest.blocks.config.ts
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Complete pinned block UI callbacks on native Svelte components
+        run: pnpm exec vitest run --config vitest.blocks-browser.config.ts
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: blocks-source-evidence
+          path: |
+            parity/emdash/blocks/source-tests/**/__screenshots__/
+            test-results/
+          retention-days: 7
   media-source-evidence:
     # Additive media slice; all normal validate/browser jobs remain required.
     runs-on: ubuntu-22.04

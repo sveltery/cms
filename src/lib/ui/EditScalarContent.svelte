@@ -4,6 +4,7 @@
   import type { EditorCollection } from '$lib/server/content/manifest';
   import { saveEditorContent, autosaveEditorContent } from '$lib/editor.remote';
   import ContentTextField from './ContentTextField.svelte';
+  import BlocksField from './BlocksField.svelte';
   import { describeContentValidationError } from './content-validation-errors';
   let { collection, definition, item, disabled }: {
     collection: string; definition: EditorCollection;
@@ -13,7 +14,7 @@
   const key = $derived(JSON.stringify([collection, item.id, item.locale]));
   const saveForm = $derived(saveEditorContent.for(key));
   const autosaveForm = $derived(autosaveEditorContent.for(key));
-  let values = $state<Record<string, string>>(untrack(() => Object.fromEntries(Object.entries(item.data).map(([field, value]) => [field, typeof value === 'string' ? value : '']))));
+  let values = $state<Record<string, unknown>>(untrack(() => ({...item.data})));
   let baseline = $state<Record<string, unknown>>(untrack(() => ({ ...item.data })));
   let touched = $state<string[]>([]);
   const changed = $derived(Object.fromEntries(touched.filter(field => values[field] !== baseline[field]).map(field => [field, values[field]])));
@@ -26,12 +27,12 @@
   let rejected = $state<string | undefined>();
   let conflict = $state(false);
   let autosaving = $state(false);
-  let autosaveData = $state<Record<string, string>>({});
+  let autosaveData = $state<Record<string, unknown>>({});
   let autosaveSlug = $state('');
   let autosaveRevision = $state('');
   const dirty = $derived(Object.keys(changed).length > 0 || slug !== baselineSlug);
   onMount(() => { enhanced = true; });
-  function change(field: string, value: string) {
+  function change(field: string, value: unknown) {
     values = { ...values, [field]: value };
     if (!touched.includes(field)) touched = [...touched, field];
     saved = false;
@@ -41,7 +42,7 @@
       (isHttpError(cause) ? cause.body.message : 'Content could not be saved.');
     if (isHttpError(cause, 409)) conflict = true;
   }
-  function accept(data: Record<string, string>, slug: string, token: string) {
+  function accept(data: Record<string, unknown>, slug: string, token: string) {
     // Advance only the sent snapshot; edits made during the request stay dirty.
     baseline = { ...baseline, ...data };
     baselineSlug = slug;
@@ -59,7 +60,7 @@
       if (await form.submit()) accept(data, sentSlug, saveForm.result!._rev);
     } catch (cause) { failure(cause); }
   }));
-  async function autosave(data: Record<string, string>, sentSlug: string, payload: string) {
+  async function autosave(data: Record<string, unknown>, sentSlug: string, payload: string) {
     autosaving = true;
     autosaveData = data;
     autosaveSlug = sentSlug;
@@ -95,8 +96,11 @@
     {#each Object.entries(definition.fields) as [fieldSlug, field] (field.id)}
       {#if field.kind === 'string' || field.kind === 'richText'}
         <ContentTextField slug={fieldSlug} field={{ ...field, kind: field.kind }}
-          name={enhanced ? undefined : `data.${fieldSlug}`} value={values[fieldSlug] ?? ''}
+          name={enhanced ? undefined : `data.${fieldSlug}`} value={typeof values[fieldSlug]==='string'?values[fieldSlug] as string:''}
           onchange={value => change(fieldSlug, value)} />
+      {:else if field.kind==='blocks'}
+        <BlocksField id={`field-${fieldSlug}`} fieldPath={fieldSlug} label={field.label} value={values[fieldSlug]??[]} blockTypes={field.blockTypes??[]} allowedTypes={field.validation?.allowedTypes??[]} retiredTypes={field.validation?.retiredTypes??[]} minItems={field.validation?.minItems} maxItems={field.validation?.maxItems} readOnly={!enhanced||disabled} onchange={value=>change(fieldSlug,value)}/>
+        {#if !enhanced}<label>{field.label} (JSON)<textarea name={`jsonData.${fieldSlug}`}>{JSON.stringify(values[fieldSlug]??[])}</textarea></label>{/if}
       {:else}<p>{field.label || fieldSlug}: this field requires a configured editor.</p>{/if}
     {/each}
     <label for="content-slug">Slug</label>

@@ -2,7 +2,7 @@
 // callback bodies remain immutable; renderField is fulfilled by native widgets.
 import * as React from 'react';
 import {mount,unmount} from 'svelte';
-import NativeBlocksField from '../../src/lib/ui/BlocksField.svelte';
+import NativeBlocksField from './BlocksNativeHarness.svelte';
 import NativeBlockTypeList from '../../src/lib/ui/BlockTypeList.svelte';
 import {bridgeState} from './blocks-bridge-state.svelte.ts';
 function native(component:any, props:Record<string,unknown>){

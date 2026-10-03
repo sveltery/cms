@@ -11,7 +11,7 @@ export default defineConfig({
   if(target.endsWith('/tests/utils/render.js'))return resolve(root,'tests/helpers/blocks-browser-render.ts');
  }}],
  resolve:{alias:{$lib:resolve(root,'src/lib')}},
- esbuild:{jsx:'automatic'},
+ oxc:{jsx:{runtime:'automatic'}},
  test:{include:['parity/emdash/blocks/source-tests/packages/admin/tests/components/{BlocksField,BlockTypeList}.test.tsx'],
   browser:{enabled:true,provider:playwright({launchOptions:{chromiumSandbox:true,timeout:30000}}),instances:[{browser:'chromium'}]}}
 });

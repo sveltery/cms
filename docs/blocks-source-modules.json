@@ -83,6 +83,75 @@
       "transforms": [
         "module/type imports only"
       ]
+    },
+    {
+      "source": "packages/core/src/schema/registry.ts",
+      "blob": "da7bbcdda224dfca8d9146b2f36659ab90bcac2e",
+      "sourceSha256": "db26cf5bd9c9442c3b41185c879281914410cd9ece94cf2f9716533eb6e71516",
+      "copiedPath": "src/lib/server/blocks/field-contract.ts",
+      "copiedSha256": "81d3816f7ab366eed246286390ebe5a0189954d95f0a3e67c096b8d5dd4170c6",
+      "scope": "complete collectionHasContent and normalizeBlocksFieldValidation methods (not the whole registry module)",
+      "transforms": [
+        "native class host/type imports/table namespace"
+      ]
+    },
+    {
+      "source": "packages/core/src/api/handlers/validate-media-fields.ts",
+      "blob": "62aa54d70295ef46fd0d7ba037c9d589843ebfe4",
+      "sourceSha256": "bde696804e5e89de54d2005d2fe51c91fd050ac8d02f37e6ad36aaca6729f99a",
+      "copiedPath": "src/lib/server/blocks/validate-media-fields.ts",
+      "copiedSha256": "cc123ba3c57d5602f58a666b2f4dc1ea68ed97abc15078809996630adbeeb828",
+      "scope": "complete module",
+      "transforms": [
+        "native imports/table namespace only"
+      ]
+    },
+    {
+      "source": "packages/core/src/emdash-runtime.ts",
+      "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+      "sourceSha256": "7954be3d12857ff307e9d2b15846662814f092e49807bcfb3b188a8f2ae847fc",
+      "copiedPath": "src/lib/server/blocks/media-normalization.ts",
+      "copiedSha256": "8f7a791188f85e5dac75bbab066fa4e42e4e87f051d904d4f4818ad4a99a9a95",
+      "scope": "complete normalizeFieldValues method plus normalizeImageValue and normalizePrimaryImageValue functions; not whole EmDashRuntime",
+      "transforms": [
+        "native class host/public visibility/type imports",
+        "real local provider/native schema registry; plugin registry only if supplied"
+      ]
+    },
+    {
+      "source": "packages/core/src/cli/commands/export-seed.ts",
+      "blob": "c99aeb8fb34ed47b0211c4aad360e35e096db7fb",
+      "sourceSha256": "78c3bb027ac1e6a5d86f5b4ce552ac306f00a56c4e3a7b9fd0a384dfd8052eac",
+      "copiedPath": "src/lib/server/blocks/seed.ts",
+      "copiedSha256": "1694712549a39f046f6327a5bbf59c06cc8bf109c4cc2586a70a5f9e5ce634bc",
+      "scope": "complete exportBlockTypes/exportCollections functions plus native bounded content export; not whole exportSeed",
+      "transforms": [
+        "native registry constructor receives CmsDatabase",
+        "native bounded content loop does not claim full-site transfer"
+      ]
+    },
+    {
+      "source": "packages/admin/src/components/BlocksField.tsx",
+      "blob": "6e795c69bc9aa86bb8e224851af4707992cd9109",
+      "sourceSha256": "7f785b0ff49525e65220977a9765abab523cb5c4304423ef8702ea0b24ab595d",
+      "copiedPath": "src/lib/ui/BlocksField.svelte",
+      "copiedSha256": "64797380b653df7084b8727a9b84fa43686f113b76bcd8c3b3998968b4cb4544",
+      "scope": "native rendering transport of complete blocks field transitions; no React component/module-copy parity credit",
+      "transforms": [
+        "Svelte controls/snippet renderer/native pointer and keyboard drag transport",
+        "native presentation/English copy; source callbacks immutable"
+      ]
+    },
+    {
+      "source": "packages/admin/src/components/BlockTypeList.tsx",
+      "blob": "5438764994be41f46f866a7c93f7755c1b711dd0",
+      "sourceSha256": "bcc69b3897b10531c2a8a1663f0c22704ec118588f98495a177be9adad081b9b",
+      "copiedPath": "src/lib/ui/BlockTypeList.svelte",
+      "copiedSha256": "8040cd605d33a7bd792e6acf69dce2ca710c08a30bada3e5c9b6bdfc1d15cb26",
+      "scope": "native Svelte rendering transport; no React component/module-copy parity credit",
+      "transforms": [
+        "Svelte/English/native presentation"
+      ]
     }
   ]
 }

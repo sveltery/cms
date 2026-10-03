@@ -8,6 +8,10 @@ import { sql } from 'kysely';
 import { CmsError, type CmsDatabase, type Field, type FieldRow } from '../database/contract.ts';
 import { MAX_FIELDS, SchemaRegistry, fieldFromRow } from '../database/registry.ts';
 import type { ServerPrincipal } from '../database/service.ts';
+import type {BlockType} from '../schema/block-types.ts';
+import {expandCollectionBlockFields} from '../blocks/values.ts';
+import {blocksDatabase} from '../blocks/host.ts';
+import type {CollectionWithFields,Field as SourceField} from '../schema/types.ts';
 
 export interface EditorField {
   id: string;
@@ -21,6 +25,8 @@ export interface EditorField {
   widget?: string;
   options?: FieldWidgetOptions | { value: string; label: string }[];
   validation?: FieldValidation;
+  blockTypes?: BlockType[];
+  blockTypeFingerprint?: string;
 }
 export interface EditorCollection {
   label: string;
@@ -55,13 +61,15 @@ const VALIDATION_KEYS = ['required', 'min', 'max', 'minLength', 'maxLength', 'pa
   'minItems', 'maxItems', 'allowedMimeTypes', 'relation', 'relationSide', 'targetCollection', 'multiple',
   'allowedTypes', 'retiredTypes'] as const satisfies readonly (keyof FieldValidation)[];
 const SUB_FIELD_KEYS = ['slug', 'type', 'label', 'required', 'options'] as const satisfies readonly (keyof RepeaterSubField)[];
-function descriptor(field: Field): EditorField {
+function descriptor(field: Field & {blockTypes?:BlockType[];blockTypeFingerprint?:string}): EditorField {
   const entry: EditorField = {
     id: field.id, type: field.type, kind: field.unsupportedType ? 'unsupported' : FIELD_TYPE_TO_KIND[field.type],
     label: field.label, required: field.required, translatable: field.translatable
   };
   if (field.unsupportedType) entry.unsupportedType = field.unsupportedType;
   if (field.widget) entry.widget = field.widget;
+  if(field.blockTypes)entry.blockTypes=field.blockTypes;
+  if(field.blockTypeFingerprint)entry.blockTypeFingerprint=field.blockTypeFingerprint;
   if (field.options) entry.options = field.options;
   if (field.validation?.options) entry.options = field.validation.options.map(value => ({
     value, label: value.charAt(0).toUpperCase() + value.slice(1)
@@ -108,7 +116,9 @@ export async function editorManifest(database: CmsDatabase, principal: ServerPri
   const byCollection = await manifestFields(database, visible.map(collection => collection.id));
   for (const collection of visible) {
     const fields: Record<string, EditorField> = {};
-    const decoded = (byCollection.get(collection.id) ?? []).map(fieldFromRow);
+    const stored = (byCollection.get(collection.id) ?? []).map(fieldFromRow);
+    const expanded=await expandCollectionBlockFields(blocksDatabase(database),{...collection,fields:stored.map(field=>({...field,validation:field.validation??undefined}))} as unknown as CollectionWithFields);
+    const decoded = expanded.fields.map((field:SourceField)=>({...field,validation:field.validation??null})) as (Field & {blockTypes?:BlockType[];blockTypeFingerprint?:string})[];
     for (const field of decoded) fields[field.slug] = descriptor(field);
     const listColumns: string[] = [];
     const fieldTypes = new Map(decoded.map(field => [field.slug, field.type]));

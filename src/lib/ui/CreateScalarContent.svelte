@@ -4,21 +4,22 @@
   import type { EditorCollection } from '$lib/server/content/manifest';
   import { createEditorContent } from '$lib/editor.remote';
   import ContentTextField from './ContentTextField.svelte';
+  import BlocksField from './BlocksField.svelte';
   import { slugify } from './content-slug';
   import { describeContentValidationError } from './content-validation-errors';
   let { collection, locale, definition, disabled }: {
     collection: string; locale: string; definition: EditorCollection; disabled: boolean;
   } = $props();
   const createForm = $derived(createEditorContent.for(JSON.stringify([collection, locale])));
-  let values = $state<Record<string, string>>({});
+  let values = $state<Record<string, unknown>>({});
   let slug = $state('');
   let slugTouched = $state(false);
   let enhanced = $state(false);
   let message = $state<string | undefined>();
   onMount(() => { enhanced = true; });
-  function change(field: string, value: string) {
+  function change(field: string, value: unknown) {
     values = { ...values, [field]: value };
-    if (field === 'title' && !slugTouched && value) slug = slugify(value);
+    if (field === 'title' && !slugTouched && typeof value==='string' && value) slug = slugify(value);
   }
   const enhancedForm = $derived(createForm.enhance(async form => {
     message = undefined;
@@ -40,8 +41,11 @@
     {#each Object.entries(definition.fields) as [fieldSlug, field] (field.id)}
       {#if field.kind === 'string' || field.kind === 'richText'}
         <ContentTextField slug={fieldSlug} field={{ ...field, kind: field.kind }}
-          name={enhanced ? undefined : `data.${fieldSlug}`} value={values[fieldSlug] ?? ''}
+          name={enhanced ? undefined : `data.${fieldSlug}`} value={typeof values[fieldSlug]==='string'?values[fieldSlug] as string:''}
           onchange={value => change(fieldSlug, value)} />
+      {:else if field.kind==='blocks'}
+        <BlocksField id={`field-${fieldSlug}`} fieldPath={fieldSlug} label={field.label} value={values[fieldSlug]??[]} blockTypes={field.blockTypes??[]} allowedTypes={field.validation?.allowedTypes??[]} retiredTypes={field.validation?.retiredTypes??[]} minItems={field.validation?.minItems} maxItems={field.validation?.maxItems} readOnly={!enhanced||disabled} onchange={value=>change(fieldSlug,value)}/>
+        {#if !enhanced}<label> {field.label} (JSON)<textarea name={`jsonData.${fieldSlug}`}>[]</textarea></label>{/if}
       {:else}
         <p>{field.label || fieldSlug}: this field requires a configured editor.</p>
       {/if}

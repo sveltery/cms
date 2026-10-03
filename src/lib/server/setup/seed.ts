@@ -13,6 +13,9 @@ import {createRevisionId} from '../database/lifecycle/upstream/database/reposito
 import {registerLifecycleDatabase} from '../database/lifecycle/upstream/host.ts';
 import {getSiteSettingWithDb,setSiteSettings,settingsDb} from '../settings/index.ts';
 import type {SeedFile,SeedApplyResult,SeedTaxonomy,SeedContentEntry} from './upstream/types.ts';
+import {BlockTypeRegistry} from '../blocks/registry.ts';
+import {blocksDatabase} from '../blocks/host.ts';
+import {normalizeBlocksData} from '../blocks/values.ts';
 export interface SetupSeedDependencies {
  applyTaxonomies?: (database:CmsDatabase,definitions:readonly SeedTaxonomy[],onConflict:'skip')=>Promise<{created:number;skipped:number}>;
  enableSearch?: (database:CmsDatabase,collection:string)=>Promise<unknown>;
@@ -28,7 +31,7 @@ class SeedBudget implements KyselyPlugin {
 function assertSupportedSeed(seed:SeedFile){
  if(!seed||seed.version!=='1')throw new SetupSeedError('Invalid seed version');
  // Feature integrations are explicit, rather than silently losing trusted seed data.
- for(const family of ['relations','blockTypes','menus','redirects','widgetAreas','sections','bylines'] as const)
+ for(const family of ['relations','menus','redirects','widgetAreas','sections','bylines'] as const)
   if(seed[family]?.length)throw new SetupSeedError(`Seed ${family} requires its real provider`);
  for(const [type,entries]of Object.entries(seed.content??{})) {
   parse(identifier,type);
@@ -43,7 +46,10 @@ async function createSeedContent(database:CmsDatabase,type:string,entry:SeedCont
  const db=database.db,slug=typeof entry.slug==='string'&&entry.slug.trim().length>0?entry.slug:null;
  const status=entry.status||'published';
  if(status==='published'&&routable&&!slug)throw new SetupSeedError('Cannot publish routable content without a slug');
- const data=await datetimes.normalizeInput(type,entry.data);
+ const collection=await new SchemaRegistry(database).getCollectionWithFields(type);
+ if(!collection)throw new SetupSeedError(`Unknown seed collection '${type}'`);
+ const blocks=await normalizeBlocksData(blocksDatabase(database),collection as any,entry.data,{}, {restoreBlocks:true},false);
+ const data=await datetimes.normalizeInput(type,blocks);
  // Bound reference fields are storage-less and need a relation-edge provider.
  const writable=await datetimes.writableFieldSlugs(type);
  for(const field of Object.keys(data))if(!writable.has(field))throw new SetupSeedError(`Seed field '${field}' is not a writable field`);
@@ -65,7 +71,7 @@ async function createSeedContent(database:CmsDatabase,type:string,entry:SeedCont
  await database.atomicBatch(statements);
  return id;
 }
-export async function applySetupSeed(database:CmsDatabase,seed:SeedFile,includeContent:boolean,dependencies:SetupSeedDependencies={}) {
+export async function applySetupSeed(database:CmsDatabase,seed:SeedFile,includeContent:boolean,dependencies:SetupSeedDependencies={},options:{onConflict?:'skip'|'error'|'update'}={}) {
  assertSupportedSeed(seed);
  if(seed.taxonomies?.length&&!dependencies.applyTaxonomies)throw new SetupSeedError('Taxonomy seed provider is not configured');
  if(seed.collections?.some(collection=>collection.supports?.includes('search'))&&!dependencies.enableSearch)throw new SetupSeedError('Search seed provider is not configured');
@@ -75,16 +81,21 @@ export async function applySetupSeed(database:CmsDatabase,seed:SeedFile,includeC
  const registry=new SchemaRegistry(counted),content=new ContentRepository(db as any),contexts:DatetimeContextCache=new Map(),datetimes=new ContentDatetimeNormalizer(db as any,contexts);
  const result:SeedApplyResult={blockTypes:{created:0,skipped:0,updated:0},collections:{created:0,skipped:0,updated:0},fields:{created:0,skipped:0,updated:0},relations:{created:0,skipped:0,updated:0},taxonomies:{created:0,skipped:0,terms:0},bylines:{created:0,skipped:0,updated:0},menus:{created:0,items:0},redirects:{created:0,skipped:0,updated:0},widgetAreas:{created:0,widgets:0},sections:{created:0,skipped:0,updated:0},settings:{applied:0},content:{created:0,skipped:0,updated:0},media:{created:0,skipped:0}};
  if(seed.settings){await setSiteSettings(seed.settings,siteDb);result.settings.applied=Object.values(seed.settings).filter(value=>value!==undefined).length;}
+ // Complete pinned blockTypes application loop (seed/apply.ts:373–382).
+ if(seed.blockTypes){const blockRegistry=new BlockTypeRegistry(blocksDatabase(counted)),onConflict=options.onConflict??'skip';for(const blockType of seed.blockTypes){const existing=await blockRegistry.getBlockType(blockType.slug);await blockRegistry.applySeedBlockType(blockType,onConflict);if(!existing)result.blockTypes.created++;else if(onConflict==='update')result.blockTypes.updated++;else result.blockTypes.skipped++;}}
  for(const definition of seed.collections??[]){
+  const {fields:declaredFields,titleField,dateField,...seedMetadata}=definition;
+  const metadata=Object.fromEntries(Object.entries(seedMetadata).filter(([,value])=>value!==undefined));
   let collection=await registry.getCollection(definition.slug);
   if(collection)result.collections.skipped++;
   else{
-   const {fields,...metadata}=definition;collection=await registry.createCollection({...metadata,supports:definition.supports??[],source:'seed'});result.collections.created++;
+   collection=await registry.createCollection({...metadata,supports:definition.supports??[],source:'seed'});result.collections.created++;
   }
   for(const field of definition.fields??[]){
    if(await registry.getField(definition.slug,field.slug)){result.fields.skipped++;continue;}
    await registry.createField(definition.slug,field);result.fields.created++;
   }
+  if(titleField!==undefined||dateField!==undefined)await registry.updateCollection(definition.slug,{...(titleField!==undefined?{titleField}:{}),...(dateField!==undefined?{dateField}:{})});
  }
  if(seed.taxonomies?.length){const receipt=await dependencies.applyTaxonomies!(counted,seed.taxonomies,'skip');result.taxonomies.created=receipt.created;result.taxonomies.skipped=receipt.skipped;}
  const total=includeContent?Object.values(seed.content??{}).reduce((count,entries)=>count+entries.length,0):0;

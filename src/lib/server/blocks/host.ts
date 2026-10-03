@@ -5,7 +5,7 @@ import {registerLifecycleDatabase,lifecycleDatabase} from '../database/lifecycle
 import {invalidateSchemaCache} from '../schema/zod-generator.ts';
 
 export function blocksDatabase(database:CmsDatabase) {
-  registerLifecycleDatabase(database);
+  if(!lifecycleDatabase(database.db))registerLifecycleDatabase(database);
   return database.db as unknown as Kysely<import('../media/source/database/types.ts').Database>;
 }
 // Block registry fixed lists always use the real native atomic batch. The
