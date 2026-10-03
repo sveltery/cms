@@ -6,7 +6,14 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { Miniflare } from 'miniflare';
+import { z } from 'zod';
 import { webauthnCredential } from '../helpers/webauthn-credential.ts';
+
+const optionsEnvelope = z.object({ success: z.literal(true), data: z.object({
+  options: z.object({ challenge: z.string().min(1) })
+}) });
+const userEnvelope = z.object({ success: z.literal(true), data: z.object({ id: z.string().min(1), email: z.string() }) });
+const statusEnvelope = z.object({ success: z.literal(true), data: z.object({ needsSetup: z.boolean() }) });
 
 test('official Cloudflare Worker registers, authenticates and revokes real persisted passkey identity', { timeout: 60_000 }, async () => {
   const directory = await mkdtemp(join(tmpdir(), 'cms-worker-passkey-'));
@@ -39,25 +46,25 @@ test('official Cloudflare Worker registers, authenticates and revokes real persi
     assert.equal((await request('/api/auth/me')).status, 401);
     const begin = await request('/api/setup/admin', { email: 'worker-passkey@example.com', name: 'Worker administrator' });
     assert.equal(begin.status, 200);
-    const registration = credential.registration((await begin.json()).data.options.challenge);
+    const registration = credential.registration(optionsEnvelope.parse(await begin.json()).data.options.challenge);
     const complete = await request('/api/setup/admin/verify', { credential: registration });
     assert.equal(complete.status, 200);
     assert.equal((await request('/api/auth/me')).status, 401);
     const options = await request('/api/auth/passkey/options', {});
     assert.equal(options.status, 200);
-    const login = await request('/api/auth/passkey/verify', { credential: credential.assertion((await options.json()).data.options.challenge) });
+    const login = await request('/api/auth/passkey/verify', { credential: credential.assertion(optionsEnvelope.parse(await options.json()).data.options.challenge) });
     assert.equal(login.status, 200);
     assert.match(login.headers.get('set-cookie') ?? '', /cms-session=.+HttpOnly/i);
     assert.match(login.headers.get('set-cookie') ?? '', /__em_d1_bookmark=.+HttpOnly/i);
-    const user = (await (await request('/api/auth/me')).json()).data;
+    const user = userEnvelope.parse(await (await request('/api/auth/me')).json()).data;
     assert.equal(user.email, 'worker-passkey@example.com');
     const binding = await worker.getD1Database('CMS_DB');
     assert.equal((await binding.prepare('SELECT count(*) AS count FROM _cms_auth_users').first<{ count: number }>())?.count, 1);
     assert.equal((await binding.prepare('SELECT count(*) AS count FROM _cms_auth_credentials').first<{ count: number }>())?.count, 1);
     const session = cookies.get('cms-session');
     await worker.dispose(); worker = start();
-    assert.equal((await (await request('/api/auth/me')).json()).data.id, user.id);
-    assert.equal((await (await request('/api/setup/status')).json()).data.needsSetup, false);
+    assert.equal(userEnvelope.parse(await (await request('/api/auth/me')).json()).data.id, user.id);
+    assert.equal(statusEnvelope.parse(await (await request('/api/setup/status')).json()).data.needsSetup, false);
     assert.equal((await request('/api/auth/logout', {})).status, 200);
     assert.equal(cookies.has('cms-session'), false);
     assert.equal((await request('/api/auth/me')).status, 401);
