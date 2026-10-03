@@ -1,7 +1,7 @@
 // Source-derived FTSManager DDL ownership: EmDash 1.1.0, commit
 // 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e, FTSManager blob
 // 1de7650597123a72b11a2ca8ae45ce367a1fe290. Copyright (c) Cloudflare, Inc.
-// SPDX-License-Identifier: MIT. See parity/emdash/LICENSE.
+// SPDX-License-Identifier: MIT. See notices/emdash-MIT.txt.
 // Search owner's recognition corrections: bf2a4e9 / 19f8cac; native source
 // order/config regression evidence remains in that feature's owning worktree.
 const SEARCH_TOKENIZERS = ['porter unicode61', 'unicode61', 'trigram'] as const;
