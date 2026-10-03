@@ -37,8 +37,8 @@
      {/each}
     {/if}
    </fieldset>
-   <label>Minimum blocks<input type="number" min="0" name="minItems" bind:value={minItems} placeholder="0"/></label>
-   <label>Maximum blocks<input type="number" min="1" max="100" name="maxItems" bind:value={maxItems} placeholder="100"/></label>
+   <label>Minimum blocks<input type="number" min="0" name="minItems" value={minItems} oninput={event=>minItems=event.currentTarget.value} placeholder="0"/></label>
+   <label>Maximum blocks<input type="number" min="1" max="100" name="maxItems" value={maxItems} oninput={event=>maxItems=event.currentTarget.value} placeholder="100"/></label>
    <button type="submit">{field?'Save Field':'Add Field'}</button>
   </fieldset>
  </form>{/if}
