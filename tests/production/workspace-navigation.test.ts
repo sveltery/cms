@@ -57,3 +57,15 @@ test('authorized schema remote refreshes preserve the real navigation snapshot',
     assert.equal(refreshed.v.collections.articles?.label, 'Editorial articles');
   } finally { await h.close(); }
 });
+
+test('real Kit-relative collection links mark the current server-rendered collection active', async () => {
+  const h = await persistedRemotes();
+  try {
+    const response = await h.request('/content/notes', 'editor');
+    assert.equal(response.status, 200);
+    const html = await response.text();
+    const navigation = html.match(/<nav[^>]*aria-label="Workspace"[^>]*>([^]*?)<\/nav>/)?.[1];
+    assert.ok(navigation);
+    assert.match(navigation, /href="[^"]*content\/notes"[^>]*aria-current="page"/);
+  } finally { await h.close(); }
+});
