@@ -8,6 +8,8 @@ import { hashSessionToken } from '../../src/lib/server/auth/session.ts';
 import { Role } from '../../src/lib/server/auth/roles.ts';
 import { passkeyRuntime } from '../helpers/passkey-runtime.ts';
 import { sourceNamespace } from '../helpers/sections-widgets-namespace.ts';
+import { menuSchemaStatements } from '../../src/lib/server/menus/migrations.ts';
+import { withActualSectionWidgetClient } from '../helpers/sections-widgets/runtime-client.ts';
 import { up as widgetsFixture } from '../../parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/007_widgets.ts';
 import { up as sectionsFixture } from '../../parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/011_sections.ts';
 import { up as removeCategories } from '../../parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/021_remove_section_categories.ts';
@@ -76,6 +78,18 @@ for (const target of ['Node', 'D1'] as const) {
     assert.equal(update.status, 200); assert.equal((await update.json()).data.title, 'Updated');
     const components = await request('/api/widget-components'); assert.equal(components.status, 200);
     assert.ok((await components.json()).data.items.some((c: { id: string }) => c.id === 'core:search'));
+    // Explicit final native menu descriptor fixture; zero canonical startup credit.
+    // Reuse this callback's sole persisted Editor, with no new identity/auth probe.
+    await database.atomicBatch(menuSchemaStatements(database));
+    const menu = await request('/api/menus', 'POST', { name: 'widget-navigation', label: 'Widget navigation' });
+    assert.equal(menu.status, 201);
+    const menuList = await request('/api/menus');
+    assert.equal(menuList.status, 200);
+    const realMenus = (await menuList.json()).data;
+    assert.deepEqual(realMenus.map((item: { name: string }) => item.name), ['widget-navigation']);
+    await withActualSectionWidgetClient(runtime.origin, `cms-session=${token}`, async api => {
+      assert.deepEqual(await api.fetchMenus(), realMenus);
+    });
     assert.equal((await request('/api/widget-areas/sidebar', 'DELETE')).status, 200);
     assert.equal((await request('/api/widget-areas/sidebar')).status, 404);
     const remaining = await database.db.withPlugin(sourceNamespace).withTables<{ _emdash_widgets: { id: string } }>().selectFrom('_emdash_widgets').selectAll().execute();
