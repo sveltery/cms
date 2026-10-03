@@ -1,0 +1,1878 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "scope": "Separate additive whole dependency-test inventory; existing77-authority/eight-test receipts remain unchanged",
+  "status": "whole files preserved before native test host; existing converter implementation predates selection; causal Source red credit0",
+  "entries": [
+    {
+      "sourcePath": "packages/gutenberg-to-portable-text/tests/converter.test.ts",
+      "bytes": 39641,
+      "sha256": "4bc211178b0f71afd5b764fc48449ddc9a17c232127f55ff0313f2d103c6aa8a",
+      "sourceBlob": "ac538b7d77eb6e39b46646305d915d09a4dc4af7",
+      "wholeFileRead": true,
+      "imports": [
+        "import { describe, it, expect } from \"vitest\";",
+        "import { gutenbergToPortableText, htmlToPortableText, parseGutenbergBlocks } from \"../src/index.js\";",
+        "import type {\n\tPortableTextTextBlock,\n\tPortableTextImageBlock,\n\tPortableTextGalleryBlock,\n\tPortableTextTableBlock,\n\tPortableTextButtonsBlock,\n\tPortableTextCoverBlock,\n} from \"../src/types.js\";"
+      ],
+      "declarations": [
+        {
+          "line": 35,
+          "expression": "it(\"returns empty array for empty string\", () => {\n\t\t\texpect(gutenbergToPortableText(\"\")).toEqual([]);\n\t\t})",
+          "sha256": "15696c70c5b8973f0882fd9519c36ec42130c10d95d5e5a2a16401a5cea42632",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 39,
+          "expression": "it(\"returns empty array for whitespace\", () => {\n\t\t\texpect(gutenbergToPortableText(\"   \\n\\t  \")).toEqual([]);\n\t\t})",
+          "sha256": "ff91dbaae51ad478af8dd89f719f5791683118cfa782eb53b86b5a168581e7e0",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 43,
+          "expression": "it(\"returns empty array for null-ish values\", () => {\n\t\t\texpect(gutenbergToPortableText(null as unknown as string)).toEqual([]);\n\t\t\texpect(gutenbergToPortableText(undefined as unknown as string)).toEqual([]);\n\t\t})",
+          "sha256": "6d406ce9523cd8fb36b18061cdc712e35c22a9d2cbe52169bd643f34a1b66be6",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 50,
+          "expression": "it(\"converts simple HTML to a paragraph block\", () => {\n\t\t\tconst content = \"<p>Hello world</p>\";\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\texpect(result).toHaveLength(1);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"block\",\n\t\t\t\tstyle: \"normal\",\n\t\t\t});\n\t\t\tconst block = result[0] as PortableTextTextBlock;\n\t\t\texpect(block.children[0]?.text).toBe(\"Hello world\");\n\t\t})",
+          "sha256": "2d2f6c5d81def2abb0c59c161901aa930a1bd83a97b9c11f46b53ee3f8831a9a",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 62,
+          "expression": "it(\"converts mixed blocks and text\", () => {\n\t\t\tconst content = `<p>Intro text</p>weird middle text<p>More text</p>`;\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result).toHaveLength(3);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"block\",\n\t\t\t\tstyle: \"normal\",\n\t\t\t});\n\t\t\texpect(result[1]).toMatchObject({\n\t\t\t\t_type: \"block\",\n\t\t\t\tstyle: \"normal\",\n\t\t\t});\n\t\t\texpect(result[2]).toMatchObject({\n\t\t\t\t_type: \"block\",\n\t\t\t\tstyle: \"normal\",\n\t\t\t});\n\n\t\t\tconst block1 = result[0] as PortableTextTextBlock;\n\t\t\tconst block2 = result[1] as PortableTextTextBlock;\n\t\t\tconst block3 = result[2] as PortableTextTextBlock;\n\n\t\t\texpect(block1.children[0]?.text).toBe(\"Intro text\");\n\t\t\texpect(block2.children[0]?.text).toBe(\"weird middle text\");\n\t\t\texpect(block3.children[0]?.text).toBe(\"More text\");\n\t\t})",
+          "sha256": "de413a72e219b3ceab563787cef10ee6cc4592120aea3158d9b95c64adc93c33",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 89,
+          "expression": "it(\"handles trailing text content\", () => {\n\t\t\tconst content = `<p>Paragraph text</p>Trailing text`;\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result).toHaveLength(2);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"block\",\n\t\t\t\tstyle: \"normal\",\n\t\t\t});\n\t\t\texpect(result[1]).toMatchObject({\n\t\t\t\t_type: \"block\",\n\t\t\t\tstyle: \"normal\",\n\t\t\t});\n\n\t\t\tconst block1 = result[0] as PortableTextTextBlock;\n\t\t\tconst block2 = result[1] as PortableTextTextBlock;\n\n\t\t\texpect(block1.children[0]?.text).toBe(\"Paragraph text\");\n\t\t\texpect(block2.children[0]?.text).toBe(\"Trailing text\");\n\t\t})",
+          "sha256": "0c1dc09663822776ab33ff0fbfe62fb92c76e77f8cdd9a6ef1803fd412d70ce8",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 112,
+          "expression": "it(\"converts simple paragraph\", () => {\n\t\t\tconst content = `<!-- wp:paragraph -->\n<p>Hello world</p>\n<!-- /wp:paragraph -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result).toHaveLength(1);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"block\",\n\t\t\t\tstyle: \"normal\",\n\t\t\t});\n\t\t\tconst block = result[0] as PortableTextTextBlock;\n\t\t\texpect(block.children[0]?.text).toBe(\"Hello world\");\n\t\t})",
+          "sha256": "23a0a60ff2998a69cbc784d2f97bc8d4fc7a650f754384ab8cabfc14dc7a4570",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 128,
+          "expression": "it(\"converts paragraph with inline formatting\", () => {\n\t\t\tconst content = `<!-- wp:paragraph -->\n<p>Hello <strong>bold</strong> and <em>italic</em> world</p>\n<!-- /wp:paragraph -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\tconst block = result[0] as PortableTextTextBlock;\n\n\t\t\texpect(block.children.length).toBeGreaterThan(1);\n\t\t\tconst boldSpan = block.children.find((c) => c.marks?.includes(\"strong\"));\n\t\t\tconst italicSpan = block.children.find((c) => c.marks?.includes(\"em\"));\n\t\t\texpect(boldSpan?.text).toBe(\"bold\");\n\t\t\texpect(italicSpan?.text).toBe(\"italic\");\n\t\t})",
+          "sha256": "62a37c7648f9086ccb0b1048bf5a52c291c60515c9be7132e5a19a2e1a1feeed",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 143,
+          "expression": "it(\"converts paragraph with link\", () => {\n\t\t\tconst content = `<!-- wp:paragraph -->\n<p>Visit <a href=\"https://example.com\">our site</a></p>\n<!-- /wp:paragraph -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\tconst block = result[0] as PortableTextTextBlock;\n\n\t\t\texpect(block.markDefs).toHaveLength(1);\n\t\t\texpect(block.markDefs?.[0]).toMatchObject({\n\t\t\t\t_type: \"link\",\n\t\t\t\thref: \"https://example.com\",\n\t\t\t});\n\t\t})",
+          "sha256": "ce05a490597b560427a76e28acd0ed700ef5c2e2873f304bed38955e92acd832",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 158,
+          "expression": "it(\"skips empty paragraphs\", () => {\n\t\t\tconst content = `<!-- wp:paragraph -->\n<p></p>\n<!-- /wp:paragraph -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\texpect(result).toHaveLength(0);\n\t\t})",
+          "sha256": "8c912f99766ee5d84df5927b4b723c41e776a7274a430d26bf32bfd6b8e4886d",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 167,
+          "expression": "it(\"handles multiple paragraphs\", () => {\n\t\t\tconst content = `<!-- wp:paragraph -->\n<p>First paragraph</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Second paragraph</p>\n<!-- /wp:paragraph -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\texpect(result).toHaveLength(2);\n\t\t})",
+          "sha256": "bb6a1a8a1d05fdc99a188119884aebc3b001fc26f7e56d3d7f2e554dcf74fcae",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 182,
+          "expression": "it(\"converts h1\", () => {\n\t\t\tconst content = `<!-- wp:heading {\"level\":1} -->\n<h1>Main Title</h1>\n<!-- /wp:heading -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"block\",\n\t\t\t\tstyle: \"h1\",\n\t\t\t});\n\t\t})",
+          "sha256": "de6180c9800401fbdc3a6a21cfdd4aee445fee86392971f9ff975723cc7a2e9f",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 194,
+          "expression": "it(\"converts h2 (default level)\", () => {\n\t\t\tconst content = `<!-- wp:heading -->\n<h2>Subtitle</h2>\n<!-- /wp:heading -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"block\",\n\t\t\t\tstyle: \"h2\",\n\t\t\t});\n\t\t})",
+          "sha256": "7675952b7313bb40e0ebbfab44cfb1e9523e12df3907694ed21e0641420026e4",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 206,
+          "expression": "it(\"converts h3-h6\", () => {\n\t\t\tfor (let level = 3; level <= 6; level++) {\n\t\t\t\tconst content = `<!-- wp:heading {\"level\":${level}} -->\n<h${level}>Heading ${level}</h${level}>\n<!-- /wp:heading -->`;\n\n\t\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t\t_type: \"block\",\n\t\t\t\t\tstyle: `h${level}`,\n\t\t\t\t});\n\t\t\t}\n\t\t})",
+          "sha256": "8f3d03b031f42c25fafac1e2a5d38cd1b924f34daf281475f1f643fa3db3900b",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 220,
+          "expression": "it(\"preserves formatting in headings\", () => {\n\t\t\tconst content = `<!-- wp:heading {\"level\":2} -->\n<h2>Title with <strong>bold</strong></h2>\n<!-- /wp:heading -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\tconst block = result[0] as PortableTextTextBlock;\n\t\t\tconst boldSpan = block.children.find((c) => c.marks?.includes(\"strong\"));\n\t\t\texpect(boldSpan?.text).toBe(\"bold\");\n\t\t})",
+          "sha256": "252d05c574814ffd3c3019631ba84259a9eb6771f0c4ac2a546fe3545f92b6c0",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 233,
+          "expression": "it(\"converts unordered list\", () => {\n\t\t\tconst content = `<!-- wp:list -->\n<ul>\n<li>Item one</li>\n<li>Item two</li>\n<li>Item three</li>\n</ul>\n<!-- /wp:list -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result).toHaveLength(3);\n\t\t\tresult.forEach((block) => {\n\t\t\t\texpect(block).toMatchObject({\n\t\t\t\t\t_type: \"block\",\n\t\t\t\t\tlistItem: \"bullet\",\n\t\t\t\t\tlevel: 1,\n\t\t\t\t});\n\t\t\t});\n\t\t})",
+          "sha256": "79b2ad6ceee840d65bc44357e2f292085d7209589025c82467ebe7cd38e4393b",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 254,
+          "expression": "it(\"converts ordered list\", () => {\n\t\t\tconst content = `<!-- wp:list {\"ordered\":true} -->\n<ol>\n<li>First</li>\n<li>Second</li>\n</ol>\n<!-- /wp:list -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result).toHaveLength(2);\n\t\t\tresult.forEach((block) => {\n\t\t\t\texpect(block).toMatchObject({\n\t\t\t\t\t_type: \"block\",\n\t\t\t\t\tlistItem: \"number\",\n\t\t\t\t\tlevel: 1,\n\t\t\t\t});\n\t\t\t});\n\t\t})",
+          "sha256": "b4ab40669962c490bfd922c36a433fe733a26da9d3b4a41c03207c1e49b15795",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 274,
+          "expression": "it(\"preserves formatting in list items\", () => {\n\t\t\tconst content = `<!-- wp:list -->\n<ul>\n<li>Item with <strong>bold</strong></li>\n</ul>\n<!-- /wp:list -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\tconst block = result[0] as PortableTextTextBlock;\n\t\t\tconst boldSpan = block.children.find((c) => c.marks?.includes(\"strong\"));\n\t\t\texpect(boldSpan?.text).toBe(\"bold\");\n\t\t})",
+          "sha256": "7145aff3f92f8f75e440b95652272292ec85355b0606889f7c5f71e83455196b",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 287,
+          "expression": "it(\"handles nested lists\", () => {\n\t\t\tconst content = `<!-- wp:list -->\n<ul>\n<li>Parent item\n<ul>\n<li>Nested item</li>\n</ul>\n</li>\n</ul>\n<!-- /wp:list -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\tconst level1 = result.filter((b) => (b as PortableTextTextBlock).level === 1);\n\t\t\tconst level2 = result.filter((b) => (b as PortableTextTextBlock).level === 2);\n\n\t\t\texpect(level1.length).toBeGreaterThanOrEqual(1);\n\t\t\texpect(level2.length).toBeGreaterThanOrEqual(1);\n\t\t})",
+          "sha256": "dfb75ec5cb6d3c2aaa7f8d19b5964ee8c338fb11f8783b2678ae042563cf58af",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 309,
+          "expression": "it(\"converts simple quote\", () => {\n\t\t\tconst content = `<!-- wp:quote -->\n<blockquote class=\"wp-block-quote\"><p>To be or not to be</p></blockquote>\n<!-- /wp:quote -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"block\",\n\t\t\t\tstyle: \"blockquote\",\n\t\t\t});\n\t\t})",
+          "sha256": "6036a001561b967b29528a63c651594721a7349e1108a77a45f6c0d28db951de",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 322,
+          "expression": "it(\"handles quote with citation\", () => {\n\t\t\tconst content = `<!-- wp:quote {\"citation\":\"Shakespeare\"} -->\n<blockquote class=\"wp-block-quote\"><p>To be or not to be</p></blockquote>\n<!-- /wp:quote -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\t// Should have quote block + citation block\n\t\t\texpect(result.length).toBeGreaterThanOrEqual(1);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"block\",\n\t\t\t\tstyle: \"blockquote\",\n\t\t\t});\n\t\t})",
+          "sha256": "1c47db13e0bf78e345c9050baef99b035d3f6467dc05735b80e8ae643487228d",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 337,
+          "expression": "it(\"handles multi-paragraph quote\", () => {\n\t\t\tconst content = `<!-- wp:quote -->\n<blockquote class=\"wp-block-quote\">\n<p>First paragraph of quote</p>\n<p>Second paragraph of quote</p>\n</blockquote>\n<!-- /wp:quote -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\tconst quoteBlocks = result.filter((b) => (b as PortableTextTextBlock).style === \"blockquote\");\n\t\t\texpect(quoteBlocks).toHaveLength(2);\n\t\t})",
+          "sha256": "70a0605a004583ac321003a0be07ea8287fdec34033356c76acefdd2cc10a841",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 353,
+          "expression": "it(\"converts image with URL in attrs\", () => {\n\t\t\tconst content = `<!-- wp:image {\"id\":123,\"sizeSlug\":\"large\",\"url\":\"https://example.com/photo.jpg\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://example.com/photo.jpg\" alt=\"A photo\" class=\"wp-image-123\"/></figure>\n<!-- /wp:image -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"image\",\n\t\t\t\talt: \"A photo\",\n\t\t\t});\n\t\t\tconst img = result[0] as PortableTextImageBlock;\n\t\t\texpect(img.asset.url).toBe(\"https://example.com/photo.jpg\");\n\t\t})",
+          "sha256": "dbeeb90bb9f940aebf5ebc695671a41006d5ce5f2aa7a869b817e65ed3b18f06",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 368,
+          "expression": "it(\"extracts image from HTML when not in attrs\", () => {\n\t\t\tconst content = `<!-- wp:image {\"id\":123} -->\n<figure class=\"wp-block-image\"><img src=\"https://example.com/photo.jpg\" alt=\"Photo\"/></figure>\n<!-- /wp:image -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\tconst img = result[0] as PortableTextImageBlock;\n\n\t\t\texpect(img.asset.url).toBe(\"https://example.com/photo.jpg\");\n\t\t\texpect(img.alt).toBe(\"Photo\");\n\t\t})",
+          "sha256": "922c385aefb65e67201a0f572991757323459835d85460739504de5dd88191e7",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 380,
+          "expression": "it(\"extracts caption from figcaption\", () => {\n\t\t\tconst content = `<!-- wp:image {\"id\":123} -->\n<figure class=\"wp-block-image\"><img src=\"photo.jpg\"/><figcaption>My caption</figcaption></figure>\n<!-- /wp:image -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\tconst img = result[0] as PortableTextImageBlock;\n\n\t\t\texpect(img.caption).toBe(\"My caption\");\n\t\t})",
+          "sha256": "94317855eec32968c3e34080ee5fd1d6589670765d8dd4577a4eafaae4743bce",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 391,
+          "expression": "it(\"uses media map when provided\", () => {\n\t\t\tconst content = `<!-- wp:image {\"id\":123} -->\n<figure><img src=\"photo.jpg\"/></figure>\n<!-- /wp:image -->`;\n\n\t\t\tconst mediaMap = new Map([[123, \"emdash-media-abc\"]]);\n\t\t\tconst result = gutenbergToPortableText(content, { mediaMap });\n\t\t\tconst img = result[0] as PortableTextImageBlock;\n\n\t\t\texpect(img.asset._ref).toBe(\"emdash-media-abc\");\n\t\t})",
+          "sha256": "f765ee53a15dc34213dec86219f9e50441070ca572e195563b75188cea0431de",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 403,
+          "expression": "it(\"handles alignment\", () => {\n\t\t\tconst content = `<!-- wp:image {\"id\":123,\"align\":\"center\"} -->\n<figure class=\"wp-block-image aligncenter\"><img src=\"photo.jpg\"/></figure>\n<!-- /wp:image -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\tconst img = result[0] as PortableTextImageBlock;\n\n\t\t\texpect(img.alignment).toBe(\"center\");\n\t\t})",
+          "sha256": "c3dabbc78508de6808d3afee459e64a5f3a7c80a5b03d7c9dcbc21229fc6835c",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 416,
+          "expression": "it(\"converts code block\", () => {\n\t\t\tconst content = `<!-- wp:code -->\n<pre class=\"wp-block-code\"><code>const x = 1;</code></pre>\n<!-- /wp:code -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"code\",\n\t\t\t\tcode: \"const x = 1;\",\n\t\t\t});\n\t\t})",
+          "sha256": "30334c98aa482931a2bb257bcb2356c21fbdde78773f650f9494afa5113c33d8",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 429,
+          "expression": "it(\"preserves language attribute\", () => {\n\t\t\tconst content = `<!-- wp:code {\"language\":\"javascript\"} -->\n<pre class=\"wp-block-code\"><code>const x = 1;</code></pre>\n<!-- /wp:code -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"code\",\n\t\t\t\tlanguage: \"javascript\",\n\t\t\t});\n\t\t})",
+          "sha256": "181768bcdb353a5c373ae6907f8966cc54ebfaa8422b4160e7c2027af3d3064e",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 442,
+          "expression": "it(\"decodes HTML entities in code\", () => {\n\t\t\tconst content = `<!-- wp:code -->\n<pre class=\"wp-block-code\"><code>&lt;div&gt;Hello&lt;/div&gt;</code></pre>\n<!-- /wp:code -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"code\",\n\t\t\t\tcode: \"<div>Hello</div>\",\n\t\t\t});\n\t\t})",
+          "sha256": "321401f817646dd05b858b39dc7be322c60f35528297313f9992b118bc813e1a",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 455,
+          "expression": "it(\"handles multiline code\", () => {\n\t\t\tconst content = `<!-- wp:code -->\n<pre class=\"wp-block-code\"><code>function hello() {\n  return \"world\";\n}</code></pre>\n<!-- /wp:code -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect((result[0] as { code: string }).code).toContain(\"\\n\");\n\t\t})",
+          "sha256": "d3d3022cfd21f27ff8717024b7eb8a5195b3cb8d9dd22c09f2f9469a4755cea7",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 469,
+          "expression": "it(\"converts YouTube embed\", () => {\n\t\t\tconst content = `<!-- wp:embed {\"url\":\"https://www.youtube.com/watch?v=abc123\",\"type\":\"video\",\"providerNameSlug\":\"youtube\"} -->\n<figure class=\"wp-block-embed is-type-video is-provider-youtube\">\n<div class=\"wp-block-embed__wrapper\">\nhttps://www.youtube.com/watch?v=abc123\n</div>\n</figure>\n<!-- /wp:embed -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"embed\",\n\t\t\t\turl: \"https://www.youtube.com/watch?v=abc123\",\n\t\t\t\tprovider: \"youtube\",\n\t\t\t});\n\t\t})",
+          "sha256": "2b8c952ce837cdf762a0099a081f387f07fa39dc84af50d3514243b4a2feb965",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 487,
+          "expression": "it(\"converts Twitter embed\", () => {\n\t\t\tconst content = `<!-- wp:embed {\"url\":\"https://twitter.com/user/status/123\",\"type\":\"rich\",\"providerNameSlug\":\"twitter\"} -->\n<figure class=\"wp-block-embed is-provider-twitter\">\n<div class=\"wp-block-embed__wrapper\">\nhttps://twitter.com/user/status/123\n</div>\n</figure>\n<!-- /wp:embed -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"embed\",\n\t\t\t\tprovider: \"twitter\",\n\t\t\t});\n\t\t})",
+          "sha256": "e974f9bfbf084d570c454092081942c929b2bb9a425c8a5ad1729649a13347a8",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 504,
+          "expression": "it.each(knownProviders)(\n\t\t\t\"detects provider from URL when not specified for %s\",\n\t\t\t(domain, provider) => {\n\t\t\t\tconst content = `<!-- wp:embed {\"url\":\"https://${domain}/123456\"} -->\n<figure class=\"wp-block-embed\">\n<div class=\"wp-block-embed__wrapper\">\nhttps://${domain}/123456\n</div>\n</figure>\n<!-- /wp:embed -->`;\n\n\t\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t\t_type: \"embed\",\n\t\t\t\t\tprovider,\n\t\t\t\t});\n\t\t\t},\n\t\t)",
+          "sha256": "6496488ceb6be18a019e86c33f9c86251fb077d24b1f31ccb765983e2626175f",
+          "expanded": 12,
+          "each": {
+            "expression": "[\n\t[\"youtube.com\", \"youtube\"],\n\t[\"youtu.be\", \"youtube\"],\n\t[\"vimeo.com\", \"vimeo\"],\n\t[\"twitter.com\", \"twitter\"],\n\t[\"x.com\", \"twitter\"],\n\t[\"instagram.com\", \"instagram\"],\n\t[\"facebook.com\", \"facebook\"],\n\t[\"tiktok.com\", \"tiktok\"],\n\t[\"spotify.com\", \"spotify\"],\n\t[\"soundcloud.com\", \"soundcloud\"],\n\t[\"codepen.io\", \"codepen\"],\n\t[\"gist.github.com\", \"gist\"],\n]",
+            "rows": 12,
+            "sha256": "a7babec2d532b4819e3510ae922b0152f40fa1ea9c8b7532c71fc2453334e523"
+          }
+        },
+        {
+          "line": 524,
+          "expression": "it(\"converts audio embeds\", () => {\n\t\t\tconst content = `<!-- wp:audio {\"src\":\"https://example.com/audio.mp3\"} -->\n<audio controls src=\"https://example.com/audio.mp3\"></audio>\n<!-- /wp:audio -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"embed\",\n\t\t\t\turl: \"https://example.com/audio.mp3\",\n\t\t\t\tprovider: \"audio\",\n\t\t\t});\n\t\t})",
+          "sha256": "0003b91928bb5e6a1778d92919fc5c2e41d9e83415f4620c5bcff0ec85a38cef",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 537,
+          "expression": "it(\"converts video embeds\", () => {\n\t\t\tconst content = `<!-- wp:video {\"src\":\"https://example.com/video.mp4\"} -->\n<video controls src=\"https://example.com/video.mp4\"></video>\n<!-- /wp:video -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"embed\",\n\t\t\t\turl: \"https://example.com/video.mp4\",\n\t\t\t\tprovider: \"video\",\n\t\t\t});\n\t\t})",
+          "sha256": "b04b639ad58cc78c138d18146259e9fb2a16195892728111ca184b0376b5d8ec",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 550,
+          "expression": "it(\"infers video source from <video> tag when URL not in attrs\", () => {\n\t\t\tconst content = `<!-- wp:video -->\n<video controls src=\"https://example.com/video.mp4\"></video>\n<!-- /wp:video -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"embed\",\n\t\t\t\turl: \"https://example.com/video.mp4\",\n\t\t\t\tprovider: \"video\",\n\t\t\t});\n\t\t})",
+          "sha256": "b8815f4eb210c65396ee9afd1a3228ce0b1849de7031159d8880bc9062e5a179",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 563,
+          "expression": "it(\"infers audio source from <audio> tag when URL not in attrs\", () => {\n\t\t\tconst content = `<!-- wp:audio -->\n<audio controls src=\"https://example.com/audio.mp3\"></audio>\n<!-- /wp:audio -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"embed\",\n\t\t\t\turl: \"https://example.com/audio.mp3\",\n\t\t\t\tprovider: \"audio\",\n\t\t\t});\n\t\t})",
+          "sha256": "849b7c3c2d67317f0bc66ff4cf62d15cae56aff79ae355245cafa78e819414ec",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 578,
+          "expression": "it(\"converts separator to break\", () => {\n\t\t\tconst content = `<!-- wp:separator -->\n<hr class=\"wp-block-separator\"/>\n<!-- /wp:separator -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"break\",\n\t\t\t\tstyle: \"lineBreak\",\n\t\t\t});\n\t\t})",
+          "sha256": "956e49aefbcb521977785be80addaeef3045a6b03d7dc7018920fee7822a97b2",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 591,
+          "expression": "it(\"converts spacer to break\", () => {\n\t\t\tconst content = `<!-- wp:spacer {\"height\":\"50px\"} -->\n<div style=\"height:50px\" aria-hidden=\"true\" class=\"wp-block-spacer\"></div>\n<!-- /wp:spacer -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"break\",\n\t\t\t});\n\t\t})",
+          "sha256": "4cf11220eb9d1c74582fec667851ac1e747936d49ddfb988d8851f898a1f9c45",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 605,
+          "expression": "it(\"converts columns with content\", () => {\n\t\t\tconst content = `<!-- wp:columns -->\n<div class=\"wp-block-columns\">\n<!-- wp:column -->\n<div class=\"wp-block-column\">\n<!-- wp:paragraph -->\n<p>Column 1</p>\n<!-- /wp:paragraph -->\n</div>\n<!-- /wp:column -->\n\n<!-- wp:column -->\n<div class=\"wp-block-column\">\n<!-- wp:paragraph -->\n<p>Column 2</p>\n<!-- /wp:paragraph -->\n</div>\n<!-- /wp:column -->\n</div>\n<!-- /wp:columns -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"columns\",\n\t\t\t});\n\t\t\tconst cols = result[0] as { columns: Array<{ content: unknown[] }> };\n\t\t\texpect(cols.columns).toHaveLength(2);\n\t\t\texpect(cols.columns[0]?.content.length).toBeGreaterThan(0);\n\t\t})",
+          "sha256": "4f78e305272587bdf90fdd3456220e7f830858490a687d9869448b4edb5dfe65",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 638,
+          "expression": "it(\"converts table with header and body\", () => {\n\t\t\tconst content = `<!-- wp:table -->\n<table>\n<thead><tr><th>Name</th><th>Age</th><th>Country</th></tr></thead>\n<tbody>\n<tr><td>James</td><td>83</td><td>UK</td></tr>\n<tr><td>Bob</td><td>92</td><td>Canada</td></tr>\n</tbody>\n</table>\n<!-- /wp:table -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result).toHaveLength(1);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"table\",\n\t\t\t\thasHeaderRow: true,\n\t\t\t});\n\n\t\t\tconst tbl = result[0] as PortableTextTableBlock;\n\t\t\texpect(tbl.rows).toHaveLength(3);\n\n\t\t\tconst headerCells = tbl.rows[0]!.cells;\n\t\t\texpect(headerCells).toHaveLength(3);\n\t\t\texpect(headerCells.every((c) => c.isHeader === true)).toBe(true);\n\t\t\texpect(headerCells[0]!.content[0]!.text).toBe(\"Name\");\n\t\t\texpect(headerCells[1]!.content[0]!.text).toBe(\"Age\");\n\t\t\texpect(headerCells[2]!.content[0]!.text).toBe(\"Country\");\n\n\t\t\tconst firstBodyRow = tbl.rows[1]!.cells;\n\t\t\texpect(firstBodyRow[0]!.content[0]!.text).toBe(\"James\");\n\t\t\texpect(firstBodyRow[1]!.content[0]!.text).toBe(\"83\");\n\t\t\texpect(firstBodyRow[2]!.content[0]!.text).toBe(\"UK\");\n\t\t})",
+          "sha256": "3d0b2e861ede3a55d2b74479c245c2d25633cdbb4c5252c82ed12445c1bb0d25",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 673,
+          "expression": "it(\"converts table with no header\", () => {\n\t\t\tconst content = `<!-- wp:table -->\n<table>\n<tbody>\n<tr><td>One</td><td>Two</td></tr>\n<tr><td>Three</td><td>Four</td></tr>\n</tbody>\n</table>\n<!-- /wp:table -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result).toHaveLength(1);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"table\",\n\t\t\t\thasHeaderRow: false,\n\t\t\t});\n\n\t\t\tconst tbl = result[0] as PortableTextTableBlock;\n\t\t\texpect(tbl.rows).toHaveLength(2);\n\t\t\texpect(tbl.rows[0]!.cells[0]!.content[0]!.text).toBe(\"One\");\n\t\t\texpect(tbl.rows[1]!.cells[0]!.content[0]!.text).toBe(\"Three\");\n\t\t\texpect(tbl.rows[0]!.cells.every((c) => c.isHeader !== true)).toBe(true);\n\t\t\texpect(tbl.rows[1]!.cells.every((c) => c.isHeader !== true)).toBe(true);\n\t\t})",
+          "sha256": "7c0ffd0388f384a8608075275cbd466ebbf430c3b443c4d2d7c63861d6cf5c6b",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 701,
+          "expression": "it(\"converts button with default style (no className)\", () => {\n\t\t\tconst content = `<!-- wp:button {\"url\":\"https://example.com\"} -->\n<div class=\"wp-block-button\"><a href=\"https://example.com\">Click me</a></div>\n<!-- /wp:button -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result).toHaveLength(1);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"button\",\n\t\t\t\ttext: \"Click me\",\n\t\t\t\turl: \"https://example.com\",\n\t\t\t\tstyle: \"default\",\n\t\t\t});\n\t\t})",
+          "sha256": "9b6a09eb3752fc7242031ce595d0c50a137b68aeafd34a1e24a4ea3ba660caf4",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 717,
+          "expression": "it(\"converts button with outline style\", () => {\n\t\t\tconst content = `<!-- wp:button {\"url\":\"https://example.com\",\"className\":\"is-style-outline\"} -->\n<div class=\"wp-block-button is-style-outline\"><a href=\"https://example.com\">Outline</a></div>\n<!-- /wp:button -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"button\",\n\t\t\t\ttext: \"Outline\",\n\t\t\t\tstyle: \"outline\",\n\t\t\t});\n\t\t})",
+          "sha256": "f5cc6786cbc84cf275e4768ac422d5f5d55facc28d3aa59f46849f111972825a",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 731,
+          "expression": "it(\"falls back to default style for unrecognised className\", () => {\n\t\t\tconst content = `<!-- wp:button {\"url\":\"https://example.com\",\"className\":\"is-style-prolific-potato\"} -->\n<div class=\"wp-block-button is-style-prolific-potato\"><a href=\"https://example.com\">Boop</a></div>\n<!-- /wp:button -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"button\",\n\t\t\t\ttext: \"Boop\",\n\t\t\t\tstyle: \"default\",\n\t\t\t});\n\t\t})",
+          "sha256": "9f0b1a58e11430156d9da0f0022248ac467f0a3a296d75dd14161b6031dbae90",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 745,
+          "expression": "it(\"converts button with fill style\", () => {\n\t\t\tconst content = `<!-- wp:button {\"url\":\"https://example.com\",\"className\":\"is-style-fill\"} -->\n<div class=\"wp-block-button is-style-fill\"><a href=\"https://example.com\">Fill</a></div>\n<!-- /wp:button -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"button\",\n\t\t\t\ttext: \"Fill\",\n\t\t\t\tstyle: \"fill\",\n\t\t\t});\n\t\t})",
+          "sha256": "e0ce551c209f2487d49d56eb711342ed30ed789fe6c4ec30a1ef3b95e4b9c6b0",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 761,
+          "expression": "it(\"converts a buttons container\", () => {\n\t\t\tconst content = `<!-- wp:buttons -->\n<div class=\"wp-block-buttons\">\n<!-- wp:button {\"url\":\"https://example.com/one\"} -->\n<div class=\"wp-block-button\"><a href=\"https://example.com/one\">First</a></div>\n<!-- /wp:button -->\n<!-- wp:button {\"url\":\"https://example.com/two\"} -->\n<div class=\"wp-block-button\"><a href=\"https://example.com/two\">Second</a></div>\n<!-- /wp:button -->\n</div>\n<!-- /wp:buttons -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result).toHaveLength(1);\n\n\t\t\tconst block = result[0] as PortableTextButtonsBlock;\n\t\t\texpect(block._type).toBe(\"buttons\");\n\t\t\texpect(block.buttons[0]).toMatchObject({ text: \"First\", url: \"https://example.com/one\" });\n\t\t\texpect(block.buttons[1]).toMatchObject({ text: \"Second\", url: \"https://example.com/two\" });\n\t\t})",
+          "sha256": "265bd9dac1777fa20b638126b431d2af4512b09876d7f9139d38f4bafd4856f2",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 783,
+          "expression": "it(\"converts buttons with horizontal layout\", () => {\n\t\t\tconst content = `<!-- wp:buttons {\"layout\":{\"type\":\"flex\"}} -->\n<div class=\"wp-block-buttons is-layout-flex\">\n<!-- wp:button {\"url\":\"https://example.com/a\"} -->\n<div class=\"wp-block-button\"><a href=\"https://example.com/a\">A</a></div>\n<!-- /wp:button -->\n<!-- wp:button {\"url\":\"https://example.com/b\"} -->\n<div class=\"wp-block-button\"><a href=\"https://example.com/b\">B</a></div>\n<!-- /wp:button -->\n</div>\n<!-- /wp:buttons -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({ _type: \"buttons\", layout: \"horizontal\" });\n\t\t})",
+          "sha256": "c96b0912d6778b919a495098de240083c85205a52fa88e54ae6b4097706bef4c",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 800,
+          "expression": "it(\"converts buttons with mixed styles (outline/fill)\", () => {\n\t\t\tconst content = `<!-- wp:buttons -->\n<div class=\"wp-block-buttons\">\n<!-- wp:button {\"url\":\"https://example.com/outline\",\"className\":\"is-style-outline\"} -->\n<div class=\"wp-block-button is-style-outline\"><a href=\"https://example.com/outline\">Outline</a></div>\n<!-- /wp:button -->\n<!-- wp:button {\"url\":\"https://example.com/fill\",\"className\":\"is-style-fill\"} -->\n<div class=\"wp-block-button is-style-fill\"><a href=\"https://example.com/fill\">Fill</a></div>\n<!-- /wp:button -->\n</div>\n<!-- /wp:buttons -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\tconst block = result[0] as PortableTextButtonsBlock;\n\t\t\texpect(block.buttons[0]).toMatchObject({ style: \"outline\" });\n\t\t\texpect(block.buttons[1]).toMatchObject({ style: \"fill\" });\n\t\t})",
+          "sha256": "5ec4a5d0bd08f34c1b99a7b23dac6e2b6415b8c8302474967f087360c14a6552",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 821,
+          "expression": "it(\"converts gallery with inner image blocks\", () => {\n\t\t\tconst content = `<!-- wp:gallery {\"columns\":3} -->\n<figure class=\"wp-block-gallery\">\n<!-- wp:image {\"id\":1,\"url\":\"https://example.com/photo1.jpg\"} -->\n<figure class=\"wp-block-image\"><img src=\"https://example.com/photo1.jpg\" alt=\"Photo 1\"></figure>\n<!-- /wp:image -->\n<!-- wp:image {\"id\":2,\"url\":\"https://example.com/photo2.jpg\"} -->\n<figure class=\"wp-block-image\"><img src=\"https://example.com/photo2.jpg\" alt=\"Photo 2\"></figure>\n<!-- /wp:image -->\n<!-- wp:image {\"id\":3,\"url\":\"https://example.com/photo3.jpg\"} -->\n<figure class=\"wp-block-image\"><img src=\"https://example.com/photo3.jpg\" alt=\"Photo 3\"><figcaption>Third photo</figcaption></figure>\n<!-- /wp:image -->\n</figure>\n<!-- /wp:gallery -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result).toHaveLength(1);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"gallery\",\n\t\t\t\tcolumns: 3,\n\t\t\t});\n\n\t\t\tconst gallery = result[0] as PortableTextGalleryBlock;\n\t\t\texpect(gallery.images).toHaveLength(3);\n\t\t\texpect(gallery.images[0]).toMatchObject({\n\t\t\t\t_type: \"image\",\n\t\t\t\talt: \"Photo 1\",\n\t\t\t\tasset: { url: \"https://example.com/photo1.jpg\" },\n\t\t\t});\n\t\t\texpect(gallery.images[1]).toMatchObject({\n\t\t\t\t_type: \"image\",\n\t\t\t\talt: \"Photo 2\",\n\t\t\t\tasset: { url: \"https://example.com/photo2.jpg\" },\n\t\t\t});\n\t\t\texpect(gallery.images[2]).toMatchObject({\n\t\t\t\t_type: \"image\",\n\t\t\t\talt: \"Photo 3\",\n\t\t\t\tcaption: \"Third photo\",\n\t\t\t\tasset: { url: \"https://example.com/photo3.jpg\" },\n\t\t\t});\n\t\t})",
+          "sha256": "be834807b6bd818f0c1b19470d26ce8a8b4c9aaf3c9113837718384aaa1ae525",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 866,
+          "expression": "it(\"converts a cover block\", () => {\n\t\t\tconst content = `<!-- wp:cover {\"url\":\"https://example.com/bg.jpg\",\"id\":42} -->\n<div class=\"wp-block-cover\">\n<!-- wp:paragraph -->\n<p>Overlay text</p>\n<!-- /wp:paragraph -->\n</div>\n<!-- /wp:cover -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result).toHaveLength(1);\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"cover\",\n\t\t\t\tbackgroundImage: \"https://example.com/bg.jpg\",\n\t\t\t});\n\n\t\t\tconst cover = result[0] as PortableTextCoverBlock;\n\t\t\texpect(cover.content).toHaveLength(1);\n\t\t\texpect(cover.content[0]).toMatchObject({ _type: \"block\", style: \"normal\" });\n\t\t})",
+          "sha256": "e4503e53a6e0d02b24aee3b1e4ebf6d66a66bcbd77df3864531b031c9d8d2d56",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 888,
+          "expression": "it.each([\"left\", \"center\", \"right\"] as const)(\n\t\t\t\"maps contentPosition %s to equivalent alignment\",\n\t\t\t(position) => {\n\t\t\t\tconst content = `<!-- wp:cover {\"url\":\"https://example.com/bg.jpg\",\"contentPosition\":\"${position}\"} -->\n<div class=\"wp-block-cover\"></div>\n<!-- /wp:cover -->`;\n\n\t\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\t\texpect(result[0]).toMatchObject({ _type: \"cover\", alignment: position });\n\t\t\t},\n\t\t)",
+          "sha256": "6764deaf5f79cdbb58ff744a2001d142bc0ce4067ce3677ab1a6d5dd18d00a4a",
+          "expanded": 3,
+          "each": {
+            "expression": "[\"left\", \"center\", \"right\"]",
+            "rows": 3,
+            "sha256": "6755b0dbd2da6d37f581007c8cb255866c65633841aadf1f52ca56a0fe401cde"
+          }
+        },
+        {
+          "line": 901,
+          "expression": "it(\"defaults minHeight unit to px when no unit is given\", () => {\n\t\t\tconst content = `<!-- wp:cover {\"url\":\"https://example.com/bg.jpg\",\"minHeight\":400} -->\n<div class=\"wp-block-cover\"></div>\n<!-- /wp:cover -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({ _type: \"cover\", minHeight: \"400px\" });\n\t\t})",
+          "sha256": "ef2eab4ffe9ec3de05292dce8064a003b0dbecb4425367dc558381c53d049d22",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 911,
+          "expression": "it(\"combines minHeight with explicit unit\", () => {\n\t\t\tconst content = `<!-- wp:cover {\"url\":\"https://example.com/bg.jpg\",\"minHeight\":50,\"minHeightUnit\":\"vh\"} -->\n<div class=\"wp-block-cover\"></div>\n<!-- /wp:cover -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({ _type: \"cover\", minHeight: \"50vh\" });\n\t\t})",
+          "sha256": "87ebe440f5d2a49d45dc9af1f62bd4bc4cd32bbac57de4f7bd8e0d2c5669c3b6",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 921,
+          "expression": "it(\"handles zero minHeighjt\", () => {\n\t\t\tconst content = `<!-- wp:cover {\"url\":\"https://example.com/bg.jpg\",\"minHeight\":0} -->\n<div class=\"wp-block-cover\"></div>\n<!-- /wp:cover -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({ _type: \"cover\", minHeight: \"0px\" });\n\t\t})",
+          "sha256": "7b4940309ccbc0bd391d17c84023fcc27f822c7061b9cd3229bb2534852d4f0c",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 931,
+          "expression": "it(\"converts dimRatio to overlayOpacity\", () => {\n\t\t\tconst content = `<!-- wp:cover {\"url\":\"https://example.com/bg.jpg\",\"dimRatio\":60} -->\n<div class=\"wp-block-cover\"></div>\n<!-- /wp:cover -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({ _type: \"cover\", overlayOpacity: 0.6 });\n\t\t})",
+          "sha256": "5c674c072565c0a113d8d464de906a639fb83375520d6e8f14889057ebfc8b07",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 941,
+          "expression": "it(\"uses customOverlayColor over overlayColor when both are present\", () => {\n\t\t\tconst content = `<!-- wp:cover {\"url\":\"https://example.com/bg.jpg\",\"overlayColor\":\"primary\",\"customOverlayColor\":\"#ff0000\"} -->\n<div class=\"wp-block-cover\"></div>\n<!-- /wp:cover -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({ _type: \"cover\", overlayColor: \"#ff0000\" });\n\t\t})",
+          "sha256": "673f221cbdc638f6c3a69e498771c98a5c8dd03a958351e2c23922536c14540e",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 951,
+          "expression": "it(\"falls back to overlayColor when no customOverlayColor\", () => {\n\t\t\tconst content = `<!-- wp:cover {\"url\":\"https://example.com/bg.jpg\",\"overlayColor\":\"primary\"} -->\n<div class=\"wp-block-cover\"></div>\n<!-- /wp:cover -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({ _type: \"cover\", overlayColor: \"primary\" });\n\t\t})",
+          "sha256": "607dfa78f795e94e08609be8830f7ebb224ff3d4b0101505a365e1868164da75",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 963,
+          "expression": "it(\"flattens group block content\", () => {\n\t\t\tconst content = `<!-- wp:group -->\n<div class=\"wp-block-group\">\n<!-- wp:paragraph -->\n<p>Paragraph in group</p>\n<!-- /wp:paragraph -->\n<!-- wp:heading -->\n<h2>Heading in group</h2>\n<!-- /wp:heading -->\n</div>\n<!-- /wp:group -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\t// Group should be flattened - we get the inner blocks directly\n\t\t\texpect(result.some((b) => (b as PortableTextTextBlock).style === \"normal\")).toBe(true);\n\t\t\texpect(result.some((b) => (b as PortableTextTextBlock).style === \"h2\")).toBe(true);\n\t\t})",
+          "sha256": "121a0b89d988f63179ff43e582d35004790658c52c8e15b2d75016d934024ae6",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 984,
+          "expression": "it(\"creates htmlBlock fallback for unknown blocks\", () => {\n\t\t\tconst content = `<!-- wp:my-plugin/custom-block {\"foo\":\"bar\"} -->\n<div class=\"custom-block\">Custom content</div>\n<!-- /wp:my-plugin/custom-block -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"htmlBlock\",\n\t\t\t\toriginalBlockName: \"my-plugin/custom-block\",\n\t\t\t});\n\t\t\texpect((result[0] as { html: string }).html).toContain(\"Custom content\");\n\t\t})",
+          "sha256": "1669a4fea82d803eba10e4468d8fd1e4c4a9b9653ccbc3420009f2d9f4e0746e",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 998,
+          "expression": "it(\"preserves original attrs in fallback\", () => {\n\t\t\tconst content = `<!-- wp:unknown/block {\"setting\":true,\"count\":5} -->\n<div>Content</div>\n<!-- /wp:unknown/block -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\texpect((result[0] as { originalAttrs: Record<string, unknown> }).originalAttrs).toMatchObject(\n\t\t\t\t{\n\t\t\t\t\tsetting: true,\n\t\t\t\t\tcount: 5,\n\t\t\t\t},\n\t\t\t);\n\t\t})",
+          "sha256": "4ccaadf8772d4037fd67d0226f37ef4302f1423a7e30789503a7de375958bb7b",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1015,
+          "expression": "it(\"uses custom transformer when provided\", () => {\n\t\t\tconst content = `<!-- wp:my-plugin/testimonial {\"rating\":5} -->\n<div class=\"testimonial\">Great product!</div>\n<!-- /wp:my-plugin/testimonial -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content, {\n\t\t\t\tcustomTransformers: {\n\t\t\t\t\t\"my-plugin/testimonial\": (block, _opts, ctx) => [\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t_type: \"testimonial\" as const,\n\t\t\t\t\t\t\t_key: ctx.generateKey(),\n\t\t\t\t\t\t\ttext: block.innerHTML.replace(HTML_TAG_PATTERN, \"\").trim(),\n\t\t\t\t\t\t\trating: block.attrs.rating as number,\n\t\t\t\t\t\t} as unknown as import(\"../src/types.js\").PortableTextBlock,\n\t\t\t\t\t],\n\t\t\t\t},\n\t\t\t});\n\n\t\t\texpect(result[0]).toMatchObject({\n\t\t\t\t_type: \"testimonial\",\n\t\t\t\ttext: \"Great product!\",\n\t\t\t\trating: 5,\n\t\t\t});\n\t\t})",
+          "sha256": "42521d3c2de2bf0e8b7403bc579b647602925c0fbf17cca8f85575e869b97ecb",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1042,
+          "expression": "it(\"handles complex document with multiple block types\", () => {\n\t\t\tconst content = `<!-- wp:heading {\"level\":1} -->\n<h1>Welcome</h1>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>This is the <strong>introduction</strong>.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:image {\"id\":1} -->\n<figure><img src=\"hero.jpg\" alt=\"Hero\"/></figure>\n<!-- /wp:image -->\n\n<!-- wp:list -->\n<ul>\n<li>Feature one</li>\n<li>Feature two</li>\n</ul>\n<!-- /wp:list -->\n\n<!-- wp:quote -->\n<blockquote><p>A quote</p></blockquote>\n<!-- /wp:quote -->`;\n\n\t\t\tconst result = gutenbergToPortableText(content);\n\n\t\t\t// h1 + p + image + 2 list items + quote = 6 blocks\n\t\t\texpect(result.length).toBeGreaterThanOrEqual(5);\n\n\t\t\tconst types = result.map((b) => b._type);\n\t\t\texpect(types).toContain(\"block\");\n\t\t\texpect(types).toContain(\"image\");\n\t\t})",
+          "sha256": "7b088206166ba742080204668fee3e9aa16428197b6f739a0f4426455b05707e",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1079,
+          "expression": "it(\"converts simple HTML paragraphs\", () => {\n\t\tconst html = \"<p>Hello world</p>\";\n\t\tconst result = htmlToPortableText(html);\n\n\t\texpect(result).toHaveLength(1);\n\t\texpect(result[0]).toMatchObject({\n\t\t\t_type: \"block\",\n\t\t\tstyle: \"normal\",\n\t\t});\n\t})",
+          "sha256": "cd3f9de8184706d40afde754ce12f18f60dd81e663dd03c4c0382e06aed1844b",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1090,
+          "expression": "it(\"converts headings\", () => {\n\t\tconst html = \"<h1>Title</h1><h2>Subtitle</h2>\";\n\t\tconst result = htmlToPortableText(html);\n\n\t\texpect(result).toHaveLength(2);\n\t\texpect(result[0]).toMatchObject({ style: \"h1\" });\n\t\texpect(result[1]).toMatchObject({ style: \"h2\" });\n\t})",
+          "sha256": "5c5e39acfff8d9b05838ab452c61b5f1b663bf971ea84d6d1a8041d3ba0bdbb8",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1099,
+          "expression": "it(\"converts lists\", () => {\n\t\tconst html = \"<ul><li>One</li><li>Two</li></ul>\";\n\t\tconst result = htmlToPortableText(html);\n\n\t\texpect(result).toHaveLength(2);\n\t\tresult.forEach((b) => {\n\t\t\texpect(b).toMatchObject({ listItem: \"bullet\" });\n\t\t});\n\t})",
+          "sha256": "2e8ee664204540b6b98bf8cb18ef17a1c5487346c7533b85d98de2e3f6ff1008",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1109,
+          "expression": "it(\"converts blockquotes\", () => {\n\t\tconst html = \"<blockquote>A quote</blockquote>\";\n\t\tconst result = htmlToPortableText(html);\n\n\t\texpect(result[0]).toMatchObject({\n\t\t\t_type: \"block\",\n\t\t\tstyle: \"blockquote\",\n\t\t});\n\t})",
+          "sha256": "9a6848e3dba32c157a4f32631ce457ae4976c1e60850840d19d42ca37e05078e",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1119,
+          "expression": "it(\"converts code blocks\", () => {\n\t\tconst html = \"<pre><code>const x = 1;</code></pre>\";\n\t\tconst result = htmlToPortableText(html);\n\n\t\texpect(result[0]).toMatchObject({\n\t\t\t_type: \"code\",\n\t\t\tcode: \"const x = 1;\",\n\t\t});\n\t})",
+          "sha256": "e0621a44cafcacc0d5e211431cbe2de02ad7c3242371aa3140d6d8ecc389eaaf",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1129,
+          "expression": "it(\"converts horizontal rules\", () => {\n\t\tconst html = \"<p>Before</p><hr><p>After</p>\";\n\t\tconst result = htmlToPortableText(html);\n\n\t\tconst breakBlock = result.find((b) => b._type === \"break\");\n\t\texpect(breakBlock).toBeDefined();\n\t})",
+          "sha256": "a1a6f9118adeb3d33e6060ec1015d7e0b2d2c62bc4130e2891ab0e95d3058d6d",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1137,
+          "expression": "it(\"handles inline formatting\", () => {\n\t\tconst html = \"<p>Hello <strong>bold</strong> and <em>italic</em></p>\";\n\t\tconst result = htmlToPortableText(html);\n\n\t\tconst block = result[0] as PortableTextTextBlock;\n\t\texpect(block.children.some((c) => c.marks?.includes(\"strong\"))).toBe(true);\n\t\texpect(block.children.some((c) => c.marks?.includes(\"em\"))).toBe(true);\n\t})",
+          "sha256": "69731dd2d7cb1faf649d538251b5e9da23291c0c66f39413cdd59fb1a9f1c88b",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1153,
+          "expression": "it(\"extracts linked images with decoded URLs\", () => {\n\t\tconst result = htmlToPortableText(spargePostContent);\n\n\t\t// Should have at least one image block\n\t\tconst imageBlocks = result.filter((b) => b._type === \"image\");\n\t\texpect(imageBlocks.length).toBeGreaterThanOrEqual(1);\n\n\t\t// First block should be the image\n\t\tconst img = imageBlocks[0];\n\t\texpect(img._type).toBe(\"image\");\n\n\t\t// URL should have decoded HTML entities (& not &#038;)\n\t\texpect(img.asset.url).toBe(\n\t\t\t\"https://sparge.wordpress.com/wp-content/uploads/2011/11/hip-hop.jpg?w=205&h=300\",\n\t\t);\n\t\texpect(img.asset.url).not.toContain(\"&#038;\");\n\n\t\t// Link should be preserved\n\t\texpect(img.link).toBe(\"https://sparge.wordpress.com/wp-content/uploads/2011/11/hip-hop.jpg\");\n\t})",
+          "sha256": "e3bcc20fb6c60894027a91c0b73bce9b87e955839f8734a1d408515093a43cd3",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1174,
+          "expression": "it(\"preserves text content alongside images\", () => {\n\t\tconst result = htmlToPortableText(spargePostContent);\n\n\t\t// Should have text blocks with the paragraph content\n\t\tconst textBlocks = result.filter((b) => b._type === \"block\");\n\t\texpect(textBlocks.length).toBeGreaterThanOrEqual(1);\n\n\t\t// Check that text content is preserved\n\t\tconst allText = textBlocks.flatMap((b) => b.children.map((c) => c.text)).join(\"\");\n\t\texpect(allText).toContain(\"Hip Hops Nelson Sauvin\");\n\t\texpect(allText).toContain(\"Christmas brews\");\n\t})",
+          "sha256": "bf200c797eaa261a16b0b05a60a2cae3edcfc93e304f0d20308050850a6552cf",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1187,
+          "expression": "it(\"preserves links in text\", () => {\n\t\tconst result = htmlToPortableText(spargePostContent);\n\n\t\t// Should have text blocks with links\n\t\tconst textBlocks = result.filter((b) => b._type === \"block\");\n\n\t\t// Find block with BrewDog link\n\t\tconst blockWithLink = textBlocks.find((b) => b.markDefs?.length);\n\t\texpect(blockWithLink).toBeDefined();\n\t\texpect(blockWithLink?.markDefs).toContainEqual(\n\t\t\texpect.objectContaining({\n\t\t\t\t_type: \"link\",\n\t\t\t\thref: \"http://www.brewdog.com/product/77-lager\",\n\t\t\t}),\n\t\t);\n\t})",
+          "sha256": "15518ea077cca73152aa65692a78af85a5ecf57cb51736e75fdfe364828bddb1",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1204,
+          "expression": "it(\"decodes HTML entities in standalone image src\", () => {\n\t\tconst html = `<img src=\"https://example.com/photo.jpg?w=200&#038;h=300\" alt=\"test\">`;\n\t\tconst result = htmlToPortableText(html);\n\n\t\texpect(result).toHaveLength(1);\n\t\tconst img = result[0] as PortableTextImageBlock;\n\t\texpect(img._type).toBe(\"image\");\n\t\texpect(img.asset.url).toBe(\"https://example.com/photo.jpg?w=200&h=300\");\n\t})",
+          "sha256": "a1644922c922b2a9c59426c1623bdef7b5163f54e6d0368c7c8721e4ee57dd9c",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1214,
+          "expression": "it(\"decodes &#38; variant in URLs\", () => {\n\t\tconst html = `<p><img src=\"https://example.com/photo.jpg?a=1&#38;b=2\" alt=\"test\"></p>`;\n\t\tconst result = htmlToPortableText(html);\n\n\t\tconst img = result.find((b) => b._type === \"image\") as PortableTextImageBlock;\n\t\texpect(img.asset.url).toBe(\"https://example.com/photo.jpg?a=1&b=2\");\n\t})",
+          "sha256": "287dd180dfddce53f959f3e96801d50f0c982b151ef584c2765f65522eecf204",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1222,
+          "expression": "it(\"decodes &amp; in URLs\", () => {\n\t\tconst html = `<p><img src=\"https://example.com/photo.jpg?a=1&amp;b=2\" alt=\"test\"></p>`;\n\t\tconst result = htmlToPortableText(html);\n\n\t\tconst img = result.find((b) => b._type === \"image\") as PortableTextImageBlock;\n\t\texpect(img.asset.url).toBe(\"https://example.com/photo.jpg?a=1&b=2\");\n\t})",
+          "sha256": "040a35518e0e120a69254e2a8287081fafaacebe0d3067034ad9b0e9fb7e3495",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1231,
+          "expression": "it(\"decodes HTML entities in figure images\", () => {\n\t\tconst html = `<figure><img src=\"https://example.com/photo.jpg?w=200&#038;h=300\" alt=\"test\"><figcaption>Caption</figcaption></figure>`;\n\t\tconst result = htmlToPortableText(html);\n\n\t\tconst img = result[0] as PortableTextImageBlock;\n\t\texpect(img._type).toBe(\"image\");\n\t\texpect(img.asset.url).toBe(\"https://example.com/photo.jpg?w=200&h=300\");\n\t\texpect(img.caption).toBe(\"Caption\");\n\t})",
+          "sha256": "94d81712c4463241527180b5f4ca96bce34d6a739991db06a42d9e63eb65869d",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1243,
+          "expression": "it(\"parses blocks without converting\", () => {\n\t\tconst content = `<!-- wp:paragraph -->\n<p>Hello</p>\n<!-- /wp:paragraph -->`;\n\n\t\tconst blocks = parseGutenbergBlocks(content);\n\n\t\texpect(blocks).toHaveLength(1);\n\t\texpect(blocks[0]?.blockName).toBe(\"core/paragraph\");\n\t\texpect(blocks[0]?.innerHTML).toContain(\"Hello\");\n\t})",
+          "sha256": "38d9174a6093cd47d402a4ca33f1a5e98fbe08f95df87a23f36406cd732a3a0d",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1255,
+          "expression": "it(\"returns empty array for empty content\", () => {\n\t\texpect(parseGutenbergBlocks(\"\")).toEqual([]);\n\t})",
+          "sha256": "3b4f6ff7fa968b5c8d91423e69ab8db86edc077744d98bb4ff8e252e7c515a41",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1259,
+          "expression": "it(\"preserves block attributes\", () => {\n\t\tconst content = `<!-- wp:heading {\"level\":3,\"align\":\"center\"} -->\n<h3>Title</h3>\n<!-- /wp:heading -->`;\n\n\t\tconst blocks = parseGutenbergBlocks(content);\n\n\t\texpect(blocks[0]?.attrs).toMatchObject({\n\t\t\tlevel: 3,\n\t\t\talign: \"center\",\n\t\t});\n\t})",
+          "sha256": "1ebb47121319bd3dfab3cafe1d0342c2348ea747ff630dd719a9fa165386848b",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 1272,
+          "expression": "it(\"handles nested blocks\", () => {\n\t\tconst content = `<!-- wp:columns -->\n<div>\n<!-- wp:column -->\n<div>\n<!-- wp:paragraph -->\n<p>Nested</p>\n<!-- /wp:paragraph -->\n</div>\n<!-- /wp:column -->\n</div>\n<!-- /wp:columns -->`;\n\n\t\tconst blocks = parseGutenbergBlocks(content);\n\n\t\texpect(blocks[0]?.blockName).toBe(\"core/columns\");\n\t\texpect(blocks[0]?.innerBlocks.length).toBeGreaterThan(0);\n\t})",
+          "sha256": "c9d4d777865d9cc8d843ba2bf2dd3f9a3e1aa57119f6dd83b9ac0dce2d01d685",
+          "expanded": 1,
+          "each": null
+        }
+      ],
+      "expects": [
+        {
+          "expression": "expect(gutenbergToPortableText(\"\"))",
+          "sha256": "44ede7742a0c225de5722f4b68251ff5382b23db8a4094e759f6225e2ca46f4a"
+        },
+        {
+          "expression": "expect(gutenbergToPortableText(\"   \\n\\t  \"))",
+          "sha256": "f4bedf4d995bd675c9e06cf22f126912d5ed4a897c85518a4d4741dd30f8edba"
+        },
+        {
+          "expression": "expect(gutenbergToPortableText(null as unknown as string))",
+          "sha256": "3799409fb21508f88f05da314e7a0afa396113b171027c5281e53825fd01c930"
+        },
+        {
+          "expression": "expect(gutenbergToPortableText(undefined as unknown as string))",
+          "sha256": "096f5cc5890bb24aefa87384ff59c56d1e2388994e5c485aee00eb0c54aabc31"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(block.children[0]?.text)",
+          "sha256": "2d7eef6683f335eac8390c2e8725ce337c8d9457e3a0aa6577e99e003e5f4e52"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[1])",
+          "sha256": "20656e96097861da15149cd21a0c0b137a2b0ba4260d4ccc8ad30553ecf55b22"
+        },
+        {
+          "expression": "expect(result[2])",
+          "sha256": "a3c2c0fc0782f718e3d2c2f9fddd5bd163dd7bf629b50e6339b5fbe6686131c5"
+        },
+        {
+          "expression": "expect(block1.children[0]?.text)",
+          "sha256": "6c50d352c6b59233ea4628ab24a4681130e41b6bb7706676e1aca3c04ff0f24b"
+        },
+        {
+          "expression": "expect(block2.children[0]?.text)",
+          "sha256": "63dafc6254b5b191b5aa347344241a1057731766dc558e796f4f2dc1e3803721"
+        },
+        {
+          "expression": "expect(block3.children[0]?.text)",
+          "sha256": "34f490a22edbfd0cb74c5f08648049e4474dae38273834a30af629cd386ec18b"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[1])",
+          "sha256": "20656e96097861da15149cd21a0c0b137a2b0ba4260d4ccc8ad30553ecf55b22"
+        },
+        {
+          "expression": "expect(block1.children[0]?.text)",
+          "sha256": "6c50d352c6b59233ea4628ab24a4681130e41b6bb7706676e1aca3c04ff0f24b"
+        },
+        {
+          "expression": "expect(block2.children[0]?.text)",
+          "sha256": "63dafc6254b5b191b5aa347344241a1057731766dc558e796f4f2dc1e3803721"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(block.children[0]?.text)",
+          "sha256": "2d7eef6683f335eac8390c2e8725ce337c8d9457e3a0aa6577e99e003e5f4e52"
+        },
+        {
+          "expression": "expect(block.children.length)",
+          "sha256": "96c99e5ebec2e50ea5bc8bb5ccd949cc6d652d1d0ff2af0886a8cd6fb9576f3c"
+        },
+        {
+          "expression": "expect(boldSpan?.text)",
+          "sha256": "546fc6117fb1a95653f40c4bb3862d8312803257e7bb8c2517c00ca1a635fbec"
+        },
+        {
+          "expression": "expect(italicSpan?.text)",
+          "sha256": "e96f2190048020b6ed202a69c0a5996c27c35dfffa4aec7f03fb2f4b1c30625f"
+        },
+        {
+          "expression": "expect(block.markDefs)",
+          "sha256": "860d024ec6975f875041cbe7a8dbab8b9df9614c06db60e30660a7d71c0d8de6"
+        },
+        {
+          "expression": "expect(block.markDefs?.[0])",
+          "sha256": "e06d2e08134b2840bf944d683dc6bea9f20e1a403c5ebbc9981e447c7d8ea416"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(boldSpan?.text)",
+          "sha256": "546fc6117fb1a95653f40c4bb3862d8312803257e7bb8c2517c00ca1a635fbec"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(block)",
+          "sha256": "0c992e3b58fa5523d6fcf569126c2cc61d867bf965e5be9cf587c2c419e65ddf"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(block)",
+          "sha256": "0c992e3b58fa5523d6fcf569126c2cc61d867bf965e5be9cf587c2c419e65ddf"
+        },
+        {
+          "expression": "expect(boldSpan?.text)",
+          "sha256": "546fc6117fb1a95653f40c4bb3862d8312803257e7bb8c2517c00ca1a635fbec"
+        },
+        {
+          "expression": "expect(level1.length)",
+          "sha256": "b45987c6ffc2029374dc69dbb45f2b713abd42fb427357fcd442a31060ce1393"
+        },
+        {
+          "expression": "expect(level2.length)",
+          "sha256": "7808f4781a0bbdbfc549fe5281c08d56cbc2c0fa551e737eee159c883d6b1b79"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result.length)",
+          "sha256": "7a928e0b283577f75aefbb942211902ca26a4d30863c14ff0cd90aea43f1f631"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(quoteBlocks)",
+          "sha256": "181330912990c709b1138582160edbac38bcd477f2c9783cc56a0de2f55137ba"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(img.asset.url)",
+          "sha256": "119f595b2b8ba5f5feb386b5b6dc3affdc281b840524e92c8c93ae752c160042"
+        },
+        {
+          "expression": "expect(img.asset.url)",
+          "sha256": "119f595b2b8ba5f5feb386b5b6dc3affdc281b840524e92c8c93ae752c160042"
+        },
+        {
+          "expression": "expect(img.alt)",
+          "sha256": "7c6040ff63b70c9237b1974de3e278da864653b95b49cdc3ca3aedbbe6067d0a"
+        },
+        {
+          "expression": "expect(img.caption)",
+          "sha256": "66e21e74eadfb3ada488cd9ca8eee332fef903740d7ea7f7d776b4846ca016b0"
+        },
+        {
+          "expression": "expect(img.asset._ref)",
+          "sha256": "5116e6b1187d7e3d9e719de2e4ce9e0c8e2e588923bbd9048964f868e6edfe12"
+        },
+        {
+          "expression": "expect(img.alignment)",
+          "sha256": "d5651b02255ea69e65c7469e5636e4d40f98037ba00874d86b97f3ae121b3337"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect((result[0] as { code: string }).code)",
+          "sha256": "0a64d498912010aa8fa0a6c41056e9d674b01b589d908da546f2dea479334d9d"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(cols.columns)",
+          "sha256": "f11455a4520228d7a9dbb90cde5e608c37ec75caa8d21157c30635923e624b0f"
+        },
+        {
+          "expression": "expect(cols.columns[0]?.content.length)",
+          "sha256": "ddcb50c5dc77a047932548eba1d05895c6f2c21b2eb3ba0961968e255599bd01"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(tbl.rows)",
+          "sha256": "b27323ce5c89edc282af462b5360e9b035f47ec49052eb5fad4785e1aa684934"
+        },
+        {
+          "expression": "expect(headerCells)",
+          "sha256": "4070d80ad905afa930b98f16c990ca6876029d7cff7b10e11f30ef295c3deeb7"
+        },
+        {
+          "expression": "expect(headerCells.every((c) => c.isHeader === true))",
+          "sha256": "5c2f93d397ae22d762b396266075fec456d10502807463da8d8fe15553473af7"
+        },
+        {
+          "expression": "expect(headerCells[0]!.content[0]!.text)",
+          "sha256": "a7257352dd2055debf75c79e17a901e6358a63b3f623c9b4a86dbf738a4a97b3"
+        },
+        {
+          "expression": "expect(headerCells[1]!.content[0]!.text)",
+          "sha256": "f58200be3ea3d4115257349dac29ebeffc64b44ddad63b3352c44ec66778dc3f"
+        },
+        {
+          "expression": "expect(headerCells[2]!.content[0]!.text)",
+          "sha256": "c69d185e86c5671856866e003bc927ad15f52fef8f76fb6c4525c3588a6b3d21"
+        },
+        {
+          "expression": "expect(firstBodyRow[0]!.content[0]!.text)",
+          "sha256": "f1e4fe139514ce80bbb688be2705f9982ab57d5d9567101d9414de1d141ea586"
+        },
+        {
+          "expression": "expect(firstBodyRow[1]!.content[0]!.text)",
+          "sha256": "a69b2df6e88c076a679bfefef943d63e133605a3dc55b38d5db0f3a6a3f383bf"
+        },
+        {
+          "expression": "expect(firstBodyRow[2]!.content[0]!.text)",
+          "sha256": "62603735eda68a14821fcfe80dc53fbc710873a6a1bfd6ef43d8977af6c4403d"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(tbl.rows)",
+          "sha256": "b27323ce5c89edc282af462b5360e9b035f47ec49052eb5fad4785e1aa684934"
+        },
+        {
+          "expression": "expect(tbl.rows[0]!.cells[0]!.content[0]!.text)",
+          "sha256": "f7a235ba5a29b13095c5d66df45bbdb7f1955ae56ff218daf1b626b8a9d165d9"
+        },
+        {
+          "expression": "expect(tbl.rows[1]!.cells[0]!.content[0]!.text)",
+          "sha256": "d4662226cb456b54d2bbe19e1707b656e4af12ffed9b2b3f32ea93431d3f6f2d"
+        },
+        {
+          "expression": "expect(tbl.rows[0]!.cells.every((c) => c.isHeader !== true))",
+          "sha256": "4fa704144011c41b9998ddb1380bcdff75eadcb5420f574544265e6c99b96cb1"
+        },
+        {
+          "expression": "expect(tbl.rows[1]!.cells.every((c) => c.isHeader !== true))",
+          "sha256": "a9ebeb4bc4a2fffcbac79d0586cef13777e03e78a04efe4122fcc3ec1b10d61e"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(block._type)",
+          "sha256": "b5f3c01f8652e2b4531550a41546f5c3a0820055efb79fe8c606705f5c15fa3f"
+        },
+        {
+          "expression": "expect(block.buttons[0])",
+          "sha256": "6409095c78f116e57bbf1be030455fae8138039a742df375664c505a60e6c9d8"
+        },
+        {
+          "expression": "expect(block.buttons[1])",
+          "sha256": "79c2dd2238fc39b6bccd8815465ff80357687fda6ec2bb4daa7039ea230cf777"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(block.buttons[0])",
+          "sha256": "6409095c78f116e57bbf1be030455fae8138039a742df375664c505a60e6c9d8"
+        },
+        {
+          "expression": "expect(block.buttons[1])",
+          "sha256": "79c2dd2238fc39b6bccd8815465ff80357687fda6ec2bb4daa7039ea230cf777"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(gallery.images)",
+          "sha256": "615effec52c362fc305142daf4dd2d7fa4b93f709b5f7d672a9f28ac71c6b69a"
+        },
+        {
+          "expression": "expect(gallery.images[0])",
+          "sha256": "e885458c50a5863c1aa2703b5f7e1572effb7ccb7c2e8b5c63cdfe532ad1907a"
+        },
+        {
+          "expression": "expect(gallery.images[1])",
+          "sha256": "bfcc7798a657534b2ef48ba171f840cdf77477917778469cbec4d5dd8ef12115"
+        },
+        {
+          "expression": "expect(gallery.images[2])",
+          "sha256": "847368ba2b6e0d869ed5c91c17899f7c5e4b25ca4bf4e19a13de69c3e2930c4f"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(cover.content)",
+          "sha256": "c178f487ffe7f2912905998123ce35e3d940172af5361c36cb9e53606ec47b12"
+        },
+        {
+          "expression": "expect(cover.content[0])",
+          "sha256": "623181f9ea1abb2445abcf1953cdb5b4124810bcc06be7344a7c509734be5a10"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result.some((b) => (b as PortableTextTextBlock).style === \"normal\"))",
+          "sha256": "631d3bcd557e9cae200b526829ba5c283d4695044c6acdf5d7ded42bf730fbf3"
+        },
+        {
+          "expression": "expect(result.some((b) => (b as PortableTextTextBlock).style === \"h2\"))",
+          "sha256": "283df0fd8ad8544fa237752986b682ba24e860be8ab68d79c6bf5fa8a92e19db"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect((result[0] as { html: string }).html)",
+          "sha256": "fcf29d6690bd129ac904f5302d756274756fc65debafbc359d3c60f49959c3d1"
+        },
+        {
+          "expression": "expect((result[0] as { originalAttrs: Record<string, unknown> }).originalAttrs)",
+          "sha256": "baf9c3a1b039523f0322e2b82e0e5b8872ebb75ea7b9ac98600f298be2409b38"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result.length)",
+          "sha256": "7a928e0b283577f75aefbb942211902ca26a4d30863c14ff0cd90aea43f1f631"
+        },
+        {
+          "expression": "expect(types)",
+          "sha256": "9c393077fbb3890e2cc36c996ab7327561a4003c49b49badb0b3d5119c196cca"
+        },
+        {
+          "expression": "expect(types)",
+          "sha256": "9c393077fbb3890e2cc36c996ab7327561a4003c49b49badb0b3d5119c196cca"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[1])",
+          "sha256": "20656e96097861da15149cd21a0c0b137a2b0ba4260d4ccc8ad30553ecf55b22"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(b)",
+          "sha256": "8259f7ec651c0726f46398302f291be85d610473ffa83bc83d0f0720cfc54a2f"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(result[0])",
+          "sha256": "e7aa21d3a334faf0c62c53b57bc4de866b083cdc96ecea3b1180a0e11eb19abb"
+        },
+        {
+          "expression": "expect(breakBlock)",
+          "sha256": "a0eb559463cc7013f169d462dc325b6d09a060135a2b140bcc7b56c8f222311a"
+        },
+        {
+          "expression": "expect(block.children.some((c) => c.marks?.includes(\"strong\")))",
+          "sha256": "1e655ecf800d7b09947613738bfae5cbcd9d882707bdefb9a2dd3873977a0fa3"
+        },
+        {
+          "expression": "expect(block.children.some((c) => c.marks?.includes(\"em\")))",
+          "sha256": "83334e62de7f9efc5d3db81d34ab8a05cecd0071e6702ac678a07abdd1d2d2a5"
+        },
+        {
+          "expression": "expect(imageBlocks.length)",
+          "sha256": "193898db2f3fd0cdae0ede8d14194ddd2edd90542f0c9d2edfb62fa5dbbb4049"
+        },
+        {
+          "expression": "expect(img._type)",
+          "sha256": "64451be89e796ade46cf8281403cd58f440e6a165d58ef1c69591155cf10dc96"
+        },
+        {
+          "expression": "expect(img.asset.url)",
+          "sha256": "119f595b2b8ba5f5feb386b5b6dc3affdc281b840524e92c8c93ae752c160042"
+        },
+        {
+          "expression": "expect(img.asset.url)",
+          "sha256": "119f595b2b8ba5f5feb386b5b6dc3affdc281b840524e92c8c93ae752c160042"
+        },
+        {
+          "expression": "expect(img.link)",
+          "sha256": "5839e1b6e00f6c07a47969bcaa6216e38cbe0eec782ad437054a290b72525d02"
+        },
+        {
+          "expression": "expect(textBlocks.length)",
+          "sha256": "86ff0ca3c35a6635c3b2822e715f989945da957786032417cf718f897bdcc653"
+        },
+        {
+          "expression": "expect(allText)",
+          "sha256": "3e5d49d2721801a95cdb01fe02ad3227ba60b85f038f3f2b66d4c87ffb593c0e"
+        },
+        {
+          "expression": "expect(allText)",
+          "sha256": "3e5d49d2721801a95cdb01fe02ad3227ba60b85f038f3f2b66d4c87ffb593c0e"
+        },
+        {
+          "expression": "expect(blockWithLink)",
+          "sha256": "e39be5b19b00556f061e182a81e148c9528d8d0fcffe39bba99f1b30c4cf311a"
+        },
+        {
+          "expression": "expect(blockWithLink?.markDefs)",
+          "sha256": "0a0d009a39788d8b886e298d4f82d1179dc821f864bc5002ff3e48f2a97ba590"
+        },
+        {
+          "expression": "expect(result)",
+          "sha256": "1e28cf2a9fb301e20ea4d8af6355e72718e0a114b7c16b1c83be7ca898182e9c"
+        },
+        {
+          "expression": "expect(img._type)",
+          "sha256": "64451be89e796ade46cf8281403cd58f440e6a165d58ef1c69591155cf10dc96"
+        },
+        {
+          "expression": "expect(img.asset.url)",
+          "sha256": "119f595b2b8ba5f5feb386b5b6dc3affdc281b840524e92c8c93ae752c160042"
+        },
+        {
+          "expression": "expect(img.asset.url)",
+          "sha256": "119f595b2b8ba5f5feb386b5b6dc3affdc281b840524e92c8c93ae752c160042"
+        },
+        {
+          "expression": "expect(img.asset.url)",
+          "sha256": "119f595b2b8ba5f5feb386b5b6dc3affdc281b840524e92c8c93ae752c160042"
+        },
+        {
+          "expression": "expect(img._type)",
+          "sha256": "64451be89e796ade46cf8281403cd58f440e6a165d58ef1c69591155cf10dc96"
+        },
+        {
+          "expression": "expect(img.asset.url)",
+          "sha256": "119f595b2b8ba5f5feb386b5b6dc3affdc281b840524e92c8c93ae752c160042"
+        },
+        {
+          "expression": "expect(img.caption)",
+          "sha256": "66e21e74eadfb3ada488cd9ca8eee332fef903740d7ea7f7d776b4846ca016b0"
+        },
+        {
+          "expression": "expect(blocks)",
+          "sha256": "3c18c67a224e59aa1240ff5d8b5538157640a0eefc90b01ecfffcb4ed1776c0c"
+        },
+        {
+          "expression": "expect(blocks[0]?.blockName)",
+          "sha256": "b7ff63bcad571ce865b0d8333e08967e403f5afba2e48379827576a1c975a150"
+        },
+        {
+          "expression": "expect(blocks[0]?.innerHTML)",
+          "sha256": "3cfff5c769b0d93bf74c02dbc8585213dc631b1f057a08f7b5380aa9d3e3204b"
+        },
+        {
+          "expression": "expect(parseGutenbergBlocks(\"\"))",
+          "sha256": "da6584e0b0fccb6fc0a960144d7b801c5e04b5366f6272e16c1ac472ddb15486"
+        },
+        {
+          "expression": "expect(blocks[0]?.attrs)",
+          "sha256": "8e925faf0d3c059f2a9ef1b55ab83ee0544739be44204f40527cbcc5c9cc2259"
+        },
+        {
+          "expression": "expect(blocks[0]?.blockName)",
+          "sha256": "b7ff63bcad571ce865b0d8333e08967e403f5afba2e48379827576a1c975a150"
+        },
+        {
+          "expression": "expect(blocks[0]?.innerBlocks.length)",
+          "sha256": "9630d06bca9d66da5ce8bac76e2d413d01d9e726e91c07303166f6d3a0931096"
+        }
+      ],
+      "declared": 82,
+      "expanded": 95,
+      "expectCalls": 160,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/gutenberg-to-portable-text/tests/converter.test.ts.txt",
+      "executableCopy": "parity/emdash/sections-widgets-source/upstream/packages/gutenberg-to-portable-text/tests/converter.test.ts"
+    },
+    {
+      "sourcePath": "packages/gutenberg-to-portable-text/tests/inline.test.ts",
+      "bytes": 11465,
+      "sha256": "84158f4645a28a18666412bf4720e7661608bfcae356be6af75c432a99982474",
+      "sourceBlob": "6f53894f710bc65c363fe3bdc89a80ad37337dea",
+      "wholeFileRead": true,
+      "imports": [
+        "import { describe, it, expect } from \"vitest\";",
+        "import {\n\tparseInlineContent,\n\textractText,\n\textractAlt,\n\textractCaption,\n\textractSrc,\n} from \"../src/inline.js\";"
+      ],
+      "declarations": [
+        {
+          "line": 22,
+          "expression": "it(\"parses plain text\", () => {\n\t\t\tconst result = parseInlineContent(\"Hello world\", generateKey);\n\n\t\t\texpect(result.children).toHaveLength(1);\n\t\t\texpect(result.children[0]).toMatchObject({\n\t\t\t\t_type: \"span\",\n\t\t\t\ttext: \"Hello world\",\n\t\t\t});\n\t\t\texpect(result.markDefs).toHaveLength(0);\n\t\t})",
+          "sha256": "ffe2ee7e613baa4996bbc38fbb20c2a5385dd2888c3fb29ec3d33888921b8312",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 33,
+          "expression": "it(\"handles empty string\", () => {\n\t\t\tconst result = parseInlineContent(\"\", generateKey);\n\n\t\t\texpect(result.children).toHaveLength(1);\n\t\t\texpect(result.children[0]).toMatchObject({\n\t\t\t\t_type: \"span\",\n\t\t\t\ttext: \"\",\n\t\t\t});\n\t\t})",
+          "sha256": "776ef75e67a4ebbaf9b5fb292526ed57a2df16d2a91457e54aca8244985f7c3d",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 43,
+          "expression": "it(\"handles whitespace-only string\", () => {\n\t\t\tconst result = parseInlineContent(\"   \", generateKey);\n\n\t\t\texpect(result.children).toHaveLength(1);\n\t\t\texpect(result.children[0]?.text).toBe(\"   \");\n\t\t})",
+          "sha256": "16e4a5a411cd85605f2f1d71d32ec2226d514d59fab65570bf2e2643c8a8c035",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 50,
+          "expression": "it(\"preserves newlines in text\", () => {\n\t\t\tconst result = parseInlineContent(\"line1\\nline2\", generateKey);\n\n\t\t\t// Should have one span with newline appended, then another span\n\t\t\texpect(result.children.length).toBeGreaterThanOrEqual(1);\n\t\t\tconst fullText = result.children.map((c) => c.text).join(\"\");\n\t\t\texpect(fullText).toContain(\"line1\");\n\t\t\texpect(fullText).toContain(\"line2\");\n\t\t})",
+          "sha256": "6b9d72d9ffc61f3ac27c14d8f7151548fb901e0e35afa696d2f3bfb6c24c073b",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 62,
+          "expression": "it(\"parses <strong> tags\", () => {\n\t\t\tconst result = parseInlineContent(\"Hello <strong>bold</strong> world\", generateKey);\n\n\t\t\texpect(result.children).toHaveLength(3);\n\t\t\texpect(result.children[0]).toMatchObject({ text: \"Hello \" });\n\t\t\texpect(result.children[1]).toMatchObject({\n\t\t\t\ttext: \"bold\",\n\t\t\t\tmarks: [\"strong\"],\n\t\t\t});\n\t\t\texpect(result.children[2]).toMatchObject({ text: \" world\" });\n\t\t})",
+          "sha256": "e3feae8c400f65643c3936107051041db22b8e27caf7a4dda6851540f6bee8f3",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 74,
+          "expression": "it(\"parses <b> tags as strong\", () => {\n\t\t\tconst result = parseInlineContent(\"Hello <b>bold</b> world\", generateKey);\n\n\t\t\texpect(result.children[1]).toMatchObject({\n\t\t\t\ttext: \"bold\",\n\t\t\t\tmarks: [\"strong\"],\n\t\t\t});\n\t\t})",
+          "sha256": "ccc537a38d33baea10b038b0403d5dde4b9733ff3dd9cc25ab6d994abd3c1272",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 83,
+          "expression": "it(\"parses <em> tags\", () => {\n\t\t\tconst result = parseInlineContent(\"Hello <em>italic</em> world\", generateKey);\n\n\t\t\texpect(result.children[1]).toMatchObject({\n\t\t\t\ttext: \"italic\",\n\t\t\t\tmarks: [\"em\"],\n\t\t\t});\n\t\t})",
+          "sha256": "931538cf67fd05a1071a539912f69f37b9cef9261e39d94461513ae176147dce",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 92,
+          "expression": "it(\"parses <i> tags as em\", () => {\n\t\t\tconst result = parseInlineContent(\"Hello <i>italic</i> world\", generateKey);\n\n\t\t\texpect(result.children[1]).toMatchObject({\n\t\t\t\ttext: \"italic\",\n\t\t\t\tmarks: [\"em\"],\n\t\t\t});\n\t\t})",
+          "sha256": "32dcb03fedbbc0d75d3e8c1eeb99903bbf7edb0622d7345bf804f115fd3524b1",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 101,
+          "expression": "it(\"parses <u> tags\", () => {\n\t\t\tconst result = parseInlineContent(\"Hello <u>underline</u> world\", generateKey);\n\n\t\t\texpect(result.children[1]).toMatchObject({\n\t\t\t\ttext: \"underline\",\n\t\t\t\tmarks: [\"underline\"],\n\t\t\t});\n\t\t})",
+          "sha256": "6fe0b89f367a440de83ead7b7050593db5d0fb88ea5a1c29bad7b37e0915c6ca",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 110,
+          "expression": "it(\"parses <s> tags as strike-through\", () => {\n\t\t\tconst result = parseInlineContent(\"Hello <s>strikethrough</s> world\", generateKey);\n\n\t\t\texpect(result.children[1]).toMatchObject({\n\t\t\t\ttext: \"strikethrough\",\n\t\t\t\tmarks: [\"strike-through\"],\n\t\t\t});\n\t\t})",
+          "sha256": "5dec506cc01b850f612dc4650de21f7223fbd8d786b741321ff1ee9faaeecb87",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 119,
+          "expression": "it(\"parses <del> tags as strike-through\", () => {\n\t\t\tconst result = parseInlineContent(\"Hello <del>deleted</del> world\", generateKey);\n\n\t\t\texpect(result.children[1]).toMatchObject({\n\t\t\t\ttext: \"deleted\",\n\t\t\t\tmarks: [\"strike-through\"],\n\t\t\t});\n\t\t})",
+          "sha256": "b34b9b4196daaa0c8e10c37eb732ce3bffc9b830b64ebdd9a982b653602b64b3",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 128,
+          "expression": "it(\"parses <code> tags\", () => {\n\t\t\tconst result = parseInlineContent(\"Use <code>const x = 1</code> for variables\", generateKey);\n\n\t\t\texpect(result.children[1]).toMatchObject({\n\t\t\t\ttext: \"const x = 1\",\n\t\t\t\tmarks: [\"code\"],\n\t\t\t});\n\t\t})",
+          "sha256": "852c7cf586b323f4315516bb34cbe886be39b547b77ae90789a3c734d1b2624b",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 137,
+          "expression": "it(\"parses <sup> tags\", () => {\n\t\t\tconst result = parseInlineContent(\"x<sup>2</sup>\", generateKey);\n\n\t\t\texpect(result.children[1]).toMatchObject({\n\t\t\t\ttext: \"2\",\n\t\t\t\tmarks: [\"superscript\"],\n\t\t\t});\n\t\t})",
+          "sha256": "7558a2845c84633d54e63cca287a218af86a6d9876b2a6d7325092d34b85ca79",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 146,
+          "expression": "it(\"parses <sub> tags\", () => {\n\t\t\tconst result = parseInlineContent(\"H<sub>2</sub>O\", generateKey);\n\n\t\t\texpect(result.children[1]).toMatchObject({\n\t\t\t\ttext: \"2\",\n\t\t\t\tmarks: [\"subscript\"],\n\t\t\t});\n\t\t})",
+          "sha256": "424bc6929af438017eb3674c83bdd38e932b2ccfb176eff4e285cd85cce8f3fb",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 157,
+          "expression": "it(\"handles nested strong and em\", () => {\n\t\t\tconst result = parseInlineContent(\"<strong><em>bold italic</em></strong>\", generateKey);\n\n\t\t\texpect(result.children).toHaveLength(1);\n\t\t\texpect(result.children[0]).toMatchObject({\n\t\t\t\ttext: \"bold italic\",\n\t\t\t\tmarks: expect.arrayContaining([\"strong\", \"em\"]),\n\t\t\t});\n\t\t})",
+          "sha256": "e8857b3f241896e14f5a1055ecac7d38847855c6afa185b594362bde5480284e",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 167,
+          "expression": "it(\"handles deeply nested marks\", () => {\n\t\t\tconst result = parseInlineContent(\"<strong><em><code>code</code></em></strong>\", generateKey);\n\n\t\t\texpect(result.children[0]?.marks).toContain(\"strong\");\n\t\t\texpect(result.children[0]?.marks).toContain(\"em\");\n\t\t\texpect(result.children[0]?.marks).toContain(\"code\");\n\t\t})",
+          "sha256": "71f65b5e4461c3b550fc4631b894b25de8f372018a9de0894a073fe73de609c2",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 175,
+          "expression": "it(\"handles mixed content with nested marks\", () => {\n\t\t\tconst result = parseInlineContent(\n\t\t\t\t\"Start <strong>bold <em>bold-italic</em> bold</strong> end\",\n\t\t\t\tgenerateKey,\n\t\t\t);\n\n\t\t\texpect(result.children.length).toBeGreaterThanOrEqual(4);\n\t\t\t// Find the bold-italic span\n\t\t\tconst boldItalic = result.children.find(\n\t\t\t\t(c) => c.marks?.includes(\"strong\") && c.marks?.includes(\"em\"),\n\t\t\t);\n\t\t\texpect(boldItalic?.text).toBe(\"bold-italic\");\n\t\t})",
+          "sha256": "d68d6ab6ab649a5678771967189f391831c3b8e8c67702388c2afde457a68e3c",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 191,
+          "expression": "it(\"parses simple links\", () => {\n\t\t\tconst result = parseInlineContent(\n\t\t\t\t'Visit <a href=\"https://example.com\">our site</a>',\n\t\t\t\tgenerateKey,\n\t\t\t);\n\n\t\t\texpect(result.markDefs).toHaveLength(1);\n\t\t\texpect(result.markDefs[0]).toMatchObject({\n\t\t\t\t_type: \"link\",\n\t\t\t\thref: \"https://example.com\",\n\t\t\t});\n\n\t\t\tconst linkSpan = result.children.find((c) =>\n\t\t\t\tc.marks?.includes(result.markDefs[0]?._key ?? \"\"),\n\t\t\t);\n\t\t\texpect(linkSpan?.text).toBe(\"our site\");\n\t\t})",
+          "sha256": "e72fd403a2304c53cdc544c3559b5f17c3e7a2009225d910ad69cc8a540907d1",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 209,
+          "expression": "it(\"handles links with target=_blank\", () => {\n\t\t\tconst result = parseInlineContent(\n\t\t\t\t'<a href=\"https://example.com\" target=\"_blank\">link</a>',\n\t\t\t\tgenerateKey,\n\t\t\t);\n\n\t\t\texpect(result.markDefs[0]).toMatchObject({\n\t\t\t\t_type: \"link\",\n\t\t\t\thref: \"https://example.com\",\n\t\t\t\tblank: true,\n\t\t\t});\n\t\t})",
+          "sha256": "055bac666c2511b70c33cf8c3fc71751a2974dc61768ea52af561f8ad13fdaf9",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 222,
+          "expression": "it(\"deduplicates identical links\", () => {\n\t\t\tconst result = parseInlineContent(\n\t\t\t\t'<a href=\"https://example.com\">link1</a> and <a href=\"https://example.com\">link2</a>',\n\t\t\t\tgenerateKey,\n\t\t\t);\n\n\t\t\texpect(result.markDefs).toHaveLength(1);\n\n\t\t\tconst linkKey = result.markDefs[0]?._key;\n\t\t\tconst linkSpans = result.children.filter((c) => c.marks?.includes(linkKey ?? \"\"));\n\t\t\texpect(linkSpans).toHaveLength(2);\n\t\t})",
+          "sha256": "00638c3c274ed10183d6edd4a74679954d9a2b609a196bdb214c0615ff3faa8c",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 235,
+          "expression": "it(\"creates separate markDefs for different links\", () => {\n\t\t\tconst result = parseInlineContent(\n\t\t\t\t'<a href=\"https://a.com\">link1</a> and <a href=\"https://b.com\">link2</a>',\n\t\t\t\tgenerateKey,\n\t\t\t);\n\n\t\t\texpect(result.markDefs).toHaveLength(2);\n\t\t\texpect(result.markDefs.map((m) => m.href)).toContain(\"https://a.com\");\n\t\t\texpect(result.markDefs.map((m) => m.href)).toContain(\"https://b.com\");\n\t\t})",
+          "sha256": "b5ef90ab74f24c9b75d63585071975ea81fea477992133eec5789cbfe415e107",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 246,
+          "expression": "it(\"handles links with formatting inside\", () => {\n\t\t\tconst result = parseInlineContent(\n\t\t\t\t'<a href=\"https://example.com\"><strong>bold link</strong></a>',\n\t\t\t\tgenerateKey,\n\t\t\t);\n\n\t\t\tconst span = result.children.find((c) => c.text === \"bold link\");\n\t\t\texpect(span?.marks).toContain(\"strong\");\n\t\t\texpect(span?.marks?.length).toBe(2); // strong + link key\n\t\t})",
+          "sha256": "f252a0475f38671be3d9d0c42ac6f7e22a30fc108faf1cb1f08b429759979dee",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 257,
+          "expression": "it(\"handles links with empty href\", () => {\n\t\t\tconst result = parseInlineContent('<a href=\"\">empty link</a>', generateKey);\n\n\t\t\texpect(result.markDefs).toHaveLength(1);\n\t\t\texpect(result.markDefs[0]).toMatchObject({\n\t\t\t\t_type: \"link\",\n\t\t\t\thref: \"\",\n\t\t\t});\n\n\t\t\tconst linkSpan = result.children.find((c) =>\n\t\t\t\tc.marks?.includes(result.markDefs[0]?._key ?? \"\"),\n\t\t\t);\n\t\t\texpect(linkSpan?.text).toBe(\"empty link\");\n\t\t})",
+          "sha256": "fc44ec9ae35a91c7393119f9578646f913023e552ad6b3c034e594e0824ada9f",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 272,
+          "expression": "it(\"ignores unknown schemes in links\", () => {\n\t\t\tconst result = parseInlineContent('<a href=\"ftp://foo.bar\">bad link</a>', generateKey);\n\n\t\t\texpect(result.markDefs).toHaveLength(1);\n\t\t\texpect(result.markDefs[0]).toMatchObject({\n\t\t\t\t_type: \"link\",\n\t\t\t\thref: \"\",\n\t\t\t});\n\n\t\t\tconst linkSpan = result.children.find((c) => c.marks?.includes(result.markDefs[0]!._key));\n\t\t\texpect(linkSpan?.text).toBe(\"bad link\");\n\t\t})",
+          "sha256": "d87ddc2d6ec0cc88cb5f658ec6a333c970e0c64e3d6e82c0d9784e47220ccd7c",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 287,
+          "expression": "it(\"handles <br> tags\", () => {\n\t\t\tconst result = parseInlineContent(\"line1<br>line2\", generateKey);\n\n\t\t\tconst fullText = result.children.map((c) => c.text).join(\"\");\n\t\t\texpect(fullText).toContain(\"line1\");\n\t\t\texpect(fullText).toContain(\"\\n\");\n\t\t\texpect(fullText).toContain(\"line2\");\n\t\t})",
+          "sha256": "7c8a906aa25543eb4013869cbbdc5385e9505a88a445d54d2c9b4019cdcd46eb",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 296,
+          "expression": "it(\"handles self-closing <br /> tags\", () => {\n\t\t\tconst result = parseInlineContent(\"line1<br />line2\", generateKey);\n\n\t\t\tconst fullText = result.children.map((c) => c.text).join(\"\");\n\t\t\texpect(fullText).toContain(\"\\n\");\n\t\t})",
+          "sha256": "ce5e265814cd89873730bc66ab1b099a32dcbef9a19df96d4490a1b6bf220ebb",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 303,
+          "expression": "it(\"handles multiple consecutive <br> tags\", () => {\n\t\t\tconst result = parseInlineContent(\"a<br><br>b\", generateKey);\n\n\t\t\tconst fullText = result.children.map((c) => c.text).join(\"\");\n\t\t\texpect(fullText.match(NEWLINE_PATTERN)?.length).toBeGreaterThanOrEqual(2);\n\t\t})",
+          "sha256": "0f8815cfb464b5816de3dbe1858dc20f1b50ca1de53a1a6f4c912f9e5a2b35c9",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 312,
+          "expression": "it(\"strips <p> wrapper\", () => {\n\t\t\tconst result = parseInlineContent(\"<p>content</p>\", generateKey);\n\n\t\t\texpect(result.children).toHaveLength(1);\n\t\t\texpect(result.children[0]?.text).toBe(\"content\");\n\t\t})",
+          "sha256": "131fe465484d9904c252fec019487d59cd1eb9faf74364a68df5f1a97a5e9597",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 319,
+          "expression": "it(\"strips heading wrappers\", () => {\n\t\t\tconst result = parseInlineContent(\"<h2>heading</h2>\", generateKey);\n\n\t\t\texpect(result.children[0]?.text).toBe(\"heading\");\n\t\t})",
+          "sha256": "c36ef9f570bf8a4ba33d12efc754d7faed00bef2f86932bc44b8992570535b12",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 325,
+          "expression": "it(\"strips <li> wrapper\", () => {\n\t\t\tconst result = parseInlineContent(\"<li>list item</li>\", generateKey);\n\n\t\t\texpect(result.children[0]?.text).toBe(\"list item\");\n\t\t})",
+          "sha256": "638a212ade4fd72a1e1d161b2c1f5441dbc0b6cf5a33ae1d078c62d0e0ea0434",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 331,
+          "expression": "it(\"preserves content when wrapper has attributes\", () => {\n\t\t\tconst result = parseInlineContent('<p class=\"intro\">content</p>', generateKey);\n\n\t\t\texpect(result.children[0]?.text).toBe(\"content\");\n\t\t})",
+          "sha256": "a0457e68688cb8473d344a344cd3f5c365a1b94fff8e2f62a7a39b812dd62559",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 340,
+          "expression": "it(\"extracts plain text\", () => {\n\t\texpect(extractText(\"Hello world\")).toBe(\"Hello world\");\n\t})",
+          "sha256": "7127f1ecfde0c1faa6c9cdc88a9e70d9f9a53d325bed35da75356a318288ac82",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 344,
+          "expression": "it(\"strips HTML tags\", () => {\n\t\texpect(extractText(\"<p>Hello <strong>world</strong></p>\")).toBe(\"Hello world\");\n\t})",
+          "sha256": "da8d046ce9fb75114f8947903d918604c25060a8434a4be293a9de277e118a25",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 348,
+          "expression": "it(\"handles nested elements\", () => {\n\t\texpect(extractText(\"<div><p>Nested <em>text</em></p></div>\")).toBe(\"Nested text\");\n\t})",
+          "sha256": "a10a5198baa79414855f4160fff097642011c3fc09b4e07cf122dc91065b8d6d",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 352,
+          "expression": "it(\"handles empty string\", () => {\n\t\texpect(extractText(\"\")).toBe(\"\");\n\t})",
+          "sha256": "b1829d85b1073cece4201ca893b7e36ec54a9a49d5a027286d98dafb525ed580",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 358,
+          "expression": "it(\"extracts alt from img tag\", () => {\n\t\texpect(extractAlt('<img src=\"photo.jpg\" alt=\"A photo\">')).toBe(\"A photo\");\n\t})",
+          "sha256": "1a934a29a222be1854fc86f8dd37ed57ec4c61fa274a25cb9c95f52aaf230250",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 362,
+          "expression": "it(\"handles missing alt\", () => {\n\t\texpect(extractAlt('<img src=\"photo.jpg\">')).toBeUndefined();\n\t})",
+          "sha256": "f13bc65558978803b3e1c4253aa9f1a383b88874e90bb26163e4d24737194e8c",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 366,
+          "expression": "it(\"handles empty alt\", () => {\n\t\texpect(extractAlt('<img src=\"photo.jpg\" alt=\"\">')).toBe(\"\");\n\t})",
+          "sha256": "a7ce5bb066d945ffd5bda2ef53cdedf2f745bd7af9110433018ff303a8a96888",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 370,
+          "expression": "it(\"handles single quotes\", () => {\n\t\texpect(extractAlt(\"<img src='photo.jpg' alt='A photo'>\")).toBe(\"A photo\");\n\t})",
+          "sha256": "6501c69432aeae046ea2c0180846bb9952abd90c1b94b2302b363c8721d13c46",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 376,
+          "expression": "it(\"extracts caption from figcaption\", () => {\n\t\texpect(extractCaption(\"<figure><img><figcaption>My caption</figcaption></figure>\")).toBe(\n\t\t\t\"My caption\",\n\t\t);\n\t})",
+          "sha256": "5e72820fed7f51e4f0d12bac814df4908b2a08f4c28dd1095c7f6ee6061ab587",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 382,
+          "expression": "it(\"strips HTML from caption\", () => {\n\t\texpect(\n\t\t\textractCaption(\"<figure><figcaption>Caption with <em>formatting</em></figcaption></figure>\"),\n\t\t).toBe(\"Caption with formatting\");\n\t})",
+          "sha256": "ccaf9f07134a13f1096194ee1712cafb4ecc51c4c5b45a461ab8c968e5c51687",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 388,
+          "expression": "it(\"handles missing figcaption\", () => {\n\t\texpect(extractCaption(\"<figure><img></figure>\")).toBeUndefined();\n\t})",
+          "sha256": "110125f40ca04e8c1b96cb4e2e4573239d77bdcfea2f1676b28cf30cf2ac2058",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 394,
+          "expression": "it(\"extracts src from img tag\", () => {\n\t\texpect(extractSrc('<img src=\"https://example.com/photo.jpg\">')).toBe(\n\t\t\t\"https://example.com/photo.jpg\",\n\t\t);\n\t})",
+          "sha256": "7ebdf795dac1c311ac9c8434546fefaa58072206b58f6b68bf964efc3e37141e",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 400,
+          "expression": "it(\"handles relative URLs\", () => {\n\t\texpect(extractSrc('<img src=\"/uploads/photo.jpg\">')).toBe(\"/uploads/photo.jpg\");\n\t})",
+          "sha256": "040b39a61f1487fb644216f01dbd77f593fe30425e752e289f4c0de4e99083ed",
+          "expanded": 1,
+          "each": null
+        },
+        {
+          "line": 404,
+          "expression": "it(\"handles missing src\", () => {\n\t\texpect(extractSrc(\"<img alt='no source'>\")).toBeUndefined();\n\t})",
+          "sha256": "7bcedde99e45dca3d478fd17bbf499e3d2140fcb7579a12d40300fbcef6d9e5c",
+          "expanded": 1,
+          "each": null
+        }
+      ],
+      "expects": [
+        {
+          "expression": "expect(result.children)",
+          "sha256": "11029d4d699136f0934499d448241edf57d97422cca76db2dc2cc8b2e98556dd"
+        },
+        {
+          "expression": "expect(result.children[0])",
+          "sha256": "986c610d60711f1f808443e88a95f1307133d1b987ffc9b9130ce79d05fc60b6"
+        },
+        {
+          "expression": "expect(result.markDefs)",
+          "sha256": "c3915f0610cbd2cbe3306ae4005b46cd96f4c58b77174c15aad700de666cad07"
+        },
+        {
+          "expression": "expect(result.children)",
+          "sha256": "11029d4d699136f0934499d448241edf57d97422cca76db2dc2cc8b2e98556dd"
+        },
+        {
+          "expression": "expect(result.children[0])",
+          "sha256": "986c610d60711f1f808443e88a95f1307133d1b987ffc9b9130ce79d05fc60b6"
+        },
+        {
+          "expression": "expect(result.children)",
+          "sha256": "11029d4d699136f0934499d448241edf57d97422cca76db2dc2cc8b2e98556dd"
+        },
+        {
+          "expression": "expect(result.children[0]?.text)",
+          "sha256": "e38d86003245e001f3c207f0587d2b3ddff3b038cb44ec5ce9a29855730322e3"
+        },
+        {
+          "expression": "expect(result.children.length)",
+          "sha256": "4f170568de8727054d6679fb8dca2f4c0b34ceb3c9505d75a6aa07f98d462205"
+        },
+        {
+          "expression": "expect(fullText)",
+          "sha256": "32cba3c7d2e3aff79e4664bd5e0ad2efdaecb6ffda54eabcabd44e5afec5680d"
+        },
+        {
+          "expression": "expect(fullText)",
+          "sha256": "32cba3c7d2e3aff79e4664bd5e0ad2efdaecb6ffda54eabcabd44e5afec5680d"
+        },
+        {
+          "expression": "expect(result.children)",
+          "sha256": "11029d4d699136f0934499d448241edf57d97422cca76db2dc2cc8b2e98556dd"
+        },
+        {
+          "expression": "expect(result.children[0])",
+          "sha256": "986c610d60711f1f808443e88a95f1307133d1b987ffc9b9130ce79d05fc60b6"
+        },
+        {
+          "expression": "expect(result.children[1])",
+          "sha256": "e10106a97da2d88b0dd2bbab69270ee837ac3bfbbe7b97685740073d460a74ca"
+        },
+        {
+          "expression": "expect(result.children[2])",
+          "sha256": "fd3bfaaad6f5aef86bb2b1e329bee275d9731792726045c8f5d6a998fcac8af7"
+        },
+        {
+          "expression": "expect(result.children[1])",
+          "sha256": "e10106a97da2d88b0dd2bbab69270ee837ac3bfbbe7b97685740073d460a74ca"
+        },
+        {
+          "expression": "expect(result.children[1])",
+          "sha256": "e10106a97da2d88b0dd2bbab69270ee837ac3bfbbe7b97685740073d460a74ca"
+        },
+        {
+          "expression": "expect(result.children[1])",
+          "sha256": "e10106a97da2d88b0dd2bbab69270ee837ac3bfbbe7b97685740073d460a74ca"
+        },
+        {
+          "expression": "expect(result.children[1])",
+          "sha256": "e10106a97da2d88b0dd2bbab69270ee837ac3bfbbe7b97685740073d460a74ca"
+        },
+        {
+          "expression": "expect(result.children[1])",
+          "sha256": "e10106a97da2d88b0dd2bbab69270ee837ac3bfbbe7b97685740073d460a74ca"
+        },
+        {
+          "expression": "expect(result.children[1])",
+          "sha256": "e10106a97da2d88b0dd2bbab69270ee837ac3bfbbe7b97685740073d460a74ca"
+        },
+        {
+          "expression": "expect(result.children[1])",
+          "sha256": "e10106a97da2d88b0dd2bbab69270ee837ac3bfbbe7b97685740073d460a74ca"
+        },
+        {
+          "expression": "expect(result.children[1])",
+          "sha256": "e10106a97da2d88b0dd2bbab69270ee837ac3bfbbe7b97685740073d460a74ca"
+        },
+        {
+          "expression": "expect(result.children[1])",
+          "sha256": "e10106a97da2d88b0dd2bbab69270ee837ac3bfbbe7b97685740073d460a74ca"
+        },
+        {
+          "expression": "expect(result.children)",
+          "sha256": "11029d4d699136f0934499d448241edf57d97422cca76db2dc2cc8b2e98556dd"
+        },
+        {
+          "expression": "expect(result.children[0])",
+          "sha256": "986c610d60711f1f808443e88a95f1307133d1b987ffc9b9130ce79d05fc60b6"
+        },
+        {
+          "expression": "expect(result.children[0]?.marks)",
+          "sha256": "7765860366c30c294c26a904c6acd350c6b9d0f73b5f8da0acbd398f129582a3"
+        },
+        {
+          "expression": "expect(result.children[0]?.marks)",
+          "sha256": "7765860366c30c294c26a904c6acd350c6b9d0f73b5f8da0acbd398f129582a3"
+        },
+        {
+          "expression": "expect(result.children[0]?.marks)",
+          "sha256": "7765860366c30c294c26a904c6acd350c6b9d0f73b5f8da0acbd398f129582a3"
+        },
+        {
+          "expression": "expect(result.children.length)",
+          "sha256": "4f170568de8727054d6679fb8dca2f4c0b34ceb3c9505d75a6aa07f98d462205"
+        },
+        {
+          "expression": "expect(boldItalic?.text)",
+          "sha256": "61ecaea1d23138cd63c6f2b4a203d9b35884cb8d62c20255f4adcaef32d9875e"
+        },
+        {
+          "expression": "expect(result.markDefs)",
+          "sha256": "c3915f0610cbd2cbe3306ae4005b46cd96f4c58b77174c15aad700de666cad07"
+        },
+        {
+          "expression": "expect(result.markDefs[0])",
+          "sha256": "c93545d29ca7564c02dd2f5911be69fe014d7573ac598caf1b8a9334d6e8d8b1"
+        },
+        {
+          "expression": "expect(linkSpan?.text)",
+          "sha256": "96566877b8502ad1474bc99d1e34eaaa103437b8c32b33a92b2373c4816bf39d"
+        },
+        {
+          "expression": "expect(result.markDefs[0])",
+          "sha256": "c93545d29ca7564c02dd2f5911be69fe014d7573ac598caf1b8a9334d6e8d8b1"
+        },
+        {
+          "expression": "expect(result.markDefs)",
+          "sha256": "c3915f0610cbd2cbe3306ae4005b46cd96f4c58b77174c15aad700de666cad07"
+        },
+        {
+          "expression": "expect(linkSpans)",
+          "sha256": "06e4aa1f79f6158445790324db92ef3defacc7a6db4f63661ed0bc743a6b2352"
+        },
+        {
+          "expression": "expect(result.markDefs)",
+          "sha256": "c3915f0610cbd2cbe3306ae4005b46cd96f4c58b77174c15aad700de666cad07"
+        },
+        {
+          "expression": "expect(result.markDefs.map((m) => m.href))",
+          "sha256": "2693968377ff26947668f10e83aa1d298aa27283b6c083a90ebbde103718b7f8"
+        },
+        {
+          "expression": "expect(result.markDefs.map((m) => m.href))",
+          "sha256": "2693968377ff26947668f10e83aa1d298aa27283b6c083a90ebbde103718b7f8"
+        },
+        {
+          "expression": "expect(span?.marks)",
+          "sha256": "9111cad03a3015beb48de24120c3634bfdd5fb5505c717d395c2f3be43936b06"
+        },
+        {
+          "expression": "expect(span?.marks?.length)",
+          "sha256": "310aba2aa2ffae84bffb1683d4d4e747e30b8e1859202a2f14b9fd3e05f93cf2"
+        },
+        {
+          "expression": "expect(result.markDefs)",
+          "sha256": "c3915f0610cbd2cbe3306ae4005b46cd96f4c58b77174c15aad700de666cad07"
+        },
+        {
+          "expression": "expect(result.markDefs[0])",
+          "sha256": "c93545d29ca7564c02dd2f5911be69fe014d7573ac598caf1b8a9334d6e8d8b1"
+        },
+        {
+          "expression": "expect(linkSpan?.text)",
+          "sha256": "96566877b8502ad1474bc99d1e34eaaa103437b8c32b33a92b2373c4816bf39d"
+        },
+        {
+          "expression": "expect(result.markDefs)",
+          "sha256": "c3915f0610cbd2cbe3306ae4005b46cd96f4c58b77174c15aad700de666cad07"
+        },
+        {
+          "expression": "expect(result.markDefs[0])",
+          "sha256": "c93545d29ca7564c02dd2f5911be69fe014d7573ac598caf1b8a9334d6e8d8b1"
+        },
+        {
+          "expression": "expect(linkSpan?.text)",
+          "sha256": "96566877b8502ad1474bc99d1e34eaaa103437b8c32b33a92b2373c4816bf39d"
+        },
+        {
+          "expression": "expect(fullText)",
+          "sha256": "32cba3c7d2e3aff79e4664bd5e0ad2efdaecb6ffda54eabcabd44e5afec5680d"
+        },
+        {
+          "expression": "expect(fullText)",
+          "sha256": "32cba3c7d2e3aff79e4664bd5e0ad2efdaecb6ffda54eabcabd44e5afec5680d"
+        },
+        {
+          "expression": "expect(fullText)",
+          "sha256": "32cba3c7d2e3aff79e4664bd5e0ad2efdaecb6ffda54eabcabd44e5afec5680d"
+        },
+        {
+          "expression": "expect(fullText)",
+          "sha256": "32cba3c7d2e3aff79e4664bd5e0ad2efdaecb6ffda54eabcabd44e5afec5680d"
+        },
+        {
+          "expression": "expect(fullText.match(NEWLINE_PATTERN)?.length)",
+          "sha256": "3b12fe5df14238d974576d531851a45e112fa75c95308d2c363d86d3d9d86b07"
+        },
+        {
+          "expression": "expect(result.children)",
+          "sha256": "11029d4d699136f0934499d448241edf57d97422cca76db2dc2cc8b2e98556dd"
+        },
+        {
+          "expression": "expect(result.children[0]?.text)",
+          "sha256": "e38d86003245e001f3c207f0587d2b3ddff3b038cb44ec5ce9a29855730322e3"
+        },
+        {
+          "expression": "expect(result.children[0]?.text)",
+          "sha256": "e38d86003245e001f3c207f0587d2b3ddff3b038cb44ec5ce9a29855730322e3"
+        },
+        {
+          "expression": "expect(result.children[0]?.text)",
+          "sha256": "e38d86003245e001f3c207f0587d2b3ddff3b038cb44ec5ce9a29855730322e3"
+        },
+        {
+          "expression": "expect(result.children[0]?.text)",
+          "sha256": "e38d86003245e001f3c207f0587d2b3ddff3b038cb44ec5ce9a29855730322e3"
+        },
+        {
+          "expression": "expect(extractText(\"Hello world\"))",
+          "sha256": "afbffabf950a4f78d4f6b4d2a3d61bae01736883f59a9138d3aec11317167ab9"
+        },
+        {
+          "expression": "expect(extractText(\"<p>Hello <strong>world</strong></p>\"))",
+          "sha256": "c719241bd3e1eb673dae59628be34da37e793d15d6d949e206677b4f5db35a86"
+        },
+        {
+          "expression": "expect(extractText(\"<div><p>Nested <em>text</em></p></div>\"))",
+          "sha256": "aad04cb1d98827ac634aaa2e67c2d422e2d528052abb507d05dc749567a842da"
+        },
+        {
+          "expression": "expect(extractText(\"\"))",
+          "sha256": "a8a5a8a0ff1bba7e8b3f9793269c655f2f5b4be5d6cfdefb6f7da46dc855234b"
+        },
+        {
+          "expression": "expect(extractAlt('<img src=\"photo.jpg\" alt=\"A photo\">'))",
+          "sha256": "87a6258e61a417f48f064f253d0e56ed413e34e89d5cc74e8d937907ee0c066e"
+        },
+        {
+          "expression": "expect(extractAlt('<img src=\"photo.jpg\">'))",
+          "sha256": "0b61fa0017cd7ab17a142739a1883e9b53dbd863ea8ac3fa6daa408918ef7268"
+        },
+        {
+          "expression": "expect(extractAlt('<img src=\"photo.jpg\" alt=\"\">'))",
+          "sha256": "c8c842f2ce9efc67d39ca95c36424e9bf1d42d72896493f8f4813607977dbd20"
+        },
+        {
+          "expression": "expect(extractAlt(\"<img src='photo.jpg' alt='A photo'>\"))",
+          "sha256": "888950f9adb9e7955e10d6714340101c2bb6edec60e54f275f838e851c9bab1e"
+        },
+        {
+          "expression": "expect(extractCaption(\"<figure><img><figcaption>My caption</figcaption></figure>\"))",
+          "sha256": "e2b8f9edd1b1469c9aa0f1ea638c2fc01a91f2720c7250990753bbf5bb3435df"
+        },
+        {
+          "expression": "expect(\n\t\t\textractCaption(\"<figure><figcaption>Caption with <em>formatting</em></figcaption></figure>\"),\n\t\t)",
+          "sha256": "c7ae78682daac6ff64b9f23451f62de6b2c6e116fac4bbf72d02102829931dab"
+        },
+        {
+          "expression": "expect(extractCaption(\"<figure><img></figure>\"))",
+          "sha256": "fb90dcfbc019f5230fdecf80a7efc7c3ee010049df6655a42c106356dd9c30f1"
+        },
+        {
+          "expression": "expect(extractSrc('<img src=\"https://example.com/photo.jpg\">'))",
+          "sha256": "fa2c2b3aaf164478dc55fe4af25604a432fd72ead0a71a1bae8ed44bacbf8c81"
+        },
+        {
+          "expression": "expect(extractSrc('<img src=\"/uploads/photo.jpg\">'))",
+          "sha256": "eeb24abd105338a75ced0a6fe895c5f1519e2187af9a03cca73f88737f2170a9"
+        },
+        {
+          "expression": "expect(extractSrc(\"<img alt='no source'>\"))",
+          "sha256": "2202aadde4374afcc56ea050029de17b261a444cdd2c58d7d91f7d7b48a8dece"
+        }
+      ],
+      "declared": 45,
+      "expanded": 45,
+      "expectCalls": 71,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/gutenberg-to-portable-text/tests/inline.test.ts.txt",
+      "executableCopy": "parity/emdash/sections-widgets-source/upstream/packages/gutenberg-to-portable-text/tests/inline.test.ts"
+    }
+  ],
+  "totals": {
+    "files": 2,
+    "declarations": 127,
+    "expanded": 140,
+    "expectCalls": 231
+  },
+  "reviewerWholeSourceProofSHA256": "c4a4f76d4cd9c7a7b30ba9ab7d40d2874d3445d48b7469d3884a0c89cc424969",
+  "executedCallbacks": 0,
+  "MITNotice": "notices/emdash-MIT.txt"
+}
