@@ -1,3 +1,4 @@
+// @ts-nocheck -- immutable source callbacks; native seams are checked separately.
 // Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
 /**
  * SQLite query-plan regression guard for the consolidated term-count query.

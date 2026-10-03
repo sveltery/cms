@@ -7,12 +7,12 @@ import {servicePrincipal} from '../src/lib/server/auth/composition.ts';
 import {Role} from '../src/lib/server/auth/roles.ts';
 
 test('taxonomy read capability projects from the current stored subscriber role',()=>{
- const actor=servicePrincipal({id:'subscriber',email:'s@example.test',name:'Subscriber',role:Role.SUBSCRIBER});
+ const actor=servicePrincipal({id:'subscriber',role:Role.SUBSCRIBER});
  assert.equal(actor?.permissions.includes('taxonomies:read' as any),true);
  assert.equal(actor?.permissions.includes('taxonomies:manage' as any),false);
 });
 test('taxonomy management capability projects from current stored editor role',()=>{
- const actor=servicePrincipal({id:'editor',email:'e@example.test',name:'Editor',role:Role.EDITOR});
+ const actor=servicePrincipal({id:'editor',role:Role.EDITOR});
  assert.equal(actor?.permissions.includes('taxonomies:read' as any),true);
  assert.equal(actor?.permissions.includes('taxonomies:manage' as any),true);
 });

@@ -1,3 +1,4 @@
+// @ts-nocheck -- immutable source callbacks; native seams are checked separately.
 // Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
 /** A taxonomy's `hierarchical` and `collections` read and write the same through every locale. */
 

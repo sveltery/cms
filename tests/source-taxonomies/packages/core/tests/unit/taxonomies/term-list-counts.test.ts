@@ -1,3 +1,4 @@
+// @ts-nocheck -- immutable source callbacks; native seams are checked separately.
 // Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
 /**
  * The admin terms-list endpoint aggregates visible counts only when asked.

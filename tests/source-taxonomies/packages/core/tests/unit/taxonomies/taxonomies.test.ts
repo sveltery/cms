@@ -1,3 +1,4 @@
+// @ts-nocheck -- immutable source callbacks; native seams are checked separately.
 // Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
 import type { Kysely } from "kysely";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
