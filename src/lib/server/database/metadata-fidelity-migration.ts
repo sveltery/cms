@@ -13,24 +13,30 @@ interface OperatorObject {name:string;type:string;tbl_name:string;sql:string|nul
 // All views/triggers are temporarily removed because their dependency graphs
 // may reference each other. Their exact SQL is restored after the metadata
 // replacement. Canonical field indexes are recreated by the provider itself.
-const operatorObjects=sql`SELECT name,type,tbl_name,sql FROM sqlite_master WHERE
-  type IN ('view','trigger') OR (type='index' AND lower(tbl_name)='_cms_fields'
-    AND lower(name)<>'idx_cms_fields_collection') OR
-  (type='table' AND lower(name)<>'_cms_fields' AND instr(lower(sql),'_cms_fields')>0
-    AND instr(upper(sql),'REFERENCES')>0) ORDER BY name,type`;
+function operatorObjects(parents:readonly string[]) {
+  return sql`SELECT name,type,tbl_name,sql FROM sqlite_master WHERE
+    type IN ('view','trigger') OR (type='index' AND lower(tbl_name) IN (${sql.join(parents)})
+      AND lower(name)<>'idx_cms_fields_collection') OR
+    (type='table' AND lower(name) NOT IN (${sql.join(parents)}) AND
+      (${sql.join(parents.map(parent=>sql`instr(lower(sql),${parent})>0`),sql` OR `)})
+      AND instr(upper(sql),'REFERENCES')>0) ORDER BY name,type`;
+}
 
 async function prepareMetadata(database:CmsDatabase,installedVersion=8) {
-  const objects=(await operatorObjects.execute(database.db)).rows as unknown as OperatorObject[];
+  const historical=installedVersion===1||installedVersion===2;
+  const parents=historical ? ['_cms_fields','_cms_collections'] : ['_cms_fields'];
+  const catalogue=operatorObjects(parents);
+  const objects=(await catalogue.execute(database.db)).rows as unknown as OperatorObject[];
   for(const object of objects.filter(object=>object.type==='table')) {
     const foreignKeys=(await sql<{table:string}>`PRAGMA foreign_key_list(${sql.id(object.name)})`.execute(database.db)).rows;
     // Dropping a referenced parent can silently cascade or null child rows.
     // Do not disable FK enforcement or claim an unsupported preservation path.
-    if(foreignKeys.some(key=>key.table.toLowerCase()==='_cms_fields')) throw new CmsError('MIGRATION_REQUIRED');
+    if(foreignKeys.some(key=>parents.includes(key.table.toLowerCase()))) throw new CmsError('MIGRATION_REQUIRED');
   }
   const snapshot=JSON.stringify(objects);
   const guard=sql`SELECT json_extract('[]',CASE WHEN
     (SELECT json_group_array(json_object('name',name,'type',type,'tbl_name',tbl_name,'sql',sql))
-      FROM (${operatorObjects}))=${snapshot}
+      FROM (${catalogue}))=${snapshot}
     THEN '$' ELSE 'sveltery-cms-migration-prerequisite-changed' END)`.compile(database.db);
   const descriptors=await metadataFidelityMigration.expectedObjects(database);
   const fields=descriptors.find(object=>object.name==='_cms_fields')!;
@@ -42,7 +48,6 @@ async function prepareMetadata(database:CmsDatabase,installedVersion=8) {
     ...triggers.map(object=>sql`DROP TRIGGER IF EXISTS ${sql.id(object.name)}`.compile(database.db)),
     ...views.map(object=>sql`DROP VIEW ${sql.id(object.name)}`.compile(database.db))
   ];
-  const historical=installedVersion===1||installedVersion===2;
   return {
     preconditions:[guard],
     prelude:historical ? removeCatalogue : [],
