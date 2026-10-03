@@ -346,6 +346,49 @@
       "external auth completion",
       "media, bylines, relations, blocks, menus, widgets, sections, redirects seed families"
     ],
-    "redLog": "/tmp/setup-budget-http-red.log"
+    "redLog": "/tmp/setup-budget-http-red.log",
+    "green": {
+      "log": "/tmp/setup-seed-green.log",
+      "sourceExecutions": 2,
+      "nativeSupplemental": 4,
+      "normalBuild": "/tmp/setup-seed-corrected-build.log",
+      "remaining": "Default source taxonomy/search providers are not integrated; broader seed families reject explicitly."
+    }
+  },
+  "seedImplementation": {
+    "classification": "native fixed-statement adapter; zero complete applySeed declaration credit",
+    "source": "packages/core/src/seed/apply.ts",
+    "sourceBlob": "94077bb605bda8b1c61d398ea05e7dd92d62ec78",
+    "behavior": "500-query threshold, actual source ContentRepository lookup, source datetime normalization, atomic row/revision/promotion/prune batch, source write-once site URL and non-fatal setup-state save",
+    "dependencies": {
+      "42": "ca39019c94af1c1890e5655ba8ae9ea868765846",
+      "48": "cef5aa2baaebaad37d898bad1ba36170eedb1277",
+      "45": "19fdd636e7a8eb54c9d9ee9f74af00911641505a"
+    },
+    "copiedPureFiles": [
+      {
+        "source": "seed/default.ts",
+        "blob": "f33fdb45b2176e354815417e80fc541d6029b4ad",
+        "substitutions": "MIT/pin header and .ts/native type-only imports"
+      },
+      {
+        "source": "seed/types.ts",
+        "blob": "b36b50ebc6d179d5c25c53dcc2d4ac1d78df19d1",
+        "substitutions": "MIT/pin header and .ts/native type-only imports"
+      },
+      {
+        "source": "storage/types.ts",
+        "blob": "d8ffcd99f9c4c544306d986be7534345442e41be",
+        "substitutions": "MIT/pin header and .ts/native type-only imports"
+      }
+    ]
+  },
+  "browserGreen": {
+    "head": "c967e93e494926bfd253f5b8028a7edafb6d2fef",
+    "run": 37084572148,
+    "job": 111092077670,
+    "defaultSecured": 64,
+    "nodeSecured": 64,
+    "selectedUnchangedCallbacks": 7
   }
 }
