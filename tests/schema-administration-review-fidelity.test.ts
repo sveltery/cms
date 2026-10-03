@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { sql } from 'kysely';
 import { migrateCms } from '../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
 import { cmsService } from '../src/lib/server/database/service.ts';
@@ -13,7 +14,7 @@ for (const target of ['Node', 'D1'] as const) {
       await migrateCms(h.database); const registry = new SchemaRegistry(h.database);
       await registry.createCollection({ slug: 'posts', label: 'Posts' });
       await registry.createField('posts', { slug: 'future', label: 'Future', type: 'string' });
-      await h.database.db.updateTable('_cms_fields').set({ type: 'future_field_type' }).where('slug', '=', 'future').execute();
+      await sql`UPDATE _cms_fields SET type = 'future_field_type' WHERE slug = 'future'`.execute(h.database.db);
       const projected = (await registry.getField('posts', 'future'))!;
       assert.equal(projected.type, 'string'); assert.equal(projected.unsupportedType?.type, 'future_field_type');
       const before = await registry.getCollection('posts');

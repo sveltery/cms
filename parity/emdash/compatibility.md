@@ -453,6 +453,8 @@ Raw title/date alias validation follows pinned `registry.ts:463–488`, which ch
 Exact `23ddd930` [CI37082870656](https://github.com/sveltery/cms/actions/runs/37082870656) failed the development boundary helper after content-only ID discovery omitted actual schema exports. Discovery now includes both generated modules and the explicit24-export inventory; all anonymous assertions remain enabled. Final integration, normal hosted bootstrap, secured adapters and review closure remain required.
 
 Current schema administration integration merges actual main `2d5727ae643d6459b26afdfc2391f35458b4bf8d`, preserving Cloudflare47's package/lockfile/bootstrap, source assertions, built Worker gates and all RT2 records below. That separately owned runtime supplies no additional schema declaration credit. The combined head requires its own normal frozen bootstrap and secured default/Node checks.
+
+The first integrated `f4ce180` normal frozen install passed, but bootstrap stopped at two unsupported-type fixture typing errors before tests. Explicit raw SQL now seeds that intentionally unsupported stored state; assertions/expected values stay unchanged. This failed checker is harness evidence, not a full bootstrap pass or additional product-red credit. Final-head verification remains required.
 ## RT2: native Cloudflare D1 runtime ([PR #47](https://github.com/sveltery/cms/pull/47), proposed)
 
 | ID | Observable substitution or limit | Decision and evidence |

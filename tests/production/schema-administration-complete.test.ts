@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {parse} from 'devalue';
+import {sql} from 'kysely';
 import {schemaAdminRemotes} from '../helpers/schema-admin-remotes.ts';
 
 // Native Kit integration requirements, separate from unchanged source assertions.
@@ -13,7 +14,7 @@ for (const target of ['Node','D1'] as const) {
       await h.mutate('createSchemaCollection',{slug:'posts',label:'Posts'});
       let c=await h.query('getSchemaCollection','posts');
       await h.mutate('addSchemaField',{collection:'posts',expectedSchemaVersion:String(c.version),slug:'future',label:'Future',type:'string'});
-      await h.database.db.updateTable('_cms_fields').set({type:'future_field_type'}).where('slug','=','future').execute();
+      await sql`UPDATE _cms_fields SET type = 'future_field_type' WHERE slug = 'future'`.execute(h.database.db);
       c=await h.query('getSchemaCollection','posts');
       assert.equal(c.fields[0].type,'string'); assert.equal(c.fields[0].unsupportedType.type,'future_field_type');
       const html=await (await h.request('/schema/posts')).text();
