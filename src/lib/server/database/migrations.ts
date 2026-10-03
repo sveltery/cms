@@ -1,3 +1,4 @@
+import {taxonomyMigration} from '../taxonomies/migration.ts';
 import { optionsMigration } from '../settings/migration.ts';
 import { sql, type CompiledQuery } from 'kysely';
 import { sqliteErrorMessage } from './errors.ts';
@@ -38,7 +39,7 @@ export const CMS_MIGRATIONS: readonly CmsMigrationProvider[] = [
   schemaMigration,
   {version:4,name:'auth-identity',async statements(database) {return authIdentitySchemaStatements(database.db);},
     async expectedObjects(database) {return authIdentitySchemaObjects(database.db);}},
-  lifecycleMigration, optionsMigration
+  lifecycleMigration, optionsMigration, taxonomyMigration
 ];
 export const CMS_MIGRATION_VERSION = CMS_MIGRATIONS.at(-1)!.version;
 const trackingStatement = (database: CmsDatabase) =>
