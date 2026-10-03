@@ -4,6 +4,7 @@ import {migrateCms} from '../database/migrations.ts';
 import type {Database} from '../database/lifecycle/upstream/database/types.ts';
 import {pruneQueuedRevisions} from './revisions.ts';
 import type {ExecutionContext} from '@cloudflare/workers-types';
+import type {Kysely} from 'kysely';
 
 /** Supplied by the hosting owner, never from request parameters or headers. */
 export type RevisionMaintenanceStorage =
@@ -11,31 +12,37 @@ export type RevisionMaintenanceStorage =
   | {kind:'d1';binding:D1Binding};
 export interface RevisionMaintenanceResult {revisionsPruned:number}
 
+async function openStorage(configuration: RevisionMaintenanceStorage) {
+  if (configuration.kind === 'sqlite') {
+    if (typeof configuration.path !== 'string' || !configuration.path.trim() ||
+      configuration.path.includes('\0') || configuration.path === ':memory:') {
+      throw new Error('Revision maintenance requires a persistent SQLite file');
+    }
+    const {openRuntimeSqlite} = await import('../runtime/node.ts');
+    return openRuntimeSqlite(configuration.path);
+  }
+  if (configuration.kind === 'd1') {
+    if (!configuration.binding || typeof configuration.binding.prepare !== 'function' ||
+      typeof configuration.binding.batch !== 'function') {
+      throw new Error('Revision maintenance requires a raw D1 database binding');
+    }
+    return openD1(configuration.binding);
+  }
+  throw new Error('Revision maintenance requires a supported storage configuration');
+}
+
 /**
  * Open trusted storage, validate canonical startup, consume one global batch,
  * and release the owned adapter. Other system cleanup subsystems are absent
  * from this result. A revision subsystem failure is -1, as in pinned cleanup;
  * invalid host configuration and migration failures propagate.
  */
-export async function runRevisionMaintenance(configuration:RevisionMaintenanceStorage):Promise<RevisionMaintenanceResult> {
-  if(configuration.kind==='sqlite') {
-    if(typeof configuration.path!=='string'||!configuration.path.trim()||configuration.path.includes('\0')||configuration.path===':memory:') {
-      throw new Error('Revision maintenance requires a persistent SQLite file');
-    }
-  }else if(configuration.kind==='d1') {
-    if(!configuration.binding||typeof configuration.binding.prepare!=='function'||typeof configuration.binding.batch!=='function') {
-      throw new Error('Revision maintenance requires a raw D1 database binding');
-    }
-  }else {
-    throw new Error('Revision maintenance requires a supported storage configuration');
-  }
-  const database=configuration.kind==='sqlite'
-    ?await (await import('../runtime/node.ts')).openRuntimeSqlite(configuration.path)
-    :openD1(configuration.binding);
+export async function runRevisionMaintenance(configuration: RevisionMaintenanceStorage): Promise<RevisionMaintenanceResult> {
+  const database = await openStorage(configuration);
   try {
     await migrateCms(database);
     try {
-      return {revisionsPruned:await pruneQueuedRevisions(database.db as unknown as import('kysely').Kysely<Database>)};
+      return {revisionsPruned: await pruneQueuedRevisions(database.db as unknown as Kysely<Database>)};
     }catch(error) {
       console.error('[cleanup] Failed to prune revisions:',error);
       return {revisionsPruned:-1};

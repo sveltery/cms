@@ -89,14 +89,93 @@
     "Only module specifiers and erasable constructor parameter property; complete repository bodies retained",
     "Physical revisions and _emdash_* namespaces mapped by test-only SQL transformer",
     "Existing pinned content datetime normalizer/validation/types host dependencies; UTC/no request cache substitutions remain explicitly bounded",
-    "Canonical providers 1–5 and real collection registration initialize fixtures; this does not qualify full Source migration runner"
+    "Canonical providers 1\u20135 and real collection registration initialize fixtures; this does not qualify full Source migration runner"
   ],
   "baseline": {
-    "status": "Not run yet; product coordinator absent; no fabricated successful subsystem results"
+    "testOnlyCommits": [
+      "c8fd7b0",
+      "783f790",
+      "8216374",
+      "6d3f3f4"
+    ],
+    "productFirstCommit": "e1483a3",
+    "initialHostFailures": {
+      "log": "/tmp/revision-maintenance-initial-baseline.log",
+      "missingPluginReferenceErrors": 4,
+      "sourceOrNativeBehaviorRedCredit": 0
+    },
+    "qualifiedBeforeImplementation": {
+      "head": "8216374099ceeeae1d4d68a41b2a25c20597a0e1",
+      "cases": 33,
+      "passed": 17,
+      "failed": 16,
+      "referenceSourcePassed": 10,
+      "existingProductRepositoryPassed": 7,
+      "originalNativeMissingInterfaceAssertionFailures": 13,
+      "sourceUnavailableCoordinatorErrors": 3,
+      "sourceAssertionRedCredit": 0,
+      "log": "/tmp/revision-maintenance-final-red.log",
+      "exitCode": 1
+    },
+    "additionalActualScheduledRequirement": {
+      "head": "6d3f3f4",
+      "originalNativeMissingInterfaceAssertionFailures": 1,
+      "log": "/tmp/revision-maintenance-worker-red.log",
+      "exitCode": 1
+    },
+    "causalLimit": "Fourteen native reds establish absent interfaces. Actual behavioral bodies execute after implementation; unavailable Source operations do not establish Source assertion-level reds."
   },
   "incomplete": [
     "Other system cleanup subsystems",
     "Source scheduler and actual cron cadence",
     "Deployed Node and Cloudflare scheduling"
-  ]
+  ],
+  "snapshotPlugin": {
+    "sha256": "9809a8ffcb498f1fb20a6bf8b117ad492d754104974b496c066936315007911c",
+    "adaptations": [
+      "Erasable constructor parameter property only; method bodies retained complete"
+    ]
+  },
+  "sourceRevisionReferenceLocalSHA256": "052c2b7c6e12fd430669ad5295b15cc1c6364e0c63fb4a00f089dce8427a5964",
+  "focusedGreen": {
+    "head": "875253c",
+    "cases": 34,
+    "passed": 34,
+    "referenceSourceExecutions": 10,
+    "productSourceExecutions": 10,
+    "uniqueSourceCallbacks": 8,
+    "originalNativeExecutions": 14,
+    "sourceWholeRunSystemCleanupCredit": 0,
+    "log": "/tmp/revision-maintenance-qualified-green.log",
+    "exitCode": 0,
+    "actualScheduledWorker": "Bundled scoped native module runs in local workerd through Miniflare scheduled-event dispatch; real ctx.waitUntil, persistent actual D1, reopen",
+    "hostCorrections": [
+      "Original dependency resolution failure before Worker execution:0 behavior credit",
+      "Original modulesRoot failure before Worker execution:0 behavior credit",
+      "Initial local trigger request reached fixture fetch instead of scheduled:0 product regression credit; documented test-only unsafeTriggerHandlers now dispatches a real event",
+      "Three typed SQL observations changed type annotations only:all expectations intact"
+    ]
+  },
+  "frameworkDifferences": [
+    {
+      "id": "RV1-01",
+      "source": "Full Astro system-cleanup scheduler calls runSystemCleanup(db, storage); private revision subfunction selects one oldest-ten batch",
+      "native": "Trusted server storage-owning function initializes approved canonical provider1\u20135, returns only revisionsPruned, closes its own adapter. Optional Worker scheduled wrapper anchors the same function in actual waitUntil; it installs no schedule or HTTP route",
+      "reason": "Native Node and Worker host boundary; absent cleanup subsystems must not return invented successes",
+      "decision": "Pending specific PM acceptance; zero Source full-system/scheduler credit"
+    }
+  ],
+  "canonicalFilesUnchanged": [
+    "src/lib/server/database/migrations.ts",
+    "src/lib/server/database/lifecycle-migrations.ts",
+    "src/lib/server/database/schema-migrations.ts",
+    "src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts",
+    "src/lib/server/database/lifecycle/service.ts"
+  ],
+  "normalBootstrap": {
+    "status": "Not run on final documented head yet"
+  },
+  "publication": {
+    "status": "Local only while PM-required public source-audit permission remains pending; no public ref or PR created; no rejection retry or alternate writer used"
+  }
 }
