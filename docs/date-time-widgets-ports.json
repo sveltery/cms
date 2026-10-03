@@ -342,12 +342,12 @@
     }
   },
   "gates": {
-    "normal": "PASS: one unchanged full bootstrap rerun at0ab316895ec543995075c9fb6f40dac59bfe3d78; frozen366/check0/0/services1101/Source115+types/Card23/widgets30/build/production255/Nodepackage+hosting15/Cloudflarebuild+Source23+actualWorker7 all complete, exit0. Final documentation-only extension and hosted exact-head gates remain separate.",
+    "normal": "PASS actual hosted CI37142134769 at41c0ec9: all13 phases; frozen366/check0/0/services1110/Source115+203+types/Card23/widgets30/build/production255/Nodepackage+hosting15/Cloudflarebuild+Source23+actualWorker7. Earlier0ab normal and failed receipts remain historical; documentation successor final-head CI remains pending.",
     "securedLocal": "FAIL: exact0ab3168 official Chromium1243 executable absent; zero callbacks executed and zero browser credit. Official provider/chromiumSandbox:true/NewYork context retained; no executable/download/security-policy overrides.",
-    "securedHosted": "pending",
-    "independentReview": "Initial complete-payload review identifies three pinned calendar fidelity gaps; author original test-first repairs pass30 DOM cases; fresh final-head closure review pending.",
-    "configuredReview": "pending",
-    "managerScopeAcceptance": "DT-01 proposed; additive validation stage/job accepted separately",
+    "securedHosted": "PASS actual41c hosted officialChromium1243: Source19+Original11=30 and existingdefault62+Node62, all3 launch traces retain sandbox/no --no-sandbox or --disable-setuid-sandbox, original180s deadlines retained. https://github.com/sveltery/cms/actions/runs/37142134769",
+    "independentReview": "PASS SAME independent reviewer exact41c public31-own graph/257 blobs/synthetic merge reviewed-tree identity/whole normal and secured hosted logs; zero merge approval. Documentation successor delta/current-head gates remain required.",
+    "configuredReview": "UNAVAILABLE actual41c configured reviewer usage-limit comment https://github.com/sveltery/cms/pull/77#issuecomment-5971962437; Root independently verifies standing exception. Zero configured-review pass credit; not a code finding or automatic approval rejection.",
+    "managerScopeAcceptance": "Specifically accepted supplied-value Svelte/native HTML datetime/calendar/hour-minute/period controls, retaining Source timezone and draft conversion, at exact41c https://github.com/sveltery/cms/pull/77#pullrequestreview-5402011595. Zero Source assertion credit; geometry/animation/translations/provider/persisted editor/scheduling remain incomplete.",
     "managerExactHeadApproval": "pending",
     "merge": "pending",
     "independentCloudflare": "Separate default official Cloudflare build plus23Source and7actualWorker cases pass after the failed normal run; no full-bootstrap repair or datetime-widget storage/deployment credit.",
@@ -375,7 +375,95 @@
         "sha256": "aa91261df07aeebbda4c0f625c69e493d5dd61fddc99f00513db3f14366b0a5c",
         "status": "failed official browser launch; zero callbacks"
       }
-    ]
+    ],
+    "historicalPreHostedGateBookkeeping": {
+      "normal": "PASS: one unchanged full bootstrap rerun at0ab316895ec543995075c9fb6f40dac59bfe3d78; frozen366/check0/0/services1101/Source115+types/Card23/widgets30/build/production255/Nodepackage+hosting15/Cloudflarebuild+Source23+actualWorker7 all complete, exit0. Final documentation-only extension and hosted exact-head gates remain separate.",
+      "securedLocal": "FAIL: exact0ab3168 official Chromium1243 executable absent; zero callbacks executed and zero browser credit. Official provider/chromiumSandbox:true/NewYork context retained; no executable/download/security-policy overrides.",
+      "securedHosted": "pending",
+      "independentReview": "Initial complete-payload review identifies three pinned calendar fidelity gaps; author original test-first repairs pass30 DOM cases; fresh final-head closure review pending.",
+      "configuredReview": "pending",
+      "managerScopeAcceptance": "DT-01 proposed; additive validation stage/job accepted separately",
+      "managerExactHeadApproval": "pending",
+      "merge": "pending",
+      "independentCloudflare": "Separate default official Cloudflare build plus23Source and7actualWorker cases pass after the failed normal run; no full-bootstrap repair or datetime-widget storage/deployment credit.",
+      "historicalNormal": "Failed: frozen366/check0/0/services1101/Source115+types/Card23/widget27/build/production255/Nodepackage complete; Node hosting3 isolated dependency installs terminate at unchanged120s deadlines before product callbacks; Cloudflare phases unexecuted.",
+      "firstRepairedNormal": "FAIL: first unchanged0ab3168 run passes prior phases and production254/255; one unchanged D1 fixture server startup hits EADDRINUSE127.0.0.1:45449 before its tested product callback. Node/Cloudflare phases unexecuted; zero datetime failure/causal credit. Root authorizes exactly one unchanged bootstrap rerun; no probe, code, fixture, deadline or parallelism changes.",
+      "normalRunReceipts": [
+        {
+          "head": "0ab316895ec543995075c9fb6f40dac59bfe3d78",
+          "log": "/tmp/date-time-repaired-final-bootstrap.log",
+          "bytes": 199656,
+          "sha256": "2a228365f13f429d045c67bd2368a4aea876db2c8f976721b3fdc8047c4784b4",
+          "status": "failed production fixture startup"
+        },
+        {
+          "head": "0ab316895ec543995075c9fb6f40dac59bfe3d78",
+          "log": "/tmp/date-time-repaired-final-bootstrap-rerun.log",
+          "bytes": 231625,
+          "sha256": "34651ca29d6bb41d1df6a6f806337642ef3d71a057b84ecd48d205cee88e3a52",
+          "status": "passed full unchanged bootstrap"
+        },
+        {
+          "head": "0ab316895ec543995075c9fb6f40dac59bfe3d78",
+          "log": "/tmp/date-time-repaired-final-secured-local.log",
+          "bytes": 14965,
+          "sha256": "aa91261df07aeebbda4c0f625c69e493d5dd61fddc99f00513db3f14366b0a5c",
+          "status": "failed official browser launch; zero callbacks"
+        }
+      ]
+    },
+    "integratedLocalNormalFailure": {
+      "head": "41c0ec94a8cc2da03bfd8958cd2b1de2c1cf929b",
+      "status": "FAIL",
+      "phase": "frozen dependency metadata verification366",
+      "reason": "registry HTTP503 ERR_PNPM_META_FETCH_FAIL after8m43s",
+      "productStagesExecuted": 0,
+      "normalPassCredit": 0,
+      "log": "/tmp/date-time-d524-integrated-bootstrap.log",
+      "bytes": 6547,
+      "sha256": "56ad05d70f15b19cf5d0854037e613bdfca52934bf19490995eefa952746f619"
+    },
+    "actualHostedCheckpoint": {
+      "head": "41c0ec94a8cc2da03bfd8958cd2b1de2c1cf929b",
+      "publicMain": "d524733376c286ce7c67be586f20ae16b08ec070",
+      "syntheticMerge": "fe519939641e1a5dfc591630efe77c97e9a74708",
+      "reviewedTree": "4879d976b80455592a4ca949b866e86f92e047ce",
+      "workflowRun": 37142134769,
+      "workflowUrl": "https://github.com/sveltery/cms/actions/runs/37142134769",
+      "normalJob": 111258596703,
+      "browserJob": 111258596597,
+      "normalPhaseCount": 13,
+      "sourceCases": 19,
+      "originalCases": 11,
+      "widgetBrowserCases": 30,
+      "defaultBrowserCases": 62,
+      "nodeBrowserCases": 62,
+      "chromiumBuild": 1243,
+      "sandboxedLaunches": 3,
+      "specificAcceptance": "https://github.com/sveltery/cms/pull/77#pullrequestreview-5402011595",
+      "configuredUnavailable": "https://github.com/sveltery/cms/pull/77#issuecomment-5971962437",
+      "configuredPassCredit": 0,
+      "mergeApproval": false
+    },
+    "hostedLogReceipts": [
+      {
+        "head": "41c0ec94a8cc2da03bfd8958cd2b1de2c1cf929b",
+        "job": 111258596703,
+        "log": "/tmp/date-time-pr77-validate-job.log",
+        "bytes": 339078,
+        "sha256": "11b59b48498482ca13a64281aa5c2e2e23d78cee7268f23f84a06848be1b81c1",
+        "status": "PASS"
+      },
+      {
+        "head": "41c0ec94a8cc2da03bfd8958cd2b1de2c1cf929b",
+        "job": 111258596597,
+        "log": "/tmp/date-time-pr77-browser-job.log",
+        "bytes": 163500,
+        "sha256": "549d6e8954a7761cfd94c9a86de5046999d639f1f98bd85c5bfc5138592095ce",
+        "status": "PASS"
+      }
+    ],
+    "documentationSuccessor": "Only owning documentation bookkeeping changes after qualified41c; final successor hosted CI/independent delta review/exact Root approval/author merge/post-main checks pending."
   },
   "limits": [
     "No complete Kumo/DayPicker geometry or animation parity",
