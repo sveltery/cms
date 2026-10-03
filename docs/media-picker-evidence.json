@@ -130,6 +130,22 @@
         "browserCombinedFailed": 1
       },
       "focusFailure": "Immediate141ms completed original native assertion: body activeElement instead of Edit asset; before narrow persistent-hidden-footer repair."
+    },
+    {
+      "head": "d236a6c6b5f0a96a4ab59c39a3272befb50ef08e",
+      "run": 37115342890,
+      "job": 111180979759,
+      "logSha256": "bb8d1f1c7bbd0fbc696e62ad28194d4f94003f30c8c92505701645c72e953eac",
+      "counts": {
+        "actualSupportedNativeAcceptancePassed": 7,
+        "sourcePassed": 53,
+        "sourceFailed": 0,
+        "nativeBrowserPassed": 6,
+        "nativeBackFocusCompletedAssertionFailure": 1,
+        "browserCombinedPassed": 59,
+        "browserCombinedFailed": 1
+      },
+      "focusFailure": "Immediate121ms original native body-versus-Edit-asset failure; retaining footer alone insufficient."
     }
   ],
   "pending": [
@@ -182,10 +198,12 @@
     "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
     "componentLines": "317\u2013321, 850\u2013853, 1570\u20131584",
     "wholeSourceCallbackLines": "286\u2013312",
-    "repair": "Keep native action footer mounted and hidden through details; preserve existing awaited tick/focus and all callbacks/expectations/deadlines",
+    "repair": "Retained Source-like hidden footer plus Source restore flag and native post-DOM effect; cancel restoration on reset/full close/parent close",
     "newIntentionalDifference": false,
     "genuineOriginalNativeFocusBaselineRed": 1,
     "newSourceCausalCredit": 0,
-    "currentReplay": "pending"
+    "currentReplay": "pending post-DOM restoration replay",
+    "originalFocusCallbackExpectationOrDeadlineChanges": 0,
+    "failedRetainedFooterAttemptGreenCredit": 0
   }
 }

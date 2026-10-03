@@ -1,5 +1,5 @@
 <script lang="ts">
- import {flushSync,onDestroy,tick,untrack,type Snippet} from 'svelte';
+ import {flushSync,onDestroy,untrack,type Snippet} from 'svelte';
  import MediaPickerItem from './MediaPickerItem.svelte';
  import MediaDetails from './MediaDetails.svelte';
  import {mediaPermissionsForUser} from './permissions';
@@ -19,6 +19,7 @@
  const title=$derived(providedTitle??(mediaKind==='file'?'Select file':'Select image'));
  const filters=$derived(mimeTypeFilters!==undefined?(mimeTypeFilters.length?mimeTypeFilters:undefined):(mimeTypeFilter?[mimeTypeFilter]:undefined));
  let dialog=$state<HTMLDialogElement|undefined>(),fileInput=$state<HTMLInputElement|undefined>(),editButton=$state<HTMLButtonElement|undefined>();
+ let restoreEditFocus=$state(false);
  let dismissed=$state(false),source=$state('local'),selected=$state<SelectedMedia[]>([]),pinned=$state<SelectedMedia[]>([]);
  let items=$state<MediaItem[]>([]),providerItems=$state<MediaProviderItem[]>([]),providers=$state<MediaProviderInfo[]>([]),folders=$state<MediaFolder[]>([]);
  let folderId=$state<string|undefined>(),folderName=$state('Folder'),folderCursor=$state<string|undefined>();
@@ -66,7 +67,7 @@
  },(next,count)=>{jobs=next;overflow=count;},completeUploads);
  function invalidateProbe(){probeId++;probing=false;}
  function reset(){
-  queue.reset();targets.clear();dimensionIds.clear();detected.clear();orderEdited=false;
+  restoreEditFocus=false;queue.reset();targets.clear();dimensionIds.clear();detected.clear();orderEdited=false;
   source='local';selected=[];pinned=[];items=[];providerItems=[];providers=[];folders=[];folderId=undefined;folderCursor=undefined;
   search='';activeSearch='';typeFilter='all';view='grid';page=1;total=0;imageUrl='';urlError='';error='';message='';assetItem=null;invalidateProbe();dismissed=false;
  }
@@ -77,11 +78,16 @@
    if(!nextLocalOnly&&client.fetchMediaProviders)void client.fetchMediaProviders().then(value=>{if(open&&!dismissed)providers=value;},cause=>{error=cause instanceof Error?cause.message:'Media providers could not load';});
    if(!currentUser)void fetchPickerCurrentUser().then(value=>actor=value,()=>actor=undefined);
   });
-  if(!nextOpen)untrack(()=>{queue.reset();requestId++;folderRequestId++;invalidateProbe();assetItem=null;});
+  if(!nextOpen)untrack(()=>{queue.reset();requestId++;folderRequestId++;invalidateProbe();restoreEditFocus=false;assetItem=null;});
   wasOpen=nextOpen;wasLocalOnly=nextLocalOnly;
  });
  $effect(()=>{
   if(open&&!dismissed&&dialog&&!dialog.open)dialog.showModal();
+ });
+ // Restore the retained action only after the details-to-picker DOM commit.
+ $effect(()=>{
+  if(!open||dismissed||assetItem||!restoreEditFocus)return;
+  restoreEditFocus=false;editButton?.focus({preventScroll:true});
  });
  $effect(()=>{
   const value=search.trim().slice(0,200);
@@ -183,11 +189,11 @@
   // native click; keep the unmodified Source event/expectation sequence.
   flushSync(()=>{imageUrl=value;urlError='';});
  }
- function close(){invalidateProbe();queue.reset();targets.clear();pinned=[];selected=[];assetItem=null;dismissed=true;onOpenChange(false);}
+ function close(){restoreEditFocus=false;invalidateProbe();queue.reset();targets.clear();pinned=[];selected=[];assetItem=null;dismissed=true;onOpenChange(false);}
  function confirm(){if(!selected.length||hasUnfinished)return;const values=selected.map(entry=>$state.snapshot(toItem(entry)));if(multiple)onSelectMany?.(values);else onSelect(values[0]);close();}
  function move(from:number,to:number){if(to<0||to>=selected.length)return;orderEdited=true;const next=[...selected],entry=next.splice(from,1)[0];next.splice(to,0,entry);selected=next;message=`Moved ${entry.item.filename} to position ${to+1}.`;}
  function remove(entry:SelectedMedia){orderEdited=true;selected=selected.filter(item=>item.key!==entry.key);message=`Removed ${entry.item.filename} from selection.`;}
- async function back(){assetItem=null;await tick();editButton?.focus({preventScroll:true});}
+ function back(){restoreEditFocus=true;assetItem=null;}
  function refreshed(item:MediaItem){assetItem=item;items=items.map(entry=>entry.id===item.id?item:entry);selected=selected.map(entry=>entry.providerId==='local'&&entry.item.id===item.id?{...entry,item}:entry);pinned=pinned.map(entry=>entry.providerId==='local'&&entry.item.id===item.id?{...entry,item}:entry);}
  function cropped(item:MediaItem){const entry={key:selectionKey('local',item),providerId:'local',item};pinned=appendUniqueSelections(pinned,[entry]);selected=multiple?selected.map(value=>value.item.id===assetItem?.id?entry:value):[entry];assetItem=item;}
  // The real local API returns complete native rows, including nullable fields.
