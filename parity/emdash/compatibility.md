@@ -644,3 +644,18 @@ Media route checkpoint (PR59): complete pinned route callbacks now use native tr
 ME-STARTUP (PR59): hosted normal install/source29files287/default+Node builds pass at e632, but full validation fails170 service cases. Real native provider9 CREATE-prefix descriptors disagree with SQLite's catalogue on restart. Two unchanged native descriptor assertions fail before a narrow provider9 prefix repair; canonicalization preserves strict global normalization and historical providers1–8. Actual fresh/reopen/tamper and forward-prefix7/8 Node/D1 fixtures are original integration requirements, zero source callback credit. Both secured source browser targets reach the unchanged missing Media Library heading assertion; three Upload timeouts per target are excluded. Remaining full acceptance and specific framework substitution acceptance are unrecorded. [Paired evidence and limitations](../../docs/media.md) remain authoritative.
 
 ME-UI (PR59): native SvelteKit library controls use real stored records, actual upload-URL/stream/confirm lifecycle, exact pinned SHA1 content hashing, real folder CRUD, filtering/pagination, alt/caption/focal updates and asset delivery. HTML dialogs replace the source admin UI host. Four complete source browser bodies are preserved after a qualified heading assertion red on each secured target. Passing new-head browser evidence is pending; picker/crop/replace/dark variants/optimization and complete family coverage remain incomplete. Proposed framework/UI substitution, without recorded specific parity acceptance. [Media scope and evidence](../../docs/media.md) and [original callback provenance](../../docs/media-browser-ports.json) remain paired.
+## Asynchronous local D1 fixture transport (proposed)
+
+EmDash 1.1.0 pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`,
+`packages/cloudflare/src/db/d1-dialect.ts`, remains the raw binding authority.
+The native shared test fixture replaces Miniflare's synchronous host proxy with
+`dispatchFetch` requests to actual Worker `env.DB.all/batch` operations. The
+application dialect and existing source/canonical callbacks stay unchanged.
+This is a test transport substitution, with zero additional source credit and
+no sessions/bookmarks or deployed D1 claim. A controlled execution of the actual
+Miniflare 4.20260507.1 worker reproduces a prior notification waking the next
+request; it does not prove the exact timing of the hosted auth-head failure.
+[The feature record](../../docs/d1-fixture-transport.md) separates completed native
+assertion reds, already-green parameter/rollback/restart controls, focused green
+runs and required final gates. Decision status: implementation authorized;
+specific PM acceptance and merge are pending.
