@@ -3,7 +3,9 @@
   import { resolve } from '$app/paths';
   import WorkspaceShell from '$lib/ui/WorkspaceShell.svelte';
   import EditorForm from '$lib/editor/EditorForm.svelte';
-  import { getEditorManifest, getContent } from '$lib/content.remote';
+  import DraftPreview from '$lib/ui/DraftPreview.svelte';
+  import { previewFields } from '$lib/ui/preview-fields';
+  import { getEditorManifest, getContent, updateContent, deleteContent } from '$lib/content.remote';
   import type { PageData } from './$types';
   let { data }: { data: PageData } = $props();
   const collection = $derived(page.params.collection ?? '');
@@ -26,8 +28,24 @@
   <a href={resolve('/content/[collection]', { collection })}>Collection</a>
   <h1>Draft</h1>
   {#if content}
-    {#key JSON.stringify([collection, id, locale])}
-      <EditorForm {collection} definition={content.definition} entry={content.item} {canWrite} {canTrash} />
-    {/key}
+    {#if canWrite || canTrash}
+      {#key JSON.stringify([collection, id, locale])}
+        <EditorForm {collection} definition={content.definition} entry={content.item} {canWrite} {canTrash} />
+      {/key}
+    {:else}
+      {const fields = $derived(previewFields(content.definition.fields))}
+      <form {...updateContent}>
+        <input type="hidden" name="collection" value={collection} />
+        <input type="hidden" name="id" value={content.item.id} />
+        <input type="hidden" name="_rev" value={content.item._rev} />
+        <DraftPreview {fields} values={content.item.data} />
+      </form>
+      <form {...deleteContent}>
+        <input type="hidden" name="collection" value={collection} />
+        <input type="hidden" name="id" value={content.item.id} />
+        <input type="hidden" name="_rev" value={content.item._rev} />
+        <button disabled>Move to trash</button>
+      </form>
+    {/if}
   {:else}<p role="status">Content is unavailable until authentication and storage are configured.</p>{/if}
 </WorkspaceShell>
