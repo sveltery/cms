@@ -7,7 +7,7 @@ import {uploadMedia} from '../src/lib/media/picker-client';
 
 for(const target of ['Node','D1'] as const){
  test(`${target}: the real picker client uploads a file through authenticated storage`,async()=>{
-  const h=await passkeyRuntime(target,{media:true}),browser=h.browser(),nativeFetch=globalThis.fetch;
+  const h=await passkeyRuntime(target,{media:'local'}),browser=h.browser(),nativeFetch=globalThis.fetch;
   try{
    const credential=webauthnCredential(h.origin);
    const began=await browser.post('/api/setup/admin',{email:'picker-upload@example.com',name:'Picker upload'});expect(began.status).toBe(200);
