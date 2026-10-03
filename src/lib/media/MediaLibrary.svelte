@@ -3,6 +3,7 @@
  import MediaDialog from './MediaDialog.svelte';
  import MediaDetails from './MediaDetails.svelte';
  import {mediaHref as href,mediaRequest as api,uploadMediaFile} from './client';
+ import {getMediaPreviewUrl} from './source/media-utils';
  import type {MediaItem,MediaFolder} from './types';
  let {initialItems=[],initialTotal=0,permissions=[],actorId='',onselect}: {initialItems?:MediaItem[];initialTotal?:number;permissions?:readonly string[];actorId?:string;onselect?:(item:MediaItem)=>void}=$props();
  let items=$state<MediaItem[]>(untrack(()=>initialItems)),folders=$state<MediaFolder[]>([]),total=$state(untrack(()=>initialTotal)),view=$state<'grid'|'list'>('grid');
@@ -60,7 +61,7 @@
 {#if loading}<p role="status">Loading media…</p>{/if}
 {#if !items.length&&!loading}<p>No media files found.</p>{/if}
 {#if view==='grid'}<div data-media-grid class="grid" aria-label="Media files">
- {#each items as item}<button class="card" draggable={canOrganize} ondragstart={event=>event.dataTransfer?.setData('text/plain',item.id)} onclick={()=>open(item)} aria-label={item.filename}>{#if item.mimeType.startsWith('image/')}<img src={href(item.url)} alt={item.alt??item.filename} loading="lazy" style:background={item.dominantColor??'transparent'} />{:else}<span class="file-type">{item.mimeType}</span>{/if}<span>{item.filename}</span></button>{/each}
+ {#each items as item}<button class="card" draggable={canOrganize} ondragstart={event=>event.dataTransfer?.setData('text/plain',item.id)} onclick={()=>open(item)} aria-label={item.filename}>{#if item.mimeType.startsWith('image/')}<img src={href(getMediaPreviewUrl(item.url,item.contentHash))} alt={item.alt??item.filename} loading="lazy" style:background={item.dominantColor??'transparent'} />{:else}<span class="file-type">{item.mimeType}</span>{/if}<span>{item.filename}</span></button>{/each}
 </div>{:else}<table><thead><tr><th>Name</th><th>Dimensions</th><th>Size</th><th>Created</th><th>Folder</th></tr></thead><tbody>{#each items as item}<tr><td><button onclick={()=>open(item)}>{item.filename}</button></td><td>{item.width??'—'} × {item.height??'—'}</td><td>{size(item.size)}</td><td>{new Date(item.createdAt).toLocaleDateString()}</td><td>{folders.find(folder=>folder.id===item.folderId)?.name??'Main folder'}</td></tr>{/each}</tbody></table>{/if}
 <div class="pagination"><button disabled={page===1||loading} onclick={()=>{page--;void load();}}>Previous page</button><span>Page {page} · {total} files</span><button disabled={page*50>=total||loading} onclick={()=>{page++;void load();}}>Next page</button></div>
 {#if uploadOpen}<MediaDialog label="Upload media" dismissible={!uploading} onclose={()=>uploadOpen=false}><h2>Upload media</h2><label>Browse files to upload<input type="file" multiple disabled={uploading} onchange={event=>void uploadFiles(event.currentTarget.files)} /></label><p role="status">{uploadState}</p>{#if message}<p role="alert">{message}</p>{/if}<button disabled={uploading} onclick={()=>uploadOpen=false}>Done</button></MediaDialog>{/if}
