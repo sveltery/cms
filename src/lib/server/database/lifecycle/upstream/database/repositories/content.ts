@@ -2,6 +2,7 @@
 // Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
 // Host adaptations: .ts module specifiers, CMS table namespace, erasable parameter properties.
 import { sql, type Kysely, type RawBuilder } from "kysely";
+import type { PublicationStatementExecutor } from "../../host.ts";
 import { ulid } from "ulidx";
 
 import type { ContentFieldFilterValue, ContentFieldFilters } from "../../content-list-query.ts";
@@ -2453,6 +2454,7 @@ this.datetimeContexts = datetimeContexts;
 		requireSlug = true,
 		expectedRevision?: ContentRevisionPrecondition,
 		currentTime: Date = new Date(),
+		executePublication?: PublicationStatementExecutor,
 	): Promise<ContentItem> {
 		const tableName = getTableName(type);
 		const now = currentTime.toISOString();
@@ -2500,7 +2502,7 @@ this.datetimeContexts = datetimeContexts;
 					: sql``;
 				let published = false;
 				try {
-					const result = await sql`
+					const statement = sql`
 						UPDATE ${sql.ref(tableName)}
 						SET live_revision_id = ${liveRevisionId},
 							draft_revision_id = NULL,
@@ -2518,7 +2520,10 @@ this.datetimeContexts = datetimeContexts;
 						AND ${nullableColumnMatch("draft_revision_id", existing.draftRevisionId)}
 						AND ${nullableColumnMatch("scheduled_at", existing.scheduledAt)}
 						${duePredicate}
-					`.execute(this.db);
+					`;
+					const result = executePublication
+						? await executePublication(statement, existing, existing.slug, intendedPublishedAt)
+						: await statement.execute(this.db);
 					published = (result.numAffectedRows ?? 0n) > 0n;
 				} catch (error) {
 					if (isConfirmedStatementFailure(error)) throw error;
@@ -2635,7 +2640,7 @@ this.datetimeContexts = datetimeContexts;
 				: sql``;
 			let promoted = false;
 			try {
-				const result = await sql`
+				const statement = sql`
 					UPDATE ${sql.ref(tableName)}
 					SET ${sql.join(assignments, sql`, `)}
 					WHERE id = ${id}
@@ -2653,7 +2658,10 @@ this.datetimeContexts = datetimeContexts;
 						AND _cms_revisions.collection = ${type}
 						AND _cms_revisions.entry_id = ${id}
 					)
-				`.execute(this.db);
+				`;
+				const result = executePublication
+					? await executePublication(statement, existing, intendedSlug, intendedPublishedAt)
+					: await statement.execute(this.db);
 				promoted = (result.numAffectedRows ?? 0n) > 0n;
 			} catch (error) {
 				if (isConfirmedStatementFailure(error)) throw error;
