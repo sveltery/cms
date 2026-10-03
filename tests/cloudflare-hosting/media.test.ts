@@ -8,6 +8,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { Miniflare } from 'miniflare';
 import { webauthnCredential } from '../helpers/webauthn-credential.ts';
+import { PNG_4x4 } from '../../parity/emdash/media/source-fixtures/image-fixtures.ts';
 
 test('official Worker streams, confirms and deduplicates R2 media with persisted D1 folders and metadata', { timeout: 60_000 }, async () => {
   const directory = await mkdtemp(join(tmpdir(), 'cms-worker-media-'));
@@ -30,7 +31,7 @@ test('official Worker streams, confirms and deduplicates R2 media with persisted
     const headers = new Headers(supplied);
     headers.set('origin', origin); headers.set('cf-connecting-ip', '127.0.0.1');
     if (cookies.size) headers.set('cookie', [...cookies].map(([key, value]) => `${key}=${value}`).join('; '));
-    const binary = body instanceof Uint8Array;
+    const binary = body instanceof Uint8Array || body instanceof FormData;
     if (body !== undefined && !binary) headers.set('content-type', 'application/json');
     const response = await worker.dispatchFetch(`${origin}${path}`, { method, headers,
       ...(body === undefined ? {} : { body: binary ? body : JSON.stringify(body) }) });
@@ -65,6 +66,13 @@ test('official Worker streams, confirms and deduplicates R2 media with persisted
     assert.equal(item.status, 'ready'); assert.equal(item.width, 1); assert.equal(item.height, 1);
     assert.equal(item.folderId, folder.id); assert.equal(item.authorId, actor.id);
     assert.ok(item.blurhash); assert.equal(item.dominantColor, 'rgb(255,255,255)');
+    assert.equal((await json('/api/dashboard', 'GET', undefined)).mediaCount, 1);
+    await json('/api/settings', 'POST', { logo: { mediaId: item.id, alt: 'Site logo' }, favicon: { mediaId: item.id }, seo: { defaultOgImage: { mediaId: item.id } } });
+    const initialSettings = await json('/api/settings', 'GET', undefined);
+    for (const reference of [initialSettings.logo, initialSettings.favicon, initialSettings.seo.defaultOgImage]) {
+      assert.equal(reference.url, item.url); assert.equal(reference.width, 1); assert.equal(reference.height, 1);
+      assert.equal(reference.contentType, 'image/png');
+    }
     assert.notEqual(item.storageKey, upload.storageKey);
     const bucket = await worker.getR2Bucket('CMS_MEDIA');
     const object = await bucket.get(item.storageKey);
@@ -76,18 +84,34 @@ test('official Worker streams, confirms and deduplicates R2 media with persisted
     const duplicate = await json('/api/media/upload-url', 'POST', uploadBody);
     assert.equal(duplicate.existing, true); assert.equal(duplicate.mediaId, item.id);
     await json(`/api/media/${item.id}`, 'PUT', { alt: 'Worker image', caption: 'Stored in R2', focalX: 0.25, focalY: 0.75 });
+    const replacement = new FormData(); replacement.set('file', new File([PNG_4x4], 'replacement.png', { type: 'image/png' }));
+    const replacedResponse = await request(`/api/media/${item.id}/replace`, 'POST', replacement);
+    assert.equal(replacedResponse.status, 200);
+    const replaced = (await replacedResponse.json() as { data: { item: any } }).data.item;
+    assert.equal(replaced.id, item.id); assert.equal(replaced.storageKey, item.storageKey);
+    assert.equal(replaced.width, 4); assert.equal(replaced.height, 4);
+    const replacementSettings = await json('/api/settings', 'GET', undefined);
+    for (const reference of [replacementSettings.logo, replacementSettings.favicon, replacementSettings.seo.defaultOgImage]) {
+      assert.equal(reference.url, item.url); assert.equal(reference.width, 4); assert.equal(reference.height, 4);
+    }
     await worker.dispose(); worker = start();
     const restored = (await json(`/api/media/${item.id}`, 'GET', undefined)).item;
     assert.equal(restored.alt, 'Worker image'); assert.equal(restored.focalX, 0.25); assert.equal(restored.focalY, 0.75);
+    assert.equal(restored.width, 4); assert.equal(restored.height, 4);
     assert.equal((await json('/api/media?folderId=' + folder.id + '&q=worker&mimeType=image/png&page=1&limit=1', 'GET', undefined)).totalCount, 1);
     const restartedAsset = await request(item.url);
-    assert.equal(restartedAsset.status, 200); assert.deepEqual(new Uint8Array(await restartedAsset.arrayBuffer()), png);
+    assert.equal(restartedAsset.status, 200); assert.deepEqual(new Uint8Array(await restartedAsset.arrayBuffer()), PNG_4x4);
     await json(`/api/media/folders/${folder.id}`, 'DELETE', undefined);
     assert.equal((await json(`/api/media/${item.id}`, 'GET', undefined)).item.folderId, null);
     await json(`/api/media/${item.id}`, 'DELETE', undefined);
     assert.equal(await (await worker.getR2Bucket('CMS_MEDIA')).get(item.storageKey), null);
     assert.equal((await request(item.url)).status, 404);
     assert.equal((await json('/api/media?page=1&limit=1', 'GET', undefined)).totalCount, 0);
+    assert.equal((await json('/api/dashboard', 'GET', undefined)).mediaCount, 0);
+    const orphanedSettings = await json('/api/settings', 'GET', undefined);
+    assert.deepEqual(orphanedSettings.logo, { mediaId: item.id, alt: 'Site logo' });
+    assert.deepEqual(orphanedSettings.favicon, { mediaId: item.id });
+    assert.deepEqual(orphanedSettings.seo.defaultOgImage, { mediaId: item.id });
     const database = await worker.getD1Database('CMS_DB');
     assert.equal((await database.prepare('SELECT COUNT(*) AS count FROM media').first<{ count: number }>())?.count, 0);
   } finally { await worker.dispose(); await rm(directory, { recursive: true, force: true }); }
