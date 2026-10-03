@@ -6,6 +6,7 @@ import { authSchemaStatements } from '../auth/schema.ts';
 import { pendingTrashIndexStatements } from './trash-index.ts';
 import { schemaMigration } from './schema-migrations.ts';
 import { migrationObjects, normalizeMigrationSql, type CmsMigrationProvider } from './migration-provider.ts';
+import { guardLifecycleIndexRepair, lifecycleMigration } from './lifecycle-migrations.ts';
 
 function foundationStatements(database: CmsDatabase): CompiledQuery[] {
   const db = database.db;
@@ -35,7 +36,8 @@ export const CMS_MIGRATIONS: readonly CmsMigrationProvider[] = [
     async expectedObjects(database) { return migrationObjects(await this.statements(database)); } },
   schemaMigration,
   {version:4,name:'auth-identity',async statements(database) {return authIdentitySchemaStatements(database.db);},
-    async expectedObjects(database) {return authIdentitySchemaObjects(database.db);}}
+    async expectedObjects(database) {return authIdentitySchemaObjects(database.db);}},
+  lifecycleMigration
 ];
 export const CMS_MIGRATION_VERSION = CMS_MIGRATIONS.at(-1)!.version;
 const trackingStatement = (database: CmsDatabase) =>
@@ -59,7 +61,8 @@ async function migrationState(database: CmsDatabase): Promise<number> {
     if (/no such (?:table|column):/.test(sqliteErrorMessage(cause) ?? '')) throw new CmsError('MIGRATION_REQUIRED');
     throw cause;
   }
-  const objects = new Map(rows.map(row => [row.name,row]));
+  // Trigger names occupy a separate SQLite namespace and can equal table names.
+  const objects = new Map(rows.filter(row=>row.type!=='trigger').map(row => [row.name,row]));
   const marker = objects.get('_cms_migrations');
   if (!marker || marker.type !== 'table') throw new CmsError('MIGRATION_REQUIRED');
   const versions: unknown = JSON.parse(marker.versions);
@@ -70,7 +73,16 @@ async function migrationState(database: CmsDatabase): Promise<number> {
   const expected = new Map<string,{name: string; type: string; sql: string}>();
   const owned = new Set(['_cms_migrations']);
   for (const provider of CMS_MIGRATIONS) {
-    const descriptors = await provider.expectedObjects(database);
+    // Lifecycle's dynamic content descriptors read registered fields. Validate
+    // the latest preceding metadata/auth descriptors first, so a missing or
+    // malformed prerequisite fails closed before those reads are attempted.
+    if (provider === lifecycleMigration && version >= provider.version) {
+      for (const [name,wanted] of expected) {
+        const actual=objects.get(name);
+        if (!actual || wanted.type!==actual.type || normalizeMigrationSql(wanted.sql)!==normalizeMigrationSql(actual.sql ?? '')) throw new CmsError('MIGRATION_REQUIRED');
+      }
+    }
+    const descriptors = await provider.expectedObjects(database,version);
     for (const object of descriptors) {
       owned.add(object.name);
       if (provider.version <= version) expected.set(object.name,object);
@@ -78,8 +90,10 @@ async function migrationState(database: CmsDatabase): Promise<number> {
   }
   // Intermediate rebuild objects and partially-installed future providers are
   // rejected. No DROP/repair runs against an unknown layout.
-  for (const [name,object] of objects) {
+  for (const object of rows) {
+    const name=object.name;
     if (/^_cms_.*_v[0-9]+$/.test(name) || (owned.has(name) && name !== '_cms_migrations' && !expected.has(name))) throw new CmsError('MIGRATION_REQUIRED');
+    if (object.type==='trigger') continue;
     const wanted = expected.get(name);
     if (wanted && (wanted.type !== object.type || normalizeMigrationSql(wanted.sql) !== normalizeMigrationSql(object.sql ?? ''))) throw new CmsError('MIGRATION_REQUIRED');
   }
@@ -96,9 +110,16 @@ async function migrationState(database: CmsDatabase): Promise<number> {
 async function installIndexes(database: CmsDatabase) {
   const statements = await pendingTrashIndexStatements(database);
   if (!statements.length) return;
-  try { await database.atomicBatch(statements); }
+  const guarded=await guardLifecycleIndexRepair(database,statements);
+  try { await database.atomicBatch(guarded); }
   catch (cause) {
-    if (sqliteErrorMessage(cause) === 'CHECK constraint failed: pass = 1') throw new CmsError('MIGRATION_REQUIRED');
+    if (sqliteErrorMessage(cause) === 'CHECK constraint failed: pass = 1') {
+      // An exact concurrent index installer may win this snapshot. Accept it
+      // only after revalidating the complete latest layout and every index.
+      if (await migrationState(database)===CMS_MIGRATION_VERSION&&
+        !(await pendingTrashIndexStatements(database)).length) return;
+      throw new CmsError('MIGRATION_REQUIRED');
+    }
     throw cause;
   }
 }
@@ -130,11 +151,15 @@ export async function migrateCms(database: CmsDatabase): Promise<void> {
   try { await database.atomicBatch(statements); }
   catch (cause) {
     const message = sqliteErrorMessage(cause);
-    const race = state === 0 ? message === 'table _cms_migrations already exists' : message === 'CHECK constraint failed: pass = 1';
+    const race = message === 'CHECK constraint failed: pass = 1' ||
+      (state === 0 && message === 'table _cms_migrations already exists');
     if (race) {
       const current = await migrationState(database);
       if (current === CMS_MIGRATION_VERSION) { await installIndexes(database); return; }
-      if (current === state && indexes.length) await pendingTrashIndexStatements(database);
+      if (current === state) {
+        if (indexes.length) await pendingTrashIndexStatements(database);
+        throw new CmsError('MIGRATION_REQUIRED');
+      }
     }
     throw cause;
   }
