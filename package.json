@@ -28,7 +28,8 @@
     "test:search": "vitest run --config vitest.search.config.ts",
     "test:source-ports": "vitest run --config vitest.source-ports.config.ts",
     "test:media": "vitest run --config vitest.media.config.ts",
-    "test:media:browser": "vitest run --config vitest.media-browser.config.ts"
+    "test:media:browser": "vitest run --config vitest.media-browser.config.ts",
+    "test:media:client": "vitest run --config vitest.media-client.config.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1145.0",
