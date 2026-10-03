@@ -1,6 +1,7 @@
 // EmDash 1.1.0, MIT, Copyright 2026 Cloudflare Inc.; notices/emdash-MIT.txt.
 // Source client contract; API_BASE and translation host use native SvelteKit.
-export const API_BASE = '/api';
+import { base } from '$app/paths';
+export const API_BASE = `${base}/api`;
 export function apiFetch(input: string | URL | Request, init?: RequestInit): Promise<Response> {
   const headers = new Headers(init?.headers);
   headers.set('X-EmDash-Request', '1');

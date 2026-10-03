@@ -1,5 +1,5 @@
-// Native section navigation, extracted without changing the existing behavior.
-export const sectionsHref = '/sections';
+import { base } from '$app/paths';
+export const sectionsHref = `${base}/sections`;
 export function navigateSection(slug: string): void {
-  window.location.href = `/sections/${encodeURIComponent(slug)}`;
+  window.location.href = `${base}/sections/${encodeURIComponent(slug)}`;
 }
