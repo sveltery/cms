@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { persistedRemotes } from '../helpers/persisted-remotes.ts';
+import { schemaAdminRemotes } from '../helpers/schema-admin-remotes.ts';
 
 // Original registered native transport coverage, no identity/crypto credit.
 test('registered navigation query reflects persisted metadata with actual trusted display capabilities', async () => {
@@ -38,5 +39,21 @@ test('authenticated workspace HTML includes real collection navigation before Ja
     assert.equal(new URL(collectionLink[1], 'http://cms.test/').pathname, '/content/notes');
     assert.match(html, /Your account/);
     assert.doesNotMatch(navigation, /href="\/schema"/);
+  } finally { await h.close(); }
+});
+
+test('authorized schema remote refreshes preserve the real navigation snapshot', async () => {
+  const h = await schemaAdminRemotes('Node');
+  try {
+    await h.registry.createCollection({ slug: 'articles', label: 'Articles' });
+    const before = await h.query('getSchemaCollection', 'articles');
+    const result = await h.mutate('updateSchemaCollection', {
+      collection: 'articles', version: String(before.version), updatedAt: before.updatedAt, label: 'Editorial articles'
+    });
+    assert.equal((await h.query('getSchemaCollection', 'articles')).label, 'Editorial articles');
+    const refreshes = Object.entries(result.q ?? {}).filter(([key]) => key.includes('/getWorkspaceNavigation/'));
+    assert.equal(refreshes.length, 1, 'actual single-flight display refresh');
+    const refreshed = refreshes[0][1] as { v: { collections: Record<string, { label: string }> } };
+    assert.equal(refreshed.v.collections.articles?.label, 'Editorial articles');
   } finally { await h.close(); }
 });
