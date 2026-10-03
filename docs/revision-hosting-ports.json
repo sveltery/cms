@@ -1,14 +1,16 @@
 {
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "scope": "Official installed Node package export and generated Cloudflare Worker scheduled integration for the qualified RV1 revision-only dependency",
-  "approvedMain": "95668fb45b262c5e8df63ede20d712e71ebea771",
+  "approvedMain": "3d75761fffb0c76cf5d27f32a022ce2264a169bb",
   "dependency": {
     "localHead": "dffe571f9dd77cf5d3fee6060ae7048a386eeec3",
     "tree": "a7f6e2e84cffcdf3da12eaa7fc6e2cb13352ccb6",
     "copiedWholeSourceDeclarations": 8,
     "expectExpressions": 27,
     "newDeclarationCredit": 0,
-    "ownedCheckpoint": "7a828fe"
+    "ownedCheckpoint": "7a828fe",
+    "landedPR": "https://github.com/sveltery/cms/pull/71",
+    "approvedMain": "3d75761fffb0c76cf5d27f32a022ce2264a169bb"
   },
   "inspectedAuthority": [
     {
@@ -66,8 +68,9 @@
     "id": "RV2-01",
     "source": "Pinned Astro package Worker merges official fetch with full createScheduledHandler; Node long-lived scheduler drives full SystemCleanup.",
     "native": "Official adapter-node production package provides a trusted callable maintenance export; thin generated Worker wrapper preserves official adapter fetch and adds revision-only scheduled handler with real waitUntil. No automatic Node scheduler or Worker cron trigger is installed.",
-    "decision": "Pending specific ROOT acceptance and exact-head PR approval",
-    "sourceCredit": 0
+    "decision": "Specifically accepted bounded trusted retention hosting seam; final merge approval pending",
+    "sourceCredit": 0,
+    "decisionRef": "https://github.com/sveltery/cms/pull/73#pullrequestreview-5400937394"
   },
   "incomplete": [
     "Full Node scheduler and actual cadence",
@@ -200,5 +203,36 @@
       "ROOTspecificRV2decision andexactapproval",
       "Ownexpectedheadmerge"
     ]
-  }
+  },
+  "publishedIntegration": {
+    "pr": "https://github.com/sveltery/cms/pull/73",
+    "approvedMain": "3d75761fffb0c76cf5d27f32a022ce2264a169bb",
+    "head": "7403d97403c1c91dc82e9e91592bb11fdaac6d7a",
+    "tree": "4f3aa778a13cba653c1fe07dd58f49170ba9df60",
+    "integration": "Ordinary merge preserves original fourteen TDD checkpoints and all approved main application/RV1 source and callback bytes",
+    "localNormal": {
+      "log": "/tmp/revision-hosting-integrated-normal-bootstrap.log",
+      "exitCode": 0,
+      "phases": 12,
+      "nodeCases": 15,
+      "cloudflareSourceCases": 23,
+      "actualWorkerCases": 7
+    },
+    "hosted": "https://github.com/sveltery/cms/actions/runs/37124532791",
+    "hostedNormal": "All twelve phases passed; synthetic merge tree equals published branch",
+    "securedBrowsers": {
+      "default": 61,
+      "node": 61,
+      "sandboxEnabled": true
+    },
+    "installedNode": "Both maintenance callbacks complete fresh production-only installation, persistence/restart/refusal and actual native-close assertions",
+    "historicalLimits": "Earlier frozen metadata failures and diagnostics remain historical failed or diagnostic receipts, not relabeled passes",
+    "newSourceCredit": 0,
+    "stillRequired": [
+      "Final documentation-head normal and secured checks",
+      "Independent and configured review or verified quota exception",
+      "Exact-head approval and author-owned merge"
+    ]
+  },
+  "initialApprovedMain": "95668fb45b262c5e8df63ede20d712e71ebea771"
 }
