@@ -1,0 +1,33 @@
+.cms-sw { min-inline-size: 0; color: #25354a; }
+.cms-sw *, .cms-sw *::before, .cms-sw *::after { box-sizing: border-box; }
+.cms-sw h1 { margin: 0; font-size: 1.5rem; }
+.cms-sw h2, .cms-sw h3 { margin: 0 0 .75rem; }
+.cms-sw p { margin-block: .5rem; }
+.cms-sw button, .cms-sw input, .cms-sw select, .cms-sw textarea { font: inherit; }
+.cms-sw input, .cms-sw select, .cms-sw textarea { display: block; inline-size: 100%; min-inline-size: 0; padding: .6rem; border: 1px solid #c4cedd; border-radius: .4rem; margin-block-start: .3rem; }
+.cms-sw label { display: block; margin-block: .9rem; }
+.cms-sw button { cursor: pointer; padding: .5rem .8rem; border: 1px solid #c4cedd; border-radius: .4rem; background: white; }
+.cms-sw button:disabled { cursor: default; opacity: .55; }
+.cms-sw .panel { min-inline-size: 0; border: 1px solid #d9e0eb; border-radius: .6rem; padding: 1.5rem; background: white; }
+.cms-sw .toolbar, .cms-sw .actions { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.cms-sw .toolbar { justify-content: space-between; margin-block-end: 1.5rem; }
+.cms-sw .cards { display: grid; grid-template-columns: repeat(auto-fill,minmax(min(18rem,100%),1fr)); gap: 1rem; margin-block-start: 1rem; }
+.cms-sw .muted { color: #526079; font-size: .875rem; }
+.cms-sw .editor-layout { display: grid; gap: 1.5rem; }
+.cms-sw .editor-main, .cms-sw .editor-sidebar { min-inline-size: 0; display: flex; flex-direction: column; gap: 1.5rem; }
+.cms-sw .overflow-x-auto { overflow-x: auto; }
+.cms-sw .widget-grid { display: grid; grid-template-columns: repeat(12,1fr); gap: 1.5rem; min-width: 768px; }
+.cms-sw .widget-areas { grid-column: span 8; }
+.cms-sw .widget-palette { grid-column: span 4; }
+.cms-sw .widget-area { margin-block-end: 1rem; border: 1px solid #d9e0eb; border-radius: .6rem; }
+.cms-sw .border-b { border-bottom: 1px solid #d9e0eb; padding: 1rem; display: flex; align-items: center; justify-content: space-between; }
+.cms-sw .widget-list { padding: 1rem; min-block-size: 80px; }
+.cms-sw .widget-item { border: 1px solid #d9e0eb; border-radius: .4rem; margin-block-end: .5rem; padding: .75rem; }
+.cms-sw .text-start { flex: 1; text-align: start; }
+.cms-sw .widget-form { padding: .75rem; background: #f4f6fa; margin-block-start: .75rem; }
+.cms-sw .modal-backdrop { position: fixed; inset: 0; z-index: 50; background: #10203566; display: grid; place-items: center; padding: 1rem; }
+.cms-sw .modal { background: white; border: 0; margin: auto; border-radius: .75rem; inline-size: min(48rem,100%); max-block-size: calc(100dvh - 2rem); overflow: auto; padding: 1.5rem; }
+.cms-sw .modal::backdrop { background: #10203566; }
+.cms-sw .preview { inline-size: 3rem; block-size: 3rem; object-fit: cover; border-radius: .4rem; }
+.cms-sw .block-preview { max-inline-size: 100%; block-size: auto; }
+@media (min-width: 1280px) { .cms-sw .editor-layout { grid-template-columns: minmax(0,2fr) minmax(0,1fr); } }
