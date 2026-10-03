@@ -19,7 +19,12 @@ export default defineConfig({
       if (target === resolve(frozen, 'src/lib/datetime-local')) return resolve(root, 'src/lib/ui/datetime-local.ts');
     }
   }],
-  resolve: { conditions: ['browser'] }, oxc: { jsx: { runtime: 'automatic' } },
+  resolve: { conditions: ['browser'], alias: {
+    'date-time-reference/nav': resolve(root, 'parity/emdash/date-time-widgets/calendar-reference/dist/esm/components/Nav.js'),
+    'date-time-reference/previous': resolve(root, 'parity/emdash/date-time-widgets/calendar-reference/dist/esm/components/PreviousMonthButton.js'),
+    'date-time-reference/next': resolve(root, 'parity/emdash/date-time-widgets/calendar-reference/dist/esm/components/NextMonthButton.js'),
+    'date-time-reference/context': resolve(root, 'parity/emdash/date-time-widgets/calendar-reference/dist/esm/useDayPicker.js')
+  } }, oxc: { jsx: { runtime: 'automatic' } },
   test: { environment: 'jsdom', fileParallelism: false, setupFiles: ['tests/helpers/date-time/dom-setup.ts'], include: [
     'parity/emdash/date-time-widgets/source/packages/admin/tests/components/PublishingDateTimeEditor.test.tsx',
     'parity/emdash/date-time-widgets/source/packages/admin/tests/lib/*.test.ts',
