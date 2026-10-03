@@ -190,6 +190,16 @@
       "path": "/tmp/sections-widgets-converter-whole-first-run.log",
       "sha256": "eb7af90221dbec7a43a19f94cbd0ea17837a14811b9e2f6724ad8a51263acbce",
       "bytes": 219
+    },
+    {
+      "path": "/tmp/sections-widgets-readiness-expressions-original-red.log",
+      "sha256": "aa69d494ed0d6c227694eb24be51c6ac67fe3514a8956584701732bd1d51cb74",
+      "bytes": 7099
+    },
+    {
+      "path": "/tmp/sections-widgets-readiness-expressions-original-green.log",
+      "sha256": "b87af4f8b93a6de716993301d416749e33dd619b2306cf13c7d70a33b2040857",
+      "bytes": 2529
     }
   ],
   "originalPalette": {
@@ -292,5 +302,17 @@
     "executedSourceCallbacks": 178,
     "unexecutedSourceUI": 35,
     "causalSourceReds": 0
+  },
+  "originalTimestampAndSQLiteWhitespace": {
+    "callbacks": 8,
+    "completedInitialValueReds": 8,
+    "pass": 8,
+    "existingReadinessCallbacksAlsoPass": 14,
+    "totalWholeReadinessPass": 22,
+    "testFirstCommit": "b419ca5",
+    "runtime": "actual Node SQLite and raw D1, both sections andwidgets",
+    "sourceCallbackCredit": 0,
+    "normalization": "finite pinned owned identifiers + ASCII SQLite whitespace; all other quoted tokens/literals preserved",
+    "sharedCanonicalNormalizerChanged": false
   }
 }
