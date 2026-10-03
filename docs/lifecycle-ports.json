@@ -332,7 +332,35 @@
         "bothBuilds": true,
         "log": "/tmp/cms-lifecycle-final42-bootstrap.log"
       },
-      "status": "Published draft; renewed proof required after further provider review fixes/actual approved merge; secured hosted browsers and final lifecycle review pending"
+      "status": "Published draft; renewed proof required after further provider review fixes/actual approved merge; secured hosted browsers and final lifecycle review pending",
+      "hostedCI": {
+        "run": 37070381349,
+        "head": "3c01872a1bb4d58eb8697b759c2363c4b71e6234",
+        "validation": "success",
+        "browser": "failure",
+        "defaultBrowserPassed": 52,
+        "defaultBrowserFailed": 1,
+        "failure": "tests/browser/collection-cursor.spec.ts:135 subscriber next-page denial status absent",
+        "nodeBrowserStage": "not reached",
+        "classification": "unclassified historical gate failure; no final-head eligibility"
+      }
+    },
+    "handoffAudit": {
+      "head": "3c01872a1bb4d58eb8697b759c2363c4b71e6234",
+      "command": "node --test tests/lifecycle-upstream.test.ts tests/lifecycle-normalization-upstream.test.ts tests/lifecycle-adapter-regressions.test.ts",
+      "passed": 36,
+      "failed": 0,
+      "log": "/tmp/cms-lifecycle-handoff-audit-tests.log",
+      "credit": "26 existing source declarations and10 original adapter cases; zero new source assertion credit"
+    },
+    "provenanceCheck": {
+      "command": "node scripts/check-lifecycle-source-ports.mjs /path/to/emdash",
+      "completeDeclarations": 29,
+      "copiedSourceHashes": 19,
+      "hostSubstitutions": 7,
+      "verifiedAuthorityBlobs": 34,
+      "localImplementationTransformationsChecked": false,
+      "productTestsRun": 0
     }
   },
   "adapterRegressionEvidence": {
