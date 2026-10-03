@@ -1,5 +1,21 @@
 # Current compatibility register and historical audit
 
+## Proposed forward metadata storage fidelity
+
+Source authority: EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`.
+The [feature record](../../docs/metadata-fidelity-upgrade.md) and
+[ledger](../../docs/metadata-fidelity-upgrade-ports.json) preserve exact source
+blobs, actual tests, native limits, and dependency status.
+
+| ID | Observable behavior and category | Decision/evidence |
+| --- | --- | --- |
+| META-01 | Source migration 003 fields use `ON DELETE CASCADE`; shipped native metadata uses `NO ACTION`. Provider 8 restores cascading raw collection deletion while retaining metadata rows and historical DDL. | Fidelity repair. Six initial native physical assertions failed; exact full source003/012 modules separately establish source SQLite/D1 behavior. Zero new copied declaration credit. Proposed; final review/landing pending. |
+| META-02 | Source012 adds nullable `TEXT search_config`; native metadata lacks it. Provider 8 adds the same nullable storage, without auto-enabling FTS or mapping the full search API. | Fidelity repair; search remains a dependent feature. Same original paired-source proof and native test-first evidence; proposed, final gates pending. |
+| META-03 | Native versioned metadata rebuild requires an atomic old-catalogue guard and exact view/trigger/index restoration. External child FKs reject with `MIGRATION_REQUIRED` before destructive writes. Source creates cascading fields directly and has no corresponding native historical rebuild. | Native framework/upgrade substitution; no shared upstream bug claim or parity credit. Actual Node/D1 operator, cascade-race, fault, and winner tests. Preservation qualified on prefix7; historical provider3 dependent-object composition remains unqualified. Specific acceptance not recorded; final PM decision pending. |
+
+All SF-02, C-05/C-07, source raw-type fallback issue #44, and existing native
+storage/transport decisions retain their separate scope.
+
 The default is the selected EmDash behavior on both self-hosted Node and Cloudflare. A passing scaffold build does not establish either hosting target. Keep differences visible and correct accidental divergence before widening the CMS surface.
 
 ## Current landed contracts
@@ -551,3 +567,6 @@ Search-owner fixture/recognition commits `406b63b` and `b455dbb` are preserved b
 
 
 Native 32-field ownership/backfill coverage at `40e5936` fails two genuine supplemental Node/local D1 transport-budget assertions (164 bindings versus D1's 100-query-bind maximum), normal exit1. The ownership predicate now checks complete owner/field sets and counts through one JSON binding, and whole-group name membership uses JSON bindings too. This retains all ownership/race conditions while keeping the first query below the platform bound across multiple owners; it snapshots no mutable content/auth rows or unrelated operators. Final focused owned-FTS/later-provider/recognition run passes 18/18 normally; this bounded transport regression supplies zero source assertion credit. Final real-manager cross-feature proof, normal hosted checks, configured/independent final review and approval remain pending.
+### TA-06 — setup taxonomy definitions and public collection lookup use native hosts
+
+At the immutable pin, seed/apply.ts applies taxonomy definitions/group structure before terms and content, and taxonomy `getEntriesByTerm` delegates to the full Astro query engine. The native definition-only bridge applies real rows in the required fixed-query atomic batch and exposes skip/update/error plus untouched built-in behavior to SE1. The native public taxonomy host composes real published/active content and locale-specific term translation groups through SQL. These are bounded host substitutions; full seed and full Astro query behavior remain separate incomplete scope and earn no copied source engine credit. Supplemental real Node seed checks verify replacement, repeat skip, conflict and localized structure. Proposed PR55, final independent reviews and acceptance decision remain pending.
