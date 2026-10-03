@@ -289,9 +289,11 @@ export class SchemaRegistry {
     const updatedAt = nextMetadataTimestamp(collections);
     if (expected && (expected.length !== collections.length || expected.some(snapshot => !collections.some(collection => collection.slug === snapshot.slug && collection.version === snapshot.version && collection.updatedAt === snapshot.updatedAt)))) throw new CmsError('CONFLICT');
     const token=ulid(); const db=this.database.db;
-    const checks=collections.map(collection => sql`EXISTS (SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${collection.version} AND updated_at=${collection.updatedAt})`);
+    // D1 limits bound parameters per statement. Keep each CAS check bounded,
+    // before any order write, inside the same atomic batch and guard lifetime.
+    const checks=collections.map(collection => sql`UPDATE _cms_guards SET pass = CASE WHEN EXISTS (SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${collection.version} AND updated_at=${collection.updatedAt}) THEN 1 ELSE 0 END WHERE token=${token}`.compile(db));
     await this.batch([
-      ...(expected ? [sql`INSERT INTO _cms_guards(token,pass) SELECT ${token}, CASE WHEN (SELECT COUNT(*) FROM _cms_collections)=${collections.length} ${checks.length ? sql`AND ${sql.join(checks,sql` AND `)}` : sql``} THEN 1 ELSE 0 END`.compile(db)] : []),
+      ...(expected ? [sql`INSERT INTO _cms_guards(token,pass) SELECT ${token}, CASE WHEN (SELECT COUNT(*) FROM _cms_collections)=${collections.length} THEN 1 ELSE 0 END`.compile(db), ...checks] : []),
       ...collections.map(collection => db.updateTable('_cms_collections')
       .set({sort_order:positions.get(collection.slug) ?? null, updated_at:updatedAt}).where('id','=',collection.id).compile()),
       ...(expected ? [sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)] : [])
