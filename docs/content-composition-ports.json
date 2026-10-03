@@ -537,6 +537,60 @@
         "expect(item.data.title).toBe(\"draft title\")",
         "expect(item.liveData?.title).toBe(\"published title\")"
       ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/content-misc.test.ts",
+      "blob": "6b26daf2af90ba75a063835a8fd6a513a7aea28d",
+      "line": 551,
+      "label": "content_get on a trashed item returns NOT_FOUND (not the item)",
+      "declarationSha256": "fc27e1ef20257661f4e2ecb96ac4e3514d24f91db966998eda27553f25f1ddfd",
+      "assertionExpressions": [
+        "expect(got.isError).toBe(true)",
+        "expect(extractText(got)).toMatch(/\\bNOT_FOUND\\b|\\bnot found\\b/i)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/content-misc.test.ts",
+      "blob": "6b26daf2af90ba75a063835a8fd6a513a7aea28d",
+      "line": 571,
+      "label": "content_list does NOT include trashed items by default",
+      "declarationSha256": "3ac33fad069d95de1a5ed1940f500476f22a7662e286adbe6f88a4c94bd2fe3d",
+      "assertionExpressions": [
+        "expect(ids).not.toContain(trashedId)",
+        "expect(ids).toContain(extractJson<{ item: { id: string } }>(a).item.id)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/content-misc.test.ts",
+      "blob": "6b26daf2af90ba75a063835a8fd6a513a7aea28d",
+      "line": 596,
+      "label": "content_list_trashed returns only trashed items",
+      "declarationSha256": "5453404e6a94c070db3136f908a87d6bcdd9cc9e81a16edd49743af929481498",
+      "assertionExpressions": [
+        "expect(items).toHaveLength(1)",
+        "expect(items[0]?.id).toBe(extractJson<{ item: { id: string } }>(b).item.id)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/content-misc.test.ts",
+      "blob": "6b26daf2af90ba75a063835a8fd6a513a7aea28d",
+      "line": 637,
+      "label": "content_update on a trashed item is rejected (item not visible)",
+      "declarationSha256": "036195f21a2dad13370fe43611a2cfa69f947ca4beebbd48fdcc1d61aab853e7",
+      "assertionExpressions": [
+        "expect(updated.isError).toBe(true)",
+        "expect(extractText(updated)).toMatch(/\\bNOT_FOUND\\b|\\bnot found\\b|trash/i)"
+      ]
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/content-misc.test.ts",
+      "blob": "6b26daf2af90ba75a063835a8fd6a513a7aea28d",
+      "line": 664,
+      "label": "content_publish on a trashed item is rejected",
+      "declarationSha256": "6752a3bb9de61a1150908551e5a33adddd731a7690c28056e8fefc3c69e01fa6",
+      "assertionExpressions": [
+        "expect(result.isError).toBe(true)"
+      ]
     }
   ],
   "baseline": {
@@ -547,6 +601,13 @@
     "assertionFailures": 29,
     "importOrSetupFailures": 0,
     "log": "/tmp/content-composition-source-first-red.log",
-    "note": "Product source implementations are unchanged. Core catalog totals are not expanded by this local ledger."
+    "note": "Product source implementations are unchanged. Core catalog totals are not expanded by this local ledger.",
+    "additionalSourceFamily": {
+      "declarations": 5,
+      "pass": 5,
+      "assertionFailures": 0,
+      "log": "/tmp/content-composition-mcp-trash-original-baseline.log",
+      "note": "Additional complete source trash-visibility callbacks pass already on unchanged archived product; they require no implementation change and earn no new test-first failure credit."
+    }
   }
 }
