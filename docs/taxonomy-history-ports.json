@@ -1,0 +1,40 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "state": "Test-first snapshots; not executed. Historical fixture and native integration pending.",
+  "testFiles": [
+    {
+      "source": "packages/core/tests/integration/database/taxonomy-translation-locale-migration.test.ts",
+      "target": "tests/source-taxonomy-history/packages/core/tests/integration/database/taxonomy-translation-locale-migration.test.ts",
+      "blob": "974055ffc10723206523a31ef24d5e16f6817696",
+      "sha256": "3f6844b548b4f729c656894b0356d801b58826069570870abe11e21b76f65816"
+    },
+    {
+      "source": "packages/core/tests/integration/database/taxonomy-def-groups-migration.test.ts",
+      "target": "tests/source-taxonomy-history/packages/core/tests/integration/database/taxonomy-def-groups-migration.test.ts",
+      "blob": "78d22e851a9a16403de7faa04f897739b3d5c6fe",
+      "sha256": "652c9a2b22b705b2cc79a7fd235386847609662958984bb6f346a77e91d4ff1a"
+    },
+    {
+      "source": "packages/core/tests/integration/database/content-taxonomy-entry-groups-migration.test.ts",
+      "target": "tests/source-taxonomy-history/packages/core/tests/integration/database/content-taxonomy-entry-groups-migration.test.ts",
+      "blob": "9fccc8709d5577046967349dc16771b3b64654ed",
+      "sha256": "a2dc82558c3d0732802f6498ea0c1cfb353437445fd7d59795ce769558978cfb"
+    }
+  ],
+  "sourceDeclarations": 7,
+  "evidence": [
+    {
+      "phase": "test-first snapshots",
+      "command": "vitest run --config vitest.taxonomy-history.config.ts",
+      "result": "Initial missing .svelte-kit/tsconfig.json: 3 failed suites, 0 registered tests. After svelte-kit sync: 3 missing fixture-module failures, 0 registered tests.",
+      "assertionRedCredit": 0,
+      "runtime": "Node24 installed dependencies",
+      "baseline": "b253294df51bf2ba68021e9627a592960722e34a"
+    }
+  ],
+  "limits": [
+    "Complete callbacks are preserved; test registration/fixture errors earn no assertion-red credit.",
+    "Pinned fixture execution is reference evidence, not execution of the native product.",
+    "PostgreSQL and legacy import/media engine execution remain outside this bounded fixture."
+  ]
+}
