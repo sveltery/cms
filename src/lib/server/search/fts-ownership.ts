@@ -60,8 +60,8 @@ function normalized(value: string): string {
  * The source enableSearch requires searchable fields; it does not require supports.
  * Unknown operators, malformed configs, partial groups and legacy trigger SQL fail.
  */
-export function recognizeVersionedFtsOwner(owner: FtsOwnerMetadata, objects: readonly FtsCatalogueObject[]): RecognizedFtsOwner | null {
-  if (!identifier.test(owner.slug) || !/_v[0-9]+$/.test(owner.slug) || !owner.id) return null;
+function recognizeFtsOwner(owner: FtsOwnerMetadata, objects: readonly FtsCatalogueObject[]): RecognizedFtsOwner | null {
+  if (!identifier.test(owner.slug) || !owner.id) return null;
   if (owner.searchConfig !== null) {
     let config: unknown;
     try { config = JSON.parse(owner.searchConfig); } catch { return null; }
@@ -105,4 +105,15 @@ export function recognizeVersionedFtsOwner(owner: FtsOwnerMetadata, objects: rea
     if (!actual || actual.type !== type || actual.tbl_name !== tbl_name || actual.sql === null || normalized(actual.sql) !== normalized(sql)) return null;
   }
   return {table,contentTable,owner,objects:[...objects],metadataGuard:ftsMetadataGuard([owner])};
+}
+
+export function recognizeVersionedFtsOwner(owner:FtsOwnerMetadata,objects:readonly FtsCatalogueObject[]) {
+  return /_v[0-9]+$/.test(owner.slug) ? recognizeFtsOwner(owner,objects) : null;
+}
+
+/** A legal main such as notes_v3_data can resemble another owner's shadow.
+ * Recognize only this ambiguity, with the same complete source layout checks.
+ */
+export function recognizeCompanionNamedFtsOwner(owner:FtsOwnerMetadata,objects:readonly FtsCatalogueObject[]) {
+  return /_v[0-9]+_(?:data|idx|content|docsize|config)$/.test(owner.slug) ? recognizeFtsOwner(owner,objects) : null;
 }

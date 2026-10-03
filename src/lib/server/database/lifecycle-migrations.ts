@@ -150,7 +150,8 @@ function definitions(statement:string, name:string): string[] {
 function validateTable(object:SchemaObject, fields:RegisteredField[], installed:boolean): string {
   if (object.type!=='table' || !object.sql) throw new CmsError('MIGRATION_REQUIRED');
   const columns=new Map<string,string>(); let unique=false;
-  for (const definition of definitions(object.sql,object.name)) {
+  const parsed=definitions(object.sql,object.name);
+  for (const definition of parsed) {
     const normalized=normalizeMigrationSql(definition);
     if (normalized==='UNIQUE(slug, locale)') { if (unique) throw new CmsError('MIGRATION_REQUIRED'); unique=true; continue; }
     const column=/^(?:"([a-z0-9_]+)"|([a-z0-9_]+))\s+/i.exec(definition);
@@ -182,9 +183,21 @@ function validateTable(object:SchemaObject, fields:RegisteredField[], installed:
     columns.delete(field.slug);
   }
   if (columns.size) throw new CmsError('MIGRATION_REQUIRED');
-  let upgraded=object.sql.replace(/\s+CHECK\s*\(status\s*=\s*'draft'\)/i,'');
-  if (byline===undefined) upgraded=upgraded.replace(/\bauthor_id TEXT\b/i,'author_id TEXT, primary_byline_id TEXT');
-  return upgraded;
+  // Rewrite only validated system definitions. Global text replacement can
+  // miss quoted identifiers or corrupt the same words inside a field default.
+  let changed=false;
+  const upgraded=parsed.map(definition=>{
+    const column=/^(?:"([a-z0-9_]+)"|([a-z0-9_]+))\s+/i.exec(definition);
+    const name=column?.[1]??column?.[2];
+    if (name==='status') {
+      const target=definition.replace(/\s+CHECK\s*\((?:"status"|status)\s*=\s*'draft'\)$/i,'');
+      if (target!==definition) changed=true;
+      return target;
+    }
+    if (name==='author_id' && byline===undefined) {changed=true;return definition+', primary_byline_id TEXT';}
+    return definition;
+  });
+  return changed ? object.sql.slice(0,object.sql.indexOf('(')+1)+upgraded.join(',\n')+')' : object.sql;
 }
 
 async function contentSnapshot(database:CmsDatabase, installed:boolean) {

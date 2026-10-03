@@ -24,7 +24,7 @@ async function snapshot(database:CmsDatabase) {
   }
   return {objects,tables};
 }
-async function fixture(target:'Node'|'D1',config:string|null=JSON.stringify({enabled:true})) {
+async function fixture(target:'Node'|'D1',config:string|null=JSON.stringify({enabled:true}),beforeFts?:(database:CmsDatabase)=>Promise<unknown>) {
   const storage=await schemaAdminStorage(target);const database=storage.database;
   await migrateCms(database);
   const registry=new SchemaRegistry(database);
@@ -32,6 +32,7 @@ async function fixture(target:'Node'|'D1',config:string|null=JSON.stringify({ena
   await registry.createField('notes_v3',{slug:'title',label:'Title',type:'string',searchable:true});
   await registry.createField('notes_v3',{slug:'body',label:'Body',type:'portableText',searchable:true});
   await sql`UPDATE _cms_collections SET search_config=${config} WHERE slug='notes_v3'`.execute(database.db);
+  if(beforeFts) await beforeFts(database);
   const objects=JSON.parse(readFileSync(new URL(`./fixtures/search/${target.toLowerCase()}-notes-v3-ddl.json`,import.meta.url),'utf8')) as FtsCatalogueObject[];
   // Only execute the real manager's main/trigger statements: SQLite itself
   // generates its five shadows, matching the captured Node/D1 catalogue.
@@ -139,6 +140,39 @@ for(const target of ['Node','D1'] as const) {
       }};
       await assert.doesNotReject(()=>migrateCms(subject));assert.equal(batches,1);
       await migrateCms(database);
+    } finally {await storage.close();}
+  });
+  for(const racing of [false,true]) test(`${target}: every orphan version-suffix companion rejects ${racing?'batch races':'preflight'}`,async()=>{
+    const objects=[...['_data','_idx','_content','_docsize','_config'].map(suffix=>({suffix,type:'table'})),
+      ...['_insert','_update','_delete'].map(suffix=>({suffix,type:'trigger'}))];
+    for(const object of objects) for(const uppercase of [false,true]) {
+      const storage=await fixture(target);const database=storage.database;
+      try {
+        await database.atomicBatch([sql`DROP TABLE ${sql.id(table)}`.compile(database.db),
+          ...['_insert','_update','_delete'].map(suffix=>sql`DROP TRIGGER ${sql.id(table+suffix)}`.compile(database.db))]);
+        const name=uppercase?(table+object.suffix).toUpperCase():table+object.suffix;
+        const introduce=()=>object.type==='table' ? sql`CREATE TABLE ${sql.id(name)}(retained TEXT)`.execute(database.db)
+          :sql`CREATE TRIGGER ${sql.id(name)} AFTER INSERT ON ec_notes_v3 BEGIN SELECT 1; END`.execute(database.db);
+        let before:unknown,batches=0;
+        if(racing) await sql`DROP INDEX idx_ec_notes_v3_deleted_status`.execute(database.db);
+        else {await introduce();before=await snapshot(database);}
+        const subject={...database,async atomicBatch(statements:Parameters<CmsDatabase['atomicBatch']>[0]) {
+          batches++;if(racing){await introduce();before=await snapshot(database);}return database.atomicBatch(statements);
+        }};
+        await assert.rejects(()=>migrateCms(subject),{code:'MIGRATION_REQUIRED'});
+        assert.equal(batches,racing?1:0);assert.deepEqual(await snapshot(database),before);
+      } finally {await storage.close();}
+    }
+  });
+  test(`${target}: separate namespace companion lookalikes remain ordinary operators`,async()=>{
+    // SQLite reserves shadow names after virtual-table creation; a separate
+    // trigger namespace lookalike can genuinely predate that creation.
+    const storage=await fixture(target,JSON.stringify({enabled:true}),database=>sql`CREATE TRIGGER _cms_fts_notes_v3_data AFTER INSERT ON ec_notes_v3 BEGIN SELECT 1; END`.execute(database.db));
+    const database=storage.database;
+    try {
+      await sql`CREATE TABLE _cms_fts_notes_v3_insert(retained TEXT)`.execute(database.db);
+      const before=await snapshot(database);await assert.doesNotReject(()=>migrateCms(database));
+      assert.deepEqual(await snapshot(database),before);
     } finally {await storage.close();}
   });
 }
