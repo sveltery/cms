@@ -452,6 +452,15 @@
       "gitBlob": "4f140c77a1dca951defb43fd1a114e838b6f691f",
       "kind": "authority",
       "execution": "not-run"
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "path": "parity/emdash/menu-source/upstream/packages/core/tests/unit/object-cache.test.ts",
+      "bytes": 22758,
+      "sha256": "ddea56e9ccc8cd024e7813a4a5e22b4588c50d8a3af6adcef1248aded03f56b1",
+      "gitBlob": "166a5e4023e6c51e8222119eea66ca3131ef2aa8",
+      "kind": "whole-test",
+      "execution": "not-run"
     }
   ],
   "declarations": [
@@ -883,7 +892,7 @@
     {
       "source": "packages/admin/tests/components/MenuEditor.test.tsx",
       "line": 164,
-      "title": "up/down reorder buttons \u2014 first item up disabled, last item down disabled",
+      "title": "up/down reorder buttons — first item up disabled, last item down disabled",
       "sha256": "fbc661503125e8d3c6e6b6fdc726396367532c14a084c84f9a4fec97052cb1cf",
       "expectations": [
         {
@@ -3972,8 +3981,583 @@
           "sha256": "95185ad74c1c3216d6287926f0c5f2b1d0fe4b96a1ae4ae634b4296a720c8f17"
         }
       ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 54,
+      "title": "round-trips primitives, arrays, and nested objects",
+      "sha256": "a2bcedc97da9123921c37ce09a8c070dfd4ff71de07cb9a23f666316d8bf0bcf",
+      "expectations": [
+        {
+          "line": 56,
+          "expression": "expect(decode(encode(value))).toEqual(value)",
+          "sha256": "95f9612071dfea24c17907a923c12d9b98fd252fa665034402cd60bbd26f9bba"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 59,
+      "title": "preserves Date instances",
+      "sha256": "1b6c22369f33779e72e72936caefc74a979d0e5b64c3ad4f9c6cfea6f95939ec",
+      "expectations": [
+        {
+          "line": 62,
+          "expression": "expect(decoded.createdAt).toBeInstanceOf(Date)",
+          "sha256": "a3418370209e7a5c2851754e2a8e10b9f95d94bb84b97a614238e62d3d6dccbb"
+        },
+        {
+          "line": 63,
+          "expression": "expect(decoded.createdAt.toISOString()).toBe(\"2024-01-02T03:04:05.678Z\")",
+          "sha256": "dc57456f5d52bddafc02a98a473683ed1b8f58dc0ac76cbb427344c0f0b70473"
+        },
+        {
+          "line": 64,
+          "expression": "expect(decoded.nested.d).toBeInstanceOf(Date)",
+          "sha256": "3d8399ab1bece1cd721a8344297de3d5f602a351577a69841e8342009b7078f1"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 67,
+      "title": "drops functions and symbol-keyed properties (not JSON-representable)",
+      "sha256": "7bcc8025a54027485f9afa34f4006cd1703f96ae31abcf7687c789c87b1a661b",
+      "expectations": [
+        {
+          "line": 72,
+          "expression": "expect(decoded).toEqual({ keep: 1 })",
+          "sha256": "aa7be1b082fcc78591c2e529d7d488c4c9f2fe133cf6d338a6d1fbb61dfa44e7"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 75,
+      "title": "returns undefined for malformed input (treated as a miss)",
+      "sha256": "6d9413dfaa1eca8a3bcb1005a704cdbd697a3f9ac994661eb5bf09aa15b4176c",
+      "expectations": [
+        {
+          "line": 76,
+          "expression": "expect(decode(\"not json{\")).toBeUndefined()",
+          "sha256": "440f7b55cbc15b569398520c21345d94ad2fc4aa8b80981704d9db838c84f13c"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 79,
+      "title": "does not collapse a multi-key user object that carries the date tag",
+      "sha256": "81d5e5860d37cb43ba30f02c72d07cf2e571702c8247e0bdecbe2de21b3ed3fa",
+      "expectations": [
+        {
+          "line": 81,
+          "expression": "expect(decode(encode(value))).toEqual(value)",
+          "sha256": "95f9612071dfea24c17907a923c12d9b98fd252fa665034402cd60bbd26f9bba"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 86,
+      "title": "stores and retrieves values",
+      "sha256": "db7beabb6a0f86b7b3e1f3ca5bbf5f5bad7f31a4736e9e1b7ec43e79870dd3e5",
+      "expectations": [
+        {
+          "line": 89,
+          "expression": "expect(await cache.get(\"k\")).toBe(\"v\")",
+          "sha256": "118d03ff4458fa751781e8180ae550b852a5758a5e233378adb720d6eb912c8d"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 92,
+      "title": "returns null after delete",
+      "sha256": "82ca105433a49ac2872626473feaf1faead8c52a17c3a1bbbf1ae70b510a0e40",
+      "expectations": [
+        {
+          "line": 96,
+          "expression": "expect(await cache.get(\"k\")).toBeNull()",
+          "sha256": "985509df283ec978f0f9e984190a26e4109393a6bf08d650c3785e6476044628"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 99,
+      "title": "expires entries past their TTL",
+      "sha256": "ebd8ac29f10c9c08d2ca0be6342d0d320c0ff311d0211792d46d300a16b4fb32",
+      "expectations": [
+        {
+          "line": 102,
+          "expression": "expect(await cache.get(\"k\")).toBe(\"v\")",
+          "sha256": "118d03ff4458fa751781e8180ae550b852a5758a5e233378adb720d6eb912c8d"
+        },
+        {
+          "line": 104,
+          "expression": "expect(await cache.get(\"k\")).toBeNull()",
+          "sha256": "985509df283ec978f0f9e984190a26e4109393a6bf08d650c3785e6476044628"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 117,
+      "title": "passes through to load when no backend is configured",
+      "sha256": "ce0d88fcc8ea59bc08d9a4ff52a770fad6e3144ace21a8fc35ef335a95bc82ca",
+      "expectations": [
+        {
+          "line": 121,
+          "expression": "expect(result).toEqual({ n: 1 })",
+          "sha256": "4375cf4043b09504feb14c7014af8a6f0ea2f29a20bf9c2d243f596811830b16"
+        },
+        {
+          "line": 122,
+          "expression": "expect(load).toHaveBeenCalledTimes(1)",
+          "sha256": "e34b58c39299c2672fce68de456591d9bfb0ee59e83ad65d535263a775251626"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 125,
+      "title": "loads from the database while a route-cache response is being filled",
+      "sha256": "e46b0187ab63e446805b9938c9d2f846d8fe9a70648ba90c58116f2612083e27",
+      "expectations": [
+        {
+          "line": 135,
+          "expression": "expect(result).toEqual({ title: \"After publish\" })",
+          "sha256": "4c4c866f91bf5883ce9affc770e09362195f884f8049a717e4ad9ce1de911710"
+        },
+        {
+          "line": 136,
+          "expression": "expect(freshLoad).toHaveBeenCalledTimes(1)",
+          "sha256": "183356dabc4f9d708c0861ab64140e026baef8e3e56737d3db6a94004d6f36d9"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 139,
+      "title": "serves the second call from cache without calling load",
+      "sha256": "26744abc66fa6f3cd700817372a97d20759a2e77e53a687433da2eefd554040c",
+      "expectations": [
+        {
+          "line": 144,
+          "expression": "expect(second).toEqual(first)",
+          "sha256": "e06bf5c9375c0f03531339e550d2634f6abd06544dd249c6aa5574941b76dc40"
+        },
+        {
+          "line": 145,
+          "expression": "expect(load).toHaveBeenCalledTimes(1)",
+          "sha256": "e34b58c39299c2672fce68de456591d9bfb0ee59e83ad65d535263a775251626"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 148,
+      "title": "preserves Date values through the cache round-trip",
+      "sha256": "dd45542decac85df6805df21ebca0bcdb3cda38b1fb69489f1e47ccfc530728f",
+      "expectations": [
+        {
+          "line": 153,
+          "expression": "expect(hit.when).toBeInstanceOf(Date)",
+          "sha256": "6c4d73bd8f3fbe755c154ccb4e94285f8fbde0a3e482b6b9dd9f024879551578"
+        },
+        {
+          "line": 154,
+          "expression": "expect(hit.when.toISOString()).toBe(\"2025-06-01T00:00:00.000Z\")",
+          "sha256": "701106dc3039df963ce920f2c9d809cd0f94b0cf110ab743e0471c0cae9cc233"
+        },
+        {
+          "line": 155,
+          "expression": "expect(load).toHaveBeenCalledTimes(1)",
+          "sha256": "e34b58c39299c2672fce68de456591d9bfb0ee59e83ad65d535263a775251626"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 158,
+      "title": "does not cache values rejected by `cacheable`",
+      "sha256": "730e24cb1a1b5b4ca066e149511ad1efdf8af3b3ff88291b847fa1bfbb5b60bc",
+      "expectations": [
+        {
+          "line": 163,
+          "expression": "expect(load).toHaveBeenCalledTimes(2)",
+          "sha256": "1c6b21dfce8616cc16054c43e2be21e0a37bc5237b6031e8a445e5e1abb8aad6"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 166,
+      "title": "bypasses the cache in edit mode",
+      "sha256": "730d86f038b6814301640fcfadc169154d19496b836a29dc351299bf141ab016",
+      "expectations": [
+        {
+          "line": 172,
+          "expression": "expect(load).toHaveBeenCalledTimes(2)",
+          "sha256": "1c6b21dfce8616cc16054c43e2be21e0a37bc5237b6031e8a445e5e1abb8aad6"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 175,
+      "title": "bypasses the cache for preview requests",
+      "sha256": "03236454c35f8bb76fa703353a07b1e17e9eed662ee531956039fd7ec6aed6e7",
+      "expectations": [
+        {
+          "line": 184,
+          "expression": "expect(load).toHaveBeenCalledTimes(2)",
+          "sha256": "1c6b21dfce8616cc16054c43e2be21e0a37bc5237b6031e8a445e5e1abb8aad6"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 187,
+      "title": "reloads after the namespace is invalidated",
+      "sha256": "7af0e0cdf6910bfde98c4fca82d71df9e1ca77c2621ee922301771a8b1672448",
+      "expectations": [
+        {
+          "line": 192,
+          "expression": "expect(load).toHaveBeenCalledTimes(1)",
+          "sha256": "e34b58c39299c2672fce68de456591d9bfb0ee59e83ad65d535263a775251626"
+        },
+        {
+          "line": 198,
+          "expression": "expect(load).toHaveBeenCalledTimes(2)",
+          "sha256": "1c6b21dfce8616cc16054c43e2be21e0a37bc5237b6031e8a445e5e1abb8aad6"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 201,
+      "title": "invalidates when any namespace in a multi-namespace key is bumped",
+      "sha256": "0126f24bd17decba3b0dc83c052ec3f9f08d6bd6dd1ff0e044b5f12aa9dc0b57",
+      "expectations": [
+        {
+          "line": 207,
+          "expression": "expect(load).toHaveBeenCalledTimes(1)",
+          "sha256": "e34b58c39299c2672fce68de456591d9bfb0ee59e83ad65d535263a775251626"
+        },
+        {
+          "line": 214,
+          "expression": "expect(load).toHaveBeenCalledTimes(2)",
+          "sha256": "1c6b21dfce8616cc16054c43e2be21e0a37bc5237b6031e8a445e5e1abb8aad6"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 217,
+      "title": "does not let a stale in-flight epoch read clobber a concurrent invalidation",
+      "sha256": "3ded99f0df57db0f244cbb18d568931095ec67ba49c9dc542a7bcb9ed275fc13",
+      "expectations": [
+        {
+          "line": 265,
+          "expression": "expect(inflightResult).not.toEqual(primed)",
+          "sha256": "54e0f4dcc676c5494f565e6c7c497b2eb61c6ae71a3f8d85b5c10243ffb98fc6"
+        },
+        {
+          "line": 266,
+          "expression": "expect(load).toHaveBeenCalledTimes(2)",
+          "sha256": "1c6b21dfce8616cc16054c43e2be21e0a37bc5237b6031e8a445e5e1abb8aad6"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 269,
+      "title": "captures epochs before load even when the value read fails",
+      "sha256": "dcdaf07c8f2c12f2444ccce6124282a6d12f41a5521d624a2e340b84aa042116",
+      "expectations": [
+        {
+          "line": 323,
+          "expression": "expect(second).not.toEqual(first)",
+          "sha256": "b6874bd538f5385e6c981f984068a0b68d08c7c84c23f4d8545994de0b5d509c"
+        },
+        {
+          "line": 324,
+          "expression": "expect(load).toHaveBeenCalledTimes(2)",
+          "sha256": "1c6b21dfce8616cc16054c43e2be21e0a37bc5237b6031e8a445e5e1abb8aad6"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 327,
+      "title": "treats a backend read error as a miss without throwing",
+      "sha256": "ff131adc382637fd0b0892bb71c8d41847dfc54d309a5daf01e730e58b97328a",
+      "expectations": [
+        {
+          "line": 333,
+          "expression": "expect(result).toEqual({ n: 1 })",
+          "sha256": "4375cf4043b09504feb14c7014af8a6f0ea2f29a20bf9c2d243f596811830b16"
+        },
+        {
+          "line": 334,
+          "expression": "expect(load).toHaveBeenCalledTimes(1)",
+          "sha256": "e34b58c39299c2672fce68de456591d9bfb0ee59e83ad65d535263a775251626"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 337,
+      "title": "does not hang when a backend read never settles — times out to a miss",
+      "sha256": "377cbcbf73f55ac19f2f6043ab1d69f672fa1a3db777a49c197a03e965e68ce0",
+      "expectations": [
+        {
+          "line": 346,
+          "expression": "expect(result).toEqual({ n: 1 })",
+          "sha256": "4375cf4043b09504feb14c7014af8a6f0ea2f29a20bf9c2d243f596811830b16"
+        },
+        {
+          "line": 347,
+          "expression": "expect(load).toHaveBeenCalledTimes(1)",
+          "sha256": "e34b58c39299c2672fce68de456591d9bfb0ee59e83ad65d535263a775251626"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 350,
+      "title": "reclaims an epoch read whose owner was cancelled and never settles",
+      "sha256": "b42e62549fbad392c746a2ca802dde6008d06408653314b07aada6489bc50063",
+      "expectations": [
+        {
+          "line": 387,
+          "expression": "expect(cachedQuery({ namespace: \"posts\", key: \"k\", load })).resolves.toEqual({\n\t\t\tn: 1,\n\t\t})",
+          "sha256": "eb3e4282f095142e0cd43b4e22b19a10b2898854bcb458f2cfb6e67c87df0b51"
+        },
+        {
+          "line": 390,
+          "expression": "expect(load).toHaveBeenCalledTimes(1)",
+          "sha256": "e34b58c39299c2672fce68de456591d9bfb0ee59e83ad65d535263a775251626"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 394,
+      "title": "bounds a waiter on a foreign in-flight epoch read with its own timer",
+      "sha256": "58448c9968e9b670134800a955b1d0ceea5008409ebc5aadb806cfeae2071526",
+      "expectations": [
+        {
+          "line": 431,
+          "expression": "expect(cachedQuery({ namespace: \"posts\", key: \"k\", load })).resolves.toEqual({\n\t\t\tn: 1,\n\t\t})",
+          "sha256": "eb3e4282f095142e0cd43b4e22b19a10b2898854bcb458f2cfb6e67c87df0b51"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 437,
+      "title": "self-heals after a stalled read instead of poisoning the namespace",
+      "sha256": "46f2d6ccf46f10760784d58941b572e87e7ad1a9283f13d6a6c494a776973a6d",
+      "expectations": [
+        {
+          "line": 459,
+          "expression": "expect(cachedQuery({ namespace: \"posts\", key: \"k\", load })).resolves.toEqual({ n: 1 })",
+          "sha256": "c56ab2741120e565165d5ba9a0158bb92bb16c34004a367c71224429bad79641"
+        },
+        {
+          "line": 470,
+          "expression": "expect(load.mock.calls.length).toBe(calls)",
+          "sha256": "0faaf74ffd6166d9aae7096a59e10731413051814488bf8adafffba71def900c"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 473,
+      "title": "reclaims a dead backend initialization after its deadline",
+      "sha256": "2af3e0f9ff31fdafafb7e918abb7f292dc9d4c0aacf38475f8e3fa0a3287ab3f",
+      "expectations": [
+        {
+          "line": 481,
+          "expression": "expect(\n\t\t\t\twithTestDeadline(cachedQuery({ namespace: \"t\", key: \"k\", load })),\n\t\t\t).resolves.toEqual({ n: 1 })",
+          "sha256": "66e213f7a1909ac994bfa6ba9ca98b0eddbe803d1a82d07d428a953a141bc605"
+        },
+        {
+          "line": 484,
+          "expression": "expect(load).toHaveBeenCalledTimes(1)",
+          "sha256": "e34b58c39299c2672fce68de456591d9bfb0ee59e83ad65d535263a775251626"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 491,
+      "title": "bounds a waiter on another request's backend initialization",
+      "sha256": "c1a48bcd186602824ad81b382933703f61497fd334e62cd914ad7c681d937582",
+      "expectations": [
+        {
+          "line": 498,
+          "expression": "expect(\n\t\t\t\twithTestDeadline(cachedQuery({ namespace: \"t\", key: \"k\", load })),\n\t\t\t).resolves.toEqual({ n: 1 })",
+          "sha256": "66e213f7a1909ac994bfa6ba9ca98b0eddbe803d1a82d07d428a953a141bc605"
+        },
+        {
+          "line": 501,
+          "expression": "expect(load).toHaveBeenCalledTimes(1)",
+          "sha256": "e34b58c39299c2672fce68de456591d9bfb0ee59e83ad65d535263a775251626"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 514,
+      "title": "writes the latest held epoch once when the work throws",
+      "sha256": "be34fe7d923b529f69ce9b87f215e90d5af5b9997e11cb08ce6fb453324f1913",
+      "expectations": [
+        {
+          "line": 519,
+          "expression": "expect(\n\t\t\tcoalesceObjectCacheWrites(async () => {\n\t\t\t\tnow.mockReturnValue(1_000);\n\t\t\t\tinvalidateObjectCache(\"posts\");\n\t\t\t\tawait flush();\n\t\t\t\tnow.mockReturnValue(2_000);\n\t\t\t\tinvalidateObjectCache(\"posts\");\n\t\t\t\tthrow new Error(\"seed failed\");\n\t\t\t}),\n\t\t).rejects.toThrow(\"seed failed\")",
+          "sha256": "275ad74fec5ae72c4ec84782c473f17daf23b43c462e82937ac7f1904f888ea3"
+        },
+        {
+          "line": 534,
+          "expression": "expect(epochWrites).toEqual([[\"em:epoch:posts\", \"2000\"]])",
+          "sha256": "3d4372587cd57ecefb7a51c1a3a75e1380e77e319b2ec99be8e22cd0558b5b52"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 537,
+      "title": "writes through invalidations made after the work has ended",
+      "sha256": "62ab37688d949635b47b78685bc90722f05790958cbff0262ca7251f702e54f9",
+      "expectations": [
+        {
+          "line": 553,
+          "expression": "expect(backend.store.has(\"em:epoch:menus\")).toBe(true)",
+          "sha256": "e122ad98945da1dd80b67af4e1f5baf3117770b4d2eafb0e92dcb81e015b05eb"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 565,
+      "title": "stamps lastContentWriteAt when invalidating a content: namespace",
+      "sha256": "314ebab2ea547835471463174ddb875f81501a7c606e2b5d46ad53e3abfd5776",
+      "expectations": [
+        {
+          "line": 566,
+          "expression": "expect(await getLastContentWriteAt()).toBe(0)",
+          "sha256": "1431ed0fce2b654557608de7dff9384f66c54f69b4091bec2227b22e8ca45210"
+        },
+        {
+          "line": 570,
+          "expression": "expect(local).toBeGreaterThanOrEqual(before)",
+          "sha256": "e9106612866cffd2552e6b9d5a3b303c4d50c704d6068d640fb36b060bab67a4"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 574,
+      "title": "stamps via invalidateCollectionCache",
+      "sha256": "5d85a7052436e089cd12448a42380943f2a358d4a8d6d1afe1e498fc762b504c",
+      "expectations": [
+        {
+          "line": 576,
+          "expression": "expect(await getLastContentWriteAt()).toBeGreaterThan(0)",
+          "sha256": "4bc86719e9a79c0b0f1628925781dd0aba53205a3481442eac4fb42ad21a50b4"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 579,
+      "title": "does not stamp on non-content namespaces",
+      "sha256": "1e09c0546bc5f716c545c054c21d70d0cc2c45957127284afb9c043a0227780e",
+      "expectations": [
+        {
+          "line": 586,
+          "expression": "expect(await getLastContentWriteAt()).toBe(0)",
+          "sha256": "1431ed0fce2b654557608de7dff9384f66c54f69b4091bec2227b22e8ca45210"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 589,
+      "title": "persists the stamp to the backend under a stable key",
+      "sha256": "de068f045db6c4cee1eba81bb247469e5332ab69d90f2a3a8e15b3f93104fb86",
+      "expectations": [
+        {
+          "line": 596,
+          "expression": "expect(setKeys).toContain(\"em:last-content-write-at\")",
+          "sha256": "5aa4554a59c40a257017049beb80dfc5088b092292de9eb2f7ee0be12f717740"
+        },
+        {
+          "line": 597,
+          "expression": "expect(backend.store.get(\"em:last-content-write-at\")).toBe(String(local))",
+          "sha256": "b9610d255aa737372e413361e6f44612637f53a2f5613e074cc068a20745b7ea"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 600,
+      "title": "caches a confirmed zero marker within the revalidate window",
+      "sha256": "1ca3cc0de93fb539cd56dc1efa183db01ceccea4a90a8a1bbbb3f98d04d74efc",
+      "expectations": [
+        {
+          "line": 603,
+          "expression": "expect(await getLastContentWriteAt()).toBe(0)",
+          "sha256": "1431ed0fce2b654557608de7dff9384f66c54f69b4091bec2227b22e8ca45210"
+        },
+        {
+          "line": 604,
+          "expression": "expect(backend.get).toHaveBeenCalledTimes(1)",
+          "sha256": "65bcfc372ff33cbbeeec1ea22f88d48c564f884105d2d56a8186e14140336baf"
+        },
+        {
+          "line": 605,
+          "expression": "expect(await getLastContentWriteAt()).toBe(0)",
+          "sha256": "1431ed0fce2b654557608de7dff9384f66c54f69b4091bec2227b22e8ca45210"
+        },
+        {
+          "line": 606,
+          "expression": "expect(backend.get).toHaveBeenCalledTimes(1)",
+          "sha256": "65bcfc372ff33cbbeeec1ea22f88d48c564f884105d2d56a8186e14140336baf"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 609,
+      "title": "merges a fresher backend stamp on cold isolate read",
+      "sha256": "bde0b48372ad8c812f570878236acaca214e115043eb30bdf134b3c2172af6cf",
+      "expectations": [
+        {
+          "line": 614,
+          "expression": "expect(got).toBe(1_700_000_000_000)",
+          "sha256": "7748ba624f76e723c5fa47583f007323c16c679aa53c2088fe0e8dac66c804ec"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache.test.ts",
+      "line": 617,
+      "title": "does not let a stale backend read lower a fresher local stamp",
+      "sha256": "ecc25e4c21202790910010af0ce280cc1e1a0321635f15f0f04af7582aa94b9d",
+      "expectations": [
+        {
+          "line": 623,
+          "expression": "expect(local).toBeGreaterThan(100)",
+          "sha256": "bd2799fa8c15bb07300036e150d67536f98301012cb7f1c9cb157ca991c6bcd6"
+        }
+      ]
     }
   ],
-  "testDeclarations": 169,
-  "expectExpressions": 436
+  "testDeclarations": 204,
+  "expectExpressions": 495
 }
