@@ -146,7 +146,7 @@
               aria-current={sameDay(today(), day) ? 'date' : undefined}
               class:selected={sameDay(date, day)} disabled={blocked(day)}
               tabindex={sameDay(focusTarget, day) ? 0 : -1}
-              onclick={() => selectDay(day)} onfocus={() => { focusedDay = day; }} onkeydown={event => calendarKey(event, day)}>{day.getDate()}</button>
+              onclick={event => { event.preventDefault(); event.stopPropagation(); selectDay(day); }} onfocus={() => { focusedDay = day; }} onkeydown={event => calendarKey(event, day)}>{day.getDate()}</button>
           </td>
         {/each}</tr>
       {/each}</tbody>
