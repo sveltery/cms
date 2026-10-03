@@ -39,6 +39,17 @@ test('native field settings explicitly retain metadata without JavaScript', () =
   assert.deepEqual(value,{collection:'posts',field:'title'});
 });
 
+test('native keep modes ignore abandoned malformed JSON settings', () => {
+  const input={collection:'posts',field:'title',defaultValueMode:'keep',defaultValueJson:'abandoned text',validationMode:'keep',validationJson:'{invalid',optionsMode:'keep',optionsJson:'not JSON'};
+  const result=v.safeParse(fieldMetadataFormInput,input);
+  assert.equal(result.success,true,'unselected JSON settings are not replacements');
+  if(result.success) assert.deepEqual(convertFieldMetadata(result.output),{collection:'posts',field:'title'});
+  for(const property of ['defaultValue','validation','options']) {
+    const selected=v.safeParse(fieldMetadataFormInput,{collection:'posts',field:'title',[property+'Mode']:'set',[property+'Json']:'not JSON'});
+    assert.equal(selected.success,false,'selected JSON must be valid');
+  }
+});
+
 test('native addition preserves explicitly non-translatable fields', () => {
   const result = v.safeParse(addFieldInput,{collection:'posts',expectedSchemaVersion:'1',slug:'code',label:'Code',type:'string',translatable:'false'});
   assert.equal(result.success,true,'native false is accepted');
