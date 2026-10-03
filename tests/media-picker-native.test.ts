@@ -35,5 +35,5 @@ it('offers an inline file chooser that obeys the image MIME filter',async()=>{
  await picker();
  const input=document.querySelector('input[type="file"]');
  expect(input).toBeInstanceOf(HTMLInputElement);
- expect((input as HTMLInputElement).accept).toBe('image/');
+ expect((input as HTMLInputElement).accept).toBe('image/*');
 });
