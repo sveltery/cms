@@ -72,6 +72,37 @@ export async function remoteBoundaries(t: TestContext, base: string, ids: Map<st
       assert.equal(parse(result.data)._.result, undefined);
     }
   });
+  await t.test('all five expanded schema exports deny valid anonymous native and enhanced writes before storage access', async () => {
+    const revision = { version: '1', updatedAt: '2026-10-02T00:00:00.000Z' };
+    const cases: Array<[string, Record<string, string>, string, string]> = [
+      ['updateSchemaFieldMetadata', { collection: 'post', field: 'headline', id: 'post/headline' }, 'field', ''],
+      ['reorderSchemaCollections', { slugs: '["post"]', expected: '[{"slug":"post","version":1,"updatedAt":"2026-10-02T00:00:00.000Z"}]' }, 'slugs', '{invalid'],
+      ['reorderSchemaFields', { collection: 'post', id: 'post', fields: '["headline"]', ...revision }, 'collection', ''],
+      ['deleteSchemaField', { collection: 'post', field: 'headline', id: 'post/headline', ...revision }, 'field', ''],
+      ['deleteSchemaCollection', { collection: 'post', id: 'post', ...revision }, 'collection', '']
+    ];
+    for (const [name, valid, field, invalidValue] of cases) {
+      denied(await call(name, valid));
+      const invalid = await call(name, { ...valid, [field]: invalidValue });
+      assert.equal(invalid.type, 'result', `${name}: native validation envelope`);
+      const parsed = parse(invalid.data)._;
+      assert.ok(parsed.issues.length, `${name}: rejected shape has issues`);
+      assert.ok(parsed.issues.some((issue: { path: string[] }) => issue.path[0] === field));
+      assert.equal(parsed.result, undefined);
+      const claims = await call(name, { ...valid, principal: 'admin', permissions: 'schema:manage' });
+      assert.equal(claims.type, 'result');
+      assert.ok(parse(claims.data)._.issues.length);
+      assert.equal(parse(claims.data)._.result, undefined);
+      const action = new URL('schema/post', base);
+      action.searchParams.set('/remote', ids.get(name)!);
+      const native = await fetch(action, { method: 'POST', headers: { origin, accept: 'text/html' },
+        body: new URLSearchParams(valid), signal: AbortSignal.timeout(10_000) });
+      assert.equal(native.status, 401, `${name}: valid anonymous native form fails before unconfigured storage`);
+      const html = await native.text();
+      assert.match(html, /unauthenticated/);
+      assert.doesNotMatch(html, /SQLITE_|D1_ERROR|\.sqlite|registry\.ts|cms-session|SVELTERY_/);
+    }
+  });
   await t.test('query schemas reject invalid collection-qualified arguments before authorization', async () => {
     for (const id of [1, '', 'x'.repeat(129)]) {
       const result = await call('getContent', undefined, { collection: 'post', id });
