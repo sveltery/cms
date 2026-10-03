@@ -447,10 +447,11 @@
       "sourcePath": "packages/core/src/utils/hash.ts",
       "blob": "93db9df4a2b88692d5772fa5e32d309d7f23fab8",
       "sourceSha256": "7245086a4e29bb0a82852cb63f477ba3ced6d89ab6bee8cbe9f716561e5eced3",
-      "productPath": "src/lib/server/media/source/utils/hash.ts",
+      "productPath": "src/lib/media/hash.ts",
       "transformations": [
         "runtime relative .js imports become .ts",
-        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged"
+        "system table namespace _emdash_ becomes _cms_; endpoint paths unchanged",
+        "Exact pure module moved to shared client/server location; original server path is a native re-export bridge"
       ],
       "productSha256": "ff727bb78ce438d31d20d266535884ee5a31a704ef82a8afc9add40a51c8f507"
     },
