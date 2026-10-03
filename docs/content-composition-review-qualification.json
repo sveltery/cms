@@ -522,5 +522,422 @@
     "Including-trash fallback qualifies complete Runtime/API domain methods, not a public trash route",
     "No SEO/bylines/bound references/cache/plugin/authmiddleware/subscriber policy/signed-auth/deployedD1 qualification"
   ],
-  "finalHeadGates": "Pending new unchanged normal/secured/configured and independent closure; no PM merge approval"
+  "finalHeadGates": "Pending new unchanged normal/secured/configured and independent closure; no PM merge approval",
+  "slugOnlyUpdateRepair": {
+    "reviewedBaseline": "e786f5af83c0ec5f2034d38e5d3b0f62ec84c213",
+    "configuredThread": "PRRT_kwDOU3hVUc6olMwq",
+    "testFirst": "7162e59a4d7adc41b1c7529ff286bf0823e66e09",
+    "queryTypingOnly": "50ef9c8",
+    "repair": "8f6272932f805a97d7d4fa693dd91ba31477a020",
+    "nativeRed": {
+      "service": {
+        "pass": 2,
+        "assertionFailures": 2,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "registeredHTTP": {
+        "pass": 2,
+        "assertionFailures": 2,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    },
+    "alreadyGreenControls": "Explicit data:{} already stages _slug on both Node and actual Worker D1, at domain and registered persisted-principal HTTP boundaries. These four controls earn no red credit.",
+    "fixtureTyping": "50ef9c8 replaces dynamic-table query-builder typing with raw SQL; same rows and unchanged expected values. Zero additional red credit.",
+    "focusedGreen": {
+      "sourceAndService": 74,
+      "registeredHTTP": 11,
+      "checkerErrors": 0,
+      "checkerWarnings": 0,
+      "defaultBuild": "pass"
+    },
+    "sourceQualification": {
+      "script": "scripts/reproduce-content-composition-slug-update-upstream.mjs",
+      "scriptSHA256": "3cae8e0209af46edb2d4980dd85a8f0084d24df01c74de42139b04eebc68ae06",
+      "beforeRepairExit": 0,
+      "beforeRepairObservation": {
+        "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "target": "Node SQLite",
+        "observations": [
+          {
+            "body": {
+              "slug": "absent-data-new"
+            },
+            "responseStatus": 200,
+            "before": {
+              "slug": "absent-data-live",
+              "version": 2,
+              "liveRevisionId": "01M40CFMR0HS62AEDBQTJ19HKM",
+              "draftRevisionId": null,
+              "revisionRows": 1
+            },
+            "after": {
+              "slug": "absent-data-new",
+              "version": 3,
+              "liveRevisionId": "01M40CFMR0HS62AEDBQTJ19HKM",
+              "draftRevisionId": null,
+              "revisionRows": 1,
+              "stagedSlug": null
+            },
+            "versionDelta": 1,
+            "historyDelta": 0,
+            "liveDataUnchanged": true,
+            "priorHistoryUnchanged": true
+          },
+          {
+            "body": {
+              "data": {},
+              "slug": "explicit-empty-data-new"
+            },
+            "responseStatus": 200,
+            "before": {
+              "slug": "explicit-empty-data-live",
+              "version": 2,
+              "liveRevisionId": "01M40CFMRFDBMZGTK50FVM0JFW",
+              "draftRevisionId": null,
+              "revisionRows": 1
+            },
+            "after": {
+              "slug": "explicit-empty-data-live",
+              "version": 3,
+              "liveRevisionId": "01M40CFMRFDBMZGTK50FVM0JFW",
+              "draftRevisionId": "01M40CFMRQ0DDFVPHATDZ8SFYP",
+              "revisionRows": 2,
+              "stagedSlug": "explicit-empty-data-new"
+            },
+            "versionDelta": 1,
+            "historyDelta": 1,
+            "liveDataUnchanged": true,
+            "priorHistoryUnchanged": true
+          }
+        ],
+        "completePublicPut": 1,
+        "completeRuntimeGet": 1,
+        "completeRuntimeUpdate": 1,
+        "completeRuntimeHydration": 1,
+        "completeApiGet": 1,
+        "completeApiUpdate": 1,
+        "completeRepositories": [
+          "content",
+          "revision"
+        ],
+        "completeDecoder": true,
+        "completeUpdateSchema": true,
+        "newSourceTestCredit": 0,
+        "scope": "scalar title, real persisted source-created/source-published separate entries, unchanged Source optional revision behavior; namespace-only table remapping, explicit native schema registry and scalar guards; original redirect helper early-refuses on real sibling old slug; no successful redirect, localization, authentication middleware, entry locks, plugins/hooks, SEO/bylines, references, cache, settings, scheduling, Source D1 or public native API parity credit"
+      },
+      "authorities": [
+        {
+          "path": "packages/core/src/database/repositories/content.ts",
+          "blob": "29dab9decf9af0d9fb21b464dc185ed48ab958ea"
+        },
+        {
+          "path": "packages/core/src/content/known-fields.ts",
+          "blob": "8fcc3c9a45bad4a664459a0ae753bbb1699bddfd"
+        },
+        {
+          "path": "packages/core/src/datetime-normalization.ts",
+          "blob": "eb31fb99e2d1e41c6001c5aec3ae49d82e39c345"
+        },
+        {
+          "path": "packages/core/src/search/match.ts",
+          "blob": "e97c6611f3cc943857bbac75d1a3a9bc56ee26f1"
+        },
+        {
+          "path": "packages/core/src/utils/chunks.ts",
+          "blob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e"
+        },
+        {
+          "path": "packages/core/src/utils/db-errors.ts",
+          "blob": "d0a051ad9d48003eeeeb38dd9d5cb7cedf4140e5"
+        },
+        {
+          "path": "packages/core/src/utils/slugify.ts",
+          "blob": "9872f3b9d2905dc1b4cd010347eed375ddeadf47"
+        },
+        {
+          "path": "packages/core/src/database/content-datetime.ts",
+          "blob": "06be050e17d7760ae1df2073632845ba15e034c2"
+        },
+        {
+          "path": "packages/core/src/utils/url.ts",
+          "blob": "5ea627417b29212beeb178863f7b2f4989f90d58"
+        },
+        {
+          "path": "packages/core/src/database/repositories/types.ts",
+          "blob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7"
+        },
+        {
+          "path": "packages/core/src/utils/base64.ts",
+          "blob": "9dae6dade270b1c1291b21c8a90adc73f5dab294"
+        },
+        {
+          "path": "packages/core/src/database/dialect-helpers.ts",
+          "blob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24"
+        },
+        {
+          "path": "packages/core/src/database/validate.ts",
+          "blob": "73d3b303764b473d4238e0cb17f1a904998671f8"
+        },
+        {
+          "path": "packages/core/src/database/transaction.ts",
+          "blob": "69bf167998a2fa9cc228c3612a69c8fde5ed85fe"
+        },
+        {
+          "path": "packages/core/src/database/repositories/revision.ts",
+          "blob": "e1fa0f08bf3affdb97367bea2261ef2fc6feb45f"
+        },
+        {
+          "path": "packages/core/src/database/types.ts",
+          "blob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7"
+        },
+        {
+          "path": "packages/core/src/content-list-query.ts",
+          "blob": "075fbabc173e1eac9c04edcaab98939c9fef271c"
+        },
+        {
+          "path": "packages/admin/src/slugify.ts",
+          "blob": "19bee0f0f9eb2017c4014cfa482f51dfac0cada1"
+        },
+        {
+          "path": "packages/core/src/api/rev.ts",
+          "blob": "388a727d6138f5cb41b706d67aef6520fbeeb43a"
+        },
+        {
+          "path": "packages/core/src/schema/types.ts",
+          "blob": "0c2f44156cff829951c52b0dd259fc5ff45bc554"
+        },
+        {
+          "path": "packages/core/src/schema/zod-generator.ts",
+          "blob": "550d4918258aa52a0d0f272b69061c76e79d86ee"
+        },
+        {
+          "path": "packages/core/src/utils/hash.ts",
+          "blob": "93db9df4a2b88692d5772fa5e32d309d7f23fab8"
+        },
+        {
+          "path": "packages/core/src/api/handlers/validation.ts",
+          "blob": "a9e40d310098e2329e166614fa10fcea1b53c84d"
+        },
+        {
+          "path": "packages/core/src/request-cache.ts",
+          "blob": "ab8f007b22ce601219ca1270d487342338de8634"
+        },
+        {
+          "path": "packages/core/src/api/schemas/content.ts",
+          "blob": "9ab0e9f9d3c6b49d5b1eb3e49ce1094a55c6e8db"
+        },
+        {
+          "path": "packages/core/src/api/schemas/common.ts",
+          "blob": "ba9be767aa9a2c564f3ebfd2c4106ad904324c59"
+        },
+        {
+          "path": "packages/core/src/api/schemas/bylines.ts",
+          "blob": "0fcc2357ac0bd0442e92e0d2d6df18666f835ded"
+        },
+        {
+          "path": "packages/core/src/api/schemas/relations.ts",
+          "blob": "8cf8101bc3c4f24232572d9ec05528f6d4847999"
+        },
+        {
+          "path": "packages/core/src/i18n/config.ts",
+          "blob": "fe714e5ad514485fe1737585c663e470d50519df"
+        },
+        {
+          "path": "packages/core/src/api/parse.ts",
+          "blob": "46b250ce60d82f37fc30d006f3e8ed166c2227b0"
+        },
+        {
+          "path": "packages/core/src/api/error.ts",
+          "blob": "cac556e93bb76d42e7a36353cd045ce22638f3ef"
+        },
+        {
+          "path": "packages/core/src/api/errors.ts",
+          "blob": "2e99070d97edc14d2797795e13cc82636a0cf500"
+        },
+        {
+          "path": "packages/core/src/api/authorize.ts",
+          "blob": "5d1858d3403c921e2becbc8b358cff714420c36a"
+        },
+        {
+          "path": "packages/core/src/transfer/errors.ts",
+          "blob": "7d4d9abc0989ff3ea80e7ef41177b39a829e4bf0"
+        },
+        {
+          "path": "packages/auth/src/rbac.ts",
+          "blob": "55eda9bdfd9aa92b3d40ba45ebda6daa00d20dbb"
+        },
+        {
+          "path": "packages/auth/src/types.ts",
+          "blob": "e5fc2ec92b399079aca96f08621b3d042a41fb15"
+        },
+        {
+          "path": "packages/core/src/astro/routes/api/content/[collection]/[id].ts",
+          "blob": "39cddb51f6bc6123573c0a159165940f4f587e83"
+        },
+        {
+          "path": "packages/core/src/astro/routes/api/content/[collection]/[id]/unpublish.ts",
+          "blob": "09e46501cae8e0064528e5d20f389d0da06b1723"
+        },
+        {
+          "path": "packages/core/src/astro/routes/api/content/[collection]/[id]/publish.ts",
+          "blob": "0bd3a39dc0c66479f9cb0d4694efc55076b188b6"
+        },
+        {
+          "path": "packages/core/src/database/repositories/options.ts",
+          "blob": "d4f630ca0e24721dc25bed0189699daceccdb8ae"
+        },
+        {
+          "path": "packages/core/src/plugins/conditional-storage.ts",
+          "blob": "00345a5232ee8c06e050f72a6b3c34555053f33f"
+        },
+        {
+          "path": "packages/core/src/plugins/content-policy.ts",
+          "blob": "b93f2c98a1bce55efb0ec79dc66e7800f26757b4"
+        },
+        {
+          "path": "packages/core/src/references/staged.ts",
+          "blob": "a025145de7e59b0c92924394a97f05dd1ce32895"
+        },
+        {
+          "path": "packages/auth/src/tokens.ts",
+          "blob": "c96ef3c7ad026bfd31117f2db2ce0378d570dc4f"
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702"
+        },
+        {
+          "path": "packages/core/src/cleanup.ts",
+          "blob": "21d6eabd50e690faac77865746c2c3b3c4c7ab44"
+        }
+      ],
+      "authorityCount": 47,
+      "completeDeclarationFingerprints": [
+        {
+          "path": "packages/core/src/astro/routes/api/content/[collection]/[id].ts",
+          "name": "PUT",
+          "sha256": "8543fc08cb460d55fdb67357b73405f1005ec6a6db14c165e9407cddeccfca50",
+          "characters": 3079
+        },
+        {
+          "path": "packages/core/src/api/parse.ts",
+          "name": "parseBody",
+          "sha256": "ced9129b6f5145c9de8ef8a002573edf75b1b26eca4e90ffc5c3101088f5d1af",
+          "characters": 591
+        },
+        {
+          "path": "packages/core/src/api/schemas/content.ts",
+          "name": "contentUpdateBody",
+          "sha256": "430f8d4d05783c095c7cc2b6580128f97e97b3dcd4061fc5548dc7540313f634",
+          "characters": 1261
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "name": "handleContentGet",
+          "sha256": "6e849ac71ee10eeaa896378dbf63db153dc8d4df127c66166785281e57b578e1",
+          "characters": 267
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "name": "handleContentUpdate",
+          "sha256": "410b3a77cba1dd687f103a8aa85d3a290011e4716a0b7a26ea90512225bacfed",
+          "characters": 13916
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "name": "hydrateDraftData",
+          "sha256": "851ddbe45bee1dee7efac400b497e07a888dc489aa25d9315c7bc4c540787fb6",
+          "characters": 2669
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "name": "normalizeFieldValues",
+          "sha256": "846b7c85ca35de2da1cb60231a2a6a87a27ec4497aedf6799e855de61df2510d",
+          "characters": 5228
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "name": "dropUnknownKeysAlreadyStored",
+          "sha256": "2f613b09e34717560b76fccb24c6199470b5be1995df7cdaac47cda04b823423",
+          "characters": 734
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "name": "DRAFT_ONLY_UPDATE_KEYS",
+          "sha256": "f842433cd22c92d67196b00ca0f7642b1138e98ef6af93831938d16da6348a31",
+          "characters": 151
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "name": "ARRAY_FIELD_TYPES",
+          "sha256": "83c105366a9ae1cbfa0efeec67d3acb9552de4d7f2ea62e41582dbc98c91385e",
+          "characters": 87
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "name": "MAX_DRAFT_STAGE_ATTEMPTS",
+          "sha256": "ee1b300eb11592d582ddde0233ce48cccb18022cab2390cffc9f4118f72d9a3d",
+          "characters": 36
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "name": "handleContentGet",
+          "sha256": "a418414e21e252cb5c33314ffeb5bb5bc29f103c7f43b2986f1b06caadd960af",
+          "characters": 1297
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "name": "handleContentUpdate",
+          "sha256": "9df8af53862e7651c94b4ab6f9c203b72ba3a49130a0284fb11dec9d35ea3b21",
+          "characters": 8170
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "name": "decodeRevisionPrecondition",
+          "sha256": "721ce65b5bd0084ce59e960c8a17c9cad849f47cc284c221db44d87b732a3843",
+          "characters": 295
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "name": "resolveId",
+          "sha256": "163df2aab347154dc347b12b2aeae325e72103457aeb56fd16165eee1b43aabd",
+          "characters": 296
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "name": "slugStillTaken",
+          "sha256": "d49593a7148b77dd0af4a57e55dba67db768a2099387cf8660fe37bdad36a778",
+          "characters": 407
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "name": "createSlugChangeRedirect",
+          "sha256": "702a704bbc91a7c649dcf83bcb4617d50ff92653c038ac6516c696de618ec205",
+          "characters": 1234
+        },
+        {
+          "path": "packages/core/src/database/repositories/content.ts",
+          "name": "ContentRepository",
+          "sha256": "1697530ba6cb98e5b11de3296564932c1589d1132d7e0bccb71d254b76cfbacf",
+          "characters": 95442
+        },
+        {
+          "path": "packages/core/src/database/repositories/revision.ts",
+          "name": "RevisionRepository",
+          "sha256": "c17552050b41f4480bd4118d4c94fefa79dfe89bfa5f39f47006fa88254ee6b5",
+          "characters": 9580
+        }
+      ],
+      "scope": "scalar title, real persisted source-created/source-published separate entries, unchanged Source optional revision behavior; namespace-only table remapping, explicit native schema registry and scalar guards; original redirect helper early-refuses on real sibling old slug; no successful redirect, localization, authentication middleware, entry locks, plugins/hooks, SEO/bylines, references, cache, settings, scheduling, Source D1 or public native API parity credit",
+      "additionalCopiedSourceCredit": 0
+    },
+    "preserve": "Native required CAS, strict bounded JSON/slug validation, explicit empty-data staging, create defaults, legacy updateDraftInput required data and approved canonical/lifecycle/auth bytes.",
+    "finalApproval": "Not granted; repaired-head normal/secured/configured/independent gates and root exact-head approval remain required."
+  }
 }
