@@ -35,9 +35,17 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
   return {...repository().mapRow(type,row),data};
  }
  async function hydrate(item:ContentItem):Promise<DraftEntry>{
-  if(!item.draftRevisionId)return entry(item);const revision=await revisions().findById(item.draftRevisionId);if(!revision)return entry(item);
-  const draftData=Object.fromEntries(Object.entries(revision.data).filter(([key])=>!key.startsWith('_')));
-  return entry({...item,data:{...item.data,...draftData},liveData:item.data});
+  const stored=entry(item);if(!item.draftRevisionId)return stored;
+  try{
+   const revision=await revisions().findById(item.draftRevisionId);if(!revision)return stored;
+   const draftData=Object.fromEntries(Object.entries(revision.data).filter(([key])=>!key.startsWith('_')));
+   return {...stored,data:{...item.data,...draftData},liveData:item.data};
+  }catch(cause){
+   // Pinned EmDashRuntime.hydrateDraftData uses this non-strict read fallback.
+   // Base-row/schema lookup and locale validation remain outside this catch.
+   console.error('[emdash] draft hydration failed:',cause);
+   return stored;
+  }
  }
  function summary(item:ContentItem,titleField='title'):DraftSummary{
   const {data,liveData,...value}=entry(item);const title=data[titleField];return{...value,title:typeof title==='string'?title.slice(0,200):null};
