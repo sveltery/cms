@@ -1,2 +1,3 @@
 import { defineConfig } from 'vitest/config';
-export default defineConfig({ test: { include: ['tests/source-search/*.test.ts'], fileParallelism: false, maxWorkers: 1 } });
+import {svelte} from '@sveltejs/vite-plugin-svelte';
+export default defineConfig({ plugins:[svelte()], test: { include: ['tests/source-search/*.test.ts'], fileParallelism: false, maxWorkers: 1 } });
