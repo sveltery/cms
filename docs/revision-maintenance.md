@@ -1,0 +1,33 @@
+# Global queued revision maintenance
+
+The bounded global revision coordinator consumes the oldest ten queued entries across all collections, ordered by their queued revision IDs. It retains the latest 50 eligible revisions per entry, protects live and draft pointers, and acknowledges only the exact queue snapshot it processed. A failed entry stays queued while later entries in that batch continue. A newer queued write survives acknowledgement and waits for a later run.
+
+This ports the complete `pruneQueuedRevisions` subfunction from EmDash 1.1.0 at `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, `packages/core/src/cleanup.ts`, blob `21d6eabd50e690faac77865746c2c3b3c4c7ab44`. Its body changes only the physical `_emdash_revision_prune_queue` namespace to `_cms_revision_prune_queue`; existing approved revision repository and providers 1–5 remain unchanged. MIT attribution is retained in copied files and [the existing notice](../notices/emdash-MIT.txt). Full system cleanup and cron registration are unfinished.
+
+## Trusted host entry
+
+`runRevisionMaintenance` in [the server-only host module](../src/lib/server/maintenance/runtime.ts) takes an operator-owned storage configuration. Node uses `{ kind: 'sqlite', path: '/absolute/path/cms.sqlite' }`; Worker hosts use `{ kind: 'd1', binding: env.CMS_DB }`. The function opens that storage, validates canonical startup, consumes one global batch, and closes its owned adapter. Its result has only `revisionsPruned`; a revision subsystem failure returns `-1`, following the pinned cleanup boundary. Invalid host configuration and startup failures propagate. No absent cleanup subsystem returns a fabricated successful result.
+
+Worker owners can merge `createRevisionMaintenanceScheduledHandler().scheduled` into their own scheduled entry. The wrapper reads the trusted `CMS_DB` binding and passes its real promise to `ctx.waitUntil`. An alternate binding name is an explicit host option. This implements no anonymous route and installs no cron. The existing request-lifetime per-entry cleanup remains unchanged. RV1-01 records this native host substitution; specific PM acceptance and final PR approval remain pending.
+
+## Test-first evidence
+
+Eight complete pinned callbacks retain all 27 `expect` expressions, titles and callback bodies. Six come from `packages/core/tests/unit/cleanup.test.ts`; two come from `packages/core/tests/unit/database/repositories/revision-pruning.test.ts`. Their IDs were absent from approved main's lifecycle execution ledger. Cleanup tests project only the complete revision subfunction, with no successful mocks for unrelated cleanup jobs. Repository reference tests execute the complete original revision repository, with namespace/erasable-constructor/import hosts and the previously bounded UTC datetime dependency.
+
+Before implementation, the complete reference functions pass 10 source executions: six Node cleanup cases and two repository callbacks each on Node and real local Worker D1. Existing product repositories pass seven controls, earning zero causal red credit. Fourteen original native requirements fail on completed missing-interface assertions before product modules exist. The three copied Source coordinator calls fail because the operation is unavailable; these earn zero Source assertion-level red credit. An initial missing snapshot-plugin fixture produces four `ReferenceError` failures, also zero behavior credit. Test-only commits `c8fd7b0`, `783f790`, `8216374` and `6d3f3f4` precede implementation `e1483a3`.
+
+At `875253c`, the unchanged behavior bodies pass 34/34 focused cases: 10 product Source executions, 10 reference executions and 14 original native requirements. Actual Node and D1 storage verify cross-collection oldest-ten selection, retention, protected pointers, conditional acknowledgement, real SQL-trigger failure continuation/retry and persistent reopen. An actual bundled workerd scheduled event forwards one real `waitUntil` promise and preserves 55→50 pruning across restart. Initial Worker dependency/module-root errors and an incorrectly dispatched local trigger are retained as host failures, zero product regression credit. Miniflare's documented handler-trigger option is enabled only in the unpublished test harness; it adds no product route or deployment proof.
+
+The provenance guard is a separate original metadata check, earning zero copied Source or product behavior credit. Run it against the immutable clone to verify the four authority blobs, complete snapshot plugin, original repository and complete callbacks:
+
+```sh
+node scripts/check-revision-maintenance-source-ports.mjs /path/to/pinned-emdash
+node --test tests/revision-maintenance*.test.ts
+PATH=/path/to/pnpm-12.6/bin:$PATH sh scripts/bootstrap.sh
+```
+
+The [ports ledger](revision-maintenance-ports.json) records exact IDs, hashes, logs and limitations. Focused checks do not establish a full normal gate. The complete normal bootstrap passed with actual exit0 on code head `7ada02e22bba68effae4c4491616bd0787e26395`: checker0/0, 997 service cases, 34 auth Source cases plus type assertions, 236 production cases, 13 isolated Node hosting cases, 23 Cloudflare Source cases and four official Worker cases, with all eleven phases completed. The unchanged refactored behavior plus provenance guard passes 35/35 focused cases on that head. This receipt-only documentation commit adds zero Source or product behavior credit. Secured hosted default/Node browser gates, configured review, fresh independent review, explicit PM approval and author-owned merge remain pending. Public source-derived audit permission is also pending; this work has no published ref or PR yet.
+
+## Remaining scope
+
+Challenge, token, pending-media/upload-attempt, media-usage, 404-log and transfer-staging cleanup remain outside this module. Plugin cron, scheduling content publication, editing locks, locales, the complete Source scheduler and deployed hosting remain unfinished. The local event test proves the scoped native module in workerd. The official CMS Worker does not automatically register this handler, and the existing isolated Node package does not include the source maintenance module. Operators can call it in their own source-host integration; automatic official artifact integration and deployed hosting remain future work.
