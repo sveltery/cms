@@ -6,11 +6,11 @@
  import type {SearchResult} from '$lib/search/types.ts';
  let {manifest,role}:{manifest:CommandPaletteManifest;role:number}=$props();
  let open=$state(false),query=$state(''),pending=$state(false),results=$state<SearchResult[]>([]),focused=$state(0);
- let input=$state<HTMLInputElement>();let timer:ReturnType<typeof setTimeout>|undefined;let controller:AbortController|undefined;
+ let input=$state<HTMLInputElement>(),dialog=$state<HTMLElement>();let invoker:HTMLElement|undefined;let timer:ReturnType<typeof setTimeout>|undefined;let controller:AbortController|undefined;
  const nav=$derived(filterNavItems(buildNavItems(manifest,role,value=>value),query,value=>value));
  const items=$derived([...nav.map(item=>({id:item.id,title:item.title,to:item.to.replace(/\$(\w+)/g,(_whole,key)=>item.params?.[key]??''),description:'Navigation'})),...results.map(item=>({id:`content-${item.collection}-${item.id}`,title:item.title??item.slug??item.id,to:`/content/${item.collection}/${item.id}`,description:manifest.collections[item.collection]?.label??item.collection}))]);
- async function show(){open=true;query='';results=[];focused=0;await tick();input?.focus();}
- function close(){open=false;clearTimeout(timer);controller?.abort();pending=false;}
+ async function show(){invoker=document.activeElement instanceof HTMLElement?document.activeElement:undefined;open=true;query='';results=[];focused=0;await tick();input?.focus();}
+ function close(){open=false;clearTimeout(timer);controller?.abort();pending=false;if(invoker?.isConnected)invoker.focus();}
  async function navigate(path:string){close();await goto(base+path);}
  function search(){
   clearTimeout(timer);controller?.abort();results=[];focused=0;
@@ -29,6 +29,12 @@
  function keyboard(event:KeyboardEvent){
   if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==='k'){event.preventDefault();if(open)close();else void show();return;}
   if(!open)return;
+  if(event.key==='Tab'){
+   const controls=dialog?.querySelectorAll<HTMLElement>('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex="0"]');
+   const first=controls?.[0],last=controls?.[controls.length-1];
+   if(event.shiftKey&&document.activeElement===first){event.preventDefault();last?.focus();}
+   else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus();}
+  }
   if(event.key==='Escape'){event.preventDefault();close();}
   if(event.key==='ArrowDown'){event.preventDefault();focused=Math.min(focused+1,items.length-1);}
   if(event.key==='ArrowUp'){event.preventDefault();focused=Math.max(focused-1,0);}
@@ -38,7 +44,7 @@
 <svelte:window onkeydown={keyboard}/>
 {#if open}
  <div class="shade" role="presentation" onclick={event=>{if(event.target===event.currentTarget)close();}}>
-  <div role="dialog" aria-modal="true" aria-label="Search and navigation" tabindex="-1">
+  <div bind:this={dialog} role="dialog" aria-modal="true" aria-label="Search and navigation" tabindex="-1">
    <input bind:this={input} bind:value={query} oninput={search} placeholder="Search pages and content..." aria-label="Search pages and content" aria-controls="command-results" aria-activedescendant={items[focused]?.id} autocomplete="off"/>
    <div id="command-results" role="listbox" aria-label="Search results">
     {#each items as item,index (item.id)}

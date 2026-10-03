@@ -4,7 +4,7 @@ import {test,expect} from '../helpers/search-browser-fixture.ts';
 
 test('public source widget searches actual published content and renders safe links',async({page,serverInfo})=>{
  await page.goto(serverInfo.baseUrl+'/search');
- const input=page.getByRole('searchbox',{name:'Search...'});
+ const input=page.getByRole('searchbox',{name:'Search published content...'});
  await input.fill('First');
  const result=page.locator('.emdash-live-search-results-list a').filter({hasText:'First Post'});
  await expect(result).toBeVisible();
