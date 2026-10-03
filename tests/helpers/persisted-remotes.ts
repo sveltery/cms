@@ -24,7 +24,7 @@ export const sessions: Record<string, ServerPrincipal> = {
 };
 
 /** Isolated built-server test hook. This file is never imported by app source. */
-export async function persistedRemotes(config?: { persistedSessions: true; mutationsEnabled?: boolean }) {
+export async function persistedRemotes(config?: { persistedSessions: true; mutationsEnabled?: boolean; keepAlive?: (task:Promise<void>)=>void }) {
   let mutationsEnabled = config?.persistedSessions ? config.mutationsEnabled === true : true;
   const directory = await mkdtemp(join(tmpdir(), 'cms-remotes-'));
   const path = join(directory, 'content.sqlite');
@@ -58,7 +58,7 @@ export async function persistedRemotes(config?: { persistedSessions: true; mutat
     for (const name of Object.keys(exports)) ids.set(name, `${hash}/${name}`);
   }
   const originalHandle = options.hooks.handle;
-  const handle: Handle = config?.persistedSessions ? createCmsHandle(() => ({ database, mutationsEnabled })) : ({ event, resolve }) => {
+  const handle: Handle = config?.persistedSessions ? createCmsHandle(() => ({ database, mutationsEnabled, keepAlive:config.keepAlive })) : ({ event, resolve }) => {
     const sid = event.cookies.get('cms-test-session');
     // Opaque cookie -> trusted server session. No role/permission/header claims.
     const principal = sid ? sessions[sid] ?? null : null;

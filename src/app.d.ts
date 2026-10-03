@@ -16,7 +16,7 @@ declare global {
       /** Seed configuration supplied only by trusted server composition, never request JSON. */
       cmsSetupSeed?: import('./lib/server/setup/upstream/types').SeedFile;
       // Explicit adapter injection, populated only by trusted server session composition.
-      cms?: { database: CmsDatabase; principal: ServerPrincipal | null; mutationsEnabled?: boolean };
+      cms?: { database: CmsDatabase; principal: ServerPrincipal | null; mutationsEnabled?: boolean; keepAlive?: (task: Promise<void>) => void };
       cmsRuntime?: { readonly publicOrigin: string; readonly basePath: string; readonly rpName: string };
     }
   }

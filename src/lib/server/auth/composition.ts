@@ -33,7 +33,7 @@ export function createCmsHandle(factory: (event: RequestEvent) => CmsRequestConf
     const configuration = await factory(event);
     if (configuration) {
       const principal = await resolvePrincipal(event.cookies.get(SESSION_COOKIE_NAME), createKyselySessionStore(configuration.database.db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>()), { keepAlive: configuration.keepAlive });
-      event.locals.cms = Object.freeze({ database: configuration.database, principal: servicePrincipal(principal), mutationsEnabled: configuration.mutationsEnabled === true });
+      event.locals.cms = Object.freeze({ database: configuration.database, principal: servicePrincipal(principal), mutationsEnabled: configuration.mutationsEnabled === true, keepAlive: configuration.keepAlive });
     }
     return resolve(event);
   };
