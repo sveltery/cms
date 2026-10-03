@@ -21,6 +21,8 @@ export default defineConfig({
   if(target===resolve(frozen,'src/media-image-cropper.css'))return resolve(root,'src/lib/media/source/media-cropper.css');
  }}],
  resolve:{dedupe:['react','react-dom']},
+ // The first secured baseline discovered this renderer dependency mid-test and reloaded its runner.
+ optimizeDeps:{include:['react-dom/client']},
  oxc:{jsx:{runtime:'automatic'}},
  test:{fileParallelism:false,include:[
   'parity/emdash/media-panel/source-tests/packages/admin/tests/components/MediaDetailPanel.test.tsx',
