@@ -11,7 +11,8 @@ for (const target of ['Node', 'D1'] as const) {
       await h.registry.createCollection({ slug: 'posts', label: 'Posts' });
       const c = await h.query('getSchemaCollection', 'posts');
       const before = await h.snapshot();
-      for (const extra of [{ defaultValue: '2' }, { minLength: '0' }, { maxLength: '10' }, { patternMode: 'set', pattern: '' }]) {
+      const legacyInputs: Record<string, string>[] = [{ defaultValue: '2' }, { minLength: '0' }, { maxLength: '10' }, { patternMode: 'set', pattern: '' }];
+      for (const extra of legacyInputs) {
         const result = await h.remote('addSchemaField', 'admin', { collection: 'posts', expectedSchemaVersion: String(c.version),
           slug: 'priority', label: 'Priority', type: 'integer', ...extra });
         assert.equal(result.type, 'result');
@@ -24,6 +25,11 @@ for (const target of ['Node', 'D1'] as const) {
       const field = (await h.query('getSchemaCollection', 'posts')).fields[0];
       assert.equal(field.defaultValue, 2); assert.deepEqual(field.validation, { min: 0, max: 10 });
       assert.deepEqual(field.options, { custom: { enabled: true } });
+      const next = await h.query('getSchemaCollection', 'posts');
+      await h.mutate('addSchemaField', { collection: 'posts', expectedSchemaVersion: String(next.version), slug: 'arbitrary',
+        label: 'Arbitrary', type: 'integer', defaultValueJson: '{"legacy":2}' });
+      assert.deepEqual((await h.registry.getField('posts', 'arbitrary'))!.defaultValue, { legacy: 2 },
+        'generic typed JSON preserves the source unknown-default contract');
     } finally { await h.close(); }
   });
 
@@ -61,7 +67,7 @@ for (const target of ['Node', 'D1'] as const) {
       assert.deepEqual(await h.snapshot(), before);
       const c = await h.query('getSchemaCollection', 'posts');
       const result = await h.remote('addSchemaField', 'admin', { collection: 'posts', expectedSchemaVersion: String(c.version),
-        slug: 'parent_ref', label: 'Parent', type: 'reference', indexed: 'true',
+        slug: 'parent_ref', label: 'Parent', type: 'reference', 'b:indexed': 'on',
         validationJson: '{"relation":"post_links","relationSide":"child","targetCollection":"posts"}' });
       assert.equal(result.type, 'error'); assert.equal(result.status, 409);
       assert.deepEqual(result.error, { message: 'field-not-indexable', code: 'FIELD_NOT_INDEXABLE' });

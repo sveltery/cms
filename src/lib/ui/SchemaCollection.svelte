@@ -12,6 +12,7 @@
   } = $props();
   const metadataForm = $derived(updateSchemaCollection.for(definition.slug));
   const fieldForm = $derived(addSchemaField.for(definition.slug));
+  const scalarField = $derived(['string','text','slug'].includes(fieldForm.fields.type.value() ?? 'string'));
   const orderForm = $derived(reorderSchemaFields.for(definition.slug));
   const deleteForm = $derived(deleteSchemaCollection.for(definition.slug));
   let supportsMode = $state('keep');
@@ -124,8 +125,10 @@
     <select id={`${controlsId}-field-type`} {...fieldForm.fields.type.as('select', 'string')}>{#each schemaFieldTypes as [value,label]}<option {value}>{label}</option>{/each}</select>
     <label class="toggle"><input {...fieldForm.fields.required.as('checkbox')} /> Required</label>
     <label class="toggle"><input {...fieldForm.fields.unique.as('checkbox')} /> Unique</label>
+    {#if scalarField}
     <label class="toggle"><input type="checkbox" bind:checked={setDefault} /> Set default value</label>
     <label>Default value <textarea aria-label="Default value" {...fieldForm.fields.defaultValue.as('text')} disabled={!setDefault} maxlength="100000"></textarea></label>
+    {/if}
     <label class="toggle"><input type="checkbox" bind:checked={setTypedDefault} /> Set typed default</label>
     <label>Typed default value (JSON) <textarea aria-label="Typed default value (JSON)" {...fieldForm.fields.defaultValueJson.as('text')} disabled={!setTypedDefault}></textarea></label>
     <label class="toggle"><input type="checkbox" bind:checked={setRules} /> Set validation rules</label>
@@ -136,6 +139,7 @@
     <label class="toggle"><input {...fieldForm.fields.indexed.as('checkbox')} /> Indexed</label>
     <label class="toggle"><input {...fieldForm.fields.searchable.as('checkbox')} /> Searchable</label>
     <label>Translatable <select aria-label="Translatable" {...fieldForm.fields.translatable.as('select','true')}><option value="true">Yes</option><option value="false">No</option></select></label>
+    {#if scalarField}
     <label>Minimum length <input {...fieldForm.fields.minLength.as('text')} inputmode="numeric" pattern="[0-9]*" /></label>
     <label>Maximum length <input {...fieldForm.fields.maxLength.as('text')} inputmode="numeric" pattern="[0-9]*" /></label>
     <label for={`${controlsId}-pattern-mode`}>Pattern metadata</label>
@@ -146,6 +150,7 @@
     <textarea id={`${controlsId}-pattern`} {...fieldForm.fields.pattern.as('text')}
       value={fieldForm.fields.pattern.value() ?? ''}></textarea>
     <p>Save pattern stores the exact source, including an empty string. The server uses JavaScript regular expressions without flags; matching is case sensitive and unanchored unless you include anchors.</p>
+    {/if}
     <button type="submit" disabled={fieldForm.pending > 0}>Add field</button>
   </fieldset>
   {#if fieldForm.fields.allIssues()?.length}

@@ -134,7 +134,9 @@ export class SchemaRegistry {
     }
     if((value.required !== undefined && value.required !== target.required) || (value.unique !== undefined && value.unique !== target.unique) || (value.translatable === false && target.translatable)) throw new CmsError('FIELD_UPDATE_REQUIRES_MIGRATION');
     const nextIndexed = value.indexed ?? target.indexed;
-    if(nextIndexed && !isIndexableFieldType(nextType)) throw new CmsError('FIELD_NOT_INDEXABLE');
+    const nextValidation = value.validation === undefined ? target.validation : value.validation;
+    // Pinned registry.ts assertIndexableField checks both type and storage.
+    if(nextIndexed && (!isIndexableFieldType(nextType) || isStoragelessField({type:nextType,validation:nextValidation}))) throw new CmsError('FIELD_NOT_INDEXABLE');
     if(value.required !== undefined) updates.required = Number(value.required);
     if(value.unique !== undefined) updates.unique = Number(value.unique);
     if(value.translatable !== undefined) updates.translatable = Number(value.translatable);
@@ -242,7 +244,7 @@ export class SchemaRegistry {
     const name = tableName(definition.slug);
     const fields = await this.listFields(definition.id);
     if (fields.length >= MAX_FIELDS) throw new CmsError('LIMIT_EXCEEDED');
-    if(value.indexed && !isIndexableFieldType(value.type)) throw new CmsError('FIELD_NOT_INDEXABLE');
+    if(value.indexed && (!isIndexableFieldType(value.type) || isStoragelessField(value))) throw new CmsError('FIELD_NOT_INDEXABLE');
     const columnType = FIELD_TYPE_TO_COLUMN[value.type];
     const column = sql`ALTER TABLE ${sql.ref(name)} ADD COLUMN ${sql.ref(value.slug)} ${sql.raw(columnType)}
       ${value.type === 'blocks' ? sql`NOT NULL DEFAULT '[]'` : value.required ?
