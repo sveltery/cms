@@ -509,7 +509,8 @@
     "tests/production/passkey-first-credential-fault-source.test.ts",
     "tests/cloudflare-hosting/passkey.test.ts",
     "tests/production/passkey-legacy-unavailable.test.ts",
-    "tests/passkey-login-ui.test.ts"
+    "tests/passkey-login-ui.test.ts",
+    "tests/production/passkey-legacy-principal-display.test.ts"
   ],
   "supplementalParityCredit": 0,
   "sourceExecution": {
@@ -556,7 +557,8 @@
     "Verified shared pinned issue #52: preferred-residency setup can accept a nonresident credential that discoverable-only login cannot find; preserved for a separate explicit bug-fix PR.",
     "Verified shared pinned issue #54: first-credential persistence failure leaves a first user without a credential or complete flag and default passkey retry returns ADMIN_EXISTS. Preserved for separate explicit hardening; configured email/OAuth recovery is a different source configuration.",
     "Issue #60 tracks the already-public challenge concurrency finding for separate fresh defensive atomic-consume work; only sequential dummy store read/delete semantics are verified here, not signed replay or duplicate-session consequences.",
-    "Profileless pre-existing minimal users trigger an explicit native unavailable state; complete legacy enrollment remains unimplemented. This original native guard earns zero source parity credit."
+    "Profileless pre-existing minimal users trigger an explicit native unavailable state; complete legacy enrollment remains unimplemented. This original native guard earns zero source parity credit.",
+    "Native trusted-principal display availability is independent of the nullable profile query; actual stored-session fixture tests are original query/render evidence, not enrollment, client-cache behavior or new authentication/source credit."
   ],
   "supplementalProvenance": {
     "legacyAvailability": {
@@ -587,6 +589,14 @@
       "assertionRedBeforeRepair": 2,
       "casesAfterRepair": 4,
       "boundary": "Compiled original Svelte SSR with synthetic display props and inert form attributes only; no database, credentials, authentication or session issuance."
+    },
+    "legacyProfilelessPrincipalDisplay": {
+      "test": "tests/production/passkey-legacy-principal-display.test.ts",
+      "sourceParityCredit": 0,
+      "assertionRedBeforeRepair": 4,
+      "casesAfterRepair": 4,
+      "boundary": "Actual built Kit query/page on Node/local D1, both completion flags, deterministic isolated stored-session fixture only. No credential ceremony, issuance API, concurrency or replay. currentUser remains null with empty profile/credential tables. Trusted principal boolean preserves controls; native rendered-form logout303 then fresh same-route GET removes controls and keeps warning. No browser client-cache claim.",
+      "harnessCorrections": "Rendered native action replaces remote protocol URL; normalized row prototypes retain identical field expectations. These post-repair fixture failures earn zero additional product-red credit."
     }
   }
 }
