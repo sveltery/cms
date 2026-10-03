@@ -40,19 +40,28 @@ export interface SchemaSearchPlan {before:CompiledQuery[];statements:CompiledQue
 const emptyPlan=():SchemaSearchPlan=>({before:[],statements:[],after:[]});
 export async function planSchemaSearch(database:CmsDatabase,slug:string,supports:readonly string[],fields:readonly SearchSchemaField[]):Promise<SchemaSearchPlan> {
   const collection=await database.db.selectFrom('_cms_collections').selectAll().where('slug','=',slug).executeTakeFirst();
-  if(!collection?.search_config) return emptyPlan();
+  if(!collection) return emptyPlan();
+  const token=ulid(),db=database.db;
+  const after=[sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)];
+  // Even a currently inactive index can be enabled between planning and the
+  // batch. Bind only its configuration here, preserving ordinary inactive
+  // metadata writes while rejecting a newly active stale index.
+  const inactivePlan=():SchemaSearchPlan=>({
+    before:[sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN EXISTS (
+      SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND search_config IS ${collection.search_config}
+    ) THEN 1 ELSE 0 END`.compile(db)],statements:[],after
+  });
+  if(!collection.search_config) return inactivePlan();
   const real=new FTSManager(database.db as unknown as Kysely<Database>);
   const config=await real.getSearchConfig(slug);
-  if(config?.enabled!==true) return emptyPlan();
+  if(config?.enabled!==true) return inactivePlan();
   const actualFields=await database.db.selectFrom('_cms_fields').select(['slug','type','searchable']).where('collection_id','=',collection.id).execute();
   const snapshot=ftsMetadataGuard([{id:collection.id,slug:collection.slug,searchConfig:collection.search_config,fields:actualFields.map(field=>({...field,searchable:field.searchable??0}))}]);
-  const token=ulid(),db=database.db;
   const before=[sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN ${sql.raw(snapshot.sql)}
     AND EXISTS (SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND supports IS ${collection.supports} AND version=${collection.version} AND updated_at=${collection.updated_at}) THEN 1 ELSE 0 END`.compile(db)];
   // The pure ownership predicate uses positional JSON bindings. Compose those
   // bindings in SQL order before the ordinary collection snapshot parameters.
   before[0]={...before[0],parameters:[token,...snapshot.parameters,...before[0].parameters.slice(1)]};
-  const after=[sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)];
   const plan=searchStatementPlanner(database,collection.id,fields);
   try {
     const searchable=fields.filter(field=>field.searchable).map(field=>field.slug);
