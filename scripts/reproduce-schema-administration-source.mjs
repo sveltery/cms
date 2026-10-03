@@ -81,6 +81,33 @@ test('immutable source reorderFields accepts partial duplicate and unknown lists
  }
  }finally{await db.destroy();}
 });
+test('immutable source rejects an indexed relation-bound reference before DDL or metadata writes',async()=>{
+ const db=storage();try{
+ await fixture(db);const registry=new SchemaRegistry(db);await registry.createCollection({slug:'posts',label:'Posts'});
+ const before=await db.selectFrom('_emdash_collections').selectAll().execute();
+ const ddl=(await sql\`SELECT name,sql FROM sqlite_master ORDER BY name\`.execute(db)).rows;
+ await assert.rejects(()=>registry.createField('posts',{slug:'parent_ref',label:'Parent',type:'reference',indexed:true,
+   validation:{relation:'post_links',relationSide:'child',targetCollection:'posts'}}),error=>error.code==='FIELD_NOT_INDEXABLE');
+ assert.deepEqual(await db.selectFrom('_emdash_collections').selectAll().execute(),before);
+ assert.deepEqual(await db.selectFrom('_emdash_fields').selectAll().execute(),[]);
+ assert.deepEqual((await sql\`SELECT name,sql FROM sqlite_master ORDER BY name\`.execute(db)).rows,ddl);
+ }finally{await db.destroy();}
+});
+test('immutable source also rejects enabling a bound reference index or binding an indexed reference',async()=>{
+ const db=storage();try{
+ await fixture(db);const registry=new SchemaRegistry(db);const collection=await registry.createCollection({slug:'posts',label:'Posts'});
+ const bound={relation:'post_links',relationSide:'child',targetCollection:'posts'};
+ await db.insertInto('_emdash_fields').values([
+  {id:'bound',collection_id:collection.id,slug:'bound',label:'Bound',type:'reference',column_type:'TEXT',required:0,unique:0,sort_order:0,indexed:0,validation:JSON.stringify(bound)},
+  {id:'unbound',collection_id:collection.id,slug:'unbound',label:'Unbound',type:'reference',column_type:'TEXT',required:0,unique:0,sort_order:1,indexed:1,validation:null}
+ ]).execute();
+ const before=await db.selectFrom('_emdash_fields').selectAll().orderBy('id').execute();
+ for(const [slug,input] of [['bound',{indexed:true}],['unbound',{validation:bound}]]) {
+  await assert.rejects(()=>registry.updateField('posts',slug,input),error=>error.code==='FIELD_NOT_INDEXABLE');
+  assert.deepEqual(await db.selectFrom('_emdash_fields').selectAll().orderBy('id').execute(),before);
+ }
+ }finally{await db.destroy();}
+});
 for (const action of ['CASCADE','RESTRICT']) test('immutable Node registry force delete preserves external FK '+action,async()=>{
  const db=storage();try{
  await fixture(db);const registry=new SchemaRegistry(db);await registry.createCollection({slug:'posts',label:'Posts'});
