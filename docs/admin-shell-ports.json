@@ -49,7 +49,7 @@
   "sourceDeclarationsExecuted": 9,
   "genuineSourceAssertionReds": 0,
   "sourceMIT": "notices/emdash-MIT.txt",
-  "status": "ready PR66; UX1-01/02/03 specifically accepted within bounded scope; new decision-head gates/review, exact-head PM approval, author merge and post-merge checks pending",
+  "status": "ready PR66; accepted bounded UX1-01/02/03; proposed UX1-04 mobile progressive-host test-first qualification, repair, specific acceptance and final exact-head checks/merge approval pending",
   "nativeTDD": {
     "testCommit": "4c14c8970572e990b214f779921ec3cfd0d4426e",
     "assertionReds": 6,
@@ -242,5 +242,62 @@
     ],
     "mergeApproval": "not granted; await new exact-head gates/review and explicit PM approval",
     "decisionRecord": "https://github.com/sveltery/cms/pull/66#pullrequestreview-5399854986"
+  },
+  "mobileProgressiveTDD": {
+    "id": "UX1-04",
+    "status": "proposed stronger native progressive-host substitution; not specifically accepted",
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "sourceContext": [
+      {
+        "path": "packages/admin/src/components/Sidebar.tsx",
+        "gitBlob": "b891d252b386316df9be68d7164d601a070a825b",
+        "sha256": "b7eeb8e26d55bdd659002ada6ef515c1ad4e79e8f0019c63a5ddb70e237fd5dd",
+        "qualification": "complete immutable source read; context only, no full-app execution"
+      },
+      {
+        "path": "packages/admin/src/components/Shell.tsx",
+        "gitBlob": "b20c0c5126a58b824df0f28f1b563e88f503894f",
+        "sha256": "46419f3f319a676f465012d67b6f1d48936b96e2b5f36ea75ed371fc194723a2",
+        "qualification": "complete immutable source read; context only, no full-app execution"
+      },
+      {
+        "path": "packages/admin/src/components/Header.tsx",
+        "gitBlob": "444b57bd77be3dd6509e74aa2b66ac20d8e09571",
+        "sha256": "826697beec97b70440bf44d2ad8edd16de6943a8659eddb3176252102a58692a",
+        "qualification": "complete immutable source read; context only, no full-app execution"
+      },
+      {
+        "path": "packages/admin/src/App.tsx",
+        "gitBlob": "131cce60d88e91539350580d48f4aa3bc5e2b19e",
+        "sha256": "c9ce54146339c6cd092a5e47f6a9f261d3887478bc605b0f2bbad525e43429ce",
+        "qualification": "complete immutable source read; context only, no full-app execution"
+      },
+      {
+        "path": "packages/core/src/astro/routes/admin.astro",
+        "gitBlob": "535231148ce442edfed22c770d57d314b8f9c27e",
+        "sha256": "538f816fd14f02196ac5a8113dcc6f0d04e25e10ee2996cb833d15217d3f20c9",
+        "qualification": "complete immutable source read; context only, no full-app execution"
+      }
+    ],
+    "sourceObservation": "Kumo2.6.0 Provider/defaultOpen and mobile Trigger; admin route client:only React boot loader",
+    "sourceRuntimeCredit": 0,
+    "sourceBugClaim": false,
+    "test": "tests/browser/workspace-progressive.spec.ts",
+    "originalBrowserCallbacks": 2,
+    "runtime": "actual built Kit and existing stored-admin sessions, Node SQLite and real persistent Worker D1",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "javaScriptEnabled": false,
+    "localBrowserCallbacks": 0,
+    "localLimitation": "secured Chromium unavailable; no --no-sandbox workaround",
+    "hostedRedQualification": "pending test-first head",
+    "genuineNativeAssertionReds": 0,
+    "sourceCredit": 0,
+    "cryptographicCredit": 0,
+    "repair": "pending genuine hosted before-fix assertion red",
+    "specificPMAcceptance": "pending actual qualification",
+    "testSHA256": "a7bc44bdf59f5cedded93cd8f3c4cd47d4d04562fa4cd26214e04e8d1fa95657"
   }
 }
