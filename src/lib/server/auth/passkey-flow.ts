@@ -46,20 +46,26 @@ export async function setupStatus(context: IdentityContext) {
   const step = isComplete && !hasUsers ? 'admin' : state?.step === 'admin' ? 'admin' : state?.step === 'site' ? 'site' : 'start';
   return { needsSetup: true, step, seedInfo: null, authMode: 'passkey' };
 }
-export async function beginAdminSetup(context: IdentityContext, input: { email: string; name?: string }) {
+type DeferredInput<T> = T | (() => Promise<T>);
+export async function beginAdminSetup(context: IdentityContext,
+  input: DeferredInput<{ email: string; name?: string }>) {
   const options = await setupGuard(context);
+  // JSON routes defer parsing until after the pinned setup guard.
+  const body = typeof input === 'function' ? await input() : input;
   const state = await options.get<Record<string, unknown>>('emdash:setup_state');
   const nonce = generateToken();
-  const user = { id: `setup-${Date.now()}`, email: input.email.toLowerCase(), name: input.name || null };
+  const user = { id: `setup-${Date.now()}`, email: body.email.toLowerCase(), name: body.name || null };
   const registration = await generateRegistrationOptions(config(context), user, [], createChallengeStore(context.database));
   await options.set('emdash:setup_state', { ...state, step: 'admin', email: user.email, name: user.name, tempUserId: user.id, nonce });
   return { nonce, options: registration };
 }
-export async function finishAdminSetup(context: IdentityContext, cookieNonce: string | undefined, credential: RegistrationResponse) {
+export async function finishAdminSetup(context: IdentityContext, cookieNonce: string | undefined,
+  credential: DeferredInput<RegistrationResponse>) {
   const options = await setupGuard(context);
   const state = await options.get<{ step?: string; email?: string; name?: string | null; nonce?: string }>('emdash:setup_state');
   if (!state || state.step !== 'admin' || !state.nonce || !cookieNonce || !secureCompare(cookieNonce, state.nonce) || !state.email) throw new AuthFlowError('INVALID_STATE');
-  const verified = await verifyRegistrationResponse(config(context), credential, createChallengeStore(context.database));
+  const body = typeof credential === 'function' ? await credential() : credential;
+  const verified = await verifyRegistrationResponse(config(context), body, createChallengeStore(context.database));
   const user = await createFirstAdmin(context.database, { email: state.email, name: state.name ?? null });
   if (!user) throw new AuthFlowError('ADMIN_EXISTS');
   // The pinned first-user insert and credential registration are distinct steps; preserve that boundary.
