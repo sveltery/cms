@@ -1,6 +1,6 @@
 import {z} from 'zod';
 import type {IdentityContext} from '../auth/passkey-flow.ts';
-import {AuthFlowError} from '../auth/passkey-flow.ts';
+import {AuthFlowError,setupStatus} from '../auth/passkey-flow.ts';
 import {identityOptions} from '../auth/identity-store.ts';
 import {OptionsRepository} from '../settings/options.ts';
 import {settingsDb} from '../settings/index.ts';
@@ -11,6 +11,10 @@ import type {SeedFile} from './upstream/types.ts';
 // Exact selected setupBody declaration at immutable EmDash1.1.0; MIT2026 Cloudflare Inc.
 export const setupBody=z.object({title:z.string().min(1),tagline:z.string().optional(),includeContent:z.boolean()});
 export async function assertSiteSetupOpen(context:IdentityContext){
+ // Native wizard availability comes only from the trusted auth authority.
+ // Historical minimal users must not acquire options or seed writes here.
+ const status=await setupStatus(context);
+ if('unavailable' in status&&status.unavailable)throw new AuthFlowError(status.reason,503);
  const complete=await identityOptions(context.database).get('emdash:setup_complete');
  if(complete===true||complete==='true')throw new AuthFlowError('ALREADY_CONFIGURED',409);
 }

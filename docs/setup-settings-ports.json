@@ -674,7 +674,16 @@
     "file": "tests/production/setup-legacy-availability.test.ts",
     "baseline": "/tmp/setup-legacy-site-red.log",
     "actual": "8 completed original assertions fail on real Node/D1: JSON200vs503, actual options/schema/seed snapshot changed, mixed-profile native form409vs503, setup303vs200",
-    "implementation": "pending; only own wizard/site boundary may consume trusted auth setupStatus unavailable variant; no identity/backfill edits",
-    "decision": "root explicitly authorized SAME53 native availability boundary; proposed, no final PR approval"
+    "implementation": "own assertSiteSetupOpen consumes trusted setupStatus unavailable before seed/options and existing complete flag; FullSetupWizard hides all forms and loader preserves unavailable page; protected auth files unchanged",
+    "decision": "root explicitly authorized SAME53 native availability boundary; proposed, no final PR approval",
+    "green": {
+      "cases": 32,
+      "log": "/tmp/setup-legacy-composed-corrected-green.log",
+      "actual": "8 own legacy zero-write/status/HTML +12 auth legacy +2 complete unchanged budget callbacks +6 original rollback/completion/snapshot +2 actual default taxonomy/FTS +2 signed native setup/restart/dashboard",
+      "check": "0 errors/0 warnings",
+      "build": "normal pnpm12.6 pass"
+    },
+    "fixtureRepair": "initial composed22/32 pass;10 first-run fixtures inherited four minimal schema-role users and correctly503 under new availability. ONLY isolated first-run helper removes synthetic sessions/users, matching empty source setup authority; all callback/guard/rollback expectations unchanged, zero copied/product redcredit",
+    "remaining": "fresh legacy enrollment/backfill remains incomplete; exact-head normal/configured/independent checks and PM approval pending"
   }
 }
