@@ -82,7 +82,7 @@ export async function getVideoDimensions(file:File,options?:{signal?:AbortSignal
 export async function uploadMedia(file:File,options?:{fieldId?:string;signal?:AbortSignal}):Promise<MediaItem>{
  const signal=options?.signal;signal?.throwIfAborted();
  let contentHash:string|undefined;
- if(file.size<=MAX_CONTENT_HASH_BYTES){
+ if(file.size>0&&file.size<=MAX_CONTENT_HASH_BYTES){
   try{contentHash=await computeContentHash(await file.arrayBuffer());}catch{signal?.throwIfAborted();}
  }
  signal?.throwIfAborted();

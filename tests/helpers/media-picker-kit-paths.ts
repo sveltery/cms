@@ -1,2 +1,2 @@
-// Component-only host; actual Kit basepath is tested separately in built product.
+// Component-only host; this stub establishes no actual Kit basepath behavior.
 export const base='';
