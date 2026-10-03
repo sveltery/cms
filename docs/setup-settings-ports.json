@@ -240,5 +240,35 @@
       "actionTimeoutsBeforeAssertions": 3,
       "nodeTarget": "not reached"
     }
+  },
+  "pluginHelperCallbacks": {
+    "count": 6,
+    "callbacks": [
+      {
+        "title": "should return undefined for unset plugin settings",
+        "sha256": "c19326c4868fa222efe3e030cdb884c64e455463621c23c4dd6193279af60d7c"
+      },
+      {
+        "title": "should return stored plugin settings",
+        "sha256": "edb8faad232ae8cf2291f527c71a5b0305a8d9cdf00920f2191e2df10e8832c3"
+      },
+      {
+        "title": "returns versioned plugin JSON that is not an encryption envelope",
+        "sha256": "e1fa69b85cd282b602ecb945c6b0e26a1bacdf359741cf0e15c06a3c781d17ef"
+      },
+      {
+        "title": "decrypts encrypted plugin settings from the public read helpers",
+        "sha256": "d872a22bb82909020696aa99a5e7466c751defe4546624cddc8cbd9f7f6696d2"
+      },
+      {
+        "title": "rejects structurally malformed encrypted settings instead of returning envelopes",
+        "sha256": "2c47cc41f341672bcefc609154a14080a3d6bdcaea57b7949d56fdca8829a4c5"
+      },
+      {
+        "title": "treats wildcard characters in plugin IDs as literal prefix text",
+        "sha256": "d70f7150694ef8deee96799ba03e6aa98cdba22f2037c6c5b3a0ffd17b142d34"
+      }
+    ],
+    "baseline": "Copied before encryption helper implementation; unexecuted at missing imports, zero real-red credit. Private server rendering/decoding scope only, no plugin runtime or admin registration."
   }
 }
