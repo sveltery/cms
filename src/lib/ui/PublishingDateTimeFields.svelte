@@ -2,6 +2,7 @@
   // EmDash 1.1.0 segmented-time behavior, MIT Copyright 2026 Cloudflare Inc.
   // Source pin 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; notices/emdash-MIT.txt.
   import { format } from 'date-fns';
+  import { untrack } from 'svelte';
   import { getDayPickerLocale } from './date-time-locales';
   import { getPublishingTimeZone, resolvePublishingLocalDateTime } from './publishing-datetime';
   let { date, time, locale = 'en', disabled = false, restrictToFuture = false, dateAriaLabel,
@@ -45,12 +46,12 @@
   }
   function today(): Date { const now = new Date(); return new Date(now.getFullYear(), now.getMonth(), now.getDate()); }
   function sameDay(left: Date | undefined, right: Date) { return Boolean(left && left.getFullYear() === right.getFullYear() && left.getMonth() === right.getMonth() && left.getDate() === right.getDate()); }
-  let month = $state(date ?? today());
+  let month = $state(untrack(() => date ?? today()));
   $effect(() => { month = date ?? today(); });
   const use12HourClock = $derived(uses12HourClock(locale));
-  let timeParts = $state(timePartsFromValue(time, uses12HourClock(locale)));
-  let minuteInput: HTMLInputElement;
-  let lastEmitted: string | null = null, previousHourCycle = uses12HourClock(locale);
+  let timeParts = $state(untrack(() => timePartsFromValue(time, uses12HourClock(locale))));
+  let minuteInput = $state<HTMLInputElement>();
+  let lastEmitted: string | null = null, previousHourCycle = untrack(() => uses12HourClock(locale));
   $effect(() => {
     const incoming = time, cycle = use12HourClock, changed = previousHourCycle !== cycle;
     previousHourCycle = cycle;
@@ -88,9 +89,9 @@
   const zone = $derived(getPublishingTimeZone(resolution.success ? resolution.date : date ?? new Date(), locale));
   const zoneValue = $derived(zone.timeZone ? zone.shortName ? `${zone.timeZone} (${zone.shortName})` : zone.timeZone : 'Local time');
   const periods = $derived([{ value: 'am' as const, label: dayPeriodLabel(locale, 9, 'AM') }, { value: 'pm' as const, label: dayPeriodLabel(locale, 13, 'PM') }]);
-  let periodOpen = $state(false), periodButton: HTMLButtonElement;
+  let periodOpen = $state(false), periodButton = $state<HTMLButtonElement>();
   const id = $props.id();
-  let focusedDay = $state<Date | undefined>(date ?? today());
+  let focusedDay = $state<Date | undefined>(untrack(() => date ?? today()));
   const blocked = (day: Date) => disabled || restrictToFuture && day.getTime() < today().getTime();
   function changeMonth(delta: number) { month = new Date(month.getFullYear(), month.getMonth() + delta, 1); }
   function selectDay(day: Date) { if (!blocked(day)) onDateChange?.(sameDay(date, day) ? undefined : day); }
@@ -147,18 +148,18 @@
     <legend>Time</legend>
     <div class="time-fields">
       <input aria-label="Hour" type="text" placeholder="--" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" value={timeParts.hour} {disabled}
-        oninput={event => updateHour(event.currentTarget.value)} onfocus={event => event.currentTarget.select()}
+        oninput={event => { updateHour(event.currentTarget.value); event.currentTarget.value = timeParts.hour; }} onfocus={event => event.currentTarget.select()}
         onblur={event => { const hour = numericTimePart(event.currentTarget.value); if (hour.length === 1) updateHour(hour.padStart(2, '0')); }} />
       <span aria-hidden="true">:</span>
       <input bind:this={minuteInput} aria-label="Minute" type="text" placeholder="--" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" value={timeParts.minute} {disabled}
-        oninput={event => updateMinute(event.currentTarget.value)} onfocus={event => event.currentTarget.select()}
+        oninput={event => { updateMinute(event.currentTarget.value); event.currentTarget.value = timeParts.minute; }} onfocus={event => event.currentTarget.select()}
         onblur={event => { const minute = numericTimePart(event.currentTarget.value); if (minute.length === 1) updateMinute(minute.padStart(2, '0')); }} />
       {#if use12HourClock}
         <div class="period-picker">
           <button bind:this={periodButton} type="button" role="combobox" aria-label="Period" aria-haspopup="listbox" aria-controls={`${id}-periods`} aria-expanded={periodOpen} {disabled}
             onclick={() => { periodOpen = !periodOpen; }} onkeydown={event => { if (event.key === 'Escape') periodOpen = false; if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); choosePeriod(timeParts.period === 'am' ? 'pm' : 'am'); } }}>{periods.find(item => item.value === timeParts.period)?.label}</button>
           {#if periodOpen}<div id={`${id}-periods`} role="listbox" aria-label="Period">
-            {#each periods as item}<button type="button" role="option" aria-selected={item.value === timeParts.period} onclick={() => choosePeriod(item.value)} onkeydown={event => { if (event.key === 'Escape') { periodOpen = false; periodButton.focus(); } }}>{item.label}</button>{/each}
+            {#each periods as item}<button type="button" role="option" aria-selected={item.value === timeParts.period} onclick={() => choosePeriod(item.value)} onkeydown={event => { if (event.key === 'Escape') { periodOpen = false; periodButton?.focus(); } }}>{item.label}</button>{/each}
           </div>{/if}
         </div>
       {/if}

@@ -28,6 +28,9 @@ export async function render(ui: React.ReactNode) {
     container,
     getByText(text: string, _options?: { exact?: boolean }) { return new Locator([...container.querySelectorAll('*')].find(node => node.textContent?.trim() === text && ![...node.children].some(child => child.textContent?.trim() === text)) ?? null); },
     getByRole(role: string, options?: { name?: string | RegExp; exact?: boolean }) {
+      // Source fireEvent.click is synchronous. Flush the actual pending Svelte
+      // update before reading its DOM; no synthetic option or expectation change.
+      flushSync();
       const selector = role === 'textbox' ? 'input:not([type]),input[type=text],textarea' : role === 'button' ? 'button,[role=button]' : `[role=${role}]`;
       return new Locator([...container.querySelectorAll(selector)].find(node => options?.name instanceof RegExp ? options.name.test(name(node)) : options?.name === undefined || name(node) === options.name) ?? null);
     },
