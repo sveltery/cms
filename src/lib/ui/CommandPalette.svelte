@@ -11,7 +11,7 @@
  const items=$derived([...nav.map(item=>({id:item.id,title:item.title,to:item.to.replace(/\$(\w+)/g,(_whole,key)=>item.params?.[key]??''),description:'Navigation'})),...results.map(item=>({id:`content-${item.collection}-${item.id}`,title:item.title??item.slug??item.id,to:`/content/${item.collection}/${item.id}`,description:manifest.collections[item.collection]?.label??item.collection}))]);
  async function show(){invoker=document.activeElement instanceof HTMLElement?document.activeElement:undefined;open=true;query='';results=[];focused=0;await tick();input?.focus();}
  function close(){open=false;clearTimeout(timer);controller?.abort();pending=false;if(invoker?.isConnected)invoker.focus();}
- async function navigate(path:string){close();await goto(base+path);}
+ async function navigate(path:string,newTab=false){close();if(newTab)window.open(base+path,'_blank');else await goto(base+path);}
  function search(){
   clearTimeout(timer);controller?.abort();results=[];focused=0;
   if(query.length<2){pending=false;return;}
@@ -38,7 +38,7 @@
   if(event.key==='Escape'){event.preventDefault();close();}
   if(event.key==='ArrowDown'){event.preventDefault();focused=Math.min(focused+1,items.length-1);}
   if(event.key==='ArrowUp'){event.preventDefault();focused=Math.max(focused-1,0);}
-  if(event.key==='Enter'&&items[focused]){event.preventDefault();void navigate(items[focused].to);}
+  if(event.key==='Enter'&&items[focused]){event.preventDefault();void navigate(items[focused].to,event.ctrlKey||event.metaKey);}
  }
 </script>
 <svelte:window onkeydown={keyboard}/>
@@ -48,7 +48,7 @@
    <input bind:this={input} bind:value={query} oninput={search} placeholder="Search pages and content..." aria-label="Search pages and content" aria-controls="command-results" aria-activedescendant={items[focused]?.id} autocomplete="off"/>
    <div id="command-results" role="listbox" aria-label="Search results">
     {#each items as item,index (item.id)}
-     <a id={item.id} role="option" aria-selected={index===focused} href={base+item.to} onclick={event=>{event.preventDefault();void navigate(item.to);}}><span>{item.title}</span><small>{item.description}</small></a>
+     <a id={item.id} role="option" aria-selected={index===focused} href={base+item.to} onclick={event=>{event.preventDefault();void navigate(item.to,event.ctrlKey||event.metaKey);}}><span>{item.title}</span><small>{item.description}</small></a>
     {/each}
    </div>
    {#if pending}<p role="status">Searching...</p>{:else if items.length===0}<p role="status">No results found</p>{/if}

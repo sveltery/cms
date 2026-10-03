@@ -1,4 +1,4 @@
-import {planSchemaSearch,planDropCollectionSearch} from '../search/schema-plan.ts';
+import {planSchemaSearch,planDropCollectionSearch,type SchemaSearchPlan} from '../search/schema-plan.ts';
 import {newCollectionTaxonomyIndexes} from '../taxonomies/collection-indexes.ts';
 import { sql, type CompiledQuery } from 'kysely';
 import { sqliteErrorMessage } from './errors.ts';
@@ -88,8 +88,11 @@ export class SchemaRegistry {
       const field = await this.getField(definition.slug,value.dateField);
       if(!field || field.type !== 'datetime') throw new CmsError('INVALID_DATE_FIELD');
     }
-    const searchFields=await this.listFields(definition.id);
-    const searchPlan=await planSchemaSearch(this.database,definition.slug,value.supports ?? definition.supports,searchFields,searchFields);
+    let searchPlan:SchemaSearchPlan={before:[],statements:[],after:[]};
+    if(value.supports!==undefined&&value.supports.includes('search')!==definition.supports.includes('search')){
+      const searchFields=await this.listFields(definition.id);
+      searchPlan=await planSchemaSearch(this.database,definition.slug,value.supports,searchFields,searchFields);
+    }
     const results = await this.batch([
       ...searchPlan.before,
       sql`INSERT INTO _cms_guards(token, pass) SELECT ${token},
@@ -155,8 +158,11 @@ export class SchemaRegistry {
     // Preserve the resolved identity, and return this write's row even if a later writer wins.
     // No schema/metadata precondition or collection touch: fields are last-writer-wins.
     const indexStatements = value.indexed === undefined ? [] : value.indexed ? this.fieldIndexStatements(parse(identifier,collectionSlug),target.id,target.slug) : this.dropFieldIndexStatements(target.id);
-    const searchFields=await this.listFields(target.collectionId);
-    const searchPlan=await planSchemaSearch(this.database,parse(identifier,collectionSlug),(await this.getCollection(collectionSlug))!.supports,searchFields.map(field=>field.id===target.id?{...field,type:updates.type??field.type,searchable:value.searchable??field.searchable}:field),searchFields);
+    let searchPlan:SchemaSearchPlan={before:[],statements:[],after:[]};
+    if(value.searchable!==undefined&&value.searchable!==target.searchable){
+      const searchFields=await this.listFields(target.collectionId);
+      searchPlan=await planSchemaSearch(this.database,parse(identifier,collectionSlug),(await this.getCollection(collectionSlug))!.supports,searchFields.map(field=>field.id===target.id?{...field,type:updates.type??field.type,searchable:value.searchable??field.searchable}:field),searchFields);
+    }
     const results = await this.batch([
       ...searchPlan.before,
       db.updateTable('_cms_fields').set(updates)
