@@ -16,7 +16,7 @@ for(const target of ['Node SQLite','raw D1'] as const) {
    const database=worker?openD1(worker.binding):openSqlite(':memory:');
    try {
     await migrateCms(database);
-    await database.atomicBatch([...commentSchemaSql, ...commentRuntimeSchemaSql.filter(statement => dependency === 'options' ? statement.includes('_cms_comment_rate_limits') : statement.includes('_cms_comment_options'))].map(statement=>sql.raw(statement).compile(database.db))); 
+    await database.atomicBatch([...commentSchemaSql, ...commentRuntimeSchemaSql.filter(statement => dependency === 'options' ? statement.includes('_cms_comment_rate_limits') : statement.includes('_cms_comment_options'))].map(statement=>sql.raw(statement).compile(database.db)));
     const before=(await sql`SELECT name, sql FROM sqlite_schema ORDER BY name`.execute(database.db)).rows;
     assert.equal(await commentsReady(database),false);
     assert.deepEqual((await sql`SELECT name, sql FROM sqlite_schema ORDER BY name`.execute(database.db)).rows,before);
