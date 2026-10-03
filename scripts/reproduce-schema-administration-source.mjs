@@ -148,6 +148,20 @@ test('immutable Node indexed metadata checks field membership within the update 
  assert.deepEqual({fields:await db.selectFrom('_emdash_fields').selectAll().execute(),collections:await db.selectFrom('_emdash_collections').selectAll().execute(),ddl:(await sql\`SELECT name,sql FROM sqlite_master ORDER BY name\`.execute(db)).rows},committed);
  }finally{await db.destroy();}
 });
+test('immutable Node metadata rechecks combined index type and storage after serialized edits',async()=>{
+ const db=storage();try{
+ await fixture(db);const registry=new SchemaRegistry(db);await registry.createCollection({slug:'posts',label:'Posts'});
+ for(const binding of [false,true])for(const indexing of [false,true]){
+  const slug='case_'+Number(binding)+'_'+Number(indexing);
+  await registry.createField('posts',{slug,label:slug,type:binding?'reference':'string',searchable:false});
+  const incompatible=binding?{validation:{relation:'post_links',relationSide:'child',targetCollection:'posts'}}:{type:'text'};
+  await registry.updateField('posts',slug,indexing?incompatible:{indexed:true});
+  const before={fields:await db.selectFrom('_emdash_fields').selectAll().execute(),collections:await db.selectFrom('_emdash_collections').selectAll().execute(),ddl:(await sql\`SELECT name,sql FROM sqlite_master ORDER BY name\`.execute(db)).rows};
+  await assert.rejects(()=>registry.updateField('posts',slug,indexing?{indexed:true}:incompatible),error=>error.code==='FIELD_NOT_INDEXABLE');
+  assert.deepEqual({fields:await db.selectFrom('_emdash_fields').selectAll().execute(),collections:await db.selectFrom('_emdash_collections').selectAll().execute(),ddl:(await sql\`SELECT name,sql FROM sqlite_master ORDER BY name\`.execute(db)).rows},before);
+ }
+ }finally{await db.destroy();}
+});
 test('immutable source rejects an indexed relation-bound reference before DDL or metadata writes',async()=>{
  const db=storage();try{
  await fixture(db);const registry=new SchemaRegistry(db);await registry.createCollection({slug:'posts',label:'Posts'});
