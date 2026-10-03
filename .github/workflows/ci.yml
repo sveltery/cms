@@ -53,3 +53,25 @@ jobs:
             playwright-report/
             test-results/
           retention-days: 7
+
+  portable_text:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec svelte-kit sync
+      - run: node scripts/check-portable-text-source.mjs
+      - run: pnpm test:portable-text
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Whole pinned rich-editor callbacks in sandboxed Chromium
+        run: pnpm test:portable-text-browser
+        env:
+          DEBUG: pw:browser
