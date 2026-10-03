@@ -4,7 +4,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Miniflare } from 'miniflare';
 import type { RequestEvent } from '@sveltejs/kit';
-import type { Kysely } from 'kysely';
+import { sql, type Kysely } from 'kysely';
 import { createCmsRuntime } from '../src/lib/server/runtime/composition.ts';
 import { installRedirectTables } from '../src/lib/server/redirects/migrations/index.ts';
 import { RedirectRepository } from '../src/lib/server/redirects/repository.ts';
@@ -82,7 +82,11 @@ test('real D1 publishes large sharded rules and preserves pattern order', { time
     // Original native setup respects D1's100 parameters per statement. The
     // immutable Source100-row fixture remains unchanged and explicitly fails.
     for (let i = 0; i < rows.length; i += 10) {
-      await db.insertInto('_cms_redirects').values(rows.slice(i, i + 10)).execute();
+      await sql`INSERT INTO _cms_redirects
+        (id,source,destination,type,is_pattern,enabled,hits,auto,created_at,updated_at)
+        VALUES ${sql.join(rows.slice(i, i + 10).map(row => sql`(
+          ${row.id},${row.source},${row.destination},${row.type},${row.is_pattern},
+          ${row.enabled},${row.hits},${row.auto},${row.created_at},${row.updated_at})`))}`.execute(db);
     }
     await publishRedirectArtifacts(db);
     const source = createDatabaseRedirectSource(db, fn => after(fn, task => tasks.push(task)));
