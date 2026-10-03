@@ -1,0 +1,39 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "sourcePath": "e2e/tests/media-library.spec.ts",
+  "blob": "efac36b7efae1059f40fcd617a46c4ccf1b3b39a",
+  "callbacks": [
+    {
+      "title": "displays media library page",
+      "line": 192,
+      "sha256": "4d3d349ff393f3a4d3a610ecc40eb944f8f585aabc005642c688fd99ac64bdbc"
+    },
+    {
+      "title": "shows grid view by default",
+      "line": 205,
+      "sha256": "387eea0560a07b93a0a5efba3d762639f1307f0193205adca2f2c2e0295cfbd6"
+    },
+    {
+      "title": "shows view toggle tabs",
+      "line": 216,
+      "sha256": "c8bb77ee8e1f5a09900409907c2d0b25b96729b2d7525129b52da1f16a50810a"
+    },
+    {
+      "title": "uploads a new image file",
+      "line": 227,
+      "sha256": "8b7890843b5ac7f349f6d6014c1faece8e9eb3171c8d81bb3160ada3cff5db7a"
+    }
+  ],
+  "productPath": "tests/browser/media-library-source.spec.ts",
+  "completeHelpers": [
+    "ensureTestAssets",
+    "uploadTestImage"
+  ],
+  "adaptations": [
+    "Native media route path and real wizard/WebAuthn fixture replaces source devBypassAuth",
+    "Asset directory moves into generated test-results; exact fixture byte body retained",
+    "No PAT/plugin/MCP or wider rich-editor/crop/folder callback claims from these four basic cases",
+    "Native host correction: registration is followed by a single ordinary visible passkey sign-in and actual current-user administrator-role assertion; first welcome is dismissed through its ordinary visible UI when present. Source setup admin verification does not create a session."
+  ],
+  "execution": "Exact public641 run37100717366 secured default111139541158/Node111139541167 each4/4 PASS, normal media33files346 each. Ordinary actual signup THEN login; all4 callback/twohelper/deadline hashes unchanged. Proper authenticated historical reproduction is retrospective after implementation:1uniqueheading/2target assertion reds, three action timeouts per target excluded, earlier unauthenticated credit withdrawn0. Full default browser fails missing Search/taxonomy development UI integration; Node full phase unreached. Complete normal bootstrap passes at641, but later Worker extension requires new-head evidence. No fullME1/ME2 claim."
+}

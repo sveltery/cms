@@ -1,0 +1,85 @@
+{
+  "head": "5ea75a941324d86db225416b64425e5f602425a7",
+  "tree": "3b0e7d59c3e5b41906b03c1c280da385c2b681c6",
+  "run": 37102265932,
+  "normalValidation": {
+    "job": 111143970640,
+    "workflowUrl": "https://github.com/sveltery/cms/actions/runs/37102265932/job/111143970640",
+    "rawLogSha256": "cc380bba63bd4f738b89b11f8e630779bddec4f01514c8dc7b9ec225b76ba5c8",
+    "normalCommand": "sh scripts/bootstrap.sh",
+    "normalFrozenInstall": true,
+    "normalTypes": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "service": {
+      "tests": 1125,
+      "pass": 1125,
+      "fail": 0,
+      "cancel": 0,
+      "skip": 0
+    },
+    "sourcePorts": {
+      "files": 9,
+      "executions": 79
+    },
+    "mediaSource": {
+      "files": 33,
+      "executions": 346
+    },
+    "sourceHostTypes": true,
+    "defaultBuild": true,
+    "production": {
+      "tests": 351,
+      "pass": 351,
+      "fail": 0,
+      "cancel": 0,
+      "skip": 0
+    },
+    "nodePackageBuild": true,
+    "isolatedFrozenInstallAndRestart": {
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "cancel": 0,
+      "skip": 0
+    },
+    "cloudflareBuild": true,
+    "wranglerDryBundle": true,
+    "cloudflarePure": {
+      "files": 4,
+      "executions": 23
+    },
+    "actualOfficialWorker": {
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "cancel": 0,
+      "skip": 0,
+      "mediaOriginalCallbackPass": 1,
+      "mediaOriginalCallbackSeconds": 2.323251245,
+      "extendedReplacementReferencesIncluded": true
+    },
+    "fullBootstrapPass": true
+  },
+  "securedBrowser": {
+    "job": 111143970663,
+    "workflowUrl": "https://github.com/sveltery/cms/actions/runs/37102265932/job/111143970663",
+    "rawLogSha256": "7b760dc07dbd326add1f8c34b69478547c1869da1254461bf20bfbd8ec29b7dd",
+    "normalFrozenInstall": true,
+    "defaultBuild": true,
+    "securedChromium": true,
+    "completedExpectationFailures": {
+      "taxonomySection": 1,
+      "searchPalette": 3
+    },
+    "outerDeadlineSeconds": 180,
+    "nodeFullBrowserReached": false,
+    "overallPass": false,
+    "qualifiedCause": "Missing development integration of editor TaxonomySidebar after goToEditContent and Search root layout/palette; no global taxonomy heading fabricated."
+  },
+  "wholeME1ME2Complete": false,
+  "fullBrowserComplete": false,
+  "extendedWorkerNewHeadNormalEvidence": "Included and passing in this exact official Worker phase; this is original native baseline-green integration, zero copied callback/new-red credit.",
+  "laterParserAndSharedPureClientChanges": "Not included in this public5ea receipt; exact new-head normal evidence pending."
+}

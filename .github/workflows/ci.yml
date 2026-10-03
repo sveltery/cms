@@ -6,6 +6,103 @@ on:
 permissions:
   contents: read
 jobs:
+  media-picker-source:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm exec svelte-kit sync
+      - run: node scripts/check-media-picker-source.mjs
+      - name: Native picker confirmation and inline chooser
+        run: pnpm exec vitest run --config vitest.media-picker.config.ts tests/media-picker-native/picker-native.test.ts
+      - name: Complete immutable picker callbacks on actual Svelte component
+        run: pnpm test:media-picker
+      - run: pnpm build
+      - name: Actual supported native client and detail operation acceptance
+        run: pnpm exec vitest run --config vitest.media-picker-client.config.ts
+
+  media-source-evidence:
+    # Additive media slice; all normal validate/browser jobs remain required.
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [default, node]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test:media
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm build
+        if: matrix.target == 'default'
+      - run: pnpm build:node
+        if: matrix.target == 'node'
+      - name: Complete pinned media callbacks with ordinary WebAuthn
+        run: timeout --kill-after=30s 180s pnpm exec playwright test tests/browser/media-library-source.spec.ts
+        env:
+          SVELTERY_BROWSER_TARGET: ${{ matrix.target }}
+          DEBUG: pw:browser,pw:webserver
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: media-source-evidence-${{ matrix.target }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+  setup-source-evidence:
+    # Additive slice evidence; full validate/browser jobs remain required below.
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [default, node]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm build
+        if: matrix.target == 'default'
+      - run: pnpm build:node
+        if: matrix.target == 'node'
+      - name: Exact source setup and welcome callback evidence
+        run: timeout --kill-after=30s 180s pnpm exec playwright test tests/browser/setup-wizard-source.spec.ts tests/browser/welcome-modal-source.spec.ts tests/browser/welcome-native.spec.ts
+        env:
+          SVELTERY_BROWSER_TARGET: ${{ matrix.target }}
+          DEBUG: pw:browser,pw:webserver
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: setup-source-evidence-${{ matrix.target }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 15

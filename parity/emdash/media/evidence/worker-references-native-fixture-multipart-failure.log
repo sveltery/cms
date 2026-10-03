@@ -1,0 +1,39 @@
+[MEDIA_REPLACE_ERROR] TypeError: Unrecognized Content-Type header value. FormData can only parse the following MIME types: multipart/form-data, application/x-www-form-urlencoded
+    at async PUT$1 (file:///workspace/cms-media/build/cloudflare/worker/worker.js:102918:26)
+    at async render_endpoint (file:///workspace/cms-media/build/cloudflare/worker/worker.js:103667:22)
+    at async resolve4 (file:///workspace/cms-media/build/cloudflare/worker/worker.js:106668:118)
+    at async resolve (file:///workspace/cms-media/build/cloudflare/worker/worker.js:28188:28)
+    at async Object.handle (file:///workspace/cms-media/build/cloudflare/worker/worker.js:28142:16)
+    at async fn (file:///workspace/cms-media/build/cloudflare/worker/worker.js:106566:16)
+    at async handle4 (file:///workspace/cms-media/build/cloudflare/worker/worker.js:106548:22)
+    at async internal_respond (file:///workspace/cms-media/build/cloudflare/worker/worker.js:106534:12)
+    at async Object.fetch (file:///workspace/cms-media/build/cloudflare/worker/worker.js:107198:13)
+✖ official Worker streams, confirms and deduplicates R2 media with persisted D1 folders and metadata (788.546914ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1125.074352
+
+✖ failing tests:
+
+test at tests/cloudflare-hosting/media.test.ts:13:1
+✖ official Worker streams, confirms and deduplicates R2 media with persisted D1 folders and metadata (788.546914ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  500 !== 200
+  
+      at TestContext.<anonymous> (file:///workspace/cms-media/tests/cloudflare-hosting/media.test.ts:89:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 500,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

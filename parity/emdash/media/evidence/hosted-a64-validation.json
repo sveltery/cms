@@ -1,0 +1,46 @@
+{
+  "head": "a64e3148586b39cb862676466d091c51437e90a5",
+  "tree": "0c608d0fbe30f1f17b13761fa80d691566719adf",
+  "run": 37099414595,
+  "normalValidation": {
+    "job": 111135838114,
+    "rawLogSha256": "8a9d74f99a69df6b7cb800c10c225e9dfef00c66c58a0a32be08f441fa7873e3",
+    "normalFrozenInstall": true,
+    "normalTypes": true,
+    "service": {
+      "tests": 1125,
+      "pass": 1125,
+      "fail": 0,
+      "cancel": 0
+    },
+    "sourcePortsFiles": 9,
+    "mediaFiles": 29,
+    "mediaExecutions": 287,
+    "sourceHostTypes": true,
+    "defaultBuild": true,
+    "production": {
+      "tests": 347,
+      "pass": 347,
+      "fail": 0,
+      "cancel": 0
+    },
+    "nodePackageBuild": true,
+    "failure": "Isolated production installation cannot read absent pinned image-size patch file; real package regression.",
+    "fullBootstrapPass": false,
+    "cloudflarePhaseReached": false
+  },
+  "securedBrowser": {
+    "job": 111135838271,
+    "rawLogSha256": "fa6caa22634074a38161bed727bfa011329f47fc7056c78eafa10add612c5a46",
+    "normalFrozenInstall": true,
+    "defaultBuild": true,
+    "completedExpectationFailures": {
+      "taxonomySection": 1,
+      "searchPalette": 6
+    },
+    "outerDeadline": 180,
+    "nodeFullBrowserReached": false,
+    "overallPass": false
+  },
+  "ordinaryMediaSlice": "Current default/Node jobs not yet completed; separate historical reproduction remains in progress."
+}
