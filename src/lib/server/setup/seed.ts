@@ -14,7 +14,7 @@ import {registerLifecycleDatabase} from '../database/lifecycle/upstream/host.ts'
 import {getSiteSettingWithDb,setSiteSettings,settingsDb} from '../settings/index.ts';
 import type {SeedFile,SeedApplyResult,SeedTaxonomy,SeedContentEntry} from './upstream/types.ts';
 export interface SetupSeedDependencies {
- applyTaxonomy?: (database:CmsDatabase,definition:SeedTaxonomy,onConflict:'skip')=>Promise<unknown>;
+ applyTaxonomies?: (database:CmsDatabase,definitions:readonly SeedTaxonomy[],onConflict:'skip')=>Promise<{created:number;skipped:number}>;
  enableSearch?: (database:CmsDatabase,collection:string)=>Promise<unknown>;
 }
 export class SetupSeedError extends Error {constructor(message:string){super(message);this.name='SetupSeedError';}}
@@ -67,7 +67,7 @@ async function createSeedContent(database:CmsDatabase,type:string,entry:SeedCont
 }
 export async function applySetupSeed(database:CmsDatabase,seed:SeedFile,includeContent:boolean,dependencies:SetupSeedDependencies={}) {
  assertSupportedSeed(seed);
- if(seed.taxonomies?.length&&!dependencies.applyTaxonomy)throw new SetupSeedError('Taxonomy seed provider is not configured');
+ if(seed.taxonomies?.length&&!dependencies.applyTaxonomies)throw new SetupSeedError('Taxonomy seed provider is not configured');
  if(seed.collections?.some(collection=>collection.supports?.includes('search'))&&!dependencies.enableSearch)throw new SetupSeedError('Search seed provider is not configured');
  const budget=new SeedBudget(),db=database.db.withPlugin(budget);
  const counted:CmsDatabase={db,atomicBatch:database.atomicBatch.bind(database),close:database.close.bind(database)};
@@ -86,7 +86,7 @@ export async function applySetupSeed(database:CmsDatabase,seed:SeedFile,includeC
    await registry.createField(definition.slug,field);result.fields.created++;
   }
  }
- for(const definition of seed.taxonomies??[]){await dependencies.applyTaxonomy!(counted,definition,'skip');result.taxonomies.created++;}
+ if(seed.taxonomies?.length){const receipt=await dependencies.applyTaxonomies!(counted,seed.taxonomies,'skip');result.taxonomies.created=receipt.created;result.taxonomies.skipped=receipt.skipped;}
  const total=includeContent?Object.values(seed.content??{}).reduce((count,entries)=>count+entries.length,0):0;
  const progress={done:0,total};let complete=true;
  if(includeContent)outer:for(const [type,entries]of Object.entries(seed.content??{})){

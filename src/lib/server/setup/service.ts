@@ -5,6 +5,7 @@ import {identityOptions} from '../auth/identity-store.ts';
 import {OptionsRepository} from '../settings/options.ts';
 import {settingsDb} from '../settings/index.ts';
 import {applySetupSeed,SetupSeedError,type SetupSeedDependencies} from './seed.ts';
+import {setupSeedDependencies} from './seed-providers.ts';
 import {defaultSeed} from './upstream/default.ts';
 import type {SeedFile} from './upstream/types.ts';
 // Exact selected setupBody declaration at immutable EmDash1.1.0; MIT2026 Cloudflare Inc.
@@ -13,7 +14,7 @@ export async function assertSiteSetupOpen(context:IdentityContext){
  const complete=await identityOptions(context.database).get('emdash:setup_complete');
  if(complete===true||complete==='true')throw new AuthFlowError('ALREADY_CONFIGURED',409);
 }
-export async function setupSite(context:IdentityContext,input:unknown,configuredSeed?:SeedFile,dependencies?:SetupSeedDependencies){
+export async function setupSite(context:IdentityContext,input:unknown,configuredSeed?:SeedFile,dependencies:SetupSeedDependencies=setupSeedDependencies){
  await assertSiteSetupOpen(context);
  const parsed=setupBody.safeParse(input);if(!parsed.success)throw new AuthFlowError('VALIDATION_ERROR');
  const body=parsed.data,seed=structuredClone(configuredSeed??defaultSeed);
