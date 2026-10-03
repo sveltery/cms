@@ -11,3 +11,10 @@ export async function completeFullSetup(page:Page,email:string,name=''){
  await expect(page.getByRole('heading',{name:'Your account is ready',exact:true})).toBeVisible({timeout:30_000});
  await page.getByRole('link',{name:'Open the dashboard',exact:true}).click();
 }
+/** Ordinary first-login UI consumes the actual persisted welcome mutation. */
+export async function dismissFirstWelcome(page:Page){
+ const heading=page.getByRole('heading',{name:/^Welcome to EmDash/});
+ await expect(heading).toBeVisible();
+ await page.getByRole('button',{name:'Get Started',exact:true}).click();
+ await expect(heading).not.toBeVisible();
+}

@@ -5,9 +5,11 @@ import {sql} from 'kysely';
 import {schemaAdminRemotes} from '../helpers/schema-admin-remotes.ts';
 import {identityOptions} from '../../src/lib/server/auth/identity-store.ts';
 import {OptionsRepository} from '../../src/lib/server/settings/options.ts';
+import {useEmptySetupAuthority} from '../helpers/setup-first-run-authority.ts';
 for(const target of ['Node','D1'] as const)test(`${target}: default site step persists actual collections, taxonomy structures and live search indexes before admin setup`,async()=>{
  const h=await schemaAdminRemotes(target,true,{configureRequest(event){event.locals.cmsRuntime={publicOrigin:h.origin,basePath:'',rpName:'Test'};}});
  try{
+  await useEmptySetupAuthority(h.database);
   const response=await h.request('/api/setup',null,{method:'POST',headers:{origin:h.origin,'content-type':'application/json'},body:JSON.stringify({title:'Working Site',tagline:'Real seed',includeContent:false})});
   assert.equal(response.status,200);const body=await response.json();assert.equal(body.data.seedComplete,true);
   assert.equal(body.data.result.collections.created,2);assert.equal(body.data.result.fields.created,6);

@@ -13,7 +13,9 @@ const test=base.extend({page:async({page},use)=>{
  const adapted=new Proxy(page,{get(target,key){
   if(key==='route')return async(pattern:Parameters<Page['route']>[0],callback:Parameters<Page['route']>[1])=>{
    await page.route(pattern===CURRENT_USER_PATTERN?`**/_app/remote/${h.ids.getCurrentUser}`:pattern,(route,request)=>callback(new Proxy(route,{get(original,member){
-    if(member==='fulfill')return async(options:Parameters<Route['fulfill']>[0]={})=>{const body=JSON.parse(String(options.body));return original.fulfill({...options,body:JSON.stringify({type:'result',data:stringify({_:body.data})})});};
+    // Kit2.70 refreshes query resources from the keyed q/{v} node. Preserve
+    // the source profile dataset and complete callback below unchanged.
+    if(member==='fulfill')return async(options:Parameters<Route['fulfill']>[0]={})=>{const body=JSON.parse(String(options.body));return original.fulfill({...options,body:JSON.stringify({type:'result',data:stringify({_:body.data,q:{[`${h.ids.getCurrentUser}/`]:{v:body.data}}})})});};
     const value=Reflect.get(original,member);return typeof value==='function'?value.bind(original):value;
    }}),request));
   };

@@ -4,7 +4,7 @@
 // Full native site/account/passkey fixture now composes real seed; source Astro navigation and whole auth callback credit remain excluded.
 import { expect, test } from '@playwright/test';
 import { passkeyRuntime } from '../helpers/passkey-runtime';
-import {completeFullSetup} from '../helpers/full-setup-browser';
+import {completeFullSetup,dismissFirstWelcome} from '../helpers/full-setup-browser';
 import { addVirtualWebAuthnAuthenticator } from '../helpers/virtual-authenticator';
 import { identityAdapter } from '../../src/lib/server/auth/identity-store';
 import { verifyAuthenticationResponse } from '../../src/lib/server/auth/vendor/passkey/authenticate';
@@ -37,6 +37,7 @@ for (const repetition of [1, 2, 3]) test(`real passkey setup then login persists
     expect((await page.context().cookies()).some(cookie => cookie.name === 'emdash_setup_nonce')).toBe(false);
     await page.getByRole('button', { name: 'Sign in with a passkey' }).click();
     await expect(page).toHaveURL(`${h.origin}/`, { timeout: 30_000 });
+    await dismissFirstWelcome(page);
     await expect(page.getByRole('heading', { name: 'Content', exact: true })).toBeVisible();
     await expect(page.getByText('Content is unavailable until authentication and storage are configured.')).toHaveCount(0);
     const cookie = (await page.context().cookies()).find(cookie => cookie.name === 'cms-session');

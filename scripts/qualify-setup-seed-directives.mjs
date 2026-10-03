@@ -1,0 +1,30 @@
+// Original pin qualification, not a copied test or complete applySeed port.
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import ts from 'typescript';
+import {ulid} from 'ulidx';
+const pin='913cb1bb9b7f08c3ff0d258b4420e53835b6a58e';
+const checkout=process.argv[2];assert.ok(checkout,'Pass the immutable checkout');
+const path='packages/core/src/seed/apply.ts';
+const source=execFileSync('git',['-C',checkout,'show',`${pin}:${path}`],{encoding:'utf8'});
+const ast=ts.createSourceFile(path,source,ts.ScriptTarget.Latest,true);
+const hash=value=>createHash('sha256').update(value).digest('hex');
+const declaration=name=>ast.statements.find(node=>ts.isFunctionDeclaration(node)&&node.name.text===name).getText(ast);
+const names=['isSeedMediaReference','resolveReferences','resolveValue','resolveMedia','countSeedItems'];
+const code=names.map(name=>declaration(name)).join('\n');
+const compiled=ts.transpileModule(code,{compilerOptions:{module:ts.ModuleKind.None,target:ts.ScriptTarget.ES2022}}).outputText;
+// Exact source no-storage branch never reaches DB, downloader or uploader;
+// unsupported branch dependencies remain absent, rather than being no-ops.
+const methods=new Function('ulid',`${compiled}\nreturn {${names.join(',')}};`)(ulid);
+const media={$media:{url:'https://example.com/qualified-seed.jpg'}};
+assert.equal(methods.isSeedMediaReference(media),true);
+for(const literal of [{$media:'JSON'},{$media:{url:123}},{$media:null}])assert.equal(methods.isSeedMediaReference(literal),false);
+const result={media:{created:0,skipped:0}};
+const context={db:null,storage:null,skipMediaDownload:false,mediaCache:new Map(),budget:null};
+const resolved=await methods.resolveReferences({top:media,nested:[{asset:media}],literal:{$media:{url:123}}},new Map(),context,result);
+assert.deepEqual(resolved,{top:null,nested:[{asset:null}],literal:{$media:{url:123}}});
+assert.deepEqual(result.media,{created:0,skipped:2});
+const seed={taxonomies:[{terms:[{slug:'one',label:'One'}]}],content:{entries:[{id:'one',data:{}}]}};
+assert.equal(methods.countSeedItems(seed,false),0);assert.equal(methods.countSeedItems(seed,true),2);
+console.log(JSON.stringify({pin,source:path,sourceSha256:hash(source),publicDeclarations:['applySeed','applySeedWithinBudget','applySeedWrites'].map(name=>({name,sha256:hash(declaration(name))})),completeQualifiedHelpers:names.map(name=>({name,sha256:hash(declaration(name))})),runtime:'original Node exact immutable helpers: recursive recognized media becomes null/skipped with no storage; unrecognized literal preserved; includeContent=false total0',limits:'zero copied assertions and zero complete public applySeed/term/download/storage credit; native unsupported-before-write boundary is intentional incomplete-provider behavior'}));

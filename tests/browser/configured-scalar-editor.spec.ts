@@ -4,7 +4,7 @@
 import { test, expect } from '@playwright/test';
 import { parse, stringify } from 'devalue';
 import { passkeyRuntime } from '../helpers/passkey-runtime';
-import {completeFullSetup} from '../helpers/full-setup-browser';
+import {completeFullSetup,dismissFirstWelcome} from '../helpers/full-setup-browser';
 import { addVirtualWebAuthnAuthenticator } from '../helpers/virtual-authenticator';
 
 test('real administrator creates, edits, autosaves and publishes scalar content across restart', async ({ page, browser }) => {
@@ -17,6 +17,7 @@ test('real administrator creates, edits, autosaves and publishes scalar content 
     await expect(page).toHaveURL(`${h.origin}/login`, { timeout: 30_000 });
     await page.getByRole('button', { name: 'Sign in with a passkey' }).click();
     await expect(page).toHaveURL(`${h.origin}/`, { timeout: 30_000 });
+    await dismissFirstWelcome(page);
     const query = async (name: string, argument?: unknown) => {
       const payload = argument === undefined ? '' : `?payload=${Buffer.from(stringify(argument)).toString('base64url')}`;
       const response = await page.request.get(`${h.origin}/_app/remote/${h.ids[name]}${payload}`);

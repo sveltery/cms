@@ -6,6 +6,7 @@ import {it,expect as baseExpect} from '../helpers/upstream-expect.ts';
 import {schemaAdminRemotes} from '../helpers/schema-admin-remotes.ts';
 import {OptionsRepository as StoredOptions} from '../../src/lib/server/settings/options.ts';
 import {identityOptions} from '../../src/lib/server/auth/identity-store.ts';
+import {useEmptySetupAuthority} from '../helpers/setup-first-run-authority.ts';
 function expect(actual) {const result=baseExpect(actual);result.toBeLessThan=expected=>assert.ok(actual<expected);return result;}
 const collections = ['menu_items','experiences','gallery_items','pages'];
 const seed = {
@@ -25,7 +26,7 @@ for (const target of ['Node','D1']) describe(`${target}: complete pinned setup b
    if(countedDb) event.locals.cms={...event.locals.cms,database:{...h.database,db:countedDb}};
    event.locals.cmsRuntime={publicOrigin:'http://site.example',basePath:'',rpName:'Test'};
    event.locals.cmsSetupSeed=seed;
-  }});db=h.database.db;
+  }});await useEmptySetupAuthority(h.database);db=h.database.db;
  });
  afterEach(async()=>{await h.close();});
  class OptionsRepository extends StoredOptions {
