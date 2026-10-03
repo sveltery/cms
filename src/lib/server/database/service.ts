@@ -9,7 +9,8 @@ import { countTrashedDraftInput, createDraftInput, deleteDraftInput, getDraftInp
 // Permission names and ownership rules follow EmDash auth/rbac.ts.
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 export type Permission = 'schema:read' | 'schema:manage' | 'content:read' | 'content:read_drafts'
-  | 'content:create' | 'content:edit_own' | 'content:edit_any' | 'content:delete_own' | 'content:delete_any';
+  | 'content:create' | 'content:edit_own' | 'content:edit_any' | 'content:delete_own' | 'content:delete_any'
+  | 'media:read' | 'media:upload' | 'media:edit_own' | 'media:edit_any' | 'media:delete_own' | 'media:delete_any';
 export interface ServerPrincipal { readonly id: string; readonly permissions: readonly Permission[] }
 const listInput = v.strictObject({
   type: identifier, locale: v.optional(localeInput, 'en'),

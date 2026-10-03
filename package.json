@@ -27,9 +27,16 @@
     "test:cloudflare": "vitest run --config vitest.cloudflare.config.ts && node --test tests/cloudflare-hosting/*.test.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "3.1145.0",
+    "@aws-sdk/s3-request-presigner": "3.1145.0",
     "@oslojs/encoding": "1.1.0",
+    "blurhash": "2.0.5",
+    "image-size": "2.0.2",
+    "jpeg-js": "0.4.4",
     "kysely": "0.29.2",
+    "mime": "4.1.0",
     "ulidx": "2.4.1",
+    "upng-js": "2.1.0",
     "valibot": "1.5.0",
     "zod": "4.5.4"
   },

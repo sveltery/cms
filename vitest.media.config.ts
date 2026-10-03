@@ -1,5 +1,20 @@
 import { defineConfig } from 'vitest/config';
-export default defineConfig({ test: {
+import { resolve, dirname } from 'node:path';
+const checkout=import.meta.dirname;
+const frozen=resolve(checkout,'parity/emdash/media/source-tests/packages/core');
+const vendor=resolve(checkout,'src/lib/server/media/source');
+export default defineConfig({ plugins:[{
+  name:'immutable-media-source-host', enforce:'pre',
+  resolveId(specifier,importer) {
+    if (specifier==='#node-sqlite') return resolve(checkout,'src/lib/server/database/node-sqlite-compat.ts');
+    if (!importer?.startsWith(frozen) || !specifier.startsWith('.')) return;
+    const target=resolve(dirname(importer),specifier);
+    if (target===resolve(frozen,'tests/utils/test-db.js')) return resolve(checkout,'tests/helpers/media-source-database.ts');
+    if (target.startsWith(frozen+'/src/')) return resolve(vendor,target.slice((frozen+'/src/').length).replace(/\.js$/,'.ts'));
+  },
+  transform(code,id) { if(id.startsWith(frozen+'/tests/') && code.includes('_emdash_')) return {code:code.replaceAll('_emdash_','_cms_'),map:null}; }
+}], test: {
+  fileParallelism:false,
   include: [
     'parity/emdash/media/source-tests/packages/core/tests/integration/database/media-{filename-search,focal-point,folders,mime-filter,page-pagination,replace,upload-publish}.test.ts',
     'parity/emdash/media/source-tests/packages/core/tests/unit/database/repositories/media-confirm.test.ts',
