@@ -1,0 +1,1535 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "authorityCount": 54,
+  "sourceTestStatus": "not-executed",
+  "entries": [
+    {
+      "sourcePath": "LICENSE",
+      "sourceBlob": "02cc4b8b0a5f883c5243927e683b00c10588bf4c",
+      "sha256": "d5ab82c0225b0def1fa140af22ff2f3bed9791a527545be1b04ab4337dc88675",
+      "bytes": 1079,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/LICENSE.txt"
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/SectionEditor.test.tsx",
+      "sourceBlob": "86f95e6e1a00e9b8947f1f0bc3fd8d4844f27c36",
+      "sha256": "43facedd8e331a0808bb6b92993b09f0986ffb19238b8499ec0d68982f91e288",
+      "bytes": 7112,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/tests/components/SectionEditor.test.tsx.txt",
+      "testDeclarations": [
+        {
+          "line": 105,
+          "title": "keeps detail inputs within their panel at a narrow width in %s",
+          "wholeDeclarationSha256": "47a6281c60d6c76695402012f5c2af6f75552dcaa90c01f4b0f2f6f5e8f13036",
+          "expression": "it.each([\"ltr\", \"rtl\"])(\n\t\t\"keeps detail inputs within their panel at a narrow width in %s\",\n\t\tasync (direction) => {\n\t\t\tawait page.viewport(938, 880);\n\t\t\tconst screen = await render(\n\t\t\t\t<div dir={direction} style={{ display: \"flex\", width: \"100vw\" }}>\n\t\t\t\t\t<aside style={{ width: 260, flexShrink: 0 }} />\n\t\t\t\t\t<main style={{ flex: 1, minWidth: 0, padding: 24 }}>\n\t\t\t\t\t\t<SectionEditor />\n\t\t\t\t\t</main>\n\t\t\t\t</div>,\n\t\t\t\t{ wrapper: Wrapper },\n\t\t\t);\n\t\t\tawait expect.element(screen.getByRole(\"textbox\", { name: \"Keywords\" })).toBeInTheDocument();\n\n\t\t\tconst panel = screen\n\t\t\t\t.getByRole(\"heading\", { name: \"Section Details\" })\n\t\t\t\t.element().parentElement!;\n\t\t\tconst panelBounds = panel.getBoundingClientRect();\n\t\t\tconst styles = getComputedStyle(panel);\n\t\t\tconst contentStart = panelBounds.left + parseFloat(styles.paddingLeft);\n\t\t\tconst contentEnd = panelBounds.right - parseFloat(styles.paddingRight);\n\t\t\tfor (const name of [\"Title\", \"Slug\", \"Description\", \"Keywords\"]) {\n\t\t\t\tconst fieldBounds = screen.getByRole(\"textbox\", { name }).element().getBoundingClientRect();\n\t\t\t\texpect(fieldBounds.left).toBeGreaterThanOrEqual(contentStart - 1);\n\t\t\t\texpect(fieldBounds.right).toBeLessThanOrEqual(contentEnd + 1);\n\t\t\t}\n\t\t},\n\t)"
+        },
+        {
+          "line": 135,
+          "title": "opens the image settings panel when a block requests the sidebar",
+          "wholeDeclarationSha256": "af80cf857ebe5e528f5cbb92147d16dead62873d865ccdfedd4af78f8854452d",
+          "expression": "it(\"opens the image settings panel when a block requests the sidebar\", async () => {\n\t\tconst screen = await render(<SectionEditor />, { wrapper: Wrapper });\n\n\t\t// Editor must mount (and capture its props) before we can simulate.\n\t\tawait expect.element(screen.getByTestId(\"portable-text-editor\")).toBeInTheDocument();\n\n\t\tconst onBlockSidebarOpen = portableTextProps.current?.onBlockSidebarOpen as\n\t\t\t| ((panel: unknown) => void)\n\t\t\t| undefined;\n\t\tconst onBlockSidebarClose = portableTextProps.current?.onBlockSidebarClose as\n\t\t\t| (() => void)\n\t\t\t| undefined;\n\n\t\t// Both callbacks must be wired — without them, clicking the image-settings\n\t\t// icon in the editor is a silent no-op (#845).\n\t\texpect(typeof onBlockSidebarOpen).toBe(\"function\");\n\t\texpect(typeof onBlockSidebarClose).toBe(\"function\");\n\n\t\t// Simulate the image node view asking for sidebar space, the same shape\n\t\t// it sends from ImageNode.openSidebar(). expect.element below polls until\n\t\t// React flushes the state update, so we don't need an explicit act wrapper.\n\t\tonBlockSidebarOpen!({\n\t\t\ttype: \"image\",\n\t\t\tattrs: {\n\t\t\t\tsrc: \"https://example.com/logo.png\",\n\t\t\t\talt: \"Logo\",\n\t\t\t\tmediaId: \"media-1\",\n\t\t\t\twidth: 400,\n\t\t\t\theight: 200,\n\t\t\t},\n\t\t\tonUpdate: vi.fn(),\n\t\t\tonReplace: vi.fn(),\n\t\t\tonDelete: vi.fn(),\n\t\t\tonClose: vi.fn(),\n\t\t});\n\n\t\t// The Image Settings panel should now be rendered in the sidebar slot.\n\t\t// The panel renders the image preview using the src we passed.\n\t\tawait expect.element(screen.getByRole(\"img\", { name: \"Logo\" })).toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 176,
+          "title": "shows both clean save actions as Saved",
+          "wholeDeclarationSha256": "e7204e9c465a6a01b90823cde6e437733bbf9a7d762b3687ece1bcfe132a763e",
+          "expression": "it(\"shows both clean save actions as Saved\", async () => {\n\t\tconst screen = await render(<SectionEditor />, { wrapper: Wrapper });\n\n\t\tawait expect.element(screen.getByTestId(\"portable-text-editor\")).toBeInTheDocument();\n\t\tconst saveButtons = screen.getByRole(\"button\", { name: \"Saved\", exact: true }).all();\n\t\texpect(saveButtons).toHaveLength(2);\n\t\tfor (const button of saveButtons) await expect.element(button).toBeDisabled();\n\t\texpect(screen.getByRole(\"status\").element().textContent).toBe(\"Saved\");\n\t})"
+        },
+        {
+          "line": 186,
+          "title": "passes plugin block definitions to PortableTextEditor",
+          "wholeDeclarationSha256": "841fc2609e49936a865c7a85c93b06afe0ee17fdcc62101a1bd9ddf5c70831db",
+          "expression": "it(\"passes plugin block definitions to PortableTextEditor\", async () => {\n\t\tconst manifest = makeManifest({\n\t\t\tplugins: {\n\t\t\t\t\"plugin-embeds\": {\n\t\t\t\t\tportableTextBlocks: [\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\ttype: \"youtube\",\n\t\t\t\t\t\t\tlabel: \"YouTube\",\n\t\t\t\t\t\t\ticon: \"YoutubeLogo\",\n\t\t\t\t\t\t},\n\t\t\t\t\t],\n\t\t\t\t},\n\t\t\t},\n\t\t});\n\t\tmockFetchManifest.mockResolvedValue(manifest);\n\n\t\tconst screen = await render(<SectionEditor />, { wrapper: Wrapper });\n\t\tawait expect.element(screen.getByTestId(\"portable-text-editor\")).toBeInTheDocument();\n\n\t\texpect(portableTextProps.current?.pluginBlocks).toEqual([\n\t\t\t{\n\t\t\t\ttype: \"youtube\",\n\t\t\t\tpluginId: \"plugin-embeds\",\n\t\t\t\tlabel: \"YouTube\",\n\t\t\t\ticon: \"YoutubeLogo\",\n\t\t\t},\n\t\t]);\n\t})"
+        }
+      ],
+      "expectExpressions": [
+        "expect.element(screen.getByRole(\"textbox\", { name: \"Keywords\" }))",
+        "expect(fieldBounds.left)",
+        "expect(fieldBounds.right)",
+        "expect.element(screen.getByTestId(\"portable-text-editor\"))",
+        "expect(typeof onBlockSidebarOpen)",
+        "expect(typeof onBlockSidebarClose)",
+        "expect.element(screen.getByRole(\"img\", { name: \"Logo\" }))",
+        "expect.element(screen.getByTestId(\"portable-text-editor\"))",
+        "expect(saveButtons)",
+        "expect.element(button)",
+        "expect(screen.getByRole(\"status\").element().textContent)",
+        "expect.element(screen.getByTestId(\"portable-text-editor\"))",
+        "expect(portableTextProps.current?.pluginBlocks)"
+      ],
+      "scope": "sections or site widget scope",
+      "executableCopy": "parity/emdash/sections-widgets-source/upstream/packages/admin/tests/components/SectionEditor.test.tsx"
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/SectionPickerModal.test.tsx",
+      "sourceBlob": "a3b47ee049e9e2b0e8ae0aae8929cbe0f535ff01",
+      "sha256": "f92966e906a29cd2684b2cc075092fe747a9fc7c91c18315ab9146d5c1ab7172",
+      "bytes": 6413,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/tests/components/SectionPickerModal.test.tsx.txt",
+      "testDeclarations": [
+        {
+          "line": 72,
+          "title": "shows sections when open",
+          "wholeDeclarationSha256": "43786ca1b0d7923ccd8eebc2765598c1f68f860f3feb3957c5f30c0b85e28bbc",
+          "expression": "it(\"shows sections when open\", async () => {\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={true} onOpenChange={vi.fn()} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait expect.element(screen.getByText(\"Hero Section\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"Call to Action\")).toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 82,
+          "title": "clicking a section calls onSelect and closes modal",
+          "wholeDeclarationSha256": "5a2c16f6521f6f9f5d7c95916da3053de14338bc60c0205b390fe46b70d8ef85",
+          "expression": "it(\"clicking a section calls onSelect and closes modal\", async () => {\n\t\tconst onSelect = vi.fn();\n\t\tconst onOpenChange = vi.fn();\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={true} onOpenChange={onOpenChange} onSelect={onSelect} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait expect.element(screen.getByText(\"Hero Section\")).toBeInTheDocument();\n\t\t// The Base UI dialog puts an inert overlay. Use direct DOM click to bypass it.\n\t\tconst heroEl = screen.getByText(\"Hero Section\").element();\n\t\tconst button = heroEl.closest(\"button\");\n\t\tbutton!.click();\n\t\texpect(onSelect).toHaveBeenCalledWith(\n\t\t\texpect.objectContaining({ slug: \"hero\", title: \"Hero Section\" }),\n\t\t);\n\t\texpect(onOpenChange).toHaveBeenCalledWith(false);\n\t})"
+        },
+        {
+          "line": 101,
+          "title": "search input filters results",
+          "wholeDeclarationSha256": "fa2ef42519c214c182dd9e72552939d3b76122f3b3e059afb9348b2a68deb65f",
+          "expression": "it(\"search input filters results\", async () => {\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={true} onOpenChange={vi.fn()} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait expect.element(screen.getByText(\"Hero Section\")).toBeInTheDocument();\n\t\tconst searchInput = screen.getByPlaceholder(\"Search sections...\");\n\t\tawait searchInput.fill(\"cta\");\n\t\t// Search is debounced — wait for the query to fire\n\t\tawait vi.waitFor(() => {\n\t\t\texpect(mockFetchSections).toHaveBeenCalledWith(expect.objectContaining({ search: \"cta\" }));\n\t\t});\n\t})"
+        },
+        {
+          "line": 116,
+          "title": "cancel button closes modal",
+          "wholeDeclarationSha256": "0922e24f7db26dcee68a48d89581751da18215424163d0f2e5cf4ab64dabe4c4",
+          "expression": "it(\"cancel button closes modal\", async () => {\n\t\tconst onOpenChange = vi.fn();\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={true} onOpenChange={onOpenChange} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait expect.element(screen.getByText(\"Insert Section\")).toBeInTheDocument();\n\t\t// Direct DOM click to bypass the inert overlay\n\t\tconst cancelEl = screen.getByText(\"Cancel\").element();\n\t\tcancelEl.click();\n\t\texpect(onOpenChange).toHaveBeenCalledWith(false);\n\t})"
+        },
+        {
+          "line": 130,
+          "title": "queries do not fire when closed",
+          "wholeDeclarationSha256": "3b4d13333ed1ef708b1a161d1c5342bc0262e97605c8c434f0f593a09a7c8de2",
+          "expression": "it(\"queries do not fire when closed\", async () => {\n\t\tawait render(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={false} onOpenChange={vi.fn()} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\t// Wait a tick to let any queries that might fire settle\n\t\tawait new Promise((r) => setTimeout(r, 50));\n\t\texpect(mockFetchSections).not.toHaveBeenCalled();\n\t\texpect(mockFetchSectionCategories).not.toHaveBeenCalled();\n\t})"
+        },
+        {
+          "line": 142,
+          "title": "state resets when modal reopens",
+          "wholeDeclarationSha256": "956d3a101a7c89b050702ed6dd03aebd77845e7b46c16a48e0e03fc0d4ed4042",
+          "expression": "it(\"state resets when modal reopens\", async () => {\n\t\tconst onOpenChange = vi.fn();\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={true} onOpenChange={onOpenChange} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\t// Type something in search\n\t\tconst searchInput = screen.getByPlaceholder(\"Search sections...\");\n\t\tawait searchInput.fill(\"test\");\n\t\t// Close and reopen\n\t\tawait screen.rerender(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={false} onOpenChange={onOpenChange} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait screen.rerender(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={true} onOpenChange={onOpenChange} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\t// Search should be reset — the input should have an empty value\n\t\tawait vi.waitFor(() => {\n\t\t\tconst input = document.querySelector(\n\t\t\t\t'input[placeholder=\"Search sections...\"]',\n\t\t\t) as HTMLInputElement | null;\n\t\t\texpect(input?.value ?? \"\").toBe(\"\");\n\t\t});\n\t})"
+        },
+        {
+          "line": 172,
+          "title": "shows empty state messaging when no sections match",
+          "wholeDeclarationSha256": "b0ff7f958aaf9673e725b692ca3b3eb3b391cca60032542de60fd29d6b8c410b",
+          "expression": "it(\"shows empty state messaging when no sections match\", async () => {\n\t\tmockFetchSections.mockResolvedValue({ items: [] });\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={true} onOpenChange={vi.fn()} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait expect.element(screen.getByText(\"No sections available\")).toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 182,
+          "title": "shows filtered empty state when search has no results",
+          "wholeDeclarationSha256": "10aa2f05370be8c3a068d5a05966a84f1ac3e420d5d195d76ebe0153abffb072",
+          "expression": "it(\"shows filtered empty state when search has no results\", async () => {\n\t\tmockFetchSections.mockResolvedValue({ items: [] });\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<SectionPickerModal open={true} onOpenChange={vi.fn()} onSelect={vi.fn()} />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tconst searchInput = screen.getByPlaceholder(\"Search sections...\");\n\t\tawait searchInput.fill(\"nonexistent\");\n\t\tawait expect.element(screen.getByText(\"No sections found\")).toBeInTheDocument();\n\t})"
+        }
+      ],
+      "expectExpressions": [
+        "expect.element(screen.getByText(\"Hero Section\"))",
+        "expect.element(screen.getByText(\"Call to Action\"))",
+        "expect.element(screen.getByText(\"Hero Section\"))",
+        "expect(onSelect)",
+        "expect(onOpenChange)",
+        "expect.element(screen.getByText(\"Hero Section\"))",
+        "expect(mockFetchSections)",
+        "expect.element(screen.getByText(\"Insert Section\"))",
+        "expect(onOpenChange)",
+        "expect(mockFetchSections)",
+        "expect(mockFetchSectionCategories)",
+        "expect(input?.value ?? \"\")",
+        "expect.element(screen.getByText(\"No sections available\"))",
+        "expect.element(screen.getByText(\"No sections found\"))"
+      ],
+      "scope": "sections or site widget scope",
+      "executableCopy": "parity/emdash/sections-widgets-source/upstream/packages/admin/tests/components/SectionPickerModal.test.tsx"
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/Sections.test.tsx",
+      "sourceBlob": "a30162db90ad06e7e94dffa13e7ce6aeee5e1b19",
+      "sha256": "9487191300fd28ebcd238670b22cdedc680bc277b716ccef898a7320235400f9",
+      "bytes": 9541,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/tests/components/Sections.test.tsx.txt",
+      "testDeclarations": [
+        {
+          "line": 97,
+          "title": "announces loading sections once",
+          "wholeDeclarationSha256": "fe6bdad25cd1d292348dc8500b1dc4193dafa975403a993208d7410d362bcaa1",
+          "expression": "it(\"announces loading sections once\", async () => {\n\t\tmockFetchSections.mockImplementation(() => new Promise(() => {}));\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<Sections />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait expect.element(screen.getByRole(\"status\")).toHaveTextContent(\"Loading sections...\");\n\t})"
+        },
+        {
+          "line": 107,
+          "title": "displays sections with titles and descriptions",
+          "wholeDeclarationSha256": "f4c590b6122466a2574dc25647c7e5b319f22a495200cebc4782ed86edd2384b",
+          "expression": "it(\"displays sections with titles and descriptions\", async () => {\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<Sections />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait expect.element(screen.getByText(\"Hero Section\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"Call to Action\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"Main hero\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"CTA block\")).toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 119,
+          "title": "does not present stored text as a visual preview",
+          "wholeDeclarationSha256": "e97c96be04c3f4186af7e26e05090ae40c5100c586a2c067d284213435353ed7",
+          "expression": "it(\"does not present stored text as a visual preview\", async () => {\n\t\tmockFetchSections.mockResolvedValue({\n\t\t\titems: [\n\t\t\t\tmakeSection({\n\t\t\t\t\ttitle: \"Newsletter Signup\",\n\t\t\t\t\tdescription: \"A newsletter call to action\",\n\t\t\t\t\tcontent: [\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t_type: \"block\",\n\t\t\t\t\t\t\tstyle: \"h3\",\n\t\t\t\t\t\t\tchildren: [{ _type: \"span\", text: \"Stay in the loop\" }],\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{ _type: \"block\", children: [{ _type: \"span\", text: \"Newsletter body copy\" }] },\n\t\t\t\t\t],\n\t\t\t\t}),\n\t\t\t\tmakeSection({\n\t\t\t\t\tid: \"sec_02\",\n\t\t\t\t\tslug: \"about-author\",\n\t\t\t\t\ttitle: \"About the Author\",\n\t\t\t\t\tdescription: \"A short author bio\",\n\t\t\t\t\tcontent: [{ _type: \"block\", children: [{ _type: \"span\", text: \"Author body copy\" }] }],\n\t\t\t\t}),\n\t\t\t],\n\t\t});\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<Sections />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait expect.element(screen.getByText(\"Newsletter Signup\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"About the Author\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"A newsletter call to action\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"A short author bio\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"Stay in the loop\")).not.toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"Author body copy\")).not.toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 156,
+          "title": "keeps the image preview when one is available",
+          "wholeDeclarationSha256": "7ae8e9de24c2194072a161000fab76469718cbbb224707da461dfa5330f3e16b",
+          "expression": "it(\"keeps the image preview when one is available\", async () => {\n\t\tmockFetchSections.mockResolvedValue({\n\t\t\titems: [\n\t\t\t\tmakeSection({\n\t\t\t\t\tpreviewUrl: \"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=\",\n\t\t\t\t\tcontent: [\n\t\t\t\t\t\t{ _type: \"block\", children: [{ _type: \"span\", text: \"Image replaces this text\" }] },\n\t\t\t\t\t],\n\t\t\t\t}),\n\t\t\t],\n\t\t});\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<Sections />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait expect\n\t\t\t.element(screen.getByRole(\"img\", { name: \"Preview of Hero Section\" }))\n\t\t\t.toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"Image replaces this text\")).not.toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 178,
+          "title": "create button opens dialog with title/slug form",
+          "wholeDeclarationSha256": "1c77e3c919715fedf95999a9cc6d2b9658a6c375bd57943c10280837f78c7af1",
+          "expression": "it(\"create button opens dialog with title/slug form\", async () => {\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<Sections />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait screen.getByText(\"New section\").click();\n\t\tawait expect\n\t\t\t.element(screen.getByRole(\"heading\", { name: \"Create section\" }))\n\t\t\t.toBeInTheDocument();\n\t\t// Check form fields exist — InputArea uses label prop but may not be associated via aria\n\t\tawait expect.element(screen.getByLabelText(\"Title\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByLabelText(\"Slug\")).toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 193,
+          "title": "auto-generates slug from title in create dialog",
+          "wholeDeclarationSha256": "d12e14727290e1e4b312a241551e03d3e57e4d1923e385263b8e2aad8454e100",
+          "expression": "it(\"auto-generates slug from title in create dialog\", async () => {\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<Sections />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait screen.getByText(\"New section\").click();\n\t\tconst titleInput = screen.getByLabelText(\"Title\");\n\t\tawait titleInput.fill(\"My Great Section\");\n\t\t// Slug should be auto-generated\n\t\tawait expect.element(screen.getByLabelText(\"Slug\")).toHaveValue(\"my-great-section\");\n\t})"
+        },
+        {
+          "line": 206,
+          "title": "keeps the generated slug empty for blank titles",
+          "wholeDeclarationSha256": "97f7089f6739a6d96a1189c0fb8ebe623a495db1696bbb8cfb3e9ced3817196c",
+          "expression": "it(\"keeps the generated slug empty for blank titles\", async () => {\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<Sections />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait screen.getByText(\"New section\").click();\n\t\tconst titleInput = screen.getByLabelText(\"Title\");\n\t\tconst slugInput = screen.getByLabelText(\"Slug\");\n\t\tawait titleInput.fill(\"Draft\");\n\t\tawait expect.element(slugInput).toHaveValue(\"draft\");\n\t\tawait titleInput.fill(\"\");\n\t\tawait expect.element(slugInput).toHaveValue(\"\");\n\t\tawait titleInput.fill(\"   \");\n\t\tawait expect.element(slugInput).toHaveValue(\"\");\n\t\tawait titleInput.fill(\"Ready\");\n\t\tawait expect.element(slugInput).toHaveValue(\"ready\");\n\t})"
+        },
+        {
+          "line": 225,
+          "title": "search input filters sections",
+          "wholeDeclarationSha256": "6fe5e8c51ce682dc5f64a7ac97ff836a5ff47b73994116a9eb716ec6d0906501",
+          "expression": "it(\"search input filters sections\", async () => {\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<Sections />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tconst searchInput = screen.getByPlaceholder(\"Search sections...\");\n\t\tawait searchInput.fill(\"hero\");\n\t\t// fetchSections will be called again with search param\n\t\texpect(mockFetchSections).toHaveBeenCalledWith(expect.objectContaining({ search: \"hero\" }));\n\t})"
+        },
+        {
+          "line": 237,
+          "title": "offers a retry when sections fail to load",
+          "wholeDeclarationSha256": "c7640beaf8db86e13ea21d141334abedd6e1b93dec44502c68c72dab0fdac080",
+          "expression": "it(\"offers a retry when sections fail to load\", async () => {\n\t\tmockFetchSections.mockRejectedValueOnce(new Error(\"Offline\"));\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<Sections />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait expect.element(screen.getByText(\"Sections could not be loaded.\")).toBeInTheDocument();\n\t\tawait screen.getByRole(\"button\", { name: \"Retry\" }).click();\n\t\tawait expect.element(screen.getByText(\"Hero Section\")).toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 249,
+          "title": "delete button opens confirmation dialog",
+          "wholeDeclarationSha256": "ff82902c351f4981ede7bffa87b5188300d856101dd6d0325dca2e070285b6af",
+          "expression": "it(\"delete button opens confirmation dialog\", async () => {\n\t\tmockFetchSections.mockResolvedValue({\n\t\t\titems: [\n\t\t\t\tmakeSection({\n\t\t\t\t\tid: \"sec_02\",\n\t\t\t\t\tslug: \"cta\",\n\t\t\t\t\ttitle: \"Call to Action\",\n\t\t\t\t\tdescription: \"CTA block\",\n\t\t\t\t\tsource: \"user\",\n\t\t\t\t}),\n\t\t\t],\n\t\t});\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<Sections />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait expect.element(screen.getByText(\"Call to Action\")).toBeInTheDocument();\n\t\tawait screen.getByRole(\"button\", { name: \"More actions for Call to Action\" }).click();\n\t\tawait screen.getByRole(\"menuitem\", { name: \"Delete Call to Action\" }).click();\n\t\tawait expect.element(screen.getByText(\"Delete Section?\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(DELETE_SECTION_MSG_REGEX)).toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 273,
+          "title": "explains why theme sections cannot be deleted",
+          "wholeDeclarationSha256": "0ac64d7dbd4631223d9a2c09cd6bd35cc9a25436eba49ba5d4f15c8446223787",
+          "expression": "it(\"explains why theme sections cannot be deleted\", async () => {\n\t\tmockFetchSections.mockResolvedValue({\n\t\t\titems: [\n\t\t\t\tmakeSection({\n\t\t\t\t\tid: \"sec_01\",\n\t\t\t\t\tslug: \"hero\",\n\t\t\t\t\ttitle: \"Hero Section\",\n\t\t\t\t\tsource: \"theme\",\n\t\t\t\t}),\n\t\t\t],\n\t\t});\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<Sections />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait expect.element(screen.getByText(\"Hero Section\")).toBeInTheDocument();\n\t\tawait screen.getByRole(\"button\", { name: \"More actions for Hero Section\" }).click();\n\t\tawait expect\n\t\t\t.element(screen.getByRole(\"menuitem\", { name: \"Cannot delete theme sections\" }))\n\t\t\t.toHaveAttribute(\"aria-disabled\", \"true\");\n\t})"
+        },
+        {
+          "line": 296,
+          "title": "each section has an edit button",
+          "wholeDeclarationSha256": "61703f19a13b096a1b982a685e5d0537b2c9108ac18ee9f873441f71a9aca6c7",
+          "expression": "it(\"each section has an edit button\", async () => {\n\t\tconst screen = await render(\n\t\t\t<Wrapper>\n\t\t\t\t<Sections />\n\t\t\t</Wrapper>,\n\t\t);\n\t\tawait expect.element(screen.getByText(\"Hero Section\")).toBeInTheDocument();\n\t\tconst editButtons = screen.getByText(\"Edit\").all();\n\t\texpect(editButtons.length).toBe(2);\n\t})"
+        }
+      ],
+      "expectExpressions": [
+        "expect.element(screen.getByRole(\"status\"))",
+        "expect.element(screen.getByText(\"Hero Section\"))",
+        "expect.element(screen.getByText(\"Call to Action\"))",
+        "expect.element(screen.getByText(\"Main hero\"))",
+        "expect.element(screen.getByText(\"CTA block\"))",
+        "expect.element(screen.getByText(\"Newsletter Signup\"))",
+        "expect.element(screen.getByText(\"About the Author\"))",
+        "expect.element(screen.getByText(\"A newsletter call to action\"))",
+        "expect.element(screen.getByText(\"A short author bio\"))",
+        "expect.element(screen.getByText(\"Stay in the loop\"))",
+        "expect.element(screen.getByText(\"Author body copy\"))",
+        "expect.element(screen.getByText(\"Image replaces this text\"))",
+        "expect.element(screen.getByLabelText(\"Title\"))",
+        "expect.element(screen.getByLabelText(\"Slug\"))",
+        "expect.element(screen.getByLabelText(\"Slug\"))",
+        "expect.element(slugInput)",
+        "expect.element(slugInput)",
+        "expect.element(slugInput)",
+        "expect.element(slugInput)",
+        "expect(mockFetchSections)",
+        "expect.element(screen.getByText(\"Sections could not be loaded.\"))",
+        "expect.element(screen.getByText(\"Hero Section\"))",
+        "expect.element(screen.getByText(\"Call to Action\"))",
+        "expect.element(screen.getByText(\"Delete Section?\"))",
+        "expect.element(screen.getByText(DELETE_SECTION_MSG_REGEX))",
+        "expect.element(screen.getByText(\"Hero Section\"))",
+        "expect.element(screen.getByText(\"Hero Section\"))",
+        "expect(editButtons.length)"
+      ],
+      "scope": "sections or site widget scope",
+      "executableCopy": "parity/emdash/sections-widgets-source/upstream/packages/admin/tests/components/Sections.test.tsx"
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/Widgets.test.tsx",
+      "sourceBlob": "e9579eb4f0df2fa83594801001edfaeea1decb8b",
+      "sha256": "17b51565389fd1cd2a2d856055e02a8f6e5aa5a1b6b09740fded33d02e9fef43",
+      "bytes": 8433,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/tests/components/Widgets.test.tsx.txt",
+      "testDeclarations": [
+        {
+          "line": 73,
+          "title": "displays widget areas with labels",
+          "wholeDeclarationSha256": "5489acfffc9c5dd9e8f0fe67c5e009bd536cea42bfb6ab47ad1db918d44590a6",
+          "expression": "it(\"displays widget areas with labels\", async () => {\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\tawait expect.element(screen.getByRole(\"heading\", { name: \"Sidebar\" })).toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"Main sidebar\")).toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 80,
+          "title": "shows widgets within each area",
+          "wholeDeclarationSha256": "723e04e13b17b31022bc2c6e384d64536de908b8f65c6b3bf891b1f21312c3b6",
+          "expression": "it(\"shows widgets within each area\", async () => {\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\t// Widget titles are rendered in <span> elements. Use exact match to avoid\n\t\t// matching the \"Recent Posts Widget\" component in the available widgets list.\n\t\tawait expect.element(screen.getByText(\"Quick Links\")).toBeInTheDocument();\n\t\t// Verify widget type badges\n\t\tawait expect.element(screen.getByText(\"(content)\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"(menu)\")).toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 91,
+          "title": "create area button opens dialog with name/label/description form",
+          "wholeDeclarationSha256": "31ae120f561f1fa6dfae02dfb1e5abc7e1b2c3af43dd3b0da3f9265245bf0489",
+          "expression": "it(\"create area button opens dialog with name/label/description form\", async () => {\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\tawait screen.getByRole(\"button\", { name: ADD_WIDGET_AREA_REGEX }).click();\n\n\t\tawait expect\n\t\t\t.element(screen.getByRole(\"heading\", { name: \"Create Widget Area\" }))\n\t\t\t.toBeInTheDocument();\n\t\tawait expect.element(screen.getByLabelText(\"Name\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByLabelText(\"Label\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByLabelText(\"Description\")).toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 104,
+          "title": "delete area shows confirmation dialog",
+          "wholeDeclarationSha256": "1b1d562da4c9ab7dc6ee99efd66cb970ff0782d9c5acf34b8d854f2eb6309f62",
+          "expression": "it(\"delete area shows confirmation dialog\", async () => {\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\tawait expect.element(screen.getByRole(\"heading\", { name: \"Sidebar\" })).toBeInTheDocument();\n\n\t\t// The area header has a delete button next to the area label.\n\t\t// The WidgetAreaPanel header is a .p-4.border-b div with the label and a button.\n\t\t// Find the button inside the panel header (the div that contains the heading \"Sidebar\")\n\t\tconst sidebarHeading = document.querySelector(\"h3\");\n\t\texpect(sidebarHeading).not.toBeNull();\n\t\t// The delete button is a sibling of the div containing h3, within the .border-b parent\n\t\tconst headerContainer = sidebarHeading!.closest(\".border-b\");\n\t\texpect(headerContainer).not.toBeNull();\n\t\tconst deleteBtn = headerContainer!.querySelector(\"button\");\n\t\texpect(deleteBtn).not.toBeNull();\n\t\t(deleteBtn as HTMLButtonElement).click();\n\n\t\tawait expect\n\t\t\t.element(screen.getByRole(\"heading\", { name: \"Delete Widget Area?\" }))\n\t\t\t.toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(DELETE_WIDGET_AREA_MSG_REGEX)).toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 127,
+          "title": "widget expand/collapse toggles editor form",
+          "wholeDeclarationSha256": "9d196259875ef69a61cce37c2442852cd29686c739cfcf37b5285b9584cd1edf",
+          "expression": "it(\"widget expand/collapse toggles editor form\", async () => {\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\tawait expect.element(screen.getByText(\"Quick Links\")).toBeInTheDocument();\n\n\t\t// Initially collapsed — editor form should not be visible\n\t\texpect(screen.getByText(\"Save\").query()).toBeNull();\n\n\t\t// Click the widget title area to expand (it's a <button> wrapping the title)\n\t\tconst expandButtons = document.querySelectorAll(\"button.text-start\");\n\t\texpect(expandButtons.length).toBeGreaterThanOrEqual(1);\n\t\t(expandButtons[0] as HTMLButtonElement).click();\n\n\t\t// Now the editor should be visible with a Title field and Save button\n\t\tawait expect.element(screen.getByLabelText(\"Title\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"Save\")).toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 145,
+          "title": "content widget editor shows portable text editor",
+          "wholeDeclarationSha256": "b8ec169bc31a624350a3df7f7e445efd5e0c5882978ab221a841ac6cd517dadb",
+          "expression": "it(\"content widget editor shows portable text editor\", async () => {\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\t// Wait for widget type badge to render — indicates widgets are loaded\n\t\tawait expect.element(screen.getByText(\"(content)\")).toBeInTheDocument();\n\n\t\t// Expand the first widget (content type — \"Recent Posts\")\n\t\tconst expandButtons = document.querySelectorAll(\"button.text-start\");\n\t\texpect(expandButtons.length).toBeGreaterThanOrEqual(1);\n\t\t(expandButtons[0] as HTMLButtonElement).click();\n\n\t\t// Content widget should show the Save button and Title input in the editor\n\t\tawait expect.element(screen.getByText(\"Save\")).toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 160,
+          "title": "menu widget editor shows menu select",
+          "wholeDeclarationSha256": "f3f867630c75b51b95993b0500a08f531bda7b1dda3b8b8efb7fe7c6d55c8544",
+          "expression": "it(\"menu widget editor shows menu select\", async () => {\n\t\tvi.mocked(api.fetchMenus).mockResolvedValue([\n\t\t\t{\n\t\t\t\tid: \"m1\",\n\t\t\t\tname: \"main-nav\",\n\t\t\t\tlabel: \"Main Navigation\",\n\t\t\t\titemCount: 3,\n\t\t\t\tcreated_at: \"2025-01-01T00:00:00Z\",\n\t\t\t\tupdated_at: \"2025-01-01T00:00:00Z\",\n\t\t\t},\n\t\t\t{\n\t\t\t\tid: \"m2\",\n\t\t\t\tname: \"footer\",\n\t\t\t\tlabel: \"Footer Menu\",\n\t\t\t\titemCount: 2,\n\t\t\t\tcreated_at: \"2025-01-01T00:00:00Z\",\n\t\t\t\tupdated_at: \"2025-01-01T00:00:00Z\",\n\t\t\t},\n\t\t]);\n\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\t// Expand the second widget (menu type — \"Quick Links\")\n\t\tawait expect.element(screen.getByText(\"Quick Links\")).toBeInTheDocument();\n\t\tconst expandButtons = document.querySelectorAll(\"button.text-start\");\n\t\texpect(expandButtons.length).toBeGreaterThanOrEqual(2);\n\t\t(expandButtons[1] as HTMLButtonElement).click();\n\n\t\t// Menu widget should show the Menu select\n\t\tawait expect.element(screen.getByLabelText(\"Menu\")).toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 192,
+          "title": "empty state when no widget areas",
+          "wholeDeclarationSha256": "377f6f9ce7a1fe2662dbfe8a0b5a26ec72f79946428ac42150cfe4de4cf10d14",
+          "expression": "it(\"empty state when no widget areas\", async () => {\n\t\tvi.mocked(api.fetchWidgetAreas).mockResolvedValue([]);\n\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\tawait expect\n\t\t\t.element(screen.getByText(\"No widget areas yet. Create one to get started.\"))\n\t\t\t.toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 202,
+          "title": "shows available widget components panel",
+          "wholeDeclarationSha256": "b9ff281d4a1a42347e5a60e0f9a2f474ebcf874370abee6e243e3c10e1fcbd18",
+          "expression": "it(\"shows available widget components panel\", async () => {\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\tawait expect\n\t\t\t.element(screen.getByRole(\"heading\", { name: \"Available Widgets\" }))\n\t\t\t.toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"Content Block\")).toBeInTheDocument();\n\t\t// Use exact text to avoid matching the widget type \"(menu)\" badge\n\t\tawait expect.element(screen.getByText(\"Display a navigation menu\")).toBeInTheDocument();\n\t\tawait expect.element(screen.getByText(\"Shows recent posts\")).toBeInTheDocument();\n\t})"
+        },
+        {
+          "line": 214,
+          "title": "wraps the widget workspace in a horizontally scrollable container",
+          "wholeDeclarationSha256": "0464de4ae92e0b4a01de1e913c8c4618d1d21ef03c6a2fdde18f7002ad1231e2",
+          "expression": "it(\"wraps the widget workspace in a horizontally scrollable container\", async () => {\n\t\tconst screen = await render(<Widgets />, { wrapper: Wrapper });\n\n\t\tawait expect\n\t\t\t.element(screen.getByRole(\"heading\", { name: \"Available Widgets\" }))\n\t\t\t.toBeInTheDocument();\n\n\t\tconst grid = document.querySelector(\".grid.grid-cols-12\");\n\t\texpect(grid).not.toBeNull();\n\t\texpect(grid!.parentElement).toHaveClass(\"overflow-x-auto\");\n\t\texpect(grid).toHaveClass(\"min-w-[768px]\");\n\t})"
+        }
+      ],
+      "expectExpressions": [
+        "expect.element(screen.getByRole(\"heading\", { name: \"Sidebar\" }))",
+        "expect.element(screen.getByText(\"Main sidebar\"))",
+        "expect.element(screen.getByText(\"Quick Links\"))",
+        "expect.element(screen.getByText(\"(content)\"))",
+        "expect.element(screen.getByText(\"(menu)\"))",
+        "expect.element(screen.getByLabelText(\"Name\"))",
+        "expect.element(screen.getByLabelText(\"Label\"))",
+        "expect.element(screen.getByLabelText(\"Description\"))",
+        "expect.element(screen.getByRole(\"heading\", { name: \"Sidebar\" }))",
+        "expect(sidebarHeading)",
+        "expect(headerContainer)",
+        "expect(deleteBtn)",
+        "expect.element(screen.getByText(DELETE_WIDGET_AREA_MSG_REGEX))",
+        "expect.element(screen.getByText(\"Quick Links\"))",
+        "expect(screen.getByText(\"Save\").query())",
+        "expect(expandButtons.length)",
+        "expect.element(screen.getByLabelText(\"Title\"))",
+        "expect.element(screen.getByText(\"Save\"))",
+        "expect.element(screen.getByText(\"(content)\"))",
+        "expect(expandButtons.length)",
+        "expect.element(screen.getByText(\"Save\"))",
+        "expect.element(screen.getByText(\"Quick Links\"))",
+        "expect(expandButtons.length)",
+        "expect.element(screen.getByLabelText(\"Menu\"))",
+        "expect.element(screen.getByText(\"Content Block\"))",
+        "expect.element(screen.getByText(\"Display a navigation menu\"))",
+        "expect.element(screen.getByText(\"Shows recent posts\"))",
+        "expect(grid)",
+        "expect(grid!.parentElement)",
+        "expect(grid)"
+      ],
+      "scope": "sections or site widget scope",
+      "executableCopy": "parity/emdash/sections-widgets-source/upstream/packages/admin/tests/components/Widgets.test.tsx"
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/SortableContentSettingsSections.test.tsx",
+      "sourceBlob": "943716bd0451d2ee1eca38b131c7ec0818db242b",
+      "sha256": "e87801e07b538f0c7507555774668868aa07c8b1f40ba6240918eb93e79f983b",
+      "bytes": 6121,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/tests/components/SortableContentSettingsSections.test.tsx.txt",
+      "testDeclarations": [
+        {
+          "line": 51,
+          "title": "restores a saved section order and exposes accessible drag handles",
+          "wholeDeclarationSha256": "5f1210a03331fed33af9b7b7b3f79430bc0be0dee78758edd3458dd49053ed80",
+          "expression": "it(\"restores a saved section order and exposes accessible drag handles\", () => {\n\t\twindow.localStorage.setItem(\n\t\t\tSTORAGE_KEY,\n\t\t\tJSON.stringify({ version: 1, order: [\"seo\", \"publish\"] }),\n\t\t);\n\n\t\tconst { container } = renderSections();\n\t\tconst visibleSections = [...container.querySelectorAll(\"section\")];\n\n\t\texpect(visibleSections.map((section) => section.textContent)).toEqual([\"SEO\", \"Publish\"]);\n\t\texpect(screen.getByRole(\"button\", { name: \"Drag to reorder SEO\" })).toBeTruthy();\n\t\texpect(screen.getByRole(\"button\", { name: \"Drag to reorder Publish\" })).toBeTruthy();\n\t})"
+        },
+        {
+          "line": 65,
+          "title": "falls back to the default order when browser state is malformed",
+          "wholeDeclarationSha256": "636d1736514578a870b616221fe4c83359185ed99cb284b3a53abd9c690d4aaa",
+          "expression": "it(\"falls back to the default order when browser state is malformed\", () => {\n\t\twindow.localStorage.setItem(STORAGE_KEY, \"not-json\");\n\n\t\tconst { container } = renderSections();\n\t\tconst visibleSections = [...container.querySelectorAll(\"section\")];\n\n\t\texpect(visibleSections.map((section) => section.textContent)).toEqual([\"Publish\", \"SEO\"]);\n\t})"
+        },
+        {
+          "line": 74,
+          "title": "collapses every section to its heading while keyboard sorting is active",
+          "wholeDeclarationSha256": "6619d9c43be100cc789738474b024facf32eaccf9444a2faec703af8b28ffae7",
+          "expression": "it(\"collapses every section to its heading while keyboard sorting is active\", async () => {\n\t\tconst { container } = renderSections();\n\t\tconst handle = screen.getByRole(\"button\", { name: \"Drag to reorder Publish\" });\n\n\t\thandle.focus();\n\t\tawait pressKey(handle, \" \", \"Space\");\n\n\t\tconst sections = [...container.querySelectorAll(\"section\")];\n\t\texpect(sections.every((section) => section.dataset.sorting === \"true\")).toBe(true);\n\t\texpect(screen.getByTestId(\"publish-section\").parentElement).toBe(sections[0]);\n\t\texpect(screen.getByTestId(\"seo-section\").parentElement).toBe(sections[1]);\n\t\tfor (const section of sections) {\n\t\t\tconst heading = section.querySelector<HTMLElement>(\"[data-sortable-heading]\");\n\t\t\tconst sectionHandle = section.querySelector<HTMLElement>(\"[data-sortable-handle]\");\n\n\t\t\texpect(heading?.style.minHeight).toBe(\"48px\");\n\t\t\texpect(section.className).toContain(\n\t\t\t\t\"[&>*:not([data-sortable-heading]):not([data-sortable-handle])]:hidden\",\n\t\t\t);\n\t\t\texpect(sectionHandle?.classList.contains(\"top-1/2\")).toBe(true);\n\t\t\texpect(sectionHandle?.classList.contains(\"-translate-y-1/2\")).toBe(true);\n\t\t}\n\n\t\tawait pressKey(document, \"Escape\", \"Escape\");\n\n\t\tawait waitFor(() => {\n\t\t\texpect(sections.every((section) => section.dataset.sorting === \"false\")).toBe(true);\n\t\t});\n\t\texpect(container.querySelector(\"[data-sortable-heading]\")).toBeNull();\n\t\texpect(sections[0]?.className).not.toContain(\n\t\t\t\"[&>*:not([data-sortable-heading]):not([data-sortable-handle])]:hidden\",\n\t\t);\n\t\texpect(screen.getByTestId(\"publish-section\").parentElement).toBe(sections[0]);\n\t\texpect(screen.getByTestId(\"seo-section\").parentElement).toBe(sections[1]);\n\t})"
+        },
+        {
+          "line": 110,
+          "title": "persists a keyboard reorder and restores expanded section content",
+          "wholeDeclarationSha256": "640afb7feccd2e2be7c9faa132defd525cd99e081763c5fdcbb3fdd841db1698",
+          "expression": "it(\"persists a keyboard reorder and restores expanded section content\", async () => {\n\t\tconst { container } = renderSections();\n\t\tconst handle = screen.getByRole(\"button\", { name: \"Drag to reorder Publish\" });\n\n\t\thandle.focus();\n\t\tawait pressKey(handle, \" \", \"Space\");\n\t\tawait pressKey(document, \"ArrowDown\", \"ArrowDown\");\n\t\tawait pressKey(document, \" \", \"Space\");\n\n\t\tawait waitFor(() => {\n\t\t\tconst sections = [...container.querySelectorAll(\"section\")];\n\t\t\texpect(sections.map((section) => section.textContent)).toEqual([\"SEO\", \"Publish\"]);\n\t\t\texpect(sections.every((section) => section.dataset.sorting === \"false\")).toBe(true);\n\t\t});\n\n\t\tconst saved = JSON.parse(window.localStorage.getItem(STORAGE_KEY) ?? \"null\") as {\n\t\t\torder: string[];\n\t\t};\n\t\texpect(saved.order.indexOf(\"seo\")).toBeLessThan(saved.order.indexOf(\"publish\"));\n\t\texpect(screen.getByTestId(\"publish-section\").parentElement?.tagName).toBe(\"SECTION\");\n\t\texpect(screen.getByTestId(\"seo-section\").parentElement?.tagName).toBe(\"SECTION\");\n\t})"
+        },
+        {
+          "line": 133,
+          "title": "reports keyboard sorting start and cancellation to surrounding controls",
+          "wholeDeclarationSha256": "8fcfb25e1c0ba3b415b692807acfd383350312a5537d4b8ce90831d9ea627a6c",
+          "expression": "it(\"reports keyboard sorting start and cancellation to surrounding controls\", async () => {\n\t\tconst onSortingChange = vi.fn();\n\t\tconst { container } = render(\n\t\t\t<I18nProvider i18n={i18n}>\n\t\t\t\t<SortableContentSettingsSections\n\t\t\t\t\tcollection=\"posts\"\n\t\t\t\t\tuserId=\"user-1\"\n\t\t\t\t\tonSortingChange={onSortingChange}\n\t\t\t\t>\n\t\t\t\t\t<SortableContentSettingsSection id=\"publish\" label=\"Publish\">\n\t\t\t\t\t\t<div>Publish</div>\n\t\t\t\t\t</SortableContentSettingsSection>\n\t\t\t\t</SortableContentSettingsSections>\n\t\t\t</I18nProvider>,\n\t\t);\n\t\tconst handle = screen.getByRole(\"button\", { name: \"Drag to reorder Publish\" });\n\n\t\thandle.focus();\n\t\tawait pressKey(handle, \" \", \"Space\");\n\t\texpect(onSortingChange).toHaveBeenLastCalledWith(true);\n\t\texpect(container.querySelector(\"section\")?.dataset.sorting).toBe(\"true\");\n\n\t\tawait pressKey(document, \"Escape\", \"Escape\");\n\t\tawait waitFor(() => expect(onSortingChange).toHaveBeenLastCalledWith(false));\n\t\texpect(container.querySelector(\"section\")?.dataset.sorting).toBe(\"false\");\n\t})"
+        }
+      ],
+      "expectExpressions": [
+        "expect(visibleSections.map((section) => section.textContent))",
+        "expect(screen.getByRole(\"button\", { name: \"Drag to reorder SEO\" }))",
+        "expect(screen.getByRole(\"button\", { name: \"Drag to reorder Publish\" }))",
+        "expect(visibleSections.map((section) => section.textContent))",
+        "expect(sections.every((section) => section.dataset.sorting === \"true\"))",
+        "expect(screen.getByTestId(\"publish-section\").parentElement)",
+        "expect(screen.getByTestId(\"seo-section\").parentElement)",
+        "expect(heading?.style.minHeight)",
+        "expect(section.className)",
+        "expect(sectionHandle?.classList.contains(\"top-1/2\"))",
+        "expect(sectionHandle?.classList.contains(\"-translate-y-1/2\"))",
+        "expect(sections.every((section) => section.dataset.sorting === \"false\"))",
+        "expect(container.querySelector(\"[data-sortable-heading]\"))",
+        "expect(sections[0]?.className)",
+        "expect(screen.getByTestId(\"publish-section\").parentElement)",
+        "expect(screen.getByTestId(\"seo-section\").parentElement)",
+        "expect(sections.map((section) => section.textContent))",
+        "expect(sections.every((section) => section.dataset.sorting === \"false\"))",
+        "expect(saved.order.indexOf(\"seo\"))",
+        "expect(screen.getByTestId(\"publish-section\").parentElement?.tagName)",
+        "expect(screen.getByTestId(\"seo-section\").parentElement?.tagName)",
+        "expect(onSortingChange)",
+        "expect(container.querySelector(\"section\")?.dataset.sorting)",
+        "expect(onSortingChange)",
+        "expect(container.querySelector(\"section\")?.dataset.sorting)"
+      ],
+      "scope": "neighboring different feature, inventory only"
+    },
+    {
+      "sourcePath": "packages/admin/tests/lib/registry-sections.test.ts",
+      "sourceBlob": "fbc177c766748884f49dc5740e7f8811382aee48",
+      "sha256": "5fba8ea980fdcbde3efa3d8bac48c7c30ed856f528bdb60941b2b47bb79d4ef4",
+      "bytes": 3427,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/tests/lib/registry-sections.test.ts.txt",
+      "testDeclarations": [
+        {
+          "line": 11,
+          "title": "returns nothing for a missing or non-object sections map",
+          "wholeDeclarationSha256": "60afe97b197342b68fcf00c5a8be2d191deb0da2ab9af765c34f04986b450841",
+          "expression": "it(\"returns nothing for a missing or non-object sections map\", () => {\n\t\texpect(presentSections(null)).toEqual([]);\n\t\texpect(presentSections(undefined)).toEqual([]);\n\t\texpect(presentSections({})).toEqual([]);\n\t\texpect(presentSections({ sections: undefined })).toEqual([]);\n\t\texpect(presentSections({ sections: \"nope\" })).toEqual([]);\n\t})"
+        },
+        {
+          "line": 19,
+          "title": "keeps non-empty sections in SECTION_ORDER",
+          "wholeDeclarationSha256": "90d6a5091dda5da5dd52fcdb26384fbb05ca897f3fb9be17798cc823abcf6450",
+          "expression": "it(\"keeps non-empty sections in SECTION_ORDER\", () => {\n\t\tconst result = presentSections({\n\t\t\tsections: {\n\t\t\t\t// Deliberately out of display order to prove ordering is by SECTION_ORDER.\n\t\t\t\tsecurity: \"Report issues to security@example.com\",\n\t\t\t\tdescription: \"# Hello\\n\\nA plugin.\",\n\t\t\t\tinstallation: \"Run `npm i`.\",\n\t\t\t},\n\t\t});\n\t\texpect(result.map((s) => s.key)).toEqual([\"description\", \"installation\", \"security\"]);\n\t\texpect(result[0]!.markdown).toBe(\"# Hello\\n\\nA plugin.\");\n\t})"
+        },
+        {
+          "line": 32,
+          "title": "drops empty, whitespace-only, and non-string entries",
+          "wholeDeclarationSha256": "cd80c33a7f9c7a227a648e83bf6aafc5473d29548b7fd2da2ce61ca615dad10a",
+          "expression": "it(\"drops empty, whitespace-only, and non-string entries\", () => {\n\t\tconst result = presentSections({\n\t\t\tsections: {\n\t\t\t\tdescription: \"Real content\",\n\t\t\t\tinstallation: \"\",\n\t\t\t\tfaq: \"   \\n\\t  \",\n\t\t\t\tchangelog: 42,\n\t\t\t\tsecurity: null,\n\t\t\t},\n\t\t});\n\t\texpect(result.map((s) => s.key)).toEqual([\"description\"]);\n\t})"
+        },
+        {
+          "line": 45,
+          "title": "ignores unrecognised section keys",
+          "wholeDeclarationSha256": "9bde717b35e9ce9907b711e94be929a51a4084097236a13e9b5c1f22bb25643f",
+          "expression": "it(\"ignores unrecognised section keys\", () => {\n\t\tconst result = presentSections({\n\t\t\tsections: { description: \"ok\", \"x-custom\": \"should be ignored\" },\n\t\t});\n\t\texpect(result.map((s) => s.key)).toEqual([\"description\"]);\n\t})"
+        },
+        {
+          "line": 52,
+          "title": "covers every key in SECTION_ORDER when all are present",
+          "wholeDeclarationSha256": "7a9f3b446e776e339a30d8b386d8f5d9c3e270292146c3a77aadbdd8d375c4b4",
+          "expression": "it(\"covers every key in SECTION_ORDER when all are present\", () => {\n\t\tconst sections = Object.fromEntries(SECTION_ORDER.map((k) => [k, `content for ${k}`]));\n\t\tconst result = presentSections({ sections });\n\t\texpect(result.map((s) => s.key)).toEqual([...SECTION_ORDER]);\n\t})"
+        },
+        {
+          "line": 60,
+          "title": "returns null for non-object or fully-empty input",
+          "wholeDeclarationSha256": "e2cc386718dd56c287afac8bb37043a7924c4e457995bc6bcbbcc7e4856a870d",
+          "expression": "it(\"returns null for non-object or fully-empty input\", () => {\n\t\texpect(extractSbom(undefined)).toBeNull();\n\t\texpect(extractSbom(null)).toBeNull();\n\t\texpect(extractSbom(\"nope\")).toBeNull();\n\t\texpect(extractSbom({})).toBeNull();\n\t\texpect(extractSbom({ format: \"\", url: \"\" })).toBeNull();\n\t\texpect(extractSbom({ checksum: \"bafy...\" })).toBeNull();\n\t})"
+        },
+        {
+          "line": 69,
+          "title": "keeps a url with no format",
+          "wholeDeclarationSha256": "003fcc0778d6dad76b651f3912cd2b15d8e0876c776fbca7451f1ea9c330683a",
+          "expression": "it(\"keeps a url with no format\", () => {\n\t\texpect(extractSbom({ url: \"https://x/sbom.json\" })).toEqual({ url: \"https://x/sbom.json\" });\n\t})"
+        },
+        {
+          "line": 73,
+          "title": "extracts format, url, and checksum",
+          "wholeDeclarationSha256": "9f83c71f27644c0b21339f44f41662c644074a51b4008fc48bdba0844a4f4586",
+          "expression": "it(\"extracts format, url, and checksum\", () => {\n\t\texpect(\n\t\t\textractSbom({\n\t\t\t\tformat: \"cyclonedx\",\n\t\t\t\turl: \"https://x/sbom.json\",\n\t\t\t\tchecksum: \"bafy...\",\n\t\t\t}),\n\t\t).toEqual({ format: \"cyclonedx\", url: \"https://x/sbom.json\", checksum: \"bafy...\" });\n\t})"
+        },
+        {
+          "line": 83,
+          "title": "keeps a format with no url",
+          "wholeDeclarationSha256": "63e920a53f8376f5979b4970a922f0c37ffb4a4f230ecce4d3a7be7eedf26212",
+          "expression": "it(\"keeps a format with no url\", () => {\n\t\texpect(extractSbom({ format: \"spdx\" })).toEqual({ format: \"spdx\" });\n\t})"
+        },
+        {
+          "line": 89,
+          "title": "accepts http(s) URLs",
+          "wholeDeclarationSha256": "8b8d4e1c7d5dc3a765f0e5e8971d86b723e7f9c2a78975049f7e1ae9f87b4db3",
+          "expression": "it(\"accepts http(s) URLs\", () => {\n\t\texpect(sbomDownloadHref(\"https://x/sbom.json\")).toBe(\"https://x/sbom.json\");\n\t\texpect(sbomDownloadHref(\"http://x/sbom.json\")).toBe(\"http://x/sbom.json\");\n\t})"
+        },
+        {
+          "line": 94,
+          "title": "rejects non-http(s) schemes and garbage",
+          "wholeDeclarationSha256": "e000661f6b37eea1ea704cac1133f0bf223074a35c01b1453d434cb4750927af",
+          "expression": "it(\"rejects non-http(s) schemes and garbage\", () => {\n\t\texpect(sbomDownloadHref(\"javascript:alert(1)\")).toBeNull();\n\t\texpect(sbomDownloadHref(\"data:text/html,<script>\")).toBeNull();\n\t\texpect(sbomDownloadHref(\"/relative/path\")).toBeNull();\n\t\texpect(sbomDownloadHref(\"not a url\")).toBeNull();\n\t\texpect(sbomDownloadHref(\"\")).toBeNull();\n\t\texpect(sbomDownloadHref(undefined)).toBeNull();\n\t\texpect(sbomDownloadHref(123)).toBeNull();\n\t})"
+        }
+      ],
+      "expectExpressions": [
+        "expect(presentSections(null))",
+        "expect(presentSections(undefined))",
+        "expect(presentSections({}))",
+        "expect(presentSections({ sections: undefined }))",
+        "expect(presentSections({ sections: \"nope\" }))",
+        "expect(result.map((s) => s.key))",
+        "expect(result[0]!.markdown)",
+        "expect(result.map((s) => s.key))",
+        "expect(result.map((s) => s.key))",
+        "expect(result.map((s) => s.key))",
+        "expect(extractSbom(undefined))",
+        "expect(extractSbom(null))",
+        "expect(extractSbom(\"nope\"))",
+        "expect(extractSbom({}))",
+        "expect(extractSbom({ format: \"\", url: \"\" }))",
+        "expect(extractSbom({ checksum: \"bafy...\" }))",
+        "expect(extractSbom({ url: \"https://x/sbom.json\" }))",
+        "expect(\n\t\t\textractSbom({\n\t\t\t\tformat: \"cyclonedx\",\n\t\t\t\turl: \"https://x/sbom.json\",\n\t\t\t\tchecksum: \"bafy...\",\n\t\t\t}),\n\t\t)",
+        "expect(extractSbom({ format: \"spdx\" }))",
+        "expect(sbomDownloadHref(\"https://x/sbom.json\"))",
+        "expect(sbomDownloadHref(\"http://x/sbom.json\"))",
+        "expect(sbomDownloadHref(\"javascript:alert(1)\"))",
+        "expect(sbomDownloadHref(\"data:text/html,<script>\"))",
+        "expect(sbomDownloadHref(\"/relative/path\"))",
+        "expect(sbomDownloadHref(\"not a url\"))",
+        "expect(sbomDownloadHref(\"\"))",
+        "expect(sbomDownloadHref(undefined))",
+        "expect(sbomDownloadHref(123))"
+      ],
+      "scope": "neighboring different feature, inventory only"
+    },
+    {
+      "sourcePath": "packages/admin/tests/utils/render.tsx",
+      "sourceBlob": "bd876f25e9510d5e49c31c701f8b3edb7ff20dec",
+      "sha256": "71f7fc13dbc057eda13240e0df0fe0cd71797a5996c56bafd231bb75e91e3b3a",
+      "bytes": 962,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/tests/utils/render.tsx.txt"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/SectionEditor.tsx",
+      "sourceBlob": "e24b0e87e2dd0e97a1b6eaec221416a714d83cb8",
+      "sha256": "760a1b4bac31d553751bda43c2033e0bbaed6f121d3cdecd4a3a5dfb499c80cc",
+      "bytes": 10230,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/src/components/SectionEditor.tsx.txt"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/SectionPickerModal.tsx",
+      "sourceBlob": "528a7ea0e295f4cb762008fe0ab0cd34e408cc12",
+      "sha256": "6ec8ec6f8361035d6d47eb173e5f3222455522d713cdc11a8ca3b1f28b6a4cde",
+      "bytes": 5178,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/src/components/SectionPickerModal.tsx.txt"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/Sections.tsx",
+      "sourceBlob": "30cb2fb1ec2f1c93584110c939c01f405d545359",
+      "sha256": "5de75958a0a302fc78d754592aa21e81b6d023e876253767b502852fe4dd2a21",
+      "bytes": 14713,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/src/components/Sections.tsx.txt"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/Widgets.tsx",
+      "sourceBlob": "039cc31fefc5eeb4d104f9b9eb4679760f241d96",
+      "sha256": "a9a7bd6df2308ad160345ad5e7adfe16745e95b276b6ba80ed9a3d80d28b7690",
+      "bytes": 31513,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/src/components/Widgets.tsx.txt"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/PortableTextEditor.tsx",
+      "sourceBlob": "3a262115208af50bbdff84a099bd9c3b7b00ab8e",
+      "sha256": "f63023aa7f553b64bac11754b3f16fded3a56a4d50afabd67d6d6db2041a05bb",
+      "bytes": 172878,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/src/components/PortableTextEditor.tsx.txt"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/editor/ImageDetailPanel.tsx",
+      "sourceBlob": "34e9a4c23243ed205cffbd3039b1fe1aa7c3206b",
+      "sha256": "4b31ef581beca0f678f7894fc73775747e12636bf535a021e5429c1293812dc6",
+      "bytes": 24832,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/src/components/editor/ImageDetailPanel.tsx.txt"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/editor/GalleryDetailPanel.tsx",
+      "sourceBlob": "b53ac038e92d9d6bc499fd71a12a3926c9b3256d",
+      "sha256": "f11c265f1f9a6c613635ada39d504a8b8c1c46a96e24af8b97ab3d01cfeddc74",
+      "bytes": 16170,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/src/components/editor/GalleryDetailPanel.tsx.txt"
+    },
+    {
+      "sourcePath": "packages/admin/src/lib/pluginBlocks.ts",
+      "sourceBlob": "be39655c84b88dd22879cd93dc8a1cec09a30172",
+      "sha256": "b7fb5301e8597d1a9e3a73ce02b445a4430f5279d5eab7b4c2599d7d05f2b8b5",
+      "bytes": 548,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/src/lib/pluginBlocks.ts.txt"
+    },
+    {
+      "sourcePath": "packages/admin/src/lib/api/sections.ts",
+      "sourceBlob": "4d5905a74360a06f2a63a2e5f1bf9b265f551aca",
+      "sha256": "23d7b9838b62137b757f933c43810fd277feee5f8c829415fb8637d5a0df5f61",
+      "bytes": 2998,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/src/lib/api/sections.ts.txt"
+    },
+    {
+      "sourcePath": "packages/admin/src/lib/api/widgets.ts",
+      "sourceBlob": "84e674541ed4eeb85f5af47f848840b478dfd9b6",
+      "sha256": "1ca68936baf311b97b3aa3b4809d028efce38f7609f29527f031c5cffbfacb17",
+      "bytes": 4527,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/src/lib/api/widgets.ts.txt"
+    },
+    {
+      "sourcePath": "packages/admin/src/lib/api/client.ts",
+      "sourceBlob": "e9c26bde8b401e202b9046bed5ac78c2c26c44b2",
+      "sha256": "2836ccbff42d891af6c789e01259c6912d7ba73c4799620499f3913081997e18",
+      "bytes": 11565,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/src/lib/api/client.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/widgets/widgets.test.ts",
+      "sourceBlob": "bd0245ae94dbbc8dacdc27ef841587065439f8ec",
+      "sha256": "8de2d79edddd63856c48241116ef522fe2bc9ac4cc26d8f11d89e114cdc535c6",
+      "bytes": 14653,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/tests/unit/widgets/widgets.test.ts.txt",
+      "testDeclarations": [
+        {
+          "line": 27,
+          "title": "should create _emdash_widget_areas table",
+          "wholeDeclarationSha256": "0375019b3b571b92ffa1b52e78ba73757b8903477cbe037a90aeaf0a4bd57954",
+          "expression": "it(\"should create _emdash_widget_areas table\", async () => {\n\t\t\tconst tables = await db.introspection.getTables();\n\t\t\tconst areasTable = tables.find((t) => t.name === \"_emdash_widget_areas\");\n\t\t\texpect(areasTable).toBeDefined();\n\n\t\t\tconst columns = areasTable!.columns.map((c) => c.name);\n\t\t\texpect(columns).toContain(\"id\");\n\t\t\texpect(columns).toContain(\"name\");\n\t\t\texpect(columns).toContain(\"label\");\n\t\t\texpect(columns).toContain(\"description\");\n\t\t})"
+        },
+        {
+          "line": 39,
+          "title": "should create _emdash_widgets table",
+          "wholeDeclarationSha256": "fdd2e42cd9fd149d2d885847619b5bd7026eb97ac95058ab95a1f18c99e343ce",
+          "expression": "it(\"should create _emdash_widgets table\", async () => {\n\t\t\tconst tables = await db.introspection.getTables();\n\t\t\tconst widgetsTable = tables.find((t) => t.name === \"_emdash_widgets\");\n\t\t\texpect(widgetsTable).toBeDefined();\n\n\t\t\tconst columns = widgetsTable!.columns.map((c) => c.name);\n\t\t\texpect(columns).toContain(\"id\");\n\t\t\texpect(columns).toContain(\"area_id\");\n\t\t\texpect(columns).toContain(\"sort_order\");\n\t\t\texpect(columns).toContain(\"type\");\n\t\t\texpect(columns).toContain(\"title\");\n\t\t\texpect(columns).toContain(\"content\");\n\t\t\texpect(columns).toContain(\"menu_name\");\n\t\t\texpect(columns).toContain(\"component_id\");\n\t\t\texpect(columns).toContain(\"component_props\");\n\t\t})"
+        },
+        {
+          "line": 56,
+          "title": "should enforce unique constraint on widget area name",
+          "wholeDeclarationSha256": "5b9ac22deada497fc6da61752cd3297cf6e27f7d33d3dd2f3e565d8727465fe1",
+          "expression": "it(\"should enforce unique constraint on widget area name\", async () => {\n\t\t\tconst id1 = ulid();\n\t\t\tconst id2 = ulid();\n\n\t\t\tawait db\n\t\t\t\t.insertInto(\"_emdash_widget_areas\")\n\t\t\t\t.values({\n\t\t\t\t\tid: id1,\n\t\t\t\t\tname: \"sidebar\",\n\t\t\t\t\tlabel: \"Sidebar\",\n\t\t\t\t\tdescription: null,\n\t\t\t\t})\n\t\t\t\t.execute();\n\n\t\t\tawait expect(\n\t\t\t\tdb\n\t\t\t\t\t.insertInto(\"_emdash_widget_areas\")\n\t\t\t\t\t.values({\n\t\t\t\t\t\tid: id2,\n\t\t\t\t\t\tname: \"sidebar\",\n\t\t\t\t\t\tlabel: \"Sidebar Again\",\n\t\t\t\t\t\tdescription: null,\n\t\t\t\t\t})\n\t\t\t\t\t.execute(),\n\t\t\t).rejects.toThrow();\n\t\t})"
+        },
+        {
+          "line": 83,
+          "title": "should cascade delete widgets when area is deleted",
+          "wholeDeclarationSha256": "98b797f9b88db08447ee3ef543b196288409f209a27d1a0c1e2da3c713f3a82a",
+          "expression": "it(\"should cascade delete widgets when area is deleted\", async () => {\n\t\t\tconst areaId = ulid();\n\t\t\tconst widgetId = ulid();\n\n\t\t\t// Create area\n\t\t\tawait db\n\t\t\t\t.insertInto(\"_emdash_widget_areas\")\n\t\t\t\t.values({\n\t\t\t\t\tid: areaId,\n\t\t\t\t\tname: \"sidebar\",\n\t\t\t\t\tlabel: \"Sidebar\",\n\t\t\t\t\tdescription: null,\n\t\t\t\t})\n\t\t\t\t.execute();\n\n\t\t\t// Create widget\n\t\t\tawait db\n\t\t\t\t.insertInto(\"_emdash_widgets\")\n\t\t\t\t.values({\n\t\t\t\t\tid: widgetId,\n\t\t\t\t\tarea_id: areaId,\n\t\t\t\t\tsort_order: 0,\n\t\t\t\t\ttype: \"content\" as WidgetType,\n\t\t\t\t\ttitle: \"Test Widget\",\n\t\t\t\t\tcontent: null,\n\t\t\t\t\tmenu_name: null,\n\t\t\t\t\tcomponent_id: null,\n\t\t\t\t\tcomponent_props: null,\n\t\t\t\t})\n\t\t\t\t.execute();\n\n\t\t\t// Delete area\n\t\t\tawait db.deleteFrom(\"_emdash_widget_areas\").where(\"id\", \"=\", areaId).execute();\n\n\t\t\t// Verify widget was deleted\n\t\t\tconst widgets = await db\n\t\t\t\t.selectFrom(\"_emdash_widgets\")\n\t\t\t\t.where(\"area_id\", \"=\", areaId)\n\t\t\t\t.selectAll()\n\t\t\t\t.execute();\n\n\t\t\texpect(widgets).toHaveLength(0);\n\t\t})"
+        },
+        {
+          "line": 129,
+          "title": "should create a widget area",
+          "wholeDeclarationSha256": "100a416abd890d1045a9e03609066fb92835d8f380de5cfc0e3b96ea0e06cef0",
+          "expression": "it(\"should create a widget area\", async () => {\n\t\t\tconst id = ulid();\n\n\t\t\tawait db\n\t\t\t\t.insertInto(\"_emdash_widget_areas\")\n\t\t\t\t.values({\n\t\t\t\t\tid,\n\t\t\t\t\tname: \"sidebar\",\n\t\t\t\t\tlabel: \"Sidebar\",\n\t\t\t\t\tdescription: \"The main sidebar\",\n\t\t\t\t})\n\t\t\t\t.execute();\n\n\t\t\tconst area = await db\n\t\t\t\t.selectFrom(\"_emdash_widget_areas\")\n\t\t\t\t.selectAll()\n\t\t\t\t.where(\"id\", \"=\", id)\n\t\t\t\t.executeTakeFirst();\n\n\t\t\texpect(area).not.toBeNull();\n\t\t\texpect(area?.name).toBe(\"sidebar\");\n\t\t\texpect(area?.label).toBe(\"Sidebar\");\n\t\t\texpect(area?.description).toBe(\"The main sidebar\");\n\t\t})"
+        },
+        {
+          "line": 154,
+          "title": "should query all widget areas",
+          "wholeDeclarationSha256": "0affbbd37385836d713ea37e5d5e46a00efc51ef4b68e8b4e8a2adac703fd004",
+          "expression": "it(\"should query all widget areas\", async () => {\n\t\t\tawait db\n\t\t\t\t.insertInto(\"_emdash_widget_areas\")\n\t\t\t\t.values([\n\t\t\t\t\t{ id: ulid(), name: \"sidebar\", label: \"Sidebar\", description: null },\n\t\t\t\t\t{ id: ulid(), name: \"footer\", label: \"Footer\", description: null },\n\t\t\t\t\t{\n\t\t\t\t\t\tid: ulid(),\n\t\t\t\t\t\tname: \"header\",\n\t\t\t\t\t\tlabel: \"Header Widgets\",\n\t\t\t\t\t\tdescription: null,\n\t\t\t\t\t},\n\t\t\t\t])\n\t\t\t\t.execute();\n\n\t\t\tconst areas = await db.selectFrom(\"_emdash_widget_areas\").selectAll().execute();\n\n\t\t\texpect(areas).toHaveLength(3);\n\t\t})"
+        },
+        {
+          "line": 174,
+          "title": "should query widget area by name",
+          "wholeDeclarationSha256": "d296c1f58695f9655fc3e32253df79a86bf172cff173dad87d9f7a0d3f1d94d5",
+          "expression": "it(\"should query widget area by name\", async () => {\n\t\t\tawait db\n\t\t\t\t.insertInto(\"_emdash_widget_areas\")\n\t\t\t\t.values({\n\t\t\t\t\tid: ulid(),\n\t\t\t\t\tname: \"sidebar\",\n\t\t\t\t\tlabel: \"Sidebar\",\n\t\t\t\t\tdescription: \"Primary sidebar\",\n\t\t\t\t})\n\t\t\t\t.execute();\n\n\t\t\tconst area = await db\n\t\t\t\t.selectFrom(\"_emdash_widget_areas\")\n\t\t\t\t.selectAll()\n\t\t\t\t.where(\"name\", \"=\", \"sidebar\")\n\t\t\t\t.executeTakeFirst();\n\n\t\t\texpect(area).not.toBeNull();\n\t\t\texpect(area?.label).toBe(\"Sidebar\");\n\t\t})"
+        },
+        {
+          "line": 213,
+          "title": "should create a content widget",
+          "wholeDeclarationSha256": "acba9b6c3c8b33ca941f92aa5946ef664e32dfe8324f1ac849c78e767e319950",
+          "expression": "it(\"should create a content widget\", async () => {\n\t\t\t\tconst id = ulid();\n\t\t\t\tconst content = [{ _type: \"block\", children: [{ _type: \"span\", text: \"Hello\" }] }];\n\n\t\t\t\tawait db\n\t\t\t\t\t.insertInto(\"_emdash_widgets\")\n\t\t\t\t\t.values({\n\t\t\t\t\t\tid,\n\t\t\t\t\t\tarea_id: areaId,\n\t\t\t\t\t\tsort_order: 0,\n\t\t\t\t\t\ttype: \"content\" as WidgetType,\n\t\t\t\t\t\ttitle: \"Welcome\",\n\t\t\t\t\t\tcontent: JSON.stringify(content),\n\t\t\t\t\t\tmenu_name: null,\n\t\t\t\t\t\tcomponent_id: null,\n\t\t\t\t\t\tcomponent_props: null,\n\t\t\t\t\t})\n\t\t\t\t\t.execute();\n\n\t\t\t\tconst widget = await db\n\t\t\t\t\t.selectFrom(\"_emdash_widgets\")\n\t\t\t\t\t.selectAll()\n\t\t\t\t\t.where(\"id\", \"=\", id)\n\t\t\t\t\t.executeTakeFirst();\n\n\t\t\t\texpect(widget).not.toBeNull();\n\t\t\t\texpect(widget?.type).toBe(\"content\");\n\t\t\t\texpect(widget?.title).toBe(\"Welcome\");\n\t\t\t\texpect(JSON.parse(widget!.content!)).toEqual(content);\n\t\t\t})"
+        },
+        {
+          "line": 246,
+          "title": "should create a menu widget",
+          "wholeDeclarationSha256": "f0ff7e58be755dcfea31f05e7243099d65b55898dae0bbb341cbbade733e190b",
+          "expression": "it(\"should create a menu widget\", async () => {\n\t\t\t\tconst id = ulid();\n\n\t\t\t\tawait db\n\t\t\t\t\t.insertInto(\"_emdash_widgets\")\n\t\t\t\t\t.values({\n\t\t\t\t\t\tid,\n\t\t\t\t\t\tarea_id: areaId,\n\t\t\t\t\t\tsort_order: 0,\n\t\t\t\t\t\ttype: \"menu\" as WidgetType,\n\t\t\t\t\t\ttitle: \"Navigation\",\n\t\t\t\t\t\tcontent: null,\n\t\t\t\t\t\tmenu_name: \"sidebar-nav\",\n\t\t\t\t\t\tcomponent_id: null,\n\t\t\t\t\t\tcomponent_props: null,\n\t\t\t\t\t})\n\t\t\t\t\t.execute();\n\n\t\t\t\tconst widget = await db\n\t\t\t\t\t.selectFrom(\"_emdash_widgets\")\n\t\t\t\t\t.selectAll()\n\t\t\t\t\t.where(\"id\", \"=\", id)\n\t\t\t\t\t.executeTakeFirst();\n\n\t\t\t\texpect(widget).not.toBeNull();\n\t\t\t\texpect(widget?.type).toBe(\"menu\");\n\t\t\t\texpect(widget?.menu_name).toBe(\"sidebar-nav\");\n\t\t\t})"
+        },
+        {
+          "line": 277,
+          "title": "should create a component widget",
+          "wholeDeclarationSha256": "606023471a7c5aa7d1b789e62b87de8ab659a4f742022234a2aacfc553be82f4",
+          "expression": "it(\"should create a component widget\", async () => {\n\t\t\t\tconst id = ulid();\n\t\t\t\tconst props = { count: 5, showDate: true };\n\n\t\t\t\tawait db\n\t\t\t\t\t.insertInto(\"_emdash_widgets\")\n\t\t\t\t\t.values({\n\t\t\t\t\t\tid,\n\t\t\t\t\t\tarea_id: areaId,\n\t\t\t\t\t\tsort_order: 0,\n\t\t\t\t\t\ttype: \"component\" as WidgetType,\n\t\t\t\t\t\ttitle: \"Recent Posts\",\n\t\t\t\t\t\tcontent: null,\n\t\t\t\t\t\tmenu_name: null,\n\t\t\t\t\t\tcomponent_id: \"core:recent-posts\",\n\t\t\t\t\t\tcomponent_props: JSON.stringify(props),\n\t\t\t\t\t})\n\t\t\t\t\t.execute();\n\n\t\t\t\tconst widget = await db\n\t\t\t\t\t.selectFrom(\"_emdash_widgets\")\n\t\t\t\t\t.selectAll()\n\t\t\t\t\t.where(\"id\", \"=\", id)\n\t\t\t\t\t.executeTakeFirst();\n\n\t\t\t\texpect(widget).not.toBeNull();\n\t\t\t\texpect(widget?.type).toBe(\"component\");\n\t\t\t\texpect(widget?.component_id).toBe(\"core:recent-posts\");\n\t\t\t\texpect(JSON.parse(widget!.component_props!)).toEqual(props);\n\t\t\t})"
+        },
+        {
+          "line": 310,
+          "title": "should order widgets by sort_order",
+          "wholeDeclarationSha256": "24648e4a8e111b2fad57b9e79ce627a4578e4555325d8e3afc87be5b025ec1f2",
+          "expression": "it(\"should order widgets by sort_order\", async () => {\n\t\t\t\tawait db\n\t\t\t\t\t.insertInto(\"_emdash_widgets\")\n\t\t\t\t\t.values([\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\tid: ulid(),\n\t\t\t\t\t\t\tarea_id: areaId,\n\t\t\t\t\t\t\tsort_order: 2,\n\t\t\t\t\t\t\ttype: \"content\" as WidgetType,\n\t\t\t\t\t\t\ttitle: \"Third\",\n\t\t\t\t\t\t\tcontent: null,\n\t\t\t\t\t\t\tmenu_name: null,\n\t\t\t\t\t\t\tcomponent_id: null,\n\t\t\t\t\t\t\tcomponent_props: null,\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\tid: ulid(),\n\t\t\t\t\t\t\tarea_id: areaId,\n\t\t\t\t\t\t\tsort_order: 0,\n\t\t\t\t\t\t\ttype: \"content\" as WidgetType,\n\t\t\t\t\t\t\ttitle: \"First\",\n\t\t\t\t\t\t\tcontent: null,\n\t\t\t\t\t\t\tmenu_name: null,\n\t\t\t\t\t\t\tcomponent_id: null,\n\t\t\t\t\t\t\tcomponent_props: null,\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\tid: ulid(),\n\t\t\t\t\t\t\tarea_id: areaId,\n\t\t\t\t\t\t\tsort_order: 1,\n\t\t\t\t\t\t\ttype: \"content\" as WidgetType,\n\t\t\t\t\t\t\ttitle: \"Second\",\n\t\t\t\t\t\t\tcontent: null,\n\t\t\t\t\t\t\tmenu_name: null,\n\t\t\t\t\t\t\tcomponent_id: null,\n\t\t\t\t\t\t\tcomponent_props: null,\n\t\t\t\t\t\t},\n\t\t\t\t\t])\n\t\t\t\t\t.execute();\n\n\t\t\t\tconst widgets = await db\n\t\t\t\t\t.selectFrom(\"_emdash_widgets\")\n\t\t\t\t\t.selectAll()\n\t\t\t\t\t.where(\"area_id\", \"=\", areaId)\n\t\t\t\t\t.orderBy(\"sort_order\", \"asc\")\n\t\t\t\t\t.execute();\n\n\t\t\t\texpect(widgets).toHaveLength(3);\n\t\t\t\texpect(widgets[0].title).toBe(\"First\");\n\t\t\t\texpect(widgets[1].title).toBe(\"Second\");\n\t\t\t\texpect(widgets[2].title).toBe(\"Third\");\n\t\t\t})"
+        },
+        {
+          "line": 363,
+          "title": "should update sort_order for reordering",
+          "wholeDeclarationSha256": "5e107318980b69b08e6057a4d2ec557a8763c7729cb43d5f9772469ad1c5f0fd",
+          "expression": "it(\"should update sort_order for reordering\", async () => {\n\t\t\t\tconst ids = [ulid(), ulid(), ulid()];\n\n\t\t\t\tawait db\n\t\t\t\t\t.insertInto(\"_emdash_widgets\")\n\t\t\t\t\t.values([\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\tid: ids[0],\n\t\t\t\t\t\t\tarea_id: areaId,\n\t\t\t\t\t\t\tsort_order: 0,\n\t\t\t\t\t\t\ttype: \"content\" as WidgetType,\n\t\t\t\t\t\t\ttitle: \"A\",\n\t\t\t\t\t\t\tcontent: null,\n\t\t\t\t\t\t\tmenu_name: null,\n\t\t\t\t\t\t\tcomponent_id: null,\n\t\t\t\t\t\t\tcomponent_props: null,\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\tid: ids[1],\n\t\t\t\t\t\t\tarea_id: areaId,\n\t\t\t\t\t\t\tsort_order: 1,\n\t\t\t\t\t\t\ttype: \"content\" as WidgetType,\n\t\t\t\t\t\t\ttitle: \"B\",\n\t\t\t\t\t\t\tcontent: null,\n\t\t\t\t\t\t\tmenu_name: null,\n\t\t\t\t\t\t\tcomponent_id: null,\n\t\t\t\t\t\t\tcomponent_props: null,\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\tid: ids[2],\n\t\t\t\t\t\t\tarea_id: areaId,\n\t\t\t\t\t\t\tsort_order: 2,\n\t\t\t\t\t\t\ttype: \"content\" as WidgetType,\n\t\t\t\t\t\t\ttitle: \"C\",\n\t\t\t\t\t\t\tcontent: null,\n\t\t\t\t\t\t\tmenu_name: null,\n\t\t\t\t\t\t\tcomponent_id: null,\n\t\t\t\t\t\t\tcomponent_props: null,\n\t\t\t\t\t\t},\n\t\t\t\t\t])\n\t\t\t\t\t.execute();\n\n\t\t\t\t// Reorder: C (was 2) -> 0, A (was 0) -> 1, B (was 1) -> 2\n\t\t\t\tconst newOrder = [ids[2], ids[0], ids[1]];\n\t\t\t\tfor (let i = 0; i < newOrder.length; i++) {\n\t\t\t\t\tawait db\n\t\t\t\t\t\t.updateTable(\"_emdash_widgets\")\n\t\t\t\t\t\t.set({ sort_order: i })\n\t\t\t\t\t\t.where(\"id\", \"=\", newOrder[i])\n\t\t\t\t\t\t.execute();\n\t\t\t\t}\n\n\t\t\t\tconst widgets = await db\n\t\t\t\t\t.selectFrom(\"_emdash_widgets\")\n\t\t\t\t\t.selectAll()\n\t\t\t\t\t.where(\"area_id\", \"=\", areaId)\n\t\t\t\t\t.orderBy(\"sort_order\", \"asc\")\n\t\t\t\t\t.execute();\n\n\t\t\t\texpect(widgets[0].title).toBe(\"C\");\n\t\t\t\texpect(widgets[1].title).toBe(\"A\");\n\t\t\t\texpect(widgets[2].title).toBe(\"B\");\n\t\t\t})"
+        },
+        {
+          "line": 429,
+          "title": "should update widget properties",
+          "wholeDeclarationSha256": "382841cc7deaf77d4ad0365beb40d0aa45dfd7ec7228e4af95ac4b01e4aabe17",
+          "expression": "it(\"should update widget properties\", async () => {\n\t\t\t\tconst id = ulid();\n\n\t\t\t\tawait db\n\t\t\t\t\t.insertInto(\"_emdash_widgets\")\n\t\t\t\t\t.values({\n\t\t\t\t\t\tid,\n\t\t\t\t\t\tarea_id: areaId,\n\t\t\t\t\t\tsort_order: 0,\n\t\t\t\t\t\ttype: \"content\" as WidgetType,\n\t\t\t\t\t\ttitle: \"Original\",\n\t\t\t\t\t\tcontent: JSON.stringify([{ _type: \"block\", children: [] }]),\n\t\t\t\t\t\tmenu_name: null,\n\t\t\t\t\t\tcomponent_id: null,\n\t\t\t\t\t\tcomponent_props: null,\n\t\t\t\t\t})\n\t\t\t\t\t.execute();\n\n\t\t\t\tconst newContent = [{ _type: \"block\", children: [{ _type: \"span\", text: \"Updated\" }] }];\n\n\t\t\t\tawait db\n\t\t\t\t\t.updateTable(\"_emdash_widgets\")\n\t\t\t\t\t.set({\n\t\t\t\t\t\ttitle: \"Updated Title\",\n\t\t\t\t\t\tcontent: JSON.stringify(newContent),\n\t\t\t\t\t})\n\t\t\t\t\t.where(\"id\", \"=\", id)\n\t\t\t\t\t.execute();\n\n\t\t\t\tconst widget = await db\n\t\t\t\t\t.selectFrom(\"_emdash_widgets\")\n\t\t\t\t\t.selectAll()\n\t\t\t\t\t.where(\"id\", \"=\", id)\n\t\t\t\t\t.executeTakeFirst();\n\n\t\t\t\texpect(widget?.title).toBe(\"Updated Title\");\n\t\t\t\texpect(JSON.parse(widget!.content!)).toEqual(newContent);\n\t\t\t})"
+        },
+        {
+          "line": 468,
+          "title": "should delete a widget",
+          "wholeDeclarationSha256": "b04a949132d17f0a0a5a505eec67b324e9d824838960c7276823bcdd61813cc6",
+          "expression": "it(\"should delete a widget\", async () => {\n\t\t\t\tconst id = ulid();\n\n\t\t\t\tawait db\n\t\t\t\t\t.insertInto(\"_emdash_widgets\")\n\t\t\t\t\t.values({\n\t\t\t\t\t\tid,\n\t\t\t\t\t\tarea_id: areaId,\n\t\t\t\t\t\tsort_order: 0,\n\t\t\t\t\t\ttype: \"content\" as WidgetType,\n\t\t\t\t\t\ttitle: \"To Delete\",\n\t\t\t\t\t\tcontent: null,\n\t\t\t\t\t\tmenu_name: null,\n\t\t\t\t\t\tcomponent_id: null,\n\t\t\t\t\t\tcomponent_props: null,\n\t\t\t\t\t})\n\t\t\t\t\t.execute();\n\n\t\t\t\tawait db.deleteFrom(\"_emdash_widgets\").where(\"id\", \"=\", id).execute();\n\n\t\t\t\tconst widget = await db\n\t\t\t\t\t.selectFrom(\"_emdash_widgets\")\n\t\t\t\t\t.selectAll()\n\t\t\t\t\t.where(\"id\", \"=\", id)\n\t\t\t\t\t.executeTakeFirst();\n\n\t\t\t\texpect(widget).toBeUndefined();\n\t\t\t})"
+        },
+        {
+          "line": 500,
+          "title": "should return core widget components",
+          "wholeDeclarationSha256": "fa0b067f8a61dca3412bb2e60249e152777089279a5db5f848c5ca391023638f",
+          "expression": "it(\"should return core widget components\", () => {\n\t\t\tconst components = getWidgetComponents();\n\n\t\t\texpect(components.length).toBeGreaterThan(0);\n\n\t\t\tconst recentPosts = components.find((c) => c.id === \"core:recent-posts\");\n\t\t\texpect(recentPosts).toBeDefined();\n\t\t\texpect(recentPosts?.label).toBe(\"Recent Posts\");\n\t\t\texpect(recentPosts?.props).toHaveProperty(\"count\");\n\t\t\texpect(recentPosts?.props).toHaveProperty(\"showThumbnails\");\n\t\t\texpect(recentPosts?.props).toHaveProperty(\"showDate\");\n\t\t})"
+        },
+        {
+          "line": 513,
+          "title": "should include categories component",
+          "wholeDeclarationSha256": "c6a1e71f7b89f04e5dde412ae688f4a9ccd71b762e96891129ae3ea5db5ef4e6",
+          "expression": "it(\"should include categories component\", () => {\n\t\t\tconst components = getWidgetComponents();\n\t\t\tconst categories = components.find((c) => c.id === \"core:categories\");\n\n\t\t\texpect(categories).toBeDefined();\n\t\t\texpect(categories?.props).toHaveProperty(\"showCount\");\n\t\t\texpect(categories?.props).toHaveProperty(\"hierarchical\");\n\t\t})"
+        },
+        {
+          "line": 522,
+          "title": "should include tags component",
+          "wholeDeclarationSha256": "ff8dba9aa8965afac23207b47f0f75302163570018c94dddec450db17fb1de70",
+          "expression": "it(\"should include tags component\", () => {\n\t\t\tconst components = getWidgetComponents();\n\t\t\tconst tags = components.find((c) => c.id === \"core:tags\");\n\n\t\t\texpect(tags).toBeDefined();\n\t\t\texpect(tags?.props).toHaveProperty(\"showCount\");\n\t\t\texpect(tags?.props).toHaveProperty(\"limit\");\n\t\t})"
+        },
+        {
+          "line": 531,
+          "title": "should include search component",
+          "wholeDeclarationSha256": "979347cb726a627ef3a3c6efe6db7607688eb2a97cc35ac6257d9603ebabbb45",
+          "expression": "it(\"should include search component\", () => {\n\t\t\tconst components = getWidgetComponents();\n\t\t\tconst search = components.find((c) => c.id === \"core:search\");\n\n\t\t\texpect(search).toBeDefined();\n\t\t\texpect(search?.props).toHaveProperty(\"placeholder\");\n\t\t})"
+        },
+        {
+          "line": 539,
+          "title": "should include archives component",
+          "wholeDeclarationSha256": "87d43e41a2c2e1199190beff6907d7e1d3b73f4292db4b8be56a3f2ca3bbb4c1",
+          "expression": "it(\"should include archives component\", () => {\n\t\t\tconst components = getWidgetComponents();\n\t\t\tconst archives = components.find((c) => c.id === \"core:archives\");\n\n\t\t\texpect(archives).toBeDefined();\n\t\t\texpect(archives?.props).toHaveProperty(\"type\");\n\t\t\texpect(archives?.props).toHaveProperty(\"limit\");\n\t\t\texpect(archives?.props.type.options).toEqual([\n\t\t\t\t{ value: \"monthly\", label: \"Monthly\" },\n\t\t\t\t{ value: \"yearly\", label: \"Yearly\" },\n\t\t\t]);\n\t\t})"
+        },
+        {
+          "line": 552,
+          "title": "should have valid prop definitions",
+          "wholeDeclarationSha256": "3d484e67057f550d7df5d3e725ca1d1653a8cbc7bd426a4972504117900ec4e4",
+          "expression": "it(\"should have valid prop definitions\", () => {\n\t\t\tconst components = getWidgetComponents();\n\n\t\t\tfor (const component of components) {\n\t\t\t\texpect(component.id).toMatch(WIDGET_ID_FORMAT_REGEX);\n\t\t\t\texpect(component.label).toBeTruthy();\n\n\t\t\t\tfor (const [_key, prop] of Object.entries(component.props)) {\n\t\t\t\t\texpect([\"string\", \"number\", \"boolean\", \"select\"]).toContain(prop.type);\n\t\t\t\t\texpect(prop.label).toBeTruthy();\n\n\t\t\t\t\tif (prop.type === \"select\") {\n\t\t\t\t\t\texpect(prop.options).toBeDefined();\n\t\t\t\t\t\texpect(Array.isArray(prop.options)).toBe(true);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t})"
+        }
+      ],
+      "expectExpressions": [
+        "expect(areasTable)",
+        "expect(columns)",
+        "expect(columns)",
+        "expect(columns)",
+        "expect(columns)",
+        "expect(widgetsTable)",
+        "expect(columns)",
+        "expect(columns)",
+        "expect(columns)",
+        "expect(columns)",
+        "expect(columns)",
+        "expect(columns)",
+        "expect(columns)",
+        "expect(columns)",
+        "expect(columns)",
+        "expect(\n\t\t\t\tdb\n\t\t\t\t\t.insertInto(\"_emdash_widget_areas\")\n\t\t\t\t\t.values({\n\t\t\t\t\t\tid: id2,\n\t\t\t\t\t\tname: \"sidebar\",\n\t\t\t\t\t\tlabel: \"Sidebar Again\",\n\t\t\t\t\t\tdescription: null,\n\t\t\t\t\t})\n\t\t\t\t\t.execute(),\n\t\t\t)",
+        "expect(widgets)",
+        "expect(area)",
+        "expect(area?.name)",
+        "expect(area?.label)",
+        "expect(area?.description)",
+        "expect(areas)",
+        "expect(area)",
+        "expect(area?.label)",
+        "expect(widget)",
+        "expect(widget?.type)",
+        "expect(widget?.title)",
+        "expect(JSON.parse(widget!.content!))",
+        "expect(widget)",
+        "expect(widget?.type)",
+        "expect(widget?.menu_name)",
+        "expect(widget)",
+        "expect(widget?.type)",
+        "expect(widget?.component_id)",
+        "expect(JSON.parse(widget!.component_props!))",
+        "expect(widgets)",
+        "expect(widgets[0].title)",
+        "expect(widgets[1].title)",
+        "expect(widgets[2].title)",
+        "expect(widgets[0].title)",
+        "expect(widgets[1].title)",
+        "expect(widgets[2].title)",
+        "expect(widget?.title)",
+        "expect(JSON.parse(widget!.content!))",
+        "expect(widget)",
+        "expect(components.length)",
+        "expect(recentPosts)",
+        "expect(recentPosts?.label)",
+        "expect(recentPosts?.props)",
+        "expect(recentPosts?.props)",
+        "expect(recentPosts?.props)",
+        "expect(categories)",
+        "expect(categories?.props)",
+        "expect(categories?.props)",
+        "expect(tags)",
+        "expect(tags?.props)",
+        "expect(tags?.props)",
+        "expect(search)",
+        "expect(search?.props)",
+        "expect(archives)",
+        "expect(archives?.props)",
+        "expect(archives?.props)",
+        "expect(archives?.props.type.options)",
+        "expect(component.id)",
+        "expect(component.label)",
+        "expect([\"string\", \"number\", \"boolean\", \"select\"])",
+        "expect(prop.label)",
+        "expect(prop.options)",
+        "expect(Array.isArray(prop.options))"
+      ],
+      "scope": "sections or site widget scope",
+      "executableCopy": "parity/emdash/sections-widgets-source/upstream/packages/core/tests/unit/widgets/widgets.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/widgets/widget-request-cache.test.ts",
+      "sourceBlob": "e68c13c09994f977ae3ca33490b74b4d4300a963",
+      "sha256": "f4d12de46858b5a75a679207520151462851ada000e89507046c49a0a8cd3d44",
+      "bytes": 5086,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/tests/unit/widgets/widget-request-cache.test.ts.txt",
+      "testDeclarations": [
+        {
+          "line": 84,
+          "title": "shares in-flight prefetch with concurrent named reads, including missing areas",
+          "wholeDeclarationSha256": "3e2dc239c14adc728b51870448c4cd5cff722a08507dcd0960013c6b6d486145",
+          "expression": "it(\"shares in-flight prefetch with concurrent named reads, including missing areas\", async () => {\n\t\tconst footer = await getWidgetArea(\"footer\");\n\t\tconst sidebar = await getWidgetArea(\"sidebar\");\n\t\texpect(footer?.widgets.map((widget) => widget.id)).toEqual([\"search\", \"links\"]);\n\t\tqueries = [];\n\n\t\tawait runWithContext({ editMode: false }, async () => {\n\t\t\tconst [, actualFooter, actualSidebar, empty, missing] = await Promise.all([\n\t\t\t\tprefetchLayoutData(),\n\t\t\t\tgetWidgetArea(\"footer\"),\n\t\t\t\tgetWidgetArea(\"sidebar\"),\n\t\t\t\tgetWidgetArea(\"empty\"),\n\t\t\t\tgetWidgetArea(\"missing\"),\n\t\t\t]);\n\t\t\texpect(actualFooter).toEqual(footer);\n\t\t\texpect(actualSidebar).toEqual(sidebar);\n\t\t\texpect(empty?.widgets).toEqual([]);\n\t\t\texpect(missing).toBeNull();\n\t\t\texpect(queries).toHaveLength(2);\n\t\t});\n\t})"
+        },
+        {
+          "line": 106,
+          "title": "shares the bulk load between repeated prefetch calls",
+          "wholeDeclarationSha256": "f193643c4150094ae9bfda6670c440a368ee0b7a529622265f81a4cd8ca6b68a",
+          "expression": "it(\"shares the bulk load between repeated prefetch calls\", async () => {\n\t\tawait runWithContext({ editMode: false }, async () => {\n\t\t\tawait Promise.all([prefetchLayoutData(), prefetchLayoutData()]);\n\t\t\texpect(queries).toHaveLength(2);\n\t\t});\n\t})"
+        },
+        {
+          "line": 113,
+          "title": "serves completed prefetch results without further queries",
+          "wholeDeclarationSha256": "660a7abab413f5a684763698749cc5b344615bf64eb19337774692add2c2c608",
+          "expression": "it(\"serves completed prefetch results without further queries\", async () => {\n\t\tawait runWithContext({ editMode: false }, async () => {\n\t\t\tawait prefetchLayoutData();\n\t\t\tqueries = [];\n\t\t\texpect((await getWidgetArea(\"footer\"))?.widgets).toHaveLength(2);\n\t\t\texpect(await getWidgetArea(\"missing\")).toBeNull();\n\t\t\texpect(queries).toHaveLength(0);\n\t\t});\n\t})"
+        },
+        {
+          "line": 123,
+          "title": "falls back to a named read when the optional bulk load fails",
+          "wholeDeclarationSha256": "7d023eea8cff77628c695dbb7de6633b82650d9feb36fa8dcb7d56bf3b517c08",
+          "expression": "it(\"falls back to a named read when the optional bulk load fails\", async () => {\n\t\tfailBulkRead = true;\n\t\tawait runWithContext({ editMode: false }, async () => {\n\t\t\tconst [, footer] = await Promise.all([prefetchLayoutData(), getWidgetArea(\"footer\")]);\n\t\t\texpect(footer?.widgets.map((widget) => widget.id)).toEqual([\"search\", \"links\"]);\n\t\t\texpect(await getWidgetArea(\"footer\")).toBe(footer);\n\t\t\texpect(queries).toHaveLength(2);\n\t\t});\n\t})"
+        },
+        {
+          "line": 133,
+          "title": "keeps named reads scoped when no prefetch runs",
+          "wholeDeclarationSha256": "73545067c6d3957b3f7d94e2a3f219f16d9d67e897cc5d7dc8fb37b119c27351",
+          "expression": "it(\"keeps named reads scoped when no prefetch runs\", async () => {\n\t\tawait runWithContext({ editMode: false }, async () => {\n\t\t\tconst [first, second] = await Promise.all([getWidgetArea(\"footer\"), getWidgetArea(\"footer\")]);\n\t\t\texpect(first).toBe(second);\n\t\t\texpect(queries).toHaveLength(1);\n\t\t\texpect(queries[0]).toContain(\"where\");\n\t\t});\n\t})"
+        },
+        {
+          "line": 142,
+          "title": "does not reuse prefetched data across requests",
+          "wholeDeclarationSha256": "dc4423cad802c1bd10e9685bad99da42890082409697f1638f955e563b641b16",
+          "expression": "it(\"does not reuse prefetched data across requests\", async () => {\n\t\tawait runWithContext({ editMode: false }, () => prefetchLayoutData());\n\t\tawait ctx.db\n\t\t\t.updateTable(\"_emdash_widget_areas\")\n\t\t\t.set({ label: \"Updated\" })\n\t\t\t.where(\"id\", \"=\", \"footer\")\n\t\t\t.execute();\n\t\tqueries = [];\n\t\tconst area = await runWithContext({ editMode: false }, () => getWidgetArea(\"footer\"));\n\t\texpect(area?.label).toBe(\"Updated\");\n\t\texpect(queries).toHaveLength(1);\n\t})"
+        }
+      ],
+      "expectExpressions": [
+        "expect(footer?.widgets.map((widget) => widget.id))",
+        "expect(actualFooter)",
+        "expect(actualSidebar)",
+        "expect(empty?.widgets)",
+        "expect(missing)",
+        "expect(queries)",
+        "expect(queries)",
+        "expect((await getWidgetArea(\"footer\"))?.widgets)",
+        "expect(await getWidgetArea(\"missing\"))",
+        "expect(queries)",
+        "expect(footer?.widgets.map((widget) => widget.id))",
+        "expect(await getWidgetArea(\"footer\"))",
+        "expect(queries)",
+        "expect(first)",
+        "expect(queries)",
+        "expect(queries[0])",
+        "expect(area?.label)",
+        "expect(queries)"
+      ],
+      "scope": "sections or site widget scope",
+      "executableCopy": "parity/emdash/sections-widgets-source/upstream/packages/core/tests/unit/widgets/widget-request-cache.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/widgets/archives.test.ts",
+      "sourceBlob": "867f266ccb35d8a84efa375adddbf183a5e7947c",
+      "sha256": "cc0a59d3b2a91c55b343a3e615e7eb94f588a9343c2f9c36f066c4d7c2f771fb",
+      "bytes": 2956,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/tests/unit/widgets/archives.test.ts.txt",
+      "testDeclarations": [
+        {
+          "line": 12,
+          "title": "formats each displayed month once while counting all entries in that month",
+          "wholeDeclarationSha256": "3ed2bc4856a10fbbf50b9c5284e6b054684010b35ee04c9455cf09dbebed28d7",
+          "expression": "it(\"formats each displayed month once while counting all entries in that month\", () => {\n\t\tconst format = vi.spyOn(Date.prototype, \"toLocaleDateString\");\n\t\tconst entries = Array.from({ length: 100 }, () => entry(new Date(2026, 2, 15)));\n\t\tentries.push(entry(new Date(2026, 1, 1)), entry(new Date(2026, 2, 20)));\n\n\t\texpect(groupEntriesByPublishedAt(entries, { limit: 1 })).toEqual([\n\t\t\t{ label: \"March 2026\", count: 101, url: \"/archives/2026/03\" },\n\t\t]);\n\t\texpect(format).toHaveBeenCalledTimes(1);\n\t})"
+        },
+        {
+          "line": 23,
+          "title": "does not format month labels when no groups are displayed",
+          "wholeDeclarationSha256": "83772af8cb5fdc8db74f7ccda4b786922bfc7c199fd720f2d000a2c5f2b8adb3",
+          "expression": "it(\"does not format month labels when no groups are displayed\", () => {\n\t\tconst format = vi.spyOn(Date.prototype, \"toLocaleDateString\");\n\t\texpect(groupEntriesByPublishedAt([entry(new Date(2026, 2, 15))], { limit: 0 })).toEqual([]);\n\t\texpect(format).not.toHaveBeenCalled();\n\t})"
+        },
+        {
+          "line": 29,
+          "title": "groups Date publishedAt values by month instead of skipping them",
+          "wholeDeclarationSha256": "4f471bdf55c15dbe301fbdc098724e9a00c0c0f6d009b11f211be9940134ac33",
+          "expression": "it(\"groups Date publishedAt values by month instead of skipping them\", () => {\n\t\tconst groups = groupEntriesByPublishedAt(\n\t\t\t[entry(new Date(2026, 2, 15)), entry(new Date(2026, 2, 20)), entry(new Date(2026, 1, 1))],\n\t\t\t{ type: \"monthly\" },\n\t\t);\n\n\t\texpect(groups).toEqual([\n\t\t\t{\n\t\t\t\tlabel: \"March 2026\",\n\t\t\t\tcount: 2,\n\t\t\t\turl: \"/archives/2026/03\",\n\t\t\t},\n\t\t\t{\n\t\t\t\tlabel: \"February 2026\",\n\t\t\t\tcount: 1,\n\t\t\t\turl: \"/archives/2026/02\",\n\t\t\t},\n\t\t]);\n\t})"
+        },
+        {
+          "line": 49,
+          "title": "still accepts ISO date strings",
+          "wholeDeclarationSha256": "6bd61f3805de5ca8c2e82ba84146b522ee8ba46447cef852e1172bccec443469",
+          "expression": "it(\"still accepts ISO date strings\", () => {\n\t\tconst groups = groupEntriesByPublishedAt([entry(\"2026-07-04T12:00:00.000Z\")], {\n\t\t\ttype: \"monthly\",\n\t\t});\n\n\t\texpect(groups).toHaveLength(1);\n\t\texpect(groups[0]?.count).toBe(1);\n\t\texpect(groups[0]?.url).toMatch(/^\\/archives\\/\\d{4}\\/\\d{2}$/);\n\t})"
+        },
+        {
+          "line": 59,
+          "title": "groups by year when type is yearly",
+          "wholeDeclarationSha256": "f465b1e5fbab516f3a4f94af749c55c0714710083f8c41156a31fa7b6b39038d",
+          "expression": "it(\"groups by year when type is yearly\", () => {\n\t\tconst groups = groupEntriesByPublishedAt(\n\t\t\t[entry(new Date(2026, 6, 1)), entry(new Date(2026, 0, 1)), entry(new Date(2025, 11, 1))],\n\t\t\t{ type: \"yearly\" },\n\t\t);\n\n\t\texpect(groups).toEqual([\n\t\t\t{ label: \"2026\", count: 2, url: \"/archives/2026\" },\n\t\t\t{ label: \"2025\", count: 1, url: \"/archives/2025\" },\n\t\t]);\n\t})"
+        },
+        {
+          "line": 71,
+          "title": "skips missing and invalid publishedAt values",
+          "wholeDeclarationSha256": "bf59273d05576c92f9afc2bec1c70c98432e3c3d81c1eaaa08552f7c1b7af3ae",
+          "expression": "it(\"skips missing and invalid publishedAt values\", () => {\n\t\tconst groups = groupEntriesByPublishedAt(\n\t\t\t[\n\t\t\t\tentry(null),\n\t\t\t\tentry(undefined),\n\t\t\t\tentry(\"\"),\n\t\t\t\tentry(\"not-a-date\"),\n\t\t\t\tentry(new Date(Number.NaN)),\n\t\t\t\tentry(new Date(2026, 4, 1)),\n\t\t\t],\n\t\t\t{ type: \"monthly\" },\n\t\t);\n\n\t\texpect(groups).toEqual([\n\t\t\t{\n\t\t\t\tlabel: \"May 2026\",\n\t\t\t\tcount: 1,\n\t\t\t\turl: \"/archives/2026/05\",\n\t\t\t},\n\t\t]);\n\t})"
+        },
+        {
+          "line": 93,
+          "title": "respects the limit",
+          "wholeDeclarationSha256": "ad7d911d562fb505273d1e488fc73091e029376da88d3bccb7658848f1e9ffc3",
+          "expression": "it(\"respects the limit\", () => {\n\t\tconst groups = groupEntriesByPublishedAt(\n\t\t\t[entry(new Date(2026, 0, 1)), entry(new Date(2026, 1, 1)), entry(new Date(2026, 2, 1))],\n\t\t\t{ type: \"monthly\", limit: 2 },\n\t\t);\n\n\t\texpect(groups).toHaveLength(2);\n\t\texpect(groups.map((group) => group.url)).toEqual([\"/archives/2026/01\", \"/archives/2026/02\"]);\n\t})"
+        }
+      ],
+      "expectExpressions": [
+        "expect(groupEntriesByPublishedAt(entries, { limit: 1 }))",
+        "expect(format)",
+        "expect(groupEntriesByPublishedAt([entry(new Date(2026, 2, 15))], { limit: 0 }))",
+        "expect(format)",
+        "expect(groups)",
+        "expect(groups)",
+        "expect(groups[0]?.count)",
+        "expect(groups[0]?.url)",
+        "expect(groups)",
+        "expect(groups)",
+        "expect(groups)",
+        "expect(groups.map((group) => group.url))"
+      ],
+      "scope": "sections or site widget scope",
+      "executableCopy": "parity/emdash/sections-widgets-source/upstream/packages/core/tests/unit/widgets/archives.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/import/sections.test.ts",
+      "sourceBlob": "c9823f41a202b9f5ecd3dda8541baf2e681984f0",
+      "sha256": "bba2631ffcab5df6882a5953ad33585e03259e5cf6d77d32959a445a2322f12a",
+      "bytes": 5515,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/tests/unit/import/sections.test.ts.txt",
+      "testDeclarations": [
+        {
+          "line": 24,
+          "title": "should import wp_block posts as sections",
+          "wholeDeclarationSha256": "0c9ac9a1078c1c14a34ea1925e6e779fd5588103df6b646e5658260e0650ab07",
+          "expression": "it(\"should import wp_block posts as sections\", async () => {\n\t\tconst posts: WxrPost[] = [\n\t\t\t{\n\t\t\t\tid: 100,\n\t\t\t\ttitle: \"Newsletter CTA\",\n\t\t\t\tpostName: \"newsletter-cta\",\n\t\t\t\tpostType: \"wp_block\",\n\t\t\t\tstatus: \"publish\",\n\t\t\t\tcontent: `<!-- wp:heading {\"level\":3} -->\n<h3>Subscribe to Our Newsletter</h3>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>Get the latest updates.</p>\n<!-- /wp:paragraph -->`,\n\t\t\t\tcategories: [],\n\t\t\t\ttags: [],\n\t\t\t\tmeta: new Map(),\n\t\t\t},\n\t\t\t{\n\t\t\t\tid: 101,\n\t\t\t\ttitle: \"Hero Banner\",\n\t\t\t\tpostName: \"hero-banner\",\n\t\t\t\tpostType: \"wp_block\",\n\t\t\t\tstatus: \"publish\",\n\t\t\t\tcontent: `<!-- wp:heading -->\n<h2>Welcome</h2>\n<!-- /wp:heading -->`,\n\t\t\t\tcategories: [],\n\t\t\t\ttags: [],\n\t\t\t\tmeta: new Map(),\n\t\t\t},\n\t\t\t// Regular post - should be ignored\n\t\t\t{\n\t\t\t\tid: 1,\n\t\t\t\ttitle: \"Regular Post\",\n\t\t\t\tpostName: \"regular-post\",\n\t\t\t\tpostType: \"post\",\n\t\t\t\tstatus: \"publish\",\n\t\t\t\tcontent: \"<p>Hello</p>\",\n\t\t\t\tcategories: [],\n\t\t\t\ttags: [],\n\t\t\t\tmeta: new Map(),\n\t\t\t},\n\t\t];\n\n\t\tconst result = await importReusableBlocksAsSections(posts, db);\n\n\t\texpect(result.sectionsCreated).toBe(2);\n\t\texpect(result.sectionsSkipped).toBe(0);\n\t\texpect(result.errors).toHaveLength(0);\n\n\t\t// Verify sections were created\n\t\tconst sections = await db.selectFrom(\"_emdash_sections\").selectAll().execute();\n\n\t\texpect(sections).toHaveLength(2);\n\n\t\tconst newsletter = sections.find((s) => s.slug === \"newsletter-cta\");\n\t\texpect(newsletter).toBeDefined();\n\t\texpect(newsletter?.title).toBe(\"Newsletter CTA\");\n\t\texpect(newsletter?.source).toBe(\"import\");\n\n\t\tconst hero = sections.find((s) => s.slug === \"hero-banner\");\n\t\texpect(hero).toBeDefined();\n\t\texpect(hero?.title).toBe(\"Hero Banner\");\n\t})"
+        },
+        {
+          "line": 91,
+          "title": "should skip existing sections by slug",
+          "wholeDeclarationSha256": "fc2e1c2fa857c06671c64810792de1e1997e90ad2ff3e1d0f3f76160fdc2a9a9",
+          "expression": "it(\"should skip existing sections by slug\", async () => {\n\t\t// Create existing section\n\t\tawait db\n\t\t\t.insertInto(\"_emdash_sections\")\n\t\t\t.values({\n\t\t\t\tid: \"existing-1\",\n\t\t\t\tslug: \"newsletter-cta\",\n\t\t\t\ttitle: \"Existing Newsletter\",\n\t\t\t\tdescription: null,\n\t\t\t\tkeywords: null,\n\t\t\t\tcontent: \"[]\",\n\t\t\t\tpreview_media_id: null,\n\t\t\t\tsource: \"user\",\n\t\t\t\ttheme_id: null,\n\t\t\t\tcreated_at: new Date().toISOString(),\n\t\t\t\tupdated_at: new Date().toISOString(),\n\t\t\t})\n\t\t\t.execute();\n\n\t\tconst posts: WxrPost[] = [\n\t\t\t{\n\t\t\t\tid: 100,\n\t\t\t\ttitle: \"Newsletter CTA\",\n\t\t\t\tpostName: \"newsletter-cta\",\n\t\t\t\tpostType: \"wp_block\",\n\t\t\t\tstatus: \"publish\",\n\t\t\t\tcontent: \"<p>New content</p>\",\n\t\t\t\tcategories: [],\n\t\t\t\ttags: [],\n\t\t\t\tmeta: new Map(),\n\t\t\t},\n\t\t\t{\n\t\t\t\tid: 101,\n\t\t\t\ttitle: \"New Block\",\n\t\t\t\tpostName: \"new-block\",\n\t\t\t\tpostType: \"wp_block\",\n\t\t\t\tstatus: \"publish\",\n\t\t\t\tcontent: \"<p>New</p>\",\n\t\t\t\tcategories: [],\n\t\t\t\ttags: [],\n\t\t\t\tmeta: new Map(),\n\t\t\t},\n\t\t];\n\n\t\tconst result = await importReusableBlocksAsSections(posts, db);\n\n\t\texpect(result.sectionsCreated).toBe(1);\n\t\texpect(result.sectionsSkipped).toBe(1);\n\n\t\t// Original title should be preserved\n\t\tconst existing = await db\n\t\t\t.selectFrom(\"_emdash_sections\")\n\t\t\t.selectAll()\n\t\t\t.where(\"slug\", \"=\", \"newsletter-cta\")\n\t\t\t.executeTakeFirst();\n\n\t\texpect(existing?.title).toBe(\"Existing Newsletter\");\n\t})"
+        },
+        {
+          "line": 150,
+          "title": "should return empty result when no wp_block posts",
+          "wholeDeclarationSha256": "7f2245964230483968c16819bcf230a00df59a5a9118ba20e885a25d2f3cb19c",
+          "expression": "it(\"should return empty result when no wp_block posts\", async () => {\n\t\tconst posts: WxrPost[] = [\n\t\t\t{\n\t\t\t\tid: 1,\n\t\t\t\ttitle: \"Regular Post\",\n\t\t\t\tpostName: \"regular-post\",\n\t\t\t\tpostType: \"post\",\n\t\t\t\tstatus: \"publish\",\n\t\t\t\tcontent: \"<p>Hello</p>\",\n\t\t\t\tcategories: [],\n\t\t\t\ttags: [],\n\t\t\t\tmeta: new Map(),\n\t\t\t},\n\t\t];\n\n\t\tconst result = await importReusableBlocksAsSections(posts, db);\n\n\t\texpect(result.sectionsCreated).toBe(0);\n\t\texpect(result.sectionsSkipped).toBe(0);\n\t\texpect(result.errors).toHaveLength(0);\n\t})"
+        },
+        {
+          "line": 172,
+          "title": "should convert Gutenberg content to Portable Text",
+          "wholeDeclarationSha256": "460d94807a57a46698de17f594c0a0f09eaba9e373e089bc7019e96ac849b72e",
+          "expression": "it(\"should convert Gutenberg content to Portable Text\", async () => {\n\t\tconst posts: WxrPost[] = [\n\t\t\t{\n\t\t\t\tid: 100,\n\t\t\t\ttitle: \"Test Block\",\n\t\t\t\tpostName: \"test-block\",\n\t\t\t\tpostType: \"wp_block\",\n\t\t\t\tstatus: \"publish\",\n\t\t\t\tcontent: `<!-- wp:paragraph -->\n<p>Hello <strong>world</strong>!</p>\n<!-- /wp:paragraph -->`,\n\t\t\t\tcategories: [],\n\t\t\t\ttags: [],\n\t\t\t\tmeta: new Map(),\n\t\t\t},\n\t\t];\n\n\t\tawait importReusableBlocksAsSections(posts, db);\n\n\t\tconst section = await db\n\t\t\t.selectFrom(\"_emdash_sections\")\n\t\t\t.selectAll()\n\t\t\t.where(\"slug\", \"=\", \"test-block\")\n\t\t\t.executeTakeFirst();\n\n\t\tconst content = JSON.parse(section?.content ?? \"[]\");\n\n\t\texpect(content).toBeInstanceOf(Array);\n\t\texpect(content.length).toBeGreaterThan(0);\n\t\texpect(content[0]._type).toBe(\"block\");\n\t})"
+        },
+        {
+          "line": 204,
+          "title": "should generate slug from title if postName is missing",
+          "wholeDeclarationSha256": "76a14384165abde5a6f4424603bb59e2babc310adcf4824ff861a33bcfc3b526",
+          "expression": "it(\"should generate slug from title if postName is missing\", async () => {\n\t\tconst posts: WxrPost[] = [\n\t\t\t{\n\t\t\t\tid: 100,\n\t\t\t\ttitle: \"My Custom Block Title\",\n\t\t\t\tpostName: undefined as unknown as string,\n\t\t\t\tpostType: \"wp_block\",\n\t\t\t\tstatus: \"publish\",\n\t\t\t\tcontent: \"<p>Test</p>\",\n\t\t\t\tcategories: [],\n\t\t\t\ttags: [],\n\t\t\t\tmeta: new Map(),\n\t\t\t},\n\t\t];\n\n\t\tawait importReusableBlocksAsSections(posts, db);\n\n\t\tconst section = await db.selectFrom(\"_emdash_sections\").selectAll().executeTakeFirst();\n\n\t\texpect(section?.slug).toBe(\"my-custom-block-title\");\n\t})"
+        }
+      ],
+      "expectExpressions": [
+        "expect(result.sectionsCreated)",
+        "expect(result.sectionsSkipped)",
+        "expect(result.errors)",
+        "expect(sections)",
+        "expect(newsletter)",
+        "expect(newsletter?.title)",
+        "expect(newsletter?.source)",
+        "expect(hero)",
+        "expect(hero?.title)",
+        "expect(result.sectionsCreated)",
+        "expect(result.sectionsSkipped)",
+        "expect(existing?.title)",
+        "expect(result.sectionsCreated)",
+        "expect(result.sectionsSkipped)",
+        "expect(result.errors)",
+        "expect(content)",
+        "expect(content.length)",
+        "expect(content[0]._type)",
+        "expect(section?.slug)"
+      ],
+      "scope": "sections or site widget scope",
+      "executableCopy": "parity/emdash/sections-widgets-source/upstream/packages/core/tests/unit/import/sections.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/astro/chrome-routes-cache-invalidate.test.ts",
+      "sourceBlob": "e74de09b1d7f7abeecd4a6a90b31f3200e79f00a",
+      "sha256": "c3493fd51a591f7dea09dd2fb7a49af57d307852769383750ca0710e186ddbe9",
+      "bytes": 16689,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/tests/unit/astro/chrome-routes-cache-invalidate.test.ts.txt",
+      "testDeclarations": [
+        {
+          "line": 77,
+          "title": "invalidates emdash:settings on update",
+          "wholeDeclarationSha256": "90e664f9cbca628daedae87d3edfc3735c16b96c372c5384d2e611ffd66d3eb1",
+          "expression": "it(\"invalidates emdash:settings on update\", async () => {\n\t\t\tconst { cache, invalidate } = makeContext({});\n\t\t\tconst request = await makeRequest(\"POST\", { title: \"New title\" });\n\n\t\t\tconst response = await postSettings({\n\t\t\t\trequest,\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof postSettings>[0]);\n\n\t\t\texpect(response.status).toBe(200);\n\t\t\texpect(invalidate).toHaveBeenCalledTimes(1);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:settings\"] });\n\t\t})"
+        },
+        {
+          "line": 109,
+          "title": "invalidates on create",
+          "wholeDeclarationSha256": "f6719e17568b8bfef9feff6a4e47e4aaae0cdbb4939b1a30daffc66ef41d960a",
+          "expression": "it(\"invalidates on create\", async () => {\n\t\t\tconst { invalidate } = makeContext({});\n\t\t\tconst request = await makeRequest(\"POST\", { name: \"primary\", label: \"Primary\" });\n\n\t\t\tconst response = await postMenus({\n\t\t\t\trequest,\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache: { enabled: true, invalidate },\n\t\t\t} as Parameters<typeof postMenus>[0]);\n\n\t\t\texpect(response.status).toBe(201);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:menu:primary\"] });\n\t\t})"
+        },
+        {
+          "line": 123,
+          "title": "invalidates on update",
+          "wholeDeclarationSha256": "7ccfb8f63223794f71d3922a3c80d82d1f79abe313c55a5216d9a1158fb67821",
+          "expression": "it(\"invalidates on update\", async () => {\n\t\t\tawait menuFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"primary\" });\n\t\t\tconst request = await makeRequest(\"PUT\", { label: \"Updated\" }, \"http://localhost/\");\n\n\t\t\tconst response = await putMenu({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"primary\" },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof putMenu>[0]);\n\n\t\t\texpect(response.status).toBe(200);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:menu:primary\"] });\n\t\t})"
+        },
+        {
+          "line": 140,
+          "title": "invalidates on item create",
+          "wholeDeclarationSha256": "59acfe5f5bd09ea9b4b71f202d9f1c2c608e99c91d6ed0c65d97fd466ce4b63f",
+          "expression": "it(\"invalidates on item create\", async () => {\n\t\t\tawait menuFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"primary\" });\n\t\t\tconst request = await makeRequest(\"POST\", {\n\t\t\t\ttype: \"custom\",\n\t\t\t\tlabel: \"Blog\",\n\t\t\t\tcustomUrl: \"/blog\",\n\t\t\t});\n\n\t\t\tconst response = await postMenuItem({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"primary\" },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof postMenuItem>[0]);\n\n\t\t\texpect(response.status).toBe(201);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:menu:primary\"] });\n\t\t})"
+        },
+        {
+          "line": 161,
+          "title": "invalidates on item update",
+          "wholeDeclarationSha256": "b723eb9819b34fb2614b14e71c7608dd83bbe8ae7de1e0684fde02d128ef215c",
+          "expression": "it(\"invalidates on item update\", async () => {\n\t\t\tconst { itemId } = await menuFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"primary\", id: itemId });\n\t\t\tconst request = await makeRequest(\"PUT\", { label: \"Updated\" });\n\n\t\t\tconst response = await putMenuItem({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"primary\", id: itemId },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof putMenuItem>[0]);\n\n\t\t\texpect(response.status).toBe(200);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:menu:primary\"] });\n\t\t})"
+        },
+        {
+          "line": 178,
+          "title": "invalidates on item reorder",
+          "wholeDeclarationSha256": "a511e695c6156455721140b6a71100d743e3a2ccbeb1a4a9e6cc2bc1ca8f40f9",
+          "expression": "it(\"invalidates on item reorder\", async () => {\n\t\t\tconst { itemId } = await menuFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"primary\" });\n\t\t\tconst request = await makeRequest(\"POST\", {\n\t\t\t\titems: [{ id: itemId, parentId: null, sortOrder: 0 }],\n\t\t\t});\n\n\t\t\tconst response = await reorderMenuItems({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"primary\" },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof reorderMenuItems>[0]);\n\n\t\t\texpect(response.status).toBe(200);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:menu:primary\"] });\n\t\t})"
+        },
+        {
+          "line": 197,
+          "title": "invalidates on item delete",
+          "wholeDeclarationSha256": "42c79a1e14936bdb64b055fe36ea2108e86f9a185f08e95cc760b750de9ec05b",
+          "expression": "it(\"invalidates on item delete\", async () => {\n\t\t\tconst { itemId } = await menuFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"primary\", id: itemId });\n\t\t\tconst request = await makeRequest(\"DELETE\", {});\n\n\t\t\tconst response = await deleteMenuItem({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"primary\", id: itemId },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof deleteMenuItem>[0]);\n\n\t\t\texpect(response.status).toBe(200);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:menu:primary\"] });\n\t\t})"
+        },
+        {
+          "line": 214,
+          "title": "invalidates on menu delete",
+          "wholeDeclarationSha256": "4aaefbe0e91d0282052bd440e1e57cac85fb288423fcb282592fd1bfe9f10958",
+          "expression": "it(\"invalidates on menu delete\", async () => {\n\t\t\tawait menuFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"primary\" });\n\t\t\tconst request = await makeRequest(\"DELETE\", {});\n\n\t\t\tconst response = await deleteMenu({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"primary\" },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof deleteMenu>[0]);\n\n\t\t\texpect(response.status).toBe(200);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:menu:primary\"] });\n\t\t})"
+        },
+        {
+          "line": 254,
+          "title": "invalidates on create",
+          "wholeDeclarationSha256": "a186e3d8f503a7520f85290ccfc2a4645936cdd321afd1510ab84ab63499940b",
+          "expression": "it(\"invalidates on create\", async () => {\n\t\t\tconst { cache, invalidate } = makeContext({});\n\t\t\tconst request = await makeRequest(\"POST\", {\n\t\t\t\tname: \"topics\",\n\t\t\t\tlabel: \"Topics\",\n\t\t\t\thierarchical: false,\n\t\t\t\tcollections: [],\n\t\t\t});\n\n\t\t\tconst response = await postTaxonomies({\n\t\t\t\trequest,\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof postTaxonomies>[0]);\n\n\t\t\texpect(response.status).toBe(201);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:taxonomy:topics\"] });\n\t\t})"
+        },
+        {
+          "line": 273,
+          "title": "invalidates on update",
+          "wholeDeclarationSha256": "2f79872e1d11d9a4f6244a2bafffad6b746b69ffd07e73cf5ef59eb551b6bd96",
+          "expression": "it(\"invalidates on update\", async () => {\n\t\t\tawait taxonomyFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"topics\" });\n\t\t\tconst request = await makeRequest(\"PUT\", { label: \"Updated\" });\n\n\t\t\tconst response = await putTaxonomy({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"topics\" },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof putTaxonomy>[0]);\n\n\t\t\texpect(response.status).toBe(200);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:taxonomy:topics\"] });\n\t\t})"
+        },
+        {
+          "line": 290,
+          "title": "invalidates on term create",
+          "wholeDeclarationSha256": "2a976384c6cd21e3eeafa1b1f8a8972ec2bf3ebefb19531e7da75281551fd340",
+          "expression": "it(\"invalidates on term create\", async () => {\n\t\t\tawait taxonomyFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"topics\" });\n\t\t\tconst request = await makeRequest(\"POST\", { slug: \"news\", label: \"News\" });\n\n\t\t\tconst response = await postTerms({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"topics\" },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof postTerms>[0]);\n\n\t\t\texpect(response.status).toBe(201);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:taxonomy:topics\"] });\n\t\t})"
+        },
+        {
+          "line": 307,
+          "title": "invalidates on term update",
+          "wholeDeclarationSha256": "423c599b8e99ca6e4bce6d426eed3d0855d6afee0a0c633681e4602b67ab8374",
+          "expression": "it(\"invalidates on term update\", async () => {\n\t\t\tconst { slug } = await termFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"topics\", slug });\n\t\t\tconst request = await makeRequest(\"PUT\", { label: \"Updated\" });\n\n\t\t\tconst response = await putTerm({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"topics\", slug },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof putTerm>[0]);\n\n\t\t\texpect(response.status).toBe(200);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:taxonomy:topics\"] });\n\t\t})"
+        },
+        {
+          "line": 324,
+          "title": "invalidates on term reorder",
+          "wholeDeclarationSha256": "6e23bfa1e29fd0b7a655efa86a58dd7a96daefeaee5eb2689f35a323efdb1c59",
+          "expression": "it(\"invalidates on term reorder\", async () => {\n\t\t\tconst { id } = await termFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"topics\" });\n\t\t\tconst request = await makeRequest(\"POST\", { ids: [id] });\n\n\t\t\tconst response = await reorderTerms({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"topics\" },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof reorderTerms>[0]);\n\n\t\t\texpect(response.status).toBe(200);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:taxonomy:topics\"] });\n\t\t})"
+        },
+        {
+          "line": 341,
+          "title": "invalidates on term delete",
+          "wholeDeclarationSha256": "635f395cdf4ac56959c2d5d7d238a6f882b1676d920ab54bb64858269f0f5dc9",
+          "expression": "it(\"invalidates on term delete\", async () => {\n\t\t\tconst { slug } = await termFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"topics\", slug });\n\t\t\tconst request = await makeRequest(\"DELETE\", {});\n\n\t\t\tconst response = await deleteTerm({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"topics\", slug },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof deleteTerm>[0]);\n\n\t\t\texpect(response.status).toBe(200);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:taxonomy:topics\"] });\n\t\t})"
+        },
+        {
+          "line": 358,
+          "title": "invalidates on taxonomy delete",
+          "wholeDeclarationSha256": "36d0f5d59abf30785d3a694f276a73fa6bc9ceaf424746d48499dd5509253e76",
+          "expression": "it(\"invalidates on taxonomy delete\", async () => {\n\t\t\tawait taxonomyFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"topics\" });\n\t\t\tconst request = await makeRequest(\"DELETE\", {});\n\n\t\t\tconst response = await deleteTaxonomy({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"topics\" },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof deleteTaxonomy>[0]);\n\n\t\t\texpect(response.status).toBe(200);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:taxonomy:topics\"] });\n\t\t})"
+        },
+        {
+          "line": 391,
+          "title": "invalidates on create",
+          "wholeDeclarationSha256": "43a949d46d2653180a2c3ef5be3d8f88760cd057a49f763d600f818c2e02767d",
+          "expression": "it(\"invalidates on create\", async () => {\n\t\t\tconst { cache, invalidate } = makeContext({});\n\t\t\tconst request = await makeRequest(\"POST\", { name: \"sidebar\", label: \"Sidebar\" });\n\n\t\t\tconst response = await postWidgetAreas({\n\t\t\t\trequest,\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof postWidgetAreas>[0]);\n\n\t\t\texpect(response.status).toBe(201);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:widget-area:sidebar\"] });\n\t\t})"
+        },
+        {
+          "line": 405,
+          "title": "invalidates on widget create",
+          "wholeDeclarationSha256": "478155726e2d4793f7e8d3529909bb6a4d42b0de30e17035bb8c4fa910c03487",
+          "expression": "it(\"invalidates on widget create\", async () => {\n\t\t\tawait widgetAreaFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"sidebar\" });\n\t\t\tconst request = await makeRequest(\"POST\", { type: \"content\", title: \"Hello\" });\n\n\t\t\tconst response = await postWidgets({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"sidebar\" },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof postWidgets>[0]);\n\n\t\t\texpect(response.status).toBe(201);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:widget-area:sidebar\"] });\n\t\t})"
+        },
+        {
+          "line": 422,
+          "title": "invalidates on widget update",
+          "wholeDeclarationSha256": "09c9e548d2b29d1f10c664ea4c874b32e4d564ed9a65287e3d942eec16a5f85f",
+          "expression": "it(\"invalidates on widget update\", async () => {\n\t\t\tconst { widgetId } = await widgetAreaFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"sidebar\", id: widgetId });\n\t\t\tconst request = await makeRequest(\"PUT\", { title: \"Updated\" });\n\n\t\t\tconst response = await putWidget({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"sidebar\", id: widgetId },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof putWidget>[0]);\n\n\t\t\texpect(response.status).toBe(200);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:widget-area:sidebar\"] });\n\t\t})"
+        },
+        {
+          "line": 439,
+          "title": "invalidates on widget reorder",
+          "wholeDeclarationSha256": "e0a8bad71061f1babe647dc7567e2f1ee6e6aa9794e6649ba2534f8c65f0f4e2",
+          "expression": "it(\"invalidates on widget reorder\", async () => {\n\t\t\tconst { widgetId } = await widgetAreaFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"sidebar\" });\n\t\t\tconst request = await makeRequest(\"POST\", { widgetIds: [widgetId] });\n\n\t\t\tconst response = await reorderWidgets({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"sidebar\" },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof reorderWidgets>[0]);\n\n\t\t\texpect(response.status).toBe(200);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:widget-area:sidebar\"] });\n\t\t})"
+        },
+        {
+          "line": 456,
+          "title": "invalidates on widget delete",
+          "wholeDeclarationSha256": "f87dd5f5ff9a9a9b48789aa38a47404a70e5b333dc51fe9b94a5ee0f866dccc9",
+          "expression": "it(\"invalidates on widget delete\", async () => {\n\t\t\tconst { widgetId } = await widgetAreaFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"sidebar\", id: widgetId });\n\t\t\tconst request = await makeRequest(\"DELETE\", {});\n\n\t\t\tconst response = await deleteWidget({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"sidebar\", id: widgetId },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof deleteWidget>[0]);\n\n\t\t\texpect(response.status).toBe(200);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:widget-area:sidebar\"] });\n\t\t})"
+        },
+        {
+          "line": 473,
+          "title": "invalidates on widget area delete",
+          "wholeDeclarationSha256": "1e807ca6491a4e2b7b73ba258f2c46417d3987614a783a49cd707068c26760e7",
+          "expression": "it(\"invalidates on widget area delete\", async () => {\n\t\t\tawait widgetAreaFixture();\n\t\t\tconst { cache, invalidate } = makeContext({ name: \"sidebar\" });\n\t\t\tconst request = await makeRequest(\"DELETE\", {});\n\n\t\t\tconst response = await deleteWidgetArea({\n\t\t\t\trequest,\n\t\t\t\tparams: { name: \"sidebar\" },\n\t\t\t\turl: new URL(request.url),\n\t\t\t\tlocals: { emdash: { db, storage: null }, user: admin },\n\t\t\t\tcache,\n\t\t\t} as Parameters<typeof deleteWidgetArea>[0]);\n\n\t\t\texpect(response.status).toBe(200);\n\t\t\texpect(invalidate).toHaveBeenCalledWith({ tags: [\"emdash:widget-area:sidebar\"] });\n\t\t})"
+        }
+      ],
+      "expectExpressions": [
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(invalidate)",
+        "expect(created.success)",
+        "expect(item.success)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(created.success)",
+        "expect(term.success)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)",
+        "expect(response.status)",
+        "expect(invalidate)"
+      ],
+      "scope": "sections or site widget scope"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/seed/export-seed-round-trip.test.ts",
+      "sourceBlob": "71f262b64a97d71f2efa0c240dd2de98ff735173",
+      "sha256": "2ca6a3e6302af62816b3a38f1701ef05e26b639271c8ab39a68eb7af0d66a74d",
+      "bytes": 18704,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/tests/unit/seed/export-seed-round-trip.test.ts.txt",
+      "testDeclarations": [
+        {
+          "line": 89,
+          "title": "restores sections",
+          "wholeDeclarationSha256": "934d47ac735fd779294394901b6275714ac47940560836b4b2bd0ba922f9ea78",
+          "expression": "it(\"restores sections\", async () => {\n\t\tconst now = new Date().toISOString();\n\t\tawait db\n\t\t\t.insertInto(\"_emdash_sections\")\n\t\t\t.values([\n\t\t\t\t{\n\t\t\t\t\tid: ulid(),\n\t\t\t\t\tslug: \"hero-banner\",\n\t\t\t\t\ttitle: \"Hero banner\",\n\t\t\t\t\tdescription: \"Large intro block\",\n\t\t\t\t\tkeywords: JSON.stringify([\"hero\", \"intro\"]),\n\t\t\t\t\tcontent: JSON.stringify([\n\t\t\t\t\t\t{ _type: \"block\", _key: \"a1\", children: [{ _type: \"span\", _key: \"s1\", text: \"Hi\" }] },\n\t\t\t\t\t]),\n\t\t\t\t\tpreview_media_id: null,\n\t\t\t\t\tsource: \"user\",\n\t\t\t\t\ttheme_id: null,\n\t\t\t\t\tcreated_at: now,\n\t\t\t\t\tupdated_at: now,\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tid: ulid(),\n\t\t\t\t\tslug: \"imported-cta\",\n\t\t\t\t\ttitle: \"Imported CTA\",\n\t\t\t\t\tdescription: null,\n\t\t\t\t\tkeywords: null,\n\t\t\t\t\tcontent: JSON.stringify([]),\n\t\t\t\t\tpreview_media_id: null,\n\t\t\t\t\tsource: \"import\",\n\t\t\t\t\ttheme_id: null,\n\t\t\t\t\tcreated_at: now,\n\t\t\t\t\tupdated_at: now,\n\t\t\t\t},\n\t\t\t])\n\t\t\t.execute();\n\n\t\tconst seed = await exportSeed(db);\n\n\t\tawait applyToFreshDatabase(seed, async (restored) => {\n\t\t\tconst sections = await restored\n\t\t\t\t.selectFrom(\"_emdash_sections\")\n\t\t\t\t.select([\"slug\", \"title\", \"description\", \"keywords\", \"content\", \"source\"])\n\t\t\t\t.orderBy(\"slug\")\n\t\t\t\t.execute();\n\t\t\texpect(sections).toEqual([\n\t\t\t\t{\n\t\t\t\t\tslug: \"hero-banner\",\n\t\t\t\t\ttitle: \"Hero banner\",\n\t\t\t\t\tdescription: \"Large intro block\",\n\t\t\t\t\tkeywords: JSON.stringify([\"hero\", \"intro\"]),\n\t\t\t\t\tcontent: JSON.stringify([\n\t\t\t\t\t\t{ _type: \"block\", _key: \"a1\", children: [{ _type: \"span\", _key: \"s1\", text: \"Hi\" }] },\n\t\t\t\t\t]),\n\t\t\t\t\tsource: \"user\",\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tslug: \"imported-cta\",\n\t\t\t\t\ttitle: \"Imported CTA\",\n\t\t\t\t\tdescription: null,\n\t\t\t\t\tkeywords: null,\n\t\t\t\t\tcontent: \"[]\",\n\t\t\t\t\tsource: \"import\",\n\t\t\t\t},\n\t\t\t]);\n\t\t});\n\t})"
+        },
+        {
+          "line": 156,
+          "title": "leaves out sections whose slug a seed cannot carry",
+          "wholeDeclarationSha256": "053958f201a9aecbb3b0214334d3f80eb4c1702b99da37cf35f361d2b92f746e",
+          "expression": "it(\"leaves out sections whose slug a seed cannot carry\", async () => {\n\t\tconst now = new Date().toISOString();\n\t\tawait db\n\t\t\t.insertInto(\"_emdash_sections\")\n\t\t\t.values(\n\t\t\t\t[\"valid-slug\", \"wp_block_slug\"].map((slug) => ({\n\t\t\t\t\tid: ulid(),\n\t\t\t\t\tslug,\n\t\t\t\t\ttitle: slug,\n\t\t\t\t\tdescription: null,\n\t\t\t\t\tkeywords: null,\n\t\t\t\t\tcontent: \"[]\",\n\t\t\t\t\tpreview_media_id: null,\n\t\t\t\t\tsource: \"import\",\n\t\t\t\t\ttheme_id: null,\n\t\t\t\t\tcreated_at: now,\n\t\t\t\t\tupdated_at: now,\n\t\t\t\t})),\n\t\t\t)\n\t\t\t.execute();\n\n\t\tconst warnings: string[] = [];\n\t\tconst seed = await exportSeed(db, undefined, { warn: (message) => warnings.push(message) });\n\n\t\texpect(seed.sections?.map((s) => s.slug)).toEqual([\"valid-slug\"]);\n\t\texpect(warnings).toEqual([expect.stringContaining('\"wp_block_slug\"')]);\n\t\tawait applyToFreshDatabase(seed, async () => {});\n\t})"
+        },
+        {
+          "line": 185,
+          "title": "exports one redirect per source when older rows share a source",
+          "wholeDeclarationSha256": "f86021822dc7aa71f69a322e40fbc713a48321c3c970964d2377b73b1eca6e7d",
+          "expression": "it(\"exports one redirect per source when older rows share a source\", async () => {\n\t\tconst redirects = new RedirectRepository(db);\n\t\tawait redirects.create({ source: \"/dup\", destination: \"/current\" });\n\t\t// Duplicate sources survive only from before the source guard existed;\n\t\t// the guard trigger would otherwise claim the uniqueness slot.\n\t\tawait sql`DROP TRIGGER emdash_redirect_guard_insert`.execute(db);\n\t\tconst now = new Date().toISOString();\n\t\tawait db\n\t\t\t.insertInto(\"_emdash_redirects\")\n\t\t\t.values({\n\t\t\t\tid: ulid(),\n\t\t\t\tsource: \"/dup\",\n\t\t\t\tdestination: \"/stale\",\n\t\t\t\ttype: 301,\n\t\t\t\tis_pattern: 0,\n\t\t\t\tenabled: 1,\n\t\t\t\thits: 0,\n\t\t\t\tlast_hit_at: null,\n\t\t\t\tgroup_name: null,\n\t\t\t\tauto: 0,\n\t\t\t\tconfig_revision: ulid(),\n\t\t\t\tsource_guard: 0,\n\t\t\t\twrite_generation: 0,\n\t\t\t\tcreated_at: now,\n\t\t\t\tupdated_at: now,\n\t\t\t})\n\t\t\t.execute();\n\n\t\tconst warnings: string[] = [];\n\t\tconst seed = await exportSeed(db, undefined, { warn: (message) => warnings.push(message) });\n\n\t\texpect(seed.redirects).toEqual([{ source: \"/dup\", destination: \"/current\", type: 301 }]);\n\t\texpect(warnings).toEqual([expect.stringContaining('\"/dup\"')]);\n\t\tawait applyToFreshDatabase(seed, async () => {});\n\t})"
+        },
+        {
+          "line": 221,
+          "title": "restores redirects",
+          "wholeDeclarationSha256": "9f8a776032965eee76aae76e2bc2aad3115f3dd1598674b2a4f6707eb14301f0",
+          "expression": "it(\"restores redirects\", async () => {\n\t\tconst redirects = new RedirectRepository(db);\n\t\tawait redirects.create({ source: \"/old\", destination: \"/new\", type: 302 });\n\t\tawait redirects.create({\n\t\t\tsource: \"/legacy/[slug]\",\n\t\t\tdestination: \"/blog/[slug]\",\n\t\t\tenabled: false,\n\t\t\tgroupName: \"migration\",\n\t\t});\n\n\t\tconst seed = await exportSeed(db);\n\n\t\tawait applyToFreshDatabase(seed, async (restored) => {\n\t\t\tconst rows = await restored\n\t\t\t\t.selectFrom(\"_emdash_redirects\")\n\t\t\t\t.select([\"source\", \"destination\", \"type\", \"enabled\", \"group_name\", \"is_pattern\"])\n\t\t\t\t.orderBy(\"source\")\n\t\t\t\t.execute();\n\t\t\texpect(rows).toEqual([\n\t\t\t\t{\n\t\t\t\t\tsource: \"/legacy/[slug]\",\n\t\t\t\t\tdestination: \"/blog/[slug]\",\n\t\t\t\t\ttype: 301,\n\t\t\t\t\tenabled: 0,\n\t\t\t\t\tgroup_name: \"migration\",\n\t\t\t\t\tis_pattern: 1,\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tsource: \"/old\",\n\t\t\t\t\tdestination: \"/new\",\n\t\t\t\t\ttype: 302,\n\t\t\t\t\tenabled: 1,\n\t\t\t\t\tgroup_name: null,\n\t\t\t\t\tis_pattern: 0,\n\t\t\t\t},\n\t\t\t]);\n\t\t});\n\t})"
+        },
+        {
+          "line": 260,
+          "title": "leaves out terminal redirects the seed format cannot represent",
+          "wholeDeclarationSha256": "dd5375500f9bd66bb3501647f7544d4f89bfb7ac63af7736f9c1089f63e504a7",
+          "expression": "it(\"leaves out terminal redirects the seed format cannot represent\", async () => {\n\t\tconst redirects = new RedirectRepository(db);\n\t\tawait redirects.create({ source: \"/kept\", destination: \"/target\" });\n\t\tawait redirects.create({ source: \"/gone\", destination: \"\", type: 410 });\n\n\t\tconst warnings: string[] = [];\n\t\tconst seed = await exportSeed(db, undefined, { warn: (message) => warnings.push(message) });\n\n\t\texpect(seed.redirects?.map((r) => r.source)).toEqual([\"/kept\"]);\n\t\texpect(warnings).toEqual([expect.stringContaining('\"/gone\"')]);\n\t\tawait applyToFreshDatabase(seed, async () => {});\n\t})"
+        },
+        {
+          "line": 273,
+          "title": "points menu items at the restored content",
+          "wholeDeclarationSha256": "847f91be2f5a6dffbe52bb486178a64ff6901564fad7f4bdb4807b8e113ca1db",
+          "expression": "it(\"points menu items at the restored content\", async () => {\n\t\tconst registry = new SchemaRegistry(db);\n\t\tawait registry.createCollection({ slug: \"pages\", label: \"Pages\" });\n\t\tawait registry.createField(\"pages\", { slug: \"title\", label: \"Title\", type: \"string\" });\n\t\tawait registry.createCollection({ slug: \"products\", label: \"Products\" });\n\t\tawait registry.createField(\"products\", { slug: \"title\", label: \"Title\", type: \"string\" });\n\n\t\tconst contentRepo = new ContentRepository(db);\n\t\tconst about = await contentRepo.create({\n\t\t\ttype: \"pages\",\n\t\t\tslug: \"about\",\n\t\t\tstatus: \"published\",\n\t\t\tdata: { title: \"About\" },\n\t\t});\n\t\tconst widget = await contentRepo.create({\n\t\t\ttype: \"products\",\n\t\t\tslug: \"widget\",\n\t\t\tstatus: \"published\",\n\t\t\tdata: { title: \"Widget\" },\n\t\t});\n\n\t\tconst menuId = ulid();\n\t\tawait db\n\t\t\t.insertInto(\"_emdash_menus\")\n\t\t\t.values({ id: menuId, name: \"primary\", label: \"Primary\", locale: \"en\" })\n\t\t\t.execute();\n\t\tawait db\n\t\t\t.insertInto(\"_emdash_menu_items\")\n\t\t\t.values([\n\t\t\t\t{\n\t\t\t\t\tid: ulid(),\n\t\t\t\t\tmenu_id: menuId,\n\t\t\t\t\tsort_order: 0,\n\t\t\t\t\ttype: \"page\",\n\t\t\t\t\treference_collection: \"pages\",\n\t\t\t\t\treference_id: about.translationGroup ?? about.id,\n\t\t\t\t\tlabel: \"About\",\n\t\t\t\t\tlocale: \"en\",\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tid: ulid(),\n\t\t\t\t\tmenu_id: menuId,\n\t\t\t\t\tsort_order: 1,\n\t\t\t\t\ttype: \"collection\",\n\t\t\t\t\treference_collection: \"products\",\n\t\t\t\t\treference_id: widget.translationGroup ?? widget.id,\n\t\t\t\t\tlabel: \"Widget\",\n\t\t\t\t\tlocale: \"en\",\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tid: ulid(),\n\t\t\t\t\tmenu_id: menuId,\n\t\t\t\t\tsort_order: 2,\n\t\t\t\t\ttype: \"collection\",\n\t\t\t\t\treference_collection: \"products\",\n\t\t\t\t\treference_id: null,\n\t\t\t\t\tlabel: \"All products\",\n\t\t\t\t\tlocale: \"en\",\n\t\t\t\t},\n\t\t\t])\n\t\t\t.execute();\n\n\t\tconst seed = await exportSeed(db, \"all\");\n\n\t\tawait applyToFreshDatabase(seed, async (restored) => {\n\t\t\tconst restoredRepo = new ContentRepository(restored);\n\t\t\tconst restoredAbout = await restoredRepo.findBySlug(\"pages\", \"about\");\n\t\t\tconst restoredWidget = await restoredRepo.findBySlug(\"products\", \"widget\");\n\n\t\t\tconst items = await restored\n\t\t\t\t.selectFrom(\"_emdash_menu_items\")\n\t\t\t\t.select([\"label\", \"type\", \"reference_collection\", \"reference_id\"])\n\t\t\t\t.orderBy(\"sort_order\")\n\t\t\t\t.execute();\n\t\t\texpect(items).toEqual([\n\t\t\t\t{\n\t\t\t\t\tlabel: \"About\",\n\t\t\t\t\ttype: \"page\",\n\t\t\t\t\treference_collection: \"pages\",\n\t\t\t\t\treference_id: restoredAbout?.translationGroup,\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tlabel: \"Widget\",\n\t\t\t\t\ttype: \"collection\",\n\t\t\t\t\treference_collection: \"products\",\n\t\t\t\t\treference_id: restoredWidget?.translationGroup,\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tlabel: \"All products\",\n\t\t\t\t\ttype: \"collection\",\n\t\t\t\t\treference_collection: \"products\",\n\t\t\t\t\treference_id: null,\n\t\t\t\t},\n\t\t\t]);\n\t\t});\n\t})"
+        },
+        {
+          "line": 370,
+          "title": "points a menu item at the translation group of multi-locale content",
+          "wholeDeclarationSha256": "c78cad51219f49fecc14ffffc8861f3561586caec94fd8cff945fdf9036a1d58",
+          "expression": "it(\"points a menu item at the translation group of multi-locale content\", async () => {\n\t\tconst registry = new SchemaRegistry(db);\n\t\tawait registry.createCollection({ slug: \"pages\", label: \"Pages\" });\n\t\tawait registry.createField(\"pages\", { slug: \"title\", label: \"Title\", type: \"string\" });\n\n\t\tconst contentRepo = new ContentRepository(db);\n\t\tconst about = await contentRepo.create({\n\t\t\ttype: \"pages\",\n\t\t\tslug: \"about\",\n\t\t\tstatus: \"published\",\n\t\t\tlocale: \"en\",\n\t\t\tdata: { title: \"About\" },\n\t\t});\n\t\tawait contentRepo.create({\n\t\t\ttype: \"pages\",\n\t\t\tslug: \"a-propos\",\n\t\t\tstatus: \"published\",\n\t\t\tlocale: \"fr\",\n\t\t\ttranslationOf: about.id,\n\t\t\tdata: { title: \"À propos\" },\n\t\t});\n\n\t\tconst menuId = ulid();\n\t\tawait db\n\t\t\t.insertInto(\"_emdash_menus\")\n\t\t\t.values({ id: menuId, name: \"primary\", label: \"Primary\", locale: \"fr\" })\n\t\t\t.execute();\n\t\tawait db\n\t\t\t.insertInto(\"_emdash_menu_items\")\n\t\t\t.values({\n\t\t\t\tid: ulid(),\n\t\t\t\tmenu_id: menuId,\n\t\t\t\tsort_order: 0,\n\t\t\t\ttype: \"page\",\n\t\t\t\treference_collection: \"pages\",\n\t\t\t\treference_id: about.translationGroup ?? about.id,\n\t\t\t\tlabel: \"À propos\",\n\t\t\t\tlocale: \"fr\",\n\t\t\t})\n\t\t\t.execute();\n\n\t\tconst seed = await exportSeed(db, \"all\");\n\n\t\tawait applyToFreshDatabase(seed, async (restored) => {\n\t\t\tconst restoredRepo = new ContentRepository(restored);\n\t\t\tconst restoredEn = await restoredRepo.findBySlug(\"pages\", \"about\", \"en\");\n\t\t\tconst restoredFr = await restoredRepo.findBySlug(\"pages\", \"a-propos\", \"fr\");\n\t\t\texpect(restoredFr?.translationGroup).toBe(restoredEn?.translationGroup);\n\n\t\t\tconst item = await restored\n\t\t\t\t.selectFrom(\"_emdash_menu_items\")\n\t\t\t\t.select(\"reference_id\")\n\t\t\t\t.executeTakeFirstOrThrow();\n\t\t\texpect(item.reference_id).toBe(restoredEn?.translationGroup);\n\t\t});\n\t})"
+        },
+        {
+          "line": 480,
+          "title": "emits absolute media URLs when given a base URL",
+          "wholeDeclarationSha256": "884841004a953e99fab72fada4b9d166060edb0d4f29e9e59753ded302b30de0",
+          "expression": "it(\"emits absolute media URLs when given a base URL\", async () => {\n\t\t\tconst { storageKey } = await createMediaSite();\n\n\t\t\tconst seed = await exportSeed(db, \"all\", { mediaBaseUrl: MEDIA_BASE_URL });\n\n\t\t\tconst post = seed.content?.posts?.[0];\n\t\t\tconst expected = {\n\t\t\t\t$media: expect.objectContaining({\n\t\t\t\t\turl: `${MEDIA_BASE_URL}/_emdash/api/media/file/${storageKey}`,\n\t\t\t\t\tfilename: \"cover.png\",\n\t\t\t\t}),\n\t\t\t};\n\t\t\texpect(post?.data.cover).toEqual(expected);\n\t\t\texpect(post?.data.attachment).toEqual(expected);\n\t\t\texpect(post?.data.slides).toEqual([{ caption: \"First\", photo: expected }]);\n\t\t})"
+        },
+        {
+          "line": 497,
+          "title": "re-uploads exported media into the restored site",
+          "wholeDeclarationSha256": "3c7567b9bf3b74da833a696946af0ab40e55f708dc738ee507c177ce88908880",
+          "expression": "it(\"re-uploads exported media into the restored site\", async () => {\n\t\t\tconst { storageKey } = await createMediaSite();\n\n\t\t\tconst seed = await exportSeed(db, \"all\", { mediaBaseUrl: MEDIA_BASE_URL });\n\n\t\t\tawait applyToFreshDatabase(seed, async (restored) => {\n\t\t\t\tconst post = await new ContentRepository(restored).findBySlug(\"posts\", \"hello\");\n\t\t\t\tconst media = await restored.selectFrom(\"media\").select(\"id\").execute();\n\t\t\t\tconst restoredIds = new Set(media.map((m) => m.id));\n\n\t\t\t\tconst cover = post?.data.cover as { id?: string } | null;\n\t\t\t\tconst attachment = post?.data.attachment as { id?: string } | null;\n\t\t\t\tconst slides = post?.data.slides as Array<{ photo: { id?: string } | null }>;\n\t\t\t\texpect(restoredIds.has(cover?.id ?? \"\")).toBe(true);\n\t\t\t\texpect(restoredIds.has(attachment?.id ?? \"\")).toBe(true);\n\t\t\t\texpect(restoredIds.has(slides[0]?.photo?.id ?? \"\")).toBe(true);\n\t\t\t});\n\t\t\texpect(mockFetch).toHaveBeenCalledWith(\n\t\t\t\t`${MEDIA_BASE_URL}/_emdash/api/media/file/${storageKey}`,\n\t\t\t\texpect.anything(),\n\t\t\t);\n\t\t})"
+        },
+        {
+          "line": 520,
+          "title": "warns that site-relative media URLs cannot be imported",
+          "wholeDeclarationSha256": "ca400bb2079f3a8623aa562b457ec26d76ced12be02b87c08b9ffcc2ad8f84f7",
+          "expression": "it(\"warns that site-relative media URLs cannot be imported\", async () => {\n\t\t\tconst { storageKey } = await createMediaSite();\n\n\t\t\tconst warnings: string[] = [];\n\t\t\tconst seed = await exportSeed(db, \"all\", { warn: (message) => warnings.push(message) });\n\n\t\t\texpect(seed.content?.posts?.[0]?.data.cover).toMatchObject({\n\t\t\t\t$media: { url: `/_emdash/api/media/file/${storageKey}` },\n\t\t\t});\n\t\t\texpect(warnings).toEqual([expect.stringContaining(\"3 media reference(s)\")]);\n\t\t})"
+        },
+        {
+          "line": 532,
+          "title": "rejects a media base URL that applySeed could not download from",
+          "wholeDeclarationSha256": "23c39baf62ea0fc62a4399cfe48cef43a0bf5430d3bebee65963970a41142f87",
+          "expression": "it(\"rejects a media base URL that applySeed could not download from\", async () => {\n\t\t\tawait expect(exportSeed(db, \"all\", { mediaBaseUrl: \"ftp://example.com\" })).rejects.toThrow(\n\t\t\t\t\"http or https\",\n\t\t\t);\n\t\t\tawait expect(exportSeed(db, \"all\", { mediaBaseUrl: \"example.com\" })).rejects.toThrow(\n\t\t\t\t\"Invalid media base URL\",\n\t\t\t);\n\t\t})"
+        },
+        {
+          "line": 541,
+          "title": "accepts a base URL with a path and trailing slash",
+          "wholeDeclarationSha256": "c16aaf7079b978d4c0b8c7bbbdeee2dd3303851852021b78ff18d8bdbe9cfa1d",
+          "expression": "it(\"accepts a base URL with a path and trailing slash\", async () => {\n\t\t\tconst { storageKey } = await createMediaSite();\n\n\t\t\tconst seed = await exportSeed(db, \"all\", { mediaBaseUrl: \"https://cdn.example.com/site/\" });\n\n\t\t\texpect(seed.content?.posts?.[0]?.data.cover).toMatchObject({\n\t\t\t\t$media: { url: `https://cdn.example.com/site/_emdash/api/media/file/${storageKey}` },\n\t\t\t});\n\t\t})"
+        },
+        {
+          "line": 552,
+          "title": "keeps scheduled entries unpublished",
+          "wholeDeclarationSha256": "c811551f1741ee503952d52b279689e63f6da8fbef05571563100129360ba644",
+          "expression": "it(\"keeps scheduled entries unpublished\", async () => {\n\t\tconst registry = new SchemaRegistry(db);\n\t\tawait registry.createCollection({ slug: \"posts\", label: \"Posts\" });\n\t\tawait registry.createField(\"posts\", { slug: \"title\", label: \"Title\", type: \"string\" });\n\n\t\tconst contentRepo = new ContentRepository(db);\n\t\tconst upcoming = await contentRepo.create({\n\t\t\ttype: \"posts\",\n\t\t\tslug: \"upcoming\",\n\t\t\tdata: { title: \"Upcoming\" },\n\t\t});\n\t\tawait contentRepo.schedule(\n\t\t\t\"posts\",\n\t\t\tupcoming.id,\n\t\t\tnew Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),\n\t\t);\n\n\t\tconst seed = await exportSeed(db, \"all\");\n\n\t\tawait applyToFreshDatabase(seed, async (restored) => {\n\t\t\tconst restoredEntry = await new ContentRepository(restored).findBySlug(\"posts\", \"upcoming\");\n\t\t\texpect(restoredEntry?.status).toBe(\"draft\");\n\t\t\texpect(restoredEntry?.publishedAt).toBeNull();\n\t\t});\n\t})"
+        },
+        {
+          "line": 578,
+          "title": "restores collection display settings and field translatability",
+          "wholeDeclarationSha256": "5f7a526f56dcaa91cd8327fa4dcc7c49477e2b5f938129a434220998ae8ec82e",
+          "expression": "it(\"restores collection display settings and field translatability\", async () => {\n\t\tconst registry = new SchemaRegistry(db);\n\t\tawait registry.createCollection({\n\t\t\tslug: \"events\",\n\t\t\tlabel: \"Events\",\n\t\t\tcommentsEnabled: true,\n\t\t});\n\t\tawait registry.createField(\"events\", { slug: \"name\", label: \"Name\", type: \"string\" });\n\t\tawait registry.createField(\"events\", { slug: \"starts_at\", label: \"Starts\", type: \"datetime\" });\n\t\tawait registry.createField(\"events\", {\n\t\t\tslug: \"venue_code\",\n\t\t\tlabel: \"Venue code\",\n\t\t\ttype: \"string\",\n\t\t\ttranslatable: false,\n\t\t});\n\t\tawait registry.updateCollection(\"events\", { titleField: \"name\", dateField: \"starts_at\" });\n\n\t\tconst seed = await exportSeed(db);\n\n\t\tawait applyToFreshDatabase(seed, async (restored) => {\n\t\t\tconst restoredRegistry = new SchemaRegistry(restored);\n\t\t\tconst collection = await restoredRegistry.getCollection(\"events\");\n\t\t\texpect(collection).toMatchObject({\n\t\t\t\tcommentsEnabled: true,\n\t\t\t\ttitleField: \"name\",\n\t\t\t\tdateField: \"starts_at\",\n\t\t\t});\n\t\t\tconst fields = await restoredRegistry.listFields(collection!.id);\n\t\t\texpect(Object.fromEntries(fields.map((field) => [field.slug, field.translatable]))).toEqual({\n\t\t\t\tname: true,\n\t\t\t\tstarts_at: true,\n\t\t\t\tvenue_code: false,\n\t\t\t});\n\t\t});\n\t})"
+        }
+      ],
+      "expectExpressions": [
+        "expect(sections)",
+        "expect(seed.sections?.map((s) => s.slug))",
+        "expect(warnings)",
+        "expect(seed.redirects)",
+        "expect(warnings)",
+        "expect(rows)",
+        "expect(seed.redirects?.map((r) => r.source))",
+        "expect(warnings)",
+        "expect(items)",
+        "expect(restoredFr?.translationGroup)",
+        "expect(item.reference_id)",
+        "expect(post?.data.cover)",
+        "expect(post?.data.attachment)",
+        "expect(post?.data.slides)",
+        "expect(restoredIds.has(cover?.id ?? \"\"))",
+        "expect(restoredIds.has(attachment?.id ?? \"\"))",
+        "expect(restoredIds.has(slides[0]?.photo?.id ?? \"\"))",
+        "expect(mockFetch)",
+        "expect(seed.content?.posts?.[0]?.data.cover)",
+        "expect(warnings)",
+        "expect(exportSeed(db, \"all\", { mediaBaseUrl: \"ftp://example.com\" }))",
+        "expect(exportSeed(db, \"all\", { mediaBaseUrl: \"example.com\" }))",
+        "expect(seed.content?.posts?.[0]?.data.cover)",
+        "expect(restoredEntry?.status)",
+        "expect(restoredEntry?.publishedAt)",
+        "expect(collection)",
+        "expect(Object.fromEntries(fields.map((field) => [field.slug, field.translatable])))"
+      ],
+      "scope": "sections or site widget scope"
+    },
+    {
+      "sourcePath": "packages/core/tests/utils/test-db.ts",
+      "sourceBlob": "b75bd5b5770e44050b2d0da28e87c155c603ed66",
+      "sha256": "0e6a59b5d2109e4134aed1277f82089725a53fe079ee0ec0c2622169d2480dc0",
+      "bytes": 18803,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/tests/utils/test-db.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/sections/index.ts",
+      "sourceBlob": "c82a1889494c94081abb3f8c1f1db549cfc4fee0",
+      "sha256": "638fbf132a37cda29d8500bf98c9778603533b6de6f6266be47c3f97cb11f762",
+      "bytes": 5362,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/sections/index.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/sections/types.ts",
+      "sourceBlob": "2c198c9f0c07db8633d0e8f4f2397e69bb0bb5fa",
+      "sha256": "fc42972258ff36e7cd14135cafd791ac547b2485c6ee222a0c73de66a69eff20",
+      "bytes": 1698,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/sections/types.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/api/handlers/sections.ts",
+      "sourceBlob": "a321c6668b51951c542b39674e6c7b7ddc5ebd7b",
+      "sha256": "175e8b9524e284687bfcf886c58b1c9ae3b00052fa4854790fa1e5e9dbe8fcb5",
+      "bytes": 6992,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/api/handlers/sections.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/api/schemas/sections.ts",
+      "sourceBlob": "fa8577cb636e90e4b7ed96f8c65a97d7efe99eb1",
+      "sha256": "73982a08e8edb4773fc8c1c6a53305322f732976876e4663d6e8605dbd9d75c9",
+      "bytes": 2075,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/api/schemas/sections.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/api/schemas/widgets.ts",
+      "sourceBlob": "dad4a735595865c1c0ebf9b97c258c7fea715610",
+      "sha256": "0b5e57701346f34c149949e15a0497b08c95c9deb7733b3c2c068cd77d0116f5",
+      "bytes": 2373,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/api/schemas/widgets.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/widgets/index.ts",
+      "sourceBlob": "88515af2c3fa9375506a94d4a6a29862f08e449f",
+      "sha256": "5f93183cb0d8d88449e7c6effc5d4a25de5703e8f09d4d9cbf0b7365eac59c67",
+      "bytes": 5273,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/widgets/index.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/widgets/components.ts",
+      "sourceBlob": "153aba24e712e1887fdbdffc0dc51545a0101cee",
+      "sha256": "76f0259fa6dfcca9ae03153fa932bfe76c1cbcf56a83060e3687289a12cebf37",
+      "bytes": 1991,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/widgets/components.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/widgets/types.ts",
+      "sourceBlob": "eccc5ed8080a532202eed5451264ae690cf5605c",
+      "sha256": "070fad062d0800d38c3922da26d7cb71e4b111c8a48c53af80b6ffa6caf02db5",
+      "bytes": 1784,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/widgets/types.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/widgets/archives.ts",
+      "sourceBlob": "cab20d4e12ef8219818427d1c0a2b4166628b630",
+      "sha256": "3098bf981aee49779a591e75db8c9be17c9d4f6de8301725dc490c1383612dc8",
+      "bytes": 1852,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/widgets/archives.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/database/migrations/007_widgets.ts",
+      "sourceBlob": "e82acfb7ab9823cd31e1ea7b3b963839b5773fac",
+      "sha256": "84c916b3759b7e11fde06ca2c694eda81e3fd9a9b970df371d493c2c645551b2",
+      "bytes": 1664,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/database/migrations/007_widgets.ts.txt",
+      "fixtureCopy": "parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/007_widgets.ts"
+    },
+    {
+      "sourcePath": "packages/core/src/database/migrations/011_sections.ts",
+      "sourceBlob": "bc00ebb8a77b42279966801dfd2f8a6436d53605",
+      "sha256": "092e543760b4063704ba8bd15a934e2c9342201633a010a6d3de9c7cffab3575",
+      "bytes": 2530,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/database/migrations/011_sections.ts.txt",
+      "fixtureCopy": "parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/011_sections.ts"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/prefetch.ts",
+      "sourceBlob": "94bca9e4e871c882513f67a657d1d7bfccfee34f",
+      "sha256": "fc31e4ad2b62a8f0b379d06822d7b10f0ee8d5a6927c79dc70b11876dc8d17b9",
+      "bytes": 4007,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/astro/prefetch.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/sections/index.ts",
+      "sourceBlob": "9ff4062e1b80e9e9cf08e0047141fdc7a928b534",
+      "sha256": "3e68de213ed526b0a1ad2f36785dc54a1e08da540af72b4b7319c849d9e16702",
+      "bytes": 1702,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/astro/routes/api/sections/index.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/sections/[slug].ts",
+      "sourceBlob": "a1d8bc40ca4b15946b843554d8623071e823adee",
+      "sha256": "6183b5a3857e99f7a76b27187a224aa84eeb72a0acbccd97a8970f10ec42818b",
+      "bytes": 2451,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/astro/routes/api/sections/[slug].ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/widget-areas/index.ts",
+      "sourceBlob": "1315b69a6b935ecee6eaa506d2f580855b920ccf",
+      "sha256": "da929dc82a416a6ec7797a2a561bcba009f9afa2b4192c7441509af387290a69",
+      "bytes": 2817,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/astro/routes/api/widget-areas/index.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/widget-areas/[name].ts",
+      "sourceBlob": "c5e1006d70bbd6cc24e67477438e224e64f24648",
+      "sha256": "dcfcb118dbe85fd983336b9a5168764167b111b2fda11a8ddfefc09a277fe49b",
+      "bytes": 2422,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/astro/routes/api/widget-areas/[name].ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/widget-areas/[name]/widgets.ts",
+      "sourceBlob": "2ef14c0820acd6512c37a544c3efda11d0db37a0",
+      "sha256": "175d5ef1e31eeac5e916a91680df61b35e9b14ad6bbb87fe3c4ac56c513382ed",
+      "bytes": 2372,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/astro/routes/api/widget-areas/[name]/widgets.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/widget-areas/[name]/widgets/[id].ts",
+      "sourceBlob": "136d6ba97cea9b82e6e01452a04eddc5de85791a",
+      "sha256": "1ee8c8ac7a011d1d16fdd92fdb092c1fd11bf98608abc144c02e015b96323f8e",
+      "bytes": 4108,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/astro/routes/api/widget-areas/[name]/widgets/[id].ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/widget-areas/[name]/reorder.ts",
+      "sourceBlob": "018c27f97d1073400589b6aa83ce570d9f6597db",
+      "sha256": "26a7ff8f2fb62c4652a5302ac34e6604872111a9ee46b96c5a05e38602518f0d",
+      "bytes": 1974,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/astro/routes/api/widget-areas/[name]/reorder.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/widget-components.ts",
+      "sourceBlob": "bd6335179a8e806bdd32f00cf61ce8efc1b01ed2",
+      "sha256": "979ad1c4beece7d04e0d65fd53436735c5f8d400ef0d65aceb259d0d42483980",
+      "bytes": 574,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/astro/routes/api/widget-components.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/import/sections.ts",
+      "sourceBlob": "b52d2d57d20b7a1ae0e9efb96ad55997c1ee1871",
+      "sha256": "5894830f319b28e860bbb840b504e43095510091e3bd98e48c1410e8502075a8",
+      "bytes": 2618,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/import/sections.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/cache/chrome-tags.ts",
+      "sourceBlob": "191d09bcf3eff9337068d602671ce8adf1d5d253",
+      "sha256": "56653c22f4a4697d75087f4b90203e7b30b6a77193f6813c1f0c45b10d69a392",
+      "bytes": 628,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/cache/chrome-tags.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/request-cache.ts",
+      "sourceBlob": "ab8f007b22ce601219ca1270d487342338de8634",
+      "sha256": "b0a8094bbd5c9b987e3b8b00c1d7fdb3bdc542a0d2d4f244108fc8f5655d8d73",
+      "bytes": 4793,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/request-cache.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/request-context.ts",
+      "sourceBlob": "4f140c77a1dca951defb43fd1a114e838b6f691f",
+      "sha256": "c18cdd22e012f26b109919cbd1c780406132ff2505d6245614e4040f215bae1f",
+      "bytes": 4956,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/request-context.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/utils/slugify.ts",
+      "sourceBlob": "9872f3b9d2905dc1b4cd010347eed375ddeadf47",
+      "sha256": "b5a55cfc31c66166b59d7eb055aab8346ccee8588a183a57c5010d8f2fab1221",
+      "bytes": 484,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/utils/slugify.ts.txt"
+    },
+    {
+      "sourcePath": "packages/core/src/database/repositories/types.ts",
+      "sourceBlob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7",
+      "sha256": "880e1ee7c6b2792d0f0316d4853dea590ce10f89073dd5a4f5ef56ebd118fa04",
+      "bytes": 13959,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/core/src/database/repositories/types.ts.txt"
+    },
+    {
+      "sourcePath": "packages/admin/package.json",
+      "sourceBlob": "034d280abb48665d25cc195816f1b85d079adb6e",
+      "sha256": "53c3c767d931dc05d0315a50a01d57a3bfb507c4aa5bf1263d9db789ee8bc91f",
+      "bytes": 5548,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/packages/admin/package.json.txt"
+    },
+    {
+      "sourcePath": "pnpm-workspace.yaml",
+      "sourceBlob": "370d6d9bfbff858464fc994696c52be2dd90b584",
+      "sha256": "d9df43b9844a099ed9e2c142be9ee499d14a34b41b415d03ceb29eafc05e69eb",
+      "bytes": 6003,
+      "authorityPath": "parity/emdash/sections-widgets-source/authority/pnpm-workspace.yaml.txt"
+    }
+  ],
+  "selectedWholeTestFiles": [
+    "packages/admin/tests/components/SectionEditor.test.tsx",
+    "packages/admin/tests/components/SectionPickerModal.test.tsx",
+    "packages/admin/tests/components/Sections.test.tsx",
+    "packages/admin/tests/components/Widgets.test.tsx",
+    "packages/core/tests/unit/widgets/widgets.test.ts",
+    "packages/core/tests/unit/widgets/widget-request-cache.test.ts",
+    "packages/core/tests/unit/widgets/archives.test.ts",
+    "packages/core/tests/unit/import/sections.test.ts"
+  ],
+  "selectedSourceDeclaredCallbacks": 72,
+  "selectedSourceExpandedCallbacks": 73
+}
