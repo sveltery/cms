@@ -145,5 +145,60 @@
     "checkerLog": "/tmp/revision-hosting-typed-check.log",
     "superseded7e86Normal": "Explicit author stop during frozen dependency metadata beforetests actual143; not final/passing gate",
     "superseded7e86Log": "/tmp/revision-hosting-final-normal-bootstrap.log"
+  },
+  "finalLocalGates": {
+    "codeAndTestsHead": "61c2c3f094bfb25d1d0d31565694c817e887f159",
+    "normalBootstrap": {
+      "head": "61c2c3f094bfb25d1d0d31565694c817e887f159",
+      "log": "/tmp/revision-hosting-reviewed-normal-bootstrap.log",
+      "headReceipt": "/tmp/revision-hosting-reviewed-normal-bootstrap.head",
+      "exitReceipt": "/tmp/revision-hosting-reviewed-normal-bootstrap.exit",
+      "exitCode": 1,
+      "phase": "frozen dependency install",
+      "testsExecuted": 0,
+      "cause": "ERR_PNPM_META_FETCH_FAIL optional@esbuild/netbsd-x64 metadataHTTP503after2m20.6s",
+      "noNormalPassClaim": true
+    },
+    "CloudflareFullSuite": {
+      "log": "/tmp/revision-hosting-cloudflare-no-sqlite-suite.log",
+      "exitCode": 0,
+      "unchangedSourceCases": 23,
+      "actualWorkerCases": 7,
+      "failures": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "NodeLatestFocusedOnline": {
+      "log": "/tmp/revision-hosting-node-final-online-retry.log",
+      "exitCode": 1,
+      "maintenanceCallbacksReached": 0,
+      "cause": "120s frozenproductionmetadata timeout"
+    },
+    "CompiledNodeCloseDiagnostic": {
+      "log": "/tmp/revision-hosting-built-node-close-diagnostic.log",
+      "exitCode": 0,
+      "actualNativeCloseAfterSuccessAndRefusal": true,
+      "isolatedProductionInstallCredit": 0
+    },
+    "sourceDependencyFocused": {
+      "log": "/tmp/revision-hosting-dependency-focused.log",
+      "exitCode": 0,
+      "cases": 35
+    },
+    "checker": {
+      "log": "/tmp/revision-hosting-typed-check.log",
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    "stillRequired": [
+      "ApprovedRV1/mainintegration",
+      "Actualfinalnormalinstall/gate",
+      "ActualfinalisolatedproductionNodeclosechecks",
+      "Securedhostedbrowser",
+      "Freshindependent/configuredreview",
+      "ROOTspecificRV2decision andexactapproval",
+      "Ownexpectedheadmerge"
+    ]
   }
 }
