@@ -6,6 +6,28 @@ on:
 permissions:
   contents: read
 jobs:
+  editor-taxonomy-source:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm exec svelte-kit sync
+      - run: node scripts/check-editor-taxonomy-source.mjs
+      - name: Whole matcher declarations on the native helper
+        run: pnpm exec vitest run --config vitest.editor-taxonomy-helpers.config.ts
+      - name: Whole source sidebar callbacks on actual native UI
+        run: pnpm test:editor-taxonomy
+        env:
+          DEBUG: pw:browser
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 15
