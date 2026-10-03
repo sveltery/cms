@@ -114,6 +114,9 @@ export function createCmsRuntime(
           const config = configurations.get(event);
           if (config?.kind !== 'd1' || !config.d1) return input.resolve(event, options);
           const cookies = event.cookies;
+          // Kit can replace its public setter in resolve's finally. Preserve the
+          // jar handoff for a propagating error before the outer error response.
+          const setErrorCookie = cookies.set.bind(cookies);
           let outgoingSession = false;
           event.cookies = new Proxy(cookies, { get(target, key) {
             if (key === 'set') return (...args: Parameters<typeof cookies.set>) => {
@@ -125,13 +128,17 @@ export function createCmsRuntime(
           } });
           const isAuthenticated = !!event.locals.cms?.principal;
           const bookmarks: string[] = [];
+          let renderingFailed = false;
           const scoped = createRequestScopedDb({
             config: config.d1, binding: config.binding as D1Database,
             isAuthenticated, endedAuthenticated: () => isAuthenticated || outgoingSession,
             isWrite: !['GET', 'HEAD'].includes(event.request.method), url: event.url,
             cookies: {
               get: name => { const value = cookies.get(name); return value === undefined ? undefined : { value }; },
-              set: (name, value, options) => bookmarks.push(cookies.serialize(name, value, options as unknown as Parameters<typeof cookies.serialize>[2]))
+              set: (name, value, options) => {
+                if (renderingFailed) setErrorCookie(name, value, options as unknown as Parameters<typeof cookies.set>[2]);
+                else bookmarks.push(cookies.serialize(name, value, options as unknown as Parameters<typeof cookies.serialize>[2]));
+              }
             }
           });
           try {
@@ -140,6 +147,7 @@ export function createCmsRuntime(
             let response: Response;
             try { response = await input.resolve(event, options); }
             catch (cause) {
+              renderingFailed = true;
               try { scoped.commit(); }
               catch (commitError) { console.error('CMS D1 bookmark commit failed during error handling', commitError); }
               throw cause;
