@@ -32,7 +32,8 @@
     "test:media:client": "vitest run --config vitest.media-client.config.ts",
     "test:media:admin": "vitest run --config vitest.media-admin-browser.config.ts",
     "test:media:admin:pure": "vitest run --config vitest.media-admin-pure.config.ts",
-    "test:media:details": "vitest run --config vitest.media-details.config.ts"
+    "test:media:details": "vitest run --config vitest.media-details.config.ts",
+    "test:media:storage": "vitest run --config vitest.media-storage.config.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1145.0",

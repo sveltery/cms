@@ -24,6 +24,7 @@ run_stage 'immutable media source provenance' node scripts/check-media-source.mj
 run_stage 'immutable media source callback tests' pnpm test:media
 run_stage 'native media client transport tests' pnpm test:media:client
 run_stage 'native media details render tests' pnpm test:media:details
+run_stage 'native media storage selection tests' pnpm test:media:storage
 run_stage 'immutable pure admin media callback tests' pnpm test:media:admin:pure
 run_stage 'immutable source host types' node node_modules/typescript/bin/tsc --project tsconfig.source-ports.json
 run_stage 'default production build' pnpm build
