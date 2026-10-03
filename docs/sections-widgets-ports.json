@@ -120,6 +120,21 @@
       "path": "/tmp/sections-widgets-main434-full-bootstrap.log",
       "sha256": "4170cbe0c6a32be62d5655157623e34e5c33bc080549a87783acdbec3e7d9069",
       "bytes": 229700
+    },
+    {
+      "path": "/tmp/sections-widgets-main434-cloudflare-build.log",
+      "sha256": "7affe3b657c42fb10adb02cac1a71b2909d208afc0c420d5171b97634d8a85d9",
+      "bytes": 21632
+    },
+    {
+      "path": "/tmp/sections-widgets-main434-cloudflare-tests.log",
+      "sha256": "a8a58dff66c268f4ca55258f64ee2a84e45060964cf2fa3bf7516b39c151d3df",
+      "bytes": 1264
+    },
+    {
+      "path": "/tmp/sections-widgets-widget-final-check.log",
+      "sha256": "18ab7e64e1265e0e084d0c401ad6a95f5063f0fd2f791c5755d020ecd2f25df3",
+      "bytes": 202
     }
   ],
   "originalPalette": {
@@ -145,6 +160,14 @@
       "fail": 3,
       "failure": "all three fresh isolated pnpm installs exceeded unchanged120s before app/maintenance execution"
     },
-    "cloudflareStages": "not reached"
+    "cloudflareStages": "not reached in bootstrap; subsequent complete normal Cloudflare build and23+7 suites pass separately"
+  },
+  "separateCloudflareEvidence": {
+    "head": "70ca96011325fc696b48332c60a565f6409f9b9e",
+    "build": "pass",
+    "source": 23,
+    "actualWorker": 7,
+    "skip": 0,
+    "completeBootstrapCredit": 0
   }
 }

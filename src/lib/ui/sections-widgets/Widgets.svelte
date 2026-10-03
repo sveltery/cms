@@ -1,5 +1,6 @@
 <script lang="ts">
   // Native Svelte port of pinned Widgets.tsx; MIT notice in notices/emdash-MIT.txt.
+  import { untrack } from 'svelte';
   import * as nativeApi from '$lib/sections-widgets/api.ts';
   import type { WidgetArea, WidgetComponent, CreateWidgetInput, UpdateWidgetInput } from '$lib/sections-widgets/api.ts';
   import type { EditorRenderer, PluginBlockDef, BlockSidebarPanel } from '$lib/sections-widgets/editor.ts';
@@ -12,7 +13,7 @@
   let { api = nativeApi, editor, canManage = true }: { api?: typeof nativeApi; editor?: EditorRenderer; canManage?: boolean } = $props();
   let areas = $state<WidgetArea[]>([]), components = $state<WidgetComponent[]>([]), pluginBlocks = $state<PluginBlockDef[]>([]), loading = $state(true), loadError = $state(''), componentError = $state(''), manifestError = $state('');
   let createOpen = $state(false), deleteArea = $state<string | null>(null), expanded = $state(new Set<string>()), pending = $state(false), actionError = $state(''), status = $state(''), panel = $state<BlockSidebarPanel | null>(null);
-  let loaded = false;
+  let loaded = $state(false);
   let drag = $state<{ source: 'palette'; input: CreateWidgetInput; label: string } | { source: 'area'; area: string; id: string } | null>(null);
   const palette = $derived(getWidgetPalette(components));
   async function load() {
@@ -20,7 +21,7 @@
     try { areas = await api.fetchWidgetAreas(); loaded = true; } catch (cause) { loadError = cause instanceof Error ? cause.message : String(cause); } finally { loading = false; }
   }
   $effect(() => {
-    void load(); let active = true;
+    untrack(() => void load()); let active = true;
     void api.fetchWidgetComponents().then(value => { if (active) components = value; }).catch(cause => { if (active) componentError = cause instanceof Error ? cause.message : String(cause); });
     void api.fetchManifest().then(manifest => { if (active) pluginBlocks = getPluginBlocks(manifest); }).catch(cause => { if (active) manifestError = cause instanceof Error ? cause.message : String(cause); });
     return () => { active = false; };
@@ -57,14 +58,14 @@
   }
 </script>
 <div class="cms-sw"><header class="toolbar"><div><h1>Widgets</h1><p class="muted">Manage content widgets in your widget areas</p></div><button disabled={!canManage} onclick={() => { createOpen = true; actionError = ''; }}>Add Widget Area</button></header>
-{#if loading}<p role="status">Loading widgets...</p>{:else if loadError && !loaded}<div role="alert"><p>{loadError}</p><button onclick={() => void load()}>Retry</button></div>{:else}<div class="overflow-x-auto"><div class="grid grid-cols-12 min-w-[768px] widget-grid"><main class="widget-areas">{#each areas as area (area.id)}<section class="widget-area"><div class="p-4 border-b"><div><h3>{area.label}</h3>{#if area.description}<p class="muted">{area.description}</p>{/if}</div><button aria-label={`Delete ${area.label} widget area`} disabled={!canManage} onclick={() => { deleteArea = area.name; actionError = ''; }}>Delete</button></div>
+{#if loading}<p role="status">Loading widgets...</p>{:else if loadError && !loaded}<div role="alert"><p>{loadError}</p><button onclick={() => void load()}>Retry</button></div>{:else}<div class="overflow-x-auto"><div class="grid grid-cols-12 min-w-[768px] widget-grid"><aside class="widget-palette"><section class="panel"><h2>Available Widgets</h2><p class="muted">Drag widgets into an area to add them</p>{#each palette as item}<button draggable={canManage} disabled={!canManage} ondragstart={event => dragStart(event, { source: 'palette', input: item.input, label: item.label })} ondragend={() => { drag = null; }} onclick={() => { drag = { source: 'palette', input: item.input, label: item.label }; }}><strong>{item.label}</strong>{#if item.description}<p class="muted">{item.description}</p>{/if}</button>{/each}{#if componentError}<p role="alert">Widget components are unavailable: {componentError}</p>{/if}</section></aside><main class="widget-areas">{#each areas as area (area.id)}<section class="widget-area"><div class="p-4 border-b"><div><h3>{area.label}</h3>{#if area.description}<p class="muted">{area.description}</p>{/if}</div><button aria-label={`Delete ${area.label} widget area`} disabled={!canManage} onclick={() => { deleteArea = area.name; actionError = ''; }}>Delete</button></div>
   <div class="widget-list" role="region" aria-label={`${area.label} widgets`} ondragover={event => { if (drag?.source === 'palette') event.preventDefault(); }} ondrop={event => { event.preventDefault(); void drop(area.name); }}>
   {#each area.widgets ?? [] as widget (widget.id)}<div class="widget-item" role="group" aria-label={widget.title || 'Untitled Widget'} ondragover={event => { if (drag?.source === 'area' && drag.area === area.name) event.preventDefault(); }} ondrop={event => { if (drag?.source === 'area') { event.preventDefault(); event.stopPropagation(); void drop(area.name, widget.id); } }}>
     <div class="actions"><button draggable={canManage} aria-label={`Drag to reorder ${widget.title ?? 'widget'}`} ondragstart={event => dragStart(event, { source: 'area', area: area.name, id: widget.id })} ondragend={() => { drag = null; }} onkeydown={event => { if (event.key === 'ArrowUp' || event.key === 'ArrowDown') { event.preventDefault(); void move(area, widget.id, event.key === 'ArrowUp' ? -1 : 1); } }}>⠿</button><button class="text-start" aria-expanded={expanded.has(widget.id)} onclick={() => toggle(widget.id)}><span>{widget.title || 'Untitled Widget'}</span> <span class="muted">({widget.type})</span></button><button disabled={pending || !canManage} aria-label={`Delete ${widget.title ?? 'widget'}`} onclick={() => void mutate(() => api.deleteWidget(area.name, widget.id), 'Widget deleted')}>Delete</button></div>
     {#if expanded.has(widget.id)}<WidgetEditor {widget} {components} {pluginBlocks} {api} {editor} {canManage} isSaving={pending} onSave={(input: UpdateWidgetInput) => void mutate(() => api.updateWidget(area.name, widget.id, input), 'Widget updated')} onBlockSidebarOpen={openPanel} onBlockSidebarClose={closePanel} />{/if}
   </div>{/each}
   {#if drag?.source === 'palette'}<button disabled={!canManage} onclick={() => void drop(area.name)}>Drop to add widget</button>{:else if !area.widgets?.length}<p class="muted">Drag widgets here to add them</p>{/if}
-  </div></section>{:else}<p>No widget areas yet. Create one to get started.</p>{/each}</main><aside class="widget-palette"><section class="panel"><h2>Available Widgets</h2>{#each palette as item}<button draggable={canManage} disabled={!canManage} ondragstart={event => dragStart(event, { source: 'palette', input: item.input, label: item.label })} ondragend={() => { drag = null; }} onclick={() => { drag = { source: 'palette', input: item.input, label: item.label }; }}><strong>{item.label}</strong>{#if item.description}<p class="muted">{item.description}</p>{/if}</button>{/each}{#if componentError}<p role="alert">Widget components are unavailable: {componentError}</p>{/if}</section></aside></div></div>{/if}
+  </div></section>{:else}<p>No widget areas yet. Create one to get started.</p>{/each}</main></div></div>{/if}
 {#if panel}<BlockSettings {panel} onClose={closePanel} onDelete={() => { panel?.onDelete(); panel = null; }} />{/if}
 {#if loadError && loaded}<p role="alert">{loadError}</p>{/if}
 {#if manifestError}<p role="alert">Plugin definitions are unavailable: {manifestError}</p>{/if}{#if actionError && !createOpen && !deleteArea}<p role="alert">{actionError}</p>{/if}{#if status}<p role="status">{status}</p>{/if}
