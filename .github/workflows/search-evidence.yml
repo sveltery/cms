@@ -1,0 +1,48 @@
+name: Search evidence
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/search-evidence.yml'
+      - 'src/**'
+      - 'tests/browser/search-*.spec.ts'
+      - 'tests/helpers/search-browser-fixture.ts'
+      - 'parity/emdash/search-source/e2e/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+permissions:
+  contents: read
+jobs:
+  search-browser:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [default, node]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - if: matrix.target == 'default'
+        run: pnpm build
+      - if: matrix.target == 'node'
+        run: pnpm build:node
+      - name: Run complete source search callbacks and native integration evidence
+        run: timeout --kill-after=30s 180s pnpm test:browser tests/browser/search-upstream.spec.ts tests/browser/search-native.spec.ts
+        env:
+          SVELTERY_BROWSER_TARGET: ${{ matrix.target }}
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: search-playwright-${{ matrix.target }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
