@@ -10,6 +10,8 @@
 
 import { sql, type Kysely } from "kysely";
 
+import type {Database as ContentDatabase} from "../../database/lifecycle/upstream/database/types.ts";
+import type {SettingsTables} from "../tables.ts";
 import { ContentRepository } from "../../database/lifecycle/upstream/database/repositories/content.ts";
 import { MediaRepository } from "./counts.ts";
 import { OptionsRepository } from "../options.ts";
@@ -77,7 +79,7 @@ export async function handleDashboardStats(
 			.execute();
 
 		// Gather per-collection counts in parallel
-		const contentRepo = new ContentRepository(db);
+		const contentRepo = new ContentRepository(db as unknown as Kysely<ContentDatabase>);
 		const collectionStats: CollectionStats[] = await Promise.all(
 			collections.map(async (col) => {
 				const stats = await contentRepo.getStats(col.slug, now);
@@ -96,7 +98,7 @@ export async function handleDashboardStats(
 		// Media and user counts
 		const mediaRepo = new MediaRepository(db);
 		const userRepo = new UserRepository(db);
-		const optionsRepo = new OptionsRepository(db);
+		const optionsRepo = new OptionsRepository(db.$pickTables<"options">() as unknown as Kysely<SettingsTables>);
 		const [
 			mediaCount,
 			userCount,
@@ -106,7 +108,7 @@ export async function handleDashboardStats(
 		] = await Promise.all([
 			mediaRepo.count(),
 			userRepo.count(),
-			getSchedulerHealth(db, now),
+			getSchedulerHealth(db.$pickTables<"options">() as unknown as Kysely<SettingsTables>, now),
 			optionsRepo.countByPrefix(SCHEDULED_POLICY_REJECTION_PREFIX),
 			optionsRepo.getVersionedByPrefix<ScheduledPolicyRejection>(
 				SCHEDULED_POLICY_REJECTION_PREFIX,
