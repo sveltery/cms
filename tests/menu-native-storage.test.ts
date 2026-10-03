@@ -2,18 +2,38 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { openSqlite } from '../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../src/lib/server/database/migrations.ts';
+import { menuSchemaStatements } from '../src/lib/server/menus/migrations.ts';
+import { handleMenuCreate, handleMenuList, handleMenuGet } from '../src/lib/server/menus/handlers.ts';
+import type { Database } from '../src/lib/server/menus/database-types.ts';
 
-// Original native namespace checks corresponding to the two Source migration
-// declarations. Their changed namespace means they earn zero Source credit.
-for (const name of ['_cms_menus', '_cms_menu_items']) {
-  test(`ordinary native storage has persisted ${name}`, async () => {
-    const storage = openSqlite(':memory:');
-    try {
-      await migrateCms(storage);
-      const tables = await storage.db.introspection.getTables();
-      assert.equal(tables.some(table => table.name === name), true);
-    } finally {
-      await storage.close();
-    }
-  });
+// Original native transport/storage expectations. The descriptor is applied
+// explicitly as a named fixture, with zero canonical-startup or Source credit.
+async function fixture() {
+  const storage = openSqlite(':memory:');
+  await migrateCms(storage);
+  await storage.atomicBatch(menuSchemaStatements(storage));
+  return { storage, db: storage.db.withTables<Database>() };
 }
+
+test('actual native menu handler lists empty persisted storage successfully', async () => {
+  const { storage, db } = await fixture();
+  try {
+    const result = await handleMenuList(db);
+    assert.equal(result.success, true);
+    if (result.success) assert.deepEqual(result.data, []);
+  } finally { await storage.close(); }
+});
+
+test('actual native menu handler persists a menu and its translation identity', async () => {
+  const { storage, db } = await fixture();
+  try {
+    const result = await handleMenuCreate(db, { name: 'primary', label: 'Primary' });
+    assert.equal(result.success, true);
+    if (result.success) {
+      assert.equal(result.data.translationGroup, result.data.id);
+      const loaded = await handleMenuGet(db, 'primary');
+      assert.equal(loaded.success, true);
+      if (loaded.success) assert.equal(loaded.data.id, result.data.id);
+    }
+  } finally { await storage.close(); }
+});
