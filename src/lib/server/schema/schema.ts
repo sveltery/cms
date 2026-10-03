@@ -112,9 +112,11 @@ export function convertFieldOptions(input: v.InferOutput<typeof fieldOptionsForm
     } })
   });
 }
-export const createInput = v.strictObject({
-  slug: identifier, ...metadata, label: collectionInput.entries.label, settingsMode: optionalEditMode
-});
+export const createInput = v.pipe(v.strictObject({
+  slug: identifier, ...metadata, label: collectionInput.entries.label, settingsMode: optionalEditMode,
+  listColumns: rawJson
+}), v.forward(v.check(input => selectedJson(input.settingsMode === 'keep' ? 'keep' : undefined, input.listColumns),
+  'Selected list columns must be valid JSON'), ['listColumns']));
 export const updateInput = v.pipe(v.strictObject({
   // Kit form.for(collection) injects this instance key on native and enhanced submissions.
   id: v.optional(identifier), collection: identifier, ...metadata,
@@ -124,9 +126,12 @@ export const updateInput = v.pipe(v.strictObject({
   commentsModeration: collectionMetadataInput.pipe[1].entries.commentsModeration,
   commentsClosedAfterDays: v.optional(v.pipe(v.string(), v.transform(Number), v.number(), v.safeInteger(), v.minValue(0))),
   commentsAutoApproveUsers: optionalBoolean,
-  settingsMode: optionalEditMode, displayMode: optionalEditMode, adminMode: optionalEditMode
+  settingsMode: optionalEditMode, displayMode: optionalEditMode, adminMode: optionalEditMode,
+  listColumns: rawJson
 }), v.forward(v.check(input => input.id === undefined || input.id === input.collection,
-  'Form instance must match the collection'), ['id']));
+  'Form instance must match the collection'), ['id']),
+v.forward(v.check(input => selectedJson(input.adminMode === 'keep' ? 'keep' : undefined, input.listColumns),
+  'Selected list columns must be valid JSON'), ['listColumns']));
 export const addFieldInput = v.pipe(v.strictObject({
   id: v.optional(identifier), collection: identifier, expectedSchemaVersion: decimalVersion,
   slug: fieldInput.entries.slug, label: fieldInput.entries.label, type: fieldInput.entries.type,
@@ -153,7 +158,7 @@ export function convertCollectionCreate(input: v.InferOutput<typeof createInput>
   const metadata = {...settings};
   if (settingsMode === 'keep') for (const key of ['icon','group','routable','hidden','hasSeo','urlPattern','editLocking','commentsEnabled','listColumns','quickCreate'] as const) delete metadata[key];
   const { listColumns, quickCreate, ...value } = metadata;
-  return parse(collectionInput, { ...value, ...(listColumns === undefined && quickCreate === undefined ? {} : {admin: { ...(listColumns === undefined ? {} : {listColumns}), ...(quickCreate === undefined ? {} : {quickCreate}) }}) });
+  return parse(collectionInput, { ...value, ...(listColumns === undefined && quickCreate === undefined ? {} : {admin: { ...(listColumns === undefined ? {} : {listColumns: JSON.parse(listColumns)}), ...(quickCreate === undefined ? {} : {quickCreate}) }}) });
 }
 export function convertCollectionUpdate(input: v.InferOutput<typeof updateInput>) {
   const { id: _id, collection, version, updatedAt, settingsMode, displayMode, adminMode, ...value } = input;
@@ -162,7 +167,7 @@ export function convertCollectionUpdate(input: v.InferOutput<typeof updateInput>
   if (displayMode === 'keep') {delete metadata.titleField; delete metadata.dateField;}
   if (adminMode === 'keep') {delete metadata.listColumns; delete metadata.quickCreate;}
   const {listColumns,quickCreate,...rest} = metadata;
-  return { collection, input: parse(collectionMetadataInput, { ...rest, ...(listColumns === undefined && quickCreate === undefined ? {} : {admin: { ...(listColumns === undefined ? {} : {listColumns}), ...(quickCreate === undefined ? {} : {quickCreate}) }}) }), expected: { version, updatedAt } };
+  return { collection, input: parse(collectionMetadataInput, { ...rest, ...(listColumns === undefined && quickCreate === undefined ? {} : {admin: { ...(listColumns === undefined ? {} : {listColumns: JSON.parse(listColumns)}), ...(quickCreate === undefined ? {} : {quickCreate}) }}) }), expected: { version, updatedAt } };
 }
 export function convertFieldAdd(input: v.InferOutput<typeof addFieldInput>) {
   const { id: _id, collection, expectedSchemaVersion, minLength, maxLength, patternMode, pattern, defaultValueJson, validationJson, optionsJson, ...field } = input;
