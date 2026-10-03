@@ -4,7 +4,7 @@ import {AuthFlowError,setupStatus} from '../auth/passkey-flow.ts';
 import {identityOptions} from '../auth/identity-store.ts';
 import {OptionsRepository} from '../settings/options.ts';
 import {settingsDb} from '../settings/index.ts';
-import {applySetupSeed,SetupSeedError,type SetupSeedDependencies} from './seed.ts';
+import {applySetupSeed,SetupSeedError,SetupSeedUnsupportedError,type SetupSeedDependencies} from './seed.ts';
 import {setupSeedDependencies} from './seed-providers.ts';
 import {defaultSeed} from './upstream/default.ts';
 import type {SeedFile} from './upstream/types.ts';
@@ -25,7 +25,7 @@ export async function setupSite(context:IdentityContext,input:unknown,configured
  seed.settings={...seed.settings,title:body.title,tagline:body.tagline};
  let seeded:Awaited<ReturnType<typeof applySetupSeed>>;
  try{seeded=await applySetupSeed(context.database,seed,body.includeContent,dependencies);}
- catch{throw new SetupSeedError('Failed to apply seed');}
+ catch(cause){if(cause instanceof SetupSeedUnsupportedError)throw new AuthFlowError('UNSUPPORTED_SEED',400);throw new SetupSeedError('Failed to apply seed');}
  const {result,complete:seedComplete,progress:seedProgress}=seeded;
  try{
   await new OptionsRepository(settingsDb(context.database)).setIfAbsent('emdash:site_url',context.publicOrigin);
