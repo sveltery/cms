@@ -56,15 +56,17 @@ for(const target of ['Node','D1'] as const) {
     'CREATE VIEW operator_view AS WITH items AS (SELECT id FROM `_CMS_fields`) SELECT * FROM items',
     'CREATE TRIGGER operator_dependency AFTER INSERT ON operator_notes BEGIN INSERT INTO operator_notes SELECT id FROM _cms_fields; END'
   ]) {
-    test(`${target}: real external metadata dependency rejects before atomic DDL (${ddl.split(' AS ')[0]})`,async()=>{
+    test(`${target}: dependent operator views and external triggers are restored byte-for-byte (${ddl.split(' AS ')[0]})`,async()=>{
       const storage=await schemaAdminStorage(target);const database=storage.database;
       try {
         await installPrefix(database);await seed(database);
         await sql`CREATE TABLE operator_notes (note TEXT)`.execute(database.db);
         await sql.raw(ddl).execute(database.db);
         const before=await snapshot(database);
-        await assert.rejects(()=>migrateCms(database),{code:'MIGRATION_REQUIRED'});
-        assert.deepEqual(await snapshot(database),before);
+        await assert.doesNotReject(()=>migrateCms(database));
+        const after=await snapshot(database);
+        assert.deepEqual(after.objects.filter(object=>object.name.startsWith('operator_')),before.objects.filter(object=>object.name.startsWith('operator_')));
+        if(ddl.startsWith('CREATE VIEW')) assert.equal((await sql`SELECT * FROM operator_view`.execute(database.db)).rows.length,1);
       } finally {await storage.close();}
     });
   }
