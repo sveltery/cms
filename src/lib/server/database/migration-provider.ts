@@ -7,7 +7,7 @@ export interface CmsMigrationProvider {
   readonly version: number;
   readonly name: string;
   statements(database: CmsDatabase): Promise<readonly CompiledQuery[]>;
-  /** Version zero declares static owned names without reading absent metadata. */
+  /** Version zero declares this provider's static names/DDL without metadata reads. */
   expectedObjects(database: CmsDatabase, installedVersion?: number): Promise<readonly MigrationObject[]>;
 }
 export function migrationObjects(statements: readonly CompiledQuery[]): MigrationObject[] {
