@@ -142,6 +142,11 @@ export const addFieldInput = v.pipe(v.strictObject({
   widget: v.optional(v.string()), indexed: v.optional(v.boolean()), searchable: v.optional(v.boolean()), translatable: optionalBoolean
 }), v.forward(v.check(input => input.id === undefined || input.id === input.collection,
   'Form instance must match the collection'), ['id']),
+v.forward(v.check(input => input.defaultValue === undefined || input.defaultValueJson === undefined,
+  'Choose either a text default or a JSON default'), ['defaultValueJson']),
+v.forward(v.check(input => input.validationJson === undefined ||
+  (input.minLength === undefined && input.maxLength === undefined && input.patternMode !== 'set'),
+  'Choose either text rules or JSON validation'), ['validationJson']),
 v.forward(v.check(input => ['string','text','slug'].includes(input.type) || input.defaultValue === undefined,
   'Use a JSON default for this field type'), ['defaultValue']),
 v.forward(v.check(input => ['string','text','slug'].includes(input.type) || input.minLength === undefined,

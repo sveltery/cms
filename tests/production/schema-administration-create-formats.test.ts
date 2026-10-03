@@ -12,9 +12,11 @@ for (const target of ['Node', 'D1'] as const) {
         await h.registry.createCollection({ slug: 'posts', label: 'Posts' });
         const c = await h.query('getSchemaCollection', 'posts');
         const before = await h.snapshot();
-        const input: Record<string, string> = kind === 'default'
-          ? { defaultValue: 'legacy', defaultValueJson: '"typed"' }
-          : { minLength: '1', maxLength: '9', validationJson: '{"minLength":3,"maxLength":4}' };
+        const inputs: Record<string, string>[] = kind === 'default'
+          ? [{ defaultValue: 'legacy', defaultValueJson: '"typed"' }, { defaultValue: '', defaultValueJson: 'false' }]
+          : [{ minLength: '1', maxLength: '9', validationJson: '{"minLength":3,"maxLength":4}' },
+            { patternMode: 'set', pattern: '', validationJson: '{}' }, { minLength: '0', validationJson: 'null' }];
+        for (const input of inputs) {
         const result = await h.remote('addSchemaField', 'admin', { collection: 'posts', expectedSchemaVersion: String(c.version),
           slug: 'value', label: 'Value', type: 'string', ...input });
         assert.equal(result.type, 'result');
@@ -24,6 +26,7 @@ for (const target of ['Node', 'D1'] as const) {
         const path = kind === 'default' ? 'defaultValueJson' : 'validationJson';
         assert.ok(data._.issues.some((issue: any) => issue.path?.some((part: any) => (typeof part === 'string' ? part : part.key) === path)),
           'the JSON field identifies the incompatible format');
+        }
       } finally { await h.close(); }
     });
   }
