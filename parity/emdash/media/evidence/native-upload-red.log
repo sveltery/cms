@@ -1,0 +1,163 @@
+Whitespace-normalized actual Node test output; raw SHA256 13e8964d64a84a2cf1f3e66feaed062e7293065e689c6fcaa2515febbbce0a6e
+✖ Node: native media authentication, role and origin gates precede upload parsing (148.736131ms)
+✖ Node: native upload persists bytes and metadata, deduplicates and survives restart (21.023383ms)
+✖ Node: native media ownership, focal metadata and folder deletion preserve real rows (30.479652ms)
+✖ Node: disabled media mutations reject before storage (23.175041ms)
+✖ D1: native media authentication, role and origin gates precede upload parsing (590.979265ms)
+✖ D1: native upload persists bytes and metadata, deduplicates and survives restart (597.308004ms)
+✖ D1: native media ownership, focal metadata and folder deletion preserve real rows (580.772039ms)
+✖ D1: disabled media mutations reject before storage (625.55678ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 0
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3050.403815
+
+✖ failing tests:
+
+test at tests/production/media-library-native.test.ts:19:2
+✖ Node: native media authentication, role and origin gates precede upload parsing (148.736131ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  405 !== 401
+
+      at TestContext.<anonymous> (file:///workspace/cms-media/tests/production/media-library-native.test.ts:24:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 405,
+    expected: 401,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/production/media-library-native.test.ts:31:2
+✖ Node: native upload persists bytes and metadata, deduplicates and survives restart (21.023383ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  405 !== 201
+
+      at TestContext.<anonymous> (file:///workspace/cms-media/tests/production/media-library-native.test.ts:34:43)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 405,
+    expected: 201,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/production/media-library-native.test.ts:46:2
+✖ Node: native media ownership, focal metadata and folder deletion preserve real rows (30.479652ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  405 !== 201
+
+      at TestContext.<anonymous> (file:///workspace/cms-media/tests/production/media-library-native.test.ts:49:51)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 405,
+    expected: 201,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/production/media-library-native.test.ts:61:2
+✖ Node: disabled media mutations reject before storage (23.175041ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  405 !== 503
+
+      at TestContext.<anonymous> (file:///workspace/cms-media/tests/production/media-library-native.test.ts:63:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 405,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/production/media-library-native.test.ts:19:2
+✖ D1: native media authentication, role and origin gates precede upload parsing (590.979265ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  405 !== 401
+
+      at TestContext.<anonymous> (file:///workspace/cms-media/tests/production/media-library-native.test.ts:24:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 405,
+    expected: 401,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/production/media-library-native.test.ts:31:2
+✖ D1: native upload persists bytes and metadata, deduplicates and survives restart (597.308004ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  405 !== 201
+
+      at TestContext.<anonymous> (file:///workspace/cms-media/tests/production/media-library-native.test.ts:34:43)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 405,
+    expected: 201,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/production/media-library-native.test.ts:46:2
+✖ D1: native media ownership, focal metadata and folder deletion preserve real rows (580.772039ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  405 !== 201
+
+      at TestContext.<anonymous> (file:///workspace/cms-media/tests/production/media-library-native.test.ts:49:51)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 405,
+    expected: 201,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/production/media-library-native.test.ts:61:2
+✖ D1: disabled media mutations reject before storage (625.55678ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  405 !== 503
+
+      at TestContext.<anonymous> (file:///workspace/cms-media/tests/production/media-library-native.test.ts:63:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 405,
+    expected: 503,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

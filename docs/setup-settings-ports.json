@@ -1,0 +1,568 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "source": "packages/core/tests/integration/mcp/settings.test.ts",
+  "blob": "14acd027c73a72a51c7251bdee8cf44e27dabdf1",
+  "adaptation": "Complete callback bodies; native JSON handlers using real current-role sessions and persistent Node/localD1. No MCP wire/PAT scope/declaration credit. Transport errors mapped to source isError/_meta/data shape in test-only host.",
+  "callbacks": [
+    {
+      "title": "returns an empty object when no settings are set",
+      "sha256": "0b71047639c4a8eac94926967a5debc6a623201da1b6ec8c9e2b63a045011f42"
+    },
+    {
+      "title": "returns previously-set settings",
+      "sha256": "714b2ddc2f2b77c82cf65619ae8e588089bc5a11c4c021758e209f41176d830c"
+    },
+    {
+      "title": "editor can read settings",
+      "sha256": "98e39cf574fb63b8de02640c8906cd9cd5d918213e52ebba48a7f3b64aee2e2b"
+    },
+    {
+      "title": "subscriber cannot read settings (INSUFFICIENT_PERMISSIONS)",
+      "sha256": "5a69607edd3884b21eed92b849b54f0c37bbd7c1d66cb2b6561cf8af4c783b1e"
+    },
+    {
+      "title": "updates title and tagline",
+      "sha256": "14b963037825ba0e31d73248c4dd067e0a4b787a91d59d39a417575f41da637e"
+    },
+    {
+      "title": "partial update preserves other fields",
+      "sha256": "56af14339a277705324f857c3414d76faecf667d75b7e98452e1408101070858"
+    },
+    {
+      "title": "accepts an http url and rejects javascript: scheme",
+      "sha256": "d92f0c8998177a940c41629994594265e7bfdd8c9b3308bfcd30079dd5c71f6e"
+    },
+    {
+      "title": "accepts empty string for url (clears it)",
+      "sha256": "de1b9a4b2f1d2a9ba25903281f236d92508dc2a16c6a91c301fbc0377b355331"
+    },
+    {
+      "title": "rejects out-of-range postsPerPage",
+      "sha256": "aeb46285e352173a48c7f3ca95af6e94d1133982eda146625e8c780517ee900a"
+    },
+    {
+      "title": "accepts nested seo and social objects",
+      "sha256": "67cd1c02db886141271b517f972540c1cae12b509f77589322cd730d3900aa1c"
+    },
+    {
+      "title": "removes media references while preserving sibling SEO settings",
+      "sha256": "67c811c8eccd132f28fd9f9c383f4d571af442e0e099a3c3cbb1810127bc83b7"
+    },
+    {
+      "title": "editor cannot update settings (INSUFFICIENT_PERMISSIONS \u2014 admin only)",
+      "sha256": "9327699533896cfd5a9d32c3fc22b0d1bd91ccd8e8344b6201ba4a0b15f5e40a"
+    },
+    {
+      "title": "subscriber cannot update settings",
+      "sha256": "196dc05b591e583be0b6dd095c02ff76271d9fdc5f8384006a077ef5a8cfc86e"
+    }
+  ],
+  "baseline": {
+    "sourceCallbacks": 13,
+    "expandedNodeD1": 26,
+    "result": "actual source assertions fail against built native HTTP 404; corrected runner before implementation",
+    "log": "/tmp/setup-settings-source-red-corrected-runner.log",
+    "earlierRunnerFailure": "/tmp/setup-settings-source-red.log included unsupported toBeFalsy; no red credit for runner TypeError",
+    "migrationSupplemental": "/tmp/setup-settings-migration-red.log genuine assertion missing options table"
+  },
+  "unitSource": {
+    "source": "packages/core/tests/unit/settings/settings.test.ts",
+    "blob": "ba5be15f19e7cba122a85112d9ad79b3e9826d4a",
+    "callbacks": [
+      {
+        "title": "should store settings with site: prefix",
+        "sha256": "2d74be3dba88b46c8d03b00519a95bedb78f6b3b4592166e61d8e034240b2459"
+      },
+      {
+        "title": "should merge with existing settings",
+        "sha256": "834d744fb48f324cb69fdde8a0cff54cbd60b3264f562953ba77e14651748352"
+      },
+      {
+        "title": "should store complex objects",
+        "sha256": "6f854398fd24433251eb21ec7f19783a14487db1ce3ff39d7f1aa12fe8626fcc"
+      },
+      {
+        "title": "should store logo with mediaId",
+        "sha256": "8363b9cd1eafae615abb3dfe06b8a1bcf83080e61aaf91695419d25022b7c85e"
+      },
+      {
+        "title": "deletes media settings while preserving sibling SEO settings",
+        "sha256": "ff241c68cd8ecb4c5844982f37dbbf9452c19dbd9ea349385c465d9755f6712b"
+      },
+      {
+        "title": "deletes the SEO option when its only media reference is removed",
+        "sha256": "ce55b7db569515a947d9804691829913b39fb226348831db6caec08118d2140c"
+      },
+      {
+        "title": "keeps the other SEO fields when updating one of them",
+        "sha256": "0dbec778a9b241045c54330b3c2ca3f8861852b016058f7fd0c77d8ecbac8110"
+      },
+      {
+        "title": "keeps the other social links when updating one of them",
+        "sha256": "a99e211ab9e853e9507dc956cd0c14cb12bcaf77910ca09920dc3fd663893860"
+      },
+      {
+        "title": "rolls back updates when a media-setting deletion fails",
+        "sha256": "5e8b997952e80f85234c17a49c494295e6728c0cc9af38c7b30d4a9d37eb3c4d"
+      },
+      {
+        "title": "should return undefined for unset values",
+        "sha256": "6b8ccdaec34e9bc63d8724f95f2c40054afae11bec33a632b9c7b5a3dc223181"
+      },
+      {
+        "title": "should return the stored value",
+        "sha256": "27b058497d80d7d0697be852375c81e6a8612c65b5fcf347ef31baa5e6953db4"
+      },
+      {
+        "title": "should return numbers correctly",
+        "sha256": "13da89cf2e3f0f5e9ed9f8816785acf17c586b2877b56e4a947b1adb85c95209"
+      },
+      {
+        "title": "should return nested objects",
+        "sha256": "0af2403fbc78fe42d22ef106adc808b975e21766802c2455dc0155d01cd453f4"
+      },
+      {
+        "title": "should return empty object for no settings",
+        "sha256": "beab9f47ac637a8c784c561c5f7b7fd78afbd257210c32d637a16ebfef2c2d8e"
+      },
+      {
+        "title": "should return all settings",
+        "sha256": "c96898ffca7bd0e367f5d28f84960db8eaa72a6f3bce3db4903395cd783ab10e"
+      },
+      {
+        "title": "should return partial object for partial settings",
+        "sha256": "e517e56c4d41cf8fc6572dd88f115a270bda8c8360541542ae7545d2f8899a01"
+      },
+      {
+        "title": "should handle multiple setting types",
+        "sha256": "ed0aab3fbda02732fd919722f031ca614f1f175da0cfa1ad29f7a730112f9a4a"
+      },
+      {
+        "title": "should store logo without URL",
+        "sha256": "a42c762249f68ee8fc9aa2c6ab84b6b995c8619e8b7147042161303ee44ca36d"
+      },
+      {
+        "title": "should store favicon without URL",
+        "sha256": "8165db5c186d8b71e1e558103fce328f0981af39a6619ee30cb23460629b8f90"
+      },
+      {
+        "title": "returns seo settings unchanged when no defaultOgImage is set",
+        "sha256": "c2d1eef19f3950811644b23450f1dfa55f2347aa5b03d0428187a491bb17d447"
+      }
+    ],
+    "status": "committed before implementation; unexecuted imports not baseline credit",
+    "omissions": "Plugin encryption six, actual media rows two, cache five and cross-media mutations three need their complete adapters/providers; selected callbacks retain all expectations."
+  },
+  "browserCallbacks": {
+    "callbacks": [
+      {
+        "source": "e2e/tests/settings-pages.spec.ts",
+        "title": "page renders with heading and form",
+        "sha256": "c813872b4d014636613e01840a87455456092e27c58157f43a13f5dd8747012f"
+      },
+      {
+        "source": "e2e/tests/settings-pages.spec.ts",
+        "title": "displays all social input fields",
+        "sha256": "499f72cbbc0da3e9df303f133a879c30f3d78ff8fafe8dac948064752cdd5630"
+      },
+      {
+        "source": "e2e/tests/settings-pages.spec.ts",
+        "title": "saves a social link and persists across reload",
+        "sha256": "1a5be6a9aa213eccbbeb608e80074f0e97fa1a5e85aadbf6de7c00d758d2dcaa"
+      },
+      {
+        "source": "e2e/tests/settings-pages.spec.ts",
+        "title": "page renders with heading and form",
+        "sha256": "7381ee2c827b08acd326c28a0e4cd60b40d8b4ff0ca864a1c37255a06361a562"
+      },
+      {
+        "source": "e2e/tests/settings-pages.spec.ts",
+        "title": "displays expected SEO fields",
+        "sha256": "72f6725341520461822b0f0732220f95c4ca475f3c4063f9211884deaa409920"
+      },
+      {
+        "source": "e2e/tests/settings-pages.spec.ts",
+        "title": "saves SEO settings and persists across reload",
+        "sha256": "935d3e685705852b961dde6d40f63f688e22533b7cd77cb49b6ed695686dda09"
+      },
+      {
+        "source": "e2e/tests/form-data-loss.spec.ts",
+        "title": "settings edits survive window blur/focus",
+        "sha256": "93dc81de18e96d228c3516ce7e4df8c2cb798899ac276f0ca5fa3a3880a99ec6"
+      }
+    ],
+    "status": "copied before UI implementation; actual secured hosted red not yet run",
+    "omissions": "Email provider settings/language localization/welcome UX require future owners. Only complete social/SEO/settings blur callbacks selected here."
+  },
+  "cacheCallbacks": [
+    {
+      "title": "getSiteSetting() does not hit the DB after getSiteSettings() in the same request",
+      "sha256": "1b6fb0b6a2b290782fd02e7bf90b53e44893ada65a19c803fddc1f76f5773df0"
+    },
+    {
+      "title": "globalThis cache survives across requests within an isolate",
+      "sha256": "f11f80b191e64b6333e0f72e9538a4fa836eb48f016774a64013e12db6f61cdc"
+    },
+    {
+      "title": "setSiteSettings() invalidates the globalThis cache",
+      "sha256": "97b6f4e69f969d6e30ba96b2654a757fcb04d1d634e1aa8219fbacfd98a47de0"
+    },
+    {
+      "title": "setSiteSettings() invalidates the cache even when the write throws",
+      "sha256": "bcad93bbac345918f2090a0e372aa706f8bb9d643bf440c55e146be436b9940c"
+    },
+    {
+      "title": "invalidateSiteSettingsCache() drops the cached value",
+      "sha256": "4d400994da6a190c4fc2fbfa7bec94b88734095ca6e1f1066043f23853fda9d8"
+    }
+  ],
+  "runtimeEvidence": {
+    "serviceCallbacks": {
+      "count": 13,
+      "expanded": 26,
+      "red": "42dffdd: 2pass24actualassertionfail",
+      "green": "5b997cd:26pass"
+    },
+    "unitCallbacks": {
+      "count": 20,
+      "red": "unexecuted at missing imports:0credit",
+      "green": "20pass realSQLite"
+    },
+    "cacheCallbacks": {
+      "count": 5,
+      "red": "300e47f:3realassertfail2pass",
+      "green": "6fcf0a5:5pass realSQLite"
+    },
+    "browserBaseline": {
+      "head": "e2a13e47a478959911852eccb31a75019be74398",
+      "ci": 37083831823,
+      "actualSourceAssertionFailures": 4,
+      "actionTimeoutsBeforeAssertions": 3,
+      "nodeTarget": "not reached"
+    },
+    "pluginHelperCallbacks": {
+      "count": 6,
+      "beforeImplementation": "2fbaf69 copies complete source callbacks before selected cryptographic helper closure; missing imports unexecuted, zero real assertion redcredit",
+      "green": "31total SQLite callbacks incl6pluginhelpers; checker0",
+      "omitted": "Configured plugin/runtime/API/UI integration remains future delivery"
+    }
+  },
+  "pluginHelperCallbacks": {
+    "count": 6,
+    "callbacks": [
+      {
+        "title": "should return undefined for unset plugin settings",
+        "sha256": "c19326c4868fa222efe3e030cdb884c64e455463621c23c4dd6193279af60d7c"
+      },
+      {
+        "title": "should return stored plugin settings",
+        "sha256": "edb8faad232ae8cf2291f527c71a5b0305a8d9cdf00920f2191e2df10e8832c3"
+      },
+      {
+        "title": "returns versioned plugin JSON that is not an encryption envelope",
+        "sha256": "e1fa69b85cd282b602ecb945c6b0e26a1bacdf359741cf0e15c06a3c781d17ef"
+      },
+      {
+        "title": "decrypts encrypted plugin settings from the public read helpers",
+        "sha256": "d872a22bb82909020696aa99a5e7466c751defe4546624cddc8cbd9f7f6696d2"
+      },
+      {
+        "title": "rejects structurally malformed encrypted settings instead of returning envelopes",
+        "sha256": "2c47cc41f341672bcefc609154a14080a3d6bdcaea57b7949d56fdca8829a4c5"
+      },
+      {
+        "title": "treats wildcard characters in plugin IDs as literal prefix text",
+        "sha256": "d70f7150694ef8deee96799ba03e6aa98cdba22f2037c6c5b3a0ffd17b142d34"
+      }
+    ],
+    "baseline": "Copied before encryption helper implementation; unexecuted at missing imports, zero real-red credit. Private server rendering/decoding scope only, no plugin runtime or admin registration."
+  },
+  "immutableModuleSources": [
+    {
+      "source": "packages/core/src/database/repositories/options.ts",
+      "blob": "d4f630ca0e24721dc25bed0189699daceccdb8ae"
+    },
+    {
+      "source": "packages/core/src/settings/index.ts",
+      "blob": "3e6266157579aa16c6338f9ceee02769bd413e4f"
+    },
+    {
+      "source": "packages/core/src/settings/types.ts",
+      "blob": "d8022348325841b0d5115533834ee6fe33510e5a"
+    },
+    {
+      "source": "packages/core/src/api/schemas/settings.ts",
+      "blob": "086e359af5c6e32dee241763402a46da13948bed"
+    },
+    {
+      "source": "packages/core/src/utils/init-lock.ts",
+      "blob": "a643cdff1232de2cf5e882ebc6680ad763c1686d"
+    },
+    {
+      "source": "packages/core/src/utils/single-flight-cache.ts",
+      "blob": "ac71f4c5148cf7d6f4c53fc5cb08fa606fc356e9"
+    },
+    {
+      "source": "packages/core/src/request-cache.ts",
+      "blob": "ab8f007b22ce601219ca1270d487342338de8634"
+    },
+    {
+      "source": "packages/core/src/config/secrets.ts",
+      "blob": "2d63c59613fa155faf0fbf1f2ba972181fe18556"
+    },
+    {
+      "source": "packages/core/src/plugins/settings.ts",
+      "blob": "6d6e23f596a4496b9cd673601be47087f6a9bdcc"
+    },
+    {
+      "source": "packages/core/src/utils/base64.ts",
+      "blob": "9dae6dade270b1c1291b21c8a90adc73f5dab294"
+    }
+  ],
+  "selectedModuleLimits": {
+    "config/secrets.ts": "Exact encryption-key parser/generator/fingerprint/runtime environment-reader declarations only; generated IP salt/preview secrets and their caches not copied or credited.",
+    "plugins/settings.ts": "Exact envelope checks/AES-GCM encrypt/decrypt helper closure only; plugin settings access/schema/redactor/runtime/admin registration not copied or credited.",
+    "settings/index.ts": "Native site settings atomic/renderer/media-query adaptation; exact private plugin-decoding/helper bodies with type/import substitution.",
+    "runtime": "Real SQLite31 whole source callback executions; localD1 source13 native HTTP callbacks26 executions. No encrypted-helper/caching workerd dataset execution claim."
+  },
+  "setupBudget": {
+    "source": "packages/core/tests/integration/astro/setup-seed-budget.test.ts",
+    "sourceBlob": "cb46df9dbee5bb367efb6f6d9038d02ef7013be0",
+    "completeCallbacks": 1,
+    "datasets": 1,
+    "runtimes": [
+      "native built Node SQLite",
+      "native built local D1"
+    ],
+    "callbackSha256": "dc047f00681cb7e15f90b15f6115ed9225ef2cf6c8452c0a4e3d51d92ea98643",
+    "nativeAdapters": [
+      "Astro API context becomes actual built Kit /api/setup JSON request",
+      "trusted source virtual seed becomes trusted test request-local seed",
+      "source options setup-state key maps solely to canonical auth identityOptions"
+    ],
+    "baseline": "Actual built /api/setup returns404; both complete source callbacks reach unchanged expect(response.status).toBe(200) and fail ERR_ASSERTION on Node and local D1. Missing import/type-transform run is excluded.",
+    "omissions": [
+      "Astro route registration and virtual module loader",
+      "external auth completion",
+      "media, bylines, relations, blocks, menus, widgets, sections, redirects seed families"
+    ],
+    "redLog": "/tmp/setup-budget-http-red.log",
+    "green": {
+      "log": "/tmp/setup-seed-green.log",
+      "sourceExecutions": 2,
+      "nativeSupplemental": 4,
+      "normalBuild": "/tmp/setup-seed-corrected-build.log",
+      "remaining": "Default source taxonomy/search providers are not integrated; broader seed families reject explicitly."
+    }
+  },
+  "seedImplementation": {
+    "classification": "native fixed-statement adapter; zero complete applySeed declaration credit",
+    "source": "packages/core/src/seed/apply.ts",
+    "sourceBlob": "94077bb605bda8b1c61d398ea05e7dd92d62ec78",
+    "behavior": "500-query threshold, actual source ContentRepository lookup, source datetime normalization, atomic row/revision/promotion/prune batch, source write-once site URL and non-fatal setup-state save",
+    "dependencies": {
+      "42": "ca39019c94af1c1890e5655ba8ae9ea868765846",
+      "48": "cef5aa2baaebaad37d898bad1ba36170eedb1277",
+      "45": "19fdd636e7a8eb54c9d9ee9f74af00911641505a",
+      "taxonomy": "09c8f69abfffef672771a1a0dca43fd39cd264f2",
+      "search": "9d794bc7539551f9331e676d1cd43b916d0594f4"
+    },
+    "copiedPureFiles": [
+      {
+        "source": "seed/default.ts",
+        "blob": "f33fdb45b2176e354815417e80fc541d6029b4ad",
+        "substitutions": "MIT/pin header and .ts/native type-only imports"
+      },
+      {
+        "source": "seed/types.ts",
+        "blob": "b36b50ebc6d179d5c25c53dcc2d4ac1d78df19d1",
+        "substitutions": "MIT/pin header and .ts/native type-only imports"
+      },
+      {
+        "source": "storage/types.ts",
+        "blob": "d8ffcd99f9c4c544306d986be7534345442e41be",
+        "substitutions": "MIT/pin header and .ts/native type-only imports"
+      }
+    ],
+    "snapshotRepair": {
+      "redCommit": "89aeeae",
+      "redLog": "/tmp/setup-seed-snapshot-red.log",
+      "greenLog": "/tmp/setup-seed-snapshot-green.log",
+      "greenCount": 8,
+      "behavior": "Initial live revision snapshots actual stored affinities/defaults, omits nulls and decodes object/array-shaped strings exactly as pinned ContentRepository.mapRow; SQL JSON1 inside fixed batch.",
+      "sourceCredit": 0
+    }
+  },
+  "browserGreen": {
+    "head": "c967e93e494926bfd253f5b8028a7edafb6d2fef",
+    "run": 37084572148,
+    "job": 111092077670,
+    "defaultSecured": 64,
+    "nodeSecured": 64,
+    "selectedUnchangedCallbacks": 7
+  },
+  "setupWizard": {
+    "source": "e2e/tests/setup-wizard.spec.ts",
+    "blob": "671da60f7f270994571ed71f7d74ba4339350deb",
+    "completeCallbacks": 6,
+    "callbackBlockSha256": "6462f07843b73466572b0ba9e53c164eaf702baba8dc170a89be457e71bde1f9",
+    "frameworkSubstitutions": [
+      "Astro admin URLs map to native /setup and /dashboard",
+      "each callback owns an actual fresh configured database/server",
+      "source dev-reset/dev-bypass fixture replaced by fresh isolation and ordinary signed credential registration/login",
+      "native action wait3s and whole-case20s; source expectation timeout expressions unchanged"
+    ],
+    "baseline": {
+      "run": 37087710468,
+      "job": 111101324222,
+      "head": "f6ab85a66e1764653a3725447b527ee37b398fda",
+      "defaultSecured": "one unchanged source heading expectation fails; one native URL helper expectation fails on callback redirect; three locator-action timeouts and final waitForURL timeout earn zero assertion-red credit",
+      "nodeSecured": "not reached after default failure",
+      "otherFailures": "taxonomy heading callback also fails; dependency checker8errors in validate, preserved"
+    },
+    "omissions": [
+      "real source dev reset/bypass endpoints",
+      "source PAT refresh fixture",
+      "source Astro React presentation"
+    ]
+  },
+  "dashboard": {
+    "source": "packages/core/tests/unit/api/dashboard-handlers.test.ts",
+    "blob": "1e00d69b67a66bb9d26988bc21c309b87c5448ee",
+    "completeCallbacks": 16,
+    "callbackBlockSha256": "bb77ec90a61ee519e9c30c795ec18c49bd24121f6b6815234602205212704241",
+    "runtimes": [
+      "actual built native HTTP Node",
+      "actual built native HTTP local D1"
+    ],
+    "fixtures": "Complete source createPostFixture/createPageFixture; real canonical empty content database and real source ContentRepository. Authority is current stored admin in separate trusted auth fixture; content storage mounted by trusted test hook, zero product bypass endpoints. Explicit trusted test clock preserves source optional now.",
+    "baseline": "32 genuine unchanged source success assertion failures against actual404 /api/dashboard on Node and local D1; canonical domain fixtures complete before route implementation.",
+    "omissions": [
+      "Astro route/wire registration",
+      "actual media/user seeded domain datasets outside these16callbacks",
+      "deployed scheduler/plugin runtime"
+    ],
+    "redLog": "/tmp/setup-dashboard-http-red.log",
+    "green": {
+      "cases": 32,
+      "runtimes": [
+        "Node",
+        "local D1"
+      ],
+      "log": "/tmp/setup-dashboard-http-green.log",
+      "scope": "all16 copied complete callback bodies unchanged; actual native HTTP service"
+    },
+    "implementation": {
+      "handler": {
+        "source": "packages/core/src/api/handlers/dashboard.ts",
+        "blob": "6eff245e36cb194ff0e07013d7f80453abda87ef",
+        "substitutions": [
+          "native imports/table namespace",
+          "native ApiResult type-only union",
+          "real native media/user count adapters"
+        ]
+      },
+      "pureModules": [
+        "source complete scheduler-health.ts",
+        "source complete plugins/content-policy.ts"
+      ],
+      "remaining": [
+        "native dashboard UI",
+        "populated media provider datasets",
+        "deployed scheduler/plugin runtime"
+      ]
+    }
+  },
+  "welcomeModal": {
+    "source": "e2e/tests/welcome-modal.spec.ts",
+    "blob": "437b186df5903044d6e9e51148c9a699d87cebba",
+    "completeCallbacks": 1,
+    "callbackBlockSha256": "fcd104295e960a24687aadb178b68fa1627ac291eaa6d9b55e269cc946881ab0",
+    "baseline": "complete callback committed before welcome UI; full CI37090157707 exhausts inherited180s during earlier taxonomy/search assertions, intended title expectation unreached; additive scoped secured default/Node matrix pending",
+    "fixtures": [
+      "ordinary actual signed registration/login replaces source dev bypass",
+      "source route JSON current-user fixture maps to actual registered Kit query envelope",
+      "Astro hydration selector maps to actual native dashboard mount marker",
+      "source admin URL maps to native dashboard"
+    ],
+    "omissions": [
+      "source bypass endpoint",
+      "Astro hydration/wire",
+      "actual identity credit from mocked current-user fixture"
+    ]
+  },
+  "welcomePersistence": {
+    "source": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+    "blob": "ba3b7a413e01f59cf21f831badf694120e7d6a3d",
+    "completeCallbacks": 2,
+    "sourceFileSha256": "ccd11fb00a967ab4e1649755b3d86416b1d2a07464fb78acad8708ab6dbcb0b5",
+    "baseline": {
+      "log": "/tmp/setup-welcome-persistence-red-corrected.log",
+      "completeCallbacks": 2,
+      "actualAssertions": "source initial GET and profile-lookup redaction pass; source POST200 expectation fails actual404 before own dismissal implementation",
+      "runtimes": [
+        "real Node canonical storage/built HTTP"
+      ],
+      "excluded": "earlier wrong helper import suite failure0red/sourcecredit"
+    },
+    "fixtures": [
+      "actual canonical Node storage and real built HTTP",
+      "source user profile fixture uses existing firstAdmin and actual persisted session",
+      "source users profile drop maps to actual split _cms_auth_profiles; authority remains real persisted row",
+      "source trusted locals/session become actual authenticated HTTP; stale session mock never reaches product"
+    ],
+    "omissions": [
+      "Astro playground/session registration",
+      "whole source UserRepository create algorithm",
+      "real signed WebAuthn identity credit from seeded source profile fixture"
+    ],
+    "wholeSuiteSha256": "13d7f194d66a6338235121b78938838b062bbc754447008f9b89fc3096a35e34",
+    "green": {
+      "completeCallbacks": 2,
+      "executions": 4,
+      "runtimes": [
+        "actual Node nativeHTTP",
+        "actual localD1 nativeHTTP"
+      ],
+      "sourceSuiteCases": 67,
+      "nodeLog": "/tmp/setup-welcome-persistence-green-corrected.log",
+      "d1Log": "/tmp/setup-welcome-source-d1-green.log"
+    }
+  },
+  "settingsSchemaAudit": {
+    "source": "packages/core/tests/unit/api/settings-schema.test.ts",
+    "blob": "3eb1aad929494b954899b7ffeea84834bcfcfda3",
+    "sourceFileSha256": "8abf3d1402312f8d2ac2cc567d5e93be3ef729183bb2837f8310d8ed29c2916f",
+    "wholeSuiteSha256": "feff4d1141974330f1e147487a19d8cfb73e73086e9f438654a1718e15eaa450",
+    "completeCallbacks": 2,
+    "adaptation": "import-only; entire source describe block unchanged",
+    "baseline": "late audit after schema implementation; no test-first assertion red or TDD-order credit",
+    "dataset": "exact pinned null logo/favicon/defaultOgImage requests and response rejection",
+    "execution": {
+      "log": "/tmp/setup-settings-schema-audit-corrected.log",
+      "completeCallbacks": 2,
+      "passed": 2,
+      "runtime": "normal pnpm12.6 Node pure-schema runner",
+      "excluded": "initial wrong relative import suite failure0assertions/0red/sourcecredit"
+    },
+    "omissions": [
+      "actual media provider/resolution/upload UI",
+      "transport/schema declaration generation"
+    ]
+  },
+  "scopedSetupEvidence": {
+    "workflow": ".github/workflows/ci.yml setup-source-evidence",
+    "targets": [
+      "default",
+      "node"
+    ],
+    "completeCallbacks": [
+      "source setup-wizard6",
+      "source welcome-modal1"
+    ],
+    "commands": "normal frozen pnpm12.6 install and runtime build; exact source spec selection with original180s command/global limits",
+    "fullGates": "existing validate and full browser jobs byte-identical",
+    "decision": "PM authorized additive scoped evidence only; no feature acceptance/full-pass decision",
+    "baseline": "pending publication before welcome UI implementation"
+  }
+}

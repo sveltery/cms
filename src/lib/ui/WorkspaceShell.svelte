@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   let { children, homeHref = '/', schemaHref, activePage = 'content' }: {
-    children: Snippet; homeHref?: string; schemaHref?: string; activePage?: 'content' | 'schema'
+    children: Snippet; homeHref?: string; schemaHref?: string; activePage?: 'content' | 'schema' | 'settings' | 'dashboard' | 'media'
   } = $props();
   const schemaLink = $derived(schemaHref ?? `${homeHref.endsWith('/') ? homeHref : `${homeHref}/`}schema`);
 </script>
@@ -10,8 +10,11 @@
   <aside>
     <a class="brand" href={homeHref}>Sveltery <span>CMS</span></a>
     <nav aria-label="Workspace">
+      <a href={`${homeHref.endsWith('/') ? homeHref : `${homeHref}/`}dashboard`} aria-current={activePage === 'dashboard' ? 'page' : undefined}>Dashboard</a>
       <a href={homeHref} aria-current={activePage === 'content' ? 'page' : undefined}>Content</a>
+      <a href={`${homeHref.endsWith('/') ? homeHref : `${homeHref}/`}media`} aria-current={activePage === 'media' ? 'page' : undefined}>Media</a>
       <a href={schemaLink} aria-current={activePage === 'schema' ? 'page' : undefined}>Schema</a>
+      <a href={`${homeHref.endsWith('/') ? homeHref : `${homeHref}/`}settings`} aria-current={activePage === 'settings' ? 'page' : undefined}>Settings</a>
     </nav>
     <small>Foundation preview</small>
   </aside>

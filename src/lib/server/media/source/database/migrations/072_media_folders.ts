@@ -1,0 +1,74 @@
+// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
+// Immutable EmDash1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; source packages/core/src/database/migrations/072_media_folders.ts; blob db0003387a4fe977799ca38b361eaca84c561bfc.
+import type { Kysely } from "kysely";
+
+import { columnExists } from "../dialect-helpers.ts";
+
+const DUPLICATE_COLUMN_RE = /(?:duplicate column|column .* already exists|already exists.*column)/i;
+
+export async function up(db: Kysely<unknown>): Promise<void> {
+	await db.schema
+		.createTable("media_folders")
+		.ifNotExists()
+		.addColumn("id", "text", (col) => col.primaryKey())
+		.addColumn("name", "text", (col) => col.notNull())
+		.addColumn("name_key", "text", (col) => col.notNull().unique())
+		.execute();
+
+	await addFolderColumnIfMissing(db, () =>
+		db.schema
+			.alterTable("media")
+			.addColumn("folder_id", "text", (col) =>
+				col.references("media_folders.id").onDelete("set null"),
+			)
+			.execute(),
+	);
+
+	await db.schema
+		.createIndex("idx_media_folder_id")
+		.ifNotExists()
+		.on("media")
+		.column("folder_id")
+		.execute();
+}
+
+export async function down(db: Kysely<unknown>): Promise<void> {
+	await db.schema.dropIndex("idx_media_folder_id").ifExists().execute();
+	if (await columnExists(db, "media", "folder_id")) {
+		await db.schema.alterTable("media").dropColumn("folder_id").execute();
+	}
+	await db.schema.dropTable("media_folders").ifExists().execute();
+}
+
+async function addFolderColumnIfMissing(
+	db: Kysely<unknown>,
+	addColumn: () => Promise<void>,
+): Promise<void> {
+	if (await columnExists(db, "media", "folder_id")) return;
+
+	try {
+		await addColumn();
+	} catch (error) {
+		if (DUPLICATE_COLUMN_RE.test(deepErrorMessage(error))) {
+			if (await columnExists(db, "media", "folder_id")) return;
+		}
+		throw error;
+	}
+}
+
+function deepErrorMessage(error: unknown): string {
+	if (error instanceof Error) {
+		const own = error.message ?? "";
+		if (error.cause) {
+			const causeMessage = deepErrorMessage(error.cause);
+			return own ? `${own}: ${causeMessage}` : causeMessage;
+		}
+		return own;
+	}
+	if (typeof error === "string") return error;
+	try {
+		return JSON.stringify(error);
+	} catch {
+		return String(error);
+	}
+}
