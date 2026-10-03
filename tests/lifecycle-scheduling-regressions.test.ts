@@ -22,11 +22,14 @@ for(const target of ['Node','D1'] as const) {
         await registry.createField('post',{slug:'title',label:'Title',type:'string'});
         const setup=lifecycleService(storage.database,principal,{after:()=>{}});
         const created=await setup.createContent({type:'post',slug:'live',data:{title:'Live'}});
-        const key={type:'post',id:created.id};await setup.publish(key);
+        const key={type:'post',id:created.id};
         const content=new ContentRepository(storage.database.db as any);
         const revisions=new RevisionRepository(storage.database.db as any);
         for(let index=0;index<51;index++)await revisions.create({collection:'post',entryId:created.id,data:{title:`Earlier ${index}`}});
         const historical=await revisions.create({collection:'post',entryId:created.id,data:{title:'Restored'}});
+        // The live pointer belongs inside the newest fifty; source pruning
+        // legitimately keeps an extra protected pointer outside that window.
+        await setup.publish(key);
         const before=(await content.findById('post',created.id))!;
         const expected={version:before.version,updatedAt:before.updatedAt};
         const schedulerFault=new Error('native synchronous scheduler fault');let schedules=0;
@@ -51,12 +54,20 @@ for(const target of ['Node','D1'] as const) {
         assert.ok(receipt,'the caller receives the accepted mutation receipt');
         const pending:Array<()=>void|Promise<void>>=[];
         const retry=lifecycleService(storage.database,principal,{after:task=>pending.push(task)});
-        const draft=await retry.unpublish({...key,expected:{version:accepted.version,updatedAt:accepted.updatedAt}});
+        // Plain restore updates live columns without replacing the old live
+        // revision pointer. Retry that same real operation; unpublish would
+        // instead hydrate the earlier live snapshot and test another change.
+        const retried=operation==='restore-plain'
+          ?await retry.restoreRevision({revisionId:historical.id,expected:{version:accepted.version,updatedAt:accepted.updatedAt}})
+          :await retry.unpublish({...key,expected:{version:accepted.version,updatedAt:accepted.updatedAt}});
         assert.equal(pending.length,1,'a later real operation binds queued work again');
         for(const task of pending)await task();
         assert.equal(Number((await sql<{n:number}>`SELECT COUNT(*) AS n FROM _cms_revisions WHERE entry_id=${created.id}`.execute(storage.database.db)).rows[0].n),50);
         assert.deepEqual((await sql`SELECT revision_id FROM _cms_revision_prune_queue WHERE entry_id=${created.id}`.execute(storage.database.db)).rows,[]);
-        assert.ok(await revisions.findById(draft.draftRevisionId!));
+        if(operation==='restore-plain') {
+          assert.equal(retried.liveRevisionId,accepted.liveRevisionId);
+          assert.ok(await revisions.findById(retried.liveRevisionId!));
+        } else assert.ok(await revisions.findById(retried.draftRevisionId!));
         assert.equal((await retry.getContent(key)).data.title,title);
       } finally {await storage.close();}
     });

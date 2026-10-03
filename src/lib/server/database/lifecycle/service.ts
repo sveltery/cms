@@ -110,8 +110,14 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       try {await revisions.pruneQueuedEntry(collection,id,revisionId,50);}
       catch(error){console.error(`[revisions] Failed to prune revisions for ${collection}/${id}:`,error);}
     };
-    if(dependencies.after)dependencies.after(task);
-    else void task();
+    try {
+      if(dependencies.after)dependencies.after(task);
+      else void task();
+    } catch(error) {
+      // Only the trusted maintenance scheduler is inside this boundary. The
+      // mutation has committed; its queued revision stays available for retry.
+      console.error(`[revisions] Failed to schedule pruning for ${collection}/${id}:`,error);
+    }
   }
   async function translate<T>(operation:()=>Promise<T>):Promise<T> {
     try{return await operation();}
