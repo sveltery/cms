@@ -31,7 +31,7 @@ const LEASE_BUSY='sveltery-redirect-lease-occupied';
 const SNAPSHOT_CHANGED='sveltery-redirect-snapshot-changed';
 const FENCE_CHANGED='sveltery-redirect-generation-changed';
 const INVALID_TIMESTAMP='sveltery-redirect-invalid-timestamp';
-interface ExistingRedirectSnapshot {id:string;updated_at:string|null;config_revision:string;destination:string}
+interface ExistingRedirectSnapshot {id:string;updated_at:string|null;config_revision:string|null;destination:string}
 
 /** Called before mutation; no DDL, lease, content or redirect write occurs here. */
 export async function prepareContentSlugRedirect(
@@ -62,7 +62,7 @@ export async function prepareContentSlugRedirect(
  const timestampValue=timestampError?sql`json_extract('[]',${INVALID_TIMESTAMP})`:sql`${updatedAt}`;
  const snapshot=equalUrls?sql`1`:selected?sql`EXISTS(SELECT 1 FROM _cms_redirects WHERE id=${selected.id}
   AND id=(SELECT id FROM _cms_redirects WHERE source=${oldUrl} LIMIT 1)
-  AND source=${oldUrl} AND updated_at IS ${selected.updated_at} AND config_revision=${selected.config_revision} AND destination=${selected.destination})`
+  AND source=${oldUrl} AND updated_at IS ${selected.updated_at} AND config_revision IS ${selected.config_revision} AND destination=${selected.destination})`
   :sql`NOT EXISTS(SELECT 1 FROM _cms_redirects WHERE source=${oldUrl})`;
  const generation=sql`(SELECT CAST(substr(token,${generationPrefix.length+1}) AS INTEGER)
   FROM _cms_guards WHERE substr(token,1,${generationPrefix.length})=${generationPrefix})`;
