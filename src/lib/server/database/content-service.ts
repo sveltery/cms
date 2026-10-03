@@ -9,6 +9,7 @@ import {RevisionRepository} from './lifecycle/upstream/database/repositories/rev
 import {EmDashValidationError,ContentCollectionNotFoundError,InvalidCursorError,type ContentItem,type FindManyOptions} from './lifecycle/upstream/database/repositories/types.ts';
 import {InvalidCursorError as NativeInvalidCursorError} from './trash-cursor.ts';
 import {lifecycleService} from './lifecycle/service.ts';
+import type {LifecycleDependencies} from './lifecycle/upstream/host.ts';
 import {genericContentList} from './content-validation.ts';
 import {countTrashedDraftInput,deleteDraftInput,getDraftInput,getTrashedDraftInput,listTrashedDraftInput,parse,restoreDraftInput,tableName,updateDraftInput} from './validation.ts';
 
@@ -16,13 +17,13 @@ import {countTrashedDraftInput,deleteDraftInput,getDraftInput,getTrashedDraftInp
 // 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e. Copyright 2026 Cloudflare Inc.
 // MIT; notices/emdash-MIT.txt. Native bounded summaries and mandatory caller CAS
 // preserve this CMS's existing transport boundary; see docs/content-composition.md.
-export function ordinaryContentService(database:CmsDatabase,principal:ServerPrincipal|null){
+export function ordinaryContentService(database:CmsDatabase,principal:ServerPrincipal|null,dependencies:LifecycleDependencies={}){
  const actor=principal&&typeof principal.id==='string'&&principal.id.length>0&&principal.id.length<=128&&Array.isArray(principal.permissions)?{id:principal.id,permissions:[...principal.permissions]}:null;
  const registry=new SchemaRegistry(database);
  let storedRepository:ContentRepository|undefined;let storedRevisions:RevisionRepository|undefined;let storedLifecycle:ReturnType<typeof lifecycleService>|undefined;
  const repository=()=>storedRepository??=new ContentRepository(database.db as any);
  const revisions=()=>storedRevisions??=new RevisionRepository(database.db as any);
- const lifecycle=()=>storedLifecycle??=lifecycleService(database,principal);
+ const lifecycle=()=>storedLifecycle??=lifecycleService(database,actor,dependencies);
  function permission(name:Permission){if(!actor)throw new CmsError('UNAUTHENTICATED');if(!actor.permissions.includes(name))throw new CmsError('FORBIDDEN');return actor;}
  function read(){permission('content:read');permission('content:read_drafts');}
  function mutation(own:Permission,any:Permission){if(!actor)throw new CmsError('UNAUTHENTICATED');if(!actor.permissions.includes(own)&&!actor.permissions.includes(any))throw new CmsError('FORBIDDEN');return actor;}
