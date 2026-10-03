@@ -131,9 +131,9 @@
 <div class="publishing-fields" dir={direction}>
   <section class="calendar" aria-label={dateAriaLabel}>
     <div class="calendar-nav">
-      <button type="button" aria-label="Go to the Previous Month" {disabled} onclick={() => changeMonth(-1)}>{direction === 'rtl' ? '›' : '‹'}</button>
+      <button type="button" aria-label="Go to the Previous Month" onclick={() => changeMonth(-1)}>{direction === 'rtl' ? '›' : '‹'}</button>
       <span id={`${id}-caption`} aria-live="polite">{caption}</span>
-      <button type="button" aria-label="Go to the Next Month" {disabled} onclick={() => changeMonth(1)}>{direction === 'rtl' ? '‹' : '›'}</button>
+      <button type="button" aria-label="Go to the Next Month" onclick={() => changeMonth(1)}>{direction === 'rtl' ? '‹' : '›'}</button>
     </div>
     <table role="grid" aria-labelledby={`${id}-caption`}>
       <thead><tr>{#each weekdays as day}<th scope="col" aria-label={format(day, 'cccc', { locale: calendarLocale })}>{format(day, 'cccccc', { locale: calendarLocale })}</th>{/each}</tr></thead>
