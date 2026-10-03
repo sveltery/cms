@@ -1572,7 +1572,7 @@
   "expectExpressions": 110,
   "inventoryDeclarations": 169,
   "inventoryExpectExpressions": 351,
-  "status": "pure metadata: 72 unchanged Source cases pass after 60 completed value reds and 12 initial passes; persistent and integration suites remain unported",
+  "status": "pure metadata/head contracts implemented; final-head review and approval pending; persistent and integration suites remain unported",
   "differences": [
     "React/Astro rendering will use native SvelteKit head output; exact source callbacks and assertions remain unchanged.",
     "Bare media IDs retain the source /_emdash/api/media/file/ URL until a reviewed native media substitution exists.",
@@ -1687,6 +1687,33 @@
       "failures": 0,
       "titleDOMRequirementHasZeroCausalCredit": true
     },
-    "nativeClientHeadBrowser": "pending; local Chromium unavailable"
+    "nativeClientHeadBrowser": {
+      "head": "6dc009a01aa2779a7d2c8d84c4bd22e54102b6a2",
+      "defaultTarget": {
+        "suiteCases": 62,
+        "passes": 62
+      },
+      "nodeTarget": {
+        "suiteCases": 62,
+        "passes": 62
+      },
+      "chromiumSandbox": true,
+      "newOriginalCasePerTarget": 1,
+      "sourceCredit": 0
+    },
+    "normalBootstrap": {
+      "head": "6dc009a01aa2779a7d2c8d84c4bd22e54102b6a2",
+      "local": "complete normal bootstrap passed with genuine frozen 340-entry policy/install",
+      "hosted": "validate job passed; every normal phase retained",
+      "serviceCases": 1101,
+      "sourceCases": 115,
+      "uiCases": 23,
+      "productionCases": 255,
+      "isolatedNodeCases": 15,
+      "cloudflareSourceCases": 23,
+      "actualWorkerCases": 7,
+      "failures": 0,
+      "skips": 0
+    }
   }
 }
