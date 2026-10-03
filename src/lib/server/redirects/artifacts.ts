@@ -24,6 +24,7 @@ import type { Database } from "./database-types.ts";
 import { chunks, SQL_BATCH_SIZE } from "./chunks.ts";
 import { isMissingTableError } from "./db-errors.ts";
 import { invalidateDatabaseRedirectCache } from './database-cache.ts';
+import { publishD1RedirectArtifacts } from './artifact-publication-d1.ts';
 import {
 	invalidateRedirectCache,
 	type RedirectRule,
@@ -180,6 +181,7 @@ export async function publishRedirectArtifacts(db: Kysely<Database>): Promise<vo
 		),
 	);
 
+	if (await publishD1RedirectArtifacts(db, revision, generation, artifacts)) return;
 	await withTransaction(db, async (trx) => {
 		const digests = [...new Set(artifacts.map((artifact) => artifact.digest))];
 		const stored = new Map<string, string>();
