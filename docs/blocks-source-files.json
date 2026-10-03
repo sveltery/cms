@@ -1236,6 +1236,56 @@
       ],
       "literalExpectCalls": 4,
       "state": "whole callbacks passed on native Node/actual D1 where dialect-parametrized; source host transport explicit"
+    },
+    {
+      "path": "packages/admin/tests/lib/datetime-local.test.ts",
+      "blob": "012a85fa4169f4497188a17705e80c567b24cf18",
+      "sha256": "2cb0b983789e12c3ffc9f947963bdbe85ece34f5077d5d78785fb1fe8e392655",
+      "copiedPath": "parity/emdash/blocks/source-tests/packages/admin/tests/lib/datetime-local.test.ts",
+      "state": "whole immutable callbacks imported before helper integration; host unresolved, zero behavioral red credit",
+      "declarations": [
+        {
+          "title": "returns empty for non-string and empty values",
+          "line": 9,
+          "callbackSha256": "7bf8f4c2d7bc0fc2884dbf57fcebcbd7035d52b9d43f621a6c5273bf75bebac0"
+        },
+        {
+          "title": "displays a stored instant in the configured site timezone",
+          "line": 16,
+          "callbackSha256": "1065464572704299492d67e0ee7f5da9acaea4a20616c0401516a6a10dbcbe0a"
+        },
+        {
+          "title": "keeps legacy naive values readable without applying the browser timezone",
+          "line": 22,
+          "callbackSha256": "6f4604e1d25460a04a766dbd7f53b2644688bee5fd3c20c79d97ae578a7ad611"
+        },
+        {
+          "title": "preserves a value already in datetime-local shape",
+          "line": 27,
+          "callbackSha256": "7ad3eea4644f43531f420194e58d6b374f35087ad3a7afb1e381651032ff0d9a"
+        },
+        {
+          "title": "returns empty for empty input",
+          "line": 33,
+          "callbackSha256": "6c53249e2ac2435be7807f7b67266d1c67d94b48e1c86ac2ae1c60ad828f6f0b"
+        },
+        {
+          "title": "converts site-local input to a canonical UTC instant",
+          "line": 37,
+          "callbackSha256": "86fd972305b553721043426ab6c149fc1003975fdc05db8cbda9251bcd0189b1"
+        },
+        {
+          "title": "round-trips a stored ISO value without drift",
+          "line": 43,
+          "callbackSha256": "de159ec6677ea143931bd97087a35b2580e5f70c1414ceb919462f23c21236de"
+        },
+        {
+          "title": "refuses ambiguous or nonexistent site-local input: %s",
+          "line": 53,
+          "callbackSha256": "f847be788c86d233849ca6b5e878ecc9aeafa37186b2f5434da8357253107b96"
+        }
+      ],
+      "literalExpectCalls": 12
     }
   ],
   "sourceTestsRun": 0,
