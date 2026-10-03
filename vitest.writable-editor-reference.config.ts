@@ -11,4 +11,4 @@ export default defineConfig({ plugins: [{ name: 'whole-pinned-validation-diagnos
       parserOpts: { plugins: ['typescript', 'jsx'] } });
     return result?.code ? { code: result.code, map: result.map } : null;
   }
-}], test: { environment: 'node', include: ['tests/writable-editor-reference/*.test.ts'] } });
+}], test: { environment: 'node', include: ['parity/emdash/writable-editor-reference/*.test.ts'] } });
