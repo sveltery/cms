@@ -15,7 +15,7 @@ for (const target of ['Node', 'D1'] as const) test(`${target}: final pinned Sour
   const rows = (await sql<{ name: string }>`SELECT name FROM sqlite_master WHERE name IN ('_cms_section_categories','idx_sections_category')`.execute(db)).rows;
   assert.deepEqual(rows, []);
   await assert.doesNotReject(requireSectionWidgetStorage(db, 'sections'));
-  await db.insertInto('_cms_auth_users').values({ id: 'schema-readiness-sentinel', role: 'subscriber', disabled: 0 }).execute();
+  await sql`INSERT INTO _cms_sections (id,slug,title,content) VALUES ('schema-readiness-sentinel','sentinel','Sentinel','[]')`.execute(db);
   await assert.doesNotReject(requireSectionWidgetStorage(db, 'sections'));
-  assert.equal((await db.selectFrom('_cms_auth_users').select('id').where('id', '=', 'schema-readiness-sentinel').execute()).length, 1);
+  assert.equal((await sql<{ count: number }>`SELECT count(*) AS count FROM _cms_sections WHERE id='schema-readiness-sentinel'`.execute(db)).rows[0].count, 1);
 });
