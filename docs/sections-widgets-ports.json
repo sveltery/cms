@@ -180,6 +180,16 @@
       "path": "/tmp/sections-widgets-DateMain-base-path-check.log",
       "sha256": "18ab7e64e1265e0e084d0c401ad6a95f5063f0fd2f791c5755d020ecd2f25df3",
       "bytes": 202
+    },
+    {
+      "path": "/tmp/sections-widgets-converter-whole-guard.log",
+      "sha256": "b7fbbdea6de0685435aa3d7c655597ad2ffe802ee47878ca88260feb805a33b2",
+      "bytes": 128
+    },
+    {
+      "path": "/tmp/sections-widgets-converter-whole-first-run.log",
+      "sha256": "eb7af90221dbec7a43a19f94cbd0ea17837a14811b9e2f6724ad8a51263acbce",
+      "bytes": 219
     }
   ],
   "originalPalette": {
@@ -260,5 +270,27 @@
     "credit": "Original API transport/SSR links/navigation only; explicit /cms framework fixture; fetch rejects; zero HTTP/auth/browser/Source credit",
     "actualProductionFramework": "$app/paths.base",
     "sourceHostFrameworkFixture": "explicit empty base only"
+  },
+  "sourceConverterDependency": {
+    "wholeFiles": 2,
+    "declarations": 127,
+    "expandedCallbacks": 140,
+    "expectExpressions": 231,
+    "pass": 140,
+    "skip": 0,
+    "completedCausalValueReds": 0,
+    "firstExecutionGreen": true,
+    "wholeSelectionBeforeHostCommit": "6ec85e5",
+    "implementationPredatesStandaloneTestSelection": true,
+    "separateInventory": "parity/emdash/sections-widgets-source/converter-inventory.json",
+    "original77AuthorityReceiptsUnchanged": true
+  },
+  "combinedInventories": {
+    "authorities": 79,
+    "wholeSourceFiles": 10,
+    "expandedCallbacks": 213,
+    "executedSourceCallbacks": 178,
+    "unexecutedSourceUI": 35,
+    "causalSourceReds": 0
   }
 }
