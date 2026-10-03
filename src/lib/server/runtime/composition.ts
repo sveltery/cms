@@ -7,6 +7,7 @@ import type { D1Binding } from '../database/d1.ts';
 import { openD1 } from '../database/d1.ts';
 import { migrateCms } from '../database/migrations.ts';
 import type { CmsDatabase } from '../database/contract.ts';
+import { isStorageImageRequest } from '../media/image/request.ts';
 
 export interface RuntimePresentation {
   publicOrigin: string;
@@ -127,6 +128,9 @@ export function createCmsRuntime(
             return typeof value === 'function' ? value.bind(target) : value;
           } });
           const isAuthenticated = !!event.locals.cms?.principal;
+          // The stored-image endpoint reads bytes only. Preserve scoped auth/database
+          // access while keeping its response cacheable, as in the pinned image lifecycle.
+          const storageImageRequest = isStorageImageRequest(event);
           const bookmarks: string[] = [];
           let renderingFailed = false;
           const scoped = createRequestScopedDb({
@@ -148,11 +152,11 @@ export function createCmsRuntime(
             try { response = await input.resolve(event, options); }
             catch (cause) {
               renderingFailed = true;
-              try { scoped.commit(); }
+              try { if (!storageImageRequest) scoped.commit(); }
               catch (commitError) { console.error('CMS D1 bookmark commit failed during error handling', commitError); }
               throw cause;
             }
-            scoped.commit();
+            if (!storageImageRequest) scoped.commit();
             // Kit forbids cookies.set after resolve. Serialization plus response headers
             // preserves the pinned commit timing and cookie options on the native boundary.
             if (bookmarks.length) {

@@ -1,0 +1,39 @@
+✖ isolated production package starts, serves assets and denies anonymous HTTP access across restarts (325.017609ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 598.136744
+
+✖ failing tests:
+
+test at tests/node-hosting/package.test.ts:62:1
+✖ isolated production package starts, serves assets and denies anonymous HTTP access across restarts (325.017609ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      '.npmrc',
+      'LICENSE',
+      'README.md',
+      'build',
+      'notices',
+      'package.json',
+  -   'patches',
+      'pnpm-lock.yaml',
+      'pnpm-workspace.yaml'
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-media/tests/node-hosting/package.test.ts:68:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ '.npmrc', 'LICENSE', 'README.md', 'build', 'notices', 'package.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml' ],
+    expected: [ '.npmrc', 'LICENSE', 'README.md', 'build', 'notices', 'package.json', 'patches', 'pnpm-lock.yaml', 'pnpm-workspace.yaml' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

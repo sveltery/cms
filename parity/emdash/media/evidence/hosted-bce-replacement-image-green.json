@@ -1,0 +1,109 @@
+{
+  "head": "bce3d0da8cca475c5be8c9aa82c8e8d934c096ae",
+  "tree": "0dcdb102ec56cadd5daa81a96d0c847ea6ac8433",
+  "run": 37114087763,
+  "normal": {
+    "job": 111177398034,
+    "status": "SUCCESS",
+    "allBootstrapPhasesCompleted": true,
+    "checker": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "services": 1152,
+    "sourceCallbacks": 79,
+    "mediaSource": {
+      "files": 34,
+      "callbacks": 349
+    },
+    "nativeClient": 7,
+    "nativeDetailsSSR": 3,
+    "pureAdminSource": {
+      "files": 4,
+      "callbacks": 17,
+      "overlapWithBrowser45": 17
+    },
+    "production": 357,
+    "isolatedFrozenNodePackageAndRestart": 13,
+    "cloudflarePureSource": 23,
+    "actualOfficialWorkers": 5,
+    "actualMediaWorkerDurationMs": 1970.298151
+  },
+  "securedMedia": {
+    "node": {
+      "job": 111177398061,
+      "status": "SUCCESS",
+      "ordinaryWorkflows": 6,
+      "durationSeconds": 28.6,
+      "wholeSourceLibraryCallbacks": 4,
+      "originalRealCropAndReplacement": 2,
+      "wholeCropCanvasAndCropperCallbacks": 27,
+      "wholeAdminApiFiles": 7,
+      "wholeAdminApiCallbacks": 45
+    },
+    "default": {
+      "job": 111177398088,
+      "status": "SUCCESS",
+      "ordinaryWorkflows": 6,
+      "durationSeconds": 27.7,
+      "wholeSourceLibraryCallbacks": 4,
+      "originalRealCropAndReplacement": 2,
+      "wholeCropCanvasAndCropperCallbacks": 27,
+      "wholeAdminApiFiles": 7,
+      "wholeAdminApiCallbacks": 45
+    }
+  },
+  "fullBrowser": {
+    "job": 111177397976,
+    "status": "FAILURE",
+    "completedFailures": [
+      "native-taxonomy-data-loss-source taxonomy checkboxes clear when all terms are removed",
+      "search-upstream Command Palette opens with Cmd+K",
+      "search-upstream Command Palette closes with Escape",
+      "search-upstream Command Palette shows navigation items by default"
+    ],
+    "completedFailuresCount": 4,
+    "outerDeadlineSeconds": 180,
+    "exitCode": 124,
+    "fullNode": "SKIPPED"
+  },
+  "setupSlices": {
+    "default": 111177398046,
+    "node": 111177398059,
+    "status": "SUCCESS",
+    "rawCallbackCounts": "not refetched this checkpoint; prior8-per-target evidence remains separate"
+  },
+  "logs": [
+    {
+      "job": 111177398034,
+      "path": "/tmp/media-bce-job-111177398034.log",
+      "sha256": "323f47a44ee126c353a47405028a7b62462aed54c37dfb6b84f82bdc43796d75"
+    },
+    {
+      "job": 111177398061,
+      "path": "/tmp/media-bce-job-111177398061.log",
+      "sha256": "00fb63b1f4103bd1b1a56b9860097ba71b28bc0fcbc1902d2759facf3c39fd52"
+    },
+    {
+      "job": 111177398088,
+      "path": "/tmp/media-bce-job-111177398088.log",
+      "sha256": "223842be127284c30a9b476841a67135d425dc117ad605eff3dd782b05fc1d97"
+    },
+    {
+      "job": 111177397976,
+      "path": "/tmp/media-bce-job-111177397976.log",
+      "sha256": "723338ef195ccb3df015ab968de7442caf0be87ce9511523503a2f2665dc76b2"
+    }
+  ],
+  "limits": [
+    "All source callback/helper/fixture/expectation/deadline bodies preserved; no sandbox-disabling flags in retained logs.",
+    "Whole admin45 first actual browser execution after pure complete source reuse is baseline-green, zero causal Source red. Earlier missing localChromium was setup-only0credit.",
+    "Ordinary native replacement now genuinely executed in both secured targets; SSR alone did not establish browser/IO.",
+    "Pure admin17 is an overlap subset of browser45, no unique-total summing; same source callbacks on two targets are repeated executions.",
+    "Only one earlier whole source cropper keyboard-value assertion qualifies causal Source red; eight locator/action failures0credit, wholeCanvas baselinegreens0credit.",
+    "Native route404/cache-control/empty-hash/dedupURL/SSRreplacement reds are original requirements, separate from Source credit.",
+    "Full SourcePanel/navigation/middleware/public portable-text image e2e/dark variants/usage and wider provider integration remain incomplete.",
+    "Current normal hosted pass qualifies normal even while retained local registry503 failure remains; directinstalled diagnostics alone never qualified.",
+    "PR remains draft: approved dependency replay, final full browser gates, configured and fresh review, root expected-head approval and author merge outstanding."
+  ]
+}

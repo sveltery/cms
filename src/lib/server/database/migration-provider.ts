@@ -7,6 +7,11 @@ export interface CmsMigrationProvider {
   readonly version: number;
   readonly name: string;
   statements(database: CmsDatabase): Promise<readonly CompiledQuery[]>;
+  /** Optional atomic plan: read-only old-state guards run before any startup writes. */
+  prepare?(database: CmsDatabase, installedVersion: number): Promise<{
+    preconditions: readonly CompiledQuery[];
+    statements: readonly CompiledQuery[];
+  }>;
   /** Version zero declares this provider's static names/DDL without metadata reads. */
   expectedObjects(database: CmsDatabase, installedVersion?: number): Promise<readonly MigrationObject[]>;
 }

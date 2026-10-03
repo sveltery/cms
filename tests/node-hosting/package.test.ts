@@ -4,12 +4,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn, execFileSync } from 'node:child_process';
 import { once } from 'node:events';
-import { cp, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { parse, stringify } from 'devalue';
 import { encodeBase64urlNoPadding } from '@oslojs/encoding';
+import { imageSize } from 'image-size';
+import { PNG_4x4 } from '../../parity/emdash/media/source-fixtures/image-fixtures.ts';
 import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
 import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
 import { hashSessionToken } from '../../src/lib/server/auth/session.ts';
@@ -27,12 +29,13 @@ async function unusedPort() {
   return address.port;
 }
 
-function launch(cwd: string, port: number, origin?: string, databasePath?: string) {
+function launch(cwd: string, port: number, origin?: string, databasePath?: string, mediaDirectory?: string) {
   // Deliberately inherit no credentials, DB settings, proxy trust or session configuration.
   const child = spawn(process.execPath, ['build/index.js'], {
     cwd, env: { PATH: process.env.PATH, HOST: '127.0.0.1', PORT: String(port),
       SHUTDOWN_TIMEOUT: '1', ...(origin === undefined ? {} : { ORIGIN: origin }),
-      ...(databasePath === undefined ? {} : { SVELTERY_DATABASE_PATH: databasePath }) },
+      ...(databasePath === undefined ? {} : { SVELTERY_DATABASE_PATH: databasePath }),
+      ...(mediaDirectory === undefined ? {} : { SVELTERY_MEDIA_DIRECTORY: mediaDirectory }) },
     stdio: ['ignore', 'pipe', 'pipe']
   });
   const exited = once(child, 'exit');
@@ -65,10 +68,12 @@ test('isolated production package starts, serves assets and denies anonymous HTT
   let running: ReturnType<typeof launch> | undefined;
   try {
     await cp(new URL('../../node-package/', import.meta.url), directory, { recursive: true });
-    assert.deepEqual((await readdir(directory)).sort(), ['.npmrc', 'LICENSE', 'README.md', 'build', 'notices', 'package.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml']);
+    assert.deepEqual((await readdir(directory)).sort(), ['.npmrc', 'LICENSE', 'README.md', 'build', 'notices', 'package.json', 'patches', 'pnpm-lock.yaml', 'pnpm-workspace.yaml']);
     for (const file of ['.npmrc', 'pnpm-lock.yaml', 'pnpm-workspace.yaml']) {
       assert.equal(await readFile(join(directory, file), 'utf8'), await readFile(new URL(`../../${file}`, import.meta.url), 'utf8'));
     }
+    assert.equal(await readFile(join(directory, 'patches/image-size@2.0.2.patch'), 'utf8'),
+      await readFile(new URL('../../patches/image-size@2.0.2.patch', import.meta.url), 'utf8'));
     const pkg = JSON.parse(await readFile(join(directory, 'package.json'), 'utf8'));
     assert.deepEqual(pkg.scripts, { start: 'node build/index.js' });
     assert.equal(pkg.type, 'module');
@@ -96,7 +101,7 @@ test('isolated production package starts, serves assets and denies anonymous HTT
       const { default: exports } = await (load as () => Promise<{ default: Record<string, unknown> }>)();
       for (const name of Object.keys(exports)) ids.set(name, `${hash}/${name}`);
     }
-    assert.deepEqual([...ids.keys()].sort(), ['addSchemaField', 'beginLogin', 'beginSetup', 'completeLogin', 'completeSetup', 'countTrashedContent', 'createContent', 'createLifecycleContent', 'createSchemaCollection', 'deleteContent', 'discardContentDraft', 'getAuthenticatedState', 'getCollection', 'getContent', 'getCurrentUser', 'getEditorManifest', 'getLifecycleContent', 'getSchemaCollection', 'getSetupStatus', 'getTrashedContent', 'listCollections', 'listContent', 'listContentRevisions', 'listSchemaCollections', 'listTrashedContent', 'logout', 'publishContent', 'restoreContent', 'restoreContentRevision', 'unpublishContent', 'updateContent', 'updateSchemaCollection', 'updateSchemaFieldLabel', 'updateSchemaFieldOptions']);
+    assert.deepEqual([...ids.keys()].sort(), ['addSchemaField', 'autosaveEditorContent', 'beginLogin', 'beginSetup', 'completeLogin', 'completeSetup', 'countTrashedContent', 'createContent', 'createEditorContent', 'createLifecycleContent', 'createSchemaCollection', 'deleteContent', 'discardContentDraft', 'dismissWelcome', 'getAuthenticatedState', 'getCollection', 'getContent', 'getCurrentUser', 'getDashboardStats', 'getEditorManifest', 'getLifecycleContent', 'getSchemaCollection', 'getSetupStatus', 'getSiteSettings', 'getSiteSetup', 'getTrashedContent', 'listCollections', 'listContent', 'listContentRevisions', 'listEditorContent', 'listSchemaCollections', 'listTrashedContent', 'logout', 'publishContent', 'restoreContent', 'restoreContentRevision', 'saveEditorContent', 'setupSiteConfiguration', 'unpublishContent', 'updateContent', 'updateSchemaCollection', 'updateSchemaFieldLabel', 'updateSchemaFieldOptions', 'updateSiteSettings']);
     const port = await unusedPort();
     const base = `http://127.0.0.1:${port}/`;
     running = launch(directory, port, new URL(base).origin);
@@ -148,6 +153,33 @@ test('isolated production package starts, serves assets and denies anonymous HTT
     assert.equal((await (await fetch(endpoint)).json()).status, 401);
     await running.stop('SIGINT');
     running = undefined;
+
+    await t.test('fresh production dependencies resize an actual stored image outside the checkout', async () => {
+      const mediaDirectory = join(temporary, 'image-media');
+      await mkdir(mediaDirectory);
+      const original = join(mediaDirectory, 'packaged-image.png');
+      await writeFile(original, PNG_4x4);
+      running = launch(directory, port, new URL(base).origin, undefined, mediaDirectory);
+      await running.ready();
+      const href = new URL('_emdash/api/media/file/packaged-image.png', base).href;
+      const request = new URL('_image', base);
+      request.searchParams.set('href', href);
+      request.searchParams.set('w', '2');
+      request.searchParams.set('f', 'webp');
+      const response = await fetch(request);
+      assert.equal(response.status, 200);
+      assert.equal(response.headers.get('content-type'), 'image/webp');
+      const bytes = new Uint8Array(await response.arrayBuffer());
+      assert.ok(bytes.length > 12);
+      assert.equal(new TextDecoder().decode(bytes.slice(0, 4)), 'RIFF');
+      assert.equal(new TextDecoder().decode(bytes.slice(8, 12)), 'WEBP');
+      const dimensions = imageSize(bytes);
+      assert.equal(dimensions.width, 2);
+      assert.equal(dimensions.height, 2);
+      assert.deepEqual(new Uint8Array(await readFile(original)), PNG_4x4);
+      await running.stop('SIGTERM');
+      running = undefined;
+    });
 
     await t.test('unset ORIGIN preserves adapter HTTPS inference; forwarded headers are not trusted by default', async () => {
       running = launch(directory, port);
@@ -261,7 +293,7 @@ test('isolated production package starts, serves assets and denies anonymous HTT
     });
     // Only installation artifacts and the synthetic .env were allowed to be added.
     assert.deepEqual((await readdir(directory)).filter(name => !['node_modules', '.env'].includes(name)).sort(),
-      ['.npmrc', 'LICENSE', 'README.md', 'build', 'notices', 'package.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml']);
+      ['.npmrc', 'LICENSE', 'README.md', 'build', 'notices', 'package.json', 'patches', 'pnpm-lock.yaml', 'pnpm-workspace.yaml']);
   } finally {
     if (running && running.child.exitCode === null) { running.child.kill('SIGKILL'); await running.exited; }
     await rm(temporary, { recursive: true, force: true });

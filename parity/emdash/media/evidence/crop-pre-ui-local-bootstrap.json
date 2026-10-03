@@ -1,0 +1,38 @@
+{
+  "head": "b36ea9bd6bd2d352d4ee00f4b514fadfe7f3ac53",
+  "tree": "700b2085138b999166f55b174bbd4bdedbec87d9",
+  "command": "PATH=/workspace/.tools/pnpm/node_modules/.bin:$PATH sh scripts/bootstrap.sh",
+  "exitCode": 1,
+  "fullBootstrapPass": false,
+  "normalFrozenInstall": true,
+  "normalTypes": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "servicePass": 1125,
+  "sourcePortsFiles": 9,
+  "sourcePortsPass": 79,
+  "mediaSourceFiles": 34,
+  "mediaSourcePass": 349,
+  "sourceHostTypes": true,
+  "defaultBuild": true,
+  "productionPass": 351,
+  "nodePackageBuild": true,
+  "isolatedNodeHosting": {
+    "executedParentTests": 1,
+    "pass": 0,
+    "fail": 1,
+    "nestedAssertionsReached": false,
+    "failure": "execFileSync pnpm install --prod --frozen-lockfile --ignore-scripts --store-dir <fresh store> ETIMEDOUT",
+    "unchangedInstallDeadlineMs": 120000,
+    "durationMs": 121003.405562,
+    "classification": "Fresh frozen production package installation setup timeout; no product/source assertion red. Full child stdout was represented as a Buffer in the native test output; a registry-specific cause is not established."
+  },
+  "cloudflarePhaseReached": false,
+  "browserAssertionsReached": false,
+  "sourceAssertionRedCredit": 0,
+  "nativeAssertionRedCredit": 0,
+  "rawLogFile": "/tmp/media-crop-pre-ui-bootstrap.log",
+  "rawLogBytes": 226361,
+  "rawLogSha256": "e3d931fa9eb7843baead99a04312c900a11c5128e737efe6d09f1685e984dce4"
+}

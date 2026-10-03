@@ -1,0 +1,53 @@
+✖ Node: canonical media descriptors survive repeated startup and persistent reopen (24.220528ms)
+✔ Node: modified media schema rejects startup without repairing or deleting data (11.622615ms)
+✖ D1: canonical media descriptors survive repeated startup and persistent reopen (862.074926ms)
+✔ D1: modified media schema rejects startup without repairing or deleting data (742.31272ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2162.609292
+
+✖ failing tests:
+
+test at tests/media-startup.test.ts:15:2
+✖ Node: canonical media descriptors survive repeated startup and persistent reopen (24.220528ms)
+  AssertionError [ERR_ASSERTION]: media_folders
+  + actual - expected
+  
+  + 'CREATE TABLE media_folders (id text primary key, name text not null, name_key text not null unique)'
+  - 'create table media_folders (id text primary key, name text not null, name_key text not null unique)'
+  
+      at TestContext.<anonymous> (file:///workspace/cms-media/tests/media-startup.test.ts:25:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'CREATE TABLE media_folders (id text primary key, name text not null, name_key text not null unique)',
+    expected: 'create table media_folders (id text primary key, name text not null, name_key text not null unique)',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/media-startup.test.ts:15:2
+✖ D1: canonical media descriptors survive repeated startup and persistent reopen (862.074926ms)
+  AssertionError [ERR_ASSERTION]: media_folders
+  + actual - expected
+  
+  + 'CREATE TABLE media_folders (id text primary key, name text not null, name_key text not null unique)'
+  - 'create table media_folders (id text primary key, name text not null, name_key text not null unique)'
+  
+      at TestContext.<anonymous> (file:///workspace/cms-media/tests/media-startup.test.ts:25:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'CREATE TABLE media_folders (id text primary key, name text not null, name_key text not null unique)',
+    expected: 'create table media_folders (id text primary key, name text not null, name_key text not null unique)',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

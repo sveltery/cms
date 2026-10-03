@@ -1,0 +1,16 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "baselineHead": "721227e79f22bdd52a06b82beb948061653f6ce6",
+  "baselineTree": "c52f9db8d52328ee0643ff30790d760512d66945",
+  "kind": "original native trusted-host configuration tests",
+  "command": "node node_modules/vitest/vitest.mjs run --config vitest.media-storage.config.ts",
+  "result": { "callbacks": 6, "passed": 4, "failed": 2, "completedNativeAssertionReds": 2, "uniqueCauses": 1 },
+  "actual": "an inferred adjacent LocalStorage directory shadows an explicit S3 endpoint, including an invalid endpoint",
+  "expected": "configured S3 is instantiated and validated before an inferred local default; explicit local directory retains its existing priority",
+  "sourceReference": "complete unchanged pinned packages/core/src/storage/s3.ts / resolveS3Config; whole storage/s3.test.ts is already executed in the selected media suite",
+  "fixture": "explicit synthetic trusted-host settings and actual complete Source adapter constructors; no real credentials/network/files/database operations",
+  "log": "/tmp/media-storage-selection-before-fix.log",
+  "copiedSourceCallbackCredit": 0,
+  "liveExternalS3Credit": 0,
+  "limits": "Native host selector is an explicit framework substitution; final acceptance/review and current full hosted gates remain required. Four baseline greens earn zero new causal credit."
+}

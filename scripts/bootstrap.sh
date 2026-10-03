@@ -19,8 +19,14 @@ run_stage() {
 run_stage 'frozen dependency install' pnpm install --frozen-lockfile
 run_stage 'type and Svelte checks' pnpm check
 run_stage 'service tests' pnpm test
-run_stage 'auth source assertions' pnpm test:source-ports
-run_stage 'auth source type assertions' node node_modules/typescript/bin/tsc --project tsconfig.source-ports.json
+run_stage 'immutable source callback tests' pnpm test:source-ports
+run_stage 'immutable media source provenance' node scripts/check-media-source.mjs
+run_stage 'immutable media source callback tests' pnpm test:media
+run_stage 'native media client transport tests' pnpm test:media:client
+run_stage 'native media details render tests' pnpm test:media:details
+run_stage 'native media storage selection tests' pnpm test:media:storage
+run_stage 'immutable pure admin media callback tests' pnpm test:media:admin:pure
+run_stage 'immutable source host types' node node_modules/typescript/bin/tsc --project tsconfig.source-ports.json
 run_stage 'default production build' pnpm build
 run_stage 'production remote tests' pnpm test:production
 run_stage 'Node package and build' pnpm package:node

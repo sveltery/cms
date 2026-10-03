@@ -1,0 +1,45 @@
+{
+  "cause": "Native metadata callback loses existing item fields when Source API returns an empty or partial row",
+  "baseline": {
+    "pr": 70,
+    "head": "33a28cf889de1b1d7eb840487715848b34962ff7",
+    "tree": "ba71eb3c00d990ce14fcd244c958e9cf4a3ebbe6",
+    "run": 37118380558,
+    "job": 111189501246,
+    "callbacks": 2,
+    "completedNativeAssertionReds": 2,
+    "emptyResponseActual": {
+      "url": "https://example.test/photo.jpg"
+    },
+    "partialResponseActual": {
+      "alt": "Changed",
+      "url": "https://example.test/photo.jpg"
+    }
+  },
+  "proof": {
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "sourcePath": "packages/admin/src/components/MediaDetailPanel.tsx",
+    "sourceLines": [
+      652,
+      670
+    ],
+    "semantics": "Merge the existing local row, then returned changes; retain the original URL when the returned URL is empty.",
+    "rootApproval": "Root independently inspected actual hosted value failures before authorizing the owned product-only repair."
+  },
+  "repair": {
+    "path": "src/lib/media/MediaDetails.svelte",
+    "change": "Add the existing selected row before the returned fields in the existing save-success merge.",
+    "localOriginalSsr": {
+      "passed": 5,
+      "sourceCredit": 0,
+      "browserCredit": 0
+    },
+    "hostedOriginalCallbackReplay": "pending"
+  },
+  "limits": [
+    "Two later MIME TypeErrors earn zero extra assertion-red credit.",
+    "The whole Panel suite failed import context before callbacks; Navigation missing-control deadlines earn zero completed Source red credit.",
+    "No Source callback, assertion, test mock response, transport envelope, error behavior, permissions, replacement or deadline is changed.",
+    "Whole Source panel and genuine stored-file acceptance remain separate requirements."
+  ]
+}

@@ -7,7 +7,7 @@ await readFile(new URL('build/node/index.js', root));
 await rm(destination, { recursive: true, force: true });
 await mkdir(destination);
 await cp(new URL('build/node/', root), new URL('build/', destination), { recursive: true });
-for (const path of ['.npmrc', 'pnpm-lock.yaml', 'pnpm-workspace.yaml', 'LICENSE', 'notices']) {
+for (const path of ['.npmrc', 'pnpm-lock.yaml', 'pnpm-workspace.yaml', 'patches', 'LICENSE', 'notices']) {
   await cp(new URL(path, root), new URL(path, destination), { recursive: true });
 }
 await cp(new URL('docs/node-hosting-package.md', root), new URL('README.md', destination));
