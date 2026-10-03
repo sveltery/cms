@@ -20,12 +20,11 @@ import { ulid } from "ulidx";
 import {
 	findTaxonomyStructure,
 	parseTaxonomyCollections,
-	saveTaxonomyStructure,
 	selectTaxonomyDefs,
 	type TaxonomyStructure,
 } from "../../database/repositories/taxonomy-def.ts";
-import { TaxonomyRepository, type SiblingPosition } from "../../database/repositories/taxonomy.ts";
-import { withTransaction } from "../../database/transaction.ts";
+import { NativeTaxonomyRepository as TaxonomyRepository, type SiblingPosition } from "../../database/repositories/taxonomy-native.ts";
+import { atomicTaxonomyQueries,taxonomyStructureQueries } from "../../../atomic.ts";
 import type { Database, TaxonomyDefTable } from "../../database/types.ts";
 import { getI18nConfig, resolveConfiguredLocale } from "../../i18n/config.ts";
 import { invalidateTaxonomyDefsCache, invalidateTermCache } from "../../taxonomies/index.ts";
@@ -449,8 +448,8 @@ export async function handleTaxonomyCreate(
 			collections: [...new Set(input.collections ?? [])],
 		};
 		const groupId = existingStructure?.id ?? id;
-		await withTransaction(db, async (trx) => {
-			await trx
+		const queries = [];
+			queries.push(db
 				.insertInto("_cms_taxonomy_defs")
 				.values({
 					id,
@@ -462,10 +461,10 @@ export async function handleTaxonomyCreate(
 					locale,
 					translation_group: groupId,
 				})
-				.execute();
+				.compile());
 			// A group another request created since the read above keeps its structure.
-			await saveTaxonomyStructure(trx, input.name, groupId, structure, {});
-		});
+			queries.push(...taxonomyStructureQueries(db, input.name, groupId, structure, {}));
+		await atomicTaxonomyQueries(db, queries);
 
 		// A new def changes which taxonomies exist — drop the isolate-wide
 		// defs/names caches so this isolate reflects it immediately.
@@ -545,17 +544,17 @@ export async function handleTaxonomyUpdate(
 
 		if (Object.keys(updates).length > 0 || structureChanged) {
 			const def = lookup.def;
-			await withTransaction(db, async (trx) => {
+			const queries = [];
 				if (Object.keys(updates).length > 0) {
-					await trx
+					queries.push(db
 						.updateTable("_cms_taxonomy_defs")
 						.set(updates)
 						.where("id", "=", def.id)
-						.execute();
+						.compile());
 				}
 				if (structureChanged) {
-					await saveTaxonomyStructure(
-						trx,
+					queries.push(...taxonomyStructureQueries(
+						db,
 						name,
 						def.translation_group ?? def.id,
 						{
@@ -563,9 +562,9 @@ export async function handleTaxonomyUpdate(
 							collections: collections ?? parseTaxonomyCollections(def.collections),
 						},
 						{ hierarchical: input.hierarchical, collections },
-					);
+					));
 				}
-			});
+			await atomicTaxonomyQueries(db, queries);
 			invalidateTaxonomyDefsCache();
 		}
 
@@ -599,10 +598,10 @@ export async function handleTaxonomyDelete(
 		const lookup = await requireTaxonomyDef(db, name);
 		if (!lookup.success) return lookup;
 
-		await withTransaction(db, async (trx) => {
+		const queries = [];
 			// `content_taxonomies.taxonomy_id` holds a term's translation_group, so
 			// the assignments have to go before the terms they are matched against.
-			await trx
+			queries.push(db
 				.deleteFrom("content_taxonomies")
 				.where("taxonomy_id", "in", (eb) =>
 					eb
@@ -610,11 +609,11 @@ export async function handleTaxonomyDelete(
 						.select(sql<string>`coalesce(translation_group, id)`.as("group"))
 						.where("name", "=", name),
 				)
-				.execute();
-			await trx.deleteFrom("taxonomies").where("name", "=", name).execute();
-			await trx.deleteFrom("_cms_taxonomy_defs").where("name", "=", name).execute();
-			await trx.deleteFrom("_cms_taxonomy_def_groups").where("name", "=", name).execute();
-		});
+				.compile());
+			queries.push(db.deleteFrom("taxonomies").where("name", "=", name).compile());
+			queries.push(db.deleteFrom("_cms_taxonomy_defs").where("name", "=", name).compile());
+			queries.push(db.deleteFrom("_cms_taxonomy_def_groups").where("name", "=", name).compile());
+		await atomicTaxonomyQueries(db, queries);
 
 		// Covers the term caches too — see `invalidateTaxonomyDefsCache`.
 		invalidateTaxonomyDefsCache();

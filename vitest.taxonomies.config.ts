@@ -14,6 +14,7 @@ export default defineConfig({plugins:[{
   if(target.startsWith(sourceRoot+'/')){let suffix=target.slice(sourceRoot.length+1).replace(/\.js$/,'.ts');
    if(suffix==='api/handlers/content.ts')return resolve(root,'tests/helpers/taxonomy-source-content.ts');
    if(suffix==='database/migrations/runner.ts')return resolve(root,'tests/helpers/taxonomy-source-db.ts');
+   if(suffix==='astro/routes/api/content/[collection]/[id]/terms/[taxonomy].ts')return resolve(runtime,suffix);
    if(suffix.startsWith('astro/routes/api/'))return resolve(root,'tests/helpers/taxonomy-source-routes.ts')+'?route='+encodeURIComponent(suffix);
    if(suffix==='astro/prefetch.ts')return resolve(root,'tests/helpers/taxonomy-source-prefetch.ts');
    return resolve(runtime,suffix);

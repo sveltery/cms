@@ -5,7 +5,7 @@ import {openSqlite} from '../src/lib/server/database/sqlite.ts';
 import {migrateCms} from '../src/lib/server/database/migrations.ts';
 import {SchemaRegistry} from '../src/lib/server/database/registry.ts';
 import {DraftRepository} from '../src/lib/server/database/entries.ts';
-import {TaxonomyRepository} from '../src/lib/server/taxonomies/upstream/database/repositories/taxonomy.ts';
+import {NativeTaxonomyRepository as TaxonomyRepository} from '../src/lib/server/taxonomies/upstream/database/repositories/taxonomy-native.ts';
 import {registerTaxonomyDatabase} from '../src/lib/server/taxonomies/upstream/host.ts';
 
 test('failed assignment insertion rolls back removal of existing terms',async()=>{
