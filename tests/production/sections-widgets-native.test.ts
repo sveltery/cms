@@ -1,6 +1,7 @@
 // Original native runtime requirements; zero copied Source assertion credit.
 // Ordinary persisted single-principal fixtures use the real configured application.
 import test from 'node:test';
+import type { Kysely } from 'kysely';
 import assert from 'node:assert/strict';
 import { encodeBase64urlNoPadding } from '@oslojs/encoding';
 import { hashSessionToken } from '../../src/lib/server/auth/session.ts';
@@ -28,7 +29,7 @@ for (const target of ['Node', 'D1'] as const) {
     assert.equal(absent.status, 503);
     // Explicit named Source DDL is a test fixture, never canonical startup credit.
     const fixtureDb = database.db.withPlugin(sourceNamespace);
-    await sectionsFixture(fixtureDb);
+    await sectionsFixture(fixtureDb as unknown as Kysely<unknown>);
     const content = [{ _type: 'block', _key: 'b1', style: 'h2', children: [{ _type: 'span', _key: 's1', text: 'Reusable hero', marks: [] }], markDefs: [] }];
     const create = await request('/api/sections', 'POST', { slug: 'hero', title: 'Hero Section', content, keywords: ['welcome'] });
     assert.equal(create.status, 201);
@@ -58,7 +59,7 @@ for (const target of ['Node', 'D1'] as const) {
         ...(body === undefined ? {} : { body: JSON.stringify(body) }) });
     }
     assert.equal((await request('/api/widget-areas')).status, 503);
-    await widgetsFixture(database.db.withPlugin(sourceNamespace));
+    await widgetsFixture(database.db.withPlugin(sourceNamespace) as unknown as Kysely<unknown>);
     const area = await request('/api/widget-areas', 'POST', { name: 'sidebar', label: 'Sidebar', description: 'Main sidebar' });
     assert.equal(area.status, 201);
     const first = await request('/api/widget-areas/sidebar/widgets', 'POST', { type: 'content', title: 'Welcome', content: [] });
