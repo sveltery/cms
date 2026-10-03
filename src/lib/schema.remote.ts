@@ -34,7 +34,7 @@ export const updateSchemaFieldLabel = form(fieldLabelFormInput, input => schemaR
   return { collection: input.collection, field: field.slug };
 }));
 export const updateSchemaFieldOptions = form(fieldOptionsFormInput, input => schemaResponse(async () => {
-  const field = await requestSchema('mutation').updateField(convertFieldOptions(input));
+  const field = await requestSchema('mutation').updateScalarFieldOptions(convertFieldOptions(input));
   refreshSchema(input.collection);
   return { collection: input.collection, field: field.slug };
 }));
@@ -64,7 +64,7 @@ export const deleteSchemaField = form(fieldDeleteInput, input => schemaResponse(
 }));
 export const deleteSchemaCollection = form(collectionDeleteInput, async input => {
   await schemaResponse(() => requestSchema('mutation').deleteCollection(convertAdminOperation(input)));
-  refreshSchemaList();
+  refreshSchema(input.collection);
   redirect(303,resolve('/schema'));
 });
 

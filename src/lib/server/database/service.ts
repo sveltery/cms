@@ -88,6 +88,18 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
       const { collection, field, ...metadata } = parse(updateFieldInput, input);
       return registry.updateField(collection, field, metadata);
     },
+    async updateScalarFieldOptions(input: unknown) {
+      requirePermission('schema:manage');
+      const { collection, field, ...metadata } = parse(updateFieldInput, input);
+      const target = await registry.getField(collection, field);
+      if (!target) throw new CmsError('NOT_FOUND');
+      // The legacy native form represents defaults as strings and only length
+      // and pattern rules. Keep the full JSON metadata API unchanged.
+      if (target.unsupportedType || !['string', 'text', 'slug'].includes(target.type)) {
+        throw new CmsError('UNSUPPORTED_FIELD_TYPE');
+      }
+      return registry.updateField(collection, field, metadata);
+    },
     async reorderCollections(input: unknown) {
       requirePermission('schema:manage');
       const value=parse(reorderCollectionsInput,input);

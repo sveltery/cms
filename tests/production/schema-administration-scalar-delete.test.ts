@@ -30,10 +30,11 @@ for (const target of ['Node', 'D1'] as const) {
       assert.match(html, /<legend[^>]*>Settings for Priority<\/legend>/, 'full JSON editor remains available');
       await h.mutate('updateSchemaFieldMetadata', { collection: 'posts', field: 'priority', id: 'posts/priority',
         defaultValueMode: 'set', defaultValueJson: '3', validationMode: 'set',
-        validationJson: '{"min":1,"max":20,"customRule":{"threshold":4}}' });
+        validationJson: '{"min":1,"max":20}', optionsMode: 'set', optionsJson: '{"customRule":{"threshold":4}}' });
       const edited = (await h.query('getSchemaCollection', 'posts')).fields[0];
       assert.equal(edited.defaultValue, 3);
-      assert.deepEqual(edited.validation, { min: 1, max: 20, customRule: { threshold: 4 } }, 'generic metadata retains unknown source keys');
+      assert.deepEqual(edited.validation, { min: 1, max: 20 });
+      assert.deepEqual(edited.options, { customRule: { threshold: 4 } }, 'generic metadata retains unknown source option keys');
     } finally { await h.close(); }
   });
 
