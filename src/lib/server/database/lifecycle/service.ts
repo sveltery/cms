@@ -14,6 +14,7 @@ import { ContentMutationConflictError, EmDashValidationError, type ContentItem }
 import { keepKnownFields, staleStoredKeys } from './upstream/content/known-fields.ts';
 import { ContentDatetimeNormalizer } from './upstream/database/content-datetime.ts';
 import { LifecycleSlugConflictError } from './errors.ts';
+import {prepareContentSlugRedirect,executeContentSlugBatch,completeContentSlugRedirect} from '../../redirects/content-atomic.ts';
 import * as v from 'valibot';
 
 // Runtime draft-stage, hydration and retention algorithms adapted from
@@ -132,25 +133,31 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
   }
   async function atomicUpdate(value:ReturnType<typeof key>,item:ContentItem,input:Record<string,any>,data:Record<string,unknown>|undefined,anyPermission:string) {
     const actor=authenticated();const assignments=[];
+    let newPublishedAt=item.publishedAt??null;
     if(data!==undefined)for(const[field,contentValue]of Object.entries(data))assignments.push(sql`${sql.ref(field)}=${serializeValue(contentValue)}`);
     if(input.slug!==undefined)assignments.push(sql`slug=${input.slug}`);
     if(input.status!==undefined)assignments.push(sql`status=${input.status}`);
-    if(input.publishedAt!==undefined)assignments.push(sql`published_at=${input.publishedAt===null?null:await translate(()=>datetimes.normalizeValue(value.type,input.publishedAt))}`);
+    if(input.publishedAt!==undefined){newPublishedAt=input.publishedAt===null?null:await translate(()=>datetimes.normalizeValue(value.type,input.publishedAt));assignments.push(sql`published_at=${newPublishedAt}`);}
     if(assignments.length)assignments.push(sql`updated_at=${new Date().toISOString()}`);
     assignments.push(sql`version=version+1`);
     const collection=await definition(value.type);const token=ulid();
+    const redirects=await prepareContentSlugRedirect(database,{collection:value.type,id:value.id,
+      oldSlug:item.slug,newSlug:input.slug,urlPattern:collection.urlPattern??null,
+      oldPublishedAt:item.publishedAt??null,newPublishedAt});
     const statements:CompiledQuery[]=[
       sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN EXISTS(SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${collection.version})THEN 1 ELSE 0 END`.compile(database.db),
       sql`UPDATE ${sql.ref(tableName(value.type))} SET ${sql.join(assignments)} WHERE id=${value.id} AND locale=${value.locale}
         AND deleted_at IS NULL AND version=${item.version} AND updated_at=${item.updatedAt}
         ${actor.permissions.has(anyPermission)?sql``:sql`AND author_id=${actor.id}`} RETURNING *`.compile(database.db),
+      ...(redirects?.statements??[]),
       sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(database.db)
     ];
     let results;
-    try{results=await database.atomicBatch(statements);}
+    try{results=redirects?await executeContentSlugBatch(database,statements.slice(0,2),redirects,statements.slice(2+redirects.statements.length)):await database.atomicBatch(statements);}
     catch(cause){if(cause instanceof Error&&/CHECK constraint failed: pass = 1/.test(cause.message))throw new CmsError('CONFLICT');throw cause;}
     const row=results[1]?.rows[0] as Record<string,unknown>|undefined;
     if(!row)throw new CmsError('CONFLICT');
+    if(redirects&&redirects.redirectResultIndices.some(index=>results[2+index]?.rows.length))completeContentSlugRedirect(database,dependencies.after);
     return content.mapRow(value.type,row);
   }
   return {
