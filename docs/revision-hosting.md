@@ -10,9 +10,9 @@ const result=await runRevisionMaintenance({kind:'sqlite',path:'./data/cms.db'});
 console.log(result.revisionsPruned);
 ```
 
-The operator supplies the persistent path. Each call creates parent directories, opens and validates canonical storage, consumes one global batch, and closes its owned adapter. Startup refusal propagates; revision-subsystem failure returns only `{revisionsPruned:-1}`. The callable export installs no Node timer or request identity. Existing HTTP startup and the frozen production installation contract remain unchanged.
+The operator supplies the persistent path. Each call creates parent directories, opens and validates canonical storage, consumes one global batch, and closes its owned adapter. Startup refusal propagates; revision-subsystem failure returns only `{revisionsPruned:-1}`. The callable export installs no Node timer or request identity. Existing HTTP startup and the frozen production installation contract remain unchanged. Installed-consumer tests observe the actual native SQLite connection closing after success and startup refusal.
 
-`pnpm build:cloudflare` generates the official adapter artifact, builds the reviewed maintenance module, and adds its scheduled method beside the unchanged fetch method. Wrangler creates `build/cloudflare/worker/worker.js` from this combined entry. Scheduled events use the trusted `CMS_DB` raw D1 binding and forward the real promise to `ctx.waitUntil`. Binding lifetime stays caller-owned. Operators configure Cron Triggers when deploying their own Worker; this repository installs no trigger or external database. Adapter assets, manifest, session composition and ordinary request-lifetime cleanup remain unchanged.
+`pnpm build:cloudflare` generates the official adapter artifact, builds the reviewed maintenance module, and adds its scheduled method beside the unchanged fetch method. Wrangler creates `build/cloudflare/worker/worker.js` from this combined entry. Scheduled events use the trusted `CMS_DB` raw D1 binding and forward the real promise to `ctx.waitUntil`. Binding lifetime stays caller-owned. The scheduled entry reads the existing trusted `SVELTERY_D1_BINDING` string setting, defaulting to `CMS_DB`, so it targets the same configured storage as request hosting. Operators configure Cron Triggers when deploying their own Worker; this repository installs no trigger or external database. Adapter assets, manifest, session composition and ordinary request-lifetime cleanup remain unchanged.
 
 ## Authority and adaptation
 
@@ -23,6 +23,10 @@ The reference is EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. The [p
 ## Test-first evidence and checks
 
 Own test-only checkpoint `e29be31c174f58257bbf2197b8bd47d085e5bfb0` precedes implementation `e888f78`. Four native requirements complete assertion failures against existing artifacts: two production-only installed Node processes lack the callable package export, and two actual workerd executions observe `scheduled:undefined`. These are interface availability reds, zero Source behavior red credit. Initial missing package-manager environment and incorrect host executable path failures remain recorded with zero product credit. A later SQLite row prototype mismatch was corrected by projecting the same complete row values, without changing expectations.
+
+A separate original named-binding requirement first observes an actual scheduled500 with only the operator-selected real D1 binding. Test-only `4436a76` precedes wrapper repair `e172b0e`; this adds one genuine native assertion red and zero Source credit.
+
+Miniflare4.20260507.1 sends a combined-assets scheduled trigger to its assets RPC proxy, which implements fetch/tail but fails before product scheduled execution. The retained log and original fixture earn zero product red credit. The supported test host instead imports the exact official bundle into its primary Worker and service-binds real static assets from a second actual asset Worker; the primary receives the real scheduled event directly.
 
 Native requirements exercise actual55→50 unreferenced revision pruning, another entry retaining50 plus two referenced older revisions, unchanged pointers, empty queue, process/Worker reopen and refusal preserving the real operator table/row. Worker observation counts the promise forwarded into real `waitUntil`; observer routes exist only in the test harness. Final receipts belong in the ledger. Focused installed diagnostics do not replace the unchanged normal bootstrap:
 
