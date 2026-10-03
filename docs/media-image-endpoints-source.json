@@ -1,0 +1,34 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "license": "MIT; notices/emdash-MIT.txt",
+  "files": [
+    {
+      "sourcePath": "packages/core/src/astro/image-endpoint.ts",
+      "frozenPath": "parity/emdash/media/source-image-endpoints/packages/core/src/astro/image-endpoint.ts",
+      "blob": "452e295b8ddbeff232886e9a2a19579359887d92",
+      "sha256": "d007a3a1bae9909a1e1cd8c6927b0ac64ba96af586a4c7e559f6c7433ba9402d",
+      "scope": "whole immutable source; middleware execution not yet selected/qualified"
+    },
+    {
+      "sourcePath": "packages/cloudflare/src/image-endpoint.ts",
+      "frozenPath": "parity/emdash/media/source-image-endpoints/packages/cloudflare/src/image-endpoint.ts",
+      "blob": "f5f2ea22004f013f014fe4868d8bafafea654a81",
+      "sha256": "a7c4ce08002969b112a69b23bdbd29fa63b6339767989b3cea4c98a3eb1e2ac8",
+      "scope": "whole immutable source; middleware execution not yet selected/qualified"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/astro/middleware-image-endpoint.test.ts",
+      "frozenPath": "parity/emdash/media/source-image-endpoints/packages/core/tests/unit/astro/middleware-image-endpoint.test.ts",
+      "blob": "8b9fbf273687ace4e9741429468bf193fddf3d08",
+      "sha256": "043500c38f3feed126bd93aa3bf10a4d5090e16e35b52c3dc411ce99f48638ab",
+      "scope": "whole immutable source; middleware execution not yet selected/qualified"
+    }
+  ],
+  "existingSelectedPortableTest": "parity/emdash/media/source-tests/packages/core/tests/unit/media/image-endpoint.test.ts",
+  "existingFrozenPublicE2E": "parity/emdash/media/source-tests/e2e/tests/image-optimization.spec.ts",
+  "limits": [
+    "Full source platform modules preserve complete bodies before native image runtime substitution.",
+    "Portable source callbacks executed separately; no platform middleware/e2e execution claimed.",
+    "Source public e2e requires published portable-text post renderer, currently missing owned public-content integration."
+  ]
+}
