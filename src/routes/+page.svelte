@@ -3,6 +3,8 @@
   import WorkspaceShell from '$lib/ui/WorkspaceShell.svelte';
   import DraftPreview from '$lib/ui/DraftPreview.svelte';
   import { getEditorManifest, createContent } from '$lib/content.remote';
+  import type { PageData } from './$types';
+  let { data }: { data: PageData } = $props();
   const collections = await getEditorManifest().then(
     (manifest) => ({ records: Object.entries(manifest.collections), unavailable: false }),
     () => ({ records: [], unavailable: true })
@@ -21,10 +23,14 @@
       {/each}
     </ul>
   {/if}
+  {#if !data.editorCapability.create}
   <form {...createContent}>
     <label>Collection <input name="collection" disabled /></label>
     <DraftPreview />
   </form>
+  {:else}
+    <p>Choose a collection to create or edit content.</p>
+  {/if}
 </WorkspaceShell>
 
 <style>
