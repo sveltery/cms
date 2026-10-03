@@ -6,7 +6,7 @@ import {createFirstAdmin} from '../../src/lib/server/auth/identity-store.ts';
 import {hashSessionToken} from '../../src/lib/server/auth/session.ts';
 const hosts=new WeakMap<object,Awaited<ReturnType<typeof schemaAdminRemotes>>>();
 export async function setupTestDatabase(){
- const h=await schemaAdminRemotes('Node',true,{configureRequest(event){event.locals.cmsRuntime={publicOrigin:h.origin,basePath:'',rpName:'Test'};}});
+ const h=await schemaAdminRemotes(process.env.CMS_WELCOME_SOURCE_TARGET==='D1'?'D1':'Node',true,{configureRequest(event){event.locals.cmsRuntime={publicOrigin:h.origin,basePath:'',rpName:'Test'};}});
  await h.database.db.deleteFrom('_cms_auth_sessions').execute();await h.database.db.deleteFrom('_cms_auth_users').execute();
  const db=new Proxy(h.database.db,{get(target,key){
   if(key==='schema')return new Proxy(target.schema,{get(schema,member){if(member==='dropTable')return (name:string)=>schema.dropTable(name==='users'?'_cms_auth_profiles':name);const value=Reflect.get(schema,member);return typeof value==='function'?value.bind(schema):value;}});

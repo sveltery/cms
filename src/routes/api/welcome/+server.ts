@@ -3,13 +3,13 @@ import {z} from 'zod';
 import {CmsError} from '$lib/server/database/contract';
 import {AuthFlowError} from '$lib/server/auth/passkey-flow';
 import {SessionOriginError} from '$lib/server/auth/request';
-import {requestIdentity,identityFailure,identitySuccess} from '$lib/server/auth/identity-request';
-import {dismissCurrentWelcome} from '$lib/server/welcome/service';
+import {identityFailure,identitySuccess} from '$lib/server/auth/identity-request';
+import {dismissCurrentWelcome,welcomeContext} from '$lib/server/welcome/service';
 const bodySchema=z.object({action:z.string().min(1)});
 export const POST:RequestHandler=async event=>{
  try{
   if(!event.locals.cms?.principal)return identityFailure('NOT_AUTHENTICATED','Not authenticated',401);
-  requestIdentity(event,true);
+  welcomeContext(event);
   let body:unknown;try{body=await event.request.json();}catch{return identityFailure('INVALID_JSON','Invalid JSON body',400);}
   const parsed=bodySchema.safeParse(body);if(!parsed.success)return identityFailure('VALIDATION_ERROR','Invalid request',400);
   if(parsed.data.action!=='dismissWelcome')return identityFailure('UNKNOWN_ACTION','Unknown action',400);

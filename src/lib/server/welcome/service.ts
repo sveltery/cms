@@ -3,12 +3,19 @@
 // Native current-role/session/profile host. No session/credential algorithm edits.
 import type {RequestEvent} from '@sveltejs/kit';
 import {CmsError} from '../database/contract.ts';
+import {AuthFlowError} from '../auth/passkey-flow.ts';
+import {requireSessionMutationOrigin} from '../auth/request.ts';
 import {requestIdentity} from '../auth/identity-request.ts';
 import {identityAdapter,identityDb} from '../auth/identity-store.ts';
+export function welcomeContext(event:RequestEvent){
+ if(!event.locals.cms?.principal)throw new CmsError('UNAUTHENTICATED');
+ const runtime=event.locals.cmsRuntime;if(!runtime)throw new AuthFlowError('NOT_CONFIGURED',503);
+ requireSessionMutationOrigin(event.request,runtime.publicOrigin);
+ return requestIdentity(event);
+}
 export async function dismissCurrentWelcome(event:RequestEvent){
- const principal=event.locals.cms?.principal;
- if(!principal)throw new CmsError('UNAUTHENTICATED');
- const context=requestIdentity(event,true),user=await identityAdapter(context.database).getUserById(principal.id);
+ const context=welcomeContext(event),principal=event.locals.cms!.principal!;
+ const user=await identityAdapter(context.database).getUserById(principal.id);
  if(!user)throw new CmsError('UNAUTHENTICATED');
  // Pinned whole-data merge uses the trusted loaded user's data; session state
  // never stores this flag. The existing safe projection then reads it afresh.
