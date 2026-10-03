@@ -653,5 +653,40 @@
       "sourceCredit": 0
     },
     "qualification": "All 54 complete source bodies and 86 expressions unchanged. Node SQLite domain projections; zero whole MCP protocol or public authorization credit."
-  }
+  },
+  "compatibilityDecisions": {
+    "authority": "Root project manager scoped decision, 2026-10-03, existing PR68 review continuation",
+    "pullRequest": 68,
+    "CC-01": {
+      "state": "specifically accepted within stated scope",
+      "scope": [
+        "Existing native admin content:read + content:read_drafts boundary",
+        "Bounded native summary and mutation receipt envelopes",
+        "Mandatory caller version/timestamp CAS plus ownership predicates"
+      ],
+      "sourceCreditForDifferences": 0,
+      "unfinished": [
+        "Public/subscriber/external API/full MCP policy"
+      ],
+      "preserve": "Source live-column list versus current draft-hydrated get"
+    },
+    "CC-02": {
+      "state": "specifically accepted within stated scope",
+      "scope": [
+        "Native declared-field projection retains explicit stored SQL nulls for existing forms/defaults"
+      ],
+      "sourceCreditForDifferences": 0,
+      "preserve": [
+        "Source mapRow omits null values",
+        "Unchanged Source snapshots/callbacks",
+        "Omitted slug Source generation",
+        "Explicit empty native slug maps to null",
+        "Actual nonrevision physical fixtures",
+        "Separate revision staging/promotion requirements"
+      ]
+    },
+    "featureCompletion": "Not granted",
+    "pullRequestApproval": "Pending final gates and exact-head approval"
+  },
+  "reviewRepairQualification": "content-composition-review-qualification.json"
 }

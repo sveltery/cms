@@ -1,0 +1,526 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "reviewedBaseline": "28c959f85884199ea2251246acebc040f709aeb4",
+  "testFirst": "8db045f6929f9ba004f0c9e71726884fee87ab3b",
+  "typingOnly": "e2aba6498f500e773028c26876cddc5854e49a70",
+  "retainedQualifiers": "651378fb143d84f85c3e73742c2224c0b7ffec27",
+  "rawNodeFixtureCorrection": "216dadb86b3e6cbd8745f498f6097347af974c4b",
+  "repair": "4e26c1e18452abcfefd21cb7995291dd84f4771d",
+  "nativeRed": {
+    "service": {
+      "pass": 0,
+      "assertionFailures": 8,
+      "cancelled": 0
+    },
+    "registeredHTTP": {
+      "pass": 0,
+      "assertionFailures": 3,
+      "cancelled": 0
+    },
+    "retainedReviewerCallbacks": 5
+  },
+  "focusedGreen": {
+    "sourceAndService": 70,
+    "registeredHTTP": 7,
+    "checkerErrors": 0,
+    "checkerWarnings": 0
+  },
+  "fixtureCorrection": "Only the fault plugin helper recognizes existing RawNode base queries as well as SelectQueryNode. All five reviewer callback bodies/assertions are unchanged; four dormant strictness controls first exposed this fixture issue after hydration repair. No new product-red credit.",
+  "qualifications": [
+    {
+      "name": "hydration",
+      "script": "scripts/reproduce-content-composition-hydration-upstream.mjs",
+      "baseline": {
+        "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "target": "Node",
+        "sourceHealthyStatus": 200,
+        "sourceHealthyTitle": "Draft",
+        "sourceFaultStatus": 200,
+        "sourceFaultTitle": "Published",
+        "sourceFaultLiveData": "absent",
+        "draftPointerPreserved": true,
+        "nativeSameFault": "propagated actual SQLite missing revision table error",
+        "faults": "four actual backend SELECT failures",
+        "allRowsUnchanged": true,
+        "completePublicGet": 1,
+        "completeRuntimeGetAndHydrate": 3,
+        "completeApiGet": 2,
+        "sourceIncludingTrashedDomainFaultFallback": true,
+        "publicTrashRouteCredit": 0,
+        "sourceCredit": 0,
+        "hosts": "namespace-only metadata/revision tables; no SEO, byline or bound references; explicit schema registry, no configured object cache/request context"
+      },
+      "repaired": {
+        "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "target": "Node",
+        "sourceHealthyStatus": 200,
+        "sourceHealthyTitle": "Draft",
+        "sourceFaultStatus": 200,
+        "sourceFaultTitle": "Published",
+        "sourceFaultLiveData": "absent",
+        "draftPointerPreserved": true,
+        "nativeSameFault": "Source stored-value fallback",
+        "faults": "four actual backend SELECT failures",
+        "allRowsUnchanged": true,
+        "completePublicGet": 1,
+        "completeRuntimeGetAndHydrate": 3,
+        "completeApiGet": 2,
+        "sourceIncludingTrashedDomainFaultFallback": true,
+        "publicTrashRouteCredit": 0,
+        "sourceCredit": 0,
+        "hosts": "namespace-only metadata/revision tables; no SEO, byline or bound references; explicit schema registry, no configured object cache/request context"
+      },
+      "authorities": [
+        {
+          "path": "packages/core/src/database/repositories/content.ts",
+          "blob": "29dab9decf9af0d9fb21b464dc185ed48ab958ea"
+        },
+        {
+          "path": "packages/core/src/content/known-fields.ts",
+          "blob": "8fcc3c9a45bad4a664459a0ae753bbb1699bddfd"
+        },
+        {
+          "path": "packages/core/src/datetime-normalization.ts",
+          "blob": "eb31fb99e2d1e41c6001c5aec3ae49d82e39c345"
+        },
+        {
+          "path": "packages/core/src/search/match.ts",
+          "blob": "e97c6611f3cc943857bbac75d1a3a9bc56ee26f1"
+        },
+        {
+          "path": "packages/core/src/utils/chunks.ts",
+          "blob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e"
+        },
+        {
+          "path": "packages/core/src/utils/db-errors.ts",
+          "blob": "d0a051ad9d48003eeeeb38dd9d5cb7cedf4140e5"
+        },
+        {
+          "path": "packages/core/src/utils/slugify.ts",
+          "blob": "9872f3b9d2905dc1b4cd010347eed375ddeadf47"
+        },
+        {
+          "path": "packages/core/src/database/content-datetime.ts",
+          "blob": "06be050e17d7760ae1df2073632845ba15e034c2"
+        },
+        {
+          "path": "packages/core/src/utils/url.ts",
+          "blob": "5ea627417b29212beeb178863f7b2f4989f90d58"
+        },
+        {
+          "path": "packages/core/src/database/repositories/types.ts",
+          "blob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7"
+        },
+        {
+          "path": "packages/core/src/utils/base64.ts",
+          "blob": "9dae6dade270b1c1291b21c8a90adc73f5dab294"
+        },
+        {
+          "path": "packages/core/src/database/dialect-helpers.ts",
+          "blob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24"
+        },
+        {
+          "path": "packages/core/src/database/validate.ts",
+          "blob": "73d3b303764b473d4238e0cb17f1a904998671f8"
+        },
+        {
+          "path": "packages/core/src/database/transaction.ts",
+          "blob": "69bf167998a2fa9cc228c3612a69c8fde5ed85fe"
+        },
+        {
+          "path": "packages/core/src/database/repositories/revision.ts",
+          "blob": "e1fa0f08bf3affdb97367bea2261ef2fc6feb45f"
+        },
+        {
+          "path": "packages/core/src/database/types.ts",
+          "blob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7"
+        },
+        {
+          "path": "packages/core/src/content-list-query.ts",
+          "blob": "075fbabc173e1eac9c04edcaab98939c9fef271c"
+        },
+        {
+          "path": "packages/admin/src/slugify.ts",
+          "blob": "19bee0f0f9eb2017c4014cfa482f51dfac0cada1"
+        },
+        {
+          "path": "packages/core/src/api/rev.ts",
+          "blob": "388a727d6138f5cb41b706d67aef6520fbeeb43a"
+        },
+        {
+          "path": "packages/core/src/schema/types.ts",
+          "blob": "0c2f44156cff829951c52b0dd259fc5ff45bc554"
+        },
+        {
+          "path": "packages/core/src/schema/zod-generator.ts",
+          "blob": "550d4918258aa52a0d0f272b69061c76e79d86ee"
+        },
+        {
+          "path": "packages/core/src/utils/hash.ts",
+          "blob": "93db9df4a2b88692d5772fa5e32d309d7f23fab8"
+        },
+        {
+          "path": "packages/core/src/api/handlers/validation.ts",
+          "blob": "a9e40d310098e2329e166614fa10fcea1b53c84d"
+        },
+        {
+          "path": "packages/core/src/request-cache.ts",
+          "blob": "ab8f007b22ce601219ca1270d487342338de8634"
+        },
+        {
+          "path": "packages/core/src/api/schemas/content.ts",
+          "blob": "9ab0e9f9d3c6b49d5b1eb3e49ce1094a55c6e8db"
+        },
+        {
+          "path": "packages/core/src/api/schemas/common.ts",
+          "blob": "ba9be767aa9a2c564f3ebfd2c4106ad904324c59"
+        },
+        {
+          "path": "packages/core/src/api/schemas/bylines.ts",
+          "blob": "0fcc2357ac0bd0442e92e0d2d6df18666f835ded"
+        },
+        {
+          "path": "packages/core/src/api/schemas/relations.ts",
+          "blob": "8cf8101bc3c4f24232572d9ec05528f6d4847999"
+        },
+        {
+          "path": "packages/core/src/i18n/config.ts",
+          "blob": "fe714e5ad514485fe1737585c663e470d50519df"
+        },
+        {
+          "path": "packages/core/src/api/parse.ts",
+          "blob": "46b250ce60d82f37fc30d006f3e8ed166c2227b0"
+        },
+        {
+          "path": "packages/core/src/api/error.ts",
+          "blob": "cac556e93bb76d42e7a36353cd045ce22638f3ef"
+        },
+        {
+          "path": "packages/core/src/api/errors.ts",
+          "blob": "2e99070d97edc14d2797795e13cc82636a0cf500"
+        },
+        {
+          "path": "packages/core/src/api/authorize.ts",
+          "blob": "5d1858d3403c921e2becbc8b358cff714420c36a"
+        },
+        {
+          "path": "packages/core/src/transfer/errors.ts",
+          "blob": "7d4d9abc0989ff3ea80e7ef41177b39a829e4bf0"
+        },
+        {
+          "path": "packages/auth/src/rbac.ts",
+          "blob": "55eda9bdfd9aa92b3d40ba45ebda6daa00d20dbb"
+        },
+        {
+          "path": "packages/auth/src/types.ts",
+          "blob": "e5fc2ec92b399079aca96f08621b3d042a41fb15"
+        },
+        {
+          "path": "packages/core/src/astro/routes/api/content/[collection]/[id].ts",
+          "blob": "39cddb51f6bc6123573c0a159165940f4f587e83"
+        },
+        {
+          "path": "packages/core/src/astro/routes/api/content/[collection]/[id]/unpublish.ts",
+          "blob": "09e46501cae8e0064528e5d20f389d0da06b1723"
+        },
+        {
+          "path": "packages/core/src/astro/routes/api/content/[collection]/[id]/publish.ts",
+          "blob": "0bd3a39dc0c66479f9cb0d4694efc55076b188b6"
+        },
+        {
+          "path": "packages/core/src/database/repositories/options.ts",
+          "blob": "d4f630ca0e24721dc25bed0189699daceccdb8ae"
+        },
+        {
+          "path": "packages/core/src/plugins/conditional-storage.ts",
+          "blob": "00345a5232ee8c06e050f72a6b3c34555053f33f"
+        },
+        {
+          "path": "packages/core/src/plugins/content-policy.ts",
+          "blob": "b93f2c98a1bce55efb0ec79dc66e7800f26757b4"
+        },
+        {
+          "path": "packages/core/src/references/staged.ts",
+          "blob": "a025145de7e59b0c92924394a97f05dd1ce32895"
+        },
+        {
+          "path": "packages/auth/src/tokens.ts",
+          "blob": "c96ef3c7ad026bfd31117f2db2ce0378d570dc4f"
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702"
+        },
+        {
+          "path": "packages/core/src/cleanup.ts",
+          "blob": "21d6eabd50e690faac77865746c2c3b3c4c7ab44"
+        }
+      ],
+      "sourceCredit": 0
+    },
+    {
+      "name": "indexedOwnKeys",
+      "script": "scripts/reproduce-content-composition-filter-keys-upstream.mjs",
+      "baseline": {
+        "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "target": "Node",
+        "results": [
+          {
+            "key": "constructor",
+            "sourceStatus": 200,
+            "sourceTotal": 1,
+            "nativeTotal": 2,
+            "nativeLostFilter": true
+          },
+          {
+            "key": "prototype",
+            "sourceStatus": 200,
+            "sourceTotal": 1,
+            "nativeTotal": 2,
+            "nativeLostFilter": true
+          }
+        ],
+        "completePublicListCallback": 1,
+        "completeParseQueryAndContentListSchema": true,
+        "completeRuntimeList": 1,
+        "completeApiList": 1,
+        "completeRepositoryFindMany": true,
+        "sourceCredit": 0,
+        "hosts": "metadata namespace-only; actual indexed string fields; no SEO/bylines; no search/byline/date/order filters or subscribers/auth middleware credit"
+      },
+      "repaired": {
+        "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "target": "Node",
+        "results": [
+          {
+            "key": "constructor",
+            "sourceStatus": 200,
+            "sourceTotal": 1,
+            "nativeTotal": 1,
+            "nativeLostFilter": false
+          },
+          {
+            "key": "prototype",
+            "sourceStatus": 200,
+            "sourceTotal": 1,
+            "nativeTotal": 1,
+            "nativeLostFilter": false
+          }
+        ],
+        "completePublicListCallback": 1,
+        "completeParseQueryAndContentListSchema": true,
+        "completeRuntimeList": 1,
+        "completeApiList": 1,
+        "completeRepositoryFindMany": true,
+        "sourceCredit": 0,
+        "hosts": "metadata namespace-only; actual indexed string fields; no SEO/bylines; no search/byline/date/order filters or subscribers/auth middleware credit"
+      },
+      "authorities": [
+        {
+          "path": "packages/core/src/database/repositories/content.ts",
+          "blob": "29dab9decf9af0d9fb21b464dc185ed48ab958ea"
+        },
+        {
+          "path": "packages/core/src/content/known-fields.ts",
+          "blob": "8fcc3c9a45bad4a664459a0ae753bbb1699bddfd"
+        },
+        {
+          "path": "packages/core/src/datetime-normalization.ts",
+          "blob": "eb31fb99e2d1e41c6001c5aec3ae49d82e39c345"
+        },
+        {
+          "path": "packages/core/src/search/match.ts",
+          "blob": "e97c6611f3cc943857bbac75d1a3a9bc56ee26f1"
+        },
+        {
+          "path": "packages/core/src/utils/chunks.ts",
+          "blob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e"
+        },
+        {
+          "path": "packages/core/src/utils/db-errors.ts",
+          "blob": "d0a051ad9d48003eeeeb38dd9d5cb7cedf4140e5"
+        },
+        {
+          "path": "packages/core/src/utils/slugify.ts",
+          "blob": "9872f3b9d2905dc1b4cd010347eed375ddeadf47"
+        },
+        {
+          "path": "packages/core/src/database/content-datetime.ts",
+          "blob": "06be050e17d7760ae1df2073632845ba15e034c2"
+        },
+        {
+          "path": "packages/core/src/utils/url.ts",
+          "blob": "5ea627417b29212beeb178863f7b2f4989f90d58"
+        },
+        {
+          "path": "packages/core/src/database/repositories/types.ts",
+          "blob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7"
+        },
+        {
+          "path": "packages/core/src/utils/base64.ts",
+          "blob": "9dae6dade270b1c1291b21c8a90adc73f5dab294"
+        },
+        {
+          "path": "packages/core/src/database/dialect-helpers.ts",
+          "blob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24"
+        },
+        {
+          "path": "packages/core/src/database/validate.ts",
+          "blob": "73d3b303764b473d4238e0cb17f1a904998671f8"
+        },
+        {
+          "path": "packages/core/src/database/transaction.ts",
+          "blob": "69bf167998a2fa9cc228c3612a69c8fde5ed85fe"
+        },
+        {
+          "path": "packages/core/src/database/repositories/revision.ts",
+          "blob": "e1fa0f08bf3affdb97367bea2261ef2fc6feb45f"
+        },
+        {
+          "path": "packages/core/src/database/types.ts",
+          "blob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7"
+        },
+        {
+          "path": "packages/core/src/content-list-query.ts",
+          "blob": "075fbabc173e1eac9c04edcaab98939c9fef271c"
+        },
+        {
+          "path": "packages/admin/src/slugify.ts",
+          "blob": "19bee0f0f9eb2017c4014cfa482f51dfac0cada1"
+        },
+        {
+          "path": "packages/core/src/api/rev.ts",
+          "blob": "388a727d6138f5cb41b706d67aef6520fbeeb43a"
+        },
+        {
+          "path": "packages/core/src/astro/routes/api/content/[collection]/index.ts",
+          "blob": "adbd99423743cda63be9e239921945bdd13dabcc"
+        },
+        {
+          "path": "packages/core/src/schema/types.ts",
+          "blob": "0c2f44156cff829951c52b0dd259fc5ff45bc554"
+        },
+        {
+          "path": "packages/core/src/schema/zod-generator.ts",
+          "blob": "550d4918258aa52a0d0f272b69061c76e79d86ee"
+        },
+        {
+          "path": "packages/core/src/utils/hash.ts",
+          "blob": "93db9df4a2b88692d5772fa5e32d309d7f23fab8"
+        },
+        {
+          "path": "packages/core/src/api/handlers/validation.ts",
+          "blob": "a9e40d310098e2329e166614fa10fcea1b53c84d"
+        },
+        {
+          "path": "packages/core/src/request-cache.ts",
+          "blob": "ab8f007b22ce601219ca1270d487342338de8634"
+        },
+        {
+          "path": "packages/core/src/api/schemas/content.ts",
+          "blob": "9ab0e9f9d3c6b49d5b1eb3e49ce1094a55c6e8db"
+        },
+        {
+          "path": "packages/core/src/api/schemas/common.ts",
+          "blob": "ba9be767aa9a2c564f3ebfd2c4106ad904324c59"
+        },
+        {
+          "path": "packages/core/src/api/schemas/bylines.ts",
+          "blob": "0fcc2357ac0bd0442e92e0d2d6df18666f835ded"
+        },
+        {
+          "path": "packages/core/src/api/schemas/relations.ts",
+          "blob": "8cf8101bc3c4f24232572d9ec05528f6d4847999"
+        },
+        {
+          "path": "packages/core/src/i18n/config.ts",
+          "blob": "fe714e5ad514485fe1737585c663e470d50519df"
+        },
+        {
+          "path": "packages/core/src/api/parse.ts",
+          "blob": "46b250ce60d82f37fc30d006f3e8ed166c2227b0"
+        },
+        {
+          "path": "packages/core/src/api/error.ts",
+          "blob": "cac556e93bb76d42e7a36353cd045ce22638f3ef"
+        },
+        {
+          "path": "packages/core/src/api/errors.ts",
+          "blob": "2e99070d97edc14d2797795e13cc82636a0cf500"
+        },
+        {
+          "path": "packages/core/src/api/authorize.ts",
+          "blob": "5d1858d3403c921e2becbc8b358cff714420c36a"
+        },
+        {
+          "path": "packages/core/src/transfer/errors.ts",
+          "blob": "7d4d9abc0989ff3ea80e7ef41177b39a829e4bf0"
+        },
+        {
+          "path": "packages/auth/src/rbac.ts",
+          "blob": "55eda9bdfd9aa92b3d40ba45ebda6daa00d20dbb"
+        },
+        {
+          "path": "packages/auth/src/types.ts",
+          "blob": "e5fc2ec92b399079aca96f08621b3d042a41fb15"
+        },
+        {
+          "path": "packages/core/src/astro/routes/api/content/[collection]/[id].ts",
+          "blob": "39cddb51f6bc6123573c0a159165940f4f587e83"
+        },
+        {
+          "path": "packages/core/src/astro/routes/api/content/[collection]/[id]/unpublish.ts",
+          "blob": "09e46501cae8e0064528e5d20f389d0da06b1723"
+        },
+        {
+          "path": "packages/core/src/astro/routes/api/content/[collection]/[id]/publish.ts",
+          "blob": "0bd3a39dc0c66479f9cb0d4694efc55076b188b6"
+        },
+        {
+          "path": "packages/core/src/database/repositories/options.ts",
+          "blob": "d4f630ca0e24721dc25bed0189699daceccdb8ae"
+        },
+        {
+          "path": "packages/core/src/plugins/conditional-storage.ts",
+          "blob": "00345a5232ee8c06e050f72a6b3c34555053f33f"
+        },
+        {
+          "path": "packages/core/src/plugins/content-policy.ts",
+          "blob": "b93f2c98a1bce55efb0ec79dc66e7800f26757b4"
+        },
+        {
+          "path": "packages/core/src/references/staged.ts",
+          "blob": "a025145de7e59b0c92924394a97f05dd1ce32895"
+        },
+        {
+          "path": "packages/auth/src/tokens.ts",
+          "blob": "c96ef3c7ad026bfd31117f2db2ce0378d570dc4f"
+        },
+        {
+          "path": "packages/core/src/emdash-runtime.ts",
+          "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe"
+        },
+        {
+          "path": "packages/core/src/api/handlers/content.ts",
+          "blob": "34c2528c51a54119cd1730e876d699319c9f3702"
+        },
+        {
+          "path": "packages/core/src/cleanup.ts",
+          "blob": "21d6eabd50e690faac77865746c2c3b3c4c7ab44"
+        }
+      ],
+      "sourceCredit": 0
+    }
+  ],
+  "limits": [
+    "Zero additional copied Source declarations/expressions or catalog credit",
+    "Complete source public GET/list diagnostics execute on Node SQLite with explicit scalar/schema/namespace/options hosts; they do not implement public native authorization or actual MCP protocol",
+    "Including-trash fallback qualifies complete Runtime/API domain methods, not a public trash route",
+    "No SEO/bylines/bound references/cache/plugin/authmiddleware/subscriber policy/signed-auth/deployedD1 qualification"
+  ],
+  "finalHeadGates": "Pending new unchanged normal/secured/configured and independent closure; no PM merge approval"
+}
