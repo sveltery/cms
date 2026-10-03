@@ -3,75 +3,67 @@
   // EmDash1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.
   // Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
   import MenuDialog from '../menus/MenuDialog.svelte';
+  import { InfiniteQueryObserver, QueryObserver, type InfiniteData, type InfiniteQueryObserverResult, type QueryClient } from '@tanstack/react-query';
   import { contentPickerClient, getDraftStatus } from './client.ts';
   import { getEntryTitle } from './entry-title.ts';
-  import { pickerCache, pickerQuery, notifyQuery, type CachedQuery } from './cache.ts';
+  import { pickerQueryClient } from './cache.ts';
   import type { ContentItem, ContentPickerClient, FindManyResult, PickedContentEntry, PickerManifest } from './types.ts';
   const EMPTY_SELECTED: ReadonlySet<string> = new Set();
-  let { open, onOpenChange, collection, multiple = false, selectedIds = EMPTY_SELECTED, onConfirm, title, locale, client = contentPickerClient }:
+  let { open, onOpenChange, collection, multiple = false, selectedIds = EMPTY_SELECTED, onConfirm, title, locale, client = contentPickerClient, queryClient: suppliedQueryClient }:
     { open: boolean; onOpenChange: (open: boolean) => void; collection?: string; multiple?: boolean; selectedIds?: ReadonlySet<string>;
-      onConfirm: (rows: PickedContentEntry[]) => void; title?: string; locale?: string; client?: ContentPickerClient } = $props();
+      onConfirm: (rows: PickedContentEntry[]) => void; title?: string; locale?: string; client?: ContentPickerClient; queryClient?: QueryClient } = $props();
   const id = $props.id();
   const locked = $derived(!!collection);
+  const queryClient = $derived(suppliedQueryClient ?? pickerQueryClient(client));
   let searchQuery = $state(''), debouncedSearch = $state(''), dropdownCollection = $state('');
   let picked = $state<Record<string, PickedContentEntry>>({});
   let collections = $state<{ slug: string; label: string }[]>([]), manifest = $state<PickerManifest | undefined>();
-  let pages = $state.raw<FindManyResult<ContentItem>[]>([]), loading = $state(false), error = $state<unknown>();
-  let fetchingNext = $state(false), searchInput = $state<HTMLInputElement | undefined>();
+  let data = $state.raw<InfiniteData<FindManyResult<ContentItem>> | undefined>();
+  let loading = $state(false), error = $state<unknown>(), fetchingNext = $state(false), hasNextPage = $state(false);
+  let searchInput = $state<HTMLInputElement | undefined>();
+  type ContentObserver = InfiniteQueryObserver<FindManyResult<ContentItem>, Error, InfiniteData<FindManyResult<ContentItem>>, readonly [string, string, string], string | undefined>;
+  let contentObserver = $state.raw<ContentObserver | undefined>();
   const activeCollection = $derived(collection ?? dropdownCollection);
   const trimmedSearch = $derived(debouncedSearch.trim());
   const titleField = $derived(manifest?.collections[activeCollection]?.titleField);
   const dialogTitle = $derived(title ?? (multiple ? 'Add references' : 'Select content'));
   const pickedCount = $derived(Object.keys(picked).length);
-  const nextCursor = $derived(pages.at(-1)?.nextCursor);
 
   $effect(() => { const value = searchQuery; const timer = setTimeout(() => { debouncedSearch = value; }, 300); return () => clearTimeout(timer); });
   $effect(() => { if (open && searchInput) searchInput.focus(); });
+  $effect(() => { const current = queryClient; current.mount(); return () => current.unmount(); });
   $effect(() => {
-    if (!open) return;
-    const api = client, isLocked = locked, cache = pickerCache(api); let current = true;
-    searchQuery = ''; picked = {}; if (!isLocked) dropdownCollection = '';
-    manifest = cache.manifest;
-    void api.fetchManifest().then(value => { cache.manifest = value; if (current) manifest = value; }).catch(() => {});
-    if (!isLocked) {
-      const knownCollections = cache.collections ?? []; collections = knownCollections; dropdownCollection = knownCollections[0]?.slug ?? '';
-      void api.fetchCollections().then(value => {
-        cache.collections = value; if (!current) return; collections = value;
-        if (!dropdownCollection && value.length) dropdownCollection = value[0].slug;
-      }).catch(() => {});
-    }
-    return () => { current = false; };
+    if (open) { searchQuery = ''; picked = {}; if (!locked) dropdownCollection = ''; }
   });
-  async function readQuery(api: ContentPickerClient, query: CachedQuery, slug: string, search: string, more = false) {
-    if (query.pending) return query.pending;
-    const oldPages = query.pages;
-    const initialCursor = more ? oldPages.at(-1)?.nextCursor : undefined;
-    if (more && initialCursor === undefined) return oldPages;
-    query.error = undefined;
-    query.pending = (async () => {
-      const result: FindManyResult<ContentItem>[] = more ? [...oldPages] : [];
-      let cursor = initialCursor;
-      do {
-        const page = await api.fetchContentList(slug, { limit: 50, cursor, search: search || undefined });
-        result.push(page); cursor = page.nextCursor;
-      } while (!more && cursor !== undefined && result.length < Math.max(1, oldPages.length));
-      query.pages = result; return result;
-    })();
-    notifyQuery(query);
-    try { return await query.pending; }
-    catch (caught) { query.error = caught; throw caught; }
-    finally { query.pending = undefined; notifyQuery(query); }
-  }
   $effect(() => {
-    if (!open || !activeCollection) { pages = []; loading = false; error = undefined; return; }
-    const api = client, slug = activeCollection, search = trimmedSearch, query = pickerQuery(pickerCache(api), slug, search);
-    const sync = () => { pages = query.pages; loading = !!query.pending && !query.pages.length; error = query.error; };
-    query.listeners.add(sync); sync();
-    void readQuery(api, query, slug, search).catch(() => {});
-    return () => { query.listeners.delete(sync); };
+    const api = client;
+    const observer = new QueryObserver(queryClient, { queryKey: ['collections'], queryFn: () => api.fetchCollections(), enabled: open && !locked });
+    const sync = (result: ReturnType<typeof observer.getCurrentResult>) => { collections = result.data ?? []; };
+    sync(observer.getCurrentResult()); return observer.subscribe(sync);
+  });
+  $effect(() => { if (!locked && collections.length && !dropdownCollection) dropdownCollection = collections[0].slug; });
+  $effect(() => {
+    const api = client;
+    const observer = new QueryObserver(queryClient, { queryKey: ['manifest'], queryFn: () => api.fetchManifest(), enabled: open });
+    const sync = (result: ReturnType<typeof observer.getCurrentResult>) => { manifest = result.data; };
+    sync(observer.getCurrentResult()); return observer.subscribe(sync);
+  });
+  $effect(() => {
+    const api = client, slug = activeCollection, search = trimmedSearch;
+    const observer: ContentObserver = new InfiniteQueryObserver(queryClient, {
+      queryKey: ['content-picker', slug, search] as const,
+      queryFn: ({ pageParam }) => api.fetchContentList(slug, { limit: 50, cursor: pageParam, search: search || undefined }),
+      initialPageParam: undefined as string | undefined, getNextPageParam: lastPage => lastPage.nextCursor,
+      enabled: open && !!slug
+    });
+    contentObserver = observer;
+    const sync = (result: InfiniteQueryObserverResult<InfiniteData<FindManyResult<ContentItem>>, Error>) => {
+      data = result.data; loading = result.isLoading; error = result.error; fetchingNext = result.isFetchingNextPage; hasNextPage = result.hasNextPage;
+    };
+    sync(observer.getCurrentResult()); return observer.subscribe(sync);
   });
   const items = $derived.by(() => {
-    const flat = pages.flatMap(page => page.items); if (!locale) return flat;
+    const flat = data?.pages.flatMap(page => page.items) ?? []; if (!locale) return flat;
     const byGroup = new Map<string, ContentItem>(), order: string[] = [];
     for (const item of flat) {
       const key = item.translationGroup ?? item.id, existing = byGroup.get(key);
@@ -87,8 +79,8 @@
   function togglePicked(item: ContentItem) { const next = { ...picked }; if (next[item.id]) delete next[item.id]; else next[item.id] = pickedEntry(item); picked = next; }
   function choose(item: ContentItem) { onConfirm([pickedEntry(item)]); onOpenChange(false); }
   function confirmMultiple() { onConfirm(Object.values(picked)); onOpenChange(false); }
-  async function retry() { await readQuery(client, pickerQuery(pickerCache(client), activeCollection, trimmedSearch), activeCollection, trimmedSearch).catch(() => {}); }
-  async function loadMore() { fetchingNext = true; try { await readQuery(client, pickerQuery(pickerCache(client), activeCollection, trimmedSearch), activeCollection, trimmedSearch, true); } catch {} finally { fetchingNext = false; } }
+  function retry() { void contentObserver?.refetch(); }
+  function loadMore() { void contentObserver?.fetchNextPage(); }
   function statusLabel(item: ContentItem) { const status = getDraftStatus(item); return status === 'published' ? 'Published' : status === 'published_with_changes' ? 'Pending changes' : 'Draft'; }
 </script>
 
@@ -110,7 +102,7 @@
               <span><strong>{getEntryTitle(item, titleField)}</strong><span class="meta">{statusLabel(item)}{#if item.slug} / {item.slug}{/if}</span></span></label>
             {:else}<button type="button" class="row single" disabled={alreadyLinked} onclick={() => choose(item)}><strong>{getEntryTitle(item, titleField)}</strong><span class="meta">{statusLabel(item)}{#if item.slug} / {item.slug}{/if}</span></button>{/if}
           {/each}
-          {#if nextCursor !== undefined}<div class="more"><button disabled={fetchingNext} onclick={loadMore}>{fetchingNext ? 'Loading...' : 'Load more'}</button></div>{/if}
+          {#if hasNextPage}<div class="more"><button disabled={fetchingNext} onclick={loadMore}>{fetchingNext ? 'Loading...' : 'Load more'}</button></div>{/if}
         {/if}
       </div>
       <footer><button onclick={() => onOpenChange(false)}>Cancel</button>{#if multiple}<button disabled={!pickedCount} onclick={confirmMultiple}>Add selected</button>{/if}</footer>

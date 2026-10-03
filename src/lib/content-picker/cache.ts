@@ -1,12 +1,15 @@
-import type { ContentPickerClient, ContentItem, FindManyResult, PickerManifest } from './types.ts';
-export interface CachedQuery { pages: FindManyResult<ContentItem>[]; pending?: Promise<FindManyResult<ContentItem>[]>; error?: unknown; listeners: Set<() => void> }
-export interface PickerCache { collections?: { slug: string; label: string }[]; manifest?: PickerManifest; queries: Map<string, CachedQuery> }
-const caches = new WeakMap<ContentPickerClient, PickerCache>();
-export function pickerCache(client: ContentPickerClient): PickerCache {
-  let cache = caches.get(client); if (!cache) { cache = { queries: new Map() }; caches.set(client, cache); } return cache;
+import { QueryClient } from '@tanstack/react-query';
+import type { ContentPickerClient } from './types.ts';
+
+// Whole Source App.tsx query provider defaults, EmDash1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.
+// TanStack Query core is re-exported by the exact already-public direct dependency.
+// Key by the client's stable query function so Svelte state proxies share its cache.
+const clients = new WeakMap<ContentPickerClient['fetchContentList'], QueryClient>();
+export function pickerQueryClient(client: ContentPickerClient): QueryClient {
+  let queryClient = clients.get(client.fetchContentList);
+  if (!queryClient) {
+    queryClient = new QueryClient({ defaultOptions: { queries: { staleTime: 1000 * 60, retry: 1 } } });
+    clients.set(client.fetchContentList, queryClient);
+  }
+  return queryClient;
 }
-export function pickerQuery(cache: PickerCache, collection: string, search: string) {
-  const key = JSON.stringify([collection, search]); let query = cache.queries.get(key);
-  if (!query) { query = { pages: [], listeners: new Set() }; cache.queries.set(key, query); } return query;
-}
-export function notifyQuery(query: CachedQuery) { for (const listener of query.listeners) listener(); }

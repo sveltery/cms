@@ -3,7 +3,7 @@ import { describe } from 'vitest';
 import { openSqlite } from '../../../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry as NativeRegistry } from '../../../src/lib/server/database/registry.ts';
-import { cmsService } from '../../../src/lib/server/database/service.ts';
+import { contentPickerService } from '../../../src/lib/server/content-picker/service.ts';
 import { lifecycleService } from '../../../src/lib/server/database/lifecycle/service.ts';
 import type { CmsDatabase } from '../../../src/lib/server/database/contract.ts';
 import type { ServerPrincipal } from '../../../src/lib/server/database/service.ts';
@@ -30,15 +30,9 @@ export async function handleContentCreate(db: CmsDatabase['db'], collection: str
   catch (error: any) { return { success: false, error: { code: error.code ?? 'CONTENT_CREATE_ERROR', message: error.message } }; }
 }
 export async function handleContentList(db: CmsDatabase['db'], collection: string, params: any = {}) {
-  const path = '../../../src/lib/server/content-picker/service.ts';
   try {
-    const product = await import(/* @vite-ignore */ path);
-    return { success: true, data: await product.contentPickerService(bindings.get(db)!, principal).list(collection, params) };
+    return { success: true, data: await contentPickerService(bindings.get(db)!, principal).list(collection, params) };
   } catch (error: any) {
-    if (error.code === 'ERR_MODULE_NOT_FOUND' || /Failed to load url.*content-picker\/service/.test(error.message)) {
-      try { return { success: true, data: await cmsService(bindings.get(db)!, principal).listContent({ type: collection, ...params }) }; }
-      catch (cause: any) { return { success: false, error: { code: cause.code, message: cause.message } }; }
-    }
     return { success: false, error: { code: error.code ?? 'CONTENT_LIST_ERROR', message: error.message } };
   }
 }
