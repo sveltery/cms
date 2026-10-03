@@ -7,6 +7,7 @@ import { schemaAdminStorage } from './helpers/schema-admin-storage.ts';
 import { migrateCms } from '../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
 import { cmsService } from '../src/lib/server/database/service.ts';
+import { lifecycleService } from '../src/lib/server/database/lifecycle/service.ts';
 import { precondition, withRevision } from '../src/lib/server/content/schema.ts';
 import { EditorSession, type EditorRecord, type SavePayload } from '../src/lib/editor/session.ts';
 
@@ -33,15 +34,16 @@ for (const target of ['Node', 'D1'] as const) {
       assert.equal(session.dirty, false); assert.notEqual(session.revision, initial._rev);
       let saved = await service.getContent({ type: 'stories', id: initial.id, locale: 'fr' });
       assert.deepEqual(saved.data, { title: 'Edited', body: 'Écrit' });
-      const published = await service.publishContent({ type: 'stories', id: initial.id, locale: 'fr', expected: { version: saved.version, updatedAt: saved.updatedAt } });
+      const lifecycle = lifecycleService(storage.database, principal);
+      const published = await lifecycle.publish({ type: 'stories', id: initial.id, locale: 'fr', expected: { version: saved.version, updatedAt: saved.updatedAt } });
       assert.equal(published.status, 'published');
-      session.receive(withRevision(published));
+      session.receive(withRevision(await service.getContent({ type: 'stories', id: initial.id, locale: 'fr' })));
       session.edit({ ...session.data, title: 'First autosave' });
       assert.equal(await session.save(save, true), true);
-      const first = await service.listContentRevisions({ type: 'stories', id: initial.id, locale: 'fr' });
+      const first = await lifecycle.listRevisions({ type: 'stories', id: initial.id, locale: 'fr' });
       session.edit({ ...session.data, title: 'Second autosave' });
       assert.equal(await session.save(save, true), true);
-      const second = await service.listContentRevisions({ type: 'stories', id: initial.id, locale: 'fr' });
+      const second = await lifecycle.listRevisions({ type: 'stories', id: initial.id, locale: 'fr' });
       assert.equal(second.length, first.length);
       assert.equal(second[0].data.title, 'Second autosave');
       saved = await service.getContent({ type: 'stories', id: initial.id, locale: 'fr' });

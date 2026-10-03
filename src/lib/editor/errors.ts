@@ -1,14 +1,17 @@
 // Native transport for the pinned validation-error contract. MIT Copyright
 // 2026 Cloudflare Inc.; see notices/emdash-MIT.txt and docs/writable-editor-source.json.
 export class EditorResponseError extends Error {
-  constructor(public status: number, public code: string, message: string,
-    public details?: Record<string, unknown>) { super(message); this.name = 'EditorResponseError'; }
+  status: number; code: string; details?: Record<string, unknown>;
+  constructor(status: number, code: string, message: string,
+    details?: Record<string, unknown>) {
+    super(message); this.name = 'EditorResponseError'; this.status = status; this.code = code; this.details = details;
+  }
 }
 
 export interface LabeledEditorField {
   kind: string;
   label?: string;
-  validation?: Record<string, unknown>;
+  validation?: { subFields?: unknown };
 }
 
 interface Issue { path: string; code: string; origin?: unknown; minimum?: unknown; maximum?: unknown; format?: unknown }
