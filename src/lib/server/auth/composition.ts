@@ -9,7 +9,8 @@ import type { CmsDatabase } from '../database/contract.ts';
 
 const servicePermissions: readonly Permission[] = Object.freeze([
   'schema:read', 'schema:manage', 'content:read', 'content:read_drafts', 'content:create',
-  'content:edit_own', 'content:edit_any', 'content:delete_own', 'content:delete_any'
+  'content:edit_own', 'content:edit_any', 'content:delete_own', 'content:delete_any',
+  'content:publish_own', 'content:publish_any'
 ]);
 
 /** Accept only a server-resolved principal; request claims never enter this bridge. */
@@ -34,7 +35,7 @@ export function createCmsHandle(factory: (event: RequestEvent) => CmsRequestConf
     const configuration = await factory(event);
     if (configuration) {
       const principal = await resolvePrincipal(event.cookies.get(SESSION_COOKIE_NAME), createKyselySessionStore(configuration.database.db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>()), { keepAlive: configuration.keepAlive });
-      event.locals.cms = Object.freeze({ database: configuration.database, principal: servicePrincipal(principal), mutationsEnabled: configuration.mutationsEnabled === true });
+      event.locals.cms = Object.freeze({ database: configuration.database, principal: servicePrincipal(principal), mutationsEnabled: configuration.mutationsEnabled === true, keepAlive: configuration.keepAlive });
     }
     return resolve(event);
   };

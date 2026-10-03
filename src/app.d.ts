@@ -12,7 +12,7 @@ declare global {
     interface Error { code?: string; details?: { issues: ContentValidationIssue[] } }
     interface Locals {
       // Explicit adapter injection, populated only by trusted server session composition.
-      cms?: { database: CmsDatabase; principal: ServerPrincipal | null; mutationsEnabled?: boolean };
+      cms?: { database: CmsDatabase; principal: ServerPrincipal | null; mutationsEnabled?: boolean; keepAlive?: (task: Promise<void>) => void };
       cmsRuntime?: { readonly publicOrigin: string; readonly basePath: string; readonly rpName: string };
     }
   }
