@@ -508,7 +508,8 @@
     "tests/browser/passkey-nonresident-shared-bug.spec.ts",
     "tests/production/passkey-first-credential-fault-source.test.ts",
     "tests/cloudflare-hosting/passkey.test.ts",
-    "tests/production/passkey-legacy-unavailable.test.ts"
+    "tests/production/passkey-legacy-unavailable.test.ts",
+    "tests/passkey-login-ui.test.ts"
   ],
   "supplementalParityCredit": 0,
   "sourceExecution": {
@@ -556,5 +557,36 @@
     "Verified shared pinned issue #54: first-credential persistence failure leaves a first user without a credential or complete flag and default passkey retry returns ADMIN_EXISTS. Preserved for separate explicit hardening; configured email/OAuth recovery is a different source configuration.",
     "Issue #60 tracks the already-public challenge concurrency finding for separate fresh defensive atomic-consume work; only sequential dummy store read/delete semantics are verified here, not signed replay or duplicate-session consequences.",
     "Profileless pre-existing minimal users trigger an explicit native unavailable state; complete legacy enrollment remains unimplemented. This original native guard earns zero source parity credit."
-  ]
+  ],
+  "supplementalProvenance": {
+    "legacyAvailability": {
+      "test": "tests/production/passkey-legacy-unavailable.test.ts",
+      "sourceParityCredit": 0,
+      "retainedCommits": [
+        {
+          "stage": "initial invalid dummy hash fixture; zero behavioral-red credit",
+          "retained": "b6b84571b9f5c118d4527a1bf1030f7f4849d443",
+          "originalLocalCommit": "d959d19ba28bebb2d7c4d3d2cba85cd8f65b63be"
+        },
+        {
+          "stage": "corrected fixture; 12 genuine pre-repair assertion failures",
+          "retained": "919271f3e96701f6113531fa6864a9f1f06cc55b",
+          "originalLocalCommit": "657cdfbac43281d499d40445f48aa65638fefeeb"
+        },
+        {
+          "stage": "native gate repair; 12 original cases pass",
+          "retained": "f111c4f11919bd61990b39efc234448d91e76038",
+          "originalLocalCommit": "26d24807d493e24ef41e5b925f5d4e4026dcc014"
+        }
+      ],
+      "mapping": "Exact trees, regular parent chronology and Original-local-commit trailers retained."
+    },
+    "legacySignedInDisplay": {
+      "test": "tests/passkey-login-ui.test.ts",
+      "sourceParityCredit": 0,
+      "assertionRedBeforeRepair": 2,
+      "casesAfterRepair": 4,
+      "boundary": "Compiled original Svelte SSR with synthetic display props and inert form attributes only; no database, credentials, authentication or session issuance."
+    }
+  }
 }
