@@ -33,8 +33,17 @@ test('official Worker streams, confirms and deduplicates R2 media with persisted
     if (cookies.size) headers.set('cookie', [...cookies].map(([key, value]) => `${key}=${value}`).join('; '));
     const binary = body instanceof Uint8Array || body instanceof FormData;
     if (body !== undefined && !binary) headers.set('content-type', 'application/json');
+    let payload = body instanceof Uint8Array ? new Uint8Array(body) : JSON.stringify(body);
+    if (body instanceof FormData) {
+      // Node and Miniflare have different FormData classes. Encode with the
+      // ordinary Node Request, then transfer its actual bytes and MIME boundary.
+      const encoded = new Request(`${origin}${path}`, { method, headers, body });
+      payload = new Uint8Array(await encoded.arrayBuffer());
+      for (const [key, value] of encoded.headers) headers.set(key, value);
+      assert.match(headers.get('content-type') ?? '', /^multipart\/form-data; boundary=/);
+    }
     const response = await worker.dispatchFetch(`${origin}${path}`, { method, headers,
-      ...(body === undefined ? {} : { body: binary ? body : JSON.stringify(body) }) });
+      ...(payload === undefined ? {} : { body: payload }) });
     for (const cookie of response.headers.getSetCookie()) {
       const [pair] = cookie.split(';'), index = pair.indexOf('=');
       if (/max-age=0(?:;|$)/i.test(cookie)) cookies.delete(pair.slice(0, index));
@@ -85,18 +94,23 @@ test('official Worker streams, confirms and deduplicates R2 media with persisted
     assert.equal(duplicate.existing, true); assert.equal(duplicate.mediaId, item.id);
     await json(`/api/media/${item.id}`, 'PUT', { alt: 'Worker image', caption: 'Stored in R2', focalX: 0.25, focalY: 0.75 });
     const replacement = new FormData(); replacement.set('file', new File([PNG_4x4], 'replacement.png', { type: 'image/png' }));
-    const replacedResponse = await request(`/api/media/${item.id}/replace`, 'POST', replacement);
+    replacement.set('width', '4'); replacement.set('height', '4');
+    const replacedResponse = await request(`/api/media/${item.id}/replace`, 'PUT', replacement);
     assert.equal(replacedResponse.status, 200);
     const replaced = (await replacedResponse.json() as { data: { item: any } }).data.item;
     assert.equal(replaced.id, item.id); assert.equal(replaced.storageKey, item.storageKey);
     assert.equal(replaced.width, 4); assert.equal(replaced.height, 4);
+    assert.equal(replaced.focalX, null); assert.equal(replaced.focalY, null);
+    assert.equal(replaced.blurhash, null); assert.equal(replaced.dominantColor, null);
+    assert.equal(replaced.alt, 'Worker image'); assert.equal(replaced.caption, 'Stored in R2');
+    assert.equal(replaced.folderId, folder.id);
     const replacementSettings = await json('/api/settings', 'GET', undefined);
     for (const reference of [replacementSettings.logo, replacementSettings.favicon, replacementSettings.seo.defaultOgImage]) {
       assert.equal(reference.url, item.url); assert.equal(reference.width, 4); assert.equal(reference.height, 4);
     }
     await worker.dispose(); worker = start();
     const restored = (await json(`/api/media/${item.id}`, 'GET', undefined)).item;
-    assert.equal(restored.alt, 'Worker image'); assert.equal(restored.focalX, 0.25); assert.equal(restored.focalY, 0.75);
+    assert.equal(restored.alt, 'Worker image'); assert.equal(restored.focalX, null); assert.equal(restored.focalY, null);
     assert.equal(restored.width, 4); assert.equal(restored.height, 4);
     assert.equal((await json('/api/media?folderId=' + folder.id + '&q=worker&mimeType=image/png&page=1&limit=1', 'GET', undefined)).totalCount, 1);
     const restartedAsset = await request(item.url);
