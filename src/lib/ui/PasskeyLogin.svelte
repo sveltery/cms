@@ -2,8 +2,8 @@
   import { beginLogin, completeLogin, logout } from '$lib/auth.remote';
   import { usePasskey } from '$lib/auth/passkey-browser';
   import { tick } from 'svelte';
-  let { unavailable = false, homeHref = '/', setupHref = '/setup', needsSetup = false, user = null, loginHref = '/login' }: {
-    unavailable?: boolean; homeHref?: string; setupHref?: string; needsSetup?: boolean;
+  let { unavailable = false, legacyUnavailable = false, homeHref = '/', setupHref = '/setup', needsSetup = false, user = null, loginHref = '/login' }: {
+    unavailable?: boolean; legacyUnavailable?: boolean; homeHref?: string; setupHref?: string; needsSetup?: boolean;
     user?: { name: string | null; email: string } | null; loginHref?: string;
   } = $props();
   let failure = $state('');
@@ -12,7 +12,9 @@
 </script>
 
 <h1>Sign in</h1>
-{#if unavailable}
+{#if legacyUnavailable}
+  <p role="status">Passkey authentication is unavailable for existing accounts. Administrator enrollment support is not implemented.</p>
+{:else if unavailable}
   <p role="status">Sign-in is unavailable until the database and public URL are configured.</p>
 {:else if needsSetup}
   <p><a href={setupHref}>Set up your administrator account first.</a></p>
