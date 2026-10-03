@@ -128,7 +128,8 @@
   "incomplete": [
     "Other system cleanup subsystems",
     "Source scheduler and actual cron cadence",
-    "Deployed Node and Cloudflare scheduling"
+    "Deployed Node and Cloudflare scheduling",
+    "Automatic official CMS Worker handler integration and standalone Node package maintenance entry; source server module is callable by operator-owned source-host integration"
   ],
   "snapshotPlugin": {
     "sha256": "9809a8ffcb498f1fb20a6bf8b117ad492d754104974b496c066936315007911c",
@@ -173,9 +174,39 @@
     "src/lib/server/database/lifecycle/service.ts"
   ],
   "normalBootstrap": {
-    "status": "Not run on final documented head yet"
+    "head": "7ada02e22bba68effae4c4491616bd0787e26395",
+    "command": "PATH=/workspace/.tools/pnpm/node_modules/.bin:$PATH sh scripts/bootstrap.sh",
+    "exitCode": 0,
+    "allElevenPhasesFinished": true,
+    "checkerErrors": 0,
+    "checkerWarnings": 0,
+    "serviceCases": 997,
+    "authSourceCases": 34,
+    "authSourceTypeChecks": "passed",
+    "productionCases": 236,
+    "isolatedNodeHostingCases": 13,
+    "cloudflareSourceCases": 23,
+    "officialCloudflareWorkerCases": 4,
+    "log": "/tmp/revision-maintenance-normal-bootstrap.log",
+    "headReceipt": "/tmp/revision-maintenance-normal-bootstrap.head",
+    "exitReceipt": "/tmp/revision-maintenance-normal-bootstrap.exit",
+    "securedHostedBrowsers": "Pending publication and exact-head hosted execution",
+    "deployedHosting": false,
+    "scopedScheduledModuleBundledInOwnTest": true,
+    "officialCmsWorkerAutomaticallyRegistersScheduledHandler": false,
+    "isolatedNodePackageMaintenanceEntryIncluded": false
   },
   "publication": {
     "status": "Local only while PM-required public source-audit permission remains pending; no public ref or PR created; no rejection retry or alternate writer used"
+  },
+  "refactoredFocusedGreen": {
+    "head": "7ada02e22bba68effae4c4491616bd0787e26395",
+    "cases": 35,
+    "passed": 35,
+    "behaviorCases": 34,
+    "provenanceOnlyCases": 1,
+    "sourceDeclarationCreditUnchanged": 8,
+    "log": "/tmp/revision-maintenance-refactored-focused.log",
+    "exitCode": 0
   }
 }
