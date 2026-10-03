@@ -22,6 +22,7 @@ run_stage 'service tests' pnpm test
 run_stage 'auth source assertions' pnpm test:source-ports
 run_stage 'auth source type assertions' node node_modules/typescript/bin/tsc --project tsconfig.source-ports.json
 run_stage 'pinned UI component source assertions' pnpm test:ui-source
+run_stage 'pinned datetime widget assertions' pnpm test:date-time
 run_stage 'default production build' pnpm build
 run_stage 'production remote tests' pnpm test:production
 run_stage 'Node package and build' pnpm package:node

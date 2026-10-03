@@ -29,6 +29,8 @@
     "test:ui-source": "vitest run --config vitest.ui-source.config.ts",
     "test:bulk-taxonomy-native": "vitest run --config vitest.bulk-taxonomy-native.config.ts",
     "test:bulk-taxonomy-source": "node scripts/check-bulk-taxonomy-source.mjs && vitest run --config vitest.bulk-taxonomy.config.ts",
+    "test:date-time": "node scripts/check-date-time-source-ports.mjs && TZ=America/New_York vitest run --config vitest.date-time.config.ts",
+    "test:date-time:browser": "node scripts/check-date-time-source-ports.mjs && vitest run --config vitest.date-time.browser.config.ts",
     "test:menu-source": "node scripts/check-menu-source.mjs && vitest run --config vitest.menu-source.config.ts",
     "test:menu-native-ui": "vitest run --config vitest.menu-native-ui.config.ts",
     "test:menu-browser-source": "node scripts/check-menu-source.mjs && vitest run --config vitest.menu-browser-source.config.ts"
@@ -41,7 +43,8 @@
     "kysely": "0.29.2",
     "ulidx": "2.4.1",
     "valibot": "1.5.0",
-    "zod": "4.5.4"
+    "zod": "4.5.4",
+    "date-fns": "4.1.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20260507.1",
@@ -73,6 +76,7 @@
     "@tanstack/react-query": "5.90.21",
     "@tanstack/react-router": "1.163.2",
     "@vitest/browser-playwright": "4.1.10",
-    "vitest-browser-react": "2.2.0"
+    "vitest-browser-react": "2.2.0",
+    "@testing-library/react": "16.3.2"
   }
 }
