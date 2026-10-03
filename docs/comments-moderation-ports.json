@@ -2,7 +2,7 @@
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "license": "MIT; Copyright 2026 Cloudflare Inc.; notices/emdash-MIT.txt",
   "approvedBase": "e75654834e5d3a1ddc10449504ee34db1d43c905",
-  "count": 63,
+  "count": 78,
   "selectedWholeFiles": 7,
   "assertionRule": "Whole callbacks, fixtures, expectations and deadlines are immutable; imports and host fixtures are recorded separately. Initial regex counts are inventory estimates, not parser counts or runtime evidence.",
   "protectedProbeRule": "Signed, concurrent-session, replay, two-valid-session and SC49 protected relation binding probes are inventoried and not newly executed. Ordinary non-auth repository CAS and reaction-race callbacks remain whole.",
@@ -612,6 +612,141 @@
       "bytes": 3969,
       "selected": false,
       "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/auth/trusted-proxy.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/auth/trusted-proxy.ts.txt",
+      "gitBlob": "8e3b8f4ab5bbf8d74ebc3c41d1d556146be09346",
+      "sha256": "8e6afabd4d6cd05e302a58323df782da03b8f7d72e1af59feb9ed3bf0385c472",
+      "bytes": 3381,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/errors.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/errors.ts.txt",
+      "gitBlob": "2e99070d97edc14d2797795e13cc82636a0cf500",
+      "sha256": "e1d2ffcf77f31ffef22c8a18c4ea6cbb0cd86bb8d950c02d7ca82de3e2f2aed5",
+      "bytes": 21806,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/public-url.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/public-url.ts.txt",
+      "gitBlob": "dd843b3713dadfbce785c68d18f7142eb093843e",
+      "sha256": "6a234909f88cf6ea2559988f3533cde87a303c5da99e6c10d8fcf4861daf9dea",
+      "bytes": 5268,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/config/secrets.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/config/secrets.ts.txt",
+      "gitBlob": "2d63c59613fa155faf0fbf1f2ba972181fe18556",
+      "sha256": "677d225a83a13b9d9ee7b245277e2d352878f4ba9105fc5ede8c710661651da4",
+      "bytes": 21883,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/transfer/errors.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/transfer/errors.ts.txt",
+      "gitBlob": "7d4d9abc0989ff3ea80e7ef41177b39a829e4bf0",
+      "sha256": "6f608fc23b7a93fdb2cce71e40f802faacf69308616140a4d361f8e90116d4b1",
+      "bytes": 5330,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/admin/comments/counts.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/routes/api/admin/comments/counts.ts.txt",
+      "gitBlob": "f4c88177a2ecd13b88df4a9de3bb99e3c22030d4",
+      "sha256": "49968c61d473724e11aa92ad6b3e6f3d236b0318bb3f4092816b1cf6537b708c",
+      "bytes": 795,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/admin/comments/bulk.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/routes/api/admin/comments/bulk.ts.txt",
+      "gitBlob": "a21d9e5a5870663ef4db4cbe88881895a9bc278e",
+      "sha256": "ecb46cfa3628c7767d1e370fa37c16aba48777f647514d3968ba7d2c695dc359",
+      "bytes": 1255,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/admin/comments/index.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/routes/api/admin/comments/index.ts.txt",
+      "gitBlob": "bf2abdb1fb7ed748af04c6679655080ceac1ba33",
+      "sha256": "a86420a5d4dbf9133eef3fa626091564fc55af6fffc5f6f6faa85876ca223675",
+      "bytes": 1213,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/admin/comments/[id].ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/routes/api/admin/comments/[id].ts.txt",
+      "gitBlob": "5250fde8859efd2e6f870fb43f2258b3249e69d0",
+      "sha256": "48440a3dc21f6d722147311e55c7cf6a4797877dfefc2aaef02cfabe54d55ec5",
+      "bytes": 1683,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/admin/comments/[id]/status.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/routes/api/admin/comments/[id]/status.ts.txt",
+      "gitBlob": "ca3828ae3516a2a4cac61bcc34e2e7ccdf3e6d84",
+      "sha256": "c857593f3ba1bd76673ab059a42d4c471d5efa51604ad9afea3725ccd282def2",
+      "bytes": 2241,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/077_plugin_storage_revisions.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/migrations/077_plugin_storage_revisions.ts.txt",
+      "gitBlob": "0607219e6267e6d17cdf4a88169dec756cfc356f",
+      "sha256": "24573d23a151e9a99ee4e3c5a5fb1a18360f6f6d56ee0f3e8b62dae8528cf092",
+      "bytes": 2765,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/001_initial.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/migrations/001_initial.ts.txt",
+      "gitBlob": "aba2d82b24a34a721814e90c00dc0e34cd009911",
+      "sha256": "3c91298a957d40f5b576dfd5012e3ce66480db95516add28d45a5669e651fee9",
+      "bytes": 5374,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/032_rate_limits.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/migrations/032_rate_limits.ts.txt",
+      "gitBlob": "0d74368aeb26a4e7821706ae5fa1c44d539ca8a7",
+      "sha256": "fefb79d09cba0c6baa2df241301c69197c151363b97897832f454b07b5d23a55",
+      "bytes": 1681,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/repositories/options.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/repositories/options.ts.txt",
+      "gitBlob": "d4f630ca0e24721dc25bed0189699daceccdb8ae",
+      "sha256": "af2759276976aa457fed9ae3d64f11ddbf4c8970fe298f5e1f9e49bfd12cc921",
+      "bytes": 8714,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/admin/src/locales/en/messages.po",
+      "authority": "parity/emdash/comments-source/authority/packages/admin/src/locales/en/messages.po.txt",
+      "gitBlob": "367f4c2371d2aee77e8d1bb2b32f19f45c371dac",
+      "sha256": "3fac87cdd54f13c31dfd7393bcf2a1297d2582e3e6431dd8e9fd5d7bd9248a55",
+      "bytes": 556780,
+      "selected": false,
+      "evidence": "inventory-only"
     }
   ],
   "productPorts": [
@@ -740,6 +875,60 @@
       "product": "src/lib/server/comments/upstream/content-list-query.ts",
       "transformation": "MIT header and native TypeScript/module-alias imports only",
       "sourceBlob": "075fbabc173e1eac9c04edcaab98939c9fef271c"
+    },
+    {
+      "source": "packages/core/src/api/error.ts",
+      "product": "src/lib/server/comments/upstream/api/error.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "cac556e93bb76d42e7a36353cd045ce22638f3ef"
+    },
+    {
+      "source": "packages/core/src/api/errors.ts",
+      "product": "src/lib/server/comments/upstream/api/errors.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "2e99070d97edc14d2797795e13cc82636a0cf500"
+    },
+    {
+      "source": "packages/core/src/api/parse.ts",
+      "product": "src/lib/server/comments/upstream/api/parse.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "46b250ce60d82f37fc30d006f3e8ed166c2227b0"
+    },
+    {
+      "source": "packages/core/src/transfer/errors.ts",
+      "product": "src/lib/server/comments/upstream/transfer/errors.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "7d4d9abc0989ff3ea80e7ef41177b39a829e4bf0"
+    },
+    {
+      "source": "packages/core/src/comments/public-submission.ts",
+      "product": "src/lib/server/comments/upstream/comments/public-submission.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "2ee4925a6760679f0f13253edff04489209a3fac"
+    },
+    {
+      "source": "packages/core/src/auth/rate-limit.ts",
+      "product": "src/lib/server/comments/upstream/auth/rate-limit.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "0dc5ebe1b99dab18bf1278af6db16375efd3b7d6"
+    },
+    {
+      "source": "packages/core/src/auth/trusted-proxy.ts",
+      "product": "src/lib/server/comments/upstream/auth/trusted-proxy.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "8e3b8f4ab5bbf8d74ebc3c41d1d556146be09346"
+    },
+    {
+      "source": "packages/core/src/plugins/request-meta.ts",
+      "product": "src/lib/server/comments/upstream/plugins/request-meta.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "81cbfad3f5bfc74d9a5ed6af9831ba8c36b3ce61"
+    },
+    {
+      "source": "packages/core/src/database/repositories/options.ts",
+      "product": "src/lib/server/comments/upstream/database/repositories/options.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "d4f630ca0e24721dc25bed0189699daceccdb8ae"
     }
   ],
   "evidence": {
