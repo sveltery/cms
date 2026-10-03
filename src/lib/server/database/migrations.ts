@@ -7,7 +7,7 @@ import { pendingTrashIndexStatements } from './trash-index.ts';
 import { schemaMigration } from './schema-migrations.ts';
 import { migrationObjects, normalizeMigrationSql, type CmsMigrationProvider } from './migration-provider.ts';
 import { guardLifecycleIndexRepair, lifecycleMigration } from './lifecycle-migrations.ts';
-import { recognizeVersionedFtsOwner, type FtsCatalogueObject, type ReadOnlyOwnershipGuard, type RecognizedFtsOwner } from '../search/fts-ownership.ts';
+import { ftsMetadataGuard, recognizeVersionedFtsOwner, type FtsCatalogueObject, type ReadOnlyOwnershipGuard, type RecognizedFtsOwner } from '../search/fts-ownership.ts';
 
 function foundationStatements(database: CmsDatabase): CompiledQuery[] {
   const db = database.db;
@@ -59,8 +59,8 @@ function prerequisiteGuard(database: CmsDatabase, version: number, names: readon
   const guardedNames=[...names,...managed.flatMap(owner=>owner.objects.filter(object=>object.type!=='trigger').map(object=>object.name))];
   const temporary = sql`lower(name) GLOB '_cms_*' AND length(rtrim(name,'0123456789')) < length(name)
     AND rtrim(lower(name),'0123456789') GLOB '_cms_*_v'`;
-  const selected = sql`(type <> 'trigger' AND lower(name) IN (${sql.join(guardedNames)})) OR (${temporary})
-    ${triggers.length ? sql`OR (type='trigger' AND name IN (${sql.join(triggers)}))` : sql``}
+  const selected = sql`(type <> 'trigger' AND lower(name) IN (SELECT value FROM json_each(${JSON.stringify(guardedNames)}))) OR (${temporary})
+    ${triggers.length ? sql`OR (type='trigger' AND name IN (SELECT value FROM json_each(${JSON.stringify(triggers)})))` : sql``}
     ${version === 0 ? sql`OR name LIKE '_cms_%'` : sql``}`;
   const snapshot = JSON.stringify(rows.filter(row => row.type !== 'trigger' ? guardedNames.includes(row.name.toLowerCase()) : triggers.includes(row.name))
     .map(({name,type,sql}) => ({name,type,sql}))
@@ -73,7 +73,7 @@ function prerequisiteGuard(database: CmsDatabase, version: number, names: readon
     (SELECT json_group_array(json_object('name',name,'type',type,'sql',sql)) FROM
       (SELECT name,type,sql FROM sqlite_master WHERE ${selected} ORDER BY name,type)) = ${snapshot}
     AND ${versions} = ${JSON.stringify(Array.from({length:version},(_,index)=>index+1))}
-    ${managed.length ? sql`AND (${sql.join(managed.map(owner=>ownershipCondition(owner.metadataGuard)),sql` AND `)})` : sql``}
+    ${managed.length ? sql`AND (${ownershipCondition(ftsMetadataGuard(managed.map(group=>group.owner)))})` : sql``}
     THEN '$' ELSE ${prerequisiteChanged} END)`.compile(database.db);
 }
 

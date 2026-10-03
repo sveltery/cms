@@ -20,10 +20,23 @@ export interface ReadOnlyOwnershipGuard { sql: string; parameters: readonly (str
 export interface RecognizedFtsOwner {
   table: string;
   contentTable: string;
+  owner: FtsOwnerMetadata;
   objects: readonly FtsCatalogueObject[];
   metadataGuard: ReadOnlyOwnershipGuard;
 }
 const identifier = /^[a-z][a-z0-9_]*$/;
+
+/** One JSON binding covers every owner/field without exceeding D1's bind limit. */
+export function ftsMetadataGuard(owners: readonly FtsOwnerMetadata[]): ReadOnlyOwnershipGuard {
+  return {sql:`NOT EXISTS (SELECT 1 FROM json_each(?) AS owner WHERE
+    NOT EXISTS (SELECT 1 FROM _cms_collections WHERE id=json_extract(owner.value,'$.id')
+      AND slug=json_extract(owner.value,'$.slug') AND search_config IS json_extract(owner.value,'$.searchConfig'))
+    OR (SELECT COUNT(*) FROM _cms_fields WHERE collection_id=json_extract(owner.value,'$.id')) <> json_array_length(owner.value,'$.fields')
+    OR EXISTS (SELECT 1 FROM json_each(owner.value,'$.fields') AS declared WHERE
+      NOT EXISTS (SELECT 1 FROM _cms_fields WHERE collection_id=json_extract(owner.value,'$.id')
+        AND slug=json_extract(declared.value,'$.slug') AND type=json_extract(declared.value,'$.type')
+        AND searchable=json_extract(declared.value,'$.searchable'))))`,parameters:[JSON.stringify(owners)]};
+}
 // Ignore formatting only outside quoted SQL tokens. String literals (including
 // Portable Text's separator and tokenizer) must remain byte-exact.
 function normalized(value: string): string {
@@ -91,11 +104,5 @@ export function recognizeVersionedFtsOwner(owner: FtsOwnerMetadata, objects: rea
     const actual = objects.find(object=>object.name===name);
     if (!actual || actual.type !== type || actual.tbl_name !== tbl_name || actual.sql === null || normalized(actual.sql) !== normalized(sql)) return null;
   }
-  const parameters: (string|number|null)[] = [owner.id,owner.slug,owner.searchConfig,owner.id,owner.fields.length];
-  const fieldsSql = owner.fields.map(field=>{
-    parameters.push(owner.id,field.slug,field.type,field.searchable);
-    return 'EXISTS (SELECT 1 FROM _cms_fields WHERE collection_id = ? AND slug = ? AND type = ? AND searchable = ?)';
-  });
-  const metadataGuard = {sql:`EXISTS (SELECT 1 FROM _cms_collections WHERE id = ? AND slug = ? AND search_config IS ?) AND (SELECT COUNT(*) FROM _cms_fields WHERE collection_id = ?) = ? AND ${fieldsSql.join(' AND ')}`,parameters};
-  return {table,contentTable,objects:[...objects],metadataGuard};
+  return {table,contentTable,owner,objects:[...objects],metadataGuard:ftsMetadataGuard([owner])};
 }
