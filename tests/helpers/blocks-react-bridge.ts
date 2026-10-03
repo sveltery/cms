@@ -4,6 +4,7 @@ import * as React from 'react';
 import {mount,unmount} from 'svelte';
 import NativeBlocksField from './BlocksNativeHarness.svelte';
 import NativeBlockTypeList from '../../src/lib/ui/BlockTypeList.svelte';
+import NativeBlockSchemaFieldEditor from '../../src/lib/ui/BlockSchemaFieldEditor.svelte';
 import {bridgeState} from './blocks-bridge-state.svelte.ts';
 export function native(component:any, props:Record<string,unknown>){
  const target=React.useRef<HTMLDivElement>(null);
@@ -15,3 +16,5 @@ export function native(component:any, props:Record<string,unknown>){
 }
 export function BlocksField(props:any){return native(NativeBlocksField,{...props,onchange:props.onChange});}
 export function BlockTypeList(props:any){return native(NativeBlockTypeList,props);}
+
+export function FieldEditor(props:any){return native(NativeBlockSchemaFieldEditor,{...props,chooseType:true});}

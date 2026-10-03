@@ -1,11 +1,26 @@
 import {afterEach,describe,expect,it,vi} from 'vitest';
 import * as React from 'react';
 import {render} from 'vitest-browser-react';
-import {NativeBlockSubField,NativeBlockMediaField,NativeBlockTypeEditor} from './helpers/blocks-native-widget-bridge.ts';
+import {NativeBlockSubField,NativeBlockMediaField,NativeBlockTypeEditorBoundary} from './helpers/blocks-native-widget-bridge.ts';
 // Original native UI regressions. These use actual Svelte widgets; separate
 // secured built-adapter workflows verify persistence and ordinary authentication.
 afterEach(()=>vi.unstubAllGlobals());
 describe('Native reusable block controls',()=>{
+ const definition=(fingerprint:string)=>({id:'hero',slug:'hero',label:'Hero',currentVersion:1,source:'user',createdAt:'2026-01-01',updatedAt:'2026-01-01',versions:[{id:'hero-v1',blockTypeId:'hero',version:1,active:true,fingerprint,fields:[{slug:'heading',label:'Heading',type:'string'}],createdAt:'2026-01-01',updatedAt:'2026-01-01'}]});
+ it('opens an existing block type from the actual reactive selection',async()=>{
+  const screen=await render(React.createElement(NativeBlockTypeEditorBoundary,{type:definition('sha256:original')}));
+  expect(screen.container.textContent).not.toContain('could not be cloned');
+  await expect.element(screen.getByLabelText('Field label')).toHaveValue('Heading');
+ });
+ it('submits the fingerprint belonging to the opened edit when the list refreshes',async()=>{
+  const fetch=vi.fn().mockResolvedValue(new Response(JSON.stringify({success:false,error:{message:'The block type changed'}}),{status:409}));vi.stubGlobal('fetch',fetch);
+  const screen=await render(React.createElement(NativeBlockTypeEditorBoundary,{plainFixture:true,type:definition('sha256:original')}));
+  await screen.getByLabelText('Field label').fill('Updated heading');
+  await screen.rerender(React.createElement(NativeBlockTypeEditorBoundary,{plainFixture:true,type:definition('sha256:concurrent')}));
+  (screen.getByRole('button',{name:'Save block type'}).element() as HTMLButtonElement).click();
+  await expect.element(screen.getByRole('status')).toHaveTextContent('The block type changed');
+  expect(JSON.parse(fetch.mock.calls[0]![1].body).expectedFingerprint).toBe('sha256:original');
+ });
  it('round-trips stored datetimes through the configured site timezone',async()=>{
   const onchange=vi.fn();const screen=await render(React.createElement(NativeBlockSubField,{id:'starts',field:{slug:'starts',label:'Starts',type:'datetime'},value:'2026-02-26T09:30:00.000Z',timezone:'Asia/Tokyo',onchange}));
   await expect.element(screen.getByLabelText('Starts')).toHaveValue('2026-02-26T18:30');
