@@ -1,0 +1,86 @@
+import { SEARCH_TOKENIZERS, type SearchTokenizer } from './types.ts';
+
+/** Native startup ownership recognition. It grants no search permissions. */
+export interface FtsOwnerMetadata {
+  id: string;
+  slug: string;
+  searchConfig: string | null;
+  /** The actual source getSearchableFields query order, not UI sort_order. */
+  fields: readonly {slug: string; type: string; searchable: number}[];
+}
+export interface FtsCatalogueObject { name: string; type: string; tbl_name: string; sql: string | null }
+export interface ReadOnlyOwnershipGuard { sql: string; parameters: readonly (string | number | null)[] }
+export interface RecognizedFtsOwner {
+  table: string;
+  contentTable: string;
+  objects: readonly FtsCatalogueObject[];
+  metadataGuard: ReadOnlyOwnershipGuard;
+}
+const identifier = /^[a-z][a-z0-9_]*$/;
+// Ignore formatting only outside quoted SQL tokens. String literals (including
+// Portable Text's separator and tokenizer) must remain byte-exact.
+function normalized(value: string): string {
+  let result = '', quote = '';
+  for(let index=0; index<value.length; index++) {
+    const character = value[index];
+    if(quote) {
+      result += character;
+      if(character === quote) {
+        if(value[index+1] === quote) result += value[++index];
+        else quote = '';
+      }
+    } else if(character === "'" || character === '"' || character === '`') {
+      quote = character; result += character;
+    } else if(!/\s/.test(character)) result += character;
+  }
+  return result;
+}
+
+/** Exact source-generated nine-object layout, limited to the reserved vN collision.
+ * The source enableSearch requires searchable fields; it does not require supports.
+ * Unknown operators, disabled configs, partial groups and legacy trigger SQL fail.
+ */
+export function recognizeVersionedFtsOwner(owner: FtsOwnerMetadata, objects: readonly FtsCatalogueObject[]): RecognizedFtsOwner | null {
+  if (!identifier.test(owner.slug) || !/_v[0-9]+$/.test(owner.slug) || !owner.id) return null;
+  let config: {enabled?: unknown; tokenize?: unknown};
+  try { config = JSON.parse(owner.searchConfig ?? 'null'); } catch { return null; }
+  if (typeof config !== 'object' || config === null || config.enabled !== true) return null;
+  const tokenize = config.tokenize ?? 'porter unicode61';
+  if (!SEARCH_TOKENIZERS.includes(tokenize as SearchTokenizer)) return null;
+  if (owner.fields.some(field => !identifier.test(field.slug))) return null;
+  const fields = owner.fields.filter(field => field.searchable === 1);
+  if (!fields.length || new Set(fields.map(field=>field.slug)).size !== fields.length) return null;
+  const table = `_cms_fts_${owner.slug}`, contentTable = `ec_${owner.slug}`;
+  const names = fields.map(field=>field.slug), columns = ['id UNINDEXED','locale UNINDEXED',...names].join(', ');
+  const value = (field: typeof fields[number]) => {
+    const ref = `NEW.${field.slug}`;
+    return field.type !== 'portableText' ? ref : `CASE WHEN ${ref} IS NULL THEN NULL WHEN json_valid(${ref}) AND json_type(${ref}) IN ('array', 'object') THEN (SELECT group_concat(j.value, ' ') FROM json_tree(${ref}) AS j WHERE j.key IN ('text', 'alt', 'caption', 'code') AND j.type = 'text') ELSE ${ref} END`;
+  };
+  const values = fields.map(value).join(', '), list = names.join(', ');
+  const changed = ['deleted_at','locale',...names].map(name=>`OLD.${name} IS NOT NEW.${name}`).join(' OR ');
+  // These templates mirror the pinned FTSManager CREATE statements and the
+  // SQLite FTS5-generated shadows. Real Node/D1 captured fixtures enforce this.
+  const definitions: [string,string,string,string][] = [
+    [table,'table',table,`CREATE VIRTUAL TABLE "${table}" USING fts5(${columns}, tokenize='${tokenize}')`],
+    [`${table}_data`,'table',`${table}_data`,`CREATE TABLE '${table}_data'(id INTEGER PRIMARY KEY, block BLOB)`],
+    [`${table}_idx`,'table',`${table}_idx`,`CREATE TABLE '${table}_idx'(segid, term, pgno, PRIMARY KEY(segid, term)) WITHOUT ROWID`],
+    [`${table}_content`,'table',`${table}_content`,`CREATE TABLE '${table}_content'(id INTEGER PRIMARY KEY, ${Array.from({length:fields.length+2},(_,index)=>`c${index}`).join(', ')})`],
+    [`${table}_docsize`,'table',`${table}_docsize`,`CREATE TABLE '${table}_docsize'(id INTEGER PRIMARY KEY, sz BLOB)`],
+    [`${table}_config`,'table',`${table}_config`,`CREATE TABLE '${table}_config'(k PRIMARY KEY, v) WITHOUT ROWID`],
+    [`${table}_insert`,'trigger',contentTable,`CREATE TRIGGER "${table}_insert" AFTER INSERT ON "${contentTable}" WHEN NEW.deleted_at IS NULL BEGIN INSERT OR REPLACE INTO "${table}"(rowid, id, locale, ${list}) VALUES (NEW.rowid, NEW.id, NEW.locale, ${values}); END`],
+    [`${table}_update`,'trigger',contentTable,`CREATE TRIGGER "${table}_update" AFTER UPDATE ON "${contentTable}" WHEN ${changed} BEGIN DELETE FROM "${table}" WHERE rowid = OLD.rowid; INSERT INTO "${table}"(rowid, id, locale, ${list}) SELECT NEW.rowid, NEW.id, NEW.locale, ${values} WHERE NEW.deleted_at IS NULL; END`],
+    [`${table}_delete`,'trigger',contentTable,`CREATE TRIGGER "${table}_delete" AFTER DELETE ON "${contentTable}" BEGIN DELETE FROM "${table}" WHERE rowid = OLD.rowid; END`]
+  ];
+  if (objects.length !== definitions.length || new Set(objects.map(object=>object.name)).size !== definitions.length) return null;
+  for (const [name,type,tbl_name,sql] of definitions) {
+    const actual = objects.find(object=>object.name===name);
+    if (!actual || actual.type !== type || actual.tbl_name !== tbl_name || actual.sql === null || normalized(actual.sql) !== normalized(sql)) return null;
+  }
+  const parameters: (string|number|null)[] = [owner.id,owner.slug,owner.searchConfig,owner.id,owner.fields.length];
+  const fieldsSql = owner.fields.map(field=>{
+    parameters.push(owner.id,field.slug,field.type,field.searchable);
+    return 'EXISTS (SELECT 1 FROM _cms_fields WHERE collection_id = ? AND slug = ? AND type = ? AND searchable = ?)';
+  });
+  const metadataGuard = {sql:`EXISTS (SELECT 1 FROM _cms_collections WHERE id = ? AND slug = ? AND search_config IS ?) AND (SELECT COUNT(*) FROM _cms_fields WHERE collection_id = ?) = ? AND ${fieldsSql.join(' AND ')}`,parameters};
+  return {table,contentTable,objects:[...objects],metadataGuard};
+}
