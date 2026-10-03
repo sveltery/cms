@@ -9,7 +9,8 @@ import type { CmsDatabase } from '../database/contract.ts';
 
 const servicePermissions: readonly Permission[] = Object.freeze([
   'settings:read', 'settings:manage', 'schema:read', 'schema:manage', 'content:read', 'content:read_drafts', 'content:create',
-  'content:edit_own', 'content:edit_any', 'content:delete_own', 'content:delete_any'
+  'content:edit_own', 'content:edit_any', 'content:delete_own', 'content:delete_any',
+  'content:publish_own', 'content:publish_any'
 ]);
 
 /** Accept only a server-resolved principal; request claims never enter this bridge. */

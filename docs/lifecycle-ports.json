@@ -1,0 +1,378 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "stage": "implemented-checkpoint",
+  "credit": "executed source declarations; formal catalog expansion pending",
+  "runtime": "Node SQLite",
+  "declarations": [
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/draft-save-live-content-changed.test.ts",
+      "blob": "7a8eae3640d9743676c8fa687b21e8e16fc642e7",
+      "line": 41,
+      "title": "is false for draft-only data save on revision collections",
+      "sourceDeclaration": "it(\"is false for draft-only data save on revision collections\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Live\" },\n\t\t\tslug: \"live\",\n\t\t});\n\t\texpect(created.success).toBe(true);\n\t\tconst id = created.data!.item.id;\n\t\tawait runtime.handleContentPublish(\"posts\", id);\n\n\t\tconst saved = await runtime.handleContentUpdate(\"posts\", id, {\n\t\t\tdata: { title: \"Draft edit\" },\n\t\t});\n\t\texpect(saved.success).toBe(true);\n\t\texpect(saved.success && saved.liveContentChanged).toBe(false);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/draft-save-live-content-changed.test.ts",
+      "blob": "7a8eae3640d9743676c8fa687b21e8e16fc642e7",
+      "line": 57,
+      "title": "is false when data+slug are staged as a draft revision",
+      "sourceDeclaration": "it(\"is false when data+slug are staged as a draft revision\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Live\" },\n\t\t\tslug: \"live\",\n\t\t});\n\t\tconst id = created.data!.item.id;\n\t\tawait runtime.handleContentPublish(\"posts\", id);\n\n\t\tconst saved = await runtime.handleContentUpdate(\"posts\", id, {\n\t\t\tdata: { title: \"Live\" },\n\t\t\tslug: \"live-renamed\",\n\t\t});\n\t\texpect(saved.success).toBe(true);\n\t\texpect(saved.success && saved.liveContentChanged).toBe(false);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/draft-save-live-content-changed.test.ts",
+      "blob": "7a8eae3640d9743676c8fa687b21e8e16fc642e7",
+      "line": 73,
+      "title": "is true when live metadata changes on a revision collection",
+      "sourceDeclaration": "it(\"is true when live metadata changes on a revision collection\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Live\" },\n\t\t\tslug: \"live-meta\",\n\t\t});\n\t\tconst id = created.data!.item.id;\n\t\tawait runtime.handleContentPublish(\"posts\", id);\n\n\t\tconst saved = await runtime.handleContentUpdate(\"posts\", id, {\n\t\t\tpublishedAt: \"2020-01-01T00:00:00.000Z\",\n\t\t});\n\t\texpect(saved.success).toBe(true);\n\t\texpect(saved.success && saved.liveContentChanged).toBe(true);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/draft-save-live-content-changed.test.ts",
+      "blob": "7a8eae3640d9743676c8fa687b21e8e16fc642e7",
+      "line": 88,
+      "title": "defaults unclassified update fields to live-changing",
+      "sourceDeclaration": "it(\"defaults unclassified update fields to live-changing\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Live\" },\n\t\t\tslug: \"future-meta\",\n\t\t});\n\t\tconst id = created.data!.item.id;\n\t\tawait runtime.handleContentPublish(\"posts\", id);\n\n\t\tconst saved = await runtime.handleContentUpdate(\"posts\", id, {\n\t\t\t// @ts-expect-error - simulates a future live field before it joins the public input type\n\t\t\tfutureLiveField: \"changed\",\n\t\t});\n\t\texpect(saved.success).toBe(true);\n\t\texpect(saved.success && saved.liveContentChanged).toBe(true);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/draft-save-live-content-changed.test.ts",
+      "blob": "7a8eae3640d9743676c8fa687b21e8e16fc642e7",
+      "line": 104,
+      "title": "is true for data updates on collections without revisions",
+      "sourceDeclaration": "it(\"is true for data updates on collections without revisions\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"plain_posts\", {\n\t\t\tdata: { title: \"Plain\" },\n\t\t\tslug: \"plain\",\n\t\t});\n\t\tconst id = created.data!.item.id;\n\n\t\tconst updated = await runtime.handleContentUpdate(\"plain_posts\", id, {\n\t\t\tdata: { title: \"Plain edited\" },\n\t\t});\n\t\texpect(updated.success).toBe(true);\n\t\texpect(updated.success && updated.liveContentChanged).toBe(true);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/draft-save-updated-at.test.ts",
+      "blob": "8f0fcda3cd44d54e506f24c2ff9e4151a9e25709",
+      "line": 57,
+      "title": "Save (draft staging) on a published entry does not bump updated_at",
+      "sourceDeclaration": "it(\"Save (draft staging) on a published entry does not bump updated_at\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Live Post\" },\n\t\t\tslug: \"live-post\",\n\t\t});\n\t\texpect(created.success).toBe(true);\n\t\tconst id = created.data!.item.id;\n\n\t\tconst published = await runtime.handleContentPublish(\"posts\", id);\n\t\texpect(published.success).toBe(true);\n\t\tconst publishedUpdatedAt = published.data!.item.updatedAt;\n\n\t\t// Manual Save: no skipRevision \u2192 creates a new draft revision and\n\t\t// points draft_revision_id at it. Live columns are untouched.\n\t\tconst saved = await runtime.handleContentUpdate(\"posts\", id, {\n\t\t\tdata: { title: \"Live Post (edited, unpublished)\" },\n\t\t});\n\t\texpect(saved.success).toBe(true);\n\t\texpect(saved.data!.item.draftRevisionId).not.toBeNull();\n\n\t\texpect(saved.data!.item.updatedAt).toBe(publishedUpdatedAt);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/draft-save-updated-at.test.ts",
+      "blob": "8f0fcda3cd44d54e506f24c2ff9e4151a9e25709",
+      "line": 80,
+      "title": "Autosave (skipRevision) on an existing draft does not bump updated_at",
+      "sourceDeclaration": "it(\"Autosave (skipRevision) on an existing draft does not bump updated_at\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Live Post\" },\n\t\t\tslug: \"live-post\",\n\t\t});\n\t\tconst id = created.data!.item.id;\n\t\tconst published = await runtime.handleContentPublish(\"posts\", id);\n\t\tconst publishedUpdatedAt = published.data!.item.updatedAt;\n\n\t\tconst firstSave = await runtime.handleContentUpdate(\"posts\", id, {\n\t\t\tdata: { title: \"Draft v1\" },\n\t\t});\n\t\texpect(firstSave.success).toBe(true);\n\t\texpect(firstSave.data!.item.updatedAt).toBe(publishedUpdatedAt);\n\n\t\t// Autosave replaces the previous draft without changing the live row.\n\t\tconst autosaved = await runtime.handleContentUpdate(\"posts\", id, {\n\t\t\tdata: { title: \"Draft v2\" },\n\t\t\tskipRevision: true,\n\t\t});\n\t\texpect(autosaved.success).toBe(true);\n\t\texpect(autosaved.data!.item.updatedAt).toBe(publishedUpdatedAt);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/draft-save-updated-at.test.ts",
+      "blob": "8f0fcda3cd44d54e506f24c2ff9e4151a9e25709",
+      "line": 202,
+      "title": "Discard Draft restores updated_at from before the draft saves",
+      "sourceDeclaration": "it(\"Discard Draft restores updated_at from before the draft saves\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Live Post\" },\n\t\t\tslug: \"live-post\",\n\t\t});\n\t\tconst id = created.data!.item.id;\n\t\tconst published = await runtime.handleContentPublish(\"posts\", id);\n\t\tconst publishedUpdatedAt = published.data!.item.updatedAt;\n\n\t\tconst saved = await runtime.handleContentUpdate(\"posts\", id, {\n\t\t\tdata: { title: \"Unwanted edit\" },\n\t\t});\n\t\texpect(saved.success).toBe(true);\n\n\t\tconst discarded = await runtime.handleContentDiscardDraft(\"posts\", id);\n\t\texpect(discarded.success).toBe(true);\n\t\texpect(discarded.data!.item.draftRevisionId).toBeNull();\n\t\texpect(discarded.data!.item.updatedAt).toBe(publishedUpdatedAt);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/draft-save-updated-at.test.ts",
+      "blob": "8f0fcda3cd44d54e506f24c2ff9e4151a9e25709",
+      "line": 222,
+      "title": "a subsequent Publish advances updated_at exactly once",
+      "sourceDeclaration": "it(\"a subsequent Publish advances updated_at exactly once\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Live Post\" },\n\t\t\tslug: \"live-post\",\n\t\t});\n\t\tconst id = created.data!.item.id;\n\t\tconst published = await runtime.handleContentPublish(\"posts\", id);\n\t\tconst publishedUpdatedAt = published.data!.item.updatedAt;\n\n\t\tconst saved = await runtime.handleContentUpdate(\"posts\", id, {\n\t\t\tdata: { title: \"Ready to go live\" },\n\t\t});\n\t\texpect(saved.data!.item.updatedAt).toBe(publishedUpdatedAt);\n\n\t\t// The draft saves left updated_at untouched, so comparing with Date.now()\n\t\t// proves publish moves it forward (same-millisecond collisions impossible).\n\t\tconst republished = await runtime.handleContentPublish(\"posts\", id);\n\t\texpect(republished.success).toBe(true);\n\t\texpect(republished.data!.item.draftRevisionId).toBeNull();\n\t\texpect(Date.parse(republished.data!.item.updatedAt)).toBeGreaterThan(\n\t\t\tDate.parse(publishedUpdatedAt),\n\t\t);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/draft-save-updated-at.test.ts",
+      "blob": "8f0fcda3cd44d54e506f24c2ff9e4151a9e25709",
+      "line": 246,
+      "title": "draft-only saves still bump version so _rev concurrency detection keeps working",
+      "sourceDeclaration": "it(\"draft-only saves still bump version so _rev concurrency detection keeps working\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Live Post\" },\n\t\t\tslug: \"live-post\",\n\t\t});\n\t\tconst id = created.data!.item.id;\n\t\tconst published = await runtime.handleContentPublish(\"posts\", id);\n\t\tconst publishedUpdatedAt = published.data!.item.updatedAt;\n\t\tconst publishedVersion = published.data!.item.version;\n\n\t\tconst saved = await runtime.handleContentUpdate(\"posts\", id, {\n\t\t\tdata: { title: \"Edited\" },\n\t\t});\n\t\texpect(saved.success).toBe(true);\n\t\t// updated_at frozen (no phantom modification), but version moved so a\n\t\t// second editor holding the pre-save _rev gets a 409.\n\t\texpect(saved.data!.item.updatedAt).toBe(publishedUpdatedAt);\n\t\texpect(saved.data!.item.version).toBe(publishedVersion + 1);\n\n\t\tconst stale = await runtime.handleContentUpdate(\"posts\", id, {\n\t\t\tdata: { title: \"Conflicting edit\" },\n\t\t\t_rev: Buffer.from(`${publishedVersion}:${publishedUpdatedAt}`).toString(\"base64\"),\n\t\t});\n\t\texpect(stale.success).toBe(false);\n\t\texpect(stale.success === false && stale.error.code).toBe(\"CONFLICT\");\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/draft-save-updated-at.test.ts",
+      "blob": "8f0fcda3cd44d54e506f24c2ff9e4151a9e25709",
+      "line": 273,
+      "title": "Restore Revision (to draft) on a published entry does not bump updated_at",
+      "sourceDeclaration": "it(\"Restore Revision (to draft) on a published entry does not bump updated_at\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Original\" },\n\t\t\tslug: \"restore-post\",\n\t\t});\n\t\tconst id = created.data!.item.id;\n\t\tconst published = await runtime.handleContentPublish(\"posts\", id);\n\t\tconst publishedUpdatedAt = published.data!.item.updatedAt;\n\n\t\t// Find the published revision to restore from.\n\t\tconst revisions = await runtime.handleRevisionList(\"posts\", id);\n\t\texpect(revisions.success).toBe(true);\n\t\tconst liveRevisionId = published.data!.item.liveRevisionId;\n\t\tconst targetRevision = revisions.data!.items.find((r) => r.id === liveRevisionId);\n\t\texpect(targetRevision).toBeDefined();\n\n\t\t// Restore that revision as the current draft \u2014 draft-only staging,\n\t\t// live columns untouched, so updated_at must not move.\n\t\tconst restored = await runtime.handleRevisionRestore(targetRevision!.id, \"author-1\");\n\t\texpect(restored.success).toBe(true);\n\t\texpect(restored.data!.item.updatedAt).toBe(publishedUpdatedAt);\n\t\texpect(restored.data!.item.draftRevisionId).not.toBeNull();\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/draft-save-updated-at.test.ts",
+      "blob": "8f0fcda3cd44d54e506f24c2ff9e4151a9e25709",
+      "line": 323,
+      "title": "collections without revision support keep the bump-on-write behavior",
+      "sourceDeclaration": "it(\"collections without revision support keep the bump-on-write behavior\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"plain_posts\", {\n\t\t\tdata: { title: \"Plain\" },\n\t\t\tslug: \"plain\",\n\t\t});\n\t\tconst id = created.data!.item.id;\n\t\tconst beforeUpdate = created.data!.item.updatedAt;\n\n\t\tconst updated = await runtime.handleContentUpdate(\"plain_posts\", id, {\n\t\t\tdata: { title: \"Plain (edited)\" },\n\t\t});\n\t\texpect(updated.success).toBe(true);\n\t\texpect(Date.parse(updated.data!.item.updatedAt)).toBeGreaterThanOrEqual(\n\t\t\tDate.parse(beforeUpdate),\n\t\t);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/unit/api/publish-revision-cas.test.ts",
+      "blob": "65c753fa496fafcdfa141955b2548388e1260a62",
+      "line": 46,
+      "title": "publishes only the expected revision and returns the next _rev",
+      "sourceDeclaration": "it(\"publishes only the expected revision and returns the next _rev\", async () => {\n\t\tconst created = await createPublished();\n\t\tconst saved = await runtime.handleContentUpdate(\"post\", created.item.id, {\n\t\t\tdata: { title: \"Approved\" },\n\t\t\t_rev: created._rev,\n\t\t});\n\t\texpect(saved.success).toBe(true);\n\n\t\tconst published = await runtime.handleContentPublish(\"post\", created.item.id, {\n\t\t\t_rev: saved.data!._rev,\n\t\t});\n\n\t\texpect(published.success).toBe(true);\n\t\texpect(published.data!.item.data.title).toBe(\"Approved\");\n\t\texpect(published.data!._rev).toBeTruthy();\n\t\texpect(published.data!._rev).not.toBe(saved.data!._rev);\n\n\t\tconst nextSave = await runtime.handleContentUpdate(\"post\", created.item.id, {\n\t\t\tdata: { title: \"Next\" },\n\t\t\t_rev: published.data!._rev,\n\t\t});\n\t\texpect(nextSave.success).toBe(true);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/unit/api/publish-revision-cas.test.ts",
+      "blob": "65c753fa496fafcdfa141955b2548388e1260a62",
+      "line": 70,
+      "title": "rejects an approved revision after a newer draft save without mutating live or draft",
+      "sourceDeclaration": "it(\"rejects an approved revision after a newer draft save without mutating live or draft\", async () => {\n\t\tconst created = await createPublished();\n\t\tconst approved = await runtime.handleContentUpdate(\"post\", created.item.id, {\n\t\t\tdata: { title: \"Approved A\" },\n\t\t\t_rev: created._rev,\n\t\t});\n\t\tconst newer = await runtime.handleContentUpdate(\"post\", created.item.id, {\n\t\t\tdata: { title: \"Writer B\" },\n\t\t\t_rev: approved.data!._rev,\n\t\t\tskipRevision: true,\n\t\t});\n\t\texpect(newer.data!.item.draftRevisionId).not.toBe(approved.data!.item.draftRevisionId);\n\t\tconst before = await runtime.handleContentGet(\"post\", created.item.id);\n\n\t\tconst stale = await runtime.handleContentPublish(\"post\", created.item.id, {\n\t\t\t_rev: approved.data!._rev,\n\t\t});\n\t\tconst after = await runtime.handleContentGet(\"post\", created.item.id);\n\n\t\texpect(stale).toMatchObject({ success: false, error: { code: \"CONFLICT\" } });\n\t\texpect(after.data!.item.liveRevisionId).toBe(before.data!.item.liveRevisionId);\n\t\texpect(after.data!.item.draftRevisionId).toBe(before.data!.item.draftRevisionId);\n\t\texpect(after.data!._rev).toBe(newer.data!._rev);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/unit/api/publish-revision-cas.test.ts",
+      "blob": "65c753fa496fafcdfa141955b2548388e1260a62",
+      "line": 95,
+      "title": "allows only one of two concurrent publishes for the same _rev",
+      "sourceDeclaration": "it(\"allows only one of two concurrent publishes for the same _rev\", async () => {\n\t\tconst created = await createPublished();\n\t\tconst saved = await runtime.handleContentUpdate(\"post\", created.item.id, {\n\t\t\tdata: { title: \"Approved\" },\n\t\t\t_rev: created._rev,\n\t\t});\n\n\t\tconst results = await Promise.all([\n\t\t\truntime.handleContentPublish(\"post\", created.item.id, { _rev: saved.data!._rev }),\n\t\t\truntime.handleContentPublish(\"post\", created.item.id, { _rev: saved.data!._rev }),\n\t\t]);\n\n\t\texpect(results.filter((result) => result.success)).toHaveLength(1);\n\t\texpect(\n\t\t\tresults.filter((result) => !result.success && result.error.code === \"CONFLICT\"),\n\t\t).toHaveLength(1);\n\t\tconst published = await runtime.handleContentGet(\"post\", created.item.id);\n\t\texpect(published.data!.item.data.title).toBe(\"Approved\");\n\t\texpect(published.data!.item.draftRevisionId).toBeNull();\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/unit/api/publish-revision-cas.test.ts",
+      "blob": "65c753fa496fafcdfa141955b2548388e1260a62",
+      "line": 116,
+      "title": "supports conditional publish for a collection without revisions",
+      "sourceDeclaration": "it(\"supports conditional publish for a collection without revisions\", async () => {\n\t\tconst registry = new SchemaRegistry(db);\n\t\tawait registry.updateCollection(\"post\", { supports: [] });\n\t\tconst created = await createPublished();\n\n\t\tconst published = await runtime.handleContentPublish(\"post\", created.item.id, {\n\t\t\t_rev: created._rev,\n\t\t});\n\n\t\texpect(published.success).toBe(true);\n\t\texpect(published.data!._rev).not.toBe(created._rev);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/unit/api/publish-revision-cas.test.ts",
+      "blob": "65c753fa496fafcdfa141955b2548388e1260a62",
+      "line": 129,
+      "title": "applies the same revision condition to unpublish and discard-draft",
+      "sourceDeclaration": "it(\"applies the same revision condition to unpublish and discard-draft\", async () => {\n\t\tconst created = await createPublished();\n\t\tconst saved = await runtime.handleContentUpdate(\"post\", created.item.id, {\n\t\t\tdata: { title: \"Pending\" },\n\t\t\t_rev: created._rev,\n\t\t});\n\n\t\tconst staleUnpublish = await runtime.handleContentUnpublish(\"post\", created.item.id, {\n\t\t\t_rev: created._rev,\n\t\t});\n\t\tconst staleDiscard = await runtime.handleContentDiscardDraft(\"post\", created.item.id, {\n\t\t\t_rev: created._rev,\n\t\t});\n\t\texpect(staleUnpublish).toMatchObject({ success: false, error: { code: \"CONFLICT\" } });\n\t\texpect(staleDiscard).toMatchObject({ success: false, error: { code: \"CONFLICT\" } });\n\n\t\tconst discarded = await runtime.handleContentDiscardDraft(\"post\", created.item.id, {\n\t\t\t_rev: saved.data!._rev,\n\t\t});\n\t\texpect(discarded.success).toBe(true);\n\t\texpect(discarded.data!._rev).not.toBe(saved.data!._rev);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/unit/api/publish-revision-cas.test.ts",
+      "blob": "65c753fa496fafcdfa141955b2548388e1260a62",
+      "line": 152,
+      "title": "keeps revisionless publish calls backward compatible",
+      "sourceDeclaration": "it(\"keeps revisionless publish calls backward compatible\", async () => {\n\t\tconst created = await createPublished();\n\t\tconst published = await runtime.handleContentPublish(\"post\", created.item.id);\n\n\t\texpect(published.success).toBe(true);\n\t\texpect(published.data!._rev).toBeTruthy();\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/unit/api/publish-revision-cas.test.ts",
+      "blob": "65c753fa496fafcdfa141955b2548388e1260a62",
+      "line": 160,
+      "title": "rejects malformed revision conditions as conflicts",
+      "sourceDeclaration": "it(\"rejects malformed revision conditions as conflicts\", async () => {\n\t\tconst created = await createPublished();\n\t\tconst published = await runtime.handleContentPublish(\"post\", created.item.id, {\n\t\t\t_rev: \"not-a-revision\",\n\t\t});\n\n\t\texpect(published).toMatchObject({ success: false, error: { code: \"CONFLICT\" } });\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/atomic-publication.test.ts",
+      "blob": "6fe90e11b17a7d0e334644191f199b0541095b20",
+      "line": 29,
+      "title": "rolls back every promoted column when the staged slug constraint rejects",
+      "sourceDeclaration": "it(\"rolls back every promoted column when the staged slug constraint rejects\", async () => {\n\t\tawait contentRepo.create(createPostFixture({ slug: \"taken\", status: \"published\" }));\n\t\tconst post = await contentRepo.create(createPostFixture({ slug: \"initial\" }));\n\t\tconst draft = await revisionRepo.create({\n\t\t\tcollection: \"post\",\n\t\t\tentryId: post.id,\n\t\t\tdata: { ...post.data, title: \"Final title\", _slug: \"taken\" },\n\t\t});\n\t\tawait contentRepo.setDraftRevision(\"post\", post.id, draft.id);\n\t\tconst scheduledAt = new Date(Date.now() - 60_000).toISOString();\n\t\tawait contentRepo.update(\"post\", post.id, {\n\t\t\tstatus: \"scheduled\",\n\t\t\tscheduledAt,\n\t\t});\n\t\tconst before = await contentRepo.findById(\"post\", post.id);\n\t\tvi.spyOn(contentRepo, \"findBySlugIncludingTrashed\").mockResolvedValueOnce(null);\n\n\t\tawait expect(\n\t\t\tcontentRepo.publish(\"post\", post.id, scheduledAt, true, scheduledAt),\n\t\t).rejects.toThrow();\n\n\t\tconst after = await contentRepo.findById(\"post\", post.id);\n\t\texpect(after).toEqual(before);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/atomic-publication.test.ts",
+      "blob": "6fe90e11b17a7d0e334644191f199b0541095b20",
+      "line": 54,
+      "title": "never leaves a dangling pointer when staging races guarded revision deletion",
+      "sourceDeclaration": "it(\"never leaves a dangling pointer when staging races guarded revision deletion\", async () => {\n\t\tconst post = await contentRepo.create(createPostFixture());\n\t\tconst revision = await revisionRepo.create({\n\t\t\tcollection: \"post\",\n\t\t\tentryId: post.id,\n\t\t\tdata: { ...post.data, title: \"Racing draft\" },\n\t\t});\n\t\tconst expected = await contentRepo.findById(\"post\", post.id);\n\t\texpect(expected).not.toBeNull();\n\n\t\tawait Promise.allSettled([\n\t\t\tcontentRepo.replaceDraftRevision(\"post\", post.id, revision.id, expected!),\n\t\t\trevisionRepo.deleteIfUnreferenced(\"post\", post.id, revision.id),\n\t\t]);\n\n\t\tconst [after, storedRevision] = await Promise.all([\n\t\t\tcontentRepo.findById(\"post\", post.id),\n\t\t\trevisionRepo.findById(revision.id),\n\t\t]);\n\t\tif (after?.draftRevisionId === revision.id) {\n\t\t\texpect(storedRevision).not.toBeNull();\n\t\t} else {\n\t\t\texpect(storedRevision).toBeNull();\n\t\t}\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/revision-retention.test.ts",
+      "blob": "d3320579a0a1352fe78fe63799c8123c91c939a6",
+      "line": 46,
+      "title": "bounds history through request-lifetime work without a scheduled tick",
+      "sourceDeclaration": "it(\"bounds history through request-lifetime work without a scheduled tick\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\tdata: { title: \"Initial\" },\n\t\t\tslug: \"bounded-history\",\n\t\t});\n\t\texpect(created.success).toBe(true);\n\t\tconst entryId = created.data!.item.id;\n\t\tconst revisions = new RevisionRepository(db);\n\n\t\tfor (let index = 0; index < 50; index++) {\n\t\t\tawait revisions.create({\n\t\t\t\tcollection: \"posts\",\n\t\t\t\tentryId,\n\t\t\t\tdata: { title: `Version ${index}` },\n\t\t\t});\n\t\t}\n\n\t\tconst saved = await runtime.handleContentUpdate(\"posts\", entryId, {\n\t\t\tdata: { title: \"Version 50\" },\n\t\t});\n\t\texpect(saved.success).toBe(true);\n\t\texpect(await revisions.countByEntry(\"posts\", entryId)).toBe(51);\n\n\t\tawait flushDeferred();\n\n\t\texpect(await revisions.countByEntry(\"posts\", entryId)).toBe(50);\n\t});"
+    }
+  ],
+  "adaptations": [
+    "Node test runner and runner-only Vitest matcher bridge",
+    "Host fixture replaces Astro Runtime; existing CMS calls establish pre-implementation baseline; unsupported lifecycle calls expose success:false with actual stored row receipt so failures occur at preserved assertions",
+    "SchemaRegistry constructor is adapted from Kysely to trusted CmsDatabase",
+    "Source _rev token translated to version/updatedAt host precondition; expected expressions unchanged",
+    "Atomic dialect fixture builds general-status content layout independently of migration coverage; exact createPostFixture is retained",
+    "Before lifecycle exists, direct-repository fixtures seed/read actual SQL revision rows, expose unsupported staging as false, and leave publication row unchanged; product repositories replace these baseline adapters when available",
+    "Request-lifetime after hook collects actual product work for retention; baseline update creates no history so retained51 assertion fails"
+  ],
+  "omissions": [
+    "PostgreSQL atomic-publication dialect dataset",
+    "draft-save-updated-at direct repository mock/race declarations",
+    "publish-revision-cas Astro route authorization declarations",
+    "PostgreSQL and remote D1",
+    "scheduling/edit locks/localization (separate owners/followup)"
+  ],
+  "baseline": {
+    "commit": "064ea7b prior19-testcheckpoint",
+    "command": "node --test tests/lifecycle-upstream.test.ts",
+    "tests": 22,
+    "pass": 2,
+    "assertionFailures": 20,
+    "nonAssertionFailures": 0,
+    "log": "/tmp/cms-lifecycle-expanded-red.log"
+  },
+  "fixture": {
+    "path": "packages/core/tests/utils/fixtures.ts",
+    "blob": "70801b7bffcf977674c67f554ad289a6e4bf27b2",
+    "declaration": "createPostFixture"
+  },
+  "green": {
+    "command": "node --test tests/lifecycle-upstream.test.ts",
+    "tests": 22,
+    "pass": 22,
+    "fail": 0,
+    "log": "/tmp/cms-lifecycle-checkpoint-green.log",
+    "typeCheck": "svelte-check0errors0warnings"
+  },
+  "normalizationDeclarations": [
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/blank-array-field.test.ts",
+      "blob": "9aaf7f6d494d7ab965bca5d73f12240714d93985",
+      "line": 38,
+      "title": "saves blank strings as null on create",
+      "sourceDeclaration": "it(\"saves blank strings as null on create\", async () => {\n\t\tconst result = await runtime.handleContentCreate(\"posts\", {\n\t\t\tslug: \"p1\",\n\t\t\tdata: { title: \"p1\", body: \"\", tags: \"  \", links: \"\" },\n\t\t});\n\n\t\texpect(result.success).toBe(true);\n\t\tif (!result.success) return;\n\t\tconst row = await sql<Record<string, unknown>>`\n\t\t\tSELECT body, tags, links FROM ${sql.ref(\"ec_posts\")} WHERE id = ${result.data.item.id}\n\t\t`.execute(ctx.db);\n\t\texpect(row.rows[0]).toEqual({ body: null, tags: null, links: null });\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/blank-array-field.test.ts",
+      "blob": "9aaf7f6d494d7ab965bca5d73f12240714d93985",
+      "line": 53,
+      "title": "saves an entry read back with a stored blank body",
+      "sourceDeclaration": "it.skipIf(dialect === \"postgres\")(\n\t\t\"saves an entry read back with a stored blank body\",\n\t\tasync () => {\n\t\t\tconst created = await runtime.handleContentCreate(\"posts\", {\n\t\t\t\tslug: \"p2\",\n\t\t\t\tdata: { title: \"p2\" },\n\t\t\t});\n\t\t\tif (!created.success) throw new Error(\"setup failed\");\n\t\t\tconst { id } = created.data.item;\n\t\t\tawait sql`UPDATE ${sql.ref(\"ec_posts\")} SET body = ${\"\"} WHERE id = ${id}`.execute(ctx.db);\n\n\t\t\tconst loaded = await runtime.handleContentGet(\"posts\", id);\n\t\t\tif (!loaded.success) throw new Error(\"load failed\");\n\t\t\texpect(loaded.data.item.data.body).toBe(\"\");\n\n\t\t\tconst updated = await runtime.handleContentUpdate(\"posts\", id, {\n\t\t\t\tdata: { ...loaded.data.item.data, title: \"p2 edited\" },\n\t\t\t});\n\n\t\t\texpect(updated.success).toBe(true);\n\t\t\tif (!updated.success) return;\n\t\t\texpect(updated.data.item.data.body).toBeNull();\n\t\t},\n\t);"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/blank-array-field.test.ts",
+      "blob": "9aaf7f6d494d7ab965bca5d73f12240714d93985",
+      "line": 78,
+      "title": "still rejects a blank body on a required field",
+      "sourceDeclaration": "it(\"still rejects a blank body on a required field\", async () => {\n\t\tconst registry = new SchemaRegistry(ctx.db);\n\t\tawait registry.createCollection({ slug: \"pages\", label: \"Pages\" });\n\t\tawait registry.createField(\"pages\", {\n\t\t\tslug: \"body\",\n\t\t\tlabel: \"Body\",\n\t\t\ttype: \"portableText\",\n\t\t\trequired: true,\n\t\t});\n\n\t\tconst result = await runtime.handleContentCreate(\"pages\", {\n\t\t\tslug: \"p3\",\n\t\t\tdata: { body: \"\" },\n\t\t});\n\n\t\texpect(result.success).toBe(false);\n\t\tif (result.success) return;\n\t\texpect(result.error.details?.issues).toContainEqual(\n\t\t\texpect.objectContaining({ path: \"body\", code: \"required\" }),\n\t\t);\n\t});"
+    },
+    {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "path": "packages/core/tests/integration/content/deleted-field-stranded-entry.test.ts",
+      "blob": "5bf2f2952c807e3491d769e74ca8354dc88dd961",
+      "line": 92,
+      "title": "publishes the existing draft without another save",
+      "sourceDeclaration": "it(\"publishes the existing draft without another save\", async () => {\n\t\t\tconst before = await new ContentRepository(ctx.db).findById(\"posts\", id);\n\t\t\tconst draftRevisionId = before?.draftRevisionId;\n\t\t\texpect(draftRevisionId).toBeTruthy();\n\n\t\t\tconst published = await runtime.handleContentPublish(\"posts\", id);\n\t\t\texpect(published.success).toBe(true);\n\t\t\tif (!published.success) return;\n\t\t\texpect(published.data.item.status).toBe(\"published\");\n\t\t\texpect(published.data.item.liveRevisionId).toBe(draftRevisionId);\n\t\t\texpect(published.data.item.draftRevisionId).toBeNull();\n\t\t\texpect(Object.hasOwn(published.data.item.data as Record<string, unknown>, \"hits\")).toBe(\n\t\t\t\tfalse,\n\t\t\t);\n\n\t\t\tconst revision = await new RevisionRepository(ctx.db).findById(draftRevisionId!);\n\t\t\texpect(revision?.data).toEqual({ title: \"p1 draft\", hits: 43 });\n\t\t});"
+    }
+  ],
+  "normalizationAdaptations": [
+    "SQLite dialect branch of complete skipIf declaration retained; PostgreSQL not credited",
+    "Source published creation setup uses actual native create-draft then publish; expected source declaration assertions unchanged"
+  ],
+  "normalizationRunnerAdaptations": [
+    "Vitest.toEqual ignores ordinary-object prototypes; the Node adapter recursively compares null-prototype SQL rows as plain objects while retaining every key and value. Source assertion expressions and class instances are unchanged."
+  ],
+  "publicationPermissionDeclarations": [
+    {
+      "path": "packages/core/tests/integration/mcp/publish-update-fields.test.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "blob": "e564605b36164bde42f621c6ed4038ba420ce607",
+      "line": 60,
+      "title": "backdates publishedAt from %s",
+      "sourceDeclaration": "it.each([\"2020-01-15T10:00:00.000Z\", \"2020-01-15T10:00Z\", \"2020-01-15T11:00+01:00\"])(\n\t\t\"backdates publishedAt from %s\",\n\t\tasync (publishedAt) => {\n\t\t\tconst created = await harness.client.callTool({\n\t\t\t\tname: \"content_create\",\n\t\t\t\targuments: { collection: \"post\", data: { title: \"Imported post\" } },\n\t\t\t});\n\t\t\tconst id = extractJson<{ item: { id: string } }>(created).item.id;\n\n\t\t\tconst PAST = \"2020-01-15T10:00:00.000Z\";\n\t\t\tconst result = await harness.client.callTool({\n\t\t\t\tname: \"content_publish\",\n\t\t\t\targuments: {\n\t\t\t\t\tcollection: \"post\",\n\t\t\t\t\tid,\n\t\t\t\t\tpublishedAt,\n\t\t\t\t\t_rev: await currentRev(harness.client, \"post\", id),\n\t\t\t\t},\n\t\t\t});\n\t\t\texpect(result.isError, extractText(result)).toBeFalsy();\n\n\t\t\tconst item = extractJson<{ item: { publishedAt: string | null; status: string } }>(\n\t\t\t\tresult,\n\t\t\t).item;\n\t\t\texpect(item.status).toBe(\"published\");\n\t\t\t// Repository normalizes to ISO so we compare via Date round-trip.\n\t\t\texpect(new Date(item.publishedAt!).toISOString()).toBe(PAST);\n\t\t},\n\t);"
+    },
+    {
+      "path": "packages/core/tests/integration/mcp/publish-update-fields.test.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "blob": "e564605b36164bde42f621c6ed4038ba420ce607",
+      "line": 171,
+      "title": "requires content:publish_any to set publishedAt \u2014 AUTHOR (owner) is denied",
+      "sourceDeclaration": "it(\"requires content:publish_any to set publishedAt \u2014 AUTHOR (owner) is denied\", async () => {\n\t\t// Switch to AUTHOR role: AUTHOR has publish_own but NOT publish_any.\n\t\tawait harness.cleanup();\n\t\tharness = await connectMcpHarness({ db, userId: AUTHOR_ID, userRole: Role.AUTHOR });\n\n\t\tconst created = await harness.client.callTool({\n\t\t\tname: \"content_create\",\n\t\t\targuments: { collection: \"post\", data: { title: \"Author's post\" } },\n\t\t});\n\t\tconst id = extractJson<{ item: { id: string } }>(created).item.id;\n\n\t\t// Plain publish (no publishedAt) \u2014 AUTHOR can do this for their own item.\n\t\tconst ok = await harness.client.callTool({\n\t\t\tname: \"content_publish\",\n\t\t\targuments: { collection: \"post\", id, _rev: await currentRev(harness.client, \"post\", id) },\n\t\t});\n\t\texpect(ok.isError, extractText(ok)).toBeFalsy();\n\n\t\t// Publish with backdated publishedAt \u2014 AUTHOR is denied even on their\n\t\t// own item, because backdating overwrites historical record.\n\t\tconst denied = await harness.client.callTool({\n\t\t\tname: \"content_publish\",\n\t\t\targuments: {\n\t\t\t\tcollection: \"post\",\n\t\t\t\tid,\n\t\t\t\tpublishedAt: \"2020-01-01T00:00:00.000Z\",\n\t\t\t\t_rev: await currentRev(harness.client, \"post\", id),\n\t\t\t},\n\t\t});\n\t\texpect(isErrorResult(denied)).toBe(true);\n\t\texpect(extractText(denied)).toContain(\"INSUFFICIENT_PERMISSIONS\");\n\t\texpect(extractText(denied).toLowerCase()).toContain(\"publish_any\");\n\t});"
+    },
+    {
+      "path": "packages/core/tests/integration/mcp/publish-update-fields.test.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "blob": "e564605b36164bde42f621c6ed4038ba420ce607",
+      "line": 205,
+      "title": "AUTHOR cannot publish someone else's item with publishedAt (ownership denies first)",
+      "sourceDeclaration": "it(\"AUTHOR cannot publish someone else's item with publishedAt (ownership denies first)\", async () => {\n\t\t// First create as ADMIN so the item belongs to a different user.\n\t\tconst created = await harness.client.callTool({\n\t\t\tname: \"content_create\",\n\t\t\targuments: { collection: \"post\", data: { title: \"Admin's post\" } },\n\t\t});\n\t\tconst id = extractJson<{ item: { id: string } }>(created).item.id;\n\n\t\t// Switch to AUTHOR \u2014 now they're not the owner.\n\t\tawait harness.cleanup();\n\t\tharness = await connectMcpHarness({ db, userId: AUTHOR_ID, userRole: Role.AUTHOR });\n\n\t\tconst denied = await harness.client.callTool({\n\t\t\tname: \"content_publish\",\n\t\t\targuments: {\n\t\t\t\tcollection: \"post\",\n\t\t\t\tid,\n\t\t\t\tpublishedAt: \"2020-01-01T00:00:00.000Z\",\n\t\t\t\t_rev: await currentRev(harness.client, \"post\", id),\n\t\t\t},\n\t\t});\n\t\t// Whichever check fires first (ownership or publishedAt gate), the\n\t\t// denial is the correct outcome. We pin the structural failure shape,\n\t\t// not the specific code, because either order is correct.\n\t\texpect(isErrorResult(denied)).toBe(true);\n\t\texpect(extractText(denied)).toContain(\"INSUFFICIENT_PERMISSIONS\");\n\t});"
+    }
+  ],
+  "publicationPermissionAdaptations": [
+    "Complete pinned MCP callback/dataset expressions retained; MCP tool client replaced by registered native Kit HTTP calls with persisted source-role sessions. Source JSON success object is projected from actual native receipt and follow-up lifecycle query.",
+    "Native error envelope is mapped to MCP isError/text framing; source permission diagnostic must be emitted by actual new lifecycle handler, not synthesized by fixtures.",
+    "Source connect/disconnect uses existing persisted fixture sessions; database/content ownership remains actual SQL. No MCP protocol or complete catalog credit."
+  ],
+  "publicationPermissionBaseline": {
+    "initial": "Legacy createContent omitted slug semantics differed from source; initial1pass4assertion-fail was an incomplete fixture and is superseded.",
+    "corrected": "Native createLifecycleContent calls actual lifecycle service automatic slug creation. With both publish permissions and publication-date guard withheld:1pass4ERR_ASSERTION,0setup failures,5cases includingall3datasets.",
+    "log": "/tmp/cms-lifecycle-publish-permissions-corrected-red.log"
+  },
+  "canonicalIntegration": {
+    "serviceCheckpoint": "41d1185f0120e31cfe988d56b2ca03ba89c45f4f",
+    "publishedProviderCheckpoint": "cf93405356c4bf6e1a75d7cfb4b78abd9a576523",
+    "canonicalProductOriginal": "52ea37a7f5da9a3e5a82a53960d5ba3e46fd035c",
+    "manualFixtureDDL": false,
+    "supplementalRequirements": "tests/lifecycle-canonical-storage.test.ts uses actual lifecycle services after fresh/v4 canonical startup on Node SQLite/local workerd D1, with rollback and persistent reopen; zero copied declaration credit.",
+    "nativeRegression": "French unenhanced workflow actions originally dropped locale query on POST; preserved regression failed at issue-display assertion before action fix.",
+    "publishedReviewCheckpoint": {
+      "lifecyclePR": "https://github.com/sveltery/cms/pull/45",
+      "serviceHead": "58e3d3cc380930d7707b41066975ae93469920b7",
+      "integratedTree": "121ed6c81b71c23ca247e695922a4973e7c74ce6",
+      "providerHead": "d8a4f8d7d2bbc8f45c87c4c49baa68349f9a73e0",
+      "canonicalImplementationDiff": "zero",
+      "jointRun": {
+        "cases": 70,
+        "passed": 70,
+        "log": "/tmp/cms-lifecycle-final42-all-source-startup.log",
+        "credit": "26 unchanged Node source declarations;10 original adapter regressions;34 source-scoped/supplemental migration cases"
+      },
+      "realStorageRun": {
+        "cases": 4,
+        "passed": 4,
+        "log": "/tmp/cms-lifecycle-final42-canonical-storage.log",
+        "credit": "original supplemental only"
+      },
+      "bootstrap": {
+        "exitCode": 0,
+        "policyEntries": 188,
+        "checkerErrors": 0,
+        "checkerWarnings": 0,
+        "serviceCases": 693,
+        "productionCases": 119,
+        "nodePackageCases": 11,
+        "bothBuilds": true,
+        "log": "/tmp/cms-lifecycle-final42-bootstrap.log"
+      },
+      "status": "Published draft; renewed proof required after further provider review fixes/actual approved merge; secured hosted browsers and final lifecycle review pending",
+      "hostedCI": {
+        "run": 37070381349,
+        "head": "3c01872a1bb4d58eb8697b759c2363c4b71e6234",
+        "validation": "success",
+        "browser": "failure",
+        "defaultBrowserPassed": 52,
+        "defaultBrowserFailed": 1,
+        "failure": "tests/browser/collection-cursor.spec.ts:135 subscriber next-page denial status absent",
+        "nodeBrowserStage": "not reached",
+        "classification": "unclassified historical gate failure; no final-head eligibility"
+      }
+    },
+    "handoffAudit": {
+      "head": "3c01872a1bb4d58eb8697b759c2363c4b71e6234",
+      "command": "node --test tests/lifecycle-upstream.test.ts tests/lifecycle-normalization-upstream.test.ts tests/lifecycle-adapter-regressions.test.ts",
+      "passed": 36,
+      "failed": 0,
+      "log": "/tmp/cms-lifecycle-handoff-audit-tests.log",
+      "credit": "26 existing source declarations and10 original adapter cases; zero new source assertion credit"
+    },
+    "provenanceCheck": {
+      "command": "node scripts/check-lifecycle-source-ports.mjs /path/to/emdash",
+      "completeDeclarations": 29,
+      "copiedSourceHashes": 19,
+      "hostSubstitutions": 7,
+      "verifiedAuthorityBlobs": 34,
+      "localImplementationTransformationsChecked": false,
+      "productTestsRun": 0
+    }
+  },
+  "adapterRegressionEvidence": {
+    "originalTestCommit": "383828b",
+    "publishedRebasedTestCommit": "8a39430",
+    "cases": 10,
+    "baselinePass": 4,
+    "baselineAssertionFailures": 6,
+    "setupFailures": 0,
+    "baselineLog": "/tmp/cms-lifecycle-adapter-expanded-red.log",
+    "greenPassed": 10,
+    "copiedSourceCredit": 0,
+    "nativeRestoreAdaptation": "Optional repository precondition checks after refetch and binds original token in atomic SQL WHERE; omission preserves source behavior"
+  }
+}
