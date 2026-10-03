@@ -35,7 +35,7 @@ async function seedInvalidForeignKey(database:CmsDatabase, target:'Node'|'D1', s
 async function rejectsUnchanged(database:CmsDatabase, create:()=>Promise<void>, race:boolean) {
   if (!race) await create();
   let before=await databaseSnapshot(database); let batches=0;
-  const subject={...database,async atomicBatch(statements:CompiledQuery[]) {
+  const subject={...database,async atomicBatch(statements:readonly CompiledQuery[]) {
     batches++;
     if (race) {await create(); before=await databaseSnapshot(database);}
     return database.atomicBatch(statements);
@@ -75,7 +75,7 @@ for (const target of ['Node','D1'] as const) {
     }
 
     test(`${target}: ${stage} content-like operator trigger names occupy a separate namespace`, async () => {
-      for (const name of ['ec_reserved','EC_RESERVED']) {
+      for (const name of stage==='fresh' ? ['ec_reserved','EC_RESERVED'] : ['ec_reserved','EC_RESERVED','ec_post','EC_POST']) {
         const storage=await schemaAdminStorage(target);
         try {
           const database=storage.database;
@@ -87,7 +87,7 @@ for (const target of ['Node','D1'] as const) {
           await assert.doesNotReject(()=>migrateCms(database));
           assert.deepEqual((await databaseSnapshot(database)).objects.filter(row=>row.type==='trigger'),
             before.objects.filter(row=>row.type==='trigger'));
-          await new SchemaRegistry(database).createCollection({slug:'reserved',label:'Reserved'});
+          if (name.toLowerCase()!=='ec_post') await new SchemaRegistry(database).createCollection({slug:'reserved',label:'Reserved'});
           await sql`INSERT INTO operator_notes VALUES ('retained')`.execute(database.db);
           assert.equal((await sql<{note:string}>`SELECT note FROM operator_notes`.execute(database.db)).rows[0]?.note,'operator-retained');
           await assert.doesNotReject(()=>migrateCms(database));
