@@ -1,0 +1,29 @@
+import {defineConfig} from 'vitest/config';
+import {resolve,dirname} from 'node:path';
+const root=import.meta.dirname;
+const frozen=resolve(root,'parity/emdash/blocks/source-tests');
+export default defineConfig({plugins:[{
+  name:'immutable-blocks-native-host',enforce:'pre',
+  resolveId(specifier,importer) {
+    if(!importer?.startsWith(frozen)||!specifier.startsWith('.'))return;
+    const target=resolve(dirname(importer),specifier);
+    if(target.includes('/packages/core/tests/utils/test-db.js'))return resolve(root,'tests/helpers/blocks-source-database.ts');
+    if(target.includes('/packages/core/tests/utils/mcp-runtime.js'))return resolve(root,'tests/helpers/blocks-source-runtime.ts');
+    if(target.includes('/packages/core/src/schema/block-type-registry.js'))return resolve(root,'src/lib/server/blocks/registry.ts');
+    if(target.includes('/packages/core/src/schema/block-type-contract.js'))return resolve(root,'src/lib/server/blocks/contract.ts');
+    if(target.includes('/packages/core/src/schema/block-types.js'))return resolve(root,'src/lib/server/schema/block-types.ts');
+    if(target.includes('/packages/core/src/schema/registry.js'))return resolve(root,'tests/helpers/blocks-source-schema.ts');
+    if(target.includes('/packages/core/src/database/repositories/content.js'))return resolve(root,'tests/helpers/blocks-source-content.ts');
+    if(target.includes('/packages/core/src/api/errors.js'))return resolve(root,'src/lib/server/blocks/errors.ts');
+    if(target.includes('/packages/core/src/i18n/config.js'))return resolve(root,'src/lib/server/taxonomies/upstream/i18n/config.ts');
+    if(target.includes('/packages/core/src/components/blocks.js'))return resolve(root,'src/lib/blocks/render.ts');
+    if(target.includes('/packages/admin/src/lib/block-field-state.js'))return resolve(root,'src/lib/blocks/state.ts');
+  },
+  transform(code,id){if(id.startsWith(frozen)&&id.endsWith('.test.ts'))return {code:code.replaceAll('_emdash_','_cms_'),map:null};}
+}],test:{fileParallelism:false,maxWorkers:1,include:[
+  'parity/emdash/blocks/source-tests/packages/core/tests/unit/schema/block-type-contract.test.ts',
+  'parity/emdash/blocks/source-tests/packages/core/tests/integration/schema/{block-type-registry,blocks-field-schema}.test.ts',
+  'parity/emdash/blocks/source-tests/packages/core/tests/integration/content/blocks-content.test.ts',
+  'parity/emdash/blocks/source-tests/packages/core/tests/unit/components/blocks-renderer.test.ts',
+  'parity/emdash/blocks/source-tests/packages/admin/tests/lib/block-field-state.test.ts'
+]}});
