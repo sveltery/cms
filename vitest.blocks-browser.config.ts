@@ -12,6 +12,6 @@ export default defineConfig({
  }}],
  resolve:{alias:{$lib:resolve(root,'src/lib'),'$app/paths':resolve(root,'tests/helpers/blocks-kit-paths.ts'),'$app/navigation':resolve(root,'tests/helpers/blocks-kit-navigation.ts')}},
  oxc:{jsx:{runtime:'automatic'}},
- test:{include:['parity/emdash/blocks/source-tests/packages/admin/tests/components/{BlocksField,BlockTypeList,FieldEditor.blocks}.test.tsx','tests/blocks-native-widgets.browser.test.ts'],
+ test:{include:['parity/emdash/blocks/source-tests/packages/admin/tests/components/{BlocksField,BlockTypeList,FieldEditor.blocks}.test.tsx','tests/blocks-native-widgets.browser.ts'],
   browser:{enabled:true,provider:playwright({launchOptions:{chromiumSandbox:true,timeout:30000}}),instances:[{browser:'chromium'}]}}
 });

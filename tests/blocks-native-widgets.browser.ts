@@ -46,6 +46,8 @@ describe('Native reusable block controls',()=>{
   (screen.getByRole('button',{name:'Choose from media library'}).element() as HTMLButtonElement).click();
   await expect.element(screen.getByRole('button',{name:'new.png'})).toBeInTheDocument();
   (screen.getByRole('button',{name:'new.png'}).element() as HTMLButtonElement).click();
+  await expect.element(screen.getByRole('button',{name:'Use selected image'})).toBeEnabled();
+  (screen.getByRole('button',{name:'Use selected image'}).element() as HTMLButtonElement).click();
   expect(onchange).toHaveBeenLastCalledWith(expect.objectContaining({provider:'local',id:'asset',darkVariant:dark}));
  });
  it('retains selected image focal point placeholders and provider metadata',async()=>{
@@ -56,6 +58,8 @@ describe('Native reusable block controls',()=>{
   (screen.getByRole('button',{name:'Choose from media library'}).element() as HTMLButtonElement).click();
   await expect.element(screen.getByRole('button',{name:'new.png'})).toBeInTheDocument();
   (screen.getByRole('button',{name:'new.png'}).element() as HTMLButtonElement).click();
+  await expect.element(screen.getByRole('button',{name:'Use selected image'})).toBeEnabled();
+  (screen.getByRole('button',{name:'Use selected image'}).element() as HTMLButtonElement).click();
   expect(onchange).toHaveBeenLastCalledWith(expect.objectContaining({provider:'local',id:'asset',focalX:0.2,focalY:0.8,blurhash:'full-hash',dominantColor:'#112233',meta:{custom:'kept',storageKey:'new.png'}}));
  });
  it('keeps a legacy primary URL when assigning its dark image',async()=>{

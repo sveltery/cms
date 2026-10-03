@@ -38,7 +38,7 @@ for (const target of ['Node','D1'] as const) {
       await installPrefix(database); await seed(database);
       const before=await snapshot(database);
       await migrateCms(database); await migrateCms(database);
-      assert.equal(CMS_MIGRATION_VERSION,8);
+      assert.equal(CMS_MIGRATION_VERSION,10);
       const after=await snapshot(database);
       for (const table of before.tables) {
         if (table.name==='_cms_migrations') continue;
@@ -46,7 +46,7 @@ for (const target of ['Node','D1'] as const) {
         assert.deepEqual(rows,table.name==='_cms_collections' ? table.rows.map(row=>({...row,search_config:null})) : table.rows,table.name);
       }
       assert.equal(after.objects.find(object=>object.name==='ec_posts')!.sql,before.objects.find(object=>object.name==='ec_posts')!.sql);
-      assert.deepEqual((await database.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row=>row.version),[1,2,3,4,5,6,7,8]);
+      assert.deepEqual((await database.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute()).map(row=>row.version),[1,2,3,4,5,6,7,8,9,10]);
       await sql`DROP TABLE ec_posts`.execute(database.db);
       await assert.doesNotReject(()=>database.db.deleteFrom('_cms_collections').where('slug','=','posts').execute());
       assert.deepEqual(await database.db.selectFrom('_cms_fields').selectAll().execute(),[]);
