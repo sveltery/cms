@@ -240,3 +240,22 @@ credit. Separately, the reviewed UI successor passes six original UI cases,
 Cloudflare build/official dry deployment, all23 CF Source callbacks and seven
 real Worker cases. Public-Main integration and final hosted checks remain
 pending; the ordinary Git fetch currently returns a transport503.
+
+
+On draft PR78 head d45c40a, hosted run37149241663 completed the entire
+thirteen-phase normal gate and secured browser gate. Whole core128 and complete
+admin25 Source callbacks pass, with original fixtures and expectations intact;
+all are first-green with zero Source value-red causality. The official1243
+sandboxed browser also passed inherited Bulk14, Date30 and default/Node62 each.
+This historical head qualifies hosted445 installation and normal execution; it
+does not turn the retained failed local445 install into a pass or qualify a later
+repair automatically. The configured Codex review request returned the actual
+usage-limit receipt, with zero automated review success.
+
+Root review then found that SQL normalization could remove double quotes and
+collapse whitespace inside a locale literal. Six additional ordinary Node/raw
+D1 fixture requirements were committed first and reached true-versus-false
+readiness failures; the unchanged complete eight-case family passes after the
+first menu-owned single-quoted-literal repair. Shared canonical normalization,
+Source callbacks, descriptors, defaults and providers1–5 remain unchanged.
+Additional literal-context verification and final successor gates are pending.
