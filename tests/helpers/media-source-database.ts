@@ -5,11 +5,11 @@ import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
 import { openD1 } from '../../src/lib/server/database/d1.ts';
 import type { CmsDatabase } from '../../src/lib/server/database/contract.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
-import { mediaDatabase, mediaSchemaStatements } from '../../src/lib/server/media/schema.ts';
+import { mediaDatabase } from '../../src/lib/server/media/schema.ts';
 import type { Database } from '../../src/lib/server/media/source/database/types.ts';
 
-// Explicit fixture adaptation until contiguous provider9 is registered. This
-// source-repository evidence does not qualify canonical media startup.
+// Actual canonical providers1–9; public named development dependencies6–8
+// remain unapproved and require final own-only replay onto their approved main.
 export interface DialectTestContext {db:Kysely<Database>; database:CmsDatabase; dialect:string; worker?:Miniflare}
 const contexts = new WeakMap<Kysely<Database>,DialectTestContext>();
 export function describeEachDialect(title:string, callback:(dialect:string)=>void) {
@@ -23,7 +23,6 @@ export async function setupForDialect(dialect:string):Promise<DialectTestContext
   })() : openSqlite(':memory:');
   try {
     await migrateCms(database);
-    await database.atomicBatch(mediaSchemaStatements(database));
     const ctx={database,db:mediaDatabase(database),dialect,worker};contexts.set(ctx.db,ctx);return ctx;
   } catch (cause) { await database.close();await worker?.dispose();throw cause; }
 }

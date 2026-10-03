@@ -1,6 +1,5 @@
-/** Native media consumers subscribe their actual cached projections. */
+import {invalidateSiteSettingsCache} from '../settings/index.ts';
+/** Source consumers invalidate cached settings after a successful media write. */
 let revision=0;
-const listeners=new Set<()=>void>();
 export function mediaCacheRevision() {return revision;}
-export function invalidateMediaCache() {revision++;for(const listener of listeners) listener();}
-export function onMediaChange(listener:()=>void) {listeners.add(listener);return()=>listeners.delete(listener);}
+export function invalidateMediaCache() {revision++;invalidateSiteSettingsCache();}
