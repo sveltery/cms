@@ -1159,6 +1159,49 @@
       },
       "boundary": "Actual SQLite and Miniflare D1; persisted trusted test sessions and retained built Kit server; no ordinary WebAuthn browser credit",
       "sourceDeclarationCredit": 0
+    },
+    {
+      "id": "source-routes-287-diagnostic",
+      "stage": "complete selected route/storage/repository checkpoint",
+      "command": "node node_modules/vitest/vitest.mjs run --config /tmp/media-vitest-existing-deps.config.mts --reporter=json",
+      "result": {
+        "completeFiles": 29,
+        "expandedExecutions": 287,
+        "pass": 287,
+        "fail": 0,
+        "skip": 0
+      },
+      "boundary": "Actual canonical1\u20139 SQLite/Miniflare D1 with unchanged source callback bodies and original mocks. Temporary host resolves already-installed exact crypto1.0.1 from public SE1 node_modules; no install/policy change, no normal-check/bootstrap qualification. Scope excludes full media/plugin/MCP/deployment/ME3 claims.",
+      "runtimeBreakdown": {
+        "taggedActualSQLite": 28,
+        "taggedActualD1": 28,
+        "otherNodeSourceCasesIncludingSQLFixturesAndMocks": 231
+      },
+      "sourceAssertionRedCredit": 0
+    },
+    {
+      "id": "native-upload-green-8-diagnostic",
+      "command": "node node_modules/vite/bin/vite.js build --config /tmp/media-vite-existing-deps.config.mts; node --test tests/production/media-library-native.test.ts",
+      "result": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "skip": 0
+      },
+      "boundary": "Actual native built SvelteKit HTTP, actual SQLite/Miniflare D1, real temporary filesystem/persisted trusted test sessions/restart. Diagnostic build reuses exact crypto1.0.1/webauthn1.0.0/toolkit5.0.1; not normal bootstrap or ordinary browser credit.",
+      "fixtureCorrection": "Supplemental colour expectation wrongly assumed hex; corrected to exact pinned rgb(255,255,255) for the white fixture. No copied source assertion changed.",
+      "sourceDeclarationCredit": 0
+    },
+    {
+      "id": "browser-basic-four-pre-ui",
+      "stage": "before UI implementation",
+      "command": "node node_modules/@playwright/test/cli.js test tests/browser/media-library-source.spec.ts",
+      "result": {
+        "executedCallbacks": 0,
+        "actualAssertionFailures": 0,
+        "setupFailure": "nonempty-base server cannot import unlinked crypto dependency"
+      },
+      "boundary": "Four unchanged full source callbacks and two full helpers ported before UI. Local setup failure excluded; secured hosted baseline pending."
     }
   ],
   "inventoryCounts": {

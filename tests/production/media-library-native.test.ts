@@ -8,12 +8,12 @@ import {schemaAdminRemotes} from '../helpers/schema-admin-remotes.ts';
 const png=Uint8Array.from(Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jhRkAAAAASUVORK5CYII=','base64'));
 async function fixture(target:'Node'|'D1',enabled=true){
  const directory=await mkdtemp(join(tmpdir(),'cms-media-library-'));
- const app=await schemaAdminRemotes(target,enabled,{configureRequest(event){event.platform={env:{SVELTERY_MEDIA_DIRECTORY:directory}};}});
+ const app=await schemaAdminRemotes(target,enabled,{configureRequest(event){event.platform={...event.platform,env:{...event.platform?.env,SVELTERY_MEDIA_DIRECTORY:directory}} as NonNullable<typeof event.platform>;}});
  const upload=async(session:string|null='admin',filename='photo.png')=>{
   const body=new FormData();body.set('file',new File([png],filename,{type:'image/png'}));
   return app.request('/api/media',session,{method:'POST',headers:{origin:app.origin},body});
  };
- return {...app,directory,upload,async close(){await app.close();await rm(directory,{recursive:true,force:true});}};
+ return {...app,directory,upload,get database(){return app.database;},async close(){await app.close();await rm(directory,{recursive:true,force:true});}};
 }
 for(const target of ['Node','D1'] as const){
  test(`${target}: native media authentication, role and origin gates precede upload parsing`,async()=>{
@@ -34,7 +34,7 @@ for(const target of ['Node','D1'] as const){
    const response=await h.upload();assert.equal(response.status,201);
    const item=(await response.json()).data.item;
    assert.equal(item.filename,'photo.png');assert.equal(item.width,1);assert.equal(item.height,1);
-   assert.ok(item.blurhash);assert.match(item.dominantColor,/^#/);
+   assert.ok(item.blurhash);assert.equal(item.dominantColor,'rgb(255,255,255)');
    assert.deepEqual(new Uint8Array(await readFile(join(h.directory,item.storageKey))),png);
    const duplicate=await h.upload();assert.equal(duplicate.status,200);assert.equal((await duplicate.json()).data.item.id,item.id);
    await h.restart();

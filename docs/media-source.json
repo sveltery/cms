@@ -510,6 +510,232 @@
       "transformations": [
         "MIT/source header only; whole pure settings module"
       ]
+    },
+    {
+      "sourcePath": "packages/core/src/api/parse.ts",
+      "blob": "46b250ce60d82f37fc30d006f3e8ed166c2227b0",
+      "sourceSha256": "8b8271292e8d8d5b0d39701f28a5820e45e2a89ddc159e0f4ab6da7dd484735a",
+      "productPath": "src/lib/server/media/source/api/parse.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_"
+      ],
+      "productSha256": "cf930f00a8f57f3c20ddecb169a0a91261cf06a47b20945bd940d11c3bb05ed1"
+    },
+    {
+      "sourcePath": "packages/auth/src/types.ts",
+      "blob": "e5fc2ec92b399079aca96f08621b3d042a41fb15",
+      "sourceSha256": "2764667f5a2552eda6f401ea63bfdccda5ef30508b71adaa049257fe733de7f5",
+      "productPath": "src/lib/server/media/source/auth/types.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete pure source auth types; no live token infrastructure claim"
+      ],
+      "productSha256": "7411f77d10223059f42c37b12bf856497f50226111ef890d23309bc5af023e52"
+    },
+    {
+      "sourcePath": "packages/auth/src/rbac.ts",
+      "blob": "55eda9bdfd9aa92b3d40ba45ebda6daa00d20dbb",
+      "sourceSha256": "1d5663c430cb02e934eafeca27c512007112dcc0c975d6a84ad3c73c9343d85e",
+      "productPath": "src/lib/server/media/source/auth/rbac.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete pure source role/scope predicates; no live token infrastructure claim",
+        "Node24 parameter property lowered after super; original public mutable code preserved",
+        "Ownership parameter type admits source repository null authorId; runtime value and complete function bodies unchanged"
+      ],
+      "productSha256": "1acb4dcf36d99685591e13c840eb8e5075daec90df06c4a3706e508625fc120b"
+    },
+    {
+      "sourcePath": "packages/core/src/api/authorize.ts",
+      "blob": "5d1858d3403c921e2becbc8b358cff714420c36a",
+      "sourceSha256": "e4d26d9a2f05224c7289bbb2f2f40aac45582fbb449ece115d85da44750a8e95",
+      "productPath": "src/lib/server/media/source/api/authorize.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "auth package import mapped to pinned pure source role/scope predicates",
+        "Ownership parameter type admits source repository null authorId; runtime value and complete function bodies unchanged"
+      ],
+      "productSha256": "146175ed5507a862f6c5e2658406b7dfc1b5c74858826c6dc665781a2a0448cb"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media.ts",
+      "blob": "75ce161c623422b8063279b1bd5b805da12e3378",
+      "sourceSha256": "1662963ba0d2a1a690f72428ab9c652f698ae76b60d46a667849ccbfb683efe8",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "56354beb3edc9d8e06ced56b55ef55d7d50f2ef2643e44578511094a42e81ff0"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/[id].ts",
+      "blob": "10eb11226766fb429015ce2709c3d897449d83af",
+      "sourceSha256": "4ce8a3348ba23c2a2d1990ed916d6c15db914f08d6fe3788eac288786927c2d5",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/[id].ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "f631faef901be695e7ddf80aa6763c7246fbb5d2e55ec040716cd6bf7d4984c1"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/[id]/confirm.ts",
+      "blob": "abf0019357af8b88a188896c76d15a767b9cf83e",
+      "sourceSha256": "6ba25eab9ccbf96734a56bafa7565a369b46f32c0f468d0f70c04127e06cbca5",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/[id]/confirm.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "61dda3ff032aff892aa0f77c2716529d9cb98686497494e97848614ac8997e95"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/[id]/upload.ts",
+      "blob": "37a575cba2987b4c07226a2e826a71ab9e01a27a",
+      "sourceSha256": "dd0217446bcd312d00ef4d758bc7382e8ea205f191506212e0da26e3ed6e3def",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/[id]/upload.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "1639ec150ce6d8498a9922d55aab9cd3dd961d74d4d3f2f278f14b7ffe9321bf"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/[id]/replace.ts",
+      "blob": "1bc0f213c0fa2b85624605548721f8cc11fd6f73",
+      "sourceSha256": "7c80b3662ebca1ee9faaff30aa7b279ee6fd2b888f6ddafbab5681a19c675c78",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/[id]/replace.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "061efd1d4a9b23038e080ac95ef1c27ff450c3fa46bb6512ff698012628db1e7"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/upload-url.ts",
+      "blob": "1983eed1079362d5bd8a86abb0b8e75fa14df401",
+      "sourceSha256": "f76b61d26b20ec6cb308b0210046ea811ceb7fff874cdf33cb60f4b09bb48f6f",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/upload-url.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "5eb287c85018d771d876bde4ca2dbce6e1b6e86752ead5387ed5f3a12a55fe97"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/folders/index.ts",
+      "blob": "ef1e496910b5bfcf42f9c399a34aac13b0f8a769",
+      "sourceSha256": "3c8107bb3cc48e125ca80ca470a1bd2079ab072ba9b698a36e096dc4654d83d5",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/folders/index.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "46d8a8e99fc05605fbc786ffdd1ecb6e9f0506acf163182addc200ada34f077c"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/folders/[id].ts",
+      "blob": "a0e230ec5dad37d14438c87e073683cb0079e95a",
+      "sourceSha256": "e7e50d2d1620dc6b5c8553e430ba19100ff402ef21d6f9904f7eb59e691ef7ff",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/folders/[id].ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "25b4000e7b8f95815f561e67dd52f3dbf317bb610828c92f8e300f63db0000b3"
+    },
+    {
+      "sourcePath": "packages/core/src/astro/routes/api/media/asset/[id]/[filename].ts",
+      "blob": "a99bf4c584c750ca725d74d2bb1d2dcb175c961d",
+      "sourceSha256": "ca041b7aaa0fb9cf71dfe456b1c01ff7a250b5eb060f9a3d452e0e1c7683f2c2",
+      "productPath": "src/lib/server/media/source/astro/routes/api/media/asset/[id]/[filename].ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete route callback bodies and helper functions retained; native trusted context replaces Astro types",
+        "pure usage read import maps to explicit unavailable boundary until actual ME3 provider11; zero usage credit"
+      ],
+      "productSha256": "9c4ac4b9d8e22dfdc1b4504cd06bdc8a1e01eef49a14074934faa2e68d16e05e"
+    },
+    {
+      "sourcePath": "packages/auth/src/tokens.ts",
+      "blob": "c96ef3c7ad026bfd31117f2db2ce0378d570dc4f",
+      "sourceSha256": "9699e9636b3329812bc3743987ba4e36a5abab1a21dcf0dfffe03bf877bc215d",
+      "productPath": "src/lib/server/media/source/auth/tokens.ts",
+      "transformations": [
+        "relative runtime .js imports become .ts; system namespace _cms_",
+        "complete pure token/scope utilities; no live PAT or MCP infrastructure claim"
+      ],
+      "productSha256": "dbd59bcf699291efd9a1cafc076e4aa7b9d8fc12e2f61aefdc0e807d9a26c463"
+    },
+    {
+      "sourcePath": "packages/core/src/emdash-runtime.ts",
+      "blob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+      "sourceSha256": "7954be3d12857ff307e9d2b15846662814f092e49807bcfb3b188a8f2ae847fc",
+      "productPath": "src/lib/server/media/runtime.ts",
+      "sourceSymbols": [
+        "handleMediaUpdate",
+        "handleMediaReplaceMetadata",
+        "handleMediaDelete"
+      ],
+      "transformations": [
+        "Complete selected class method bodies retained verbatim; native class composes source db/storage and real settings cache invalidation",
+        "Other native methods delegate real pure source handlers; plugin lifecycle hooks and usage engine explicitly incomplete"
+      ],
+      "productSha256": "abf044d3a5d188415565f93c54240aa343f7159c4c9c2e158e66cb9dc24871d2"
+    },
+    {
+      "sourcePath": "packages/core/src/plugins/types.ts",
+      "blob": "4c70d4438aebb76eb711482a8ed1e312b452fe1a",
+      "sourceSha256": "89a8ec1e885481dafd1bca969ad4da8a085d240f1071adcb16b02a2d89958e3b",
+      "productPath": "src/lib/server/media/source/plugins/types.ts",
+      "sourceSymbols": [
+        "PaginatedResult",
+        "MediaItem",
+        "MediaBytes",
+        "MediaMetadataPatch",
+        "MediaListOptions",
+        "MediaAccess"
+      ],
+      "transformations": [
+        "AST-selected complete declarations with exact bodies and imported type closure; no live plugin infrastructure claim"
+      ],
+      "productSha256": "c50262ba9314ff0b1f1aaa2da0e6ed70b864a90127dfb95096321aefdf4760d7"
+    },
+    {
+      "sourcePath": "packages/core/src/plugins/media.ts",
+      "blob": "ce0e20b9637daccde6fb90276844b34aef87f9c3",
+      "sourceSha256": "a36e06942ede5526d990316ee49edde1a9bb1b21787a645c62454951437508c6",
+      "productPath": "src/lib/server/media/source/plugins/media.ts",
+      "sourceSymbols": [
+        "mediaUrl",
+        "toPluginMediaItem"
+      ],
+      "transformations": [
+        "AST-selected complete declarations with exact bodies and imported type closure; no live plugin infrastructure claim"
+      ],
+      "productSha256": "57c2b06afed8bf1d984663c9f3f1e5d1627915bd2deb2a8740abfde5153e0254"
+    },
+    {
+      "sourcePath": "packages/core/src/plugins/context.ts",
+      "blob": "ee05129cc8b217ec64f96e92a412947712fc3473",
+      "sourceSha256": "09b8e2784d0aed1d21527ba74a0cd5a03d7c64d1a956ca35bf8b6f3eede77747",
+      "productPath": "src/lib/server/media/source/plugins/context.ts",
+      "sourceSymbols": [
+        "createMediaAccess"
+      ],
+      "transformations": [
+        "AST-selected complete declarations with exact bodies and imported type closure; no live plugin infrastructure claim"
+      ],
+      "productSha256": "8f5563389fefee57f7216752f0d5e4b2b403477c7e6fdfdd1a7018a52aae0529"
     }
   ]
 }

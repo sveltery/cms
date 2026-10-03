@@ -12,6 +12,7 @@ import type { Database } from '../../src/lib/server/media/source/database/types.
 // remain unapproved and require final own-only replay onto their approved main.
 export interface DialectTestContext {db:Kysely<Database>; database:CmsDatabase; dialect:string; worker?:Miniflare}
 const contexts = new WeakMap<Kysely<Database>,DialectTestContext>();
+export function mediaSourceDatabase(db:Kysely<Database>):CmsDatabase {const ctx=contexts.get(db);if(!ctx)throw new Error("Unknown media database");return ctx.database;}
 export function describeEachDialect(title:string, callback:(dialect:string)=>void) {
   for (const dialect of ['sqlite','d1']) describe(`${title} [actual ${dialect}]`,()=>callback(dialect));
 }

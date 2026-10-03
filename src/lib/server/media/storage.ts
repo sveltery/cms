@@ -12,7 +12,9 @@ export async function requestMediaStorage(event:RequestEvent):Promise<Storage|un
     const {R2Storage}=await import('./r2.ts');
     return new R2Storage(bucket as import('@cloudflare/workers-types').R2Bucket,setting('SVELTERY_MEDIA_PUBLIC_URL'));
   }
-  const directory=setting('SVELTERY_MEDIA_DIRECTORY');
+  const explicitDirectory=setting('SVELTERY_MEDIA_DIRECTORY');
+  const databasePath=setting('SVELTERY_DATABASE_PATH');
+  const directory=explicitDirectory ?? (databasePath && databasePath!==':memory:' ? (await import('node:path')).join((await import('node:path')).dirname(databasePath),'media'):undefined);
   if(directory) {
     const {LocalStorage}=await import('./source/storage/local.ts');
     return new LocalStorage({directory,baseUrl:`${event.locals.cmsRuntime?.basePath ?? ''}/_emdash/api/media/file`});

@@ -6,9 +6,12 @@ const vendor=resolve(checkout,'src/lib/server/media/source');
 export default defineConfig({ plugins:[{
   name:'immutable-media-source-host', enforce:'pre',
   resolveId(specifier,importer) {
+    if (specifier==='@emdash-cms/auth') return resolve(vendor,'auth/index.ts');
     if (specifier==='#node-sqlite') return resolve(checkout,'src/lib/server/database/node-sqlite-compat.ts');
     if (!importer?.startsWith(frozen) || !specifier.startsWith('.')) return;
     const target=resolve(dirname(importer),specifier);
+    if (target===resolve(frozen,'src/schema/registry.js')) return resolve(checkout,'tests/helpers/media-source-registry.ts');
+    if (target===resolve(frozen,'tests/utils/image-fixtures.js')) return resolve(checkout,'parity/emdash/media/source-fixtures/image-fixtures.ts');
     if (target===resolve(frozen,'tests/utils/test-db.js')) return resolve(checkout,'tests/helpers/media-source-database.ts');
     if (target.startsWith(frozen+'/src/')) return resolve(vendor,target.slice((frozen+'/src/').length).replace(/\.js$/,'.ts'));
   },

@@ -1,0 +1,91 @@
+// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
+// Immutable EmDash1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; source packages/core/src/api/authorize.ts; blob 5d1858d3403c921e2becbc8b358cff714420c36a.
+/**
+ * Authorization helpers for API routes
+ *
+ * Thin wrappers around @emdash-cms/auth RBAC that return HTTP responses.
+ * Auth middleware handles authentication; these handle authorization.
+ */
+
+import type { Permission, RoleLevel } from "../auth/index.ts";
+import { hasPermission, canActOnOwn, hasScope } from "../auth/index.ts";
+
+import { apiError } from "./error.ts";
+
+interface UserLike {
+	id: string;
+	role: RoleLevel;
+}
+
+export function canReadMediaUsageCount(
+	user: UserLike | null | undefined,
+	tokenScopes: string[] | undefined,
+): boolean {
+	return (
+		hasPermission(user, "content:read_drafts") && (!tokenScopes || hasScope(tokenScopes, "admin"))
+	);
+}
+
+/**
+ * Check if user has a permission. Returns a 401/403 Response if not, or null if authorized.
+ *
+ * Usage:
+ * ```ts
+ * const denied = requirePerm(user, "schema:manage");
+ * if (denied) return denied;
+ * ```
+ */
+export function requirePerm(
+	user: UserLike | null | undefined,
+	permission: Permission,
+): Response | null {
+	if (!user) {
+		return apiError("UNAUTHORIZED", "Authentication required", 401);
+	}
+	if (!hasPermission(user, permission)) {
+		return apiError("FORBIDDEN", "Insufficient permissions", 403);
+	}
+	return null;
+}
+
+/**
+ * Check if user can act on a resource, considering ownership.
+ * Returns a 401/403 Response if not, or null if authorized.
+ *
+ * Usage:
+ * ```ts
+ * const denied = requireOwnerPerm(user, item.authorId, "content:edit_own", "content:edit_any");
+ * if (denied) return denied;
+ * ```
+ */
+export function requireOwnerPerm(
+	user: UserLike | null | undefined,
+	ownerId: string | null,
+	ownPermission: Permission,
+	anyPermission: Permission,
+): Response | null {
+	if (!user) {
+		return apiError("UNAUTHORIZED", "Authentication required", 401);
+	}
+	if (!canActOnOwn(user, ownerId, ownPermission, anyPermission)) {
+		return apiError("FORBIDDEN", "Insufficient permissions", 403);
+	}
+	return null;
+}
+
+/**
+ * Like {@link requirePerm}, but authorized when the user has any of
+ * `permissions`.
+ */
+export function requireAnyPerm(
+	user: UserLike | null | undefined,
+	permissions: readonly Permission[],
+): Response | null {
+	if (!user) {
+		return apiError("UNAUTHORIZED", "Authentication required", 401);
+	}
+	if (!permissions.some((permission) => hasPermission(user, permission))) {
+		return apiError("FORBIDDEN", "Insufficient permissions", 403);
+	}
+	return null;
+}
