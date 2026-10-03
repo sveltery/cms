@@ -25,10 +25,10 @@ for (const target of ['Node SQLite', 'raw D1'] as const) {
         });
         await database.atomicBatch([
           ...statements.map(statement => sql.raw(statement).compile(database.db)),
-          sql`ALTER TABLE _cms_collections ADD COLUMN comments_enabled INTEGER DEFAULT 0`.compile(database.db),
-          sql.raw(`ALTER TABLE _cms_collections ADD COLUMN comments_moderation TEXT DEFAULT '${variant === 'collection default case' ? 'FIRST_TIME' : 'first_time'}'`).compile(database.db),
-          sql`ALTER TABLE _cms_collections ADD COLUMN comments_closed_after_days INTEGER DEFAULT 90`.compile(database.db),
-          sql`ALTER TABLE _cms_collections ADD COLUMN comments_auto_approve_users INTEGER DEFAULT 1`.compile(database.db)
+          ...(variant === 'collection default case' ? [
+            sql`ALTER TABLE _cms_collections DROP COLUMN comments_moderation`.compile(database.db),
+            sql`ALTER TABLE _cms_collections ADD COLUMN comments_moderation TEXT DEFAULT 'FIRST_TIME'`.compile(database.db)
+          ] : [])
         ]);
         const before = (await sql`SELECT name, sql FROM sqlite_schema ORDER BY name`.execute(database.db)).rows;
         assert.equal(await commentsReady(database), variant === 'correct');
