@@ -48,6 +48,7 @@ for (const target of ['Node','D1'] as const) {
       const complete=(await sql<import('../src/lib/server/search/fts-ownership.ts').FtsCatalogueObject>`SELECT name,type,tbl_name,sql FROM sqlite_master WHERE substr(name,1,${'_cms_fts_notes_v3'.length}) = ${'_cms_fts_notes_v3'}`.execute(storage.database.db)).rows;
       assert.equal(complete.length,9);
       assert.equal(recognizeVersionedFtsOwner({...owner,id:collection.id,searchConfig:null},complete)?.objects.length,9);
+      await assert.doesNotReject(()=>migrateCms(storage.database));
     } finally {await storage.close();}
   });
 }
