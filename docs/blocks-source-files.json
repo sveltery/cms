@@ -2116,6 +2116,91 @@
         }
       ],
       "literalExpectCalls": 34
+    },
+    {
+      "path": "packages/core/tests/unit/request-context.test.ts",
+      "blob": "3eb80710e90fb1651eb3861d0cd818ab39a4cdfd",
+      "sha256": "bcec55302f12aa00c861a4dc4302c229f67d6cad43376cce7143e765b2096c51",
+      "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/unit/request-context.test.ts",
+      "state": "whole13 combined callbacks pass on existing Node context/cache/instrumentation baseline before optional-context adapter; zero causal-red credit",
+      "declarations": [
+        {
+          "title": "returns undefined outside any context",
+          "line": 6,
+          "callbackSha256": "98664ad4d9351c9399f1658793b62b8fd955be5027cc182da01be021593e105e"
+        },
+        {
+          "title": "returns context inside runWithContext",
+          "line": 10,
+          "callbackSha256": "f4d2cac1346e679abd85ccaf6ffef1244224d4d87d43f4a3a105edfecb664953"
+        },
+        {
+          "title": "returns undefined after runWithContext completes",
+          "line": 17,
+          "callbackSha256": "186932fd185d843228fcba9c5d7ed27122bf7ed31a1eb55938ab4d4a130390a0"
+        },
+        {
+          "title": "propagates through async boundaries",
+          "line": 22,
+          "callbackSha256": "17d470436c1b7556ec5e6852cec1fcb63e8b65aa5c70879fb3fa5f4454c7b0f9"
+        },
+        {
+          "title": "isolates concurrent contexts",
+          "line": 30,
+          "callbackSha256": "0596e8a54ec893c405f31db8a945fdc4f033544c432da7b91d6a5854983844bb"
+        },
+        {
+          "title": "includes preview info when set",
+          "line": 48,
+          "callbackSha256": "217c7eca792f27053bc6042aa2ebdabc360be496246a95ff1debdcfbe379418d"
+        },
+        {
+          "title": "includes db override when set",
+          "line": 60,
+          "callbackSha256": "b089d1b9c05d1b50a00d5fb9fdc5169fb81a4de78b342097f3c896ec833269ca"
+        },
+        {
+          "title": "db override is undefined when not set",
+          "line": 72,
+          "callbackSha256": "254a184c3aab9506b8c1ec8606cf1b497cd2039cd7b0c76940f956364c511298"
+        }
+      ],
+      "literalExpectCalls": 11
+    },
+    {
+      "path": "packages/core/tests/unit/metrics.test.ts",
+      "blob": "45d095f825aa8fb3ba6e10470641a5e3708c0f57",
+      "sha256": "c6fbc5c03782fc08e3bdedaaf52abe9fd094bd437d7f13fe2c855b89ee2d3798",
+      "copiedPath": "parity/emdash/blocks/source-tests/packages/core/tests/unit/metrics.test.ts",
+      "state": "whole13 combined callbacks pass on existing Node context/cache/instrumentation baseline before optional-context adapter; zero causal-red credit",
+      "declarations": [
+        {
+          "title": "counts queries and accumulates total duration",
+          "line": 26,
+          "callbackSha256": "9a893dcb9853dcb89b6a119552373c98e90e356d53d5da08e0282e074a94f0f4"
+        },
+        {
+          "title": "captures first and last query offsets",
+          "line": 38,
+          "callbackSha256": "85d462776b09f5937687f630fb2a0c1fe073dcfb82c91f2a659ec23339ca0ca3"
+        },
+        {
+          "title": "does nothing outside a request context",
+          "line": 51,
+          "callbackSha256": "18cd7e8a1a811d6b2c9d001f6c11ead08a3af6a6318c3cddac03d1b5aec42eb2"
+        },
+        {
+          "title": "counts misses on first lookup and hits on subsequent lookups",
+          "line": 61,
+          "callbackSha256": "85d42fcddac5edc43f90ccaba7a2abab6ff2ec490d8f490a15cc05779365c326"
+        },
+        {
+          "title": "does not bump counters when no metrics on context",
+          "line": 73,
+          "callbackSha256": "ead95077f5b4b1d110f208107f2bfb4b41d5a1e793c8c277edc0a6b593fc5a06"
+        }
+      ],
+      "literalExpectCalls": 11
     }
   ],
   "sourceTestsRun": 0,

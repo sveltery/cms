@@ -5,11 +5,15 @@ const frozen=resolve(root,'parity/emdash/blocks/source-tests');
 export default defineConfig({plugins:[{
   name:'immutable-blocks-native-host',enforce:'pre',
   resolveId(specifier,importer) {
+    if(specifier==='#node-sqlite'&&importer?.startsWith(frozen))return resolve(root,'src/lib/server/database/node-sqlite-compat.ts');
     if(specifier==='cloudflare:test'&&importer?.startsWith(frozen))return resolve(root,'tests/helpers/blocks-source-worker-env.ts');
     if(!importer?.startsWith(frozen)||!specifier.startsWith('.'))return;
     const target=resolve(dirname(importer),specifier);
     if(target.includes('/packages/core/tests/utils/test-db.js'))return resolve(root,'tests/helpers/blocks-source-database.ts');
     if(target.includes('/packages/core/tests/utils/mcp-runtime.js'))return resolve(root,'tests/helpers/blocks-source-runtime.ts');
+    if(target.endsWith('/packages/core/src/request-cache.js'))return resolve(root,'src/lib/server/taxonomies/upstream/request-cache.ts');
+    if(target.endsWith('/packages/core/src/request-context.js'))return resolve(root,'src/lib/server/taxonomies/upstream/request-context.ts');
+    if(target.endsWith('/packages/core/src/database/instrumentation.js'))return resolve(root,'src/lib/server/taxonomies/upstream/database/instrumentation.ts');
     if(target.includes('/packages/core/src/schema/block-type-registry.js'))return resolve(root,'src/lib/server/blocks/registry.ts');
     if(target.includes('/packages/core/src/schema/block-type-contract.js'))return resolve(root,'src/lib/server/blocks/contract.ts');
     if(target.includes('/packages/core/src/schema/block-types.js'))return resolve(root,'src/lib/server/schema/block-types.ts');
@@ -32,6 +36,7 @@ export default defineConfig({plugins:[{
   transform(code,id){if(id.startsWith(frozen)&&id.endsWith('.ts'))return {code:code.replaceAll('_emdash_','_cms_'),map:null};}
 }],test:{globals:true,fileParallelism:false,maxWorkers:1,include:[
   'parity/emdash/blocks/source-tests/packages/core/tests/unit/schema/block-type-contract.test.ts',
+  'parity/emdash/blocks/source-tests/packages/core/tests/unit/{request-context,metrics}.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/integration/schema/{block-type-registry,blocks-field-schema}.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/integration/content/{blocks-content,media-field-validation,image-dark-variant-normalize,repeater-media-normalize}.test.ts',
   'parity/emdash/blocks/source-tests/packages/core/tests/unit/components/blocks-renderer.test.ts',

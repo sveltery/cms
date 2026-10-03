@@ -2,8 +2,8 @@
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "method": "Full pinned tracked packages reusable-block symbol roots plus complete transitive relative/local-package static and literal-dynamic import closure. Inventory only; cross-family dependencies have no inferred execution or feature credit.",
   "symbolExpression": "BlockType|BlockField|BLOCK_FIELD|BlocksField|BlockTypeList|block-types|block_types|normalizeBlocks|retiredTypes|allowedTypes|\"blocks\"",
-  "symbolRootFiles": 170,
-  "transitiveClosureFiles": 1077,
+  "symbolRootFiles": 172,
+  "transitiveClosureFiles": 1079,
   "externalImportSpecifiers": [
     "#api/authorize.js",
     "#api/error.js",
@@ -6853,7 +6853,7 @@
         }
       ],
       "testSelection": "parity/emdash/blocks/source-tests/packages/admin/tests/components/BlockTypeList.test.tsx",
-      "runtimeScope": "whole six callbacks passed in secured native Svelte component host on public269fefa; identity repair follows one completed Source assertion red; other baseline greens earn zero causal-red credit"
+      "runtimeScope": "Whole one callback passed in secured native Svelte component host at public269fefa; baseline green, zero causal-red credit."
     },
     {
       "path": "packages/admin/tests/components/BlocksField.test.tsx",
@@ -6880,7 +6880,7 @@
         }
       ],
       "testSelection": "parity/emdash/blocks/source-tests/packages/admin/tests/components/BlocksField.test.tsx",
-      "runtimeScope": "whole six callbacks passed in secured native Svelte component host on public269fefa; identity repair follows one completed Source assertion red; other baseline greens earn zero causal-red credit"
+      "runtimeScope": "Whole five callbacks passed in secured native Svelte component host at public269fefa after one completed Source identity assertion red; four baseline greens earn zero causal-red credit."
     },
     {
       "path": "packages/admin/tests/components/ContentEditor.test.tsx",
@@ -24909,6 +24909,44 @@
       "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
     },
     {
+      "path": "packages/core/tests/unit/metrics.test.ts",
+      "blob": "45d095f825aa8fb3ba6e10470641a5e3708c0f57",
+      "sha256": "c6fbc5c03782fc08e3bdedaaf52abe9fd094bd437d7f13fe2c855b89ee2d3798",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../src/database/instrumentation.js",
+          "path": "packages/core/src/database/instrumentation.ts"
+        },
+        {
+          "specifier": "../../src/request-cache.js",
+          "path": "packages/core/src/request-cache.ts"
+        },
+        {
+          "specifier": "../../src/request-context.js",
+          "path": "packages/core/src/request-context.ts"
+        }
+      ],
+      "testSelection": "parity/emdash/blocks/source-tests/packages/core/tests/unit/metrics.test.ts",
+      "runtimeScope": "whole13 combined callbacks pass on existing Node context/cache/instrumentation baseline before optional-context adapter; zero causal-red credit"
+    },
+    {
+      "path": "packages/core/tests/unit/request-context.test.ts",
+      "blob": "3eb80710e90fb1651eb3861d0cd818ab39a4cdfd",
+      "sha256": "bcec55302f12aa00c861a4dc4302c229f67d6cad43376cce7143e765b2096c51",
+      "closureRole": "reusable-block symbol root",
+      "inventoryOnly": true,
+      "dependencies": [
+        {
+          "specifier": "../../src/request-context.js",
+          "path": "packages/core/src/request-context.ts"
+        }
+      ],
+      "testSelection": "parity/emdash/blocks/source-tests/packages/core/tests/unit/request-context.test.ts",
+      "runtimeScope": "whole13 combined callbacks pass on existing Node context/cache/instrumentation baseline before optional-context adapter; zero causal-red credit"
+    },
+    {
       "path": "packages/core/tests/unit/runtime/manifest-build.test.ts",
       "blob": "91f8fddb1472831b984034daa9776edd31d98e07",
       "sha256": "e354115e3146c3438fc52583676415bea8a408dfb24344aa41e0e52ec23fda5f",
@@ -25379,7 +25417,7 @@
         }
       ],
       "testSelection": "parity/emdash/blocks/source-tests/packages/core/tests/workerd/block-type-registry-d1.test.ts",
-      "runtimeScope": "whole six callbacks passed through native Node Vitest and actual asynchronous workerd/D1 binding; baseline green, zero causal red or Cloudflare Vitest-pool parity credit"
+      "runtimeScope": "Whole 3 source callback(s) in this file passed through native Node Vitest and actual asynchronous workerd/D1 binding; all three files total six. Baseline green, zero causal red or Cloudflare Vitest-pool parity credit."
     },
     {
       "path": "packages/core/tests/workerd/blocks-content-d1.test.ts",
@@ -25422,7 +25460,7 @@
         }
       ],
       "testSelection": "parity/emdash/blocks/source-tests/packages/core/tests/workerd/blocks-content-d1.test.ts",
-      "runtimeScope": "whole six callbacks passed through native Node Vitest and actual asynchronous workerd/D1 binding; baseline green, zero causal red or Cloudflare Vitest-pool parity credit"
+      "runtimeScope": "Whole 2 source callback(s) in this file passed through native Node Vitest and actual asynchronous workerd/D1 binding; all three files total six. Baseline green, zero causal red or Cloudflare Vitest-pool parity credit."
     },
     {
       "path": "packages/core/tests/workerd/blocks-seed-d1.test.ts",
@@ -25461,7 +25499,7 @@
         }
       ],
       "testSelection": "parity/emdash/blocks/source-tests/packages/core/tests/workerd/blocks-seed-d1.test.ts",
-      "runtimeScope": "whole six callbacks passed through native Node Vitest and actual asynchronous workerd/D1 binding; baseline green, zero causal red or Cloudflare Vitest-pool parity credit"
+      "runtimeScope": "Whole 1 source callback(s) in this file passed through native Node Vitest and actual asynchronous workerd/D1 binding; all three files total six. Baseline green, zero causal red or Cloudflare Vitest-pool parity credit."
     },
     {
       "path": "packages/core/tests/workerd/d1-schema.ts",
