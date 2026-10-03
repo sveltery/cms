@@ -69,6 +69,40 @@ for (const target of ['Node','D1'] as const) {
       }
     });
 
+    if (version<5) test(`${target}: v${version} every not-yet-installed static name remains absent until the guarded upgrade`, async () => {
+      const reference=await schemaAdminStorage(target);
+      let absent:{name:string;type:string;sql:string}[];
+      try {
+        await prepare(reference.database,version);
+        const present=new Set((await sql<{name:string}>`SELECT name FROM sqlite_master`.execute(reference.database.db)).rows.map(row=>row.name));
+        const known=new Map<string,{name:string;type:string;sql:string}>();
+        for (const provider of CMS_MIGRATIONS) for (const object of await provider.expectedObjects(reference.database,0)) known.set(object.name,object);
+        absent=[...known.values()].filter(row=>!present.has(row.name));
+      } finally {await reference.close();}
+      for (const object of absent!) {
+        const storage=await schemaAdminStorage(target);
+        try {
+          const database=storage.database;await prepare(database,version);
+          await rejectRace(database,async () => {
+            if (object.type==='index') {
+              await sql`CREATE TABLE operator_notes (note TEXT)`.execute(database.db);
+              await sql`CREATE INDEX ${sql.id(object.name)} ON operator_notes (note)`.execute(database.db);
+            } else await sql.raw(object.sql).execute(database.db);
+          });
+        } finally {await storage.close();}
+      }
+    });
+
+    test(`${target}: v${version} intermediate metadata/lifecycle names cannot appear before startup writes`, async () => {
+      for (const name of ['_cms_fields_v3','_cms_collections_v3','_cms_lifecycle_ec_post_v5']) {
+        const storage=await schemaAdminStorage(target);
+        try {
+          const database=storage.database;await prepare(database,version);
+          await rejectRace(database,async () => {await sql`CREATE TABLE ${sql.id(name)} (retained TEXT)`.execute(database.db);});
+        } finally {await storage.close();}
+      }
+    });
+
     if (version>0) test(`${target}: v${version} raced marker rows and missing marker table reject unchanged`, async () => {
       for (const mode of ['rows','table']) {
         const storage=await schemaAdminStorage(target);
