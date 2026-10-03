@@ -40,8 +40,8 @@
     "sourceCommand": "pnpm exec vitest run --config vitest.cloudflare.config.ts",
     "sourceResult": "23 complete declarations pass; 84 immutable source assertion expressions; no altered source declarations",
     "provenanceCommand": "node scripts/check-cloudflare-source-ports.mjs /path/to/pinned-emdash",
-    "nativeCommand": "node --test tests/cloudflare-runtime.test.ts tests/cloudflare-atomic-batch.test.ts tests/cloudflare-hosting/runtime.test.ts",
-    "nativeResult": "12 supplemental checks pass; six native queue regressions added after independent review. Actual rebuilt Worker and final-head gates must rerun.",
+    "nativeCommand": "node --test tests/cloudflare-runtime.test.ts tests/cloudflare-atomic-batch.test.ts tests/cloudflare-error-cookie.test.ts tests/cloudflare-hosting/runtime.test.ts",
+    "nativeResult": "Native queue/runtime/lifetime focused checks pass; actual rebuilt Worker and final-head normal gates must rerun after error-cookie repair.",
     "sourceCreditLimits": "Nine guard declarations received no baseline red credit. Native tests and fixture repairs earn no source parity credit.",
     "nativeAtomicExtension": {
       "compatibilityId": "RT2-04",
@@ -53,6 +53,15 @@
       "sourceParityCredit": 0,
       "specificAcceptance": "not recorded",
       "proof": "docs/cloudflare-atomic-source-proof.json"
+    },
+    "nativeErrorCookieHandoff": {
+      "compatibilityId": "RT2-03",
+      "baselineCommit": "19f32e5",
+      "baselineResult": "Two genuine assertion failures after completed real D1 writes: actual Kit outer error cookie jar lacks bookmark. Normal exit 1; no setup failures.",
+      "repairCommit": "0baa1fe",
+      "result": "Both pass, preserving original exception, completed row, unrelated cookie, response body/header/status and exact bookmark flags with and without Kit public-setter invalidation. Success path retains serialized response headers.",
+      "sourceParityCredit": 0,
+      "scopeLimit": "Bounded throwing native runtime/actual Kit cookie-jar seam, not a whole-Worker error claim. Ordinary Kit route errors often return a Response."
     }
   },
   "incomplete": [

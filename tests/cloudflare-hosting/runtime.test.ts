@@ -101,6 +101,11 @@ test('built Cloudflare Worker migrates persistent D1 and enforces current sessio
     assert.equal(read.body.type, 'result');
     assert.equal(parse(read.body.data)._.data.headline, 'Persistent Worker draft');
     assert.equal(parse(read.body.data)._.authorId, 'worker-owner');
+    // An ordinary route error is returned by Kit as a Response; it must keep
+    // its status envelope and the completed read bookmark on the success handoff.
+    const missing = await request(worker, ids, 'getContent', cookie, { collection: 'notes', id: 'missing-worker-draft' });
+    assert.equal(missing.body.status, 404);
+    assert.match(missing.response.headers.get('set-cookie') ?? '', /__em_d1_bookmark=.+HttpOnly/i);
     operator = openD1(await worker.getD1Database('CMS_DB'));
     await operator.db.updateTable('_cms_auth_users').set({ role: Role.SUBSCRIBER }).where('id', '=', 'worker-owner').execute();
     const demoted = await request(worker, ids, 'getEditorManifest', cookie);
