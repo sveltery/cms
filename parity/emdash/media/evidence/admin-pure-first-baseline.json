@@ -1,0 +1,30 @@
+{
+  "kind": "whole-source-admin-pure-first-baseline",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "wholeFiles": [
+    "media-search.test.ts",
+    "media-pagination.test.ts",
+    "media-playback.test.ts",
+    "media-file-url.test.ts"
+  ],
+  "expandedExecutions": 17,
+  "pass": 17,
+  "fail": 0,
+  "causalAssertionRedCredit": 0,
+  "beforeProductSourceModuleCommit": true,
+  "sourceBodiesHelpersFixturesAssertionsDeadlinesUnchanged": true,
+  "rawSha256": "5ebb4a0447318140626c6985fe7c8e18b081236db677c420fca825b6cb40b085",
+  "rawBytes": 578,
+  "firstSecuredBrowserAttempt": {
+    "failure": "Chromium executable absent before any source callback; prior ordinary browser download403 retained.",
+    "executedCallbackCredit": 0,
+    "qualifiedAssertionReds": 0,
+    "rawSha256": "6b73aeef0865fb8407875d613551bb8a0cebe7cd1e5f63b6f1933e597ea22855",
+    "rawBytes": 14019
+  },
+  "limits": [
+    "Native English tagged fallback binding gives zero Lingui/catalogue/locale parity credit.",
+    "Fetch-spy and pure URL/playback request tests give zero actual provider deployment, usage12, server HTTP or media UI IO credit.",
+    "Complete upload/folders/thumbnail browser callbacks remain pending, not skipped or green."
+  ]
+}

@@ -38,6 +38,8 @@ jobs:
           DEBUG: pw:browser,pw:webserver
       - name: Complete pinned crop Canvas callbacks on secured Chromium
         run: pnpm test:media:browser
+      - name: Complete pinned admin media API callbacks on secured Chromium
+        run: pnpm test:media:admin
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
