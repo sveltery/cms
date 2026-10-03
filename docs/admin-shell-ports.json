@@ -1,0 +1,329 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "base": "1ef13cf1992e01d323e390829cc234f03aa5898a",
+  "scope": "UX1 native admin shell; source declarations and supplementary Svelte UI evidence tracked separately",
+  "sourceTests": [
+    {
+      "source": "packages/admin/tests/lib/sidebar-groups.test.ts",
+      "destination": "tests/source-port/admin/sidebar-groups.test.ts",
+      "sha256": "8e540c49f3c97a8764e400be7f84bc01cad69fd50f8ac3a930a9fb0636e72fe3",
+      "gitBlob": "0ee8140fc984c5e144aa97a65221ffe314744d51",
+      "execution": "9 whole declarations pass across two files; initial missing imports yield0sourceRed"
+    },
+    {
+      "source": "packages/admin/tests/lib/admin-version.test.ts",
+      "destination": "tests/source-port/admin/admin-version.test.ts",
+      "sha256": "bb452d638e0356b8f84d2651fc48e9015cd66e3a9790cf9294c59748f53f80de",
+      "gitBlob": "2970952fa39242ffa3b7ab9e4786ba976ac93190",
+      "execution": "9 whole declarations pass across two files; initial missing imports yield0sourceRed"
+    },
+    {
+      "source": "packages/admin/tests/components/NavFolderMenu.test.tsx",
+      "destination": "parity/emdash/admin-shell/NavFolderMenu.test.tsx.source",
+      "sha256": "fe104b41f2774b87827081e1034ae416ce83569750a0af3fda4feef7aa5a7e63",
+      "gitBlob": "10fefd3243fae957d28a0e4b3f51df82f117d42f",
+      "execution": "inventory only; original React/Kumo browser host unimplemented"
+    },
+    {
+      "source": "packages/admin/tests/components/Sidebar.test.tsx",
+      "destination": "parity/emdash/admin-shell/Sidebar.test.tsx.source",
+      "sha256": "982b5354db0cd2632378a11830b6e93d6549a627da03acf2dfb38968976bcc24",
+      "gitBlob": "e4e5fe243af62e7819e96952a5baa8caa333b892",
+      "execution": "inventory only; original React/Kumo browser host unimplemented"
+    },
+    {
+      "source": "packages/admin/tests/components/Shell.test.tsx",
+      "destination": "parity/emdash/admin-shell/Shell.test.tsx.source",
+      "sha256": "4d95850369c13f5d01bf7f2afc5161c0b3cd0472ffcd2792737f28614600480d",
+      "gitBlob": "8557cc327bb7d1eb6f14053c3af4cc04400f01e6",
+      "execution": "inventory only; original React/Kumo browser host unimplemented"
+    },
+    {
+      "source": "packages/admin/tests/components/Header.test.tsx",
+      "destination": "parity/emdash/admin-shell/Header.test.tsx.source",
+      "sha256": "f2794d15683acaaac66cb9e7c221eb8f90c8c4ab96df1a05034f6dd4e7a844ca",
+      "gitBlob": "36f18fd80f3776abb9cbbea7586cadbde43e9034",
+      "execution": "inventory only; original React/Kumo browser host unimplemented"
+    }
+  ],
+  "sourceDeclarationsExecuted": 9,
+  "genuineSourceAssertionReds": 0,
+  "sourceMIT": "notices/emdash-MIT.txt",
+  "status": "ready PR66; accepted bounded UX1-01/02/03/04; historical713 andead normal/secured gates passed; actual approved main integrated; combined-head checks/review and explicit merge approval pending; verified quota exhaustion uses standing user exception with zero configured-review pass",
+  "nativeTDD": {
+    "testCommit": "4c14c8970572e990b214f779921ec3cfd0d4426e",
+    "assertionReds": 6,
+    "baselineGreen": 1,
+    "focusedGreen": 7,
+    "storageIntegrationGreen": 5,
+    "registeredTransportGreen": 4,
+    "sourceCredit": 0
+  },
+  "ui": {
+    "repository": "sveltery/ui",
+    "pin": "72c6d10e8a00003d2b721a22e0ca8601c96e787d",
+    "tree": "b8d28a99ad803e1a3d3e3dea8966ae89b0e2b55f",
+    "privatePackageVersion": "0.0.0",
+    "sourceCopy": [
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/Card.svelte",
+        "destination": "src/lib/ui/vendor/sveltery/card/Card.svelte",
+        "sha256": "7fd4bd4f5fcf8fd46103d42cb45064df8eab9c4bac571aad09cb76dddf95dc40"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/CardAction.svelte",
+        "destination": "src/lib/ui/vendor/sveltery/card/CardAction.svelte",
+        "sha256": "7f908a51ab8f78f77dfc09bfef666fd87f0366519569d08e7e58b93fcf3f8116"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/CardContent.svelte",
+        "destination": "src/lib/ui/vendor/sveltery/card/CardContent.svelte",
+        "sha256": "7efd0ba983ccc94d7d49def9c2e523021bc740cd03c50b30e7a7a843b290662a"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/CardDescription.svelte",
+        "destination": "src/lib/ui/vendor/sveltery/card/CardDescription.svelte",
+        "sha256": "0fa3798c9be205d519d0b71317caf505d84b5d2b4a6c23809d61ef7a2b8c6276"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/CardFooter.svelte",
+        "destination": "src/lib/ui/vendor/sveltery/card/CardFooter.svelte",
+        "sha256": "09f1bdc41f188ff2d53d1c169857abc7621c84cd7225807d9f0905a403e7d05c"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/CardHeader.svelte",
+        "destination": "src/lib/ui/vendor/sveltery/card/CardHeader.svelte",
+        "sha256": "b4b059129014da6f947544b7830fd932e9f76e2b9e31361688758fc3be2d4ea5"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/CardTitle.svelte",
+        "destination": "src/lib/ui/vendor/sveltery/card/CardTitle.svelte",
+        "sha256": "10c629f7806b6e2922f2e395f9aee63a62ec19622fa99304164f66a438170558"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/index.ts",
+        "destination": "src/lib/ui/vendor/sveltery/card/index.ts",
+        "sha256": "e949e07e2cef1b1eb7a2847cb4e335a47e3bf787adb1875319422a139b5f6692"
+      },
+      {
+        "source": "apps/docs/registry/bases/base/ui/card/types.ts",
+        "destination": "src/lib/ui/vendor/sveltery/card/types.ts",
+        "sha256": "0b64559c8279a601d063414f669dee275e6ee70ec9362050d35c20a24143f462"
+      }
+    ],
+    "cardDOM": "23 complete paired Card callbacks pass at d14a9dc in normal hosted validate37102602980; imports only adapted, JSX/type factory host bridge; no causal source reds or EmDash source credit",
+    "sourceTestSHA256": "c44e5da062de4d3db65b0c7fe585ad892c8ee042ac08b64c7f0502b114e6e8e4",
+    "testHostAdaptations": [
+      "import-only paths",
+      "CMS jsx react-jsx compiler option for reference fixture",
+      "typed function-element factory bridge invokes React.createElement unchanged"
+    ],
+    "nodeEngineQualification": {
+      "jsdomVersion": "30.1.1",
+      "immutableSourceEngine": "^22.22.2 || ^24.15.0 || >=26.0.0",
+      "projectEngine": ">=24.15.0 <25",
+      "PMAuthorization": "UX1-03 explicitly accepted >=24.15.0 <25; full admin/UI scope remains incomplete",
+      "actualLocal": "24.19.0",
+      "actualHosted": "24.21.0",
+      "minimumBinaryRun": "unverified"
+    }
+  },
+  "hostedCheckpoints": [
+    {
+      "head": "b65e01e37f2c21d256da6ebdfc480993cfa67d9c",
+      "run": 37102201556,
+      "frozenDependencies": "340 entries passed policy/integrity",
+      "validate": "type host failed before Card callback execution",
+      "browser": "58 default + 58 Node secured passed"
+    },
+    {
+      "head": "d14a9dc7b4bb280fcb8e027c304549841fab0f1a",
+      "run": 37102602980,
+      "normalPassed": [
+        "frozen340 policy/integrity",
+        "checker0 errors0 warnings",
+        "service909",
+        "pinned43 including9ownhelpers",
+        "Card23",
+        "defaultbuild"
+      ],
+      "normalFailure": "production exact remote inventory missing new display query; inventory adaptation, zero source/product reds",
+      "browser": "57 passed, existing native hydration/client-navigation probe failed; unqualified"
+    },
+    {
+      "head": "de36280c6d58427369942f0f3723524d886c5491",
+      "run": 37103299730,
+      "normal": "all phases green: frozen340/checker0/service909/pinned43/Card23/production223/Node13/Cloudflare23+4/builds/package/drybundle",
+      "browser": "59 default+59 Node secured green",
+      "configuredReview": "two material P2 findings SSR and engine range; repaired final qualification pending"
+    },
+    {
+      "head": "58b448e0738d732ea3087acbe010fd0f5df0eb78",
+      "tree": "78cb4dca138fcb72214ae438b636b7d52bd11561",
+      "run": 37106591233,
+      "validateJob": 111156215350,
+      "normal": "SUCCESS: frozen340 policy/integrity, checker0, service974, pinned43, supplementaryCard23, production240, Node13, Cloudflare23+4, all builds/packages/dry bundle",
+      "browserJob": 111156215596,
+      "browser": "SUCCESS: sandboxed59 default+59 Node; no --no-sandbox flag",
+      "configuredReview": "https://github.com/sveltery/cms/pull/66#issuecomment-5966824135",
+      "configuredResult": "exact58 completed with no major issues",
+      "evidenceStatus": "historical prior-head qualification; new decision-document head gates/review pending"
+    }
+  ],
+  "reactiveNavigationTDD": {
+    "testCommit": "a9cd8a778792244e2dd4bd3152c830aa6ad936ce",
+    "sourceCredit": 0,
+    "genuineNativeAssertionReds": 1,
+    "run": 37102937427,
+    "job": 111145886153,
+    "failure": "workspace-navigation.spec.ts:20 renamed sidebar link absent after actual editor heading and persisted registry label changed",
+    "baselineBrowserGreen": 58,
+    "repairedHeadGreen": "58b448e all normal+59 default+59 Node green; historical until new decision-head verification"
+  },
+  "approvedIntegrationBase": "eaab85f097f3cdfab49f105cda2a1f21a4bf5592",
+  "SSRReviewTDD": {
+    "originalTestCommit": "d8d0615d4ee5414813c45a073d82e9408a2d6b6f",
+    "publishedTestCommit": "99b1e7ea27119d24b02794aebd37753325ae7f11",
+    "originalQualifiedURLFixtureCommit": "1f29b70eabef2a573408f4a2415c7f6665aed297",
+    "publishedQualifiedURLFixtureCommit": "28a653333192a56927f983fbc9ecda6b8d6272a4",
+    "genuineNativeAssertionReds": 4,
+    "sourceCredit": 0,
+    "SSRRedBuild": "existing historical prerepair registered build; shell still onMount-only, not current frozen-install evidence",
+    "focusedGreen": "12 compiled async shell/storage cases, 4 registered cases on fresh installed-runtime Vite build",
+    "normalAndSecuredGates": "58b448e run37106591233 passed all normal+59 default+59 Node; new decision-document head requires its own gates",
+    "originalRemoteRefreshTestCommit": "00be4b3d30309487afd5ae8a7560f93b38fbb766",
+    "originalRelativeActiveTestCommit": "f535f55cdc8b124ac77e1a302ad909762e696744",
+    "remoteRefreshRed": "actual authorized POST schema refresh returned collections empty under the blanket page-method guard; Kit-owned isRemoteRequest preserves refreshes",
+    "relativeActiveRed": "actual /content/notes SSR href ../content/notes had no aria-current; display href resolution preserves the unchanged pinned matcher"
+  },
+  "specificPMDecisions": {
+    "actor": "project manager /root",
+    "date": "2026-10-03",
+    "proposedPR": "https://github.com/sveltery/cms/pull/66",
+    "reviewedHead": "2f05605f90450fe1156a0df516a50bed1016ee48",
+    "independentReview": {
+      "record": "https://github.com/sveltery/cms/pull/66#pullrequestreview-5399854986",
+      "visibility": "durable public PM decision and independent-review outcome; detailed report remains local and is not committed",
+      "findingStatus": "no unresolved material finding in bounded scope",
+      "supplementaryPersistedNodeD1Cases": 4,
+      "sourceCredit": 0,
+      "cryptographicCredit": 0
+    },
+    "configuredReview": "https://github.com/sveltery/cms/pull/66#issuecomment-5966824135",
+    "decisions": [
+      {
+        "id": "UX1-01",
+        "status": "accepted bounded framework/capability substitution",
+        "scope": "native routing/base hrefs, SSR display query/reactive refresh, details/mobile/skip HTML controls, trusted capability presentation"
+      },
+      {
+        "id": "UX1-02",
+        "status": "accepted bounded source-copy/style/test-host substitution",
+        "scope": "seven copied Card parts/class/themes, scoped native CSS and recorded import/test-host adaptations",
+        "EmDashCredit": 0,
+        "causalSourceRedCredit": 0,
+        "fullUICredit": 0
+      },
+      {
+        "id": "UX1-03",
+        "status": "accepted",
+        "scope": "Node >=24.15.0 <25"
+      }
+    ],
+    "unfinishedScope": [
+      "full source Sidebar/Header/Shell/NavFolderMenu role filtering",
+      "icons",
+      "plugin/taxonomy navigation",
+      "branding",
+      "locales/RTL",
+      "Input/BaseField",
+      "theme switching",
+      "all widgets"
+    ],
+    "mergeApproval": "not granted; await new exact-head gates/review and explicit PM approval",
+    "decisionRecord": "https://github.com/sveltery/cms/pull/66#pullrequestreview-5399854986"
+  },
+  "mobileProgressiveTDD": {
+    "id": "UX1-04",
+    "status": "accepted bounded stronger native progressive-host substitution; not final merge approval",
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "sourceContext": [
+      {
+        "path": "packages/admin/src/components/Sidebar.tsx",
+        "gitBlob": "b891d252b386316df9be68d7164d601a070a825b",
+        "sha256": "b7eeb8e26d55bdd659002ada6ef515c1ad4e79e8f0019c63a5ddb70e237fd5dd",
+        "qualification": "complete immutable source read; context only, no full-app execution"
+      },
+      {
+        "path": "packages/admin/src/components/Shell.tsx",
+        "gitBlob": "b20c0c5126a58b824df0f28f1b563e88f503894f",
+        "sha256": "46419f3f319a676f465012d67b6f1d48936b96e2b5f36ea75ed371fc194723a2",
+        "qualification": "complete immutable source read; context only, no full-app execution"
+      },
+      {
+        "path": "packages/admin/src/components/Header.tsx",
+        "gitBlob": "444b57bd77be3dd6509e74aa2b66ac20d8e09571",
+        "sha256": "826697beec97b70440bf44d2ad8edd16de6943a8659eddb3176252102a58692a",
+        "qualification": "complete immutable source read; context only, no full-app execution"
+      },
+      {
+        "path": "packages/admin/src/App.tsx",
+        "gitBlob": "131cce60d88e91539350580d48f4aa3bc5e2b19e",
+        "sha256": "c9ce54146339c6cd092a5e47f6a9f261d3887478bc605b0f2bbad525e43429ce",
+        "qualification": "complete immutable source read; context only, no full-app execution"
+      },
+      {
+        "path": "packages/core/src/astro/routes/admin.astro",
+        "gitBlob": "535231148ce442edfed22c770d57d314b8f9c27e",
+        "sha256": "538f816fd14f02196ac5a8113dcc6f0d04e25e10ee2996cb833d15217d3f20c9",
+        "qualification": "complete immutable source read; context only, no full-app execution"
+      }
+    ],
+    "sourceObservation": "Kumo2.6.0 Provider/defaultOpen and mobile Trigger; admin route client:only React boot loader",
+    "sourceRuntimeCredit": 0,
+    "sourceBugClaim": false,
+    "test": "tests/browser/workspace-progressive.spec.ts",
+    "originalBrowserCallbacks": 2,
+    "runtime": "actual built Kit and existing stored-admin sessions, Node SQLite and real persistent Worker D1",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "javaScriptEnabled": false,
+    "localBrowserCallbacks": 0,
+    "localLimitation": "secured Chromium unavailable; no --no-sandbox workaround",
+    "hostedRedQualification": {
+      "run": 37115910185,
+      "job": 111182575149,
+      "completedOriginalCallbacks": 2,
+      "assertion": "workspace-progressive.spec.ts22 navigation expected visible; resolved nav hidden after actual Articles and authenticated account text qualified",
+      "baselineBrowserGreen": 59,
+      "nodeHostingBrowserStage": "not reached after default-stage failures"
+    },
+    "genuineNativeAssertionReds": 2,
+    "sourceCredit": 0,
+    "cryptographicCredit": 0,
+    "repair": "SSR navigation visible until component enhancement; inert toggle hidden before enhancement; existing mobile collapse/toggle applies after onMount, including storage denial",
+    "specificPMAcceptance": "accepted by project manager /root on 2026-10-03 only for visible pre-enhancement narrow-screen navigation, hidden inert toggle and unchanged enhanced controls; zero Source/full-admin/cryptographic credit",
+    "decisionRecord": "https://github.com/sveltery/cms/pull/66#pullrequestreview-5400453845",
+    "reviewedHead": "713cfafe99e9071c9dc584a4c853cc3f4e891edb",
+    "reviewedTree": "f6019b90bbbf19924bd98f5772c9f0c97c4555a5",
+    "testSHA256": "a7bc44bdf59f5cedded93cd8f3c4cd47d4d04562fa4cd26214e04e8d1fa95657",
+    "originalTestCommit": "4ea2e4942c96957f1c67fd27fa5625b8a7299ed5",
+    "publishedTestCommit": "692dfe3c3efda38ee5370f59c63523e17cf424db",
+    "testFirstTree": "56ad70ae3028a9f20c5dfd908512e75a0bd7345a",
+    "focusedGreen": "12 compiled shell/Node+D1/storage-method cases plus4 actual built-server SSR/navigation/refresh/active cases; installed-runtime diagnosis, no local browser callbacks",
+    "implementationHeadQualification": {
+      "run": 37117839915,
+      "validateJob": 111187981966,
+      "normal": "SUCCESS: checker 0/0, services 974, selected Source 43, supplementary Card 23, production 240, Node 13, Cloudflare 23 plus Worker 4, all frozen installation/build/package/dry-bundle phases",
+      "browserJob": 111187981964,
+      "browser": "SUCCESS: secured 61 default and 61 Node; unchanged original 59 plus two progressive callbacks each; sandbox intact",
+      "independentReview": "clean exact713 bounded implementation review; local detailed report remains uncommitted",
+      "visibility": "public PM decision records independent-review outcome and successful exact713 checks",
+      "status": "historical implementation-head evidence; resulting documentation commit needs its own checks and independent review"
+    },
+    "newExactHeadQualification": "combined-head normal and secured default/Node gates and independent review pending; verified quota exhaustion uses standing user exception; explicit final PM expected-head approval, author merge and post-merge checks pending",
+    "configuredReview": "verified exhausted account quota is not a pass; standing user exception recorded in docs/product-plan.md and https://github.com/sveltery/cms/pull/31#issuecomment-5959214413 applies only to this unavailable gate; no failed CI or independent review waived"
+  }
+}
