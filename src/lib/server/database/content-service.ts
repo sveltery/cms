@@ -10,8 +10,8 @@ import {EmDashValidationError,ContentCollectionNotFoundError,InvalidCursorError,
 import {InvalidCursorError as NativeInvalidCursorError} from './trash-cursor.ts';
 import {lifecycleService} from './lifecycle/service.ts';
 import type {LifecycleDependencies} from './lifecycle/upstream/host.ts';
-import {genericContentList} from './content-validation.ts';
-import {countTrashedDraftInput,deleteDraftInput,getDraftInput,getTrashedDraftInput,listTrashedDraftInput,parse,restoreDraftInput,tableName,updateDraftInput} from './validation.ts';
+import {genericContentList,genericContentUpdate} from './content-validation.ts';
+import {countTrashedDraftInput,deleteDraftInput,getDraftInput,getTrashedDraftInput,listTrashedDraftInput,parse,restoreDraftInput,tableName} from './validation.ts';
 
 // Pinned EmDashRuntime and content handlers/repository at
 // 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e. Copyright 2026 Cloudflare Inc.
@@ -92,11 +92,11 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
   async getContent(input:unknown){read();const value=parse(getDraftInput,input);const item=await includingTrashed(value.type,value.id,value.locale);if(item.deletedAt)throw new CmsError('NOT_FOUND');const {deletedAt,...active}=item;return hydrate(active);},
   async updateContent(input:unknown){
    mutation('content:edit_own','content:edit_any');
-   // Preserve current required token, JSON and slug bounds. skipRevision is
-   // the only added save option; publication remains a separate operation.
+   // Preserve required caller CAS and JSON/slug bounds. Omitted data remains
+   // absent so the shared lifecycle can select its live-metadata save path.
    const source=input as Record<string,unknown>;const {skipRevision,...value}=source??{};
    if(skipRevision!==undefined&&typeof skipRevision!=='boolean')throw new CmsError('VALIDATION_ERROR');
-   const parsed=parse(updateDraftInput,value);return entry((await lifecycle().updateContent({...parsed,...(skipRevision===undefined?{}:{skipRevision})})).item);
+   const parsed=parse(genericContentUpdate,value);return entry((await lifecycle().updateContent({...parsed,...(skipRevision===undefined?{}:{skipRevision})})).item);
   },
   async listContent(input:unknown){read();const {value,collection,options}=await listOptions(input);
    const result=await translate(()=>repository().findMany(value.type,options));return{...result,items:result.items.map(item=>summary(item,collection.titleField??'title'))};

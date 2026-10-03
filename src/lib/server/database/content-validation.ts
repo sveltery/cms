@@ -1,5 +1,5 @@
 import * as v from 'valibot';
-import {identifier,localeInput} from './validation.ts';
+import {identifier,localeInput,schemaData,updateDraftInput} from './validation.ts';
 
 // Valibot record strips constructor/prototype. These can be real indexed
 // field names; preserve their own keys for the pinned repository to validate.
@@ -21,3 +21,6 @@ export const contentListOptions={
  fieldFilters:v.optional(fieldFilters)
 };
 export const genericContentList=v.strictObject({type:identifier,...contentListOptions});
+// Ordinary lifecycle saves distinguish absent data from an explicit {}. The
+// legacy draft-only schema retains its required data contract and caller CAS.
+export const genericContentUpdate=v.strictObject({...updateDraftInput.entries,data:v.optional(schemaData)});
