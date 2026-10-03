@@ -282,9 +282,9 @@
       "remaining": "Unawaited Source fireEvent followed by synchronous host lookup; fixed test-only Svelte flush, no Source callback change."
     },
     "current": {
-      "commit": "c3e44f3",
+      "commit": "c30a770",
       "sourcePass": 19,
-      "originalPass": 8,
+      "originalPass": 11,
       "failed": 0,
       "skipped": 0
     }
@@ -301,13 +301,42 @@
       "baseline": "first actual native calendar",
       "completedValueReds": 2,
       "green": 2
+    },
+    "disabledMonthNavigation": {
+      "testFirst": "12b1130",
+      "initialIncompleteReferenceClosure": "ae5bcbc; unavailable UI.js import, zero completed assertion credit",
+      "baseline": "actual pinned Nav enabled with disabled date selection; native next-month button disabled",
+      "completedValueReds": 1,
+      "repair": "da5a26c",
+      "green": 1,
+      "sourceCredit": 0,
+      "referenceTypes": "55eaa8a types only the test import boundary; published JavaScript bytes unchanged; zero upstream TypeScript credit"
+    },
+    "recognizedKeyContainment": {
+      "testFirst": "53b1c38",
+      "correctedAncestorBaseline": "4ff7451",
+      "baseline": "actual outer ancestor receives ArrowRight instead of []; unrelated-key expectation remains [x]",
+      "completedValueReds": 1,
+      "repair": "c3e40bf",
+      "green": 1,
+      "sourceCredit": 0,
+      "hostLimit": "53b1c38 uses an earlier same-target native listener; c48dbbf cannot suppress that listener and grants no green containment credit. 4ff7451 uses an actual outer ancestor and reverts the repair before reproducing the same expectation failure."
+    },
+    "dayClickContainment": {
+      "testFirst": "d910b8c",
+      "baseline": "optional selected-day callback already emits [undefined]; actual parent click count1 differs expected0",
+      "completedValueReds": 1,
+      "repair": "c30a770",
+      "green": 1,
+      "sourceCredit": 0,
+      "unchanged": "Optional date selection and disabled day behavior remain; day onclick prevents default and propagation before existing selectDay."
     }
   },
   "gates": {
     "normal": "Failed: frozen366/check0/0/services1101/Source115+types/Card23/widget27/build/production255/Nodepackage complete; Node hosting3 isolated dependency installs terminate at unchanged120s deadlines before product callbacks; Cloudflare phases unexecuted.",
     "securedLocal": "Official Chromium1243 executable absent; zero callbacks executed and zero browser credit",
     "securedHosted": "pending",
-    "independentReview": "pending",
+    "independentReview": "Initial complete-payload review identifies three pinned calendar fidelity gaps; author original test-first repairs pass30 DOM cases; fresh final-head closure review pending.",
     "configuredReview": "pending",
     "managerScopeAcceptance": "DT-01 proposed; additive validation stage/job accepted separately",
     "managerExactHeadApproval": "pending",
