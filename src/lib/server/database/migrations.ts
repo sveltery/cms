@@ -1,3 +1,4 @@
+import {blocksMigration} from '../blocks/schema.ts';
 import {mediaMigration} from '../media/schema.ts';
 import {taxonomyMigration} from '../taxonomies/migration.ts';
 import {metadataFidelityMigration} from './metadata-fidelity-migration.ts';
@@ -42,7 +43,7 @@ export const CMS_MIGRATIONS: readonly CmsMigrationProvider[] = [
   schemaMigration,
   {version:4,name:'auth-identity',async statements(database) {return authIdentitySchemaStatements(database.db);},
     async expectedObjects(database) {return authIdentitySchemaObjects(database.db);}},
-  lifecycleMigration, optionsMigration, taxonomyMigration, metadataFidelityMigration, mediaMigration
+  lifecycleMigration, optionsMigration, taxonomyMigration, metadataFidelityMigration, mediaMigration, blocksMigration
 ];
 export const CMS_MIGRATION_VERSION = CMS_MIGRATIONS.at(-1)!.version;
 const trackingStatement = (database: CmsDatabase) =>

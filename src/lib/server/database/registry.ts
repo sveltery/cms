@@ -1,5 +1,7 @@
 import {planSchemaSearch,planDropCollectionSearch} from '../search/schema-plan.ts';
 import {newCollectionTaxonomyIndexes} from '../taxonomies/collection-indexes.ts';
+import {normalizeBlocksFieldValidation} from '../blocks/field-contract.ts';
+import {blocksDatabase} from '../blocks/host.ts';
 import { sql, type CompiledQuery } from 'kysely';
 import { sqliteErrorMessage } from './errors.ts';
 import { ulid } from 'ulidx';
@@ -122,9 +124,10 @@ export class SchemaRegistry {
   // pinned at 913cb1bb. Supplied keys only; no DDL or content-row changes.
   // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
   async updateField(collectionSlug: unknown, fieldSlug: unknown, input: unknown): Promise<Field> {
-    const value = parse(fieldEditInput, input);
+    let value = parse(fieldEditInput, input);
     const target = await this.getField(collectionSlug, fieldSlug);
     if (!target) throw new CmsError('NOT_FOUND');
+    if(target.type === 'blocks') value={...value,validation:await normalizeBlocksFieldValidation(blocksDatabase(this.database),String(collectionSlug),{...value,slug:target.slug,label:value.label??target.label,type:target.type,validation:value.validation??undefined} as any,{...target,validation:target.validation??undefined} as any)};
     const updates: Partial<FieldRow> = {};
     if(target.unsupportedType) throw new CmsError('UNSUPPORTED_FIELD_TYPE');
     const nextType = value.type ?? target.type;
@@ -228,10 +231,11 @@ export class SchemaRegistry {
   }
 
   async createField(collectionSlug: unknown, input: unknown, expectedSchemaVersion?: number): Promise<Field> {
-    const value = parse(fieldInput, input);
+    let value = parse(fieldInput, input);
     if (reservedFields.includes(value.slug)) throw new CmsError('RESERVED_SLUG');
     const definition = await this.getCollection(collectionSlug);
     if (!definition) throw new CmsError('NOT_FOUND');
+    if(value.type === 'blocks') value={...value,validation:await normalizeBlocksFieldValidation(blocksDatabase(this.database),definition.slug,{...value,validation:value.validation??undefined} as any)};
     if (expectedSchemaVersion !== undefined && (!Number.isSafeInteger(expectedSchemaVersion) || expectedSchemaVersion < 1)) throw new CmsError('VALIDATION_ERROR');
     if (expectedSchemaVersion !== undefined && definition.version !== expectedSchemaVersion) throw new CmsError('CONFLICT');
     if (await this.getField(definition.slug, value.slug)) throw new CmsError('FIELD_EXISTS');

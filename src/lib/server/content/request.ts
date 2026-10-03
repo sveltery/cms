@@ -23,7 +23,7 @@ export async function contentResponse<T>(run: () => Promise<T>): Promise<T> {
           cause.code === 'MIGRATION_REQUIRED' ? 503 : 409;
       const message = cause.code === 'UNAUTHENTICATED' ? 'unauthenticated' :
         cause.code === 'FORBIDDEN' ? 'forbidden' : cause.code === 'NOT_FOUND' ? 'not-found' : cause.code.toLowerCase().replaceAll('_', '-');
-      if (cause.code === 'VALIDATION_ERROR' && cause.details) {
+      if (cause.code === 'VALIDATION_ERROR' && cause.details?.issues) {
         // Only the domain validator's public issue keys cross the boundary.
         // Never serialize exception stacks, SQL, Zod input or schema internals.
         const issues = cause.details.issues.map(({ path, code, message, origin, minimum, maximum, format }) => ({

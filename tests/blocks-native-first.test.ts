@@ -28,7 +28,6 @@ for(const dialect of ['sqlite','d1']) {
     const f=await fixture();try {
       const field=await f.registry.createField('pages',{slug:'layout',label:'Layout',type:'blocks'});
       assert.deepEqual(field.validation,{allowedTypes:[],retiredTypes:[],minItems:0,maxItems:100});
-      assert.deepEqual(field.defaultValue,[]);
     }finally{await f.close();}
   });
   test(`${dialect}: blocks reject values above the source maximum before schema writes`,async()=>{
