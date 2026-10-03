@@ -1,9 +1,10 @@
 // Shared ordinary product acceptance fixture; no source auth bypass or identity seed.
-import {test as base,expect} from '@playwright/test';
+import {test as base,expect,type Page} from '@playwright/test';
 import {passkeyRuntime} from './passkey-runtime';
 import {addVirtualWebAuthnAuthenticator} from './virtual-authenticator';
 import {completeFullSetup} from './full-setup-browser';
-export const test=base.extend({admin:async({page,context},use)=>{
+type MediaAdmin={page:Page;goToMedia:()=>Promise<unknown>;waitForLoading:()=>Promise<void>;expectPageTitle:(title:string)=>Promise<void>};
+export const test=base.extend<{admin:MediaAdmin}>({admin:async({page,context},use)=>{
  const h=await passkeyRuntime('Node');const removeAuthenticator=await addVirtualWebAuthnAuthenticator(page);
  try{await page.goto(h.origin+'/setup');await completeFullSetup(page,'media@example.com','Media Admin');
  await page.getByRole('button',{name:'Sign in with a passkey',exact:true}).click();
