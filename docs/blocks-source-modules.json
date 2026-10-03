@@ -174,6 +174,60 @@
         "Svelte known-blocks component and SvelteKit native form transport",
         "complete immutable source callback invokes actual native controls; unrelated field families omitted"
       ]
+    },
+    {
+      "source": "packages/admin/src/components/ImageFieldRenderer.tsx",
+      "blob": "9e65f32518fff181fe04163cc17d5b0f85e2a4f0",
+      "sourceSha256": "017439063ff9abb628ded35b269963a9cf11addc4125b424e9c561d732df5824",
+      "copiedPath": "src/lib/blocks/media-values.ts",
+      "copiedSha256": "78137cd9e48674b1e938129369adf4960cab159c92f4a7136fac4e566f08a86d",
+      "scope": "complete ImageFieldValue declaration and complete mediaDisplayUrl/mediaItemToImageFieldValue functions; not full React ImageFieldRenderer",
+      "declarations": [
+        {
+          "sourceName": "ImageFieldValue",
+          "copiedName": "ImageFieldValue",
+          "kind": "interface",
+          "sourceBodySha256": "26bf47467a83b06139a20be2d072b8d46d6256f36113d499592b40759dee5aea"
+        },
+        {
+          "sourceName": "mediaDisplayUrl",
+          "copiedName": "mediaDisplayUrl",
+          "kind": "function",
+          "sourceBodySha256": "0b12f21be51b3fe735c5b1071a1b546740619035aa276deabb5736b2a1f644c8"
+        },
+        {
+          "sourceName": "mediaItemToImageFieldValue",
+          "copiedName": "mediaItemToImageFieldValue",
+          "kind": "function",
+          "sourceBodySha256": "f8014924fa07f8a381a28c4e4299af11949f3cbec2ed39a28d28f4d9a183b00e"
+        }
+      ],
+      "transforms": [
+        "native browser type imports and export visibility",
+        "native FileField closure wrapper; full source callback body unchanged"
+      ]
+    },
+    {
+      "source": "packages/admin/src/components/ContentEditor.tsx",
+      "blob": "ad14c878697e9036558cbe521116a038c25c9eb0",
+      "sourceSha256": "52547a10dcb248ec1776e8e1894625db5fe97ba34919b593d63a22cea02a3b25",
+      "copiedPath": "src/lib/blocks/media-values.ts",
+      "copiedSha256": "78137cd9e48674b1e938129369adf4960cab159c92f4a7136fac4e566f08a86d",
+      "scope": "complete FileField handleSelect callback in native selection closure; not full ContentEditor/FileField React components",
+      "declarations": [
+        {
+          "sourceName": "handleSelect",
+          "sourceContainer": "FileFieldRenderer",
+          "copiedName": "handleSelect",
+          "copiedContainer": "selectFileField",
+          "kind": "callback",
+          "sourceBodySha256": "8eb08b1760afafb9646891e8f158a513458bb6035d571d31abd36072ff84def9"
+        }
+      ],
+      "transforms": [
+        "native browser type imports and export visibility",
+        "native FileField closure wrapper; full source callback body unchanged"
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "method": "Full pinned tracked packages reusable-block symbol roots plus complete transitive relative/local-package static and literal-dynamic import closure. Inventory only; cross-family dependencies have no inferred execution or feature credit.",
   "symbolExpression": "BlockType|BlockField|BLOCK_FIELD|BlocksField|BlockTypeList|block-types|block_types|normalizeBlocks|retiredTypes|allowedTypes|\"blocks\"",
-  "symbolRootFiles": 169,
+  "symbolRootFiles": 170,
   "transitiveClosureFiles": 1077,
   "externalImportSpecifiers": [
     "#api/authorize.js",
@@ -697,7 +697,9 @@
           "path": "packages/admin/src/components/PortableTextEditor.tsx"
         }
       ],
-      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly",
+      "implementationScope": "complete FileField handleSelect callback in native selection closure; not full ContentEditor/FileField React components",
+      "nativePath": "src/lib/blocks/media-values.ts"
     },
     {
       "path": "packages/admin/src/components/ContentList.tsx",
@@ -1274,7 +1276,7 @@
       "path": "packages/admin/src/components/ImageFieldRenderer.tsx",
       "blob": "9e65f32518fff181fe04163cc17d5b0f85e2a4f0",
       "sha256": "017439063ff9abb628ded35b269963a9cf11addc4125b424e9c561d732df5824",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -1302,7 +1304,9 @@
           "path": "packages/admin/src/components/MediaPickerModal.tsx"
         }
       ],
-      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly",
+      "implementationScope": "complete ImageFieldValue declaration and complete mediaDisplayUrl/mediaItemToImageFieldValue functions; not full React ImageFieldRenderer",
+      "nativePath": "src/lib/blocks/media-values.ts"
     },
     {
       "path": "packages/admin/src/components/InviteAcceptPage.tsx",

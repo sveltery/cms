@@ -1,9 +1,11 @@
 <script lang="ts">
  import type {BlockFieldDefinition} from '$lib/server/schema/block-types';
  import BlockMediaField from './BlockMediaField.svelte';
+ import {mediaDisplayUrl,type ImageFieldValue} from '$lib/blocks/media-values';
  import Self from './BlockSubField.svelte';
  import {toDatetimeLocalInputValue,fromDatetimeLocalInputValue} from '$lib/blocks/datetime-local';
  let {id,field,value,onchange,readOnly=false,timezone='UTC'}:{id:string;field:BlockFieldDefinition;value:unknown;onchange:(value:unknown)=>void;readOnly?:boolean;timezone?:string}=$props();
+ const primaryImage=$derived((typeof value==='object'&&value?value:typeof value==='string'&&value?{id:'',src:value}:undefined) as ImageFieldValue|undefined);
  const string=$derived(typeof value==='string'?value:'');
  const rows=$derived(Array.isArray(value)?value.filter((row):row is Record<string,unknown>=>Boolean(row&&typeof row==='object'&&!Array.isArray(row))):[]);
  function inputValue(next:string){
@@ -13,9 +15,9 @@
  function editRow(index:number,slug:string,next:unknown){onchange(rows.map((row,i)=>i===index?{...row,[slug]:next}:row));}
 </script>
 {#if field.type==='image'||field.type==='file'}
- <BlockMediaField {id} label={field.label} {value} {onchange} {readOnly} image={field.type==='image'}/>
- {#if field.type==='image'&&field.options?.darkVariant}
-  <BlockMediaField id={`${id}.darkVariant`} label={`${field.label} (dark variant)`} value={value&&typeof value==='object'&&'darkVariant'in value?value.darkVariant:undefined} onchange={darkVariant=>{const next:Record<string,unknown>={...value&&typeof value==='object'?value:{}};if(darkVariant===null)delete next.darkVariant;else next.darkVariant=darkVariant;onchange(next);}} {readOnly} image/>
+ <BlockMediaField {id} label={field.label} {value} {onchange} {readOnly} image={field.type==='image'} allowedMimeTypes={field.validation?.allowedMimeTypes}/>
+ {#if field.type==='image'&&field.options?.darkVariant&&primaryImage&&mediaDisplayUrl(primaryImage)}
+  <BlockMediaField id={`${id}.darkVariant`} label={`${field.label} (dark variant)`} value={value&&typeof value==='object'&&'darkVariant'in value?value.darkVariant:undefined} onchange={darkVariant=>{const next:Record<string,unknown>={...primaryImage};if(darkVariant===null)delete next.darkVariant;else next.darkVariant=darkVariant;onchange(next);}} {readOnly} image/>
  {/if}
 {:else if field.type==='repeater'}
  <fieldset disabled={readOnly}><legend>{field.label}</legend>
