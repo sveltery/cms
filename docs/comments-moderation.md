@@ -1,0 +1,13 @@
+# Comments and moderation
+
+The pinned reference is EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. Complete comment, reply, reaction, hook and notification contracts are preserved with their MIT authorities in [the ports ledger](comments-moderation-ports.json). Import, fixture and native framework adaptations are separate from behavioral assertions.
+
+The first owned checkpoint records 88 unchanged callbacks in six complete core test files passing on real Node SQLite and a real nested Vite production bundle. The initial missing imports and invalid nested build host earn zero causal Source assertion-red credit. Four original registered HTTP callbacks first failed with actual 404 responses, then passed with 503 unavailable-storage responses and unchanged SQLite schema snapshots. These original assertions earn zero Source or authentication credit.
+
+The native endpoints currently expose storage availability only. Canonical installation remains versions 1–5; comments descriptors are unregistered and requests never install them. Functional public submission, actual moderation HTTP, current collection settings, complete native Node/D1 mutation proof and admin/public UI remain incomplete. The complete CommentInbox source file remains unexecuted.
+
+Copied comment repository, service, ranking, Turnstile, notification and reaction bodies retain the pin's behavior. The server module path and logical `_emdash_` prefix map to native TypeScript imports and physical `_cms_` tables. A native request-local cache and explicit request-scoped database replace the ambient Astro/object-cache host; full upstream cache integration is incomplete. The comment-only provider host preserves 17 complete hook methods and the complete exclusive-resolution algorithm while limiting provider context to real current-user/profile reads. Full plugin installation, sandboxing, other hook domains and wider context capabilities remain incomplete. A specific framework acceptance decision has not been recorded.
+
+The Source-shaped notification fixture uses a real SQLite view and insert trigger to populate native current-role user and profile tables. That fixture is test-only, preserves the complete Source callbacks, and establishes neither full legacy users parity nor new authentication evidence. Runtime identity still comes from the existing trusted principal.
+
+Final complete schema descriptors, literal-preserving readiness comparison, normal frozen validation, secured hosted browser checks, independent and configured reviews, exact project-manager approval and author-owned merge remain required.

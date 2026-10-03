@@ -2,7 +2,7 @@
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "license": "MIT; Copyright 2026 Cloudflare Inc.; notices/emdash-MIT.txt",
   "approvedBase": "e75654834e5d3a1ddc10449504ee34db1d43c905",
-  "count": 56,
+  "count": 63,
   "selectedWholeFiles": 7,
   "assertionRule": "Whole callbacks, fixtures, expectations and deadlines are immutable; imports and host fixtures are recorded separately. Initial regex counts are inventory estimates, not parser counts or runtime evidence.",
   "protectedProbeRule": "Signed, concurrent-session, replay, two-valid-session and SC49 protected relation binding probes are inventoried and not newly executed. Ordinary non-auth repository CAS and reaction-race callbacks remain whole.",
@@ -549,6 +549,222 @@
       "bytes": 18803,
       "selected": false,
       "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/utils/base64.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/utils/base64.ts.txt",
+      "gitBlob": "9dae6dade270b1c1291b21c8a90adc73f5dab294",
+      "sha256": "79a94b895668f729574cc25e50ad5e1f6db5998dc3f6e3e12e5c1fa661969a90",
+      "bytes": 3029,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/utils/chunks.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/utils/chunks.ts.txt",
+      "gitBlob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e",
+      "sha256": "d5c454b134d9727d0af1fa5befb786a781e65cdac964a668af6a8fab74b81877",
+      "bytes": 529,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/schema/types.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/schema/types.ts.txt",
+      "gitBlob": "0c2f44156cff829951c52b0dd259fc5ff45bc554",
+      "sha256": "92a76aa8192b98e9703ece4b72b5ba1377ca66454b97608b4dfc3804ab3bc698",
+      "bytes": 18092,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/schema/block-types.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/schema/block-types.ts.txt",
+      "gitBlob": "cc89213ee1815cf148a51ec927ab2d106828f5d3",
+      "sha256": "6286d0042546795ec210b8aa0b0e3617dd63624b78b95582e5c33cff8e9f0bc8",
+      "bytes": 2272,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/content-list-query.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/content-list-query.ts.txt",
+      "gitBlob": "075fbabc173e1eac9c04edcaab98939c9fef271c",
+      "sha256": "7763889d7e7f5ac31a0461b6e9806fe0bf169ae91064ada1153b6833cc566e10",
+      "bytes": 938,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/028_drop_author_url.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/migrations/028_drop_author_url.ts.txt",
+      "gitBlob": "76f98ea7bb7281b784fca3f71330efff5eaf7dbc",
+      "sha256": "c18a8fe5e31ff1f9f42050d95f4de67994d659baba9a05fd98b8f388c26f42d1",
+      "bytes": 345,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/033_optimize_content_indexes.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/migrations/033_optimize_content_indexes.ts.txt",
+      "gitBlob": "442e7f8f3a9bba0af3e094818f3813353df24bf2",
+      "sha256": "c84d484f14a2c0fa41e125ab2d5ecfac94ea496a1fab867bbba7a2e9fa1bde3e",
+      "bytes": 3969,
+      "selected": false,
+      "evidence": "inventory-only"
     }
-  ]
+  ],
+  "productPorts": [
+    {
+      "source": "packages/core/src/comments/ranking.ts",
+      "product": "src/lib/server/comments/upstream/comments/ranking.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "eacdc7726e54ef806c940a1f42b9548ee868ace8"
+    },
+    {
+      "source": "packages/core/src/comments/turnstile.ts",
+      "product": "src/lib/server/comments/upstream/comments/turnstile.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "67fc3744f6360985ac7c77a57ddc10feed38ec80"
+    },
+    {
+      "source": "packages/core/src/comments/moderator.ts",
+      "product": "src/lib/server/comments/upstream/comments/moderator.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "97dbc936a863c309044cb93aea841e730b0dba05"
+    },
+    {
+      "source": "packages/core/src/comments/notifications.ts",
+      "product": "src/lib/server/comments/upstream/comments/notifications.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "4f8e35f10ed45e821951c1cfa64763721f6ff91c"
+    },
+    {
+      "source": "packages/core/src/comments/service.ts",
+      "product": "src/lib/server/comments/upstream/comments/service.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "e50adbea1679e6a84655b0c538a85684721a5677"
+    },
+    {
+      "source": "packages/core/src/comments/query.ts",
+      "product": "src/lib/server/comments/upstream/comments/query.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "eb3ed42e996253c8686086b9b747f6e4438ae6cd"
+    },
+    {
+      "source": "packages/core/src/database/repositories/comment.ts",
+      "product": "src/lib/server/comments/upstream/database/repositories/comment.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "f31e5e5fd7f370addbd3146fb75f66cbc5fc7d0d"
+    },
+    {
+      "source": "packages/core/src/database/repositories/comment-reaction.ts",
+      "product": "src/lib/server/comments/upstream/database/repositories/comment-reaction.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "089857fd234b47735e84f3ff9b77d61a7a80b12e"
+    },
+    {
+      "source": "packages/core/src/database/repositories/types.ts",
+      "product": "src/lib/server/comments/upstream/database/repositories/types.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7"
+    },
+    {
+      "source": "packages/core/src/database/types.ts",
+      "product": "src/lib/server/comments/upstream/database/types.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7"
+    },
+    {
+      "source": "packages/core/src/database/validate.ts",
+      "product": "src/lib/server/comments/upstream/database/validate.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "73d3b303764b473d4238e0cb17f1a904998671f8"
+    },
+    {
+      "source": "packages/core/src/api/escape.ts",
+      "product": "src/lib/server/comments/upstream/api/escape.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "5845f302b684d3937dcfb93298467bc35c721852"
+    },
+    {
+      "source": "packages/core/src/api/types.ts",
+      "product": "src/lib/server/comments/upstream/api/types.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "462b0800408c270a8ac0b7e59b89adb46426fc3f"
+    },
+    {
+      "source": "packages/core/src/api/handlers/comments.ts",
+      "product": "src/lib/server/comments/upstream/api/handlers/comments.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "d0deaa042c84b058aca6c8953d4df1a00f2cd1cf"
+    },
+    {
+      "source": "packages/core/src/api/handlers/comment-reactions.ts",
+      "product": "src/lib/server/comments/upstream/api/handlers/comment-reactions.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "76501da50053972804f0509041f65f3965602b2d"
+    },
+    {
+      "source": "packages/core/src/api/schemas/comments.ts",
+      "product": "src/lib/server/comments/upstream/api/schemas/comments.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "90be3d00ec075f47960d94e6566f2e6272fdb894"
+    },
+    {
+      "source": "packages/core/src/utils/base64.ts",
+      "product": "src/lib/server/comments/upstream/utils/base64.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "9dae6dade270b1c1291b21c8a90adc73f5dab294"
+    },
+    {
+      "source": "packages/core/src/utils/chunks.ts",
+      "product": "src/lib/server/comments/upstream/utils/chunks.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e"
+    },
+    {
+      "source": "packages/core/src/schema/types.ts",
+      "product": "src/lib/server/comments/upstream/schema/types.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "0c2f44156cff829951c52b0dd259fc5ff45bc554"
+    },
+    {
+      "source": "packages/core/src/schema/block-types.ts",
+      "product": "src/lib/server/comments/upstream/schema/block-types.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "cc89213ee1815cf148a51ec927ab2d106828f5d3"
+    },
+    {
+      "source": "packages/core/src/content-list-query.ts",
+      "product": "src/lib/server/comments/upstream/content-list-query.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "075fbabc173e1eac9c04edcaab98939c9fef271c"
+    }
+  ],
+  "evidence": {
+    "sourceBaseline": "/tmp/comments-whole-source-baseline.log:five missing imports and one nested Vite host failure, zero causal Source assertion reds",
+    "originalNativeUnavailable": "6af8fd5 four actual built native HTTP404!=503 value reds; db86246 samefourgreen; zeroSource/authcredit",
+    "frozenInstall": "ApprovedMain434packageclosure frozen install success8s; no lock/policy/directversion edits"
+  },
+  "runtimeEvidence": {
+    "sixWholeCoreFiles": {
+      "callbacks": 88,
+      "pass": 88,
+      "fail": 0,
+      "skip": 0,
+      "causalSourceValueReds": 0,
+      "log": "/tmp/comments-six-whole-source-first.log",
+      "runtime": "Own frozen434 deps, NodeSQLite, Vite8.3.2productionbundle",
+      "remainingSelected": "Whole CommentInbox4 not executed"
+    },
+    "originalNativeUnavailable": {
+      "baselineCommit": "6af8fd5",
+      "implementationCommit": "db86246",
+      "genuineValueReds": 4,
+      "pass": 4,
+      "log": "/tmp/comments-native-unavailable-value-green.log",
+      "credit": "Originalnativeonly;0Source/auth/fullHTTPfunctionalcredit"
+    }
+  }
 }

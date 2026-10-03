@@ -28,6 +28,7 @@ export default defineConfig({
     include: ['tests/comments-source/packages/core/tests/unit/comments/*.test.ts',
       'tests/comments-source/packages/core/tests/integration/comments/*.test.ts'],
     environment: 'node',
+    setupFiles: ['tests/helpers/comments/vite-host.ts'],
     fileParallelism: false
   }
 });
