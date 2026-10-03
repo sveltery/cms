@@ -26,6 +26,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm test:media
       - run: pnpm exec playwright install --with-deps chromium
+      - name: Complete pinned crop Canvas callbacks on secured Chromium
+        run: pnpm test:media:browser
       - run: pnpm build
         if: matrix.target == 'default'
       - run: pnpm build:node
