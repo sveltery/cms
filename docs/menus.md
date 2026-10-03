@@ -259,3 +259,16 @@ readiness failures; the unchanged complete eight-case family passes after the
 first menu-owned single-quoted-literal repair. Shared canonical normalization,
 Source callbacks, descriptors, defaults and providers1–5 remain unchanged.
 Additional literal-context verification and final successor gates are pending.
+
+
+The follow-up ordinary SQLite fixture proved that a double-quoted
+CURRENT_TIMESTAMP default stores the literal text rather than the timestamp
+expression. Two more assertion-first Node/raw D1 requirements reached genuine
+readiness true-versus-false failures before refactoring; the complete unchanged
+ten-case family now passes. The owned normalizer preserves quoted tokens and
+literal escapes/whitespace, removes quotes only from known owned schema
+identifiers, and normalizes only SQLite's ASCII whitespace outside tokens.
+The shared canonical normalizer and all owned descriptors/defaults remain
+byte-unchanged. The eight new actual value-reds are original native evidence,
+not additional Source callbacks. The repaired successor still requires complete
+hosted normal/browser gates, same-task review and specific framework acceptance.

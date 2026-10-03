@@ -4,13 +4,22 @@ import { migrationObjects } from '../database/migration-provider.ts';
 import { menuSchemaStatements } from './migrations.ts';
 import { getI18nConfig } from './i18n-config.ts';
 
-// Normalize identifier quotes and formatting only outside SQLite string
-// literals. Doubled single quotes, quoted text and whitespace inside a literal
-// are owned schema data and must retain their exact bytes.
+// Only the descriptor's object/column identifiers may lose double quotes.
+// Other quoted tokens can be SQLite literals (including timestamp defaults).
+const ownedMenuIdentifiers = new Set([
+  '_cms_menus', '_cms_menu_items', 'idx_menu_items_menu', 'idx_menu_items_parent',
+  'idx__cms_menus_locale', 'idx__cms_menus_translation_group',
+  'idx__cms_menu_items_locale', 'idx__cms_menu_items_translation_group',
+  'id', 'name', 'label', 'created_at', 'updated_at', 'locale', 'translation_group',
+  'menu_id', 'parent_id', 'sort_order', 'type', 'reference_collection', 'reference_id',
+  'custom_url', 'title_attr', 'target', 'css_classes'
+]);
 function normalizeOwnedMenuSql(value: string): string {
-  return value.split(/('(?:''|[^'])*')/g)
-    .map((part, index) => index % 2 === 1 ? part : part.replace(/"([\w]+)"/g, '$1').replace(/\s+/g, ' '))
-    .join('').trim();
+  return value.replace(/'(?:''|[^'])*'|"(?:""|[^"])*"|[ \t\r\n\v\f]+/g, token => {
+    if (/^[ \t\r\n\v\f]+$/.test(token)) return ' ';
+    if (token.startsWith('"') && ownedMenuIdentifiers.has(token.slice(1, -1))) return token.slice(1, -1);
+    return token;
+  }).trim();
 }
 
 /** Readonly request census. This function neither migrates nor retains storage. */
