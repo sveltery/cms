@@ -7,6 +7,7 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { Miniflare } from 'miniflare';
+import { imageSize } from 'image-size';
 import { webauthnCredential } from '../helpers/webauthn-credential.ts';
 import { PNG_4x4 } from '../../parity/emdash/media/source-fixtures/image-fixtures.ts';
 
@@ -24,6 +25,7 @@ test('official Worker streams, confirms and deduplicates R2 media with persisted
         routerConfig: { has_user_worker: true, invoke_user_worker_ahead_of_assets: true } },
       d1Persist: join(directory, 'd1'), d1Databases: { CMS_DB: 'cms-media-worker-d1' },
       r2Persist: join(directory, 'r2'), r2Buckets: { CMS_MEDIA: 'cms-media-worker-r2' },
+      images: { binding: 'IMAGES' },
       bindings: { CMS_PUBLIC_ORIGIN: origin, SVELTERY_D1_SESSION: 'auto', SVELTERY_D1_COALESCE: 'true' } });
   }
   let worker = start();
@@ -108,6 +110,11 @@ test('official Worker streams, confirms and deduplicates R2 media with persisted
     for (const reference of [replacementSettings.logo, replacementSettings.favicon, replacementSettings.seo.defaultOgImage]) {
       assert.equal(reference.url, item.url); assert.equal(reference.width, 4); assert.equal(reference.height, 4);
     }
+    const optimized = await request(`/_image?href=${encodeURIComponent(item.url)}&w=2&f=webp`);
+    assert.equal(optimized.status, 200); assert.equal(optimized.headers.get('content-type'), 'image/webp');
+    assert.equal(optimized.headers.get('cache-control'), 'public, max-age=0, must-revalidate');
+    const optimizedBytes = new Uint8Array(await optimized.arrayBuffer());
+    assert.equal(imageSize(optimizedBytes).width, 2); assert.equal(imageSize(optimizedBytes).height, 2);
     await worker.dispose(); worker = start();
     const restored = (await json(`/api/media/${item.id}`, 'GET', undefined)).item;
     assert.equal(restored.alt, 'Worker image'); assert.equal(restored.focalX, null); assert.equal(restored.focalY, null);
@@ -115,6 +122,9 @@ test('official Worker streams, confirms and deduplicates R2 media with persisted
     assert.equal((await json('/api/media?folderId=' + folder.id + '&q=worker&mimeType=image/png&page=1&limit=1', 'GET', undefined)).totalCount, 1);
     const restartedAsset = await request(item.url);
     assert.equal(restartedAsset.status, 200); assert.deepEqual(new Uint8Array(await restartedAsset.arrayBuffer()), PNG_4x4);
+    const restartedOptimized = await request(`/_image?href=${encodeURIComponent(item.url)}&w=2&f=png`);
+    assert.equal(restartedOptimized.status, 200); assert.equal(restartedOptimized.headers.get('content-type'), 'image/png');
+    assert.equal(imageSize(new Uint8Array(await restartedOptimized.arrayBuffer())).width, 2);
     await json(`/api/media/folders/${folder.id}`, 'DELETE', undefined);
     assert.equal((await json(`/api/media/${item.id}`, 'GET', undefined)).item.folderId, null);
     await json(`/api/media/${item.id}`, 'DELETE', undefined);

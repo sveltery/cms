@@ -16,6 +16,9 @@ export default defineConfig({
         if (source === './node.ts' && importer?.endsWith('/runtime/composition.ts')) {
           return fileURLToPath(new URL('./src/lib/server/runtime/node-cloudflare.ts', import.meta.url));
         }
+        if (source === './node-service.ts' && importer?.endsWith('/media/image/http.ts')) {
+          return fileURLToPath(new URL('./src/lib/server/media/image/node-service-cloudflare.ts', import.meta.url));
+        }
       }
     }] : []),
     sveltekit({

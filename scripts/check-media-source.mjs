@@ -51,3 +51,13 @@ const settingsFixture=ts.createSourceFile(settings.fixture.productPath,await rea
 const fixtureFunction=settingsFixture.statements.find(node=>node.name?.getText(settingsFixture)===settings.fixture.function);
 if(!fixtureFunction||createHash('sha256').update(fixtureFunction.getText(settingsFixture)).digest('hex')!==settings.fixture.sha256)throw new Error('Settings media collection fixture changed');
 console.log(JSON.stringify({unchangedAdditionalSettingsCallbacks:settings.uniqueCallbacks.length,existingOverlaps:settings.existingOverlaps.length,unchangedCollectionFixture:1,productTestsRun:0}));
+const imageEndpoints=JSON.parse(await readFile(new URL('docs/media-image-endpoints-source.json',root),'utf8'));
+for(const file of imageEndpoints.files){const bytes=await readFile(new URL(file.frozenPath,root));if(createHash('sha256').update(bytes).digest('hex')!==file.sha256||createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex')!==file.blob)throw new Error(`Image endpoint source changed: ${file.sourcePath}`);}
+for(const factory of imageEndpoints.factories??[]){
+ const text=await readFile(new URL(factory.productPath,root),'utf8');
+ if(createHash('sha256').update(text).digest('hex')!==factory.productSha256)throw new Error(`Image endpoint factory changed: ${factory.productPath}`);
+ const product=ts.createSourceFile(factory.productPath,text,ts.ScriptTarget.Latest,true),declarations=new Map();
+ function visit(node){if(ts.isFunctionDeclaration(node)&&node.name)declarations.set(node.name.getText(product),node.getText(product));if(ts.isVariableStatement(node))for(const declaration of node.declarationList.declarations)declarations.set(declaration.name.getText(product),node.getText(product));ts.forEachChild(node,visit);}visit(product);
+ for(const declaration of factory.declarations){let body=declarations.get(declaration.name);if(declaration.name==='GET')body=`export ${body}`;if(!body||createHash('sha256').update(body).digest('hex')!==declaration.sha256)throw new Error(`Image endpoint whole declaration changed: ${factory.sourcePath}:${declaration.name}`);}
+}
+console.log(JSON.stringify({verifiedWholeImageEndpointFiles:imageEndpoints.files.length,verifiedImageEndpointFactories:imageEndpoints.factories?.length??0,productTestsRun:0,passingSourceCredit:0}));

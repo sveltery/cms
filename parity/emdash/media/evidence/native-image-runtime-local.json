@@ -1,0 +1,79 @@
+{
+  "kind": "native real image runtime after committed supplemental assertion red",
+  "baselineHead": "b21a916",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "sourceDeclarations": "Complete platform GET/helpers/format maps checked against unchanged AST bodies in docs/media-image-endpoints-source.json",
+  "logs": [
+    {
+      "path": "/tmp/media-sharp-native-lock-offline.log",
+      "sha256": "e7b2891a38a4f10043308bbbfc82ae277291d99ab72bf786648f2825e783d8e5"
+    },
+    {
+      "path": "/tmp/media-sharp-native-lock-normal.log",
+      "sha256": "648b28c1c1ea6c28fb9efd1105c02be302a6183cdc012df50ccc2f598bba7b92"
+    },
+    {
+      "path": "/tmp/media-image-frozen-dependency-install.log",
+      "sha256": "753c866689a736492e5eaba6ba5f0689c75cae6007f7b566773c013786426042"
+    },
+    {
+      "path": "/tmp/media-image-native-check.log",
+      "sha256": "75c4e9631538370b739ffe2a7edb25713b44f78a29acac055e45294561062a3d"
+    },
+    {
+      "path": "/tmp/media-image-installed-package-diagnostic-check.log",
+      "sha256": "fea905f43bc5f33865dadbd4427e73d1312ca0ee0f7355cbf7ed8bc3dd56e163"
+    },
+    {
+      "path": "/tmp/media-image-installed-package-diagnostic-check-final.log",
+      "sha256": "dd9ebf966171e2a251cb2a5bc7c8a05573a527692fff4dc40a725e700298289b"
+    },
+    {
+      "path": "/tmp/media-image-installed-package-diagnostic-build.log",
+      "sha256": "f09ddd70173d3f915f04cb62d3f51eb2f6f7929fdaaab1adbb5ee61f882e8afa"
+    },
+    {
+      "path": "/tmp/media-image-actual-workerd-first.log",
+      "sha256": "e87983a77b1a89fafc5f9b5027952ba33c6686ea02e71f642f1ac05e7309655c"
+    },
+    {
+      "path": "/tmp/media-image-and-replacement-current-built.log",
+      "sha256": "c63b5e661b2fe314aee985dac49cee65cd6ab3992aa5916f456a7e6e0413030e"
+    },
+    {
+      "path": "/tmp/media-image-portable-source-controls.log",
+      "sha256": "d79daee7f12a00489219d87b62c65e5db23b95f142b7e3b8b52c375c1ab2b2c6"
+    }
+  ],
+  "results": {
+    "nativeBuiltHttpImageAndOrdinaryReplacement": {
+      "pass": 4,
+      "sourceCallbackCredit": 0,
+      "originalRouteAssertionRedsResolved": 1
+    },
+    "actualWorkerdR2ImagesNative": {
+      "pass": 2,
+      "sourceCallbackCredit": 0,
+      "newCausalReds": 0
+    },
+    "unchangedPortableSourceImageEndpoints": {
+      "pass": 20,
+      "newCausalReds": 0
+    },
+    "installedPackageDiagnosticCheck": "0errors/0warnings",
+    "installedPackageDiagnosticBuild": "pass",
+    "normalFrozenInstallation": "FAILED registry503; no success credit",
+    "officialKitWorkerImageExtension": "UNEXECUTED pending current Cloudflare packaging"
+  },
+  "limits": [
+    "Normal pnpm exactSharp0.34.5 lock-only resolution succeeded; all old package/snapshot records unchanged. Minimal serialization verified semantically identical to normal-generated lock.",
+    "Offline metadata resolution failed; normal frozen install failed registry503. Earlier console line incorrectly printed frozen-success while install pending; withdrawn.",
+    "Duplicate pnpm check install preflight was terminated143; direct installed package diagnostics are not normal bootstrap.",
+    "Root declared real Sharp dependency; diagnostic root symlink uses already-installed exact0.34.5 only, no frozen install credit.",
+    "Native Node Sharp service substitutes Astro service configuration; DOM/Worker bridge is types only. Source GET/helper bodies unchanged.",
+    "Actual workerd R2/Images uses real codec and four raster formats, and true original-stream fallback, no Node compatibility flags.",
+    "Native generic bundled/remote asset delegation returns404; no bundled/remote optimization claim.",
+    "Whole Source middleware/e2e/published portable text renderer/browser tests remain unexecuted; full image feature not completed.",
+    "Full new-head normal/secured/configured/fresh review and approved prerequisite replay remain required."
+  ]
+}

@@ -30,5 +30,69 @@
     "Full source platform modules preserve complete bodies before native image runtime substitution.",
     "Portable source callbacks executed separately; no platform middleware/e2e execution claimed.",
     "Source public e2e requires published portable-text post renderer, currently missing owned public-content integration."
+  ],
+  "factories": [
+    {
+      "sourcePath": "packages/core/src/astro/image-endpoint.ts",
+      "productPath": "src/lib/server/media/image/node-endpoint.ts",
+      "declarations": [
+        {
+          "name": "FORMAT_MIME",
+          "sha256": "66c393d0d54f936aa03625323497e830d1dcfce1626513383e3e6fd535336b9b"
+        },
+        {
+          "name": "isNotFound",
+          "sha256": "5192dea44c114b7d2f3aabc70c68b0e63b47fc5677f83ec6f7e2b32ee11c5529"
+        },
+        {
+          "name": "streamOriginal",
+          "sha256": "960857e62a8d4f92c54f7b558f12d39f7919d3be11b2fdc734dd4a372cbd0639"
+        },
+        {
+          "name": "GET",
+          "sha256": "440c7a536f797e48f93b6ecb7e3d376d3d7a29d8c54268045a6b3027ab9c5833"
+        }
+      ],
+      "productSha256": "d9a67dedd7345114ce7fbf64d3e14012b92d5b654d4ecc0abc17be7c012daf91",
+      "transformations": [
+        "Complete AST-selected FORMAT_MIME and every helper/GET body unchanged; GET export moved into a native dependency-injection factory.",
+        "Source platform imports are provided through explicit native Storage/request/image-service or Images env bindings.",
+        "Generic Astro/adapter delegation is an explicit native404 boundary; bundled/remote optimization unimplemented.",
+        "Native DOM/Worker stream types bridge only; complete executable helper/GET declaration bodies remain unchanged."
+      ]
+    },
+    {
+      "sourcePath": "packages/cloudflare/src/image-endpoint.ts",
+      "productPath": "src/lib/server/media/image/worker-endpoint.ts",
+      "declarations": [
+        {
+          "name": "FORMAT_MIME",
+          "sha256": "9f74ec9d112edd61ec269ce4f309e1a115a83922cb52f5c7c0accc1622c85267"
+        },
+        {
+          "name": "resolveImagesBinding",
+          "sha256": "797fc4a3e383c606de4e9947860cd5cf910b98cc1d15b151c38da7d7445c07a9"
+        },
+        {
+          "name": "streamOriginal",
+          "sha256": "960857e62a8d4f92c54f7b558f12d39f7919d3be11b2fdc734dd4a372cbd0639"
+        },
+        {
+          "name": "isNotFound",
+          "sha256": "5192dea44c114b7d2f3aabc70c68b0e63b47fc5677f83ec6f7e2b32ee11c5529"
+        },
+        {
+          "name": "GET",
+          "sha256": "d02b171e5150ce56bad50dd4db8de53974925aad1b92aaae4330b2ba7fa1c242"
+        }
+      ],
+      "productSha256": "6711862824306f5cff8179c57d54ef7497ce13df31834e0a018b18a81761e03b",
+      "transformations": [
+        "Complete AST-selected FORMAT_MIME and every helper/GET body unchanged; GET export moved into a native dependency-injection factory.",
+        "Source platform imports are provided through explicit native Storage/request/image-service or Images env bindings.",
+        "Generic Astro/adapter delegation is an explicit native404 boundary; bundled/remote optimization unimplemented.",
+        "Native DOM/Worker stream types bridge only; complete executable helper/GET declaration bodies remain unchanged."
+      ]
+    }
   ]
 }
