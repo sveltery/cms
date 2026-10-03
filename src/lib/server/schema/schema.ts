@@ -6,23 +6,54 @@ import { updateFieldInput } from '../database/field-edit-validation.ts';
 
 // Native forms keep omitted support flags distinct from an explicit JSON [].
 const supportsValue = collectionInput.entries.supports.wrapped;
-const supports = v.optional(v.pipe(v.string(), v.maxLength(512), v.check(value => {
-  try { return v.safeParse(supportsValue, JSON.parse(value)).success; } catch { return false; }
-}), v.transform(value => parse(supportsValue, JSON.parse(value)))));
+const supports = v.optional(v.pipe(v.string(), v.maxLength(512)));
 const formBoolean = v.pipe(v.union([v.boolean(), v.picklist(['true', 'false'])]), v.transform(value => value === true || value === 'true'));
 const optionalBoolean = v.optional(formBoolean);
 const optionalJson = v.optional(v.pipe(v.string(), v.maxLength(200_000), v.check(value => { try { JSON.parse(value); return true; } catch { return false; } }), v.transform(value => JSON.parse(value))));
 const clearableIdentifier = v.optional(v.pipe(v.string(), v.transform(value => value === '' ? null : value), v.nullable(identifier)));
 const metadata = {
   label: v.optional(collectionInput.entries.label),
-  labelSingular: collectionInput.entries.labelSingular,
-  description: collectionInput.entries.description,
+  labelSingular: v.optional(v.string()),
+  description: v.optional(v.string()),
   supports, icon: v.optional(v.string()), group: v.optional(v.pipe(v.string(), v.transform(value => value === '' ? null : value))),
   routable: optionalBoolean, hidden: optionalBoolean, hasSeo: optionalBoolean, editLocking: optionalBoolean,
   commentsEnabled: optionalBoolean, listColumns: optionalJson, quickCreate: optionalBoolean,
   urlPattern: v.optional(v.pipe(v.string(), v.transform(value => value === '' ? null : value)))
 };
 const optionalEditMode = v.optional(v.picklist(['keep', 'set']));
+const collectionControls = {
+  supportsMode: optionalEditMode, labelSingularMode: optionalEditMode, descriptionMode: optionalEditMode,
+  supportDrafts:v.optional(v.boolean()),supportRevisions:v.optional(v.boolean()),supportPreview:v.optional(v.boolean()),
+  supportScheduling:v.optional(v.boolean()),supportSearch:v.optional(v.boolean()),supportSeo:v.optional(v.boolean())
+};
+type CollectionControls = {
+  supportsMode?:'keep'|'set';labelSingularMode?:'keep'|'set';descriptionMode?:'keep'|'set';
+  supports?:string;labelSingular?:string;description?:string;
+  supportDrafts?:boolean;supportRevisions?:boolean;supportPreview?:boolean;
+  supportScheduling?:boolean;supportSearch?:boolean;supportSeo?:boolean;
+};
+function validSupports(input:CollectionControls) {
+  if(input.supportsMode!==undefined || input.supports===undefined) return true;
+  try{return v.safeParse(supportsValue,JSON.parse(input.supports)).success;}catch{return false;}
+}
+function validSingular(input:CollectionControls) {
+  return input.labelSingularMode==='keep' || (input.labelSingularMode!=='set' || input.labelSingular!==undefined) &&
+    v.safeParse(collectionInput.entries.labelSingular,input.labelSingular).success;
+}
+function validDescription(input:CollectionControls) {
+  return input.descriptionMode==='keep' || (input.descriptionMode!=='set' || input.description!==undefined) &&
+    v.safeParse(collectionInput.entries.description,input.description).success;
+}
+function selectedCollectionControls<T extends CollectionControls>(input:T) {
+  const {supportsMode,labelSingularMode,descriptionMode,supportDrafts,supportRevisions,supportPreview,
+    supportScheduling,supportSearch,supportSeo,supports:rawSupports,labelSingular,description,...value}=input;
+  return {...value,
+    ...(supportsMode==='keep' || supportsMode===undefined && rawSupports===undefined ? {} : {supports:parse(supportsValue,
+      supportsMode==='set' ? [...(supportDrafts?['drafts']:[]),...(supportRevisions?['revisions']:[]),...(supportPreview?['preview']:[]),
+        ...(supportScheduling?['scheduling']:[]),...(supportSearch?['search']:[]),...(supportSeo?['seo']:[])] : JSON.parse(rawSupports!))}),
+    ...(labelSingularMode==='keep' || labelSingular===undefined ? {} : {labelSingular:parse(collectionInput.entries.labelSingular,labelSingular)}),
+    ...(descriptionMode==='keep' || description===undefined ? {} : {description:parse(collectionInput.entries.description,description)})};
+}
 const rawJson = v.optional(v.pipe(v.string(),v.maxLength(200_000)));
 function selectedJson(mode:'keep'|'set'|undefined,value:string|undefined) {
   if(mode === 'keep') return true;
@@ -113,13 +144,16 @@ export function convertFieldOptions(input: v.InferOutput<typeof fieldOptionsForm
   });
 }
 export const createInput = v.pipe(v.strictObject({
-  slug: identifier, ...metadata, label: collectionInput.entries.label, settingsMode: optionalEditMode,
+  slug: identifier, ...metadata, ...collectionControls, label: collectionInput.entries.label, settingsMode: optionalEditMode,
   listColumns: rawJson
-}), v.forward(v.check(input => selectedJson(input.settingsMode === 'keep' ? 'keep' : undefined, input.listColumns),
-  'Selected list columns must be valid JSON'), ['listColumns']));
+}),v.forward(v.check(input=>validSupports(input),'Selected supports must be a valid supported list'),['supports']),
+v.forward(v.check(input=>validSingular(input),'Selected singular label must contain valid text'),['labelSingular']),
+v.forward(v.check(input=>validDescription(input),'Selected description must contain valid text'),['description']),
+v.forward(v.check(input => selectedJson(input.settingsMode === 'keep' ? 'keep' : undefined, input.listColumns),
+  'Selected list columns must be valid JSON'), ['listColumns']),v.transform(input=>selectedCollectionControls(input)));
 export const updateInput = v.pipe(v.strictObject({
   // Kit form.for(collection) injects this instance key on native and enhanced submissions.
-  id: v.optional(identifier), collection: identifier, ...metadata,
+  id: v.optional(identifier), collection: identifier, ...metadata, ...collectionControls,
   version: decimalVersion, updatedAt: revisionInput.entries.updatedAt,
   titleField: clearableIdentifier, dateField: clearableIdentifier,
   sortOrder: v.optional(v.pipe(v.string(), v.transform(value => value === '' ? null : Number(value)), v.nullable(v.pipe(v.number(), v.safeInteger())))),
@@ -130,8 +164,11 @@ export const updateInput = v.pipe(v.strictObject({
   listColumns: rawJson
 }), v.forward(v.check(input => input.id === undefined || input.id === input.collection,
   'Form instance must match the collection'), ['id']),
+v.forward(v.check(input=>validSupports(input),'Selected supports must be a valid supported list'),['supports']),
+v.forward(v.check(input=>validSingular(input),'Selected singular label must contain valid text'),['labelSingular']),
+v.forward(v.check(input=>validDescription(input),'Selected description must contain valid text'),['description']),
 v.forward(v.check(input => selectedJson(input.adminMode === 'keep' ? 'keep' : undefined, input.listColumns),
-  'Selected list columns must be valid JSON'), ['listColumns']));
+  'Selected list columns must be valid JSON'), ['listColumns']),v.transform(input=>selectedCollectionControls(input)));
 const creationFormat = v.optional(v.picklist(['omit','text','json']));
 const addFieldEntries = {
   id: v.optional(identifier), collection: identifier, expectedSchemaVersion: decimalVersion,

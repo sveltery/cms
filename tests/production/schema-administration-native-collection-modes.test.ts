@@ -19,13 +19,13 @@ for (const target of ['Node','D1'] as const) {
         const form=[...html.matchAll(/<form[^>]*>([\s\S]*?)<\/form>/g)].find(m=>m[1].includes(page==='/schema'?'>Create collection</legend>':'>Collection metadata</legend>'))![1];
         assert.match(form,/<select[^>]*name="supportsMode"/, 'Supports is an actual submitted native mode');
         for (const key of ['Drafts','Revisions','Preview','Scheduling','Search','Seo']) {
-          assert.match(form,new RegExp(`<input[^>]*name="support${key}"[^>]*type="checkbox"|<input[^>]*type="checkbox"[^>]*name="support${key}"`),`${key} is operable in SSR`);
+          assert.match(form,new RegExp(`<input[^>]*name="b:support${key}"[^>]*type="checkbox"|<input[^>]*type="checkbox"[^>]*name="b:support${key}"`),`${key} is operable in SSR`);
         }
         assert.match(form,/<select[^>]*name="labelSingularMode"/);
         assert.match(form,/<select[^>]*name="descriptionMode"/);
         assert.ok(!/\bdisabled\b/.test(form.match(/<input[^>]*name="labelSingular"[^>]*>/)![0]));
         assert.ok(!/\bdisabled\b/.test(form.match(/<textarea[^>]*name="description"[^>]*>/)![0]));
-        if(page!=='/schema') assert.match(form,/<input[^>]*checked[^>]*name="supportPreview"|<input[^>]*name="supportPreview"[^>]*checked/,'existing flags are checked without an effect');
+        if(page!=='/schema') assert.match(form,/<input[^>]*checked[^>]*name="b:supportPreview"|<input[^>]*name="b:supportPreview"[^>]*checked/,'existing flags are checked without an effect');
       } finally {await h.close();}
     });
   }
@@ -33,7 +33,7 @@ for (const target of ['Node','D1'] as const) {
     const h=await schemaAdminRemotes(target);
     try {
       const response=await submit(h,'/schema','createSchemaCollection',{slug:'posts',label:'Posts',supportsMode:'set',
-        supportPreview:'on',supportScheduling:'on',supportSearch:'on',supportSeo:'on',
+        'b:supportPreview':'on','b:supportScheduling':'on','b:supportSearch':'on','b:supportSeo':'on',
         labelSingularMode:'set',labelSingular:'Post',descriptionMode:'set',description:'Native creation'});
       assert.equal(response.status,200);
       let c=await h.registry.getCollection('posts');
@@ -45,12 +45,12 @@ for (const target of ['Node','D1'] as const) {
       assert.equal(result.status,200);c=await h.registry.getCollection('posts');assert.ok(c);
       assert.deepEqual(c.supports,[]);assert.equal(c.labelSingular,'Post');assert.equal(c.description,'Native creation');
       result=await submit(h,'/schema/posts','updateSchemaCollection',{collection:'posts',version:String(c.version),updatedAt:c.updatedAt,
-        supportsMode:'keep',supportDrafts:'on',supports:'abandoned invalid JSON',labelSingularMode:'set',labelSingular:'Native post',descriptionMode:'set',description:''});
+        supportsMode:'keep','b:supportDrafts':'on',supports:'abandoned invalid JSON',labelSingularMode:'set',labelSingular:'Native post',descriptionMode:'set',description:''});
       assert.equal(result.status,200);c=await h.registry.getCollection('posts');assert.ok(c);
       assert.deepEqual(c.supports,[]);assert.equal(c.labelSingular,'Native post');assert.equal(c.description,'');
       await h.mutate('createSchemaCollection',{slug:'legacy',label:'Legacy',supports:'["drafts"]'});
       assert.deepEqual((await h.registry.getCollection('legacy'))!.supports,['drafts'],'direct JSON without modes retains the old wire contract');
-      await h.mutate('createSchemaCollection',{slug:'defaults',label:'Defaults',supportsMode:'keep',supportSeo:true});
+      await h.mutate('createSchemaCollection',{slug:'defaults',label:'Defaults',supportsMode:'keep','b:supportSeo':'on'});
       assert.deepEqual((await h.registry.getCollection('defaults'))!.supports,['drafts','revisions'],'keep retains domain defaults');
     }finally{await h.close();}
   });

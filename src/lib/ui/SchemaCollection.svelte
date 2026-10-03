@@ -16,26 +16,14 @@
   const scalarField = $derived(['string','text','slug'].includes(fieldForm.fields.type.value() ?? 'string'));
   const orderForm = $derived(reorderSchemaFields.for(definition.slug));
   const deleteForm = $derived(deleteSchemaCollection.for(definition.slug));
-  let supportsMode = $state('keep');
-  let drafts = $state(false);
-  let revisions = $state(false);
-  let preview=$state(false); let scheduling=$state(false); let search=$state(false); let seo=$state(false);
+  const supportsMode = $derived(metadataForm.fields.supportsMode.value() ?? 'keep');
+  const singularMode = $derived(metadataForm.fields.labelSingularMode.value() ?? 'keep');
+  const descriptionMode = $derived(metadataForm.fields.descriptionMode.value() ?? 'keep');
   let hydrated = $state(false);
   onMount(() => { hydrated = true; });
   const defaultFormat = $derived(fieldForm.fields.defaultValueFormat.value() ?? 'omit');
   const validationFormat = $derived(fieldForm.fields.validationFormat.value() ?? 'omit');
   const optionsMode = $derived(fieldForm.fields.optionsMode.value() ?? 'keep');
-  let setSingular = $state(false);
-  let setDescription = $state(false);
-  $effect(() => {
-    if (supportsMode === 'keep') {
-      drafts = definition.supports.includes('drafts');
-      revisions = definition.supports.includes('revisions');
-      preview=definition.supports.includes('preview'); scheduling=definition.supports.includes('scheduling');
-      search=definition.supports.includes('search'); seo=definition.supports.includes('seo');
-    }
-  });
-  const supports = $derived(JSON.stringify([...(drafts ? ['drafts'] : []), ...(revisions ? ['revisions'] : []), ...(preview?['preview']:[]), ...(scheduling?['scheduling']:[]), ...(search?['search']:[]), ...(seo?['seo']:[])]));
 </script>
 
 <a href={collectionsHref}>Schema collections</a>
@@ -48,26 +36,23 @@
     <input {...metadataForm.fields.version.as('hidden', String(definition.version))} />
     <input {...metadataForm.fields.updatedAt.as('hidden', definition.updatedAt)} />
     <label>Collection label <input {...metadataForm.fields.label.as('text', definition.label)} required maxlength="200" /></label>
-    <label class="toggle"><input type="checkbox" bind:checked={setSingular} /> Set singular label</label>
-    <label>Singular label <input {...metadataForm.fields.labelSingular.as('text', definition.labelSingular ?? '')} disabled={!setSingular} required={setSingular} maxlength="200" /></label>
-    <label class="toggle"><input type="checkbox" bind:checked={setDescription} /> Set description</label>
-    <label>Description <textarea aria-label="Description" {...metadataForm.fields.description.as('text', definition.description ?? '')} disabled={!setDescription} maxlength="2000"></textarea></label>
+    <label>Singular label update <select aria-label="Singular label update" {...metadataForm.fields.labelSingularMode.as('select','keep')}><option value="keep">Keep singular label</option><option value="set">Set singular label</option></select></label>
+    <label>Singular label <input {...metadataForm.fields.labelSingular.as('text', definition.labelSingular ?? '')} disabled={hydrated && singularMode!=='set'} required={singularMode==='set'} maxlength="200" /></label>
+    <label>Description update <select aria-label="Description update" {...metadataForm.fields.descriptionMode.as('select','keep')}><option value="keep">Keep description</option><option value="set">Set description</option></select></label>
+    <label>Description <textarea aria-label="Description" {...metadataForm.fields.description.as('text', definition.description ?? '')} value={metadataForm.fields.description.value()??definition.description??''} disabled={hydrated && descriptionMode!=='set'} maxlength="2000"></textarea></label>
     <label for={`${controlsId}-supports`}>Supports</label>
-    <select id={`${controlsId}-supports`} bind:value={supportsMode}>
+    <select id={`${controlsId}-supports`} {...metadataForm.fields.supportsMode.as('select','keep')}>
       <option value="keep">Keep existing supports</option>
       <option value="set">Set supports</option>
     </select>
     <p>Current supports: {definition.supports.join(', ') || 'none'}.</p>
-    {#if supportsMode === 'set'}
-      <input {...metadataForm.fields.supports.as('hidden', supports)} />
-      <label class="toggle"><input type="checkbox" bind:checked={drafts} /> Drafts</label>
-      <label class="toggle"><input type="checkbox" bind:checked={revisions} /> Revisions</label>
-      <label class="toggle"><input type="checkbox" bind:checked={preview} /> Preview</label>
-      <label class="toggle"><input type="checkbox" bind:checked={scheduling} /> Scheduling</label>
-      <label class="toggle"><input type="checkbox" bind:checked={search} /> Search</label>
-      <label class="toggle"><input type="checkbox" bind:checked={seo} /> SEO</label>
-      <p>Leaving all unchecked stores an empty supports list.</p>
-    {/if}
+    <label class="toggle"><input {...metadataForm.fields.supportDrafts.as('checkbox',definition.supports.includes('drafts'))} disabled={hydrated && supportsMode!=='set'} /> Drafts</label>
+    <label class="toggle"><input {...metadataForm.fields.supportRevisions.as('checkbox',definition.supports.includes('revisions'))} disabled={hydrated && supportsMode!=='set'} /> Revisions</label>
+    <label class="toggle"><input {...metadataForm.fields.supportPreview.as('checkbox',definition.supports.includes('preview'))} disabled={hydrated && supportsMode!=='set'} /> Preview</label>
+    <label class="toggle"><input {...metadataForm.fields.supportScheduling.as('checkbox',definition.supports.includes('scheduling'))} disabled={hydrated && supportsMode!=='set'} /> Scheduling</label>
+    <label class="toggle"><input {...metadataForm.fields.supportSearch.as('checkbox',definition.supports.includes('search'))} disabled={hydrated && supportsMode!=='set'} /> Search</label>
+    <label class="toggle"><input {...metadataForm.fields.supportSeo.as('checkbox',definition.supports.includes('seo'))} disabled={hydrated && supportsMode!=='set'} /> SEO</label>
+    <p>Choose Set supports to save these choices. Leaving all unchecked stores an empty supports list.</p>
     <label>Collection settings update <select aria-label="Collection settings update" {...metadataForm.fields.settingsMode.as('select','keep')}><option value="keep">Keep collection settings</option><option value="set">Set collection settings</option></select></label>
     <label>Icon <input {...metadataForm.fields.icon.as('text',definition.icon??'')} /></label>
     <label>Navigation group <input {...metadataForm.fields.group.as('text',definition.group??'')} /></label>
