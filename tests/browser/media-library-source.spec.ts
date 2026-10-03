@@ -1,19 +1,7 @@
 // @ts-nocheck -- complete pinned callbacks with native trusted WebAuthn fixture.
 // EmDash1.1.0 MIT2026 Cloudflare Inc.; notices/emdash-MIT.txt.
-import {test as base,expect} from '@playwright/test';
+import {test,expect} from '../helpers/media-authenticated-browser';
 import {mkdirSync,existsSync,writeFileSync,readFileSync} from 'node:fs';import {join} from 'node:path';
-import {passkeyRuntime} from '../helpers/passkey-runtime';import {addVirtualWebAuthnAuthenticator} from '../helpers/virtual-authenticator';import {completeFullSetup} from '../helpers/full-setup-browser';
-const test=base.extend({admin:async({page,context},use)=>{
- const h=await passkeyRuntime('Node');const removeAuthenticator=await addVirtualWebAuthnAuthenticator(page);
- try{await page.goto(h.origin+'/setup');await completeFullSetup(page,'media@example.com','Media Admin');
- await page.getByRole('button',{name:'Sign in with a passkey',exact:true}).click();
- await expect(page).toHaveURL(h.origin+'/');
- const current=await page.request.get(h.origin+'/api/auth/me');expect(current.status()).toBe(200);expect((await current.json()).data.role).toBe(50);
- await page.waitForLoadState('networkidle');
- const welcome=page.getByRole('heading',{name:/^Welcome to EmDash/});if(await welcome.isVisible())await page.getByRole('button',{name:'Get Started',exact:true}).click();
- await use({page,goToMedia:()=>page.goto(h.origin+'/media'),waitForLoading:()=>page.waitForLoadState('networkidle'),expectPageTitle:title=>expect(page.getByRole('heading',{name:title,exact:true})).toBeVisible()});
- }finally{await removeAuthenticator();await h.close();}
-}});
 const TEST_ASSETS_DIR=join(process.cwd(),'test-results/media-source-assets');
 const MEDIA_API_RESPONSE_PATTERN=/\/api\/media/;const UPLOAD_BUTTON_REGEX=/Upload/;const BROWSE_FILES_LABEL='Browse files to upload';
 function ensureTestAssets(): string {
