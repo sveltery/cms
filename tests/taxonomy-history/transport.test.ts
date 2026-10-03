@@ -1,6 +1,6 @@
 import {expect,it} from 'vitest';
 import {sql} from 'kysely';
-import {createForDialect,setupForDialectWithCollections,teardownForDialect} from './helpers/taxonomy-history-db.ts';
+import {createForDialect,setupForDialectWithCollections,teardownForDialect} from '../helpers/taxonomy-history-db.ts';
 
 function boundColumns(count:number){
   return sql`SELECT ${sql.join(Array.from({length:count},(_,index)=>sql`${index+1} AS ${sql.id(`value_${index+1}`)}`))}`;

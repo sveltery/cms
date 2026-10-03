@@ -90,6 +90,6 @@ export default defineConfig({plugins:[{
     }
   }
 }],test:{
-  include:['tests/source-taxonomy-history/packages/core/tests/integration/database/*.test.ts','tests/taxonomy-history-transport.test.ts'],
+  include:['tests/source-taxonomy-history/packages/core/tests/integration/database/*.test.ts','tests/taxonomy-history/transport.test.ts'],
   fileParallelism:false,maxWorkers:1
 }});

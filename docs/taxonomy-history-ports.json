@@ -305,6 +305,27 @@
       "sourceDeclarationRedCredit": 0,
       "causalSourceTddCredit": 0,
       "transportOnlyExtraSourceCredit": 0
+    },
+    {
+      "phase": "normal full bootstrap at1283",
+      "head": "1283f90d8a641c02ff58fbc35f92bb60198e8073",
+      "frozenInstall": "passed",
+      "normalCheck": {
+        "errors": 0,
+        "warnings": 0
+      },
+      "serviceResult": {
+        "tests": 1103,
+        "passed": 1084,
+        "failed": 19,
+        "cancelled": 0,
+        "durationMs": 153657.834357
+      },
+      "ownIntegrationFailure": "Original top-level Vitest transport test was selected by node --test tests/*.test.ts and failed outside Vitest; moved to nested owned directory, still explicitly mandatory in both history configs; guard body/asserts unchanged",
+      "inheritedFailures": 18,
+      "fullPass": false,
+      "downstreamHistoryBuildPackageStages": "not reached",
+      "assertionRedOrSourceCreditForLoaderError": 0
     }
   ],
   "limits": [

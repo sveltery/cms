@@ -90,7 +90,13 @@ or other feature credit merely because their migration modules are loaded.
 Normal frozen installation failed npm registry503 metadata verification and
 is not claimed green. Installed-library typechecking reports 0 errors and 0 warnings.
 Original head `f4c0ca8` hosted validate and browser jobs both failed; no full
-normal/secured-browser pass is recorded. Final-approved-main integration, review,
+normal/secured-browser pass is recorded. Normal bootstrap at `1283f90` passed
+frozen installation/check but failed its service stage: 1084 pass, 19 fail, zero
+cancelled. Eighteen failures belong to inherited portable/uniqueness/trash/marker/
+role behavior. The original top-level Vitest transport file was also selected by
+the Node test glob; it is now nested and remains mandatory in both history
+configs, with its body/expectations unchanged. That import error earns zero
+assertion-red/source credit. Final-approved-main integration, review,
 project-manager approval, owned merge and post-merge verification remain pending.
 
 For the separate native development integration, set
