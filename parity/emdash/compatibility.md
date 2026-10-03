@@ -522,3 +522,19 @@ Required canonical migration PR #42 is now author-merged and post-merge checked 
 Configured review at `b5ec2454e125a3f6318d79d639d56b6554e96727` identified mixed-save atomicity and omitted unpublish retention. The [complete selected-route/runtime reproducer](../../docs/lifecycle-review-reproduction.md) qualifies the former as shared pinned behavior, tracked in [issue 62](https://github.com/sveltery/cms/issues/62). The direct invalid-date runtime call persists the draft, but the public source PUT rejects that literal before any write. The complete original PUT callback with an actual Request, accepted ISO date, original decoder/authorization, original runtime/API/repositories/transactions and a real metadata SQL fault returns 500 while retaining the staged draft/version and unchanged live columns. The API-only transaction cannot undo earlier runtime staging. Native backend Node/D1 preserve this effect; current PR45 has no mixed metadata-save remote. No stronger atomic repair or arbitrary concurrent-failure equivalence is inferred. Trusted admin/no-lock scalar fixture boundaries, original declaration credit and source D1/whole-runtime omissions remain explicit. A stronger native whole-save transaction requires fresh separately scoped work and a specific compatibility decision.
 
 Review closure source/storage/native run passes 58/58 including real fresh/version-4 Node/D1 workflow4/4; typed receipt refactor `e61ae24` subsequently passes eight review regressions and checker0/0. The original source diagnostic exercises oldest-ten acknowledgement across eleven real queued entries. These focused runs are separate from exact final-head normal frozen bootstrap, secured hosted browsers and review gates. The obsolete pre-refactor bootstrap stops at metadata with exit143, and the initial eight queue-query typing diagnostics remain recorded. No source expected value, required timeout or canonical provider file changes; no additional copied-source credit or specific LC-01–04 acceptance follows.
+
+## Asynchronous local D1 fixture transport (proposed)
+
+EmDash 1.1.0 pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`,
+`packages/cloudflare/src/db/d1-dialect.ts`, remains the raw binding authority.
+The native shared test fixture replaces Miniflare's synchronous host proxy with
+`dispatchFetch` requests to actual Worker `env.DB.all/batch` operations. The
+application dialect and existing source/canonical callbacks stay unchanged.
+This is a test transport substitution, with zero additional source credit and
+no sessions/bookmarks or deployed D1 claim. A controlled execution of the actual
+Miniflare 4.20260507.1 worker reproduces a prior notification waking the next
+request; it does not prove the exact timing of the hosted auth-head failure.
+[The feature record](../../docs/d1-fixture-transport.md) separates completed native
+assertion reds, already-green parameter/rollback/restart controls, focused green
+runs and required final gates. Decision status: implementation authorized;
+specific PM acceptance and merge are pending.
