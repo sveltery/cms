@@ -16,9 +16,10 @@
     version?: string; footerLabel?: string | false;
   } = $props();
   let fetchedNavigation = $state<WorkspaceNavigation>({ authenticated: false, permissions: [], collections: {} });
+  let navigationQuery = $state.raw<ReturnType<typeof getWorkspaceNavigation>>();
   let navigationOpen = $state(false);
   let folders = $state<Record<string, boolean>>({});
-  const navigationData = $derived(navigation ?? fetchedNavigation);
+  const navigationData = $derived(navigation ?? navigationQuery?.current ?? fetchedNavigation);
   const prefix = $derived(homeHref.endsWith('/') ? homeHref : `${homeHref}/`);
   const schemaLink = $derived(schemaHref ?? `${prefix}schema`);
   const path = $derived(currentPath ?? page.url.pathname);
@@ -31,8 +32,11 @@
   onMount(() => {
     let disposed = false;
     try { folders = parseFolderState(localStorage.getItem('emdash-sidebar-folders')); } catch { /* Storage denial retains route defaults. */ }
-    if (!navigation) void getWorkspaceNavigation().then(value => { if (!disposed) fetchedNavigation = value; },
-      () => { if (!disposed) fetchedNavigation = { authenticated: false, permissions: [], collections: {}, unavailable: true }; });
+    if (!navigation) {
+      navigationQuery = getWorkspaceNavigation();
+      void navigationQuery.then(value => { if (!disposed) fetchedNavigation = value; },
+        () => { if (!disposed) fetchedNavigation = { authenticated: false, permissions: [], collections: {}, unavailable: true }; });
+    }
     return () => { disposed = true; };
   });
 </script>

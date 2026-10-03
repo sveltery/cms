@@ -49,7 +49,7 @@
   "sourceDeclarationsExecuted": 9,
   "genuineSourceAssertionReds": 0,
   "sourceMIT": "notices/emdash-MIT.txt",
-  "status": "draft PR66; focusedSource/native passes only; finalnormal/securedUI/gates/reviews/approval pending",
+  "status": "draft PR66; normal/secured repaired-head gates, reviews and approval pending",
   "nativeTDD": {
     "testCommit": "4c14c8970572e990b214f779921ec3cfd0d4426e",
     "assertionReds": 6,
@@ -111,7 +111,7 @@
         "sha256": "0b64559c8279a601d063414f669dee275e6ee70ec9362050d35c20a24143f462"
       }
     ],
-    "cardDOM": "23 complete paired callbacks retained; b65 hosted frozen340 pass, then JSX/reference type host failure before callbacks; repaired host pending execution",
+    "cardDOM": "23 complete paired Card callbacks pass at d14a9dc in normal hosted validate37102602980; imports only adapted, JSX/type factory host bridge; no causal source reds or EmDash source credit",
     "sourceTestSHA256": "c44e5da062de4d3db65b0c7fe585ad892c8ee042ac08b64c7f0502b114e6e8e4",
     "testHostAdaptations": [
       "import-only paths",
@@ -126,6 +126,30 @@
       "frozenDependencies": "340 entries passed policy/integrity",
       "validate": "type host failed before Card callback execution",
       "browser": "58 default + 58 Node secured passed"
+    },
+    {
+      "head": "d14a9dc7b4bb280fcb8e027c304549841fab0f1a",
+      "run": 37102602980,
+      "normalPassed": [
+        "frozen340 policy/integrity",
+        "checker0 errors0 warnings",
+        "service909",
+        "pinned43 including9ownhelpers",
+        "Card23",
+        "defaultbuild"
+      ],
+      "normalFailure": "production exact remote inventory missing new display query; inventory adaptation, zero source/product reds",
+      "browser": "57 passed, existing native hydration/client-navigation probe failed; unqualified"
     }
-  ]
+  ],
+  "reactiveNavigationTDD": {
+    "testCommit": "a9cd8a778792244e2dd4bd3152c830aa6ad936ce",
+    "sourceCredit": 0,
+    "genuineNativeAssertionReds": 1,
+    "run": 37102937427,
+    "job": 111145886153,
+    "failure": "workspace-navigation.spec.ts:20 renamed sidebar link absent after actual editor heading and persisted registry label changed",
+    "baselineBrowserGreen": 58,
+    "repairedHeadGreen": "pending"
+  }
 }
