@@ -6,7 +6,7 @@ import { encodeBase64urlNoPadding } from '@oslojs/encoding';
 import { hashSessionToken } from '../../src/lib/server/auth/session.ts';
 import { Role } from '../../src/lib/server/auth/roles.ts';
 import { passkeyRuntime } from '../helpers/passkey-runtime.ts';
-import { redirectNamespacePlugin } from '../helpers/redirects/test-db.ts';
+import { sourceNamespace } from '../helpers/sections-widgets-namespace.ts';
 import { up as widgetsFixture } from '../../parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/007_widgets.ts';
 import { up as sectionsFixture } from '../../parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/011_sections.ts';
 
@@ -14,6 +14,7 @@ for (const target of ['Node', 'D1'] as const) {
   test(`${target}: real section API reports absent storage and preserves reusable content CRUD`, async t => {
     const runtime = await passkeyRuntime(target);
     t.after(() => runtime.close());
+    await runtime.request('/');
     const database = await runtime.database();
     const token = encodeBase64urlNoPadding(crypto.getRandomValues(new Uint8Array(32)));
     await database.db.insertInto('_cms_auth_users').values({ id: 'section-editor', role: Role.EDITOR, disabled: 0 }).execute();
@@ -26,7 +27,7 @@ for (const target of ['Node', 'D1'] as const) {
     const absent = await request('/api/sections');
     assert.equal(absent.status, 503);
     // Explicit named Source DDL is a test fixture, never canonical startup credit.
-    const fixtureDb = database.db.withPlugin(redirectNamespacePlugin);
+    const fixtureDb = database.db.withPlugin(sourceNamespace);
     await sectionsFixture(fixtureDb);
     const content = [{ _type: 'block', _key: 'b1', style: 'h2', children: [{ _type: 'span', _key: 's1', text: 'Reusable hero', marks: [] }], markDefs: [] }];
     const create = await request('/api/sections', 'POST', { slug: 'hero', title: 'Hero Section', content, keywords: ['welcome'] });
@@ -46,6 +47,7 @@ for (const target of ['Node', 'D1'] as const) {
   test(`${target}: real widget API preserves area contents, changes, ordering and cascade deletion`, async t => {
     const runtime = await passkeyRuntime(target);
     t.after(() => runtime.close());
+    await runtime.request('/');
     const database = await runtime.database();
     const token = encodeBase64urlNoPadding(crypto.getRandomValues(new Uint8Array(32)));
     await database.db.insertInto('_cms_auth_users').values({ id: 'widget-editor', role: Role.EDITOR, disabled: 0 }).execute();
@@ -56,7 +58,7 @@ for (const target of ['Node', 'D1'] as const) {
         ...(body === undefined ? {} : { body: JSON.stringify(body) }) });
     }
     assert.equal((await request('/api/widget-areas')).status, 503);
-    await widgetsFixture(database.db.withPlugin(redirectNamespacePlugin));
+    await widgetsFixture(database.db.withPlugin(sourceNamespace));
     const area = await request('/api/widget-areas', 'POST', { name: 'sidebar', label: 'Sidebar', description: 'Main sidebar' });
     assert.equal(area.status, 201);
     const first = await request('/api/widget-areas/sidebar/widgets', 'POST', { type: 'content', title: 'Welcome', content: [] });
@@ -73,7 +75,7 @@ for (const target of ['Node', 'D1'] as const) {
     assert.ok((await components.json()).data.items.some((c: { id: string }) => c.id === 'core:search'));
     assert.equal((await request('/api/widget-areas/sidebar', 'DELETE')).status, 200);
     assert.equal((await request('/api/widget-areas/sidebar')).status, 404);
-    const remaining = await database.db.withPlugin(redirectNamespacePlugin).withTables<{ _emdash_widgets: { id: string } }>().selectFrom('_emdash_widgets').selectAll().execute();
+    const remaining = await database.db.withPlugin(sourceNamespace).withTables<{ _emdash_widgets: { id: string } }>().selectFrom('_emdash_widgets').selectAll().execute();
     assert.deepEqual(remaining, []);
   });
 }
