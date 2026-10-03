@@ -66,6 +66,16 @@ test('native collection creation keeps source defaults until advanced settings a
   const value=convertCollectionCreate(parsed.output);
   assert.deepEqual(value,{slug:'posts',label:'Posts',supports:['seo']});
 });
+
+test('native collection keep modes ignore abandoned list-column JSON', () => {
+  const created=v.safeParse(createInput,{slug:'posts',label:'Posts',settingsMode:'keep',listColumns:'abandoned text'});
+  assert.equal(created.success,true,'default creation settings ignore abandoned JSON');
+  if(created.success) assert.deepEqual(convertCollectionCreate(created.output),{slug:'posts',label:'Posts'});
+  const updated=v.safeParse(updateInput,{...expected,adminMode:'keep',listColumns:'{invalid'});
+  assert.equal(updated.success,true,'keeping list display ignores abandoned JSON');
+  if(updated.success) assert.deepEqual(convertCollectionUpdate(updated.output).input,{});
+  assert.equal(v.safeParse(updateInput,{...expected,adminMode:'set',listColumns:'{invalid'}).success,false);
+});
 test('native collection updates distinguish omitted display fields from clearing them', () => {
   const kept = convertCollectionUpdate(v.parse(updateInput, expected));
   assert.equal(Object.hasOwn(kept.input, 'titleField'), false);
