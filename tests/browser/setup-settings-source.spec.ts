@@ -8,10 +8,10 @@ const test=base.extend({admin:async({page},use)=>{
  try{
   await page.context().addCookies([{name:'cms-session',value:h.tokens.admin,url:h.origin}]);
   await use({page,goto:path=>page.goto(h.origin+path),waitForShell:async()=>{},waitForLoading:async()=>{}});
-test.beforeEach(()=>test.setTimeout(20_000));
  }finally{await h.close();}
 }});
 test.beforeEach(()=>test.setTimeout(20_000));
+test.describe('Social Settings',()=>{
 	test("page renders with heading and form", async ({ admin, page }) => {
 		await admin.goto("/settings/social");
 		await admin.waitForShell();
@@ -70,6 +70,8 @@ test.beforeEach(()=>test.setTimeout(20_000));
 		const firstInputAfterReload = page.locator("form input").first();
 		await expect(firstInputAfterReload).toHaveValue(testHandle, { timeout: 10000 });
 	});
+});
+test.describe('SEO Settings',()=>{
 	test("page renders with heading and form", async ({ admin, page }) => {
 		await admin.goto("/settings/seo");
 		await admin.waitForShell();
@@ -142,6 +144,8 @@ test.beforeEach(()=>test.setTimeout(20_000));
 		});
 		await expect(googleInputAfterReload).toHaveValue(testVerification, { timeout: 10000 });
 	});
+});
+test.describe('Form Data Loss Prevention',()=>{
 	test("settings edits survive window blur/focus", async ({ admin, page }) => {
 		await admin.goto("/settings/general");
 		await admin.waitForShell();
@@ -163,3 +167,4 @@ test.beforeEach(()=>test.setTimeout(20_000));
 		// The edit should persist (staleTime: Infinity prevents refetch from overwriting)
 		await expect(taglineInput).toHaveValue("My edited tagline");
 	});
+});
