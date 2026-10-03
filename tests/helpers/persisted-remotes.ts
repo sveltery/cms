@@ -25,7 +25,7 @@ export const sessions: Record<string, ServerPrincipal> = {
 
 /** Isolated built-server test hook. This file is never imported by app source. */
 export async function persistedRemotes(config?: { persistedSessions: true; mutationsEnabled?: boolean }) {
-  let mutationsEnabled = config?.mutationsEnabled ?? true;
+  let mutationsEnabled = config?.persistedSessions ? config.mutationsEnabled === true : true;
   const directory = await mkdtemp(join(tmpdir(), 'cms-remotes-'));
   const path = join(directory, 'content.sqlite');
   let database = openSqlite(path);
