@@ -1,20 +1,17 @@
 import {beforeEach,describe,it,expect,vi} from 'vitest';
 import {mediaRequest,uploadMediaFile,MediaRequestError} from '../helpers/media-panel-client-host';
 import * as api from '../helpers/media-panel-api-host';
-import {rememberPanelFixture,forgetPanelFixture,nativeMockRow} from '../helpers/media-panel-response-context';
 vi.mock('../helpers/media-panel-api-host',async()=>({...await vi.importActual('../helpers/media-panel-api-host'),updateMedia:vi.fn(),replaceMediaImage:vi.fn(),uploadMedia:vi.fn(),deleteMedia:vi.fn(),fetchMediaItem:vi.fn()}));
 describe('ORIGINAL test-host boundaries; zero Source, identity, or real provider credit',()=>{
  beforeEach(()=>vi.resetAllMocks());
  it('forwards unchanged metadata and adds only the mock row envelope',async()=>{
-  const fixture={id:'row',url:'https://example.test/source.jpg',filename:'source.jpg',alt:'old',provider:undefined,meta:{untouched:true}};
-  rememberPanelFixture(fixture);
-  try{vi.mocked(api.updateMedia).mockResolvedValue({id:'row',caption:'returned'} as never);
-   const payload={alt:'',focalX:null,focalY:null};
-   const result=await mediaRequest('/api/media/row',{method:'PUT',body:JSON.stringify(payload)});
-   expect(api.updateMedia).toHaveBeenCalledExactlyOnceWith('row',payload);
-   expect(result).toEqual({item:{...fixture,caption:'returned'}});
-   expect((result as {item:{alt:string}}).item.alt).toBe('old');
-  }finally{forgetPanelFixture(fixture);}
+  const returned={id:'row',caption:'returned'};vi.mocked(api.updateMedia).mockResolvedValue(returned as never);
+  const payload={alt:'',focalX:null,focalY:null};
+  const result=await mediaRequest('/api/media/row',{method:'PUT',body:JSON.stringify(payload)});
+  expect(api.updateMedia).toHaveBeenCalledExactlyOnceWith('row',payload);
+  expect(result).toEqual({item:returned});
+  expect((result as {item:unknown}).item).toBe(returned);
+
  });
  it('retains actual native error class, status, code and message',async()=>{
   vi.mocked(api.updateMedia).mockRejectedValue(new api.ApiResponseError(404,'NOT_FOUND','Original Source rejection'));
@@ -39,9 +36,10 @@ describe('ORIGINAL test-host boundaries; zero Source, identity, or real provider
   await expect(mediaRequest('/api/media/row/usage')).rejects.toThrow();
   expect(api.fetchMediaItem).not.toHaveBeenCalled();
  });
- it('rejects malformed row values and releases the fixture context',()=>{
-  const fixture={id:'row',url:'/original',filename:'preserved'};rememberPanelFixture(fixture);
-  expect(()=>nativeMockRow('row',null)).toThrow(TypeError);
-  forgetPanelFixture(fixture);expect(nativeMockRow('row',{id:'row',url:'/returned'})).toEqual({id:'row',url:'/returned'});
+ it('preserves partial and malformed Source responses for actual product behavior to handle',async()=>{
+  vi.mocked(api.updateMedia).mockResolvedValue({} as never);
+  expect(await mediaRequest('/api/media/row',{method:'PUT',body:'{}'})).toEqual({item:{}});
+  vi.mocked(api.updateMedia).mockResolvedValue(null as never);
+  expect(await mediaRequest('/api/media/row',{method:'PUT',body:'{}'})).toEqual({item:null});
  });
 });

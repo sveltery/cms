@@ -7,7 +7,6 @@ import {mount, unmount, flushSync, type ComponentProps} from 'svelte';
 import MediaDetails from '../../src/lib/media/MediaDetails.svelte';
 import type {MediaItem} from '../../src/lib/media/types';
 import {mediaPanelState} from './media-panel-state.svelte';
-import {rememberPanelFixture,forgetPanelFixture} from './media-panel-response-context';
 export interface MediaDetailPanelProps {
  open:boolean; item:MediaItem & {provider?:string;meta?:Record<string,unknown>}; embedded?:boolean; context?:'library'|'content';
  providerName?:string;canDelete?:boolean;canMoveLocation?:boolean;canCropOriginal?:boolean;canReplaceOriginal?:boolean;canDuplicateCrop?:boolean;
@@ -29,7 +28,7 @@ function MountedPanel(props:MediaDetailPanelProps) {
  const target=React.useRef<HTMLDivElement>(null);
  const state=React.useRef<ReturnType<typeof mediaPanelState>|null>(null);
  if(!state.current)state.current=mediaPanelState(nativeProps(props));
- React.useLayoutEffect(()=>{const fixture={...props.item};rememberPanelFixture(fixture);flushSync(()=>Object.assign(state.current!,nativeProps(props)));return()=>forgetPanelFixture(fixture);});
+ React.useLayoutEffect(()=>{flushSync(()=>Object.assign(state.current!,nativeProps(props)));});
  React.useLayoutEffect(()=>{let instance:ReturnType<typeof mount>;flushSync(()=>{instance=mount(MediaDetails,{target:target.current!,props:state.current as unknown as ComponentProps<typeof MediaDetails>});});return()=>{void unmount(instance!);};},[]);
  return React.createElement('div',{ref:target});
 }

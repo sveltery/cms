@@ -25,5 +25,6 @@ export default defineConfig({
  test:{fileParallelism:false,include:[
   'parity/emdash/media-panel/source-tests/packages/admin/tests/components/MediaDetailPanel.test.tsx',
   'parity/emdash/media-panel/source-tests/packages/admin/tests/components/MediaDetailPanelNavigation.test.tsx',
+  'tests/media-panel-host/native-row-preservation.browser.tsx',
  ],browser:{enabled:true,headless:true,viewport:{width:1280,height:800},provider:playwright({contextOptions:{timezoneId:'America/New_York'},launchOptions:{chromiumSandbox:true,timeout:30000}}),instances:[{browser:'chromium'}]}}
 });
