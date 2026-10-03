@@ -10,6 +10,8 @@ import {migrateCms} from '../src/lib/server/database/migrations.ts';
 import {SchemaRegistry} from '../src/lib/server/database/registry.ts';
 import {RevisionRepository} from '../src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts';
 import {revisionModule,runtimeModule} from './helpers/revision-maintenance/fixture.ts';
+import {asyncD1Storage} from './helpers/async-d1-storage.ts';
+import {openD1} from '../src/lib/server/database/d1.ts';
 
 async function fixture(target:'Node'|'D1',directory?:string) {
   const storage=await schemaAdminStorage(target,directory);
@@ -132,4 +134,30 @@ it('Node: the trusted maintenance entry opens real persistent storage and can ru
     const revisions=new RevisionRepository(stored.database.db as any);
     assert.equal(await revisions.countByEntry('post','restart'),50);
   }finally{await stored.close();await rm(directory,{recursive:true,force:true});}
+});
+it('D1: the trusted maintenance entry uses the actual Worker D1 binding and persists across runtime reopen',async()=>{
+  const directory=await mkdtemp(join(tmpdir(),'cms-revision-maintenance-d1-'));
+  let storage=await asyncD1Storage(directory);
+  let database=openD1(storage.binding);
+  try {
+    await migrateCms(database);
+    const registry=new SchemaRegistry(database);
+    await registry.createCollection({slug:'post',label:'Posts'});
+    await registry.createField('post',{slug:'title',label:'Title',type:'string'});
+    await sql`INSERT INTO ec_post (id,slug,status,created_at,updated_at,version)
+      VALUES ('reopen','reopen','draft','2026-01-01T00:00:00.000Z','2026-01-01T00:00:00.000Z',1)`.execute(database.db);
+    const revisions=new RevisionRepository(database.db as any);
+    for(let index=0;index<55;index++)await revisions.create({collection:'post',entryId:'reopen',data:{title:`Revision ${index}`}});
+    const module=await runtimeModule();
+    assert.equal(typeof module.runRevisionMaintenance,'function','A trusted storage-owning maintenance entry must exist');
+    assert.deepEqual(await module.runRevisionMaintenance({kind:'d1',binding:storage.binding}),{revisionsPruned:5});
+    await database.close();await storage.runtime.dispose();
+    storage=await asyncD1Storage(directory);database=openD1(storage.binding);
+    assert.equal(await new RevisionRepository(database.db as any).countByEntry('post','reopen'),50);
+    assert.deepEqual(await module.runRevisionMaintenance({kind:'d1',binding:storage.binding}),{revisionsPruned:0});
+  }finally{await database.close();await storage.runtime.dispose();await rm(directory,{recursive:true,force:true});}
+});
+it('Worker: a trusted scheduled handler must expose actual revision maintenance without a public route',async()=>{
+  const module=await runtimeModule();
+  assert.equal(typeof module.createRevisionMaintenanceScheduledHandler,'function','A trusted Worker scheduled maintenance seam must exist');
 });
