@@ -61,6 +61,21 @@ for(const target of ['Node','D1'] as const) {
       assert.equal((await f.service.readPublished(f.key))?.data.title,'Live');
     } finally {await f.storage.close();}
   });
+  test(`${target}: accepted ISO metadata SQL fault preserves the pinned mixed draft commit`,async()=>{
+    const f=await fixture(target);
+    try {
+      await sql`CREATE TRIGGER review_metadata_fault BEFORE UPDATE OF published_at ON ec_post
+        WHEN NEW.published_at='2020-01-01T00:00:00.000Z'
+        BEGIN SELECT RAISE(ABORT,'review metadata fault'); END`.execute(f.storage.database.db);
+      const before=(await f.content.findById('post',f.key.id))!;
+      await assert.rejects(()=>f.service.updateContent({...f.key,expected:expected(before),data:{title:'Accepted REST draft'},publishedAt:'2020-01-01T00:00:00.000Z'}),/review metadata fault/);
+      const after=(await f.content.findById('post',f.key.id))!;
+      assert.equal(after.version,before.version+1);assert.notEqual(after.draftRevisionId,before.draftRevisionId);
+      assert.equal((await f.revisions.findById(after.draftRevisionId!))?.data.title,'Accepted REST draft');
+      assert.equal(after.data.title,'Live');assert.equal(after.publishedAt,before.publishedAt);
+      await sql`DROP TRIGGER review_metadata_fault`.execute(f.storage.database.db);await f.flush();
+    } finally {await f.storage.close();}
+  });
   test(`${target}: unpublish pruning preserves a newer queued boundary and the current draft`,async()=>{
     const f=await fixture(target);
     try {

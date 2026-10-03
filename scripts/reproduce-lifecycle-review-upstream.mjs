@@ -33,11 +33,18 @@ function declaration(text,name,method=false) {
 try {
   const ledger=JSON.parse(await readFile(join(root,'docs/lifecycle-source-files.json'),'utf8'));
   for(const item of ledger.files.filter(item=>!item.hostSubstitution))await put(item.path,source(item.path,item.blob));
-  const extra=['packages/core/src/schema/types.ts','packages/core/src/schema/zod-generator.ts','packages/core/src/utils/hash.ts','packages/core/src/api/handlers/validation.ts','packages/core/src/request-cache.ts'];
+  const extra=['packages/core/src/schema/types.ts','packages/core/src/schema/zod-generator.ts','packages/core/src/utils/hash.ts','packages/core/src/api/handlers/validation.ts','packages/core/src/request-cache.ts',
+    'packages/core/src/api/schemas/content.ts','packages/core/src/api/schemas/common.ts','packages/core/src/api/schemas/bylines.ts','packages/core/src/api/schemas/relations.ts','packages/core/src/i18n/config.ts',
+    'packages/core/src/api/parse.ts','packages/core/src/api/error.ts','packages/core/src/api/errors.ts','packages/core/src/api/authorize.ts','packages/core/src/transfer/errors.ts',
+    'packages/auth/src/rbac.ts','packages/auth/src/types.ts','packages/core/src/astro/routes/api/content/[collection]/[id].ts'];
   for(const path of extra)await put(path,source(path));
   // No configured cache or request context is part of this fixture.
   await put('packages/core/src/object-cache/index.ts','export function invalidateCollectionCache() {}');
   await put('packages/core/src/request-context.ts','export function getRequestContext() {return undefined;}');
+  // No entry lock is installed in this selected-route fixture; lock semantics
+  // and all source authentication middleware are outside its assertion scope.
+  await put('fixture-entry-lock.ts','export async function claimEntryLockForWrite(){return null;}');
+  await put('fixture-auth.ts',`export * from './packages/auth/src/rbac.js'; ${declaration(source('packages/auth/src/tokens.ts'),'hasScope')}`);
   // The host's registered scalar schema supplies the same field definitions;
   // the complete original validation and Zod generator run on those definitions.
   await put('packages/core/src/schema/registry.ts',`export class SchemaRegistry {constructor(db){this.db=db;}getCollectionWithFields(type){return globalThis.__lifecycleReviewRegistries.get(this.db).getCollectionWithFields(type);}}`);
@@ -92,6 +99,7 @@ import {schemaAdminStorage} from '${join(root,'tests/helpers/schema-admin-storag
 import {migrateCms} from '${join(root,'src/lib/server/database/migrations.ts')}';
 import {SchemaRegistry} from '${join(root,'src/lib/server/database/registry.ts')}';
 import {SourceRuntime,ContentRepository,RevisionRepository,apiUpdate,pruneQueuedRevisions} from './packages/core/src/review-runtime.ts';
+import {PUT} from './packages/core/src/astro/routes/api/content/[collection]/[id].ts';
 class Namespace extends OperationNodeTransformer {
   transformIdentifier(node){return {...node,name:node.name==='revisions'?'_cms_revisions':node.name.replace(/^_emdash_/,'_cms_')};}
   transformRaw(node){return {...super.transformRaw(node),sqlFragments:node.sqlFragments.map(part=>part.replaceAll('_emdash_','_cms_').replace(/\\brevisions\\b/g,'_cms_revisions'))};}
@@ -119,6 +127,23 @@ try {
   const apiResult=await apiUpdate(db,'post',created.id,{publishedAt:'not-a-date'});
   assert.equal(apiResult.success,false);assert.equal(apiResult.error.code,'VALIDATION_ERROR');
   assert.deepEqual(await content.findById('post',created.id),apiBefore);
+  runtime.handleContentGet=async(type,id)=>runtime.hydrateDraftData({success:true,data:{item:await content.findById(type,id)}});
+  const invokePut=body=>PUT({params:{collection:'post',id:created.id},request:new Request('https://source.example/_emdash/api/content/post/'+created.id,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify(body)}),locals:{emdash:runtime,user:{id:'review-admin',role:50}},cache:{enabled:false}});
+  const invalidBefore=await content.findById('post',created.id);
+  const invalidPublic=await invokePut({data:{title:'Invalid REST input'},publishedAt:'not-a-date'});
+  assert.equal(invalidPublic.status,400);assert.equal((await invalidPublic.json()).error.code,'VALIDATION_ERROR');
+  assert.deepEqual(await content.findById('post',created.id),invalidBefore);
+  // Real storage fault occurs only during the live metadata SQL statement.
+  // Draft staging uses updated_at and therefore cannot trip this trigger.
+  await sql\x60CREATE TRIGGER review_metadata_fault BEFORE UPDATE OF published_at ON ec_post WHEN NEW.published_at='2020-01-01T00:00:00.000Z' BEGIN SELECT RAISE(ABORT,'review metadata fault'); END\x60.execute(storage.database.db);
+  const publicBefore=await content.findById('post',created.id);
+  const publicFault=await invokePut({data:{title:'Accepted REST draft'},publishedAt:'2020-01-01T00:00:00.000Z'});
+  assert.equal(publicFault.status,500);assert.equal((await publicFault.json()).error.code,'CONTENT_UPDATE_ERROR');
+  const publicAfter=await content.findById('post',created.id);
+  assert.equal(publicAfter.version,publicBefore.version+1);assert.notEqual(publicAfter.draftRevisionId,publicBefore.draftRevisionId);
+  assert.equal((await revisions.findById(publicAfter.draftRevisionId)).data.title,'Accepted REST draft');
+  assert.equal(publicAfter.publishedAt,publicBefore.publishedAt);assert.equal(publicAfter.data.title,'Live');
+  await sql\x60DROP TRIGGER review_metadata_fault\x60.execute(storage.database.db);
   for(const task of globalThis.__lifecycleReviewAfter.splice(0))await task();
   await content.discardDraft('post',created.id);
   // Repeated source unpublish/republish writes queue new revision snapshots.
@@ -132,10 +157,15 @@ try {
   const pruned=await pruneQueuedRevisions(db);assert.ok(pruned>0);assert.equal(await count(),50);
   assert.deepEqual(await db.selectFrom('_emdash_revision_prune_queue').selectAll().execute(),[]);
   const current=await content.findById('post',created.id);assert.ok(await revisions.findById(current.liveRevisionId));
-  console.log(JSON.stringify({pin:${JSON.stringify(pin)},target:'Node',mixedWrite:{error:result.error.code,draftPersists:true,versionDelta:after.version-before.version,liveUnchanged:true,apiOnlyUnchanged:true},unpublishRetention:{cycles:55,beforeCleanup,afterCleanup:await count(),pruned,queueAcknowledged:true,livePointerPreserved:true},completeRuntimeMethods:5,completeApiHandlers:2,completeCleanupConsumer:1,newParityCredit:0}));
+  console.log(JSON.stringify({pin:${JSON.stringify(pin)},target:'Node',mixedWrite:{error:result.error.code,draftPersists:true,versionDelta:after.version-before.version,liveUnchanged:true,apiOnlyUnchanged:true},publicPut:{invalidDateRejectedBeforeWrite:true,acceptedIsoFaultStatus:500,draftPersists:true,versionDelta:publicAfter.version-publicBefore.version,liveUnchanged:true},unpublishRetention:{cycles:55,beforeCleanup,afterCleanup:await count(),pruned,queueAcknowledged:true,livePointerPreserved:true},completeRuntimeMethods:5,completeApiHandlers:2,completePublicPutCallback:1,completeCleanupConsumer:1,newParityCredit:0}));
 } finally {await storage.close();}
 `);
-  await build({configFile:false,root:directory,logLevel:'warn',resolve:{alias:{'@emdash-cms/admin/slugify':join(directory,'packages/admin/src/slugify.ts')}},build:{ssr:true,outDir:join(directory,'build'),rollupOptions:{input:join(directory,'probe.ts'),output:{entryFileNames:'probe.mjs'},external:[/^node:/,'kysely','ulidx','valibot','zod','miniflare']}}});
+  await build({configFile:false,root:directory,logLevel:'warn',resolve:{alias:{
+    '@emdash-cms/admin/slugify':join(directory,'packages/admin/src/slugify.ts'),'@emdash-cms/auth':join(directory,'fixture-auth.ts'),
+    '#api/authorize.js':join(directory,'packages/core/src/api/authorize.ts'),'#api/error.js':join(directory,'packages/core/src/api/error.ts'),
+    '#api/parse.js':join(directory,'packages/core/src/api/parse.ts'),'#api/schemas.js':join(directory,'packages/core/src/api/schemas/content.ts'),
+    '#api/handlers/entry-lock.js':join(directory,'fixture-entry-lock.ts')
+  }},build:{ssr:true,outDir:join(directory,'build'),rollupOptions:{input:join(directory,'probe.ts'),output:{entryFileNames:'probe.mjs'},external:[/^node:/,'kysely','ulidx','valibot','zod','miniflare']}}});
   await import(pathToFileURL(join(directory,'build/probe.mjs')).href);
   console.log(JSON.stringify({authority}));
 } finally {await rm(directory,{recursive:true,force:true});}
