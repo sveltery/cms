@@ -20,11 +20,11 @@
     {#if field.type === 'text'}
       <textarea id={`field-${field.slug}`} data-field={field.slug} value={displayed}
         oninput={event => change(field.slug, event.currentTarget.value)} required={field.required}
-        maxlength={field.validation?.maxLength ?? 100_000}></textarea>
+        maxlength={field.validation?.maxLength}></textarea>
     {:else}
       <input id={`field-${field.slug}`} data-field={field.slug} value={displayed}
         oninput={event => change(field.slug, event.currentTarget.value)} required={field.required}
-        minlength={field.validation?.minLength} maxlength={field.validation?.maxLength ?? 100_000} />
+        minlength={field.validation?.minLength} maxlength={field.validation?.maxLength} />
     {/if}
   {/each}
   <button type="submit" disabled={pending || !dirty} aria-busy={pending}>{pending ? 'Saving...' : dirty ? 'Save' : 'Saved'}</button>

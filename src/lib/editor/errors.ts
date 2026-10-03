@@ -18,7 +18,8 @@ interface Issue { path: string; code: string; origin?: unknown; minimum?: unknow
 const record = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null;
 function name(path: string, fields: Record<string, LabeledEditorField>) {
   const [slug = path, row, subSlug] = path.split('.');
-  const field = Object.hasOwn(fields, slug) ? fields[slug] : undefined;
+  // Preserve the pinned presenter's inherited-key label fallback.
+  const field = fields[slug];
   if (!field) return slug;
   const label = field.label || slug.charAt(0).toUpperCase() + slug.slice(1);
   const position = Number(row) + 1;
