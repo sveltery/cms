@@ -6,6 +6,7 @@ import { lifecycleService } from '../../src/lib/server/database/lifecycle/servic
 import { withRevision } from '../../src/lib/server/content/schema.ts';
 import { contentEntry } from '../../src/lib/server/lifecycle/schema.ts';
 import { RevisionRepository } from '../../src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts';
+import { ContentRepository } from '../../src/lib/server/database/lifecycle/upstream/database/repositories/content.ts';
 import {sql} from 'kysely';
 
 // Supplemental native HTTP evidence. Source lifecycle assertions are preserved
@@ -150,4 +151,26 @@ test('actual lifecycle HTTP unpublish forwards the trusted request lifetime to r
     const item=await service.getContent({type:'post',id:initial.id});assert.equal(item.status,'draft');
     assert.ok(await revisions.findById(item.draftRevisionId!));
   } finally {await Promise.allSettled(anchored.splice(0));await fixture.close();}
+});
+
+test('actual HTTP publication retains staged slug conflict status, code and actionable message without writes',async()=>{
+  const fixture=await persistedRemotes({persistedSessions:true,mutationsEnabled:true});
+  try {
+    const service=lifecycleService(fixture.database,actor,{after:()=>{}});
+    const first=await service.createContent({type:'post',slug:'collision-original',data:{title:'Live'}});
+    const occupied=await service.createContent({type:'post',slug:'occupied',data:{title:'Occupied'}});
+    await service.publish({type:'post',id:first.id});await service.publish({type:'post',id:occupied.id});
+    await service.updateContent({type:'post',id:first.id,data:{title:'Pending draft'},slug:'occupied'});
+    const content=new ContentRepository(fixture.database.db as any);
+    const before=(await content.findById('post',first.id))!;const other=await content.findById('post',occupied.id);
+    const history=(await sql`SELECT * FROM _cms_revisions WHERE entry_id=${first.id} ORDER BY id`.execute(fixture.database.db)).rows;
+    const result=await fixture.remote('publishContent','author',{collection:'post',id:first.id,locale:'en',_rev:withRevision(contentEntry(before))._rev});
+    assert.deepEqual(await content.findById('post',first.id),before);
+    assert.deepEqual(await content.findById('post',occupied.id),other);
+    assert.deepEqual((await sql`SELECT * FROM _cms_revisions WHERE entry_id=${first.id} ORDER BY id`.execute(fixture.database.db)).rows,history);
+    assert.equal(result.type,'error');
+    assert.deepEqual({status:result.status,code:result.error.code,message:result.error.message},{
+      status:409,code:'SLUG_CONFLICT',message:`Cannot publish: slug 'occupied' is already used by another entry in this collection (id: ${occupied.id}). Choose a different slug.`
+    });
+  } finally {await fixture.close();}
 });

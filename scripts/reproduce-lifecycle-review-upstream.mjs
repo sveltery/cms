@@ -36,7 +36,8 @@ try {
   const extra=['packages/core/src/schema/types.ts','packages/core/src/schema/zod-generator.ts','packages/core/src/utils/hash.ts','packages/core/src/api/handlers/validation.ts','packages/core/src/request-cache.ts',
     'packages/core/src/api/schemas/content.ts','packages/core/src/api/schemas/common.ts','packages/core/src/api/schemas/bylines.ts','packages/core/src/api/schemas/relations.ts','packages/core/src/i18n/config.ts',
     'packages/core/src/api/parse.ts','packages/core/src/api/error.ts','packages/core/src/api/errors.ts','packages/core/src/api/authorize.ts','packages/core/src/transfer/errors.ts',
-    'packages/auth/src/rbac.ts','packages/auth/src/types.ts','packages/core/src/astro/routes/api/content/[collection]/[id].ts','packages/core/src/astro/routes/api/content/[collection]/[id]/unpublish.ts'];
+    'packages/auth/src/rbac.ts','packages/auth/src/types.ts','packages/core/src/astro/routes/api/content/[collection]/[id].ts','packages/core/src/astro/routes/api/content/[collection]/[id]/unpublish.ts',
+    'packages/core/src/astro/routes/api/content/[collection]/[id]/publish.ts','packages/core/src/database/repositories/options.ts','packages/core/src/plugins/conditional-storage.ts','packages/core/src/plugins/content-policy.ts','packages/core/src/references/staged.ts'];
   for(const path of extra)await put(path,source(path));
   // No configured cache or request context is part of this fixture.
   await put('packages/core/src/object-cache/index.ts','export function invalidateCollectionCache() {}');
@@ -51,8 +52,8 @@ try {
   const runtime=source('packages/core/src/emdash-runtime.ts','055ed1307ba4029e120cad989bc9b0e8c2d72afe');
   const api=source('packages/core/src/api/handlers/content.ts');
   const cleanup=source('packages/core/src/cleanup.ts');
-  const helpers=['hasApiError','decodeRevisionPrecondition','collectionHasSeo','getCollectionPublishConfig','requireRoutablePublishSlug','resolveId','slugStillTaken','createSlugChangeRedirect','handleContentUpdate','handleContentUnpublish'].map(name=>declaration(api,name)).join('\n');
-  const methods=['handleContentUpdate','hydrateDraftData','normalizeFieldValues','dropUnknownKeysAlreadyStored','handleContentUnpublish'].map(name=>declaration(runtime,name,true)).join('\n');
+  const helpers=['hasApiError','decodeRevisionPrecondition','collectionHasSeo','getCollectionPublishConfig','requireRoutablePublishSlug','resolveId','slugStillTaken','createSlugChangeRedirect','handleContentUpdate','handleContentUnpublish','handleContentPublish','handleContentGet','hydrateReferences','isRecord'].map(name=>declaration(api,name)).join('\n');
+  const methods=['handleContentUpdate','hydrateDraftData','normalizeFieldValues','dropUnknownKeysAlreadyStored','handleContentUnpublish','handleContentPublish','getScheduledPolicyRejectionRevision','checkContentPolicy'].map(name=>declaration(runtime,name,true)).join('\n');
   const constants=['DRAFT_ONLY_UPDATE_KEYS','ARRAY_FIELD_TYPES','MAX_DRAFT_STAGE_ATTEMPTS'].map(name=>declaration(runtime,name)).join('\n');
   await put('packages/core/src/review-runtime.ts',`
 import assert from 'node:assert/strict';
@@ -60,7 +61,10 @@ import {sql} from 'kysely';
 import {validateIdentifier} from './database/validate.js';
 import {ContentRepository} from './database/repositories/content.js';
 import {RevisionRepository} from './database/repositories/revision.js';
-import {ContentMutationConflictError,EmDashValidationError} from './database/repositories/types.js';
+import {ContentMutationConflictError,EmDashValidationError,ScheduledNotDueError} from './database/repositories/types.js';
+import {OptionsRepository} from './database/repositories/options.js';
+import {scheduledPolicyRejectionKey} from './plugins/content-policy.js';
+import {readStagedReferences,readStagedReferenceBaselines} from './references/staged.js';
 import {withTransaction} from './database/transaction.js';
 import {isMissingTableError} from './utils/db-errors.js';
 import {keepKnownFields,staleStoredKeys} from './content/known-fields.js';
@@ -78,18 +82,25 @@ const resolveConfiguredLocale=locale=>locale;
 const BylineRepository=class {constructor(){}};
 const hydrateBylines=async()=>{};
 const hydrateSeo=async(_db,_collection,_item,hasSeo)=>assert.equal(hasSeo,false);
+// No bound reference fields exist in this scalar fixture. Their absent host
+// provider is explicit; this guard cannot fabricate successful selections.
+const validateStagedReferences=async(db,type,staged)=>{
+  assert.equal(Object.keys(staged).length,0);
+  assert.equal((await db.selectFrom('_emdash_fields').innerJoin('_emdash_collections','_emdash_collections.id','_emdash_fields.collection_id')
+    .select('_emdash_fields.slug').where('_emdash_collections.slug','=',type).where('_emdash_fields.type','=','reference').execute()).length,0);
+  return {success:true,data:true};
+};
 ${constants}
 ${helpers}
 const REVISION_KEEP_COUNT=50;
 const REVISION_PRUNE_BATCH_SIZE=10;
 export ${declaration(cleanup,'pruneQueuedRevisions')}
-export {ContentRepository,RevisionRepository,handleContentUpdate as apiUpdate};
+export {ContentRepository,RevisionRepository,handleContentUpdate as apiUpdate,handleContentGet as apiGet};
 export class SourceRuntime {
   constructor(db,schemaRegistry){this.db=db;this.schemaRegistry=schemaRegistry;this.hooks={hasHooks:()=>false};}
   async refreshContentUsageAfterSuccessfulWrite(){}
   runAfterSaveHooks(){}
   runAfterUnpublishHooks(){}
-  async checkContentPolicy(_hook,type,id){const item=await new ContentRepository(this.db).findById(type,id);return {allowed:true,revision:encodeRev(item)};}
   ${methods}
 }
 `);
@@ -100,9 +111,10 @@ import {sql,OperationNodeTransformer} from 'kysely';
 import {schemaAdminStorage} from '${join(root,'tests/helpers/schema-admin-storage.ts')}';
 import {migrateCms} from '${join(root,'src/lib/server/database/migrations.ts')}';
 import {SchemaRegistry} from '${join(root,'src/lib/server/database/registry.ts')}';
-import {SourceRuntime,ContentRepository,RevisionRepository,apiUpdate,pruneQueuedRevisions} from './packages/core/src/review-runtime.ts';
+import {SourceRuntime,ContentRepository,RevisionRepository,apiUpdate,apiGet,pruneQueuedRevisions} from './packages/core/src/review-runtime.ts';
 import {PUT} from './packages/core/src/astro/routes/api/content/[collection]/[id].ts';
 import {POST as unpublishPost} from './packages/core/src/astro/routes/api/content/[collection]/[id]/unpublish.ts';
+import {POST as publishPost} from './packages/core/src/astro/routes/api/content/[collection]/[id]/publish.ts';
 class Namespace extends OperationNodeTransformer {
   transformIdentifier(node){return {...node,name:node.name==='revisions'?'_cms_revisions':node.name.replace(/^_emdash_/,'_cms_')};}
   transformRaw(node){return {...super.transformRaw(node),sqlFragments:node.sqlFragments.map(part=>part.replaceAll('_emdash_','_cms_').replace(/\\brevisions\\b/g,'_cms_revisions'))};}
@@ -114,7 +126,7 @@ try {
   await registry.createField('post',{slug:'title',label:'Title',type:'string'});
   // Only the source options/timezone lookup needs a fixture absent from current
   // approved native settings. Empty table selects the original UTC default.
-  await sql\x60CREATE TABLE options(name TEXT PRIMARY KEY,value TEXT)\x60.execute(storage.database.db);
+  await sql\x60CREATE TABLE options(name TEXT PRIMARY KEY,value TEXT,revision TEXT)\x60.execute(storage.database.db);
   const transformer=new Namespace();const db=storage.database.db.withPlugin({transformQuery:({node})=>transformer.transformNode(node),transformResult:async({result})=>result});
   globalThis.__lifecycleReviewRegistries=new WeakMap([[db,registry]]);globalThis.__lifecycleReviewAfter=[];
   const content=new ContentRepository(db);const revisions=new RevisionRepository(db);const runtime=new SourceRuntime(db,registry);
@@ -130,7 +142,27 @@ try {
   const apiResult=await apiUpdate(db,'post',created.id,{publishedAt:'not-a-date'});
   assert.equal(apiResult.success,false);assert.equal(apiResult.error.code,'VALIDATION_ERROR');
   assert.deepEqual(await content.findById('post',created.id),apiBefore);
-  runtime.handleContentGet=async(type,id)=>runtime.hydrateDraftData({success:true,data:{item:await content.findById(type,id)}});
+  runtime.handleContentGet=async(type,id)=>runtime.hydrateDraftData(await apiGet(db,type,id));
+  const collision=await content.create({type:'post',slug:'collision-live',locale:'en',authorId:'review-admin',data:{title:'Collision live'}});
+  const occupied=await content.create({type:'post',slug:'occupied',locale:'en',authorId:'other-admin',data:{title:'Occupied'}});
+  await content.publish('post',collision.id);await content.publish('post',occupied.id);
+  const stagedCollision=await runtime.handleContentUpdate('post',collision.id,{data:{title:'Collision draft'},slug:'occupied'});
+  assert.equal(stagedCollision.success,true);for(const task of globalThis.__lifecycleReviewAfter.splice(0))await task();
+  const collisionBefore=await content.findById('post',collision.id);const occupiedBefore=await content.findById('post',occupied.id);
+  const revisionRowsBefore=await db.selectFrom('revisions').selectAll().where('entry_id','=',collision.id).orderBy('id').execute();
+  const publishUrl='https://source.example/_emdash/api/content/post/'+collision.id+'/publish';
+  const invokePublish=(body,user)=>publishPost({params:{collection:'post',id:collision.id},request:new Request(publishUrl,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)}),url:new URL(publishUrl),locals:{emdash:runtime,user},cache:{enabled:false}});
+  const invalidPublish=await invokePublish({publishedAt:'not-a-date'},{id:'review-admin',role:50});assert.equal(invalidPublish.status,400);
+  const deniedPublish=await invokePublish({},{id:'different-author',role:30});assert.equal(deniedPublish.status,403);
+  const stalePublish=await invokePublish({_rev:'stale-source-revision'},{id:'review-admin',role:50});assert.equal(stalePublish.status,409);assert.equal((await stalePublish.json()).error.code,'CONFLICT');
+  const publicPublish=await invokePublish({},{id:'review-admin',role:50});assert.equal(publicPublish.status,409);
+  const conflictBody=await publicPublish.json();assert.equal(conflictBody.error.code,'SLUG_CONFLICT');
+  assert.equal(conflictBody.error.message,\x60Cannot publish: slug 'occupied' is already used by another entry in this collection (id: \${occupied.id}). Choose a different slug.\x60);
+  assert.deepEqual(await content.findById('post',collision.id),collisionBefore);assert.deepEqual(await content.findById('post',occupied.id),occupiedBefore);
+  assert.deepEqual(await db.selectFrom('revisions').selectAll().where('entry_id','=',collision.id).orderBy('id').execute(),revisionRowsBefore);
+  // Finish unrelated fixture maintenance through the same original consumer,
+  // before the existing single-entry retention/ordering qualifications below.
+  await pruneQueuedRevisions(db);
   const invokePut=body=>PUT({params:{collection:'post',id:created.id},request:new Request('https://source.example/_emdash/api/content/post/'+created.id,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify(body)}),locals:{emdash:runtime,user:{id:'review-admin',role:50}},cache:{enabled:false}});
   const invalidBefore=await content.findById('post',created.id);
   const invalidPublic=await invokePut({data:{title:'Invalid REST input'},publishedAt:'not-a-date'});
@@ -194,7 +226,7 @@ try {
   await sql\x60DROP TRIGGER review_prune_fault\x60.execute(storage.database.db);
   await pruneQueuedRevisions(db);assert.equal(await count(),50);
   assert.equal(await db.selectFrom('_emdash_revision_prune_queue').selectAll().where('entry_id','=',created.id).executeTakeFirst(),undefined);
-  console.log(JSON.stringify({pin:${JSON.stringify(pin)},target:'Node',mixedWrite:{error:result.error.code,draftPersists:true,versionDelta:after.version-before.version,liveUnchanged:true,apiOnlyUnchanged:true},publicPut:{invalidDateRejectedBeforeWrite:true,acceptedIsoFaultStatus:500,draftPersists:true,versionDelta:publicAfter.version-publicBefore.version,liveUnchanged:true,slugOnlyLiveWrite:true,slugOnlyDraftCreated:false},unpublishRetention:{cycles:55,beforeCleanup,afterCleanup:await count(),pruned,queueAcknowledged:true,livePointerPreserved:true},cleanupOrder:{queued:11,oldestAcknowledged:10,newestRemaining:1},cleanupFailure:{publicUnpublishStatus:200,unpublishSucceeded:true,sqlDeleteFaultIsolated:true,queuePreserved:true,pointerPreserved:true,retryRestores50:true},completeRuntimeMethods:5,completeApiHandlers:2,completePublicPutCallback:1,completePublicUnpublishCallback:1,completeCleanupConsumer:1,newParityCredit:0}));
+  console.log(JSON.stringify({pin:${JSON.stringify(pin)},target:'Node',mixedWrite:{error:result.error.code,draftPersists:true,versionDelta:after.version-before.version,liveUnchanged:true,apiOnlyUnchanged:true},publicPut:{invalidDateRejectedBeforeWrite:true,acceptedIsoFaultStatus:500,draftPersists:true,versionDelta:publicAfter.version-publicBefore.version,liveUnchanged:true,slugOnlyLiveWrite:true,slugOnlyDraftCreated:false},publicPublish:{invalidBodyStatus:400,ownerDeniedStatus:403,staleRevisionStatus:409,slugConflictStatus:409,code:conflictBody.error.code,message:conflictBody.error.message,bothEntriesUnchanged:true,revisionsUnchanged:true},unpublishRetention:{cycles:55,beforeCleanup,afterCleanup:await count(),pruned,queueAcknowledged:true,livePointerPreserved:true},cleanupOrder:{queued:11,oldestAcknowledged:10,newestRemaining:1},cleanupFailure:{publicUnpublishStatus:200,unpublishSucceeded:true,sqlDeleteFaultIsolated:true,queuePreserved:true,pointerPreserved:true,retryRestores50:true},completeRuntimeMethods:8,completeApiHandlers:4,completePublicPutCallback:1,completePublicUnpublishCallback:1,completePublicPublishCallback:1,completeCleanupConsumer:1,newParityCredit:0}));
 } finally {await storage.close();}
 `);
   await build({configFile:false,root:directory,logLevel:'warn',resolve:{alias:{
