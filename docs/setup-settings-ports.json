@@ -528,5 +528,26 @@
       "nodeLog": "/tmp/setup-welcome-persistence-green-corrected.log",
       "d1Log": "/tmp/setup-welcome-source-d1-green.log"
     }
+  },
+  "settingsSchemaAudit": {
+    "source": "packages/core/tests/unit/api/settings-schema.test.ts",
+    "blob": "3eb1aad929494b954899b7ffeea84834bcfcfda3",
+    "sourceFileSha256": "8abf3d1402312f8d2ac2cc567d5e93be3ef729183bb2837f8310d8ed29c2916f",
+    "wholeSuiteSha256": "feff4d1141974330f1e147487a19d8cfb73e73086e9f438654a1718e15eaa450",
+    "completeCallbacks": 2,
+    "adaptation": "import-only; entire source describe block unchanged",
+    "baseline": "late audit after schema implementation; no test-first assertion red or TDD-order credit",
+    "dataset": "exact pinned null logo/favicon/defaultOgImage requests and response rejection",
+    "execution": {
+      "log": "/tmp/setup-settings-schema-audit-corrected.log",
+      "completeCallbacks": 2,
+      "passed": 2,
+      "runtime": "normal pnpm12.6 Node pure-schema runner",
+      "excluded": "initial wrong relative import suite failure0assertions/0red/sourcecredit"
+    },
+    "omissions": [
+      "actual media provider/resolution/upload UI",
+      "transport/schema declaration generation"
+    ]
   }
 }
