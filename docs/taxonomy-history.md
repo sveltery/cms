@@ -45,15 +45,23 @@ existed. The uniform `_emdash_`→`_cms_` system namespace transformation is the
 same disclosed host substitution used by the taxonomy suite; stored raw
 callbacks and their expectation bodies are unchanged.
 
-Actual local workerd/D1 passes six callbacks in both reference and native modes.
+Reference local workerd/D1 passes six callbacks. The initial native run reported
+six passes, but configured review found that the native 068 fixture silently
+selected Node SQLite. That D1 credit is withdrawn: the verified initial native
+count is five actual D1 passes, one mislabeled SQLite pass, and one unsupported
+source fixture. An original transport guard executes a 100-binding query and
+requires a 101-binding query to fail. Before the host repair, the canonical native
+path accepts 101 bindings and causes one genuine supplemental assertion failure;
+the direct historical path uses real workerd and passes. This is fixture TDD,
+with zero source-declaration red or causal source TDD credit.
+
 The remaining definition-group callback inserts 30 historical rows with 240 bound
 parameters in one statement. D1 rejects that original fixture before migration
 085 or its assertions. The source's dialect selection is SQLite/PostgreSQL,
 and the fixture remains unchanged: no chunked substitute, deadline increase,
 source bug, assertion-red credit or whole seven-case D1 pass is claimed.
 The complete pinned D1 dialect/introspector and `kysely-d1 0.4.0` supply the
-reference migration host; the native canonical068 fixture uses its actual
-CmsDatabase batch adapter. D1 algorithms run on Node over actual workerd SQL;
+reference migration host. D1 algorithms run on Node over actual workerd SQL;
 this is separate from native Cloudflare HTTP application evidence.
 
 This fixture does not
@@ -62,7 +70,8 @@ execute PostgreSQL, or grant media, relation, block, transfer, authentication,
 or other feature credit merely because their migration modules are loaded.
 Normal frozen installation failed npm registry503 metadata verification and
 is not claimed green. Installed-library typechecking reports 0 errors and 0 warnings.
-Final-approved-main integration, normal/secured-browser checks, review,
+Original head `f4c0ca8` hosted validate and browser jobs both failed; no full
+normal/secured-browser pass is recorded. Final-approved-main integration, review,
 project-manager approval, owned merge and post-merge verification remain pending.
 
 For the separate native development integration, set

@@ -1,6 +1,6 @@
 {
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
-  "state": "All seven complete source and native Node callbacks green. Actual workerd D1 executes six; one unchanged240-bind source fixture is unsupported. Final integration/review/CI pending.",
+  "state": "Seven complete source/native Node callbacks green. Reference workerd6/7. Initial native claim corrected to5 realD1/7 plus1 mislabeledSQLite068 and1 unchanged240-bind fixture omission. Host repair/review/full CI pending.",
   "testFiles": [
     {
       "source": "packages/core/tests/integration/database/taxonomy-translation-locale-migration.test.ts",
@@ -132,13 +132,7 @@
     },
     {
       "phase": "native taxonomy",
-      "runtime": "Node-hosted native algorithms over actual local workerd/D1",
-      "result": {
-        "tests": 7,
-        "passed": 6,
-        "failed": 1,
-        "pending": 0
-      },
+      "runtime": "Mixed initial run: five native callbacks on real workerd/D1; native068 silently on Node SQLite; one realD1 fixture fails before assertions",
       "assertionRedCredit": 0,
       "causalTddCredit": 0,
       "nativeDependency": "3bdeb244156fdfcd58a973fbb19722ff2a01ac30",
@@ -147,7 +141,7 @@
         "taxonomy get/update handlers",
         "canonical native registry and content repository for068"
       ],
-      "fixtureBoundary": "Six081/083 historical cases use complete test-only SourceRunner prestate;068 uses canonical native collection setup. No full native90-migration/importer credit.",
+      "fixtureBoundary": "Six081/083 historical cases use complete test-only SourceRunner prestate. Native068 inherited helper silently selected NodeSQLite; itsD1 credit is withdrawn. No full native90-migration/importer credit.",
       "omission": {
         "sourceId": "packages/core/tests/integration/database/taxonomy-def-groups-migration.test.ts:229",
         "title": "gives every name a group when there are more names than one insert holds",
@@ -156,7 +150,22 @@
         "assertionsEdited": false,
         "deadlineChanged": false,
         "hostErrorRedCredit": 0
-      }
+      },
+      "reportedRunnerResult": {
+        "tests": 7,
+        "passed": 6,
+        "failed": 1,
+        "pending": 0
+      },
+      "verifiedTransportResult": {
+        "registeredSourceCallbacks": 7,
+        "actualWorkerdPassed": 5,
+        "mislabeledNodeSQLitePassed": 1,
+        "actualWorkerdFixtureFailed": 1,
+        "pending": 0
+      },
+      "claimWithdrawn": true,
+      "reviewFinding": "https://github.com/sveltery/cms/pull/61#discussion_r4171705531"
     },
     {
       "phase": "normal frozen installation",
@@ -173,6 +182,43 @@
         "warnings": 0
       },
       "normalFrozenPass": false
+    },
+    {
+      "phase": "original native transport guard before host repair",
+      "command": "SVELTERY_TAXONOMY_HISTORY_NATIVE_ROOT=. vitest run --config vitest.taxonomy-history-transport.config.ts",
+      "runtime": "requested actual workerd binding probes through historical prestate and canonical collection fixture paths",
+      "result": {
+        "tests": 2,
+        "passed": 1,
+        "failed": 1,
+        "pending": 0
+      },
+      "genuineSupplementalAssertionReds": 1,
+      "sourceDeclarationRedCredit": 0,
+      "causalSourceTddCredit": 0,
+      "failure": "Canonical native path accepts a101-bound-parameter SELECT rather than rejecting at realD1 max100. Direct historical path executes100 and rejects101 on actualworkerd. Original transport tests committed before repair.",
+      "log": "development JSON host-guard-red; no fixture/module/import error classified as red"
+    },
+    {
+      "phase": "original full hosted CI at f4",
+      "head": "f4c0ca89b7eee4a27da4e7a963a87c3cbdcc7a62",
+      "run": "https://github.com/sveltery/cms/actions/runs/37096632709",
+      "validate": "failed inherited source-suite portable batching/global uniqueness/trash/markers/roles assertions",
+      "browser": "failed inherited taxonomy delete strict locator and settings-source cases, then existing180s command deadline124",
+      "fullPass": false
+    },
+    {
+      "phase": "original reference transport guard baseline",
+      "runtime": "actual local workerd/D1 through direct historical and canonical source collection fixture paths",
+      "result": {
+        "tests": 2,
+        "passed": 2,
+        "failed": 0,
+        "pending": 0
+      },
+      "bindingBoundary": "actual100-parameter SELECT executes and actual101-parameter SELECT rejects through both source paths",
+      "assertionRedCredit": 0,
+      "causalTddCredit": 0
     }
   ],
   "limits": [
@@ -181,6 +227,7 @@
     "PostgreSQL and legacy import/media engine execution remain outside this bounded fixture.",
     "One D1 source fixture240-bind insertion remains unsupported and earns zero product/assertion-red credit.",
     "The native named-dependency executions are not final-approved-main evidence; CI/review/approval/merge/post-merge remain pending.",
-    "D1 JavaScript algorithms execute on Node with actual workerd SQL, not inside a native Cloudflare HTTP application."
+    "D1 JavaScript algorithms execute on Node with actual workerd SQL, not inside a native Cloudflare HTTP application.",
+    "Initial native068 D1 credit was withdrawn because the inherited helper fell back to NodeSQLite; count actual transport behavior, never dialect labels."
   ]
 }
