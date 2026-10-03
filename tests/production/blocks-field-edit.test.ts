@@ -8,6 +8,21 @@ import {blocksDatabase} from '../../src/lib/server/blocks/host.ts';
 // Original native transport regressions. Complete immutable blocks-field schema
 // callbacks independently verify the retained/retired contract on both databases.
 for(const target of ['Node','D1'] as const){
+ test(`${target}: the actual HTML add-field form creates a stored blocks field`,async()=>{
+  const h=await schemaAdminRemotes(target);try{
+   await new BlockTypeRegistry(blocksDatabase(h.database)).createBlockType({slug:'hero',label:'Hero',fields:[]});
+   await h.registry.createCollection({slug:'pages',label:'Pages'});
+   const response=await h.request('/blocks');assert.equal(response.status,200);const html=await response.text();
+   const forms=[...html.matchAll(/<form\b[^>]*action="([^"]+)"[^>]*>([\s\S]*?)<\/form>/g)];
+   const form=forms.find(form=>form[1]!.includes(h.ids.get('addBlockSchemaField')!));assert.ok(form,'actual registered add-field HTML form');
+   const hidden=form[2]!.match(/name="([^"]*expectedSchemaVersion)"/);assert.ok(hidden,'rendered schema-version input');
+   const body=new URLSearchParams({collection:'pages',slug:'layout',label:'Layout','allowedTypes[]':'hero',minItems:'0',maxItems:'20',[hidden[1]!]: '1'});
+   const action=new URL(form[1]!.replaceAll('&amp;','&'),`${h.origin}/blocks`);
+   const saved=await h.request(`${action.pathname}${action.search}`,'admin',{method:'POST',headers:{origin:h.origin,accept:'text/html'},body});assert.equal(saved.status,200);
+   const stored=await h.registry.getField('pages','layout');assert.ok(stored,'native HTML form must persist the field');
+   assert.deepEqual(stored.validation,{allowedTypes:['hero'],retiredTypes:[],minItems:0,maxItems:20});
+  }finally{await h.close();}
+ });
  test(`${target}: native field editing submits ordered types, retires removals and survives reopen`,async()=>{
   const h=await schemaAdminRemotes(target);try{
    const blocks=new BlockTypeRegistry(blocksDatabase(h.database));
