@@ -17,7 +17,7 @@ import {countTrashedDraftInput,deleteDraftInput,getDraftInput,getTrashedDraftInp
 // MIT; notices/emdash-MIT.txt. Native bounded summaries and mandatory caller CAS
 // preserve this CMS's existing transport boundary; see docs/content-composition.md.
 export function ordinaryContentService(database:CmsDatabase,principal:ServerPrincipal|null){
- const actor=principal&&typeof principal.id==='string'&&principal.id.length>0&&principal.id.length<=128&&Array.isArray(principal.permissions)?principal:null;
+ const actor=principal&&typeof principal.id==='string'&&principal.id.length>0&&principal.id.length<=128&&Array.isArray(principal.permissions)?{id:principal.id,permissions:[...principal.permissions]}:null;
  const registry=new SchemaRegistry(database);
  let storedRepository:ContentRepository|undefined;let storedRevisions:RevisionRepository|undefined;let storedLifecycle:ReturnType<typeof lifecycleService>|undefined;
  const repository=()=>storedRepository??=new ContentRepository(database.db as any);
@@ -79,7 +79,7 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
   ]);}catch(cause){if(cause instanceof Error&&/CHECK constraint failed: pass = 1|UNIQUE constraint failed:/.test(cause.message))throw new CmsError('CONFLICT');throw cause;}
  }
  return{
-  async createContent(input:unknown){return entry(await lifecycle().createContent(input));},
+  async createContent(input:unknown){permission('content:create');return entry(await lifecycle().createContent(input));},
   async getContent(input:unknown){read();const value=parse(getDraftInput,input);const item=await includingTrashed(value.type,value.id,value.locale);if(item.deletedAt)throw new CmsError('NOT_FOUND');const {deletedAt,...active}=item;return hydrate(active);},
   async updateContent(input:unknown){
    mutation('content:edit_own','content:edit_any');

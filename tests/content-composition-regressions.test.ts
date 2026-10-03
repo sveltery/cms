@@ -52,3 +52,10 @@ test('generic lists remain bounded summaries and skipRevision retains only the n
  for(const key of ['data','liveData'])assert.equal(Object.hasOwn(page.items[0],key),false);
  assert.equal((await service.getContent({type:'post',id:item.id})).data.title,'Third auto');
 }));
+for(const principal of [null,{id:'reader',permissions:['content:read']}] as const)test(`generic create denies ${principal?'reader':'anonymous'} before storage initialization`,async()=>{
+ let reads=0;
+ const database:any={get db(){reads++;throw new Error('unexpected storage initialization');},atomicBatch(){throw new Error('unexpected batch');},async close(){}};
+ const service=cmsService(database,principal);
+ await assert.rejects(service.createContent({type:'post',data:{title:'Denied'}}),{code:principal?'FORBIDDEN':'UNAUTHENTICATED'});
+ assert.equal(reads,0);
+});
