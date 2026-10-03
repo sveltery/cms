@@ -26,3 +26,8 @@ it('opens the complete detail and closes it on Escape',async()=>{
 it('keeps delete confirmation available when the real supplied callback fails',async()=>{
  const {target,props}=fixture({onCommentDelete:vi.fn().mockRejectedValue(new Error('Delete failed'))});const remove=button(target,'Delete permanently');expect(remove).not.toBeNull();remove!.click();await tick();button(target,'Delete')!.click();await tick();await tick();expect(props.onCommentDelete).toHaveBeenCalledWith('comment-1');expect(target.querySelector('[role="dialog"]')?.textContent).toContain('Delete failed');
 });
+it('closes only the detail backdrop while clicks within the detail keep it open',async()=>{
+ const {target}=fixture();button(target,'Complete comment body')!.click();await tick();
+ const dialog=document.querySelector<HTMLElement>('[role="dialog"]');expect(dialog).not.toBeNull();dialog!.click();await tick();expect(document.querySelector('[role="dialog"]')).not.toBeNull();
+ const backdrop=document.querySelector<HTMLElement>('.overlay');expect(backdrop).not.toBeNull();backdrop!.click();await tick();expect(document.querySelector('[role="dialog"]')).toBeNull();
+});
