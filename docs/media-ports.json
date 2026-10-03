@@ -683,8 +683,14 @@
       "blob": "27e8632533de995a660169659e8a99acfff462fd",
       "sha256": "b2328727c5495bd5e58bba516afda1634e52ce0dce5d58229f091e2f108184f9",
       "frozenPath": "parity/emdash/media/source-tests/packages/core/tests/unit/api/media-file-private-keys.test.ts",
-      "status": "inventory-only",
-      "executed": false
+      "status": "executed-complete-file",
+      "executed": true,
+      "run": "source-expanded-33-baseline",
+      "sourceHarnessSubstitutions": [
+        "Existing Vite resolution to complete pinned implementations; original public-file import maps to preserved complete pinned GET module"
+      ],
+      "testFirstBehaviorRedCredit": 0,
+      "meaning": "Selected after existing implementation; baseline-green full original file, no native optimization-route or live external provider credit."
     },
     {
       "sourcePath": "packages/core/tests/unit/api/media-focal-point.test.ts",
@@ -825,8 +831,14 @@
       "blob": "95f0397c25d470549554313f07993ccd5a183857",
       "sha256": "8f9c5662ecda2131bb0145cbb87415115243cdd66f13390e6ace3badc766d3fc",
       "frozenPath": "parity/emdash/media/source-tests/packages/core/tests/unit/media/enrich.test.ts",
-      "status": "inventory-only",
-      "executed": false
+      "status": "executed-complete-file",
+      "executed": true,
+      "run": "source-expanded-33-baseline",
+      "sourceHarnessSubstitutions": [
+        "Existing Vite resolution to complete pinned implementations; original public-file import maps to preserved complete pinned GET module"
+      ],
+      "testFirstBehaviorRedCredit": 0,
+      "meaning": "Selected after existing implementation; baseline-green full original file, no native optimization-route or live external provider credit."
     },
     {
       "sourcePath": "packages/core/tests/unit/media/focal-point-normalize.test.ts",
@@ -847,8 +859,14 @@
       "blob": "e05fa1876f6e28309e08d8ab13050e46655af775",
       "sha256": "6e7af5e17f284d096e0703a1538144d9067791bd2976d8774a21a7bc8a203b9d",
       "frozenPath": "parity/emdash/media/source-tests/packages/core/tests/unit/media/image-endpoint.test.ts",
-      "status": "inventory-only",
-      "executed": false
+      "status": "executed-complete-file",
+      "executed": true,
+      "run": "source-expanded-33-baseline",
+      "sourceHarnessSubstitutions": [
+        "Existing Vite resolution to complete pinned implementations; original public-file import maps to preserved complete pinned GET module"
+      ],
+      "testFirstBehaviorRedCredit": 0,
+      "meaning": "Selected after existing implementation; baseline-green full original file, no native optimization-route or live external provider credit."
     },
     {
       "sourcePath": "packages/core/tests/unit/media/image-size-security.test.ts",
@@ -863,8 +881,14 @@
       "blob": "e84958aa72039bc388844560f9f62d3a1a09c38d",
       "sha256": "f4a6a0d72009e3cfcb756e5292c82a78b22afa255e1bf046b5fa068c16bdc531",
       "frozenPath": "parity/emdash/media/source-tests/packages/core/tests/unit/media/media-allowlist.test.ts",
-      "status": "inventory-only",
-      "executed": false
+      "status": "executed-complete-file",
+      "executed": true,
+      "run": "source-expanded-33-baseline",
+      "sourceHarnessSubstitutions": [
+        "Existing Vite resolution to complete pinned implementations; original public-file import maps to preserved complete pinned GET module"
+      ],
+      "testFirstBehaviorRedCredit": 0,
+      "meaning": "Selected after existing implementation; baseline-green full original file, no native optimization-route or live external provider credit."
     },
     {
       "sourcePath": "packages/core/tests/unit/media/media-value.test.ts",
@@ -1202,6 +1226,20 @@
         "setupFailure": "nonempty-base server cannot import unlinked crypto dependency"
       },
       "boundary": "Four unchanged full source callbacks and two full helpers ported before UI. Local setup failure excluded; secured hosted baseline pending."
+    },
+    {
+      "id": "source-expanded-33-baseline",
+      "command": "node node_modules/vitest/vitest.mjs run --config /tmp/media-vitest-existing-deps.config.mts",
+      "result": {
+        "files": 33,
+        "tests": 346,
+        "pass": 346,
+        "fail": 0,
+        "skip": 0
+      },
+      "additionalFiles": 4,
+      "additionalExecutions": 59,
+      "boundary": "Exact installed crypto1.0.1 diagnostic resolver, original source callbacks/helper bodies/fixtures/expectations/deadlines unchanged. Existing selected29 families retain original mocks and actualSQLite/D1 adapters; new4 are pure/original-mocked contracts. Later baseline selection supplies zero new assertion red credit. No actual image endpoint, browser crop, external provider or full ME3 claim."
     }
   ],
   "inventoryCounts": {
