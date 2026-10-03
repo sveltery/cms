@@ -1,5 +1,21 @@
 # Current compatibility register and historical audit
 
+## Proposed forward metadata storage fidelity
+
+Source authority: EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`.
+The [feature record](../../docs/metadata-fidelity-upgrade.md) and
+[ledger](../../docs/metadata-fidelity-upgrade-ports.json) preserve exact source
+blobs, actual tests, native limits, and dependency status.
+
+| ID | Observable behavior and category | Decision/evidence |
+| --- | --- | --- |
+| META-01 | Source migration 003 fields use `ON DELETE CASCADE`; shipped native metadata uses `NO ACTION`. Provider 8 restores cascading raw collection deletion while retaining metadata rows and historical DDL. | Fidelity repair. Six initial native physical assertions failed; exact full source003/012 modules separately establish source SQLite/D1 behavior. Zero new copied declaration credit. Proposed; final review/landing pending. |
+| META-02 | Source012 adds nullable `TEXT search_config`; native metadata lacks it. Provider 8 adds the same nullable storage, without auto-enabling FTS or mapping the full search API. | Fidelity repair; search remains a dependent feature. Same original paired-source proof and native test-first evidence; proposed, final gates pending. |
+| META-03 | Native versioned metadata rebuild requires an atomic old-catalogue guard and exact view/trigger/index restoration. External child FKs reject with `MIGRATION_REQUIRED` before destructive writes. Source creates cascading fields directly and has no corresponding native historical rebuild. | Native framework/upgrade substitution; no shared upstream bug claim or parity credit. Actual Node/D1 operator, cascade-race, fault, and winner tests. Preservation qualified on prefix7; historical provider3 dependent-object composition remains unqualified. Specific acceptance not recorded; final PM decision pending. |
+
+All SF-02, C-05/C-07, source raw-type fallback issue #44, and existing native
+storage/transport decisions retain their separate scope.
+
 The default is the selected EmDash behavior on both self-hosted Node and Cloudflare. A passing scaffold build does not establish either hosting target. Keep differences visible and correct accidental divergence before widening the CMS surface.
 
 ## Current landed contracts
@@ -465,6 +481,8 @@ Further test-first `f127d27` finds uppercase future static names on Node/local D
 Unchanged trigger-namespace regressions subsequently exposed six actual Node/local D1 assertion failures with normal exit 1 after owned-name folding. The partial-provider check now runs after the trigger-type exemption, preserving SQLite's separate trigger namespace for uppercase operator trigger names. Intermediate reserved rebuild-name rejection remains separate. Existing assertions and source DDL are retained; this refactor earns zero source credit.
 
 Final executable `e5b02788d498baf6f49137b1e160e200f1cfbe6f` passes checker 0/0 and the unchanged six trigger-namespace cases; the expanded prerequisite/native-D1/index run previously passed 110/110 (74+18+18). Refreshed joint proof `ede8fc9d509a67608bb8f66d32ed6154173e6bb2`, tree `08eb119d0677b60f1f44728beeee9d2866d18c24`, consumes isolated lifecycle `19fdd636e7a8eb54c9d9ee9f74af00911641505a` retaining published45 `3c01872` and its fourteen own commits/provenance. Canonical four files are byte-identical to the migration executable; unchanged source/CAS/adapter/startup suites pass 164/164 normally, including actual canonical fresh/v4 Node/local D1 publication/staging/rollback/history/reopen 4/4 without manual provider/fallback/atomic-fixture DDL. Source-only checker results (29 declarations, 19 copied hashes, 34 authority blobs) execute zero product tests and establish no implementation-transformation acceptance. Prior proof `2e77409` passed 228/228; intermediate `b8d5290` failed six actual namespace assertions out of 238 before their focused correction. No broader parity, whole-bootstrap pass, specific adaptation acceptance or PM approval follows; final published-head normal hosted checks and independent/configured closure remain gates.
+
+Generic provider resolution now settles every installed static override before dynamic metadata reads, preserving the first old-state guard and historical/sourceDDL. A real proposed metadata8 physical provider (fieldFK CASCADE and nullable search_config) is explicitly aliased to contiguous later-version6 after actual5 in an original framework fixture, without production6/7/8 registration, empty providers, forged markers or source credit. Loader checkpoint `ff055e4` failed import resolution and earns no behavioral-red credit; corrected `a7c1570` produces two genuine Node/local D1 restart failures/two early-read passes, normal exit1, before the generic fix; all four then pass. Actual developer checkpoint `2d34f6` separately reproduces those failures using real registered options6/taxonomy7/metadata8. Version-zero descriptors now declare each provider's complete static names/DDL without metadata reads; installed static replacement resolution precedes all dynamic reads and complete validation. Future8 DDL/preservation/optional preconditions remain its own feature scope. This native framework repair retains source expectations and zero new source credit, with specific adaptation acceptance unrecorded and final changed-head gates still required.
 
 ## Proposed configured persistent runtime composition — [PR #36](https://github.com/sveltery/cms/pull/36)
 

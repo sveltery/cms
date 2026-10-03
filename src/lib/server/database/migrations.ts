@@ -70,12 +70,30 @@ function prerequisiteGuard(database: CmsDatabase, version: number, names: readon
     THEN '$' ELSE ${prerequisiteChanged} END)`.compile(database.db);
 }
 
+function validateObjects(rows: readonly PrerequisiteObject[], expected: ReadonlyMap<string,PrerequisiteObject>, owned: ReadonlySet<string>) {
+  const objects=new Map(rows.filter(row=>row.type!=='trigger').map(row=>[row.name,row]));
+  for (const object of rows) {
+    const name=object.name;
+    if (/^_cms_.*_v[0-9]+$/i.test(name)) throw new CmsError('MIGRATION_REQUIRED');
+    if (object.type==='trigger') continue;
+    if (owned.has(name.toLowerCase()) && name!=='_cms_migrations' && !expected.has(name)) throw new CmsError('MIGRATION_REQUIRED');
+    const wanted=expected.get(name);
+    if (wanted && (wanted.type!==object.type || normalizeMigrationSql(wanted.sql ?? '')!==normalizeMigrationSql(object.sql ?? ''))) throw new CmsError('MIGRATION_REQUIRED');
+  }
+  if ([...expected.keys()].some(name=>!objects.has(name))) throw new CmsError('MIGRATION_REQUIRED');
+}
+
 async function migrationState(database: CmsDatabase): Promise<ValidatedMigrationState> {
   const db = database.db;
   const staticNames = new Set(['_cms_migrations']);
   // Version zero descriptors declare every static name, including future
   // provider objects, without reading metadata tables which may not exist.
-  for (const provider of CMS_MIGRATIONS) for (const object of await provider.expectedObjects(database,0)) staticNames.add(object.name.toLowerCase());
+  const staticObjects=new Map<CmsMigrationProvider,Awaited<ReturnType<CmsMigrationProvider['expectedObjects']>>>();
+  for (const provider of CMS_MIGRATIONS) {
+    const descriptors=await provider.expectedObjects(database,0);
+    staticObjects.set(provider,descriptors);
+    for (const object of descriptors) staticNames.add(object.name.toLowerCase());
+  }
   const names = [...staticNames];
   const probe = await sql<{name: string; type: string}>`SELECT name,type FROM sqlite_master
     WHERE name LIKE '_cms_%' OR (type <> 'trigger' AND lower(name) IN (${sql.join(names)}))`.execute(db);
@@ -102,41 +120,31 @@ async function migrationState(database: CmsDatabase): Promise<ValidatedMigration
   const ordered = [...versions].sort((a,b) => a-b);
   const version = ordered.length;
   if (!version || version > CMS_MIGRATION_VERSION || ordered.some((value,index) => value !== index+1)) throw new CmsError('MIGRATION_REQUIRED');
-  const expected = new Map<string,{name: string; type: string; sql: string}>();
-  const owned = new Set(['_cms_migrations']);
-  for (const provider of CMS_MIGRATIONS) {
-    // Lifecycle's dynamic content descriptors read registered fields. Validate
-    // the latest preceding metadata/auth descriptors first, so a missing or
-    // malformed prerequisite fails closed before those reads are attempted.
-    if (provider === lifecycleMigration && version >= provider.version) {
-      for (const [name,wanted] of expected) {
-        const actual=objects.get(name);
-        if (!actual || wanted.type!==actual.type || normalizeMigrationSql(wanted.sql)!==normalizeMigrationSql(actual.sql ?? '')) throw new CmsError('MIGRATION_REQUIRED');
-      }
-    }
-    const descriptors = await provider.expectedObjects(database,version);
-    for (const object of descriptors) {
-      owned.add(object.name.toLowerCase());
-      if (provider.version <= version) expected.set(object.name,object);
-    }
-  }
-  // Intermediate rebuild objects and partially-installed future providers are
-  // rejected. No DROP/repair runs against an unknown layout.
-  for (const object of rows) {
-    const name=object.name;
-    if (/^_cms_.*_v[0-9]+$/i.test(name)) throw new CmsError('MIGRATION_REQUIRED');
-    if (object.type==='trigger') continue;
-    if (owned.has(name.toLowerCase()) && name !== '_cms_migrations' && !expected.has(name)) throw new CmsError('MIGRATION_REQUIRED');
-    const wanted = expected.get(name);
-    if (wanted && (wanted.type !== object.type || normalizeMigrationSql(wanted.sql) !== normalizeMigrationSql(object.sql ?? ''))) throw new CmsError('MIGRATION_REQUIRED');
-  }
-  if ([...expected.keys()].some(name => !objects.has(name))) throw new CmsError('MIGRATION_REQUIRED');
   // Accept immutable historical tracking layouts only before the v3 upgrade.
   const tracking = normalizeMigrationSql(marker.sql ?? '');
   const validTracking = [normalizeMigrationSql(trackingStatement(database).sql)];
   if (version <= 2) validTracking.push('CREATE TABLE _cms_migrations (version INTEGER PRIMARY KEY CHECK(version = 1))',
     'CREATE TABLE _cms_migrations (version INTEGER PRIMARY KEY CHECK(version IN (1, 2)))');
   if (!validTracking.includes(tracking)) throw new CmsError('MIGRATION_REQUIRED');
+  const expected = new Map<string,{name: string; type: string; sql: string}>();
+  const owned = new Set(staticNames);
+  // Resolve every installed static replacement before any dynamic provider
+  // reads metadata. A later provider can supersede an earlier table layout.
+  for (const provider of CMS_MIGRATIONS) if (provider.version<=version) {
+    for (const object of staticObjects.get(provider)!) expected.set(object.name,object);
+  }
+  validateObjects(rows,expected,owned);
+  for (const provider of CMS_MIGRATIONS) {
+    if (provider.version>version) continue;
+    const descriptors = await provider.expectedObjects(database,version);
+    for (const object of descriptors) {
+      owned.add(object.name.toLowerCase());
+      expected.set(object.name,object);
+    }
+  }
+  // Intermediate rebuild objects and partially-installed future providers are
+  // rejected. No DROP/repair runs against an unknown layout.
+  validateObjects(rows,expected,owned);
   return {version,prerequisiteGuard:prerequisiteGuard(database,version,names,rows)};
 }
 
@@ -180,12 +188,16 @@ export async function migrateCms(database: CmsDatabase): Promise<void> {
     sql`DROP TABLE _cms_migrations_v1`.compile(db)
   ];
   statements.unshift(validated.prerequisiteGuard);
+  const providerPreconditions: CompiledQuery[] = [];
   const indexes = state > 0 ? await pendingTrashIndexStatements(database) : [];
   for (const provider of CMS_MIGRATIONS) {
     if (provider.version <= state) continue;
-    statements.push(...await provider.statements(database),
+    const prepared = await provider.prepare?.(database,state);
+    if (prepared) providerPreconditions.push(...prepared.preconditions);
+    statements.push(...(prepared?.statements ?? await provider.statements(database)),
       sql`INSERT INTO _cms_migrations (version) VALUES (${sql.lit(provider.version)})`.compile(db));
   }
+  statements.splice(1,0,...providerPreconditions);
   if (state > 0) statements.push(sql`DELETE FROM _cms_guards WHERE token = 'migration-upgrade'`.compile(db));
   statements.push(...indexes);
   try { await database.atomicBatch(statements); }
