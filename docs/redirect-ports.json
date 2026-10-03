@@ -1845,5 +1845,20 @@
       "sha256": "def65f6d1f13a78b282eb00c7e04367650ecbbee6bf22aceefef48171d909058",
       "assertions": 1
     }
+  ],
+  "evidence": [
+    {
+      "phase": "initial-whole-pure-host",
+      "head": "fc9b75595ad13d009390a4d9743b6a8ed28dc05f",
+      "command": "node node_modules/vitest/vitest.mjs run --config vitest.redirect-source.config.ts",
+      "runtime": "Node 24.19/Vitest 4.1.10, separately approved installed main dependency closure; zero own frozen install credit",
+      "result": "6 existing safe-local tests pass; four redirect suites fail absent native imports, zero completed redirect callbacks and zero behavioral-red credit."
+    },
+    {
+      "phase": "original-native-before",
+      "command": "node --test tests/redirect-runtime-native.test.ts",
+      "runtime": "Node 24.19, actual createCmsRuntime persistent SQLite, no session/principal fixture",
+      "result": "4/4 completed original assertion failures: exact 200 vs308; pattern 200 vs301; terminal 200 vs410; persisted404 rows [] vs[{path:/missing,hits:2}]. Explicit standalone native table fixture; zero Source/application-migration credit."
+    }
   ]
 }
