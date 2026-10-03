@@ -1,6 +1,6 @@
 // Test-host substitutions only; all collection/content storage uses real CMS providers.
 import { describe } from 'vitest';
-import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
+import { schemaAdminStorage } from './schema-admin-storage.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry as NativeRegistry } from '../../src/lib/server/database/registry.ts';
 import { ContentRepository } from '../../src/lib/server/database/lifecycle/upstream/database/repositories/content.ts';
@@ -10,15 +10,18 @@ import type { Database } from '../../src/lib/server/database/lifecycle/upstream/
 import type { Kysely } from 'kysely';
 export { ContentRepository };
 const databases = new WeakMap<object, CmsDatabase>();
+const cleanup = new WeakMap<object, () => Promise<void>>();
+export function searchDatabase(db: object) { return databases.get(db)!; }
 export class SchemaRegistry extends NativeRegistry {
   constructor(db: Kysely<Database>) { super(databases.get(db)!); }
 }
 export async function setupTestDatabase(): Promise<Kysely<Database>> {
-  const database = openSqlite(':memory:');
+  const storage = await schemaAdminStorage(process.env.SVELTERY_SEARCH_STORAGE === 'D1' ? 'D1' : 'Node');
+  const database = storage.database;cleanup.set(database.db,storage.close);
   databases.set(database.db,database);registerLifecycleDatabase(database);
   await migrateCms(database);return database.db as unknown as Kysely<Database>;
 }
-export async function teardownTestDatabase(db: Kysely<Database>) { await databases.get(db)!.close(); }
+export async function teardownTestDatabase(db: Kysely<Database>) { await cleanup.get(db)!(); }
 export async function setupTestDatabaseWithCollections() {
   const db=await setupTestDatabase();const registry=new SchemaRegistry(db);
   for(const slug of ['post','page']) {
