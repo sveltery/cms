@@ -32,7 +32,7 @@ jobs:
       - run: pnpm build:node
         if: matrix.target == 'node'
       - name: Complete pinned media callbacks with ordinary WebAuthn
-        run: timeout --kill-after=30s 180s pnpm exec playwright test tests/browser/media-library-source.spec.ts tests/browser/media-native-crop.spec.ts
+        run: timeout --kill-after=30s 180s pnpm exec playwright test tests/browser/media-library-source.spec.ts tests/browser/media-native-crop.spec.ts tests/browser/media-native-replace.spec.ts
         env:
           SVELTERY_BROWSER_TARGET: ${{ matrix.target }}
           DEBUG: pw:browser,pw:webserver
