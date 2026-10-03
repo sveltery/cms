@@ -7,3 +7,8 @@ The GitHub Actions `validate` job has a **15-minute deadline**, including setup.
 No test files, source assertions, callback bodies, per-test timeouts, file scheduling, runtime cleanup, dependency versions, browser sandbox settings, or product behavior change with these diagnostics. Every original bootstrap command remains mandatory. Test cancellations, assertion failures, and inherited Miniflare failures remain failures; an isolated passing case does not replace a failed full run.
 
 Two editor validation jobs, [37082703026](https://github.com/sveltery/cms/actions/runs/37082703026) and [37085581067](https://github.com/sveltery/cms/actions/runs/37085581067), were still executing their bootstrap step when this change was proposed. Their live logs were unavailable through GitHub's completed-job log endpoint. The unfinished phase and cause were therefore unverified. Multiple concurrent local suites can contend for the shared executor, but those observations do not establish the cause of either hosted job. This change supplies a finite failure bound and useful phase evidence for the next run; it claims no runtime repair or new EmDash parity.
+
+The separate [local D1 fixture transport proposal](d1-fixture-transport.md) replaces
+the shared fixture's synchronous binding proxy with asynchronous requests to a
+real D1 Worker. It preserves existing assertions and deadlines; its focused
+transport evidence does not qualify a failed or unfinished full validation run.
