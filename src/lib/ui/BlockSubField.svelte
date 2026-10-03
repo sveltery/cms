@@ -2,9 +2,14 @@
  import type {BlockFieldDefinition} from '$lib/server/schema/block-types';
  import BlockMediaField from './BlockMediaField.svelte';
  import Self from './BlockSubField.svelte';
- let {id,field,value,onchange,readOnly=false}:{id:string;field:BlockFieldDefinition;value:unknown;onchange:(value:unknown)=>void;readOnly?:boolean}=$props();
+ import {toDatetimeLocalInputValue,fromDatetimeLocalInputValue} from '$lib/blocks/datetime-local';
+ let {id,field,value,onchange,readOnly=false,timezone='UTC'}:{id:string;field:BlockFieldDefinition;value:unknown;onchange:(value:unknown)=>void;readOnly?:boolean;timezone?:string}=$props();
  const string=$derived(typeof value==='string'?value:'');
  const rows=$derived(Array.isArray(value)?value.filter((row):row is Record<string,unknown>=>Boolean(row&&typeof row==='object'&&!Array.isArray(row))):[]);
+ function inputValue(next:string){
+  if(field.type==='datetime'){try{onchange(fromDatetimeLocalInputValue(next,timezone));}catch{onchange(next);}}
+  else onchange(field.type==='number'||field.type==='integer'?(next===''?undefined:Number(next)):next);
+ }
  function editRow(index:number,slug:string,next:unknown){onchange(rows.map((row,i)=>i===index?{...row,[slug]:next}:row));}
 </script>
 {#if field.type==='image'||field.type==='file'}
@@ -15,7 +20,7 @@
 {:else if field.type==='repeater'}
  <fieldset disabled={readOnly}><legend>{field.label}</legend>
   {#each rows as row,index(index)}<div class="row">
-   {#each field.validation?.subFields??[] as subField(subField.slug)}<Self id={`${id}.${index}.${subField.slug}`} field={{slug:subField.slug,label:subField.label,type:subField.type,required:subField.required,validation:subField.options?{options:subField.options}:undefined}} value={row[subField.slug]} onchange={next=>editRow(index,subField.slug,next)} {readOnly}/>{/each}
+   {#each field.validation?.subFields??[] as subField(subField.slug)}<Self id={`${id}.${index}.${subField.slug}`} field={{slug:subField.slug,label:subField.label,type:subField.type,required:subField.required,validation:subField.options?{options:subField.options}:undefined}} value={row[subField.slug]} onchange={next=>editRow(index,subField.slug,next)} {readOnly} {timezone}/>{/each}
    {#if !readOnly}<button type="button" onclick={()=>onchange(rows.filter((_,i)=>i!==index))}>Remove row {index+1}</button>{/if}
   </div>{/each}
   {#if !readOnly}<button type="button" disabled={rows.length>=(field.validation?.maxItems??Infinity)} onclick={()=>onchange([...rows,{}])}>Add row</button>{/if}
@@ -34,7 +39,7 @@
  <label for={id}>{field.label}</label><textarea {id} value={string} readonly={readOnly} required={field.required} oninput={event=>onchange(event.currentTarget.value)}></textarea>
 {:else}
  <label for={id}>{field.label}</label>
- <input {id} type={field.type==='url'?'url':field.type==='number'||field.type==='integer'?'number':field.type==='datetime'?'datetime-local':'text'} value={typeof value==='number'?value:string} readonly={readOnly} required={field.required} step={field.type==='integer'?1:field.type==='number'?'any':undefined}
-  oninput={event=>onchange(field.type==='number'||field.type==='integer'?(event.currentTarget.value===''?undefined:Number(event.currentTarget.value)):event.currentTarget.value)}/>
+ <input {id} type={field.type==='url'?'url':field.type==='number'||field.type==='integer'?'number':field.type==='datetime'?'datetime-local':'text'} value={field.type==='datetime'?toDatetimeLocalInputValue(value,timezone):typeof value==='number'?value:string} readonly={readOnly} required={field.required} step={field.type==='integer'?1:field.type==='number'?'any':undefined}
+  oninput={event=>inputValue(event.currentTarget.value)}/>
 {/if}
 <style>label{display:block;margin-block-end:6px}input:not([type=checkbox]),textarea,select{inline-size:100%;padding:9px;border:1px solid #c4cedd;border-radius:6px;font:inherit}textarea{min-block-size:90px}fieldset,.row{border:1px solid #d9e0eb;padding:12px;display:grid;gap:12px}.row{margin-block:12px}pre{overflow:auto}</style>

@@ -11,10 +11,11 @@
   async function loadDefinition(collection: string) {
     try {
       const manifest = await getEditorManifest();
-      return Object.hasOwn(manifest.collections, collection) ? manifest.collections[collection] : null;
+      return Object.hasOwn(manifest.collections, collection) ? {definition:manifest.collections[collection],timezone:manifest.timezone} : null;
     } catch { return null; }
   }
-  const definition = $derived(await loadDefinition(collection));
+  const editing = $derived(await loadDefinition(collection));
+  const definition=$derived(editing?.definition);
 </script>
 
 <svelte:head><title>New {definition?.labelSingular ?? 'content'} · Sveltery CMS</title></svelte:head>
@@ -23,7 +24,7 @@
   <h1>New {definition?.labelSingular ?? 'content'}</h1>
   {#if definition}
     {#key JSON.stringify([collection, locale])}
-      <CreateScalarContent {collection} {locale} {definition} disabled={!data.canCreate} />
+      <CreateScalarContent {collection} {locale} {definition} timezone={editing?.timezone} disabled={!data.canCreate} />
     {/key}
   {:else}<p role="status">Content is unavailable until authentication and storage are configured.</p>{/if}
 </WorkspaceShell>

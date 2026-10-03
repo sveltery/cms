@@ -14,7 +14,7 @@
     return Promise.all([getEditorManifest(), getLifecycleContent({ collection, id, locale })]).then(
       ([manifest, item]) => {
         const definition = Object.hasOwn(manifest.collections, collection) ? manifest.collections[collection] : undefined;
-        return definition ? { definition, item } : null;
+        return definition ? { definition, item,timezone:manifest.timezone } : null;
       }, () => null
     );
   }
@@ -31,7 +31,7 @@
     {#if data.mutationsEnabled}
       <a href={resolve('/content/[collection]/[id]/workflow', { collection: page.params.collection ?? '', id: content.item.id }) + (locale === 'en' ? '' : `?locale=${encodeURIComponent(locale)}`)}>Publishing and revisions</a>
       {#key JSON.stringify([page.params.collection, content.item.id, content.item.locale])}
-        <EditScalarContent collection={page.params.collection ?? ''} definition={content.definition} item={content.item}
+        <EditScalarContent collection={page.params.collection ?? ''} definition={content.definition} item={content.item} timezone={content.timezone}
           disabled={!(data.editAny || (data.editOwn && data.principalId === content.item.authorId))} />
       {/key}
     {:else}<form {...saveEditorContent}>

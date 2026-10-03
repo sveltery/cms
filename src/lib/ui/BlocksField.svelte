@@ -6,8 +6,8 @@
   import {createBlockKey,createBlockValue,duplicateBlockValue,isStoredBlockValue,moveBlockValue,updateBlockFieldValue,type StoredBlockValue} from '$lib/blocks/state';
   import BlockSubField from './BlockSubField.svelte';
   export interface NestedFieldInput {name:string;field:{id:string;kind:string;label:string;required?:boolean;validation?:Record<string,unknown>;options?:unknown};value:unknown;onChange:(value:unknown)=>void}
-  let {id,fieldPath,label,value,onchange,blockTypes,allowedTypes,retiredTypes,minItems=0,maxItems=100,readOnly=false,renderField}:{
-    id:string;fieldPath:string;label:string;value:unknown;onchange:(value:StoredBlockValue[])=>void;blockTypes:readonly BlockType[];allowedTypes:readonly string[];retiredTypes:readonly string[];minItems?:number;maxItems?:number;readOnly?:boolean;renderField?:Snippet<[NestedFieldInput]>;
+  let {id,fieldPath,label,value,onchange,blockTypes,allowedTypes,retiredTypes,minItems=0,maxItems=100,readOnly=false,timezone='UTC',renderField}:{
+    id:string;fieldPath:string;label:string;value:unknown;onchange:(value:StoredBlockValue[])=>void;blockTypes:readonly BlockType[];allowedTypes:readonly string[];retiredTypes:readonly string[];minItems?:number;maxItems?:number;readOnly?:boolean;timezone?:string;renderField?:Snippet<[NestedFieldInput]>;
   }=$props();
   let pickerOpen=$state(false),query=$state(''),collapsed=$state(new Set<string>()),keyboardKey=$state<string|undefined>(),pointerKey=$state<string|undefined>();
   const blocks=$derived(Array.isArray(value)?value.filter(isStoredBlockValue):[]);
@@ -15,7 +15,7 @@
   const allowed=$derived(allowedTypes.map(slug=>typeBySlug.get(slug)).filter((type):type is BlockType=>type!==undefined).filter(type=>{const needle=query.trim().toLocaleLowerCase();return !needle||type.label.toLocaleLowerCase().includes(needle)||type.slug.toLocaleLowerCase().includes(needle)||Boolean(type.category?.toLocaleLowerCase().includes(needle));}));
   const grouped=$derived.by(()=>{const result=new Map<string,BlockType[]>();for(const type of allowed){const category=type.category||'Other';result.set(category,[...(result.get(category)??[]),type]);}return result;});
   function toggle(key:string){const next=new Set(collapsed);if(next.has(key))next.delete(key);else next.add(key);collapsed=next;}
-  function duplicate(index:number,block:StoredBlockValue){const next=[...blocks];next.splice(index+1,0,duplicateBlockValue(block,createBlockKey()));onchange(next);}
+  function duplicate(index:number,block:StoredBlockValue){const next=[...blocks];next.splice(index+1,0,duplicateBlockValue($state.snapshot(block),createBlockKey()));onchange(next);}
   function move(key:string,to:number){onchange(moveBlockValue(blocks,blocks.findIndex(block=>block._key===key),to));}
   function keyboard(event:KeyboardEvent,key:string){
     if(event.code==='Space'){event.preventDefault();keyboardKey=keyboardKey===key?undefined:key;}
@@ -32,7 +32,7 @@
   {#if pickerOpen&&!readOnly}<div class="picker">
     <input aria-label="Search block types" placeholder="Search blocks" bind:value={query}/>
     {#each Array.from(grouped) as [category,types]}<p>{category}</p>{#each types as type(type.slug)}
-      <button type="button" aria-label={type.label+(type.description??'')} onclick={()=>{onchange([...blocks,createBlockValue(type,createBlockKey())]);pickerOpen=false;query='';}}><strong>{type.label}</strong>{#if type.description}<span>{type.description}</span>{/if}</button>
+      <button type="button" aria-label={type.label+(type.description??'')} onclick={()=>{onchange([...blocks,createBlockValue($state.snapshot(type),createBlockKey())]);pickerOpen=false;query='';}}><strong>{type.label}</strong>{#if type.description}<span>{type.description}</span>{/if}</button>
     {/each}{/each}
     {#if allowed.length===0}<p>No matching block types</p>{/if}
   </div>{/if}
@@ -60,7 +60,7 @@
         {#if unsupported}<p>This block cannot be edited because its stored definition is unavailable.</p>
         {:else}{#each version?.fields??[] as field(field.slug)}
           {#if renderField}{@render renderField(nested(block,field))}
-          {:else}<BlockSubField id={`field-${fieldPath}.${block._key}.${field.slug}`} {field} value={block[field.slug]} {readOnly} onchange={next=>onchange(updateBlockFieldValue(blocks,block._key,field.slug,next))}/>{/if}
+          {:else}<BlockSubField id={`field-${fieldPath}.${block._key}.${field.slug}`} {field} value={block[field.slug]} {readOnly} {timezone} onchange={next=>onchange(updateBlockFieldValue(blocks,block._key,field.slug,next))}/>{/if}
         {/each}{/if}
         <span class="sr-only">Block {index+1}</span>
       </div>{/if}

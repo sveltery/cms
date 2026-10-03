@@ -7,8 +7,8 @@
   import BlocksField from './BlocksField.svelte';
   import { slugify } from './content-slug';
   import { describeContentValidationError } from './content-validation-errors';
-  let { collection, locale, definition, disabled }: {
-    collection: string; locale: string; definition: EditorCollection; disabled: boolean;
+  let { collection, locale, definition, disabled,timezone='UTC' }: {
+    collection: string; locale: string; definition: EditorCollection; disabled: boolean;timezone?:string;
   } = $props();
   const createForm = $derived(createEditorContent.for(JSON.stringify([collection, locale])));
   let values = $state<Record<string, unknown>>({});
@@ -44,7 +44,7 @@
           name={enhanced ? undefined : `data.${fieldSlug}`} value={typeof values[fieldSlug]==='string'?values[fieldSlug] as string:''}
           onchange={value => change(fieldSlug, value)} />
       {:else if field.kind==='blocks'}
-        <BlocksField id={`field-${fieldSlug}`} fieldPath={fieldSlug} label={field.label} value={values[fieldSlug]??[]} blockTypes={field.blockTypes??[]} allowedTypes={field.validation?.allowedTypes??[]} retiredTypes={field.validation?.retiredTypes??[]} minItems={field.validation?.minItems} maxItems={field.validation?.maxItems} readOnly={!enhanced||disabled} onchange={value=>change(fieldSlug,value)}/>
+        <BlocksField id={`field-${fieldSlug}`} fieldPath={fieldSlug} label={field.label} value={values[fieldSlug]??[]} blockTypes={field.blockTypes??[]} allowedTypes={field.validation?.allowedTypes??[]} retiredTypes={field.validation?.retiredTypes??[]} minItems={field.validation?.minItems} maxItems={field.validation?.maxItems} readOnly={!enhanced||disabled} {timezone} onchange={value=>change(fieldSlug,value)}/>
         {#if !enhanced}<label> {field.label} (JSON)<textarea name={`jsonData.${fieldSlug}`}>[]</textarea></label>{/if}
       {:else}
         <p>{field.label || fieldSlug}: this field requires a configured editor.</p>

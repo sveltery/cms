@@ -6,10 +6,10 @@
   import ContentTextField from './ContentTextField.svelte';
   import BlocksField from './BlocksField.svelte';
   import { describeContentValidationError } from './content-validation-errors';
-  let { collection, definition, item, disabled }: {
+  let { collection, definition, item, disabled,timezone='UTC' }: {
     collection: string; definition: EditorCollection;
     item: { id: string; locale: string; _rev: string; data: Record<string, unknown>; slug: string | null };
-    disabled: boolean;
+    disabled: boolean;timezone?:string;
   } = $props();
   const key = $derived(JSON.stringify([collection, item.id, item.locale]));
   const saveForm = $derived(saveEditorContent.for(key));
@@ -99,7 +99,7 @@
           name={enhanced ? undefined : `data.${fieldSlug}`} value={typeof values[fieldSlug]==='string'?values[fieldSlug] as string:''}
           onchange={value => change(fieldSlug, value)} />
       {:else if field.kind==='blocks'}
-        <BlocksField id={`field-${fieldSlug}`} fieldPath={fieldSlug} label={field.label} value={values[fieldSlug]??[]} blockTypes={field.blockTypes??[]} allowedTypes={field.validation?.allowedTypes??[]} retiredTypes={field.validation?.retiredTypes??[]} minItems={field.validation?.minItems} maxItems={field.validation?.maxItems} readOnly={!enhanced||disabled} onchange={value=>change(fieldSlug,value)}/>
+        <BlocksField id={`field-${fieldSlug}`} fieldPath={fieldSlug} label={field.label} value={values[fieldSlug]??[]} blockTypes={field.blockTypes??[]} allowedTypes={field.validation?.allowedTypes??[]} retiredTypes={field.validation?.retiredTypes??[]} minItems={field.validation?.minItems} maxItems={field.validation?.maxItems} readOnly={!enhanced||disabled} {timezone} onchange={value=>change(fieldSlug,value)}/>
         {#if !enhanced}<label>{field.label} (JSON)<textarea name={`jsonData.${fieldSlug}`}>{JSON.stringify(values[fieldSlug]??[])}</textarea></label>{/if}
       {:else}<p>{field.label || fieldSlug}: this field requires a configured editor.</p>{/if}
     {/each}
