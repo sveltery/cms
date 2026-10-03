@@ -2,7 +2,7 @@
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "method": "Full pinned tracked packages reusable-block symbol roots plus complete transitive relative/local-package static and literal-dynamic import closure. Inventory only; cross-family dependencies have no inferred execution or feature credit.",
   "symbolExpression": "BlockType|BlockField|BLOCK_FIELD|BlocksField|BlockTypeList|block-types|block_types|normalizeBlocks|retiredTypes|allowedTypes|\"blocks\"",
-  "symbolRootFiles": 172,
+  "symbolRootFiles": 173,
   "transitiveClosureFiles": 1079,
   "externalImportSpecifiers": [
     "#api/authorize.js",
@@ -19672,7 +19672,7 @@
       "path": "packages/core/src/request-cache.ts",
       "blob": "ab8f007b22ce601219ca1270d487342338de8634",
       "sha256": "b0a8094bbd5c9b987e3b8b00c1d7fdb3bdc542a0d2d4f244108fc8f5655d8d73",
-      "closureRole": "full transitive local package/import dependency",
+      "closureRole": "reusable-block symbol root",
       "inventoryOnly": true,
       "dependencies": [
         {
@@ -19680,7 +19680,9 @@
           "path": "packages/core/src/request-context.ts"
         }
       ],
-      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly"
+      "runtimeScope": "unselected closure member; zero runtime/product/causal-red credit; owning family must be qualified explicitly",
+      "implementationScope": "complete module; native context reader is a separate host adapter, not whole Source context implementation",
+      "nativePath": "src/lib/server/blocks/request-cache.ts"
     },
     {
       "path": "packages/core/src/request-context.ts",

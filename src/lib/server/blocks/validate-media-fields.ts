@@ -4,7 +4,7 @@ import type { Kysely } from "kysely";
 
 import type { Database } from "../media/source/database/types.ts";
 import { matchesMimeAllowlist, parseAllowedMimeTypes } from "../media/source/media/mime.ts";
-import { requestCached } from "../taxonomies/upstream/request-cache.ts";
+import { requestCached } from "./request-cache.ts";
 import { BlockTypeRegistry } from "./registry.ts";
 import type { BlockType } from "../schema/block-types.ts";
 import { chunks, SQL_BATCH_SIZE } from "../media/source/utils/chunks.ts";

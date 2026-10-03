@@ -100,10 +100,10 @@
       "blob": "62aa54d70295ef46fd0d7ba037c9d589843ebfe4",
       "sourceSha256": "bde696804e5e89de54d2005d2fe51c91fd050ac8d02f37e6ad36aaca6729f99a",
       "copiedPath": "src/lib/server/blocks/validate-media-fields.ts",
-      "copiedSha256": "cc123ba3c57d5602f58a666b2f4dc1ea68ed97abc15078809996630adbeeb828",
+      "copiedSha256": "e83e4adbd1e51dddade0919bf9f6a98516333e97e7315fd5380b01b31dfcc802",
       "scope": "complete module",
       "transforms": [
-        "native imports/table namespace only"
+        "native imports/table namespace only; complete request-cache algorithm uses the optional installed-host-context reader"
       ]
     },
     {
@@ -227,6 +227,17 @@
       "transforms": [
         "native browser type imports and export visibility",
         "native FileField closure wrapper; full source callback body unchanged"
+      ]
+    },
+    {
+      "source": "packages/core/src/request-cache.ts",
+      "blob": "ab8f007b22ce601219ca1270d487342338de8634",
+      "sourceSha256": "b0a8094bbd5c9b987e3b8b00c1d7fdb3bdc542a0d2d4f244108fc8f5655d8d73",
+      "copiedPath": "src/lib/server/blocks/request-cache.ts",
+      "copiedSha256": "2d063bc0023ef4db7bb612ed4f5d7746a8e5ea3ba21266fd1227f6dd96f861e9",
+      "scope": "complete module; native context reader is a separate host adapter, not whole Source context implementation",
+      "transforms": [
+        "native type/getRequestContext imports only; pinned algorithms and shared global WeakMap Symbol unchanged"
       ]
     }
   ]

@@ -11,7 +11,7 @@ export default defineConfig({plugins:[{
     const target=resolve(dirname(importer),specifier);
     if(target.includes('/packages/core/tests/utils/test-db.js'))return resolve(root,'tests/helpers/blocks-source-database.ts');
     if(target.includes('/packages/core/tests/utils/mcp-runtime.js'))return resolve(root,'tests/helpers/blocks-source-runtime.ts');
-    if(target.endsWith('/packages/core/src/request-cache.js'))return resolve(root,'src/lib/server/taxonomies/upstream/request-cache.ts');
+    if(target.endsWith('/packages/core/src/request-cache.js'))return resolve(root,'src/lib/server/blocks/request-cache.ts');
     if(target.endsWith('/packages/core/src/request-context.js'))return resolve(root,'src/lib/server/taxonomies/upstream/request-context.ts');
     if(target.endsWith('/packages/core/src/database/instrumentation.js'))return resolve(root,'src/lib/server/taxonomies/upstream/database/instrumentation.ts');
     if(target.includes('/packages/core/src/schema/block-type-registry.js'))return resolve(root,'src/lib/server/blocks/registry.ts');

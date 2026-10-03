@@ -1,5 +1,5 @@
 // Original native composition acceptance; zero copied Source/authentication credit.
-// Signed WebAuthn setup/login, real media upload and actual Node/D1/R2 persistence.
+// Signed WebAuthn setup/login, real media upload and actual Node/Worker D1 SQL with supported LocalStorage persistence.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {parse} from 'devalue';
