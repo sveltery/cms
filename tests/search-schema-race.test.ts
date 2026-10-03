@@ -7,6 +7,8 @@ import {FTSManager} from '../src/lib/server/search/fts-manager.ts';
 import {CmsError} from '../src/lib/server/database/contract.ts';
 import {sql} from 'kysely';
 import {searchWithDb} from '../src/lib/server/search/query.ts';
+import {CompiledQuery} from 'kysely';
+import {readFile} from 'node:fs/promises';
 import type {Kysely} from 'kysely';
 import type {Database} from '../src/lib/server/database/lifecycle/upstream/database/types.ts';
 // Original stronger native atomic-conflict requirement, zero source credit.
@@ -25,6 +27,17 @@ for(const target of ['Node','D1'] as const)test(`${target}: a concurrent search 
   assert.equal(await registry.getField('notes','body'),null);
   assert.equal((await manager.getSearchConfig('notes'))?.enabled,false);
   assert.equal(await manager.ftsTableExists('notes'),false);
+ }finally{await storage.close();}
+});
+for(const target of ['Node','D1'] as const)test(`${target}: ordinary immutable v1 fields remain writable before search metadata exists`,async()=>{
+ const storage=await schemaAdminStorage(target);try{
+  const database=storage.database;
+  const statements=JSON.parse(await readFile(new URL('./fixtures/cms-v1.json',import.meta.url),'utf8')) as string[];
+  await database.atomicBatch(statements.map(statement=>CompiledQuery.raw(statement)));
+  const registry=new SchemaRegistry(database);await registry.createCollection({slug:'legacy',label:'Legacy'});
+  await assert.doesNotReject(()=>registry.createField('legacy',{slug:'title',label:'Title',type:'string'}));
+  assert.equal((await registry.getField('legacy','title'))?.label,'Title');
+  assert.equal((await sql<{name:string}>`PRAGMA table_info(_cms_collections)`.execute(database.db)).rows.some(row=>row.name==='search_config'),false);
  }finally{await storage.close();}
 });
 for(const target of ['Node','D1'] as const)test(`${target}: an index rebuild binds the exact fields used for projection`,async()=>{
