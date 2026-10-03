@@ -21,7 +21,7 @@ async function fixture(backend: 'node' | 'raw-d1' | 'scoped-d1') {
   const storage = binding ? openD1(binding) : openSqlite(':memory:');
   await migrateCms(storage);
   await storage.atomicBatch(menuSchemaStatements(storage));
-  const scoped = backend === 'scoped-d1' ? new Kysely<CmsTables>({ dialect: new SessionD1Dialect(binding!) }) : undefined;
+  const scoped = backend === 'scoped-d1' ? new Kysely<CmsTables>({ dialect: new SessionD1Dialect({ database: binding! }) }) : undefined;
   const db = (scoped ?? storage.db).withTables<{[Name in keyof Database]: Database[Name]}>().$pickTables<keyof Database>();
   const repo = new MenuRepository(db);
   return { db, repo, storage, async close() { await scoped?.destroy(); await storage.close(); await worker?.dispose(); } };
