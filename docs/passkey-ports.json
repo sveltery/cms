@@ -1,0 +1,592 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "scope": "New colocated auth selections, separate from the original selected 118-file census.",
+  "algorithmSelections": [
+    {
+      "source": "packages/auth/src/passkey/register.test.ts",
+      "blob": "d8ce4b6930d1531aaa5c903dc41eaef50a19bf84",
+      "sourceSha256": "3822f00ca067885e76d7973d084a6630a068a7769c0f151efa9dd76d7e44faa0",
+      "local": "tests/source-port/passkey/register.test.ts",
+      "localSha256": "e6f250372f6a610ee453e63f6f92111b0f2fdbaecade11acd7fdb901281f11b8",
+      "transformations": [
+        "Three-line pin/blob/MIT header.",
+        "Relative module specifiers only; all fixture, dataset, mock, callback and expectation bytes otherwise unchanged."
+      ],
+      "declarations": [
+        {
+          "line": 53,
+          "title": "\"wires %s user verification into registration options\"",
+          "localLine": 56
+        },
+        {
+          "line": 67,
+          "title": "\"defaults registration options to preferred user verification\"",
+          "localLine": 70
+        },
+        {
+          "line": 78,
+          "title": "\"rejects a typed-context store with %s consume\"",
+          "localLine": 81
+        },
+        {
+          "line": 122,
+          "title": "\"returns typed context after atomic challenge consumption\"",
+          "localLine": 125
+        },
+        {
+          "line": 188,
+          "title": "\"rejects registration without UV when user verification is required\"",
+          "localLine": 191
+        },
+        {
+          "line": 222,
+          "title": "\"rejects an origin not in the accepted list\"",
+          "localLine": 225
+        },
+        {
+          "line": 249,
+          "title": "\"processes an RS256 registration correctly and encodes to PKIX\"",
+          "localLine": 252
+        }
+      ],
+      "runtimeExpectationExpressions": [
+        {
+          "line": 63,
+          "text": "expect(options.authenticatorSelection?.userVerification).toBe(userVerification)",
+          "localLine": 66
+        },
+        {
+          "line": 75,
+          "text": "expect(options.authenticatorSelection?.userVerification).toBe(\"preferred\")",
+          "localLine": 78
+        },
+        {
+          "line": 102,
+          "text": "expect(\n\t\t\tverifyRegistrationResponse(\n\t\t\t\tconfig,\n\t\t\t\t{\n\t\t\t\t\tid: \"test-credential\",\n\t\t\t\t\trawId: \"test-credential\",\n\t\t\t\t\ttype: \"public-key\",\n\t\t\t\t\tresponse: {\n\t\t\t\t\t\tclientDataJSON: base64url(clientDataJSON),\n\t\t\t\t\t\tattestationObject: \"AA\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\tmalformedStore,\n\t\t\t\tenrolmentContext,\n\t\t\t),\n\t\t).rejects.toThrow(\"Typed challenge context requires an atomic challenge store\")",
+          "localLine": 105
+        },
+        {
+          "line": 118,
+          "text": "expect(challengeStore.get).not.toHaveBeenCalled()",
+          "localLine": 121
+        },
+        {
+          "line": 119,
+          "text": "expect(challengeStore.delete).not.toHaveBeenCalled()",
+          "localLine": 122
+        },
+        {
+          "line": 183,
+          "text": "expect(result).toMatchObject({ challengeContext: { approverDid: \"did:plc:approver\" } })",
+          "localLine": 186
+        },
+        {
+          "line": 184,
+          "text": "expect(atomicStore.consume).toHaveBeenCalledWith(options.challenge)",
+          "localLine": 187
+        },
+        {
+          "line": 185,
+          "text": "expect(challengeStore.delete).not.toHaveBeenCalled()",
+          "localLine": 188
+        },
+        {
+          "line": 206,
+          "text": "expect(\n\t\t\tverifyRegistrationResponse(\n\t\t\t\t{ ...config, userVerification: \"required\" },\n\t\t\t\t{\n\t\t\t\t\tid: \"test-credential\",\n\t\t\t\t\trawId: \"test-credential\",\n\t\t\t\t\ttype: \"public-key\",\n\t\t\t\t\tresponse: {\n\t\t\t\t\t\tclientDataJSON: base64url(clientDataJSON),\n\t\t\t\t\t\tattestationObject: \"AA\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\tmakeChallengeStore(),\n\t\t\t),\n\t\t).rejects.toThrow(\"User verification not verified\")",
+          "localLine": 209
+        },
+        {
+          "line": 232,
+          "text": "expect(\n\t\t\tverifyRegistrationResponse(\n\t\t\t\tconfig,\n\t\t\t\t{\n\t\t\t\t\tid: \"test-credential\",\n\t\t\t\t\trawId: \"test-credential\",\n\t\t\t\t\ttype: \"public-key\",\n\t\t\t\t\tresponse: {\n\t\t\t\t\t\tclientDataJSON: base64url(clientDataJSON),\n\t\t\t\t\t\tattestationObject: \"AA\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\tmakeChallengeStore(),\n\t\t\t),\n\t\t).rejects.toThrow(/Invalid origin: https:\\/\\/attacker\\.com not in/)",
+          "localLine": 235
+        },
+        {
+          "line": 306,
+          "text": "expect(result.algorithm).toBe(coseAlgorithmRS256)",
+          "localLine": 309
+        },
+        {
+          "line": 307,
+          "text": "expect(result.publicKey).toBeInstanceOf(Uint8Array)",
+          "localLine": 310
+        },
+        {
+          "line": 311,
+          "text": "expect(decoded.n).toEqual(n)",
+          "localLine": 314
+        },
+        {
+          "line": 312,
+          "text": "expect(decoded.e).toEqual(e)",
+          "localLine": 315
+        }
+      ]
+    },
+    {
+      "source": "packages/auth/src/passkey/authenticate.test.ts",
+      "blob": "1c2ab94a6c51f73374d1ccedb6a41fa16d1966e0",
+      "sourceSha256": "cba47c31e798631d680b582e3551958afe8486ed75a20093c013b4d2b8d9fee5",
+      "local": "tests/source-port/passkey/authenticate.test.ts",
+      "localSha256": "7cf5d97b01629624699be7985076e39f3778b74885d2b9175a49c31e998a919f",
+      "transformations": [
+        "Three-line pin/blob/MIT header.",
+        "Relative module specifiers only; all fixture, dataset, mock, callback and expectation bytes otherwise unchanged."
+      ],
+      "declarations": [
+        {
+          "line": 194,
+          "title": "\"wires %s user verification into authentication options\"",
+          "localLine": 197
+        },
+        {
+          "line": 207,
+          "title": "\"defaults authentication options to preferred user verification\"",
+          "localLine": 210
+        },
+        {
+          "line": 213,
+          "title": "\"rejects an assertion without UV when user verification is required\"",
+          "localLine": 216
+        },
+        {
+          "line": 226,
+          "title": "\"accepts an assertion with UV when user verification is required\"",
+          "localLine": 229
+        },
+        {
+          "line": 245,
+          "title": "\"rejects a zero counter after a credential has reported a nonzero counter\"",
+          "localLine": 248
+        },
+        {
+          "line": 262,
+          "title": "\"returns typed context after atomic challenge consumption\"",
+          "localLine": 265
+        },
+        {
+          "line": 296,
+          "title": "\"does not infer atomic semantics from an unrelated consume method\"",
+          "localLine": 299
+        },
+        {
+          "line": 332,
+          "title": "\"rejects a typed-context store with %s consume\"",
+          "localLine": 335
+        },
+        {
+          "line": 368,
+          "title": "\"rejects stored context that does not match the signed challenge\"",
+          "localLine": 371
+        },
+        {
+          "line": 402,
+          "title": "\"throws a typed passkey auth error for malformed assertion payloads\"",
+          "localLine": 405
+        },
+        {
+          "line": 426,
+          "title": "\"throws a typed passkey auth error when a credential has no user\"",
+          "localLine": 429
+        },
+        {
+          "line": 443,
+          "title": "\"rejects an origin that is not in the accepted list\"",
+          "localLine": 446
+        },
+        {
+          "line": 476,
+          "title": "\"accepts an assertion from a subdomain when its origin is listed under a shared rpId\"",
+          "localLine": 479
+        },
+        {
+          "line": 513,
+          "title": "\"accepts an RS256 (RSA) assertion with a PKIX-encoded public key\"",
+          "localLine": 516
+        },
+        {
+          "line": 525,
+          "title": "\"throws a typed error for an unsupported algorithm\"",
+          "localLine": 528
+        }
+      ],
+      "runtimeExpectationExpressions": [
+        {
+          "line": 203,
+          "text": "expect(options.userVerification).toBe(userVerification)",
+          "localLine": 206
+        },
+        {
+          "line": 210,
+          "text": "expect(options.userVerification).toBe(\"preferred\")",
+          "localLine": 213
+        },
+        {
+          "line": 216,
+          "text": "expect(\n\t\t\tverifyAuthenticationResponse(\n\t\t\t\t{ ...config, userVerification: \"required\" },\n\t\t\t\tresponse,\n\t\t\t\tvalidCredential,\n\t\t\t\tchallengeStore,\n\t\t\t),\n\t\t).rejects.toMatchObject({ code: \"user_verification_not_verified\" })",
+          "localLine": 219
+        },
+        {
+          "line": 235,
+          "text": "expect(\n\t\t\tverifyAuthenticationResponse(\n\t\t\t\t{ ...config, userVerification: \"required\" },\n\t\t\t\tresponse,\n\t\t\t\tvalidCredential,\n\t\t\t\tchallengeStore,\n\t\t\t),\n\t\t).resolves.toMatchObject({ credentialId: validCredential.id })",
+          "localLine": 238
+        },
+        {
+          "line": 252,
+          "text": "expect(\n\t\t\tverifyAuthenticationResponse(\n\t\t\t\tconfig,\n\t\t\t\tresponse,\n\t\t\t\t{ ...validCredential, counter: 1 },\n\t\t\t\tchallengeStore,\n\t\t\t),\n\t\t).rejects.toMatchObject({ code: \"invalid_signature_counter\" })",
+          "localLine": 255
+        },
+        {
+          "line": 283,
+          "text": "expect(\n\t\t\tverifyAuthenticationResponse(\n\t\t\t\t{ ...config, userVerification: \"required\" },\n\t\t\t\tresponse,\n\t\t\t\tvalidCredential,\n\t\t\t\tatomicStore,\n\t\t\t\tapprovalContext,\n\t\t\t),\n\t\t).resolves.toMatchObject({ challengeContext: { intentId: \"intent_1\" } })",
+          "localLine": 286
+        },
+        {
+          "line": 292,
+          "text": "expect(atomicStore.consume).toHaveBeenCalledWith(generated.challenge)",
+          "localLine": 295
+        },
+        {
+          "line": 293,
+          "text": "expect(initial.challengeStore.delete).not.toHaveBeenCalled()",
+          "localLine": 296
+        },
+        {
+          "line": 317,
+          "text": "expect(\n\t\t\tverifyAuthenticationResponse(\n\t\t\t\t{ ...config, userVerification: \"required\" },\n\t\t\t\tresponse,\n\t\t\t\tvalidCredential,\n\t\t\t\tnonAtomicStore as unknown as AtomicChallengeStore,\n\t\t\t\tapprovalContext,\n\t\t\t),\n\t\t).rejects.toMatchObject({\n\t\t\tcode: \"invalid_response\",\n\t\t\tmessage: \"Typed challenge context requires an atomic challenge store\",\n\t\t})",
+          "localLine": 320
+        },
+        {
+          "line": 329,
+          "text": "expect(storeWithUnrelatedConsume.consume).not.toHaveBeenCalled()",
+          "localLine": 332
+        },
+        {
+          "line": 352,
+          "text": "expect(\n\t\t\tverifyAuthenticationResponse(\n\t\t\t\t{ ...config, userVerification: \"required\" },\n\t\t\t\tresponse,\n\t\t\t\tvalidCredential,\n\t\t\t\tmalformedStore,\n\t\t\t\tapprovalContext,\n\t\t\t),\n\t\t).rejects.toMatchObject({\n\t\t\tcode: \"invalid_response\",\n\t\t\tmessage: \"Typed challenge context requires an atomic challenge store\",\n\t\t})",
+          "localLine": 355
+        },
+        {
+          "line": 364,
+          "text": "expect(initial.challengeStore.get).not.toHaveBeenCalled()",
+          "localLine": 367
+        },
+        {
+          "line": 365,
+          "text": "expect(initial.challengeStore.delete).not.toHaveBeenCalled()",
+          "localLine": 368
+        },
+        {
+          "line": 392,
+          "text": "expect(\n\t\t\tverifyAuthenticationResponse(\n\t\t\t\t{ ...config, userVerification: \"required\" },\n\t\t\t\tresponse,\n\t\t\t\tvalidCredential,\n\t\t\t\tatomicStore,\n\t\t\t\tapprovalContext,\n\t\t\t),\n\t\t).rejects.toMatchObject({ code: \"context_binding_mismatch\" })",
+          "localLine": 395
+        },
+        {
+          "line": 419,
+          "text": "expect.fail(\"Expected passkey authentication to fail\")",
+          "localLine": 422
+        },
+        {
+          "line": 421,
+          "text": "expect(error).toBeInstanceOf(PasskeyAuthenticationError)",
+          "localLine": 424
+        },
+        {
+          "line": 422,
+          "text": "expect(error).toMatchObject({ code: \"invalid_response\" })",
+          "localLine": 425
+        },
+        {
+          "line": 436,
+          "text": "expect.fail(\"Expected passkey authentication to fail\")",
+          "localLine": 439
+        },
+        {
+          "line": 438,
+          "text": "expect(error).toBeInstanceOf(PasskeyAuthenticationError)",
+          "localLine": 441
+        },
+        {
+          "line": 439,
+          "text": "expect(error).toMatchObject({ code: \"user_not_found\" })",
+          "localLine": 442
+        },
+        {
+          "line": 466,
+          "text": "expect.fail(\"Expected origin rejection\")",
+          "localLine": 469
+        },
+        {
+          "line": 468,
+          "text": "expect(error).toBeInstanceOf(PasskeyAuthenticationError)",
+          "localLine": 471
+        },
+        {
+          "line": 469,
+          "text": "expect(error).toMatchObject({ code: \"invalid_origin\" })",
+          "localLine": 472
+        },
+        {
+          "line": 470,
+          "text": "expect((error as PasskeyAuthenticationError).message).toContain(\n\t\t\t\t\"https://preview.example.com\",\n\t\t\t)",
+          "localLine": 473
+        },
+        {
+          "line": 510,
+          "text": "expect(user).toMatchObject({ id: \"user_1\" })",
+          "localLine": 513
+        },
+        {
+          "line": 522,
+          "text": "expect(user).toMatchObject({ id: \"user_1\" })",
+          "localLine": 525
+        },
+        {
+          "line": 538,
+          "text": "expect.fail(\"Expected algorithm rejection\")",
+          "localLine": 541
+        },
+        {
+          "line": 540,
+          "text": "expect(error).toBeInstanceOf(PasskeyAuthenticationError)",
+          "localLine": 543
+        },
+        {
+          "line": 541,
+          "text": "expect(error).toMatchObject({\n\t\t\t\tcode: \"unsupported_algorithm\",\n\t\t\t\tmessage: \"Unsupported credential algorithm: 0\",\n\t\t\t})",
+          "localLine": 544
+        }
+      ]
+    },
+    {
+      "source": "packages/auth/src/passkey/challenge-context.test.ts",
+      "blob": "7e4b1e707f18fdf0b6913c9d71c9eed53f374818",
+      "sourceSha256": "35ed0d779946b7c2843a46256a4254bfe41fb9b45a4ef353b18be394eecfa240",
+      "local": "tests/source-port/passkey/challenge-context.test.ts",
+      "localSha256": "429756ee624f450b403262878874240d2a5ad7f1c7c12a289e49ed773b674511",
+      "transformations": [
+        "Three-line pin/blob/MIT header.",
+        "Relative module specifiers only; all fixture, dataset, mock, callback and expectation bytes otherwise unchanged."
+      ],
+      "declarations": [
+        {
+          "line": 33,
+          "title": "\"round-trips typed context with deterministic serialization\"",
+          "localLine": 36
+        },
+        {
+          "line": 60,
+          "title": "\"rejects malformed serialized values\"",
+          "localLine": 63
+        },
+        {
+          "line": 69,
+          "title": "\"rejects non-canonical serialized values\"",
+          "localLine": 72
+        },
+        {
+          "line": 83,
+          "title": "\"rejects version mismatches\"",
+          "localLine": 86
+        },
+        {
+          "line": 95,
+          "title": "\"rejects ceremony type mismatches\"",
+          "localLine": 98
+        },
+        {
+          "line": 105,
+          "title": "\"validates decoded context with the codec\"",
+          "localLine": 108
+        }
+      ],
+      "runtimeExpectationExpressions": [
+        {
+          "line": 43,
+          "text": "expect(first).toBe(second)",
+          "localLine": 46
+        },
+        {
+          "line": 44,
+          "text": "expect(decodeChallengeContext(first, approvalContext)).toEqual({\n\t\t\taction: \"approve\",\n\t\t\tintentId: \"intent_1\",\n\t\t})",
+          "localLine": 47
+        },
+        {
+          "line": 57,
+          "text": "expect(wrongContext).toBe(first)",
+          "localLine": 60
+        },
+        {
+          "line": 61,
+          "text": "expect(() => decodeChallengeContext(\"not base64url!\", approvalContext)).toThrow(\n\t\t\t/Malformed challenge context/,\n\t\t)",
+          "localLine": 64
+        },
+        {
+          "line": 64,
+          "text": "expect(() =>\n\t\t\tdecodeChallengeContext(Buffer.from(\"not json\").toString(\"base64url\"), approvalContext),\n\t\t).toThrow(/Malformed challenge context/)",
+          "localLine": 67
+        },
+        {
+          "line": 78,
+          "text": "expect(() => decodeChallengeContext(nonCanonical, approvalContext)).toThrow(\n\t\t\t/Malformed challenge context/,\n\t\t)",
+          "localLine": 81
+        },
+        {
+          "line": 90,
+          "text": "expect(() => decodeChallengeContext(serialized, approvalContext)).toThrow(\n\t\t\t/Challenge context version mismatch/,\n\t\t)",
+          "localLine": 93
+        },
+        {
+          "line": 100,
+          "text": "expect(() => decodeChallengeContext(serialized, approvalContext)).toThrow(\n\t\t\t/Challenge context type mismatch/,\n\t\t)",
+          "localLine": 103
+        },
+        {
+          "line": 111,
+          "text": "expect(() => decodeChallengeContext(invalid, approvalContext)).toThrow(\n\t\t\t/Invalid approval context/,\n\t\t)",
+          "localLine": 114
+        }
+      ]
+    }
+  ],
+  "algorithmTotals": {
+    "selectedFiles": 3,
+    "completeRuntimeDeclarations": 28,
+    "runtimeExpectationExpressionLocations": 52,
+    "parameterizedCasesPerRun": 34,
+    "typeExpectationLocations": 2
+  },
+  "routeAdaptations": [
+    {
+      "source": "packages/core/tests/integration/astro/setup-admin-nonce.test.ts",
+      "blob": "5ca364dc19f24b99ba4d608629eaa7b67f33a993",
+      "sourceDeclarationLines": [
+        126,
+        151,
+        174,
+        186,
+        202,
+        219,
+        247
+      ],
+      "local": "tests/production/passkey-setup-source.test.ts",
+      "casesAcrossNodeAndLocalD1": 14,
+      "wholeAstroDeclarationCredit": 0,
+      "boundaries": [
+        "Actual Kit HTTP and canonical local database replace Astro cookie/context fixtures.",
+        "Source cookie path /_emdash/ becomes native app base path; divergent path assertion gets zero source credit.",
+        "Other nonce/status/security expectations retain source results; source route implementation is not vendored."
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/auth/logout-route.test.ts",
+      "blob": "0bfa8eb20126e4db7d84775f313715755e3e517d",
+      "sourceDeclarationLines": [
+        14,
+        20
+      ],
+      "local": "tests/production/passkey-logout-source.test.ts",
+      "casesAcrossNodeAndLocalD1": 8,
+      "wholeAstroDeclarationCredit": 0,
+      "boundaries": [
+        "Actual guarded Kit HTTP with canonical session revocation replaces the Astro session stub.",
+        "302 and Location=/blog, or 200 and Location=null for tab/LF/CR slashes retain the four unique source expectations."
+      ]
+    }
+  ],
+  "supplementalTests": [
+    "tests/passkey-rate-limit.test.ts",
+    "tests/production/passkey-runtime.test.ts",
+    "tests/production/passkey-product.test.ts",
+    "tests/production/passkey-current-user.test.ts",
+    "tests/browser/passkey-setup-login.spec.ts",
+    "tests/production/passkey-email-source.test.ts",
+    "tests/passkey-parser.test.ts",
+    "tests/production/passkey-site-state-source.test.ts",
+    "tests/production/passkey-parser-source.test.ts",
+    "tests/production/passkey-setup-guards-source.test.ts",
+    "tests/production/passkey-discoverability-source.test.ts",
+    "tests/browser/passkey-nonresident-shared-bug.spec.ts",
+    "tests/production/passkey-first-credential-fault-source.test.ts",
+    "tests/cloudflare-hosting/passkey.test.ts",
+    "tests/production/passkey-legacy-unavailable.test.ts",
+    "tests/passkey-login-ui.test.ts"
+  ],
+  "supplementalParityCredit": 0,
+  "sourceExecution": {
+    "command": "node scripts/reproduce-passkey-upstream.mjs PINNED_SOURCE_CHECKOUT",
+    "result": "34 original parameterized source cases pass against ten byte-verified immutable source files, plus three original supplemental setup-email reference probes with zero copied source credit.",
+    "localProductCreditFromReferenceRun": 0,
+    "additionalOriginalReferences": [
+      {
+        "script": "scripts/reproduce-passkey-setup-state-upstream.mjs",
+        "copiedSourceCredit": 0,
+        "boundary": "Unchanged pinned route with explicit crypto/adapter/framework mocks; side effects only."
+      },
+      {
+        "script": "scripts/reproduce-passkey-parser-upstream.mjs",
+        "copiedSourceCredit": 0,
+        "boundary": "Unchanged parser plus mocked options-route dependencies; four parser decisions and one ordering probe, no HTTP-host limit credit."
+      },
+      {
+        "script": "scripts/reproduce-passkey-setup-guards-upstream.mjs",
+        "copiedSourceCredit": 0,
+        "boundary": "Five guard-order probes execute unchanged pinned setup handlers with controlled DB/framework dependencies; zero parses before source guard responses, no WebAuthn reference execution."
+      },
+      {
+        "script": "scripts/reproduce-passkey-discoverability-upstream.mjs",
+        "copiedSourceCredit": 0,
+        "boundary": "Seven full pinned hashes; unchanged option-generating algorithms and options handler with explicit DB/parser/rate/framework substitutes. No full source Astro/browser ceremony."
+      },
+      {
+        "script": "scripts/reproduce-passkey-first-credential-fault-upstream.mjs",
+        "copiedSourceCredit": 0,
+        "boundary": "Full pinned hashes; unchanged setup/first-admin/credential/crypto/options code with actual source Node SQLite and SQL abort/reopen. Parser/rate/origin/errors/framework/seed/email and options/challenge DDL substitutes explicit. Recovery guards executed in default no-email/OAuth; optional provider paths and recovery test family inspected, not executed. No full Astro/source D1/process-kill claim."
+      },
+      {
+        "script": "scripts/reproduce-passkey-store-boundary-upstream.mjs",
+        "copiedSourceCredit": 0,
+        "boundary": "Eight benign source/native x Node/raw local D1 sequential dummy-metadata probes, complete immutable source helper and erased type closure. Native storage adapters/fixture DDL replace source migrations. No algorithms, credentials, routes, concurrency, cookies, sessions, replay/duplicate-session consequences or deployment execute."
+      }
+    ]
+  },
+  "limitations": [
+    "Typed-context algorithms are tested but production has no atomic typed-context store/endpoint.",
+    "Astro session-driver storage/renewal and full setup site/seed wizard are unported.",
+    "The copied runtime suites do not prove deployed Cloudflare, full auth-product parity or first-party credential management.",
+    "Verified shared pinned issue #52: preferred-residency setup can accept a nonresident credential that discoverable-only login cannot find; preserved for a separate explicit bug-fix PR.",
+    "Verified shared pinned issue #54: first-credential persistence failure leaves a first user without a credential or complete flag and default passkey retry returns ADMIN_EXISTS. Preserved for separate explicit hardening; configured email/OAuth recovery is a different source configuration.",
+    "Issue #60 tracks the already-public challenge concurrency finding for separate fresh defensive atomic-consume work; only sequential dummy store read/delete semantics are verified here, not signed replay or duplicate-session consequences.",
+    "Profileless pre-existing minimal users trigger an explicit native unavailable state; complete legacy enrollment remains unimplemented. This original native guard earns zero source parity credit."
+  ],
+  "supplementalProvenance": {
+    "legacyAvailability": {
+      "test": "tests/production/passkey-legacy-unavailable.test.ts",
+      "sourceParityCredit": 0,
+      "retainedCommits": [
+        {
+          "stage": "initial invalid dummy hash fixture; zero behavioral-red credit",
+          "retained": "b6b84571b9f5c118d4527a1bf1030f7f4849d443",
+          "originalLocalCommit": "d959d19ba28bebb2d7c4d3d2cba85cd8f65b63be"
+        },
+        {
+          "stage": "corrected fixture; 12 genuine pre-repair assertion failures",
+          "retained": "919271f3e96701f6113531fa6864a9f1f06cc55b",
+          "originalLocalCommit": "657cdfbac43281d499d40445f48aa65638fefeeb"
+        },
+        {
+          "stage": "native gate repair; 12 original cases pass",
+          "retained": "f111c4f11919bd61990b39efc234448d91e76038",
+          "originalLocalCommit": "26d24807d493e24ef41e5b925f5d4e4026dcc014"
+        }
+      ],
+      "mapping": "Exact trees, regular parent chronology and Original-local-commit trailers retained."
+    },
+    "legacySignedInDisplay": {
+      "test": "tests/passkey-login-ui.test.ts",
+      "sourceParityCredit": 0,
+      "assertionRedBeforeRepair": 2,
+      "casesAfterRepair": 4,
+      "boundary": "Compiled original Svelte SSR with synthetic display props and inert form attributes only; no database, credentials, authentication or session issuance."
+    }
+  }
+}

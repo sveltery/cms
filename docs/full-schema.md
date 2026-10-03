@@ -35,6 +35,12 @@ one adapter batch; a concurrent caller succeeds only after proving the complete
 committed schema. Supplemental Node/local D1 cases cover rollback, concurrency,
 malformed layouts, retained data and restart.
 
+The proposed [forward metadata fidelity provider](metadata-fidelity-upgrade.md)
+adds cascading field collection deletion and nullable collection search
+configuration without rewriting version 3. Search and operator upgrade limits
+remain explicit in its separate evidence record; final review and landing are
+pending.
+
 The full generator file preserves 54 declarations and 115 assertion expressions,
 expanded to 74 Node cases. Registry collection/field suites preserve 53
 declarations and 111 expressions, expanded to 54 Node cases. All copied datasets

@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
+  import WelcomeModal from './WelcomeModal.svelte';
   let { children, homeHref = '/', schemaHref, activePage = 'content' }: {
-    children: Snippet; homeHref?: string; schemaHref?: string; activePage?: 'content' | 'schema'
+    children: Snippet; homeHref?: string; schemaHref?: string; activePage?: 'content' | 'schema' | 'settings' | 'dashboard'
   } = $props();
   const schemaLink = $derived(schemaHref ?? `${homeHref.endsWith('/') ? homeHref : `${homeHref}/`}schema`);
 </script>
@@ -10,13 +11,16 @@
   <aside>
     <a class="brand" href={homeHref}>Sveltery <span>CMS</span></a>
     <nav aria-label="Workspace">
+      <a href={`${homeHref.endsWith('/') ? homeHref : `${homeHref}/`}dashboard`} aria-current={activePage === 'dashboard' ? 'page' : undefined}>Dashboard</a>
       <a href={homeHref} aria-current={activePage === 'content' ? 'page' : undefined}>Content</a>
       <a href={schemaLink} aria-current={activePage === 'schema' ? 'page' : undefined}>Schema</a>
+      <a href={`${homeHref.endsWith('/') ? homeHref : `${homeHref}/`}settings`} aria-current={activePage === 'settings' ? 'page' : undefined}>Settings</a>
     </nav>
     <small>Foundation preview</small>
   </aside>
   <main>{@render children()}</main>
 </div>
+<WelcomeModal/>
 
 <style>
   :global(body) { margin: 0; font-family: system-ui, sans-serif; background: #f5f6f8; color: #202735; }
