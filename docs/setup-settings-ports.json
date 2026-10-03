@@ -725,5 +725,62 @@
     "preliminary": "unconditional build experiment69green; final scope conditional missing only",
     "excluded": "temporary checkout shared-node_modules symlink fails pnpm real hoist prerequisite before runner; zero callbacks/red/fresh-install/bootstrap credit",
     "bootstrap": "old cc8 local bootstrap source-host change invalidated candidate; boundedly terminated own tree143, no complete pass"
+  },
+  "seedUnsupportedReviewRepairs": {
+    "configuredComments": [
+      4171681331,
+      4171681333
+    ],
+    "sourceQualification": {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "source": "packages/core/src/seed/apply.ts",
+      "sourceSha256": "9660c33554ffb16b216efe4ca2f3349130c43cd1dcbcfa25405561a0a1d45c1b",
+      "publicDeclarations": [
+        {
+          "name": "applySeed",
+          "sha256": "2a0376b2a4ffdaaaa097392e08475d56c0a74cc3d022f08956908855eac7e8b6"
+        },
+        {
+          "name": "applySeedWithinBudget",
+          "sha256": "5a9da728ca13473ccaa7aea412288f55115d0c52a350d821e8f54616b735db0d"
+        },
+        {
+          "name": "applySeedWrites",
+          "sha256": "eacd495b39d82cbbdb5ad657f160727d4d57b1df074599141465b42a295e8b3c"
+        }
+      ],
+      "completeQualifiedHelpers": [
+        {
+          "name": "isSeedMediaReference",
+          "sha256": "d7f49020db97b35bd33dd4ac64c41e6563e2cf243f65a022d5598c48ad5339ad"
+        },
+        {
+          "name": "resolveReferences",
+          "sha256": "2a0c078869db9354546760e16d8acc60452388779b1e54edcf22740823d18a93"
+        },
+        {
+          "name": "resolveValue",
+          "sha256": "1dd02bfb530e94b26a2d73c9731c4218ae0356090c8ca428cd05f394986b4543"
+        },
+        {
+          "name": "resolveMedia",
+          "sha256": "1ee6a3e5a5b8ecfffb960564f3842b09ee3ec808da6e2e03221e45224f23f7ba"
+        },
+        {
+          "name": "countSeedItems",
+          "sha256": "03f73c5006ba7df02edf1d215df0bfd92b9c2c20692888b3b6ecfcb9f818cc58"
+        }
+      ],
+      "runtime": "original Node exact immutable helpers: recursive recognized media becomes null/skipped with no storage; unrecognized literal preserved; includeContent=false total0",
+      "limits": "zero copied assertions and zero complete public applySeed/term/download/storage credit; native unsupported-before-write boundary is intentional incomplete-provider behavior"
+    },
+    "sourceObserved": "includeContent gates terms/content; valid $media is recursively recognized only when object.$media.url is string; without storage actual source resolves null and increments skipped, never stores literal directive",
+    "testFirstCommit": "41a0e7e",
+    "file": "tests/production/setup-seed-capabilities.test.ts",
+    "baseline": "/tmp/setup-seed-capabilities-red.log",
+    "genuineOriginalRed": 6,
+    "actual": "full actualNode/D1 schema/table/option snapshots change for requested nonemptyterms/topmedia/nestedarraymedia; source includeContent=false ignored and malformedmedia normalJSON4cases alreadygreen",
+    "credit": "zero copied assertions/whole applySeed credit",
+    "repair": "pending intentional native unsupported-provider prewrite400 UNSUPPORTED_SEED; fullterm/media application incomplete"
   }
 }
