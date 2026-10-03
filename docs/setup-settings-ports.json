@@ -193,5 +193,27 @@
     ],
     "status": "copied before UI implementation; actual secured hosted red not yet run",
     "omissions": "Email provider settings/language localization/welcome UX require future owners. Only complete social/SEO/settings blur callbacks selected here."
-  }
+  },
+  "cacheCallbacks": [
+    {
+      "title": "getSiteSetting() does not hit the DB after getSiteSettings() in the same request",
+      "sha256": "1b6fb0b6a2b290782fd02e7bf90b53e44893ada65a19c803fddc1f76f5773df0"
+    },
+    {
+      "title": "globalThis cache survives across requests within an isolate",
+      "sha256": "f11f80b191e64b6333e0f72e9538a4fa836eb48f016774a64013e12db6f61cdc"
+    },
+    {
+      "title": "setSiteSettings() invalidates the globalThis cache",
+      "sha256": "97b6f4e69f969d6e30ba96b2654a757fcb04d1d634e1aa8219fbacfd98a47de0"
+    },
+    {
+      "title": "setSiteSettings() invalidates the cache even when the write throws",
+      "sha256": "bcad93bbac345918f2090a0e372aa706f8bb9d643bf440c55e146be436b9940c"
+    },
+    {
+      "title": "invalidateSiteSettingsCache() drops the cached value",
+      "sha256": "4d400994da6a190c4fc2fbfa7bec94b88734095ca6e1f1066043f23853fda9d8"
+    }
+  ]
 }
