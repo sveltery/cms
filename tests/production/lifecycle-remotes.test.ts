@@ -6,6 +6,8 @@ import { lifecycleService } from '../../src/lib/server/database/lifecycle/servic
 import { withRevision } from '../../src/lib/server/content/schema.ts';
 import { contentEntry } from '../../src/lib/server/lifecycle/schema.ts';
 import { RevisionRepository } from '../../src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts';
+import { ContentRepository } from '../../src/lib/server/database/lifecycle/upstream/database/repositories/content.ts';
+import {sql} from 'kysely';
 
 // Supplemental native HTTP evidence. Source lifecycle assertions are preserved
 // separately in lifecycle-upstream.test.ts and the immutable source ledger.
@@ -126,5 +128,49 @@ test('lifecycle remotes preserve the default-disabled trusted mutation gate',asy
     for(const name of mutations)denied(await fixture.remote(name,'author',{
       collection:'post',id:'entry',_rev:'opaque',...(name==='restoreContentRevision'?{revisionId:'revision'}:{})
     }),503,'MUTATIONS_DISABLED');
+  } finally {await fixture.close();}
+});
+
+test('actual lifecycle HTTP unpublish forwards the trusted request lifetime to real queued pruning',async()=>{
+  const anchored:Promise<void>[]=[];
+  const fixture=await persistedRemotes({persistedSessions:true,mutationsEnabled:true,keepAlive:task=>anchored.push(task)});
+  try {
+    const service=lifecycleService(fixture.database,actor,{after:()=>{}});
+    const initial=await service.createContent({type:'post',data:{title:'Worker lifetime'},slug:'worker-lifetime'});
+    const published=await service.publish({type:'post',id:initial.id});
+    const revisions=new RevisionRepository(fixture.database.db as any);
+    for(let index=0;index<51;index++)await revisions.create({collection:'post',entryId:initial.id,data:{title:`Old ${index}`}});
+    const before=anchored.length;
+    const result=await fixture.mutate('unpublishContent',{collection:'post',id:initial.id,locale:'en',_rev:withRevision(contentEntry(published))._rev});
+    assert.equal(result._.result.id,initial.id);
+    assert.equal(anchored.length-before,2,'session resolution and actual revision cleanup both extend this request');
+    await Promise.all(anchored.splice(0));
+    const count=(await sql<{n:number}>`SELECT COUNT(*) AS n FROM _cms_revisions WHERE entry_id=${initial.id}`.execute(fixture.database.db)).rows[0].n;
+    assert.equal(count,50);
+    assert.deepEqual((await sql`SELECT revision_id FROM _cms_revision_prune_queue WHERE entry_id=${initial.id}`.execute(fixture.database.db)).rows,[]);
+    const item=await service.getContent({type:'post',id:initial.id});assert.equal(item.status,'draft');
+    assert.ok(await revisions.findById(item.draftRevisionId!));
+  } finally {await Promise.allSettled(anchored.splice(0));await fixture.close();}
+});
+
+test('actual HTTP publication retains staged slug conflict status, code and actionable message without writes',async()=>{
+  const fixture=await persistedRemotes({persistedSessions:true,mutationsEnabled:true});
+  try {
+    const service=lifecycleService(fixture.database,actor,{after:()=>{}});
+    const first=await service.createContent({type:'post',slug:'collision-original',data:{title:'Live'}});
+    const occupied=await service.createContent({type:'post',slug:'occupied',data:{title:'Occupied'}});
+    await service.publish({type:'post',id:first.id});await service.publish({type:'post',id:occupied.id});
+    await service.updateContent({type:'post',id:first.id,data:{title:'Pending draft'},slug:'occupied'});
+    const content=new ContentRepository(fixture.database.db as any);
+    const before=(await content.findById('post',first.id))!;const other=await content.findById('post',occupied.id);
+    const history=(await sql`SELECT * FROM _cms_revisions WHERE entry_id=${first.id} ORDER BY id`.execute(fixture.database.db)).rows;
+    const result=await fixture.remote('publishContent','author',{collection:'post',id:first.id,locale:'en',_rev:withRevision(contentEntry(before))._rev});
+    assert.deepEqual(await content.findById('post',first.id),before);
+    assert.deepEqual(await content.findById('post',occupied.id),other);
+    assert.deepEqual((await sql`SELECT * FROM _cms_revisions WHERE entry_id=${first.id} ORDER BY id`.execute(fixture.database.db)).rows,history);
+    assert.equal(result.type,'error');
+    assert.deepEqual({status:result.status,code:result.error.code,message:result.error.message},{
+      status:409,code:'SLUG_CONFLICT',message:`Cannot publish: slug 'occupied' is already used by another entry in this collection (id: ${occupied.id}). Choose a different slug.`
+    });
   } finally {await fixture.close();}
 });
