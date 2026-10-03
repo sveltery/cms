@@ -407,6 +407,42 @@
       "sha256": "a390fe445530a32efa8ab2b4041eb46517a157ac5f9d295ef848d58b69530a4a",
       "kind": "whole-source-authority",
       "execution": "unexecuted"
+    },
+    {
+      "path": "packages/core/src/database/repositories/options.ts",
+      "local": "parity/emdash/redirect-source/authority/packages/core/src/database/repositories/options.ts.txt",
+      "blob": "d4f630ca0e24721dc25bed0189699daceccdb8ae",
+      "bytes": 8714,
+      "sha256": "af2759276976aa457fed9ae3d64f11ddbf4c8970fe298f5e1f9e49bfd12cc921",
+      "kind": "whole-source-authority",
+      "execution": "unexecuted"
+    },
+    {
+      "path": "packages/core/src/plugins/conditional-storage.ts",
+      "local": "parity/emdash/redirect-source/authority/packages/core/src/plugins/conditional-storage.ts.txt",
+      "blob": "00345a5232ee8c06e050f72a6b3c34555053f33f",
+      "bytes": 1077,
+      "sha256": "74829ded184fb6762d5ed50d6dbee33a8e96dc23e3b2d42a0ab8825985d2835f",
+      "kind": "whole-source-authority",
+      "execution": "unexecuted"
+    },
+    {
+      "path": "packages/core/src/plugins/types.ts",
+      "local": "parity/emdash/redirect-source/authority/packages/core/src/plugins/types.ts.txt",
+      "blob": "4c70d4438aebb76eb711482a8ed1e312b452fe1a",
+      "bytes": 70206,
+      "sha256": "89a8ec1e885481dafd1bca969ad4da8a085d240f1071adcb16b02a2d89958e3b",
+      "kind": "whole-source-authority",
+      "execution": "unexecuted"
+    },
+    {
+      "path": "packages/core/src/api/types.ts",
+      "local": "parity/emdash/redirect-source/authority/packages/core/src/api/types.ts.txt",
+      "blob": "462b0800408c270a8ac0b7e59b89adb46426fc3f",
+      "bytes": 3033,
+      "sha256": "8ee06f5fee0b47ab8891eb4b2980d06d3ad5317464db33d637f7c1b33aa28974",
+      "kind": "whole-source-authority",
+      "execution": "unexecuted"
     }
   ],
   "copiedDeclarations": 211,
@@ -1928,6 +1964,12 @@
       "command": "node --test tests/redirect-runtime-native.test.ts",
       "runtime": "Node24.19, actual createCmsRuntime persistent SQLite and complete owned redirect-DDL fixture, anonymous",
       "result": "Same four previously committed original callbacks/assertions remain completed reds after fixture expansion to all six tables. No runtime composition edit yet; fixture expansion itself adds zero red credit."
+    },
+    {
+      "phase": "original-native-runtime-and-cache-after",
+      "command": "node --test tests/redirect-runtime-native.test.ts tests/redirect-middleware-native.test.ts",
+      "runtime": "Node24.19, actual trusted runtime persistentSQLite plus separate realSQLite public-wrapper fixtures, diagnostic installed closure",
+      "result": "Same four original runtime callbacks and two original cache callbacks pass unchanged after the Root-approved exact shared resolver seam and adapter-owned cache invalidation. No registered redirect migration/startup/deployment/Source red credit. Source203 remains unchanged; full options/slug/admin/D1 artifact scope pending."
     }
   ]
 }

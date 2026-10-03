@@ -23,6 +23,7 @@ import { withTransaction } from "../database/lifecycle/upstream/database/transac
 import type { Database } from "./database-types.ts";
 import { chunks, SQL_BATCH_SIZE } from "./chunks.ts";
 import { isMissingTableError } from "./db-errors.ts";
+import { invalidateDatabaseRedirectCache } from './database-cache.ts';
 import {
 	invalidateRedirectCache,
 	type RedirectRule,
@@ -276,6 +277,7 @@ export async function publishRedirectChanges(db: Kysely<Database>): Promise<void
 		console.error("[emdash:redirects] publishing redirect artifacts failed:", error);
 	}
 	invalidateRedirectCache();
+	invalidateDatabaseRedirectCache(db);
 }
 
 function isArtifactEntry(value: unknown): value is ArtifactEntry {
@@ -413,18 +415,18 @@ async function repairRedirectArtifacts(db: Kysely<Database>): Promise<void> {
 	}
 }
 
-function scheduleRedirectRepair(db: Kysely<Database>): void {
+function scheduleRedirectRepair(db: Kysely<Database>, defer: typeof after, state: RepairState): void {
 	const now = Date.now();
-	if (repairState.runningUntil > now) return;
+	if (state.runningUntil > now) return;
 	const runningUntil = now + REPAIR_LEASE_MS;
-	repairState.runningUntil = runningUntil;
-	after(async () => {
+	state.runningUntil = runningUntil;
+	defer(async () => {
 		try {
 			await repairRedirectArtifacts(db);
 		} catch (error) {
 			console.error("[emdash:redirects] repairing redirect artifacts failed:", error);
 		} finally {
-			if (repairState.runningUntil === runningUntil) repairState.runningUntil = 0;
+			if (state.runningUntil === runningUntil) state.runningUntil = 0;
 		}
 	});
 }
@@ -434,7 +436,7 @@ function scheduleRedirectRepair(db: Kysely<Database>): void {
  * current and verifies, otherwise the rules table. Before the artifact tables exist the
  * rules table is read directly.
  */
-export function createRedirectSource(db: Kysely<Database>): RedirectSource {
+export function createRedirectSource(db: Kysely<Database>, defer: typeof after = after, state: RepairState = repairState): RedirectSource {
 	return {
 		async load() {
 			let published: RedirectRuleSet | null;
@@ -445,7 +447,7 @@ export function createRedirectSource(db: Kysely<Database>): RedirectSource {
 				throw error;
 			}
 			if (published) return published;
-			scheduleRedirectRepair(db);
+			scheduleRedirectRepair(db, defer, state);
 			return loadRulesTable(db);
 		},
 		async isCurrent(version) {
@@ -459,4 +461,14 @@ export function createRedirectSource(db: Kysely<Database>): RedirectSource {
 			);
 		},
 	};
+}
+
+// Native request adapter: immutable Kysely wrappers share the physical owner,
+// while deferred repair uses the current request's lifetime callback.
+const databaseRepairStates = new WeakMap<object, RepairState>();
+export function createDatabaseRedirectSource(db: Kysely<Database>, defer: typeof after): RedirectSource {
+	const owner = db.getExecutor().adapter;
+	let state = databaseRepairStates.get(owner);
+	if (!state) { state = { runningUntil: 0 }; databaseRepairStates.set(owner, state); }
+	return createRedirectSource(db, defer, state);
 }

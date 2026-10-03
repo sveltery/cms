@@ -19,6 +19,7 @@ export interface RedirectContext {
  cache?: { set(enabled: false): void };
  keepAlive?: (task: Promise<void>) => void;
  loadRedirects?: typeof loadCachedRedirects;
+ createSource?: typeof createRedirectSource;
 }
 
 /** Paths that should never be intercepted by redirects */
@@ -70,7 +71,7 @@ export async function runRedirectMiddleware(context: RedirectContext, next: () =
 		// One query loads the published rules into the cache; warm requests
 		// issue zero queries, and an expired cache checks the published version
 		// in the background. Empty-redirect sites cache an empty Map + array.
-		const cached = await (context.loadRedirects ?? loadCachedRedirects)(createRedirectSource(db));
+		const cached = await (context.loadRedirects ?? loadCachedRedirects)((context.createSource ?? createRedirectSource)(db));
 
 		// 1. Exact match (O(1) Map lookup)
 		let exact = cached.exact.get(pathname);
@@ -83,7 +84,7 @@ export async function runRedirectMiddleware(context: RedirectContext, next: () =
 			// with no Location header.
 			if (isTerminalStatus(exact.type)) {
 				const hit = repo.recordHit(exact.id).catch(() => {});
-			context.keepAlive?.(hit);
+				context.keepAlive?.(hit);
 				return new Response(null, { status: exact.type });
 			}
 			const dest = exact.destination;
@@ -104,7 +105,7 @@ export async function runRedirectMiddleware(context: RedirectContext, next: () =
 			// Terminal statuses (410 Gone / 451): serve the status directly.
 			if (isTerminalStatus(redirect.type)) {
 				const hit = repo.recordHit(redirect.id).catch(() => {});
-			context.keepAlive?.(hit);
+				context.keepAlive?.(hit);
 				return new Response(null, { status: redirect.type });
 			}
 			if (!isSiteRelativeDestination(destination)) {

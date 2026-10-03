@@ -1,11 +1,11 @@
 import type { RequestEvent } from '@sveltejs/kit';
-import { createRedirectCache } from './cache.ts';
+import { redirectCacheForDatabase } from './database-cache.ts';
+import { createDatabaseRedirectSource } from './artifacts.ts';
 import type { Database } from './database-types.ts';
 import { runRedirectMiddleware } from './engine.ts';
 import { after } from './after.ts';
 import { redirectSchemaPresent } from './readiness.ts';
 
-const caches = new WeakMap<object, ReturnType<typeof createRedirectCache>>();
 const internalPaths = ['/schema', '/content', '/trash', '/setup', '/login', '/api', '/redirects'];
 
 function nativeInternalPath(pathname: string, base: string): boolean {
@@ -29,9 +29,8 @@ export async function resolveCmsRedirects(event: RequestEvent, next: () => Promi
   }
   // Absence preserves the actual unregistered main resolver, including errors.
   if (!installed) return next();
-  let cache = caches.get(configured.database.db);
-  if (!cache) { cache = createRedirectCache(); caches.set(configured.database.db, cache); }
-  const currentCache = cache;
+  const currentCache = redirectCacheForDatabase(db);
+  const defer: typeof after = fn => after(fn, configured.keepAlive);
   let disableCache = false;
   const response = await runRedirectMiddleware({
     url: event.url, request: event.request, db,
@@ -39,7 +38,8 @@ export async function resolveCmsRedirects(event: RequestEvent, next: () => Promi
     redirect: (location, status) => new Response(null, { status, headers: { Location: location } }),
     cache: { set: () => { disableCache = true; } },
     keepAlive: configured.keepAlive,
-    loadRedirects: source => currentCache.loadCachedRedirects(source, fn => after(fn, configured.keepAlive))
+    loadRedirects: source => currentCache.loadCachedRedirects(source, defer),
+    createSource: sourceDb => createDatabaseRedirectSource(sourceDb, defer)
   }, next);
   if (!disableCache) return response;
   const headers = new Headers(response.headers);

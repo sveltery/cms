@@ -7,6 +7,7 @@ import type { D1Binding } from '../database/d1.ts';
 import { openD1 } from '../database/d1.ts';
 import { migrateCms } from '../database/migrations.ts';
 import type { CmsDatabase } from '../database/contract.ts';
+import { resolveCmsRedirects } from '../redirects/middleware.ts';
 
 export interface RuntimePresentation {
   publicOrigin: string;
@@ -107,12 +108,14 @@ export function createCmsRuntime(
 
   return {
     handle: async input => {
+      const resolvePage: typeof input.resolve = (event, options) =>
+        resolveCmsRedirects(event, () => input.resolve(event, options));
       delete input.event.locals.cmsRuntime;
       try {
         return await sessionHandle({ ...input, resolve: async (event, options) => {
           assertOpen();
           const config = configurations.get(event);
-          if (config?.kind !== 'd1' || !config.d1) return input.resolve(event, options);
+          if (config?.kind !== 'd1' || !config.d1) return resolvePage(event, options);
           const cookies = event.cookies;
           // Kit can replace its public setter in resolve's finally. Preserve the
           // jar handoff for a propagating error before the outer error response.
@@ -142,10 +145,10 @@ export function createCmsRuntime(
             }
           });
           try {
-            if (!scoped) return await input.resolve(event, options);
+            if (!scoped) return await resolvePage(event, options);
             event.locals.cms = Object.freeze({ ...event.locals.cms!, database: scoped.database });
             let response: Response;
-            try { response = await input.resolve(event, options); }
+            try { response = await resolvePage(event, options); }
             catch (cause) {
               renderingFailed = true;
               try { scoped.commit(); }
