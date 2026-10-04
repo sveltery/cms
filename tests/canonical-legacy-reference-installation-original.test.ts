@@ -56,8 +56,14 @@ for (const mode of ['Node', 'raw D1', 'scoped D1'] as const) {
     try {
       await f.registry.createField('posts', { slug: 'author', label: 'Author', type: 'reference',
         options: { collection: 'authors' } });
-      const author = await f.entries.create({ type: 'authors', slug: 'jane', data: { name: 'Jane' } });
-      const post = await f.entries.create({ type: 'posts', slug: 'one', data: { title: 'One' } });
+      const author = await f.entries.create({ type: 'authors', slug: 'jane', data: { name: 'Jane' } }, 'ordinary-migration-author');
+      const post = await f.entries.create({ type: 'posts', slug: 'one', data: { title: 'One' } }, 'ordinary-migration-author');
+      // Native DraftEntry does not expose the stored Source translation group.
+      // Read the two actual native rows; no fabricated migration query results.
+      const authorGroup = (await sql<{ translation_group: string }>`SELECT translation_group FROM ec_authors WHERE id=${author.id}`
+        .execute(f.database.db)).rows[0].translation_group;
+      const postGroup = (await sql<{ translation_group: string }>`SELECT translation_group FROM ec_posts WHERE id=${post.id}`
+        .execute(f.database.db)).rows[0].translation_group;
       await sql`UPDATE ec_posts SET author = ${author.id} WHERE id = ${post.id}`.execute(f.database.db);
       await migrateCms(f.database);
       const field = await f.database.db.selectFrom('_cms_fields').selectAll().where('slug', '=', 'author').executeTakeFirstOrThrow();
@@ -71,7 +77,7 @@ for (const mode of ['Node', 'raw D1', 'scoped D1'] as const) {
       assert.equal(relation.id, field.id); assert.equal(relation.max_children_per_parent, 1);
       const edges = (await sql<{ parent_group: string; child_group: string; sort_order: number }>`
         SELECT parent_group,child_group,sort_order FROM _cms_content_references WHERE relation_id=${field.id}`.execute(f.database.db)).rows;
-      assert.deepEqual(edges, [{ parent_group: post.translationGroup, child_group: author.translationGroup, sort_order: 0 }]);
+      assert.deepEqual(edges, [{ parent_group: postGroup, child_group: authorGroup, sort_order: 0 }]);
       const retained = (await sql<{ author: string }>`SELECT author FROM ec_posts WHERE id=${post.id}`.execute(f.database.db)).rows[0];
       assert.equal(retained.author, author.id);
       await migrateCms(f.database);
