@@ -287,7 +287,7 @@ export class SchemaRegistry {
       db.schema.createIndex('idx_' + name + '_draft_list').on(name).columns(['locale', 'deleted_at', 'created_at', 'id']).compile(),
       trashIndexStatement(this.database, value.slug)
     ];
-    // Every metadata row has 19 bindings. Five rows use95, within raw D1's100.
+    // Every metadata row has 17 bindings. Five rows use85, within raw D1's100.
     for (let offset = 0; offset < rows.length; offset += 5) statements.push(
       db.insertInto('_cms_fields').values(rows.slice(offset, offset + 5)).compile());
     for (const field of rows) if (field.indexed) statements.push(...this.fieldIndexStatements(value.slug, field.id, field.slug));
