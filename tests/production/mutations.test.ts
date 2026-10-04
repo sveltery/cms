@@ -213,7 +213,7 @@ describe('built remotes with persisted schema and server-derived sessions', () =
     const read = await harness.query('getContent', { collection: 'special_fields', id: updated._.result.id });
     assert.deepEqual(read.data, { constructor: 'Constructor value', prototype: 'New value', optional: null });
   });
-  it('dynamic routes render persisted fields and retain disabled writes with authenticated reads', async () => {
+  it('dynamic routes render persisted fields and enable trusted writes with authenticated reads', async () => {
     const { item } = await create();
     const index = await harness.request('/', 'author');
     const links = (html: string, path: string) => [...html.matchAll(/<a\b[^>]*href="([^"]+)"/g)]
@@ -226,7 +226,7 @@ describe('built remotes with persisted schema and server-derived sessions', () =
       assert.match(html, /Headline/);
       assert.match(html, /data-field="headline"/);
       assert.match(html, /data-field="detail"/);
-      assert.match(html, /<fieldset disabled(?:[\s=>])/);
+      assert.doesNotMatch(html, /<fieldset disabled(?:[\s=>])/);
       assert.doesNotMatch(html, /name="(?:title|body)"/);
       const destinations = links(html, path);
       assert.ok(destinations.includes('/'), 'workspace link resolves to collections');
@@ -252,7 +252,7 @@ describe('built remotes with persisted schema and server-derived sessions', () =
     const html = await response.text();
     assert.match(html, /<input\b[^>]*data-field="string"[^>]*value=""/);
     assert.match(html, /<textarea\b[^>]*data-field="text"[^>]*><\/textarea>/);
-    assert.match(html, /<fieldset disabled(?:[\s=>])/);
+    assert.doesNotMatch(html, /<fieldset disabled(?:[\s=>])/);
     await harness.restart();
     assert.deepEqual((await harness.query('getContent', { collection: 'default_fields', id: item.id }, 'editor')).data, item.data);
   });
