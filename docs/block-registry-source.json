@@ -486,5 +486,852 @@
   "sourceNotice": "notices/emdash-MIT.txt",
   "sharedFilesApplied": 0,
   "providerRegistered": false,
-  "status": "whole-source freeze; original family assertions and case inventories pending AST inventory; no execution or parity claim"
+  "status": "whole Source authorities and complete original AST test/assertion inventories frozen; zero product tests executed",
+  "testInventory": [
+    {
+      "source": "packages/core/tests/integration/schema/block-type-registry.test.ts",
+      "owned": true,
+      "testDeclarations": 9,
+      "expectExpressions": 30,
+      "titles": [
+        "creates version 1 as active and lists versions in order",
+        "amends compatible changes in place and keeps presentation outside the fingerprint",
+        "requires an explicit breaking update and activation",
+        "rejects stale updates and missing activation targets with stable codes",
+        "converges concurrent retries of the same breaking version",
+        "allows only one compatible update from the same fingerprint",
+        "preserves unknown stored field types as fail-closed metadata",
+        "returns stable create and lookup errors",
+        "finds affected collections by parsing allowed and retired types in application code"
+      ],
+      "declarations": [
+        {
+          "title": "creates version 1 as active and lists versions in order",
+          "line": 31,
+          "expression": "it(\"creates version 1 as active and lists versions in order\", async () => {\n\t\tconst hero = await registry.createBlockType({\n\t\t\tslug: \"hero\",\n\t\t\tlabel: \"Hero\",\n\t\t\tdescription: \"Opening section\",\n\t\t\tfields: heroFields,\n\t\t});\n\n\t\texpect(hero).toMatchObject({\n\t\t\tslug: \"hero\",\n\t\t\tlabel: \"Hero\",\n\t\t\tcurrentVersion: 1,\n\t\t\tsource: \"user\",\n\t\t});\n\t\texpect(hero.versions).toHaveLength(1);\n\t\texpect(hero.versions[0]).toMatchObject({\n\t\t\tversion: 1,\n\t\t\tactive: true,\n\t\t\tfields: heroFields,\n\t\t});\n\t\texpect(hero.versions[0]?.fingerprint).toMatch(/^block-type:v1:sha256:[a-f0-9]{64}$/);\n\t\texpect((await registry.listBlockTypes()).map((entry) => entry.slug)).toEqual([\"hero\"]);\n\t})"
+        },
+        {
+          "title": "amends compatible changes in place and keeps presentation outside the fingerprint",
+          "line": 55,
+          "expression": "it(\"amends compatible changes in place and keeps presentation outside the fingerprint\", async () => {\n\t\tconst created = await registry.createBlockType({\n\t\t\tslug: \"hero\",\n\t\t\tlabel: \"Hero\",\n\t\t\tfields: heroFields,\n\t\t});\n\t\tconst original = created.versions[0]!;\n\t\tconst relabelled = heroFields.map((field) => ({ ...field, label: `New ${field.label}` }));\n\n\t\tconst presentation = await registry.updateBlockType(\"hero\", {\n\t\t\texpectedFingerprint: original.fingerprint,\n\t\t\tlabel: \"Page hero\",\n\t\t\tfields: relabelled,\n\t\t});\n\n\t\texpect(presentation.currentVersion).toBe(1);\n\t\texpect(presentation.versions).toHaveLength(1);\n\t\texpect(presentation.versions[0]?.fingerprint).toBe(original.fingerprint);\n\t\texpect(presentation.versions[0]?.fields[0]?.label).toBe(\"New Heading\");\n\n\t\tconst additive = await registry.updateBlockType(\"hero\", {\n\t\t\texpectedFingerprint: original.fingerprint,\n\t\t\tfields: [...relabelled, { slug: \"eyebrow\", label: \"Eyebrow\", type: \"string\" }],\n\t\t});\n\t\texpect(additive.currentVersion).toBe(1);\n\t\texpect(additive.versions).toHaveLength(1);\n\t\texpect(additive.versions[0]?.fingerprint).not.toBe(original.fingerprint);\n\t})"
+        },
+        {
+          "title": "requires an explicit breaking update and activation",
+          "line": 84,
+          "expression": "it(\"requires an explicit breaking update and activation\", async () => {\n\t\tconst created = await registry.createBlockType({\n\t\t\tslug: \"hero\",\n\t\t\tlabel: \"Hero\",\n\t\t\tfields: heroFields,\n\t\t});\n\t\tconst original = created.versions[0]!;\n\t\tconst breakingFields = [heroFields[0]!];\n\n\t\tawait expect(\n\t\t\tregistry.updateBlockType(\"hero\", {\n\t\t\t\texpectedFingerprint: original.fingerprint,\n\t\t\t\tfields: breakingFields,\n\t\t\t}),\n\t\t).rejects.toMatchObject({\n\t\t\tcode: \"BLOCK_TYPE_BREAKING_CHANGE\",\n\t\t\tdetails: { differences: expect.any(Array) },\n\t\t});\n\n\t\tconst versioned = await registry.updateBlockType(\"hero\", {\n\t\t\texpectedFingerprint: original.fingerprint,\n\t\t\tfields: breakingFields,\n\t\t\tbreaking: true,\n\t\t});\n\t\texpect(versioned.currentVersion).toBe(1);\n\t\texpect(versioned.versions).toHaveLength(2);\n\t\texpect(versioned.versions[0]).toMatchObject({\n\t\t\tversion: 1,\n\t\t\tactive: true,\n\t\t\tfields: heroFields,\n\t\t});\n\t\texpect(versioned.versions[1]).toMatchObject({\n\t\t\tversion: 2,\n\t\t\tactive: false,\n\t\t\tfields: breakingFields,\n\t\t});\n\n\t\tconst activated = await registry.activateVersion(\"hero\", 2, original.fingerprint);\n\t\texpect(activated.currentVersion).toBe(2);\n\t\texpect(activated.versions.map((version) => version.active)).toEqual([false, true]);\n\t})"
+        },
+        {
+          "title": "rejects stale updates and missing activation targets with stable codes",
+          "line": 126,
+          "expression": "it(\"rejects stale updates and missing activation targets with stable codes\", async () => {\n\t\tconst created = await registry.createBlockType({\n\t\t\tslug: \"hero\",\n\t\t\tlabel: \"Hero\",\n\t\t\tfields: heroFields,\n\t\t});\n\t\tconst fingerprint = created.versions[0]!.fingerprint;\n\t\tconst updated = await registry.updateBlockType(\"hero\", {\n\t\t\texpectedFingerprint: fingerprint,\n\t\t\tfields: [...heroFields, { slug: \"eyebrow\", label: \"Eyebrow\", type: \"string\" }],\n\t\t});\n\n\t\tawait expect(\n\t\t\tregistry.updateBlockType(\"hero\", {\n\t\t\t\texpectedFingerprint: fingerprint,\n\t\t\t\tlabel: \"Stale\",\n\t\t\t}),\n\t\t).rejects.toMatchObject({ code: \"CONFLICT\" });\n\t\tawait expect(\n\t\t\tregistry.activateVersion(\"hero\", 99, updated.versions[0]!.fingerprint),\n\t\t).rejects.toMatchObject({ code: \"BLOCK_TYPE_VERSION_CONFLICT\" });\n\t})"
+        },
+        {
+          "title": "converges concurrent retries of the same breaking version",
+          "line": 149,
+          "expression": "it(\"converges concurrent retries of the same breaking version\", async () => {\n\t\tconst created = await registry.createBlockType({\n\t\t\tslug: \"hero\",\n\t\t\tlabel: \"Hero\",\n\t\t\tfields: heroFields,\n\t\t});\n\t\tconst input = {\n\t\t\texpectedFingerprint: created.versions[0]!.fingerprint,\n\t\t\tfields: [heroFields[0]!],\n\t\t\tbreaking: true,\n\t\t} as const;\n\n\t\tconst results = await Promise.all([\n\t\t\tregistry.updateBlockType(\"hero\", input),\n\t\t\tregistry.updateBlockType(\"hero\", input),\n\t\t]);\n\n\t\texpect(results[0].versions.map((version) => version.version)).toEqual([1, 2]);\n\t\texpect(results[1].versions.map((version) => version.version)).toEqual([1, 2]);\n\t})"
+        },
+        {
+          "title": "allows only one compatible update from the same fingerprint",
+          "line": 170,
+          "expression": "it(\"allows only one compatible update from the same fingerprint\", async () => {\n\t\tconst created = await registry.createBlockType({\n\t\t\tslug: \"hero\",\n\t\t\tlabel: \"Hero\",\n\t\t\tfields: heroFields,\n\t\t});\n\t\tconst fingerprint = created.versions[0]!.fingerprint;\n\n\t\tconst results = await Promise.allSettled([\n\t\t\tregistry.updateBlockType(\"hero\", {\n\t\t\t\texpectedFingerprint: fingerprint,\n\t\t\t\tfields: [...heroFields, { slug: \"eyebrow\", label: \"Eyebrow\", type: \"string\" }],\n\t\t\t}),\n\t\t\tregistry.updateBlockType(\"hero\", {\n\t\t\t\texpectedFingerprint: fingerprint,\n\t\t\t\tfields: [...heroFields, { slug: \"summary\", label: \"Summary\", type: \"text\" }],\n\t\t\t}),\n\t\t]);\n\n\t\texpect(results.filter((result) => result.status === \"fulfilled\")).toHaveLength(1);\n\t\tconst rejected = results.find((result) => result.status === \"rejected\");\n\t\texpect(rejected).toMatchObject({ status: \"rejected\", reason: { code: \"CONFLICT\" } });\n\t})"
+        },
+        {
+          "title": "preserves unknown stored field types as fail-closed metadata",
+          "line": 194,
+          "expression": "it(\"preserves unknown stored field types as fail-closed metadata\", async () => {\n\t\tconst created = await registry.createBlockType({\n\t\t\tslug: \"hero\",\n\t\t\tlabel: \"Hero\",\n\t\t\tfields: heroFields,\n\t\t});\n\t\tawait ctx.db\n\t\t\t.updateTable(\"_emdash_block_type_versions\")\n\t\t\t.set({\n\t\t\t\tfields: JSON.stringify([{ slug: \"layout\", label: \"Layout\", type: \"future_nested_type\" }]),\n\t\t\t})\n\t\t\t.where(\"id\", \"=\", created.versions[0]!.id)\n\t\t\t.execute();\n\n\t\tconst reread = await registry.getBlockType(\"hero\");\n\t\texpect(reread?.versions[0]?.unsupportedTypes).toEqual([\n\t\t\t{ type: \"future_nested_type\", path: \"fields[0].type\" },\n\t\t]);\n\t\tawait expect(\n\t\t\tregistry.updateBlockType(\"hero\", {\n\t\t\t\texpectedFingerprint: created.versions[0]!.fingerprint,\n\t\t\t\tlabel: \"Unsafe edit\",\n\t\t\t}),\n\t\t).rejects.toMatchObject({ code: \"UNSUPPORTED_FIELD_TYPE\" });\n\t})"
+        },
+        {
+          "title": "returns stable create and lookup errors",
+          "line": 220,
+          "expression": "it(\"returns stable create and lookup errors\", async () => {\n\t\tawait registry.createBlockType({ slug: \"hero\", label: \"Hero\", fields: heroFields });\n\t\tawait expect(\n\t\t\tregistry.createBlockType({ slug: \"hero\", label: \"Again\", fields: heroFields }),\n\t\t).rejects.toMatchObject({ code: \"BLOCK_TYPE_EXISTS\" });\n\t\tawait expect(\n\t\t\tregistry.updateBlockType(\"missing\", {\n\t\t\t\texpectedFingerprint: \"missing\",\n\t\t\t\tlabel: \"Missing\",\n\t\t\t}),\n\t\t).rejects.toMatchObject({ code: \"BLOCK_TYPE_NOT_FOUND\" });\n\t})"
+        },
+        {
+          "title": "finds affected collections by parsing allowed and retired types in application code",
+          "line": 233,
+          "expression": "it(\"finds affected collections by parsing allowed and retired types in application code\", async () => {\n\t\tconst schema = new SchemaRegistry(ctx.db);\n\t\tconst pages = await schema.createCollection({ slug: \"pages\", label: \"Pages\" });\n\t\tconst posts = await schema.createCollection({ slug: \"posts\", label: \"Posts\" });\n\t\tawait ctx.db\n\t\t\t.insertInto(\"_emdash_fields\")\n\t\t\t.values([\n\t\t\t\t{\n\t\t\t\t\tid: \"layout-field\",\n\t\t\t\t\tcollection_id: pages.id,\n\t\t\t\t\tslug: \"layout\",\n\t\t\t\t\tlabel: \"Layout\",\n\t\t\t\t\ttype: \"blocks\",\n\t\t\t\t\tcolumn_type: \"JSON\",\n\t\t\t\t\trequired: 0,\n\t\t\t\t\tunique: 0,\n\t\t\t\t\tdefault_value: \"[]\",\n\t\t\t\t\tvalidation: JSON.stringify({ allowedTypes: [\"hero\"] }),\n\t\t\t\t\twidget: null,\n\t\t\t\t\toptions: null,\n\t\t\t\t\tsort_order: 0,\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tid: \"retired-layout-field\",\n\t\t\t\t\tcollection_id: posts.id,\n\t\t\t\t\tslug: \"layout\",\n\t\t\t\t\tlabel: \"Layout\",\n\t\t\t\t\ttype: \"blocks\",\n\t\t\t\t\tcolumn_type: \"JSON\",\n\t\t\t\t\trequired: 0,\n\t\t\t\t\tunique: 0,\n\t\t\t\t\tdefault_value: \"[]\",\n\t\t\t\t\tvalidation: JSON.stringify({ retiredTypes: [\"hero\"] }),\n\t\t\t\t\twidget: null,\n\t\t\t\t\toptions: null,\n\t\t\t\t\tsort_order: 0,\n\t\t\t\t},\n\t\t\t])\n\t\t\t.execute();\n\n\t\texpect(await registry.listAffectedCollections(\"hero\")).toEqual([\"pages\", \"posts\"]);\n\t})"
+        }
+      ],
+      "expressions": [
+        {
+          "line": 39,
+          "expression": "expect(hero).toMatchObject({\n\t\t\tslug: \"hero\",\n\t\t\tlabel: \"Hero\",\n\t\t\tcurrentVersion: 1,\n\t\t\tsource: \"user\",\n\t\t})"
+        },
+        {
+          "line": 45,
+          "expression": "expect(hero.versions).toHaveLength(1)"
+        },
+        {
+          "line": 46,
+          "expression": "expect(hero.versions[0]).toMatchObject({\n\t\t\tversion: 1,\n\t\t\tactive: true,\n\t\t\tfields: heroFields,\n\t\t})"
+        },
+        {
+          "line": 51,
+          "expression": "expect(hero.versions[0]?.fingerprint).toMatch(/^block-type:v1:sha256:[a-f0-9]{64}$/)"
+        },
+        {
+          "line": 52,
+          "expression": "expect((await registry.listBlockTypes()).map((entry) => entry.slug)).toEqual([\"hero\"])"
+        },
+        {
+          "line": 70,
+          "expression": "expect(presentation.currentVersion).toBe(1)"
+        },
+        {
+          "line": 71,
+          "expression": "expect(presentation.versions).toHaveLength(1)"
+        },
+        {
+          "line": 72,
+          "expression": "expect(presentation.versions[0]?.fingerprint).toBe(original.fingerprint)"
+        },
+        {
+          "line": 73,
+          "expression": "expect(presentation.versions[0]?.fields[0]?.label).toBe(\"New Heading\")"
+        },
+        {
+          "line": 79,
+          "expression": "expect(additive.currentVersion).toBe(1)"
+        },
+        {
+          "line": 80,
+          "expression": "expect(additive.versions).toHaveLength(1)"
+        },
+        {
+          "line": 81,
+          "expression": "expect(additive.versions[0]?.fingerprint).not.toBe(original.fingerprint)"
+        },
+        {
+          "line": 93,
+          "expression": "expect(\n\t\t\tregistry.updateBlockType(\"hero\", {\n\t\t\t\texpectedFingerprint: original.fingerprint,\n\t\t\t\tfields: breakingFields,\n\t\t\t}),\n\t\t).rejects.toMatchObject({\n\t\t\tcode: \"BLOCK_TYPE_BREAKING_CHANGE\",\n\t\t\tdetails: { differences: expect.any(Array) },\n\t\t})"
+        },
+        {
+          "line": 108,
+          "expression": "expect(versioned.currentVersion).toBe(1)"
+        },
+        {
+          "line": 109,
+          "expression": "expect(versioned.versions).toHaveLength(2)"
+        },
+        {
+          "line": 110,
+          "expression": "expect(versioned.versions[0]).toMatchObject({\n\t\t\tversion: 1,\n\t\t\tactive: true,\n\t\t\tfields: heroFields,\n\t\t})"
+        },
+        {
+          "line": 115,
+          "expression": "expect(versioned.versions[1]).toMatchObject({\n\t\t\tversion: 2,\n\t\t\tactive: false,\n\t\t\tfields: breakingFields,\n\t\t})"
+        },
+        {
+          "line": 122,
+          "expression": "expect(activated.currentVersion).toBe(2)"
+        },
+        {
+          "line": 123,
+          "expression": "expect(activated.versions.map((version) => version.active)).toEqual([false, true])"
+        },
+        {
+          "line": 138,
+          "expression": "expect(\n\t\t\tregistry.updateBlockType(\"hero\", {\n\t\t\t\texpectedFingerprint: fingerprint,\n\t\t\t\tlabel: \"Stale\",\n\t\t\t}),\n\t\t).rejects.toMatchObject({ code: \"CONFLICT\" })"
+        },
+        {
+          "line": 144,
+          "expression": "expect(\n\t\t\tregistry.activateVersion(\"hero\", 99, updated.versions[0]!.fingerprint),\n\t\t).rejects.toMatchObject({ code: \"BLOCK_TYPE_VERSION_CONFLICT\" })"
+        },
+        {
+          "line": 166,
+          "expression": "expect(results[0].versions.map((version) => version.version)).toEqual([1, 2])"
+        },
+        {
+          "line": 167,
+          "expression": "expect(results[1].versions.map((version) => version.version)).toEqual([1, 2])"
+        },
+        {
+          "line": 189,
+          "expression": "expect(results.filter((result) => result.status === \"fulfilled\")).toHaveLength(1)"
+        },
+        {
+          "line": 191,
+          "expression": "expect(rejected).toMatchObject({ status: \"rejected\", reason: { code: \"CONFLICT\" } })"
+        },
+        {
+          "line": 209,
+          "expression": "expect(reread?.versions[0]?.unsupportedTypes).toEqual([\n\t\t\t{ type: \"future_nested_type\", path: \"fields[0].type\" },\n\t\t])"
+        },
+        {
+          "line": 212,
+          "expression": "expect(\n\t\t\tregistry.updateBlockType(\"hero\", {\n\t\t\t\texpectedFingerprint: created.versions[0]!.fingerprint,\n\t\t\t\tlabel: \"Unsafe edit\",\n\t\t\t}),\n\t\t).rejects.toMatchObject({ code: \"UNSUPPORTED_FIELD_TYPE\" })"
+        },
+        {
+          "line": 222,
+          "expression": "expect(\n\t\t\tregistry.createBlockType({ slug: \"hero\", label: \"Again\", fields: heroFields }),\n\t\t).rejects.toMatchObject({ code: \"BLOCK_TYPE_EXISTS\" })"
+        },
+        {
+          "line": 225,
+          "expression": "expect(\n\t\t\tregistry.updateBlockType(\"missing\", {\n\t\t\t\texpectedFingerprint: \"missing\",\n\t\t\t\tlabel: \"Missing\",\n\t\t\t}),\n\t\t).rejects.toMatchObject({ code: \"BLOCK_TYPE_NOT_FOUND\" })"
+        },
+        {
+          "line": 273,
+          "expression": "expect(await registry.listAffectedCollections(\"hero\")).toEqual([\"pages\", \"posts\"])"
+        }
+      ],
+      "execution": "unexecuted; noSource causal credit"
+    },
+    {
+      "source": "packages/core/tests/integration/database/block-types-migration.test.ts",
+      "owned": true,
+      "testDeclarations": 2,
+      "expectExpressions": 6,
+      "titles": [
+        "creates the block registry tables and can be replayed after completion",
+        "enforces slug and version identity"
+      ],
+      "declarations": [
+        {
+          "title": "creates the block registry tables and can be replayed after completion",
+          "line": 23,
+          "expression": "it(\"creates the block registry tables and can be replayed after completion\", async () => {\n\t\tawait runMigrationsForDialect(ctx);\n\t\tawait ctx.db.schema.dropTable(\"_emdash_block_type_versions\").execute();\n\t\tawait expect(migration083.up(ctx.db)).resolves.toBeUndefined();\n\n\t\tconst types = await ctx.db.selectFrom(\"_emdash_block_types\").selectAll().execute();\n\t\tconst versions = await ctx.db.selectFrom(\"_emdash_block_type_versions\").selectAll().execute();\n\t\texpect(types).toEqual([]);\n\t\texpect(versions).toEqual([]);\n\t})"
+        },
+        {
+          "title": "enforces slug and version identity",
+          "line": 34,
+          "expression": "it(\"enforces slug and version identity\", async () => {\n\t\tawait runMigrationsForDialect(ctx);\n\t\tawait ctx.db\n\t\t\t.insertInto(\"_emdash_block_types\")\n\t\t\t.values({ id: \"type-1\", slug: \"hero\", label: \"Hero\", current_version: 1, source: \"user\" })\n\t\t\t.execute();\n\t\tawait ctx.db\n\t\t\t.insertInto(\"_emdash_block_type_versions\")\n\t\t\t.values({\n\t\t\t\tid: \"version-1\",\n\t\t\t\tblock_type_id: \"type-1\",\n\t\t\t\tversion: 1,\n\t\t\t\tfields: \"[]\",\n\t\t\t\tfingerprint: \"one\",\n\t\t\t})\n\t\t\t.execute();\n\n\t\tawait expect(\n\t\t\tctx.db\n\t\t\t\t.insertInto(\"_emdash_block_types\")\n\t\t\t\t.values({ id: \"type-2\", slug: \"hero\", label: \"Hero 2\", current_version: 1, source: \"user\" })\n\t\t\t\t.execute(),\n\t\t).rejects.toThrow();\n\t\tawait expect(\n\t\t\tctx.db\n\t\t\t\t.insertInto(\"_emdash_block_type_versions\")\n\t\t\t\t.values({\n\t\t\t\t\tid: \"version-2\",\n\t\t\t\t\tblock_type_id: \"type-1\",\n\t\t\t\t\tversion: 1,\n\t\t\t\t\tfields: \"[]\",\n\t\t\t\t\tfingerprint: \"two\",\n\t\t\t\t})\n\t\t\t\t.execute(),\n\t\t).rejects.toThrow();\n\n\t\tawait ctx.db.deleteFrom(\"_emdash_block_types\").where(\"id\", \"=\", \"type-1\").execute();\n\t\texpect(\n\t\t\tawait ctx.db\n\t\t\t\t.selectFrom(\"_emdash_block_type_versions\")\n\t\t\t\t.select(\"id\")\n\t\t\t\t.where(\"block_type_id\", \"=\", \"type-1\")\n\t\t\t\t.execute(),\n\t\t).toEqual([]);\n\t})"
+        }
+      ],
+      "expressions": [
+        {
+          "line": 26,
+          "expression": "expect(migration083.up(ctx.db)).resolves.toBeUndefined()"
+        },
+        {
+          "line": 30,
+          "expression": "expect(types).toEqual([])"
+        },
+        {
+          "line": 31,
+          "expression": "expect(versions).toEqual([])"
+        },
+        {
+          "line": 51,
+          "expression": "expect(\n\t\t\tctx.db\n\t\t\t\t.insertInto(\"_emdash_block_types\")\n\t\t\t\t.values({ id: \"type-2\", slug: \"hero\", label: \"Hero 2\", current_version: 1, source: \"user\" })\n\t\t\t\t.execute(),\n\t\t).rejects.toThrow()"
+        },
+        {
+          "line": 57,
+          "expression": "expect(\n\t\t\tctx.db\n\t\t\t\t.insertInto(\"_emdash_block_type_versions\")\n\t\t\t\t.values({\n\t\t\t\t\tid: \"version-2\",\n\t\t\t\t\tblock_type_id: \"type-1\",\n\t\t\t\t\tversion: 1,\n\t\t\t\t\tfields: \"[]\",\n\t\t\t\t\tfingerprint: \"two\",\n\t\t\t\t})\n\t\t\t\t.execute(),\n\t\t).rejects.toThrow()"
+        },
+        {
+          "line": 71,
+          "expression": "expect(\n\t\t\tawait ctx.db\n\t\t\t\t.selectFrom(\"_emdash_block_type_versions\")\n\t\t\t\t.select(\"id\")\n\t\t\t\t.where(\"block_type_id\", \"=\", \"type-1\")\n\t\t\t\t.execute(),\n\t\t).toEqual([])"
+        }
+      ],
+      "execution": "unexecuted; noSource causal credit"
+    },
+    {
+      "source": "packages/core/tests/workerd/block-type-registry-d1.test.ts",
+      "owned": true,
+      "testDeclarations": 3,
+      "expectExpressions": 9,
+      "titles": [
+        "resumes when the version table is missing after a partial migration",
+        "creates the type and initial version atomically",
+        "uses one atomic batch for a compatible contract and metadata update"
+      ],
+      "declarations": [
+        {
+          "title": "resumes when the version table is missing after a partial migration",
+          "line": 34,
+          "expression": "it(\"resumes when the version table is missing after a partial migration\", async () => {\n\t\tawait db.schema.dropTable(\"_emdash_block_type_versions\").execute();\n\n\t\tawait expect(createBlockTypeTables(db)).resolves.toBeUndefined();\n\t\tawait expect(\n\t\t\tdb.selectFrom(\"_emdash_block_type_versions\").select(\"id\").execute(),\n\t\t).resolves.toEqual([]);\n\t})"
+        },
+        {
+          "title": "creates the type and initial version atomically",
+          "line": 43,
+          "expression": "it(\"creates the type and initial version atomically\", async () => {\n\t\tconst registry = new BlockTypeRegistry(db);\n\t\tconst created = await registry.createBlockType({\n\t\t\tslug: \"hero\",\n\t\t\tlabel: \"Hero\",\n\t\t\tfields: [{ slug: \"heading\", label: \"Heading\", type: \"string\", required: true }],\n\t\t});\n\n\t\texpect(created.currentVersion).toBe(1);\n\t\texpect(created.versions).toHaveLength(1);\n\t\texpect(await db.selectFrom(\"_emdash_block_types\").select(\"id\").execute()).toHaveLength(1);\n\t\texpect(await db.selectFrom(\"_emdash_block_type_versions\").select(\"id\").execute()).toHaveLength(\n\t\t\t1,\n\t\t);\n\t})"
+        },
+        {
+          "title": "uses one atomic batch for a compatible contract and metadata update",
+          "line": 59,
+          "expression": "it(\"uses one atomic batch for a compatible contract and metadata update\", async () => {\n\t\tconst registry = new BlockTypeRegistry(db);\n\t\tconst created = await registry.createBlockType({\n\t\t\tslug: \"hero\",\n\t\t\tlabel: \"Hero\",\n\t\t\tfields: [{ slug: \"heading\", label: \"Heading\", type: \"string\" }],\n\t\t});\n\n\t\tconst updated = await registry.updateBlockType(\"hero\", {\n\t\t\texpectedFingerprint: created.versions[0]!.fingerprint,\n\t\t\tlabel: \"Page hero\",\n\t\t\tfields: [\n\t\t\t\t{ slug: \"heading\", label: \"Heading\", type: \"string\" },\n\t\t\t\t{ slug: \"eyebrow\", label: \"Eyebrow\", type: \"string\" },\n\t\t\t],\n\t\t});\n\n\t\texpect(updated.label).toBe(\"Page hero\");\n\t\texpect(updated.versions).toHaveLength(1);\n\t\texpect(updated.versions[0]?.fields.map((field) => field.slug)).toEqual([\"heading\", \"eyebrow\"]);\n\t})"
+        }
+      ],
+      "expressions": [
+        {
+          "line": 37,
+          "expression": "expect(createBlockTypeTables(db)).resolves.toBeUndefined()"
+        },
+        {
+          "line": 38,
+          "expression": "expect(\n\t\t\tdb.selectFrom(\"_emdash_block_type_versions\").select(\"id\").execute(),\n\t\t).resolves.toEqual([])"
+        },
+        {
+          "line": 51,
+          "expression": "expect(created.currentVersion).toBe(1)"
+        },
+        {
+          "line": 52,
+          "expression": "expect(created.versions).toHaveLength(1)"
+        },
+        {
+          "line": 53,
+          "expression": "expect(await db.selectFrom(\"_emdash_block_types\").select(\"id\").execute()).toHaveLength(1)"
+        },
+        {
+          "line": 54,
+          "expression": "expect(await db.selectFrom(\"_emdash_block_type_versions\").select(\"id\").execute()).toHaveLength(\n\t\t\t1,\n\t\t)"
+        },
+        {
+          "line": 76,
+          "expression": "expect(updated.label).toBe(\"Page hero\")"
+        },
+        {
+          "line": 77,
+          "expression": "expect(updated.versions).toHaveLength(1)"
+        },
+        {
+          "line": 78,
+          "expression": "expect(updated.versions[0]?.fields.map((field) => field.slug)).toEqual([\"heading\", \"eyebrow\"])"
+        }
+      ],
+      "execution": "unexecuted; noSource causal credit"
+    },
+    {
+      "source": "packages/core/tests/unit/schema/block-type-contract.test.ts",
+      "owned": true,
+      "testDeclarations": 5,
+      "expectExpressions": 13,
+      "titles": [
+        "maps stable registry errors to resource and conflict statuses",
+        "produces stable fingerprints that exclude presentation labels",
+        "classifies additive and loosened changes as compatible",
+        "classifies removals, required additions, narrowing, and nested changes as breaking",
+        "rejects invalid definitions with a stable field path"
+      ],
+      "declarations": [
+        {
+          "title": "maps stable registry errors to resource and conflict statuses",
+          "line": 39,
+          "expression": "it(\"maps stable registry errors to resource and conflict statuses\", () => {\n\t\texpect(mapErrorStatus(\"BLOCK_TYPE_NOT_FOUND\")).toBe(404);\n\t\texpect(mapErrorStatus(\"BLOCK_TYPE_EXISTS\")).toBe(409);\n\t\texpect(mapErrorStatus(\"BLOCK_TYPE_BREAKING_CHANGE\")).toBe(409);\n\t\texpect(mapErrorStatus(\"BLOCK_TYPE_VERSION_CONFLICT\")).toBe(409);\n\t})"
+        },
+        {
+          "title": "produces stable fingerprints that exclude presentation labels",
+          "line": 46,
+          "expression": "it(\"produces stable fingerprints that exclude presentation labels\", async () => {\n\t\tconst renamed = baseFields.map((field) => ({ ...field, label: `New ${field.label}` }));\n\n\t\texpect(canonicalBlockFields(renamed)).toBe(canonicalBlockFields(baseFields));\n\t\texpect(await fingerprintBlockFields(renamed)).toBe(await fingerprintBlockFields(baseFields));\n\t})"
+        },
+        {
+          "title": "classifies additive and loosened changes as compatible",
+          "line": 53,
+          "expression": "it(\"classifies additive and loosened changes as compatible\", () => {\n\t\tconst next: BlockFieldDefinition[] = [\n\t\t\t{\n\t\t\t\t...baseFields[0]!,\n\t\t\t\tvalidation: { minLength: 1, maxLength: 120 },\n\t\t\t},\n\t\t\t{\n\t\t\t\t...baseFields[1]!,\n\t\t\t\tvalidation: {\n\t\t\t\t\t...baseFields[1]!.validation,\n\t\t\t\t\tmaxItems: 8,\n\t\t\t\t\tsubFields: [\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\tslug: \"kind\",\n\t\t\t\t\t\t\tlabel: \"Kind\",\n\t\t\t\t\t\t\ttype: \"select\",\n\t\t\t\t\t\t\toptions: [\"news\", \"guide\", \"video\"],\n\t\t\t\t\t\t},\n\t\t\t\t\t],\n\t\t\t\t},\n\t\t\t},\n\t\t\t{ slug: \"eyebrow\", label: \"Eyebrow\", type: \"string\" },\n\t\t];\n\n\t\tconst result = compareBlockFields(baseFields, next);\n\n\t\texpect(result.compatible).toBe(true);\n\t\texpect(result.differences).toEqual(\n\t\t\texpect.arrayContaining([\n\t\t\t\texpect.objectContaining({ path: \"fields.eyebrow\", compatibility: \"compatible\" }),\n\t\t\t\texpect.objectContaining({\n\t\t\t\t\tpath: \"fields.items.validation.subFields.kind.validation.options\",\n\t\t\t\t\tcompatibility: \"compatible\",\n\t\t\t\t}),\n\t\t\t]),\n\t\t);\n\t})"
+        },
+        {
+          "title": "classifies removals, required additions, narrowing, and nested changes as breaking",
+          "line": 91,
+          "expression": "it(\"classifies removals, required additions, narrowing, and nested changes as breaking\", () => {\n\t\tconst next: BlockFieldDefinition[] = [\n\t\t\t{\n\t\t\t\t...baseFields[1]!,\n\t\t\t\tvalidation: {\n\t\t\t\t\tmaxItems: 2,\n\t\t\t\t\tsubFields: [\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\tslug: \"kind\",\n\t\t\t\t\t\t\tlabel: \"Kind\",\n\t\t\t\t\t\t\ttype: \"select\",\n\t\t\t\t\t\t\toptions: [\"news\"],\n\t\t\t\t\t\t},\n\t\t\t\t\t],\n\t\t\t\t},\n\t\t\t},\n\t\t\t{ slug: \"summary\", label: \"Summary\", type: \"text\", required: true },\n\t\t];\n\n\t\tconst result = compareBlockFields(baseFields, next);\n\n\t\texpect(result.compatible).toBe(false);\n\t\texpect(result.differences).toEqual(\n\t\t\texpect.arrayContaining([\n\t\t\t\texpect.objectContaining({ path: \"fields.heading\", compatibility: \"breaking\" }),\n\t\t\t\texpect.objectContaining({ path: \"fields.summary\", compatibility: \"breaking\" }),\n\t\t\t\texpect.objectContaining({\n\t\t\t\t\tpath: \"fields.items.validation.subFields.kind.validation.options\",\n\t\t\t\t\tcompatibility: \"breaking\",\n\t\t\t\t}),\n\t\t\t]),\n\t\t);\n\t})"
+        },
+        {
+          "title": "rejects invalid definitions with a stable field path",
+          "line": 125,
+          "expression": "it(\"rejects invalid definitions with a stable field path\", () => {\n\t\texpect(() => validateBlockFields([{ slug: \"_key\", label: \"Key\", type: \"string\" }])).toThrow(\n\t\t\t/fields\\[0\\]\\.slug/,\n\t\t);\n\t\texpect(() =>\n\t\t\tvalidateBlockFields([\n\t\t\t\t{\n\t\t\t\t\tslug: \"choice\",\n\t\t\t\t\tlabel: \"Choice\",\n\t\t\t\t\ttype: \"select\",\n\t\t\t\t\tvalidation: { options: [\"one\", \"one\"] },\n\t\t\t\t},\n\t\t\t]),\n\t\t).toThrow(/fields\\[0\\]\\.validation\\.options/);\n\t\texpect(() =>\n\t\t\tvalidateBlockFields([\n\t\t\t\t{\n\t\t\t\t\tslug: \"rows\",\n\t\t\t\t\tlabel: \"Rows\",\n\t\t\t\t\ttype: \"repeater\",\n\t\t\t\t\tvalidation: {\n\t\t\t\t\t\tsubFields: [{ slug: \"nested\", label: \"Nested\", type: \"portableText\" as \"string\" }],\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t]),\n\t\t).toThrow(/fields\\[0\\]\\.validation\\.subFields\\[0\\]\\.type/);\n\t})"
+        }
+      ],
+      "expressions": [
+        {
+          "line": 40,
+          "expression": "expect(mapErrorStatus(\"BLOCK_TYPE_NOT_FOUND\")).toBe(404)"
+        },
+        {
+          "line": 41,
+          "expression": "expect(mapErrorStatus(\"BLOCK_TYPE_EXISTS\")).toBe(409)"
+        },
+        {
+          "line": 42,
+          "expression": "expect(mapErrorStatus(\"BLOCK_TYPE_BREAKING_CHANGE\")).toBe(409)"
+        },
+        {
+          "line": 43,
+          "expression": "expect(mapErrorStatus(\"BLOCK_TYPE_VERSION_CONFLICT\")).toBe(409)"
+        },
+        {
+          "line": 49,
+          "expression": "expect(canonicalBlockFields(renamed)).toBe(canonicalBlockFields(baseFields))"
+        },
+        {
+          "line": 50,
+          "expression": "expect(await fingerprintBlockFields(renamed)).toBe(await fingerprintBlockFields(baseFields))"
+        },
+        {
+          "line": 79,
+          "expression": "expect(result.compatible).toBe(true)"
+        },
+        {
+          "line": 80,
+          "expression": "expect(result.differences).toEqual(\n\t\t\texpect.arrayContaining([\n\t\t\t\texpect.objectContaining({ path: \"fields.eyebrow\", compatibility: \"compatible\" }),\n\t\t\t\texpect.objectContaining({\n\t\t\t\t\tpath: \"fields.items.validation.subFields.kind.validation.options\",\n\t\t\t\t\tcompatibility: \"compatible\",\n\t\t\t\t}),\n\t\t\t]),\n\t\t)"
+        },
+        {
+          "line": 112,
+          "expression": "expect(result.compatible).toBe(false)"
+        },
+        {
+          "line": 113,
+          "expression": "expect(result.differences).toEqual(\n\t\t\texpect.arrayContaining([\n\t\t\t\texpect.objectContaining({ path: \"fields.heading\", compatibility: \"breaking\" }),\n\t\t\t\texpect.objectContaining({ path: \"fields.summary\", compatibility: \"breaking\" }),\n\t\t\t\texpect.objectContaining({\n\t\t\t\t\tpath: \"fields.items.validation.subFields.kind.validation.options\",\n\t\t\t\t\tcompatibility: \"breaking\",\n\t\t\t\t}),\n\t\t\t]),\n\t\t)"
+        },
+        {
+          "line": 126,
+          "expression": "expect(() => validateBlockFields([{ slug: \"_key\", label: \"Key\", type: \"string\" }])).toThrow(\n\t\t\t/fields\\[0\\]\\.slug/,\n\t\t)"
+        },
+        {
+          "line": 129,
+          "expression": "expect(() =>\n\t\t\tvalidateBlockFields([\n\t\t\t\t{\n\t\t\t\t\tslug: \"choice\",\n\t\t\t\t\tlabel: \"Choice\",\n\t\t\t\t\ttype: \"select\",\n\t\t\t\t\tvalidation: { options: [\"one\", \"one\"] },\n\t\t\t\t},\n\t\t\t]),\n\t\t).toThrow(/fields\\[0\\]\\.validation\\.options/)"
+        },
+        {
+          "line": 139,
+          "expression": "expect(() =>\n\t\t\tvalidateBlockFields([\n\t\t\t\t{\n\t\t\t\t\tslug: \"rows\",\n\t\t\t\t\tlabel: \"Rows\",\n\t\t\t\t\ttype: \"repeater\",\n\t\t\t\t\tvalidation: {\n\t\t\t\t\t\tsubFields: [{ slug: \"nested\", label: \"Nested\", type: \"portableText\" as \"string\" }],\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t]),\n\t\t).toThrow(/fields\\[0\\]\\.validation\\.subFields\\[0\\]\\.type/)"
+        }
+      ],
+      "execution": "unexecuted; noSource causal credit"
+    },
+    {
+      "source": "packages/core/tests/integration/schema/blocks-field-schema.test.ts",
+      "owned": false,
+      "testDeclarations": 4,
+      "expectExpressions": 9,
+      "titles": [
+        "adds a non-null JSON column whose existing and new rows read as an empty array",
+        "keeps removed allowed types retired and restores them when re-enabled",
+        "rejects column-oriented options and invalid limits",
+        "requires a migration before introducing a positive minimum on populated content"
+      ],
+      "declarations": [
+        {
+          "title": "adds a non-null JSON column whose existing and new rows read as an empty array",
+          "line": 38,
+          "expression": "it(\"adds a non-null JSON column whose existing and new rows read as an empty array\", async () => {\n\t\tconst repo = new ContentRepository(ctx.db);\n\t\tconst existing = await repo.create({ type: \"pages\", slug: \"existing\", data: {} });\n\n\t\tconst field = await schema.createField(\"pages\", {\n\t\t\tslug: \"layout\",\n\t\t\tlabel: \"Layout\",\n\t\t\ttype: \"blocks\",\n\t\t\tvalidation: { allowedTypes: [\"hero\"], maxItems: 20 },\n\t\t});\n\t\tconst created = await repo.create({ type: \"pages\", slug: \"new\", data: {} });\n\n\t\texpect(field).toMatchObject({\n\t\t\ttype: \"blocks\",\n\t\t\tcolumnType: \"JSON\",\n\t\t\trequired: false,\n\t\t\tvalidation: {\n\t\t\t\tallowedTypes: [\"hero\"],\n\t\t\t\tretiredTypes: [],\n\t\t\t\tminItems: 0,\n\t\t\t\tmaxItems: 20,\n\t\t\t},\n\t\t});\n\t\texpect((await repo.findById(\"pages\", existing.id))?.data.layout).toEqual([]);\n\t\texpect((await repo.findById(\"pages\", created.id))?.data.layout).toEqual([]);\n\t})"
+        },
+        {
+          "title": "keeps removed allowed types retired and restores them when re-enabled",
+          "line": 65,
+          "expression": "it(\"keeps removed allowed types retired and restores them when re-enabled\", async () => {\n\t\tawait schema.createField(\"pages\", {\n\t\t\tslug: \"layout\",\n\t\t\tlabel: \"Layout\",\n\t\t\ttype: \"blocks\",\n\t\t\tvalidation: { allowedTypes: [\"hero\", \"call_to_action\"] },\n\t\t});\n\n\t\tconst retired = await schema.updateField(\"pages\", \"layout\", {\n\t\t\tvalidation: { allowedTypes: [\"hero\"], retiredTypes: [] },\n\t\t});\n\t\texpect(retired.validation?.retiredTypes).toEqual([\"call_to_action\"]);\n\n\t\tconst restored = await schema.updateField(\"pages\", \"layout\", {\n\t\t\tvalidation: { allowedTypes: [\"hero\", \"call_to_action\"], retiredTypes: [] },\n\t\t});\n\t\texpect(restored.validation?.retiredTypes).toEqual([]);\n\t})"
+        },
+        {
+          "title": "rejects column-oriented options and invalid limits",
+          "line": 84,
+          "expression": "it(\"rejects column-oriented options and invalid limits\", async () => {\n\t\tfor (const [index, input] of [\n\t\t\t{ required: true },\n\t\t\t{ unique: true },\n\t\t\t{ indexed: true },\n\t\t\t{ searchable: true },\n\t\t\t{ widget: \"custom\" },\n\t\t\t{ defaultValue: [{ _type: \"hero\" }] },\n\t\t].entries()) {\n\t\t\tawait expect(\n\t\t\t\tschema.createField(\"pages\", {\n\t\t\t\t\tslug: `layout_${index}`,\n\t\t\t\t\tlabel: \"Layout\",\n\t\t\t\t\ttype: \"blocks\",\n\t\t\t\t\tvalidation: { allowedTypes: [\"hero\"] },\n\t\t\t\t\t...input,\n\t\t\t\t}),\n\t\t\t).rejects.toMatchObject({\n\t\t\t\tcode: expect.stringMatching(/VALIDATION_ERROR|FIELD_NOT_INDEXABLE/),\n\t\t\t});\n\t\t}\n\t\tawait expect(\n\t\t\tschema.createField(\"pages\", {\n\t\t\t\tslug: \"layout_too_large\",\n\t\t\t\tlabel: \"Layout\",\n\t\t\t\ttype: \"blocks\",\n\t\t\t\tvalidation: { allowedTypes: [\"hero\"], maxItems: 101 },\n\t\t\t}),\n\t\t).rejects.toMatchObject({ code: \"VALIDATION_ERROR\" });\n\t\tawait expect(\n\t\t\tschema.createField(\"pages\", {\n\t\t\t\tslug: \"layout_missing\",\n\t\t\t\tlabel: \"Layout\",\n\t\t\t\ttype: \"blocks\",\n\t\t\t\tvalidation: { allowedTypes: [\"missing\"] },\n\t\t\t}),\n\t\t).rejects.toMatchObject({ code: \"BLOCK_TYPE_NOT_FOUND\" });\n\t})"
+        },
+        {
+          "title": "requires a migration before introducing a positive minimum on populated content",
+          "line": 123,
+          "expression": "it(\"requires a migration before introducing a positive minimum on populated content\", async () => {\n\t\tconst repo = new ContentRepository(ctx.db);\n\t\tawait repo.create({ type: \"pages\", slug: \"existing\", data: {} });\n\n\t\tawait expect(\n\t\t\tschema.createField(\"pages\", {\n\t\t\t\tslug: \"layout\",\n\t\t\t\tlabel: \"Layout\",\n\t\t\t\ttype: \"blocks\",\n\t\t\t\tvalidation: { allowedTypes: [\"hero\"], minItems: 1 },\n\t\t\t}),\n\t\t).rejects.toMatchObject({ code: \"FIELD_UPDATE_REQUIRES_MIGRATION\" });\n\t})"
+        }
+      ],
+      "expressions": [
+        {
+          "line": 50,
+          "expression": "expect(field).toMatchObject({\n\t\t\ttype: \"blocks\",\n\t\t\tcolumnType: \"JSON\",\n\t\t\trequired: false,\n\t\t\tvalidation: {\n\t\t\t\tallowedTypes: [\"hero\"],\n\t\t\t\tretiredTypes: [],\n\t\t\t\tminItems: 0,\n\t\t\t\tmaxItems: 20,\n\t\t\t},\n\t\t})"
+        },
+        {
+          "line": 61,
+          "expression": "expect((await repo.findById(\"pages\", existing.id))?.data.layout).toEqual([])"
+        },
+        {
+          "line": 62,
+          "expression": "expect((await repo.findById(\"pages\", created.id))?.data.layout).toEqual([])"
+        },
+        {
+          "line": 76,
+          "expression": "expect(retired.validation?.retiredTypes).toEqual([\"call_to_action\"])"
+        },
+        {
+          "line": 81,
+          "expression": "expect(restored.validation?.retiredTypes).toEqual([])"
+        },
+        {
+          "line": 93,
+          "expression": "expect(\n\t\t\t\tschema.createField(\"pages\", {\n\t\t\t\t\tslug: `layout_${index}`,\n\t\t\t\t\tlabel: \"Layout\",\n\t\t\t\t\ttype: \"blocks\",\n\t\t\t\t\tvalidation: { allowedTypes: [\"hero\"] },\n\t\t\t\t\t...input,\n\t\t\t\t}),\n\t\t\t).rejects.toMatchObject({\n\t\t\t\tcode: expect.stringMatching(/VALIDATION_ERROR|FIELD_NOT_INDEXABLE/),\n\t\t\t})"
+        },
+        {
+          "line": 105,
+          "expression": "expect(\n\t\t\tschema.createField(\"pages\", {\n\t\t\t\tslug: \"layout_too_large\",\n\t\t\t\tlabel: \"Layout\",\n\t\t\t\ttype: \"blocks\",\n\t\t\t\tvalidation: { allowedTypes: [\"hero\"], maxItems: 101 },\n\t\t\t}),\n\t\t).rejects.toMatchObject({ code: \"VALIDATION_ERROR\" })"
+        },
+        {
+          "line": 113,
+          "expression": "expect(\n\t\t\tschema.createField(\"pages\", {\n\t\t\t\tslug: \"layout_missing\",\n\t\t\t\tlabel: \"Layout\",\n\t\t\t\ttype: \"blocks\",\n\t\t\t\tvalidation: { allowedTypes: [\"missing\"] },\n\t\t\t}),\n\t\t).rejects.toMatchObject({ code: \"BLOCK_TYPE_NOT_FOUND\" })"
+        },
+        {
+          "line": 127,
+          "expression": "expect(\n\t\t\tschema.createField(\"pages\", {\n\t\t\t\tslug: \"layout\",\n\t\t\t\tlabel: \"Layout\",\n\t\t\t\ttype: \"blocks\",\n\t\t\t\tvalidation: { allowedTypes: [\"hero\"], minItems: 1 },\n\t\t\t}),\n\t\t).rejects.toMatchObject({ code: \"FIELD_UPDATE_REQUIRES_MIGRATION\" })"
+        }
+      ],
+      "execution": "unexecuted; noSource causal credit"
+    },
+    {
+      "source": "packages/core/tests/integration/content/blocks-content.test.ts",
+      "owned": false,
+      "testDeclarations": 10,
+      "expectExpressions": 41,
+      "titles": [
+        "assigns keys, active versions, and defaults on create",
+        "writes the empty default when omitted and enforces a positive minimum",
+        "rejects undeclared values, disallowed types, duplicate keys, and inactive versions",
+        "preserves identity and requires explicit intent for keyless replacement",
+        "normalizes blocks for collections without draft revisions",
+        "rejects a stale revision before it can replace newer nested block data",
+        "keeps retired blocks editable but prevents adding new ones",
+        "requires migration intent and the active target version",
+        "preserves block keys and versions when duplicating and translating an entry",
+        "preserves block identity through publish and revision restore"
+      ],
+      "declarations": [
+        {
+          "title": "assigns keys, active versions, and defaults on create",
+          "line": 59,
+          "expression": "it(\"assigns keys, active versions, and defaults on create\", async () => {\n\t\tconst result = await runtime.handleContentCreate(\"pages\", {\n\t\t\tslug: \"home\",\n\t\t\tdata: { layout: [{ _type: \"hero\", heading: \"Hello\" }] },\n\t\t});\n\n\t\texpect(result.success).toBe(true);\n\t\tif (!result.success) return;\n\t\texpect(result.data.item.data.layout).toEqual([\n\t\t\texpect.objectContaining({\n\t\t\t\t_type: \"hero\",\n\t\t\t\t_version: 1,\n\t\t\t\t_key: expect.stringMatching(/^[0-9A-Z]{26}$/),\n\t\t\t\theading: \"Hello\",\n\t\t\t\talignment: \"start\",\n\t\t\t}),\n\t\t]);\n\t})"
+        },
+        {
+          "title": "writes the empty default when omitted and enforces a positive minimum",
+          "line": 78,
+          "expression": "it(\"writes the empty default when omitted and enforces a positive minimum\", async () => {\n\t\tconst empty = await runtime.handleContentCreate(\"pages\", {\n\t\t\tslug: \"empty\",\n\t\t\tdata: {},\n\t\t});\n\t\texpect(empty.success).toBe(true);\n\t\tif (empty.success) expect(empty.data.item.data.layout).toEqual([]);\n\n\t\tawait schema.createCollection({ slug: \"landing_pages\", label: \"Landing pages\" });\n\t\tawait schema.createField(\"landing_pages\", {\n\t\t\tslug: \"layout\",\n\t\t\tlabel: \"Layout\",\n\t\t\ttype: \"blocks\",\n\t\t\tvalidation: { allowedTypes: [\"hero\"], minItems: 1 },\n\t\t});\n\t\tconst missing = await runtime.handleContentCreate(\"landing_pages\", {\n\t\t\tslug: \"missing\",\n\t\t\tdata: {},\n\t\t});\n\t\texpect(missing).toMatchObject({ success: false, error: { code: \"VALIDATION_ERROR\" } });\n\t})"
+        },
+        {
+          "title": "rejects undeclared values, disallowed types, duplicate keys, and inactive versions",
+          "line": 100,
+          "expression": "it(\"rejects undeclared values, disallowed types, duplicate keys, and inactive versions\", async () => {\n\t\tfor (const layout of [\n\t\t\t[{ _type: \"hero\", heading: \"\" }],\n\t\t\t[{ _type: \"hero\", heading: \"Hello\", extra: true }],\n\t\t\t[{ _type: \"banner\", text: \"No\" }],\n\t\t\t[\n\t\t\t\t{ _type: \"hero\", _key: \"same\", heading: \"One\" },\n\t\t\t\t{ _type: \"hero\", _key: \"same\", heading: \"Two\" },\n\t\t\t],\n\t\t\t[{ _type: \"hero\", _version: 2, heading: \"Future\" }],\n\t\t]) {\n\t\t\tconst result = await runtime.handleContentCreate(\"pages\", {\n\t\t\t\tslug: `invalid-${Math.random()}`,\n\t\t\t\tdata: { layout },\n\t\t\t});\n\t\t\texpect(result).toMatchObject({ success: false, error: { code: \"VALIDATION_ERROR\" } });\n\t\t}\n\t})"
+        },
+        {
+          "title": "preserves identity and requires explicit intent for keyless replacement",
+          "line": 119,
+          "expression": "it(\"preserves identity and requires explicit intent for keyless replacement\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"pages\", {\n\t\t\tslug: \"home\",\n\t\t\tdata: { layout: [{ _type: \"hero\", heading: \"Before\" }] },\n\t\t});\n\t\texpect(created.success).toBe(true);\n\t\tif (!created.success) return;\n\t\tconst original = (created.data.item.data.layout as Array<Record<string, unknown>>)[0]!;\n\n\t\tconst keyless = await runtime.handleContentUpdate(\"pages\", created.data.item.id, {\n\t\t\tdata: { layout: [{ _type: \"hero\", heading: \"After\" }] },\n\t\t});\n\t\texpect(keyless).toMatchObject({ success: false, error: { code: \"VALIDATION_ERROR\" } });\n\n\t\tconst replaced = await runtime.handleContentUpdate(\"pages\", created.data.item.id, {\n\t\t\tdata: { layout: [{ _type: \"hero\", heading: \"After\" }] },\n\t\t\treplaceBlocks: true,\n\t\t});\n\t\texpect(replaced.success).toBe(true);\n\t\tif (!replaced.success) return;\n\t\tconst replacement = (replaced.data.item.data.layout as Array<Record<string, unknown>>)[0]!;\n\t\texpect(replacement._key).not.toBe(original._key);\n\t\texpect(replacement).toMatchObject({ _type: \"hero\", _version: 1, heading: \"After\" });\n\t})"
+        },
+        {
+          "title": "normalizes blocks for collections without draft revisions",
+          "line": 144,
+          "expression": "it(\"normalizes blocks for collections without draft revisions\", async () => {\n\t\tawait schema.createCollection({ slug: \"plain_pages\", label: \"Plain pages\", supports: [] });\n\t\tawait schema.createField(\"plain_pages\", {\n\t\t\tslug: \"layout\",\n\t\t\tlabel: \"Layout\",\n\t\t\ttype: \"blocks\",\n\t\t\tvalidation: { allowedTypes: [\"hero\"] },\n\t\t});\n\t\tconst created = await runtime.handleContentCreate(\"plain_pages\", {\n\t\t\tslug: \"home\",\n\t\t\tdata: { layout: [{ _type: \"hero\", heading: \"Before\" }] },\n\t\t});\n\t\texpect(created.success).toBe(true);\n\t\tif (!created.success) return;\n\t\tconst block = (created.data.item.data.layout as Array<Record<string, unknown>>)[0]!;\n\n\t\tconst updated = await runtime.handleContentUpdate(\"plain_pages\", created.data.item.id, {\n\t\t\tdata: { layout: [{ ...block, heading: \"After\" }] },\n\t\t});\n\t\texpect(updated.success).toBe(true);\n\t\tif (updated.success) {\n\t\t\texpect(updated.data.item.data.layout).toEqual([\n\t\t\t\texpect.objectContaining({ _key: block._key, _version: 1, heading: \"After\" }),\n\t\t\t]);\n\t\t}\n\t})"
+        },
+        {
+          "title": "rejects a stale revision before it can replace newer nested block data",
+          "line": 171,
+          "expression": "it(\"rejects a stale revision before it can replace newer nested block data\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"pages\", {\n\t\t\tslug: \"home\",\n\t\t\tdata: { layout: [{ _type: \"hero\", heading: \"Original\" }] },\n\t\t});\n\t\texpect(created.success).toBe(true);\n\t\tif (!created.success) return;\n\t\tconst block = (created.data.item.data.layout as Array<Record<string, unknown>>)[0]!;\n\t\tconst first = await runtime.handleContentUpdate(\"pages\", created.data.item.id, {\n\t\t\t_rev: created.data._rev,\n\t\t\tdata: { layout: [{ ...block, heading: \"Newer\" }] },\n\t\t});\n\t\texpect(first.success).toBe(true);\n\n\t\tconst stale = await runtime.handleContentUpdate(\"pages\", created.data.item.id, {\n\t\t\t_rev: created.data._rev,\n\t\t\tdata: { layout: [{ ...block, heading: \"Stale\" }] },\n\t\t});\n\t\texpect(stale).toMatchObject({ success: false, error: { code: \"CONFLICT\" } });\n\t\tconst read = await runtime.handleContentGet(\"pages\", created.data.item.id);\n\t\texpect(read.success).toBe(true);\n\t\tif (read.success) {\n\t\t\texpect(read.data.item.data.layout).toEqual([\n\t\t\t\texpect.objectContaining({ _key: block._key, heading: \"Newer\" }),\n\t\t\t]);\n\t\t}\n\t})"
+        },
+        {
+          "title": "keeps retired blocks editable but prevents adding new ones",
+          "line": 199,
+          "expression": "it(\"keeps retired blocks editable but prevents adding new ones\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"pages\", {\n\t\t\tslug: \"home\",\n\t\t\tdata: { layout: [{ _type: \"hero\", heading: \"Before\" }] },\n\t\t});\n\t\texpect(created.success).toBe(true);\n\t\tif (!created.success) return;\n\t\tconst original = (created.data.item.data.layout as Array<Record<string, unknown>>)[0]!;\n\t\tawait schema.updateField(\"pages\", \"layout\", { validation: { allowedTypes: [\"banner\"] } });\n\n\t\tconst edited = await runtime.handleContentUpdate(\"pages\", created.data.item.id, {\n\t\t\tdata: { layout: [{ ...original, heading: \"After\" }] },\n\t\t});\n\t\texpect(edited.success).toBe(true);\n\t\tconst added = await runtime.handleContentUpdate(\"pages\", created.data.item.id, {\n\t\t\tdata: {\n\t\t\t\tlayout: [\n\t\t\t\t\t{ ...original, heading: \"After\" },\n\t\t\t\t\t{ _type: \"hero\", heading: \"New retired block\" },\n\t\t\t\t],\n\t\t\t},\n\t\t});\n\t\texpect(added).toMatchObject({ success: false, error: { code: \"VALIDATION_ERROR\" } });\n\t})"
+        },
+        {
+          "title": "requires migration intent and the active target version",
+          "line": 224,
+          "expression": "it(\"requires migration intent and the active target version\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"pages\", {\n\t\t\tslug: \"home\",\n\t\t\tdata: { layout: [{ _type: \"hero\", heading: \"Before\" }] },\n\t\t});\n\t\texpect(created.success).toBe(true);\n\t\tif (!created.success) return;\n\t\tconst original = (created.data.item.data.layout as Array<Record<string, unknown>>)[0]!;\n\t\tconst type = await blocks.getBlockType(\"hero\");\n\t\tconst versioned = await blocks.updateBlockType(\"hero\", {\n\t\t\texpectedFingerprint: type!.versions[0]!.fingerprint,\n\t\t\tfields: [{ slug: \"title\", label: \"Title\", type: \"string\", required: true }],\n\t\t\tbreaking: true,\n\t\t});\n\n\t\tconst inactive = await runtime.handleContentUpdate(\"pages\", created.data.item.id, {\n\t\t\tdata: { layout: [{ ...original, _version: 2, title: \"New\" }] },\n\t\t\tmigrateBlocks: true,\n\t\t});\n\t\texpect(inactive).toMatchObject({ success: false, error: { code: \"VALIDATION_ERROR\" } });\n\n\t\tawait blocks.activateVersion(\"hero\", 2, versioned.versions[0]!.fingerprint);\n\t\tconst withoutIntent = await runtime.handleContentUpdate(\"pages\", created.data.item.id, {\n\t\t\tdata: { layout: [{ ...original, _version: 2, title: \"New\" }] },\n\t\t});\n\t\texpect(withoutIntent).toMatchObject({ success: false, error: { code: \"VALIDATION_ERROR\" } });\n\n\t\tconst migrated = await runtime.handleContentUpdate(\"pages\", created.data.item.id, {\n\t\t\tdata: { layout: [{ _type: \"hero\", _version: 2, _key: original._key, title: \"New\" }] },\n\t\t\tmigrateBlocks: true,\n\t\t});\n\t\texpect(migrated.success).toBe(true);\n\t\tif (migrated.success) {\n\t\t\texpect(migrated.data.item.data.layout).toEqual([\n\t\t\t\texpect.objectContaining({ _type: \"hero\", _version: 2, _key: original._key, title: \"New\" }),\n\t\t\t]);\n\t\t}\n\t})"
+        },
+        {
+          "title": "preserves block keys and versions when duplicating and translating an entry",
+          "line": 263,
+          "expression": "it(\"preserves block keys and versions when duplicating and translating an entry\", async () => {\n\t\tsetI18nConfig({ defaultLocale: \"en\", locales: [\"en\", \"fr\"] });\n\t\tconst created = await runtime.handleContentCreate(\"pages\", {\n\t\t\tslug: \"home\",\n\t\t\tlocale: \"en\",\n\t\t\tdata: { layout: [{ _type: \"hero\", heading: \"Hello\" }] },\n\t\t});\n\t\texpect(created.success).toBe(true);\n\t\tif (!created.success) return;\n\t\tconst layout = created.data.item.data.layout;\n\n\t\tconst duplicated = await runtime.handleContentDuplicate(\"pages\", created.data.item.id);\n\t\texpect(duplicated.success).toBe(true);\n\t\tif (duplicated.success) expect(duplicated.data.item.data.layout).toEqual(layout);\n\n\t\tconst translated = await runtime.handleContentCreate(\"pages\", {\n\t\t\tslug: \"accueil\",\n\t\t\tlocale: \"fr\",\n\t\t\ttranslationOf: created.data.item.id,\n\t\t\tdata: { layout },\n\t\t});\n\t\texpect(translated.success).toBe(true);\n\t\tif (translated.success) expect(translated.data.item.data.layout).toEqual(layout);\n\t})"
+        },
+        {
+          "title": "preserves block identity through publish and revision restore",
+          "line": 288,
+          "expression": "it(\"preserves block identity through publish and revision restore\", async () => {\n\t\tconst created = await runtime.handleContentCreate(\"pages\", {\n\t\t\tslug: \"revision-page\",\n\t\t\tdata: { layout: [{ _type: \"hero\", heading: \"First\" }] },\n\t\t});\n\t\texpect(created.success).toBe(true);\n\t\tif (!created.success) return;\n\t\tconst original = (created.data.item.data.layout as Array<Record<string, unknown>>)[0]!;\n\n\t\tconst firstPublish = await runtime.handleContentPublish(\"pages\", created.data.item.id);\n\t\texpect(firstPublish.success).toBe(true);\n\t\tif (!firstPublish.success) return;\n\t\tconst firstRevisionId = firstPublish.data.item.liveRevisionId;\n\t\texpect(firstRevisionId).toBeTruthy();\n\n\t\tconst edited = await runtime.handleContentUpdate(\"pages\", created.data.item.id, {\n\t\t\tdata: { layout: [{ ...original, heading: \"Second\" }] },\n\t\t});\n\t\texpect(edited.success).toBe(true);\n\t\tconst secondPublish = await runtime.handleContentPublish(\"pages\", created.data.item.id);\n\t\texpect(secondPublish.success).toBe(true);\n\n\t\tconst restored = await runtime.handleRevisionRestore(firstRevisionId!, \"restore-author\");\n\t\texpect(restored.success).toBe(true);\n\t\tif (!restored.success) return;\n\t\texpect(restored.data.item.data.layout).toEqual([\n\t\t\texpect.objectContaining({\n\t\t\t\t_type: \"hero\",\n\t\t\t\t_version: 1,\n\t\t\t\t_key: original._key,\n\t\t\t\theading: \"First\",\n\t\t\t}),\n\t\t]);\n\n\t\tconst republished = await runtime.handleContentPublish(\"pages\", created.data.item.id);\n\t\texpect(republished.success).toBe(true);\n\t\tif (republished.success) {\n\t\t\texpect(republished.data.item.data.layout).toEqual([\n\t\t\t\texpect.objectContaining({ _key: original._key, _version: 1, heading: \"First\" }),\n\t\t\t]);\n\t\t}\n\t})"
+        }
+      ],
+      "expressions": [
+        {
+          "line": 65,
+          "expression": "expect(result.success).toBe(true)"
+        },
+        {
+          "line": 67,
+          "expression": "expect(result.data.item.data.layout).toEqual([\n\t\t\texpect.objectContaining({\n\t\t\t\t_type: \"hero\",\n\t\t\t\t_version: 1,\n\t\t\t\t_key: expect.stringMatching(/^[0-9A-Z]{26}$/),\n\t\t\t\theading: \"Hello\",\n\t\t\t\talignment: \"start\",\n\t\t\t}),\n\t\t])"
+        },
+        {
+          "line": 83,
+          "expression": "expect(empty.success).toBe(true)"
+        },
+        {
+          "line": 84,
+          "expression": "expect(empty.data.item.data.layout).toEqual([])"
+        },
+        {
+          "line": 97,
+          "expression": "expect(missing).toMatchObject({ success: false, error: { code: \"VALIDATION_ERROR\" } })"
+        },
+        {
+          "line": 115,
+          "expression": "expect(result).toMatchObject({ success: false, error: { code: \"VALIDATION_ERROR\" } })"
+        },
+        {
+          "line": 124,
+          "expression": "expect(created.success).toBe(true)"
+        },
+        {
+          "line": 131,
+          "expression": "expect(keyless).toMatchObject({ success: false, error: { code: \"VALIDATION_ERROR\" } })"
+        },
+        {
+          "line": 137,
+          "expression": "expect(replaced.success).toBe(true)"
+        },
+        {
+          "line": 140,
+          "expression": "expect(replacement._key).not.toBe(original._key)"
+        },
+        {
+          "line": 141,
+          "expression": "expect(replacement).toMatchObject({ _type: \"hero\", _version: 1, heading: \"After\" })"
+        },
+        {
+          "line": 156,
+          "expression": "expect(created.success).toBe(true)"
+        },
+        {
+          "line": 163,
+          "expression": "expect(updated.success).toBe(true)"
+        },
+        {
+          "line": 165,
+          "expression": "expect(updated.data.item.data.layout).toEqual([\n\t\t\t\texpect.objectContaining({ _key: block._key, _version: 1, heading: \"After\" }),\n\t\t\t])"
+        },
+        {
+          "line": 176,
+          "expression": "expect(created.success).toBe(true)"
+        },
+        {
+          "line": 183,
+          "expression": "expect(first.success).toBe(true)"
+        },
+        {
+          "line": 189,
+          "expression": "expect(stale).toMatchObject({ success: false, error: { code: \"CONFLICT\" } })"
+        },
+        {
+          "line": 191,
+          "expression": "expect(read.success).toBe(true)"
+        },
+        {
+          "line": 193,
+          "expression": "expect(read.data.item.data.layout).toEqual([\n\t\t\t\texpect.objectContaining({ _key: block._key, heading: \"Newer\" }),\n\t\t\t])"
+        },
+        {
+          "line": 204,
+          "expression": "expect(created.success).toBe(true)"
+        },
+        {
+          "line": 212,
+          "expression": "expect(edited.success).toBe(true)"
+        },
+        {
+          "line": 221,
+          "expression": "expect(added).toMatchObject({ success: false, error: { code: \"VALIDATION_ERROR\" } })"
+        },
+        {
+          "line": 229,
+          "expression": "expect(created.success).toBe(true)"
+        },
+        {
+          "line": 243,
+          "expression": "expect(inactive).toMatchObject({ success: false, error: { code: \"VALIDATION_ERROR\" } })"
+        },
+        {
+          "line": 249,
+          "expression": "expect(withoutIntent).toMatchObject({ success: false, error: { code: \"VALIDATION_ERROR\" } })"
+        },
+        {
+          "line": 255,
+          "expression": "expect(migrated.success).toBe(true)"
+        },
+        {
+          "line": 257,
+          "expression": "expect(migrated.data.item.data.layout).toEqual([\n\t\t\t\texpect.objectContaining({ _type: \"hero\", _version: 2, _key: original._key, title: \"New\" }),\n\t\t\t])"
+        },
+        {
+          "line": 270,
+          "expression": "expect(created.success).toBe(true)"
+        },
+        {
+          "line": 275,
+          "expression": "expect(duplicated.success).toBe(true)"
+        },
+        {
+          "line": 276,
+          "expression": "expect(duplicated.data.item.data.layout).toEqual(layout)"
+        },
+        {
+          "line": 284,
+          "expression": "expect(translated.success).toBe(true)"
+        },
+        {
+          "line": 285,
+          "expression": "expect(translated.data.item.data.layout).toEqual(layout)"
+        },
+        {
+          "line": 293,
+          "expression": "expect(created.success).toBe(true)"
+        },
+        {
+          "line": 298,
+          "expression": "expect(firstPublish.success).toBe(true)"
+        },
+        {
+          "line": 301,
+          "expression": "expect(firstRevisionId).toBeTruthy()"
+        },
+        {
+          "line": 306,
+          "expression": "expect(edited.success).toBe(true)"
+        },
+        {
+          "line": 308,
+          "expression": "expect(secondPublish.success).toBe(true)"
+        },
+        {
+          "line": 311,
+          "expression": "expect(restored.success).toBe(true)"
+        },
+        {
+          "line": 313,
+          "expression": "expect(restored.data.item.data.layout).toEqual([\n\t\t\texpect.objectContaining({\n\t\t\t\t_type: \"hero\",\n\t\t\t\t_version: 1,\n\t\t\t\t_key: original._key,\n\t\t\t\theading: \"First\",\n\t\t\t}),\n\t\t])"
+        },
+        {
+          "line": 323,
+          "expression": "expect(republished.success).toBe(true)"
+        },
+        {
+          "line": 325,
+          "expression": "expect(republished.data.item.data.layout).toEqual([\n\t\t\t\texpect.objectContaining({ _key: original._key, _version: 1, heading: \"First\" }),\n\t\t\t])"
+        }
+      ],
+      "execution": "unexecuted; noSource causal credit"
+    },
+    {
+      "source": "packages/core/tests/workerd/blocks-content-d1.test.ts",
+      "owned": false,
+      "testDeclarations": 2,
+      "expectExpressions": 4,
+      "titles": [
+        "normalizes and updates versioned block values",
+        "batches MIME admission for large block arrays"
+      ],
+      "declarations": [
+        {
+          "title": "normalizes and updates versioned block values",
+          "line": 36,
+          "expression": "it(\"normalizes and updates versioned block values\", async () => {\n\t\tconst blocks = new BlockTypeRegistry(db);\n\t\tconst schema = new SchemaRegistry(db);\n\t\tawait blocks.createBlockType({\n\t\t\tslug: \"hero\",\n\t\t\tlabel: \"Hero\",\n\t\t\tfields: [{ slug: \"heading\", label: \"Heading\", type: \"string\", required: true }],\n\t\t});\n\t\tawait schema.createCollection({ slug: \"pages\", label: \"Pages\" });\n\t\tawait schema.createField(\"pages\", {\n\t\t\tslug: \"layout\",\n\t\t\tlabel: \"Layout\",\n\t\t\ttype: \"blocks\",\n\t\t\tvalidation: { allowedTypes: [\"hero\"] },\n\t\t});\n\t\tconst runtime = createTestRuntime(db);\n\n\t\tconst created = await runtime.handleContentCreate(\"pages\", {\n\t\t\tslug: \"home\",\n\t\t\tdata: { layout: [{ _type: \"hero\", heading: \"Before\" }] },\n\t\t});\n\t\texpect(created.success).toBe(true);\n\t\tif (!created.success) return;\n\t\tconst block = (created.data.item.data.layout as Array<Record<string, unknown>>)[0]!;\n\t\tconst updated = await runtime.handleContentUpdate(\"pages\", created.data.item.id, {\n\t\t\tdata: { layout: [{ ...block, heading: \"After\" }] },\n\t\t});\n\n\t\texpect(updated.success).toBe(true);\n\t\tif (updated.success) {\n\t\t\texpect(updated.data.item.data.layout).toEqual([\n\t\t\t\texpect.objectContaining({\n\t\t\t\t\t_type: \"hero\",\n\t\t\t\t\t_version: 1,\n\t\t\t\t\t_key: block._key,\n\t\t\t\t\theading: \"After\",\n\t\t\t\t}),\n\t\t\t]);\n\t\t}\n\t})"
+        },
+        {
+          "title": "batches MIME admission for large block arrays",
+          "line": 77,
+          "expression": "it(\"batches MIME admission for large block arrays\", async () => {\n\t\tconst blocks = new BlockTypeRegistry(db);\n\t\tconst schema = new SchemaRegistry(db);\n\t\tawait blocks.createBlockType({\n\t\t\tslug: \"download\",\n\t\t\tlabel: \"Download\",\n\t\t\tfields: [\n\t\t\t\t{\n\t\t\t\t\tslug: \"file\",\n\t\t\t\t\tlabel: \"File\",\n\t\t\t\t\ttype: \"file\",\n\t\t\t\t\tvalidation: { allowedMimeTypes: [\"application/pdf\"] },\n\t\t\t\t},\n\t\t\t],\n\t\t});\n\t\tawait schema.createCollection({ slug: \"pages\", label: \"Pages\" });\n\t\tawait schema.createField(\"pages\", {\n\t\t\tslug: \"layout\",\n\t\t\tlabel: \"Layout\",\n\t\t\ttype: \"blocks\",\n\t\t\tvalidation: { allowedTypes: [\"download\"] },\n\t\t});\n\n\t\tconst mediaIds = Array.from({ length: 51 }, (_, index) => `media-${index}`);\n\t\tfor (const id of mediaIds) {\n\t\t\t// oxlint-disable-next-line no-await-in-loop -- each insert stays below D1's bind limit\n\t\t\tawait db\n\t\t\t\t.insertInto(\"media\")\n\t\t\t\t.values({\n\t\t\t\t\tid,\n\t\t\t\t\tfilename: `${id}.pdf`,\n\t\t\t\t\tmime_type: \"application/pdf\",\n\t\t\t\t\tsize: 100,\n\t\t\t\t\twidth: null,\n\t\t\t\t\theight: null,\n\t\t\t\t\talt: null,\n\t\t\t\t\tcaption: null,\n\t\t\t\t\tstorage_key: `${id}.pdf`,\n\t\t\t\t\tcontent_hash: null,\n\t\t\t\t\tblurhash: null,\n\t\t\t\t\tdominant_color: null,\n\t\t\t\t\tstatus: \"ready\",\n\t\t\t\t\tauthor_id: null,\n\t\t\t\t})\n\t\t\t\t.execute();\n\t\t}\n\n\t\tconst created = await handleContentCreate(db, \"pages\", {\n\t\t\tslug: \"downloads\",\n\t\t\tdata: {\n\t\t\t\tlayout: mediaIds.map((id, index) => ({\n\t\t\t\t\t_type: \"download\",\n\t\t\t\t\t_version: 1,\n\t\t\t\t\t_key: `download-${index}`,\n\t\t\t\t\tfile: { id, provider: \"local\" },\n\t\t\t\t})),\n\t\t\t},\n\t\t});\n\n\t\texpect(created.success).toBe(true);\n\t})"
+        }
+      ],
+      "expressions": [
+        {
+          "line": 57,
+          "expression": "expect(created.success).toBe(true)"
+        },
+        {
+          "line": 64,
+          "expression": "expect(updated.success).toBe(true)"
+        },
+        {
+          "line": 66,
+          "expression": "expect(updated.data.item.data.layout).toEqual([\n\t\t\t\texpect.objectContaining({\n\t\t\t\t\t_type: \"hero\",\n\t\t\t\t\t_version: 1,\n\t\t\t\t\t_key: block._key,\n\t\t\t\t\theading: \"After\",\n\t\t\t\t}),\n\t\t\t])"
+        },
+        {
+          "line": 136,
+          "expression": "expect(created.success).toBe(true)"
+        }
+      ],
+      "execution": "unexecuted; noSource causal credit"
+    },
+    {
+      "source": "packages/core/tests/workerd/blocks-seed-d1.test.ts",
+      "owned": false,
+      "testDeclarations": 1,
+      "expectExpressions": 2,
+      "titles": [
+        "applies exact retained versions and active pointer idempotently"
+      ],
+      "declarations": [
+        {
+          "title": "applies exact retained versions and active pointer idempotently",
+          "line": 35,
+          "expression": "it(\"applies exact retained versions and active pointer idempotently\", async () => {\n\t\tconst seed: SeedFile = {\n\t\t\tversion: \"1\",\n\t\t\tblockTypes: [\n\t\t\t\t{\n\t\t\t\t\tslug: \"hero\",\n\t\t\t\t\tlabel: \"Hero\",\n\t\t\t\t\tcurrentVersion: 2,\n\t\t\t\t\tversions: [\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\tversion: 1,\n\t\t\t\t\t\t\tfields: [{ slug: \"heading\", label: \"Heading\", type: \"string\" }],\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\tversion: 2,\n\t\t\t\t\t\t\tfields: [{ slug: \"title\", label: \"Title\", type: \"string\" }],\n\t\t\t\t\t\t},\n\t\t\t\t\t],\n\t\t\t\t},\n\t\t\t],\n\t\t};\n\n\t\tawait applySeed(db, seed);\n\t\tawait applySeed(db, seed, { onConflict: \"update\" });\n\n\t\tconst type = await new BlockTypeRegistry(db).getBlockType(\"hero\");\n\t\texpect(type?.currentVersion).toBe(2);\n\t\texpect(type?.versions.map((version) => version.version)).toEqual([1, 2]);\n\t})"
+        }
+      ],
+      "expressions": [
+        {
+          "line": 61,
+          "expression": "expect(type?.currentVersion).toBe(2)"
+        },
+        {
+          "line": 62,
+          "expression": "expect(type?.versions.map((version) => version.version)).toEqual([1, 2])"
+        }
+      ],
+      "execution": "unexecuted; noSource causal credit"
+    },
+    {
+      "source": "packages/core/tests/unit/seed/blocks.test.ts",
+      "owned": false,
+      "testDeclarations": 2,
+      "expectExpressions": 10,
+      "titles": [
+        "preserves exact versions, active pointer, and stored block identity",
+        "is idempotent and rejects incompatible reuse of a stored version"
+      ],
+      "declarations": [
+        {
+          "title": "preserves exact versions, active pointer, and stored block identity",
+          "line": 77,
+          "expression": "it(\"preserves exact versions, active pointer, and stored block identity\", async () => {\n\t\tconst result = await applySeed(db, seed, { includeContent: true });\n\n\t\texpect(result.blockTypes).toEqual({ created: 1, skipped: 0, updated: 0 });\n\t\tconst type = await new BlockTypeRegistry(db).getBlockType(\"hero\");\n\t\texpect(type?.currentVersion).toBe(2);\n\t\texpect(type?.versions.map((version) => version.version)).toEqual([1, 2]);\n\t\tconst page = await new ContentRepository(db).findBySlug(\"pages\", \"home\", \"en\");\n\t\texpect(page?.data.layout).toEqual(seed.content?.pages?.[0]?.data.layout);\n\n\t\tconst exported = await exportSeed(db, \"all\");\n\t\texpect(exported.blockTypes).toEqual(seed.blockTypes);\n\t\texpect(exported.content?.pages?.[0]?.data.layout).toEqual(\n\t\t\tseed.content?.pages?.[0]?.data.layout,\n\t\t);\n\n\t\tconst restored = await setupTestDatabase();\n\t\ttry {\n\t\t\tawait applySeed(restored, exported, { includeContent: true });\n\t\t\tconst restoredType = await new BlockTypeRegistry(restored).getBlockType(\"hero\");\n\t\t\texpect(restoredType?.currentVersion).toBe(2);\n\t\t\texpect(restoredType?.versions.map((version) => version.version)).toEqual([1, 2]);\n\t\t} finally {\n\t\t\tawait teardownTestDatabase(restored);\n\t\t}\n\t})"
+        },
+        {
+          "title": "is idempotent and rejects incompatible reuse of a stored version",
+          "line": 104,
+          "expression": "it(\"is idempotent and rejects incompatible reuse of a stored version\", async () => {\n\t\tawait applySeed(db, seed);\n\t\tconst rerun = await applySeed(db, seed, { onConflict: \"update\" });\n\t\texpect(rerun.blockTypes).toEqual({ created: 0, skipped: 0, updated: 1 });\n\n\t\tconst incompatible = structuredClone(seed);\n\t\tincompatible.blockTypes![0]!.versions[0]!.fields = [\n\t\t\t{ slug: \"different\", label: \"Different\", type: \"string\", required: true },\n\t\t];\n\t\tawait expect(applySeed(db, incompatible, { onConflict: \"update\" })).rejects.toMatchObject({\n\t\t\tcode: \"BLOCK_TYPE_VERSION_CONFLICT\",\n\t\t});\n\t})"
+        }
+      ],
+      "expressions": [
+        {
+          "line": 80,
+          "expression": "expect(result.blockTypes).toEqual({ created: 1, skipped: 0, updated: 0 })"
+        },
+        {
+          "line": 82,
+          "expression": "expect(type?.currentVersion).toBe(2)"
+        },
+        {
+          "line": 83,
+          "expression": "expect(type?.versions.map((version) => version.version)).toEqual([1, 2])"
+        },
+        {
+          "line": 85,
+          "expression": "expect(page?.data.layout).toEqual(seed.content?.pages?.[0]?.data.layout)"
+        },
+        {
+          "line": 88,
+          "expression": "expect(exported.blockTypes).toEqual(seed.blockTypes)"
+        },
+        {
+          "line": 89,
+          "expression": "expect(exported.content?.pages?.[0]?.data.layout).toEqual(\n\t\t\tseed.content?.pages?.[0]?.data.layout,\n\t\t)"
+        },
+        {
+          "line": 97,
+          "expression": "expect(restoredType?.currentVersion).toBe(2)"
+        },
+        {
+          "line": 98,
+          "expression": "expect(restoredType?.versions.map((version) => version.version)).toEqual([1, 2])"
+        },
+        {
+          "line": 107,
+          "expression": "expect(rerun.blockTypes).toEqual({ created: 0, skipped: 0, updated: 1 })"
+        },
+        {
+          "line": 113,
+          "expression": "expect(applySeed(db, incompatible, { onConflict: \"update\" })).rejects.toMatchObject({\n\t\t\tcode: \"BLOCK_TYPE_VERSION_CONFLICT\",\n\t\t})"
+        }
+      ],
+      "execution": "unexecuted; noSource causal credit"
+    }
+  ],
+  "ownedDeclarations": 19,
+  "ownedExpectExpressions": 58,
+  "referenceDeclarations": 19,
+  "referenceExpectExpressions": 66
 }
