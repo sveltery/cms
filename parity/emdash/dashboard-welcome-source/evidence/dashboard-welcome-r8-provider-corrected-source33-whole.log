@@ -1,0 +1,58 @@
+
+ RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui
+
+ ❯ parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx (24 tests | 1 failed) 2523ms
+     ✓ shows marketplace migration guidance to admins 69ms
+     ✓ hides marketplace migration guidance from non-admins 11ms
+     ✓ shows scheduled summary when collection stats include pending schedules 168ms
+     ✓ does not link the scheduled summary for subscribers, who cannot open the calendar 78ms
+     ✓ omits scheduled summary when only residual non-scheduled statuses exist 62ms
+     × warns when scheduled content is overdue and the scheduler has never completed 1066ms
+     ✓ warns when scheduled content is overdue and the heartbeat is stale 60ms
+     ✓ does not warn when the scheduler heartbeat is healthy 10ms
+     ✓ warns when a publication policy blocks scheduled content 74ms
+     ✓ refreshes a stale policy rejection after dismissal conflicts 119ms
+     ✓ does not offer dismissal to authors 58ms
+     ✓ shows policy rejections and scheduler outages independently 59ms
+     ✓ renders dashboard data from an older API without scheduler health 8ms
+     ✓ labels the published count for screen readers with the state, not the action 59ms
+     ✓ links collection quick actions to new content forms 12ms
+     ✓ omits quick actions for hidden collections and those opting out 15ms
+     ✓ uses the same heading level for every dashboard card title 83ms
+     ✓ gives recent activity status icons normalized accessible labels 66ms
+     ✓ renders unknown status names without treating object properties as lifecycle states 62ms
+       ✓ links an admin of an importable site to the Transfer import 72ms
+       ✓ stays hidden when the site can't receive an import 78ms
+       ✓ doesn't check import eligibility for non-admins 57ms
+       ✓ doesn't check import eligibility once the site has content 57ms
+       ✓ stays dismissed 117ms
+ ✓ parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/WelcomeModal.test.tsx (9 tests) 138ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > warns when scheduled content is overdue and the scheduler has never completed
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/helpers/dashboard-welcome/dom-setup.ts:13:84
+     11|   const read = () => value instanceof Locator ? value.read() : value;
+     12|   const assertion = (negate: boolean) => ({
+     13|     toBeInTheDocument: () => vi.waitFor(() => expect(Boolean(read()?.i…
+       |                                                                                    ^
+     14|     toHaveAttribute: (name: string, expected: string) => vi.waitFor(()…
+     15|       const result = expect(read()?.getAttribute(name));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 32 passed (33)
+   Start at  12:18:57
+   Duration  5.00s (transform 673ms, setup 835ms, import 312ms, tests 2.66s, environment 975ms)
+
+JSON report written to /tmp/dashboard-welcome-r8-provider-corrected-source33-report.json
