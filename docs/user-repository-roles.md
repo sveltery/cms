@@ -1,11 +1,12 @@
 # Core user profiles and role policy
 
-This proposed foundation gives the server a real Core `UserRepository` over the
-existing identity/profile tables and supplies the pinned pure role scope policy.
-The current draft is [PR #99](https://github.com/sveltery/cms/pull/99). Production
-application, exact final acceptance, green validation, author merge and post-Main
-verification are pending. A passing repository family alone will not complete
-the user administration product.
+The locally implemented foundation gives the server a real Core `UserRepository`
+over the existing identity/profile tables and supplies the pinned pure role scope
+policy. The current draft is [PR #99](https://github.com/sveltery/cms/pull/99).
+The fix and refactor each pass the complete 65-case family. Product publication,
+combined normal/browser gates, final exact-head acceptance, author merge and
+post-Main verification remain pending. A passing repository family alone will
+not complete the user administration product.
 
 The authority is EmDash 1.1.0 at
 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. The
@@ -43,8 +44,10 @@ Core update returns null, delete returns false and count includes complete joine
 profiles. The existing Auth adapter still counts all identities and reads those
 historical IDs using its unchanged historical behavior. Source has no analogous
 partial row because its user profile occupies the same table. These proposals
-are recorded in the [compatibility register](../parity/emdash/compatibility.md);
-final project-manager acceptance is pending.
+are recorded in the [compatibility register](../parity/emdash/compatibility.md).
+Root specifically accepted USR-01/02/03 for development in the
+[immutable qualification](evidence/user-repository-roles/pm-development-qualification.json);
+final exact-head acceptance and broader legacy recovery remain pending.
 
 The added pure `scopesForRole`/`clampScopes` mapping retains the entire Source
 scope-policy tail exactly. `role-scopes.ts` contains only the Source transfer
@@ -70,8 +73,18 @@ real batch/cursor queries, atomic role/profile updates, operator-trigger rollbac
 actual delete/cascade row counts, historical identity preservation, unchanged
 Auth adapter reads and malformed JSON behavior on both Node SQLite and actual
 raw workerd D1. These 26 callbacks plus six pure Native callbacks are original
-Native requirements and earn no copied Source assertion credit. Updated product
-green/refactor receipts remain pending.
+Native requirements and earn no copied Source assertion credit. The
+[complete fix/refactor receipts](evidence/user-repository-roles/fix-refactor-receipts.json)
+record two separate whole 65/65 greens without changed test bodies. Fix commit
+`a667ee88c43f1b1aae01d316b64d2b145312d03d` supplies the actual atomic repository
+and pure Source policy. Refactor commit
+`ba1fd60e3e7769011eddb1a48912c06c9a3367ac` shares one complete identity/profile
+join between reads and counts without changing SQL fields, predicates, ordering
+or writes. All later Native field/value/rollback/cursor/deletion assertions are now
+reached, and all 33 complete Source pure-policy callbacks pass. These are local
+qualified feature receipts, not final combined-head normal/browser validation.
+Reached causal Source assertion-red credit remains zero; the five original Source
+failures stopped before assertions and the other 28 initially passed.
 
 [The corrected Source inventory](evidence/user-repository-roles/source-inventory.json)
 recursively includes all literal dynamic imports in the actual seed value graph:

@@ -1561,3 +1561,54 @@ gates and final independent/configured review must qualify the eventual head.
 Full admin APIs/DTO/UI, broader byline/plugin/content consumers, legacy enrollment,
 invites/recovery/OAuth/API tokens, complete logical facade/raw UPSERT routing and
 deployed-hosting parity remain unfinished.
+
+
+## Core user foundation development receipts — 2026-10-04
+
+Root specifically accepted USR-01/02/03 FOR DEVELOPMENT in the
+[immutable finite qualification](../../docs/evidence/user-repository-roles/pm-development-qualification.json),
+1,513 bytes/SHA256 `3750d5109d57103e3828aade3925f0fd05197f76635c4677a9818219955d489b`.
+It qualifies the exact R2 thirteen actions, all 34 protected files, all 23 pinned
+Source bodies, unchanged whole 65 callbacks and complete existing package/register
+prefixes. The independent review's sole USRREV-01 static guard schema finding was
+closed before application: numeric 113 module count and the lengths of the two
+complete empty users-query arrays. R1 and its original independent review remain
+preserved; this infrastructure correction earns zero product parity credit.
+
+Regular Native fix `a667ee88c43f1b1aae01d316b64d2b145312d03d`, tree
+`a1b89843f21f6ec9481c9a9d04712dcebf822dd5`, followed the immutable test-first
+commit and actual public Main14 ordinary union. The complete guard and unchanged
+65-case family passed once: all 33 Source pure-policy and 32 Native callbacks.
+[The full raw fix receipt](../../docs/evidence/user-repository-roles/fix-whole65.log)
+is 610 bytes/SHA256 `63bfa37352052a83be72d86b723281f4574e56edfad696d68b9fda2d3adb90cc`.
+Regular refactor `ba1fd60e3e7769011eddb1a48912c06c9a3367ac`, tree
+`aad9b40c520c6b4fd2ad50a0d8d4029a9b378c08`, removes duplicated join construction
+by sharing the same real complete identity/profile join for reads and counts.
+All predicates, selected values, cursor order and atomic writes stay unchanged.
+The unchanged whole 65 family passed once again;
+[the full raw refactor receipt](../../docs/evidence/user-repository-roles/refactor-whole65.log)
+is 610 bytes/SHA256 `45e027c617a7c0f6c11dedec35b9b43822778d00b6095bdfa198d86082ba2c40`.
+The [paired owning record](../../docs/user-repository-roles.md) and
+[structured full receipts](../../docs/evidence/user-repository-roles/fix-refactor-receipts.json)
+retain exact evaluated heads, commands and elapsed times.
+
+The Native baseline had 31 reached assertion failures: 26 real SQL storage
+availability assertions and five pure-policy availability assertions. Its later
+field/value/rollback/cursor/count/delete/preservation expectations are now reached
+and green. Source had five missing-function errors BEFORE assertions and 28
+initial greens; all 33 Source pure-policy callbacks now pass, with unchanged
+35 static expectation expressions. Reached causal Source assertion-red credit
+is zero. No Source bug credit, changed Source/Native assertion, new protected
+credential/session/HTTP/signature/principal/race probe or frozen migration change
+is introduced. Nine whole broader Source user consumer families remain
+unexecuted; their full product behavior remains unfinished.
+
+OWN draft PR #99 still has the earlier public tree-equivalent test-first/Main14
+union head `1aa73216cbab78e69b7299720975de7aa94cccee`; these fix/refactor receipts
+evaluate local Native commits and are not yet a public combined-head pass. Final
+shared push waits ordinary adoption of actual public fixture96+97 Main. The full
+original thirteen normal stages and secured nine browser launches, independent
+and configured final review, exact final decisions, author expected-head merge
+and actual post-Main verification remain pending. Full admin/DTO/UI, historical
+profile enrollment, broader consumers, invites/recovery/OAuth/API token issuance,
+logical/raw users facade and deployed-hosting parity remain unfinished.

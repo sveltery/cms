@@ -242,7 +242,7 @@
     "evidence": "docs/evidence/user-repository-roles/source-inventory.json"
   },
   "runtimeSubstitution": "Real CmsDatabase joined identity/profile queries and atomic batches; no fake users table/view, migration, raw users writes or fabricated profiles.",
-  "legacyProfilelessIdentityDecision": "Proposed: preserved unchanged and absent from the complete Core repository; final PM acceptance pending.",
+  "legacyProfilelessIdentityDecision": "Specifically accepted FOR DEVELOPMENT by Root3750d510: preserve unchanged and omit from the complete Core projection; final exact-head acceptance and broader legacy recovery remain pending.",
   "sourceTimestamp": "Pinned 008_auth SQLite default (datetime('now')); Core creates use equivalent UTC second-format bytes and Core updates leave updated_at unchanged. Auth adapter ISO/Date semantics remain unchanged.",
   "pureScopes": "Entire Source rbac scope mapping and policy bodies; tokens source contributes only constant data and ApiTokenScope type, not issuance/crypto.",
   "sharedPublicSourceChainBefore": "node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && node scripts/check-redirect-source-ports.mjs && vitest run --config vitest.redirect-source.config.ts && pnpm test:bulk-taxonomy-native && pnpm test:menu-source && pnpm test:menu-native-ui && node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-source.config.ts && vitest run --config vitest.redirect-ui-native.config.ts && pnpm test:sections-widgets-core && pnpm test:sections-widgets-converter && pnpm test:sections-widgets-transport && pnpm test:sections-widgets-core-d1 && pnpm test:comments-source && pnpm test:comments-native && pnpm test:canonical-installation-source && pnpm test:content-picker-source && pnpm test:content-picker-native-ui && pnpm test:writable-editor-source && pnpm test:writable-editor-ui && node scripts/check-canonical-feature-storage-source.mjs",
@@ -252,5 +252,55 @@
     "Explicit historical identity profile enrollment",
     "Invites/recovery/OAuth/API token issuance and hosting parity",
     "Complete read-only logical users facade and raw users/UPSERT routing"
-  ]
+  ],
+  "developmentQualification": {
+    "path": "docs/evidence/user-repository-roles/pm-development-qualification.json",
+    "bytes": 1513,
+    "sha256": "3750d5109d57103e3828aade3925f0fd05197f76635c4677a9818219955d489b",
+    "decisions": [
+      "USR-01 real split CmsDatabase Core API",
+      "USR-02 preserve/omit profileless identities",
+      "USR-03 pure Source scope module substitution"
+    ],
+    "scope": "development only; final exact-head approval/merge remains pending"
+  },
+  "fixRefactorWholeReceipts": [
+    {
+      "phase": "fix",
+      "nativeHead": "a667ee88c43f1b1aae01d316b64d2b145312d03d",
+      "command": "pnpm test:user-repository-roles",
+      "exitCode": 0,
+      "elapsedSeconds": 3.576376438140869,
+      "wholeCallbacks": 65,
+      "passedCallbacks": 65,
+      "SourceWholePureCallbacks": 33,
+      "NativeCallbacks": 32,
+      "sourceCausalReachedAssertionRedCredit": 0,
+      "nineBroaderWholeSourceConsumersExecuted": 0,
+      "log": {
+        "path": "docs/evidence/user-repository-roles/fix-whole65.log",
+        "bytes": 610,
+        "sha256": "63bfa37352052a83be72d86b723281f4574e56edfad696d68b9fda2d3adb90cc"
+      }
+    },
+    {
+      "phase": "refactor",
+      "nativeHead": "ba1fd60e3e7769011eddb1a48912c06c9a3367ac",
+      "command": "pnpm test:user-repository-roles",
+      "exitCode": 0,
+      "elapsedSeconds": 3.629690408706665,
+      "wholeCallbacks": 65,
+      "passedCallbacks": 65,
+      "SourceWholePureCallbacks": 33,
+      "NativeCallbacks": 32,
+      "sourceCausalReachedAssertionRedCredit": 0,
+      "nineBroaderWholeSourceConsumersExecuted": 0,
+      "log": {
+        "path": "docs/evidence/user-repository-roles/refactor-whole65.log",
+        "bytes": 610,
+        "sha256": "45e027c617a7c0f6c11dedec35b9b43822778d00b6095bdfa198d86082ba2c40"
+      }
+    }
+  ],
+  "currentFeatureStatus": "Local fix/refactor complete and whole65 green; public product push/current combined13+9/final review/approval/author merge/post-Main remain pending actual public fixture96+97 adoption."
 }
