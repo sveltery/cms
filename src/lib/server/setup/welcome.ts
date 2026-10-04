@@ -7,7 +7,8 @@ import { identityDb } from '../auth/identity-store.ts';
 
 /** Native split-profile storage; callers supply only the actual resolved stored user. */
 export async function persistWelcomeDismissed(database: CmsDatabase, user: User) {
+  const data = JSON.stringify({ ...user.data, welcomeDismissed: true });
   await identityDb(database).updateTable('_cms_auth_profiles')
-    .set({ data: JSON.stringify({ ...user.data, welcomeDismissed: true }) })
+    .set({ data })
     .where('user_id', '=', user.id).execute();
 }

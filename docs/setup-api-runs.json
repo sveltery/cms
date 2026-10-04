@@ -85,21 +85,54 @@
         }
       ],
       "limits": "Native fixture/request/storage substitution explicitly qualified. No Source UserRepository, Astro session, credential/session rotation, replay/race/bypass or complete setup/dashboard credit."
+    },
+    {
+      "kind": "Whole unchanged welcome2 green after qualified persistence fix",
+      "head": "c4b10d423b8aa31cc1b0c7bc6577d9cfa0905520",
+      "wholeFamily": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+      "sourceBlob": "ba3b7a413e01f59cf21f831badf694120e7d6a3d",
+      "declarations": 2,
+      "expectExpressions": 7,
+      "allSourceExpectationsReached": true,
+      "unchangedSourceBytes": true,
+      "PMQualification": "docs/setup-api-welcome-production-qualification.json",
+      "build": {
+        "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm build",
+        "log": "/tmp/setup-api-welcome-persistence-fix-build.log",
+        "exit": 0
+      },
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-welcome.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-welcome-source-persistence-fix-green.json",
+      "exit": 0,
+      "passed": 2,
+      "failed": 0,
+      "wholeSourceFamilyGreen": true,
+      "uniqueCausalSourceValueReds": 1,
+      "firstGreenControls": 1,
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/welcome-persistence-fix-green.log",
+          "bytes": 503,
+          "sha256": "6b1c83db31887ef154b93e64a5e9f837686a87f251bdf9df869d056bbba85d05"
+        },
+        {
+          "path": "docs/setup-api-evidence/welcome-persistence-fix-green.json",
+          "bytes": 1402,
+          "sha256": "451b917f262e7dfaa5695a588366e3f992bd515a05306c63ef015046e270eb05"
+        }
+      ],
+      "limits": "Real built Kit/SQLite framework substitution only. No Source UserRepository/Astro-session implementation credit, credential/session rotation/race/replay/bypass probes or full setup/dashboard completion."
     }
   ],
   "latest": {
-    "wholeSourceFamiliesGreen": 0,
-    "completedSourceValueReds": 1,
+    "wholeSourceFamiliesGreen": 1,
+    "wholeSourceCallbacksGreen": 2,
+    "expectExpressionsReached": 7,
+    "uniqueSourceValueReds": 1,
     "firstGreenControls": 1,
-    "SourceProductCreditBeforeFix": 0,
+    "refactorPending": true,
+    "fullNormalGate": false,
+    "securedGate": false,
     "setupParity": "incomplete",
-    "dashboardParity": "incomplete",
-    "checker": {
-      "head": "fba8e178a0caa73eb33786ded0a8c9b470a40171",
-      "errors": 0,
-      "warnings": 0,
-      "log": "/tmp/setup-api-welcome-r2-check.log",
-      "wholeNormalGate": false
-    }
+    "dashboardParity": "incomplete"
   }
 }

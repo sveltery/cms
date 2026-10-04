@@ -1299,8 +1299,10 @@ at31a7e808. Both whole callbacks completed with one reached Source value red
 control with zero causal credit. [Full raw receipts](../../docs/setup-api-runs.json)
 remain preserved before this fix. The PM independently qualifies the exact
 route1780B/helper750B and paired appends in [the development decision](../../docs/setup-api-welcome-production-qualification.json).
-The qualified production fix is now applied; the unchanged whole2 green/refactor
-and final gates remain pending. [The paired feature record](../../docs/setup-api-backend.md)
+Qualified fixc4b10d42 builds successfully and unchanged whole2 passes2/2 with
+all7 expectations reached through actual HTTP/SQLite. The retained causal Source
+value-red count is1; the first-green control and initial infrastructure failures
+add none. Owned-helper readability refactor and final gates remain pending. [The paired feature record](../../docs/setup-api-backend.md)
 retains these limits. [Draft PR90](https://github.com/sveltery/cms/pull/90) remains
-unlanded; no final adaptation acceptance is recorded. The reached value baseline is established; fix/refactor receipts and current combined full normal/secured gates plus final
+unlanded; no final adaptation acceptance is recorded. The reached value baseline and whole2 fixed green are established; refactor receipts and current combined full normal/secured gates plus final
 independent/configured review remain pending.

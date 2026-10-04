@@ -88,7 +88,10 @@ first-green with zero causal credit. The [run receipt](setup-api-runs.json) reta
 both raw outputs and the earlier infrastructure failures. The PM now qualifies
 the exact route1780B and persistence helper750B plus this paired documentation
 append in [the decision](setup-api-welcome-production-qualification.json). The
-production fix is applied in this test-first sequence; its unchanged whole2 green,
-refactor and final gates remain pending. No session-rotation credit is claimed.
+production fix atc4b10d42 builds successfully and the same unchanged whole2 now
+passes2/2 with all7 expectations reached through actual HTTP/SQLite. One causal
+Source value red is retained; the first-green control and initial infrastructure
+failures add none. The owned-helper readability refactor and final gates remain
+pending. No session-rotation credit is claimed.
 [Draft PR90](https://github.com/sveltery/cms/pull/90), final current full gates and
 both reviews remain pending.
