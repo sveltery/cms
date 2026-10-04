@@ -2,14 +2,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readdir, mkdtemp, rm } from 'node:fs/promises';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { asyncD1Storage } from './helpers/async-d1-storage.ts';
 
 async function sqliteFiles(storage: Awaited<ReturnType<typeof asyncD1Storage>>) {
   const directory = storage.runtime.unsafeGetPersistPaths().get('d1');
   assert.ok(directory, 'actual Miniflare D1 storage has a physical directory');
-  return (await readdir(directory, { recursive: true })).filter(file => file.endsWith('.sqlite'))
+  // metadata.sqlite is Miniflare's runtime database catalog, not a leased D1 DB.
+  return (await readdir(directory, { recursive: true }))
+    .filter(file => file.endsWith('.sqlite') && basename(file) !== 'metadata.sqlite')
     .map(file => join(directory, file)).sort();
 }
 
@@ -55,6 +57,7 @@ test('D1 runtime groups rotate after 256 distinct databases without recycling a 
   try {
     assert.equal(String(await first.runtime.ready), String(await second.runtime.ready),
       'ordinary fresh fixtures must reuse the actual runtime before the boundary');
+    const existingFiles = new Set(await sqliteFiles(first));
     const endpoints = new Set<string>();
     const files = new Set<string>();
     for (let index = 0; index < 257; index++) {
@@ -63,11 +66,11 @@ test('D1 runtime groups rotate after 256 distinct databases without recycling a 
       endpoints.add(String(await storage.runtime.ready));
       await storage.binding.prepare('CREATE TABLE distinct_fixture(value INTEGER)').all();
       await storage.binding.prepare('INSERT INTO distinct_fixture VALUES (?)').bind(index).all();
-      for (const file of await sqliteFiles(storage)) files.add(file);
+      for (const file of await sqliteFiles(storage)) if (!existingFiles.has(file)) files.add(file);
       if (index > 0) await storage.runtime.dispose();
     }
     assert.equal(endpoints.size, 2, '257 real fixtures require two bounded runtime groups');
-    assert.ok(files.size >= 257, 'all 257 fixtures keep distinct physical D1 databases');
+    assert.equal(files.size, 257, 'all 257 fixtures keep distinct physical D1 databases');
     assert.deepEqual((await first.binding.prepare('SELECT * FROM distinct_fixture').all()).results,
       [{ value: 0 }]);
   } finally { for (const storage of leases) await storage.runtime.dispose(); }
