@@ -1,0 +1,52 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "publicBase": "135e7be689885fd23678569d0d373a1131f5302b",
+  "runs": [
+    {
+      "kind": "First actual whole Source welcome family attempt; fixture infrastructure only",
+      "head": "03303bb29a50b4c7028150fd96e692a5336872c8",
+      "wholeFamily": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+      "sourceBlob": "ba3b7a413e01f59cf21f831badf694120e7d6a3d",
+      "declarations": 2,
+      "expectExpressions": 7,
+      "unchangedSourceBytes": true,
+      "fixtureManifestSha256": "3f4ac54e1b63ff0d3920ea27e28a1ff6f68efe22982e66b17009efef6564d779",
+      "PMQualification": "docs/setup-api-welcome-fixture-qualification.json",
+      "build": {
+        "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm build",
+        "log": "/tmp/setup-api-main135-baseline-build.log",
+        "exit": 0,
+        "runtimeImplementation": "Actual unchanged public Main135; only docs/frozen authorities and test-only fixture are new."
+      },
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-welcome.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-welcome-source-initial-red.json",
+      "exit": 1,
+      "attemptedWholeSourceCallbacks": 2,
+      "passed": 0,
+      "failedBeforeAnySourceAssertion": 2,
+      "completedSourceValueReds": 0,
+      "firstGreenControls": 0,
+      "SourceCausalCredit": 0,
+      "diagnosis": "Compiled Kit internal.options.hooks is null until supported actual Server.init. Fixture took its pre-setup cleanup snapshot too early, so neither case reached its original product assertion.",
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/welcome-r2-first-infrastructure.log",
+          "bytes": 1696,
+          "sha256": "202a04e2e5c4b1d6f79cd9db09ffa5c228623852a665940e73fe8b21c68a5c9c"
+        },
+        {
+          "path": "docs/setup-api-evidence/welcome-r2-first-infrastructure.json",
+          "bytes": 2251,
+          "sha256": "2c5a948972ae02b71346db66d8a605d39be716eed32f145ac1f8abdb396684ca"
+        }
+      ],
+      "retainedLimits": "No HTTP POST baseline, persistence fix, credential/session/replay/race/bypass probe or complete family green is claimed. Proposed r3 changes only supported compiled Server.init before the unchanged cleanup snapshot; exact PM qualification is required before application and rerun."
+    }
+  ],
+  "latest": {
+    "wholeSourceFamiliesGreen": 0,
+    "completedSourceValueReds": 0,
+    "SourceCausalCredit": 0,
+    "setupParity": "incomplete",
+    "dashboardParity": "incomplete"
+  }
+}
