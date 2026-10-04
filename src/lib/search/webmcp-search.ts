@@ -59,12 +59,17 @@ function textResult(text: string, isError = false): ToolResult {
 	return { content: [{ type: "text", text }], ...(isError ? { isError } : {}) };
 }
 
+/** Share the same bounds for configured and per-call limits. */
+function clampLimit(value: number, maximum: number): number {
+	return Math.min(Math.max(value, 1), maximum);
+}
+
 export function createSiteSearchTool(
 	config: SiteSearchToolConfig,
 	origin: string,
 	fetchImpl: typeof fetch = fetch,
 ): WebMcpTool {
-	const maxLimit = Math.min(Math.max(Math.floor(config.limit) || 1, 1), MAX_LIMIT);
+	const maxLimit = clampLimit(Math.floor(config.limit) || 1, MAX_LIMIT);
 	return {
 		name: "search_site",
 		description:
@@ -87,7 +92,7 @@ export function createSiteSearchTool(
 			const query = typeof input.query === "string" ? input.query.trim() : "";
 			if (!query) return textResult("Provide a search query.", true);
 			const requested = typeof input.limit === "number" ? Math.floor(input.limit) : maxLimit;
-			const limit = Math.min(Math.max(requested, 1), maxLimit);
+			const limit = clampLimit(requested, maxLimit);
 
 			const params = new URLSearchParams({ q: query, limit: String(limit) });
 			if (config.collections) params.set("collections", config.collections);
