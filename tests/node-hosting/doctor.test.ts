@@ -36,6 +36,7 @@ test('standalone frozen production package contains and runs the real doctor com
   });
   assert.equal(inspected.error, undefined);
   assert.equal(inspected.status, 0, inspected.stderr);
+  assert.match(inspected.stdout, /^\s*\[/, 'the packaged command must emit actual JSON diagnostics');
   const results = JSON.parse(inspected.stdout);
   assert.deepEqual(results.filter((result: {status: string}) => result.status === 'fail'), []);
   assert.equal(results.find((result: {name: string}) => result.name === 'collections').message, '1 collections defined');
