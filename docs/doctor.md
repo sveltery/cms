@@ -1,0 +1,195 @@
+# Database and scheduler diagnostics
+
+The native diagnostic workflow is implemented and validated locally in
+[PR #98](https://github.com/sveltery/cms/pull/98), with final integration and
+review pending. Its repository entry is `pnpm doctor`; its standalone Node
+package entry is `node build/doctor.js` and the package declares the
+`sveltery-doctor` bin.
+The command inspects an explicitly selected local database and configuration.
+It never creates a missing database, runs migrations, repairs values, starts a
+server, reads credentials, or makes network requests.
+
+```sh
+pnpm doctor --database ./data.db
+pnpm doctor --cwd /srv/cms --database ./data.db --json
+node build/doctor.js --database /srv/cms/data.db --json
+```
+
+`--database` / `-d` defaults to `./data.db`; `--cwd` defaults to the current
+directory. JSON output is the complete array of `{name,status,message}` results.
+A failing check exits with status 1; warnings retain status 0. `--help` describes
+the supported options. This is a local operator command, not an HTTP endpoint.
+
+The database is opened through the published Node SQLite compatibility adapter
+with `readOnly: true`. Checks report file availability and connection errors,
+the actual native registered migration versions and pending versions, collection
+counts, orphaned `ec_` content tables, content and revision datetime storage, and
+the real `_cms_auth_users` identity count. Unknown or gapped migration records
+fail rather than being called current. No full upstream migration-lock/schema
+universe or full Source user/profile-schema compatibility is claimed.
+
+Datetime inspection retains the whole pinned Source scanner after finite import
+and namespace adaptations. It inspects the five system datetime columns,
+registered datetime and repeater datetime fields, and saved revision field data
+using the stored `site:timezone` option. Canonical values pass; offsets, naive
+values, ambiguous/nonexistent wall times and inspection errors are reported.
+Inspection does not normalize or write them. Only diagnostic samples are bounded
+at the pinned 50-sample limit; the scanner visits the complete persisted dataset
+in its original 50-row pages. The underlying copied helper also retains Source's
+normalization API, but this command only calls its read-only scan function.
+
+Wrangler files are selected in Source order: `wrangler.jsonc`, `wrangler.json`,
+then `wrangler.toml`. JSONC permits comments and trailing commas. Invalid syntax
+reports a source location; a non-object configuration, absent `main`, missing or
+unreadable Worker entry, and a missing half of the Cron/maintenance pair produce
+actionable failures. JSONC errors and native TOML errors do not print configuration
+source excerpts. TOML's location-only error is an intentional native difference
+from Source's parser-message forwarding; it retains line/column information while
+omitting the parser's potentially sensitive code excerpt.
+
+Native defaults inspect the actual local module exporting
+`createRevisionMaintenanceScheduledHandler`, and recognize the generated Worker
+forwarder or an equivalent factory spread. A Cron Trigger together with this
+published revision-maintenance handler passes the **static wiring** check and
+adds an explicit coverage warning. Revision maintenance does not implement full
+scheduled publishing, cron-task execution or scheduler heartbeat recording.
+The command does not invent a heartbeat or certify deployed scheduling. To
+generate the native wrapper, run the existing `pnpm build:cloudflare`; point
+Wrangler `main` to `./build/cloudflare/worker.js`. An operator supplies the Cron
+Trigger when they want this actual maintenance function scheduled. Node sites
+without Wrangler configuration still receive their database checks.
+
+The same diagnostic API accepts an explicit Worker contract for another host
+library. The test-only adapter supplies the unchanged Source contract identity
+`@emdash-cms/cloudflare/worker` to that public parameter. It does not select behavior
+from a test path, environment marker, expected text or a Source fixture. These
+Source tests establish the generic inspector's original configuration behavior;
+Native default wiring and the reachable package command require separate Native
+evidence. The dashboard's unchanged `npx emdash doctor` assertion cannot earn
+native fidelity credit from this new native command.
+
+## Test-first record and current limits
+
+Authority is EmDash 1.1.0 immutable
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, with seven whole authorities and
+the retained [MIT notice](../notices/emdash-MIT.txt). The [source inventory](doctor-source.json)
+and byte checker retain the whole 15-declaration / 26-`expect` doctor test file
+without assertion changes. The referenced CLI index and scheduler-health module
+are inventory only; their other commands and heartbeat are not implemented here.
+
+Test-first commit `8fd45e18f5f35e67d213a6477db5ba9040632a26` adds the whole Source
+test, finite transport adapter, byte inventory, and twelve ordinary Native CLI,
+configuration and real persisted SQL cases. The [Source baseline](doctor-evidence/source-baseline.log)
+stops at the absent native module import: zero callbacks and zero reached
+assertions, **zero Source causal credit**. The [whole Native twelve-case baseline](doctor-evidence/native12-baseline.log)
+reaches twelve CLI assertion failures because the actual entrypoint is absent;
+later database/config value expectations are not yet reached. No SQL fixture,
+credential or authorization behavior is credited by those startup failures.
+
+`e4be77e0` adds the separate standalone package test, and `515ea050` adds
+static inspection of the real built official Worker and its maintenance module.
+`00c095b8` adds the native TOML-location case; the
+[whole thirteen-case baseline](doctor-evidence/native13-baseline.log) reaches
+thirteen CLI assertion failures with no cancellation or skipped cases.
+
+After exact finite development qualification, `a663130a` implements the real
+command. All unchanged fifteen Source callbacks pass initially; the import-only
+baseline earns **zero Source causal credit**. All thirteen Native cases now reach
+and pass their persisted SQL/config values, including unchanged database bytes,
+real migration states, orphan detection and TOML line/column-only diagnostics.
+The meaningful output-format extraction in `47153828` preserves the whole
+fifteen Source and thirteen Native greens. The
+[whole raw receipts](doctor-evidence/runtime.json) distinguish those results.
+
+The standalone packaging test subsequently reaches a meaningful JSON assertion
+failure on `faf25931`: an actual frozen production installation and migrated
+Native database run a 20-byte executable that exits without diagnostics. Earlier
+package-manager engine/selector fixture stops earn no product credit. Removing
+only the redundant output shebang banner in `0860b384` produces the actual
+86,055-byte bundled command. The
+[standalone package test](doctor-evidence/native-package-fixed.log) passes JSON
+output, real collection inspection and unchanged database bytes after a fresh
+frozen production installation. The
+[Cloudflare filesystem test](doctor-evidence/native-cloudflare-filesystem.log)
+passes against the actual built official Worker and maintenance module: static
+wiring passes, explicit incomplete-scheduler coverage warns, and the deliberately
+missing local database still fails additively. No HTTP or protected probes run.
+
+The applied local integration preserves actual public Main14
+`90d62391e7ddc61f41f8f3dad9e7077c9fc9de52`, its complete Source chain and all prior
+compatibility records. Existing lockfile records, policies, media patch/notices,
+Source callbacks, thirteen normal stages and nine secured browser commands,
+sandbox and deadlines remain unchanged. The four explicit substitutions DC-01
+through DC-04 have development acceptance only. Current union gates, final
+independent/configured review, specific final acceptance, Root exact-head approval,
+author expected-head merge and actual post-Main validation remain pending.
+
+Full scheduler execution/heartbeat, full Source users and migration runner,
+remote/deployed D1 inspection and the other CLI commands remain unfinished. The
+paired [compatibility record](../parity/emdash/compatibility.md) retains each
+observable substitution and its pending decision status.
+
+## Historical Main14 and fixture96 preparation
+
+The Main14 union is locally committed as `1d2ca68bac64362e05bc898ebedbb25d6d19a14a`,
+with the exact qualified tree and passing whole owned whitespace check. The next
+proposal adopts actual public fixture96 Main
+`343c0ff2e69e66e03b848d258da7c288e9a67223`, retaining all incoming fixture/helper
+bytes, full compatibility histories and the combined seven literal whitespace
+rules. No public doctor runtime landing is claimed yet. Final full normal and
+secured gates wait for actual public fixture97 integration as well; review,
+final specific compatibility acceptance and expected-head author merge remain
+pending. No pending feature branch is used as an implementation prerequisite.
+
+## Historical provider15 preparation at f276
+
+The previous local checkpoint is `f27642a7cae35e4df1dd80051d5168cfb5eb337c`, with
+both qualified ordinary Main14/fixture96 merges and passing whole owned whitespace
+checks. Actual public Main `41be644213bd8da5150d98b87d3a5c0cc0c7f3e1` now supplies
+provider15, its real default/readiness/catalogue behavior and both fixtures96/97.
+The sealed proposal at that checkpoint adopted that public tree and preserved its
+complete Source chain, compatibility history and both public literal evidence
+rules alongside the six doctor rules. It changes no doctor runtime or tests and
+claims no private prerequisite or new diagnostic behavior.
+
+The unchanged Source15/Native13 and real package/Worker receipts remain historical
+for their recorded heads. At that preparation checkpoint, Root approval was
+pending before application, shared push or normal13/secured9 execution. Final
+fresh/configured review, specific DC-01 through DC-04 acceptance, exact-head PM
+approval, expected-head author merge and actual post-Main validation were also
+pending at that preparation checkpoint. Full scheduler/heartbeat, full Source users/CLI/PAT, remote D1 and general
+migration-runner parity are unfinished.
+
+## Published integration and validation basis
+
+Root qualified the five-file actual provider15 union, which is now applied and
+published in PR #98 as ordinary merge
+`3b6feb58a86707fbc4d4c32fb643942a73bf5285`, tree
+`d2ccfb38fcbcc42eac58a3c6e258558e98d3787a`. It preserves all 1,783 actual public
+Main paths and the exact combined 1,816-entry tree. The whole owned whitespace
+check passes. CI [467](https://github.com/sveltery/cms/actions/runs/37209129237)
+passes both complete jobs on that exact head; its tested synthetic merge has
+the same tree.
+
+The normal job finishes all thirteen original phases with zero Svelte errors or
+warnings. Node groups pass 1,492/28/280/16/8 cases with no failures, cancellation
+or skips; all twenty-three Vitest groups pass, including the whole original
+fifteen-callback doctor authority. The thirteen actual Native CLI/SQL/config cases,
+real frozen standalone package and actual official Worker filesystem case pass.
+The secured job passes all seven Source groups, both 65-case application suites,
+and nine official Chromium 1243 launches and matching zero-code exits while
+retaining the original sandbox and deadlines. The raw log hashes and job IDs
+are recorded in the [runtime inventory](doctor-evidence/runtime.json).
+
+This is an immutable preparation snapshot recorded at **3b6**, before the
+documentation successor commit. The completed results validate that basis head;
+they do not validate the successor. At this recorded preparation point, its own
+full normal13/secured9 checks, fresh-review closure, configured review, specific
+DC-01 through DC-04 final acceptance, Root exact-head approval, author expected-head
+regular merge and actual post-Main verification were pending. Subsequent current
+checks and review are audited externally against their actual commit, without
+requiring this historical snapshot to claim its own future head. Source causal
+credit stays zero; the original import-only Source baseline, genuine Native
+startup/package reds and subsequent actual diagnostic values remain classified
+separately. Full scheduler/heartbeat, full Source users/CLI/PAT, remote D1 and
+general migration-runner parity remain unfinished.

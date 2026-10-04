@@ -337,7 +337,8 @@ export { fieldMax };
 // Preserve the local metadata CAS guarantee for same-millisecond/backward clocks.
 // Reorder uses one timestamp for exactly the records the pinned operation touches.
 function nextMetadataTimestamp(collections: Pick<Collection, 'updatedAt'>[]): string {
-  return new Date(Math.max(Date.now(), ...collections.map(collection => Date.parse(collection.updatedAt) + 1))).toISOString();
+  return new Date(Math.max(Date.now(), ...collections.map(collection => Date.parse(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(collection.updatedAt)
+    ? collection.updatedAt.replace(' ', 'T') + 'Z' : collection.updatedAt) + 1))).toISOString();
 }
 
 const collectionMetadataColumns = {icon:'icon',hasSeo:'has_seo',titleField:'title_field',dateField:'date_field',urlPattern:'url_pattern',routable:'routable',hidden:'hidden',sortOrder:'sort_order',group:'nav_group',commentsEnabled:'comments_enabled',commentsModeration:'comments_moderation',commentsClosedAfterDays:'comments_closed_after_days',commentsAutoApproveUsers:'comments_auto_approve_users',editLocking:'edit_locking'};
