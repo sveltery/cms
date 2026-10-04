@@ -1577,3 +1577,18 @@ changes or new protected HTTP probes are proposed. Full Native runtime adapter
 and its first execution are pending separate finite review/qualification.
 Framework/backend substitution is proposed for PR102; an acceptance decision
 is not recorded. See `docs/taxonomies.md` for paired feature scope and evidence.
+
+### Taxonomy Native D1 actual baseline receipt (PR102; no parity approval)
+
+At Native343ab38d, the unchanged whole eight-case D1 requirements ran once: seven
+failed/one existing boundary-and-empty-SQL control passed; no fixture failures,
+timeouts or skips. Three reached unsupported callback-transaction assertions;
+three reached absent-handler module assertions; one reached a reorder expected
+error mismatch at the existing Source-write boundary. Their later SQL rollback
+and behavior values were unreached. Zero completed Source assertions or Source
+value-red credit. Raw6277-byte evidence and precise classification are in
+`docs/taxonomy-evidence/`; paired `docs/taxonomies.md` records the same limits.
+Source27/99 and originalNative10 remain unchanged. The additional literal
+`.gitattributes` rule disables only blank-at-EOF checking for the byte-exact D1
+log; other whitespace checks remain active. Product atomic substitution remains
+finite-proposed, unapplied and awaiting separate fresh review/Root qualification.

@@ -12006,5 +12006,43 @@
     },
     "productImplementationApplied": false,
     "noIdenticalRetry": true
+  },
+  "actualD1InitialBaseline": {
+    "schemaVersion": 1,
+    "head": "343ab38dc2c8abc4bab6ec2942b540d750ab604b",
+    "tree": "58714f50cd8342ac1484466b068e01bbdc2fbbfe",
+    "rootQualification": "/tmp/root-taxonomy-d1-exact-four-native-eight-testfirst-qualification.json",
+    "command": "node /workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs exec vitest run --config vitest.taxonomy-d1.config.ts",
+    "exitCode": 1,
+    "log": {
+      "path": "docs/taxonomy-evidence/d1-native8-baseline.log",
+      "bytes": 6277,
+      "sha256": "f3d71d03650152c278d026112e6162fc69580dcc0b3dbb811a29780dadf55cfc"
+    },
+    "collectedAndExecuted": 8,
+    "passed": 1,
+    "failed": 7,
+    "fixtureFailures": 0,
+    "timeouts": 0,
+    "skips": 0,
+    "durationSeconds": 2.28,
+    "testDurationSeconds": 1.55,
+    "classification": {
+      "actualNativeValueRed": 1,
+      "actualNativeValueRedDescription": "Reorder assert.rejects expects controlled final-chunk failure but actual existing Source raw mutation is refused by D1 canonical boundary; post-rollbackSQL equality remains unreached.",
+      "actualNativeUnsupportedTransactionAssertions": 3,
+      "actualNativeUnsupportedTransactionDescription": "Cross-locale creation, translation-move preparation and assignment-replacement preparation reach doesNotReject, receiving actual unsupported D1 callback transaction error. Later concept/rollback SQL expectations remain unreached.",
+      "actualNativeMissingModuleAssertions": 3,
+      "actualNativeMissingModuleDescription": "Definition failure, shared edit and cleanup reach doesNotReject around absent handler module. Later definition/group/cleanup SQL values remain unreached.",
+      "actualExistingControl": 1,
+      "actualExistingControlDescription": "Canonical D1 direct-write boundary rejects the attempted insert; actual persisted bypass rows remain empty.",
+      "completedSourceValueReds": 0,
+      "completedSourceAssertions": 0
+    },
+    "wholeSourceFamiliesRetained": 27,
+    "wholeSourceFamiliesNewlyExecuted": 0,
+    "originalNative10Changed": false,
+    "productApplied": false,
+    "repetitions": 1
   }
 }

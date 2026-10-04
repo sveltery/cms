@@ -111,3 +111,19 @@ Their default Vitest clocks remain unchanged. The whole 27 original Source
 families and original Native10 callbacks/assertions remain unchanged. These new
 requirements are retained before the finite atomic implementation is applied;
 actual run classifications will be appended after the first execution.
+
+## Actual Native D1 baseline (343ab38d)
+
+The whole eight-case suite ran once before product adaptation on actual published
+canonical D1 storage. Eight were collected/executed: seven failed and one passed;
+there were no fixture failures, timeouts or skips. Three failures reached
+`doesNotReject` at existing unsupported interactive D1 transactions, three
+reached missing-handler module assertions, and one reached the reorder error
+expectation: the existing direct-write boundary refused the Source raw write
+before the controlled last-chunk failure. All subsequent rollback/concept/cleanup
+SQL values in those seven cases remain unreached. The genuine existing guard
+control rejected a bypass insert and verified persisted bypass rows are empty.
+These are Native requirements; completed Source assertion/value-red credit is
+zero. The whole 27 Source families and original Native10 remain unchanged.
+Raw 6277-byte output and exact classifications are retained in
+`docs/taxonomy-evidence/d1-native8-baseline.log` and `d1-baseline.json`.
