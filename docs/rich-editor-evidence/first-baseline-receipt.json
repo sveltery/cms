@@ -1,0 +1,528 @@
+{
+  "artifact": "First full rich editor initial24 Source and Native17 actual baseline",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "nativeActualBaselineHead": "70152ee0b3ef3b3cacacd6cf282970bbc61fb699",
+  "nativeActualBaselineTree": "1090dfb3d1f88cd8dd7fdddb63a0ffe22179c53c",
+  "nativeProductBaseline": "Unchanged actual public Main b5ed8e06c9c3034e99645ef85022e027130fec51 production, dependencies, frozen518lock, CI/bootstrap/editor/session/canonical/auth remains byte exact.",
+  "qualifiedTestFirstManifest": {
+    "path": "/tmp/rich-editor-testfirst-proposal-r2/manifest.json",
+    "bytes": 116396,
+    "sha256": "afb30e3f8f48b2e9828135e5fb3a0ebd76b2e3eb51b788f9c35ebeda97ad4fa0"
+  },
+  "rootDevelopmentQualification": {
+    "path": "/tmp/root-rich-editor-r2-exact153-testfirst-qualification.json",
+    "bytes": 883,
+    "sha256": "4ed1e05d28aefe0baf075e693388311f1c14067341d3f37d3ae36c254b02ade9"
+  },
+  "independentRFE_REV01Closure": {
+    "path": "/tmp/rich-editor-testfirst-r2-independent-RFE-REV01-closure.json",
+    "bytes": 16023,
+    "sha256": "592b329f1dcca047af260d4b9aa273e89fc76fd36b067171ca1e77290a7dd2aa"
+  },
+  "commands": [
+    {
+      "command": "node node_modules/vitest/vitest.mjs run --config vitest.rich-editor-source.config.ts --reporter=default --reporter=json --outputFile=/tmp/rich-editor-first-baseline-70152ee0/source24-report.json",
+      "wholeScope": "All24 configured original pure families; no callback filtering",
+      "toolSessionId": 71564,
+      "actualExit": 1,
+      "runCount": 1
+    },
+    {
+      "command": "node node_modules/vitest/vitest.mjs run --config vitest.rich-editor-native.config.ts --reporter=default --reporter=json --outputFile=/tmp/rich-editor-first-baseline-70152ee0/native17-report.json",
+      "wholeScope": "Both original Native files/all17 callbacks",
+      "toolSessionId": 14051,
+      "actualExit": 1,
+      "runCount": 1
+    }
+  ],
+  "rawArtifacts": [
+    {
+      "runtime": "whole Source24",
+      "path": "docs/rich-editor-evidence/source24.log",
+      "actualFile": "/tmp/rich-editor-first-baseline-70152ee0/source24.log",
+      "bytes": 23867,
+      "sha256": "45e37458f01c75e23af6cbdf7fe009d55243f16042caebaa8653ce82d3b80639",
+      "gitBlob": "47f3ac21905f4ca16ff32a8e5def4890b698831d",
+      "preservation": "Entire original actual tool output bytes; no trimming/normalizing/encoding/compression."
+    },
+    {
+      "runtime": "whole Source24",
+      "path": "docs/rich-editor-evidence/source24-report.json",
+      "actualFile": "/tmp/rich-editor-first-baseline-70152ee0/source24-report.json",
+      "bytes": 11927,
+      "sha256": "6de956c15c010d71b9d73a50476238094627001b5bf5b5f86c464db8f1404c0b",
+      "gitBlob": "d3a153c21fc10ade3882adbff25e11e1168b34b7",
+      "preservation": "Entire original actual tool output bytes; no trimming/normalizing/encoding/compression."
+    },
+    {
+      "runtime": "whole Native17",
+      "path": "docs/rich-editor-evidence/native17.log",
+      "actualFile": "/tmp/rich-editor-first-baseline-70152ee0/native17.log",
+      "bytes": 15222,
+      "sha256": "470c671bf3bd41cd400718505a26345133be1e1f360b69dfe7ad7338e59505d4",
+      "gitBlob": "0eb7f29c339bdd817dd598fb44f4200ce1e99443",
+      "preservation": "Entire original actual tool output bytes; no trimming/normalizing/encoding/compression."
+    },
+    {
+      "runtime": "whole Native17",
+      "path": "docs/rich-editor-evidence/native17-report.json",
+      "actualFile": "/tmp/rich-editor-first-baseline-70152ee0/native17-report.json",
+      "bytes": 15251,
+      "sha256": "b80300db5779aaf781811a273defce6f781fb6156ee8ac25ab95cb298c054aff",
+      "gitBlob": "adbf26aca4714f28551df7a1df54046b0372d22f",
+      "preservation": "Entire original actual tool output bytes; no trimming/normalizing/encoding/compression."
+    }
+  ],
+  "sourceActual": {
+    "filesSelected": 24,
+    "failedFilesBeforeRegistration": 24,
+    "runtimeRegisteredCallbacks": 0,
+    "actualPassedCallbacks": 0,
+    "actualFailedCallbacks": 0,
+    "expectationsReached": 0,
+    "sourceValueReds": 0,
+    "initialControls": 0,
+    "modulePreexpectStops": 23,
+    "externalDependencyPreexpectStops": 1,
+    "sourceCausalCredit": 0,
+    "staticDeclarationsRetained183": "not actual runtime count; expansion unknown because no callback registered",
+    "staticMatchersRetained586": "all behavioral assertions unreached"
+  },
+  "nativeActual": {
+    "filesExecuted": 2,
+    "callbacksRegistered": 17,
+    "callbacksFailed": 17,
+    "callbacksPassed": 0,
+    "readinessValueAssertionReds": 17,
+    "readinessExpectationsReached": 17,
+    "initialControls": 0,
+    "callbackTimeouts": 0,
+    "skipped": 0,
+    "todo": 0,
+    "laterValueDomHtmlAssertionsReached": 0,
+    "note": "These reached Native readiness values are genuine false!==true assertions. Missing product imports are caught only to report readiness; no converter/DOM result is synthesized. They establish no Source parity credit."
+  },
+  "sourceFamilies": [
+    {
+      "sourcePath": "packages/admin/tests/pt-gallery-converters.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/admin-converters.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/admin/tests/pt-gallery-converters.test.ts"
+    },
+    {
+      "sourcePath": "packages/admin/tests/pt-image-converters.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/admin-converters.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/admin/tests/pt-image-converters.test.ts"
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/PortableTextEditor.list.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/admin-converters.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.list.test.ts"
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/PortableTextEditor.table.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/admin-converters.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.table.test.ts"
+    },
+    {
+      "sourcePath": "packages/admin/tests/editor/PortableTextEditor.code-block.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/admin-converters.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/admin/tests/editor/PortableTextEditor.code-block.test.ts"
+    },
+    {
+      "sourcePath": "packages/admin/tests/lib/portable-text-table.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/portable-text-table.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/admin/tests/lib/portable-text-table.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/client/portable-text.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/client.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/client/portable-text.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/content/portable-text-lists.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/portable-text-lists.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/content/portable-text-lists.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/blockquote-grouping.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/blockquote-grouping.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/custom-block-round-trip.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing exact external @tiptap/core dependency",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find package '@tiptap/core' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/custom-block-round-trip.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/gallery-round-trip.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/gallery-round-trip.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/html-block-round-trip.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/html-block-round-trip.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/iframe-round-trip.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/iframe-round-trip.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/image-alignment.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-alignment.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/image-dimensions.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-dimensions.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/image-link.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/converters/image-link.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-link.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/image-missing-asset.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-missing-asset.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/image-seeded-media.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-seeded-media.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/linked-code-round-trip.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/linked-code-round-trip.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/list-nesting.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/list-nesting.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/numbered-list-continuity.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/inline-converters.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/numbered-list-continuity.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/table-round-trip.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/table-round-trip.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/text-align-round-trip.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/text-align-round-trip.test.ts"
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/converters/unsupported-portable-text-marks.test.ts",
+      "status": "whole import attempted; blocked before callback registration",
+      "classification": "missing actual Native product module",
+      "callbacksRegistered": 0,
+      "assertionsReached": 0,
+      "reachedSourceValueReds": 0,
+      "sourceCausalCredit": 0,
+      "actualReporterMessage": "Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/unsupported-portable-text-marks.test.ts"
+    }
+  ],
+  "nativeCallbacks": [
+    {
+      "path": "tests/rich-editor-native/converters.test.ts",
+      "name": "Native Portable Text ordinary value contracts keeps stored block, span, annotation and custom identities in an editing round trip",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 8.74381900000003,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at converters (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:18:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:25:17\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/converters.test.ts",
+      "name": "Native Portable Text ordinary value contracts continues a numbered identity across a paragraph without flattening nested list levels",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 2.06583999999998,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at converters (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:18:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:32:17\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/converters.test.ts",
+      "name": "Native Portable Text ordinary value contracts retains table keys, merged-cell dimensions, column widths and linked cell text",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 1.8013039999999592,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at converters (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:18:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:47:17\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/converters.test.ts",
+      "name": "Native Portable Text ordinary value contracts preserves author HTML fields and iframe attributes through conversion",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 1.4126430000000028,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at converters (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:18:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:57:17\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/converters.test.ts",
+      "name": "Native Portable Text ordinary value contracts keeps unsupported stored string code languages and linked inline code",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 1.515015999999946,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at converters (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:18:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:66:17\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/converters.test.ts",
+      "name": "Native Portable Text ordinary value contracts rejects unsupported marks before losing stored content",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 1.474215000000072,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at converters (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:18:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:74:17\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/converters.test.ts",
+      "name": "Native Portable Text ordinary value contracts keeps unknown blocks opaque through a Markdown client round trip",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 1.3014360000000806,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at converters (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:18:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:81:17\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/converters.test.ts",
+      "name": "Native Portable Text ordinary value contracts preserves stored image/gallery values without claiming media-provider execution",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 1.2429590000000417,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at converters (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:18:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/converters.test.ts:86:17\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/fields.test.ts",
+      "name": "Native typed content fields emits real numeric values and preserves the Source empty-number coercion to zero",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 11.737977,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:29:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/fields.test.ts",
+      "name": "Native typed content fields emits a boolean from a real checked control",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 3.057994000000008,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:35:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/fields.test.ts",
+      "name": "Native typed content fields emits selected option values and keeps their visible labels",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 1.5976089999999203,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:40:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/fields.test.ts",
+      "name": "Native typed content fields emits an ordered multi-select list without deleting existing selections",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 1.2777409999998781,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:47:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/fields.test.ts",
+      "name": "Native typed content fields retains invalid JSON locally and emits typed JSON only after successful blur parsing",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 4.505749000000151,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:53:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/fields.test.ts",
+      "name": "Native typed content fields trims URL values on blur and reports invalid values without changing their data",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 1.7077449999999317,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:63:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/fields.test.ts",
+      "name": "Native typed content fields reuses the real landed datetime control with full ISO storage values",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 2.631706000000122,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:71:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/fields.test.ts",
+      "name": "Native typed content fields keeps a malformed list value unchanged until an explicit replacement",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 1.2622479999999996,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:78:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    },
+    {
+      "path": "tests/rich-editor-native/fields.test.ts",
+      "name": "Native typed content fields disables value edits for the existing read-only editor contract",
+      "status": "failed",
+      "classification": "actual missing product module readiness false!==true reached assertion red",
+      "readinessAssertionsReached": 1,
+      "laterConverterOrDomOrHtmlAssertions": "unreached",
+      "actualDurationMs": 1.6411540000001423,
+      "actualFailure": "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:84:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+    }
+  ],
+  "heldScope": {
+    "wholeOriginalSourceUiE2eFamilies": 8,
+    "execution": "unexecuted; original Source credential/session/browser callbacks remain retained unchanged",
+    "sourceCausalCredit": 0
+  },
+  "repairedBehaviorOrRefactor": "none yet; finite actual implementation/dependency proposal remains separately pending",
+  "newProductCredit": 0,
+  "totalSourceCausalCredit": 0,
+  "noUnexpectedUnhandledErrorLabel": true
+}
