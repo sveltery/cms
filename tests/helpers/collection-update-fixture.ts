@@ -1,4 +1,4 @@
-import { Miniflare } from 'miniflare';
+import { asyncD1StorageFor } from './async-d1-storage.ts';
 import { openD1 } from '../../src/lib/server/database/d1.ts';
 import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
 import { join } from 'node:path';
@@ -8,10 +8,7 @@ export async function collectionUpdateStorage(target: 'Node' | 'D1', directory?:
     const database = openSqlite(directory ? join(directory, 'cms.sqlite') : ':memory:');
     return { database, close: () => database.close() };
   }
-  const runtime = new Miniflare({ modules: true,
-    script: 'export default { fetch() { return new Response("collection update fixture"); } }',
-    compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0, cf: false,
-    d1Databases: { DB: 'cms-collection-update' }, d1Persist: directory ?? false });
-  const database = openD1(await runtime.getD1Database('DB'));
+  const { runtime, binding } = await asyncD1StorageFor('cms-collection-update', directory);
+  const database = openD1(binding);
   return { database, async close() { await database.close(); await runtime.dispose(); } };
 }

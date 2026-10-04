@@ -1495,6 +1495,52 @@ The five new production dependencies remain exactly `blurhash@2.0.5`, `image-siz
 
 The current 1472/280/15/7 and 21 Vitest/secured Source 7/default 65/Node 65 pass evaluates 7dbe only. New combined-head hosted gates and final review/acceptance must qualify the media dependency union; actual media Main's post-push outcome is not claimed by this proposal. The original fifteen-minute validate limit, 180-second host startup/30-second kill limits, assertions, fixture isolation and browser sandbox remain intact. Standing configured request 5976771105/quota-no-verdict 5976772262 is not repeated, and the unresolved attachment attempt is not retried. CFS-01/02/03 remain foundation decisions pending Root's explicit record; the full CMS and the eleven canonical Source families remain unfinished with zero additional Source execution/causal credit.
 
+
+## DT1-01: remaining direct D1 fixture transport
+
+EmDash 1.1.0 authority remains immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`,
+including `packages/cloudflare/src/db/d1-dialect.ts`. The
+[paired transport record](../../docs/d1-fixture-transport.md#remaining-direct-database-and-collection-update-fixtures)
+and [original Native family](../../tests/d1-direct-fixture-transport.test.ts)
+record a test-only harness substitution proposed in
+[PR #96](https://github.com/sveltery/cms/pull/96): the direct database and
+collection-update fixtures replace synchronous `getD1Database` proxies with the
+published asynchronous real workerd D1 transport. Their dedicated runtime,
+`cms-test-d1` and `cms-collection-update` identifiers, supplied persistence
+directories and original custom Worker dispatch are preserved. Existing
+schema-admin pooling/default/persistent behavior and the original transport
+Worker/binding bodies remain unchanged. Product drivers, providers, dependency
+versions, Source/native callbacks and assertions, auth behavior, whole normal
+commands and deadlines are unchanged. The private transport host is reserved by
+the test-only wrapper; application requests retain their original
+request/environment/execution context and fetch handler.
+
+At test-first `4ae51e2b`, the whole new four callbacks have two genuine Native
+value failures: each actual fixture performs 135 synchronous waits against zero,
+after all ordinary real D1 value/typed-binding/metadata/rollback assertions have
+succeeded. Custom Worker dispatch and exact original-identifier persistent
+reopen controls already pass. Infrastructure failures/cancellations/skips/todos
+are zero. The complete baseline receipt/log retain the actual result and four
+original whitespace-only console lines. An exact-path `.gitattributes` exemption
+keeps this byte-exact baseline log and makes the documented owned diff check pass;
+all other files retain their whitespace checks. Root qualified the unchanged extraction
+seam and exact three-helper repair before application at `2b6db0db`; the same
+whole four pass. A post-green owned cleanup refactor preserves all titles,
+fifteen static assertions and timeout expressions; all four pass again with
+zero bad counts. Complete baseline/fixed/refactored logs and receipts are linked
+from the paired feature record. Close-failure cleanup itself has static review
+coverage only. No earlier hosted failure causality is established; no new race,
+principal/credential/session/signature or protected HTTP probe is executed.
+This earns zero additional copied EmDash credit or deployed D1 support.
+
+Actual public Main `ab43accd4de235b07a22dd0ac24289605902d959` is adopted by
+ordinary merge `079b96f7`. Its package, full Source patch, seven media notices,
+validation commands and guards remain exact. DT1-01 decision status: Root
+specifically authorized bounded native harness development. Final exact-head
+whole normal/secured CI and independent/configured review, PM approval, author
+expected-head merge and post-Main verification remain pending. Other direct
+Miniflare fixtures and full product parity remain separate unfinished scope.
+
 ## Proposed native doctor command
 
 Authority is EmDash 1.1.0 immutable
@@ -1571,3 +1617,32 @@ are 520 packages and 535 snapshots. The actual public Main14 union still needs
 its own whole thirteen normal stages, nine secured sandboxed browser launches,
 fresh independent/configured review, final DC acceptance, Root exact-head
 approval, author expected-head regular merge and actual post-Main verification.
+
+### Native doctor: actual public fixture96 Main integration proposal
+
+The exact Main14 union is now applied locally through ordinary merge
+`1d2ca68bac64362e05bc898ebedbb25d6d19a14a`, tree
+`ff85e1235c9528165bb2b5e367801ab3deb8e5a1`, after specific finite development
+qualification. The complete 1,697-entry expected tree and whole owned
+`git diff --check` match. This is a local development receipt; PR #98 still
+has its original test-only public head and no current-union gate or Main
+runtime landing is inferred.
+
+The next ordinary-union proposal adopts actual public Main
+`343c0ff2e69e66e03b848d258da7c288e9a67223`, the regular merge of fixture PR #96.
+Its entire compatibility history is retained as the prefix, followed by the
+entire owned doctor history since public Main14. The new `.gitattributes`
+preserves both the whole incoming fixture-evidence comment/literal rule and all
+six existing doctor literal rules. No global exemption, raw-byte trimming,
+Source test/body change or private provider import is introduced. All incoming
+fourteen fixture/helper/evidence changes are retained whole; approved package,
+520/535 lock records, Source authorities, notices/policies/patch and original
+normal/secured commands, sandbox and deadlines remain unchanged.
+
+Final current thirteen normal stages and nine secured browser launches wait
+for the actual combined public Main that also includes fixture PR #97. The
+next fixture is a pending public prerequisite, not privately imported here.
+Fresh/configured final-head review, specific final DC decisions, Root exact-head
+approval, author expected-head regular merge and actual post-Main validation
+remain pending. Full Source users/runner, remote D1 and scheduler heartbeat or
+scheduled-publishing execution remain unfinished; Source causal credit is zero.

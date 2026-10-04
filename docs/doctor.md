@@ -115,7 +115,7 @@ passes against the actual built official Worker and maintenance module: static
 wiring passes, explicit incomplete-scheduler coverage warns, and the deliberately
 missing local database still fails additively. No HTTP or protected probes run.
 
-The current integration proposal preserves actual public Main14
+The applied local integration preserves actual public Main14
 `90d62391e7ddc61f41f8f3dad9e7077c9fc9de52`, its complete Source chain and all prior
 compatibility records. Existing lockfile records, policies, media patch/notices,
 Source callbacks, thirteen normal stages and nine secured browser commands,
@@ -128,3 +128,15 @@ Full scheduler execution/heartbeat, full Source users and migration runner,
 remote/deployed D1 inspection and the other CLI commands remain unfinished. The
 paired [compatibility record](../parity/emdash/compatibility.md) retains each
 observable substitution and its pending decision status.
+
+## Public prerequisite integration status
+
+The Main14 union is locally committed as `1d2ca68bac64362e05bc898ebedbb25d6d19a14a`,
+with the exact qualified tree and passing whole owned whitespace check. The next
+proposal adopts actual public fixture96 Main
+`343c0ff2e69e66e03b848d258da7c288e9a67223`, retaining all incoming fixture/helper
+bytes, full compatibility histories and the combined seven literal whitespace
+rules. No public doctor runtime landing is claimed yet. Final full normal and
+secured gates wait for actual public fixture97 integration as well; review,
+final specific compatibility acceptance and expected-head author merge remain
+pending. No pending feature branch is used as an implementation prerequisite.

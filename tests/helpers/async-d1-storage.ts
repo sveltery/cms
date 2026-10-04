@@ -75,9 +75,30 @@ function bindingFor(runtime: Miniflare, bindingName: string, lease?: {
   };
 }
 
-async function newRuntime(d1Databases: Record<string, string>, directory?: string) {
+// A dedicated fixture may keep its original Worker fetch handler. Only requests
+// to the private transport host go to the real D1 transport; application requests
+// retain their URL, method, headers, body, environment and execution context.
+const customWorker = `
+import transport from './transport.js';
+import application from './application.js';
+export default {
+  ...application,
+  fetch(request, env, context) {
+    return new URL(request.url).hostname === 'cms-d1-fixture.invalid'
+      ? transport.fetch(request, env)
+      : application.fetch(request, env, context);
+  }
+};
+`;
+
+async function newRuntime(d1Databases: Record<string, string>, directory?: string, script?: string) {
+  const scripts = script === undefined
+    ? [{ type: 'ESModule' as const, path: `${root}/worker.js`, contents: worker }]
+    : [{ type: 'ESModule' as const, path: `${root}/worker.js`, contents: customWorker },
+      { type: 'ESModule' as const, path: `${root}/transport.js`, contents: worker },
+      { type: 'ESModule' as const, path: `${root}/application.js`, contents: script }];
   const runtime = new Miniflare({ modulesRoot: root,
-    modules: [{ type: 'ESModule', path: `${root}/worker.js`, contents: worker }, ...await modules],
+    modules: [...scripts, ...await modules],
     compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0, cf: false,
     d1Databases, d1Persist: directory ?? false });
   try { await runtime.ready; return runtime; }
@@ -159,4 +180,10 @@ export async function asyncD1Storage(directory?: string) {
     },
     binding: bindingFor(runtime, bindingName, { closed: () => closed, pending })
   };
+}
+
+/** Dedicated real runtime with an existing fixture's exact identifier and script. */
+export async function asyncD1StorageFor(databaseName: string, directory?: string, script?: string) {
+  const runtime = await newRuntime({ DB: databaseName }, directory, script);
+  return { runtime, binding: bindingFor(runtime, 'DB') };
 }
