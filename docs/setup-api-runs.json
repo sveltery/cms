@@ -579,6 +579,38 @@
         }
       ],
       "limits": "Read-only compiler-host overlay only. No assertion, physical media/provider, protected HTTP/auth/principal or full gate evidence; exact amendment remains held for separate PM qualification."
+    },
+    {
+      "kind": "Exact qualified dashboard constructor amendment actual check/build",
+      "head": "a2ea950178d505d756340befd009bbaecbf259c6",
+      "PMQualification": "docs/setup-api-dashboard-type-view-qualification.json",
+      "candidateManifestSha256": "b7a301b23e028edceb5b636f99b540b4e511ce68d6f9928d7f2965dc493ab495",
+      "check": {
+        "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm check",
+        "exit": 0,
+        "errors": 0,
+        "warnings": 0
+      },
+      "build": {
+        "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm build",
+        "exit": 0
+      },
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/dashboard-type-adapter-check.log",
+          "bytes": 216,
+          "sha256": "af4f05f3925311ec09d5e0d926529bdf98eef3715308f576cd5e5fd48d7ca8ad"
+        },
+        {
+          "path": "docs/setup-api-evidence/dashboard-type-adapter-build.log",
+          "bytes": 43511,
+          "sha256": "58fba008fc9b1c4580812097b4cefc914baf3bc4d45c9f285b9175872ad6523d"
+        }
+      ],
+      "Source16Rerun": false,
+      "reason": "Per exact PM qualification, erased constructor views do not supply missing actual public media provider; unchanged Source16 rerun would add no evidence.",
+      "SourceCausalCredit": 0,
+      "limits": "Actual check/default build only. Recorded Source16 value failures persist; no dashboard HTTP/auth/principal probe, no full provider/UI/D1/hosting/normal/secured acceptance. Future ordinary public Mainfd1f union and separate package/doc qualification remain pending."
     }
   ],
   "latest": {
@@ -610,6 +642,15 @@
       "wholeFamilyGreen": false,
       "latestOutcome": "actual missing public media provider SQL caught; all original success assertions fail"
     },
-    "completedCausalSourceGreenCredit": 1
+    "completedCausalSourceGreenCredit": 1,
+    "actualCheck": {
+      "head": "a2ea950178d505d756340befd009bbaecbf259c6",
+      "errors": 0,
+      "warnings": 0
+    },
+    "actualDefaultBuild": {
+      "head": "a2ea950178d505d756340befd009bbaecbf259c6",
+      "exit": 0
+    }
   }
 }

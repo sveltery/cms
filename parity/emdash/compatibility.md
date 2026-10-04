@@ -1427,3 +1427,12 @@ record the unapplied finite proposal and pending PM development qualification,
 final adaptation acceptance/current full checks/reviews/landing. Dashboard green,
 actual media/file provider, Native HTTP/UI/D1/hosting and whole project remain
 incomplete.
+
+The exact constructor/import amendment was development-qualified and applied
+in a2ea9501, without repository method/data/SQL/host/guard changes. Actual
+type/Svelte check0errors/0warnings and default build0 are retained in
+[whole run receipts](../../docs/setup-api-runs.json); these are compile/build
+evidence, without dashboard green or new causal credit. The unchanged16 family
+was not rerun because public media storage remains absent; its observed16 first
+success failures and61 unreached expectations persist. Full final checks/reviews,
+final adaptation acceptance/landing and media/HTTP/UI/D1/hosting remain pending.

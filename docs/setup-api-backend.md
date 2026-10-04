@@ -225,3 +225,13 @@ already reaches16 success-value failures from actual missing public _cms_media,
 leaving61 expectations unreached; correcting types cannot supply that provider
 or earn completed dashboard green. Current Native route, full build/check,
 whole normal/secured gates, reviews and final adaptation acceptance remain pending.
+
+The exact three-file constructor amendment and paired suffixes were qualified
+and applied in a2ea9501. Actual type/Svelte checking now reports0 errors and0
+warnings, and the actual default build exits0; complete logs and exact proof
+are retained in [run receipts](setup-api-runs.json). Per PM qualification, the
+unchanged dashboard16 was not rerun because erased schema casts cannot supply
+missing public media storage. Its original16 value failures/61 unreached expects
+remain retained, with0 completed dashboard red→green credit. Current public
+Mainfd1f adds the separately reviewed SEC1 byte fix; finite ordinary union and
+separate package/docs qualification are pending before final current-head gates.
