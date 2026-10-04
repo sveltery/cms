@@ -1,0 +1,32 @@
+name: Setup wizard whole Source TDD
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  source-browser-18:
+    name: Whole Source SetupWizard browser 18
+    runs-on: ubuntu-22.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: node scripts/check-setup-wizard-source.mjs
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Run all 18 immutable Source component cases in sandboxed Chromium
+        run: timeout --kill-after=30s 360s pnpm exec vitest run --config vitest.setup-wizard-browser.config.ts --reporter=json --outputFile=test-results/setup-wizard-source-18.json
+        env:
+          DEBUG: pw:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: setup-wizard-source-browser-18
+          path: test-results/
+          retention-days: 7
