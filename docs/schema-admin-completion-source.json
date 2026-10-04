@@ -36277,5 +36277,365 @@
       true
     ],
     "historicalCandidateOnly": true
+  },
+  "schemaResponseRuntimeR2": {
+    "revision": "r2",
+    "artifact": "/tmp/schema-admin-completion-response-runtime-proposal-r2/manifest.json",
+    "nativeBase": "ee80b3fe1a22877ad3ef91b15e3104d30a5429c3",
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "productionModule": "src/lib/server/schema/response-contracts.ts",
+    "sourceResponseExports": [
+      "collectionSchema",
+      "collectionResponseSchema",
+      "collectionWithFieldsResponseSchema",
+      "collectionListResponseSchema",
+      "fieldSchema",
+      "fieldResponseSchema",
+      "fieldListResponseSchema",
+      "blockFieldDefinitionSchema",
+      "blockTypeVersionSchema",
+      "blockTypeSchema",
+      "blockTypeResponseSchema",
+      "blockTypeListResponseSchema",
+      "orphanedTableSchema",
+      "orphanedTableListResponseSchema"
+    ],
+    "source22Adapter": "tests/schema-admin-completion/bridges/api-contracts.ts",
+    "adapterBehavior": "Preserve the existing uniform real-Valibot parse/safeParse envelope and existing actual Native create/update input validators; only replace the two always-throw missing response exports with real production response validators. No supplied field/value/output is manufactured.",
+    "proposedExecution": "After SAME fresh runtime finding/transport closure and Root exact-six current-vector qualification, apply exact six regular fix/refactorcommit, guard, ONE unchanged whole Source22, ONE unchanged whole Native8 as requested, ONE unchanged supplementary Native1 against actual productionR2. Retain all prior logs unmodified. No execution performed by sealing.",
+    "frameworkSubstitution": "Actual Valibot1.5.0 validators and issues remain Native. A Source-faithful pre-input custom gate preserves original object/record acceptance, finite adds Source numeric domain. No Zod issue/OpenAPI/prototype/unknown-key equivalence claimed.",
+    "scopeLimits": [
+      "Production response validation module is a real product boundary, not a test-owned always-valid schema. All required/nullable/optional properties, legacy unlimited response listColumns, embedded ascending block version payload shape and original field updatedAt requirement stay explicit.",
+      "This packet does not wire or change actual remotes, HTTP routes, CRUD serialization, schema registry, migrations, block registry, Source field descriptors, or existing consumers. Complete working forms/CRUD is still the ongoing task.",
+      "No Zod issue-shape/OpenAPI metadata equivalence or arbitrary unknown-record key/prototype equivalence is asserted. No stronger output acceptance requirement is inserted into ordinary clients to silently change Source behavior.",
+      "No actual Main15/Search creator0/Tax cache private union, authentication/session/header/HTTP probes, new provider, package/lock/bootstrap/CI changes, test-body/data/clock edits, or repeated old baselines.",
+      "Source22 exercises real collection response contracts; supplementary Native1 targets actual production min/max and ordinary container acceptance. Native8 still mounts unchanged existing forms and carries no completed full UI credit. Whole Source11/242/442, UI138, routes3, registry68/concurrency2 and E2E11 remain incompletely executed. Field/block/orphan full Source family credit is not inferred from supplementary nine-case coverage."
+    ],
+    "sourceAuthorities": [
+      {
+        "path": "packages/core/src/api/schemas/schema.ts",
+        "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "bytes": 14113,
+        "sha256": "e4f783e7852b3480ac6110f5e79736310804ae2cd2452f181c70d27263b0524e",
+        "gitBlob": "57e0338b8e1a7633d1e3409f4a38b39f73469e68"
+      },
+      {
+        "path": "packages/core/src/api/schemas/common.ts",
+        "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "bytes": 4130,
+        "sha256": "9df0fc5f1d40a33f87c131b151278ba639f35013b387c7b7bef15523c11c3e08",
+        "gitBlob": "ba9be767aa9a2c564f3ebfd2c4106ad904324c59"
+      },
+      {
+        "path": "packages/core/src/schema/types.ts",
+        "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "bytes": 18092,
+        "sha256": "92a76aa8192b98e9703ece4b72b5ba1377ca66454b97608b4dfc3804ab3bc698",
+        "gitBlob": "0c2f44156cff829951c52b0dd259fc5ff45bc554"
+      },
+      {
+        "path": "packages/core/src/schema/registry.ts",
+        "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "bytes": 88618,
+        "sha256": "db26cf5bd9c9442c3b41185c879281914410cd9ece94cf2f9716533eb6e71516",
+        "gitBlob": "da7bbcdda224dfca8d9146b2f36659ab90bcac2e"
+      },
+      {
+        "path": "packages/core/src/database/migrations/003_schema_registry.ts",
+        "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "bytes": 3098,
+        "sha256": "ad355793aefcdb02e2d69f8f932d5452a8b89b66d3b180840d7aff278f481863",
+        "gitBlob": "8772c9615e69720581e4d50a0a28f34147943dc9"
+      },
+      {
+        "path": "packages/core/src/api/handlers/schema.ts",
+        "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "bytes": 26015,
+        "sha256": "b9b06fd887c066a8724608963424205517442440fdc844243b24ab1765b11e4a",
+        "gitBlob": "abe31215af8f40b3df4ae4d1be5d06ebbe9342e0"
+      },
+      {
+        "path": "packages/core/src/api/error.ts",
+        "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "bytes": 3644,
+        "sha256": "e191417b83c8314a6a7623f7e35dad793760a66ae8edc2f817042901587ca868",
+        "gitBlob": "cac556e93bb76d42e7a36353cd045ce22638f3ef"
+      },
+      {
+        "path": "packages/core/src/astro/routes/api/schema/collections/[slug]/index.ts",
+        "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "bytes": 2234,
+        "sha256": "2f2e2d5574a79d2a2b5c97b8d903d2d2bdbdeeb4a16121ea95ecbf44a5c8320c",
+        "gitBlob": "f50e6ffb823123da26263a4a13a0954f898ea15f"
+      },
+      {
+        "path": "packages/admin/src/lib/api/schema.ts",
+        "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "bytes": 13774,
+        "sha256": "237d19ee0cb43071ee2060a4a53f575013eeafc2e9da4d8527195c9f18af69ca",
+        "gitBlob": "c18a951a06d8b0dd07eddc1a086ea3cc49726bac"
+      },
+      {
+        "path": "packages/admin/src/lib/api/client.ts",
+        "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "bytes": 11565,
+        "sha256": "2836ccbff42d891af6c789e01259c6912d7ba73c4799620499f3913081997e18",
+        "gitBlob": "e9c26bde8b401e202b9046bed5ac78c2c26c44b2"
+      }
+    ],
+    "timestampStaticAudit": {
+      "kind": "Pinned read-only static contract audit; no executable Source reproducer or Source bug claim",
+      "fieldType": "packages/core/src/schema/types.ts:320-343 has createdAt only",
+      "migration": "003_schema_registry.ts defines fields created_at and no fields updated_at",
+      "mapper": "packages/core/src/schema/registry.ts:2475-2501 emits createdAt only",
+      "handler": "schema.ts handleSchemaFieldList/Get return expanded stored descriptors",
+      "wire": "Astro GET calls unwrapResult; apiSuccess serializes actual result with Response.json",
+      "consumer": "admin fetchFields/fetchCollection invoke parseApiResponse which unwraps body.data without fieldSchema validation",
+      "schema": "packages/core/src/api/schemas/schema.ts:384-405 separately requires updatedAt",
+      "preserved": "Do not invent timestamps, change original schema expected data, add storage columns, normalize descriptors, or add response-schema validation to an existing ordinary CRUD consumer. Preserve actual Source behavior until a separately qualified pin reproducer and decision exists."
+    },
+    "status": "Unapplied/uncompiled/unexecuted; findings remain open pending same-feature independent closure and exact Root qualification.",
+    "nativeTree": "dcceefea3e57f9be07a47e49dc15ac81d5590070",
+    "priorRuntimeR1": {
+      "path": "/tmp/schema-admin-completion-response-runtime-proposal-r1/manifest.json",
+      "bytes": 15024,
+      "sha256": "f618e0c4858b8cdd15a9608f01f873caaf2c1a94cb19014b7346c8712c029a53",
+      "gitBlob": "e40b0a406cc6e08153cbac14da9f678b551e77c2"
+    },
+    "priorRuntimeR1Applied": false,
+    "priorRuntimeR1Executed": false,
+    "sameFeatureReviewAuthority": {
+      "path": "/tmp/schema103-response-runtime-r1-independent-semantic-review.json",
+      "bytes": 231776,
+      "sha256": "f3ed556393d1ce4d5dd5cd9983fb9e463960eb1f4eaac9241b9d272f7c8223f2",
+      "gitBlob": "131c2d5f3767c37fc44b8dde9b9fca6a7e28bfa9"
+    },
+    "findingsBeingCorrected": [
+      "SCHEMARESPREV01",
+      "SCHEMARESPREV02"
+    ],
+    "actualSupplementaryBaseline": {
+      "testFirstHead": "8ac91af7511f38a0e1c5e215526d35da7520a464",
+      "evidence": "docs/receipts/schema-admin-completion/response-regression-initial-baseline.json",
+      "guardPassed": true,
+      "wholeBaselineExitCode": 1,
+      "executions": 1,
+      "callbacksRegistered": 1,
+      "callbacksExecuted": 1,
+      "completedAssertionValueFailures": 1,
+      "wholeCallbackControls": 0,
+      "preExpectationFailures": 0,
+      "infrastructureFailures": 0,
+      "directExpectsRetained": 4,
+      "directExpectsReached": 4,
+      "partialAssertionsPassed": 3,
+      "assertionsFailed": 1,
+      "invalidAcceptanceResultsObserved": 9,
+      "originalSourceCallbackCredit": 0,
+      "productionRuntimeExecutionCredit": 0,
+      "sourceCausalRepairCredit": 0,
+      "actualExpected": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "actualReceived": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "historicalCandidateOnly": true
+    },
+    "fix": "min/max use v.pipe(v.number(),v.finite()). Every response object/strictObject gates original input with Source typeof-object/non-null/non-array predicate BEFORE actual Valibot copies entries. Records use a separate actual Source Zod4.5.4 constructor/prototype predicate BEFORE actual Valibot record parser. Source object class instances and reversed finite block bounds remain allowed.",
+    "meaningfulRefactor": "Two typed constructors centralize original-input object gates across all response envelopes, nested payloads, admin config and strict block schemas; plain records keep a distinct predicate. No post-copy check can accidentally lose array identity.",
+    "nativeRegressionTransport": {
+      "path": "vitest.schema-admin-response-regression.config.ts",
+      "test": "tests/schema-admin-completion/native/response-finite.test.ts",
+      "uniformMapping": "Only exact Native regression importer and '../candidate-authorities/response-contracts-r1.ts' resolve to actual src/lib/server/schema/response-contracts.ts. No environmental test branch, provider substitute or expected-result branch. Original callback/data/all4expects/defaultNodeclocks are unchanged. The retained5632-byte R1 snapshot and provenance-only guard remain exact historical authorities; the snapshot is not the postfix runtime target.",
+      "originalTestHeader": "Original header describes the candidate baseline; current resolver target is explicitly reconciled here and in both paired Markdown documents."
+    },
+    "sourcePredicateInstalledAuthorities": [
+      {
+        "path": "/workspace/cms-full-schema-admin/node_modules/zod/v4/core/util.js",
+        "bytes": 32376,
+        "sha256": "e50c63d70e8b1abf2968936acf22c9e4e96e735f0af6d367785e0948e46553fa",
+        "gitBlob": "a7029b8475640ef34632e00d7a1d1fb0bfbe5801"
+      },
+      {
+        "path": "/workspace/cms-full-schema-admin/node_modules/zod/v4/core/schemas.js",
+        "bytes": 98236,
+        "sha256": "d19d514ab02c347143f129e2212d63496f2dda4c6ba607cb939f7aa5eb4d8846",
+        "gitBlob": "b6834cb19b65373e4aeb42b07e19901bcc0842b7"
+      },
+      {
+        "path": "/workspace/cms-full-schema-admin/node_modules/valibot/dist/index.mjs",
+        "bytes": 206411,
+        "sha256": "cc7a8f7551082a19178f8e553e34fd23bea774113e3bcc4b914abc91f19a5cd0",
+        "gitBlob": "dde08adfe7774f140d1014edd728217f911403a7"
+      }
+    ]
+  },
+  "schemaResponseRuntimeR1History": {
+    "manifest": {
+      "path": "/tmp/schema-admin-completion-response-runtime-proposal-r1/manifest.json",
+      "bytes": 15024,
+      "sha256": "f618e0c4858b8cdd15a9608f01f873caaf2c1a94cb19014b7346c8712c029a53",
+      "gitBlob": "e40b0a406cc6e08153cbac14da9f678b551e77c2"
+    },
+    "applied": false,
+    "executed": false,
+    "originalProposal": {
+      "revision": "r1",
+      "artifact": "/tmp/schema-admin-completion-response-runtime-proposal-r1/manifest.json",
+      "nativeBase": "62af11df1a628f6b28395668eeaabbb188a71618",
+      "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "productionModule": "src/lib/server/schema/response-contracts.ts",
+      "sourceResponseExports": [
+        "collectionSchema",
+        "collectionResponseSchema",
+        "collectionWithFieldsResponseSchema",
+        "collectionListResponseSchema",
+        "fieldSchema",
+        "fieldResponseSchema",
+        "fieldListResponseSchema",
+        "blockFieldDefinitionSchema",
+        "blockTypeVersionSchema",
+        "blockTypeSchema",
+        "blockTypeResponseSchema",
+        "blockTypeListResponseSchema",
+        "orphanedTableSchema",
+        "orphanedTableListResponseSchema"
+      ],
+      "source22Adapter": "tests/schema-admin-completion/bridges/api-contracts.ts",
+      "adapterBehavior": "Preserve the existing uniform real-Valibot parse/safeParse envelope and existing actual Native create/update input validators; only replace the two always-throw missing response exports with real production response validators. No supplied field/value/output is manufactured.",
+      "proposedExecution": "After NEW fresh runtime review and exact Root qualification, apply exact five, regular commit, guard then one whole unchanged Source22 run; preserve initial18 controls/4preexpect/31expects/7unreached/0causal evidence. Not executed by this proposal.",
+      "frameworkSubstitution": "Pinned Zod object/strictObject/nullish/nullable and array schemas are mapped to actual Valibot1.5.0 object/strictObject/nullish/nullable/array; integer checks use safeInteger. Original Source test import/API envelope is transport-only; native Valibot error shape and metadata/OpenAPI IDs are not converted into Zod errors or claimed equivalent.",
+      "scopeLimits": [
+        "Production response validation module is a real product boundary, not a test-owned always-valid schema. All required/nullable/optional properties, legacy unlimited response listColumns, embedded ascending block version payload shape and original field updatedAt requirement stay explicit.",
+        "This packet does not wire or change actual remotes, HTTP routes, CRUD serialization, schema registry, migrations, block registry, Source field descriptors, or existing consumers. Complete working forms/CRUD is still the ongoing task.",
+        "Only Source22 collection response assertions exercise these proposed validators after qualification. Other exported field/block/orphan response contracts have no executed family credit; full11 families242/442, wholeUI138, routes3, registry68/concurrency2 and E2E11 stay retained and pending.",
+        "No Zod issue-shape/OpenAPI metadata equivalence or arbitrary unknown-record key/prototype equivalence is asserted. No stronger output acceptance requirement is inserted into ordinary clients to silently change Source behavior.",
+        "No actual Main15/Search creator0/Tax cache private union, authentication/session/header/HTTP probes, new provider, package/lock/bootstrap/CI changes, test-body/data/clock edits, or repeated old baselines."
+      ],
+      "sourceAuthorities": [
+        {
+          "path": "packages/core/src/api/schemas/schema.ts",
+          "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 14113,
+          "sha256": "e4f783e7852b3480ac6110f5e79736310804ae2cd2452f181c70d27263b0524e",
+          "gitBlob": "57e0338b8e1a7633d1e3409f4a38b39f73469e68"
+        },
+        {
+          "path": "packages/core/src/api/schemas/common.ts",
+          "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 4130,
+          "sha256": "9df0fc5f1d40a33f87c131b151278ba639f35013b387c7b7bef15523c11c3e08",
+          "gitBlob": "ba9be767aa9a2c564f3ebfd2c4106ad904324c59"
+        },
+        {
+          "path": "packages/core/src/schema/types.ts",
+          "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 18092,
+          "sha256": "92a76aa8192b98e9703ece4b72b5ba1377ca66454b97608b4dfc3804ab3bc698",
+          "gitBlob": "0c2f44156cff829951c52b0dd259fc5ff45bc554"
+        },
+        {
+          "path": "packages/core/src/schema/registry.ts",
+          "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 88618,
+          "sha256": "db26cf5bd9c9442c3b41185c879281914410cd9ece94cf2f9716533eb6e71516",
+          "gitBlob": "da7bbcdda224dfca8d9146b2f36659ab90bcac2e"
+        },
+        {
+          "path": "packages/core/src/database/migrations/003_schema_registry.ts",
+          "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 3098,
+          "sha256": "ad355793aefcdb02e2d69f8f932d5452a8b89b66d3b180840d7aff278f481863",
+          "gitBlob": "8772c9615e69720581e4d50a0a28f34147943dc9"
+        },
+        {
+          "path": "packages/core/src/api/handlers/schema.ts",
+          "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 26015,
+          "sha256": "b9b06fd887c066a8724608963424205517442440fdc844243b24ab1765b11e4a",
+          "gitBlob": "abe31215af8f40b3df4ae4d1be5d06ebbe9342e0"
+        },
+        {
+          "path": "packages/core/src/api/error.ts",
+          "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 3644,
+          "sha256": "e191417b83c8314a6a7623f7e35dad793760a66ae8edc2f817042901587ca868",
+          "gitBlob": "cac556e93bb76d42e7a36353cd045ce22638f3ef"
+        },
+        {
+          "path": "packages/core/src/astro/routes/api/schema/collections/[slug]/index.ts",
+          "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 2234,
+          "sha256": "2f2e2d5574a79d2a2b5c97b8d903d2d2bdbdeeb4a16121ea95ecbf44a5c8320c",
+          "gitBlob": "f50e6ffb823123da26263a4a13a0954f898ea15f"
+        },
+        {
+          "path": "packages/admin/src/lib/api/schema.ts",
+          "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 13774,
+          "sha256": "237d19ee0cb43071ee2060a4a53f575013eeafc2e9da4d8527195c9f18af69ca",
+          "gitBlob": "c18a951a06d8b0dd07eddc1a086ea3cc49726bac"
+        },
+        {
+          "path": "packages/admin/src/lib/api/client.ts",
+          "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 11565,
+          "sha256": "2836ccbff42d891af6c789e01259c6912d7ba73c4799620499f3913081997e18",
+          "gitBlob": "e9c26bde8b401e202b9046bed5ac78c2c26c44b2"
+        }
+      ],
+      "timestampStaticAudit": {
+        "kind": "Pinned read-only static contract audit; no executable Source reproducer or Source bug claim",
+        "fieldType": "packages/core/src/schema/types.ts:320-343 has createdAt only",
+        "migration": "003_schema_registry.ts defines fields created_at and no fields updated_at",
+        "mapper": "packages/core/src/schema/registry.ts:2475-2501 emits createdAt only",
+        "handler": "schema.ts handleSchemaFieldList/Get return expanded stored descriptors",
+        "wire": "Astro GET calls unwrapResult; apiSuccess serializes actual result with Response.json",
+        "consumer": "admin fetchFields/fetchCollection invoke parseApiResponse which unwraps body.data without fieldSchema validation",
+        "schema": "packages/core/src/api/schemas/schema.ts:384-405 separately requires updatedAt",
+        "preserved": "Do not invent timestamps, change original schema expected data, add storage columns, normalize descriptors, or add response-schema validation to an existing ordinary CRUD consumer. Preserve actual Source behavior until a separately qualified pin reproducer and decision exists."
+      },
+      "status": "Unapplied, uncompiled, unexecuted; no Source or Native parity/acceptance credit."
+    },
+    "originalPairedCandidates": [
+      {
+        "path": "docs/schema-admin-completion-source.json",
+        "candidate": "/tmp/schema-admin-completion-response-runtime-proposal-r1/candidates/docs/schema-admin-completion-source.json",
+        "bytes": 1357368,
+        "sha256": "eb7464d56466f91bad846ce16c188bf4d72aa4ada373b171fdb791e877cfe09b",
+        "gitBlob": "0e80556bbc69483119096d8c556175a8d32498d3"
+      },
+      {
+        "path": "docs/schema-admin-completion.md",
+        "candidate": "/tmp/schema-admin-completion-response-runtime-proposal-r1/candidates/docs/schema-admin-completion.md",
+        "bytes": 13343,
+        "sha256": "fdc5af8cbdc3eb07d37d611b9af4e53df175e9ef9f4de93c70291c39dd64b69b",
+        "gitBlob": "45f4bbc6e1e078b66439d6b3d889888e33dcfa95"
+      },
+      {
+        "path": "parity/emdash/compatibility.md",
+        "candidate": "/tmp/schema-admin-completion-response-runtime-proposal-r1/candidates/parity/emdash/compatibility.md",
+        "bytes": 428860,
+        "sha256": "55c9b93ed1fe2fc23f8d74e7bfb2983ac0061961ff6005aefd83b4932cc1e78a",
+        "gitBlob": "37f673ed435cfe13a9d2b43d537a2b4f85a0fe5c"
+      }
+    ]
   }
 }
