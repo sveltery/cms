@@ -7,6 +7,7 @@ import { pendingTrashIndexStatements } from './trash-index.ts';
 import { schemaMigration } from './schema-migrations.ts';
 import { optionsMigration } from './options-migrations.ts';
 import { taxonomyMigration } from './taxonomy-migrations.ts';
+import { blockStorageMigration } from '../blocks/storage-provider.ts';
 import { metadataFidelityMigration } from './metadata-fidelity-migrations.ts';
 import { mediaAttributionMigration, directedRelationsMigration, menusMigration,
   sectionsWidgetsStorageMigration, commentsMigration, redirectsMigration } from './canonical-features/providers.ts';
@@ -49,7 +50,7 @@ export const CMS_MIGRATIONS: readonly CmsMigrationProvider[] = [
     async expectedObjects(database) {return authIdentitySchemaObjects(database.db);}},
   lifecycleMigration, optionsMigration, taxonomyMigration, metadataFidelityMigration,
   mediaAttributionMigration, directedRelationsMigration, menusMigration,
-  sectionsWidgetsStorageMigration, commentsMigration, redirectsMigration
+  sectionsWidgetsStorageMigration, commentsMigration, redirectsMigration, blockStorageMigration
 ];
 export const CMS_MIGRATION_VERSION = CMS_MIGRATIONS.at(-1)!.version;
 const trackingStatement = (database: CmsDatabase) =>

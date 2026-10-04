@@ -1578,6 +1578,259 @@ The literal `docs/receipts/runtime-port-lifecycle/baseline.log -whitespace` rule
 All prior compatibility and feature history, both teams' full raw receipts, original callbacks, Source authorities, runtime helpers, package chain, locks and validation guards remain unchanged. This documentation check repair earns zero Source or product parity credit. [CI #459](https://github.com/sveltery/cms/actions/runs/37198772585) belongs to the prior combined head: at this development checkpoint its browser job passed and validation was still running. Its eventual result remains historical. One changed final head's complete original 13-stage validation and secured browser checks, same-feature review closure, actual configured automatic review and exact-head manager approval remain pending. No manual review repeat or author merge has been attempted.
 
 
+## Block registry, Source083 storage and creation defaults — proposed [PR #91](https://github.com/sveltery/cms/pull/91)
+
+The [whole-source ledger](../../docs/block-registry-source.json) preserves fifty complete authorities at EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, including all four original owned test families (nineteen declarations and fifty-eight expect expressions), their complete reset helper and MIT notices. Public Draft PR91 remains the test-only checkpoint `caeabb92200073a2d21c301141637614a7ac8de0`. The separately qualified isolated candidate `b1b8c8381d15a693cd7c94b3c1948093fc4adc20` uses actual published Draft14 `dd80fe3f942aef2e44d3df92c28a818b5a45897c`; no unpublished canonical-storage payload is consumed. Actual public Main14 `90d62391e7ddc61f41f8f3dad9e7077c9fc9de52` has since landed from ordered parents ab43/23b93. OWN91 production adoption remains unapplied and requires separate Root development qualification; the preceding dd80 candidate receipt is isolated evidence.
+
+| Record | Pinned behavior and local candidate adaptation | Evidence and acceptance status |
+| --- | --- | --- |
+| BR-01: complete original tests and runtime host | The entire original Node registry/migration/contract families retain their data and assertions. Their sixteen callbacks and eleven additional ordinary raw-D1 registry/migration callbacks use original Node Vitest globals/default deadlines. The three original workerd callbacks retain original test/hook30000ms through the existing real raw-binding constructor seam. Whole Source reset/catalogue bodies remain exact, with a finite four-name logical/physical facade; unknown names delegate unchanged. | At isolated candidate b1b8c838, all four families and thirty callbacks pass. Fifty full pinned authorities/606359 bytes and original19/58 are byte/AST verified. Initial actual Main8 Source execution reached zero callbacks; isolated runtime-before15 had five initial pure controls and twenty-five product pre-expect failures. Completed Source causal value-red credit is zero. PG and official compiled Worker-pool parity remain unqualified; no specific framework acceptance is recorded. |
+| BR-02: real registry dependency closure | The candidate ports complete Source BlockTypeRegistry, block contracts/types/values, migration083 and real MediaUsageRepository/schema-invalidation/activation/capture support, with finite physical-name, module-resolution and erasable-constructor adaptations. Actual published schema generator/cache are reused. Registered CmsDatabase fixed SQL lists use real atomicBatch; unsupported interactive D1 transactions still fail. The complete Source SchemaError declaration provides one live identity. Source ec_ content prefix is retained. | Thirty-two exact reviewed files contain twenty-seven whole adapted Source bodies and five explicit Native support seams. Full checker reports zero errors/warnings at b1b8c838. Broader usage scheduler/repair/API/readiness, complete Seed apply/export/content-refresh integration and product block UI remain unfinished. No noop invalidation or fake success is introduced. Passing block-family tests do not establish complete Media usage or Seed parity. Specific framework/identity acceptance remains unrecorded. |
+| BR-03: append15 block storage and creation defaults | Pinned Source083 requires two physical block tables and two explicit indexes; Source003/027 require metadata creation timestamp/field defaults and omitted fresh comments auto-approval1. Candidate append15 preserves frozen/public providers1–14, copies all26 collection and17 field columns, and restores existing views/triggers/operator indexes in actual creation order before absent future provider triggers. Complete catalogue SQL is guarded before writes. External metadata foreign keys and unknown partial installations fail before repair. | Native24 passes on real Node and raw-D1: historical8/14 row/object/content preservation, stored false0, exact fresh defaults, persistent reopen with startup writes0, near-miss refusal and all twelve rebuild-DDL rollback failure points. Original actual Main8 Native6 completed value reds are retained; isolated corrected Native24 baseline had twenty-two completed assertion reds and two product pre-expect failures. No actual Main15 landing or Source acceptance is claimed. Native non-null/check layout and complete nullable Source legacy/content-table DDL remain separate gaps. |
+| BR-04: creation API and metadata CAS | Pinned Source027 omission yields auto-approval1; explicit false is preserved. Source003 SQLite datetime defaults store UTC literals. The candidate accepts only calendar-valid exact Source SQLite literals alongside unchanged ISO inputs; physical CAS equality remains literal. Monotonic next-timestamp calculation parses that SQLite form as UTC. | Native whole callbacks verify omitted/explicit-false creation, existing persisted false0, invalid calendar rejection, unchanged ISO tokens, stale/reordered tokens and future literal+1ms behavior in America/New_York on both real runtimes. These finite API/default changes remain proposed and have no specific acceptance decision recorded. Frozen provider defaults are unchanged; existing data is never relabeled. |
+| BR-05: D1 reserved catalogue boundary | D1 forbids row reads and foreign-key PRAGMA on reserved _cf_ internal tables. Only the actual public RawBindingD1Adapter skips these reserved tables in the production FK scan and Native test row snapshots. Entire object/SQL catalogues remain captured and guarded; Node operator objects using this prefix remain fully inspected. | Initial real D1 failures are retained separately from completed assertion reds. The reviewed finite correction allows whole54 to complete. The preserved Source reset/catalogue helper is unchanged. This adapter boundary is an explicit proposed runtime difference with no specific acceptance recorded; it grants no auth/security parity credit. |
+
+The candidate's full Native24/Source30 run and checker pass are isolated development evidence. Receipt `/tmp/block-registry-public14-final54-green-receipt.json` (SHA256 `969adf3b0f4903e0edc0c371fe493cc2c15f8afaaf1e0c9f23f9399c638b3a2d`) preserves all logs and the complete failure/correction chronology. Initial first-provider15 failures exposed missing public14 Redirect triggers and forbidden D1 FK introspection; exact reviewed corrections preserve all Source bodies. The final Native-only correction preserves the legitimate pending-provider9 option/revision audit prefix when upgrading historical8, while historical14 has no pending prefix. Full checker and all54 callbacks pass after that correction. No initial control or pre-expect failure earns completed Source causal credit.
+
+OWN91 adoption of actual Main14, provider15 application, shared package gate registration, complete combined normal and secured-browser runs, exact final independent/configured review, specific manager acceptance and approval, author merge and post-Main checks remain pending. No Source behavior/framework/API acceptance, hosted D1 production support, complete block editor/seed/API feature, broader Media usage completion or full EmDash parity is inferred from this candidate.
+
+
+### BR-01–05 actual Main14 development application snapshot
+
+The preceding block adoption and public-caeabb status rows are retained as preparation snapshots. After Root's exact development qualification, OWN91 ordinarily merges actual public Main14 `90d62391e7ddc61f41f8f3dad9e7077c9fc9de52` at `3c5af08f`; its predicted and actual merge tree match exactly. Regular commits preserve the Native test-first fixture (`4a17a424`), real whole Source/runtime closure (`09c300d8`), append15/default preservation (`071352a6`) and exact gate/paired documentation wiring (`666b16a2`). All original seven published authority/fixture commits remain in the history. The only additional code correction removes one redundant terminal LF from the extracted Source SchemaError support declaration (442 to441 bytes), under separate exact Root qualification; its class identity, values, notices and all Source bodies are unchanged.
+
+At local snapshot head `666b16a22f65cf7e0f9fac5567ef178110dc4a5c`, tree `478e99ec2527ab236776d8163cf51422a4fb68c9`, the registered Native gate passes all24 callbacks on real Node/raw-D1 and the registered whole Source gate passes all30 callbacks across all four original owned families. The guard verifies fifty whole pinned authorities/606359 bytes, original19 declarations/58 expect expressions, entire original reset helper and original Node globals/default deadlines versus SourceD1 test/hook30000ms. Full checker passes0errors/0warnings. Original Native6 actual Main8 value reds, isolated Native22 completed assertion reds/two product pre-expect failures, initial Source0 callbacks and later5 initial pure controls/25 product pre-expect failures remain separate. Completed Source causal value-red credit and specific Source behavior/framework/API acceptance remain zero.
+
+The current integrated receipt `/tmp/block91-actual-main14-first54-green-receipt.json` (3325 bytes, SHA256 `b31ccd4fb092ee0fa3ccbffccb8a906ac99b6ef86b2b738c9ece1b45d834a2d1`) binds Native3293 bytes/SHA256 `125d11f45685c54217e2ac344a8c87590a5315da89e70f48976ddf87de7218f7`, Source1032 bytes/SHA256 `b83971eb282c76162e3a2fc02960b793a89fe8b43729b778b1a674dd85297399` and checker685 bytes/SHA256 `2f0be787e0aaa83ffc71c44121dc7c602b277ca443aad4726e6260aedd106554`. The actual public Main6947 package's complete Source chain, canonical49 guard, shared Media95 dependencies/patch metadata, frozen lock and all other scripts remain intact; only the two block scripts and terminal commands are added. The complete incoming Main405022 compatibility prefix remains unchanged before owned BR appends.
+
+Local provider15 registration and these real current whole-family greens do not establish broad live cache/usage/capture readiness, scheduling/repair/API/UI, complete Seed/content integration, PG or official Source Worker-pool parity. Final public changed-head thirteen-stage normal and nine secured official browser launches, fresh exact review, configured review once, specific Root decision and approval, author expected-head merge15 and post-Main verification remain pending. No earlier dd80 isolated or actual Main14 root451 success is attributed to this feature, and no new protected probe or private implementation import is added.
+
+### BR-01–05 CI457 combined regression baseline and proposed correction
+
+The preceding actual Main14 narrow54/checker development proof is retained. On public OWN91 head `e396b23a3eac4bb3174b58169039651541e4fa7a`, [CI457](https://github.com/sveltery/cms/actions/runs/37197608318) completes dependency installation and checker0errors/0warnings, then fails the service phase:1472 callbacks,1425 passes,47 failures,0 cancelled/skipped/todo. Twenty-eight first failures are Native complete-current marker expectations still stopping at14 instead of actual append15; sixteen are real provider15 catalogue-guard rejections of unrelated ordinary operator tables added before startup's batch; three are real Comments readiness=false outcomes because the read-only check still expects default0 after Source027/default1 is installed. Subsequent assertions and mandatory phases4–13 are unreachable and receive no inferred pass credit. The exact complete validate log remains329151 bytes/SHA256 `2c7b66ed4476810f8324fe4bf97acbb0dad4e14b006eb1fbbd2c28220da00e8c`.
+
+The unchanged browser job succeeds: seven whole groups14/30/25/3/35/4/3, default65 and Node65, nine official Chromium1243 launches with sandbox and original deadlines. Its full log remains397323 bytes/SHA256 `97315ea9ad9d05b640bb591d23b8181e10ff917d7eb59bebce1a6a766db0e2ef`. These results establish only this historical head and do not repair service failures or establish block Source causality. The once-requested configured review completes on the same e396 head without major findings (request5979342301, summary5979344599, result5979376820); it is distinct from future corrected-head independent review and PM approval.
+
+The finite BR-03 production correction is proposed, not applied or accepted: compare all previously captured catalogue names, SQL, kinds and creation order exactly; retain new managed/core-metadata objects and all new views/triggers in that guarded snapshot; allow newly added unrelated ordinary tables/indexes while checking their real foreign keys before any startup write. New external references to either rebuilt metadata parent invalidate the batch, and the actual RawBindingD1Adapter-only _cf_ PRAGMA exclusion remains explicit (BR-05); Node names remain fully inspected. This is a scoped prerequisite calculation, not a catalogue bypass. Frozen providers1–14, all Source bodies and unknown-partial/near-miss rejection stay exact.
+
+The proposed BR-04 readiness correction selects Source027 default1 only for an exact contiguous installed1–15 list, retaining historical canonical5/14 default0 and every original SQL literal/type/index/missing-dependency negative. Readiness remains read-only, without migration, repair or memoization. Four new ordinary Node/raw-D1 schema callbacks must first execute against old production to retain their actual15 value reds and14 controls, then execute against the finite correction; no inferred red, identity, session or new race probe is added.
+
+Six existing Native test files would extend only their unchanged complete latest-installation/reopen/rollback marker contract14→15. Their original historical1–5/1–8 assertions, fixtures, content/operator snapshots, datasets, original callbacks and deadlines remain exact; the genuine provider14 rollback assertion remains and an appended15 reach assertion is added. All original Source expectations, fifty authority bodies,19 declarations/58 expect expressions and reset/configured deadlines remain unchanged. No isolated protected-family test rerun is proposed. Completed Source causal value-red credit remains0.
+
+BR-01 host/constructor adaptation, BR-02 real support-library namespace/cache/SchemaError/atomic seams, BR-03 Native non-null/check and fail-closed startup differences, BR-04 finite creation/API/CAS behavior and BR-05 actual D1 reserved boundary each need a specific bounded PM decision after final review/gates. The existing broad live usage/cache/capture activation, scheduler/repair/API/UI and full shared Seed/content/nullable-DDL gaps remain unfinished. Actual public fixture96 merge343c is separate from the still-unlanded97 union. No unchanged CI457 repeat, private prerequisite, Main15 acceptance or full parity claim is made; final public union qualification, corrected-head mandatory13+9, fresh review, PM approval, author expected-head merge and post-Main checks remain.
+
+### BR-01–05 qualified CI457 correction development outcome
+
+Root's exact eleven-file qualification (`/tmp/root-block91-ci457-exact11-development-qualification.json`,2288 bytes/SHA256 `8f68768e39db78401d80169593d4722e336351c07ccce035b2674f8a23e4a902`) explicitly accepts BR-01–05 for development within their bounded proof limits. This development decision supersedes no historical preparation status and supplies no final exact-head Source/framework/API acceptance or merge approval. Fresh independent static review verifies all eleven before/candidate vectors, whole Source50/606359/four-family19/58 and complete paired prefixes (`/tmp/block91-independent-initial-e396-and-correction-r1-review.json`,40516 bytes/SHA256 `dd94422d7f5708a011bc60980d4b2292d9da396f622361e4c327f5e8d48e2265`).
+
+The test-only regular commit `e725c2a0108ee6dd3992e1377834faa0f50d51a0` applies six qualified Native latest-marker successors and four new ordinary Comments-readiness callbacks first. Against unchanged old production, the new whole four-case run reaches two genuine installed15 `false !== true` assertion reds at line28 on Node/raw-D1 and two complete installed14 controls, with zero fixture/pre-expect failures. Later installed15 assertions are unreachable in that red baseline and are not inferred green. Exact production commit `83effbd8a52ed5e0a850384fe62c0c3c70c77353` then applies the scoped catalogue guard and versioned read-only Comments readiness; all four callbacks pass without changing their assertions, data or30000ms deadline. This adds two completed Native causal value reds; completed Source causal value-red credit remains0.
+
+On that corrected production head, the original Native24 callbacks pass, the new readiness4 pass separately, all unchanged original Comments22 literal/type/index negatives plus4 missing-dependency callbacks pass, all original Source30 callbacks/four whole families and Source50 guard pass, and checker reports0errors/0warnings. Every command exits0 with no cancelled/skipped/todo callback. Whole original Source test/expectation/reset/authority bytes and Node/D1 deadlines remain unchanged. The retained original Native command enumerates only its three prior files, so its log named `corrected-native28` actually contains24; the new four-case log is separate. A finite one-argument Native package-command append is proposed so mandatory CI executes all28; no Source-chain command, frozen lock, dependency, script order or clock is changed.
+
+The current outcome snapshot follows the corrected production head with documentation only at `9ed3d9747b8c59bd09577b163adb75c97325453e`. Exact logs: readiness-red2040 bytes/SHA256 `f39837a401cdac38ccd81a642eb4c18f43336d7801e9a152d10a497522d18be0`; original Native24 SHA256 `70bf4cb17a9b345022ae005b1464a990d7d891e819894fe48aaf5ddac8e4dfba`; new readiness4 SHA256 `8e62d720eba6630651456a376f5334ef2ea546f41e11427b9059ac0594f01c9a`; original Comments26 SHA256 `7227759b00fa191afb0b97b4ec768ea93d94d3ae5bc09820b80e5bb91cfac88a`; whole Source30 SHA256 `76b271d32735ab4164483d06d7096429931b6c7037b0c9185e5be82fd9a213c3`; checker SHA256 `e74f7381e230318c8dfb747a850368927682c044b3508bdee6a04cb969a934aa`. The machine receipt retains complete byte vectors and command distinctions; full CI457 logs/failures remain historical rather than replaced.
+
+The sixteen original ordinary-operator guard and twenty-eight latest-marker first failures from CI457 require actual reachability and success in the future corrected combined normal run; those existing protected whole families have not been executed separately. Three combined Comments readiness failures have additional meaningful Native red→green proof, not a repeated combined service result. Public96 merge343c is actual; public97 union is still pending and remains separately qualified before adoption. Final actual-public combined-tree proof, changed-head mandatory13+9 once, fresh exact-head independent/configured review policy, final specific BR decisions, PM approval, author expected-head merge15 and post-Main checks remain required. Broader live usage/cache/capture activation, scheduler/repair/API/UI, full shared Seed/content integration, nullable Source metadata/content DDL, PG and official Source Worker-pool parity remain unfinished.
+
+### BR-01–05 current provider15 boundary and configured documentation finding — 2026-10-04
+
+Actual public Main `b5ed8e06c9c3034e99645ef85022e027130fec51` remains the installed providers 1–14 boundary. OWN91 implementation checkpoint `d8fbc77f7813aa32b528c160ac79d503b09e1925`, tree `c84341d5aaa61196126898010ca487583b163ce2`, ordinarily merges that public Main and implements append15; all 1,783 actual leaves match the qualified union. The finite Source003 timestamp/field defaults, Source027 omitted creation default 1 and exact-installed-15 read-only Comments readiness are implemented here. Frozen providers 1–14 and every existing stored false/0 value remain unchanged. The scoped pre-write catalogue guard preserves captured SQL/order and rejects new managed objects/views/triggers or external metadata FKs while allowing unrelated ordinary tables/indexes. BR-05's actual raw-D1 reserved introspection boundary remains explicit. Complete nullable Source metadata/content DDL, global live usage/cache/capture activation, scheduler/repair, shared Seed/content integration, block API/UI, PG, official Source Worker-pool and deployed hosting remain unfinished. BR-01–05 have development acceptance only; final exact-head decisions/approval and Main15 landing remain pending.
+
+Configured review summary 5979344599 completed on d8 at 2026-10-04T12:29:19.231427Z, triggered by marking the draft ready. Its formal COMMENTED review 5406117202 and P1 inline 4177576062 identify stale current feature documentation in `docs/canonical-feature-storage.md` and `docs/architecture.md`. This is an actual finding, not formal APPROVED or a no-findings verdict; the earlier e396 no-major-issues result remains historical. This docs-only successor gives both affected records a truthful current Main14/candidate15 boundary and retains all their old receipts and status paragraphs verbatim under explicitly labelled historical snapshots. This full compatibility prefix, Source/runtime/assertions/fixtures, Native28 registration, package/lock, CI/bootstrap and literal log attributes remain unchanged. The actual configured-thread reply, resolution and readback must follow exact repair publication; no second manual review request is made.
+
+CI457's full 47-failure service baseline and successful nine-launch browser receipt remain retained. The narrow corrected Native24/readiness4/Comments26/Source30/checker facts remain scoped to their evaluated head, with completed causal Source value-red credit 0. CI463/run37201924020 evaluates d8; a final changed docs head requires its own complete mandatory normal13/browser9 result and independent review before exact manager approval and author expected-head merge. Documentation consistency adds no product or Source parity credit.
+
+## Proposed native doctor command
+
+Authority is EmDash 1.1.0 immutable
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, whole
+`packages/core/src/cli/commands/doctor.ts` (12,019 bytes), whole
+`packages/core/tests/unit/cli/doctor.test.ts` (7,586 bytes; fifteen declarations
+and twenty-six `expect` calls), and the seven retained authorities in the
+[inventory](../../docs/doctor-source.json). The [feature and evidence record](../../docs/doctor.md)
+distinguishes actual command execution, generic inspector Source tests, Native
+persisted SQL/config behavior and unfinished runtime integration. Source MIT
+attribution is preserved; no assertion or Source expected text is changed.
+
+| Record | Source and proposed native behavior | Evidence and decision status |
+| --- | --- | --- |
+| DC-01: command/framework and Worker contract | Source exposes `emdash doctor` through citty/consola and an EmDash Worker module. Native exposes real `pnpm doctor` / `node scripts/doctor.mjs` plus bundled `node build/doctor.js` and a `sveltery-doctor` package bin. The same actual generic diagnostic accepts an explicit host-library Worker contract; the test-only Source adapter supplies the Source identity. Native defaults inspect the actual published local revision-maintenance factory. No test/environment/expected-text detection or external EmDash runtime availability is invented. | Test-first native CLI startup assertion failures are supplemental; the whole Source suite initially fails at module import with zero reached assertions and zero Source causal credit. Runtime application, meaningful Native diagnostic values, exact final gates/review and specific acceptance remain pending. |
+| DC-02: database/schema and read-only inspection | Source opens its database and reads its full migration status, `_emdash_collections`, `users` and Source datetimes. Native explicitly opens read-only, reads the actual native registry/version records and `_cms_collections`, and counts real `_cms_auth_users` authentication identities. The whole Source datetime scanner retains its logic, pages and sample limits after finite imports/table namespaces; this command never calls its normalization/write function. Unknown/gapped native migrations fail rather than becoming a future-version fast path. | These are explicit storage/CLI substitutions, not full Source migration-runner, locking, users/profile or deployed D1 parity. Real persisted SQL and byte-unchanged database tests are registered test-first; diagnostic value assertions and current validation remain pending. Specific acceptance is not yet recorded. |
+| DC-03: scheduler scope | Source doctor checks Cron/EmDash scheduled-handler pairing. Native reports static Cron/revision-maintenance pairing, validates the referenced local maintenance export, and adds an explicit warning that full scheduled publishing, cron execution and heartbeat integration remain unfinished. Node and Cloudflare wiring results remain additive with local database results. | No heartbeat row, fake maintenance implementation or private pending provider is imported. Full runtime scheduling remains a prerequisite owned by its feature. The original dashboard `npx emdash doctor` assertion remains an honestly unfulfilled native command difference. Specific acceptance is pending. |
+| DC-04: TOML parse diagnostics | Pinned Source forwards `smol-toml`'s full error message, including a configuration source excerpt. Proposed native errors report invalid TOML and its actual line/column while omitting the source excerpt; JSONC already reports only its code/location. | Actual pinned parser 1.6.0 returns line 1 / column 28 and embeds the synthetic value for `main = "do-not-print-this" BROKEN`. This is an explicit proposed formatting/privacy difference, not an upstream-bug or Source causal-credit claim. The thirteen-case Native baseline fails at missing CLI startup; later privacy/location assertions are unreached. Specific acceptance is pending. |
+
+Frozen dependency proposal adds only pinned Source `jsonc-parser` 3.3.1 and
+`smol-toml` 1.6.0, their exact package/snapshot/integrity records and verbatim MIT/
+BSD-3-Clause notices. All existing 518 package and 533 snapshot records and both
+lockfile documents, workspace policies, seven media notices and the whole
+image-size patch are preserved. The scripts append one whole Source doctor suite
+to the existing Source chain and a doctor bundle to the existing Node build;
+thirteen normal stages, secured checks, sandbox and deadlines remain unchanged.
+All prior compatibility records remain authoritative. This proposal does not
+mark the full CMS, scheduler, user schema, CLI universe or deployed hosting done.
+
+### Native doctor implementation and actual public Main14 integration proposal
+
+The preceding proposal is implemented locally in PR #98. The finite seventeen-file
+runtime/dependency/record candidate received exact development qualification before
+`a663130a`; the later single producer fix received its own exact qualification
+before `0860b384`. Those decisions are development acceptance only, and the
+following evidence does not mark full CMS or scheduler completion.
+
+The current proposal adopts actual signed public Main14
+`90d62391e7ddc61f41f8f3dad9e7077c9fc9de52` (tree
+`862575551497942667d18465657dbc790e0661f7`) through an ordinary local merge.
+Its entire compatibility record is the prefix; the entire previously owned doctor
+proposal suffix follows unchanged. The complete incoming Source command chain,
+including `check-canonical-feature-storage-source.mjs`, is preserved before the
+terminal doctor suite append. Only the two original shared-file conflicts,
+`package.json` and this record, need explicit composition. All other incoming
+runtime/test/harness bytes, existing normal/secured commands and original
+Source authorities remain whole. No private pending provider is imported.
+
+| Record | Meaningful current local evidence | Specific final acceptance |
+| --- | --- | --- |
+| DC-01: command/framework and Worker contract | Real Native CLI subprocess cases pass. The actual standalone frozen production package executes the bundled command, emits JSON and preserves existing install/start commands. The unchanged whole Source fifteen callbacks pass through the same generic inspector with an explicit supported external Worker contract; Native defaults are exercised separately. Source's initial import-only red earns zero causal credit. | Accepted for finite development only; final exact-head gates/review and specific PM acceptance pending. |
+| DC-02: database/schema and read-only inspection | All thirteen Native cases reach real persisted SQL/config values: native migration records, collections/orphans, canonical date inspection and database byte preservation. The package independently inspects a real migrated database and its collection. Whole Source datetime scanner bytes remain verifiably unchanged after the qualified finite imports/namespaces. | Accepted for bounded development only; full Source migration runner, users/profile schema and deployed D1 remain unfinished. Final acceptance pending. |
+| DC-03: scheduler scope | Actual built official Worker and maintenance files pass the Native static wiring check with an explicit coverage warning, additive to a failing absent database. No HTTP execution, heartbeat row, full scheduler or scheduled-publishing claim follows. The original dashboard `npx emdash doctor` assertion remains honestly unmatched. | Actual revision-maintenance diagnostic accepted for development only. Full scheduler integration remains unfinished; final bounded-diagnostic acceptance pending. |
+| DC-04: TOML parse diagnostics | The meaningful Native configuration case passes actual line 1 / column 28 reporting without printing the synthetic value or parser source excerpt. This remains an intentional native formatting/privacy difference and earns no Source bug/causal credit. | Location-only diagnostics accepted for development only; final specific acceptance pending. |
+
+The whole Source first-runtime and refactor receipts each report fifteen passing
+callbacks. The whole Native first-runtime and refactor receipts each report
+thirteen passing cases. A later genuine Native package value red reaches an
+empty JSON-output assertion after actual frozen installation/database creation;
+only removal of the redundant thirty-one-byte output shebang banner fixes it.
+The actual standalone package and official Worker filesystem cases then pass.
+Earlier engine/selector fixture stops are infrastructure and earn zero product
+credit. Whole raw logs and classifications are retained in the paired
+[feature record](../../docs/doctor.md) and
+[runtime receipt inventory](../../docs/doctor-evidence/runtime.json).
+
+Verbatim raw baseline/Source logs and the original CRLF Microsoft MIT notice keep
+their complete bytes. `.gitattributes` names only their six exact literal paths
+for the particular formatter blank-line or CR handling; there is no global
+whitespace exemption or evidence trimming. All 518 old package and 533 old
+snapshot records, both lock documents, all seven media notices, workspace policy,
+whole image-size patch and historical evidence remain preserved; the new totals
+are 520 packages and 535 snapshots. The actual public Main14 union still needs
+its own whole thirteen normal stages, nine secured sandboxed browser launches,
+fresh independent/configured review, final DC acceptance, Root exact-head
+approval, author expected-head regular merge and actual post-Main verification.
+
+### Native doctor: actual public fixture96 Main integration proposal
+
+The exact Main14 union is now applied locally through ordinary merge
+`1d2ca68bac64362e05bc898ebedbb25d6d19a14a`, tree
+`ff85e1235c9528165bb2b5e367801ab3deb8e5a1`, after specific finite development
+qualification. The complete 1,697-entry expected tree and whole owned
+`git diff --check` match. This is a local development receipt; PR #98 still
+has its original test-only public head and no current-union gate or Main
+runtime landing is inferred.
+
+The next ordinary-union proposal adopts actual public Main
+`343c0ff2e69e66e03b848d258da7c288e9a67223`, the regular merge of fixture PR #96.
+Its entire compatibility history is retained as the prefix, followed by the
+entire owned doctor history since public Main14. The new `.gitattributes`
+preserves both the whole incoming fixture-evidence comment/literal rule and all
+six existing doctor literal rules. No global exemption, raw-byte trimming,
+Source test/body change or private provider import is introduced. All incoming
+fourteen fixture/helper/evidence changes are retained whole; approved package,
+520/535 lock records, Source authorities, notices/policies/patch and original
+normal/secured commands, sandbox and deadlines remain unchanged.
+
+Final current thirteen normal stages and nine secured browser launches wait
+for the actual combined public Main that also includes fixture PR #97. The
+next fixture is a pending public prerequisite, not privately imported here.
+Fresh/configured final-head review, specific final DC decisions, Root exact-head
+approval, author expected-head regular merge and actual post-Main validation
+remain pending. Full Source users/runner, remote D1 and scheduler heartbeat or
+scheduled-publishing execution remain unfinished; Source causal credit is zero.
+
+### Native doctor: actual published provider15 and both fixture prerequisites
+
+The ordinary fixture96 union is applied locally as
+`f27642a7cae35e4df1dd80051d5168cfb5eb337c`, tree
+`f00982b8a62bba7fb572fb80b6f79f6b5f3b0b85`, after exact four-file development
+qualification. All 1,705 expected entries and the whole owned whitespace check
+match. That local checkpoint retains the real CLI/SQL/config/artifact evidence;
+its pending fixture97/provider15 requirement is now satisfied by actual public
+Main, not by adopting any unpublished feature payload.
+
+The next ordinary-union proposal uses actual public Main
+`41be644213bd8da5150d98b87d3a5c0cc0c7f3e1`, tree
+`46ac2a5174688df4d939d7d52e2db9739bc037fe`, with ordered public parents
+`b5ed8e06c9c3034e99645ef85022e027130fec51` and
+`efde56cfc8384e8ac43eacef51dd0766741585ec`. This is the published provider15
+merge with both public fixtures96/97, actual default1/readiness and catalogue
+guard. All 1,783 public paths are preserved. New shared composition resolves only
+package scripts/dependencies, literal evidence rules and this history; already
+qualified owned package-bin, lock and hosting-document additions retain their
+exact current owned bytes.
+The complete 437,970-byte public compatibility record is the prefix; the whole
+previously owned doctor suffix is retained unchanged after it. The whole
+195-byte public attribute block and all six doctor literal rules are retained.
+
+The incoming complete Source chain, including canonical storage and both block
+registry suites, precedes the terminal whole doctor suite. The incoming Node
+build precedes the doctor bundle. All other package leaves and scripts retain
+actual Main values. The approved 520-package/535-snapshot lock remains whole,
+with all existing 518/533 records and both documents unchanged; all media
+notices, patch, policies and seven doctor Source authorities remain exact.
+Existing protected suites, thirteen normal phases, nine secured sandboxed browser
+commands and their deadlines are unchanged. No new test body, CLI probe,
+credential/principal/auth HTTP callback or private implementation is introduced.
+
+Previous doctor Source15 and Native13 initial/refactor greens and actual package/
+Worker filesystem greens remain historical receipts for their stated heads.
+They are not inferred validation of this newer union. Root's qualified whole
+provider15 gate is a prerequisite receipt, and its running post-Main check is
+independently monitored; neither becomes a Doctor #98 current-head receipt.
+After exact development qualification, this union still requires its own full
+normal13/secured9 gates, a new fresh final review and configured review, specific
+DC-01 through DC-04 final acceptance, Root exact-head approval, author expected-
+head regular merge and actual post-Main verification. Source causal credit
+remains zero. Full scheduler/heartbeat, full Source users/CLI/PAT, remote D1 and
+general migration-runner parity remain unfinished.
+
+### Native doctor: published 3b6 validation and final status-documentation successor
+
+The preceding provider15 proposal received exact finite development qualification
+and was applied/published as ordinary merge
+`3b6feb58a86707fbc4d4c32fb643942a73bf5285`, tree
+`d2ccfb38fcbcc42eac58a3c6e258558e98d3787a`. All 1,816 expected entries match,
+all 1,783 actual public Main paths remain present, and the whole owned whitespace
+check passes. This paragraph closes the earlier proposal's application/push/gate
+status; every historical compatibility paragraph and actual result is retained.
+
+Current [CI 467](https://github.com/sveltery/cms/actions/runs/37209129237) passes
+complete normal and secured jobs on that exact 3b6 head; the tested synthetic
+merge has the same tree. All thirteen normal phases finish. Node groups pass
+1,492/28/280/16/8 with zero failures, cancellations or skips; all twenty-three
+Vitest groups pass, including the unchanged whole original Source doctor fifteen callbacks.
+The actual Native CLI/SQL/config thirteen cases, frozen production standalone package one case and
+real built official Worker filesystem one case pass. Source causal credit remains zero.
+Seven secured Source groups pass 14/30/25/3/35/4/3, both application suites pass 65,
+and all nine official Chromium 1243 launches exit 0 with the original sandbox and
+deadlines. The whole normal log is 625,530 bytes / SHA256
+`3c23e73f3e26f469f69cfa16cae292f86e82f1ca149ae413fde4889104fa185c`;
+the whole browser log is 396,263 bytes / SHA256
+`fb26461582c130d88d93afe35329e6e41305fedd398ebc20cc853a6e866bc20a`.
+These hashes and exact job IDs remain in the paired runtime inventory.
+
+This successor corrects only the three current-status records. It changes no
+runtime, test/body/assertion, dependency, notice, evidence byte, script, sandbox
+or deadline. This is an immutable preparation snapshot at basis head 3b6,
+recorded before the documentation successor commit. The completed 3b6 results
+validate that historical basis; they grant no successor-head receipt. At this
+recorded preparation point, successor full normal13/secured9 checks, new fresh-review
+closure and configured review were pending. DC-01 through DC-04 had development
+acceptance only; specific final exact-head Root approval, author expected-head
+regular merge and actual post-Main verification were pending. Subsequent current
+checks and closure are audited externally against their actual commit, without a
+self-referential future-head claim in this snapshot. Full scheduler/heartbeat,
+full Source users/CLI/PAT, remote D1 and general migration-runner parity remain
+unfinished. No new CLI/auth/HTTP probe or private provider is introduced.
+
+
 ## SC-01/SC-02 scheduled publishing and calendar test-first proposal
 
 The [scheduled publishing feature](../../docs/scheduled-publishing.md) and [whole Source ledger](../../docs/scheduled-publishing-source.json) retain EmDash1.1.0 pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`: sixteen whole families,126 semantic declarations,342 static expect calls and eighty whole immutable test/authority/fixture/MIT files. These inventories establish no executed assertion or product credit.
