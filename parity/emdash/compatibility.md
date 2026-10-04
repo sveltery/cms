@@ -1592,3 +1592,12 @@ Source27/99 and originalNative10 remain unchanged. The additional literal
 `.gitattributes` rule disables only blank-at-EOF checking for the byte-exact D1
 log; other whitespace checks remain active. Product atomic substitution remains
 finite-proposed, unapplied and awaiting separate fresh review/Root qualification.
+
+
+### Taxonomy Source-only migration fixture preparation — proposed PR102, not applied
+
+Source authority: immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, original `packages/core/tests/utils/test-db.ts` and whole `packages/core/src/database/migrations/runner.ts` eager/dynamic closure (99 files;95 new whole files,381,386 bytes). The fixture remains physically Source-only: original migrations001–091 (90 actual migrations), original SQL/index names and genuine query/catalogue/results. A same-schema Source-plus-Native14 installation is blocked by16 global index-name collisions (26 actual declarations); no synthetic Native markers or identifier/result rewrites are permitted.
+
+Framework/runtime distinction: Source reference fixtures are separate from the actual Native normal canonical installation, Node10 and realD1eight. Three finite Node support controls are proposed but unexecuted. Their Native migration call must genuinely refuse the Source-owned colliding catalogue and leave it unchanged. Source original helper, Registry/ContentRepository reference-support closure and Native taxonomy-domain constructor hosting remain pending a further finite graph/semantic qualification. They establish no NativeRegistry/provider/PG/Worker acceptance. Original Source27 bodies/callbacks/assertions are unchanged and have zero new execution credit here.
+
+Dependency substitution: Source helper's eager real `pg` Pool import uses proposed exact development-only8.18.0, Source direct package version from the pin. Fourteen explicitly locked graph nodes and actual installed license authorities are recorded in `notices/taxonomy-test-dependencies/inventory.json`; every old whole lock package/snapshot record is retained exactly. Transitive versions follow this concrete Native lock proposal rather than asserting identical Source transitive lock resolution. No external database/credential/session/replay/race/protectedHTTP probes were run. Paired feature documentation is `docs/taxonomies.md`. Preparation direction recorded by Root; application, actual baseline evidence, final product parity and merge acceptance remain unrecorded/pending.

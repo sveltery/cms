@@ -127,3 +127,12 @@ These are Native requirements; completed Source assertion/value-red credit is
 zero. The whole 27 Source families and original Native10 remain unchanged.
 Raw 6277-byte output and exact classifications are retained in
 `docs/taxonomy-evidence/d1-native8-baseline.log` and `d1-baseline.json`.
+
+
+## Whole Source fixture preparation (unapplied)
+
+The complete original migration runner closure has 99 immutable files: 95 additional whole files (381,386 bytes) beyond the existing taxonomy99 authorities. `docs/taxonomy-fixture-source.json` records their exact pin, byte hashes and original blobs; `scripts/check-taxonomy-fixture-source.mjs` checks all 99. The proposed separate fixture executes the actual Source001–091 migration set (90 migrations;010 is absent at the pin). Its three ordinary controls require real Source indexes, actual catalogue/introspection, genuine Native ownership refusal on a colliding layout, real affected-row results, and full SQLite rollback. They are prepared but unexecuted.
+
+The same-schema dual-install design is blocked:16 SQLite-global index names collide between Source physical tables and Native canonical14 physical tables (26 declarations in the independent read-only audit). No Native markers, Source index names, SQL, query logs, introspection or results are rewritten or fabricated. Source-only DDL provides only Source fixture support. The separate NativeNode10 and D1eight baseline receipts remain the actual canonical-provider evidence.
+
+The original whole helper remains unchanged. Root has authorized preparing its real original Source SchemaRegistry/ContentRepository as reference fixture support, with only the taxonomy domain under test resolving to the Native taxonomy owner. That full eager/dynamic dependency and constructor-host graph still needs a separate finite packet before full22 execution. Exact development-only `pg@8.18.0`, an additive whole lock retaining every existing package/snapshot, and all14 additional dependency notices are proposed for the helper's eager Pool import. No PostgreSQL cases, Native product changes, or Source taxonomy callbacks have run in this preparation step; there is zero new Source assertion credit.
