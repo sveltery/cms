@@ -13,6 +13,7 @@ import type { DashboardManifest, DashboardStats } from '../../../src/lib/dashboa
 
 export function Dashboard({ manifest }: { manifest: DashboardManifest }) {
   const target = React.useRef<HTMLDivElement>(null);
+  const queryClient = useQueryClient();
   const { data: user } = useCurrentUser() as unknown as { data?: { role: number } };
   React.useLayoutEffect(() => {
     const client = {
@@ -20,9 +21,9 @@ export function Dashboard({ manifest }: { manifest: DashboardManifest }) {
       dismissScheduledPolicyRejection,
       fetchTransferCapabilities: () => fetchTransferCapabilities() as Promise<{ portableDomain: { empty: boolean } }>
     };
-    const instance = flushSync(() => mount(NativeDashboard, { target: target.current!, props: { manifest, user, client } }));
+    const instance = flushSync(() => mount(NativeDashboard, { target: target.current!, props: { manifest, user, client, ...{ queryClient } } }));
     return () => { void unmount(instance); };
-  }, [manifest, user]);
+  }, [manifest, user, queryClient]);
   return React.createElement('div', { ref: target });
 }
 
@@ -37,7 +38,7 @@ export function WelcomeModal(props: { open: boolean; onClose: () => void; userNa
     function onDismissed() {
       queryClient.setQueryData(['currentUser'], (old: unknown) => old && typeof old === 'object' ? { ...old, isFirstLogin: false } : old);
     }
-    const instance = flushSync(() => mount(NativeWelcome, { target: target.current!, props: { ...props, siteName: 'EmDash', dismissWelcome, onDismissed } }));
+    const instance = flushSync(() => mount(NativeWelcome, { target: target.current!, props: { ...props, siteName: 'EmDash', dismissWelcome, onDismissed, ...{ queryClient } } }));
     return () => { void unmount(instance); };
   }, [props, queryClient]);
   return React.createElement('div', { ref: target });

@@ -3,13 +3,15 @@ import { flushSync, mount, tick, unmount, type Component } from 'svelte';
 import DashboardHost from '../helpers/dashboard-welcome/DashboardLifecycleHost.svelte';
 import WelcomeHost from '../helpers/dashboard-welcome/WelcomeLifecycleHost.svelte';
 import { lifecycleState } from '../helpers/dashboard-welcome/lifecycle-state.svelte.ts';
+import { fixtureQueryClient, clearFixtureQueryClients } from '../helpers/dashboard-welcome/query-fixture';
 
 const mounted: ReturnType<typeof mount>[] = [];
 afterEach(async () => {
   for (const instance of mounted.splice(0)) await unmount(instance);
-  vi.unstubAllGlobals(); document.body.replaceChildren();
+  clearFixtureQueryClients(); vi.unstubAllGlobals(); document.body.replaceChildren();
 });
 async function render<State extends Record<string, unknown>>(component: Component<{ state: State }>, state: State) {
+  Object.assign(state, { queryClient: fixtureQueryClient() });
   const target = document.createElement('div'); document.body.append(target);
   mounted.push(flushSync(() => mount(component, { target, props: { state } })));
   await tick(); return target;

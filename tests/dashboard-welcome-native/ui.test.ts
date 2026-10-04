@@ -2,12 +2,13 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { flushSync, mount, tick, unmount, type Component } from 'svelte';
 import Dashboard from '../../src/lib/dashboard/Dashboard.svelte';
 import WelcomeModal from '../../src/lib/dashboard/WelcomeModal.svelte';
+import { fixtureQueryClient, clearFixtureQueryClients } from '../helpers/dashboard-welcome/query-fixture';
 
 const mounted: ReturnType<typeof mount>[] = [];
-afterEach(async () => { for (const instance of mounted.splice(0)) await unmount(instance); document.body.replaceChildren(); });
+afterEach(async () => { for (const instance of mounted.splice(0)) await unmount(instance); clearFixtureQueryClients(); document.body.replaceChildren(); });
 async function render<Props extends Record<string, unknown>>(component: Component<Props>, props: Props) {
   const target = document.createElement('div'); document.body.append(target);
-  mounted.push(flushSync(() => mount(component, { target, props })));
+  mounted.push(flushSync(() => mount(component, { target, props: { ...props, queryClient: fixtureQueryClient() } })));
   await tick(); return target;
 }
 const manifest = { collections: {}, plugins: {} };
