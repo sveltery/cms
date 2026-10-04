@@ -32,6 +32,7 @@ export default defineConfig({
   }],
   test: {
     environment: 'node', fileParallelism: false,
+    setupFiles: ['tests/helpers/calendar/node-setup.ts'],
     include: [
       'parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/api/calendar-handlers.test.ts',
       'parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts',
