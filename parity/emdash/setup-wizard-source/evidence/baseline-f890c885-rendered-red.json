@@ -1,0 +1,177 @@
+{
+  "head": "f890c885de703122e4dbbd57b4c73eeebbdd033c",
+  "checkoutMerge": "d1d3a7b1632813d09f000af26f1381efc9c829a5",
+  "checkoutBase": "135e7be689885fd23678569d0d373a1131f5302b",
+  "pr": 88,
+  "run": 37178987034,
+  "job": 111367497130,
+  "artifact": 11295080866,
+  "result": "complete whole18 actual-rendered product baseline red",
+  "sourceExecutedCases": 18,
+  "sourcePassedCases": 0,
+  "sourceE2EExecutedCases": 0,
+  "causalLimit": "All 18 stop at the original first missing Source site-heading expectation; later assertions and full runtime parity are unverified.",
+  "json": {
+    "path": "baseline-f890c885-source-18.json",
+    "bytes": 75137,
+    "sha256": "45807970cd7918bdc53938b1d6aa5afee85aaffe2539f1599ba88edddd04c556",
+    "numTotalTests": 18,
+    "numFailedTests": 18,
+    "numPassedTests": 0,
+    "numPendingTests": 0
+  },
+  "familyDurationMs": 270651.1999511719,
+  "originalDeadlines": {
+    "vitestBrowserTestMs": 15000,
+    "vitestHookMs": 30000,
+    "securedBrowserLaunchMs": 30000,
+    "outerWrapperSeconds": 360,
+    "killAfterSeconds": 30
+  },
+  "physicalBrowserLaunch": "2026-10-04T05:08:42.5835812Z 2026-10-04T05:08:42.577Z pw:browser <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-olIdll --remote-debugging-pipe --no-startup-window",
+  "physicalBrowserLaunched": "2026-10-04T05:08:42.5895969Z 2026-10-04T05:08:42.589Z pw:browser <launched> pid=3120",
+  "noNoSandboxFlag": true,
+  "jsonCompleted": "2026-10-04T05:13:14.7060325Z JSON report written to /home/runner/work/cms/cms/test-results/setup-wizard-source-18.json",
+  "rawLog": {
+    "localPath": "/tmp/setup-wizard-baseline-f890c885-job111367497130.log",
+    "sha256": "c92443792c1568de43e26ed842f3aab8d2e3d128cc663f68eca7e9806a6197a0",
+    "bytes": 51526,
+    "publicJob": "https://github.com/sveltery/cms/actions/runs/37178987034/job/111367497130"
+  },
+  "cases": [
+    {
+      "title": "shows site setup step first with title input",
+      "fullName": "SetupWizard shows site setup step first with title input",
+      "status": "failed",
+      "durationMs": 15106.400000000023,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "empty title prevents advancing and shows validation error",
+      "fullName": "SetupWizard empty title prevents advancing and shows validation error",
+      "status": "failed",
+      "durationMs": 15023.199999999953,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "filling title and clicking Next advances to admin step",
+      "fullName": "SetupWizard filling title and clicking Next advances to admin step",
+      "status": "failed",
+      "durationMs": 15022.399999999907,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "does not present media usage tracking as an onboarding choice",
+      "fullName": "SetupWizard does not present media usage tracking as an onboarding choice",
+      "status": "failed",
+      "durationMs": 15034.300000000047,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "admin step shows email input",
+      "fullName": "SetupWizard admin step shows email input",
+      "status": "failed",
+      "durationMs": 15036.70000000007,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "empty email prevents advancing on admin step",
+      "fullName": "SetupWizard empty email prevents advancing on admin step",
+      "status": "failed",
+      "durationMs": 15034.29999999993,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "step indicator shows three steps",
+      "fullName": "SetupWizard step indicator shows three steps",
+      "status": "failed",
+      "durationMs": 15044.800000000047,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "prefills title and tagline from seedInfo",
+      "fullName": "SetupWizard prefills title and tagline from seedInfo",
+      "status": "failed",
+      "durationMs": 15022.900000000023,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "uses empty string for title and tagline when not in seedInfo",
+      "fullName": "SetupWizard uses empty string for title and tagline when not in seedInfo",
+      "status": "failed",
+      "durationMs": 15030,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "prefilled title can be edited and submitted",
+      "fullName": "SetupWizard prefilled title can be edited and submitted",
+      "status": "failed",
+      "durationMs": 15035,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "offers import alongside sample content and an empty site",
+      "fullName": "SetupWizard starting from a site package offers import alongside sample content and an empty site",
+      "status": "failed",
+      "durationMs": 15033.099999999977,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "skips sample content and lands on the Transfer import after signing in",
+      "fullName": "SetupWizard starting from a site package skips sample content and lands on the Transfer import after signing in",
+      "status": "failed",
+      "durationMs": 15028.600000000093,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "keeps sample content and the dashboard as the default",
+      "fullName": "SetupWizard starting from a site package keeps sample content and the dashboard as the default",
+      "status": "failed",
+      "durationMs": 15036.699999999953,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "skips sample content for an empty site",
+      "fullName": "SetupWizard starting from a site package skips sample content for an empty site",
+      "status": "failed",
+      "durationMs": 15031.5,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "goes straight to the Transfer import when Cloudflare Access completes setup",
+      "fullName": "SetupWizard starting from a site package goes straight to the Transfer import when Cloudflare Access completes setup",
+      "status": "failed",
+      "durationMs": 15030.5,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "keeps posting while sample content remains, then advances",
+      "fullName": "SetupWizard keeps posting while sample content remains, then advances",
+      "status": "failed",
+      "durationMs": 15027.900000000023,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "keeps the added sample content after a failed request and resumes on Continue",
+      "fullName": "SetupWizard keeps the added sample content after a failed request and resumes on Continue",
+      "status": "failed",
+      "durationMs": 15037.899999999907,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    },
+    {
+      "title": "stops posting when a request reports no progress",
+      "fullName": "SetupWizard stops posting when a request reports no progress",
+      "status": "failed",
+      "durationMs": 15034.20000000007,
+      "failure": "Error: Cannot find element with locator: page.getByText('Set up your site')"
+    }
+  ],
+  "unchangedNormalCI": {
+    "run": 37178987029,
+    "browserJob": 111367497023,
+    "validateJob": 111367497173,
+    "browserConclusion": "success",
+    "validateConclusion": "success",
+    "scope": "Baseline head only; no final product checks claimed."
+  }
+}
