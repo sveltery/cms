@@ -22,9 +22,12 @@ class LogicalRelationNames extends OperationNodeTransformer {
   }
 }
 const transformer = new LogicalRelationNames();
-const namespace: KyselyPlugin = { transformQuery({ node }) { return transformer.transformNode(node); }, async transformResult({ result }) { return result; } };
-export function withRelationReferenceNamespace(db: Kysely<Database>): Kysely<Database> { return db.withPlugin(namespace); }
-export async function runMigrations(db: Kysely<Database>): Promise<void> { await relations(db); await structural(db); }
+export const relationReferencePlugin: KyselyPlugin = { transformQuery({ node }) { return transformer.transformNode(node); }, async transformResult({ result }) { return result; } };
+export function withRelationReferenceNamespace(db: Kysely<Database>): Kysely<Database> { return db.withPlugin(relationReferencePlugin); }
+export async function runMigrations(db: Kysely<Database>): Promise<void> {
+  await relations(db as unknown as Kysely<unknown>);
+  await structural(db as unknown as Kysely<unknown>);
+}
 export interface DialectTestContext { db: Kysely<Database>; dialect: 'sqlite' | 'postgres' }
 export async function setupForDialect(dialect: 'sqlite' | 'postgres'): Promise<DialectTestContext> {
   if (dialect !== 'sqlite') throw new Error('Original PostgreSQL context is unconfigured in this reference host');

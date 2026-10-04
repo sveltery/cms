@@ -6,6 +6,7 @@ const frozen = path.join(root, 'parity/emdash/relations-source/executable/packag
 export default defineConfig({
   plugins: [{ name: 'whole-original-relations-boundaries', enforce: 'pre', resolveId(id, importer) {
     if (!importer?.startsWith(frozen)) return;
+    if (id === 'kysely' && importer.endsWith('relation-set-children-writes.test.ts')) return path.join(root, 'tests/helpers/relations/source-kysely.ts');
     if (!id.startsWith('.')) return;
     const relative = path.relative(frozen, path.resolve(path.dirname(importer), id)).replaceAll(path.sep, '/');
     const map: Record<string, string> = {
