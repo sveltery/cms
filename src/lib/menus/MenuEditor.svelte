@@ -3,6 +3,7 @@
   // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
   import * as api from './client.ts';
   import MenuDialog from './MenuDialog.svelte';
+  import ContentPickerModal from '../content-picker/ContentPickerModal.svelte';
   import type { ContentClient, ContentChoice, MenuClient, MenuItem, MenuWithItems, MenuTranslation } from './types.ts';
   let { name, locale, client = api, basePath = '', locales = [], mutationsEnabled = true, contentClient,
     navigate = (url: string) => { location.href = url; } }:
@@ -12,7 +13,7 @@
   let addOpen = $state(false), addPending = $state(false), addError = $state('');
   let editingItem = $state<MenuItem | null>(null), editPending = $state(false), editError = $state(''), parentOpen = $state(false), parentId = $state('');
   let translations = $state<MenuTranslation[]>([]), translationPending = $state<string | null>(null);
-  let contentOpen = $state(false), collection = $state(''), collections = $state<{slug:string;label:string}[]>([]), choices = $state<ContentChoice[]>([]), contentLoading = $state(false);
+  let contentOpen = $state(false);
   const menuLocale = $derived(locale ?? menu?.locale);
   async function load() { loading = true; error = ''; try {
     menu = await client.fetchMenu(name, { locale }); localItems = menu.items;
@@ -54,11 +55,7 @@
     try { const translated = await client.createMenuTranslation(name,{locale:targetLocale,label:menu?.label},{locale:menuLocale}); navigate(`${basePath}/menus/${name}?locale=${encodeURIComponent(translated.locale)}`); }
     catch (caught) { error = caught instanceof Error ? caught.message : 'Failed to create menu translation'; } finally { translationPending = null; }
   }
-  async function openContent() { if (!contentClient) return; contentOpen = true; contentLoading = true;
-    try { collections = await contentClient.collections(); collection = collections[0]?.slug ?? ''; await loadChoices(); }
-    catch (caught) { error = caught instanceof Error ? caught.message : 'Failed to fetch content'; } finally { contentLoading = false; }
-  }
-  async function loadChoices() { if (!contentClient || !collection) return; contentLoading = true; try { choices = await contentClient.entries(collection,menuLocale); } catch (caught) { error = caught instanceof Error ? caught.message : 'Failed to fetch content'; } finally { contentLoading = false; } }
+  function openContent() { if (contentClient) contentOpen = true; }
   async function chooseContent(choice: ContentChoice) { addPending = true; try { await client.createMenuItem(name,{type:choice.collection === 'pages' ? 'page' : choice.collection === 'posts' ? 'post' : 'collection',label:choice.title,referenceCollection:choice.collection,referenceId:choice.id},{locale:menuLocale}); contentOpen = false; await load(); } catch (caught) { error = caught instanceof Error ? caught.message : 'Failed to create menu item'; } finally { addPending = false; } }
 </script>
 
@@ -92,10 +89,8 @@
     {#if editError}<p role="alert">{editError}</p>{/if}<footer><button type="button" onclick={() => { editingItem = null; editError = ''; }}>Cancel</button><button type="submit" disabled={editPending}>{editPending ? 'Saving...' : 'Save'}</button></footer>
   </form>
 </MenuDialog>{/if}
-{#if contentOpen}<MenuDialog labelledBy={`${key}-content`} onClose={() => contentOpen = false}><h2 id={`${key}-content`}>Add Content</h2><button aria-label="Close" onclick={() => contentOpen = false}>×</button>
-  <label for={`${key}-collection`}>Collection</label><select id={`${key}-collection`} bind:value={collection} onchange={loadChoices}>{#each collections as value}<option value={value.slug}>{value.label}</option>{/each}</select>
-  {#if contentLoading}<p>Loading content...</p>{:else}<ul>{#each choices as choice (choice.id)}<li><button disabled={addPending} onclick={() => chooseContent(choice)}>{choice.title}</button></li>{/each}</ul>{/if}
-</MenuDialog>{/if}
+{#if contentClient}<ContentPickerModal open={contentOpen} onOpenChange={value => contentOpen = value} client={contentClient}
+  onConfirm={rows => { if (rows[0]) void chooseContent(rows[0]); }} />{/if}
 
 <style>
   header,.row,footer { display:flex; align-items:center; justify-content:space-between; gap:1rem; } .border { border:1px solid #d4d4d8; padding:1rem; margin-block:.5rem; border-radius:.5rem; } .empty { text-align:center; padding:3rem; } button { padding:.45rem .7rem; cursor:pointer; } button:disabled { cursor:default; opacity:.5; }
