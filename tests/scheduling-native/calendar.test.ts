@@ -6,6 +6,8 @@ import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
 import { registerLifecycleDatabase } from '../../src/lib/server/database/lifecycle/upstream/host.ts';
 import { ContentRepository } from '../../src/lib/server/database/lifecycle/upstream/database/repositories/content.ts';
 import type { CmsDatabase } from '../../src/lib/server/database/contract.ts';
+import type { CalendarEntry } from '../../src/lib/server/calendar/handlers.ts';
+import type { CalendarItem } from '../../src/lib/calendar/calendar.ts';
 
 // Supplemental ordinary SQL/pure requirements. No principal, session, HTTP,
 // credentials, publication race or scheduled maintenance is constructed here.
@@ -86,7 +88,7 @@ it('calendar lists both events for published content with scheduled changes', as
   await repo.schedule('post', live.id, '2030-03-02T09:00:00.000Z', before);
   const result = await handleCalendarEntries(database.db, march);
   expect(result.success).toBe(true);
-  expect(result.data.items.map(item => [item.id, item.status, item.kind, item.at])).toEqual([
+  expect(result.data.items.map((item: CalendarEntry) => [item.id, item.status, item.kind, item.at])).toEqual([
     [live.id, 'published', 'published', '2030-03-01T09:00:00.000Z'],
     [live.id, 'published', 'scheduled', '2030-03-02T09:00:00.000Z']
   ]);
@@ -104,7 +106,7 @@ it('calendar walks ties in collection and event order without skipping an event'
   for (let index = 0; index < 4; index++) {
     const result = await handleCalendarEntries(database.db, { ...march, limit: 1, cursor });
     expect(result.success).toBe(true);
-    seen.push(...result.data.items.map(item => `${item.collection}:${item.id}:${item.kind}`));
+    seen.push(...result.data.items.map((item: CalendarEntry) => `${item.collection}:${item.id}:${item.kind}`));
     cursor = result.data.nextCursor;
     if (!cursor) break;
   }
@@ -124,7 +126,7 @@ it('calendar uses persisted hidden and titleField metadata without changing cont
   const snapshot = (await sql`SELECT * FROM ec_post`.execute(database.db)).rows;
   const result = await handleCalendarEntries(database.db, march);
   expect(result.success).toBe(true);
-  expect(result.data.items.map(item => [item.id, item.title])).toEqual([[visible.id, 'Headline']]);
+  expect(result.data.items.map((item: CalendarEntry) => [item.id, item.title])).toEqual([[visible.id, 'Headline']]);
   expect((await sql`SELECT * FROM ec_post`.execute(database.db)).rows).toEqual(snapshot);
 });
 
@@ -148,7 +150,7 @@ it('calendar filters intersect collection, locale and state without changing the
     { collection: 'post', id: 'fr', locale: 'fr', title: 'French', status: 'scheduled', kind: 'scheduled', at: '2026-10-20T09:00:00.000Z' }
   ], { timeZone: 'UTC', loadedAt: Date.parse('2026-10-15T12:00:00.000Z'), collectionOrder: ['post'] });
   const snapshot = structuredClone(items);
-  expect(filterItems(items, { collections: ['post'], locales: ['fr'], states: ['scheduled'] }).map(item => item.id)).toEqual(['fr']);
+  expect(filterItems(items, { collections: ['post'], locales: ['fr'], states: ['scheduled'] }).map((item: CalendarItem) => item.id)).toEqual(['fr']);
   expect(items).toEqual(snapshot);
 });
 
