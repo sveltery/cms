@@ -36835,5 +36835,104 @@
       "Source080 canonical links and retry/non-TG values are unreached in the failing first callback, not passing controls.",
       "No provider16/runtime applied and no previous baseline repeated."
     ]
+  },
+  "standardCollectionIndexesForwardRuntime": {
+    "revision": "r1",
+    "artifact": "/tmp/schema-admin-index-runtime-proposal-r1/manifest.json",
+    "nativeBase": "a22998ec099a56015200e6cf8ad6081d610766f2",
+    "actualPublicPrerequisite": "c3d135a6f20e4319ee07eebb0f9009b57f2985f9",
+    "ordinaryUnionHead": "7ec564c1bcb120f294bf97f70e6b351184398f8a",
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "reservedProvider": {
+      "version": 16,
+      "name": "collection-standard-indexes",
+      "owner": "Schema103",
+      "RootReservation": "Root message agrees sole forward16; no other producer owner"
+    },
+    "sourceAuthorities": [
+      {
+        "source": "packages/core/src/database/migrations/055_content_translation_group_locale_index.ts",
+        "destination": "parity/emdash/schema-admin-completion-index-source/authority/packages/core/src/database/migrations/055_content_translation_group_locale_index.ts.source",
+        "bytes": 2949,
+        "sha256": "eba3c76bbcef82655d6ed613457a14d8ed0452a29cf2a81c0e06f45b001f133f",
+        "sourceGitBlob": "2c08648a37fca1afabadba5e3cd2cf09cf4d77c5",
+        "wholeBody": true
+      },
+      {
+        "source": "packages/core/src/database/migrations/074_content_deleted_scheduled_index.ts",
+        "destination": "parity/emdash/schema-admin-completion-index-source/authority/packages/core/src/database/migrations/074_content_deleted_scheduled_index.ts.source",
+        "bytes": 2142,
+        "sha256": "ccf1d0d8a184af09d1ea72ece6726f64d784c24f16f06581fcdf403013200133",
+        "sourceGitBlob": "2b2d91c783880ebf1ebe9b185d6a735e3d28fc8f",
+        "wholeBody": true
+      },
+      {
+        "source": "packages/core/src/database/migrations/080_content_translation_locale_unique.ts",
+        "destination": "parity/emdash/schema-admin-completion-index-source/authority/packages/core/src/database/migrations/080_content_translation_locale_unique.ts.source",
+        "bytes": 3158,
+        "sha256": "bbf6e84df79ce09400af3ed44efd22ee3d8021388eb6a41827f21fe14ebc14bb",
+        "sourceGitBlob": "9bb5a1f6ce0f43edf2224c557dde83aeef31d033",
+        "wholeBody": true
+      },
+      {
+        "source": "packages/core/src/schema/registry.ts",
+        "destination": "parity/emdash/schema-admin-completion-source/authority/packages/core/src/schema/registry.ts.source",
+        "bytes": 88618,
+        "sha256": "db26cf5bd9c9442c3b41185c879281914410cd9ece94cf2f9716533eb6e71516",
+        "sourceGitBlob": "da7bbcdda224dfca8d9146b2f36659ab90bcac2e",
+        "wholeBody": true,
+        "existingUnchanged": true
+      }
+    ],
+    "production": [
+      "src/lib/server/database/collection-indexes.ts",
+      "src/lib/server/database/collection-index-migration.ts",
+      "src/lib/server/database/registry.ts",
+      "src/lib/server/database/migrations.ts",
+      "src/lib/server/comments/readiness.ts"
+    ],
+    "frameworkDifferences": [
+      "Source awaits sequential migration queries; Native prepares genuine actual stored SQL snapshots and projects prior group updates through JSON, hoists guards then commits canonical copy/update/index statements in one existing atomic batch. All grouping/lower/collation/order remain actual SQL and original Source batch50.",
+      "Source content_taxonomies maps to actual canonical _cms_content_taxonomies; only three copied columns, Source defaults and copy-before-update retained. Single Tax backend owner/storage unchanged.",
+      "Source055/074 IF NOT EXISTS and Source080 existing-index skip do not establish operator ownership. Native refuses any future-owned/partial index collision and incompatible legacy shape without writes, per existing Native canonical policy. Registered collection admission and existing lifecycle orphan/capture/FTS guards remain.",
+      "Native uses single existing trash/deleted-status and primary-byline producers, retaining supplemental draft-list indexes and existing Native constraints. Provider1\u201315 and byline helper unchanged; new marker guard returns14 additions only after actual16.",
+      "Source Node SQLite behaviors and exact whole Registry/055/074/080 bodies retained. Original Source migration/test execution, rollback down methods, Postgres/D1, HTTP, full schema administration and all UI138 remain unaccepted."
+    ],
+    "nativeMarkerAdaptations": {
+      "files": 8,
+      "behavior": "Extend only current Native installation markers from15 to16 and corresponding titles; historical14/15 comments fixtures now explicitly install their exact unchanged providers, with an added actualcurrent16 pair. Preserve historical1\u20138/14/15 asserts, Source originals, rollback probes/fixtures/deadlines and tamper/default rules.",
+      "doctor": "Actual Doctor Native applied-count assertions already use CMS_MIGRATIONS.length; no Doctor or Source fifteen-test changes.",
+      "readiness": "Known actual registry upper bound and exact contiguous matching provider IDs; >=15 chooses Source defaults, missing/gapped/duplicate/unknown future lists do not. No auth/request/principal checks changed."
+    },
+    "initialBaselines": {
+      "newTables": {
+        "head": "5736da555acf14cba043e3ef54ec4c925b5526c9",
+        "raw": "docs/receipts/schema-admin-completion/collection-index-native3-initial.log",
+        "bytes": 4283,
+        "sha256": "28b317f229fd9386c927a3a76cb6da200e4271b864058cce02083878b3deb32b",
+        "registered": 3,
+        "valuereds": 3,
+        "expectsReached": 3,
+        "expectsUnreached": 2,
+        "infra": 0,
+        "controls": 0
+      },
+      "forward": {
+        "head": "f62938a57f5b4657abb00203a72a5c3b4ce476dd",
+        "raw": "docs/receipts/schema-admin-completion/collection-index-forward3-initial.log",
+        "bytes": 4090,
+        "sha256": "ab96c511368e22ad813fb131704694b9bf832a45da7aade999b861ac4b9073dd",
+        "registered": 3,
+        "valuereds": 3,
+        "expectsReached": 3,
+        "expectsUnreached": 8,
+        "infra": 0,
+        "controls": 0
+      },
+      "SourceCausalCallbackCredit": 0
+    },
+    "unapplied": true,
+    "proposedExecution": "NEW independent shared semantic review and Root current exact-vector qualification first; then regular runtime fix/refactor commit, guards, unchanged whole Native3 newtable + whole Native3forward, Source22 and actual productionNative1 once. Original Native8 remains red; full UI138 and remaining Source11 families pending. Complete unchanged normal13+secured9/current configured review/fresh review/Root approval before author CAS regular merge; consumer Scheduling whole Source3 adopts ACTUAL public only.",
+    "featureDone": false
   }
 }
