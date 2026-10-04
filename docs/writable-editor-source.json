@@ -237,20 +237,92 @@
       "file": "writable-editor-scalar-final-check.log",
       "bytes": 209,
       "sha256": "cd5465193353a03ad23609bdb5dfb17a3889f9d021da4865b476070161cc9375"
+    },
+    {
+      "file": "writable-editor-native-actual-kit-transport-initial-red.log",
+      "bytes": 856,
+      "sha256": "339a224c3245560945515e0ca64d397042767e5f656070ebc427f1277b27188d"
+    },
+    {
+      "file": "writable-editor-native-actual-kit-transport-host-second.log",
+      "bytes": 2212,
+      "sha256": "571c39cca80b6f82f9802487852f408a8bc08f3332fa9c01379f8559883da9ce"
+    },
+    {
+      "file": "writable-editor-native-actual-kit-transport-host-third.log",
+      "bytes": 3377,
+      "sha256": "09f5dfe73310707674e28e2ce21117445f0375b95e0804d982ceab5e8d147a39"
+    },
+    {
+      "file": "writable-editor-native-actual-kit-transport-complete-red.log",
+      "bytes": 4360,
+      "sha256": "c42a88abc74c8c6971fc276a7f0a7fec863d7fe9a2f19d08e3c64e36bcf98d34"
+    },
+    {
+      "file": "writable-editor-native-actual-kit-transport-first-green.log",
+      "bytes": 1158,
+      "sha256": "dff9ec76f37ad3b15d2f3299b988326afc8aa30e4f9b6c2a61a8a7a48f5a5f12"
+    },
+    {
+      "file": "writable-editor-native-actual-kit-final-fixture-complete-red.log",
+      "bytes": 4359,
+      "sha256": "1cacf24906ce2d1c5acb8c3001dcb131dae86372147a904923c32c355e875e71"
+    },
+    {
+      "file": "writable-editor-native-actual-kit-final-fixture-green.log",
+      "bytes": 1190,
+      "sha256": "b5d561bfec9c73cfbe40d2969eda30b64db11de89095434a29a0086a92f30ccf"
+    },
+    {
+      "file": "writable-editor-native-actual-kit-clock-diagnostic.log",
+      "bytes": 2126,
+      "sha256": "09c760e9cc9797aa0e3d6ce2482968b8f4b1d4b43b86b36676c5cbcc3e177743"
+    },
+    {
+      "file": "writable-editor-native-actual-kit-ui-clock-complete-red.log",
+      "bytes": 4315,
+      "sha256": "34f534a47f4c4fa4b38c2fd6e7b2430e3e84912aeb8a864c4e4d03bdf9450463"
+    },
+    {
+      "file": "writable-editor-native-actual-kit-ui-clock-green.log",
+      "bytes": 227,
+      "sha256": "eced1013810db0aa8a5c7a5974e440bddbe19fdae3a00dcd6e22b470bf014ed5"
+    },
+    {
+      "file": "writable-editor-actual-kit-ui-clock-typecheck.log",
+      "bytes": 209,
+      "sha256": "cd5465193353a03ad23609bdb5dfb17a3889f9d021da4865b476070161cc9375"
+    },
+    {
+      "file": "writable-editor-source-validation-transport-repair-green.log",
+      "bytes": 220,
+      "sha256": "b02a6ce6bad04e91407f02726d3909d521be47af495fc15c02790e37d5ce2334"
+    },
+    {
+      "file": "writable-editor-integrated-default-build.log",
+      "bytes": 28603,
+      "sha256": "2b08a16392e37147ab6f00a450117d237771e80e507d77e95568622a6d75ba7d"
     }
   ],
   "execution": {
     "wholeSourceFamilies": 1,
     "uniqueSourceCallbacks": 7,
     "sourceValueRedThenUnchangedGreen": 6,
-    "nativeMountedFormTests": 10,
-    "nativeFormValueRedThenUnchangedGreen": 9,
+    "nativeMountedFormTests": 12,
+    "nativeFormValueRedThenUnchangedGreen": 11,
     "nativeStateTests": 7,
     "nativeStateValueRedCredit": 0,
     "nativeStateOmissions": "Initial module/Node strip/API fixture failures preceded first7greens; zero causal credit. Actual Node/rawD1 persistence tested; hosted UI still unexecuted.",
     "originalPinnedFormatterDiagnostics": 1,
     "originalPinnedFormatterSourceCredit": 0,
-    "unexecutedWholeSourceFamilies": 8
+    "unexecutedWholeSourceFamilies": 8,
+    "nativeUITests": 14,
+    "nativeFormatterTests": 2,
+    "nativeUIValueRedThenUnchangedGreen": 13,
+    "nativeFormatterValueRedThenUnchangedGreen": 2,
+    "nativeActualKitTransportTests": 3,
+    "nativeActualKitTransportValueRedThenUnchangedGreen": 3,
+    "nativeTransportOmissions": "Actual installedKit form/shared/binary HTTP and Node storage execute through Original framework/environment seams; product browser3 and SourceEditor/List/e2e remain unexecuted. Initial host imports/types/matcher failures and global-clock deadlines earn0causal credit; final unchanged5s UI-only clock fixture rerun4value reds before14green."
   },
   "browserInventory": {
     "originalCasesAdded": 3,
