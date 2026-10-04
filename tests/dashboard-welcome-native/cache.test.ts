@@ -92,7 +92,7 @@ async function dismissAndRefreshBoth(fails: boolean) {
   const first = await render(Dashboard, { manifest, user: { role: 40 }, client, ...{ queryClient } });
   const second = await render(Dashboard, { manifest, user: { role: 40 }, client, ...{ queryClient } });
   await loaded(first.target); await loaded(second.target);
-  client.fetchDashboardStats.mockResolvedValue(stats(9));
+  client.fetchDashboardStats.mockResolvedValue(fails ? { ...blocked, mediaCount: 9 } : stats(9));
   if (fails) client.dismissScheduledPolicyRejection.mockRejectedValue(new Error('Policy unavailable'));
   [...first.target.querySelectorAll<HTMLButtonElement>('button')].find(button => button.textContent === 'Dismiss')!.click();
   await vi.waitFor(() => expect(metrics(first.target)).toEqual(['0', '9', '2']));
