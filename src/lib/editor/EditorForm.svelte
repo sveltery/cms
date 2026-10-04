@@ -22,7 +22,7 @@
   const formKey = $derived(JSON.stringify([collection, entry.id, entry.locale]));
   // Kit's keyed form injects `id` when it is absent. Create has no existing id
   // and its strict input contract rejects that injected key.
-  const manualForm = $derived(isNew ? createContent : updateContent.for(formKey));
+  const manualForm = $derived(isNew ? createContent : updateContent);
   const automaticForm = $derived(autosaveEditorDraft.for(formKey));
   const trashForm = $derived(deleteContent.for(formKey));
   const scalarFields = $derived(Object.entries(definition.fields).filter(([, field]) =>
