@@ -91,7 +91,7 @@
     </fieldset>
   {:else if kind === 'json'}
     <label for={id}>{field.label}{required ? ' *' : ''}</label>
-    <textarea {id} value={jsonText} rows="8" placeholder="{}" required={required} disabled={readOnly} class="json"
+    <textarea {id} value={jsonText} rows="8" placeholder={'{}'} required={required} disabled={readOnly} class="json"
       oninput={event => { jsonText = event.currentTarget.value; jsonError = undefined; }} onblur={jsonBlur}
       aria-invalid={Boolean(jsonError) || undefined} aria-describedby={jsonError ? `${id}-error` : undefined}></textarea>
     {#if jsonError}<p id={`${id}-error`} class="error">{jsonError}</p>{/if}
