@@ -1,5 +1,9 @@
 import { expect, vi } from 'vitest';
 import { Locator } from './dom-render';
+import { i18n } from '@lingui/core';
+
+// Same ordinary empty-English fixture initialization as complete Source setup.
+i18n.loadAndActivate({ locale: "en", messages: {} });
 
 // Native polling reads actual DOM. No Source assertion, role, expected text,
 // mocked response, or callback is replaced by this browser-to-jsdom transport.

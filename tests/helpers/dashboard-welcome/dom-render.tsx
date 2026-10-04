@@ -1,11 +1,34 @@
 // Ordinary DOM development host for complete, unchanged Source callbacks.
 // Secured Chromium execution uses the original browser render helper separately.
 import * as React from 'react';
+import { i18n } from '@lingui/core';
+import { I18nProvider } from '@lingui/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import type { ComponentRenderOptions } from 'vitest-browser-react';
 import { createRoot } from 'react-dom/client';
 import { flushSync as reactFlushSync } from 'react-dom';
 import { flushSync } from 'svelte';
 import { afterEach, vi } from 'vitest';
 import { within } from '@testing-library/react';
+
+// Whole Source provider declarations, copied byte-exact as fixture context.
+type RenderWrapper = ComponentRenderOptions["wrapper"];
+
+const ProvidersWrapper = (InnerWrapper: RenderWrapper = React.Fragment) => {
+	return ({ children }: React.PropsWithChildren) => {
+		const queryClient = React.useMemo(
+			() => new QueryClient({ defaultOptions: { queries: { retry: false } } }),
+			[],
+		);
+		return (
+			<QueryClientProvider client={queryClient}>
+				<I18nProvider i18n={i18n}>
+					<InnerWrapper>{children}</InnerWrapper>
+				</I18nProvider>
+			</QueryClientProvider>
+		);
+	};
+};
 
 const roots: ReturnType<typeof createRoot>[] = [];
 afterEach(() => {
@@ -17,10 +40,11 @@ export class Locator {
   element() { const element = this.read(); if (!element) throw new Error('Control absent from actual native DOM'); return element; }
   async click() { const element = await vi.waitFor(() => this.element()); reactFlushSync(() => flushSync(() => element.click())); }
 }
-export async function render(ui: React.ReactNode) {
+export async function render(ui: React.ReactNode, { wrapper: UserWrapper }: ComponentRenderOptions = {}) {
+  const Wrapper = ProvidersWrapper(UserWrapper);
   const container = document.createElement('div'); document.body.append(container);
   const root = createRoot(container); roots.push(root);
-  reactFlushSync(() => root.render(ui)); flushSync();
+  reactFlushSync(() => root.render(React.createElement(Wrapper, null, ui))); flushSync();
   const queries = within(container);
   return {
     container,
