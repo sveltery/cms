@@ -162,3 +162,31 @@ handler before any callback. Full raw log/JSON and exact qualification are
 retained in [run receipts](setup-api-runs.json):0callbacks/0value-red/0causal
 credit. No product file, principal/auth fixture or media testDDL was applied.
 Separate r2 production qualification and actual public provider14 remain pending.
+
+## Dashboard whole-body production proposal
+
+The complete pinned handleDashboardStats/fetchRecentItems runtime and whole
+content-policy/scheduler-health bodies are proposed with import substitutions.
+Actual public direct ContentRepository and OptionsRepository run real SQL; the
+owned namespace maps only four Source names to real Native metadata/auth/media
+storage and retains canonical options mapping and its D1 write boundary. The
+real lifecycle adapter is registered for the same Kysely clone; only existing
+UTC/disabled-cache defaults are exposed, without configured-provider credit.
+
+Media count preserves the whole original count method and three pure MIME
+helpers against actual media SQL. User count supplies only the dashboard's
+no-argument Source COUNT(id), not role filtering or user CRUD. Whole originating
+media/content/registry/validate authorities remain preserved. The type-only
+logical aliases do not prove physical media schema or full provider presence.
+Public Main still lacks provider14; queries must fail rather than synthesize0.
+
+The native GET /api/dashboard proposal consumes only the existing resolved
+principal and content:read permission and existing private/no-store response
+helpers. No caller identity or auth/session/credential guard changes occur.
+The proposed whole16 fixture exercises actual Node domain SQL only, retaining
+all77 expectations/datasets/delays/deadlines. No dashboard callback has executed;
+import/fixture errors0causal and actual caught storage failure only earns value
+red if an unchanged assertion is reached. This unexecuted proposal awaits
+separate finite PM qualification; actual media/provider14, HTTP/UI rendering,
+policy dismissal, scheduler execution, D1/hosting and full dashboard parity
+remain unfinished. Proposed Draft PR90/full current gates/reviews remain pending.

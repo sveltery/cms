@@ -1348,3 +1348,44 @@ pathname/query. Whole original welcome2 remains2/2 green/all7 unchanged after
 the same build. One Native href value red is retained; no repeated green adds
 causal or copied Source credit. No final adaptation acceptance or landing is
 recorded; current full normal/secured gates and both reviews remain pending.
+
+
+### Dashboard whole16/native storage and transport proposal — PR90
+
+Immutable EmDash1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e is the behavior authority:
+complete core/api/handlers/dashboard.ts blob6eff245e36cb194ff0e07013d7f80453abda87ef
+and whole core/tests/unit/api/dashboard-handlers.test.ts blob1e00d69b67a66bb9d26988bc21c309b87c5448ee.
+The complete handler/recent-item runtime plus whole content-policy and scheduler
+health bodies are proposed with imports adapted, consuming actual public direct
+ContentRepository and complete OptionsRepository. Exact Source collections/counts,
+status/schedule/deleted filters, option revisions/preview20, title fallback,
+per-collection10-row queries and global10-row merge/ordering/camelCase remain.
+
+The finite namespace maps only _emdash_collections/fields to _cms_collections/fields,
+media to actual future _cms_media and users to installed _cms_auth_users; existing
+canonical options mapping/D1 write boundary remains unchanged. Actual lifecycle
+storage is registered for that Kysely clone, exposing only inherited UTC and
+disabled-cache defaults; no configured cache/invalidation/timezone proof follows.
+Whole Source media count and its three pure MIME helpers query real SQL; the
+user seam retains only Source no-argument COUNT(id), with no user CRUD/role-filter
+credit. Originating complete content/media/registry/validate authorities are
+frozen before selected copying. Type-only aliases are not schema/provider proof.
+
+The proposed native GET/api/dashboard uses existing resolved principal plus
+content:read and existing private/no-store response helpers. Source Astro
+user/permission/configuration plumbing maps to current trusted Native composition;
+its 503 unconfigured message is inherited Native transport, not Source500 parity.
+No auth/session/credential guards or caller authority are changed. Whole original
+unit16/all77 expectations/fixtures/delays/deadlines remain unchanged; actual Node
+open/migrate/registry replaces Source fixture construction, with no principal or
+session data or test-only media DDL. These are explicit framework substitutions.
+
+This proposal is unexecuted and awaiting separate finite PM development
+qualification. Public Main still lacks media provider14, so no fake count/cache/
+policy/provider success establishes green. Import/fixture failures0causal; a
+real caught storage failure can count only when an original expected-success
+value assertion is actually reached. Node unit stats do not prove media file
+providers, policy execution/dismissal, scheduler firing, HTTP/UI, D1, hosting or
+full dashboard. [Paired feature record](../../docs/setup-api-backend.md) and
+[Draft PR90](https://github.com/sveltery/cms/pull/90) retain these limits. Final
+adaptation acceptance/current full13+secured gates/both reviews/landing pending.
