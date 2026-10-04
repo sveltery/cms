@@ -13,7 +13,7 @@ import { createRequestScopedDb } from '../../src/lib/server/runtime/cloudflare-d
 import { installVersion4 } from './lifecycle-startup.ts';
 
 export type StorageMode = 'Node' | 'raw D1' | 'scoped D1';
-export async function historicalFeatureStorage(mode: StorageMode) {
+export async function historicalFeatureStorage(mode: StorageMode, version: 0 | 4 | 5 = 5) {
   const directory = await mkdtemp(join(tmpdir(), 'canonical-feature-storage-'));
   const path = join(directory, 'cms.sqlite');
   const worker = mode === 'Node' ? null : new Miniflare({ modules: true,
@@ -30,11 +30,13 @@ export async function historicalFeatureStorage(mode: StorageMode) {
   async function closeConnections() { if (scope) await scope.database.close(); await raw.close(); }
   try {
     const database = scope?.database ?? raw;
-    await installVersion4(database);
-    const lifecycle = CMS_MIGRATIONS.find(provider => provider.version === 5);
-    assert.ok(lifecycle);
-    await database.atomicBatch([...await lifecycle.statements(database),
-      sql`INSERT INTO _cms_migrations(version) VALUES (5)`.compile(database.db)]);
+    if (version > 0) await installVersion4(database);
+    if (version === 5) {
+      const lifecycle = CMS_MIGRATIONS.find(provider => provider.version === 5);
+      assert.ok(lifecycle);
+      await database.atomicBatch([...await lifecycle.statements(database),
+        sql`INSERT INTO _cms_migrations(version) VALUES (5)`.compile(database.db)]);
+    }
     return {
       get database() { return scope?.database ?? raw; },
       async reopen() {
