@@ -1,0 +1,93 @@
+{
+  "phase": "R14 meaningful observer-lifecycle refactor after Native24 green",
+  "head": "470d6a0f28ec34983546335846df7f9fa2920a23",
+  "actualPublicParent": "c3d135a6f20e4319ee07eebb0f9009b57f2985f9",
+  "SourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "checkExit": 0,
+  "checkErrors": 0,
+  "checkWarnings": 0,
+  "Native24": {
+    "actualExit": 0,
+    "passed": 24,
+    "failed": 0,
+    "skipped": 0,
+    "unchangedAssertionsNamesValuesAndClocks": true,
+    "soleEarlierR13NativeFixtureExpressionCorrectionRecorded": true
+  },
+  "Source33": {
+    "qualification": "complete Source33 with accepted actual Native CLI command divergence",
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "executed": 33,
+    "sourcePassed": 32,
+    "sourceFailed": 1,
+    "runnerExit": 1,
+    "sourceAllGreen": false,
+    "acceptedCallback": "warns when scheduled content is overdue and the scheduler has never completed",
+    "declarationHash": "ccb63e7af54f541c31a5d33cc6ada61f0475779189c201ed5538b85f47bdb67a",
+    "expectedExpressionHash": "a7988810a852430af77f280816a2d4e4963af98929b7a842ae3663b3d21e90e9",
+    "sourceCreditForAcceptedCallback": 0,
+    "actualFailingValue": {
+      "operation": "toBeInTheDocument",
+      "negate": false,
+      "expectedPresent": true,
+      "actualPresent": false,
+      "selector": {
+        "kind": "text",
+        "pattern": {
+          "kind": "regexp",
+          "source": "npx emdash doctor",
+          "flags": "i"
+        }
+      },
+      "actualText": " DashboardPage Upload Media    Scheduled publishing needs attentionOne scheduled item is overdue, but no scheduler run has completed. Run pnpm doctor from your project and verify the deployed Cron Trigger. For a standalone installation, run sveltery-doctor. Draft1 Scheduled1 Media files0 Users0 ContentPagesDrafts1 Recent ActivityNo recent activity"
+    },
+    "reportPath": "/tmp/dashboard-source33-KEnhJL/whole-source33-report.json",
+    "logPath": "/tmp/dashboard-source33-KEnhJL/whole-source33.log",
+    "reportBytes": 11080,
+    "reportSha256": "ddc1b54f18aae0b26af9d3f4e223a5f41bee469dfcb5e5a2ac4de50394a045fd",
+    "logSha256": "50bfbb0dbbf18002e8825b44753132e0fca770c1196fddb0e4ad4100edaefaa0"
+  },
+  "strictSourceGateExit": 0,
+  "parserControls": 6,
+  "refactor": "Share batched core observer subscribe/publish/cleanup logic; preserve exact query optimistic-result refresh after subscription and mutation immediate pending result. No production API/focus/key/retry/cancellation changes.",
+  "priorR8TrueRedsControlsAnd24SourceProviderExceptions2FalsePositivesRetained": true,
+  "priorR12New2ValueRedAndPolicyControlAndLateFixtureFailureRetained": true,
+  "realBackendOrGlobalAppIntegrationCredit": 0,
+  "files": [
+    {
+      "path": "parity/emdash/dashboard-welcome-source/evidence/r14-check.log",
+      "bytes": 206,
+      "sha256": "1d180329843d78a90008aeccee4822d38df84b7fd6a0a9dc35bd3c9746701e6c"
+    },
+    {
+      "path": "parity/emdash/dashboard-welcome-source/evidence/r14-native24-refactor.log",
+      "bytes": 498,
+      "sha256": "f8a2ca302a7677f7b201ee3c70de7f5537afef0f917580c7c96c55cf51d3f4db"
+    },
+    {
+      "path": "parity/emdash/dashboard-welcome-source/evidence/r14-native24-refactor.json",
+      "bytes": 8222,
+      "sha256": "6c74c16c3479fed153fff5ad54b05c6bf21295e3c1d91d88566c380abb3af5e8"
+    },
+    {
+      "path": "parity/emdash/dashboard-welcome-source/evidence/r14-source33-qualified-refactor.log",
+      "bytes": 17524,
+      "sha256": "688be357d399b73b4765ceac5355bcea7a427f4f85bfb9dc6c0c1632dfc758e5"
+    },
+    {
+      "path": "parity/emdash/dashboard-welcome-source/evidence/r14-source33-refactor-raw.log",
+      "bytes": 3942,
+      "sha256": "50bfbb0dbbf18002e8825b44753132e0fca770c1196fddb0e4ad4100edaefaa0"
+    },
+    {
+      "path": "parity/emdash/dashboard-welcome-source/evidence/r14-source33-refactor-raw.json",
+      "bytes": 11080,
+      "sha256": "ddc1b54f18aae0b26af9d3f4e223a5f41bee469dfcb5e5a2ac4de50394a045fd"
+    },
+    {
+      "path": "parity/emdash/dashboard-welcome-source/evidence/r14-source33-refactor-qualification.json",
+      "bytes": 1601,
+      "sha256": "f2bed542083b22860475fb30439db6d2ddbec8a410f50efc6934b83667be4f2b"
+    }
+  ]
+}

@@ -2025,3 +2025,52 @@ read-only diagnostic commands. No private payload, principal/session/protected
 HTTP probe, global cache, root route or shared CI deadline/browser change is
 included. Normal13/secured9/current final review/OWN PR100 approval/author CAS
 merge/post-Main verification still follow the completed real feature.
+
+
+### Dashboard query-core R12–R14 actual local continuation — library core verified, app integration open
+
+Root qualified the exact eighteen-file R12 packet before application. Commit
+d4174f70 added the two Native regression callbacks first. Against unchanged
+product, generic non-Error policy feedback was a meaningful passing control and
+the actual `pnpm doctor` guidance assertion reached a value red; the later
+standalone-command assertion was unreached. The old twenty-two callbacks were
+intentionally excluded from this supplemental two-case run, with their complete
+earlier baseline retained. Runtime/gate candidates then landed locally at
+368d8864. Frozen install, check (zero errors/warnings), and default build passed.
+
+The first complete Native24 fix run returned twenty-three passes and one newly
+reached late fixture failure. Both observer refresh/count assertions and mutation
+arguments now passed, but the old failed-dismissal fixture removed all blocked
+policy data before expecting error text inside the removed notice. Source hides
+that notice when no blocked items remain. Root qualified the sole forty-byte R13
+fixture-expression correction: failed refresh retains the blocked rejection with
+mediaCount9; successful refresh still clears it. No Source bodies or any Native
+assertion, expected value, callback name or clock changed. Original native fixture
+bytes and every original failure remain in raw history; the historical claim of
+whole old file prefixes predates this explicitly recorded Native fixture repair.
+Commit3180d361 applied it, and the complete Native24 family passed without skips.
+
+After that green run, commit470d6a0f extracted the common observer batched
+subscription/current-result/cleanup lifecycle while preserving the query-only
+optimistic-result refresh and immediately visible native mutation pending state.
+The complete Native24 family passed again; check reports zero errors/warnings.
+The unchanged whole Source33 family again executed all callbacks: thirty-two
+passed and the exact original `/npx emdash doctor/i` value assertion failed with
+actual Vitest exit1. Its mounted DOM displays the real public project and
+standalone Native commands. The separate strict qualification gate passes, its
+six parser controls pass, and the divergent Source callback earns zero fidelity
+credit. This is not Source33 all-green. Raw log, JSON, diagnostic and qualification
+are committed alongside all earlier failures. Receipt: `r14-refactor-causal-receipt.json`
+under `parity/emdash/dashboard-welcome-source/evidence/`.
+
+The paired wording now distinguishes unchanged shared workflows and deadlines
+from the two additive terminal dashboard gates. No private backend payload or new
+protected authentication/session/HTTP probe was introduced. Actual global app
+provider, shared current-user/Shell first-login/toolbar behavior, configured
+locale/branding, real dashboard/welcome/transfer/policy endpoints, CoreUpdate,
+trusted and sandboxed plugin widget/runtime/provider composition and their whole
+Source/UI coverage remain required. Own PR100 is still draft; local library
+results establish no accepted public app, final CI/review/merge or whole product
+parity. Final current normal13/secured9, configured review, new independent final
+head review, Root approval, author regular expected-head merge and post-Main
+verification remain pending.
