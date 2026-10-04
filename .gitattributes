@@ -1,0 +1,9 @@
+# Preserve the byte-exact original Node assertion-failure evidence.
+docs/d1-direct-fixture-evidence/native4-baseline.log -whitespace
+docs/receipts/runtime-port-lifecycle/baseline.log -whitespace
+docs/doctor-evidence/native12-baseline.log whitespace=-blank-at-eol
+docs/doctor-evidence/native13-baseline.log whitespace=-blank-at-eol
+docs/doctor-evidence/source-baseline.log whitespace=-blank-at-eof
+notices/jsonc-parser-3.3.1-MIT.txt whitespace=cr-at-eol
+docs/doctor-evidence/source-first-runtime.log whitespace=-blank-at-eof
+docs/doctor-evidence/source-refactor.log whitespace=-blank-at-eof

@@ -57,7 +57,7 @@ const expected = new Map([...commentSchemaSql, ...commentRuntimeSchemaSql].map(s
   return [match[2], { type: match[1].toLowerCase(), sql: statement }];
 }));
 
-/** One read-only schema census; no migrations, writes or cross-request memoization. */
+/** Read-only schema and installed-version checks; no migrations, writes or cross-request memoization. */
 export async function commentsReady(database: CmsDatabase): Promise<boolean> {
   const rows = (await sql<{ name: string; type: string; tbl_name: string; sql: string | null }>`
     SELECT name, type, tbl_name, sql FROM sqlite_schema
@@ -65,22 +65,29 @@ export async function commentsReady(database: CmsDatabase): Promise<boolean> {
     UNION ALL
     SELECT name, 'column', type, dflt_value FROM pragma_table_info('_cms_collections')
     WHERE name IN ('comments_enabled', 'comments_moderation', 'comments_closed_after_days', 'comments_auto_approve_users')
+    UNION ALL
+    SELECT name, 'migration-table', type, sql FROM sqlite_schema
+    WHERE name='_cms_migrations' AND type='table'
   `.execute(database.db)).rows;
+  // Frozen canonical5/14 requires default0. Append15 changes only fresh
+  // creation to Source027 default1; a marker alone or a gapped/future list
+  // does not select that schema. Keep historical literal negatives exact.
+  const versions = rows.some(row => row.type === 'migration-table')
+    ? (await sql<{ version: number }>`SELECT version FROM _cms_migrations ORDER BY version`.execute(database.db)).rows.map(row => row.version)
+    : [];
+  const sourceCreationDefaults = versions.length === 15 && versions.every((version,index) => version === index+1);
   const settings = new Map([
     ['comments_enabled', { type: 'INTEGER', value: '0' }],
     ['comments_moderation', { type: 'TEXT', value: "'first_time'" }],
     ['comments_closed_after_days', { type: 'INTEGER', value: '90' }],
-    // The approved native canonical schema currently defaults this to 0.
-    // Source 027 defaults it to 1; retain that existing difference explicitly
-    // rather than altering canonical ownership from a request-readiness check.
-    ['comments_auto_approve_users', { type: 'INTEGER', value: '0' }]
+    ['comments_auto_approve_users', { type: 'INTEGER', value: sourceCreationDefaults ? '1' : '0' }]
   ]);
   const collectionColumns = rows.filter(row => row.type === 'column');
   if (collectionColumns.length !== settings.size || !collectionColumns.every(row => {
     const source = settings.get(row.name);
     return source && row.tbl_name.replace(/[a-z]/g, letter => letter.toUpperCase()) === source.type && row.sql !== null && normalize(row.sql) === normalize(source.value);
   })) return false;
-  const actual = rows.filter(row => row.type !== 'column' && !row.name.startsWith('sqlite_autoindex_'));
+  const actual = rows.filter(row => row.type !== 'column' && row.type !== 'migration-table' && !row.name.startsWith('sqlite_autoindex_'));
   if (actual.length !== expected.size) return false;
   return actual.every(row => {
     const source = expected.get(row.name);
