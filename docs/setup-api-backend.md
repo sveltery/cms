@@ -272,3 +272,8 @@ persistence addition in PR90. These finite shared edits are not applied yet;
 Root development qualification, exact ordinary public Mainfd1f union and actual full current-head gates/reviews/merge
 remain pending. Targeted welcome2 and Native1 are already green with immutable
 receipts; targeted success alone does not establish complete product parity.
+
+
+The exact approved public Mainfd1 union is applied as ordinary merge `0b9b3d846d1bed6eb22b720ec5030528c81ab977` (parents owned2c340913 and actual publicfd1f). Its staged resolution matched the qualified tree58c6bb8290361a834e08f432d964e56363f0ea29 before paired appends. Exact r2 transport gates and complete incoming passkey prose correction are committed as `c3e619785ec0ebdfa9bcc928f38f624ac205e503`. The incoming immutable SEC1 red log retains its original trailing spaces. Full combined normal13 and secured9 validation is next; no acceptance or PR merge approval is claimed.
+
+The catalog counters now reflect18 unique reached Source callbacks and17 observed value reds: welcome1 completed causal green, the welcome control first-green with zero credit, and dashboard16 still failing due to absent actual media storage with61 expectations unreached. Earlier dashboard-build welcome2/Native1 repeated greens are retained separately and add zero causal credit. All54 frozen authority bytes and the nine-family48-declaration193-expect inventory remain unchanged. Dashboard16 is held out of the aggregate.

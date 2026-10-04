@@ -1,0 +1,65 @@
+{
+  "ownedHead": "2c3409133d3b7a92f566599c824f88422603a4b8",
+  "actualMain": "fd1f931f04a85d32ac740dfcfa2b37ca3b406c05",
+  "ordinaryUnionWholePathCount": 1690,
+  "ordinaryUnionTree": "58c6bb8290361a834e08f432d964e56363f0ea29",
+  "incoming16Exact": true,
+  "completeIncomingCompatAndUnchangedOwnedSuffixPreserved": true,
+  "whole54PinnedAuthoritiesExact": true,
+  "wholeSourceDeclarations": 48,
+  "wholeSourceExpects": 193,
+  "exactPairedAppends": [
+    [
+      {
+        "path": "docs/setup-api-backend.md",
+        "packet": "feature-append.md",
+        "bytes": 1127,
+        "sha256": "0e6ea9133e7fd91019f8541951ae09c3f112abd874e06ad0c33d8e443405e7f9"
+      },
+      {
+        "path": "parity/emdash/compatibility.md",
+        "packet": "compatibility-append.md",
+        "bytes": 1345,
+        "sha256": "1dcce69d43c71fe48f69e93c263332f08141f71b9e817ed49fa912e7c9618854"
+      }
+    ],
+    [
+      {
+        "path": "docs/setup-api-backend.md",
+        "packet": "feature-append.md",
+        "bytes": 1262,
+        "sha256": "c248281b37d17bd2dd8bcf2962fae4c67b965f13b16d2268f0c9edb6e608d8bf"
+      },
+      {
+        "path": "parity/emdash/compatibility.md",
+        "packet": "compatibility-append.md",
+        "bytes": 1695,
+        "sha256": "358df4e842c87a666c1cdb4041f137ff6ece41fd87bde1a5328fd7d5453d3df8"
+      }
+    ]
+  ],
+  "exactGateCandidates": [
+    {
+      "path": "package.json",
+      "bytes": 7093,
+      "sha256": "0d2425503f6ebb7ba18d36d435fd5234c10d67c5efb43e3cb9761faeccdce8f3",
+      "gitBlob": "78f2712764c708686e3d929db4fe4a60c398109b",
+      "before": {
+        "bytes": 6767,
+        "sha256": "f83669c14fdde8e51d3fa8cfa9d0ce5a121a44f5c30b1697e7ac881666a745d5"
+      }
+    },
+    {
+      "path": "docs/passkey-setup-login.md",
+      "bytes": 38002,
+      "sha256": "e96ea0b48149070a4248754889ecb3668faec2134f9fe2df2d8c85a45d18ac18",
+      "gitBlob": "a20ef2cd4aa0daf86a66534940586225b99eab89",
+      "before": {
+        "bytes": 37593,
+        "sha256": "cf3788be88e1f7905e4a11f6e4ba101dd5d9fb2f0b6c456d6586bbeaf5892e92"
+      }
+    }
+  ],
+  "allOriginalGatesAndDeadlinesPreserved": true,
+  "developmentOnly": "Author may apply exact ordinary Mainfd1 union and paired appends, then exact r2 package/two-prose replacements and paired appends. No final acceptance or merge approval. Dashboard16 aggregate remains held for actual media prerequisite; no new tests/probes/auth behavior authorized."
+}
