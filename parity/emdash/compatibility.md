@@ -1494,3 +1494,70 @@ The next ordinary merge uses ordered public parents `[7dbe5c433c68b75d3e5f2832bf
 The five new production dependencies remain exactly `blurhash@2.0.5`, `image-size@2.0.2`, `jpeg-js@0.4.4`, `mime@4.1.0` and `upng-js@2.1.0`, with transitive `pako@1.0.11`. Incoming lock/workspace metadata preserves 518 package/533 snapshot records, original install policies and patch hash. The complete 15,746-byte image-size patch, SHA256 `77c12533e3a635c4066c55da8952f4912e8210416539dc1249550fa639271595`, remains exact to the whole pinned Source patch. All seven dependency notices retain their entire public bytes, including verbatim license whitespace. Public Node packaging copies `patches/`; its two explicitly qualified inventory literals and every other callback/body/assertion/deadline remain exact. This union introduces no new assertion rewrite. The entire incoming package scripts/dependency graph is retained with only the existing canonical 49 provenance guard after its complete normal Source sequence. SEC1, shared D1, Editor/Picker/Navigation, frozen providers 1–8, actual providers 9–14 and all 75 Native canonical controls/requirements remain intact.
 
 The current 1472/280/15/7 and 21 Vitest/secured Source 7/default 65/Node 65 pass evaluates 7dbe only. New combined-head hosted gates and final review/acceptance must qualify the media dependency union; actual media Main's post-push outcome is not claimed by this proposal. The original fifteen-minute validate limit, 180-second host startup/30-second kill limits, assertions, fixture isolation and browser sandbox remain intact. Standing configured request 5976771105/quota-no-verdict 5976772262 is not repeated, and the unresolved attachment attempt is not retried. CFS-01/02/03 remain foundation decisions pending Root's explicit record; the full CMS and the eleven canonical Source families remain unfinished with zero additional Source execution/causal credit.
+
+
+## Core user repository and pure role scope policy (proposed)
+
+[PR #99](https://github.com/sveltery/cms/pull/99) proposes the foundation described
+in [the owning record](../../docs/user-repository-roles.md) and
+[complete inventory](../../docs/user-repository-roles-ports.json). Authority is
+EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`; all 23 whole Source
+files remain byte-exact. Only the complete Source RBAC family is registered:
+30 declarations, 35 static expectation expressions, 33 callbacks. No dedicated
+Source Core UserRepository test exists at the pin. Nine whole broader consumer
+families remain unexecuted; Native SQL cases provide zero copied Source credit.
+
+USR-01 proposes replacing Source Core's single `users` Kysely table API with the
+real Native `CmsDatabase` and a join of existing `_cms_auth_users` and
+`_cms_auth_profiles`. ID, role and disabled remain stored in the existing identity;
+all actual profile fields remain stored in the existing frozen profile table.
+Creation and multi-table updates use the actual atomic batch adapter, not a view,
+manual transaction fallback or test result shim. Genuine count/filter/cursor
+queries and real affected-row deletion preserve Core behavior for complete
+profiles. Source SQLite `(datetime('now'))` defaults produce UTC second timestamps;
+Native Core creation uses the same expression and Core update leaves updated_at
+unchanged. Existing Auth adapter ISO/Date/update behavior and stored bytes remain
+unchanged. No migration, raw users/UPSERT mapping or fabricated profile is added.
+This framework/storage substitution is proposed for finite development; final
+project-manager acceptance, final validation/review and author merge are pending.
+
+USR-02 proposes preserving historical Native identities without a profile and
+omitting them from the complete Core repository. Lookup/update return null,
+delete returns false and Core count counts joined profiles. The unchanged Auth
+adapter continues its historical identity lookup/count behavior. Source has no
+partial profile row because those fields occupy its single table. This difference
+protects actual existing identity bytes without inventing email/profile values.
+Original Node/raw-D1 preservation assertions are present, with current reached
+assertion failures followed by later unreached expectations; final acceptance
+is pending. Explicit historical profile enrollment is unfinished.
+
+USR-03 proposes a module substitution for Source's pure role scope policy: the
+entire Source scope mapping and `scopesForRole`/`clampScopes` tail remains exact
+in the existing Native permission module; three pure constants/type declarations
+come from Source tokens.ts in a separate Native module. Existing Native permission
+guards and ownership rules are unchanged. This does not implement API token
+issuance, signing, sessions or endpoints. Final exact-head acceptance is pending.
+
+The test-first Native `741b29cd04645b871af3a29c6686c91f6da74bf1` and public
+tree-equivalent `b4ec05ffddf43a8c91e8fab6ee1e501ccef2437f` precede runtime changes.
+[The full original baseline](../../docs/evidence/user-repository-roles/testfirst-whole65.log)
+records 65 callbacks: 29 pass and 36 fail. Native 31 reached assertion reds comprise
+26 actual SQL availability requirements and five pure scope availability
+requirements; later field/value expectations remain unreached. Source 28 cases
+initially pass and five stop at missing-function errors before assertions; the
+Native role-resolution control initially passes. Fixture/infra failures are zero.
+Causal reached Source assertion-red credit and upstream bug credit are both zero.
+Product green/refactor receipts remain pending, not inferred from a byte guard.
+
+The corrected seed inventory traverses 113 modules including every literal
+dynamic import, compared with 103 eager modules. It finds no users query/raw users
+SQL/UserRepository chain; Source apply itself has zero users queries. This graph
+evidence does not establish product integration or qualify a raw users facade.
+The shared package change appends the whole new 65-case guard/family after the
+entire actual public Main14 Source chain, including its canonical storage guard.
+Versions, dependency locks, media patch/notices, frozen providers, existing normal
+thirteen-stage and secured nine-launch gates/deadlines remain unchanged. Those
+gates and final independent/configured review must qualify the eventual head.
+Full admin APIs/DTO/UI, broader byline/plugin/content consumers, legacy enrollment,
+invites/recovery/OAuth/API tokens, complete logical facade/raw UPSERT routing and
+deployed-hosting parity remain unfinished.
