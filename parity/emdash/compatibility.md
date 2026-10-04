@@ -1267,3 +1267,52 @@ The ordinary Main091 merge d8be24d76fdc8d1e436b6d9889b4e2b4200fe634 has native t
 Actual public Mainaa6d942a9a5167a0bb656750880fdeeee134a218 contributes the complete installed-feature navigation and its eighteen whole pinned authorities, alongside the thirty-one incoming picker authorities. The ordinary candidate union preserves every incoming Main code/test/gate/dependency/notice byte except the nine existing explicit editor integration seams. The complete incoming338656-byte compatibility prefix and the entire19606-byte owned Main091 suffix remain intact before this dated append. Incoming package6444B SHAfbbb7eb8c505eac5f6c3cb646a721de9f222d86e010421581e7fcbe0fc0d1f02 is unchanged from Main091; its whole Source command remains before the exact owned editorSource7/Native23 leaves. Bootstrap, secured browser workflow, original Native/Source/browser callbacks, five-second UI and180s/120s Node deadlines, canonical providers1–8 and frozen512/527 snapshots are unchanged.
 
 The repaired and refactored whole Native23 result remains dated owned evidence after four genuine new Native value reds; the original four actual41b secured-browser failures and complete logs remain retained. No local combined Source/editor/browser success is inferred from the failed normal. The new complete hosted thirteen-stage command and secured Source/default/Node browser runs must verify this final combined payload, followed by final independent/configured review, exact project-manager approval, author expected-head merge and post-Main checks. Source15 stays exactly pinned: only the unchanged seven validation callbacks have executed, with historical six meaningful Source value reds. All eight whole editor/list/e2e families, complete Source provider/type closure, rich widgets/media/plugins/translations/full-list/scheduling parity remain unfinished. Bounded WE1 remains the accepted Native substitution.
+
+## Shared media dependency prerequisite (proposed, 2026-10-04)
+
+Authority: EmDash 1.1.0, immutable pin
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, pinned core dependency/lock records,
+workspace image-size patch configuration and the whole 15,746-byte
+`patches/image-size@2.0.2.patch` (SHA256
+`77c12533e3a635c4066c55da8952f4912e8210416539dc1249550fa639271595`).
+The [feature record](../../docs/media-dependency-prerequisite.md) describes the
+five exact direct dependencies, six new locked package/snapshot entries and
+seven retained notices. The entire original 512/527 lock inventory, both YAML
+documents, scripts and policies remain unchanged except for the explicit additions.
+
+Framework/package substitution: pinned EmDash core declares `image-size` through
+its development catalog; the native standalone package declares exact 2.0.2 as
+a production dependency and carries `patches/` so its ordinary frozen production
+installation can apply the pinned Source patch outside the checkout. The existing packaging copy list and two
+existing sorted directory inventory assertions add that directory; all seven
+parent/nested declarations and 56 expressions retain their full original bodies
+apart from those two expected arrays. No Source assertion is ported or changed,
+no new callback is added, and changed original Native inventory expectations
+supply zero Source parity credit. Credential/session fixtures, deadlines,
+authorization, runtime, thirteen normal stages and nine secured browser stages
+remain unchanged. Media/seed runtime and UI parity remain unimplemented.
+
+The project manager's exact thirteen-file development qualification approved the prerequisite
+application and own Draft publication on actual public Main
+`135e7be689885fd23678569d0d373a1131f5302b`; it did not approve feature parity or
+final merging. Test-first `6f7ef2fc8a82dddb0f1c4cdc2809fddc70ef1948` precedes the
+fix `7a286ffafd1fb065fc9f2b00792baaca695f57e9`. The whole baseline completed ten
+phases, services 1,376/1,376 and production 280/280; phase eleven reports one Native
+layout `ERR_ASSERTION` for absent `patches/`, plus two other hosting callbacks green.
+The second directory assertion, nested hosting cases and both Cloudflare phases
+were unreached. Complete baseline 370,930 bytes, SHA256
+`c82aa0a2df45a76239501f6d05d62f5abe233640ed75d1e2120d93fe32140702` is retained.
+The exact fixed whole bootstrap exits 0 with all thirteen paired phases complete,
+Node groups 1,376/280/15/7 all passing and twenty-one mandatory Vitest groups green.
+All original nested hosting callbacks and the second inventory assertion now run
+and pass; one measured Native layout value red closes, with zero Source credit.
+Complete fixed log 417,446 bytes, SHA256
+`b4345974065edb6d2ae93f0283878065bff6b64a65db0d36344eeb2549a5da68`. No isolated hosting/auth family ran.
+No further executable refactor is justified beyond the exact dependency/Source
+patch bodies and one packaging-array member.
+Six upstream jpeg-js license lines preserve original trailing whitespace and the
+qualified whole-notice hash; other changed files pass whitespace validation.
+Final hosted normal/secured execution, independent/configured review,
+exact-head PM acceptance, proposed PR and author merge are pending. This is a
+proposed package-layout substitution; no final specific acceptance or landed
+state is recorded yet.
