@@ -12107,4 +12107,30 @@
   "rawLogSha256": "d61aadac0cc2219a096ac4ca7f42d78c8c83455f5c94b10bc084e9002d589727",
   "rawReporterSha256": "dd6892eb3841f0416c4bbb5a2717c34caa0926c155289c096df28c37a4c3d942"
 }
+,
+  "nativeWholeContent7TestFirstFixture": {
+  "status": "test-first-native-whole-family-fixture-prepared-no-execution",
+  "nativeBeforeHead": "678bdf13fa8ea79cbc93af4392bda81b2dd91842",
+  "sourcePath": "packages/core/tests/integration/content/content-taxonomies.test.ts",
+  "sourceSha256": "87d90ae65b69a597a38437c21b1960208ce51ed2ad1d0a2fe1dc6ae497db1d36",
+  "wholeSourceDeclarations": 7,
+  "wholeStaticMatcherExpressions": 23,
+  "runtime": "Native SQLite only; original Source helper PostgreSQL conditions remain unchanged in the independent Source-only Core22 fixture",
+  "actualRuns": 0,
+  "sourceCredit": 0,
+  "realOwners": [
+    "actual migrateCms canonical14",
+    "actual Native SchemaRegistry/DraftRepository/ordinaryContentService/LifecycleService",
+    "same existing Native TaxonomyRepository/canonicalSourceDatabase"
+  ],
+  "inputs": "trusted ordinary fixed service principal; no credential/session/signature/permission-denial/identity-installation/HTTP/auth probe",
+  "intentionalFixtureAdaptations": [
+    "standard Source post/page collection inputs executed by actual Native SchemaRegistry",
+    "Source-shaped result envelope around sole actual Native ordinaryContentService",
+    "whole Source update supplies no caller CAS; fixture reads actual content snapshot and passes its real version/updatedAt to existing mandatory Native CAS",
+    "Native-only dialect enumeration; no PostgreSQL execution/provider credit"
+  ],
+  "assertionsDataSqlClocksChanged": false,
+  "sourceSameSchemaDualInstall": false
+}
 }
