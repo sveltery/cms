@@ -147,7 +147,7 @@ function definitions(statement:string, name:string): string[] {
   return values;
 }
 
-function validateTable(object:SchemaObject, fields:RegisteredField[], installed:boolean): string {
+function validateTable(object:SchemaObject, fields:RegisteredField[], installed:boolean, allowRetainedReferenceColumns=false): string {
   if (object.type!=='table' || !object.sql) throw new CmsError('MIGRATION_REQUIRED');
   const columns=new Map<string,string>(); let unique=false;
   const parsed=definitions(object.sql,object.name);
@@ -174,7 +174,12 @@ function validateTable(object:SchemaObject, fields:RegisteredField[], installed:
     if (!identifier.test(field.slug) || system.has(field.slug) || field.slug==='primary_byline_id' || registered.has(field.slug)) throw new CmsError('MIGRATION_REQUIRED');
     registered.add(field.slug);
     const actual=columns.get(field.slug);
-    if (isStoragelessFieldRow(field)) { if (actual!==undefined) throw new CmsError('MIGRATION_REQUIRED'); continue; }
+    if (isStoragelessFieldRow(field)) {
+      if (actual===undefined) continue;
+      // Source087 retains its old TEXT column. Only installed10+ recognition
+      // accepts that known field column; old1–8 recognition stays unchanged.
+      if (!allowRetainedReferenceColumns || field.type!=='reference' || field.column_type!=='TEXT') throw new CmsError('MIGRATION_REQUIRED');
+    }
     if (!['TEXT','REAL','INTEGER','JSON'].includes(field.column_type) || !actual || !actual.startsWith(field.slug+' '+field.column_type) || !new RegExp('^'+field.slug+' '+field.column_type+'(?:$| )').test(actual)) throw new CmsError('MIGRATION_REQUIRED');
     // Preserve supported historical NULL/default/unique column clauses; reject
     // an unrecognized generated/FK/constraint layout rather than repairing it.
@@ -200,7 +205,7 @@ function validateTable(object:SchemaObject, fields:RegisteredField[], installed:
   return changed ? object.sql.slice(0,object.sql.indexOf('(')+1)+upgraded.join(',\n')+')' : object.sql;
 }
 
-async function contentSnapshot(database:CmsDatabase, installed:boolean) {
+async function contentSnapshot(database:CmsDatabase, installed:boolean, allowRetainedReferenceColumns=false) {
   const exists=(await sql`SELECT name FROM sqlite_master WHERE name='_cms_collections' AND type='table'`.execute(database.db)).rows.length;
   if (!exists && installed) throw new CmsError('MIGRATION_REQUIRED');
   // Fresh preparation precedes foundation DDL, but existing ec objects still
@@ -234,7 +239,7 @@ async function contentSnapshot(database:CmsDatabase, installed:boolean) {
     if (!object) throw new CmsError('MIGRATION_REQUIRED');
     const registeredFields=fields.filter(row=>row.collection_id===collection.id);
     if (registeredFields.length>32) throw new CmsError('MIGRATION_REQUIRED');
-    tables.push({object,target:validateTable(object,registeredFields,installed)});
+    tables.push({object,target:validateTable(object,registeredFields,installed,allowRetainedReferenceColumns)});
   }
   return {snapshot,objects,tables};
 }
@@ -246,8 +251,8 @@ function snapshotGuard(database:CmsDatabase,snapshot:{objects:string;collections
 }
 
 /** Latest startup can backfill indexes; guard that write against layout races too. */
-export async function guardLifecycleIndexRepair(database:CmsDatabase,statements:readonly CompiledQuery[]) {
-  const content=await contentSnapshot(database,true); const token=ulid();
+export async function guardLifecycleIndexRepair(database:CmsDatabase,statements:readonly CompiledQuery[],installedVersion=5) {
+  const content=await contentSnapshot(database,true,installedVersion>=10); const token=ulid();
   return [snapshotGuard(database,content.snapshot,token),...statements,
     sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(database.db)];
 }
@@ -292,7 +297,7 @@ export const lifecycleMigration:CmsMigrationProvider = {
     const objects=migrationObjects(staticStatements(database));
     // Existing v1-v4 ec tables are not partially installed future objects.
     if (installedVersion>=5) {
-      const content=await contentSnapshot(database,true);
+      const content=await contentSnapshot(database,true,installedVersion>=10);
       for (const {object,target} of content.tables) objects.push({name:object.name,type:'table',sql:target});
     }
     return objects;

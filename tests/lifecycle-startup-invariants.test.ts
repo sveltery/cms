@@ -3,6 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { sql, type CompiledQuery } from 'kysely';
 import { migrateCms } from '../src/lib/server/database/migrations.ts';
+import { installHistoricalCanonical8 } from './helpers/historical-canonical5.ts';
 import type { CmsDatabase } from '../src/lib/server/database/contract.ts';
 import { assertCanonicalTriggerExtension } from './helpers/canonical-installation/triggers.ts';
 import { installCanonicalPublicVersion5 } from './helpers/canonical-installation/public-v5.ts';
@@ -14,7 +15,7 @@ async function prepare(database:CmsDatabase, stage:'fresh'|'v4'|'v5'|'v8', race:
   if (stage==='v4') {await installVersion4(database); await legacyPost(database);}
   if (stage==='v5'||stage==='v8') {
     if (stage==='v5') await installCanonicalPublicVersion5(database);
-    else await migrateCms(database);
+    else await installHistoricalCanonical8(database);
     const registry=new SchemaRegistry(database);
     await registry.createCollection({slug:'post',label:'Posts'});
     await registry.createField('post',{slug:'title',label:'Title',type:'string'});

@@ -4,7 +4,7 @@ import { Kysely, sql } from 'kysely';
 import { Miniflare } from 'miniflare';
 import { openSqlite } from '../src/lib/server/database/sqlite.ts';
 import { openD1, SessionD1Dialect } from '../src/lib/server/database/d1.ts';
-import { migrateCms } from '../src/lib/server/database/migrations.ts';
+import { installHistoricalCanonical5 } from './helpers/historical-canonical5.ts';
 import { menuSchemaStatements } from '../src/lib/server/menus/migrations.ts';
 import { MenuRepository, MenuGoneError } from '../src/lib/server/menus/repository.ts';
 import type { Database } from '../src/lib/server/menus/database-types.ts';
@@ -19,7 +19,7 @@ async function fixture(backend: 'node' | 'raw-d1' | 'scoped-d1') {
     d1Databases: { CMS_DB: 'cms-menu-atomic-fixture' }, cf: false });
   const binding = await worker?.getD1Database('CMS_DB');
   const storage = binding ? openD1(binding) : openSqlite(':memory:');
-  await migrateCms(storage);
+  await installHistoricalCanonical5(storage);
   await storage.atomicBatch(menuSchemaStatements(storage));
   const scoped = backend === 'scoped-d1' ? new Kysely<CmsTables>({ dialect: new SessionD1Dialect({ database: binding! }) }) : undefined;
   const db = (scoped ?? storage.db).withTables<{[Name in keyof Database]: Database[Name]}>().$pickTables<keyof Database>();

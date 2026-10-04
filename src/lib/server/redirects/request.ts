@@ -2,6 +2,7 @@
 // Source whole redirect Astro routes at 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.
 // Owned SvelteKit transport uses only the existing trusted server locals.
 import type {CmsDatabase} from '../database/contract.ts';
+import {withCanonicalFeatureNamespaces} from '../database/canonical-features/namespaces.ts';
 import type {ServerPrincipal} from '../database/service.ts';
 import type {Database} from './database-types.ts';
 import {redirectSchemaPresent,RedirectSchemaIncompleteError} from './readiness.ts';
@@ -39,7 +40,7 @@ export async function redirectEndpoint(event:RedirectRequest,action:RedirectActi
  const [fallbackCode,fallbackMessage]=errors[action];
  try {
   if(!await redirectSchemaPresent(context.database.db))return apiError('MIGRATION_REQUIRED','Redirect storage migrations are required',503);
-  const db=context.database.db.withTables<{[Name in keyof Database]:Database[Name]}>().$pickTables<keyof Database>();
+  const db=withCanonicalFeatureNamespaces(context.database.db.withTables<{[Name in keyof Database]:Database[Name]}>().$pickTables<keyof Database>());
   if(action==='list'){
    const query=parseQuery(event.url,redirectsListQuery);if(isParseError(query))return query;
    return unwrapResult(await handleRedirectList(db,query));
