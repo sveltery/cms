@@ -14,8 +14,9 @@ async function launch(origin = 'http://localhost:0') {
   });
   const exited = once(child, 'exit');
   let output = '';
-  child.stdout!.on('data', data => { output += data; });
-  child.stderr!.on('data', data => { output += data; });
+  const appendOutput = (data: Buffer) => { output += data; };
+  child.stdout!.on('data', appendOutput);
+  child.stderr!.on('data', appendOutput);
   let timer: ReturnType<typeof setTimeout> | undefined;
   let ready: Ready;
   try {
