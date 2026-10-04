@@ -13,6 +13,9 @@ export default defineConfig({
   plugins: [{
     name: 'whole-rich-editor-source-native-transport', enforce: 'pre',
     resolveId(id, importer) {
+      // The actual SvelteKit config has its default empty base; only this
+      // framework value is adapted. Original mocked Source providers stay intact.
+      if (id === '$app/paths') return '\0rich-editor-native-default-base';
       if (!importer || !id.startsWith('.')) return;
       const target = resolve(dirname(importer.split('?')[0]), id).replace(/\.(tsx?|jsx?)$/, '');
       if (target === resolve(source, 'src/components/PortableTextEditor')) return resolve(helper, 'react-bridge.tsx');
@@ -20,6 +23,7 @@ export default defineConfig({
       if (target === resolve(source, 'src/components/editor/PluginBlockNode')) return resolve(native, 'plugin-node.ts');
       if (target === resolve(source, 'dist/styles.css') || target === resolve(source, 'src/styles.css')) return resolve(native, 'editor.css');
     },
+    load(id) { if (id === '\0rich-editor-native-default-base') return "export const base = '';"; },
     async transform(code, id) {
       if (!id.startsWith(source) || !/\.[jt]sx?(?:\?|$)/.test(id) || !code.includes('@lingui/')) return;
       const result = await transformAsync(code, {

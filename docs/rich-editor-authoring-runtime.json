@@ -1,0 +1,1112 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "beforeImplementationHead": "1768071508c8051f87a34c35a8945734516f02ed",
+  "nativeNewFiles": [
+    "src/lib/editor/rich-text/CodeBlockControls.svelte",
+    "src/lib/editor/rich-text/CodeBlockExtension.ts",
+    "src/lib/editor/rich-text/CodeMarkExtension.ts",
+    "src/lib/editor/rich-text/EditorFooter.svelte",
+    "src/lib/editor/rich-text/EmbedBlockEditor.svelte",
+    "src/lib/editor/rich-text/HtmlBlockNode.ts",
+    "src/lib/editor/rich-text/IframeBlockNode.ts",
+    "src/lib/editor/rich-text/MarkdownLinkExtension.ts",
+    "src/lib/editor/rich-text/PortableTextEditor.svelte",
+    "src/lib/editor/rich-text/TableActions.ts",
+    "src/lib/editor/rich-text/TableCellSafety.ts",
+    "src/lib/editor/rich-text/TableClipboard.ts",
+    "src/lib/editor/rich-text/TableExtensions.ts",
+    "src/lib/editor/rich-text/TableResize.ts",
+    "src/lib/editor/rich-text/TableSizePicker.svelte",
+    "src/lib/editor/rich-text/code-values.ts",
+    "src/lib/editor/rich-text/codeBlockLanguages.source.ts",
+    "src/lib/editor/rich-text/codeBlockLanguages.ts",
+    "src/lib/editor/rich-text/create-editor.ts",
+    "src/lib/editor/rich-text/editor-values.ts",
+    "src/lib/editor/rich-text/editor.css",
+    "src/lib/editor/rich-text/embed-node-view.ts",
+    "src/lib/editor/rich-text/footer-messages.ts",
+    "src/lib/editor/rich-text/gallery-node.ts",
+    "src/lib/editor/rich-text/image-node.ts",
+    "src/lib/editor/rich-text/insert-table.ts",
+    "src/lib/editor/rich-text/media-nodes.ts",
+    "src/lib/editor/rich-text/node-view-state.svelte.ts",
+    "src/lib/editor/rich-text/ordered-list.ts",
+    "src/lib/editor/rich-text/plugin-node.ts",
+    "src/lib/editor/rich-text/plugin-values.ts",
+    "src/lib/editor/rich-text/slash-commands.source.ts",
+    "src/lib/editor/rich-text/slash-commands.ts",
+    "src/lib/editor/rich-text/source-editor.css",
+    "src/lib/editor/rich-text/top-block.ts",
+    "src/lib/editor/rich-text/types.ts",
+    "src/lib/editor/rich-text/table-safety.ts"
+  ],
+  "sourceModuleProvenance": {
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "status": "unapplied authoring preparation; no runtime execution/new dependencies applied",
+    "provenance": [
+      {
+        "nativePath": "src/lib/editor/rich-text/ordered-list.ts",
+        "mode": "Whole Source module; MIT/import namespace adaptations only",
+        "authority": {
+          "sourcePath": "packages/admin/src/components/editor/ordered-list.ts",
+          "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 17415,
+          "sha256": "9b5d02a7ec2da33fc589be1a654e2702db65d6739dbdca6ab56677924ee906ac",
+          "gitBlob": "6bc164dd91d251224213295f674159838faa158a"
+        },
+        "replacements": [],
+        "candidate": {
+          "bytes": 17583,
+          "sha256": "58082f9aaddb2d5d9011532e4b354f5680fa87c065fac245f95f7d1476214bd4",
+          "gitBlob": "3caa8fa414fba5fbdbd3705de7027c0374232ac1"
+        }
+      },
+      {
+        "nativePath": "src/lib/editor/rich-text/CodeMarkExtension.ts",
+        "mode": "Whole Source module; MIT/import namespace adaptations only",
+        "authority": {
+          "sourcePath": "packages/admin/src/components/editor/CodeMarkExtension.ts",
+          "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 331,
+          "sha256": "12600455828ee824e9898d04cbb9266f8edac27cdbf0666b1df377bdb3d55e07",
+          "gitBlob": "7a970c4cb13e0ba2344b7a0c08b918129a77471e"
+        },
+        "replacements": [],
+        "candidate": {
+          "bytes": 504,
+          "sha256": "4c98ddc16a016ad6f5ceb6cb91610ec117d89003194b7cf8265cba77e315820e",
+          "gitBlob": "57c2fd9b8ac7825df3ebafc80addf7a4588935fc"
+        }
+      },
+      {
+        "nativePath": "src/lib/editor/rich-text/TableExtensions.ts",
+        "mode": "Whole Source module; MIT/import namespace adaptations only",
+        "authority": {
+          "sourcePath": "packages/admin/src/components/editor/TableExtensions.ts",
+          "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 14095,
+          "sha256": "d7503071c5e149c7377e6be518aff9f1df3cbe1b732056825f37013e1012ea90",
+          "gitBlob": "c4c7cdd2f6e3b56506e587cde60e65d62c0bcc6b"
+        },
+        "replacements": [
+          [
+            "../../portable-text-table.js",
+            "../portable-text/portable-text-table.js"
+          ]
+        ],
+        "candidate": {
+          "bytes": 14277,
+          "sha256": "cf0b0313b9f468f4517cd0fbe2834a2cacd208851cc91f54368ab9ae3dab5d9f",
+          "gitBlob": "af8c2d48c786e5df27d1af3b8a079309df7ea390"
+        }
+      },
+      {
+        "nativePath": "src/lib/editor/rich-text/TableActions.ts",
+        "mode": "Whole Source module; MIT/import namespace adaptations only",
+        "authority": {
+          "sourcePath": "packages/admin/src/components/editor/TableActions.ts",
+          "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 14681,
+          "sha256": "74a44033aa77999f4155d5c866a13cc4da0bcbe623c73e178a9654223a9cf49d",
+          "gitBlob": "f33708d7e024eded13d17fef1b9fbe5b6c67e252"
+        },
+        "replacements": [
+          [
+            "../../portable-text-table.js",
+            "../portable-text/portable-text-table.js"
+          ]
+        ],
+        "candidate": {
+          "bytes": 14860,
+          "sha256": "df9416ccbbdd5d2fc6443e8e81a5205619a4c0552b3f36c7a3bccd0c785e8806",
+          "gitBlob": "98c142c170aa0a43d87991f541352aa250052ddd"
+        }
+      },
+      {
+        "nativePath": "src/lib/editor/rich-text/TableCellSafety.ts",
+        "mode": "Whole Source module; MIT/import namespace adaptations only",
+        "authority": {
+          "sourcePath": "packages/admin/src/components/editor/TableCellSafety.ts",
+          "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 12225,
+          "sha256": "0567a8f8afcd57da796a7233afa826011e65a04d3fe80db0df42759f8e0ef2c5",
+          "gitBlob": "49e19204202af02d21d435e3de9a7f3fcbab6057"
+        },
+        "replacements": [
+          [
+            "../../portable-text-table.js",
+            "../portable-text/portable-text-table.js"
+          ]
+        ],
+        "candidate": {
+          "bytes": 12407,
+          "sha256": "c4080ca81d1c0e796a77efcbe6e6ba9af82735e0bdf3b0839c1a6dfd86a75059",
+          "gitBlob": "da6f792f324fcee4274305bb08e2fd135c7c93c9"
+        }
+      },
+      {
+        "nativePath": "src/lib/editor/rich-text/TableClipboard.ts",
+        "mode": "Whole Source module; MIT/import namespace adaptations only",
+        "authority": {
+          "sourcePath": "packages/admin/src/components/editor/TableClipboard.ts",
+          "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 10891,
+          "sha256": "3f67b1a56789fbe8735f6bf9bb10034d436c16575d78698539f2ec17ee073431",
+          "gitBlob": "98867e6d71d0b6d17464b7ac7fd66279512ec1a0"
+        },
+        "replacements": [
+          [
+            "../../portable-text-table.js",
+            "../portable-text/portable-text-table.js"
+          ]
+        ],
+        "candidate": {
+          "bytes": 11072,
+          "sha256": "7af3c53a5e1b9b2c5e6cb39d231b5698a171f2873b1708b77bbb05eb74d3d21b",
+          "gitBlob": "dcdd2a31e734b954c944d7d2eb3187a3f72a4994"
+        }
+      },
+      {
+        "nativePath": "src/lib/editor/rich-text/TableResize.ts",
+        "mode": "Whole Source module; MIT/import namespace adaptations only",
+        "authority": {
+          "sourcePath": "packages/admin/src/components/editor/TableResize.ts",
+          "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 14523,
+          "sha256": "688145d9206dfe945e5bd60c4094d77d29996ea8dc31a5d1b0bf7a1a45fa9856",
+          "gitBlob": "c0c1b7b771daf988297b81de69c15faebaa36d66"
+        },
+        "replacements": [
+          [
+            "../../portable-text-table.js",
+            "../portable-text/portable-text-table.js"
+          ]
+        ],
+        "candidate": {
+          "bytes": 14701,
+          "sha256": "388cf353ed3946ecedb2def35cdaccf0187cb5326056a762e7dba744003afac3",
+          "gitBlob": "f73b01e112e403448371702583dc9000c412bc3d"
+        }
+      },
+      {
+        "nativePath": "src/lib/editor/rich-text/ImageUploadExtension.ts",
+        "mode": "Whole Source module; MIT/import namespace adaptations only",
+        "authority": {
+          "sourcePath": "packages/admin/src/components/editor/ImageUploadExtension.ts",
+          "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 10151,
+          "sha256": "ed1c8842de48464517e422e9cdd3e02d7c325fd82830fc8eb245914be4e27d7f",
+          "gitBlob": "724a6b9f44e4862c77a621c166405225909efd5c"
+        },
+        "replacements": [],
+        "candidate": {
+          "bytes": 10327,
+          "sha256": "01376193ed9c3de47bdae905abdfcf51226b258ce947d5720f1d5490d23c9aeb",
+          "gitBlob": "a0a1ad38e3c8194dc7d349239e128463058e522f"
+        }
+      },
+      {
+        "nativePath": "src/lib/editor/rich-text/MarkdownLinkExtension.ts",
+        "mode": "Whole Source module; MIT/import namespace adaptations only",
+        "authority": {
+          "sourcePath": "packages/admin/src/components/editor/MarkdownLinkExtension.tsx",
+          "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 2917,
+          "sha256": "fb15aca94a957e5ba3c74c3fd4b65605e618e426707adfd37d3f250cbd9f276d",
+          "gitBlob": "d23688db405b8337b110036f6795b94d83c1ffd3"
+        },
+        "replacements": [],
+        "candidate": {
+          "bytes": 3095,
+          "sha256": "57e4d48887a74055b922d2a24dad3409de3ebaca7d27ae66b0d10013ae9c4054",
+          "gitBlob": "aff9014e4eb254e84ba0b1b626e6c09c695ba0e7"
+        }
+      },
+      {
+        "nativePath": "src/lib/editor/rich-text/editor-values.ts",
+        "mode": "Whole AST-selected Source declarations in Source order; original bodies unchanged; namespace imports/exports adapt actual Native module",
+        "authority": {
+          "sourcePath": "packages/admin/src/components/PortableTextEditor.tsx",
+          "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 172878,
+          "sha256": "f63023aa7f553b64bac11754b3f16fded3a56a4d50afabd67d6d6db2041a05bb",
+          "gitBlob": "3a262115208af50bbdff84a099bd9c3b7b00ab8e"
+        },
+        "declarations": [
+          {
+            "start": 11434,
+            "end": 11495,
+            "bytes": 61,
+            "sha256": "446b92775937c2b0cf4f6bb8e08e2cd1fd6d0de48684cd5432eb68616272342b",
+            "gitBlob": "0d0decdf9387c322064f41cf3d8e376975e6ff93"
+          },
+          {
+            "start": 11495,
+            "end": 11551,
+            "bytes": 56,
+            "sha256": "d8d08f305ae0038b681bc815b9e0b57d2047d838795680ba5259b744a2b33e07",
+            "gitBlob": "4ed07facf3ad80208957c4959b287dbe25bda0f9"
+          },
+          {
+            "start": 11551,
+            "end": 11609,
+            "bytes": 58,
+            "sha256": "04c7c786d66f897245b4b0b5df392db0eff01414b4f0373451aa927a01749940",
+            "gitBlob": "aeb3fae7a64d075659554ed738041986d8bf20df"
+          },
+          {
+            "start": 11609,
+            "end": 11760,
+            "bytes": 151,
+            "sha256": "bce41459c660117ba26456f32d39c23f86366d9d03f0a8c0d5760726e28dab85",
+            "gitBlob": "9d406fb11ff2a9fe1f46a68d218ec8eabffdbe3c"
+          },
+          {
+            "start": 12540,
+            "end": 13138,
+            "bytes": 598,
+            "sha256": "cfb20874aaa0d9ae7ed0ac4115884643a89b8beb4f995827b2fd2e26c515778d",
+            "gitBlob": "0cfeefba039d066d683f1810fa098d1865a2699a"
+          },
+          {
+            "start": 13138,
+            "end": 13606,
+            "bytes": 468,
+            "sha256": "ecf5b1c5305cad6e6a35ed323ed0637b7cc45c6f02013a7b19af4834c65826b7",
+            "gitBlob": "48b70a6d339ab961199a27cd60f18f7dd92dbb59"
+          },
+          {
+            "start": 13606,
+            "end": 14453,
+            "bytes": 847,
+            "sha256": "d8488a69d3a1b8b0b9248679be603e4957b68e775a825db58b338164d73f4bc3",
+            "gitBlob": "780f4cc4562ae52cef5acfe9cf59b34fba4b5921"
+          },
+          {
+            "start": 16446,
+            "end": 17153,
+            "bytes": 707,
+            "sha256": "7d5f958c8c16798c224d530d9a5fa44f8db6945c9152d42ae66af879d0ce2c5a",
+            "gitBlob": "d900c60033338a155515ecf0e53a8a98dad3dcb3"
+          },
+          {
+            "start": 17153,
+            "end": 17809,
+            "bytes": 656,
+            "sha256": "25ad22fc8cfd88da2241bd7a556c8e5f94220d3046017fdace6e9726684ce7e7",
+            "gitBlob": "3ca6a1610988e386af9e9eea2a3916bdd0f57d96"
+          },
+          {
+            "start": 17809,
+            "end": 18299,
+            "bytes": 490,
+            "sha256": "47caace29da7a3ea82eea214cacededb1c43a38001e2f0a0b65196313d83f541",
+            "gitBlob": "4632aa5a37da94d5153d7b877d96b01b811885f5"
+          },
+          {
+            "start": 85558,
+            "end": 86172,
+            "bytes": 614,
+            "sha256": "19ce92f6f046acf4b9c00b2e64ddfd69fba058a74c94fbcf12c2a59986e19892",
+            "gitBlob": "6d6b34fda3be5b6eb6be520b1b60b58f5ee941ff"
+          },
+          {
+            "start": 86172,
+            "end": 86211,
+            "bytes": 39,
+            "sha256": "8d34aa9e6d70bcb06b75f72884c1f1b2b5b8a7f8394a3d490b617116b26e68b5",
+            "gitBlob": "f16a5f22e1b90da1481a81f4927b38873841b671"
+          },
+          {
+            "start": 86211,
+            "end": 86243,
+            "bytes": 32,
+            "sha256": "fd78f9aa1ab561670f2d88e1480136628cf73da49057a5832337e433a002bf4b",
+            "gitBlob": "a1dc459f97235d36a3ce3d0e5d2b80bba0f3a52d"
+          },
+          {
+            "start": 86243,
+            "end": 86292,
+            "bytes": 49,
+            "sha256": "9abb8ee90777bc5674fcb6928cd27212a87946eb3950448058fa719348325712",
+            "gitBlob": "3493ff4837e37845d7e8411cad473542c25bef4a"
+          },
+          {
+            "start": 86292,
+            "end": 86328,
+            "bytes": 36,
+            "sha256": "018c691ad30a2b18580031ab618dba62a5a734bde89dd634c1486d3094a10e7a",
+            "gitBlob": "58035de1a298b03fdf9c33a02c9fe11a53b2f984"
+          },
+          {
+            "start": 86328,
+            "end": 86594,
+            "bytes": 266,
+            "sha256": "6385b69f894152eb3bcdd4cecc95f1c1f806729e154ef1cbb56d389bd945b030",
+            "gitBlob": "7761d3d307b55300e606a6d4295a870eb652b564"
+          },
+          {
+            "start": 86594,
+            "end": 86703,
+            "bytes": 109,
+            "sha256": "604758312fa0ab5510b6693e990a32af60e7a319263692f58fd06a04061eff6d",
+            "gitBlob": "dc5abba3c3b38a8ab7525961ee7c0fe26163b329"
+          },
+          {
+            "start": 86703,
+            "end": 86851,
+            "bytes": 148,
+            "sha256": "2b76e3a61cd7e3f136eb0e9768790b533d9c0db62b42ae7c17778b0b1197373a",
+            "gitBlob": "8b35a15dd06901babbb069b87a9cad43001a2920"
+          },
+          {
+            "start": 86851,
+            "end": 87281,
+            "bytes": 430,
+            "sha256": "6257f0da125d2f172eeeb03b19a9b4a9be24df140303c26a507bb5c498813ae8",
+            "gitBlob": "ec86c072a23459e63f20d9cc1bf4894b3cea7713"
+          },
+          {
+            "start": 87281,
+            "end": 87672,
+            "bytes": 391,
+            "sha256": "e6a66b1b9e5c60dd441ccc65ad49f5c6c0c7b1800fe46cc71d17a2661396cd63",
+            "gitBlob": "2b7ba2d1a71a4da07adafa3dc09e809bae7d1074"
+          }
+        ],
+        "names": [
+          "PORTABLE_TEXT_BLOCK_ATTR",
+          "PORTABLE_TEXT_KEY_ATTR",
+          "PORTABLE_TEXT_SPAN_MARK",
+          "isRecord",
+          "equalJsonValues",
+          "PortableTextIdentityExtension",
+          "PortableTextSpanIdentity",
+          "LinkBoundaryExit",
+          "setSelectedImageLink",
+          "setSelectedTextLink",
+          "WORDS_PER_MINUTE",
+          "CJK_CHARACTERS_PER_MINUTE",
+          "WHITESPACE_REGEX",
+          "URL_SCHEME_REGEX",
+          "WWW_PREFIX_REGEX",
+          "CJK_CHARACTER_REGEX",
+          "countCjkCharacters",
+          "countNonCjkWords",
+          "countWords",
+          "calculateReadingTime"
+        ],
+        "imports": "import { Extension, Mark, type Editor } from '@tiptap/core';\nimport { Plugin, TextSelection } from '@tiptap/pm/state';",
+        "exports": "export { PortableTextIdentityExtension, PortableTextSpanIdentity, LinkBoundaryExit, equalJsonValues, URL_SCHEME_REGEX, WWW_PREFIX_REGEX, setSelectedImageLink, setSelectedTextLink };",
+        "candidate": {
+          "bytes": 6677,
+          "sha256": "cb6dedd4187845f4894fcc59c1679da5140c643d74427b489165226246fa60fd",
+          "gitBlob": "a77c6b3ee0344c82956f21db4e7ba2fcae3cbb7c"
+        }
+      },
+      {
+        "nativePath": "src/lib/editor/rich-text/top-block.ts",
+        "mode": "Whole AST-selected Source declarations in Source order; original bodies unchanged; namespace imports/exports adapt actual Native module",
+        "authority": {
+          "sourcePath": "packages/admin/src/components/editor/EmbedBlockShell.tsx",
+          "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 12076,
+          "sha256": "02980336f6efdedfba9e6513c176f122548a6b4282e6a1b3ebb8bfa4e3c7d2c2",
+          "gitBlob": "b90d1dbf49803558e66b77b398e4c9accb68cd41"
+        },
+        "declarations": [
+          {
+            "start": 1025,
+            "end": 1293,
+            "bytes": 268,
+            "sha256": "168b05e34af47882e103c0188529336a2a09691c06fbca4e9cacc852d2015bac",
+            "gitBlob": "33c49aa39c9ec6d82683ebefc9db14b5faa77698"
+          },
+          {
+            "start": 1293,
+            "end": 1631,
+            "bytes": 338,
+            "sha256": "05caf10c5884d7eb7bd7cc5d4493fb0948982d4adf4fb994e1478d6110bd04cb",
+            "gitBlob": "f06d7ada247dae84c230ca9e8b669616a726b1fa"
+          },
+          {
+            "start": 1631,
+            "end": 2320,
+            "bytes": 689,
+            "sha256": "adbeb7f0eef2ee478529e1fa917af8c5d23c593844d1766b17d9e8da9537654d",
+            "gitBlob": "a52ccc6c7aa586a02b322d0ddb8556a886c7914e"
+          },
+          {
+            "start": 2604,
+            "end": 3111,
+            "bytes": 507,
+            "sha256": "5c16064490512fd8bc5a90ad1d8ad4384e0d8bd57c1c9ac7f3f2e57b21b9470f",
+            "gitBlob": "8e2571e3a98eb634e95b735f124b4b8e053d6b3d"
+          },
+          {
+            "start": 3111,
+            "end": 3171,
+            "bytes": 60,
+            "sha256": "be6e12d888a9dff949044acb007cd1c87c4f645c5cf29f81813defe353496496",
+            "gitBlob": "1a06921eded7b58ba3505059e220dd568f4638fd"
+          },
+          {
+            "start": 3171,
+            "end": 3637,
+            "bytes": 466,
+            "sha256": "6967615b8e89dff6647504bd8c68cb5695668975045e234125a81467407e51db",
+            "gitBlob": "04ca7f9744e7c9bd08c87f07a0519a5dbd62d8c1"
+          }
+        ],
+        "names": [
+          "TopBlockDocument",
+          "CLIPBOARD_TOKEN",
+          "stopEvent",
+          "focusInSelectedBlock",
+          "SELECTED_TAB",
+          "embedBlockKeyboardShortcuts"
+        ],
+        "imports": "import { Node, type Editor } from '@tiptap/core';\nimport { NodeSelection } from '@tiptap/pm/state';\nimport type { NodeType } from '@tiptap/pm/model';",
+        "exports": "export { stopEvent };",
+        "candidate": {
+          "bytes": 2674,
+          "sha256": "7aab34f795fd080394d007f431daf1ecce36776b7e337b8c2646ad50344d45ca",
+          "gitBlob": "13aea22208f2d621649bbdaceb5491ff9311f35f"
+        }
+      },
+      {
+        "nativePath": "src/lib/editor/rich-text/plugin-values.ts",
+        "mode": "Whole AST-selected Source declarations in Source order; original bodies unchanged; namespace imports/exports adapt actual Native module",
+        "authority": {
+          "sourcePath": "packages/admin/src/components/PortableTextEditor.tsx",
+          "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 172878,
+          "sha256": "f63023aa7f553b64bac11754b3f16fded3a56a4d50afabd67d6d6db2041a05bb",
+          "gitBlob": "3a262115208af50bbdff84a099bd9c3b7b00ab8e"
+        },
+        "declarations": [
+          {
+            "start": 67198,
+            "end": 67560,
+            "bytes": 362,
+            "sha256": "e8aaa1efdd9c774329b9cbb1e92f872e34b6105a11e52d35dd7b9699d97ed45a",
+            "gitBlob": "2225f4fd326c82f6d958f0de798acae0048564b6"
+          },
+          {
+            "start": 67560,
+            "end": 67834,
+            "bytes": 274,
+            "sha256": "d274466ed1b83b340e3210b0cf63da607020f46fea2faffaf38773483882d15c",
+            "gitBlob": "a19679bbaa4f337ca2e376e231fa111f3feec180"
+          },
+          {
+            "start": 67834,
+            "end": 68021,
+            "bytes": 187,
+            "sha256": "9a9375ae5a2b60e3f5fd0524689b3e5815ed3a8385b23ac4209e70fba4b714ac",
+            "gitBlob": "ff99c9fb9599402b891e2522534ae5dc9f9f0f64"
+          }
+        ],
+        "names": [
+          "getPluginBlockDefaultValues",
+          "buildPluginBlockFormValues",
+          "hasPluginBlockFormData"
+        ],
+        "imports": "import type { PluginBlockDef, BlockField } from './types';\ntype Element = BlockField;",
+        "exports": "export { buildPluginBlockFormValues, hasPluginBlockFormData, buildPluginBlockFormValues as _buildPluginBlockFormValues, hasPluginBlockFormData as _hasPluginBlockFormData };",
+        "candidate": {
+          "bytes": 1252,
+          "sha256": "662bd74cb204ed22293a82b1023b87e2155c2baa06e040e2237a6f60abb49a09",
+          "gitBlob": "264118f7e20e8e52b3de786adc3a13d5183dc5a2"
+        }
+      },
+      {
+        "nativePath": "src/lib/editor/rich-text/code-values.ts",
+        "mode": "Whole AST-selected Source declarations in Source order; original bodies unchanged; namespace imports/exports adapt actual Native module",
+        "authority": {
+          "sourcePath": "packages/admin/src/components/editor/CodeBlockNode.tsx",
+          "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 12704,
+          "sha256": "0e42e629116f4b87d47f6cbfc6a2e3415a4172b2a7c02ee759232d968230962e",
+          "gitBlob": "09c7aaa9742ca1e5a9dfcc06f94deeacfc63e57d"
+        },
+        "declarations": [
+          {
+            "start": 2090,
+            "end": 2177,
+            "bytes": 87,
+            "sha256": "868870cbb850f97a478c01537f6db56158aa6b875e7635ac540f741eba2fcd71",
+            "gitBlob": "74d21bd48242843504274b023cc93a5b696ce928"
+          },
+          {
+            "start": 2177,
+            "end": 2236,
+            "bytes": 59,
+            "sha256": "9fb347477b95692d1917a2c5709b1b74c6ff394fcbd58ad7639536be7c85bf1f",
+            "gitBlob": "9248347e591157262e4e543e507919a5f387baee"
+          },
+          {
+            "start": 2236,
+            "end": 2621,
+            "bytes": 385,
+            "sha256": "047c2051d21da42f41b37c0f070fbebe3ea0b85c9ad24175a5725325b26409f5",
+            "gitBlob": "068ae598d72feb779c7ed44ac826a75f128e2289"
+          },
+          {
+            "start": 2621,
+            "end": 3011,
+            "bytes": 390,
+            "sha256": "5138a94470d10cce10d9ddd978ffca5bb244838f250b47e0d66553ee2587a81e",
+            "gitBlob": "c3f27856339f9dd96f325e2a4cf9ec81d45c5ed8"
+          },
+          {
+            "start": 3011,
+            "end": 3995,
+            "bytes": 984,
+            "sha256": "d9effaa3391760ccc6a4891392e1be8529b3a93ed9d1d279af30084d2a7e2b8a",
+            "gitBlob": "10373af41f721b9bb224cfd898a64d5823935f66"
+          }
+        ],
+        "names": [
+          "ADMIN_CODE_BLOCK_LOWLIGHT_KEY",
+          "globalStore",
+          "lowlight",
+          "editorLowlight",
+          "copyTextToClipboard"
+        ],
+        "imports": "import { common, createLowlight } from 'lowlight';\nimport dockerfile from 'highlight.js/lib/languages/dockerfile';",
+        "exports": "export { editorLowlight, copyTextToClipboard };",
+        "candidate": {
+          "bytes": 2240,
+          "sha256": "feb18ecb2023b3fd49f66bd1fb0be0a5ae82fa2310eed5ab9c0569c4d7433b7c",
+          "gitBlob": "951ffba5c230f202f7d5d9a70f817621f02e243b"
+        }
+      },
+      {
+        "nativePath": "src/lib/editor/rich-text/codeBlockLanguages.source.ts",
+        "mode": "Whole Source module; MIT/import namespace adaptations only",
+        "authority": {
+          "sourcePath": "packages/admin/src/components/editor/codeBlockLanguages.ts",
+          "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+          "bytes": 5137,
+          "sha256": "79d4f5ccf06f27a0206c5b1954fecab74105db2cb8e935108b692934b05ca2bb",
+          "gitBlob": "74065698dfe3162c35bc9ed632a8f5382692ec81"
+        },
+        "replacements": [],
+        "candidate": {
+          "bytes": 5311,
+          "sha256": "9325d1e780e75b0109411fe3d450d42ef54574e5a4e99d6b82382cef174c7655",
+          "gitBlob": "fef9a5498c3341b5862f02e10cdfcb4e3d53e05a"
+        }
+      }
+    ]
+  },
+  "macroGeneration": {
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "compiler": "actual installed @babel/core7.29.7 + @lingui/babel-plugin-lingui-macro5.9.5",
+    "config": {
+      "locales": [
+        "en"
+      ],
+      "sourceLocale": "en",
+      "catalogs": [],
+      "stripMessageField": false
+    },
+    "sourceLanguage": {
+      "path": "packages/admin/src/components/editor/codeBlockLanguages.ts",
+      "bytes": 5311,
+      "sha256": "9325d1e780e75b0109411fe3d450d42ef54574e5a4e99d6b82382cef174c7655",
+      "gitBlob": "fef9a5498c3341b5862f02e10cdfcb4e3d53e05a"
+    },
+    "wholeSourceSlashDeclarations": [
+      {
+        "start": 51182,
+        "end": 52134,
+        "bytes": 952,
+        "sha256": "b72ab157e336bc7fc35cac3aaa292f10778732afebd109754dda83d0b0f5ad00",
+        "gitBlob": "2adc75c1f88a30aba1e8eada77ccecbb9a0aedb9"
+      },
+      {
+        "start": 52134,
+        "end": 53320,
+        "bytes": 1186,
+        "sha256": "6a7844ae625abd7851fd0dc00c4fc8698cbcde6252446a7f78d57362fea22311",
+        "gitBlob": "8537cc7529f16e899d1e36a2bf185a41c65895c5"
+      },
+      {
+        "start": 53320,
+        "end": 53492,
+        "bytes": 172,
+        "sha256": "9d352401140ec604e6aa1b3a2f67cb3035adb49d1337d586b64c59b7d6db34bf",
+        "gitBlob": "0fc10c205819bd48d09454c8ee6d4a6a95fbec1a"
+      },
+      {
+        "start": 53492,
+        "end": 53690,
+        "bytes": 198,
+        "sha256": "6644b0924ca573ce86d0c85ce18344995fcff3ff43b4f271d196cb0f17af2157",
+        "gitBlob": "cfbcfd5f143645b314ce336f837042cc9a6bc6f3"
+      },
+      {
+        "start": 53690,
+        "end": 57299,
+        "bytes": 3609,
+        "sha256": "a5917cd88508896f7ead3982e4b194d10dfd1506fddf5ccbd55732235470e7fd",
+        "gitBlob": "65a371e690f425acd08f9e4c54df23040a92eaf0"
+      },
+      {
+        "start": 57299,
+        "end": 57625,
+        "bytes": 326,
+        "sha256": "e830352d55cbde6890992cbb5f599319c18ae559a03b1d22a296ad2fe6db4433",
+        "gitBlob": "283aedd3d76e399c309db7011212f68ec6238c9e"
+      },
+      {
+        "start": 57625,
+        "end": 61181,
+        "bytes": 3556,
+        "sha256": "5d10c7c14e999ae2df7e93141c24f3ffb7e70f071759c182a67be85d4510ad74",
+        "gitBlob": "801a83dfed7f4ec134cab8ee83fe91c1e56c6312"
+      }
+    ],
+    "wholeSourceFooter": {
+      "start": 87672,
+      "end": 88637,
+      "bytes": 965,
+      "sha256": "738c6b476981d97357e82d3e723002fc8d97069cb1386577fac808f9e49b71ab",
+      "gitBlob": "bbfc7c2a3875ec7be7f94a705aa61d75d4cfac4e"
+    },
+    "generatedFiles": [
+      {
+        "path": "src/lib/editor/rich-text/codeBlockLanguages.ts",
+        "bytes": 7297,
+        "sha256": "1bf1000336b7e1d58dc5b09021f0d13dd4450e220bceab34483fcbb2b85689e2",
+        "gitBlob": "a90d5a78501c9a035bfae01bc426cc6952173786"
+      },
+      {
+        "path": "src/lib/editor/rich-text/slash-commands.ts",
+        "bytes": 13388,
+        "sha256": "19b40569ecb6e619e119a3ccb699ab8ef5bcc94d33624cb2f9bb37081e4392de",
+        "gitBlob": "cba8f27edb410d8bde2d72c01d51627a1a0596fd"
+      },
+      {
+        "path": "src/lib/editor/rich-text/footer-messages.ts",
+        "bytes": 711,
+        "sha256": "a133efd68ac732f30d2d87ce7b9ba4bf169f2e98841311ba45c9668a2caf1ba3",
+        "gitBlob": "07aafa19e97d0ed0d2168e61534f78aede4de0ec"
+      }
+    ],
+    "status": "compile-tool preparation only; no Native candidate/dependency/test execution"
+  },
+  "embedSchema": {
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "records": [
+      {
+        "path": "src/lib/editor/rich-text/HtmlBlockNode.ts",
+        "sourcePath": "packages/admin/src/components/editor/HtmlBlockNode.tsx",
+        "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "source": {
+          "bytes": 9597,
+          "sha256": "e13ad5c84ae4d8bd39cd5df924d09a9c018b0d6fd56d9682247d62a679f952d2"
+        },
+        "declarations": [
+          {
+            "start": 7585,
+            "end": 9588,
+            "source": {
+              "bytes": 2003,
+              "sha256": "f31825fb85ee0c408473e06afed309427605e1ba08e94ca481bf6efd5bfec6c7"
+            }
+          }
+        ],
+        "frameworkReturnReplacement": {
+          "before": "return embedBlockNodeView(this.editor, HtmlBlockNodeView);",
+          "after": "return embedBlockNodeView;"
+        },
+        "candidate": {
+          "bytes": 2351,
+          "sha256": "3d74b40a502d63f88c604aa174e2a2d925567486fae2a73c2cc14d3758c6d186"
+        }
+      },
+      {
+        "path": "src/lib/editor/rich-text/IframeBlockNode.ts",
+        "sourcePath": "packages/admin/src/components/editor/IframeBlockNode.tsx",
+        "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+        "source": {
+          "bytes": 10636,
+          "sha256": "d810cd8311199232978f0d64e8d7a90ada853154cee8bf8101278f26bbe5e7c3"
+        },
+        "declarations": [
+          {
+            "start": 8406,
+            "end": 8612,
+            "source": {
+              "bytes": 206,
+              "sha256": "0a31db8cff42dd1836c84ea0d8f57b9a4fe8cb9e99e4f6edae1a05b2703b25cd"
+            }
+          },
+          {
+            "start": 8612,
+            "end": 8978,
+            "source": {
+              "bytes": 366,
+              "sha256": "f3ade25a199fb365ab029c5caca8b2936f6e7b247b41baca94371fe9abcca7a8"
+            }
+          },
+          {
+            "start": 8978,
+            "end": 9439,
+            "source": {
+              "bytes": 461,
+              "sha256": "f6ff39580b226e112c434b2895f0a8d61046aca5e794f93142fc719b926ad0ff"
+            }
+          },
+          {
+            "start": 9439,
+            "end": 10633,
+            "source": {
+              "bytes": 1194,
+              "sha256": "2ae14bd2e49233e6e5b09c8338c48ae2b0dd2c2e6b5d39c6602fa6ae5ea90542"
+            }
+          }
+        ],
+        "frameworkReturnReplacement": {
+          "before": "return embedBlockNodeView(this.editor, IframeBlockNodeView);",
+          "after": "return embedBlockNodeView;"
+        },
+        "candidate": {
+          "bytes": 2573,
+          "sha256": "22e0305d0b07acdec02b96c118aa6867e78a8ab8d783505e63aae27b73870d20"
+        }
+      }
+    ]
+  },
+  "tableInsertion": {
+    "sourcePath": "packages/admin/src/components/editor/TableControls.tsx",
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "start": 3322,
+    "end": 4539,
+    "wholeSourceDeclarationSha256": "b617196dedeb2c2abe460af7d111297cef20b619c4a1f1c2950c53fb79bfb5a0",
+    "candidateSha256": "95047debc32fd76207f9cd53a048d6c9a90ea01629cab2d6f07bb6d6d92e5aea",
+    "bodiesChanged": 0
+  },
+  "stylesheet": {
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "originalStyle": {
+      "path": "packages/admin/src/styles.css",
+      "bytes": 16945,
+      "sha256": "a6bda1130d52dc69ca8619277516dacc02553c2ab3f6bab8c7573b97947c957a",
+      "gitBlob": "03f2dd1c03f5fd83e9fa84c263b8bd343112ac34"
+    },
+    "wholeExactSelectedOrdinaryRanges": [
+      {
+        "startByte": 1135,
+        "endByte": 1800,
+        "bytes": 665,
+        "sha256": "dab905c8e67be319e51d1e60444b9b0fc5e3de9c584b85d30453b8f206760ec7",
+        "gitBlob": "a025d69ed84c4c6daad34ca07671bed14b62bc61"
+      },
+      {
+        "startByte": 4180,
+        "endByte": 16945,
+        "bytes": 12765,
+        "sha256": "f53cab7b76c4e07603fb383380fea0435c4312da1591f4d127489743e4faa234",
+        "gitBlob": "dea804575d0047e2fa1aa8089cefef18d863ec13"
+      }
+    ],
+    "nativeStyle": {
+      "path": "src/lib/editor/rich-text/editor.css",
+      "bytes": 5488,
+      "sha256": "c81e0bc64ddb3d3119c493e6d7ad2debb2a8822b3ee0da52d9b78a6d2326c0e4",
+      "gitBlob": "28b0112097caae470fb3cf4c2f70ec273e042e26"
+    },
+    "sourceGeneratedDistStyleAuthority": "unavailable; not credited as exact Source generation",
+    "nativeFramework": "existing real @cloudflare/kumo@2.6.0 exports styles/standalone, compiled actual package output; explicit production Native layout rules",
+    "sourceBodiesOrTestsEdited": false,
+    "runtimeExecuted": false
+  },
+  "implementationStatus": "real Native authoring applied, production build passed, originalNative17 andwholeWritableUi23 passed; wholeSource136assertionsstillunreachedpendingofficialCI",
+  "wholeOriginal32SourceAnd136UnitCallbacksBodiesDataClocksUnchanged": true,
+  "knownPending": [
+    "media/reference/plugin real published provider authoring",
+    "repeater image/settings and Source pointer/touch transport",
+    "full HTML CodeMirror authoring and iframe previews",
+    "full Source theme/localization/a11y and bubble/slash portal collision",
+    "whole original136 callback execution in official sandboxed Chromium1243",
+    "original whole Repeater6 and4 protected E2E provider/fixture qualification",
+    "actualpublic union13+9 normal browser gates/final fresh review/Root exacthead approval/author regular merge"
+  ],
+  "existingFormNineFunctionsAndFiveLifecycleCallsUntouched": true,
+  "fullFeatureCompleted": false,
+  "sourceCausalAssertionRedCredit": 0,
+  "routineCompileRepair": {
+    "firstSvelteDiagnostics": {
+      "errors": 12,
+      "warnings": 19,
+      "rawLog": "/tmp/rich104-authoring-check-first.log"
+    },
+    "actualRepairs": [
+      "Svelte prop state aliases remove rune/store collision",
+      "actual reactive DOM bindings and interactive grid/slash roles",
+      "whole Source table-safety helpers/declarations and actual engine import",
+      "strict TS6 ordered-list parent attributes type-only annotation; emitted behavior unchanged",
+      "Source React ImageUploadExtension remains whole parity only, actual Native upload runtime pending real Media owner; removed unapplied/dead product copy"
+    ],
+    "orderedListBodyTransportDifference": {
+      "original": "const parent = this.parent?.() ?? {};",
+      "native": "const parent = (this.parent?.() ?? {}) as Record<string, Record<string, unknown>>;",
+      "classification": "type-only adaptation, zero runtime operators/data changed"
+    },
+    "wholeNewTableSafetyDeclarations": [
+      {
+        "name": "TextAlignment",
+        "start": 153468,
+        "end": 153531
+      },
+      {
+        "name": "setSelectionTextAlignment",
+        "start": 156402,
+        "end": 157351
+      },
+      {
+        "name": "TableSafetyShortcuts",
+        "start": 157351,
+        "end": 158373
+      }
+    ],
+    "afterFirstRepair": {
+      "errors": 3,
+      "warnings": 1
+    },
+    "afterSecondRepair": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "meaningfulRefactor": "real published SectionPicker module is lazy-loaded on actual insertion, preserving actual picker/API and avoiding unused provider loading into every field"
+  },
+  "actualNativeCurrentFileIdentities": [
+    {
+      "path": "src/lib/editor/rich-text/CodeBlockControls.svelte",
+      "bytes": 6535,
+      "sha256": "3424e570f9571d8c42dfd4c585cd518750c4991811033b26df584ebe6150b71b",
+      "gitBlob": "70470e93f47aacb800d4e47f458b5110e047fc7d"
+    },
+    {
+      "path": "src/lib/editor/rich-text/CodeBlockExtension.ts",
+      "bytes": 2959,
+      "sha256": "c65d6755aa05441c544f1882c0fa1036b320be9713d764fe076a0c3db2dda776",
+      "gitBlob": "c8abe60da8c920da4548a5dc7a37f7b4566ba3d7"
+    },
+    {
+      "path": "src/lib/editor/rich-text/CodeMarkExtension.ts",
+      "bytes": 504,
+      "sha256": "4c98ddc16a016ad6f5ceb6cb91610ec117d89003194b7cf8265cba77e315820e",
+      "gitBlob": "57c2fd9b8ac7825df3ebafc80addf7a4588935fc"
+    },
+    {
+      "path": "src/lib/editor/rich-text/EditorFooter.svelte",
+      "bytes": 1021,
+      "sha256": "348ab00d20eed09854303c18ec1545d9da7836cd62f99adc401735425a02fbbf",
+      "gitBlob": "0b47b8ee79e65d8da666aa647f1c3275be6a461f"
+    },
+    {
+      "path": "src/lib/editor/rich-text/EmbedBlockEditor.svelte",
+      "bytes": 3253,
+      "sha256": "678ae8110df99a6810c006ed371c37abc97d9597cb1e417939c0e7783ae2f2f5",
+      "gitBlob": "a5e640e87c8962ab6d9a0590b2859f4280e1d259"
+    },
+    {
+      "path": "src/lib/editor/rich-text/HtmlBlockNode.ts",
+      "bytes": 2351,
+      "sha256": "3d74b40a502d63f88c604aa174e2a2d925567486fae2a73c2cc14d3758c6d186",
+      "gitBlob": "6b00cd4250a383a76649fa65893af19095809943"
+    },
+    {
+      "path": "src/lib/editor/rich-text/IframeBlockNode.ts",
+      "bytes": 2573,
+      "sha256": "22e0305d0b07acdec02b96c118aa6867e78a8ab8d783505e63aae27b73870d20",
+      "gitBlob": "a80df798c5f5ee9134fa13671633564e3a98414b"
+    },
+    {
+      "path": "src/lib/editor/rich-text/MarkdownLinkExtension.ts",
+      "bytes": 3095,
+      "sha256": "57e4d48887a74055b922d2a24dad3409de3ebaca7d27ae66b0d10013ae9c4054",
+      "gitBlob": "aff9014e4eb254e84ba0b1b626e6c09c695ba0e7"
+    },
+    {
+      "path": "src/lib/editor/rich-text/PortableTextEditor.svelte",
+      "bytes": 23332,
+      "sha256": "5affc10debd6251b0787a02bdf3e87802d5d477ce20e2fdade7d2daf3f875b21",
+      "gitBlob": "4de7ac7904595d726f9fe47c98276271bbb1e2c6"
+    },
+    {
+      "path": "src/lib/editor/rich-text/TableActions.ts",
+      "bytes": 14860,
+      "sha256": "df9416ccbbdd5d2fc6443e8e81a5205619a4c0552b3f36c7a3bccd0c785e8806",
+      "gitBlob": "98c142c170aa0a43d87991f541352aa250052ddd"
+    },
+    {
+      "path": "src/lib/editor/rich-text/TableCellSafety.ts",
+      "bytes": 12407,
+      "sha256": "c4080ca81d1c0e796a77efcbe6e6ba9af82735e0bdf3b0839c1a6dfd86a75059",
+      "gitBlob": "da6f792f324fcee4274305bb08e2fd135c7c93c9"
+    },
+    {
+      "path": "src/lib/editor/rich-text/TableClipboard.ts",
+      "bytes": 11072,
+      "sha256": "7af3c53a5e1b9b2c5e6cb39d231b5698a171f2873b1708b77bbb05eb74d3d21b",
+      "gitBlob": "dcdd2a31e734b954c944d7d2eb3187a3f72a4994"
+    },
+    {
+      "path": "src/lib/editor/rich-text/TableExtensions.ts",
+      "bytes": 14277,
+      "sha256": "cf0b0313b9f468f4517cd0fbe2834a2cacd208851cc91f54368ab9ae3dab5d9f",
+      "gitBlob": "af8c2d48c786e5df27d1af3b8a079309df7ea390"
+    },
+    {
+      "path": "src/lib/editor/rich-text/TableResize.ts",
+      "bytes": 14701,
+      "sha256": "388cf353ed3946ecedb2def35cdaccf0187cb5326056a762e7dba744003afac3",
+      "gitBlob": "f73b01e112e403448371702583dc9000c412bc3d"
+    },
+    {
+      "path": "src/lib/editor/rich-text/TableSizePicker.svelte",
+      "bytes": 3540,
+      "sha256": "474a24bf2c815a5c8035fa862f1efdf5303137ba22d420c967d4e7ce14f61367",
+      "gitBlob": "6bf2ed3a554b3c130af585a1949571e821208c00"
+    },
+    {
+      "path": "src/lib/editor/rich-text/code-values.ts",
+      "bytes": 2240,
+      "sha256": "feb18ecb2023b3fd49f66bd1fb0be0a5ae82fa2310eed5ab9c0569c4d7433b7c",
+      "gitBlob": "951ffba5c230f202f7d5d9a70f817621f02e243b"
+    },
+    {
+      "path": "src/lib/editor/rich-text/codeBlockLanguages.source.ts",
+      "bytes": 5311,
+      "sha256": "9325d1e780e75b0109411fe3d450d42ef54574e5a4e99d6b82382cef174c7655",
+      "gitBlob": "fef9a5498c3341b5862f02e10cdfcb4e3d53e05a"
+    },
+    {
+      "path": "src/lib/editor/rich-text/codeBlockLanguages.ts",
+      "bytes": 7297,
+      "sha256": "1bf1000336b7e1d58dc5b09021f0d13dd4450e220bceab34483fcbb2b85689e2",
+      "gitBlob": "a90d5a78501c9a035bfae01bc426cc6952173786"
+    },
+    {
+      "path": "src/lib/editor/rich-text/create-editor.ts",
+      "bytes": 5637,
+      "sha256": "86cd2ff9262adc881e0ee322a39a812cd4e616172bdaa31429571486fdd3db86",
+      "gitBlob": "4150b8370e461e3f03fa4e4f5c4c1afc316a6a62"
+    },
+    {
+      "path": "src/lib/editor/rich-text/editor-values.ts",
+      "bytes": 6677,
+      "sha256": "cb6dedd4187845f4894fcc59c1679da5140c643d74427b489165226246fa60fd",
+      "gitBlob": "a77c6b3ee0344c82956f21db4e7ba2fcae3cbb7c"
+    },
+    {
+      "path": "src/lib/editor/rich-text/editor.css",
+      "bytes": 5488,
+      "sha256": "c81e0bc64ddb3d3119c493e6d7ad2debb2a8822b3ee0da52d9b78a6d2326c0e4",
+      "gitBlob": "28b0112097caae470fb3cf4c2f70ec273e042e26"
+    },
+    {
+      "path": "src/lib/editor/rich-text/embed-node-view.ts",
+      "bytes": 1204,
+      "sha256": "e5b5ffe369c11ae06d3dc6f0179b914700a2b3e84d7fd0c34235f8bfc5f1012e",
+      "gitBlob": "c983b64889019a00ef1fe986a80d5421051fc5a8"
+    },
+    {
+      "path": "src/lib/editor/rich-text/footer-messages.ts",
+      "bytes": 711,
+      "sha256": "a133efd68ac732f30d2d87ce7b9ba4bf169f2e98841311ba45c9668a2caf1ba3",
+      "gitBlob": "07aafa19e97d0ed0d2168e61534f78aede4de0ec"
+    },
+    {
+      "path": "src/lib/editor/rich-text/gallery-node.ts",
+      "bytes": 139,
+      "sha256": "d7595f032b209c3a63d19f211ba0956c4d64233de38e462533c657086525f7f7",
+      "gitBlob": "a09e72a0261cf6b3f22d9eaf65c734537b3b354d"
+    },
+    {
+      "path": "src/lib/editor/rich-text/image-node.ts",
+      "bytes": 137,
+      "sha256": "be5b5613e0cc632497408f171b1b1938cb1ee1e1af791d9380ae9b69f7ec6de2",
+      "gitBlob": "56f83df5341dacb29c80a0ff88526f9ce3afe6ad"
+    },
+    {
+      "path": "src/lib/editor/rich-text/insert-table.ts",
+      "bytes": 1505,
+      "sha256": "95047debc32fd76207f9cd53a048d6c9a90ea01629cab2d6f07bb6d6d92e5aea",
+      "gitBlob": "698c86873133e12bfefa99e8a6027ee5214f920e"
+    },
+    {
+      "path": "src/lib/editor/rich-text/media-nodes.ts",
+      "bytes": 3308,
+      "sha256": "401535ab69966eb0bb75c98d01915682de8b60453eaae9322a79e870d2c8eb64",
+      "gitBlob": "347629b217d2207f4028c45856beec56eec267c1"
+    },
+    {
+      "path": "src/lib/editor/rich-text/node-view-state.svelte.ts",
+      "bytes": 463,
+      "sha256": "fbe260acfe19b60eb2136a978ff067f46d37450141a833f156573bb555759d3b",
+      "gitBlob": "4124d246b8a6a7e4f52b530ad059faa7792791e5"
+    },
+    {
+      "path": "src/lib/editor/rich-text/ordered-list.ts",
+      "bytes": 17628,
+      "sha256": "b4458ff0567e34119cc5972e0d858eff0ea42db4feb456ab7e93291ffbf73dd2",
+      "gitBlob": "28666249048ad5de24440ca1badd2a1b12b87a0e"
+    },
+    {
+      "path": "src/lib/editor/rich-text/plugin-node.ts",
+      "bytes": 143,
+      "sha256": "afd4145e2d2f925c8c21734a238769d553f45690eb6d78c822ce3e9597e8129d",
+      "gitBlob": "db4d220042965a3869f3e604299bb86e9d6670f6"
+    },
+    {
+      "path": "src/lib/editor/rich-text/plugin-values.ts",
+      "bytes": 1252,
+      "sha256": "662bd74cb204ed22293a82b1023b87e2155c2baa06e040e2237a6f60abb49a09",
+      "gitBlob": "264118f7e20e8e52b3de786adc3a13d5183dc5a2"
+    },
+    {
+      "path": "src/lib/editor/rich-text/slash-commands.source.ts",
+      "bytes": 11049,
+      "sha256": "1460f8c1e0fe9335b3431742aaf309a0d376cfc64d79bc4e12f8fee1510c5983",
+      "gitBlob": "f766416bc05111b3754c599eb455d91053df96a0"
+    },
+    {
+      "path": "src/lib/editor/rich-text/slash-commands.ts",
+      "bytes": 13388,
+      "sha256": "19b40569ecb6e619e119a3ccb699ab8ef5bcc94d33624cb2f9bb37081e4392de",
+      "gitBlob": "cba8f27edb410d8bde2d72c01d51627a1a0596fd"
+    },
+    {
+      "path": "src/lib/editor/rich-text/source-editor.css",
+      "bytes": 13703,
+      "sha256": "19323c0c901dcfca28e57b451c523eb1ade023dcab9eff01421e216c927da257",
+      "gitBlob": "49315b7df1815b696f27eb9dffd6f037cf2e8a12"
+    },
+    {
+      "path": "src/lib/editor/rich-text/table-safety.ts",
+      "bytes": 2406,
+      "sha256": "4936acce9114cb5a6487884f3b335a5fe36268eb2d9e355ad3638980388cd75b",
+      "gitBlob": "ea0890a91bb14f9e4f4c4e8804212016ad17a6b2"
+    },
+    {
+      "path": "src/lib/editor/rich-text/top-block.ts",
+      "bytes": 2674,
+      "sha256": "7aab34f795fd080394d007f431daf1ecce36776b7e337b8c2646ad50344d45ca",
+      "gitBlob": "13aea22208f2d621649bbdaceb5491ff9311f35f"
+    },
+    {
+      "path": "src/lib/editor/rich-text/types.ts",
+      "bytes": 2277,
+      "sha256": "164eef381559dcebeb3950336dae3fc25cd74abbb9668ab107f5744e5ce5627e",
+      "gitBlob": "9397f3a9482529dd01859fe4a8e663475a17b5f2"
+    }
+  ],
+  "actualEvidence": "docs/rich-editor-evidence/authoring-first-runtime/receipt.json"
+}

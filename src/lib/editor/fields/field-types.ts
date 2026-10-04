@@ -38,5 +38,5 @@ export function choiceOptions(value: unknown): ChoiceOption[] {
 }
 export const TYPED_FIELD_TYPES = new Set([
   'slug', 'url', 'number', 'integer', 'boolean', 'datetime',
-  'select', 'multiSelect', 'json', 'repeater'
+  'select', 'multiSelect', 'json', 'repeater', 'portableText'
 ]);

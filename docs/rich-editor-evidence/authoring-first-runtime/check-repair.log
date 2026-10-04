@@ -1,0 +1,43 @@
+$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+Loading svelte-check in workspace: /workspace/cms-full-rich-fields-editor
+Getting Svelte diagnostics...
+
+/workspace/cms-full-rich-fields-editor/src/lib/editor/rich-text/CodeBlockControls.svelte:7:38
+Error: Cannot find module './node-view-viewState.svelte' or its corresponding type declarations. (ts)
+  import { copyTextToClipboard } from './code-values';
+  import type { NodeViewState } from './node-view-viewState.svelte';
+  let { state: viewState }: { state: NodeViewState } = $props();
+
+/workspace/cms-full-rich-fields-editor/src/lib/editor/rich-text/EmbedBlockEditor.svelte:2:38
+Error: Cannot find module './node-view-viewState.svelte' or its corresponding type declarations. (ts)
+<script lang="ts">
+  import type { NodeViewState } from './node-view-viewState.svelte';
+  import { parseIframeInput, iframeEmbedFromAttrs, iframeEmbedAttrs, iframeEmbedToCode } from '../portable-text/iframe-embed';
+
+/workspace/cms-full-rich-fields-editor/src/lib/editor/rich-text/table-safety.ts:10:46
+Error: Cannot find name 'selectionIsContainedInTableCells'. 
+function setSelectionTextAlignment(editor: Editor, alignment: TextAlignment): boolean {
+	if (selectionTouchesTable(editor.state) && !selectionIsContainedInTableCells(editor.state)) {
+		return false;
+
+/workspace/cms-full-rich-fields-editor/src/lib/editor/rich-text/PortableTextEditor.svelte:221:3
+Warn: Elements with the 'dialog' interactive role must have a tabindex value
+https://svelte.dev/e/a11y_interactive_supports_focus (svelte)
+{#if slash.isOpen}
+  <div bind:this={menu} class="slash-command-menu" data-slash-command-menu role="dialog" aria-label="Insert block" onpointermove={() => { movedPointer = true; }}>
+    {#if slash.mode === 'table-size'}<TableSizePicker onInsert={tableInsert} onCancel={tableCancel} />
+    {:else}
+      {#if slash.items[slash.selectedIndex]}<span role="status" class="sr-only">Selected {t(slash.items[slash.selectedIndex].title)}</span>{/if}
+      <div data-slash-menu-scroll-viewport class="overflow-y-auto overscroll-contain slash-scroll">
+        {#each slash.items as item, index (item.id)}<button type="button" tabindex="-1" data-index={index} aria-current={index === slash.selectedIndex ? 'true' : undefined}
+          class:bg-kumo-interact={index === slash.selectedIndex} onpointerdown={event => event.preventDefault()} onclick={() => execute(item)} onmouseenter={() => { if (movedPointer) setSlash(previous => ({ ...previous, selectedIndex: index })); }}>
+          <span aria-hidden="true">{typeof item.icon === 'string' ? item.icon : '▣'}</span><span class="command-text"><span class="font-medium">{t(item.title)}</span><span class="text-xs">{t(item.description)}</span></span>
+        </button>{:else}<p>No results</p>{/each}
+      </div>
+    {/if}
+  </div>
+{/if}
+
+====================================
+svelte-check found 3 errors and 1 warning in 4 files
+[ELIFECYCLE] Command failed with exit code 1.

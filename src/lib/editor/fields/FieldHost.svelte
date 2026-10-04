@@ -4,6 +4,8 @@
   // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
   import { untrack } from 'svelte';
   import DatetimeField from '../../ui/DatetimeField.svelte';
+  import PortableTextEditor from '../rich-text/PortableTextEditor.svelte';
+  import type { AuthoringBlock } from '../rich-text/types';
   import RepeaterField from './RepeaterField.svelte';
   import RepeaterSelect from './RepeaterSelect.svelte';
   import { choiceOptions, type FieldProps } from './field-types';
@@ -66,6 +68,10 @@
       <p>This field expects a list. The stored value stays unchanged until you replace it with an empty list, which deletes it. Copy anything you need from it first.</p>
       <button type="button" disabled={readOnly} onclick={() => change([])}>Replace with empty list</button>
     </div>
+  {:else if kind === 'portableText'}
+    <p class="label" id={`${id}-label`}>{field.label}{required ? ' *' : ''}</p>
+    <PortableTextEditor value={(Array.isArray(value) ? value : []) as AuthoringBlock[]}
+      onChange={change} editable={!readOnly} aria-labelledby={`${id}-label`} />
   {:else if kind === 'datetime'}
     <DatetimeField {id} label={field.label} {value} {timezone} required={required} disabled={readOnly} onChange={change} />
   {:else if kind === 'repeater'}
