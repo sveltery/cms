@@ -83,7 +83,7 @@
   </div></header>
   {#if error}<section class="notice" role="alert"><strong>Could not load dashboard data</strong><p>Refresh the page or try again.</p></section>{/if}
   {#if !error || stats}
-    {#if stats && role >= 50 && importable && !importDismissed && stats.mediaCount === 0 && stats.collections.every(collection => collection.total === 0)}
+    {#if stats && importEnabled && importable}
       <section class="notice"><h2>Moving from another EmDash site?</h2><p>This site has no content yet, so you can import a .emdash package exported from another EmDash site.</p><a class="button" href={href('/settings/transfer?start=import')}>Import a site package</a><button type="button" aria-label="Dismiss import suggestion" onclick={dismissImport}>×</button></section>
     {/if}
     {#if stats && policyRejected > 0}
