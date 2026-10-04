@@ -20,10 +20,18 @@ for (const record of ledger.authorities) {
     throw new Error(`Source authority changed: ${record.path}`);
   }
 }
-const executable = resolve(root, 'parity/emdash/setup-api-source/upstream/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts');
-if (existsSync(executable)) {
-  const original = ledger.authorities.find(record => record.path === 'packages/core/tests/unit/auth/me-welcome-dismiss.test.ts');
-  if (digest(readFileSync(executable)) !== original.sha256) throw new Error('Whole executable welcome family changed.');
+const executableSources = [
+  'packages/core/tests/unit/auth/me-welcome-dismiss.test.ts',
+  'packages/core/tests/unit/api/dashboard-handlers.test.ts',
+  'packages/core/tests/utils/fixtures.ts'
+];
+for (const path of executableSources) {
+  const executable = resolve(root, 'parity/emdash/setup-api-source/upstream', path);
+  if (!existsSync(executable)) continue;
+  const original = ledger.authorities.find(record => record.path === path);
+  if (!original || digest(readFileSync(executable)) !== original.sha256) {
+    throw new Error(`Whole executable Source changed: ${path}`);
+  }
 }
 let declarations = 0, expectations = 0;
 for (const file of catalog.files) {
