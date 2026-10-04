@@ -16,7 +16,14 @@ const collectionColumns = ['id','slug','label','label_singular','description','s
   'routable','hidden','sort_order','nav_group','comments_enabled','comments_moderation',
   'comments_closed_after_days','comments_auto_approve_users','edit_locking','search_config'];
 const catalogue = 'SELECT rowid AS creation_order,name,type,tbl_name,sql FROM sqlite_master ORDER BY name,type';
-const snapshotSql = 'SELECT json_group_array(json_object(\'creation_order\',creation_order,\'name\',name,\'type\',type,\'tbl_name\',tbl_name,\'sql\',sql)) FROM (' + catalogue + ')';
+// Preserve every captured object and its actual creation order. Newly added
+// ordinary tables/indexes are outside this rebuild; new views/triggers and any
+// managed/core-metadata object still invalidate the plan before startup writes.
+const guardedCatalogue = catalogue.replace(' ORDER BY name,type',
+  " WHERE name IN (SELECT value FROM json_each(?)) OR type IN ('view','trigger')" +
+  " OR lower(name) GLOB '_cms_*' OR lower(name) GLOB 'ec_*'" +
+  " OR (type='index' AND lower(tbl_name) IN ('_cms_fields','_cms_collections')) ORDER BY name,type");
+const snapshotSql = 'SELECT json_group_array(json_object(\'creation_order\',creation_order,\'name\',name,\'type\',type,\'tbl_name\',tbl_name,\'sql\',sql)) FROM (' + guardedCatalogue + ')';
 const changed = 'sveltery-cms-migration-prerequisite-changed';
 const quote = (database: CmsDatabase, name: string) => sql.id(name).compile(database.db).sql;
 
@@ -54,7 +61,18 @@ async function plan(database: CmsDatabase) {
         !(object.name === '_cms_fields' && reference.table === '_cms_collections'))) throw new CmsError('MIGRATION_REQUIRED');
   }
   const snapshots = JSON.stringify(rows.map(({creation_order,name,type,tbl_name,sql}) => ({creation_order,name,type,tbl_name,sql})));
-  const guard = CompiledQuery.raw("SELECT json_extract('[]', CASE WHEN (" + snapshotSql + ") = ? THEN '$' ELSE ? END)", [snapshots, changed]);
+  const capturedNames = JSON.stringify(rows.map(object => object.name));
+  // Materialize only newly introduced ordinary tables before evaluating FK
+  // PRAGMAs. Actual D1 reserved internals retain their original boundary; Node
+  // operator tables with those names remain fully inspected.
+  const introducedTables = "SELECT name FROM sqlite_master WHERE type='table'" +
+    " AND name NOT IN (SELECT value FROM json_each(?)) AND lower(name) NOT GLOB 'sqlite_*'" +
+    (rawD1 ? " AND lower(name) NOT GLOB '_cf_*'" : '');
+  const guard = CompiledQuery.raw("WITH introduced_tables AS MATERIALIZED (" + introducedTables +
+    ") SELECT json_extract('[]', CASE WHEN (" + snapshotSql + ") = ? AND NOT EXISTS (" +
+    'SELECT 1 FROM introduced_tables AS added JOIN pragma_foreign_key_list(added.name) AS reference ' +
+    'WHERE lower(reference."table") IN (\'_cms_fields\',\'_cms_collections\')) ' +
+    "THEN '$' ELSE ? END)", [capturedNames, capturedNames, snapshots, changed]);
   const metadata = await metadataObjects(database);
   const collections = metadata.find(object => object.name === '_cms_collections')!;
   const fields = metadata.find(object => object.name === '_cms_fields')!;
