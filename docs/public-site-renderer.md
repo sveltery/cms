@@ -15,3 +15,8 @@ Original Node/raw-D1 product test fixtures were committed before implementation.
 This is not the complete public-site family. Public root/admin-prefix migration, arbitrary collection routing and dynamic URL patterns, templates/themes, block/media/image/gallery/table/embed/plugin renderers, preview/edit mode, byline/taxonomy/relation hydration, schedules, localized routes/fallback, distributed caches, persistent site/SEO settings and plugin head contributions remain unfinished. Archive pagination is bounded to the displayed page and remains incomplete. The new views do not claim EmDash starter-template visual parity or deployed hosting.
 
 Compatibility records PS1-01–PS1-03 require a specific framework decision, final normal validation, secured browser checks, configured review or verified quota exception, independent review, exact project-manager approval, author-owned expected-head merge and actual post-merge checks before the milestone is counted done.
+
+
+### Original native mark-lookup regression
+
+At test-first `f85d92e`, the complete four-callback original Portable Text regression family reached two actual malformed-tag value failures for unknown `constructor` and `toString` marks, while escaping/link and quote/list controls passed. Repair `5e26129` restricts the native tag lookup to its own supported keys; the same whole family passes4, with two matched native value reds and two control first greens. This adds zero Source assertions or causal Source credit and changes no pinned helper/test bytes. The complete red/green receipts are retained in the development evidence. Final normal validation and secured hosted browser execution remain pending.
