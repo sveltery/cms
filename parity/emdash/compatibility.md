@@ -1047,6 +1047,72 @@ The final combined normal run at `bae59219cc9622eeb7b20551bd18c785fb5f4765` fail
 
 Separate unchanged Cloudflare checks at `f85b9321a26aa33b82477b10365f95362c9b53a9` finish with actual exit0 for both `pnpm build:cloudflare` (official bundle dry run, no deployment) and `pnpm test:cloudflare`: all23 Source callbacks and7 official Worker cases pass with0 failures/skips/cancellations. This supplemental closure does not change the retained failed combined-normal receipt or grant a current complete bootstrap pass. Hosted complete normal/secured SourceInbox4, final exact review and specific CM1 acceptance remain pending.
 
+## CNI canonical installation — native providers 6–8
+
+The reference remains EmDash 1.1.0 at immutable
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. The
+[feature record](../../docs/canonical-installation.md) and
+[whole Source inventory](../../docs/canonical-installation-source.json) own this
+bounded installation change. All prior public compatibility text remains
+unchanged; its historical provider1–5 statements describe their reviewed heads.
+
+| ID | Pinned behavior | Native behavior and reason | Evidence and decision |
+| --- | --- | --- | --- |
+| CNI-01 | Source001/004/022/023/038/053/077 options/plugin storage, Source001/006/015/036/045/047/048/049/051/056/068/082/085 taxonomy storage and Source003/012 metadata accumulate through the Source migration runner. Source default locale can follow configured i18n. | Real contiguous native providers6–8 consolidate the final owned storage layouts inside the existing guarded normal startup runner. Native `_cms_` names and local version numbers replace Source namespaces/history. Frozen native1–5 remain exact. English seeds/defaults are bounded fresh-install behavior; configured locales and legacy EmDash structure reconciliation remain incomplete. | Nine original real Node/raw/scoped D1 installation assertion reds precede registration. Whole Source pagination2/6 uses normal Node installation and immutable fixtures; its original absent-table fixture failures earn zero causal Source red credit, and its later first greens also earn zero causal Source credit. Exact development registration qualification is recorded; specific acceptance, final PR and gates remain pending. |
+| CNI-02 | Whole Source repositories use logical tables and Source `withTransaction`, whose unsupported-adapter branch invokes a callback directly. Some Source taxonomy methods issue multiple writes without wrapping them. | Five complete runtime bodies retain Source text with import/namespace substitutions. Public native strict transactions preserve C-07 refusal. The actual raw/scoped D1 namespace boundary allows taxonomy reads and structured single-query option writes while refusing taxonomy writes before execution until atomic adaptation exists. Nested/raw mutation statements are refused; bound values remain values. This is deliberately incomplete D1 taxonomy capability. | Complete38-authority/MIT and five whole-runtime guards preserve provenance. Fourteen new original real D1 assertion reds plus two ordinary options/read controls precede the finite owned boundary proposal. No protected Source options/revision concurrent family is executed or sliced. Exact boundary development qualification is recorded; the unchanged whole16 passes after repair. Specific acceptance and final PR/gates remain pending; no Source D1 write or complete taxonomy API/UI parity is claimed. |
+| CNI-03 | Source003 field ownership uses ON DELETE CASCADE; Source012 collection search configuration is nullable. A fresh Source registry does not reproduce the stricter previously landed native registry constraints or historical physical content-column differences. | Native8 restores field-parent cascade and nullable search_config while preserving all old field metadata, stricter frozen native constraints and historical physical content columns. Exact operator indexes/views/triggers are captured and rebuilt in creation order within the startup batch. External fields-targeting foreign keys cause before-write MIGRATION_REQUIRED refusal to prevent SQLite destructive parent replacement. | Whole original storage18 checks fresh/actual public-v5 upgrade/reopen, values/defaults/indexes/FKs, operator objects, rollback and external-FK refusal across real Node/raw/scoped D1. Initial baseline records15 completed assertion reds and3 FK execution errors; the latter earn zero causal credit. Preserved Native latest-marker adaptations earn zero causal/Source credit. Specific external-layout/framework acceptance remains unrecorded; final PR/gates pending. |
+| CNI-04 | Source SQL uses SQLite identifier/default/literal semantics; native canonical startup also promises before-write ownership/readiness checks around an atomic migration batch. | The native shared normalizer preserves literal bytes/escapes and SQLite ASCII whitespace boundaries while recognizing quoted DDL identifiers contextually. Canonical revision triggers occupy a separate namespace; the immediate guard snapshots actual trigger rows and every declared future name using SQLite case semantics. Unrelated operator objects remain supported. | Whole original normalizer11 retains eight Main assertion reds and three controls, with two distinct temporary-candidate regression reds recorded separately. Whole original future-trigger6 retains six genuine Node/raw/scoped lowercase/uppercase ownership assertion reds, then an exact Root-qualified repair and unchanged whole6 pass. These are original native requirements, zero added Source assertions. Final complete regression/normal/secured hosted evidence and specific acceptance remain pending. |
+
+No menu, sections/widgets or redirect provider is registered by this slice.
+Settings UI, plugin execution, taxonomy writes on D1, broader taxonomy/API/UI,
+search/FTS administration, full Source migration locking/history, PostgreSQL and
+deployed hosting remain incomplete. Development qualification is separate from
+specific framework acceptance, final-head independent/configured review,
+expected-head PR approval, author merge and post-main verification.
+
+CNI development follow-on: the first complete normal run on dc463b1 passed the
+frozen install and checker, then recorded1263/1284 service passes with21
+failures; the later ten stages were unreached. Six unchanged cross-collection
+trigger callbacks exposed a real metadata8 snapshot defect: frozen5 recreated
+exact trigger SQL in a different SQLite rowid order. The qualified repair
+compares every captured name/type/owner/SQL record in SQLite BINARY UTF8 order,
+while retaining the original creation order for dependency restoration. The
+other15 failures required explicit native contract successors: old operator
+trigger SQL/effects, old5prefix and old content-table unique-index absence are
+retained alongside the complete newly owned inventory, not discarded.
+
+The invariant fixture now really installs the complete immutable public5
+capture; an explicit latest8 stage retains the same ordinary single-binding
+matrix, adding22 first-green callbacks with zero Source/causal credit. Actual
+historical5 then exposed eight completed original MIGRATION_REQUIRED assertion
+failures around reserved objects/orphan metadata introduced at its existing
+prebatch seam. The exact shared repair reuses the unchanged frozen lifecycle
+content/collection/field snapshot guard before forward upgrades from state>=5,
+after the leading static/future-trigger prerequisite and before startup writes.
+The unchanged whole affected11families/178callbacks now pass with zero
+failures/cancellations/skips; both failed receipts remain retained. No new auth,
+session, signature or protected Source family is probed. Frozen providers1–5,
+whole Source bodies/fixtures and deadlines remain unchanged. This is native
+upgrade qualification, zero new Source parity or full-product completion.
+
+Actual public Sections/widgets Main2f1b74b is adopted by ordinary Git merge,
+retaining its entire Source/CI/capability graph and512packages/527snapshots.
+The combined successor's complete normal/secured hosted gates and final
+independent/configured review, specific acceptance, publication and merge
+remain pending; earlier dc463b1 review/run receipts do not qualify it.
+
+### CNI combined normal receipt
+
+The combined `03f29c6e96ab2c64094f9a20c936e1f3d29fb9aa` ordinarily merged actual public Sections/widgets Main `2f1b74bdb9f368f5f5a75e4f0cfb065657924f56`. All thirteen unchanged normal stages passed with the complete 512-package/527-snapshot frozen closure, checker zero errors/warnings, service1331/1331, production261/261, Node hosting15/15 and Cloudflare Worker7/7, zero failures/cancellations/skips. Every retained Source/UI command passed, including the whole CNI pagination2 family; first greens and previous fixture-only Source baselines earn zero additional causal Source credit. Exact full run receipt SHA256: `0d5c49abcb03e7b17b89f42028c63c0a91f1e086ea296f2ed1031138cd130cb8`. Earlier failed21 and failed178/eight-assertion receipts remain retained. The previous pending-normal status is its pre-run checkpoint. Secured hosted browser gates, current-successor independent review, specific acceptance, publication and merge remain pending; API/UI/plugin/FTS/deployed-hosting omissions are unchanged.
+
+### CNI actual public Comments integration checkpoint
+
+The next combined successor ordinarily adopts actual public Comments Main `311ec0cb1bb33a66fb937d876f9387cca37b3087`, preserving every incoming public path, Source authority, Comments105/Native14 command, secured Comments browser gate and the complete 512-package/527-snapshot closure. The full public normal Source sequence remains intact before the terminal CNI guard/whole pagination2 command. The completed thirteen-stage green on03f29 remains a historical receipt; the new combined successor's complete normal and secured hosted gates, current independent review, specific acceptance, publication and merge remain pending. No Source assertion, protected family, frozen provider1–5, adapter, deadline or browser policy is changed by this ordinary integration.
+
+### CNI current combined local installer failure
+
+Current actual Comments/Main311 combination `939923180eff3362ed77d4164497bdb0734e6ab5` passed unchanged normal stages1–10, including frozen512-entry/checker0/0, whole services1357/1357, production275/275, every inherited Source/UI command (Comments105/Native14 and CNI pagination2 included), and Node package/build. Stage11 recorded3 top-level hosting failures/0 passes/0 cancellations/skips: each ordinary fresh isolated production pnpm install hit unchanged nested120s `ETIMEDOUT`, before application startup or maintenance assertions; outer180s native deadlines are unchanged. Both later Cloudflare stages were unreached. Exact complete failed receipt SHA256: `6e678bdec6561eb4cfd88239846eb35d89366d6c10b2d331300fe9918fd4d281`. The prior03f29 full13 green remains historical. Installer execution failures earn zero causal Source credit; no test/assertion, deadline, dependency policy, cache/offline flag or browser policy changed and no isolated retry ran. Current local normal completion, actual hosted gates, public-successor final review, specific acceptance and merge remain pending. A proposed draft PR permits actual hosted validation without treating publication as completed qualification or feature parity.
+
 ## Common installed admin navigation (CN1, proposed native integration)
 
 EmDash1.1.0 pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, complete Sidebar implementation, specifies management order Comments/Menus/Redirects/Widgets/Sections and role40/role50 display floors. [The common navigation record](../../docs/common-navigation.md) and [whole-source/native ledger](../../docs/common-navigation-ports.json) retain18 whole exact authorities/66541B, seven complete test families UNEXEC, MIT, native test-first chronology and explicit omissions. Existing grouping/version Source callbacks stay Main-owned; new Source execution/causal Source reds/authentication credit are0.
@@ -1070,3 +1136,9 @@ The same run passes whole secured Source browser groups 14+30+25+3+35+4, then 62
 The preceding public 5b4759e run 37165613141 is retained separately. Its hosted frozen 512 install succeeded, then the own production-test checker stopped with 1 error/0 warnings before later normal phases (whole 20,607 bytes, SHA256 ce10497f3aa646070238c7dd2223fe8e0b1268606b6df0339dfef0ce0491c015); its secured browser job passed (whole 295,504 bytes, SHA256 767bb5ec3405387b42f5f36c3d08a73b4114593974410d1df990c2d83eab89c6). The sole 9fa repair adds an explicit RegExpExecArray[] annotation to the own matches variable. TypeScript-erased runtime bytes, both whole callbacks and all assertions remain unchanged (runtime SHA256 c15074a26bbb9a38f07e8ad331b38b9bd59590864698ae3773fda92c757adfd3); the repair supplies no causal, runtime or Source credit. Both failed local frozen 512 HTTP503 attempts and the distinct installed-public dependency diagnostic remain historical evidence. No third local install attempt occurred.
 
 This checkpoint supersedes the earlier pending production and hosted gate status only for the exact 9fa head. Complete Source Sidebar, provider and router closure remains unexecuted with zero new Source, causal Source or authentication credit. All recorded missing UI, i18n and domain limitations remain. On 2026-10-04 Root specifically accepts CN1 for this bounded native Shell navigation: trusted capability floors and native links substitute for the Source role/React/Kumo/router composition while retaining Source management order, application base, active descendants and destination enforcement. This decision accepts the bounded framework substitution; the seven complete Source families, full admin routes, plugins and i18n remain unfinished. Final exact independent/configured review, PM merge approval, author expected-head merge and actual post-Main checks remain pending.
+
+## Actual public Main adoption checkpoint
+
+This branch ordinarily adopts actual public Main `d9668aa63c80bf2a9372d9fc7bfacb9a1eb9445c`, whose signed merge has ordered parents `311ec0cb1bb33a66fb937d876f9387cca37b3087` and `0b0624b28feca959df7bf6f3691f987b5487a759`, with tree `f990a590525a354dcf2331d45f802c0c810bd763`. The entire incoming canonical sequence is versions 1–8, including actual public options, taxonomy and metadata-fidelity providers. Separate storage 9–14 development remains unregistered and is not adopted. Incoming package 5,972 bytes (SHA256 73b8145700795e32eb213481b2d024d1c39ea999cdbb3901ba139c3d49ea88a0) is retained whole, including its terminal canonical-installation Source command. The incoming lock, bootstrap, hosted browser configuration and all prior public callbacks remain unchanged.
+
+The complete incoming compatibility prefix and complete owned navigation suffix are both preserved. Prior 9fa production and browser passes remain exact dated evidence against Main 311; they do not establish a complete pass for this new public-Main combination. Actual combined hosted normal/secured validation, final exact independent/configured review, PM merge approval, author expected-head merge and post-Main checks remain pending. CN1's specifically accepted bounded framework substitution remains; full Source navigation and all recorded unfinished domains/UI/i18n remain unfinished. This ordinary integration adds no new Source, causal-red or authentication credit. No third local frozen-install attempt or security/deadline change occurred.
