@@ -159,3 +159,25 @@ on03f29 remains its actual historical receipt. The new combined normal and
 secured hosted gates, current independent review, specific acceptance,
 publication and merge remain pending. This ordinary integration changes no
 Source assertions, frozen provider1–5 or browser policy.
+
+## Current combined local installer failure
+
+The actual public Comments combination `939923180eff3362ed77d4164497bdb0734e6ab5`
+completed normal stages1–10: frozen512-entry installation, checker zero
+errors/warnings, all1357 service and275 production callbacks, every retained
+Source/UI command including Comments105/Native14 and whole CNI pagination2,
+and the Node package/build. Stage11 then recorded three failed top-level
+hosting callbacks, zero passes/cancellations/skips. Each failed in the unchanged
+fresh isolated production dependency install with `ETIMEDOUT` at its120-second
+nested installer deadline, before application startup or maintenance assertions.
+The enclosing180-second native test deadlines remain unchanged. Both later
+Cloudflare stages were unreached. Full failed receipt SHA256:
+`6e678bdec6561eb4cfd88239846eb35d89366d6c10b2d331300fe9918fd4d281`.
+
+The earlier03f29 thirteen-stage green remains historical evidence. These
+installer execution failures add zero causal Source credit. No tests, assertions,
+deadlines, dependency policy, cache/offline flags or browser policy were changed,
+and no isolated retry was run. Current local normal completion, secured hosted
+validation, final review of the public successor, specific acceptance and merge
+remain pending. A proposed draft PR starts the actual hosted gates; publication
+alone does not qualify the incomplete local run or remaining feature scope.
