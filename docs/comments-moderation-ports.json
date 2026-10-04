@@ -1,0 +1,1314 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "license": "MIT; Copyright 2026 Cloudflare Inc.; notices/emdash-MIT.txt",
+  "approvedBase": "e75654834e5d3a1ddc10449504ee34db1d43c905",
+  "count": 85,
+  "selectedWholeFiles": 8,
+  "assertionRule": "Whole callbacks, fixtures, expectations and deadlines are immutable; imports and host fixtures are recorded separately. Initial regex counts are inventory estimates, not parser counts or runtime evidence.",
+  "protectedProbeRule": "Signed, concurrent-session, replay, two-valid-session and SC49 protected relation binding probes are inventoried and not newly executed. Ordinary non-auth repository CAS and reaction-race callbacks remain whole.",
+  "authorities": [
+    {
+      "source": "e2e/tests/comments.spec.ts",
+      "authority": "parity/emdash/comments-source/authority/e2e/tests/comments.spec.ts.txt",
+      "gitBlob": "6b57f4318cbcef1cb326ef2d0d2c183974a7cddf",
+      "sha256": "53c9f7154d9eb5e7965449121a1b6164e1e1a39eb783659b336f4198f68aa9df",
+      "bytes": 9576,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 5,
+      "expectExpressionsApprox": 18
+    },
+    {
+      "source": "packages/admin/src/components/comments/CommentDetail.tsx",
+      "authority": "parity/emdash/comments-source/authority/packages/admin/src/components/comments/CommentDetail.tsx.txt",
+      "gitBlob": "91aa734061f3e26f75c748a87c6bf9cf1f8a32ec",
+      "sha256": "53ffc6104966c937626906df193f8c97b130a9fe1c93905ec7689c55ca3a6d0c",
+      "bytes": 6323,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/admin/src/components/comments/CommentInbox.tsx",
+      "authority": "parity/emdash/comments-source/authority/packages/admin/src/components/comments/CommentInbox.tsx.txt",
+      "gitBlob": "c22e3b5f514ae648d6778a4e2b0c5bce4b89dc81",
+      "sha256": "2158f1b619ed628742f9dd43bdbfa083bc8eae3c7738cc0bf5617c4c1341bba5",
+      "bytes": 16608,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/admin/src/lib/api/comments.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/admin/src/lib/api/comments.ts.txt",
+      "gitBlob": "d26f3512c02e354c376e6d7d1219349390bf8f72",
+      "sha256": "8def5668b11e4ae357b4e56ce7f133089179ff04ccb96162d56b3a4245495802",
+      "bytes": 3837,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/admin/tests/components/CommentInbox.test.tsx",
+      "authority": "parity/emdash/comments-source/authority/packages/admin/tests/components/CommentInbox.test.tsx.txt",
+      "gitBlob": "732be054f8ff35b7d6a1ec616ef49225948cf826",
+      "sha256": "0d8607e921a0b55a9acf184b76ae0f13ba0dcfbd15bacbc0a29f37d6858dd2e5",
+      "bytes": 3736,
+      "selected": true,
+      "evidence": "inventory-only",
+      "declarationsApprox": 4,
+      "expectExpressionsApprox": 4,
+      "executable": "tests/comments-source/packages/admin/tests/components/CommentInbox.test.tsx"
+    },
+    {
+      "source": "packages/admin/tests/utils/render.tsx",
+      "authority": "parity/emdash/comments-source/authority/packages/admin/tests/utils/render.tsx.txt",
+      "gitBlob": "bd876f25e9510d5e49c31c701f8b3edb7ff20dec",
+      "sha256": "71f7fc13dbc057eda13240e0df0fe0cd71797a5996c56bafd231bb75e91e3b3a",
+      "bytes": 962,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/cloudflare/tests/sandbox/bridge-comments.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/cloudflare/tests/sandbox/bridge-comments.test.ts.txt",
+      "gitBlob": "870415547107315079a04e785a314b7c37276b8f",
+      "sha256": "a1e2a030e50a52ce4b9f21987ab8ed9af629712858af1f1cc85ddc9d1b028b27",
+      "bytes": 2326,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 2,
+      "expectExpressionsApprox": 6
+    },
+    {
+      "source": "packages/core/src/api/error.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/error.ts.txt",
+      "gitBlob": "cac556e93bb76d42e7a36353cd045ce22638f3ef",
+      "sha256": "e191417b83c8314a6a7623f7e35dad793760a66ae8edc2f817042901587ca868",
+      "bytes": 3644,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/escape.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/escape.ts.txt",
+      "gitBlob": "5845f302b684d3937dcfb93298467bc35c721852",
+      "sha256": "a4856a990771ec31df3ff5870699435f248d8fbb27bde24d2a9c69fc245bb918",
+      "bytes": 279,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/handlers/comment-reactions.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/handlers/comment-reactions.ts.txt",
+      "gitBlob": "76501da50053972804f0509041f65f3965602b2d",
+      "sha256": "29fc012d50d022ca682e098c8a7aba6a1a5dec5af9b9b45f79c24acc2d70964e",
+      "bytes": 4842,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/handlers/comments.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/handlers/comments.ts.txt",
+      "gitBlob": "d0deaa042c84b058aca6c8953d4df1a00f2cd1cf",
+      "sha256": "1e4b023677b1c328f74b32a99fc2ac4d44c76f1ff380f8b5c861e4eb449919dd",
+      "bytes": 8393,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/parse.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/parse.ts.txt",
+      "gitBlob": "46b250ce60d82f37fc30d006f3e8ed166c2227b0",
+      "sha256": "8b8271292e8d8d5b0d39701f28a5820e45e2a89ddc159e0f4ab6da7dd484735a",
+      "bytes": 3620,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/schemas/comments.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/schemas/comments.ts.txt",
+      "gitBlob": "90be3d00ec075f47960d94e6566f2e6272fdb894",
+      "sha256": "9ea60d04647c743f36b0fafcdca11008f3be0d1afe02f43f53009f7f7c03f238",
+      "bytes": 4003,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/site-url.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/site-url.ts.txt",
+      "gitBlob": "d51171441bbe4108a9201bc43431be7a391bc286",
+      "sha256": "251aa2bddf6d0a360e616ea383ba7630efb304c735cf17404e5df875d7ee77ac",
+      "bytes": 1330,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/types.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/types.ts.txt",
+      "gitBlob": "462b0800408c270a8ac0b7e59b89adb46426fc3f",
+      "sha256": "8ee06f5fee0b47ab8891eb4b2980d06d3ad5317464db33d637f7c1b33aa28974",
+      "bytes": 3033,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/comments/[collection]/[contentId]/index.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/routes/api/comments/[collection]/[contentId]/index.ts.txt",
+      "gitBlob": "79465a7236239e5e215ad7d092cc70bf5e74a592",
+      "sha256": "754132d25e30a5c3f0e99a54d20e9ff3bb4043c6f1ede143ffe22eb700ca046b",
+      "bytes": 2290,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/comments/[collection]/[contentId]/reactions.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/routes/api/comments/[collection]/[contentId]/reactions.ts.txt",
+      "gitBlob": "f2429bc5aa0205fae5a64af5d23ef7beb1539c54",
+      "sha256": "fd48b58992b4d6a475f29075bd8a34af125ebf9131fe76e14a143f42909bf41c",
+      "bytes": 3480,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/auth/rate-limit.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/auth/rate-limit.ts.txt",
+      "gitBlob": "0dc5ebe1b99dab18bf1278af6db16375efd3b7d6",
+      "sha256": "8e47781016a0e44d12a3775630fc37cd35c6a46e71fea909c525bf7f722b22fc",
+      "bytes": 6171,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/comments/moderator.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/comments/moderator.ts.txt",
+      "gitBlob": "97dbc936a863c309044cb93aea841e730b0dba05",
+      "sha256": "853949955d60be2a067630734a096a3c3f4ba036f090a05b7bd467b37117c361",
+      "bytes": 1731,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/comments/notifications.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/comments/notifications.ts.txt",
+      "gitBlob": "4f8e35f10ed45e821951c1cfa64763721f6ff91c",
+      "sha256": "ac7118185d70bcd6ae0fb2cf811230c3a493b09f175b6fed59ec24d33c183558",
+      "bytes": 4338,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/comments/public-submission.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/comments/public-submission.ts.txt",
+      "gitBlob": "2ee4925a6760679f0f13253edff04489209a3fac",
+      "sha256": "a79feb4bcb799f76bf03d6d218ff0acff3d0016bbfe78397dd8847e554647f89",
+      "bytes": 8492,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/comments/query.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/comments/query.ts.txt",
+      "gitBlob": "eb3ed42e996253c8686086b9b747f6e4438ae6cd",
+      "sha256": "07c2aed945ea5d2aeb4748d1b216bc35386f1727cfe370ddc7fe814eeea40820",
+      "bytes": 5383,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/comments/ranking.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/comments/ranking.ts.txt",
+      "gitBlob": "eacdc7726e54ef806c940a1f42b9548ee868ace8",
+      "sha256": "eafa7705c86e04324ba01a01f3e4f2ddf6a68edd7d3eec67d83a24b27edb6ca2",
+      "bytes": 2082,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/comments/service.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/comments/service.ts.txt",
+      "gitBlob": "e50adbea1679e6a84655b0c538a85684721a5677",
+      "sha256": "76b86a362f34cc78c619917ad05ab29c529b673336d9cf6aa995b130003f10e0",
+      "bytes": 8074,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/comments/turnstile.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/comments/turnstile.ts.txt",
+      "gitBlob": "67fc3744f6360985ac7c77a57ddc10feed38ec80",
+      "sha256": "b210f3d2c7eef096d28cb3a4752e5089b333a7c20e766becb1aeb1264dc53486",
+      "bytes": 2443,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/components/CommentForm.astro",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/components/CommentForm.astro.txt",
+      "gitBlob": "e39c3eb6e434484ea1a7eb298da8462f9ca4d4e5",
+      "sha256": "bb33aaa6c917344ade9e73dddd0863b2d16b203da39698d17bf1e432d4fb456f",
+      "bytes": 7699,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/components/Comments.astro",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/components/Comments.astro.txt",
+      "gitBlob": "0a3425e124b1dad787b9027056f28d470a76884d",
+      "sha256": "42140656734770493eb3a175982a33bf85aa4ff1548344dc535eee0af646dcf3",
+      "bytes": 9936,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/dialect-helpers.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/dialect-helpers.ts.txt",
+      "gitBlob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24",
+      "sha256": "31606b29b5a98cb657078a9d89a8ab9b9f0be1694ac7410e34af6cbf49dda154",
+      "bytes": 18242,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/027_comments.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/migrations/027_comments.ts.txt",
+      "gitBlob": "c575f4ac679e7ab0dbf1dc02a9ae03dfc3afba69",
+      "sha256": "ba8dea6c3f64f1ea6c96ea8dc7e58a974fa4e1064de2756ec451e2fa1f9f3438",
+      "bytes": 2833,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/044_comment_reactions.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/migrations/044_comment_reactions.ts.txt",
+      "gitBlob": "897e83208f8f89047f6cfed07b9c3f944355dca4",
+      "sha256": "14eaf6309fee8995ac8c2d6c3b52d4d9aa0fe290ef6da2808e62f3099aeb7c21",
+      "bytes": 1965,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/repositories/comment-reaction.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/repositories/comment-reaction.ts.txt",
+      "gitBlob": "089857fd234b47735e84f3ff9b77d61a7a80b12e",
+      "sha256": "0865fd2a5970bf1691382d8c0812600096d1fcb12df8b964d0e96dc64513354a",
+      "bytes": 4279,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/repositories/comment.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/repositories/comment.ts.txt",
+      "gitBlob": "f31e5e5fd7f370addbd3146fb75f66cbc5fc7d0d",
+      "sha256": "47d02606ed0c20668dd6c3cda392c852e271cf05ea0c69cfb341a84be86ddf6c",
+      "bytes": 16680,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/repositories/types.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/repositories/types.ts.txt",
+      "gitBlob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7",
+      "sha256": "880e1ee7c6b2792d0f0316d4853dea590ce10f89073dd5a4f5ef56ebd118fa04",
+      "bytes": 13959,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/types.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/types.ts.txt",
+      "gitBlob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7",
+      "sha256": "ebd3a2d8aded68ada1731adb4838d7eda5b85778d373b248211e0f8fe75c2b1d",
+      "bytes": 31530,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/validate.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/validate.ts.txt",
+      "gitBlob": "73d3b303764b473d4238e0cb17f1a904998671f8",
+      "sha256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4",
+      "bytes": 5766,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/import/comments.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/import/comments.ts.txt",
+      "gitBlob": "2a61e7d35762755910e2c0ce91d88a4399b53ff9",
+      "sha256": "ba5f611dd6f76d8f0a6e8e8025c14319874ada3f3045e7c290f8fca333a4f3a9",
+      "bytes": 4878,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/plugins/define-plugin.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/plugins/define-plugin.ts.txt",
+      "gitBlob": "a40ad782066a9a3841050a07d90385d1da7c1a00",
+      "sha256": "3dc46465bf0ecfd79a8675b667be4e9074443049bcf4ee02604abca4d01c94d0",
+      "bytes": 10173,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/plugins/email.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/plugins/email.ts.txt",
+      "gitBlob": "f95d3f0723ff3d9ca5bfcbb2c0fbfe02779faa0c",
+      "sha256": "11ff1e008ce9af3b3e4f54d48dd680f8d9e57225210a8eb1c044ba9927643bc3",
+      "bytes": 8104,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/plugins/hooks.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/plugins/hooks.ts.txt",
+      "gitBlob": "c29944d02b11858ff7b824090ed02cf1be705626",
+      "sha256": "6b72dd30c5d34ea38764caa8bb9f16b727abef0589118e04368f81291e714cec",
+      "bytes": 51540,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/plugins/request-meta.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/plugins/request-meta.ts.txt",
+      "gitBlob": "81cbfad3f5bfc74d9a5ed6af9831ba8c36b3ce61",
+      "sha256": "9d02dbd73b4ee975becacfd5431c48d4343eaa373c0249ba65b6c211337bd0f5",
+      "bytes": 6391,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/plugins/types.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/plugins/types.ts.txt",
+      "gitBlob": "4c70d4438aebb76eb711482a8ed1e312b452fe1a",
+      "sha256": "89a8ec1e885481dafd1bca969ad4da8a085d240f1071adcb16b02a2d89958e3b",
+      "bytes": 70206,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/ui-comments.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/ui-comments.ts.txt",
+      "gitBlob": "430987fe2bc42c82064d9def3163c8502c3b33b8",
+      "sha256": "c9dd2bdc0674998d6b099107c4f3357c3747ffee531f349192ca6540d3705e65",
+      "bytes": 692,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/astro/comments-rate-limit.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/astro/comments-rate-limit.test.ts.txt",
+      "gitBlob": "964278410a9ab12849fe3bf20451302e57eed638",
+      "sha256": "9da38959a065995ea45cce5a5b3a37c13d39ce2c518986ac96c31162f156380c",
+      "bytes": 5785,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 2,
+      "expectExpressionsApprox": 5
+    },
+    {
+      "source": "packages/core/tests/integration/astro/comments-turnstile.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/astro/comments-turnstile.test.ts.txt",
+      "gitBlob": "dacc1434fd59b4faf432ccdcfb179ff18f28f0fa",
+      "sha256": "c7b6910a55fbd84d5d6ab6cb6c716789627276bab43ee80a22ce3f614704220a",
+      "bytes": 7048,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 7,
+      "expectExpressionsApprox": 21
+    },
+    {
+      "source": "packages/core/tests/integration/client/comment-session-auth.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/client/comment-session-auth.test.ts.txt",
+      "gitBlob": "027f88e36624f8cf67907423a807a3668838df74",
+      "sha256": "2b455b672d85dff63376f44c359a5645dcc6573079b5fbd41d435931f7e04647",
+      "bytes": 6098,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 3,
+      "expectExpressionsApprox": 19
+    },
+    {
+      "source": "packages/core/tests/integration/client/comments.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/client/comments.test.ts.txt",
+      "gitBlob": "6103c968e597cb1e971f51b3a7b0ffa1433a13b9",
+      "sha256": "eeb14796a5f782ba2ab7e629f21fe1dec29e8bfc452933dab247f66481824671",
+      "bytes": 12248,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 15,
+      "expectExpressionsApprox": 47
+    },
+    {
+      "source": "packages/core/tests/integration/comments/hooks.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/comments/hooks.test.ts.txt",
+      "gitBlob": "1f97438feb83ee5d00608f375ccd668e820d5029",
+      "sha256": "444b4194b4ff14185d84f428387b2265b2d506e333ec39fcd4a258d1ddd32575",
+      "bytes": 15630,
+      "selected": true,
+      "evidence": "inventory-only",
+      "declarationsApprox": 19,
+      "expectExpressionsApprox": 45,
+      "executable": "tests/comments-source/packages/core/tests/integration/comments/hooks.test.ts"
+    },
+    {
+      "source": "packages/core/tests/integration/comments/notifications.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/comments/notifications.test.ts.txt",
+      "gitBlob": "180268ea20c7791f77703fa42b022e684172aacb",
+      "sha256": "e5a973f4b5dc092eeb659b8ee4f5d377235ba8c320307cb409dc792a4bccaa96",
+      "bytes": 8971,
+      "selected": true,
+      "evidence": "inventory-only",
+      "declarationsApprox": 16,
+      "expectExpressionsApprox": 42,
+      "executable": "tests/comments-source/packages/core/tests/integration/comments/notifications.test.ts"
+    },
+    {
+      "source": "packages/core/tests/integration/comments/reactions.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/comments/reactions.test.ts.txt",
+      "gitBlob": "7bf6c48164c5ba9f5117754402a75a0c571dc613",
+      "sha256": "8614d0df755f28dba39133c451d3d0740618c08897b6858fe382540baf3cd625",
+      "bytes": 7047,
+      "selected": true,
+      "evidence": "inventory-only",
+      "declarationsApprox": 12,
+      "expectExpressionsApprox": 24,
+      "executable": "tests/comments-source/packages/core/tests/integration/comments/reactions.test.ts"
+    },
+    {
+      "source": "packages/core/tests/integration/comments/repository.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/integration/comments/repository.test.ts.txt",
+      "gitBlob": "272c5157992cd32037de1b44e314d14cb6b5fd50",
+      "sha256": "75532a5f6637a341fc041d6692f32d003632b6b2d0b9769eedf72b9648258781",
+      "bytes": 15796,
+      "selected": true,
+      "evidence": "inventory-only",
+      "declarationsApprox": 32,
+      "expectExpressionsApprox": 88,
+      "executable": "tests/comments-source/packages/core/tests/integration/comments/repository.test.ts"
+    },
+    {
+      "source": "packages/core/tests/unit/astro/comments-public-auth.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/unit/astro/comments-public-auth.test.ts.txt",
+      "gitBlob": "fc64b1f88fead2b3463848c2f6344460b8f070cf",
+      "sha256": "076c906677d3df33e69d7131f199c6daabe75ecd3d587a902fef464a015b4403",
+      "bytes": 3615,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 3,
+      "expectExpressionsApprox": 11
+    },
+    {
+      "source": "packages/core/tests/unit/comments/ranking.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/unit/comments/ranking.test.ts.txt",
+      "gitBlob": "7d5c9d9e71a45d79f705cc24a019d6914f57917c",
+      "sha256": "551dec230dd85fdd8eaf3d38931ea74caddee5f6c6cb64665abf6dd4260ff956",
+      "bytes": 1770,
+      "selected": true,
+      "evidence": "inventory-only",
+      "declarationsApprox": 8,
+      "expectExpressionsApprox": 14,
+      "executable": "tests/comments-source/packages/core/tests/unit/comments/ranking.test.ts"
+    },
+    {
+      "source": "packages/core/tests/unit/comments/turnstile.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/unit/comments/turnstile.test.ts.txt",
+      "gitBlob": "1ece0d98db44c20f3ae8d6a29568f7cec2cfbebd",
+      "sha256": "9526e4c87a6773d2a55bc61f1da53805119e171447cb04bb95428487f0b328ec",
+      "bytes": 2033,
+      "selected": true,
+      "evidence": "inventory-only",
+      "declarationsApprox": 1,
+      "expectExpressionsApprox": 3,
+      "executable": "tests/comments-source/packages/core/tests/unit/comments/turnstile.test.ts"
+    },
+    {
+      "source": "packages/core/tests/unit/import/comments-import.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/unit/import/comments-import.test.ts.txt",
+      "gitBlob": "f352b7a03de0ec8f4ab2a43446af7785254509ed",
+      "sha256": "dab34c266f32d70a6a4ae5ec57049063283494337099d5fb0e5b64ef551da8c5",
+      "bytes": 3476,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 4,
+      "expectExpressionsApprox": 16
+    },
+    {
+      "source": "packages/core/tests/unit/object-cache-comments-schema.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/unit/object-cache-comments-schema.test.ts.txt",
+      "gitBlob": "d99880923eb8ecec3b4db1945df2e7e06a4c82dc",
+      "sha256": "a39f67edf383ce95f8d729d4b6e3605d6390d7b4b9835286ef8e8ca35f3715b5",
+      "bytes": 5652,
+      "selected": false,
+      "evidence": "inventory-only",
+      "declarationsApprox": 4,
+      "expectExpressionsApprox": 11
+    },
+    {
+      "source": "packages/core/tests/utils/test-db.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/utils/test-db.ts.txt",
+      "gitBlob": "b75bd5b5770e44050b2d0da28e87c155c603ed66",
+      "sha256": "0e6a59b5d2109e4134aed1277f82089725a53fe079ee0ec0c2622169d2480dc0",
+      "bytes": 18803,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/utils/base64.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/utils/base64.ts.txt",
+      "gitBlob": "9dae6dade270b1c1291b21c8a90adc73f5dab294",
+      "sha256": "79a94b895668f729574cc25e50ad5e1f6db5998dc3f6e3e12e5c1fa661969a90",
+      "bytes": 3029,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/utils/chunks.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/utils/chunks.ts.txt",
+      "gitBlob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e",
+      "sha256": "d5c454b134d9727d0af1fa5befb786a781e65cdac964a668af6a8fab74b81877",
+      "bytes": 529,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/schema/types.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/schema/types.ts.txt",
+      "gitBlob": "0c2f44156cff829951c52b0dd259fc5ff45bc554",
+      "sha256": "92a76aa8192b98e9703ece4b72b5ba1377ca66454b97608b4dfc3804ab3bc698",
+      "bytes": 18092,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/schema/block-types.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/schema/block-types.ts.txt",
+      "gitBlob": "cc89213ee1815cf148a51ec927ab2d106828f5d3",
+      "sha256": "6286d0042546795ec210b8aa0b0e3617dd63624b78b95582e5c33cff8e9f0bc8",
+      "bytes": 2272,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/content-list-query.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/content-list-query.ts.txt",
+      "gitBlob": "075fbabc173e1eac9c04edcaab98939c9fef271c",
+      "sha256": "7763889d7e7f5ac31a0461b6e9806fe0bf169ae91064ada1153b6833cc566e10",
+      "bytes": 938,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/028_drop_author_url.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/migrations/028_drop_author_url.ts.txt",
+      "gitBlob": "76f98ea7bb7281b784fca3f71330efff5eaf7dbc",
+      "sha256": "c18a8fe5e31ff1f9f42050d95f4de67994d659baba9a05fd98b8f388c26f42d1",
+      "bytes": 345,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/033_optimize_content_indexes.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/migrations/033_optimize_content_indexes.ts.txt",
+      "gitBlob": "442e7f8f3a9bba0af3e094818f3813353df24bf2",
+      "sha256": "c84d484f14a2c0fa41e125ab2d5ecfac94ea496a1fab867bbba7a2e9fa1bde3e",
+      "bytes": 3969,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/auth/trusted-proxy.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/auth/trusted-proxy.ts.txt",
+      "gitBlob": "8e3b8f4ab5bbf8d74ebc3c41d1d556146be09346",
+      "sha256": "8e6afabd4d6cd05e302a58323df782da03b8f7d72e1af59feb9ed3bf0385c472",
+      "bytes": 3381,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/errors.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/errors.ts.txt",
+      "gitBlob": "2e99070d97edc14d2797795e13cc82636a0cf500",
+      "sha256": "e1d2ffcf77f31ffef22c8a18c4ea6cbb0cd86bb8d950c02d7ca82de3e2f2aed5",
+      "bytes": 21806,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/public-url.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/public-url.ts.txt",
+      "gitBlob": "dd843b3713dadfbce785c68d18f7142eb093843e",
+      "sha256": "6a234909f88cf6ea2559988f3533cde87a303c5da99e6c10d8fcf4861daf9dea",
+      "bytes": 5268,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/config/secrets.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/config/secrets.ts.txt",
+      "gitBlob": "2d63c59613fa155faf0fbf1f2ba972181fe18556",
+      "sha256": "677d225a83a13b9d9ee7b245277e2d352878f4ba9105fc5ede8c710661651da4",
+      "bytes": 21883,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/transfer/errors.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/transfer/errors.ts.txt",
+      "gitBlob": "7d4d9abc0989ff3ea80e7ef41177b39a829e4bf0",
+      "sha256": "6f608fc23b7a93fdb2cce71e40f802faacf69308616140a4d361f8e90116d4b1",
+      "bytes": 5330,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/admin/comments/counts.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/routes/api/admin/comments/counts.ts.txt",
+      "gitBlob": "f4c88177a2ecd13b88df4a9de3bb99e3c22030d4",
+      "sha256": "49968c61d473724e11aa92ad6b3e6f3d236b0318bb3f4092816b1cf6537b708c",
+      "bytes": 795,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/admin/comments/bulk.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/routes/api/admin/comments/bulk.ts.txt",
+      "gitBlob": "a21d9e5a5870663ef4db4cbe88881895a9bc278e",
+      "sha256": "ecb46cfa3628c7767d1e370fa37c16aba48777f647514d3968ba7d2c695dc359",
+      "bytes": 1255,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/admin/comments/index.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/routes/api/admin/comments/index.ts.txt",
+      "gitBlob": "bf2abdb1fb7ed748af04c6679655080ceac1ba33",
+      "sha256": "a86420a5d4dbf9133eef3fa626091564fc55af6fffc5f6f6faa85876ca223675",
+      "bytes": 1213,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/admin/comments/[id].ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/routes/api/admin/comments/[id].ts.txt",
+      "gitBlob": "5250fde8859efd2e6f870fb43f2258b3249e69d0",
+      "sha256": "48440a3dc21f6d722147311e55c7cf6a4797877dfefc2aaef02cfabe54d55ec5",
+      "bytes": 1683,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/admin/comments/[id]/status.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/routes/api/admin/comments/[id]/status.ts.txt",
+      "gitBlob": "ca3828ae3516a2a4cac61bcc34e2e7ccdf3e6d84",
+      "sha256": "c857593f3ba1bd76673ab059a42d4c471d5efa51604ad9afea3725ccd282def2",
+      "bytes": 2241,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/077_plugin_storage_revisions.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/migrations/077_plugin_storage_revisions.ts.txt",
+      "gitBlob": "0607219e6267e6d17cdf4a88169dec756cfc356f",
+      "sha256": "24573d23a151e9a99ee4e3c5a5fb1a18360f6f6d56ee0f3e8b62dae8528cf092",
+      "bytes": 2765,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/001_initial.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/migrations/001_initial.ts.txt",
+      "gitBlob": "aba2d82b24a34a721814e90c00dc0e34cd009911",
+      "sha256": "3c91298a957d40f5b576dfd5012e3ce66480db95516add28d45a5669e651fee9",
+      "bytes": 5374,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/migrations/032_rate_limits.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/migrations/032_rate_limits.ts.txt",
+      "gitBlob": "0d74368aeb26a4e7821706ae5fa1c44d539ca8a7",
+      "sha256": "fefb79d09cba0c6baa2df241301c69197c151363b97897832f454b07b5d23a55",
+      "bytes": 1681,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/database/repositories/options.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/database/repositories/options.ts.txt",
+      "gitBlob": "d4f630ca0e24721dc25bed0189699daceccdb8ae",
+      "sha256": "af2759276976aa457fed9ae3d64f11ddbf4c8970fe298f5e1f9e49bfd12cc921",
+      "bytes": 8714,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/admin/src/locales/en/messages.po",
+      "authority": "parity/emdash/comments-source/authority/packages/admin/src/locales/en/messages.po.txt",
+      "gitBlob": "367f4c2371d2aee77e8d1bb2b32f19f45c371dac",
+      "sha256": "3fac87cdd54f13c31dfd7393bcf2a1297d2582e3e6431dd8e9fd5d7bd9248a55",
+      "bytes": 556780,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/plugins/conditional-storage.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/plugins/conditional-storage.ts.txt",
+      "gitBlob": "00345a5232ee8c06e050f72a6b3c34555053f33f",
+      "sha256": "74829ded184fb6762d5ed50d6dbee33a8e96dc23e3b2d42a0ab8825985d2835f",
+      "bytes": 1077,
+      "selected": false,
+      "evidence": "inventory-only"
+    },
+    {
+      "source": "packages/core/src/api/csrf.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/api/csrf.ts.txt",
+      "gitBlob": "d190c01e3bf3d83d9deea9512913259e737fe7c5",
+      "sha256": "b3b86da10fddc443671c064b1074b0e60a7967cfcf0e24edf2437dd7c201770a",
+      "bytes": 2337,
+      "selected": false,
+      "evidence": "inventory-only; no isolated auth/origin execution"
+    },
+    {
+      "source": "packages/core/src/astro/middleware/auth.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/src/astro/middleware/auth.ts.txt",
+      "gitBlob": "3c23748f8d6ee8d02bac37e65d2537c3945548c6",
+      "sha256": "3b5d3cd2a14bc4de5149dbdbf98f9258ed4e3ac1859f511e48342c148c60ec46",
+      "bytes": 30262,
+      "selected": false,
+      "evidence": "inventory-only; no isolated auth/origin execution"
+    },
+    {
+      "source": "packages/core/tests/unit/api/csrf.test.ts",
+      "authority": "parity/emdash/comments-source/authority/packages/core/tests/unit/api/csrf.test.ts.txt",
+      "gitBlob": "13721757ae9291434db1ea89f3946d6f652a2e67",
+      "sha256": "323e7d4aa1db241fbba61ae5acf36974ef610ced4f65624e71e2127219e4dda7",
+      "bytes": 5616,
+      "selected": true,
+      "evidence": "whole pure unsigned Request/URL family eligible by exact Root qualification; no credentials/session/concurrency",
+      "executable": "tests/comments-source/packages/core/tests/unit/api/csrf.test.ts"
+    },
+    {
+      "source": "packages/admin/src/router.tsx",
+      "authority": "parity/emdash/comments-source/authority/packages/admin/src/router.tsx.txt",
+      "gitBlob": "4b4793ea63352f8a80ccb695a809586cef06db93",
+      "sha256": "1bbed855b6c957e32a7bd5102ee13cb23fcbe09a570cc3dd7465174df0f38e75",
+      "bytes": 101609,
+      "selected": false,
+      "evidence": "whole authority; native CommentsPage caller differs as recorded"
+    },
+    {
+      "source": "packages/admin/src/components/ContentTypeEditor.tsx",
+      "authority": "parity/emdash/comments-source/authority/packages/admin/src/components/ContentTypeEditor.tsx.txt",
+      "gitBlob": "fc5a907279508dc71beedb82a84b6f36de670b65",
+      "sha256": "0754b2829eabf065fee9f65fec4fc2d5dd716ef555f8264d38a57df0135ad785",
+      "bytes": 30584,
+      "selected": false,
+      "evidence": "whole immutable inventory only; broader schema/fields/relations family unexecuted"
+    },
+    {
+      "source": "packages/admin/tests/components/ContentTypeEditor.test.tsx",
+      "authority": "parity/emdash/comments-source/authority/packages/admin/tests/components/ContentTypeEditor.test.tsx.txt",
+      "gitBlob": "08027aacd97853205b7cd0cd6e5416cf4098d3d8",
+      "sha256": "6ffa09625a7f51827a22a65981729de2c7313da40ea31f1334cf3b88f1737b59",
+      "bytes": 38354,
+      "selected": false,
+      "evidence": "whole immutable inventory only; broader schema/fields/relations family unexecuted"
+    }
+  ],
+  "productPorts": [
+    {
+      "source": "packages/core/src/comments/ranking.ts",
+      "product": "src/lib/server/comments/upstream/comments/ranking.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "eacdc7726e54ef806c940a1f42b9548ee868ace8"
+    },
+    {
+      "source": "packages/core/src/comments/turnstile.ts",
+      "product": "src/lib/server/comments/upstream/comments/turnstile.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "67fc3744f6360985ac7c77a57ddc10feed38ec80"
+    },
+    {
+      "source": "packages/core/src/comments/moderator.ts",
+      "product": "src/lib/server/comments/upstream/comments/moderator.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "97dbc936a863c309044cb93aea841e730b0dba05"
+    },
+    {
+      "source": "packages/core/src/comments/notifications.ts",
+      "product": "src/lib/server/comments/upstream/comments/notifications.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "4f8e35f10ed45e821951c1cfa64763721f6ff91c"
+    },
+    {
+      "source": "packages/core/src/comments/service.ts",
+      "product": "src/lib/server/comments/upstream/comments/service.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "e50adbea1679e6a84655b0c538a85684721a5677"
+    },
+    {
+      "source": "packages/core/src/comments/query.ts",
+      "product": "src/lib/server/comments/upstream/comments/query.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "eb3ed42e996253c8686086b9b747f6e4438ae6cd"
+    },
+    {
+      "source": "packages/core/src/database/repositories/comment.ts",
+      "product": "src/lib/server/comments/upstream/database/repositories/comment.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "f31e5e5fd7f370addbd3146fb75f66cbc5fc7d0d"
+    },
+    {
+      "source": "packages/core/src/database/repositories/comment-reaction.ts",
+      "product": "src/lib/server/comments/upstream/database/repositories/comment-reaction.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "089857fd234b47735e84f3ff9b77d61a7a80b12e"
+    },
+    {
+      "source": "packages/core/src/database/repositories/types.ts",
+      "product": "src/lib/server/comments/upstream/database/repositories/types.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7"
+    },
+    {
+      "source": "packages/core/src/database/types.ts",
+      "product": "src/lib/server/comments/upstream/database/types.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7"
+    },
+    {
+      "source": "packages/core/src/database/validate.ts",
+      "product": "src/lib/server/comments/upstream/database/validate.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "73d3b303764b473d4238e0cb17f1a904998671f8"
+    },
+    {
+      "source": "packages/core/src/api/escape.ts",
+      "product": "src/lib/server/comments/upstream/api/escape.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "5845f302b684d3937dcfb93298467bc35c721852"
+    },
+    {
+      "source": "packages/core/src/api/types.ts",
+      "product": "src/lib/server/comments/upstream/api/types.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "462b0800408c270a8ac0b7e59b89adb46426fc3f"
+    },
+    {
+      "source": "packages/core/src/api/handlers/comments.ts",
+      "product": "src/lib/server/comments/upstream/api/handlers/comments.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "d0deaa042c84b058aca6c8953d4df1a00f2cd1cf"
+    },
+    {
+      "source": "packages/core/src/api/handlers/comment-reactions.ts",
+      "product": "src/lib/server/comments/upstream/api/handlers/comment-reactions.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "76501da50053972804f0509041f65f3965602b2d"
+    },
+    {
+      "source": "packages/core/src/api/schemas/comments.ts",
+      "product": "src/lib/server/comments/upstream/api/schemas/comments.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "90be3d00ec075f47960d94e6566f2e6272fdb894"
+    },
+    {
+      "source": "packages/core/src/utils/base64.ts",
+      "product": "src/lib/server/comments/upstream/utils/base64.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "9dae6dade270b1c1291b21c8a90adc73f5dab294"
+    },
+    {
+      "source": "packages/core/src/utils/chunks.ts",
+      "product": "src/lib/server/comments/upstream/utils/chunks.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e"
+    },
+    {
+      "source": "packages/core/src/schema/types.ts",
+      "product": "src/lib/server/comments/upstream/schema/types.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "0c2f44156cff829951c52b0dd259fc5ff45bc554"
+    },
+    {
+      "source": "packages/core/src/schema/block-types.ts",
+      "product": "src/lib/server/comments/upstream/schema/block-types.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "cc89213ee1815cf148a51ec927ab2d106828f5d3"
+    },
+    {
+      "source": "packages/core/src/content-list-query.ts",
+      "product": "src/lib/server/comments/upstream/content-list-query.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "075fbabc173e1eac9c04edcaab98939c9fef271c"
+    },
+    {
+      "source": "packages/core/src/api/error.ts",
+      "product": "src/lib/server/comments/upstream/api/error.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "cac556e93bb76d42e7a36353cd045ce22638f3ef"
+    },
+    {
+      "source": "packages/core/src/api/errors.ts",
+      "product": "src/lib/server/comments/upstream/api/errors.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "2e99070d97edc14d2797795e13cc82636a0cf500"
+    },
+    {
+      "source": "packages/core/src/api/parse.ts",
+      "product": "src/lib/server/comments/upstream/api/parse.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "46b250ce60d82f37fc30d006f3e8ed166c2227b0"
+    },
+    {
+      "source": "packages/core/src/transfer/errors.ts",
+      "product": "src/lib/server/comments/upstream/transfer/errors.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "7d4d9abc0989ff3ea80e7ef41177b39a829e4bf0"
+    },
+    {
+      "source": "packages/core/src/comments/public-submission.ts",
+      "product": "src/lib/server/comments/upstream/comments/public-submission.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "2ee4925a6760679f0f13253edff04489209a3fac"
+    },
+    {
+      "source": "packages/core/src/auth/rate-limit.ts",
+      "product": "src/lib/server/comments/upstream/auth/rate-limit.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "0dc5ebe1b99dab18bf1278af6db16375efd3b7d6"
+    },
+    {
+      "source": "packages/core/src/auth/trusted-proxy.ts",
+      "product": "src/lib/server/comments/upstream/auth/trusted-proxy.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "8e3b8f4ab5bbf8d74ebc3c41d1d556146be09346"
+    },
+    {
+      "source": "packages/core/src/plugins/request-meta.ts",
+      "product": "src/lib/server/comments/upstream/plugins/request-meta.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "81cbfad3f5bfc74d9a5ed6af9831ba8c36b3ce61"
+    },
+    {
+      "source": "packages/core/src/database/repositories/options.ts",
+      "product": "src/lib/server/comments/upstream/database/repositories/options.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "d4f630ca0e24721dc25bed0189699daceccdb8ae"
+    },
+    {
+      "source": "packages/core/src/plugins/conditional-storage.ts",
+      "product": "src/lib/server/comments/upstream/plugins/conditional-storage.ts",
+      "transformation": "MIT header only",
+      "sourceBlob": "00345a5232ee8c06e050f72a6b3c34555053f33f"
+    },
+    {
+      "source": "packages/core/src/api/csrf.ts",
+      "product": "src/lib/server/comments/upstream/api/csrf.ts",
+      "transformation": "MIT header and native TypeScript/module-alias imports only",
+      "sourceBlob": "d190c01e3bf3d83d9deea9512913259e737fe7c5"
+    }
+  ],
+  "evidence": {
+    "sourceBaseline": "/tmp/comments-whole-source-baseline.log:five missing imports and one nested Vite host failure, zero causal Source assertion reds",
+    "originalNativeUnavailable": "6af8fd5 four actual built native HTTP404!=503 value reds; db86246 samefourgreen; zeroSource/authcredit",
+    "frozenInstall": "Approved Main0cf445 packages/458 snapshots frozen install success5.3s,17reused0downloads; lock/workspace/bootstrap unchanged"
+  },
+  "runtimeEvidence": {
+    "sixWholeCoreFiles": {
+      "callbacks": 88,
+      "pass": 88,
+      "fail": 0,
+      "skip": 0,
+      "causalSourceValueReds": 0,
+      "log": "/tmp/comments-six-whole-source-first.log",
+      "runtime": "Own frozen434 deps, NodeSQLite, Vite8.3.2productionbundle",
+      "remainingSelected": "Whole CommentInbox4 not executed"
+    },
+    "originalNativeUnavailable": {
+      "baselineCommit": "6af8fd5",
+      "implementationCommit": "db86246",
+      "genuineValueReds": 4,
+      "pass": 4,
+      "log": "/tmp/comments-native-unavailable-value-green.log",
+      "credit": "Originalnativeonly;0Source/auth/fullHTTPfunctionalcredit"
+    },
+    "sevenWholeCoreFiles": {
+      "callbacks": 105,
+      "pass": 105,
+      "fail": 0,
+      "skip": 0,
+      "causalSourceValueReds": 0,
+      "pureCsrfCallbacks": 17,
+      "pureCsrfCausalValueReds": 0,
+      "log": "/tmp/comments-source-one-hundred-five-first-green.log",
+      "runtime": "Approved public Date Main445/458 frozen deps, NodeSQLite, real Vite8.3.2 nestedproductionbundle; pure unsigned Request/URL helper",
+      "remainingSelected": "Whole Source CommentInbox4 requires official hosted Chromium"
+    }
+  },
+  "readinessOriginalEvidence": {
+    "sourceFirst": "84d918b",
+    "validFixtureCheckpoint": "2e2741b",
+    "invalidFixture": "10duplicatecolumnsetupfailures beforeassertions,0causalcredit",
+    "validBaseline": "8genuineNativevaluereds+2controls",
+    "repaired": "10/10 on realNodeSQLite/rawworkerdD1",
+    "logs": [
+      "/tmp/comments-readiness-valid-fixture-value-red.log",
+      "/tmp/comments-readiness-literal-value-green.log"
+    ],
+    "sourceCredit": 0,
+    "authCredit": 0,
+    "tokenBoundaryRepair": {
+      "baselineCommit": "8e1a1b5",
+      "implementationCommit": "54a3c6d",
+      "genuineValueReds": 8,
+      "wholeReadinessPass": 24,
+      "sourceCredit": 0,
+      "authCredit": 0,
+      "logs": [
+        "/tmp/comments-readiness-token-boundaries-red.log",
+        "/tmp/comments-readiness-token-boundaries-final-green.log"
+      ]
+    },
+    "unicodeColumnRepair": {
+      "baselineCommit": "f212be3",
+      "implementationCommit": "baba4cf",
+      "genuineValueReds": 2,
+      "wholeReadinessPass": 26,
+      "sourceCredit": 0,
+      "authCredit": 0,
+      "logs": [
+        "/tmp/comments-readiness-unicode-collection-type-red.log",
+        "/tmp/comments-readiness-unicode-collection-type-green.log"
+      ]
+    }
+  },
+  "selectedDeclarations": [
+    {
+      "source": "packages/core/src/plugins/hooks.ts",
+      "product": "src/lib/server/comments/upstream/plugins/hooks.ts",
+      "names": [
+        "getTypedHooks",
+        "sortHooks",
+        "executeWithTimeout",
+        "runCommentBeforeCreate",
+        "runCommentAfterCreate",
+        "runCommentAfterModerate",
+        "hasHooks",
+        "getHookCount",
+        "getRegisteredHooks",
+        "getRegisteredExclusiveHooks",
+        "isExclusiveHook",
+        "setExclusiveSelection",
+        "clearExclusiveSelection",
+        "getExclusiveSelection",
+        "getExclusiveHookProviders",
+        "getHookProviders",
+        "invokeExclusiveHook",
+        "ExclusiveHookResolutionOptions",
+        "resolveExclusiveHooks"
+      ]
+    },
+    {
+      "source": "packages/core/src/plugins/types.ts",
+      "product": "src/lib/server/comments/upstream/plugins/types.ts",
+      "names": [
+        "CollectionCommentSettings",
+        "CommentBeforeCreateEvent",
+        "CommentModerateEvent",
+        "ModerationDecision",
+        "StoredComment",
+        "CommentAfterCreateEvent",
+        "CommentAfterModerateEvent",
+        "UserInfo",
+        "EmailMessage",
+        "GeoInfo",
+        "RequestMeta",
+        "VersionedValue",
+        "ConditionalWriteResult",
+        "ConditionalDeleteResult"
+      ]
+    },
+    {
+      "source": "packages/core/src/config/secrets.ts",
+      "product": "src/lib/server/comments/upstream/config/secrets.ts",
+      "names": [
+        "EmDashSecretsError",
+        "ensureGeneratedOption",
+        "generateRandomSecret",
+        "pickFirstNonEmpty"
+      ]
+    },
+    {
+      "source": "packages/admin/src/lib/api/comments.ts",
+      "product": "src/lib/comments/types.ts",
+      "names": [
+        "AdminComment",
+        "CommentStatus",
+        "CommentCounts",
+        "BulkAction"
+      ]
+    },
+    {
+      "source": "packages/admin/src/components/comments/CommentInbox.tsx",
+      "product": "src/lib/comments/types.ts",
+      "names": [
+        "CommentInboxProps"
+      ]
+    },
+    {
+      "source": "packages/core/src/components/Comments.astro",
+      "product": "src/lib/comments/body.ts",
+      "names": [
+        "URL_RE",
+        "AMP_RE",
+        "LT_RE",
+        "GT_RE",
+        "QUOT_RE",
+        "autoLinkUrls",
+        "escapeHtml",
+        "formatBody"
+      ]
+    }
+  ],
+  "originalFunctionalEvidence": {
+    "registeredWorkflow": {
+      "baseline": "7bfc90b",
+      "valueReds": 2,
+      "pass": 2,
+      "log": "/tmp/comments-registered-workflow-rate-fixed.log",
+      "scope": "Node SQLite and raw D1 registered ordinary public/admin/replies/reactions/cascade; explicit fixture, no canonical installation credit"
+    },
+    "configuredGuest": {
+      "pass": 2,
+      "valueReds": 0,
+      "log": "/tmp/comments-configured-anonymous-real-runtime.log",
+      "scope": "UNREPLACED actual built hooks with Nodeenv/rawD1platform, anonymous ordinary writes,0Source/authcredit"
+    },
+    "nativeInbox": {
+      "baseline": "305142d",
+      "valueReds": 4,
+      "pass": 5,
+      "log": "/tmp/comments-complete-native-nine-value-green.log",
+      "scope": "jsdom actual native Svelte controls,0Sourcebrowser/geometrycredit",
+      "additionalBackdropValueReds": 1,
+      "backdropBaseline": "e4e57fc"
+    },
+    "registeredPage": {
+      "baseline": "5b911e1",
+      "valueReds": 2,
+      "pass": 2,
+      "log": "/tmp/comments-registered-page-value-green.log",
+      "scope": "actual registered native SSR Node/rawD1,0Sourcebrowsercredit"
+    },
+    "nativePublic": {
+      "baseline": "65d32a4",
+      "genuineValueReds": 4,
+      "pass": 4,
+      "log": "/tmp/comments-complete-native-nine-value-green.log",
+      "scope": "actual Svelte jsdom two public component family; 0Sourcebrowser/auth/identitycredit",
+      "fixtureCorrections": "Required prop/type host and wait for actual async reaction response; all expected values unchanged"
+    },
+    "nativeSettings": {
+      "sourceFirst": "9efd8dd",
+      "validFixtureCorrection": "678f569",
+      "implementation": "68e9f57",
+      "initialGenuineControlValueReds": 3,
+      "initialNoncausalFailures": "one compiler-suite0callbacks; then one nullclickbeforeassertion and one unsupportedundefinedmatcher; zero product/Source causalcredit",
+      "navigationBaseline": "68e9f57",
+      "navigationGenuineValueReds": 1,
+      "navigationRepair": "2d4d0fa",
+      "callbacks": 5,
+      "pass": 5,
+      "wholeNativePass": 14,
+      "logs": [
+        "/tmp/comments-settings-native-fourteen-baseline.log",
+        "/tmp/comments-settings-native-valid-baseline.log",
+        "/tmp/comments-settings-native-keyless-value-red.log",
+        "/tmp/comments-settings-native-fourteen-green.log"
+      ],
+      "scope": "wholeOriginalsupplied-value controls+actualproductionpagebodyreactivenavigation;0fullSourceeditor/browser/authcredit"
+    },
+    "registeredSettings": {
+      "baseline": "678f569",
+      "genuineValueReds": 4,
+      "baselineWholeProduction": 269,
+      "baselinePass": 265,
+      "baselineFail": 4,
+      "log": "/tmp/comments-settings-whole-production-baseline.log",
+      "scope": "ordinaryoneexistingprincipaltarget; actualregisteredNode/rawD1fixture; no isolatedauth/session/origin/concurrencyprobes",
+      "pass": 4,
+      "wholeProductionPass": 269,
+      "implementationHead": "2d4d0fa",
+      "greenLog": "/tmp/comments-settings-whole-production-green.log"
+    }
+  },
+  "frameworkLimits": {
+    "nativeProvider": "comment-only real current user/profile reads; no full plugin engine or provider installation",
+    "nativeCache": "explicit DB and request-local cache; full Source ambient/object cache unavailable",
+    "nativePublicRuntime": "Source default moderator and trusted currentprincipal; no defaultemail provider; publicOrigin server owned; actual Source proxy env honored, Cloudflare binding-to-secret propagation/full config not implemented",
+    "nativeAuthorLookup": "Preserve pinned Source author/profile lookup without disabled predicate; earlier filter promise withdrawn; current identity resolver unchanged",
+    "nativeSourceUiHost": "Whole SourceInbox4 originalcallbacks/fixtures/expectations, native React-to-Svelte mounting + native rendertransport; full pinnedEnglish.po3184 compiledrealLingui5.9.5; no Kumo/@linguiReactproduct/translation/geometry parity",
+    "canonical": "1\u20135 unchanged;19 owned comment/runtime descriptors unregistered and requestreadonly readiness; Source027 nativeautoapprovedefault0vs1 existinggapunfinished",
+    "nativePageCaller": "URL-held filters/immediate search, explicit reload/generation cancellation versus Source React Query infinite cache, rejects/inline errors versus Source page catches/toasts; Source300ms debounce/router/provider/cache/toasts unfinished",
+    "publicBoundary": "Explicit route kind; whole Source public CSRF helper, unchanged existing admin origin validator; Native storage/operator refusals precede public CSRF unlike Source middleware; pure unsigned17 firstgreen,0session/signature/concurrencycoverage",
+    "nativePublicUi": "Whole Source escaping declarations and submit callback body; Svelte supplied-value hydration and server-consumer trusted presentation versus Astro automatic schema/currentuser/template host; Source success message fallback preserved; automatic public template mounting unfinished",
+    "settingsUi": "Ownedfourstored-settingspage/API/nativecontrols withbothactualcaps/currentoriginoperator/existingatomicCAS; SourcewideContentTypeEditor/tests immutableunexecuted; generalSchemaEditor/codeconfigurationunfinished; preservedNativecreationdefault0vsSource1"
+  },
+  "selectedCallbackBodies": [
+    {
+      "source": "packages/core/src/components/CommentForm.astro",
+      "product": "src/lib/comments/form-submission.ts",
+      "callback": "document.addEventListener(\"submit\", async...)",
+      "nativeAttachment": "actual native Svelte form onsubmit; complete callback body unchanged"
+    }
+  ],
+  "validationEvidence": {
+    "interruptedNormal": {
+      "head": "97e1bd0054bfebbbb67290d51f8ae983e7538489",
+      "log": "/tmp/comments-full-main0cf-bootstrap.log",
+      "result": "explicitly interrupted during service phase upon new independent owned type-fold defect; frozen445/checker0/0 complete, no full normal pass credit"
+    },
+    "historicalCompleteNormal": {
+      "head": "c88cb5d8980e52853ca6cee5a8373887758145ce",
+      "actualProcessExit": 0,
+      "completedPhases": 13,
+      "receipt": "/tmp/comments-c88-full-normal-receipt.json",
+      "log": "/tmp/comments-complete-fixed-head-bootstrap.log",
+      "sourceCredit": 0,
+      "securedSourceInboxCredit": 0
+    },
+    "currentFailedNormal": {
+      "head": "bae59219cc9622eeb7b20551bd18c785fb5f4765",
+      "actualProcessExit": 1,
+      "completedPhases": 10,
+      "receipt": "/tmp/comments-bae592-failed-normal-receipt.json",
+      "log": "/tmp/comments-complete-main37-settings-bootstrap.log",
+      "failure": "threeunchangedisolatedprodinstall120sETIMEDOUT/SIGTERMbeforeNodeRuntime; no provenHTTP503",
+      "currentFullNormalPassCredit": 0,
+      "changedTestsDeadlinesDependenciesProxy": false,
+      "cloudflareBootstrapPhases": "unexecuted"
+    },
+    "separateCloudflare": {
+      "head": "f85b9321a26aa33b82477b10365f95362c9b53a9",
+      "buildActualProcessExit": 0,
+      "testsActualProcessExit": 0,
+      "sourcePass": 23,
+      "officialWorkerPass": 7,
+      "fail": 0,
+      "skips": 0,
+      "cancelled": 0,
+      "receipt": "/tmp/comments-f85-separate-cloudflare-receipt.json",
+      "buildLog": "/tmp/comments-final-main37-cloudflare-build.log",
+      "testsLog": "/tmp/comments-final-main37-cloudflare-tests.log",
+      "currentFullNormalPassCredit": 0,
+      "deployment": false
+    }
+  },
+  "integrationEvidence": {
+    "approvedMain": "37d5ed93a553c6ddef86c50a0eb596acbc9da63b",
+    "ordinaryMerge": "b74b44b",
+    "seamProposal": "/tmp/comments-main37-combined-proposal/complete-shared.diff",
+    "seamManifestSha256": "c8e7839fa56a4f9bf83e73cb17644f6f934ed03e5a18d077434087ef7632d159",
+    "preserved": "whole Main Sourceprefix+Menus128/native6; securedBulk14/Date30/Menus25; Main13caps/strictOriginalarrays+comments4; lock/workspace/bootstrap/canonical/authbodies/Shell byteexactMain",
+    "sourceCredit": 0
+  }
+}
