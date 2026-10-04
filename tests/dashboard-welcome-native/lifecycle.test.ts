@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from 'vitest';
-import { flushSync, mount, tick, unmount } from 'svelte';
+import { flushSync, mount, tick, unmount, type Component } from 'svelte';
 import DashboardHost from '../helpers/dashboard-welcome/DashboardLifecycleHost.svelte';
 import WelcomeHost from '../helpers/dashboard-welcome/WelcomeLifecycleHost.svelte';
 import { lifecycleState } from '../helpers/dashboard-welcome/lifecycle-state.svelte.ts';
@@ -9,9 +9,9 @@ afterEach(async () => {
   for (const instance of mounted.splice(0)) await unmount(instance);
   vi.unstubAllGlobals(); document.body.replaceChildren();
 });
-async function render(component: typeof DashboardHost | typeof WelcomeHost, state: object) {
+async function render<State extends Record<string, unknown>>(component: Component<{ state: State }>, state: State) {
   const target = document.createElement('div'); document.body.append(target);
-  mounted.push(flushSync(() => mount(component as typeof DashboardHost, { target, props: { state } })));
+  mounted.push(flushSync(() => mount(component, { target, props: { state } })));
   await tick(); return target;
 }
 const manifest = { collections: {}, plugins: {} };

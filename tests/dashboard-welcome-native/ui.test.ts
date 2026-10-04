@@ -1,13 +1,13 @@
 import { afterEach, expect, it, vi } from 'vitest';
-import { flushSync, mount, tick, unmount } from 'svelte';
+import { flushSync, mount, tick, unmount, type Component } from 'svelte';
 import Dashboard from '../../src/lib/dashboard/Dashboard.svelte';
 import WelcomeModal from '../../src/lib/dashboard/WelcomeModal.svelte';
 
 const mounted: ReturnType<typeof mount>[] = [];
 afterEach(async () => { for (const instance of mounted.splice(0)) await unmount(instance); document.body.replaceChildren(); });
-async function render(component: typeof Dashboard | typeof WelcomeModal, props: object) {
+async function render<Props extends Record<string, unknown>>(component: Component<Props>, props: Props) {
   const target = document.createElement('div'); document.body.append(target);
-  mounted.push(flushSync(() => mount(component as typeof Dashboard, { target, props })));
+  mounted.push(flushSync(() => mount(component, { target, props })));
   await tick(); return target;
 }
 const manifest = { collections: {}, plugins: {} };
