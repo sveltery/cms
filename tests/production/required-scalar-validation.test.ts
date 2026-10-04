@@ -72,7 +72,7 @@ for (const target of ['Node', 'D1'] as const) {
       const response = await h.request(`/content/legacy/${id}`, 'author');
       assert.equal(response.status, 200);
       const html = await response.text();
-      assert.match(html, /<fieldset disabled(?:[\s=>])/);
+      assert.doesNotMatch(html, /<fieldset disabled(?:[\s=>])/);
       assert.match(html, /data-field="string" value=""/);
       assert.match(html, /<textarea[^>]*data-field="text"[^>]*><\/textarea>/);
       assert.doesNotMatch(html, /Metadata fallback/);
