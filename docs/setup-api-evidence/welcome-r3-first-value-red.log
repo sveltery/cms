@@ -1,0 +1,35 @@
+
+ RUN  v4.1.10 /workspace/cms-source-setup-api-backend-fresh
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts (2 tests | 1 failed) 613ms
+     × persists welcomeDismissed in the database, not the session 590ms
+     ✓ redacts playground user lookup failures 22ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts > GET/POST /_emdash/api/auth/me – welcome dismiss > persists welcomeDismissed in the database, not the session
+AssertionError: expected 405 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 405
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts:58:26
+     56|   } as unknown as Parameters<typeof POST>[0]);
+     57|
+     58|   expect(postRes.status).toBe(200);
+       |                          ^
+     59|
+     60|   // Playground reuses its injected user object, so GET must read the …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  06:38:09
+   Duration  1.30s (transform 608ms, setup 0ms, import 564ms, tests 613ms, environment 0ms)
+
+JSON report written to /tmp/setup-api-welcome-source-first-value-red.json

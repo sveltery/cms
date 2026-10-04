@@ -1,0 +1,858 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "publicBase": "135e7be689885fd23678569d0d373a1131f5302b",
+  "runs": [
+    {
+      "kind": "First actual whole Source welcome family attempt; fixture infrastructure only",
+      "head": "03303bb29a50b4c7028150fd96e692a5336872c8",
+      "wholeFamily": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+      "sourceBlob": "ba3b7a413e01f59cf21f831badf694120e7d6a3d",
+      "declarations": 2,
+      "expectExpressions": 7,
+      "unchangedSourceBytes": true,
+      "fixtureManifestSha256": "3f4ac54e1b63ff0d3920ea27e28a1ff6f68efe22982e66b17009efef6564d779",
+      "PMQualification": "docs/setup-api-welcome-fixture-qualification.json",
+      "build": {
+        "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm build",
+        "log": "/tmp/setup-api-main135-baseline-build.log",
+        "exit": 0,
+        "runtimeImplementation": "Actual unchanged public Main135; only docs/frozen authorities and test-only fixture are new."
+      },
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-welcome.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-welcome-source-initial-red.json",
+      "exit": 1,
+      "attemptedWholeSourceCallbacks": 2,
+      "passed": 0,
+      "failedBeforeAnySourceAssertion": 2,
+      "completedSourceValueReds": 0,
+      "firstGreenControls": 0,
+      "SourceCausalCredit": 0,
+      "diagnosis": "Compiled Kit internal.options.hooks is null until supported actual Server.init. Fixture took its pre-setup cleanup snapshot too early, so neither case reached its original product assertion.",
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/welcome-r2-first-infrastructure.log",
+          "bytes": 1696,
+          "sha256": "202a04e2e5c4b1d6f79cd9db09ffa5c228623852a665940e73fe8b21c68a5c9c"
+        },
+        {
+          "path": "docs/setup-api-evidence/welcome-r2-first-infrastructure.json",
+          "bytes": 2251,
+          "sha256": "2c5a948972ae02b71346db66d8a605d39be716eed32f145ac1f8abdb396684ca"
+        }
+      ],
+      "retainedLimits": "No HTTP POST baseline, persistence fix, credential/session/replay/race/bypass probe or complete family green is claimed. Proposed r3 changes only supported compiled Server.init before the unchanged cleanup snapshot; exact PM qualification is required before application and rerun."
+    },
+    {
+      "kind": "First completed genuine Source welcome POST value baseline",
+      "head": "31a7e808bac49ce007907d7193d1544cf38679f2",
+      "wholeFamily": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+      "sourceBlob": "ba3b7a413e01f59cf21f831badf694120e7d6a3d",
+      "declarations": 2,
+      "expectExpressions": 7,
+      "unchangedSourceBytes": true,
+      "fixtureHost": {
+        "bytes": 5511,
+        "sha256": "c752a75f9fcc439233350660fabc198d280e4706a7a3116cc7b5c8f4f870c843"
+      },
+      "PMQualification": "docs/setup-api-welcome-r3-qualification.json",
+      "runtime": "Same actual public Main135 compiled Kit build, supported Server.init, real loopback HTTP and actual stored schema_admin/profile SQLite. No product fix applied.",
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-welcome.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-welcome-source-first-value-red.json",
+      "exit": 1,
+      "attemptedWholeSourceCallbacks": 2,
+      "passed": 1,
+      "failed": 1,
+      "failedBeforeAnySourceAssertion": 0,
+      "completedSourceValueReds": 1,
+      "firstGreenControls": 1,
+      "wholeSourceFamilyGreen": false,
+      "valueFailure": {
+        "sourceLine": 58,
+        "assertion": "expect(postRes.status).toBe(200)",
+        "expected": 200,
+        "received": 405,
+        "actualRequest": "POST /api/auth/me"
+      },
+      "control": "Original sanitized profile lookup-failure callback passes on its first reached run; zero causal credit.",
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/welcome-r3-first-value-red.log",
+          "bytes": 1376,
+          "sha256": "11e85cb202970a0742fbd7455cceb80f511cf269121666fd2892ea89439e1695"
+        },
+        {
+          "path": "docs/setup-api-evidence/welcome-r3-first-value-red.json",
+          "bytes": 1857,
+          "sha256": "81a13638c19ee32a93c9c84442bfae8cfe66deaf2dcd57f0ea2596f4b3c195fe"
+        }
+      ],
+      "limits": "Native fixture/request/storage substitution explicitly qualified. No Source UserRepository, Astro session, credential/session rotation, replay/race/bypass or complete setup/dashboard credit."
+    },
+    {
+      "kind": "Whole unchanged welcome2 green after qualified persistence fix",
+      "head": "c4b10d423b8aa31cc1b0c7bc6577d9cfa0905520",
+      "wholeFamily": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+      "sourceBlob": "ba3b7a413e01f59cf21f831badf694120e7d6a3d",
+      "declarations": 2,
+      "expectExpressions": 7,
+      "allSourceExpectationsReached": true,
+      "unchangedSourceBytes": true,
+      "PMQualification": "docs/setup-api-welcome-production-qualification.json",
+      "build": {
+        "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm build",
+        "log": "/tmp/setup-api-welcome-persistence-fix-build.log",
+        "exit": 0
+      },
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-welcome.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-welcome-source-persistence-fix-green.json",
+      "exit": 0,
+      "passed": 2,
+      "failed": 0,
+      "wholeSourceFamilyGreen": true,
+      "uniqueCausalSourceValueReds": 1,
+      "firstGreenControls": 1,
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/welcome-persistence-fix-green.log",
+          "bytes": 503,
+          "sha256": "6b1c83db31887ef154b93e64a5e9f837686a87f251bdf9df869d056bbba85d05"
+        },
+        {
+          "path": "docs/setup-api-evidence/welcome-persistence-fix-green.json",
+          "bytes": 1402,
+          "sha256": "451b917f262e7dfaa5695a588366e3f992bd515a05306c63ef015046e270eb05"
+        }
+      ],
+      "limits": "Real built Kit/SQLite framework substitution only. No Source UserRepository/Astro-session implementation credit, credential/session rotation/race/replay/bypass probes or full setup/dashboard completion."
+    },
+    {
+      "kind": "Whole unchanged welcome2 green after owned-helper readability refactor",
+      "head": "3609b6653bed4263daa9227ff933f1fe8d277a48",
+      "wholeFamily": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+      "sourceBlob": "ba3b7a413e01f59cf21f831badf694120e7d6a3d",
+      "declarations": 2,
+      "expectExpressions": 7,
+      "allSourceExpectationsReached": true,
+      "unchangedSourceBytes": true,
+      "refactor": "Only owned helper: name JSON merge before actual profile SQL write. Shared route1780 and existing auth/session/credential/nonce files unchanged.",
+      "build": {
+        "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm build",
+        "log": "/tmp/setup-api-welcome-persistence-refactor-build.log",
+        "exit": 0
+      },
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-welcome.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-welcome-source-persistence-refactor-green.json",
+      "exit": 0,
+      "passed": 2,
+      "failed": 0,
+      "wholeSourceFamilyGreen": true,
+      "uniqueCausalSourceValueReds": 1,
+      "firstGreenControls": 1,
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/welcome-persistence-refactor-green.log",
+          "bytes": 508,
+          "sha256": "f50b6b097d8236783b9dc0b7433a41de8f53fcb35c5a1c3caab8f3f0e7d3ccbc"
+        },
+        {
+          "path": "docs/setup-api-evidence/welcome-persistence-refactor-green.json",
+          "bytes": 1401,
+          "sha256": "833e89d7f30d8b8a66b8922168b19b572dd85d854287d47034acdfcdb568bb50"
+        }
+      ],
+      "fullNormalGate": false,
+      "securedGate": false
+    },
+    {
+      "kind": "Original Native built-HTML login continuation completed value baseline",
+      "head": "910f4842637152e1c375584c3eb932f84939685c",
+      "family": "tests/setup-api-native/login-continuation.test.ts",
+      "declarations": 1,
+      "expectExpressions": 2,
+      "PMQualification": "docs/setup-api-login-fixture-qualification.json",
+      "runtime": "Actual current branch compiled Kit build and loopback HTTP GET /login, fixed existing stored schema_admin/profile fixture; JSDOM reads HTML without script execution.",
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-login-native.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-login-native-initial-red.json",
+      "exit": 1,
+      "passed": 0,
+      "failed": 1,
+      "failedBeforeAnyAssertion": 0,
+      "completedNativeValueReds": 1,
+      "SourceCredit": 0,
+      "valueFailure": {
+        "line": 21,
+        "actualHttpStatus": 200,
+        "expectedHref": "/settings/transfer?start=import",
+        "receivedRawHref": "./",
+        "meaning": "Kit root-relative workspace link loses requested setup import continuation."
+      },
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/login-native-first-value-red.log",
+          "bytes": 1301,
+          "sha256": "1bff3280f72b31e4c90d9e5c64ec0a0da18ee78f9362f72e8aad8467f37976d7"
+        },
+        {
+          "path": "docs/setup-api-evidence/login-native-first-value-red.json",
+          "bytes": 1387,
+          "sha256": "8858776530ae85ad36165a329b2fdff5a61083758b6cc9c7bfc778f95afea601"
+        }
+      ],
+      "limits": "One ordinary read-only SSR feature case only. No credential/session/nonce/signature/replay/race/bypass probes, browser ceremony, transfer/import runtime, full dashboard or additional Source callback credit."
+    },
+    {
+      "kind": "Native intended login destination fixed green",
+      "head": "1dd8079af0e4887f20945b2e280398258245fcbe",
+      "family": "tests/setup-api-native/login-continuation.test.ts",
+      "declarations": 1,
+      "expectExpressions": 2,
+      "allExpectationsReached": true,
+      "unchangedOriginalTestBytes": true,
+      "PMQualification": "docs/setup-api-login-production-qualification.json",
+      "build": {
+        "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm build",
+        "log": "/tmp/setup-api-login-continuation-fix-build.log",
+        "exit": 0
+      },
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-login-native.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-login-native-fix-green.json",
+      "exit": 0,
+      "passed": 1,
+      "failed": 0,
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/login-native-fix-green.log",
+          "bytes": 441,
+          "sha256": "4b7be2c177ebc5a50ed51fb0babf82973e28f3be597c040dae88e86ae19819d2"
+        },
+        {
+          "path": "docs/setup-api-evidence/login-native-fix-green.json",
+          "bytes": 947,
+          "sha256": "5b9b19f65cf9fd01fc8997a8d028217af09b3195f1b6f06749a306ffd03920c9"
+        }
+      ],
+      "addedSourceCredit": 0,
+      "addedCausalValueRedCredit": 0,
+      "limits": "Repeated green adds no causal credit. Actual transfer/import/full dashboard, Source Astro/session/credential implementations and final whole normal/secured gates remain incomplete."
+    },
+    {
+      "kind": "Whole original welcome2 remains green after login mapping",
+      "head": "1dd8079af0e4887f20945b2e280398258245fcbe",
+      "family": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+      "declarations": 2,
+      "expectExpressions": 7,
+      "allExpectationsReached": true,
+      "unchangedOriginalTestBytes": true,
+      "PMQualification": "docs/setup-api-welcome-production-qualification.json",
+      "build": {
+        "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm build",
+        "log": "/tmp/setup-api-login-continuation-fix-build.log",
+        "exit": 0
+      },
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-welcome.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-welcome-after-login-fix-green.json",
+      "exit": 0,
+      "passed": 2,
+      "failed": 0,
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/welcome-after-login-fix-green.log",
+          "bytes": 498,
+          "sha256": "3b23aa9ae30d8170fd44e662796a8a6949a6947f531a2705d1938dc4f69fd708"
+        },
+        {
+          "path": "docs/setup-api-evidence/welcome-after-login-fix-green.json",
+          "bytes": 1401,
+          "sha256": "67aed5ab0e6e0749076c0f40f2854b251372be5abc2c35f841cba21c126982e3"
+        }
+      ],
+      "addedSourceCredit": 0,
+      "addedCausalValueRedCredit": 0,
+      "limits": "Repeated green adds no causal credit. Actual transfer/import/full dashboard, Source Astro/session/credential implementations and final whole normal/secured gates remain incomplete."
+    },
+    {
+      "kind": "First whole unchanged dashboard16 attempt; missing product module infrastructure only",
+      "head": "302f11f99acf87c9630c69fa0b4bff234d161e1b",
+      "wholeFamily": "packages/core/tests/unit/api/dashboard-handlers.test.ts",
+      "sourceBlob": "1e00d69b67a66bb9d26988bc21c309b87c5448ee",
+      "declarations": 16,
+      "expectExpressions": 77,
+      "unchangedSourceBytes": true,
+      "PMQualification": "docs/setup-api-dashboard-fixture-qualification.json",
+      "fixtureManifestSha256": "2ef4e5a69eea1de6d722370f46a38ef2e32f20d09c23e7019053ede6fe1a8647",
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-dashboard.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-dashboard-whole16-first-infrastructure.json",
+      "exit": 1,
+      "attemptedWholeSourceCallbacks": 0,
+      "passed": 0,
+      "failedSourceCallbacks": 0,
+      "failedSuitesBeforeAnySourceAssertion": 1,
+      "completedSourceValueReds": 0,
+      "SourceCausalCredit": 0,
+      "diagnosis": "Initial suite import reaches missing actual owned dashboard/handler.ts before any callback. The qualified test-first fixture imports the real proposed product seam rather than synthesizing a test handler or SQL namespace.",
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/dashboard-whole16-first-infrastructure.log",
+          "bytes": 1426,
+          "sha256": "7ccbba3019d651e5753ebfc8cc4b4b60201c2911b3a5e9f58956db4ff0808668"
+        },
+        {
+          "path": "docs/setup-api-evidence/dashboard-whole16-first-infrastructure.json",
+          "bytes": 957,
+          "sha256": "6f47e6df0a61bcfbb73f1d94c31b4e894c3218946bbf4285d6830c76a0d760be"
+        }
+      ],
+      "limits": "No production dashboard namespace/handler/policy/scheduler/count/route applied; no principal/session/credential/auth probe or media fixture DDL. Actual public media provider14 remains unavailable; whole dashboard green and final combined gates/reviews remain pending."
+    },
+    {
+      "kind": "First completed actual whole dashboard16 expected-success value baseline",
+      "head": "62e628744dc796b549fc6ff95d449e9136a81481",
+      "wholeFamily": "packages/core/tests/unit/api/dashboard-handlers.test.ts",
+      "sourceBlob": "1e00d69b67a66bb9d26988bc21c309b87c5448ee",
+      "declarations": 16,
+      "expectExpressions": 77,
+      "unchangedSourceBytes": true,
+      "PMQualification": "docs/setup-api-dashboard-production-qualification.json",
+      "productionManifestSha256": "b2454434a16dedb4de59075e1452036a082b95387c726121688d7f3aec916044",
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-dashboard.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-dashboard-whole16-first-reached-value-red.json",
+      "exit": 1,
+      "attemptedWholeSourceCallbacks": 16,
+      "passed": 0,
+      "failed": 16,
+      "failedBeforeAnySourceAssertion": 0,
+      "completedSourceValueReds": 16,
+      "reachedExpectExpressions": 16,
+      "unreachedExpectExpressions": 61,
+      "wholeSourceFamilyGreen": false,
+      "completedDashboardRedToGreenCredit": 0,
+      "actualMissingMediaTableErrors": 16,
+      "cases": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:26",
+          "title": "returns empty stats when no collections exist",
+          "status": "failed",
+          "valueFailure": {
+            "line": 31,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 5
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:39",
+          "title": "returns collection stats with correct counts",
+          "status": "failed",
+          "valueFailure": {
+            "line": 53,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 13
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:76",
+          "title": "counts entries with pending schedules in collection stats",
+          "status": "failed",
+          "valueFailure": {
+            "line": 103,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 3
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:110",
+          "title": "reports an unknown scheduler with overdue content when no heartbeat exists",
+          "status": "failed",
+          "valueFailure": {
+            "line": 122,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 2
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:134",
+          "title": "reports stale and healthy scheduler heartbeats",
+          "status": "failed",
+          "valueFailure": {
+            "line": 141,
+            "expression": "expect(stale.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 3
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:150",
+          "title": "counts scheduled publications that policy plugins rejected",
+          "status": "failed",
+          "valueFailure": {
+            "line": 169,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 2
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:183",
+          "title": "bounds the policy-rejection records returned to the dashboard",
+          "status": "failed",
+          "valueFailure": {
+            "line": 198,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 2
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:203",
+          "title": "returns recent items across collections",
+          "status": "failed",
+          "valueFailure": {
+            "line": 214,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 8
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:230",
+          "title": "recent items use title field when available",
+          "status": "failed",
+          "valueFailure": {
+            "line": 244,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 2
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:250",
+          "title": "recent items fall back to slug when collection has no title field",
+          "status": "failed",
+          "valueFailure": {
+            "line": 276,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 2
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:283",
+          "title": "excludes soft-deleted items from recent items",
+          "status": "failed",
+          "valueFailure": {
+            "line": 295,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 2
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:301",
+          "title": "limits recent items to 10",
+          "status": "failed",
+          "valueFailure": {
+            "line": 312,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 1
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:316",
+          "title": "recent items are ordered by updated_at descending",
+          "status": "failed",
+          "valueFailure": {
+            "line": 328,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 1
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:333",
+          "title": "counts exclude soft-deleted items",
+          "status": "failed",
+          "valueFailure": {
+            "line": 343,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 1
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:349",
+          "title": "merges recent items across many title-bearing collections (#895)",
+          "status": "failed",
+          "valueFailure": {
+            "line": 385,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 3
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:397",
+          "title": "returns camelCase keys in recent items",
+          "status": "failed",
+          "valueFailure": {
+            "line": 404,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 11
+        }
+      ],
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/dashboard-whole16-first-reached-value-red.log",
+          "bytes": 43777,
+          "sha256": "aeacd5d056b1c0bd6bc327b7f9785e5b16155cad8294dd19e9d9c4fc537f016a"
+        },
+        {
+          "path": "docs/setup-api-evidence/dashboard-whole16-first-reached-value-red.json",
+          "bytes": 12471,
+          "sha256": "0d4baa6363cc558e6a736dfcbedebbfe25def7b5c7fc761271c403945d6d51b6"
+        }
+      ],
+      "diagnosis": "All sixteen actual handlers catch real SQL missing _cms_media and return unchanged Source success:false; each first original success:true assertion fails. Actual public provider14 is absent. This is unfinished product storage rather than a reproduced Source algorithm bug.",
+      "limits": "No media fixture DDL/fake count/provider/cache success; no protected HTTP/auth/principal/session/credential probe. Actual Node domain only. All downstream61 expectations, media/file provider, HTTP/dashboard UI/D1/hosting and final normal/secured/reviews remain pending."
+    },
+    {
+      "kind": "Read-only candidate compiler-host overlay diagnostics; zero runtime/test credit",
+      "head": "4df0fb69d5363c22efb68de8bb3a52dd331db474",
+      "productionAppliedDuringCheck": false,
+      "candidateLibraries": 7,
+      "routeExcluded": "Requires generated Kit route types; no HTTP probe",
+      "errors": 4,
+      "diagnosis": "Kysely schema generic invariance at handler ContentRepository/OptionsRepository and both scheduler OptionsRepository constructors despite structural logical aliases. No Source runtime result was executed during this check.",
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/dashboard-r3-read-only-types.log",
+          "bytes": 14004,
+          "sha256": "19260c8d33efc2df8a6bb1025f1e1b56d2ef635a288ccc47f0a3940db5fff3fa"
+        }
+      ],
+      "SourceCausalCredit": 0,
+      "fix": "Finite explicit constructor schema-view adapter and import-only amendment proposed separately before application."
+    },
+    {
+      "kind": "Read-only proposed constructor schema amendment compile is clean; no runtime/test credit",
+      "head": "7b1dcc8d9e53332fafb60805c78cdc4ea6e07a53",
+      "candidateManifestSha256": "b7a301b23e028edceb5b636f99b540b4e511ce68d6f9928d7f2965dc493ab495",
+      "candidateApplied": false,
+      "candidateLibraries": 3,
+      "errors": 0,
+      "routeExcluded": "Generated Kit route types and actual full check/build remain pending",
+      "runtimeTestsRun": 0,
+      "SourceCausalCredit": 0,
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/dashboard-type-view-read-only-types.log",
+          "bytes": 253,
+          "sha256": "939c7d0708154b9a8bc0d2ad2e4192e5254c38bea20f9eca37498e4e0eeb0343"
+        }
+      ],
+      "limits": "Read-only compiler-host overlay only. No assertion, physical media/provider, protected HTTP/auth/principal or full gate evidence; exact amendment remains held for separate PM qualification."
+    },
+    {
+      "kind": "Exact qualified dashboard constructor amendment actual check/build",
+      "head": "a2ea950178d505d756340befd009bbaecbf259c6",
+      "PMQualification": "docs/setup-api-dashboard-type-view-qualification.json",
+      "candidateManifestSha256": "b7a301b23e028edceb5b636f99b540b4e511ce68d6f9928d7f2965dc493ab495",
+      "check": {
+        "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm check",
+        "exit": 0,
+        "errors": 0,
+        "warnings": 0
+      },
+      "build": {
+        "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm build",
+        "exit": 0
+      },
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/dashboard-type-adapter-check.log",
+          "bytes": 216,
+          "sha256": "af4f05f3925311ec09d5e0d926529bdf98eef3715308f576cd5e5fd48d7ca8ad"
+        },
+        {
+          "path": "docs/setup-api-evidence/dashboard-type-adapter-build.log",
+          "bytes": 43511,
+          "sha256": "58fba008fc9b1c4580812097b4cefc914baf3bc4d45c9f285b9175872ad6523d"
+        }
+      ],
+      "Source16Rerun": false,
+      "reason": "Per exact PM qualification, erased constructor views do not supply missing actual public media provider; unchanged Source16 rerun would add no evidence.",
+      "SourceCausalCredit": 0,
+      "limits": "Actual check/default build only. Recorded Source16 value failures persist; no dashboard HTTP/auth/principal probe, no full provider/UI/D1/hosting/normal/secured acceptance. Future ordinary public Mainfd1f union and separate package/doc qualification remain pending."
+    },
+    {
+      "kind": "Existing whole welcome family green after actual dashboard constructor amendment build; repeated regression only",
+      "head": "2c3409133d3b7a92f566599c824f88422603a4b8",
+      "compiledProductHead": "a2ea950178d505d756340befd009bbaecbf259c6",
+      "family": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+      "declarations": 2,
+      "expectExpressions": 7,
+      "allExpectationsReached": true,
+      "unchangedOriginalTestBytes": true,
+      "exit": 0,
+      "passed": 2,
+      "failed": 0,
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/welcome-after-dashboard-build-green.log",
+          "bytes": 502,
+          "sha256": "cd5ccb6a55de2bae486820fb78db620cfb613ae622353624569f415d18fcaf9d"
+        },
+        {
+          "path": "docs/setup-api-evidence/welcome-after-dashboard-build-green.json",
+          "bytes": 1409,
+          "sha256": "cc490b64e805ed7e3149610362d3d58af93e7861a032e55b64047254594309b2"
+        }
+      ],
+      "addedSourceCredit": 0,
+      "addedCausalValueRedCredit": 0,
+      "limits": "This predates the ordinary public Mainfd1 union. No dashboard16 rerun or protected/auth/credential probe; full combined-head gates pending."
+    },
+    {
+      "kind": "Existing whole login family green after actual dashboard constructor amendment build; repeated regression only",
+      "head": "2c3409133d3b7a92f566599c824f88422603a4b8",
+      "compiledProductHead": "a2ea950178d505d756340befd009bbaecbf259c6",
+      "family": "tests/setup-api-native/login-continuation.test.ts",
+      "declarations": 1,
+      "expectExpressions": 2,
+      "allExpectationsReached": true,
+      "unchangedOriginalTestBytes": true,
+      "exit": 0,
+      "passed": 1,
+      "failed": 0,
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/login-after-dashboard-build-green.log",
+          "bytes": 450,
+          "sha256": "f54ce59fd2f7bd95b42a5deedb7fb859bc4f21be807bb969aae19c5ec51b3b5e"
+        },
+        {
+          "path": "docs/setup-api-evidence/login-after-dashboard-build-green.json",
+          "bytes": 945,
+          "sha256": "a81d3f8cc773cb51204d7d7a6d1a87337f6cb61dcf9c619e00a81cb152e0d3cb"
+        }
+      ],
+      "addedSourceCredit": 0,
+      "addedCausalValueRedCredit": 0,
+      "limits": "This predates the ordinary public Mainfd1 union. No dashboard16 rerun or protected/auth/credential probe; full combined-head gates pending."
+    },
+    {
+      "kind": "Exact qualified ordinary actual-public Mainfd1 merge and qualified existing transport gates",
+      "publicMain": "fd1f931f04a85d32ac740dfcfa2b37ca3b406c05",
+      "ownedParent": "2c3409133d3b7a92f566599c824f88422603a4b8",
+      "resolvedTreeBeforePairedAppends": "58c6bb8290361a834e08f432d964e56363f0ea29",
+      "actualMergeHead": "0b9b3d846d1bed6eb22b720ec5030528c81ab977",
+      "actualMergeTree": "4fbe76bc0b1c3aa2ec7760613b728d3425b4e3c8",
+      "actualGateHead": "c3e619785ec0ebdfa9bcc928f38f624ac205e503",
+      "PMQualification": "docs/setup-api-mainfd1-union-gates-qualification.json",
+      "applied": "Exact incoming public16, complete append-only compatibility conflict resolution, both exact union suffixes, exact package/passkey-prose r2 files and both exact gate suffixes. Existing bootstrap13/secured9/workflow/locks unchanged.",
+      "rawEvidenceWhitespace": "git diff --check reports trailing spaces only in exact incoming public native-seventeen-red.log; immutable evidence bytes preserved. Own changes have no whitespace diagnostics.",
+      "testsRunByMerge": 0,
+      "addedSourceCredit": 0,
+      "limits": "Full current combined normal13/secured9/current independent reviews and complete feature/provider acceptance remain pending. Dashboard16 stays outside aggregate until actual media prerequisite."
+    },
+    {
+      "kind": "Actual unchanged complete bootstrap13 attempt on qualified combined Mainfd1 payload",
+      "head": "3ec747f3cefb01497a4245194c454e6dc1b100b1",
+      "command": "PATH=/workspace/.tools/pnpm/node_modules/pnpm:$PATH sh scripts/bootstrap.sh",
+      "exit": 1,
+      "stageOutcomes": [
+        {
+          "stage": 1,
+          "name": "frozen dependency install",
+          "exit": 0
+        },
+        {
+          "stage": 2,
+          "name": "type and Svelte checks",
+          "exit": 0,
+          "errors": 0,
+          "warnings": 0
+        },
+        {
+          "stage": 3,
+          "name": "service tests",
+          "exit": 1,
+          "tests": 1386,
+          "passed": 1384,
+          "failed": 2,
+          "skipped": 0,
+          "suites": 44,
+          "durationMs": 208775.598856
+        }
+      ],
+      "unexecutedStages": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "failures": [
+        {
+          "test": "tests/database-d1.test.ts:64",
+          "title": "D1: fresh/v1 auth failures roll back all DDL and migration markers",
+          "actual": "Miniflare SynchronousFetcher assertion message?.id === id instead of expected absent_auth_table rejection",
+          "causality": "No Source algorithm or setup change causal diagnosis established."
+        },
+        {
+          "test": "tests/draft-trash-pagination.test.ts:116",
+          "title": "D1: 103 retained drafts paginate through repository/service and survive reopen",
+          "actual": "Miniflare SynchronousFetcher assertion message?.id === id during actual DraftRepository.delete",
+          "causality": "No Source algorithm or setup change causal diagnosis established."
+        }
+      ],
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/normal13-mainfd1-failed.log",
+          "bytes": 159225,
+          "sha256": "31ad9752e9ba6aaf6f6a086618ee61139e3e24bd027d7b63960ff69636ee8f21"
+        }
+      ],
+      "bootstrapSha256": "2ee61e1f3c84c6dfbbf69aeb732e3615781e4e2cfb312011d23fb240a75592a8",
+      "workflowSha256": "d8fccd1e4f657de0121544eb7ed87dc75be1468620db6bf2bcbf85c3aee8603a",
+      "lockSha256": "fb9c90936589349e902c93d3c301070b151598acea7588607d6b0c07f0031b34",
+      "wholePipelineGreen": false,
+      "addedSourceCredit": 0,
+      "addedCausalValueRedCredit": 0,
+      "limits": "Full unmodified pipeline stopped naturally at stage3. No isolated tests, unchanged rerun, test rewrite, supplemental phases or extra auth probes. Future actual public changes require a finite ordinary union before current full gates."
+    },
+    {
+      "kind": "Ordinary official Chromium1243 install prerequisite fails under environment network policy",
+      "head": "3ec747f3cefb01497a4245194c454e6dc1b100b1",
+      "command": "PATH=/workspace/.tools/pnpm/node_modules/pnpm:$PATH PLAYWRIGHT_BROWSERS_PATH=/tmp/setup-api-playwright-cache pnpm exec playwright install chromium",
+      "exit": 1,
+      "actualDownload": "https://cdn.playwright.dev/builds/cft/153.0.8010.12/linux64/chrome-linux64.zip",
+      "actualFailure": "HTTP403 Domain forbidden",
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/chromium1243-install-network-failed.log",
+          "bytes": 3948,
+          "sha256": "9269a22e9f4ab47bdeb6b60ed11051c91d82cf0ba0928bbad9026c2eb61a3642"
+        }
+      ],
+      "securedBrowserFamiliesRun": 0,
+      "addedSourceCredit": 0,
+      "limits": "Default installed Chromium absent. Writable/tmp cache only; no privileged flags, system policy edits, alternate CDN, sandbox weakening or retry. Hosted unchanged nine existing browser phases remain required."
+    },
+    {
+      "kind": "Exact Root-qualified ordinary actual-public Mainf351 merge applied",
+      "publicMain": "f351d2142319f60ce29b9ab98c8f1d94671e0ade",
+      "ownedParent": "f3658e5fb091861ef0cd11bb74932d65d8e01574",
+      "stagedResolvedTreeBeforePairedAppends": "c0989f76a099db2a19ac4dcda8cc63a4bb5661e7",
+      "actualMergeHead": "b8842262dfd204f5cc32c698fe07e733f9b496f2",
+      "actualMergeTree": "bc804afd1f6eb9b5fb7ca95e2ed751d3204dab0d",
+      "actualOrderedParents": [
+        "f3658e5fb091861ef0cd11bb74932d65d8e01574",
+        "f351d2142319f60ce29b9ab98c8f1d94671e0ade"
+      ],
+      "PMQualification": "docs/setup-api-mainf351-union-qualification.json",
+      "qualifiedManifestSha256": "9e0e4f304fb3c98b7ebbb3cea08a61e06217d9eb9e30d6a148f5b4f9def7d0de",
+      "incomingWholePublicFiles": 4,
+      "pairedAppendsAppliedExact": true,
+      "preservedOwnedGuardFixtureGatePaths": 17,
+      "preservedWholeSourceAuthorities": 54,
+      "testsExecutedByMerge": 0,
+      "addedSourceCredit": 0,
+      "limits": "Preserved failed normal13 evidence remains unchanged; actual public shared D1 helper does not establish a fix for the two direct synchronous fixtures. Fresh owner /root/d1_direct_fixture_transport_developer_fresh owns that infrastructure closure. ONE hosted current-head full13 and secured9 next; no duplicate local normal/supplemental, CDN retry, protected policy or unchanged dashboard16 execution."
+    }
+  ],
+  "latest": {
+    "wholeSourceFamiliesGreen": 1,
+    "wholeSourceCallbacksGreen": 2,
+    "expectExpressionsReached": 7,
+    "uniqueSourceValueReds": 17,
+    "firstGreenControls": 1,
+    "refactorPending": false,
+    "fullNormalGate": false,
+    "securedGate": false,
+    "setupParity": "incomplete",
+    "dashboardParity": "incomplete",
+    "nativeLogin": {
+      "uniqueValueReds": 1,
+      "green": 1,
+      "expectExpressionsReached": 2,
+      "SourceCredit": 0,
+      "fixHead": "1dd8079af0e4887f20945b2e280398258245fcbe"
+    },
+    "dashboard": {
+      "wholeOriginalDeclarations": 16,
+      "wholeOriginalExpectExpressions": 77,
+      "attemptedCallbacks": 16,
+      "reachedExpectExpressions": 16,
+      "unreachedExpectExpressions": 61,
+      "completedValueReds": 16,
+      "completedRedToGreenCredit": 0,
+      "wholeFamilyGreen": false,
+      "latestOutcome": "actual missing public media provider SQL caught; all original success assertions fail"
+    },
+    "completedCausalSourceGreenCredit": 1,
+    "actualCheck": {
+      "head": "a2ea950178d505d756340befd009bbaecbf259c6",
+      "errors": 0,
+      "warnings": 0
+    },
+    "actualDefaultBuild": {
+      "head": "a2ea950178d505d756340befd009bbaecbf259c6",
+      "exit": 0
+    },
+    "uniqueReachedSourceCallbacks": 18,
+    "combinedPayloadHead": "b8842262dfd204f5cc32c698fe07e733f9b496f2",
+    "currentPublicMain": "f351d2142319f60ce29b9ab98c8f1d94671e0ade",
+    "normalGateAttempt": {
+      "head": "3ec747f3cefb01497a4245194c454e6dc1b100b1",
+      "exit": 1,
+      "finishedStages": 2,
+      "failedStage": 3,
+      "servicePassed": 1384,
+      "serviceFailed": 2,
+      "unexecutedStages": 10
+    },
+    "hostedAvailability": {
+      "head": "3ec747f3cefb01497a4245194c454e6dc1b100b1",
+      "connectorWorkflowRuns": [],
+      "connectorCombinedStatuses": [],
+      "ordinaryGhRestRead": "Forbidden; no retry/alternative after this response",
+      "prHeadApiConfirmed": true,
+      "prDraft": true,
+      "prMergeableSnapshot": false
+    }
+  }
+}

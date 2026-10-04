@@ -1,0 +1,30 @@
+
+ RUN  v4.1.10 /workspace/cms-source-setup-api-backend-fresh
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts (2 tests | 2 failed) 90ms
+     × persists welcomeDismissed in the database, not the session 70ms
+     × redacts playground user lookup failures 18ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts > GET/POST /_emdash/api/auth/me – welcome dismiss > persists welcomeDismissed in the database, not the session
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts > GET/POST /_emdash/api/auth/me – welcome dismiss > redacts playground user lookup failures
+TypeError: Cannot read properties of null (reading 'handle')
+ ❯ setupTestDatabase tests/helpers/setup-api/welcome-source-http.ts:35:32
+     33|   const hooks = internal.options.hooks as { handle: Handle };
+     34|   // Save the application handle before the unchanged helper installs …
+     35|   const previousHandle = hooks.handle;
+       |                                ^
+     36|   let fixture: Fixture | undefined;
+     37|   let installedHandle: Handle | undefined;
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts:14:8
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  06:15:52
+   Duration  728ms (transform 254ms, setup 0ms, import 527ms, tests 90ms, environment 0ms)
+
+JSON report written to /tmp/setup-api-welcome-source-initial-red.json

@@ -1284,3 +1284,259 @@ The unchanged17 Native byte cases pass after the exact fix and after the private
 The EmDash 1.1.0 authority remains immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, including `packages/cloudflare/src/db/d1-dialect.ts`. The [transport feature record](../../docs/d1-fixture-transport.md) describes a test-only substitution: fresh fixtures change from one real Miniflare runtime per database to bounded 256-binding groups of distinct, one-use UUID-qualified D1 databases. They never share or reset a leased database. Lease closure rejects stale queries and drains requests already started; exhausted groups close after their final lease and idle current groups close after 250 ms. Persistent fixtures keep a dedicated runtime, the original database identifier and supplied directory. Product adapters, providers 1–8, existing Source and native callback/assertion/fixture matrices, normal commands and deadlines remain unchanged.
 
 Original four-callback test-first head `ae06f004` has two genuine distinct-endpoint assertion failures and two already-green controls; the boundary matrix remains unreached before the reuse repair. Physical catalog-count mistakes and unfinished duplicate raw-disposal attempts earn zero causal/completed-run credit. The unchanged five native transport callbacks pass. An isolated 100-fixture characterization observes 100 actual runtime instances in 7314.85 ms; it establishes only local fixture cost, not the cause of a hosted/full-suite slowdown. Root authorized development of the exact 6486-byte helper candidate, SHA `a0705209c4bec16849bade728a8a044fdeb20d42a8e0935a373314fb4942758a`, before application at `d21c3bca`. Whole native four and existing transport five pass. The same 100-fixture characterization observes one actual runtime in 1379.29 ms, compared with 100 instances in 7314.85 ms at baseline; these separate local measurements do not establish whole-suite or hosted causation. Post-green test-only pair-acquisition refactor preserves all four titles and 15 exact assertion expressions; whole nine callbacks pass with zero failures, cancellations, skips or todos. Production helper and existing Source/native fixture bytes remain unchanged by refactor. Whole normal/secured gates and final independent/configured review remain pending. Idle cleanup, startup failure and pending-close drain remain static-review limits. This is native harness evidence with zero Source parity credit. Implementation development is authorized; specific PM acceptance and landing are pending.
+
+
+### Welcome dismissal native persistence proposal — PR90
+
+Pinned EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, complete
+`core/src/astro/routes/api/auth/me.ts` blob`6053a7d0fbb038beab5d6841cb007fecac68e3a3`
+and whole `core/tests/unit/auth/me-welcome-dismiss.test.ts`
+blob`ba3b7a413e01f59cf21f831badf694120e7d6a3d`, establish persisted welcome
+dismissal and sanitized current-user lookup failure. Both original callbacks,
+seven expectations, mocks and deadlines are unchanged in the executable copy.
+
+The framework proposal adds native POST transport with the existing resolved
+principal and actual stored profile; nonempty action-string parsing/unknown-key
+stripping, UNKNOWN_ACTION, persisted merged user.data and successful envelope
+retain the pinned behavior. Source users.data maps to native split-profile
+`_cms_auth_profiles.data`; existing currentUser GET rereads it on every request.
+Native identityBody error sanitization and existing exact configured Origin guard
+are inherited transport substitutions, with no credential/session/nonce/role
+guard changes. No caller identity, fabricated profile or session mutation occurs.
+
+The whole-family fixture reaches actual built Kit HTTP and native SQLite for the
+fixed existing stored administrator. Source UserRepository.create supplies only
+that real fixture profile; its users-table DROP maps to the actual profile table.
+These are explicit framework fixture seams, not Source repository/auth/session
+implementation credit. The initial whole2 run at03303bb2 has two pre-assertion
+Kit-hooks initialization failures, zero value-red/green or causal credit; complete
+logs/JSON are preserved. The exact supported Server.init correction was separately qualified and applied
+at31a7e808. Both whole callbacks completed with one reached Source value red
+(actual POST405 against original expected200) and one first-green sanitized-error
+control with zero causal credit. [Full raw receipts](../../docs/setup-api-runs.json)
+remain preserved before this fix. The PM independently qualifies the exact
+route1780B/helper750B and paired appends in [the development decision](../../docs/setup-api-welcome-production-qualification.json).
+Qualified fixc4b10d42 builds successfully and unchanged whole2 passes2/2 with
+all7 expectations reached through actual HTTP/SQLite. The retained causal Source
+value-red count is1; the first-green control and initial infrastructure failures
+add none. Owned-helper readability refactor3609b665 rebuilds successfully and unchanged
+whole2 passes2/2 again, with no further causal credit. Final gates remain pending. [The paired feature record](../../docs/setup-api-backend.md)
+retains these limits. [Draft PR90](https://github.com/sveltery/cms/pull/90) remains
+unlanded; no final adaptation acceptance is recorded. The reached value baseline and whole2 fixed green are established; refactor receipts and current combined full normal/secured gates plus final
+independent/configured review remain pending.
+
+
+### Setup wizard login destination framework proposal — PR90
+
+EmDash1.1.0 immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e` is the
+behavior authority. Complete pinned `core/src/astro/routes/api/setup/admin-verify.ts`
+enrolls and completes setup without signing in. Complete `admin/src/components/SetupWizard.tsx`
+selects `/_emdash/admin` or `/_emdash/admin/settings/transfer?start=import`;
+complete `core/src/astro/middleware/auth.ts` preserves requested pathname/query
+in the anonymous login redirect. Actual authentication is the separate passkey
+verify route's session write. The Source wizard callbacks/assertions remain exact
+and grant no native session or import-runtime credit.
+
+The native framework proposal carries the intended native root or
+`/settings/transfer?start=import` through `/login?redirect=`. A server-only Kit
+login load uses existing unchanged `src/lib/server/auth/safe-redirect.ts`
+(Source `core/src/api/redirect.ts`, blob `133b0477ac6e450f2aed830beb334722e4e10678`)
+and supplies accepted targets to the existing PasskeyLogin homeHref. Existing
+credential/session/nonce/Origin guards, PasskeyLogin and auth.remote bytes stay
+unchanged. The native route names and existing root fallback substitute for
+Source admin routes; transfer/import and complete dashboard remain unimplemented.
+
+One proposed original Native feature case reads actual built login HTML for the
+fixed existing stored administrator and checks the workspace link's intended
+import pathname/query. Current Main renders the root link. Test-only fixture
+bootstrap/HTTP/storage substitutions are explicit in [the feature record](../../docs/setup-api-backend.md);
+there is no credential ceremony, session issuance/rotation, replay, race or bypass
+probe. The PM qualifies the exact ordinary fixture/case/config in [the decision](../../docs/setup-api-login-fixture-qualification.json),
+applied at910f4842. One completed Native value red reaches HTTP200 and the
+actual raw href assertion (`./` rather than the intended import target); complete
+[raw receipts](../../docs/setup-api-runs.json) precede any production fix. Zero
+Source credit and zero fixed-green continuation are claimed. [Draft PR90](https://github.com/sveltery/cms/pull/90)
+contains the freeze/initial welcome test-first work; the paired feature/register appends and ordinary fixture are now qualified and
+applied; the PM now qualifies the exact389B server load and973B page in
+[the separate production decision](../../docs/setup-api-login-production-qualification.json).
+Exact production2 at1dd8079a builds successfully; same ordinary Native1 passes1/1
+with both expectations unchanged and actual HTML retaining the intended import
+pathname/query. Whole original welcome2 remains2/2 green/all7 unchanged after
+the same build. One Native href value red is retained; no repeated green adds
+causal or copied Source credit. No final adaptation acceptance or landing is
+recorded; current full normal/secured gates and both reviews remain pending.
+
+
+### Dashboard whole16/native storage and transport proposal — PR90
+
+Immutable EmDash1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e is the behavior authority:
+complete core/api/handlers/dashboard.ts blob6eff245e36cb194ff0e07013d7f80453abda87ef
+and whole core/tests/unit/api/dashboard-handlers.test.ts blob1e00d69b67a66bb9d26988bc21c309b87c5448ee.
+The complete handler/recent-item runtime plus whole content-policy and scheduler
+health bodies are proposed with imports adapted, consuming actual public direct
+ContentRepository and complete OptionsRepository. Exact Source collections/counts,
+status/schedule/deleted filters, option revisions/preview20, title fallback,
+per-collection10-row queries and global10-row merge/ordering/camelCase remain.
+
+The finite namespace maps only _emdash_collections/fields to _cms_collections/fields,
+media to actual future _cms_media and users to installed _cms_auth_users; existing
+canonical options mapping/D1 write boundary remains unchanged. Actual lifecycle
+storage is registered for that Kysely clone, exposing only inherited UTC and
+disabled-cache defaults; no configured cache/invalidation/timezone proof follows.
+Whole Source media count and its three pure MIME helpers query real SQL; the
+user seam retains only Source no-argument COUNT(id), with no user CRUD/role-filter
+credit. Originating complete content/media/registry/validate authorities are
+frozen before selected copying. Type-only aliases are not schema/provider proof.
+
+The proposed native GET/api/dashboard uses existing resolved principal plus
+content:read and existing private/no-store response helpers. Source Astro
+user/permission/configuration plumbing maps to current trusted Native composition;
+its 503 unconfigured message is inherited Native transport, not Source500 parity.
+No auth/session/credential guards or caller authority are changed. Whole original
+unit16/all77 expectations/fixtures/delays/deadlines remain unchanged; actual Node
+open/migrate/registry replaces Source fixture construction, with no principal or
+session data or test-only media DDL. These are explicit framework substitutions.
+
+This proposal is unexecuted and awaiting separate finite PM development
+qualification. Public Main still lacks media provider14, so no fake count/cache/
+policy/provider success establishes green. Import/fixture failures0causal; a
+real caught storage failure can count only when an original expected-success
+value assertion is actually reached. Node unit stats do not prove media file
+providers, policy execution/dismissal, scheduler firing, HTTP/UI, D1, hosting or
+full dashboard. [Paired feature record](../../docs/setup-api-backend.md) and
+[Draft PR90](https://github.com/sveltery/cms/pull/90) retain these limits. Final
+adaptation acceptance/current full13+secured gates/both reviews/landing pending.
+
+The exact r3 proposal was then development-qualified and applied in62e62874.
+Actual whole original16 execution reaches only its16 first success assertions,
+each failing true versus false after a real missing _cms_media query is caught
+by the unchanged Source handler; remaining61 expectations are unreached. These
+observed value reds identify the absent public provider14, without algorithm-bug
+or completed dashboard red→green credit. All whole Source/fixture bytes and
+77 expects remain unchanged. No test media DDL/count/provider/cache synthesis
+or protected HTTP/auth/principal probe occurred. The separate read-only compiler
+overlay found four Kysely schema-invariance constructor diagnostics, adding
+0runtime/test credit; a finite import/constructor type-view amendment is pending.
+[Full actual receipts](../../docs/setup-api-runs.json) retain both initial import
+infrastructure0 and later reached value failures. Current full normal/secured
+gates, final adaptation acceptance/reviews/landing and real dashboard/UI/media
+provider/D1/hosting completion remain pending.
+
+
+### Dashboard repository constructor schema-view proposal — PR90
+
+Immutable Source913cb1bb9b7f08c3ff0d258b4420e53835b6a58e complete dashboard
+handler and scheduler bodies remain unchanged except import strings. Four
+read-only compile diagnostics arise because Kysely schema generics are invariant.
+The proposed two constructor classes inherit actual public complete Native
+ContentRepository and canonical OptionsRepository bodies, forwarding the same
+registered Kysely object through explicit erased schema casts. No repository
+method override, SQL/result/data/DDL/provider substitution, namespace, atomic
+registration, auth/principal or guard mutation occurs. This is a bounded Native
+type/module substitution over real storage, without full Source user/profile,
+media-provider, configured cache/timezone or adapter/hosting acceptance.
+
+The complete original16/77 family remains untouched; its actual16 first success
+assertions fail after real missing _cms_media, with61 later expectations unreached.
+The type amendment supplies no provider and adds0causal/runtime credit. Full
+receipts retain initial import infrastructure0 separately. [Paired feature record](../../docs/setup-api-backend.md) and [Draft PR90](https://github.com/sveltery/cms/pull/90)
+record the unapplied finite proposal and pending PM development qualification,
+final adaptation acceptance/current full checks/reviews/landing. Dashboard green,
+actual media/file provider, Native HTTP/UI/D1/hosting and whole project remain
+incomplete.
+
+The exact constructor/import amendment was development-qualified and applied
+in a2ea9501, without repository method/data/SQL/host/guard changes. Actual
+type/Svelte check0errors/0warnings and default build0 are retained in
+[whole run receipts](../../docs/setup-api-runs.json); these are compile/build
+evidence, without dashboard green or new causal credit. The unchanged16 family
+was not rerun because public media storage remains absent; its observed16 first
+success failures and61 unreached expectations persist. Full final checks/reviews,
+final adaptation acceptance/landing and media/HTTP/UI/D1/hosting remain pending.
+
+
+### Proposed ordinary actual Mainfd1f integration — PR90
+
+The finite object-only union imports only actual public Main
+fd1f931f04a85d32ac740dfcfa2b37ca3b406c05 (regular PR94 merge), preserving all
+16 changed public files byte-exact, including SEC1-01 code/whole Native17 math
+cases/source evidence/notices/feature prose. No private engine/provider/stack is
+consumed. Existing Source pin913cb1bb9b7f08c3ff0d258b4420e53835b6a58e and whole
+setup/welcome/dashboard declaration/assertion bytes remain unchanged.
+
+The only append conflict preserves the entire actual Main compatibility prefix
+followed by the full unchanged owned suffix from original Main135. Both public
+SEC1-01 decision and complete owned Native setup/dashboard adaptations and raw
+receipt distinctions survive. This proposal is unapplied pending finite PM
+qualification; union itself adds0 causal Source/Native value-red credit. Prior
+welcome2/Native1 green and dashboard16 first-success red evidence do not qualify
+the new combined payload. Real public media provider/seed engine, dashboard UI,
+HTTP/D1/hosting and full setup parity remain incomplete; full current normal/
+secured gates, final adaptation acceptance/reviews/exact approval/landing remain
+pending. [Paired feature record](../../docs/setup-api-backend.md);
+[Draft PR90](https://github.com/sveltery/cms/pull/90).
+
+
+### Proposed welcome/native-login transport gate and shared feature record — PR90
+
+The authority remains immutable EmDash1.1.0
+913cb1bb9b7f08c3ff0d258b4420e53835b6a58e, including whole original
+core/tests/unit/auth/me-welcome-dismiss.test.ts (two declarations/seven expects).
+The package proposal preserves the full existing test:source-ports command prefix
+and appends the exact previously qualified welcome and ordinary Native login
+configs after its unchanged build-producing writable-editor UI gate. A standalone
+command builds actual default Kit output before the same built command. Entire incoming public SEC1 passkey prose remains intact. No
+bootstrap13 or secured job step, deadline, dependency/lock or assertion changes.
+No dashboard test, isolated auth/session/credential probe or fake-success result
+is introduced by this package amendment; previously recorded genuine Source1
+and Native1 value-red receipts remain the only unique causal counts.
+
+The paired passkey feature record corrects its stale welcome-state sentence to
+reference proposed PR90's actual stored-profile persistence and whole original
+fail→fix→refactor evidence while retaining pending welcome UI, complete setup,
+provider/hosting and authentication scope. This is documentation/gate composition,
+not new feature acceptance. [Owned feature record](../../docs/setup-api-backend.md),
+[shared passkey record](../../docs/passkey-setup-login.md) and
+[Draft PR90](https://github.com/sveltery/cms/pull/90) retain current limits. These
+exact edits remain unapplied pending finite PM development qualification; final
+adaptation acceptance/full current normal and secured gates/both reviews/landing
+remain pending.
+
+
+The exact approved public Mainfd1 union is applied as ordinary merge `0b9b3d846d1bed6eb22b720ec5030528c81ab977` (parents owned2c340913 and actual publicfd1f). Its staged resolution matched the qualified tree58c6bb8290361a834e08f432d964e56363f0ea29 before paired appends. Exact r2 transport gates and complete incoming passkey prose correction are committed as `c3e619785ec0ebdfa9bcc928f38f624ac205e503`. The incoming immutable SEC1 red log retains its original trailing spaces. Full combined normal13 and secured9 validation is next; no acceptance or PR merge approval is claimed.
+
+The catalog counters now reflect18 unique reached Source callbacks and17 observed value reds: welcome1 completed causal green, the welcome control first-green with zero credit, and dashboard16 still failing due to absent actual media storage with61 expectations unreached. Earlier dashboard-build welcome2/Native1 repeated greens are retained separately and add zero causal credit. All54 frozen authority bytes and the nine-family48-declaration193-expect inventory remain unchanged. Dashboard16 is held out of the aggregate.
+
+
+The actual full unchanged bootstrap attempt on combined head3ec747f3cefb01497a4245194c454e6dc1b100b1 stopped at service stage3:1386 tests,1384 passed,2 failed,0 skipped. Dependency installation and type/Svelte checks finished green; later ten phases did not execute. Both failures report Miniflare synchronous notification `message?.id === id`, in the existing D1 auth-rollback and draft-trash pagination callbacks. This establishes no setup/Source causality. Full raw logs are retained without rerun or test rewrite.
+
+Secured9 remain unexecuted locally: standard official Chromium1243 installation into/tmp returned HTTP403 `Domain forbidden`; no alternate download, privileged flag or sandbox weakening was used. Published-head connector workflow/status arrays were empty, while the PR snapshot was unmergeable after newer public Main compatibility additions. The PM requires a separately qualified ordinary union of actual public Mainf351 before fresh combined-head gates. Its shared D1 helper does not establish a fix for these two legacy direct-Miniflare fixtures. No complete current normal/secured acceptance or additional Source credit is claimed.
+
+
+### Proposed ordinary actual Mainf351 integration — PR90
+
+The finite object-only union imports actual public Main
+f351d2142319f60ce29b9ab98c8f1d94671e0ade, whose ordered merge parents are
+Mainfd1f and public PR89d3ff156c. Full public async-D1 helper, native four-case
+runtime-reuse test and D1 feature record are byte-exact. The complete incoming
+Main compatibility record precedes the complete unchanged owned suffix from
+the already integrated Mainfd1 prefix. No historical rejection, raw failure,
+Source assertion, lifecycle guard, hosted deadline, package transport gate or
+lockfile is deleted or normalized. Source pin913cb1 and all54 authority bytes
+remain unchanged; the immutable nine-family48-declaration193-expect catalog is
+retained. The preserved normal13 failure gives no causality claim or proof that
+the shared helper fixes the two separate legacy synchronous D1 fixtures.
+
+This ordinary union proposal remains unapplied pending exact PM qualification.
+It adds0 Source or Native causal credit. Prior welcome2/Native1 greens and
+actual dashboard16 missing-media reds do not qualify the new combined head.
+Actual media/seed/setup/import/dashboard UI and policy-dismissal closure remain
+incomplete. Current full normal13/secured9, independent/configured reviews,
+final acceptance/exact PM approval and author expected-head landing remain
+pending. [Paired feature record](../../docs/setup-api-backend.md);
+[Draft PR90](https://github.com/sveltery/cms/pull/90).
+
+
+The exact ordinary Mainf351 proposal is now applied as regular mergeb8842262dfd204f5cc32c698fe07e733f9b496f2 (ordered parents ownf3658e5f and actualMainf351). The staged resolution matched qualified treec0989f76a099db2a19ac4dcda8cc63a4bb5661e7 before both exact approved appends. Whole incoming four files, all17 owned guard/fixture/gate paths, all54 Source authorities and the immutable9/48/193 inventory are preserved. Root proof is retained in docs/setup-api-mainf351-union-qualification.json. This documentation records actual application without deleting the earlier unapplied proposal or failed-gate chronology.
+
+One current published-head hosted normal13 and secured9 run is next. No duplicate local normal, supplemental phases, CDN retry, protected policy tests or unchanged dashboard16 execution follows this merge. A fresh developer owns direct D1 transport robustness; the shared public helper does not prove that the two preserved legacy fixture failures are fixed. Actual setup/seed/media/UI closure, full current gates, independent/configured review and exact final merge acceptance remain pending. No additional causal credit is claimed.
