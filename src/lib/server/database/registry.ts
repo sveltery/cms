@@ -1,4 +1,5 @@
 import { sql, type CompiledQuery } from 'kysely';
+import { resetRegisteredCollectionsCache } from '../schema/collection-slugs-cache.ts';
 import { sqliteErrorMessage } from './errors.ts';
 import { ulid } from 'ulidx';
 import { CmsError, type CmsDatabase, type Collection, type CollectionRow, type Field, type FieldRow, type RevisionPrecondition } from './contract.ts';
@@ -223,6 +224,7 @@ export class SchemaRegistry {
       if (duplicateSlug || duplicateAtCapacity) throw new CmsError('COLLECTION_EXISTS');
       throw cause;
     }
+    resetRegisteredCollectionsCache();
     return (await this.getCollection(value.slug))!;
   }
 
@@ -318,6 +320,7 @@ export class SchemaRegistry {
       sql`DROP TABLE ${sql.ref(tableName(slug))}`.compile(db),db.deleteFrom('_cms_fields').where('collection_id','=',target.id).compile(),
       db.deleteFrom('_cms_collections').where('id','=',target.id).compile(), sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
     ],'COLLECTION_NOT_EMPTY');
+    resetRegisteredCollectionsCache();
   }
   private async batch(statements: CompiledQuery[], guardCode: 'LIMIT_EXCEEDED' | 'CONFLICT' | 'COLLECTION_NOT_EMPTY') {
     try { return await this.database.atomicBatch(statements); }

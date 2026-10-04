@@ -30,8 +30,8 @@ const nativeBoundaries={
   "packages/core/src/database/repositories/types.ts": "src/lib/server/database/lifecycle/upstream/database/repositories/types.ts",
   "packages/core/src/astro/prefetch.ts": "src/lib/server/menus/prefetch.ts",
   "packages/core/src/api/handlers/taxonomies.ts": "src/lib/server/taxonomies/handlers.ts",
-  "packages/core/src/api/handlers/bulk-tag.ts": "src/lib/server/taxonomies/bulk-tag.ts",
-  "packages/core/src/api/handlers/content.ts": "src/lib/server/taxonomies/content.ts"
+  "packages/core/src/api/handlers/bulk-tag.ts": "tests/helpers/taxonomies/source-bulk-reference.mjs",
+  "packages/core/src/api/handlers/content.ts": "tests/helpers/taxonomies/source-content-reference.mjs"
 };
 const sourceAliases={
  '#node-sqlite':'packages/core/src/db/node-sqlite-compat.ts',

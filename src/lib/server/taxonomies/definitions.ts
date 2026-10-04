@@ -1,7 +1,8 @@
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 // Whole runtime body from EmDash 1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/src/database/repositories/taxonomy-def.ts; imports only adapted.
-import { sql, type Kysely } from "kysely";
+import { sql, type Kysely, type Compilable } from "kysely";
 
+import {executeTaxonomyWritePlan} from "./write-plan.ts";
 import type { Database } from "../canonical-storage/types.ts";
 
 /**
@@ -75,42 +76,10 @@ export async function saveTaxonomyStructure(
 	structure: TaxonomyStructure,
 	overwrite: Partial<TaxonomyStructure> = structure,
 ): Promise<string> {
-	const changes: { hierarchical?: number; collections?: string } = {};
-	if (overwrite.hierarchical !== undefined) changes.hierarchical = overwrite.hierarchical ? 1 : 0;
-	if (overwrite.collections !== undefined) {
-		changes.collections = JSON.stringify([...new Set(overwrite.collections)]);
-	}
-	const saved = await db
-		.insertInto("_emdash_taxonomy_def_groups")
-		.values({
-			id: groupId,
-			name,
-			hierarchical: structure.hierarchical ? 1 : 0,
-			collections: JSON.stringify([...new Set(structure.collections)]),
-		})
-		.onConflict((oc) =>
-			Object.keys(changes).length > 0
-				? oc.column("name").doUpdateSet(changes)
-				: oc.column("name").doNothing(),
-		)
-		.returning(["id", "hierarchical", "collections"])
-		.executeTakeFirst();
-	const group =
-		saved ??
-		(await db
-			.selectFrom("_emdash_taxonomy_def_groups")
-			.select(["id", "hierarchical", "collections"])
-			.where("name", "=", name)
-			.executeTakeFirstOrThrow());
-	await db
-		.updateTable("_emdash_taxonomy_defs")
-		.set({
-			hierarchical: group.hierarchical,
-			collections: group.collections,
-			translation_group: group.id,
-		})
-		.where("name", "=", name)
-		.execute();
+	await executeTaxonomyWritePlan(db,transaction=>taxonomyStructurePlan(transaction,name,groupId,structure,overwrite));
+	// Return an actual persisted group; the whole fixed mutation plan has
+	// committed or rolled back before this read, on both canonical adapters.
+	const group=await db.selectFrom("_emdash_taxonomy_def_groups").select("id").where("name","=",name).executeTakeFirstOrThrow();
 	return group.id;
 }
 
@@ -125,4 +94,22 @@ export function parseTaxonomyCollections(value: string | null): string[] {
 	}
 	if (!Array.isArray(parsed)) return [];
 	return [...new Set(parsed.filter((entry): entry is string => typeof entry === "string"))];
+}
+
+/** Fixed atomic equivalent of saveTaxonomyStructure, used with definition writes. */
+export function taxonomyStructurePlan(db: Kysely<Database>, name: string, groupId: string,
+  structure: TaxonomyStructure, overwrite: Partial<TaxonomyStructure> = structure): readonly Compilable[] {
+  const changes: { hierarchical?: number; collections?: string } = {};
+  if (overwrite.hierarchical !== undefined) changes.hierarchical = overwrite.hierarchical ? 1 : 0;
+  if (overwrite.collections !== undefined) changes.collections = JSON.stringify([...new Set(overwrite.collections)]);
+  return [
+    db.insertInto('_emdash_taxonomy_def_groups').values({id: groupId, name,
+      hierarchical: structure.hierarchical ? 1 : 0, collections: JSON.stringify([...new Set(structure.collections)])})
+      .onConflict(oc => Object.keys(changes).length ? oc.column('name').doUpdateSet(changes) : oc.column('name').doNothing()),
+    db.updateTable('_emdash_taxonomy_defs').set({
+      hierarchical: db.selectFrom('_emdash_taxonomy_def_groups').select('hierarchical').where('name', '=', name),
+      collections: db.selectFrom('_emdash_taxonomy_def_groups').select('collections').where('name', '=', name),
+      translation_group: db.selectFrom('_emdash_taxonomy_def_groups').select('id').where('name', '=', name)
+    }).where('name', '=', name)
+  ];
 }

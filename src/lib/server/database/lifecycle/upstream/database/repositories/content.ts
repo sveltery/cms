@@ -1,7 +1,7 @@
 // EmDash 1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; source blob 29dab9decf9af0d9fb21b464dc185ed48ab958ea.
 // Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
 // Host adaptations: .ts module specifiers, CMS table namespace, erasable parameter properties.
-import { sql, type Kysely, type RawBuilder } from "kysely";
+import { sql, type Kysely, type RawBuilder, type CompiledQuery, type QueryResult } from "kysely";
 import type { PublicationStatementExecutor } from "../../host.ts";
 import { ulid } from "ulidx";
 
@@ -2837,9 +2837,10 @@ this.datetimeContexts = datetimeContexts;
 		id: string,
 		revisionId: string,
 		expected: Pick<ContentItem, "version" | "liveRevisionId" | "draftRevisionId">,
+        executeStage?: (statement:CompiledQuery)=>Promise<QueryResult<unknown>>,
 	): Promise<boolean> {
 		const tableName = getTableName(type);
-		const result = await sql`
+		const statement = sql`
 			UPDATE ${sql.ref(tableName)}
 			SET draft_revision_id = ${revisionId},
 				version = version + 1
@@ -2854,7 +2855,8 @@ this.datetimeContexts = datetimeContexts;
 				AND _cms_revisions.collection = ${type}
 				AND _cms_revisions.entry_id = ${id}
 			)
-		`.execute(this.db);
+		`.compile(this.db);
+        const result=executeStage?await executeStage(statement):await this.db.executeQuery(statement);
 		return (result.numAffectedRows ?? 0n) > 0n;
 	}
 
