@@ -32,7 +32,7 @@ it('native import suggestion retries eligibility after a transient failure on or
   window.dispatchEvent(new Event('focus'));
   await vi.waitFor(() => expect(api.fetchDashboardStats).toHaveBeenCalledTimes(2));
   await vi.waitFor(() => expect(api.fetchTransferCapabilities).toHaveBeenCalledTimes(2));
-  expect(target.textContent).toContain('Moving from another EmDash site?');
+  await vi.waitFor(() => expect(target.textContent).toContain('Moving from another EmDash site?'));
 });
 
 it('native import eligibility reacts to an administrator arriving after stats on the same mounted component', async () => {
@@ -44,7 +44,7 @@ it('native import eligibility reacts to an administrator arriving after stats on
   state.user = { role: 50 }; await tick();
   await vi.waitFor(() => expect(api.fetchTransferCapabilities).toHaveBeenCalledTimes(1));
   expect(api.fetchDashboardStats).toHaveBeenCalledTimes(1);
-  expect(target.textContent).toContain('Moving from another EmDash site?');
+  await vi.waitFor(() => expect(target.textContent).toContain('Moving from another EmDash site?'));
 });
 
 it('native retained welcome captures focus on opening and restores it on closing', async () => {
