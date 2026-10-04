@@ -56,7 +56,8 @@ for(const target of ['Node','D1'] as const)for(const layout of ['fresh','v4'] as
       for(const task of deferred.splice(0))await task();
       const before=await service.listRevisions(key);
       const markers=(await sql<{version:number}>`SELECT version FROM _cms_migrations ORDER BY version`.execute(storage.database.db)).rows.map(row=>row.version);
-      assert.deepEqual(markers,[1,2,3,4,5]);
+      assert.deepEqual(markers.slice(0,5),[1,2,3,4,5]);
+      assert.deepEqual(markers,[1,2,3,4,5,6,7,8]);
       await storage.close();storage=await schemaAdminStorage(target,directory);
       await migrateCms(storage.database);
       const reopened=lifecycleService(storage.database,actor);
