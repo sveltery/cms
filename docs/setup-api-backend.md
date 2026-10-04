@@ -114,8 +114,9 @@ Current Main ignores the parameter and renders the root link. The PM [qualifies 
 applied at910f4842. Its first completed run reaches HTTP200 and fails the actual
 workspace href assertion: raw Kit root-relative `./` instead of the intended
 import target. The full [receipt](setup-api-runs.json) preserves one Native value
-red and zero Source credit. The two production login files remain proposed and
-held; no fixed green has executed. Actual transfer/import functionality and complete dashboard rendering
+red and zero Source credit. The PM now [qualifies the exact389B server load and973B page](setup-api-login-production-qualification.json).
+Those two files are applied after the retained baseline; the rebuilt ordinary
+Native1 and unchanged whole welcome2 repeats remain pending. Actual transfer/import functionality and complete dashboard rendering
 remain unfinished. The server load does not change authentication or enrollment.
 
 The [compatibility register](../parity/emdash/compatibility.md) records the native

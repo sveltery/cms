@@ -1340,6 +1340,8 @@ actual raw href assertion (`./` rather than the intended import target); complet
 [raw receipts](../../docs/setup-api-runs.json) precede any production fix. Zero
 Source credit and zero fixed-green continuation are claimed. [Draft PR90](https://github.com/sveltery/cms/pull/90)
 contains the freeze/initial welcome test-first work; the paired feature/register appends and ordinary fixture are now qualified and
-applied; the two production continuation files remain held for a separate exact
-finite PM decision after this reached baseline. No final adaptation acceptance or landing is
+applied; the PM now qualifies the exact389B server load and973B page in
+[the separate production decision](../../docs/setup-api-login-production-qualification.json).
+The two files are applied after the reached baseline; actual build and ordinary
+Native1/whole welcome2 repeats remain pending. No final adaptation acceptance or landing is
 recorded; current full normal/secured gates and both reviews remain pending.
