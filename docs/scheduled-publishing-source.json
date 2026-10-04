@@ -4376,5 +4376,211 @@
       "decisionStatus": "Unimplemented; no recorded acceptance decision.",
       "publicationStatus": "No PR yet."
     }
-  ]
+  ],
+  "actualFirstBaseline": {
+    "artifact": "Scheduling/calendar actual first complete requested34 baseline",
+    "schemaVersion": 1,
+    "nativeCommit": "4c79ede65d54fdef21b7adc4c4734f174defbf35",
+    "nativeTree": "a20e9f7e798a8468fbf6c68726e6199d7a054c2e",
+    "nativeParents": [
+      "b5ed8e06c9c3034e99645ef85022e027130fec51"
+    ],
+    "behaviorAuthority": "EmDash1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "commands": {
+      "install": "node /workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs install --frozen-lockfile",
+      "guard": "node scripts/check-scheduled-publishing-source.mjs",
+      "baseline": "node /workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs exec vitest run --config vitest.calendar-source.config.ts --reporter=default --reporter=json --outputFile.json=/tmp/scheduling-calendar-4c79-whole34-baseline.json"
+    },
+    "runtime": {
+      "node": "24.19.0",
+      "pnpm": "12.6.0",
+      "vitest": "4.1.10",
+      "publicFrozenLockPackages": 518,
+      "packageAndLockUnchanged": true,
+      "baselineExitCode": 1,
+      "baselineInvocations": 1,
+      "normalOrSecuredFullGateRuns": 0
+    },
+    "wholeReceipts": [
+      {
+        "path": "docs/receipts/scheduled-publishing/baseline.log",
+        "actualOriginal": "/tmp/scheduling-calendar-4c79-whole34-baseline.log",
+        "bytes": 13148,
+        "sha256": "f9d04eefc1c8b7c2d5fe0b9183122ff366accd33220e7299fad89bb0406cfff3",
+        "gitBlob": "eb032b16244852e728599e2158e3fa2e91e108ed",
+        "changedBytes": 0,
+        "trailingWhitespaceLines": []
+      },
+      {
+        "path": "docs/receipts/scheduled-publishing/baseline.json",
+        "actualOriginal": "/tmp/scheduling-calendar-4c79-whole34-baseline.json",
+        "bytes": 15251,
+        "sha256": "54bb724c5425788a8c4d55b8a9f1203cd2619d4732bb9a071a3431b784f49fe7",
+        "gitBlob": "baa7be8a7c1e11ba349bc0bf0c00ab8799ec9c74",
+        "changedBytes": 0,
+        "trailingWhitespaceLines": []
+      },
+      {
+        "path": "docs/receipts/scheduled-publishing/source-guard.log",
+        "actualOriginal": "/tmp/scheduling-calendar-4c79-source-guard.log",
+        "bytes": 111,
+        "sha256": "0db98669a3c1088b52a6ba8af24807ae9a99132dcf9ef8ba26a162eb082953bd",
+        "gitBlob": "1a9ad27e7d4f66d26de774699697f7452011ad9b",
+        "changedBytes": 0,
+        "trailingWhitespaceLines": []
+      },
+      {
+        "path": "docs/receipts/scheduled-publishing/frozen-install.log",
+        "actualOriginal": "/tmp/scheduling-calendar-first-frozen-install.log",
+        "bytes": 1925,
+        "sha256": "121607a4bdbada054c967ffe14329dcbddec6199e71e83e312aeff8e8fc54625",
+        "gitBlob": "9dd10c7c2210fc55603eba581b6579d27fd51194",
+        "changedBytes": 0,
+        "trailingWhitespaceLines": []
+      }
+    ],
+    "counts": {
+      "requestedWholeSourceFamilies": 2,
+      "requestedSourceDeclarations": 23,
+      "requestedNativeDeclarations": 11,
+      "requestedTotal": 34,
+      "observedFiles": 3,
+      "observedRegisteredCallbacks": 11,
+      "observedSourceRegisteredCallbacks": 0,
+      "observedSourceExpectCalls": 0,
+      "observedSourcePassing": 0,
+      "observedSourceValueReds": 0,
+      "completedSourceCausalCredit": 0,
+      "observedNativeRegisteredCallbacks": 11,
+      "observedNativeControlPasses": 3,
+      "observedNativeReachedReadinessValueReds": 8,
+      "nativeFixtureOrPreexpectStops": 0,
+      "nativeCallbackTimeouts": 0,
+      "nativePassingSourceEquivalentCredit": 0,
+      "nativeControlExpectCallsReached": 12,
+      "nativeReadinessMatcherCallsReached": 8,
+      "nativeLaterStaticExpectCallsUnreached": 18,
+      "reportedSkipped": 0,
+      "reportedTodo": 0,
+      "retainedOtherWholeSourceFamilies": 14,
+      "retainedOtherStaticSourceDeclarations": 103,
+      "retainedOtherSourceExecuted": 0,
+      "retainedOtherSourceCredit": 0
+    },
+    "actualCallbacks": [
+      {
+        "name": "storage control: first publication scheduling and removal preserve the real row",
+        "status": "passed",
+        "classification": "existing real-storage control; initially green"
+      },
+      {
+        "name": "storage control: scheduling changes keeps an already published entry live",
+        "status": "passed",
+        "classification": "existing real-storage control; initially green"
+      },
+      {
+        "name": "storage control: due selection excludes later and trashed rows",
+        "status": "passed",
+        "classification": "existing real-storage control; initially green"
+      },
+      {
+        "name": "calendar lists both events for published content with scheduled changes",
+        "status": "failed",
+        "classification": "genuine reached supplemental Native promise-resolves readiness AssertionError; later product values unexecuted"
+      },
+      {
+        "name": "calendar walks ties in collection and event order without skipping an event",
+        "status": "failed",
+        "classification": "genuine reached supplemental Native promise-resolves readiness AssertionError; later product values unexecuted"
+      },
+      {
+        "name": "calendar uses persisted hidden and titleField metadata without changing content",
+        "status": "failed",
+        "classification": "genuine reached supplemental Native promise-resolves readiness AssertionError; later product values unexecuted"
+      },
+      {
+        "name": "calendar returns the original invalid-cursor envelope",
+        "status": "failed",
+        "classification": "genuine reached supplemental Native promise-resolves readiness AssertionError; later product values unexecuted"
+      },
+      {
+        "name": "calendar placement uses site timezone and the time entries loaded",
+        "status": "failed",
+        "classification": "genuine reached supplemental Native promise-resolves readiness AssertionError; later product values unexecuted"
+      },
+      {
+        "name": "calendar filters intersect collection, locale and state without changing the input",
+        "status": "failed",
+        "classification": "genuine reached supplemental Native promise-resolves readiness AssertionError; later product values unexecuted"
+      },
+      {
+        "name": "calendar client bounds a repeating page stream to ten pages and de-duplicates event keys",
+        "status": "failed",
+        "classification": "genuine reached supplemental Native promise-resolves readiness AssertionError; later product values unexecuted"
+      },
+      {
+        "name": "calendar client sends bounds and cursor through the ordinary calendar API",
+        "status": "failed",
+        "classification": "genuine reached supplemental Native promise-resolves readiness AssertionError; later product values unexecuted"
+      }
+    ],
+    "sourcePreexpectStops": [
+      {
+        "family": "packages/admin/tests/lib/calendar.test.ts",
+        "staticDeclarationsRequested": 18,
+        "registered": 0,
+        "expectCallsReached": 0,
+        "stop": "Missing real Native calendar API module before collection",
+        "classification": "Source pre-expectation import stop; no Source assertion red or causal credit"
+      },
+      {
+        "family": "packages/core/tests/unit/api/calendar-handlers.test.ts",
+        "staticDeclarationsRequested": 5,
+        "registered": 0,
+        "expectCallsReached": 0,
+        "stop": "Missing real Native calendar handler module before collection",
+        "classification": "Source pre-expectation import stop; no Source assertion red or causal credit"
+      }
+    ],
+    "nativeLaterValueLimit": "All eight failing supplemental callbacks stop at their reached module-ready promise matcher. No later merged-events, keyset, title/hidden, invalid-cursor, timezone/filter or API pagination/request assertion executes; eighteen later static expect call sites remain unreached. Subsequent keyset loop expansion is not credited.",
+    "sourceDialectLimit": "Whole original conditional PostgreSQL fixture/helper remains copied. Initial host selects only Native Node SQLite and both Source files stop before registration, so no Source SQLite or PostgreSQL callback executed. No D1/deployed claim.",
+    "sourceProvenance": "Whole80-file pinned byte/SHA/GitBlob guard PASS; static provenance only. All16 whole Source families/assertions/data/clocks/deadlines and all prior Native bodies remain exact.",
+    "protectedScope": "No product/runtime/shared/package/gate mutation, credentials/principal/session, protected HTTP, new race, hook/policy imitation, heartbeat, output/data/literal rewrite or timeout widening.",
+    "reviewAndQualification": {
+      "freshReview": "/tmp/scheduling-calendar-testfirst-r1-independent-review.json",
+      "rootDevelopmentQualification": "/tmp/root-scheduling-calendar-exact87-source80-testfirst-qualification.json",
+      "rootQualificationSha256": "36307042ca3bcc1110929b626d15a0eef30d04629cac9276ffcf353be84cf89a",
+      "status": "Exact test-first development qualification; no behavior acceptance or merge approval"
+    },
+    "ownDraft": {
+      "number": 105,
+      "url": "https://github.com/sveltery/cms/pull/105",
+      "head": "4c79ede65d54fdef21b7adc4c4734f174defbf35",
+      "headTree": "a20e9f7e798a8468fbf6c68726e6199d7a054c2e",
+      "baseWhenCreated": "41be644213bd8da5150d98b87d3a5c0cc0c7f3e1",
+      "nativeBaselineParent": "b5ed8e06c9c3034e99645ef85022e027130fec51",
+      "publicPush": "Author native regular git push succeeded",
+      "attachment": "One codex_app attach_artifact call yielded without result and was bounded-terminated; outcome unknown; no success claim or retry"
+    },
+    "next": "Finite real calendar implementation and whole-family UI mounting proposals after this paired evidence qualification; full Source16 scheduler/lifecycle/Node+Worker dependencies still required. Final actual public Main union and unchanged13+9/current reviews/approval/author expected-head merge/post-Main remain pending."
+  },
+  "regularCommits": [
+    {
+      "commit": "4c79ede65d54fdef21b7adc4c4734f174defbf35",
+      "tree": "a20e9f7e798a8468fbf6c68726e6199d7a054c2e",
+      "kind": "Test-first, exact manager-qualified87-file packet",
+      "sourceAssertionCredit": 0
+    }
+  ],
+  "currentOwnDraft": {
+    "number": 105,
+    "url": "https://github.com/sveltery/cms/pull/105",
+    "head": "4c79ede65d54fdef21b7adc4c4734f174defbf35",
+    "headTree": "a20e9f7e798a8468fbf6c68726e6199d7a054c2e",
+    "baseWhenCreated": "41be644213bd8da5150d98b87d3a5c0cc0c7f3e1",
+    "nativeBaselineParent": "b5ed8e06c9c3034e99645ef85022e027130fec51",
+    "publicPush": "Author native regular git push succeeded",
+    "attachment": "One codex_app attach_artifact call yielded without result and was bounded-terminated; outcome unknown; no success claim or retry"
+  },
+  "latestProgress": "Actual first requested34 baseline: Native11 registered/3 initially green storage controls/8 reached readiness AssertionError reds. Source23 unregistered at missing product imports,0 expect/causal credit. Other14 whole families remain unexecuted. Product implementation remains0."
 }
