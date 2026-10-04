@@ -1535,3 +1535,8 @@ incomplete. Current full normal13/secured9, independent/configured reviews,
 final acceptance/exact PM approval and author expected-head landing remain
 pending. [Paired feature record](../../docs/setup-api-backend.md);
 [Draft PR90](https://github.com/sveltery/cms/pull/90).
+
+
+The exact ordinary Mainf351 proposal is now applied as regular mergeb8842262dfd204f5cc32c698fe07e733f9b496f2 (ordered parents ownf3658e5f and actualMainf351). The staged resolution matched qualified treec0989f76a099db2a19ac4dcda8cc63a4bb5661e7 before both exact approved appends. Whole incoming four files, all17 owned guard/fixture/gate paths, all54 Source authorities and the immutable9/48/193 inventory are preserved. Root proof is retained in docs/setup-api-mainf351-union-qualification.json. This documentation records actual application without deleting the earlier unapplied proposal or failed-gate chronology.
+
+One current published-head hosted normal13 and secured9 run is next. No duplicate local normal, supplemental phases, CDN retry, protected policy tests or unchanged dashboard16 execution follows this merge. A fresh developer owns direct D1 transport robustness; the shared public helper does not prove that the two preserved legacy fixture failures are fixed. Actual setup/seed/media/UI closure, full current gates, independent/configured review and exact final merge acceptance remain pending. No additional causal credit is claimed.
