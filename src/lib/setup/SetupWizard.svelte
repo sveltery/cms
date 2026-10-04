@@ -5,6 +5,7 @@
   import AccountStep from './AccountStep.svelte';
   import AuthMethodStep from './AuthMethodStep.svelte';
   import BrandLogo from './BrandLogo.svelte';
+  import { continueSeed } from './continue-seed';
   import type { AdminRequest, ProviderViews, SeedProgress, SetupClient, SetupProvider, SetupStatus, SiteRequest, StartWith, WizardStep } from './types';
   let { client, navigate, destination, providers = [], providerButton, providerForm }: {
     client: SetupClient; navigate: (url: string) => void; destination: (choice: StartWith) => string;
@@ -52,21 +53,11 @@
     startWith = choice;
     sitePending = true;
     try {
-      // Reset for each submit and retain the previous visible progress on failure, as in Source.
-      let lastDone = -1;
-      for (;;) {
-        const result = await client.site(data);
-        if (result.seedComplete !== false) {
-          error = undefined;
-          seedProgress = undefined;
-          if (result.setupComplete) navigate(destination(choice));
-          else currentStep = 'admin';
-          return;
-        }
-        if (!result.seedProgress || result.seedProgress.done <= lastDone) throw new Error('Setup failed');
-        lastDone = result.seedProgress.done;
-        seedProgress = result.seedProgress;
-      }
+      const result = await continueSeed(client, data, progress => seedProgress = progress);
+      error = undefined;
+      seedProgress = undefined;
+      if (result.setupComplete) navigate(destination(choice));
+      else currentStep = 'admin';
     } catch (cause) {
       error = cause instanceof Error ? cause.message : 'Setup failed';
     } finally { sitePending = false; }
