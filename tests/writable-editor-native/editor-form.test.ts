@@ -172,3 +172,42 @@ it('actual explicit conflict retry reads the latest token and commits through th
   expect(stored.data.title).toBe('Writer copy');
   expect((target.querySelector('input[name="_rev"]') as HTMLInputElement).value).toBe(stored._rev);
 });
+
+// Original regressions derived from complete immutable ContentEditor:1314–1329.
+// The whole Source editor family remains unexecuted; these earn Native credit only.
+it('an untouched slug follows actual title changes using the pinned Unicode slug rules', async () => {
+  const target = await renderNew();
+  await edit(target, 'title', 'Hello World Post');
+  expect((target.querySelector('input[name="slug"]') as HTMLInputElement).value).toBe('hello-world-post');
+  await edit(target, 'title', 'Créé dans le produit');
+  expect((target.querySelector('input[name="slug"]') as HTMLInputElement).value).toBe('créé-dans-le-produit');
+  await edit(target, 'title', '');
+  expect((target.querySelector('input[name="slug"]') as HTMLInputElement).value).toBe('créé-dans-le-produit');
+});
+
+it('an explicit slug override, including an empty override, survives later title changes', async () => {
+  const target = await renderNew();
+  const slug = target.querySelector('input[name="slug"]') as HTMLInputElement;
+  slug.value = 'custom-slug'; slug.dispatchEvent(new Event('input', { bubbles: true })); await tick();
+  await edit(target, 'title', 'New Title'); expect(slug.value).toBe('custom-slug');
+  slug.value = ''; slug.dispatchEvent(new Event('input', { bubbles: true })); await tick();
+  await edit(target, 'title', 'Another Title'); expect(slug.value).toBe('');
+});
+
+it('a title-created draft publishes with its stored generated slug through actual lifecycle HTTP', async () => {
+  const target = await renderNew();
+  await edit(target, 'title', 'Créé dans le produit');
+  target.querySelector('form')!.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+  await vi.waitFor(() => expect(navigation.urls).toHaveLength(1));
+  const id = new URL(navigation.urls[0], fixture.origin).pathname.split('/').at(-1)!;
+  const key = { collection: 'stories', id, locale: 'fr' };
+  const item = await fixture.query('getLifecycleContent', key, 'author');
+  const published = await fixture.remote('publishContent', 'author', { ...key, _rev: item._rev });
+  expect(published.type).toBe('result');
+  const stored = await fixture.query('getLifecycleContent', key, 'author');
+  expect(stored.status).toBe('published'); expect(stored.slug).toBe('créé-dans-le-produit');
+  expect(stored.data.title).toBe('Créé dans le produit');
+  expect((await fixture.query('listContentRevisions', key, 'author')).some((revision: { id: string }) => revision.id === stored.liveRevisionId)).toBe(true);
+  await fixture.restart();
+  expect((await fixture.query('getLifecycleContent', key, 'author')).status).toBe('published');
+});
