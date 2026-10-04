@@ -95,6 +95,17 @@ it('a pristine inline new draft permits navigation and only changed or pending v
   expect(cancel).toHaveBeenCalledTimes(2);
   release!(); delay = undefined;
 });
+it('an accepted actual trash receipt can navigate away from a dirty editor', async () => {
+  const { target, entry } = await render();
+  const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
+  await edit(target, 'title', 'Unsaved writer copy');
+  target.querySelector('form[aria-label="Move draft to trash"]')!.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+  await vi.waitFor(() => expect(navigation.urls).toEqual(['/trash/stories']));
+  const cancel = vi.fn();
+  for (const callback of navigation.callbacks) callback({ cancel });
+  expect(cancel).not.toHaveBeenCalled(); expect(confirm).not.toHaveBeenCalled();
+  expect((await fixture.query('getTrashedContent', { collection: 'stories', id: entry.id }, 'author')).data.title).toBe('Original');
+});
 it('actual programmatic autosave enters pending and preserves later typing through a second stored revision', async () => {
   const { target, entry } = await render();
   delay = new Promise(resolve => { release = resolve; });
