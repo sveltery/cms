@@ -38,7 +38,7 @@ for (const target of ['Node', 'D1'] as const) {
       await page.goto(`${runtime.origin}/site`);
       await expect(page.getByRole('link', { name: 'Public article', exact: true })).toBeVisible();
       await page.getByRole('link', { name: 'Public article', exact: true }).click();
-      await expect(page).toHaveURL(`${runtime.origin}/posts/public-article`);
+      await expect(page).toHaveURL(`${runtime.origin}/posts/public-article?locale=en`);
       await expect(page.getByRole('heading', { level: 1, name: 'Public article' })).toBeVisible();
       await expect(page.getByRole('heading', { name: 'A centered section' })).toHaveCSS('text-align', 'center');
       await expect(page.locator('article blockquote')).toHaveCount(1);
