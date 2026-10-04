@@ -4,8 +4,9 @@ The shared [schema-admin storage fixture](../tests/helpers/schema-admin-storage.
 uses `Miniflare.dispatchFetch` to a test-only Worker. The Worker prepares the
 actual `env.DB` statements and calls `.all()` or exactly one `env.DB.batch()`.
 No application adapter, existing source callback, canonical lifecycle assertion,
-deadline, migration, database name, persistence directory or browser sandbox
-setting changes. This harness substitution earns zero additional EmDash parity.
+deadline, migration, persistence directory or browser sandbox
+setting changes. Proposed fresh-fixture runtime pooling below changes only the
+test-only ephemeral database identifiers. This harness substitution earns zero additional EmDash parity.
 
 The previous fixture obtained `Miniflare.getD1Database('DB')`. Miniflare
 4.20260507.1 proxies its synchronous properties/methods through a Worker that
@@ -44,10 +45,11 @@ remain actual D1 results. Failed DDL/DML batches roll back together.
 Kysely still uses the application's unchanged raw binding adapter. The helper
 implements only that adapter's `prepare/bind/all/batch` subset. It provides no
 `first/raw/run/exec`, sessions, bookmarks, replication or deployed D1 claim.
-Each fixture owns its real runtime, shares one disposal promise between close
-calls, and disposes after closing Kysely even if Kysely close fails. Persistent
-fixtures reuse the actual supplied D1 directory; independent fixtures remain
-isolated.
+Each fixture owns its binding and disposal lifecycle. The storage wrapper shares
+one disposal promise between close calls and closes Kysely before releasing its
+fixture, including when Kysely close fails. Persistent fixtures reuse the actual
+supplied D1 directory; independent fixtures remain isolated. The proposed pooling
+below shares the runtime only for fresh ephemeral fixtures.
 
 At implementation commit `6c4e859`, five diagnostic/control cases pass. The direct
 Miniflare control continues to reproduce the delayed notification; the repaired
@@ -58,3 +60,50 @@ installed-dependency runs are not a normal frozen bootstrap or full hosted pass.
 Exact-head normal validation, secured browser CI, independent/configured review,
 PM approval and merge remain required. Other fixtures using `getD1Database`
 directly retain their existing transport and limits.
+
+
+## Proposed bounded runtime reuse for fresh fixtures
+
+The native shared fixture currently starts a new Miniflare runtime for every
+fresh database. The proposed test-only helper groups at most 256 distinct D1
+bindings under one real Miniflare/workerd process. Every lease consumes one
+UUID-qualified database identifier exactly once. It never clears, resets or
+reassigns a database to another fixture. A closed lease rejects further queries,
+and disposal drains its already-started requests before releasing the lease.
+Exhausted groups close after their final lease; an idle current group closes
+after 250 ms so it cannot keep a finished test file alive.
+
+Persistent fixtures retain a dedicated new runtime, the original
+`cms-schema-admin` database identifier and the exact supplied directory. Product
+adapters, providers 1–8, all existing callback/assertion/fixture matrices, bootstrap
+commands and deadlines remain unchanged. This native harness substitution earns
+zero additional EmDash parity or deployed-D1 support.
+
+The [whole native runtime requirements](../tests/d1-fixture-runtime-reuse.test.ts)
+record four callbacks. At test-first head `ae06f004`, two completed failures compare
+distinct simultaneously-live runtime endpoints, while physical database
+isolation, peer survival after close and persistent restart controls already
+pass. The 256-boundary matrix is unreached at that baseline failure. An earlier
+file-count fixture incorrectly included Miniflare's `metadata.sqlite` catalog;
+that setup error earns zero causal credit. Earlier duplicate raw-runtime disposal
+attempts left the runner unfinished and earn no completed-run credit.
+
+The unchanged five-case transport suite also passes at that baseline. An isolated
+local 100-fixture create/insert/read characterization observes 100 actual
+Miniflare instances in 7314.85 ms. OS port reuse makes sequential endpoint counts
+unsuitable for counting runtimes. This is local fixture cost evidence, not a
+whole-validation result or proof of the hosted slowdown's cause. At helper commit `d21c3bca`, the complete native four and existing five
+transport callbacks pass. The same 100-fixture characterization observes one
+actual runtime in 1379.29 ms, compared with 100 runtimes in 7314.85 ms at baseline.
+These separate local measurements establish a fixture-startup reduction under
+this environment; they do not establish full-suite or hosted causation.
+
+The owned test setup then refactors repeated pair acquisition into one helper
+that closes the first lease if the second fails to start. All four titles and 15
+assertion expressions remain byte-identical; whole nine callbacks pass after
+refactor with zero failures, cancellations, skips or todos. Production helper
+bytes and all existing Source/native test files remain unchanged by refactor.
+Root authorized only the exact helper development candidate (6486 bytes), SHA
+`a0705209c4bec16849bade728a8a044fdeb20d42a8e0935a373314fb4942758a`,
+before application. Whole normal/secured CI and final review remain pending. Idle cleanup, startup failure and pending-close drain have
+static-review coverage only. Specific PM acceptance and landing are pending.

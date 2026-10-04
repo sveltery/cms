@@ -1,18 +1,14 @@
 // Original native runtime requirements; zero copied Source assertion credit.
 // Ordinary persisted single-principal fixtures use the real configured application.
 import test from 'node:test';
-import type { Kysely } from 'kysely';
+import { sql } from 'kysely';
+import { sectionSchemaStatements, widgetSchemaStatements } from '../../src/lib/server/sections-widgets/schema.ts';
 import assert from 'node:assert/strict';
 import { encodeBase64urlNoPadding } from '@oslojs/encoding';
 import { hashSessionToken } from '../../src/lib/server/auth/session.ts';
 import { Role } from '../../src/lib/server/auth/roles.ts';
 import { passkeyRuntime } from '../helpers/passkey-runtime.ts';
-import { sourceNamespace } from '../helpers/sections-widgets-namespace.ts';
-import { menuSchemaStatements } from '../../src/lib/server/menus/migrations.ts';
 import { withActualSectionWidgetClient } from '../helpers/sections-widgets/runtime-client.ts';
-import { up as widgetsFixture } from '../../parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/007_widgets.ts';
-import { up as sectionsFixture } from '../../parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/011_sections.ts';
-import { up as removeCategories } from '../../parity/emdash/sections-widgets-source/upstream/packages/core/src/database/migrations/021_remove_section_categories.ts';
 
 for (const target of ['Node', 'D1'] as const) {
   test(`${target}: real section API reports absent storage and preserves reusable content CRUD`, async t => {
@@ -28,12 +24,13 @@ for (const target of ['Node', 'D1'] as const) {
         ...(body === undefined ? {} : { 'content-type': 'application/json' }) },
         ...(body === undefined ? {} : { body: JSON.stringify(body) }) });
     }
+    // An actual bounded partial installation preserves truthful storage denial.
+    // Markers/identities/source bodies are unchanged; requests perform no DDL.
+    await sql`DROP TABLE _cms_sections`.execute(database.db);
     const absent = await request('/api/sections');
     assert.equal(absent.status, 503);
-    // Explicit named Source DDL is a test fixture, never canonical startup credit.
-    const fixtureDb = database.db.withPlugin(sourceNamespace);
-    await sectionsFixture(fixtureDb as unknown as Kysely<unknown>);
-    await removeCategories(fixtureDb as unknown as Kysely<unknown>);
+    // Explicit restore of the exact actual canonical12 schema; setup only.
+    await database.atomicBatch(sectionSchemaStatements(database.db));
     const content = [{ _type: 'block', _key: 'b1', style: 'h2', children: [{ _type: 'span', _key: 's1', text: 'Reusable hero', marks: [] }], markDefs: [] }];
     const create = await request('/api/sections', 'POST', { slug: 'hero', title: 'Hero Section', content, keywords: ['welcome'] });
     assert.equal(create.status, 201);
@@ -62,8 +59,10 @@ for (const target of ['Node', 'D1'] as const) {
         ...(body === undefined ? {} : { 'content-type': 'application/json' }) },
         ...(body === undefined ? {} : { body: JSON.stringify(body) }) });
     }
+    await sql`DROP TABLE _cms_widgets`.execute(database.db);
+    await sql`DROP TABLE _cms_widget_areas`.execute(database.db);
     assert.equal((await request('/api/widget-areas')).status, 503);
-    await widgetsFixture(database.db.withPlugin(sourceNamespace) as unknown as Kysely<unknown>);
+    await database.atomicBatch(widgetSchemaStatements(database.db));
     const area = await request('/api/widget-areas', 'POST', { name: 'sidebar', label: 'Sidebar', description: 'Main sidebar' });
     assert.equal(area.status, 201);
     const first = await request('/api/widget-areas/sidebar/widgets', 'POST', { type: 'content', title: 'Welcome', content: [] });
@@ -78,9 +77,8 @@ for (const target of ['Node', 'D1'] as const) {
     assert.equal(update.status, 200); assert.equal((await update.json()).data.title, 'Updated');
     const components = await request('/api/widget-components'); assert.equal(components.status, 200);
     assert.ok((await components.json()).data.items.some((c: { id: string }) => c.id === 'core:search'));
-    // Explicit final native menu descriptor fixture; zero canonical startup credit.
+    // Ordinary canonical11 already provides menu storage.
     // Reuse this callback's sole persisted Editor, with no new identity/auth probe.
-    await database.atomicBatch(menuSchemaStatements(database));
     const menu = await request('/api/menus', 'POST', { name: 'widget-navigation', label: 'Widget navigation' });
     assert.equal(menu.status, 201);
     const menuList = await request('/api/menus');
@@ -92,7 +90,7 @@ for (const target of ['Node', 'D1'] as const) {
     });
     assert.equal((await request('/api/widget-areas/sidebar', 'DELETE')).status, 200);
     assert.equal((await request('/api/widget-areas/sidebar')).status, 404);
-    const remaining = await database.db.withPlugin(sourceNamespace).withTables<{ _emdash_widgets: { id: string } }>().selectFrom('_emdash_widgets').selectAll().execute();
+    const remaining = await database.db.withTables<{ _cms_widgets: { id: string } }>().selectFrom('_cms_widgets').selectAll().execute();
     assert.deepEqual(remaining, []);
   });
 }
