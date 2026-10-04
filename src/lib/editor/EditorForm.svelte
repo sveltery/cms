@@ -70,13 +70,14 @@
     } catch (cause) { message = editorError(cause).message; }
   }
   const localeAction = (action: string) => `${action}${action.includes('?') ? '&' : '?'}locale=${encodeURIComponent(entry.locale)}`;
-  async function programmaticSave(form: typeof manualForm, autosave: boolean) {
+  type SaveForm = Omit<typeof manualForm, 'for'>;
+  async function programmaticSave(form: SaveForm, autosave: boolean) {
     // Kit's public submit() performs transport directly, bypassing enhance().
     // Flush the current values/token before its synchronous FormData snapshot.
     await tick();
     await saved(() => form.submit(), form, autosave);
   }
-  async function saved(submit: () => Promise<boolean>, form: typeof manualForm, autosave: boolean) {
+  async function saved(submit: () => Promise<boolean>, form: SaveForm, autosave: boolean) {
     const success = await session.save(async (_payload: SavePayload): Promise<EditorReceipt> => {
       const accepted = await submit();
       if (!accepted || !form.result) throw new EditorResponseError(400, 'NATIVE_FORM_VALIDATION',
