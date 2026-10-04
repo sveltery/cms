@@ -272,3 +272,35 @@ The shared canonical normalizer and all owned descriptors/defaults remain
 byte-unchanged. The eight new actual value-reds are original native evidence,
 not additional Source callbacks. The repaired successor still requires complete
 hosted normal/browser gates, same-task review and specific framework acceptance.
+
+
+The shared content-picker successor is documented in [Content picker](content-picker.md).
+It replaces the predecessor first-page/routable/menu-locale controls with the
+actual reusable Svelte picker, all-collection full-data reads, cross-locale
+choices, query-core caching, search and cursor50 accumulation. Native UI24 passes;
+Node search still requires the real public canonical search metadata migration,
+and complete Source/browser/normal/final-review acceptance remains pending.
+The existing content-picker limitation paragraph records the predecessor
+checkpoint rather than the current implementation's verified UI behavior.
+
+
+The first picker hosted run installed445 and passed all inherited suites, but
+its own browser callbacks stopped before assertions at missing provider setup.
+The owned provider correction and complete31-authority record preserve zero
+Source causal credit; see the paired picker record for actual pending combined
+Main512/527 validation and the public canonical search prerequisite.
+
+
+At combined picker author dcc0b5d0fc4979c1670f31e8835a973b49cf4476, secured run37161695883 passes all inherited Source browser families including complete Menu25, whole Picker3, default62 and Node62 with official1243 sandboxing and unchanged180s/30s deadlines. Own local/hosted frozen512 and checker0 pass. Complete normal remains blocked by missing public search_config in whole ownedcore22; canonical8 and final picker acceptance/merge remain pending. Picker Source first greens after provider setup repair earn0causal credit, and the earlier setup/local503 failures remain retained. Whole browser/validate SHA256 receipts: e92e5cac3a19e79057ea2241475f8f44c59df89229441f306c502fb8222f9318 /ed93e4f3ef1c19498602c325e352ff84a7dab9edeae5ef5fea7f07abfca3d613.
+
+
+The picker ordinary Main311 integration preserves complete Comments gates alongside all prior Menus/Sections stages, unchanged dependency512/snapshot527/lock/bootstrap, and terminal whole picker additions. Prior dcc browser passes remain historical; current combined normal and public canonical8/final picker acceptance are pending.
+
+
+The picker development integration of actual PUBLIC PR83head0b0624b28feca959df7bf6f3691f987b5487a759 preserves every canonical Source/frozen1–5 assertion and Main stage. The public nullable search_config seam can now be exercised by whole unchanged Source19+Native3 and actual HTTP2; those/current normal runs remain pending. Canonical83 has not yet merged to Main, and final picker merge still waits actual Main adoption and qualification. Exact TanStack MIT notices are retained and verified in the actual Node package (notice-only aa71f11, package log SHA256 2d8d424d5fd5d8ae85026418fae80057dd79ca1a858cecf443c497e7ad4fac91).
+
+
+The shared picker public-schema development author4c1dd9499d96dc8c0388495a5c482b4ad238d120 passes the complete unchanged13-stage bootstrap:1357 services,278 production tests including real picker HTTP2/raw D1,15 Node hosting tests and7 Worker tests, all inherited stages, whole Source19+Native3 and NativeUI24. Actual HTTP search now passes through the public nullable search_config seam;18 earlier Source pre-expectation failures earn0causal credit. Whole normal log SHA256: b756d57a549b2d43e4c90f1bb2a587fbda25f9db79c3fde67ba68b3956a0d4ec. Historical03c hosted run37164760918 passes complete Menu25/Picker3/Comments4 and every other browser family/default62/Node62 but retains its old missing-column normal failure; browser/validate logs SHA256 25df7c3c1c0cfb0028c8c997afdf0e486398bb820abea51dbc9d0c285748ace6 /a20a4025df1cf6f7c1beb5846ef8167cf07ebabefe92e44ae75ad95c64edd8d7. Current hosted/final review/CP acceptance and actual PR83 Main adoption remain pending; an attempted native Git publication failed authentication at this checkpoint, with no alternate graph publication. Exact TanStack notices remain in the current generated Node package, and previous503/setup failures stay retained.
+
+
+Actual public canonical Main d9668aa63c80bf2a9372d9fc7bfacb9a1eb9445c is ordinarily adopted at owned4dc6cca07ff4427c019635400f497f679122594a with the entire tree identical to executed4c1. Its current secured run37166879152 passes whole Menu25/Picker3 and all other Source families/default62/Node62, nine official1243 sandboxed launches, and every13 normal stage; browser/validate SHA256 bdb85753b621ecd630f31651ef3a2b15116e4a69447a2e358dd1eeb65c34ea5f /99375f29dc0468b6e73434557f399137398efeaccfb58e221ad6f72502cdb0f0. Root explicitly accepts these exact-tree receipts and grants bounded CP acceptance to the actual MenuEditor/shared modal + menu-page/client integration and reviewed query/English test-host/native transport substitutions. Section/reference consumer wiring and full picker/global palette/relation-write/multilingual/Pg scope remain unfinished. Source first greens retain0causal credit. Same-task final independent/configured review, exact-head approval, PR82 merge and post-Main checks remain pending; no duplicate execution is claimed for the Main/documentation successor.
