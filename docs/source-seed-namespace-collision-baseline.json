@@ -1,0 +1,127 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "testFirstCommits": [
+    "a26c6063",
+    "593836e9"
+  ],
+  "runtimeApplied": false,
+  "heldProposal": {
+    "path": "/tmp/source-seed-namespace-runtime-proposal-r3/proposal.json",
+    "bytes": 13018,
+    "sha256": "afd1228e778007f76e3c7db8c0abab94e81e10031f8c20ce2bb3758a266865bd"
+  },
+  "newWholeNativeFile": {
+    "path": "tests/source-seed-backend/namespace-collision.test.ts",
+    "bytes": 6193,
+    "sha256": "557db4e6b86338ac46d0592b6fe9d4849064eaa01e69a94ece6e2304a3717bd8",
+    "cases": 12,
+    "originalDeadlinesMilliseconds": 30000,
+    "mocks": 0,
+    "skips": 0
+  },
+  "previousFiveWholeNativeFilesUnchanged": [
+    {
+      "path": "tests/source-seed-backend/namespace.test.ts",
+      "bytes": 4894,
+      "sha256": "215feb727e93ebaf86f455bc01493f438a93b8e6b3c07cde34b7bcfcb3d92f2e"
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-metadata.test.ts",
+      "bytes": 6012,
+      "sha256": "7a9e3a5da95047464cd30f318e792b20e421bf7250c22e7550472dabe7f20d35"
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-catalog.test.ts",
+      "bytes": 3769,
+      "sha256": "6fb19901e3b0b14770940ab64df21063791c3ad25ff9547ec498b99aae17c87f"
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-plan.test.ts",
+      "bytes": 2967,
+      "sha256": "c85bdce0b1353fdb5bd42bb96f1739e361b3b0a28f3acb91fd6a792df169f650"
+    },
+    {
+      "path": "tests/source-seed-backend/namespace-control.test.ts",
+      "bytes": 898,
+      "sha256": "a5d4e23b48a662ff093f79dffcfd811ae7b8f9e5c986fc6a4f279ceebaccd153"
+    }
+  ],
+  "wholeNativeFiles": 6,
+  "nativeCases": 42,
+  "publicBaseline": {
+    "assertionReds": 39,
+    "controls": 3,
+    "fixtureImportPreexpectFailures": 0
+  },
+  "heldR3Baseline": {
+    "previous30Pass": 30,
+    "newAssertionReds": 12,
+    "fixtureImportPreexpectFailures": 0
+  },
+  "firstContextCandidate": {
+    "pass": 40,
+    "projectionAssertionReds": 2
+  },
+  "finalIsolatedCandidate": {
+    "pass": 42,
+    "bad": 0
+  },
+  "nativeFixture": "Real fixed-principal-free Node/raw-D1 storage, current Main8 migrations, operator index _cms_media ON _cms_options(name), column _cms_options added by real Native ALTER TABLE. SQLite cannot create index _cms_options while that table exists; _cms_media is the mapped physical-contract collision whose table is absent here. No missing-table fixture failure or Source credit.",
+  "coverage": [
+    "Opaque sqlite_master index.name with logical owner tbl_name and preserved index object SQL",
+    "Opaque PRAGMA table_info column name and declared type",
+    "Opaque PRAGMA index_list index name",
+    "Mixed sqlite_master row.type controls table-name mapping separately from index names",
+    "Unselected object type with literal/comment type=table hints",
+    "SELECT type=table projection does not constrain WHERE object type"
+  ],
+  "sourceFamilyExecutions": 0,
+  "sourceCausalCredit": 0,
+  "profileAuthRuntimeProbes": 0,
+  "newPrincipals": 0,
+  "decision": "Original supplemental Native tests/receipts only. Production namespace candidate remains under/tmp, unapproved and unapplied. Whole Source85/capture/Pg and actual public provider prerequisites remain incomplete.",
+  "logs": [
+    {
+      "path": "/tmp/source-seed-namespace-collision-public-baseline.log",
+      "purpose": "Initial38 public baseline35 assertion reds+3controls",
+      "bytes": 22803,
+      "sha256": "0a0fa773dd9e87f9e32017c9322dd4015101b770a791c34242fa318d0988b040"
+    },
+    {
+      "path": "/tmp/source-seed-namespace-collision-r3-beforefix.log",
+      "purpose": "Initial38 heldr3 candidate8 collision assertion reds+prior30green",
+      "bytes": 4457,
+      "sha256": "a2b4c3aa8639e1b3cb5b6064e76eb291738f6cf341bc59701feaedb707af60ec"
+    },
+    {
+      "path": "/tmp/source-seed-namespace-catalog-context-candidate.log",
+      "purpose": "Initial38 first context candidate38green",
+      "bytes": 233,
+      "sha256": "fded8dcf4611d570628647943c8f00da229e68810214ca8afc3d9c2ae02e05c4"
+    },
+    {
+      "path": "/tmp/source-seed-namespace-catalog-projection-candidate-control.log",
+      "purpose": "Whole42 first context candidate2 projection assertion reds+40green",
+      "bytes": 1419,
+      "sha256": "efde830bacd9f1634fa9f9abde52d67f9d38471ca527dd3a2bf155fac3900fcb"
+    },
+    {
+      "path": "/tmp/source-seed-namespace-collision-public-final-baseline.log",
+      "purpose": "Whole42 actual public baseline39 assertion reds+3controls",
+      "bytes": 24079,
+      "sha256": "e356491d9f1e87bfc91a34d906150130523afc2c60c51395d245757722722297"
+    },
+    {
+      "path": "/tmp/source-seed-namespace-collision-r3-final-beforefix.log",
+      "purpose": "Whole42 heldr3 candidate12 reached collision/context assertion reds+prior30green",
+      "bytes": 6448,
+      "sha256": "ac5e8b7b2d0c4729782aac2903a4100cf89bef70e3a9c0dd1c840fab1e3cb98a"
+    },
+    {
+      "path": "/tmp/source-seed-namespace-catalog-context-final-green.log",
+      "purpose": "Whole42 final isolated candidate42green",
+      "bytes": 233,
+      "sha256": "4034def15c139491267230c7e7d8fdbb4c7859d6d7244665ab038262e10f2f33"
+    }
+  ]
+}
