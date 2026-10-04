@@ -1410,3 +1410,32 @@ The dependency metadata qualification remains six exact Source integrities and
 snapshots, four exact whole Source package records and two verified pnpm 12
 `hasBin` metadata additions for image-size and mime. The original test-first
 package-layout failure and subsequent whole green receipts remain retained.
+
+## Proposed native doctor command
+
+Authority is EmDash 1.1.0 immutable
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, whole
+`packages/core/src/cli/commands/doctor.ts` (12,019 bytes), whole
+`packages/core/tests/unit/cli/doctor.test.ts` (7,586 bytes; fifteen declarations
+and twenty-six `expect` calls), and the seven retained authorities in the
+[inventory](../../docs/doctor-source.json). The [feature and evidence record](../../docs/doctor.md)
+distinguishes actual command execution, generic inspector Source tests, Native
+persisted SQL/config behavior and unfinished runtime integration. Source MIT
+attribution is preserved; no assertion or Source expected text is changed.
+
+| Record | Source and proposed native behavior | Evidence and decision status |
+| --- | --- | --- |
+| DC-01: command/framework and Worker contract | Source exposes `emdash doctor` through citty/consola and an EmDash Worker module. Native exposes real `pnpm doctor` / `node scripts/doctor.mjs` plus bundled `node build/doctor.js` and a `sveltery-doctor` package bin. The same actual generic diagnostic accepts an explicit host-library Worker contract; the test-only Source adapter supplies the Source identity. Native defaults inspect the actual published local revision-maintenance factory. No test/environment/expected-text detection or external EmDash runtime availability is invented. | Test-first native CLI startup assertion failures are supplemental; the whole Source suite initially fails at module import with zero reached assertions and zero Source causal credit. Runtime application, meaningful Native diagnostic values, exact final gates/review and specific acceptance remain pending. |
+| DC-02: database/schema and read-only inspection | Source opens its database and reads its full migration status, `_emdash_collections`, `users` and Source datetimes. Native explicitly opens read-only, reads the actual native registry/version records and `_cms_collections`, and counts real `_cms_auth_users` authentication identities. The whole Source datetime scanner retains its logic, pages and sample limits after finite imports/table namespaces; this command never calls its normalization/write function. Unknown/gapped native migrations fail rather than becoming a future-version fast path. | These are explicit storage/CLI substitutions, not full Source migration-runner, locking, users/profile or deployed D1 parity. Real persisted SQL and byte-unchanged database tests are registered test-first; diagnostic value assertions and current validation remain pending. Specific acceptance is not yet recorded. |
+| DC-03: scheduler scope | Source doctor checks Cron/EmDash scheduled-handler pairing. Native reports static Cron/revision-maintenance pairing, validates the referenced local maintenance export, and adds an explicit warning that full scheduled publishing, cron execution and heartbeat integration remain unfinished. Node and Cloudflare wiring results remain additive with local database results. | No heartbeat row, fake maintenance implementation or private pending provider is imported. Full runtime scheduling remains a prerequisite owned by its feature. The original dashboard `npx emdash doctor` assertion remains an honestly unfulfilled native command difference. Specific acceptance is pending. |
+| DC-04: TOML parse diagnostics | Pinned Source forwards `smol-toml`'s full error message, including a configuration source excerpt. Proposed native errors report invalid TOML and its actual line/column while omitting the source excerpt; JSONC already reports only its code/location. | Actual pinned parser 1.6.0 returns line 1 / column 28 and embeds the synthetic value for `main = "do-not-print-this" BROKEN`. This is an explicit proposed formatting/privacy difference, not an upstream-bug or Source causal-credit claim. The thirteen-case Native baseline fails at missing CLI startup; later privacy/location assertions are unreached. Specific acceptance is pending. |
+
+Frozen dependency proposal adds only pinned Source `jsonc-parser` 3.3.1 and
+`smol-toml` 1.6.0, their exact package/snapshot/integrity records and verbatim MIT/
+BSD-3-Clause notices. All existing 518 package and 533 snapshot records and both
+lockfile documents, workspace policies, seven media notices and the whole
+image-size patch are preserved. The scripts append one whole Source doctor suite
+to the existing Source chain and a doctor bundle to the existing Node build;
+thirteen normal stages, secured checks, sandbox and deadlines remain unchanged.
+All prior compatibility records remain authoritative. This proposal does not
+mark the full CMS, scheduler, user schema, CLI universe or deployed hosting done.

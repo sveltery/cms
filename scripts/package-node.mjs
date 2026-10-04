@@ -31,5 +31,6 @@ const manifest = JSON.parse(await readFile(new URL('package.json', root), 'utf8'
 manifest.scripts = { start: 'node build/index.js' };
 // A server-only operator API, outside the HTTP handler and its route registry.
 manifest.exports = { './maintenance': './build/maintenance.js' };
+manifest.bin = { 'sveltery-doctor': './build/doctor.js' };
 await writeFile(new URL('package.json', destination), `${JSON.stringify(manifest, null, 2)}\n`);
 console.log('Created node-package/; install frozen production dependencies before starting.');
