@@ -89,8 +89,9 @@ Only the exact runtime dependency/importer `@tanstack/query-core: 5.90.20` is
 proposed; complete existing package scripts, incoming Source-chain gates, engines,
 lock package/integrity/snapshot entries and the package-manager lock document stay
 preserved. The actual complete Tanner Linsley MIT license is supplied separately
-from the unchanged EmDash Cloudflare MIT notice. No new package resolutions or
-shared CI/gates are proposed in this packet.
+from the unchanged EmDash Cloudflare MIT notice. Existing lock package resolutions, shared workflows and validation deadlines
+remain unchanged. This packet adds the two documented dashboard Source and Native
+terminal gates to the end of the preserved aggregate Source chain.
 
 Actual test-first status: Root-qualified R8 five ordinary fixture/test candidates
 were committed at ecd9ab5c before product changes. One whole Native22 run against
