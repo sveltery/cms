@@ -1270,6 +1270,8 @@ The repaired and refactored whole Native23 result remains dated owned evidence a
 
 ## Shared media dependency prerequisite (proposed, 2026-10-04)
 
+Proposed [PR #95](https://github.com/sveltery/cms/pull/95); not merged.
+
 Authority: EmDash 1.1.0, immutable pin
 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, pinned core dependency/lock records,
 workspace image-size patch configuration and the whole 15,746-byte

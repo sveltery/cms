@@ -1,6 +1,7 @@
 # Shared media dependency prerequisite
 
-The seed and media ports need the pinned media package versions to be available
+[Proposed PR #95](https://github.com/sveltery/cms/pull/95) contains this
+dependency prerequisite. The seed and media ports need the pinned media package versions to be available
 in the public CMS installation. This prerequisite adds `blurhash` 2.0.5,
 `image-size` 2.0.2, `jpeg-js` 0.4.4, `mime` 4.1.0 and `upng-js` 2.1.0;
 `pako` 1.0.11 is the existing upstream UPNG dependency. Versions and integrity
