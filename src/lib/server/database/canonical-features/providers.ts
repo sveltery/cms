@@ -1,4 +1,4 @@
-// Unregistered owned adapters. Shared registration waits for actual public6–8.
+// Native feature providers after the actual public1–8 prerequisites.
 // Source authorities and public feature factories remain byte-identical.
 import type { CompiledQuery } from 'kysely';
 import type { CmsDatabase } from '../contract.ts';
@@ -18,7 +18,7 @@ export interface PreparedFeatureStoragePlan {
   readonly statements: readonly CompiledQuery[];
 }
 export type FeatureStorageTrigger = FeatureStorageObject & { readonly type: 'trigger' };
-/** Structural proposal only; no shared provider contract is changed here. */
+/** Owned descriptor seam; ordinary startup prepares once and hoists guards. */
 export interface UnregisteredFeatureMigration extends CmsMigrationProvider {
   prepare(database: CmsDatabase): Promise<PreparedFeatureStoragePlan>;
   expectedTriggers(database: CmsDatabase, installedVersion?: number): Promise<readonly FeatureStorageTrigger[]>;
