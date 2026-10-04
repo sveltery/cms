@@ -10,9 +10,9 @@
 
 import { sql, type Kysely } from "kysely";
 
-import { ContentRepository } from "../../database/lifecycle/upstream/database/repositories/content.ts";
+import { ContentRepository } from "./repositories.ts";
 import { MediaRepository } from "./counts.ts";
-import { OptionsRepository } from "../../options/repository.ts";
+import { OptionsRepository } from "./repositories.ts";
 import { UserRepository } from "./counts.ts";
 import type { Database } from "./database-types.ts";
 import { validateIdentifier } from "../../database/lifecycle/upstream/database/validate.ts";

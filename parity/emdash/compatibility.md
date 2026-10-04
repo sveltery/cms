@@ -1404,3 +1404,26 @@ overlay found four Kysely schema-invariance constructor diagnostics, adding
 infrastructure0 and later reached value failures. Current full normal/secured
 gates, final adaptation acceptance/reviews/landing and real dashboard/UI/media
 provider/D1/hosting completion remain pending.
+
+
+### Dashboard repository constructor schema-view proposal — PR90
+
+Immutable Source913cb1bb9b7f08c3ff0d258b4420e53835b6a58e complete dashboard
+handler and scheduler bodies remain unchanged except import strings. Four
+read-only compile diagnostics arise because Kysely schema generics are invariant.
+The proposed two constructor classes inherit actual public complete Native
+ContentRepository and canonical OptionsRepository bodies, forwarding the same
+registered Kysely object through explicit erased schema casts. No repository
+method override, SQL/result/data/DDL/provider substitution, namespace, atomic
+registration, auth/principal or guard mutation occurs. This is a bounded Native
+type/module substitution over real storage, without full Source user/profile,
+media-provider, configured cache/timezone or adapter/hosting acceptance.
+
+The complete original16/77 family remains untouched; its actual16 first success
+assertions fail after real missing _cms_media, with61 later expectations unreached.
+The type amendment supplies no provider and adds0causal/runtime credit. Full
+receipts retain initial import infrastructure0 separately. [Paired feature record](../../docs/setup-api-backend.md) and [Draft PR90](https://github.com/sveltery/cms/pull/90)
+record the unapplied finite proposal and pending PM development qualification,
+final adaptation acceptance/current full checks/reviews/landing. Dashboard green,
+actual media/file provider, Native HTTP/UI/D1/hosting and whole project remain
+incomplete.

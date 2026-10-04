@@ -207,3 +207,21 @@ no repository candidate and executed no runtime or test; the full diagnostic
 log is retained with0credit. A finite schema-view constructor adapter/import-only
 amendment is being prepared separately. No protected HTTP/auth/principal probe,
 full dashboard/UI/D1/hosting acceptance or complete current gate is claimed.
+
+## Dashboard repository constructor schema-view proposal
+
+Four read-only compile diagnostics identify Kysely generic invariance at the
+complete handler/scheduler repository constructors. The finite proposal changes
+only their repository import strings and adds two bounded constructor classes.
+They inherit the full existing public ContentRepository and OptionsRepository
+bodies, passing the exact same registered Kysely object through explicit erased
+schema casts; no SQL/result/provider/table mapping, transaction/lifecycle host,
+Source assertion, native guard or data conversion changes. The actual schema
+view supports this dashboard's bounded content/count/options use only, without
+full Source user/profile/media/provider claims.
+
+The proposal is unapplied pending PM qualification. Whole original16 baseline
+already reaches16 success-value failures from actual missing public _cms_media,
+leaving61 expectations unreached; correcting types cannot supply that provider
+or earn completed dashboard green. Current Native route, full build/check,
+whole normal/secured gates, reviews and final adaptation acceptance remain pending.

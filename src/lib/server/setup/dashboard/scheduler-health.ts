@@ -2,7 +2,7 @@
 // EmDash1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; complete Source runtime bodies, imports adapted.
 import type { Kysely } from "kysely";
 
-import { OptionsRepository } from "../../options/repository.ts";
+import { OptionsRepository } from "./repositories.ts";
 import type { Database } from "./database-types.ts";
 
 export const SCHEDULER_HEARTBEAT_OPTION = "system:scheduler:last_completed_at";
