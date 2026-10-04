@@ -2,6 +2,7 @@
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 // Native imports, namespace and erasable constructor; original algorithms preserved.
 import type { CmsDatabase } from '../database/contract.ts';
+import { atomicSetChildren, atomicSetParents, atomicDeleteRelation } from './atomic.ts';
 import { sql, type Kysely, type Selectable } from "kysely";
 import { ulid } from "ulidx";
 
@@ -128,8 +129,10 @@ export interface ContentReference {
  */
 export class RelationRepository {
 	private readonly db: Kysely<Database>;
+	private readonly database: CmsDatabase | null;
 	constructor(database: Kysely<Database> | CmsDatabase) {
-		this.db = ('atomicBatch' in database ? database.db : database) as unknown as Kysely<Database>;
+		this.database = 'atomicBatch' in database ? database : null;
+		this.db = (this.database ? this.database.db : database) as unknown as Kysely<Database>;
 	}
 
 	/**
@@ -249,6 +252,7 @@ export class RelationRepository {
 	 * table has no FK).
 	 */
 	async delete(id: string): Promise<boolean> {
+		if (this.database) return atomicDeleteRelation(this.database, this, id);
 		const relation = await this.findById(id);
 		if (!relation) return false;
 
@@ -621,6 +625,7 @@ export class RelationRepository {
 		parentGroup: string,
 		childGroups: string[],
 	): Promise<string[]> {
+		if (this.database) return atomicSetChildren(this.database, this, relation, parentGroup, childGroups);
 		const rel = await this.resolveRelationLimits(relation);
 		if (!rel) return [];
 
@@ -688,6 +693,7 @@ export class RelationRepository {
 		childGroup: string,
 		parentGroups: string[],
 	): Promise<string[]> {
+		if (this.database) return atomicSetParents(this.database, this, relation, childGroup, parentGroups);
 		const rel = await this.resolveRelationLimits(relation);
 		if (!rel) return [];
 		const relationId = rel.id;
