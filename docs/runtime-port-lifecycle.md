@@ -1,0 +1,19 @@
+# Native HTTP fixture listener lifecycle
+
+The test-only [passkey runtime](../tests/helpers/passkey-runtime.ts) previously reserved a port with a temporary net server, closed that reservation, and launched a child that bound the same numeric port. That initial allocation had an unreserved interval. Public-pages PR #92's [validation run](https://github.com/sveltery/cms/actions/runs/37190283484) failed during the first child startup with `EADDRINUSE`; the process that already held that historical port remains unidentified.
+
+The actual child now binds its [HTTP listener](../tests/helpers/runtime-listener.mjs) directly with port zero and reports its actual `http://localhost:<port>` origin in the existing ready receipt. This happens before D1 platform and built Kit initialization, so both receive that actual trusted origin. The parent uses the reported origin for its existing requests, browser helpers and subsequent real process restarts. No product code, hook, authorization, credential, original assertion or request-handling logic changes.
+
+Restart keeps the exact originally reported trusted origin and port. An unrelated process taking that fixed port during restart can still cause startup failure. There is no port retry, origin rotation, enlarged deadline or claim that the initial-gap repair solves external occupation during restart. The separate Node-package fixture's existing `unusedPort()` helper remains unchanged.
+
+The ordinary [Native lifecycle tests](../tests/runtime-port-lifecycle.test.ts) use real HTTP child processes without loading built app, database or authentication code. They verify actual listener port arguments after successful HTTP request/header/body delivery, independent process/listener isolation, and a genuine process restart that retains the origin after orderly shutdown. These are three supplemental Native callbacks and zero Source callbacks.
+
+The [whole TDD receipt](receipts/runtime-port-lifecycle/tdd.json) and unfiltered [baseline](receipts/runtime-port-lifecycle/baseline.log), [fix](receipts/runtime-port-lifecycle/fix.log) and [refactor](receipts/runtime-port-lifecycle/refactor.log) logs preserve the actual progression:
+
+- Test-first commit `7267570e7218499afdadd42de7f47fa5d503d12a`: all three callbacks ran; two reached requested-port assertion failures and one process-restart control passed. Real HTTP delivery assertions passed before the two failures. No infrastructure failures, skipped, cancelled or pending cases occurred.
+- Fix commit `19f93e6751fa9d0920a96b4289a02b6e7a50d692`: removing the temporary reservation and passing port zero to the actual listener made all three callbacks pass.
+- Refactor commit `b780b0d33c72e92e8c3cdcda4398e5335c7d2c52`: sharing the ordinary child's stdout/stderr diagnostic handler left all three callback declarations unchanged and all three callbacks passing. Strict types for the three new ordinary files also passed.
+
+The current candidate contains the ordinary merge of public Main `ab43accd4de235b07a22dd0ac24289605902d959`, including its exact media dependency patch, notices, package and lockfile. The original 20-second fixture-start, 10-second request and 5-second shutdown guards, complete 13 bootstrap stages, secured browser checks and existing callback/assertion inventories are unchanged. Full current-head validation, secured browser checks, independent final-head review, configured automatic review and exact-head PM approval remain pending. The development scope is qualified; merge approval and passing whole gates are separate requirements.
+
+The project still references EmDash 1.1.0 at `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. This fixture repair copies no new upstream function or assertion and earns zero Source or deployed-product parity credit. See the paired [compatibility record](../parity/emdash/compatibility.md#native-http-fixture-listener-lifecycle).

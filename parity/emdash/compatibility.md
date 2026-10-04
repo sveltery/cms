@@ -1410,3 +1410,11 @@ The dependency metadata qualification remains six exact Source integrities and
 snapshots, four exact whole Source package records and two verified pnpm 12
 `hasBin` metadata additions for image-size and mime. The original test-first
 package-layout failure and subsequent whole green receipts remain retained.
+
+## Native HTTP fixture listener lifecycle
+
+The [Native fixture record](../../docs/runtime-port-lifecycle.md) covers a test-only initial port allocation repair. The project authority remains EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`; this change copies no new upstream function or assertion and changes no production behavior. It adds three ordinary Native HTTP lifecycle callbacks with zero Source callbacks or parity credit.
+
+The old fixture reserved a temporary net port, closed it, then bound the actual child server at that released port. The child now requests port zero directly and reports its actual trusted localhost origin before platform/Kit initialization. Parent HTTP/browser requests and real process restart use that reported origin; their existing request, credential, authorization, callback and assertion logic remains unchanged. Fixed-origin restart keeps its numeric port and can still fail if an unrelated process occupies it. The historical `EADDRINUSE` port owner remains unassigned, and the separate Node hosting helper is unchanged. No retry, origin rotation, deadline widening, protected probe or validation slicing is introduced.
+
+The linked [whole TDD receipt](../../docs/receipts/runtime-port-lifecycle/tdd.json) records test-first Native3: two reached requested-port assertion failures and one genuine process-restart control green, followed by Native3 green after the single listener fix and after a shared-diagnostics refactor. Existing Source and Native test declarations are unchanged; full current-head bootstrap/browser execution and final reviews remain pending. PM has qualified this finite development scope; exact-head merge approval is pending and is not inferred from development qualification or the three Native greens. No intentional EmDash product-behavior difference or newly verified shared upstream bug is claimed.
