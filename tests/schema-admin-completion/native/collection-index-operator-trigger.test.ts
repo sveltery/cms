@@ -4,7 +4,7 @@
 // EmDash pin913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 import { expect, it } from 'vitest';
-import { sql } from 'kysely';
+import { sql, type Kysely } from 'kysely';
 import { openSqlite } from '../../../src/lib/server/database/sqlite.ts';
 import { CMS_MIGRATIONS, migrateCms } from '../../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../../../src/lib/server/database/registry.ts';
@@ -12,7 +12,7 @@ import * as source001 from '../index-trigger-source/packages/core/src/database/m
 import * as source080 from '../index-trigger-source/packages/core/src/database/migrations/080_content_translation_locale_unique.ts';
 
 async function sourceStorage(database:ReturnType<typeof openSqlite>) {
-  await source001.up(database.db.$castTo<unknown>());
+  await source001.up(database.db as unknown as Kysely<unknown>);
   // Ordinary fixture reproduces the actual Source Registry:1868–1909 empty
   // content-table physical shape; this is SQL setup, not a registry substitute.
   await sql`CREATE TABLE ec_posts (
@@ -26,7 +26,7 @@ async function sourceStorage(database:ReturnType<typeof openSqlite>) {
   await sql`INSERT INTO taxonomies(id,name,slug,label) VALUES('term','tags','news','News')`.execute(database.db);
 }
 async function nativeStorage(database:ReturnType<typeof openSqlite>) {
-  await sql`CREATE TABLE _cms_migrations(version INTEGER PRIMARY KEY CHECK(version>0))`.execute(database.db);
+  await sql`CREATE TABLE _cms_migrations (version INTEGER PRIMARY KEY CHECK(version > 0))`.execute(database.db);
   for (const provider of CMS_MIGRATIONS.filter(provider=>provider.version<=15)) {
     await database.atomicBatch([...await provider.statements(database),
       sql`INSERT INTO _cms_migrations(version) VALUES(${sql.lit(provider.version)})`.compile(database.db)]);
@@ -60,7 +60,7 @@ it('whole pinned Source080 rereads actual operator mutations and repairs the gro
   const database=openSqlite(':memory:');
   try {
     await sourceStorage(database);await seed(database,'content_taxonomies');
-    await expect(source080.up(database.db.$castTo<unknown>())).resolves.toBeUndefined();
+    await expect(source080.up(database.db as unknown as Kysely<unknown>)).resolves.toBeUndefined();
     await assertRepaired(database,'content_taxonomies');
   } finally {await database.close();}
 });
