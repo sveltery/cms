@@ -1,0 +1,21 @@
+✔ doctor returns actionable JSON failure without creating a missing database (281.903784ms)
+✔ doctor reads the real installed migrations, collection and empty identity tables without writes (289.110249ms)
+✔ doctor reports pending migrations from the actual registered provider universe (286.863785ms)
+✔ doctor does not accept unknown or gapped native migration records as fully applied (267.226236ms)
+✔ doctor reports actual orphaned content tables without including ordinary operator tables (264.098357ms)
+✔ doctor detects noncanonical persisted content and nested/revision datetimes without repairing them (289.949637ms)
+✔ doctor reports invalid datetime data as an inspection failure (255.380811ms)
+✔ doctor combines actual Native Worker wiring diagnostics with a missing local database (261.366782ms)
+✔ doctor provides Native TOML trigger guidance for a real maintenance handler (240.716148ms)
+✔ doctor reports JSONC locations and does not print configuration values (248.578912ms)
+✔ doctor reports TOML locations without including configuration source excerpts (239.39606ms)
+✔ doctor accepts explicit database paths and prints native human-readable summaries (250.859926ms)
+✔ doctor rejects invalid flags with a useful usage error (493.741063ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3904.425894

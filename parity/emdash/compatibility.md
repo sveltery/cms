@@ -1638,3 +1638,194 @@ Actual public Main `b5ed8e06c9c3034e99645ef85022e027130fec51` remains the instal
 Configured review summary 5979344599 completed on d8 at 2026-10-04T12:29:19.231427Z, triggered by marking the draft ready. Its formal COMMENTED review 5406117202 and P1 inline 4177576062 identify stale current feature documentation in `docs/canonical-feature-storage.md` and `docs/architecture.md`. This is an actual finding, not formal APPROVED or a no-findings verdict; the earlier e396 no-major-issues result remains historical. This docs-only successor gives both affected records a truthful current Main14/candidate15 boundary and retains all their old receipts and status paragraphs verbatim under explicitly labelled historical snapshots. This full compatibility prefix, Source/runtime/assertions/fixtures, Native28 registration, package/lock, CI/bootstrap and literal log attributes remain unchanged. The actual configured-thread reply, resolution and readback must follow exact repair publication; no second manual review request is made.
 
 CI457's full 47-failure service baseline and successful nine-launch browser receipt remain retained. The narrow corrected Native24/readiness4/Comments26/Source30/checker facts remain scoped to their evaluated head, with completed causal Source value-red credit 0. CI463/run37201924020 evaluates d8; a final changed docs head requires its own complete mandatory normal13/browser9 result and independent review before exact manager approval and author expected-head merge. Documentation consistency adds no product or Source parity credit.
+
+## Proposed native doctor command
+
+Authority is EmDash 1.1.0 immutable
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, whole
+`packages/core/src/cli/commands/doctor.ts` (12,019 bytes), whole
+`packages/core/tests/unit/cli/doctor.test.ts` (7,586 bytes; fifteen declarations
+and twenty-six `expect` calls), and the seven retained authorities in the
+[inventory](../../docs/doctor-source.json). The [feature and evidence record](../../docs/doctor.md)
+distinguishes actual command execution, generic inspector Source tests, Native
+persisted SQL/config behavior and unfinished runtime integration. Source MIT
+attribution is preserved; no assertion or Source expected text is changed.
+
+| Record | Source and proposed native behavior | Evidence and decision status |
+| --- | --- | --- |
+| DC-01: command/framework and Worker contract | Source exposes `emdash doctor` through citty/consola and an EmDash Worker module. Native exposes real `pnpm doctor` / `node scripts/doctor.mjs` plus bundled `node build/doctor.js` and a `sveltery-doctor` package bin. The same actual generic diagnostic accepts an explicit host-library Worker contract; the test-only Source adapter supplies the Source identity. Native defaults inspect the actual published local revision-maintenance factory. No test/environment/expected-text detection or external EmDash runtime availability is invented. | Test-first native CLI startup assertion failures are supplemental; the whole Source suite initially fails at module import with zero reached assertions and zero Source causal credit. Runtime application, meaningful Native diagnostic values, exact final gates/review and specific acceptance remain pending. |
+| DC-02: database/schema and read-only inspection | Source opens its database and reads its full migration status, `_emdash_collections`, `users` and Source datetimes. Native explicitly opens read-only, reads the actual native registry/version records and `_cms_collections`, and counts real `_cms_auth_users` authentication identities. The whole Source datetime scanner retains its logic, pages and sample limits after finite imports/table namespaces; this command never calls its normalization/write function. Unknown/gapped native migrations fail rather than becoming a future-version fast path. | These are explicit storage/CLI substitutions, not full Source migration-runner, locking, users/profile or deployed D1 parity. Real persisted SQL and byte-unchanged database tests are registered test-first; diagnostic value assertions and current validation remain pending. Specific acceptance is not yet recorded. |
+| DC-03: scheduler scope | Source doctor checks Cron/EmDash scheduled-handler pairing. Native reports static Cron/revision-maintenance pairing, validates the referenced local maintenance export, and adds an explicit warning that full scheduled publishing, cron execution and heartbeat integration remain unfinished. Node and Cloudflare wiring results remain additive with local database results. | No heartbeat row, fake maintenance implementation or private pending provider is imported. Full runtime scheduling remains a prerequisite owned by its feature. The original dashboard `npx emdash doctor` assertion remains an honestly unfulfilled native command difference. Specific acceptance is pending. |
+| DC-04: TOML parse diagnostics | Pinned Source forwards `smol-toml`'s full error message, including a configuration source excerpt. Proposed native errors report invalid TOML and its actual line/column while omitting the source excerpt; JSONC already reports only its code/location. | Actual pinned parser 1.6.0 returns line 1 / column 28 and embeds the synthetic value for `main = "do-not-print-this" BROKEN`. This is an explicit proposed formatting/privacy difference, not an upstream-bug or Source causal-credit claim. The thirteen-case Native baseline fails at missing CLI startup; later privacy/location assertions are unreached. Specific acceptance is pending. |
+
+Frozen dependency proposal adds only pinned Source `jsonc-parser` 3.3.1 and
+`smol-toml` 1.6.0, their exact package/snapshot/integrity records and verbatim MIT/
+BSD-3-Clause notices. All existing 518 package and 533 snapshot records and both
+lockfile documents, workspace policies, seven media notices and the whole
+image-size patch are preserved. The scripts append one whole Source doctor suite
+to the existing Source chain and a doctor bundle to the existing Node build;
+thirteen normal stages, secured checks, sandbox and deadlines remain unchanged.
+All prior compatibility records remain authoritative. This proposal does not
+mark the full CMS, scheduler, user schema, CLI universe or deployed hosting done.
+
+### Native doctor implementation and actual public Main14 integration proposal
+
+The preceding proposal is implemented locally in PR #98. The finite seventeen-file
+runtime/dependency/record candidate received exact development qualification before
+`a663130a`; the later single producer fix received its own exact qualification
+before `0860b384`. Those decisions are development acceptance only, and the
+following evidence does not mark full CMS or scheduler completion.
+
+The current proposal adopts actual signed public Main14
+`90d62391e7ddc61f41f8f3dad9e7077c9fc9de52` (tree
+`862575551497942667d18465657dbc790e0661f7`) through an ordinary local merge.
+Its entire compatibility record is the prefix; the entire previously owned doctor
+proposal suffix follows unchanged. The complete incoming Source command chain,
+including `check-canonical-feature-storage-source.mjs`, is preserved before the
+terminal doctor suite append. Only the two original shared-file conflicts,
+`package.json` and this record, need explicit composition. All other incoming
+runtime/test/harness bytes, existing normal/secured commands and original
+Source authorities remain whole. No private pending provider is imported.
+
+| Record | Meaningful current local evidence | Specific final acceptance |
+| --- | --- | --- |
+| DC-01: command/framework and Worker contract | Real Native CLI subprocess cases pass. The actual standalone frozen production package executes the bundled command, emits JSON and preserves existing install/start commands. The unchanged whole Source fifteen callbacks pass through the same generic inspector with an explicit supported external Worker contract; Native defaults are exercised separately. Source's initial import-only red earns zero causal credit. | Accepted for finite development only; final exact-head gates/review and specific PM acceptance pending. |
+| DC-02: database/schema and read-only inspection | All thirteen Native cases reach real persisted SQL/config values: native migration records, collections/orphans, canonical date inspection and database byte preservation. The package independently inspects a real migrated database and its collection. Whole Source datetime scanner bytes remain verifiably unchanged after the qualified finite imports/namespaces. | Accepted for bounded development only; full Source migration runner, users/profile schema and deployed D1 remain unfinished. Final acceptance pending. |
+| DC-03: scheduler scope | Actual built official Worker and maintenance files pass the Native static wiring check with an explicit coverage warning, additive to a failing absent database. No HTTP execution, heartbeat row, full scheduler or scheduled-publishing claim follows. The original dashboard `npx emdash doctor` assertion remains honestly unmatched. | Actual revision-maintenance diagnostic accepted for development only. Full scheduler integration remains unfinished; final bounded-diagnostic acceptance pending. |
+| DC-04: TOML parse diagnostics | The meaningful Native configuration case passes actual line 1 / column 28 reporting without printing the synthetic value or parser source excerpt. This remains an intentional native formatting/privacy difference and earns no Source bug/causal credit. | Location-only diagnostics accepted for development only; final specific acceptance pending. |
+
+The whole Source first-runtime and refactor receipts each report fifteen passing
+callbacks. The whole Native first-runtime and refactor receipts each report
+thirteen passing cases. A later genuine Native package value red reaches an
+empty JSON-output assertion after actual frozen installation/database creation;
+only removal of the redundant thirty-one-byte output shebang banner fixes it.
+The actual standalone package and official Worker filesystem cases then pass.
+Earlier engine/selector fixture stops are infrastructure and earn zero product
+credit. Whole raw logs and classifications are retained in the paired
+[feature record](../../docs/doctor.md) and
+[runtime receipt inventory](../../docs/doctor-evidence/runtime.json).
+
+Verbatim raw baseline/Source logs and the original CRLF Microsoft MIT notice keep
+their complete bytes. `.gitattributes` names only their six exact literal paths
+for the particular formatter blank-line or CR handling; there is no global
+whitespace exemption or evidence trimming. All 518 old package and 533 old
+snapshot records, both lock documents, all seven media notices, workspace policy,
+whole image-size patch and historical evidence remain preserved; the new totals
+are 520 packages and 535 snapshots. The actual public Main14 union still needs
+its own whole thirteen normal stages, nine secured sandboxed browser launches,
+fresh independent/configured review, final DC acceptance, Root exact-head
+approval, author expected-head regular merge and actual post-Main verification.
+
+### Native doctor: actual public fixture96 Main integration proposal
+
+The exact Main14 union is now applied locally through ordinary merge
+`1d2ca68bac64362e05bc898ebedbb25d6d19a14a`, tree
+`ff85e1235c9528165bb2b5e367801ab3deb8e5a1`, after specific finite development
+qualification. The complete 1,697-entry expected tree and whole owned
+`git diff --check` match. This is a local development receipt; PR #98 still
+has its original test-only public head and no current-union gate or Main
+runtime landing is inferred.
+
+The next ordinary-union proposal adopts actual public Main
+`343c0ff2e69e66e03b848d258da7c288e9a67223`, the regular merge of fixture PR #96.
+Its entire compatibility history is retained as the prefix, followed by the
+entire owned doctor history since public Main14. The new `.gitattributes`
+preserves both the whole incoming fixture-evidence comment/literal rule and all
+six existing doctor literal rules. No global exemption, raw-byte trimming,
+Source test/body change or private provider import is introduced. All incoming
+fourteen fixture/helper/evidence changes are retained whole; approved package,
+520/535 lock records, Source authorities, notices/policies/patch and original
+normal/secured commands, sandbox and deadlines remain unchanged.
+
+Final current thirteen normal stages and nine secured browser launches wait
+for the actual combined public Main that also includes fixture PR #97. The
+next fixture is a pending public prerequisite, not privately imported here.
+Fresh/configured final-head review, specific final DC decisions, Root exact-head
+approval, author expected-head regular merge and actual post-Main validation
+remain pending. Full Source users/runner, remote D1 and scheduler heartbeat or
+scheduled-publishing execution remain unfinished; Source causal credit is zero.
+
+### Native doctor: actual published provider15 and both fixture prerequisites
+
+The ordinary fixture96 union is applied locally as
+`f27642a7cae35e4df1dd80051d5168cfb5eb337c`, tree
+`f00982b8a62bba7fb572fb80b6f79f6b5f3b0b85`, after exact four-file development
+qualification. All 1,705 expected entries and the whole owned whitespace check
+match. That local checkpoint retains the real CLI/SQL/config/artifact evidence;
+its pending fixture97/provider15 requirement is now satisfied by actual public
+Main, not by adopting any unpublished feature payload.
+
+The next ordinary-union proposal uses actual public Main
+`41be644213bd8da5150d98b87d3a5c0cc0c7f3e1`, tree
+`46ac2a5174688df4d939d7d52e2db9739bc037fe`, with ordered public parents
+`b5ed8e06c9c3034e99645ef85022e027130fec51` and
+`efde56cfc8384e8ac43eacef51dd0766741585ec`. This is the published provider15
+merge with both public fixtures96/97, actual default1/readiness and catalogue
+guard. All 1,783 public paths are preserved. New shared composition resolves only
+package scripts/dependencies, literal evidence rules and this history; already
+qualified owned package-bin, lock and hosting-document additions retain their
+exact current owned bytes.
+The complete 437,970-byte public compatibility record is the prefix; the whole
+previously owned doctor suffix is retained unchanged after it. The whole
+195-byte public attribute block and all six doctor literal rules are retained.
+
+The incoming complete Source chain, including canonical storage and both block
+registry suites, precedes the terminal whole doctor suite. The incoming Node
+build precedes the doctor bundle. All other package leaves and scripts retain
+actual Main values. The approved 520-package/535-snapshot lock remains whole,
+with all existing 518/533 records and both documents unchanged; all media
+notices, patch, policies and seven doctor Source authorities remain exact.
+Existing protected suites, thirteen normal phases, nine secured sandboxed browser
+commands and their deadlines are unchanged. No new test body, CLI probe,
+credential/principal/auth HTTP callback or private implementation is introduced.
+
+Previous doctor Source15 and Native13 initial/refactor greens and actual package/
+Worker filesystem greens remain historical receipts for their stated heads.
+They are not inferred validation of this newer union. Root's qualified whole
+provider15 gate is a prerequisite receipt, and its running post-Main check is
+independently monitored; neither becomes a Doctor #98 current-head receipt.
+After exact development qualification, this union still requires its own full
+normal13/secured9 gates, a new fresh final review and configured review, specific
+DC-01 through DC-04 final acceptance, Root exact-head approval, author expected-
+head regular merge and actual post-Main verification. Source causal credit
+remains zero. Full scheduler/heartbeat, full Source users/CLI/PAT, remote D1 and
+general migration-runner parity remain unfinished.
+
+### Native doctor: published 3b6 validation and final status-documentation successor
+
+The preceding provider15 proposal received exact finite development qualification
+and was applied/published as ordinary merge
+`3b6feb58a86707fbc4d4c32fb643942a73bf5285`, tree
+`d2ccfb38fcbcc42eac58a3c6e258558e98d3787a`. All 1,816 expected entries match,
+all 1,783 actual public Main paths remain present, and the whole owned whitespace
+check passes. This paragraph closes the earlier proposal's application/push/gate
+status; every historical compatibility paragraph and actual result is retained.
+
+Current [CI 467](https://github.com/sveltery/cms/actions/runs/37209129237) passes
+complete normal and secured jobs on that exact 3b6 head; the tested synthetic
+merge has the same tree. All thirteen normal phases finish. Node groups pass
+1,492/28/280/16/8 with zero failures, cancellations or skips; all twenty-three
+Vitest groups pass, including the unchanged whole original Source doctor fifteen callbacks.
+The actual Native CLI/SQL/config thirteen cases, frozen production standalone package one case and
+real built official Worker filesystem one case pass. Source causal credit remains zero.
+Seven secured Source groups pass 14/30/25/3/35/4/3, both application suites pass 65,
+and all nine official Chromium 1243 launches exit 0 with the original sandbox and
+deadlines. The whole normal log is 625,530 bytes / SHA256
+`3c23e73f3e26f469f69cfa16cae292f86e82f1ca149ae413fde4889104fa185c`;
+the whole browser log is 396,263 bytes / SHA256
+`fb26461582c130d88d93afe35329e6e41305fedd398ebc20cc853a6e866bc20a`.
+These hashes and exact job IDs remain in the paired runtime inventory.
+
+This successor corrects only the three current-status records. It changes no
+runtime, test/body/assertion, dependency, notice, evidence byte, script, sandbox
+or deadline. This is an immutable preparation snapshot at basis head 3b6,
+recorded before the documentation successor commit. The completed 3b6 results
+validate that historical basis; they grant no successor-head receipt. At this
+recorded preparation point, successor full normal13/secured9 checks, new fresh-review
+closure and configured review were pending. DC-01 through DC-04 had development
+acceptance only; specific final exact-head Root approval, author expected-head
+regular merge and actual post-Main verification were pending. Subsequent current
+checks and closure are audited externally against their actual commit, without a
+self-referential future-head claim in this snapshot. Full scheduler/heartbeat,
+full Source users/CLI/PAT, remote D1 and general migration-runner parity remain
+unfinished. No new CLI/auth/HTTP probe or private provider is introduced.
