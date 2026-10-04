@@ -36065,5 +36065,97 @@
     "sourceCausalCredit": 0,
     "executions": 1,
     "originalInitialEightInfraEvidencePreserved": true
+  },
+  "executableSource22Proposal": {
+    "status": "Unapplied/unexecuted; exact Root qualification and fresh semantic review pending.",
+    "families": [
+      {
+        "source": "packages/core/tests/unit/api/collection-admin-schema.test.ts",
+        "authority": "parity/emdash/schema-admin-completion-source/authority/packages/core/tests/unit/api/collection-admin-schema.test.ts.source",
+        "executable": "tests/schema-admin-completion/source/core/tests/unit/api/collection-admin-schema.test.ts",
+        "bytes": 2148,
+        "sha256": "4ed8eee86387e0152512795b8b9b5e0cacecfcf993af36f56e77bf3fc4cb864e",
+        "gitBlob": "e3b2d7c536bbfb5bb2839ed547d73c2898033b8b",
+        "testDeclarations": 5,
+        "expandedCallbacks": 5,
+        "directExpectCalls": 7,
+        "callbackBodiesAndImportsByteExact": true,
+        "datasetsAndOriginalClocksByteExact": true,
+        "protectedCalls": []
+      },
+      {
+        "source": "packages/core/tests/unit/api/schema-update-collection-display-fields.test.ts",
+        "authority": "parity/emdash/schema-admin-completion-source/authority/packages/core/tests/unit/api/schema-update-collection-display-fields.test.ts.source",
+        "executable": "tests/schema-admin-completion/source/core/tests/unit/api/schema-update-collection-display-fields.test.ts",
+        "bytes": 2881,
+        "sha256": "7d4d0a755b450db70865cb7e4f92e51c983e7820e00d29f448cc9b3330b13b9f",
+        "gitBlob": "29c6a30ec4c39a6b11a2885bd08af0f4f3ecbb76",
+        "testDeclarations": 6,
+        "expandedCallbacks": 6,
+        "directExpectCalls": 12,
+        "callbackBodiesAndImportsByteExact": true,
+        "datasetsAndOriginalClocksByteExact": true,
+        "protectedCalls": []
+      },
+      {
+        "source": "packages/core/tests/unit/schema/collection-title-date-fields.test.ts",
+        "authority": "parity/emdash/schema-admin-completion-source/authority/packages/core/tests/unit/schema/collection-title-date-fields.test.ts.source",
+        "executable": "tests/schema-admin-completion/source/core/tests/unit/schema/collection-title-date-fields.test.ts",
+        "bytes": 5328,
+        "sha256": "ca6792f92eafc9e9b6c658def3ec558e9899e9be7e17b8d30d24d82fe43b8d53",
+        "gitBlob": "829c6447a0d450906780211a293d5bc781e5412a",
+        "testDeclarations": 11,
+        "expandedCallbacks": 11,
+        "directExpectCalls": 19,
+        "callbackBodiesAndImportsByteExact": true,
+        "datasetsAndOriginalClocksByteExact": true,
+        "protectedCalls": []
+      }
+    ],
+    "totalWholeFamilies": 3,
+    "totalExpandedCallbacks": 22,
+    "totalDirectExpectCalls": 38,
+    "runtime": "Node24.19.0/pnpm12.6.0/Vitest4.1.10; Source core ordinary Node default test5,000/hook10,000 unchanged.",
+    "importSubstitutions": "Only import resolution changes: original complete Source files are byte-exact. Source API schema imports resolve to uniform adapters over actual Native Valibot; registry/migration/type imports resolve to same real Kysely/SQLite -> Native CmsDatabase constructor bridge. #node-sqlite resolves actual public Native compatibility class.",
+    "existingRuntimeTargets": [
+      "src/lib/server/database/validation.ts",
+      "src/lib/server/database/registry.ts",
+      "src/lib/server/database/migrations.ts",
+      "src/lib/server/database/node-sqlite-compat.ts"
+    ],
+    "responseContractGap": "Native has no real collection response validation. Both response exports uniformly throw before expectations. They are never always-valid test providers; no successful result is invented. Such callbacks must be classified pre-expect missing-product-boundary gaps, not completed assertion reds.",
+    "sqlHost": "One original Source-created real Kysely/SQLite. Native constructor bridge caches a CmsDatabase over that same handle and uses real Kysely transaction/executeQuery for atomic compiled SQL; actual public migrations/registry run. No alternate database, native registry rewrite, new migration, canned SQL result or concurrency probe.",
+    "executionClassification": "After qualification run each whole family unchanged once; report actual declared/registered/value-red/preexpect/infra/control counts and whole-family outcomes. No predicted green or causal result is asserted.",
+    "remainingSourceFamilies": "All eleven authorities/241 declarations/242 expanded callbacks/442 expects remain whole. Whole UI4/138, the two API route families3, whole registry68 including2 original concurrent callbacks, and E2E11 remain separately pending. No callback is deleted/narrowed.",
+    "wholeUiClockBoundary": "Future whole Source UI138 must preserve actual Browser15,000/30,000 plus remaining-deadline expect.element poll defaults; no Node-clock substitution or UI/browser credit here.",
+    "executions": 0,
+    "causalCredit": 0
+  },
+  "source22Reconciliation": {
+    "status": "R2 unapplied/unexecuted; current actual Native before vectors after committed evidence; fresh semantic closure and Root qualification pending.",
+    "originalProposal": {
+      "path": "/tmp/schema-admin-completion-source22-testfirst-proposal-r1/manifest.json",
+      "bytes": 14221,
+      "sha256": "36158e56c729e15b417f10021e3401343d2be4e8160a5eb110564b04521904ab"
+    },
+    "actualCurrentHead": "94070cbd8c776260c4770af7ab33baacb633725e",
+    "actualFixtureCommit": "63eaeeac23c2c9fda2d05ce08d0d58fc6d83a8ca",
+    "actualEvidenceCommit": "94070cbd8c776260c4770af7ab33baacb633725e",
+    "historyPreserved": "Every existing ledger property, complete current feature/compatibility prefixes and full original Source22 proposed suffix/object preserved. Raw initial3651 and corrected9530 receipts remain exact.",
+    "guardDelimiterReview": "Direct lexical inspection verifies one JS backslash-zero escape (code units92,48), correctly interpreted as the NUL delimiter; no double-backslash literal exists. Earlier JSON-output audit diagnosis was incorrect. R2 preserves the guard, all Source test files, bridges and config byte-exact R1; no guard execution occurred.",
+    "uiAudit": {
+      "json": {
+        "path": "/tmp/schema-admin-whole-ui-source-bridge-audit-r2.json",
+        "bytes": 91305,
+        "sha256": "6d382582f4b327d9efbb2ce46fb427dbf9c73f17396ca7adf9bacaa4a2320a84"
+      },
+      "markdown": {
+        "path": "/tmp/schema-admin-whole-ui-source-bridge-audit-r2.md",
+        "bytes": 13687,
+        "sha256": "212aba32fae3d4992b043dad9b2fa9708b3199521ead709e4d2ca516f7076bce"
+      },
+      "limits": "Read-only zero execution. Genuine presentation callback/FieldEditor/relations seams and actual original Browser15s/30s/remaining-deadline polls are required; test helpers cannot implement product behaviors."
+    },
+    "actualPublicPrerequisite": "Public block91/provider15 Main41be644213bd8da5150d98b87d3a5c0cc0c7f3e1 landed; this exact Source22 candidate is still on its declared B5-product author tree. No private runtime or later-union credit is claimed."
   }
 }
