@@ -36637,5 +36637,86 @@
         "gitBlob": "37f673ed435cfe13a9d2b43d537a2b4f85a0fe5c"
       }
     ]
+  },
+  "schemaResponseRuntimeR2Applied": {
+    "fixHead": "cbbb896b438c1a92cd0d662b6495457982ff50cb",
+    "rootQualification": {
+      "path": "/tmp/root-schema103-response-runtime-r2-exact6-development-qualification.json",
+      "bytes": 1029,
+      "sha256": "b260aecc943314870bbf4452be65f5d5f700f620a604e033028ae1ff5541af7c"
+    },
+    "sameFreshReview": {
+      "path": "/tmp/schema103-response-runtime-r2-independent-two-finding-closure-review.json",
+      "bytes": 227319,
+      "sha256": "101c9fc26ac8d00355e4b5084374c0b1694bbe715a7558bab4f9650193958ee8"
+    },
+    "actualEvidence": "docs/receipts/schema-admin-completion/response-r2-followup.json",
+    "source22": {
+      "wholeFamilies": 3,
+      "registeredCallbacks": 22,
+      "passedCallbacks": 22,
+      "directSourceExpectsReachedAndPassed": 38,
+      "completedValueFailures": 0,
+      "preExpectationFailures": 0,
+      "infrastructureFailures": 0,
+      "newProductResponseCallbacksPassed": 4,
+      "historicalInitialCallbackControls": 18,
+      "historicalInitialPreExpectationFailures": 4,
+      "historicalInitialCausalReds": 0,
+      "SourceBodiesDataClocksChanged": 0,
+      "causalRepairCredit": 0
+    },
+    "native1ActualProduction": {
+      "registeredCallbacks": 1,
+      "passedCallbacks": 1,
+      "directExpectsReachedAndPassed": 4,
+      "invalidValuesRejected": 9,
+      "completedValueFailures": 0,
+      "preExpectationFailures": 0,
+      "infrastructureFailures": 0,
+      "initialCandidateValueReds": 1,
+      "originalSourceCallbackCredit": 0,
+      "transport": "Same original Native callback/body resolves uniformly to actual production module; immutable R1 snapshot is historical and unexecuted during this follow-up."
+    },
+    "native8UnchangedProductForms": {
+      "registeredCallbacks": 8,
+      "completedAssertionValueFailures": 8,
+      "wholeCallbackControls": 0,
+      "directExpectsReached": 11,
+      "partialAssertionsPassed": 3,
+      "preExpectationFailures": 0,
+      "infrastructureFailures": 0,
+      "uiRuntimeImplementationChanged": 0,
+      "featureDone": false
+    },
+    "compiler": {
+      "firstObservedCheckExitCode": 1,
+      "firstObservedDiagnostics": 9,
+      "firstObservedDiagnosticFiles": 5,
+      "firstObservedCategories": [
+        "retained R1 relative constant type imports2",
+        "installed privateKit JSDoc module declaration1",
+        "original Source22 logical/type imports6"
+      ],
+      "firstRawLogPersisted": false,
+      "firstObservationSource": "Tool check output; no fabricated/reconstructed literal raw log",
+      "correction": "Seven pure test module reexports to actual constants/API/registry boundaries plus one narrow ambient declaration file for actual Node SQLite and Kit public/JSDoc signatures. No originalSource/native callback, expectations, runtime resolver, provider, tsconfig exclusion or gate changes.",
+      "followUp": {
+        "command": [
+          "node",
+          "/workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs",
+          "check"
+        ],
+        "exitCode": 0,
+        "bytes": 203,
+        "sha256": "6f9aa83ad4e020467008c235415dd8ebe75177fc471ceef542acc77f47c44ff8",
+        "whenUTC": "2026-10-04T16:09:01.172497+00:00",
+        "reason": "Meaningful narrow test type/module host corrections after actual nine test-host resolution diagnostics; original suites not repeated."
+      },
+      "followUpWarnings": 0,
+      "followUpErrors": 0
+    },
+    "originalProposalStatementsRemainHistorical": true,
+    "featureDone": false
   }
 }
