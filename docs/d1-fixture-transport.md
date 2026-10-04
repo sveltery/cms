@@ -107,3 +107,69 @@ Root authorized only the exact helper development candidate (6486 bytes), SHA
 `a0705209c4bec16849bade728a8a044fdeb20d42a8e0935a373314fb4942758a`,
 before application. Whole normal/secured CI and final review remain pending. Idle cleanup, startup failure and pending-close drain have
 static-review coverage only. Specific PM acceptance and landing are pending.
+
+
+## Remaining direct database and collection-update fixtures
+
+[PR #96](https://github.com/sveltery/cms/pull/96) extends the published asynchronous
+transport to the original direct database and collection-update test fixtures.
+This is native test harness work with zero additional copied EmDash parity.
+The immutable behavior reference remains EmDash 1.1.0
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, including
+[`packages/cloudflare/src/db/d1-dialect.ts`](https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/cloudflare/src/db/d1-dialect.ts).
+The application D1 driver, dependencies, source assertions, canonical providers,
+authentication behavior, normal commands and existing deadlines are unchanged.
+
+The private `localD1` factory was extracted unchanged to a test helper before
+running the [whole original Native fixture tests](../tests/d1-direct-fixture-transport.test.ts).
+Static reconstruction preserves every other original database test byte,
+including all sixteen `test(...)` declaration expressions. The new family has
+three declaration expressions, four expanded callbacks and fifteen static
+assertion expressions. At test-first commit `4ae51e2b`, both actual factories make
+135 `Atomics.wait` calls against the required zero. All preceding real D1 scalar,
+NUL, byte binding, metadata, unsupported-parameter and DDL/DML rollback checks
+reach their assertions successfully. The custom Worker request/URL/header/body
+and same-database control already passes; the actual original database-identifier
+persistence/reopen control also already passes. This is two genuine Native
+assertion failures, two initially green controls and zero infrastructure failures,
+cancellations, skips or todos. The [complete baseline receipt](d1-direct-fixture-evidence/native4-baseline.json)
+and [whole baseline log](d1-direct-fixture-evidence/native4-baseline.log) are retained.
+Their four original whitespace-only console lines remain unmodified.
+
+The exact three-helper repair adds a dedicated `asyncD1StorageFor` entry point.
+It preserves `cms-test-d1`, `cms-collection-update`, each supplied persistence
+directory and one real dedicated runtime for each direct fixture. These fixtures
+are never pooled or renamed. The existing schema-admin default, persistent name,
+one-use group lease behavior, transport Worker body and binding implementation
+remain unchanged. The optional original custom Worker is a separate module;
+only the private `cms-d1-fixture.invalid` host dispatches to the transport. Other
+requests forward the same request, environment and execution context to the
+original Worker fetch handler. The original compiled Worker fixture therefore
+retains its dispatch seam and actual `env.DB`. D1 preparation and each actual
+batch still execute inside real workerd.
+
+Root authorized development of the exact helper candidate before commit
+`2b6db0db`. The same whole four callbacks then pass; the
+[fixed receipt](d1-direct-fixture-evidence/native4-fixed.json) and
+[whole fixed log](d1-direct-fixture-evidence/native4-fixed.log) retain the result.
+The post-green owned test refactor shares local fixture cleanup and disposes the
+actual runtime in `finally` if Kysely close fails. All four titles, fifteen static
+assertions and timeout expressions remain byte-identical; helper repair bytes
+remain unchanged. The [refactored receipt](d1-direct-fixture-evidence/native4-refactored.json)
+and [whole refactored log](d1-direct-fixture-evidence/native4-refactored.log)
+record four passes with zero failures, cancellations, skips or todos.
+Close-failure cleanup itself has static review coverage only.
+
+The actual public Main `ab43accd4de235b07a22dd0ac24289605902d959` is adopted by
+ordinary merge `079b96f7`, preserving its package, full Source patch, seven media
+notices and whole validation gates. The earlier setup full-run bridge errors do
+not establish the timing or cause of a hosted failure. No new scheduler/race,
+principal, credential, session, signature or protected HTTP probe was added.
+Other direct Miniflare fixtures retain their own transport and limits. Native
+fixture greens establish no new copied Source or deployed-D1 support.
+
+DT1-01 decision: Root has specifically authorized this bounded native harness
+change for development. Final exact-head whole normal/secured CI,
+independent/configured review, PM approval, author expected-head merge and
+post-Main verification remain pending. Landing or a passing native control does
+not establish full CMS parity or repair the remaining direct fixtures.

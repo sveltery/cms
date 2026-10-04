@@ -1410,3 +1410,47 @@ The dependency metadata qualification remains six exact Source integrities and
 snapshots, four exact whole Source package records and two verified pnpm 12
 `hasBin` metadata additions for image-size and mime. The original test-first
 package-layout failure and subsequent whole green receipts remain retained.
+
+
+## DT1-01: remaining direct D1 fixture transport
+
+EmDash 1.1.0 authority remains immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`,
+including `packages/cloudflare/src/db/d1-dialect.ts`. The
+[paired transport record](../../docs/d1-fixture-transport.md#remaining-direct-database-and-collection-update-fixtures)
+and [original Native family](../../tests/d1-direct-fixture-transport.test.ts)
+record a test-only harness substitution proposed in
+[PR #96](https://github.com/sveltery/cms/pull/96): the direct database and
+collection-update fixtures replace synchronous `getD1Database` proxies with the
+published asynchronous real workerd D1 transport. Their dedicated runtime,
+`cms-test-d1` and `cms-collection-update` identifiers, supplied persistence
+directories and original custom Worker dispatch are preserved. Existing
+schema-admin pooling/default/persistent behavior and the original transport
+Worker/binding bodies remain unchanged. Product drivers, providers, dependency
+versions, Source/native callbacks and assertions, auth behavior, whole normal
+commands and deadlines are unchanged. The private transport host is reserved by
+the test-only wrapper; application requests retain their original
+request/environment/execution context and fetch handler.
+
+At test-first `4ae51e2b`, the whole new four callbacks have two genuine Native
+value failures: each actual fixture performs 135 synchronous waits against zero,
+after all ordinary real D1 value/typed-binding/metadata/rollback assertions have
+succeeded. Custom Worker dispatch and exact original-identifier persistent
+reopen controls already pass. Infrastructure failures/cancellations/skips/todos
+are zero. The complete baseline receipt/log retain the actual result and four
+original whitespace-only console lines. Root qualified the unchanged extraction
+seam and exact three-helper repair before application at `2b6db0db`; the same
+whole four pass. A post-green owned cleanup refactor preserves all titles,
+fifteen static assertions and timeout expressions; all four pass again with
+zero bad counts. Complete baseline/fixed/refactored logs and receipts are linked
+from the paired feature record. Close-failure cleanup itself has static review
+coverage only. No earlier hosted failure causality is established; no new race,
+principal/credential/session/signature or protected HTTP probe is executed.
+This earns zero additional copied EmDash credit or deployed D1 support.
+
+Actual public Main `ab43accd4de235b07a22dd0ac24289605902d959` is adopted by
+ordinary merge `079b96f7`. Its package, full Source patch, seven media notices,
+validation commands and guards remain exact. DT1-01 decision status: Root
+specifically authorized bounded native harness development. Final exact-head
+whole normal/secured CI and independent/configured review, PM approval, author
+expected-head merge and post-Main verification remain pending. Other direct
+Miniflare fixtures and full product parity remain separate unfinished scope.
