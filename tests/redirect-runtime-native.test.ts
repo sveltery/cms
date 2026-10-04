@@ -3,8 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { sql, type Kysely } from 'kysely';
-import { installRedirectTables } from '../src/lib/server/redirects/migrations/index.ts';
+import { sql } from 'kysely';
 import type { RequestEvent } from '@sveltejs/kit';
 import { createCmsRuntime } from '../src/lib/server/runtime/composition.ts';
 
@@ -20,8 +19,7 @@ async function fixture() {
   const initial = request('/');
   await runtime.handle({event:initial,resolve:async()=>new Response('ok')});
   const database = initial.locals.cms!.database;
-  // Explicit native test fixture, never a registered application migration.
-  await installRedirectTables(database.db as unknown as Kysely<unknown>);
+  // The ordinary configured runtime already installed the real latest schema.
   return {runtime,database,deferred,async close(){await Promise.allSettled(deferred);await runtime.close();await rm(directory,{recursive:true,force:true});}};
 }
 

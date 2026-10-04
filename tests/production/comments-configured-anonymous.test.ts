@@ -1,5 +1,5 @@
 // Original ordinary public feature proof through UNREPLACED built runtime hooks.
-// Explicit complete fixture installation is not canonical installation parity.
+// Ordinary canonical startup supplies complete comment storage.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, rm } from 'node:fs/promises';
@@ -12,8 +12,6 @@ import { migrateCms } from '../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
 import { cmsService } from '../../src/lib/server/database/service.ts';
 import { lifecycleService } from '../../src/lib/server/database/lifecycle/service.ts';
-import { commentSchemaStatements } from '../../src/lib/server/comments/migrations.ts';
-import { commentRuntimeSchemaStatements } from '../../src/lib/server/comments/runtime-migrations.ts';
 import { asyncD1Storage } from '../helpers/async-d1-storage.ts';
 for(const target of ['Node SQLite','raw D1'] as const){
  test(`comments ${target} configured built runtime accepts anonymous ordinary submission`,{timeout:30000},async()=>{
@@ -33,7 +31,6 @@ for(const target of ['Node SQLite','raw D1'] as const){
    const content=await cmsService(database,principal).createContent({type:'post',slug:'article',data:{title:'Article'}});
    await lifecycleService(database,principal).publish({type:'post',id:content.id});
    await sql`UPDATE _cms_collections SET comments_enabled=1, comments_moderation='first_time', comments_auto_approve_users=1 WHERE slug='post'`.execute(database.db);
-   await database.atomicBatch([...commentSchemaStatements(database.db),...commentRuntimeSchemaStatements(database.db)]);
    const built=(file:string)=>import(new URL(`../../.svelte-kit/output/server/${file}`,import.meta.url).href);
    const {manifest}=await built('manifest.js');const {Server}=await built('index.js');const server=new Server(manifest);
    await server.init({env:worker?{}:{SVELTERY_DATABASE_PATH:path,SVELTERY_PUBLIC_ORIGIN:'http://comments.test'}});

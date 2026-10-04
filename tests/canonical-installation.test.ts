@@ -47,7 +47,8 @@ for (const target of targets) {
     try {
       await migrateCms(h.database);
       const versions = await h.database.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute();
-      assert.deepEqual(versions.map(row => row.version), [1, 2, 3, 4, 5, 6, 7, 8]);
+      assert.deepEqual(versions.slice(0,8).map(row => row.version), [1, 2, 3, 4, 5, 6, 7, 8]);
+      assert.deepEqual(versions.map(row => row.version), [1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
       await migrateCms(h.database);
       assert.deepEqual(await h.database.db.selectFrom('_cms_migrations').select('version').orderBy('version').execute(), versions);
     } finally { await h.close(); }
