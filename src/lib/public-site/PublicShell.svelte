@@ -1,10 +1,15 @@
 <script lang="ts">
   import { base } from '$app/paths';
+  import { page } from '$app/state';
   import type { Snippet } from 'svelte';
   let { children }: { children: Snippet } = $props();
+  const locale = $derived(page.url.searchParams.get('locale'));
+  function scopedHref(path: string) {
+    return locale ? `${path}?${new URLSearchParams({ locale })}` : path;
+  }
 </script>
 <div class="public-site">
-  <header><a class="brand" href="{base}/site">Sveltery</a><nav aria-label="Site navigation"><a href="{base}/site">Home</a><a href="{base}/posts">Posts</a></nav></header>
+  <header><a class="brand" href={scopedHref(`${base}/site`)}>Sveltery</a><nav aria-label="Site navigation"><a href={scopedHref(`${base}/site`)}>Home</a><a href={scopedHref(`${base}/posts`)}>Posts</a></nav></header>
   <main>{@render children()}</main>
   <footer><a href="{base}/">Manage content</a></footer>
 </div>
