@@ -16,7 +16,7 @@ for (const target of ['Node SQLite', 'raw D1'] as const) {
         const navigation = html.match(/<nav[^>]*aria-label="Workspace"[^>]*>([^]*?)<\/nav>/)?.[1];
         assert.ok(navigation, `common landmark on ${path}`);
         for (const route of ['comments', 'menus', 'redirects', 'widgets', 'sections']) {
-          const matches = Array.from(navigation.matchAll(new RegExp(`href="[^\"]*/${route}"`, 'g')));
+          const matches: RegExpExecArray[] = Array.from(navigation.matchAll(new RegExp(`href="[^\"]*/${route}"`, 'g')));
           assert.equal(matches.length, 1, `one real ${route} destination on ${path}`);
         }
         const activeRoute = path.startsWith('/comments') ? 'comments' : path.startsWith('/sections') ? 'sections' : path === '/widgets' ? 'widgets' : undefined;
