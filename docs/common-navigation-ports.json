@@ -194,7 +194,7 @@
         "assertionsExecuted": 0
       }
     ],
-    "status": "same whole12SSR callbacks green plus7 unchangedMain controls; exact installed-public dependency diagnosis only; realproduction/fullnormal/secured/finalreviewpending",
+    "status": "Whole native12 SSR assertions pass in actual hosted service1284; two whole real production callbacks first execute and pass; CN1 bounded native substitution specifically accepted by Root on 2026-10-04; final exact review/merge/post-Main pending",
     "finalTestFirstCommit": "1e02095",
     "productionTestFirstCommit": "bb80b6c",
     "wholeSSRTestFileSha256": "b646d2b0a07f59115be25244de40b24d8c9f70814d123a73faf637898d6621c8",
@@ -211,7 +211,7 @@
     },
     "headingFixtureCorrection": "Own Native selector accepts existing Svelte-scoped classes while still requiring actual h2 Manage; expected label, source assertions and all callbacks retained. Done before implementation, then same9 real reds/3 controls.",
     "realProductionCallbacks": 2,
-    "realProductionExecution": "unexecuted before own fresh production build",
+    "realProductionExecution": "Both complete callbacks first execute and pass in fresh public9fa hosted production277; first-green native controls, zero causal red/Source/authentication credit",
     "implementationCommit": "42e83f4",
     "wholeSSRDiagnosticGreen": {
       "newOwnCallbacks": 12,
@@ -223,7 +223,153 @@
       "normalFrozenCredit": 0,
       "bytes": 1889,
       "sha256": "6676f1b209a91eae15ca2889b8dd16912a3127ed9036a23da73ed8a890101cfa"
+    },
+    "typeOnlyCheckerRepair": {
+      "commit": "9fa1f3f63d1dd88251f92880141ac39249e1a5cb",
+      "file": "tests/production/common-navigation.test.ts",
+      "annotation": "RegExpExecArray[]",
+      "erasedRuntimeSha256": "c15074a26bbb9a38f07e8ad331b38b9bd59590864698ae3773fda92c757adfd3",
+      "callbacksAndAssertionsUnchanged": true,
+      "runtimeCredit": 0,
+      "sourceCredit": 0
     }
   },
-  "status": "Shared native integration applied after Root finite development qualification; final checks/review/merge pending, not full Source navigation"
+  "status": "Bounded installed-route native repair has complete public9fa normal/secured hosted checks; Root specifically accepts bounded CN1 native framework substitution on 2026-10-04; exact final independent/configured review and PM approval, owned merge and post-Main checks pending; full Source navigation remains incomplete",
+  "hostedValidation": {
+    "head": "9fa1f3f63d1dd88251f92880141ac39249e1a5cb",
+    "run": 37165958496,
+    "attempt": 1,
+    "event": "pull_request",
+    "conclusion": "success",
+    "new_source_execution": 0,
+    "causal_source_credit": 0,
+    "local_frozen_credit": 0,
+    "hosted_full_normal_credit": 1,
+    "own_production_first_greens": 2,
+    "own_production_causal_reds": 0,
+    "validate": {
+      "job_id": 111328758736,
+      "whole_decoded_log": "/tmp/common-navigation-pr85-current-hosted-validate.log",
+      "bytes": 457822,
+      "sha256": "04b852c2ae2ca79cce9481fb75c1f67403b05b53988f398e7f438d12136edeff",
+      "conclusion": "success",
+      "completed_stages": [
+        "frozen dependency install",
+        "type and Svelte checks",
+        "service tests",
+        "auth source assertions",
+        "auth source type assertions",
+        "pinned UI component source assertions",
+        "pinned datetime widget assertions",
+        "default production build",
+        "production remote tests",
+        "Node package and build",
+        "Node hosting tests",
+        "Cloudflare build and dry deployment bundle",
+        "Cloudflare source and Worker tests"
+      ],
+      "checker_errors": 0,
+      "checker_warnings": 0,
+      "node_whole_counts": [
+        1284,
+        277,
+        15,
+        7
+      ],
+      "node_whole_pass_counts": [
+        1284,
+        277,
+        15,
+        7
+      ],
+      "node_whole_fail_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "vitest_whole_counts": [
+        115,
+        203,
+        14,
+        128,
+        6,
+        12,
+        4,
+        38,
+        140,
+        3,
+        38,
+        105,
+        14,
+        23,
+        30,
+        23
+      ],
+      "own_real_production_callback_lines": [
+        "2026-10-04T00:52:15.5961380Z \u2714 Node SQLite: every installed admin page shares one real management navigation (368.166423ms)",
+        "2026-10-04T00:52:15.5963506Z \u2714 raw D1: every installed admin page shares one real management navigation (867.333498ms)"
+      ],
+      "own_real_production_callbacks_passed": 2,
+      "own_real_production_first_execution": true,
+      "own_real_production_causal_red_credit": 0
+    },
+    "browser": {
+      "job_id": 111328758630,
+      "whole_decoded_log": "/tmp/common-navigation-pr85-current-hosted-browser.log",
+      "bytes": 300810,
+      "sha256": "c5a5cf65b0b54af7ab05df9f09f76b88e24522e1572acf4e67f5063b03801318",
+      "conclusion": "success",
+      "source_whole_counts": [
+        14,
+        30,
+        25,
+        3,
+        35,
+        4
+      ],
+      "default_browser_count": 62,
+      "node_browser_count": 62,
+      "official_chromium_1243_launches": 8,
+      "all_exits_zero": true,
+      "forbidden_sandbox_flags": 0
+    }
+  },
+  "historicalFirstHostedValidation": {
+    "head": "5b4759eabafda8764ff79bffee9ec18469e10d96",
+    "run": 37165613141,
+    "attempt": 1,
+    "historical_head": true,
+    "new_source_credit": 0,
+    "normal_full_gate_credit": 0,
+    "validate": {
+      "job_id": 111327775722,
+      "bytes": 20607,
+      "sha256": "ce10497f3aa646070238c7dd2223fe8e0b1268606b6df0339dfef0ce0491c015",
+      "conclusion": "failure",
+      "checker_errors": 1,
+      "checker_warnings": 0,
+      "own_frozen_install": true,
+      "full_normal_stages": false
+    },
+    "browser": {
+      "job_id": 111327775612,
+      "bytes": 295504,
+      "sha256": "767bb5ec3405387b42f5f36c3d08a73b4114593974410d1df990c2d83eab89c6",
+      "conclusion": "success",
+      "source_whole_counts": [
+        14,
+        30,
+        25,
+        3,
+        35,
+        4
+      ],
+      "default_browser_count": 62,
+      "node_browser_count": 62,
+      "official_chromium_1243_launches": 8,
+      "all_exits_zero": true,
+      "forbidden_sandbox_flags": 0
+    }
+  }
 }
