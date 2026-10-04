@@ -1,0 +1,153 @@
+{
+  "head": "22e6f325aa362d78ffc9d592aa4216df69f57993",
+  "checkoutMerge": "536c496279e6d9447729756009676732e118a556",
+  "checkoutBase": "135e7be689885fd23678569d0d373a1131f5302b",
+  "pr": 88,
+  "run": 37180067698,
+  "job": 111370660678,
+  "artifact": 11294758000,
+  "result": "whole18 passed against actual Svelte setup wizard and original Source mocks",
+  "sourceExecutedCases": 18,
+  "sourcePassedCases": 18,
+  "sourceE2EExecutedCases": 0,
+  "scope": "Original whole18 Source component assertions over original ordinary UI API/provider/navigation mocks; no runtime seed/provider/Access/import, real credential ceremony/session or E2E6 credit.",
+  "json": {
+    "path": "green-22e6f325-source-18.json",
+    "bytes": 5757,
+    "sha256": "acfdac8000891cefaaa15338c3acaa6900a62c3db006f51917a0dd3d466b5fff",
+    "numTotalTests": 18,
+    "numPassedTests": 18,
+    "numFailedTests": 0,
+    "numPendingTests": 0
+  },
+  "originalDeadlines": {
+    "vitestBrowserTestMs": 15000,
+    "vitestHookMs": 30000,
+    "securedBrowserLaunchMs": 30000,
+    "outerWrapperSeconds": 360,
+    "killAfterSeconds": 30
+  },
+  "physicalBrowserLaunch": "2026-10-04T05:30:58.5435828Z 2026-10-04T05:30:58.539Z pw:browser <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-wD6Lsi --remote-debugging-pipe --no-startup-window",
+  "physicalBrowserLaunched": "2026-10-04T05:30:58.5513266Z 2026-10-04T05:30:58.548Z pw:browser <launched> pid=3074",
+  "noNoSandboxFlag": true,
+  "jsonCompleted": "2026-10-04T05:31:03.5870702Z JSON report written to /home/runner/work/cms/cms/test-results/setup-wizard-source-18.json",
+  "rawLog": {
+    "localPath": "/tmp/setup-wizard-source-green-22e6f325-job111370660678.log",
+    "sha256": "9d7f00170016311bc641baeb6d6cb93b16ac93c69d58a8031ef9070d6b47f69e",
+    "bytes": 53032,
+    "publicJob": "https://github.com/sveltery/cms/actions/runs/37180067698/job/111370660678"
+  },
+  "cases": [
+    {
+      "title": "shows site setup step first with title input",
+      "fullName": "SetupWizard shows site setup step first with title input",
+      "status": "passed",
+      "durationMs": 80.39999999999418
+    },
+    {
+      "title": "empty title prevents advancing and shows validation error",
+      "fullName": "SetupWizard empty title prevents advancing and shows validation error",
+      "status": "passed",
+      "durationMs": 187.59999999999127
+    },
+    {
+      "title": "filling title and clicking Next advances to admin step",
+      "fullName": "SetupWizard filling title and clicking Next advances to admin step",
+      "status": "passed",
+      "durationMs": 120.30000000000291
+    },
+    {
+      "title": "does not present media usage tracking as an onboarding choice",
+      "fullName": "SetupWizard does not present media usage tracking as an onboarding choice",
+      "status": "passed",
+      "durationMs": 55.69999999999709
+    },
+    {
+      "title": "admin step shows email input",
+      "fullName": "SetupWizard admin step shows email input",
+      "status": "passed",
+      "durationMs": 107.30000000000291
+    },
+    {
+      "title": "empty email prevents advancing on admin step",
+      "fullName": "SetupWizard empty email prevents advancing on admin step",
+      "status": "passed",
+      "durationMs": 165.59999999999127
+    },
+    {
+      "title": "step indicator shows three steps",
+      "fullName": "SetupWizard step indicator shows three steps",
+      "status": "passed",
+      "durationMs": 55.80000000000291
+    },
+    {
+      "title": "prefills title and tagline from seedInfo",
+      "fullName": "SetupWizard prefills title and tagline from seedInfo",
+      "status": "passed",
+      "durationMs": 54.69999999999709
+    },
+    {
+      "title": "uses empty string for title and tagline when not in seedInfo",
+      "fullName": "SetupWizard uses empty string for title and tagline when not in seedInfo",
+      "status": "passed",
+      "durationMs": 56.30000000000291
+    },
+    {
+      "title": "prefilled title can be edited and submitted",
+      "fullName": "SetupWizard prefilled title can be edited and submitted",
+      "status": "passed",
+      "durationMs": 116.80000000000291
+    },
+    {
+      "title": "offers import alongside sample content and an empty site",
+      "fullName": "SetupWizard starting from a site package offers import alongside sample content and an empty site",
+      "status": "passed",
+      "durationMs": 56.69999999999709
+    },
+    {
+      "title": "skips sample content and lands on the Transfer import after signing in",
+      "fullName": "SetupWizard starting from a site package skips sample content and lands on the Transfer import after signing in",
+      "status": "passed",
+      "durationMs": 326.1999999999971
+    },
+    {
+      "title": "keeps sample content and the dashboard as the default",
+      "fullName": "SetupWizard starting from a site package keeps sample content and the dashboard as the default",
+      "status": "passed",
+      "durationMs": 265.3000000000029
+    },
+    {
+      "title": "skips sample content for an empty site",
+      "fullName": "SetupWizard starting from a site package skips sample content for an empty site",
+      "status": "passed",
+      "durationMs": 299.8999999999942
+    },
+    {
+      "title": "goes straight to the Transfer import when Cloudflare Access completes setup",
+      "fullName": "SetupWizard starting from a site package goes straight to the Transfer import when Cloudflare Access completes setup",
+      "status": "passed",
+      "durationMs": 150.5
+    },
+    {
+      "title": "keeps posting while sample content remains, then advances",
+      "fullName": "SetupWizard keeps posting while sample content remains, then advances",
+      "status": "passed",
+      "durationMs": 168.5
+    },
+    {
+      "title": "keeps the added sample content after a failed request and resumes on Continue",
+      "fullName": "SetupWizard keeps the added sample content after a failed request and resumes on Continue",
+      "status": "passed",
+      "durationMs": 181.60000000000582
+    },
+    {
+      "title": "stops posting when a request reports no progress",
+      "fullName": "SetupWizard stops posting when a request reports no progress",
+      "status": "passed",
+      "durationMs": 166.90000000000873
+    }
+  ],
+  "baseline": "baseline-f890c885-rendered-red.json",
+  "productionEntryPointIntegrated": false,
+  "normalFinalCI": "pending; final product prerequisites remain incomplete"
+}
