@@ -1097,5 +1097,333 @@
       "expectations": []
     }
   ],
-  "expectExpressions": 61
+  "expectExpressions": 63,
+  "wholeFileExpectations": [
+    {
+      "source": "packages/admin/tests/components/SetupWizard.test.tsx",
+      "expectations": [
+        {
+          "line": 92,
+          "expression": "expect.element(screen.getByText(\"Set up your site\")).toBeInTheDocument()",
+          "sha256": "27a43a0d33ddfccf8bc028e997b7674fcb3a3ff273b3b4c586cbaf1aec5c652e"
+        },
+        {
+          "line": 93,
+          "expression": "expect.element(screen.getByPlaceholder(\"My Awesome Blog\")).toBeInTheDocument()",
+          "sha256": "4540f90aba2f77f9a7b556fb710b3bf989aeba5dc6bb0a578131b4c2c497e47a"
+        },
+        {
+          "line": 103,
+          "expression": "expect.element(screen.getByText(\"Set up your site\")).toBeInTheDocument()",
+          "sha256": "27a43a0d33ddfccf8bc028e997b7674fcb3a3ff273b3b4c586cbaf1aec5c652e"
+        },
+        {
+          "line": 106,
+          "expression": "expect.element(screen.getByText(\"Site title is required\")).toBeInTheDocument()",
+          "sha256": "8a597cf6d6faa2125f9b64a51c9c56e0198f3040099cf320af54bbfd3e923580"
+        },
+        {
+          "line": 108,
+          "expression": "expect.element(screen.getByText(\"Set up your site\")).toBeInTheDocument()",
+          "sha256": "27a43a0d33ddfccf8bc028e997b7674fcb3a3ff273b3b4c586cbaf1aec5c652e"
+        },
+        {
+          "line": 117,
+          "expression": "expect.element(screen.getByText(\"Set up your site\")).toBeInTheDocument()",
+          "sha256": "27a43a0d33ddfccf8bc028e997b7674fcb3a3ff273b3b4c586cbaf1aec5c652e"
+        },
+        {
+          "line": 123,
+          "expression": "expect.element(screen.getByText(\"Create your account\")).toBeInTheDocument()",
+          "sha256": "a2b071fa9abdf2a085f9d944c71d86a872cf6eaf0821a906232b4ed6b2be41ed"
+        },
+        {
+          "line": 132,
+          "expression": "expect.element(screen.getByText(\"Set up your site\")).toBeInTheDocument()",
+          "sha256": "27a43a0d33ddfccf8bc028e997b7674fcb3a3ff273b3b4c586cbaf1aec5c652e"
+        },
+        {
+          "line": 133,
+          "expression": "expect(screen.getByRole(\"checkbox\", { name: /Track where media is used/ }).query()).toBeNull()",
+          "sha256": "8d01628ad38bd380d37db5db749b6d222bbcbd551efa05a34e6f195dfd737cfb"
+        },
+        {
+          "line": 142,
+          "expression": "expect.element(screen.getByText(\"Set up your site\")).toBeInTheDocument()",
+          "sha256": "27a43a0d33ddfccf8bc028e997b7674fcb3a3ff273b3b4c586cbaf1aec5c652e"
+        },
+        {
+          "line": 147,
+          "expression": "expect.element(screen.getByText(\"Create your account\")).toBeInTheDocument()",
+          "sha256": "a2b071fa9abdf2a085f9d944c71d86a872cf6eaf0821a906232b4ed6b2be41ed"
+        },
+        {
+          "line": 148,
+          "expression": "expect.element(screen.getByPlaceholder(\"you@example.com\")).toBeInTheDocument()",
+          "sha256": "3d0dd732e9e1d6764246e0b9410a1fc3069109abfc1676ce94167a448d31a961"
+        },
+        {
+          "line": 157,
+          "expression": "expect.element(screen.getByText(\"Set up your site\")).toBeInTheDocument()",
+          "sha256": "27a43a0d33ddfccf8bc028e997b7674fcb3a3ff273b3b4c586cbaf1aec5c652e"
+        },
+        {
+          "line": 161,
+          "expression": "expect.element(screen.getByText(\"Create your account\")).toBeInTheDocument()",
+          "sha256": "a2b071fa9abdf2a085f9d944c71d86a872cf6eaf0821a906232b4ed6b2be41ed"
+        },
+        {
+          "line": 165,
+          "expression": "expect.element(screen.getByText(\"Email is required\")).toBeInTheDocument()",
+          "sha256": "3aeda76016012f4d32254bb7ee1e379602805a458b2143ce570b892faf742a76"
+        },
+        {
+          "line": 174,
+          "expression": "expect.element(screen.getByText(\"Set up your site\")).toBeInTheDocument()",
+          "sha256": "27a43a0d33ddfccf8bc028e997b7674fcb3a3ff273b3b4c586cbaf1aec5c652e"
+        },
+        {
+          "line": 176,
+          "expression": "expect.element(screen.getByText(\"Account\")).toBeInTheDocument()",
+          "sha256": "e91c9aac61d41b97dc60655f8da878f6ffc4ce83f61766461f36ca850ecf72f5"
+        },
+        {
+          "line": 177,
+          "expression": "expect.element(screen.getByText(\"Sign In\")).toBeInTheDocument()",
+          "sha256": "8b3ef05071fa20cf7194563996a6ff6241267e1e6d5a4fecfa8ad26d82182a60"
+        },
+        {
+          "line": 196,
+          "expression": "expect.element(screen.getByText(\"Set up your site\")).toBeInTheDocument()",
+          "sha256": "27a43a0d33ddfccf8bc028e997b7674fcb3a3ff273b3b4c586cbaf1aec5c652e"
+        },
+        {
+          "line": 202,
+          "expression": "expect((titleInput.element() as HTMLInputElement).value).toBe(\"My Awesome Blog\")",
+          "sha256": "c76ef0c807344a9b35a666cc30b1f784b74986ab03a167a4316bdbbd0175420a"
+        },
+        {
+          "line": 205,
+          "expression": "expect((taglineInput.element() as HTMLInputElement).value).toBe(\"Thoughts and tutorials\")",
+          "sha256": "28ee4ee20473c944348ad499cf31bfcc237448ad7f2071422cec873728ea2460"
+        },
+        {
+          "line": 224,
+          "expression": "expect.element(screen.getByText(\"Set up your site\")).toBeInTheDocument()",
+          "sha256": "27a43a0d33ddfccf8bc028e997b7674fcb3a3ff273b3b4c586cbaf1aec5c652e"
+        },
+        {
+          "line": 230,
+          "expression": "expect((titleInput.element() as HTMLInputElement).value).toBe(\"\")",
+          "sha256": "e22469500297365b6065cf66c4d942e2c4cef55b8e20832d8ad75f0b23ec7bbb"
+        },
+        {
+          "line": 233,
+          "expression": "expect((taglineInput.element() as HTMLInputElement).value).toBe(\"\")",
+          "sha256": "0afb19b630feb3df6974968c3e270353d8e10c57e3de4744727c042463904b47"
+        },
+        {
+          "line": 253,
+          "expression": "expect.element(screen.getByText(\"Set up your site\")).toBeInTheDocument()",
+          "sha256": "27a43a0d33ddfccf8bc028e997b7674fcb3a3ff273b3b4c586cbaf1aec5c652e"
+        },
+        {
+          "line": 257,
+          "expression": "expect((titleInput.element() as HTMLInputElement).value).toBe(\"My Awesome Blog\")",
+          "sha256": "c76ef0c807344a9b35a666cc30b1f784b74986ab03a167a4316bdbbd0175420a"
+        },
+        {
+          "line": 263,
+          "expression": "expect((screen.getByPlaceholder(\"My Awesome Blog\").element() as HTMLInputElement).value).toBe(\n\t\t\t\t\"My Custom Blog\",\n\t\t\t)",
+          "sha256": "46b13fe92d2757bab5b98c0991ddb82582ce26b86c74cc300ad537e37f16c771"
+        },
+        {
+          "line": 270,
+          "expression": "expect.element(screen.getByText(\"Create your account\")).toBeInTheDocument()",
+          "sha256": "a2b071fa9abdf2a085f9d944c71d86a872cf6eaf0821a906232b4ed6b2be41ed"
+        },
+        {
+          "line": 300,
+          "expression": "expect.element(screen.getByText(\"Set up your site\")).toBeInTheDocument()",
+          "sha256": "27a43a0d33ddfccf8bc028e997b7674fcb3a3ff273b3b4c586cbaf1aec5c652e"
+        },
+        {
+          "line": 307,
+          "expression": "expect.element(screen.getByText(\"Create your account\")).toBeInTheDocument()",
+          "sha256": "a2b071fa9abdf2a085f9d944c71d86a872cf6eaf0821a906232b4ed6b2be41ed"
+        },
+        {
+          "line": 318,
+          "expression": "expect.element(screen.getByRole(\"radio\", { name: /Sample content/ })).toBeChecked()",
+          "sha256": "a9ebb4b67f10fce40e923b43709f295efb12e4d198933402badd1c2c87d23217"
+        },
+        {
+          "line": 319,
+          "expression": "expect.element(screen.getByRole(\"radio\", { name: /Empty site/ })).toBeInTheDocument()",
+          "sha256": "740c526614b6d60e0f46a746cb87e0b035b8cd864bab75dd29f9b7aa999f537f"
+        },
+        {
+          "line": 333,
+          "expression": "expect(navigateTo).toHaveBeenCalledWith(\"/_emdash/admin/settings/transfer?start=import\")",
+          "sha256": "225d23b9869ad8f9c7d68e183f0eb6f0ae20e1ce6bb8e7919e1941c29a5d72f6"
+        },
+        {
+          "line": 335,
+          "expression": "expect(setupRequests).toEqual([{ title: \"Moved Site\", tagline: \"\", includeContent: false }])",
+          "sha256": "6b4f51230c7545744689de1502f977cd1bd172a1e6021eb2ee5e27e881a3a188"
+        },
+        {
+          "line": 345,
+          "expression": "expect(navigateTo).toHaveBeenCalledWith(\"/_emdash/admin\")",
+          "sha256": "d9ca610d75c388236ba0c0e4908847675b95f1d155afeb1fb4fabac81d14f7ef"
+        },
+        {
+          "line": 347,
+          "expression": "expect(setupRequests).toEqual([{ title: \"Moved Site\", tagline: \"\", includeContent: true }])",
+          "sha256": "b5840fd34eb1f431e3ccf1331d0f8a446f2327f073e47e290e4295b8b468b5d1"
+        },
+        {
+          "line": 358,
+          "expression": "expect(navigateTo).toHaveBeenCalledWith(\"/_emdash/admin\")",
+          "sha256": "d9ca610d75c388236ba0c0e4908847675b95f1d155afeb1fb4fabac81d14f7ef"
+        },
+        {
+          "line": 360,
+          "expression": "expect(setupRequests).toEqual([{ title: \"Moved Site\", tagline: \"\", includeContent: false }])",
+          "sha256": "6b4f51230c7545744689de1502f977cd1bd172a1e6021eb2ee5e27e881a3a188"
+        },
+        {
+          "line": 370,
+          "expression": "expect.element(screen.getByRole(\"radio\", { name: /Empty site/ })).toBeChecked()",
+          "sha256": "4cd0b1e3121014e8cfae55a645c018958513257d77b13606040d7e94ba750c10"
+        },
+        {
+          "line": 376,
+          "expression": "expect(navigateTo).toHaveBeenCalledWith(\"/_emdash/admin/settings/transfer?start=import\")",
+          "sha256": "225d23b9869ad8f9c7d68e183f0eb6f0ae20e1ce6bb8e7919e1941c29a5d72f6"
+        },
+        {
+          "line": 388,
+          "expression": "expect.element(screen.getByText(\"Set up your site\")).toBeInTheDocument()",
+          "sha256": "27a43a0d33ddfccf8bc028e997b7674fcb3a3ff273b3b4c586cbaf1aec5c652e"
+        },
+        {
+          "line": 392,
+          "expression": "expect.element(screen.getByText(\"Create your account\")).toBeInTheDocument()",
+          "sha256": "a2b071fa9abdf2a085f9d944c71d86a872cf6eaf0821a906232b4ed6b2be41ed"
+        },
+        {
+          "line": 393,
+          "expression": "expect(setupRequests).toHaveLength(3)",
+          "sha256": "b09161e3e1fa2c5c6d0436bfd5216ff212748c232bbdcadd6b77b3555d86d5bd"
+        },
+        {
+          "line": 409,
+          "expression": "expect.element(screen.getByText(\"Set up your site\")).toBeInTheDocument()",
+          "sha256": "27a43a0d33ddfccf8bc028e997b7674fcb3a3ff273b3b4c586cbaf1aec5c652e"
+        },
+        {
+          "line": 413,
+          "expression": "expect.element(screen.getByText(\"Failed to apply seed\")).toBeInTheDocument()",
+          "sha256": "4b89627492fe4a0e06c60de250257590c2f87187f307997b7df90c8f2ce6c542"
+        },
+        {
+          "line": 419,
+          "expression": "expect.element(screen.getByText(\"40 of 112 items\")).toBeInTheDocument()",
+          "sha256": "2953201bc442071dee0a36aa54d9fc3dd03dbb1cb9495aee37933d372c4d8ba7"
+        },
+        {
+          "line": 422,
+          "expression": "expect.element(screen.getByText(\"Create your account\")).toBeInTheDocument()",
+          "sha256": "a2b071fa9abdf2a085f9d944c71d86a872cf6eaf0821a906232b4ed6b2be41ed"
+        },
+        {
+          "line": 423,
+          "expression": "expect(setupRequests).toHaveLength(3)",
+          "sha256": "b09161e3e1fa2c5c6d0436bfd5216ff212748c232bbdcadd6b77b3555d86d5bd"
+        },
+        {
+          "line": 433,
+          "expression": "expect.element(screen.getByText(\"Set up your site\")).toBeInTheDocument()",
+          "sha256": "27a43a0d33ddfccf8bc028e997b7674fcb3a3ff273b3b4c586cbaf1aec5c652e"
+        },
+        {
+          "line": 437,
+          "expression": "expect.element(screen.getByText(\"Setup failed\")).toBeInTheDocument()",
+          "sha256": "1ece82287930cb992455388ce11a710600a6c390eb50eee2d8e1f549603df8ab"
+        },
+        {
+          "line": 438,
+          "expression": "expect(setupRequests).toHaveLength(2)",
+          "sha256": "29529f7f92844abe844432f41693f0558cb3f7982cf400eac61b13ef591a40c4"
+        }
+      ]
+    },
+    {
+      "source": "e2e/tests/setup-wizard.spec.ts",
+      "expectations": [
+        {
+          "line": 53,
+          "expression": "expect(admin.page.locator(\"text=Set up your site\")).toBeVisible()",
+          "sha256": "01cd52f2f9bdbc14635f1a5a3c4b757ff82af7f0ca7b450ce5a403e947b3a4c6"
+        },
+        {
+          "line": 54,
+          "expression": "expect(admin.page.getByLabel(\"Site Title\")).toBeVisible()",
+          "sha256": "7567b733899ade06603a83305c89b43af04c87b79038108ec539cb9696fb1e5e"
+        },
+        {
+          "line": 55,
+          "expression": "expect(admin.page.getByLabel(\"Tagline\")).toBeVisible()",
+          "sha256": "5b31cb4bbf5a94beaff212e33bf2db275dc90f905cf00f18d42aeca14ad1a163"
+        },
+        {
+          "line": 56,
+          "expression": "expect(admin.page.getByRole(\"button\", { name: \"Continue\" })).toBeVisible()",
+          "sha256": "9eb84432b6ec158f7b42eb7df186b984212b931bcafc46c85ad8b279160cf581"
+        },
+        {
+          "line": 65,
+          "expression": "expect(admin.page.locator(\"text=Site title is required\")).toBeVisible()",
+          "sha256": "450b650e504b05302dfce0340372e4fce25e8816134147a3bc65b003fb9c2111"
+        },
+        {
+          "line": 75,
+          "expression": "expect(admin.page.locator(\"text=Create your account\")).toBeVisible()",
+          "sha256": "152b43abb2a7178a4f3f64abd2d76af008df7601ea11fe1c1a75e62364ad056b"
+        },
+        {
+          "line": 76,
+          "expression": "expect(admin.page.getByLabel(\"Your Email\")).toBeVisible()",
+          "sha256": "f2786602266a0b21d3ac2301bb0c577eaf35f2443fa9d92550156a5bd0e1c240"
+        },
+        {
+          "line": 77,
+          "expression": "expect(admin.page.getByLabel(\"Your Name\")).toBeVisible()",
+          "sha256": "3629b72cbb6ca8d08f9fcf2ed1f0e5e12b67c3077cdaabcb123194153797b2c7"
+        },
+        {
+          "line": 86,
+          "expression": "expect(admin.page.locator(\"text=Create your account\")).toBeVisible()",
+          "sha256": "152b43abb2a7178a4f3f64abd2d76af008df7601ea11fe1c1a75e62364ad056b"
+        },
+        {
+          "line": 93,
+          "expression": "expect(admin.page.locator(\"text=Secure your account\")).toBeVisible()",
+          "sha256": "81fe6792632c76c56f39e44e799e2c78b49953d4258d8c5223d76cd31e7d2396"
+        },
+        {
+          "line": 94,
+          "expression": "expect(\n\t\t\tadmin.page.getByRole(\"heading\", {\n\t\t\t\tname: \"With a passkey, you don’t need to remember complex passwords\",\n\t\t\t}),\n\t\t).toBeVisible()",
+          "sha256": "9014de9fd9393f194f548236b6b278cb67453ab38c7fc1dea4260f0ec5c6b07e"
+        },
+        {
+          "line": 99,
+          "expression": "expect(\n\t\t\tadmin.page.getByRole(\"button\", { name: PASSKEY_ACTION_REGEX }).first(),\n\t\t).toBeVisible()",
+          "sha256": "b0337c3a93ffae4acd1b3f9f3dc4d975527074c51b33b09deb714a237e0c7da0"
+        }
+      ]
+    }
+  ],
+  "declarationExpectExpressions": 61
 }
