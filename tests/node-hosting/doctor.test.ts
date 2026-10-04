@@ -17,8 +17,12 @@ test('standalone frozen production package contains and runs the real doctor com
   const manifest = JSON.parse(await readFile(join(directory, 'package.json'), 'utf8'));
   assert.deepEqual(manifest.bin, {'sveltery-doctor': './build/doctor.js'});
   assert.deepEqual(manifest.scripts, {start: 'node build/index.js'});
-  const installed = spawnSync('pnpm', ['install', '--prod', '--frozen-lockfile', '--ignore-scripts',
-    '--store-dir', join(root, 'store')], {cwd: directory, encoding: 'utf8', timeout: 120_000});
+  const pnpm = process.env.npm_execpath;
+  assert.ok(pnpm, 'run via the pinned pnpm to use its exact package manager');
+  const javascriptPnpm = /\.[cm]?js$/.test(pnpm);
+  const installArgs = ['install', '--prod', '--frozen-lockfile', '--ignore-scripts', '--store-dir', join(root, 'store')];
+  const installed = spawnSync(javascriptPnpm ? process.execPath : pnpm,
+    javascriptPnpm ? [pnpm, ...installArgs] : installArgs, {cwd: directory, encoding: 'utf8', timeout: 120_000});
   assert.equal(installed.error, undefined);
   assert.equal(installed.status, 0, installed.stdout + installed.stderr);
   const path = join(directory, 'operator.sqlite');
