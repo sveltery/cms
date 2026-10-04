@@ -1,6 +1,6 @@
 // This bridge changes only module/environment resolution. RemoteForm behavior
 // comes from the installed exact Kit implementation and all data reaches actual HTTP.
-import { form } from '../../../node_modules/@sveltejs/kit/src/runtime/client/remote-functions/form.svelte.js';
+import { form } from 'sveltery-test:installed-kit-form';
 import type { schemaAdminRemotes } from '../schema-admin-remotes';
 export let fixture: Awaited<ReturnType<typeof schemaAdminRemotes>>;
 const forms = new Map<string, ReturnType<typeof form>>();

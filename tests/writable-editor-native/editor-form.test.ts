@@ -11,6 +11,8 @@ import EditorForm from '../../src/lib/editor/EditorForm.svelte';
 let fixture: Awaited<ReturnType<typeof schemaAdminRemotes>>;
 let instance: ReturnType<typeof mount> | undefined;
 const actualFetch = globalThis.fetch;
+const actualSetTimeout = globalThis.setTimeout;
+const actualClearTimeout = globalThis.clearTimeout;
 let delay: Promise<void> | undefined;
 let release: (() => void) | undefined;
 let requestCount = 0;
@@ -33,7 +35,7 @@ beforeEach(async () => {
 });
 afterEach(async () => {
   release?.(); if (instance) await unmount(instance); instance = undefined;
-  document.body.replaceChildren(); vi.useRealTimers(); vi.unstubAllGlobals(); await fixture?.close();
+  document.body.replaceChildren(); vi.restoreAllMocks(); vi.unstubAllGlobals(); await fixture?.close();
 });
 async function render() {
   const result = await fixture.mutate('createContent', { collection: 'stories', data: JSON.stringify({ title: 'Original' }) }, 'author');
@@ -62,16 +64,28 @@ it('actual programmatic autosave enters pending and preserves later typing throu
 
 it('actual terminal autosave validation displays the issue and stops repeating until changed', async () => {
   const { target, entry } = await render();
-  // Advance only the native UI clock; actual HTTP/storage responses stay real.
-  // Retain the original five-second test deadline and production 2000ms delay.
-  vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+  // Control only the editor's 2000ms UI timers. Replacing all global timers also
+  // stalls actual HTTP internals. All other timers and the 5s deadline stay real.
+  const queued: { callback: () => void; active: boolean }[] = [];
+  vi.spyOn(globalThis, 'setTimeout').mockImplementation(((callback: () => void, delay?: number, ...args: unknown[]) => {
+    if (delay !== 2000) return actualSetTimeout(callback, delay, ...args);
+    const timer = { callback, active: true }; queued.push(timer); return timer;
+  }) as typeof setTimeout);
+  vi.spyOn(globalThis, 'clearTimeout').mockImplementation(((timer: ReturnType<typeof setTimeout>) => {
+    const ui = queued.find(candidate => candidate === (timer as unknown));
+    if (ui) ui.active = false; else actualClearTimeout(timer);
+  }) as typeof clearTimeout);
+  const advanceUI = async () => {
+    for (const timer of queued.splice(0)) if (timer.active) timer.callback();
+    await tick();
+  };
   await edit(target, 'summary', 'short');
-  await vi.advanceTimersByTimeAsync(2000);
+  await advanceUI();
   await vi.waitFor(() => expect(target.querySelector('[role="alert"]')?.textContent ?? '').toContain('Summary needs at least 10 characters.'), { timeout: 4000 });
-  await vi.advanceTimersByTimeAsync(2200); expect(requestCount).toBe(1);
+  await advanceUI(); expect(requestCount).toBe(1);
   expect((target.querySelector('[data-field="summary"]') as HTMLInputElement).value).toBe('short');
   await edit(target, 'summary', 'Long enough now');
-  await vi.advanceTimersByTimeAsync(2000);
+  await advanceUI();
   await vi.waitFor(() => expect(target.querySelector('button')?.textContent).toBe('Saved'), { timeout: 4000 });
   expect((await fixture.query('getContent', { collection: 'stories', id: entry.id }, 'author')).data.summary).toBe('Long enough now');
 });
