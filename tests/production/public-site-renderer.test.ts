@@ -136,14 +136,17 @@ for (const target of ['Node', 'D1'] as const) {
     await runtime.request('/');
     const database = await runtime.database();
     const registry = new SchemaRegistry(database);
-    const service = lifecycleService(database, { id: 'public-empty-slug-author', permissions: ['content:create', 'content:publish_own'] }, { after: () => {} });
+    const service = lifecycleService(database, { id: 'public-empty-slug-author', permissions: ['content:create', 'content:publish_own', 'content:edit_own'] }, { after: () => {} });
     for (const type of ['posts', 'pages']) {
       await registry.createCollection({ slug: type, label: type });
       await registry.createField(type, { slug: 'title', label: 'Title', type: 'string' });
       const title = `Empty-slug ${type}`;
       const item = await service.createContent({ type, slug: '', data: { title } });
-      assert.equal(item.slug, '', 'real service fixture retains the empty persisted slug');
+      assert.equal(item.slug, null, 'ordinary draft creation normalizes an empty slug');
       await service.publish({ type, id: item.id });
+      await service.updateContent({ type, id: item.id, slug: '' });
+      const republished = await service.publish({ type, id: item.id });
+      assert.equal(republished.slug, '', 'real staged update and publication retain the empty slug');
       for (const archive of type === 'posts' ? ['/site', '/posts'] : ['/site']) {
         const response = await runtime.request(archive);
         assert.equal(response.status, 200, archive);
