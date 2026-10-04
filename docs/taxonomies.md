@@ -96,3 +96,18 @@ Test-first commit `b02f30de8ebd932682e2d1f75fb64301ee4fb4eb` contains the exact 
 The whole Source matcher15 suite stops at the absent Native matcher before collection/expect:0 callbacks,0 reached assertions and0 completed Source value reds. The other26 complete Source families remain retained/unexecuted, with no passing credit. Root clarified that original supplied Source mocked/unit contexts are not blanket forbidden protected HTTP; their actual fixture/transport closure still requires a finite proposal. No new actual credentials, sessions, signatures, replay/race or protected HTTP probes occurred. Product implementation and Source behavior acceptance remain pending.
 
 Only the two literal raw baseline-log paths receive `whitespace=-blank-at-eof` attributes because original Vitest output ends with a second newline. Both complete raw receipts stay byte-exact; ordinary trailing-whitespace validation remains active on them, and all other paths retain the existing defaults. No full validation, browser, deployed runtime or feature-completion credit is established by this checkpoint.
+
+## D1 atomic write requirements: test-first proposal
+
+Eight original Native tests use the real published `localD1` raw-binding fixture,
+actual canonical migrations, collection/field owners and existing taxonomy
+repository. They cover cross-locale creation, insertion/group-move rollback,
+definition/group rollback, shared structure edits, 66-group reorder rollback
+across three Source-sized chunks, assignment replacement rollback, full cleanup,
+and retention of the public direct-write boundary. Failures are induced with
+dedicated ordinary SQLite triggers; no principal, session or HTTP is supplied.
+They are supplemental Native contracts and earn no Source assertion credit.
+Their default Vitest clocks remain unchanged. The whole 27 original Source
+families and original Native10 callbacks/assertions remain unchanged. These new
+requirements are retained before the finite atomic implementation is applied;
+actual run classifications will be appended after the first execution.

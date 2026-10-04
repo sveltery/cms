@@ -1560,3 +1560,20 @@ Ten Original Native ordinary SQL requirements consume the real public canonical 
 The exact qualified test-only packet is regularly committed at `b02f30de8ebd932682e2d1f75fb64301ee4fb4eb`. [The complete actual receipt](../../docs/taxonomy-evidence/initial-baseline.json) retains each whole raw log and separates initial control/module availability from actual SQL/Source behavior. Guard99/27/310/815 passes; Native10 executes one already implemented real group control and9 reached missing-handler assertion reds, with later SQL values unreached. Whole Source matcher15 stops before collection at its absent Native module; completed Source value-red and Source execution credits remain0. Other26 whole families stay exact/retained/unexecuted.
 
 Original Source supplied mocked/unit contexts are not blanket classified as unauthorized protected HTTP; their concrete real fixture/transport closure still requires a finite proposal. No new actual credentials/session/signature/replay/race or protected HTTP probe is performed. The two literal raw baseline files keep all original bytes and receive only `whitespace=-blank-at-eof`; no wildcard or global whitespace exemption exists. Product namespace/atomic/backend/admin closure, whole Source integration, specific TAX1 acceptance, author-owned PR/final normal/secured gates/review/approval/merge/post-Main remain pending.
+
+### Taxonomy D1 atomic write contracts (PR102, test-first; not parity approval)
+
+Pinned authority: EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`,
+`packages/core/src/database/repositories/taxonomy.ts` and
+`packages/core/src/api/handlers/taxonomies.ts`. Source uses interactive
+transactions where supported and per-chunk reorder writes on D1. Native must
+use the actual existing atomic provider for each complete mutation, including
+multiple reorder chunks. Eight supplemental tests retain real D1 storage,
+66 actual groups/three <=96-parameter chunks and dedicated trigger failures to
+verify rollback; they neither rewrite the Source expected SQL nor claim Source
+TDD credit. All whole Source families and original Native10 remain unchanged.
+No widened clocks, fabricated result rows, transaction emulation, auth/session
+changes or new protected HTTP probes are proposed. Full Native runtime adapter
+and its first execution are pending separate finite review/qualification.
+Framework/backend substitution is proposed for PR102; an acceptance decision
+is not recorded. See `docs/taxonomies.md` for paired feature scope and evidence.
