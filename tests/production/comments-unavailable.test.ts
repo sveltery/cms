@@ -13,6 +13,10 @@ for (const [label, url, method, session] of [
   test(`comments ${label} reports unavailable storage without implicit DDL`, async () => {
     const fixture = await persistedRemotes({ persistedSessions: true, mutationsEnabled: true });
     try {
+      // Actual bounded partial comment storage after real canonical startup.
+      // Existing principals, markers and unavailable assertions stay unchanged.
+      await sql`DROP TABLE _cms_comment_reactions`.execute(fixture.database.db);
+      await sql`DROP TABLE _cms_comments`.execute(fixture.database.db);
       const before = (await sql`SELECT name, sql FROM sqlite_schema ORDER BY name`.execute(fixture.database.db)).rows;
       const response = await fixture.request(url, session, {
         method,

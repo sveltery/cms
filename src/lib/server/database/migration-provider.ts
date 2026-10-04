@@ -3,11 +3,18 @@ import type { CmsDatabase } from './contract.ts';
 
 export interface MigrationObject { name: string; type: 'table' | 'index'; sql: string }
 export interface MigrationTrigger { name: string; type: 'trigger'; sql: string }
+export interface PreparedCmsMigration {
+  /** All guards execute before the first ordinary startup write. */
+  readonly guards: readonly CompiledQuery[];
+  readonly statements: readonly CompiledQuery[];
+}
 /** Versions are contiguous and immutable. Later providers may replace an object's descriptor. */
 export interface CmsMigrationProvider {
   readonly version: number;
   readonly name: string;
   statements(database: CmsDatabase): Promise<readonly CompiledQuery[]>;
+  /** Optional single-snapshot plan for data-dependent later providers. */
+  prepare?(database: CmsDatabase): Promise<PreparedCmsMigration>;
   /** Version zero declares this provider's static names/DDL without metadata reads. */
   expectedObjects(database: CmsDatabase, installedVersion?: number): Promise<readonly MigrationObject[]>;
   /** Exact static trigger ownership; absent providers own no triggers. */

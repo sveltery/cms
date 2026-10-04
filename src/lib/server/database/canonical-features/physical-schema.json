@@ -1,0 +1,388 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "copyright": "2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt",
+  "derivation": "Complete pinned Source migration authorities; real SQLite fresh physical schema; finite native namespace mapping; no identity/registry/options replacement",
+  "mediaAttribution": {
+    "objects": [
+      {
+        "name": "idx__cms_byline_field_group_values_field",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_byline_field_group_values_field\" on \"_cms_byline_field_group_values\" (\"field_id\")"
+      },
+      {
+        "name": "idx__cms_byline_field_group_values_group",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_byline_field_group_values_group\" on \"_cms_byline_field_group_values\" (\"translation_group\")"
+      },
+      {
+        "name": "idx__cms_byline_field_values_byline",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_byline_field_values_byline\" on \"_cms_byline_field_values\" (\"byline_id\")"
+      },
+      {
+        "name": "idx__cms_byline_field_values_field",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_byline_field_values_field\" on \"_cms_byline_field_values\" (\"field_id\")"
+      },
+      {
+        "name": "idx__cms_byline_fields_sort_order",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_byline_fields_sort_order\" on \"_cms_byline_fields\" (\"sort_order\")"
+      },
+      {
+        "name": "idx__cms_bylines_locale",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_bylines_locale\" on \"_cms_bylines\" (\"locale\")"
+      },
+      {
+        "name": "idx__cms_bylines_translation_group",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_bylines_translation_group\" on \"_cms_bylines\" (\"translation_group\")"
+      },
+      {
+        "name": "idx__cms_media_usage_cleanup_scan",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_cleanup_scan\" on \"_cms_media_usage\" (\"created_at\", \"id\", \"source_key\", \"generation\")"
+      },
+      {
+        "name": "idx__cms_media_usage_collection_deletions_due",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_collection_deletions_due\" on \"_cms_media_usage_collection_deletions\" (\"state\", \"next_attempt_at\", \"updated_at\", \"collection_id\")"
+      },
+      {
+        "name": "idx__cms_media_usage_collection_deletions_lease",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_collection_deletions_lease\" on \"_cms_media_usage_collection_deletions\" (\"state\", \"lease_expires_at\", \"updated_at\", \"collection_id\")"
+      },
+      {
+        "name": "idx__cms_media_usage_collection_deletions_operator",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_collection_deletions_operator\" on \"_cms_media_usage_collection_deletions\" (\"state\", \"updated_at\", \"collection_id\")"
+      },
+      {
+        "name": "idx__cms_media_usage_generation_writes_expiry",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_generation_writes_expiry\" on \"_cms_media_usage_generation_writes\" (\"expires_at\", \"lease_token\")"
+      },
+      {
+        "name": "idx__cms_media_usage_index_status_status",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_index_status_status\" on \"_cms_media_usage_index_status\" (\"adapter_id\", \"status\")"
+      },
+      {
+        "name": "idx__cms_media_usage_media_source_generation",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_media_source_generation\" on \"_cms_media_usage\" (\"media_id\", \"source_key\", \"generation\")"
+      },
+      {
+        "name": "idx__cms_media_usage_provider_asset",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_provider_asset\" on \"_cms_media_usage\" (\"provider\", \"provider_asset_id\")"
+      },
+      {
+        "name": "idx__cms_media_usage_reconciliations_due",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_reconciliations_due\" on \"_cms_media_usage_reconciliations\" (\"state\", \"next_attempt_at\", \"updated_at\", \"collection_id\")"
+      },
+      {
+        "name": "idx__cms_media_usage_reconciliations_failed",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_reconciliations_failed\" on \"_cms_media_usage_reconciliations\" (\"state\", \"updated_at\", \"collection_id\")"
+      },
+      {
+        "name": "idx__cms_media_usage_reconciliations_lease",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_reconciliations_lease\" on \"_cms_media_usage_reconciliations\" (\"state\", \"lease_expires_at\", \"updated_at\", \"collection_id\")"
+      },
+      {
+        "name": "idx__cms_media_usage_source_cursor",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_source_cursor\" on \"_cms_media_usage\" (\"source_key\", \"id\")"
+      },
+      {
+        "name": "idx__cms_media_usage_source_generation",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_source_generation\" on \"_cms_media_usage\" (\"source_key\", \"generation\")"
+      },
+      {
+        "name": "idx__cms_media_usage_sources_collection_cursor",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_sources_collection_cursor\" on \"_cms_media_usage_sources\" (\"source_type\", \"collection_id\", \"source_key\")"
+      },
+      {
+        "name": "idx__cms_media_usage_sources_completeness",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_sources_completeness\" on \"_cms_media_usage_sources\" (\"source_type\", \"collection_slug\", \"source_completeness\")"
+      },
+      {
+        "name": "idx__cms_media_usage_sources_content",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_sources_content\" on \"_cms_media_usage_sources\" (\"source_type\", \"collection_slug\", \"content_id\")"
+      },
+      {
+        "name": "idx__cms_media_usage_sources_deleted",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_sources_deleted\" on \"_cms_media_usage_sources\" (\"content_deleted_at\")"
+      },
+      {
+        "name": "idx__cms_media_usage_sources_fingerprint",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_sources_fingerprint\" on \"_cms_media_usage_sources\" (\"source_fingerprint\")"
+      },
+      {
+        "name": "idx__cms_media_usage_sources_identity",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_sources_identity\" on \"_cms_media_usage_sources\" (\"source_type\", \"collection_id\", \"content_id\", \"source_variant\")"
+      },
+      {
+        "name": "idx__cms_media_usage_sources_locale",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_sources_locale\" on \"_cms_media_usage_sources\" (\"collection_slug\", \"locale\")"
+      },
+      {
+        "name": "idx__cms_media_usage_sources_translation_group",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_sources_translation_group\" on \"_cms_media_usage_sources\" (\"collection_slug\", \"translation_group\")"
+      },
+      {
+        "name": "idx__cms_media_usage_sources_variant",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_sources_variant\" on \"_cms_media_usage_sources\" (\"source_type\", \"source_variant\")"
+      },
+      {
+        "name": "idx__cms_media_usage_status_collection",
+        "type": "index",
+        "sql": "CREATE UNIQUE INDEX \"idx__cms_media_usage_status_collection\" on \"_cms_media_usage_index_status\" (\"adapter_id\", \"scope_type\", \"collection_id\")"
+      },
+      {
+        "name": "idx__cms_media_usage_status_reconciliation",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_status_reconciliation\" on \"_cms_media_usage_index_status\" (\"adapter_id\", \"scope_type\", \"capture_state\", \"reconciliation_required\", \"collection_id\")"
+      },
+      {
+        "name": "idx__cms_media_usage_unique_occurrence",
+        "type": "index",
+        "sql": "CREATE UNIQUE INDEX \"idx__cms_media_usage_unique_occurrence\" on \"_cms_media_usage\" (\"source_key\", \"generation\", \"field_path\", \"occurrence_index\")"
+      },
+      {
+        "name": "idx__cms_media_usage_work_due",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_work_due\" on \"_cms_media_usage_work\" (\"state\", \"next_attempt_at\", \"updated_at\", \"collection_id\", \"content_id\")"
+      },
+      {
+        "name": "idx__cms_media_usage_work_lease",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_work_lease\" on \"_cms_media_usage_work\" (\"state\", \"lease_expires_at\", \"collection_id\", \"content_id\")"
+      },
+      {
+        "name": "idx__cms_media_usage_work_operator",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_media_usage_work_operator\" on \"_cms_media_usage_work\" (\"collection_id\", \"state\", \"updated_at\", \"content_id\")"
+      },
+      {
+        "name": "idx_bylines_display_name",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx_bylines_display_name\" on \"_cms_bylines\" (\"display_name\")"
+      },
+      {
+        "name": "idx_bylines_group_locale_unique",
+        "type": "index",
+        "sql": "CREATE UNIQUE INDEX \"idx_bylines_group_locale_unique\"\n\t\tON \"_cms_bylines\" (translation_group, locale)\n\t\tWHERE translation_group IS NOT NULL\n\t"
+      },
+      {
+        "name": "idx_bylines_slug",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx_bylines_slug\" on \"_cms_bylines\" (\"slug\")"
+      },
+      {
+        "name": "idx_bylines_user_id_locale_unique",
+        "type": "index",
+        "sql": "CREATE UNIQUE INDEX \"idx_bylines_user_id_locale_unique\"\n\t\tON \"_cms_bylines\" (user_id, locale)\n\t\tWHERE user_id IS NOT NULL\n\t"
+      },
+      {
+        "name": "idx_content_bylines_byline",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx_content_bylines_byline\" on \"_cms_content_bylines\" (\"byline_id\")"
+      },
+      {
+        "name": "idx_content_bylines_content",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx_content_bylines_content\" on \"_cms_content_bylines\" (\"collection_slug\", \"content_id\", \"sort_order\")"
+      },
+      {
+        "name": "idx_media_content_hash",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx_media_content_hash\" on \"_cms_media\" (\"content_hash\")"
+      },
+      {
+        "name": "idx_media_folder_id",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx_media_folder_id\" on \"_cms_media\" (\"folder_id\")"
+      },
+      {
+        "name": "idx_media_status",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx_media_status\" on \"_cms_media\" (\"status\")"
+      },
+      {
+        "name": "idx_media_storage_key",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx_media_storage_key\" on \"_cms_media\" (\"storage_key\")"
+      },
+      {
+        "name": "idx_media_upload_attempts_media_id",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx_media_upload_attempts_media_id\" on \"_cms_media_upload_attempts\" (\"media_id\")"
+      },
+      {
+        "name": "idx_media_upload_attempts_status_created_at",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx_media_upload_attempts_status_created_at\" on \"_cms_media_upload_attempts\" (\"status\", \"created_at\")"
+      },
+      {
+        "name": "_cms_byline_field_group_values",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_byline_field_group_values\" (\"translation_group\" text not null, \"field_id\" text not null references \"_cms_byline_fields\" (\"id\") on delete cascade, \"value\" text, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')), constraint \"_cms_byline_field_group_values_pk\" primary key (\"translation_group\", \"field_id\"))"
+      },
+      {
+        "name": "_cms_byline_field_values",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_byline_field_values\" (\"byline_id\" text not null references \"_cms_bylines\" (\"id\") on delete cascade, \"field_id\" text not null references \"_cms_byline_fields\" (\"id\") on delete cascade, \"value\" text, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')), constraint \"_cms_byline_field_values_pk\" primary key (\"byline_id\", \"field_id\"))"
+      },
+      {
+        "name": "_cms_byline_fields",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_byline_fields\" (\"id\" text primary key, \"slug\" text not null unique, \"label\" text not null, \"type\" text not null, \"required\" integer default 0 not null, \"translatable\" integer default 1 not null, \"validation\" text, \"sort_order\" integer default 0 not null, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')))"
+      },
+      {
+        "name": "_cms_bylines",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_bylines\" (\"id\" text primary key, \"slug\" text not null, \"display_name\" text not null, \"bio\" text, \"avatar_media_id\" text references \"_cms_media\" (\"id\") on delete set null, \"website_url\" text, \"user_id\" text references \"_cms_auth_users\" (\"id\") on delete set null, \"is_guest\" integer default 0 not null, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')), \"locale\" text default 'en' not null, \"translation_group\" text, constraint \"_cms_bylines_slug_locale_unique\" unique (\"slug\", \"locale\"))"
+      },
+      {
+        "name": "_cms_content_bylines",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_content_bylines\" (\"id\" text primary key, \"collection_slug\" text not null, \"content_id\" text not null, \"byline_id\" text not null, \"sort_order\" integer default 0 not null, \"role_label\" text, \"created_at\" text default (datetime('now')), constraint \"content_bylines_unique\" unique (\"collection_slug\", \"content_id\", \"byline_id\"))"
+      },
+      {
+        "name": "_cms_media",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_media\" (\"id\" text primary key, \"filename\" text not null, \"mime_type\" text not null, \"size\" integer, \"width\" integer, \"height\" integer, \"alt\" text, \"caption\" text, \"storage_key\" text not null, \"content_hash\" text, \"created_at\" text default (datetime('now')), \"author_id\" text, \"status\" text default 'ready' not null, blurhash TEXT, dominant_color TEXT, \"folder_id\" text references \"_cms_media_folders\" (\"id\") on delete set null, \"focal_x\" real, \"focal_y\" real)"
+      },
+      {
+        "name": "_cms_media_folders",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_media_folders\" (\"id\" text primary key, \"name\" text not null, \"name_key\" text not null unique)"
+      },
+      {
+        "name": "_cms_media_upload_attempts",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_media_upload_attempts\" (\"storage_key\" text primary key, \"media_id\" text not null, \"status\" text default 'active' not null, \"created_at\" text default (datetime('now')) not null, \"updated_at\" text default (datetime('now')) not null)"
+      },
+      {
+        "name": "_cms_media_usage",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_media_usage\" (\"id\" text primary key, \"source_key\" text not null, \"generation\" text not null, \"field_slug\" text not null, \"field_path\" text not null, \"occurrence_index\" integer default 0 not null, \"reference_type\" text not null, \"media_id\" text, \"provider\" text default 'local' not null, \"provider_asset_id\" text not null, \"media_kind\" text, \"mime_type\" text, \"created_at\" text default (datetime('now')), \"cleanup_lease_token\" text)"
+      },
+      {
+        "name": "_cms_media_usage_activation",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_media_usage_activation\" (\"task_key\" text primary key, \"state\" text default 'expanded' not null, \"runtime_generation\" integer default 1 not null, \"collection_cursor\" text, \"drain_confirmed_at\" text, \"lease_token\" text, \"lease_expires_at\" text, \"attempt_count\" integer default 0 not null, \"last_attempted_at\" text, \"last_error_code\" text, \"activated_at\" text, \"created_at\" text default (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) not null, \"updated_at\" text default (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) not null, \"media_usage_maintenance_turn\" integer default 2 not null)"
+      },
+      {
+        "name": "_cms_media_usage_cleanup",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_media_usage_cleanup\" (\"task_key\" text primary key, \"lease_token\" text, \"lease_expires_at\" text, \"next_eligible_at\" text not null, \"cursor_created_at\" text, \"cursor_id\" text, \"scan_before_at\" text, \"consecutive_failures\" integer default 0 not null, \"last_started_at\" text, \"last_completed_at\" text, \"last_candidate_count\" integer default 0 not null, \"last_deleted_orphans\" integer default 0 not null, \"last_deleted_stale\" integer default 0 not null, \"last_deleted_abandoned\" integer default 0 not null, \"last_deleted_write_leases\" integer default 0 not null, \"last_backlog_lower_bound\" integer default 0 not null, \"last_scan_has_more\" integer default 0 not null, \"last_duration_ms\" integer default 0 not null, \"last_error_code\" text, \"updated_at\" text default (datetime('now')) not null)"
+      },
+      {
+        "name": "_cms_media_usage_cleanup_fence",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_media_usage_cleanup_fence\" (\"task_key\" text primary key, \"generation_floor\" text not null, \"updated_at\" text default (datetime('now')) not null)"
+      },
+      {
+        "name": "_cms_media_usage_collection_deletions",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_media_usage_collection_deletions\" (\"collection_id\" text not null primary key, \"collection_slug\" text not null unique, \"force_delete\" integer not null, \"state\" text default 'pending' not null, \"phase\" text default 'fence' not null, \"work_cursor\" text, \"source_key\" text, \"occurrence_cursor\" text, \"attempt_count\" integer default 0 not null, \"next_attempt_at\" text not null, \"lease_token\" text, \"lease_expires_at\" text, \"last_error_code\" text, \"created_at\" text default (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) not null, \"updated_at\" text default (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) not null)"
+      },
+      {
+        "name": "_cms_media_usage_generation_writes",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_media_usage_generation_writes\" (\"source_key\" text not null, \"generation\" text not null, \"lease_token\" text primary key, \"expires_at\" text not null, \"created_at\" text default (datetime('now')) not null, constraint \"_cms_media_usage_generation_writes_source_generation\" unique (\"source_key\", \"generation\"))"
+      },
+      {
+        "name": "_cms_media_usage_index_status",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_media_usage_index_status\" (\"adapter_id\" text not null, \"scope_type\" text not null, \"scope_key\" text not null, \"status\" text not null, \"schema_version\" integer default 1 not null, \"started_at\" text, \"completed_at\" text, \"cursor\" text, \"indexed_source_count\" integer default 0 not null, \"failed_source_count\" integer default 0 not null, \"last_error_code\" text, \"updated_at\" text default (datetime('now')) not null, \"collection_id\" text, \"change_epoch\" bigint default 0 not null, \"reconciliation_required\" integer default 0 not null, \"last_incremental_success_at\" text, \"capture_state\" text, constraint \"_cms_media_usage_index_status_pk\" primary key (\"adapter_id\", \"scope_type\", \"scope_key\"))"
+      },
+      {
+        "name": "_cms_media_usage_reconciliations",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_media_usage_reconciliations\" (\"collection_id\" text not null primary key, \"collection_slug\" text not null, \"run_token\" text not null, \"target_epoch\" bigint, \"field_fingerprint\" text, \"state\" text default 'pending' not null, \"phase\" text default 'scan' not null, \"scan_cursor\" text, \"scan_upper_id\" text, \"source_cursor\" text, \"source_upper_key\" text, \"attempt_count\" integer default 0 not null, \"next_attempt_at\" text not null, \"lease_token\" text, \"lease_expires_at\" text, \"last_error_code\" text, \"created_at\" text default (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) not null, \"updated_at\" text default (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) not null)"
+      },
+      {
+        "name": "_cms_media_usage_sources",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_media_usage_sources\" (\"source_key\" text primary key, \"source_type\" text not null, \"collection_slug\" text, \"content_id\" text, \"source_variant\" text not null, \"locale\" text, \"translation_group\" text, \"content_slug\" text, \"content_title\" text, \"content_status\" text, \"content_scheduled_at\" text, \"content_deleted_at\" text, \"revision_id\" text, \"current_generation\" text not null, \"schema_version\" integer default 1 not null, \"indexed_at\" text default (datetime('now')) not null, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')), \"source_updated_at\" text, \"source_version\" integer, \"source_fingerprint\" text, \"source_completeness\" text default 'unknown' not null, \"last_attempted_at\" text, \"last_error_code\" text, \"collection_id\" text, \"identity_version\" integer)"
+      },
+      {
+        "name": "_cms_media_usage_work",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_media_usage_work\" (\"collection_id\" text not null, \"collection_slug\" text not null, \"content_id\" text not null, \"change_epoch\" bigint not null, \"work_version\" bigint default 1 not null, \"state\" text default 'pending' not null, \"attempt_count\" integer default 0 not null, \"next_attempt_at\" text not null, \"lease_token\" text, \"lease_expires_at\" text, \"last_attempted_at\" text, \"last_error_code\" text, \"created_at\" text default (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) not null, \"updated_at\" text default (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) not null, constraint \"_cms_media_usage_work_pk\" primary key (\"collection_id\", \"content_id\"))"
+      },
+      {
+        "name": "emdash_media_usage_fence_source_generation_insert",
+        "type": "trigger",
+        "sql": "CREATE TRIGGER emdash_media_usage_fence_source_generation_insert\n\t\tBEFORE INSERT ON _cms_media_usage_sources\n\t\tWHEN EXISTS (\n\t\t\tSELECT 1\n\t\t\tFROM _cms_media_usage_cleanup_fence AS fence\n\t\t\tWHERE fence.task_key = 'projection_gc'\n\t\t\t\tAND NEW.current_generation <= fence.generation_floor\n\t\t) AND NOT EXISTS (\n\t\t\tSELECT 1\n\t\t\tFROM _cms_media_usage_generation_writes AS writer\n\t\t\tWHERE writer.source_key = NEW.source_key\n\t\t\t\tAND writer.generation = NEW.current_generation\n\t\t\t\tAND writer.expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t)\n\t\tBEGIN\n\t\t\tSELECT RAISE(IGNORE);\n\t\tEND"
+      },
+      {
+        "name": "emdash_media_usage_fence_source_generation_update",
+        "type": "trigger",
+        "sql": "CREATE TRIGGER emdash_media_usage_fence_source_generation_update\n\t\tBEFORE UPDATE OF current_generation ON _cms_media_usage_sources\n\t\tWHEN NEW.current_generation <> OLD.current_generation\n\t\t\tAND EXISTS (\n\t\t\t\tSELECT 1\n\t\t\t\tFROM _cms_media_usage_cleanup_fence AS fence\n\t\t\t\tWHERE fence.task_key = 'projection_gc'\n\t\t\t\t\tAND NEW.current_generation <= fence.generation_floor\n\t\t\t) AND NOT EXISTS (\n\t\t\t\tSELECT 1\n\t\t\t\tFROM _cms_media_usage_generation_writes AS writer\n\t\t\t\tWHERE writer.source_key = NEW.source_key\n\t\t\t\t\tAND writer.generation = NEW.current_generation\n\t\t\t\t\tAND writer.expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t\t)\n\t\tBEGIN\n\t\t\tSELECT RAISE(IGNORE);\n\t\tEND"
+      },
+      {
+        "name": "emdash_media_usage_record_cleanup_fence",
+        "type": "trigger",
+        "sql": "CREATE TRIGGER emdash_media_usage_record_cleanup_fence\n\t\tBEFORE DELETE ON _cms_media_usage\n\t\tWHEN OLD.cleanup_lease_token IS NOT NULL AND EXISTS (\n\t\t\tSELECT 1\n\t\t\tFROM _cms_media_usage_cleanup AS cleanup\n\t\t\tWHERE cleanup.task_key = 'projection_gc'\n\t\t\t\tAND cleanup.lease_token = OLD.cleanup_lease_token\n\t\t)\n\t\tBEGIN\n\t\t\tINSERT INTO _cms_media_usage_cleanup_fence (\n\t\t\t\ttask_key,\n\t\t\t\tgeneration_floor,\n\t\t\t\tupdated_at\n\t\t\t)\n\t\t\tVALUES ('projection_gc', OLD.generation, strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))\n\t\t\tON CONFLICT (task_key) DO UPDATE SET\n\t\t\t\tgeneration_floor = CASE\n\t\t\t\t\tWHEN excluded.generation_floor > _cms_media_usage_cleanup_fence.generation_floor\n\t\t\t\t\tTHEN excluded.generation_floor\n\t\t\t\t\tELSE _cms_media_usage_cleanup_fence.generation_floor\n\t\t\t\tEND,\n\t\t\t\tupdated_at = excluded.updated_at;\n\t\tEND"
+      }
+    ]
+  },
+  "directedRelations": {
+    "objects": [
+      {
+        "name": "idx__cms_content_references_child",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_content_references_child\" on \"_cms_content_references\" (\"child_group\", \"relation_id\")"
+      },
+      {
+        "name": "idx__cms_content_references_parent",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_content_references_parent\" on \"_cms_content_references\" (\"parent_group\", \"relation_id\", \"sort_order\")"
+      },
+      {
+        "name": "idx__cms_content_references_relation",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_content_references_relation\" on \"_cms_content_references\" (\"relation_id\")"
+      },
+      {
+        "name": "idx__cms_relations_child_collection",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_relations_child_collection\" on \"_cms_relations\" (\"child_collection\")"
+      },
+      {
+        "name": "idx__cms_relations_parent_collection",
+        "type": "index",
+        "sql": "CREATE INDEX \"idx__cms_relations_parent_collection\" on \"_cms_relations\" (\"parent_collection\")"
+      },
+      {
+        "name": "_cms_content_references",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_content_references\" (\"id\" text primary key, \"relation_id\" text not null, \"parent_group\" text not null, \"child_group\" text not null, \"sort_order\" integer default 0 not null, \"created_at\" text default (datetime('now')), constraint \"content_references_unique\" unique (\"relation_id\", \"parent_group\", \"child_group\"))"
+      },
+      {
+        "name": "_cms_relations",
+        "type": "table",
+        "sql": "CREATE TABLE \"_cms_relations\" (\"id\" text primary key, \"slug\" text not null, \"parent_collection\" text not null, \"child_collection\" text not null, \"parent_label\" text not null, \"child_label\" text not null, \"parent_label_singular\" text, \"child_label_singular\" text, \"max_children_per_parent\" integer, \"max_parents_per_child\" integer, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')), constraint \"_cms_relations_slug_unique\" unique (\"slug\"))"
+      }
+    ]
+  }
+}

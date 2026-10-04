@@ -4,7 +4,7 @@ import { Miniflare } from 'miniflare';
 import { sql } from 'kysely';
 import { openSqlite } from '../src/lib/server/database/sqlite.ts';
 import { openD1 } from '../src/lib/server/database/d1.ts';
-import { migrateCms } from '../src/lib/server/database/migrations.ts';
+import { installHistoricalCanonical5 } from './helpers/historical-canonical5.ts';
 import { menuSchemaStatements } from '../src/lib/server/menus/migrations.ts';
 import { servicePrincipal } from '../src/lib/server/auth/composition.ts';
 import { Role } from '../src/lib/server/auth/roles.ts';
@@ -24,7 +24,7 @@ for (const backend of ['node', 'd1'] as const) {
       compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0,
       d1Databases: { CMS_DB: 'cms-menu-http-fixture' }, cf: false });
     const storage = worker ? openD1(await worker.getD1Database('CMS_DB')) : openSqlite(':memory:');
-    await migrateCms(storage);
+    await installHistoricalCanonical5(storage);
     const locals = { cms: { database: storage, principal: servicePrincipal({ id: 'fixture-editor', role: Role.EDITOR }), mutationsEnabled: true },
       cmsRuntime: { publicOrigin: 'http://cms.test', basePath: '', rpName: 'Menu fixture' } };
     async function invoke(handler: Function, method: string, path: string, params = {}, body?: unknown) {

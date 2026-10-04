@@ -5,6 +5,7 @@ import { apiError } from './http-errors.ts';
 import { menuStorageReady } from './readiness.ts';
 import { runWithContext } from './context.ts';
 import type { Database } from './database-types.ts';
+import { withCanonicalFeatureNamespaces } from '../database/canonical-features/namespaces.ts';
 
 /** Consume the existing trusted request composition. Never open or migrate DBs. */
 export async function withMenuRequest(
@@ -28,7 +29,7 @@ export async function withMenuRequest(
     }
   }
   if (!await menuStorageReady(configuration.database)) return apiError('MIGRATION_REQUIRED', 'Menu storage is not ready', 503);
-  const db = configuration.database.db.withTables<{[Name in keyof Database]: Database[Name]}>().$pickTables<keyof Database>();
+  const db = withCanonicalFeatureNamespaces(configuration.database.db.withTables<{[Name in keyof Database]: Database[Name]}>().$pickTables<keyof Database>());
   try {
     return await runWithContext({ db, locale: event.url.searchParams.get('locale') ?? undefined, editMode: false,
       keepAlive: configuration.keepAlive }, () => run(db));
