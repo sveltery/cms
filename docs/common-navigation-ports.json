@@ -173,7 +173,28 @@
     "note": "Existing whole sidebar-groups/admin-version families remain Main-owned; no duplicated case or first-green credit."
   },
   "nativeTDD": {
-    "status": "planned; tests precede implementation"
+    "testFirstCommit": "cf4e25d",
+    "wholeFile": "tests/common-navigation-ui.test.ts",
+    "callbacks": 12,
+    "sourceCredit": 0,
+    "setupFailures": [
+      {
+        "kind": "unsupported default pnpm11.19 engine",
+        "wholeInstall": "/tmp/common-navigation-frozen-install.log",
+        "assertionsExecuted": 0
+      },
+      {
+        "kind": "Svelte module absent before frozen installation",
+        "run": "/tmp/common-navigation-whole-shell-red.log",
+        "assertionsExecuted": 0
+      },
+      {
+        "kind": "ordinary pinned12.6 frozen512 npm metadata HTTP503",
+        "run": "/tmp/common-navigation-frozen-install-pinned.log",
+        "assertionsExecuted": 0
+      }
+    ],
+    "status": "waiting for own unchanged frozen512 retry before assertion-level baseline"
   },
   "status": "source-first inventory; no new product parity credit"
 }
