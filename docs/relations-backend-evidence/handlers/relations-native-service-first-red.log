@@ -1,0 +1,31 @@
+✔ published runtime principal exposes exact existing relation route permissions (0.778244ms)
+✖ relation definition service reports actual bound fields and deletes inverse metadata and edges (39.156993ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 304.922652
+
+✖ failing tests:
+
+test at tests/relations-service-native.test.ts:19:1
+✖ relation definition service reports actual bound fields and deletes inverse metadata and edges (39.156993ms)
+  AssertionError [ERR_ASSERTION]: actual relation service must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-relations-backend/tests/relations-service-native.test.ts:27:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

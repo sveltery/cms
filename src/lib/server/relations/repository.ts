@@ -3,6 +3,7 @@
 // Native imports, namespace and erasable constructor; original algorithms preserved.
 import type { CmsDatabase } from '../database/contract.ts';
 import { atomicSetChildren, atomicSetParents, atomicDeleteRelation } from './atomic.ts';
+import { relationDatabase, registerRelationDatabase } from './storage.ts';
 import { sql, type Kysely, type Selectable } from "kysely";
 import { ulid } from "ulidx";
 
@@ -131,7 +132,8 @@ export class RelationRepository {
 	private readonly db: Kysely<Database>;
 	private readonly database: CmsDatabase | null;
 	constructor(database: Kysely<Database> | CmsDatabase) {
-		this.database = 'atomicBatch' in database ? database : null;
+		this.database = 'atomicBatch' in database ? database : relationDatabase(database) ?? null;
+		if (this.database) registerRelationDatabase(this.database);
 		this.db = (this.database ? this.database.db : database) as unknown as Kysely<Database>;
 	}
 

@@ -34,9 +34,9 @@ export async function setupForDialect(dialect:'sqlite'|'postgres'):Promise<Diale
 export async function setupForDialectWithCollections(dialect:'sqlite'|'postgres'):Promise<DialectTestContext>{
   const ctx=await setupForDialect(dialect),registry=new NativeSchemaRegistry(requireRelationDatabase(ctx.db));
   for(const slug of ['post','page']){
-    await registry.createCollection({slug,label:slug==='post'?'Posts':'Pages',labelSingular:slug==='post'?'Post':'Page',supports:['revisions','drafts','preview']});
-    await registry.createField(slug,{slug:'title',label:'Title',type:'string',required:true});
-    await registry.createField(slug,{slug:'content',label:'Content',type:slug==='post'?'text':'portableText'});
+    await registry.createCollection({slug,label:slug==='post'?'Posts':'Pages',labelSingular:slug==='post'?'Post':'Page'});
+    await registry.createField(slug,{slug:'title',label:'Title',type:'string'});
+    await registry.createField(slug,{slug:'content',label:'Content',type:'portableText'});
   }
   return ctx;
 }
