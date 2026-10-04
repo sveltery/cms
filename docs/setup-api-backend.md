@@ -135,7 +135,7 @@ and77 expectation expressions at the same pin. Four additional whole authorities
 (content/media repositories, identifier validation and schema registry) are now
 frozen before any selected-method copying; frozen Source tests remain9families,
 48declarations/193expect expressions. No dashboard fixture or product test has
-applied or executed, and no new causal credit follows from this inventory.
+applied or executed at that inventory checkpoint, and no new causal credit followed from the inventory. The subsequent exact qualified test-first baseline is recorded below.
 
 The proposed fixture opens actual Node SQLite, installs actual current native
 providers and uses real Native registry construction plus the public direct
@@ -154,3 +154,11 @@ would identify an unfinished prerequisite rather than an algorithm defect.
 Exact finite fixture/product candidates still require separate PM qualification
 before application or execution. Current full normal/secured gates and reviews
 remain pending for [Draft PR90](https://github.com/sveltery/cms/pull/90).
+
+The PM qualified exactly the whole original test14959B, whole fixture965B,
+actual-storage host2797B and config1521B. Test-first commit302f11f9 executes the
+whole family, but suite import fails at the absent actual owned dashboard
+handler before any callback. Full raw log/JSON and exact qualification are
+retained in [run receipts](setup-api-runs.json):0callbacks/0value-red/0causal
+credit. No product file, principal/auth fixture or media testDDL was applied.
+Separate r2 production qualification and actual public provider14 remain pending.
