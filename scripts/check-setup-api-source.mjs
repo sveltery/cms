@@ -37,7 +37,7 @@ for (const file of catalog.files) {
     if (test.sourceId !== `${ledger.sourcePin}:${file.path}:${test.line}`) throw new Error('Source declaration ID changed.');
   }
 }
-if (ledger.authorities.length !== 50 || catalog.files.length !== 9 || declarations !== 48 || expectations !== 193) {
+if (ledger.authorities.length !== 54 || catalog.files.length !== 9 || declarations !== 48 || expectations !== 193) {
   throw new Error('Whole setup Source declaration/assertion inventory changed.');
 }
 console.log(JSON.stringify({ authorities: paths.size, wholeTestFamilies: catalog.files.length,

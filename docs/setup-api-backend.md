@@ -3,7 +3,7 @@
 The target is the complete setup, current-user welcome and dashboard behavior of
 EmDash 1.1.0, immutable commit `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`.
 This branch starts from public Main `135e7be689885fd23678569d0d373a1131f5302b`.
-The [source ledger](setup-api-source.json) records 50 complete authorities and
+The [source ledger](setup-api-source.json) records 54 complete authorities and
 nine whole original test families: 48 declarations and 193 expectation
 expressions. Frozen authorities retain their original bytes and the upstream
 MIT license. An inventory is not executable product evidence.
@@ -127,3 +127,30 @@ route substitution and decision status alongside this feature record. Proposed
 [PR #90](https://github.com/sveltery/cms/pull/90) remains draft; its final combined
 normal/secured gates, independent/configured review and exact PM approval are
 pending.
+
+## Whole dashboard16 fixture closure
+
+A fresh read-only review inventories the complete original sixteen-case family
+and77 expectation expressions at the same pin. Four additional whole authorities
+(content/media repositories, identifier validation and schema registry) are now
+frozen before any selected-method copying; frozen Source tests remain9families,
+48declarations/193expect expressions. No dashboard fixture or product test has
+applied or executed, and no new causal credit follows from this inventory.
+
+The proposed fixture opens actual Node SQLite, installs actual current native
+providers and uses real Native registry construction plus the public direct
+ContentRepository. Exact original post/page PortableText values, date inputs,
+5ms/10ms ordering delays, scheduler clock, assertions and deadlines stay intact.
+It creates no users, principals, sessions or credentials. Metadata table aliases
+need a production namespace seam; options retain the canonical mapper. Actual
+media provider14 is still absent from public Main, so no media table or count
+response may be manufactured. Scheduler/policy tests cover stored option
+projection; configured cache/timezone, plugin execution, media/file storage,
+D1, HTTP/dashboard UI and full product completion remain uncredited.
+
+A missing module or fixture failure is infrastructure0causal. A real handler
+catch from actual missing storage can reach an unchanged success assertion, but
+would identify an unfinished prerequisite rather than an algorithm defect.
+Exact finite fixture/product candidates still require separate PM qualification
+before application or execution. Current full normal/secured gates and reviews
+remain pending for [Draft PR90](https://github.com/sveltery/cms/pull/90).
