@@ -312,33 +312,65 @@
       "file": "writable-editor-whole-normal-bootstrap-retry.log",
       "bytes": 4118,
       "sha256": "2b8b8ca3c7ee9c942a46ea3f5a9edd125f268905a3f1afa1ea8eabaad14cde28"
+    },
+    {
+      "file": "writable-editor-pr84-browser-111326632441.log",
+      "bytes": 263892,
+      "sha256": "a86c9a7323fc37597c75178d9f56ac369989f4d61d3d3e96d3e7aeffbdce2066"
+    },
+    {
+      "file": "writable-editor-pr84-validate-111326632515.log",
+      "bytes": 264254,
+      "sha256": "632703790f0597a3896363ea0ce35ab142c23f46c6b714a5334832c48bf5afef"
+    },
+    {
+      "file": "writable-editor-native-create-navigation-complete-red.log",
+      "bytes": 2335,
+      "sha256": "7040efe19a61ab11bc09e0a4d6775858799f6f271873198b092584414c0a7dc4"
+    },
+    {
+      "file": "writable-editor-native-create-navigation-green.log",
+      "bytes": 290,
+      "sha256": "44112c17e094f78466f1b52e90a8590376a91e0d3c8b419bd0213300a9ae6972"
+    },
+    {
+      "file": "writable-editor-source-create-navigation-green.log",
+      "bytes": 629,
+      "sha256": "af5830d4c699bd30032fc16e46a9a894158cc62ef4e7da4a3f35a72660b44e71"
+    },
+    {
+      "file": "writable-editor-create-navigation-check.log",
+      "bytes": 209,
+      "sha256": "cd5465193353a03ad23609bdb5dfb17a3889f9d021da4865b476070161cc9375"
     }
   ],
   "execution": {
     "wholeSourceFamilies": 1,
     "uniqueSourceCallbacks": 7,
     "sourceValueRedThenUnchangedGreen": 6,
-    "nativeMountedFormTests": 12,
-    "nativeFormValueRedThenUnchangedGreen": 11,
+    "nativeMountedFormTests": 14,
+    "nativeFormValueRedThenUnchangedGreen": 13,
     "nativeStateTests": 7,
     "nativeStateValueRedCredit": 0,
-    "nativeStateOmissions": "Initial module/Node strip/API fixture failures preceded first7greens; zero causal credit. Actual Node/rawD1 persistence tested; hosted UI still unexecuted.",
+    "nativeStateOmissions": "Initial module/Node strip/API fixture failures preceded first7greens; zero causal credit. Actual Node/rawD1 persistence tested; complete hosted product lifecycle remains blocked at initial create in first PR84 run.",
     "originalPinnedFormatterDiagnostics": 1,
     "originalPinnedFormatterSourceCredit": 0,
     "unexecutedWholeSourceFamilies": 8,
-    "nativeUITests": 14,
+    "nativeUITests": 16,
     "nativeFormatterTests": 2,
-    "nativeUIValueRedThenUnchangedGreen": 13,
+    "nativeUIValueRedThenUnchangedGreen": 15,
     "nativeFormatterValueRedThenUnchangedGreen": 2,
-    "nativeActualKitTransportTests": 3,
-    "nativeActualKitTransportValueRedThenUnchangedGreen": 3,
-    "nativeTransportOmissions": "Actual installedKit form/shared/binary HTTP and Node storage execute through Original framework/environment seams; product browser3 and SourceEditor/List/e2e remain unexecuted. Initial host imports/types/matcher failures and global-clock deadlines earn0causal credit; final unchanged5s UI-only clock fixture rerun4value reds before14green."
+    "nativeActualKitTransportTests": 5,
+    "nativeActualKitTransportValueRedThenUnchangedGreen": 5,
+    "nativeTransportOmissions": "Actual installedKit form/shared/binary HTTP and Node storage execute through Original framework/environment seams. Final create/navigation host adds2completed value reds before16unchanged greens; prior14retained. Hosted270674f whole65browser run has59passes/6fails (own create2fail, own autosave1pass, existing navigation4fail); current repaired browser run pending. SourceEditor/List/e2e remain whole/unexecuted. Setup/import/global-clock deadline failures earn0causal credit; unchanged5s deadlines remain."
   },
   "browserInventory": {
     "originalCasesAdded": 3,
     "wholeCurrentSuiteCollected": 65,
-    "execution": "unexecuted",
-    "causalSourceCredit": 0
+    "execution": "Official secured Chromium1243 PR84 run37165221122 at270674f merge27faa: whole65,59pass/6fail; own3: autosave1pass/create2valuefails; existing collection-trash4navigation fails. Current repair browser verification pending.",
+    "causalSourceCredit": 0,
+    "completedOriginalProductValueReds": 2,
+    "unchangedOriginalProductRedThenGreen": 0
   },
   "adoptedPublicMain": "311ec0cb1bb33a66fb937d876f9387cca37b3087",
   "preservedWholeTestFamilies": 9,
@@ -350,6 +382,20 @@
     {
       "head": "92b6b0ac4d561760a0f4957d0e503861221f01f2",
       "result": "exit1 first frozen512 metadata phase npmHTTP503 @playwright/test; no repository checks/tests/builds execute; complete pass credit0"
+    }
+  ],
+  "hostedRuns": [
+    {
+      "head": "270674f74393f5b07aad096ebb6e30eb7e40a3a8",
+      "mergeCheckout": "27faa768a207f47395cec9b07f37d254d6de382b",
+      "runId": 37165221122,
+      "browserJobId": 111326632441,
+      "browser": "secured official Chromium1243; six preserved Source browser families and default build pass; complete Native65 reports59pass/6valuefail; Node build/browser steps skipped",
+      "validateJobId": 111326632515,
+      "validate": "exit1 after3completed phases (frozen512/checker0/0/services); preserved Main phase4 Source command passes through editor Source7, then Native transport3 fail before assertions on transformed import.meta.url file:/// build path; otherNative11pass; phases5-13notreached; complete-normal pass0",
+      "artifactId": 11289492354,
+      "artifactBytes": 2696538,
+      "artifactSha256": "063a9f86343e7a0376a5dc7cc4caea7ec819513cf75cfd685ca12a4798e2ffaa"
     }
   ]
 }
