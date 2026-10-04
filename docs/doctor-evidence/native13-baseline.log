@@ -1,0 +1,437 @@
+✖ doctor returns actionable JSON failure without creating a missing database (38.009818ms)
+✖ doctor reads the real installed migrations, collection and empty identity tables without writes (49.927118ms)
+✖ doctor reports pending migrations from the actual registered provider universe (30.8291ms)
+✖ doctor does not accept unknown or gapped native migration records as fully applied (39.820276ms)
+✖ doctor reports actual orphaned content tables without including ordinary operator tables (39.024462ms)
+✖ doctor detects noncanonical persisted content and nested/revision datetimes without repairing them (44.260562ms)
+✖ doctor reports invalid datetime data as an inspection failure (43.382163ms)
+✖ doctor combines actual Native Worker wiring diagnostics with a missing local database (30.274506ms)
+✖ doctor provides Native TOML trigger guidance for a real maintenance handler (30.293835ms)
+✖ doctor reports JSONC locations and does not print configuration values (31.731824ms)
+✖ doctor reports TOML locations without including configuration source excerpts (28.909768ms)
+✖ doctor accepts explicit database paths and prints native human-readable summaries (28.777289ms)
+✖ doctor rejects invalid flags with a useful usage error (28.357058ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 0
+ℹ fail 13
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 693.98118
+
+✖ failing tests:
+
+test at tests/doctor-cli.test.ts:51:1
+✖ doctor returns actionable JSON failure without creating a missing database (38.009818ms)
+  AssertionError [ERR_ASSERTION]: CLI must produce diagnostics: node:internal/modules/cjs/loader:1520
+    throw err;
+    ^
+  
+  Error: Cannot find module '/workspace/cms-doctor-cli/scripts/doctor.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+      at Module._load (node:internal/modules/cjs/loader:1294:5)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.19.0
+  
+      at checks (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:31:10)
+      at TestContext.<anonymous> (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:55:19)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /^\s*\[/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/doctor-cli.test.ts:62:1
+✖ doctor reads the real installed migrations, collection and empty identity tables without writes (49.927118ms)
+  AssertionError [ERR_ASSERTION]: CLI must produce diagnostics: node:internal/modules/cjs/loader:1520
+    throw err;
+    ^
+  
+  Error: Cannot find module '/workspace/cms-doctor-cli/scripts/doctor.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+      at Module._load (node:internal/modules/cjs/loader:1294:5)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.19.0
+  
+      at checks (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:31:10)
+      at TestContext.<anonymous> (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:68:19)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /^\s*\[/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/doctor-cli.test.ts:78:1
+✖ doctor reports pending migrations from the actual registered provider universe (30.8291ms)
+  AssertionError [ERR_ASSERTION]: CLI must produce diagnostics: node:internal/modules/cjs/loader:1520
+    throw err;
+    ^
+  
+  Error: Cannot find module '/workspace/cms-doctor-cli/scripts/doctor.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+      at Module._load (node:internal/modules/cjs/loader:1294:5)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.19.0
+  
+      at checks (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:31:10)
+      at TestContext.<anonymous> (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:85:19)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /^\s*\[/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/doctor-cli.test.ts:93:1
+✖ doctor does not accept unknown or gapped native migration records as fully applied (39.820276ms)
+  AssertionError [ERR_ASSERTION]: CLI must produce diagnostics: node:internal/modules/cjs/loader:1520
+    throw err;
+    ^
+  
+  Error: Cannot find module '/workspace/cms-doctor-cli/scripts/doctor.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+      at Module._load (node:internal/modules/cjs/loader:1294:5)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.19.0
+  
+      at checks (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:31:10)
+      at TestContext.<anonymous> (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:100:19)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /^\s*\[/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/doctor-cli.test.ts:107:1
+✖ doctor reports actual orphaned content tables without including ordinary operator tables (39.024462ms)
+  AssertionError [ERR_ASSERTION]: CLI must produce diagnostics: node:internal/modules/cjs/loader:1520
+    throw err;
+    ^
+  
+  Error: Cannot find module '/workspace/cms-doctor-cli/scripts/doctor.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+      at Module._load (node:internal/modules/cjs/loader:1294:5)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.19.0
+  
+      at checks (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:31:10)
+      at TestContext.<anonymous> (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:113:19)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /^\s*\[/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/doctor-cli.test.ts:119:1
+✖ doctor detects noncanonical persisted content and nested/revision datetimes without repairing them (44.260562ms)
+  AssertionError [ERR_ASSERTION]: CLI must produce diagnostics: node:internal/modules/cjs/loader:1520
+    throw err;
+    ^
+  
+  Error: Cannot find module '/workspace/cms-doctor-cli/scripts/doctor.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+      at Module._load (node:internal/modules/cjs/loader:1294:5)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.19.0
+  
+      at checks (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:31:10)
+      at TestContext.<anonymous> (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:134:19)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /^\s*\[/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/doctor-cli.test.ts:144:1
+✖ doctor reports invalid datetime data as an inspection failure (43.382163ms)
+  AssertionError [ERR_ASSERTION]: CLI must produce diagnostics: node:internal/modules/cjs/loader:1520
+    throw err;
+    ^
+  
+  Error: Cannot find module '/workspace/cms-doctor-cli/scripts/doctor.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+      at Module._load (node:internal/modules/cjs/loader:1294:5)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.19.0
+  
+      at checks (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:31:10)
+      at TestContext.<anonymous> (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:150:19)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /^\s*\[/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/doctor-cli.test.ts:155:1
+✖ doctor combines actual Native Worker wiring diagnostics with a missing local database (30.274506ms)
+  AssertionError [ERR_ASSERTION]: CLI must produce diagnostics: node:internal/modules/cjs/loader:1520
+    throw err;
+    ^
+  
+  Error: Cannot find module '/workspace/cms-doctor-cli/scripts/doctor.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+      at Module._load (node:internal/modules/cjs/loader:1294:5)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.19.0
+  
+      at checks (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:31:10)
+      at TestContext.<anonymous> (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:159:19)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /^\s*\[/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/doctor-cli.test.ts:167:1
+✖ doctor provides Native TOML trigger guidance for a real maintenance handler (30.293835ms)
+  AssertionError [ERR_ASSERTION]: CLI must produce diagnostics: node:internal/modules/cjs/loader:1520
+    throw err;
+    ^
+  
+  Error: Cannot find module '/workspace/cms-doctor-cli/scripts/doctor.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+      at Module._load (node:internal/modules/cjs/loader:1294:5)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.19.0
+  
+      at checks (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:31:10)
+      at TestContext.<anonymous> (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:170:19)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /^\s*\[/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/doctor-cli.test.ts:177:1
+✖ doctor reports JSONC locations and does not print configuration values (31.731824ms)
+  AssertionError [ERR_ASSERTION]: CLI must produce diagnostics: node:internal/modules/cjs/loader:1520
+    throw err;
+    ^
+  
+  Error: Cannot find module '/workspace/cms-doctor-cli/scripts/doctor.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+      at Module._load (node:internal/modules/cjs/loader:1294:5)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.19.0
+  
+      at checks (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:31:10)
+      at TestContext.<anonymous> (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:181:19)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /^\s*\[/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/doctor-cli.test.ts:186:1
+✖ doctor reports TOML locations without including configuration source excerpts (28.909768ms)
+  AssertionError [ERR_ASSERTION]: CLI must produce diagnostics: node:internal/modules/cjs/loader:1520
+    throw err;
+    ^
+  
+  Error: Cannot find module '/workspace/cms-doctor-cli/scripts/doctor.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)
+      at Module._load (node:internal/modules/cjs/loader:1294:5)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.19.0
+  
+      at checks (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:31:10)
+      at TestContext.<anonymous> (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:190:19)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /^\s*\[/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/doctor-cli.test.ts:195:1
+✖ doctor accepts explicit database paths and prints native human-readable summaries (28.777289ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Sveltery Doctor/. Input:
+  
+  ''
+  
+      at TestContext.<anonymous> (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:199:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /Sveltery Doctor/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/doctor-cli.test.ts:205:1
+✖ doctor rejects invalid flags with a useful usage error (28.357058ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Unknown option/. Input:
+  
+  'node:internal/modules/cjs/loader:1520\n' +
+    '  throw err;\n' +
+    '  ^\n' +
+    '\n' +
+    "Error: Cannot find module '/workspace/cms-doctor-cli/scripts/doctor.mjs'\n" +
+    '    at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)\n' +
+    '    at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)\n' +
+    '    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)\n' +
+    '    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)\n' +
+    '    at Module._load (node:internal/modules/cjs/loader:1294:5)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n' +
+    '    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n' +
+    '    at node:internal/main/run_main_module:33:47 {\n' +
+    "  code: 'MODULE_NOT_FOUND',\n" +
+    '  requireStack: []\n' +
+    '}\n' +
+    '\n' +
+    'Node.js v24.19.0\n'
+  
+      at TestContext.<anonymous> (file:///workspace/cms-doctor-cli/tests/doctor-cli.test.ts:209:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "node:internal/modules/cjs/loader:1520\n  throw err;\n  ^\n\nError: Cannot find module '/workspace/cms-doctor-cli/scripts/doctor.mjs'\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)\n    at Module._load (node:internal/modules/cjs/loader:1294:5)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v24.19.0\n",
+    expected: /Unknown option/,
+    operator: 'match',
+    diff: 'simple'
+  }

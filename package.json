@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "build:node": "SVELTERY_ADAPTER=node vite build && node scripts/build-revision-maintenance.mjs node",
+    "build:node": "SVELTERY_ADAPTER=node vite build && node scripts/build-revision-maintenance.mjs node && node scripts/build-doctor.mjs",
     "start:node": "node build/node/index.js",
     "package:node": "pnpm build:node && node scripts/package-node.mjs",
     "test:node": "node --test tests/node-hosting/*.test.ts",
@@ -25,7 +25,7 @@
     "build:cloudflare": "WRANGLER_LOG_PATH=.wrangler/logs SVELTERY_ADAPTER=cloudflare vite build && node scripts/build-revision-maintenance.mjs cloudflare && XDG_CONFIG_HOME=.wrangler/config WRANGLER_LOG_PATH=.wrangler/logs wrangler deploy --dry-run --outdir build/cloudflare/worker",
     "start:cloudflare": "XDG_CONFIG_HOME=.wrangler/config WRANGLER_LOG_PATH=.wrangler/logs wrangler dev --local",
     "test:cloudflare": "vitest run --config vitest.cloudflare.config.ts && node --test tests/cloudflare-hosting/*.test.ts",
-    "test:source-ports": "node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && node scripts/check-redirect-source-ports.mjs && vitest run --config vitest.redirect-source.config.ts && pnpm test:bulk-taxonomy-native && pnpm test:menu-source && pnpm test:menu-native-ui && node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-source.config.ts && vitest run --config vitest.redirect-ui-native.config.ts && pnpm test:sections-widgets-core && pnpm test:sections-widgets-converter && pnpm test:sections-widgets-transport && pnpm test:sections-widgets-core-d1 && pnpm test:comments-source && pnpm test:comments-native && pnpm test:canonical-installation-source && pnpm test:content-picker-source && pnpm test:content-picker-native-ui && pnpm test:writable-editor-source && pnpm test:writable-editor-ui && node scripts/check-canonical-feature-storage-source.mjs",
+    "test:source-ports": "node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && node scripts/check-redirect-source-ports.mjs && vitest run --config vitest.redirect-source.config.ts && pnpm test:bulk-taxonomy-native && pnpm test:menu-source && pnpm test:menu-native-ui && node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-source.config.ts && vitest run --config vitest.redirect-ui-native.config.ts && pnpm test:sections-widgets-core && pnpm test:sections-widgets-converter && pnpm test:sections-widgets-transport && pnpm test:sections-widgets-core-d1 && pnpm test:comments-source && pnpm test:comments-native && pnpm test:canonical-installation-source && pnpm test:content-picker-source && pnpm test:content-picker-native-ui && pnpm test:writable-editor-source && pnpm test:writable-editor-ui && node scripts/check-canonical-feature-storage-source.mjs && pnpm test:block-registry-native && pnpm test:block-registry-source && pnpm test:doctor-source",
     "test:ui-source": "vitest run --config vitest.ui-source.config.ts",
     "test:bulk-taxonomy-native": "vitest run --config vitest.bulk-taxonomy-native.config.ts",
     "test:bulk-taxonomy-source": "node scripts/check-bulk-taxonomy-source.mjs && vitest run --config vitest.bulk-taxonomy.config.ts",
@@ -49,7 +49,11 @@
     "test:content-picker-native-ui": "vitest run --config vitest.content-picker-native-ui.config.ts",
     "test:content-picker-browser-source": "node scripts/check-content-picker-source.mjs && vitest run --config vitest.content-picker-browser.config.ts",
     "test:writable-editor-source": "node scripts/check-writable-editor-source.mjs && vitest run --config vitest.writable-editor-source.config.ts",
-    "test:writable-editor-ui": "pnpm build && vitest run --config vitest.writable-editor-native.config.ts"
+    "test:writable-editor-ui": "pnpm build && vitest run --config vitest.writable-editor-native.config.ts",
+    "test:block-registry-native": "TZ=America/New_York node --test tests/blocks/provider-defaults-original.test.ts tests/blocks/catalogue-fixture.test.ts tests/blocks/provider-preservation.test.ts tests/blocks/comments-readiness-defaults-original.test.ts",
+    "test:block-registry-source": "node scripts/check-block-registry-source.mjs && vitest run --config vitest.block-registry-source.config.ts",
+    "doctor": "node scripts/doctor.mjs",
+    "test:doctor-source": "node scripts/check-doctor-source.mjs && vitest run --config vitest.doctor-source.config.ts"
   },
   "dependencies": {
     "@oslojs/crypto": "1.0.1",
@@ -68,6 +72,8 @@
     "jpeg-js": "0.4.4",
     "mime": "4.1.0",
     "upng-js": "2.1.0",
+    "jsonc-parser": "3.3.1",
+    "smol-toml": "1.6.0",
     "@tiptap/core": "3.20.0",
     "@tiptap/pm": "3.20.0",
     "@tiptap/starter-kit": "3.20.0",

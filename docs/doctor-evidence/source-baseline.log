@@ -1,0 +1,26 @@
+
+ RUN  v4.1.10 /workspace/cms-doctor-cli
+
+ ❯ parity/emdash/doctor/source/packages/core/tests/unit/cli/doctor.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/doctor/source/packages/core/tests/unit/cli/doctor.test.ts [ parity/emdash/doctor/source/packages/core/tests/unit/cli/doctor.test.ts ]
+Error: Cannot find module '../../../src/lib/server/diagnostics/doctor.ts' imported from /workspace/cms-doctor-cli/tests/helpers/doctor/source-transport.ts
+ ❯ tests/helpers/doctor/source-transport.ts:3:1
+      1| // The unchanged Source fixtures supply their original Worker contract…
+      2| // same native inspector. This adapter grants no Native Worker runtime…
+      3| import { checkDoctor as inspectDoctor, checkSchedulerWiring as inspect…
+       | ^
+      4|   from '../../../src/lib/server/diagnostics/doctor.ts';
+      5|
+ ❯ parity/emdash/doctor/source/packages/core/tests/unit/cli/doctor.test.ts:7:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  09:53:07
+   Duration  159ms (transform 25ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+
