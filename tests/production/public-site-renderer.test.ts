@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { passkeyRuntime } from '../helpers/passkey-runtime.ts';
 import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
 import { lifecycleService } from '../../src/lib/server/database/lifecycle/service.ts';
-import { cmsService } from '../../src/lib/server/database/service.ts';
+import { ContentRepository } from '../../src/lib/server/database/lifecycle/upstream/database/repositories/content.ts';
 
 // Original native HTTP product requirements; zero copied Source declaration credit.
 for (const target of ['Node', 'D1'] as const) {
@@ -27,8 +27,8 @@ for (const target of ['Node', 'D1'] as const) {
     await service.updateContent({ type: 'posts', id: live.id, data: { title: 'Private staged title', content: block('Private staged body') } });
     const draft = await service.createContent({ type: 'posts', slug: 'private-draft', data: { title: 'Secret unpublished title' } });
     const trashed = await service.createContent({ type: 'posts', slug: 'trashed-post', data: { title: 'Trashed secret' } });
-    const publishedTrash = await service.publish({ type: 'posts', id: trashed.id });
-    await cmsService(database, { id: 'public-author', permissions: ['content:delete_own'] }).deleteDraft({ type: 'posts', id: trashed.id, expected: { version: publishedTrash.version, updatedAt: publishedTrash.updatedAt } });
+    await service.publish({ type: 'posts', id: trashed.id });
+    await new ContentRepository(database.db as never).delete('posts', trashed.id);
     const page = await service.createContent({ type: 'pages', slug: 'about', data: { title: 'About this site', content: block('Ordinary page') } });
     await service.publish({ type: 'pages', id: page.id });
 
