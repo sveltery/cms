@@ -6,16 +6,10 @@
   import WorkspaceShell from '$lib/ui/WorkspaceShell.svelte';
   import MenuEditor from '$lib/menus/MenuEditor.svelte';
   import { createMenuClient } from '$lib/menus/client.ts';
-  import type { ContentClient } from '$lib/menus/types.ts';
-  import { getEditorManifest, listContent } from '$lib/content.remote';
+  import { createContentPickerClient } from '$lib/content-picker/client.ts';
   let { data }: { data: PageData } = $props();
   const client = $derived(createMenuClient(data.basePath));
-  const contentClient: ContentClient = {
-    async collections() { const manifest = await getEditorManifest(); return Object.entries(manifest.collections).filter(([, value]) => value.routable)
-      .map(([slug, value]) => ({ slug, label: value.label })); },
-    async entries(collection, locale) { const result = await listContent({ collection, locale });
-      return result.items.map(item => ({ collection, id: item.id, title: item.title ?? item.slug ?? item.id })); }
-  };
+  const contentClient = $derived(createContentPickerClient(data.basePath));
 </script>
 <WorkspaceShell homeHref={resolve('/')}>
   <MenuEditor name={page.params.name ?? ''} locale={page.url.searchParams.get('locale') ?? undefined} {client} {contentClient} basePath={data.basePath}
