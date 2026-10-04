@@ -1,0 +1,152 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+ ❯ tests/search-native-review/runtime-regressions.test.ts (8 tests | 8 failed) 155ms
+     × uses post-edit field order for a combined searchable and nonnegative sortOrder edit 63ms
+     × rejects a stale inactive config plan after an ordinary sequential enable: null 24ms
+     × rejects a stale inactive config plan after an ordinary sequential enable: {"enabled":false} 20ms
+     × rejects a previously resolved field ID that no longer identifies the captured field before any FTS batch commit 20ms
+     × derives unchanged supports from the same actual snapshot as the field plan 19ms
+     × swallows a supplied repair rejection and caches the checked state 3ms
+     × bounds a supplied stalled repair at the pinned 30000ms owner deadline without failing the caller 2ms
+     × anchors actual repair work through the supplied existing host lifetime callback 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/search-native-review/runtime-regressions.test.ts > Native search review regressions over real canonical SQL > uses post-edit field order for a combined searchable and nonnegative sortOrder edit
+AssertionError: expected [ 'title', 'summary' ] to deeply equal [ 'summary', 'title' ]
+
+- Expected
++ Received
+
+  [
+-   "summary",
+    "title",
++   "summary",
+  ]
+
+ ❯ tests/search-native-review/runtime-regressions.test.ts:46:29
+     44|     await owner.enableSearch('articles', { weights: { title: 10, summa…
+     45|     await registry.updateField('articles', 'summary', { searchable: tr…
+     46|     expect(await columns()).toEqual(await owner.getSearchableFields('a…
+       |                             ^
+     47|     const result = await searchWithDb(database.db as any, 'quokka');
+     48|     expect(result.items[0]?.snippet).toContain('<mark>quokka</mark>');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  tests/search-native-review/runtime-regressions.test.ts > Native search review regressions over real canonical SQL > rejects a stale inactive config plan after an ordinary sequential enable: null
+ FAIL  tests/search-native-review/runtime-regressions.test.ts > Native search review regressions over real canonical SQL > rejects a stale inactive config plan after an ordinary sequential enable: {"enabled":false}
+AssertionError: promise resolved "undefined" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+undefined
+
+ ❯ tests/search-native-review/runtime-regressions.test.ts:55:50
+     53|     const plan = await planner(owner).schemaMutationPlan('articles', […
+     54|     await owner.enableSearch('articles');
+     55|     await expect(persistSummary(plan, target.id)).rejects.toThrow(/CHE…
+       |                                                  ^
+     56|     expect((await registry.getField('articles', 'summary'))?.searchabl…
+     57|     expect(await columns()).toEqual(['title']);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  tests/search-native-review/runtime-regressions.test.ts > Native search review regressions over real canonical SQL > rejects a previously resolved field ID that no longer identifies the captured field before any FTS batch commit
+AssertionError: promise resolved "undefined" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+undefined
+
+ ❯ tests/search-native-review/runtime-regressions.test.ts:66:10
+     64|       const plan = await planner(owner).schemaMutationPlan('articles',…
+     65|       await persistSummary(plan, target.id);
+     66|     })()).rejects.toThrow(/CHECK constraint failed|NOT_FOUND|CONFLICT/…
+       |          ^
+     67|     expect((await registry.getField('articles', 'summary'))?.searchabl…
+     68|     expect(await columns()).toEqual(['title']);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  tests/search-native-review/runtime-regressions.test.ts > Native search review regressions over real canonical SQL > derives unchanged supports from the same actual snapshot as the field plan
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/search-native-review/runtime-regressions.test.ts:78:64
+     76|     const plan = await planner(owner).schemaMutationPlan('articles', p…
+     77|     await persistSummary(plan, target.id);
+     78|     expect((await owner.getSearchConfig('articles'))?.enabled).toBe(tr…
+       |                                                                ^
+     79|     expect(await columns()).toEqual(await owner.getSearchableFields('a…
+     80|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  tests/search-native-review/runtime-regressions.test.ts > Native optional health hosting preserves pinned bounded non-fatal behavior > swallows a supplied repair rejection and caches the checked state
+AssertionError: promise rejected "Error: ordinary supplied repair rejection" instead of resolving
+ ❯ tests/search-native-review/runtime-regressions.test.ts:89:58
+     87|   it('swallows a supplied repair rejection and caches the checked stat…
+     88|     const verify = vi.spyOn(FTSManager.prototype, 'verifyAndRepairAll'…
+     89|     await expect(ensureSearchHealthy(database.db as any)).resolves.toB…
+       |                                                          ^
+     90|     await expect(ensureSearchHealthy(database.db as any)).resolves.toB…
+     91|     expect(verify).toHaveBeenCalledTimes(1);
+
+Caused by: Error: ordinary supplied repair rejection
+ ❯ tests/search-native-review/runtime-regressions.test.ts:88:91
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  tests/search-native-review/runtime-regressions.test.ts > Native optional health hosting preserves pinned bounded non-fatal behavior > bounds a supplied stalled repair at the pinned 30000ms owner deadline without failing the caller
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/search-native-review/runtime-regressions.test.ts:101:23
+     99|     try {
+    100|       await vi.advanceTimersByTimeAsync(30_000);
+    101|       expect(settled).toBe(true);
+       |                       ^
+    102|     } finally { finish(0); await task.catch(() => undefined); }
+    103|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  tests/search-native-review/runtime-regressions.test.ts > Native optional health hosting preserves pinned bounded non-fatal behavior > anchors actual repair work through the supplied existing host lifetime callback
+AssertionError: expected "vi.fn()" to be called 1 times, but got 0 times
+ ❯ tests/search-native-review/runtime-regressions.test.ts:109:23
+    107|     const health = ensureSearchHealthy as unknown as (db: CmsDatabase[…
+    108|     await health(database.db, keepAlive);
+    109|     expect(keepAlive).toHaveBeenCalledTimes(1);
+       |                       ^
+    110|     await expect(keepAlive.mock.calls[0][0]).resolves.toBeUndefined();
+    111|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed (8)
+   Start at  13:32:58
+   Duration  718ms (transform 271ms, setup 0ms, import 438ms, tests 155ms, environment 0ms)
+
+JSON report written to /tmp/full-search-review-eight-r1-baseline.json

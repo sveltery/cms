@@ -1356,7 +1356,7 @@
       "expectations": [
         {
           "line": 83,
-          "expression": "expect(await search(\"東京都\")).toEqual([])",
+          "expression": "expect(await search(\"\u6771\u4eac\u90fd\")).toEqual([])",
           "sha256": "4d5292996dc5748b08efb679376ce97321bfc677031097f534803fcf6df8c9c4"
         },
         {
@@ -1366,12 +1366,12 @@
         },
         {
           "line": 91,
-          "expression": "expect(await search(\"東京都\")).toEqual([\"tokyo\"])",
+          "expression": "expect(await search(\"\u6771\u4eac\u90fd\")).toEqual([\"tokyo\"])",
           "sha256": "b7ef96cfd078062d970d77ef418c3dcd81319a149d04b2eed08cff1a2534b96f"
         },
         {
           "line": 92,
-          "expression": "expect(await search(\"東京\")).toEqual([])",
+          "expression": "expect(await search(\"\u6771\u4eac\")).toEqual([])",
           "sha256": "371752cac8b5275289f12b5a50f594fd7ee231a194a2c059405779d8b387dd60"
         },
         {
@@ -1409,7 +1409,7 @@
         },
         {
           "line": 119,
-          "expression": "expect(await search(\"東京都\")).toEqual([\"tokyo\"])",
+          "expression": "expect(await search(\"\u6771\u4eac\u90fd\")).toEqual([\"tokyo\"])",
           "sha256": "b7ef96cfd078062d970d77ef418c3dcd81319a149d04b2eed08cff1a2534b96f"
         },
         {
@@ -1419,7 +1419,7 @@
         },
         {
           "line": 128,
-          "expression": "expect(await search(\"東京都\")).toEqual([\"tokyo\"])",
+          "expression": "expect(await search(\"\u6771\u4eac\u90fd\")).toEqual([\"tokyo\"])",
           "sha256": "b7ef96cfd078062d970d77ef418c3dcd81319a149d04b2eed08cff1a2534b96f"
         },
         {
@@ -1434,7 +1434,7 @@
         },
         {
           "line": 133,
-          "expression": "expect(await search(\"東京都\")).toEqual([\"tokyo\"])",
+          "expression": "expect(await search(\"\u6771\u4eac\u90fd\")).toEqual([\"tokyo\"])",
           "sha256": "b7ef96cfd078062d970d77ef418c3dcd81319a149d04b2eed08cff1a2534b96f"
         }
       ],
@@ -1468,7 +1468,7 @@
         },
         {
           "line": 151,
-          "expression": "expect(await search(\"東京都\")).toEqual([\"tokyo\"])",
+          "expression": "expect(await search(\"\u6771\u4eac\u90fd\")).toEqual([\"tokyo\"])",
           "sha256": "b7ef96cfd078062d970d77ef418c3dcd81319a149d04b2eed08cff1a2534b96f"
         },
         {
@@ -2781,5 +2781,65 @@
   "acceptance": {
     "pairedDecisionStatus": "Pending exact Root development qualification, runtime red/green/refactor, final independent/configured review and actual public gates.",
     "completeSearch": false
-  }
+  },
+  "implementationProposal": {
+    "status": "Corrected UNAPPLIED R5 at actual c78/publicc3 union after all6 R4 mechanisms independently clear and actual creator3 existing controls; no configured fixed/refactored acceptance.",
+    "authorPR": "https://github.com/sveltery/cms/pull/101",
+    "testFirstHead": "02f4b863020f8f9f62aa97770193608bf37ad14e",
+    "schemaTestFirstHead": "7f1aff83dc2f8c93fd5288c2f650409b306067d6",
+    "wholeBaseline": "search-evidence/whole70-baseline-receipt.json",
+    "schemaBaseline": "search-evidence/native6-baseline-receipt.json",
+    "sourceCausalRedCredit": 0,
+    "nativeReadinessAssertionReds": 8,
+    "nativeSubstantiveSchemaValueReds": 5,
+    "nativeSchemaPromiseAssertionReds": 1,
+    "sourceRawNamespacePreexpectStops": 5,
+    "sourceUnregisteredCallbacks": 50,
+    "nativeLaterQueryValueAssertionsUnreached": 15,
+    "plannedConfiguredCallbacks": 88,
+    "sourcePhysicalNames": "Same existing Native FTSManager class subclass creates real Source-named virtual tables/shadows/triggers; only builder metadata TableNodes are mapped, no raw SQL/literal/result rewrite.",
+    "atomicPlanning": "Real one-statement metadata/config snapshot and before-write SQL guard; entire schema mutation and FTS DDL/triggers/population remain in same CmsDatabase.atomicBatch.",
+    "creator0": "Behavior-preserving explicit API insertion; actual pinned Source012 and Native SQL0 remain0. Earlier SQL1 premise disproved; no bug-repair or Source causal credit.",
+    "acceptanceDecision": "No final acceptance decision recorded; runtime and final public composition/gates/reviews/author merge pending.",
+    "reviewTestFirstHead": "1b6a630127f584b00eae8e6db993cf927b9a1e4d",
+    "reviewBaseline": "search-evidence/review8-baseline-receipt.json",
+    "reviewCallbacks": 8,
+    "sourceOriginal40Unchanged": true,
+    "sourceHealthWholeAuthorityAdded": true,
+    "corrections": [
+      "SEARCHREV01 post-edit field IDs/order including combined sortOrder.",
+      "SEARCHREV02 Source single-flight void cache, inner/outer catches,30000 owner bound and actual existing after/keepAlive anchor.",
+      "SEARCHREV03 retains real snapshot guard/cleanup for inactive/null/invalid config.",
+      "SEARCHREV04 snapshot every fieldID and exact earlier target identity/state guard before write; field map byID.",
+      "SEARCHREV05 unchanged supports parsed from captured row; requested supports reserved for CAS collection update."
+    ],
+    "pairedConcurrencyDifference": "Any FTS-relevant schema plan (including inactive config) guards actual captured collection/config/order/IDs and earlier field identity before batch, may yield Native CONFLICT on stale state. Ordinary metadata-only edits retain established behavior.",
+    "unknownTypeTestFirstHead": "9a90a5f8327e89a2e8386699b06f7c9e65c39814",
+    "unknownTypeBaseline": "search-evidence/unknown-delete-baseline-receipt.json",
+    "unknownTypeCallbacks": 1,
+    "unknownTypeCorrection": "For actual top-level unsupportedType.path=type only, expected deletion target restores stored unsupportedType.type; nested repeater child marker leaves actualtoprepeater. Source query/schema/guard/health mechanisms otherwise R3-exact.",
+    "r3FiveFindingClosure": "All originalSEARCHREV01\u201305 mechanisms closed; R4 independently clears06 too. R5 current public union reviewer closure/Root qualification pending.",
+    "publicUnionHead": "c78d82161f1aa40f17055bf77c12b9b7ef46259a",
+    "actualIncomingPublic": "c3d135a6f20e4319ee07eebb0f9009b57f2985f9",
+    "creatorTestFirstHead": "ec143e46d3ff2f500a164efa462d1ce8731b43b2",
+    "creatorBaseline": "search-evidence/creator-public41-baseline-receipt.json",
+    "creatorCallbacks": 3,
+    "creatorReachedAssertions": 6,
+    "creatorExistingControlsPassed": 3,
+    "creatorInfraOnlyAttempts": 2,
+    "creatorNativeCausalRed": 0,
+    "r4SixFindingReview": "search-evidence/r4-independent-six-finding-review.json",
+    "publicRegistryUtcCas": "Whole actual published UTC parsing/+1ms metadata-CAS helper retained exact in Registry candidate; provider/migration/gates unchanged.",
+    "publicPackagePreserved": "All c3 Doctor/block/source/build/package dependency leaves retained, only search terminal leaf added. Physical lock and installed public dependencies unchanged.",
+    "allRawEvidencePreserved": "Initial70, Native6, Native8, Native1 and both creator infra attempts/actual3controls raw logs/JSON/receipts kept byteexact."
+  },
+  "runtimeAuthorities": [
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/emdash-runtime.ts.txt",
+      "source": "packages/core/src/emdash-runtime.ts",
+      "kind": "source-authority",
+      "bytes": 216950,
+      "sha256": "7954be3d12857ff307e9d2b15846662814f092e49807bcfb3b188a8f2ae847fc"
+    }
+  ]
 }

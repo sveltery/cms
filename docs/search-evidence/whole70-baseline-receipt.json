@@ -1,0 +1,284 @@
+{
+  "artifact": "Full search first complete configured Source14+Native9 baseline",
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "nativeHead": "02f4b863020f8f9f62aa97770193608bf37ad14e",
+  "nativeTree": "fcad94b021410f5a07c6fcd7c2a6570ed7763b89",
+  "rootTestFirstQualification": {
+    "path": "/tmp/root-search-testfirst-r3-exact47-development-qualification.json",
+    "bytes": 1340,
+    "sha256": "f5b612353d17c190e5fdb0cd1d167583f33f4516aada33f54088ed1bab845c49"
+  },
+  "command": "node /workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs exec vitest run --config vitest.full-search.config.ts --reporter=default --reporter=json --outputFile=/tmp/full-search-02f4b863-whole70-baseline.json",
+  "exitCode": 1,
+  "configuredWholeFamilies": 14,
+  "configuredSourceExpandedCases": 61,
+  "configuredNativeCases": 9,
+  "actual": {
+    "files": 15,
+    "failedFiles": 14,
+    "passedFiles": 1,
+    "registeredCases": 20,
+    "failedCases": 13,
+    "passedCases": 7,
+    "sourceInitialControls": 6,
+    "sourceRawNamespacePreExpectErrors": 5,
+    "sourceMissingQuerySchemaSuiteErrors": 12,
+    "sourceCasesNotRegisteredDueToModuleStop": 50,
+    "nativeInitialOwnerStorageControl": 1,
+    "nativeMissingFeaturePromiseReadinessAssertionReds": 8,
+    "nativeLaterQueryValueAssertionsUnreached": 15,
+    "sourceBehaviorAssertionReds": 0,
+    "sourceCausalCredit": 0,
+    "sourceCompletedInitialAssertionCalls": 6,
+    "skippedCases": 0,
+    "timeouts": 0,
+    "independentFixtureInfrastructureStops": 0,
+    "nativeCompletedInitialAssertionCalls": 11
+  },
+  "note": "The complete unchanged14-family selection ran once. Missing runtime query/schema imports prevented50 Source cases from registering; five corruption cases reached raw Source table lookup and stopped before Source expects. Six Source match cases are already-green controls. Eight Native realSQL cases reached expected promise readiness failures for the absent feature module; later query values were not reached. No retry/narrowing/raw namespace/expectation/clock edits.",
+  "sourceGuard": {
+    "path": "/tmp/full-search-r3-whole-source-guard.log",
+    "bytes": 171,
+    "sha256": "b6229ca86859ca5da0592d73042b04bb23bacb6b098ec3b0efd62fffff0b9d06",
+    "result": "exit0, all40 copies immutable pin, selected58 declarations/128 static expects"
+  },
+  "logs": [
+    {
+      "path": "/tmp/full-search-02f4b863-whole70-baseline.log",
+      "bytes": 32508,
+      "sha256": "c5650b16f7a639ce7381a1753a71080638d4be5eebd2c1b4fbbaecdf4b0ae06b"
+    },
+    {
+      "path": "/tmp/full-search-02f4b863-whole70-baseline.json",
+      "bytes": 28452,
+      "sha256": "0d1dd62b745858ea0005b75192bb273d2edeb7e2a208b838432a76c740092a68"
+    }
+  ],
+  "results": [
+    {
+      "name": "/workspace/cms-full-search-query-api/tests/search-native/query.test.ts",
+      "status": "failed",
+      "message": "",
+      "cases": [
+        {
+          "name": "Native full search over actual canonical SQLite starts from the real single Native FTS owner and real six-row content table",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "name": "Native full search over actual canonical SQLite searches five published rows and excludes the stored draft",
+          "status": "failed",
+          "failureMessages": [
+            "Error: promise rejected \"Error: Cannot find module '/src/lib/serve\u2026 { \u2026(2) }\" instead of resolving\n    at _Assertion.__VITEST_RESOLVES__ (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1710:17)\n    at _Assertion.propertyGetter (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1607:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1696:22)\n    at queryApi (/workspace/cms-full-search-query-api/tests/search-native/query.test.ts:18:72)\n    at /workspace/cms-full-search-query-api/tests/search-native/query.test.ts:47:23\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)"
+          ]
+        },
+        {
+          "name": "Native full search over actual canonical SQLite walks all matches once with opaque pagination",
+          "status": "failed",
+          "failureMessages": [
+            "Error: promise rejected \"Error: Cannot find module '/src/lib/serve\u2026 { \u2026(2) }\" instead of resolving\n    at _Assertion.__VITEST_RESOLVES__ (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1710:17)\n    at _Assertion.propertyGetter (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1607:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1696:22)\n    at queryApi (/workspace/cms-full-search-query-api/tests/search-native/query.test.ts:18:72)\n    at /workspace/cms-full-search-query-api/tests/search-native/query.test.ts:53:23\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)"
+          ]
+        },
+        {
+          "name": "Native full search over actual canonical SQLite rejects a foreign endpoint cursor",
+          "status": "failed",
+          "failureMessages": [
+            "Error: promise rejected \"Error: Cannot find module '/src/lib/serve\u2026 { \u2026(2) }\" instead of resolving\n    at _Assertion.__VITEST_RESOLVES__ (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1710:17)\n    at _Assertion.propertyGetter (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1607:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1696:22)\n    at queryApi (/workspace/cms-full-search-query-api/tests/search-native/query.test.ts:18:72)\n    at /workspace/cms-full-search-query-api/tests/search-native/query.test.ts:58:23\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)"
+          ]
+        },
+        {
+          "name": "Native full search over actual canonical SQLite rejects a cursor above the pinned 10000-row bound",
+          "status": "failed",
+          "failureMessages": [
+            "Error: promise rejected \"Error: Cannot find module '/src/lib/serve\u2026 { \u2026(2) }\" instead of resolving\n    at _Assertion.__VITEST_RESOLVES__ (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1710:17)\n    at _Assertion.propertyGetter (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1607:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1696:22)\n    at queryApi (/workspace/cms-full-search-query-api/tests/search-native/query.test.ts:18:72)\n    at /workspace/cms-full-search-query-api/tests/search-native/query.test.ts:62:23\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)"
+          ]
+        },
+        {
+          "name": "Native full search over actual canonical SQLite returns title-only published autocomplete",
+          "status": "failed",
+          "failureMessages": [
+            "Error: promise rejected \"Error: Cannot find module '/src/lib/serve\u2026 { \u2026(2) }\" instead of resolving\n    at _Assertion.__VITEST_RESOLVES__ (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1710:17)\n    at _Assertion.propertyGetter (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1607:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1696:22)\n    at queryApi (/workspace/cms-full-search-query-api/tests/search-native/query.test.ts:18:72)\n    at /workspace/cms-full-search-query-api/tests/search-native/query.test.ts:66:23\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)"
+          ]
+        },
+        {
+          "name": "Native full search over actual canonical SQLite escapes stored HTML while preserving mark highlights",
+          "status": "failed",
+          "failureMessages": [
+            "Error: promise rejected \"Error: Cannot find module '/src/lib/serve\u2026 { \u2026(2) }\" instead of resolving\n    at _Assertion.__VITEST_RESOLVES__ (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1710:17)\n    at _Assertion.propertyGetter (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1607:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1696:22)\n    at queryApi (/workspace/cms-full-search-query-api/tests/search-native/query.test.ts:18:72)\n    at /workspace/cms-full-search-query-api/tests/search-native/query.test.ts:70:23\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)"
+          ]
+        },
+        {
+          "name": "Native full search over actual canonical SQLite keeps title-scoped results separate from body matches",
+          "status": "failed",
+          "failureMessages": [
+            "Error: promise rejected \"Error: Cannot find module '/src/lib/serve\u2026 { \u2026(2) }\" instead of resolving\n    at _Assertion.__VITEST_RESOLVES__ (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1710:17)\n    at _Assertion.propertyGetter (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1607:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1696:22)\n    at queryApi (/workspace/cms-full-search-query-api/tests/search-native/query.test.ts:18:72)\n    at /workspace/cms-full-search-query-api/tests/search-native/query.test.ts:75:23\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)"
+          ]
+        },
+        {
+          "name": "Native full search over actual canonical SQLite reports the actual indexed document count",
+          "status": "failed",
+          "failureMessages": [
+            "Error: promise rejected \"Error: Cannot find module '/src/lib/serve\u2026 { \u2026(2) }\" instead of resolving\n    at _Assertion.__VITEST_RESOLVES__ (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1710:17)\n    at _Assertion.propertyGetter (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1607:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1696:22)\n    at queryApi (/workspace/cms-full-search-query-api/tests/search-native/query.test.ts:18:72)\n    at /workspace/cms-full-search-query-api/tests/search-native/query.test.ts:80:23\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "/workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts",
+      "status": "failed",
+      "message": "",
+      "cases": [
+        {
+          "name": "FTS corruption on publish (SQLITE_CORRUPT_VTAB) does not corrupt the FTS index when a published page is edited and re-published",
+          "status": "failed",
+          "failureMessages": [
+            "Error: promise rejected \"Error: no such table: _emdash_fts_pages { \u2026(3) }\" instead of resolving\n    at _Assertion.__VITEST_RESOLVES__ (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1710:17)\n    at _Assertion.propertyGetter (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1607:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1696:22)\n    at /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts:120:4\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+          ]
+        },
+        {
+          "name": "FTS corruption on publish (SQLITE_CORRUPT_VTAB) survives the full trash lifecycle (soft-delete -> restore -> integrity-check)",
+          "status": "failed",
+          "failureMessages": [
+            "Error: promise rejected \"Error: no such table: _emdash_fts_pages { \u2026(3) }\" instead of resolving\n    at _Assertion.__VITEST_RESOLVES__ (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1710:17)\n    at _Assertion.propertyGetter (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1607:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1696:22)\n    at /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts:176:4\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+          ]
+        },
+        {
+          "name": "FTS corruption on publish (SQLITE_CORRUPT_VTAB) survives permanent delete of a soft-deleted row without corrupting the index",
+          "status": "failed",
+          "failureMessages": [
+            "Error: promise rejected \"Error: no such table: _emdash_fts_pages { \u2026(3) }\" instead of resolving\n    at _Assertion.__VITEST_RESOLVES__ (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1710:17)\n    at _Assertion.propertyGetter (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1607:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1696:22)\n    at /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts:247:4\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+          ]
+        },
+        {
+          "name": "FTS corruption on publish (SQLITE_CORRUPT_VTAB) survives editing a row while it's in the trash without corrupting the index",
+          "status": "failed",
+          "failureMessages": [
+            "Error: promise rejected \"Error: no such table: _emdash_fts_pages { \u2026(3) }\" instead of resolving\n    at _Assertion.__VITEST_RESOLVES__ (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1710:17)\n    at _Assertion.propertyGetter (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1607:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1696:22)\n    at /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts:284:4\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+          ]
+        },
+        {
+          "name": "FTS corruption on publish (SQLITE_CORRUPT_VTAB) survives many edit/publish cycles without corrupting the index",
+          "status": "failed",
+          "failureMessages": [
+            "Error: promise rejected \"Error: no such table: _emdash_fts_pages { \u2026(3) }\" instead of resolving\n    at _Assertion.__VITEST_RESOLVES__ (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1710:17)\n    at _Assertion.propertyGetter (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1607:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1696:22)\n    at /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts:327:4\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "/workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-repair.test.ts",
+      "status": "failed",
+      "message": "Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-repair.test.ts",
+      "cases": []
+    },
+    {
+      "name": "/workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-write-amplification.test.ts",
+      "status": "failed",
+      "message": "Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-write-amplification.test.ts",
+      "cases": []
+    },
+    {
+      "name": "/workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/pagination.test.ts",
+      "status": "failed",
+      "message": "Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/pagination.test.ts",
+      "cases": []
+    },
+    {
+      "name": "/workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/portable-text-indexing.test.ts",
+      "status": "failed",
+      "message": "Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/portable-text-indexing.test.ts",
+      "cases": []
+    },
+    {
+      "name": "/workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/snippet-sanitization.test.ts",
+      "status": "failed",
+      "message": "Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/snippet-sanitization.test.ts",
+      "cases": []
+    },
+    {
+      "name": "/workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest-title-field.test.ts",
+      "status": "failed",
+      "message": "Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest-title-field.test.ts",
+      "cases": []
+    },
+    {
+      "name": "/workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest.test.ts",
+      "status": "failed",
+      "message": "Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest.test.ts",
+      "cases": []
+    },
+    {
+      "name": "/workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-field-search.test.ts",
+      "status": "failed",
+      "message": "Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-field-search.test.ts",
+      "cases": []
+    },
+    {
+      "name": "/workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-less-collection.test.ts",
+      "status": "failed",
+      "message": "Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-less-collection.test.ts",
+      "cases": []
+    },
+    {
+      "name": "/workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-scope.test.ts",
+      "status": "failed",
+      "message": "Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-scope.test.ts",
+      "cases": []
+    },
+    {
+      "name": "/workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/tokenizer.test.ts",
+      "status": "failed",
+      "message": "Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/tokenizer.test.ts",
+      "cases": []
+    },
+    {
+      "name": "/workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/unit/api/search-schema.test.ts",
+      "status": "failed",
+      "message": "Cannot find module '/src/lib/server/search/schemas.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/unit/api/search-schema.test.ts",
+      "cases": []
+    },
+    {
+      "name": "/workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/unit/search/match.test.ts",
+      "status": "passed",
+      "message": "",
+      "cases": [
+        {
+          "name": "buildFtsPrefixMatch quotes each term with prefix matching, implicit AND",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "name": "buildFtsPrefixMatch escapes interior double quotes so no input can produce FTS5 syntax errors",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "name": "buildFtsPrefixMatch neutralizes FTS5 operators by quoting them",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "name": "buildFtsPrefixMatch returns empty string for whitespace-only input",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "name": "buildSlugGlobPrefix lowercases and appends the prefix wildcard",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "name": "buildSlugGlobPrefix treats GLOB metacharacters literally via character classes",
+          "status": "passed",
+          "failureMessages": []
+        }
+      ]
+    }
+  ],
+  "pending": "Query/schema production candidates, actual same-owner Source physical transport, atomic production registry FTS lifecycle and search:manage bridge are unapplied; full search/API/UI/public/MCP/hosted acceptance incomplete.",
+  "supersedes": {
+    "path": "/tmp/full-search-02f4b863-whole70-baseline-receipt.json",
+    "sha256": "3f457441fc5de327e1ade680cbfe7b75f9f26ef1653f986f76ab2fe6d5efcfa2",
+    "reason": "Correct Native latent expectation count:18 static body expects include3 already-completed owner/storage control expects; therefore15 later query values were unreached, plus8 real missing-feature readiness assertions. Raw log/JSON/tests/Source counts unchanged."
+  }
+}

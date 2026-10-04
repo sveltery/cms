@@ -7,7 +7,7 @@ const manifest = JSON.parse(await readFile('docs/search-source.json', 'utf8'));
 assert.equal(manifest.pin, '913cb1bb9b7f08c3ff0d258b4420e53835b6a58e');
 const hash = value => createHash('sha256').update(value).digest('hex');
 const declarations = [];
-for (const file of manifest.files) {
+for (const file of [...manifest.files, ...(manifest.runtimeAuthorities ?? [])]) {
  const bytes = await readFile(file.path);
  assert.equal(bytes.byteLength, file.bytes, file.source);
  assert.equal(hash(bytes), file.sha256, file.source);

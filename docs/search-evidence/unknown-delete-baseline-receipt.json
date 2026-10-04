@@ -1,0 +1,51 @@
+{
+  "head": "9a90a5f8327e89a2e8386699b06f7c9e65c39814",
+  "qualification": {
+    "path": "/tmp/root-search-searchrev06-exact3-native1-testfirst-qualification.json",
+    "bytes": 985,
+    "sha256": "be1b7c8cea9b1d068eaa244e34c4c76c71769c7e097d2c0ef51a05ddc5f97e9b"
+  },
+  "execution": "ONE whole NEWNative1 against EXACTimmutableUNAPPLIED R3 through existing finite resolver. No Source61/oldNative23 repeat or worktree product application.",
+  "exitCode": 1,
+  "registeredCallbacks": 1,
+  "passedCallbacks": 0,
+  "failedCallbacks": 1,
+  "existingProjectionControlAssertionsReachedPassed": 1,
+  "substantiveDeletionPromiseAssertionReds": 1,
+  "actualRejection": "CmsError CONFLICT after real SQL guard compares storedfutureText against projectedstring; no stale state.",
+  "reachedAssertions": 2,
+  "staticExpandedExpectCalls": 4,
+  "laterMetadataColumnAssertionsUnreached": 2,
+  "readinessReds": 0,
+  "preexpectStops": 0,
+  "infrastructureStops": 0,
+  "sourceCausalCredit": 0,
+  "creatorOmittedInputs": 0,
+  "concurrentProtectedProbes": 0,
+  "artifacts": {
+    "/tmp/full-search-unknown-delete-r3-baseline.log": {
+      "bytes": 1946,
+      "sha256": "54be62f12350cbcb35f11a75a4d053c4854a65695d54ad5afb3fb8eeb50ce12d"
+    },
+    "/tmp/full-search-unknown-delete-r3-baseline.json": {
+      "bytes": 1983,
+      "sha256": "04b2ee2b0025cf75a221cea79c136ca4e0f419af52c209632a58bda0a590543a"
+    }
+  },
+  "tests": [
+    {
+      "ancestorTitles": [
+        "Native deletion of a persisted future field type"
+      ],
+      "fullName": "Native deletion of a persisted future field type deletes the searchable unknown top-level type while search is inactive",
+      "status": "failed",
+      "title": "deletes the searchable unknown top-level type while search is inactive",
+      "duration": 45.23795899999993,
+      "failureMessages": [
+        "Error: promise rejected \"CmsError: CONFLICT { \u2026(2) }\" instead of resolving\n    at _Assertion.__VITEST_RESOLVES__ (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1710:17)\n    at _Assertion.propertyGetter (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1607:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1696:22)\n    at /workspace/cms-full-search-query-api/tests/search-native-review/unknown-field-delete.test.ts:26:66\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+      ],
+      "meta": {},
+      "tags": []
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "authorizedIncomingPublicHead": "c3d135a6f20e4319ee07eebb0f9009b57f2985f9",
+  "ownedBefore": "ec143e46d3ff2f500a164efa462d1ce8731b43b2",
+  "commonBase": "343c0ff2e69e66e03b848d258da7c288e9a67223",
+  "compatibility": {
+    "commonBase": {
+      "bytes": 408164,
+      "sha256": "933198f5cd812d92efef4651de49470084cbb6fe3d05aa307eb89a62197479b4"
+    },
+    "wholeIncoming": {
+      "bytes": 454960,
+      "sha256": "89b249a11bc02034eab3bedfb4ae4b3067f73b958f246ecb68026815001d6498"
+    },
+    "wholeOwned": {
+      "bytes": 415157,
+      "sha256": "eb24c54707f5348b389fff40ecb55a5f73bf4715cb39966f7863219d078989b3"
+    },
+    "ownedSuffix": {
+      "bytes": 6993,
+      "sha256": "72364ba98981877cbcfa6b512d16196ef71aa2f980cf97cd793b4459dc7c0ac7"
+    },
+    "composed": {
+      "bytes": 461953,
+      "sha256": "b17432d373f3eb6f1d964b552c177546901bf99602667fca8639dd28fcef833f"
+    },
+    "wholeIncomingPrefixRetained": true,
+    "wholeOwnedHistoryPreserved": "Exact shared base retained by incoming prefix plus byteexact complete owned suffix appended; no historical bytes trimmed/rephrased."
+  },
+  "sharedComposition": [
+    {
+      "path": "package.json",
+      "actualIncoming": {
+        "bytes": 7694,
+        "sha256": "00c7ab6987c9fa0e0b6a38eea351d886387c4d8792a20d11c4123cee114ad523"
+      },
+      "ownedAfter": {
+        "bytes": 7694,
+        "sha256": "00c7ab6987c9fa0e0b6a38eea351d886387c4d8792a20d11c4123cee114ad523"
+      },
+      "incomingExact": true
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "actualIncoming": {
+        "bytes": 183240,
+        "sha256": "21b3237771a620dd0c0d81a7eafbb86c18d02e5f50c2e214550782e54d80d7e9"
+      },
+      "ownedAfter": {
+        "bytes": 183240,
+        "sha256": "21b3237771a620dd0c0d81a7eafbb86c18d02e5f50c2e214550782e54d80d7e9"
+      },
+      "incomingExact": true
+    },
+    {
+      "path": ".gitattributes",
+      "actualIncoming": {
+        "bytes": 590,
+        "sha256": "6f113f61f12980ea0631f0b3dc33aacbc8b9c278207e7c72b2c66a2415a8c1a4"
+      },
+      "ownedAfter": {
+        "bytes": 590,
+        "sha256": "6f113f61f12980ea0631f0b3dc33aacbc8b9c278207e7c72b2c66a2415a8c1a4"
+      },
+      "incomingExact": true
+    },
+    {
+      "path": "src/lib/server/database/registry.ts",
+      "actualIncoming": {
+        "bytes": 25927,
+        "sha256": "d06ecdb418d0f84881ef1d14f448aedc39111dcda2cc5e790f62706cb8fe2e61"
+      },
+      "ownedAfter": {
+        "bytes": 25927,
+        "sha256": "d06ecdb418d0f84881ef1d14f448aedc39111dcda2cc5e790f62706cb8fe2e61"
+      },
+      "incomingExact": true
+    },
+    {
+      "path": "scripts/package-node.mjs",
+      "actualIncoming": {
+        "bytes": 2238,
+        "sha256": "072db6d1a98e8d19263817eaf542fefde704698d909b5908305ca02a17eb90f0"
+      },
+      "ownedAfter": {
+        "bytes": 2238,
+        "sha256": "072db6d1a98e8d19263817eaf542fefde704698d909b5908305ca02a17eb90f0"
+      },
+      "incomingExact": true
+    },
+    {
+      "path": "scripts/build-doctor.mjs",
+      "actualIncoming": {
+        "bytes": 588,
+        "sha256": "09134f875aae5d800e4e247b7a65aeea9b7ed54b4952a6fb4e1e4a1db34c3de2"
+      },
+      "ownedAfter": {
+        "bytes": 588,
+        "sha256": "09134f875aae5d800e4e247b7a65aeea9b7ed54b4952a6fb4e1e4a1db34c3de2"
+      },
+      "incomingExact": true
+    }
+  ],
+  "runtimeCandidateApplied": false,
+  "noPrivateBranchInputs": true
+}

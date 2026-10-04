@@ -1,25 +1,44 @@
 // Test-only import/database transport for unchanged whole EmDash search families.
 // Pin 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; Copyright 2026 Cloudflare Inc.
 // MIT; notices/emdash-MIT.txt. No raw SQL, literals, rows or assertions are rewritten.
+import { OperationNodeTransformer, type TableNode, type KyselyPlugin } from 'kysely';
+import { FTSManager } from './source-fts.ts';
 import { openSqlite } from '../../../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry as NativeRegistry } from '../../../src/lib/server/database/registry.ts';
 import { registerLifecycleDatabase } from '../../../src/lib/server/database/lifecycle/upstream/host.ts';
 import type { CmsDatabase } from '../../../src/lib/server/database/contract.ts';
 
+// Only these two ordinary builder TableNodes map to existing canonical metadata.
+class MetadataTables extends OperationNodeTransformer {
+  protected override transformTable(node: TableNode): TableNode {
+    const value = super.transformTable(node);
+    if (value.table.schema) return value;
+    const name = value.table.identifier.name;
+    const physical = name === '_emdash_collections' ? '_cms_collections' : name === '_emdash_fields' ? '_cms_fields' : name;
+    return physical === name ? value : { ...value, table: { ...value.table, identifier: { ...value.table.identifier, name: physical } } };
+  }
+}
+const transformer = new MetadataTables();
+const metadataPlugin: KyselyPlugin = {
+  transformQuery({node}) { return transformer.transformNode(node); },
+  async transformResult({result}) { return result; }
+};
 const bindings = new WeakMap<object, CmsDatabase>();
 export async function setupTestDatabase() {
   const database = openSqlite(':memory:');
   await migrateCms(database);
-  registerLifecycleDatabase(database, { after: task => { void task(); } });
-  bindings.set(database.db, database);
-  return database.db;
+  const db = database.db.withPlugin(metadataPlugin);
+  const bound: CmsDatabase = { db, atomicBatch: statements => database.atomicBatch(statements), close: () => database.close() };
+  registerLifecycleDatabase(bound, { after: task => { void task(); } });
+  bindings.set(db, bound);
+  return db;
 }
 export async function teardownTestDatabase(db: CmsDatabase['db']) {
   await bindings.get(db)?.close();
 }
 export class SchemaRegistry extends NativeRegistry {
-  constructor(db: CmsDatabase['db']) { super(bindings.get(db)!); }
+  constructor(db: CmsDatabase['db']) { super(bindings.get(db)!, new FTSManager(db as any)); }
   override async updateCollection(slug: string, input: unknown) {
     const collection = await this.getCollection(slug);
     if (!collection) throw new Error('Collection not found');

@@ -1,0 +1,459 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts (5 tests | 5 failed) 192ms
+     × does not corrupt the FTS index when a published page is edited and re-published 51ms
+     × survives the full trash lifecycle (soft-delete -> restore -> integrity-check) 26ms
+     × survives permanent delete of a soft-deleted row without corrupting the index 21ms
+     × survives editing a row while it's in the trash without corrupting the index 24ms
+     × survives many edit/publish cycles without corrupting the index 69ms
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/tokenizer.test.ts (0 test)
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/portable-text-indexing.test.ts (0 test)
+ ❯ tests/search-native/query.test.ts (9 tests | 8 failed) 235ms
+     ✓ starts from the real single Native FTS owner and real six-row content table 40ms
+     × searches five published rows and excludes the stored draft 29ms
+     × walks all matches once with opaque pagination 23ms
+     × rejects a foreign endpoint cursor 25ms
+     × rejects a cursor above the pinned 10000-row bound 21ms
+     × returns title-only published autocomplete 22ms
+     × escapes stored HTML while preserving mark highlights 20ms
+     × keeps title-scoped results separate from body matches 21ms
+     × reports the actual indexed document count 34ms
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/snippet-sanitization.test.ts (0 test)
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-scope.test.ts (0 test)
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-write-amplification.test.ts (0 test)
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/pagination.test.ts (0 test)
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-less-collection.test.ts (0 test)
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest.test.ts (0 test)
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-repair.test.ts (0 test)
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest-title-field.test.ts (0 test)
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-field-search.test.ts (0 test)
+ ✓ parity/emdash/full-search-source/upstream/packages/core/tests/unit/search/match.test.ts (6 tests) 4ms
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/unit/api/search-schema.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 12 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-repair.test.ts [ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-repair.test.ts ]
+Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-repair.test.ts
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-repair.test.ts:8:1
+      6| import { SchemaRegistry } from "../../../src/schema/registry.js";
+      7| import { FTSManager } from "../../../src/search/fts-manager.js";
+      8| import { searchWithDb } from "../../../src/search/query.js";
+       | ^
+      9| import { setupTestDatabase, teardownTestDatabase } from "../../utils/t…
+     10|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-write-amplification.test.ts [ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-write-amplification.test.ts ]
+Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-write-amplification.test.ts
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-write-amplification.test.ts:20:1
+     18| import { SchemaRegistry } from "../../../src/schema/registry.js";
+     19| import { FTSManager } from "../../../src/search/fts-manager.js";
+     20| import { searchWithDb } from "../../../src/search/query.js";
+       | ^
+     21| import { setupTestDatabase, teardownTestDatabase } from "../../utils/t…
+     22|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/pagination.test.ts [ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/pagination.test.ts ]
+Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/pagination.test.ts
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/pagination.test.ts:9:1
+      7| import { SchemaRegistry } from "../../../src/schema/registry.js";
+      8| import { FTSManager } from "../../../src/search/fts-manager.js";
+      9| import { searchCollection, searchWithDb } from "../../../src/search/qu…
+       | ^
+     10| import { createPostFixture } from "../../utils/fixtures.js";
+     11| import { setupTestDatabaseWithCollections, teardownTestDatabase } from…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/portable-text-indexing.test.ts [ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/portable-text-indexing.test.ts ]
+Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/portable-text-indexing.test.ts
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/portable-text-indexing.test.ts:19:1
+     17| import { SchemaRegistry } from "../../../src/schema/registry.js";
+     18| import { FTSManager } from "../../../src/search/fts-manager.js";
+     19| import { searchWithDb } from "../../../src/search/query.js";
+       | ^
+     20| import { setupTestDatabase, teardownTestDatabase } from "../../utils/t…
+     21|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/snippet-sanitization.test.ts [ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/snippet-sanitization.test.ts ]
+Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/snippet-sanitization.test.ts
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/snippet-sanitization.test.ts:8:1
+      6| import { SchemaRegistry } from "../../../src/schema/registry.js";
+      7| import { FTSManager } from "../../../src/search/fts-manager.js";
+      8| import { searchWithDb } from "../../../src/search/query.js";
+       | ^
+      9| import { createPostFixture } from "../../utils/fixtures.js";
+     10| import { setupTestDatabaseWithCollections, teardownTestDatabase } from…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest-title-field.test.ts [ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest-title-field.test.ts ]
+Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest-title-field.test.ts
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest-title-field.test.ts:8:1
+      6| import { SchemaRegistry } from "../../../src/schema/registry.js";
+      7| import { FTSManager } from "../../../src/search/fts-manager.js";
+      8| import { getSuggestions } from "../../../src/search/query.js";
+       | ^
+      9| import { setupTestDatabase, teardownTestDatabase } from "../../utils/t…
+     10|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest.test.ts [ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest.test.ts ]
+Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest.test.ts
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest.test.ts:9:1
+      7| import { SchemaRegistry } from "../../../src/schema/registry.js";
+      8| import { FTSManager } from "../../../src/search/fts-manager.js";
+      9| import { getSuggestions, searchWithDb } from "../../../src/search/quer…
+       | ^
+     10| import { createPostFixture } from "../../utils/fixtures.js";
+     11| import { setupTestDatabaseWithCollections, teardownTestDatabase } from…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-field-search.test.ts [ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-field-search.test.ts ]
+Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-field-search.test.ts
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-field-search.test.ts:8:1
+      6| import { SchemaRegistry } from "../../../src/schema/registry.js";
+      7| import { FTSManager } from "../../../src/search/fts-manager.js";
+      8| import { searchWithDb } from "../../../src/search/query.js";
+       | ^
+      9| import { setupTestDatabase, teardownTestDatabase } from "../../utils/t…
+     10|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-less-collection.test.ts [ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-less-collection.test.ts ]
+Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-less-collection.test.ts
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-less-collection.test.ts:8:1
+      6| import { SchemaRegistry } from "../../../src/schema/registry.js";
+      7| import { FTSManager } from "../../../src/search/fts-manager.js";
+      8| import { getSuggestions, searchWithDb } from "../../../src/search/quer…
+       | ^
+      9| import { setupTestDatabase, teardownTestDatabase } from "../../utils/t…
+     10|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-scope.test.ts [ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-scope.test.ts ]
+Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-scope.test.ts
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-scope.test.ts:8:1
+      6| import { SchemaRegistry } from "../../../src/schema/registry.js";
+      7| import { FTSManager } from "../../../src/search/fts-manager.js";
+      8| import { searchCollection, searchWithDb } from "../../../src/search/qu…
+       | ^
+      9| import { setupTestDatabase, teardownTestDatabase } from "../../utils/t…
+     10|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/tokenizer.test.ts [ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/tokenizer.test.ts ]
+Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/tokenizer.test.ts
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/tokenizer.test.ts:9:1
+      7| import { SchemaRegistry } from "../../../src/schema/registry.js";
+      8| import { FTSManager } from "../../../src/search/fts-manager.js";
+      9| import { searchWithDb } from "../../../src/search/query.js";
+       | ^
+     10| import type { SearchConfig, SearchTokenizer } from "../../../src/searc…
+     11| import { setupTestDatabase, teardownTestDatabase } from "../../utils/t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/unit/api/search-schema.test.ts [ parity/emdash/full-search-source/upstream/packages/core/tests/unit/api/search-schema.test.ts ]
+Error: Cannot find module '/src/lib/server/search/schemas.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/unit/api/search-schema.test.ts
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/unit/api/search-schema.test.ts:3:1
+      1| import { describe, expect, it } from "vitest";
+      2|
+      3| import { searchEnableBody } from "../../../src/api/schemas/search.js";
+       | ^
+      4|
+      5| describe("searchEnableBody", () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/25]⎯
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 13 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/search-native/query.test.ts > Native full search over actual canonical SQLite > searches five published rows and excludes the stored draft
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ queryApi tests/search-native/query.test.ts:18:72
+     16| async function queryApi() {
+     17|   let module: any;
+     18|   await expect((async () => { module = await import(queryModule); })()…
+       |                                                                        ^
+     19|   return module;
+     20| }
+ ❯ tests/search-native/query.test.ts:47:23
+
+Caused by: Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/tests/search-native/query.test.ts
+ ❯ tests/search-native/query.test.ts:18:40
+ ❯ queryApi tests/search-native/query.test.ts:18:3
+ ❯ tests/search-native/query.test.ts:47:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/25]⎯
+
+ FAIL  tests/search-native/query.test.ts > Native full search over actual canonical SQLite > walks all matches once with opaque pagination
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ queryApi tests/search-native/query.test.ts:18:72
+     16| async function queryApi() {
+     17|   let module: any;
+     18|   await expect((async () => { module = await import(queryModule); })()…
+       |                                                                        ^
+     19|   return module;
+     20| }
+ ❯ tests/search-native/query.test.ts:53:23
+
+Caused by: Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/tests/search-native/query.test.ts
+ ❯ tests/search-native/query.test.ts:18:40
+ ❯ queryApi tests/search-native/query.test.ts:18:3
+ ❯ tests/search-native/query.test.ts:53:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/25]⎯
+
+ FAIL  tests/search-native/query.test.ts > Native full search over actual canonical SQLite > rejects a foreign endpoint cursor
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ queryApi tests/search-native/query.test.ts:18:72
+     16| async function queryApi() {
+     17|   let module: any;
+     18|   await expect((async () => { module = await import(queryModule); })()…
+       |                                                                        ^
+     19|   return module;
+     20| }
+ ❯ tests/search-native/query.test.ts:58:23
+
+Caused by: Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/tests/search-native/query.test.ts
+ ❯ tests/search-native/query.test.ts:18:40
+ ❯ queryApi tests/search-native/query.test.ts:18:3
+ ❯ tests/search-native/query.test.ts:58:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/25]⎯
+
+ FAIL  tests/search-native/query.test.ts > Native full search over actual canonical SQLite > rejects a cursor above the pinned 10000-row bound
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ queryApi tests/search-native/query.test.ts:18:72
+     16| async function queryApi() {
+     17|   let module: any;
+     18|   await expect((async () => { module = await import(queryModule); })()…
+       |                                                                        ^
+     19|   return module;
+     20| }
+ ❯ tests/search-native/query.test.ts:62:23
+
+Caused by: Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/tests/search-native/query.test.ts
+ ❯ tests/search-native/query.test.ts:18:40
+ ❯ queryApi tests/search-native/query.test.ts:18:3
+ ❯ tests/search-native/query.test.ts:62:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/25]⎯
+
+ FAIL  tests/search-native/query.test.ts > Native full search over actual canonical SQLite > returns title-only published autocomplete
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ queryApi tests/search-native/query.test.ts:18:72
+     16| async function queryApi() {
+     17|   let module: any;
+     18|   await expect((async () => { module = await import(queryModule); })()…
+       |                                                                        ^
+     19|   return module;
+     20| }
+ ❯ tests/search-native/query.test.ts:66:23
+
+Caused by: Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/tests/search-native/query.test.ts
+ ❯ tests/search-native/query.test.ts:18:40
+ ❯ queryApi tests/search-native/query.test.ts:18:3
+ ❯ tests/search-native/query.test.ts:66:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/25]⎯
+
+ FAIL  tests/search-native/query.test.ts > Native full search over actual canonical SQLite > escapes stored HTML while preserving mark highlights
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ queryApi tests/search-native/query.test.ts:18:72
+     16| async function queryApi() {
+     17|   let module: any;
+     18|   await expect((async () => { module = await import(queryModule); })()…
+       |                                                                        ^
+     19|   return module;
+     20| }
+ ❯ tests/search-native/query.test.ts:70:23
+
+Caused by: Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/tests/search-native/query.test.ts
+ ❯ tests/search-native/query.test.ts:18:40
+ ❯ queryApi tests/search-native/query.test.ts:18:3
+ ❯ tests/search-native/query.test.ts:70:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/25]⎯
+
+ FAIL  tests/search-native/query.test.ts > Native full search over actual canonical SQLite > keeps title-scoped results separate from body matches
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ queryApi tests/search-native/query.test.ts:18:72
+     16| async function queryApi() {
+     17|   let module: any;
+     18|   await expect((async () => { module = await import(queryModule); })()…
+       |                                                                        ^
+     19|   return module;
+     20| }
+ ❯ tests/search-native/query.test.ts:75:23
+
+Caused by: Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/tests/search-native/query.test.ts
+ ❯ tests/search-native/query.test.ts:18:40
+ ❯ queryApi tests/search-native/query.test.ts:18:3
+ ❯ tests/search-native/query.test.ts:75:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/25]⎯
+
+ FAIL  tests/search-native/query.test.ts > Native full search over actual canonical SQLite > reports the actual indexed document count
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ queryApi tests/search-native/query.test.ts:18:72
+     16| async function queryApi() {
+     17|   let module: any;
+     18|   await expect((async () => { module = await import(queryModule); })()…
+       |                                                                        ^
+     19|   return module;
+     20| }
+ ❯ tests/search-native/query.test.ts:80:23
+
+Caused by: Error: Cannot find module '/src/lib/server/search/query.ts' imported from /workspace/cms-full-search-query-api/tests/search-native/query.test.ts
+ ❯ tests/search-native/query.test.ts:18:40
+ ❯ queryApi tests/search-native/query.test.ts:18:3
+ ❯ tests/search-native/query.test.ts:80:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts > FTS corruption on publish (SQLITE_CORRUPT_VTAB) > does not corrupt the FTS index when a published page is edited and re-published
+AssertionError: promise rejected "Error: no such table: _emdash_fts_pages { …(3) }" instead of resolving
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts:120:4
+    118|     .raw(`INSERT INTO _emdash_fts_pages(_emdash_fts_pages) VALUES('int…
+    119|     .execute(db),
+    120|   ).resolves.toBeDefined();
+       |    ^
+    121|
+    122|   // Republish — this is the call from the issue trace
+
+Caused by: Error: no such table: _emdash_fts_pages
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts:116:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_SQLITE_ERROR', errcode: 1, errstr: 'SQL logic error' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts > FTS corruption on publish (SQLITE_CORRUPT_VTAB) > survives the full trash lifecycle (soft-delete -> restore -> integrity-check)
+AssertionError: promise rejected "Error: no such table: _emdash_fts_pages { …(3) }" instead of resolving
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts:176:4
+    174|     .raw(`INSERT INTO _emdash_fts_pages(_emdash_fts_pages) VALUES('int…
+    175|     .execute(db),
+    176|   ).resolves.toBeDefined();
+       |    ^
+    177|
+    178|   // Restore -- OLD has `deleted_at IS NOT NULL` (not in index), NEW
+
+Caused by: Error: no such table: _emdash_fts_pages
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts:172:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_SQLITE_ERROR', errcode: 1, errstr: 'SQL logic error' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts > FTS corruption on publish (SQLITE_CORRUPT_VTAB) > survives permanent delete of a soft-deleted row without corrupting the index
+AssertionError: promise rejected "Error: no such table: _emdash_fts_pages { …(3) }" instead of resolving
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts:247:4
+    245|     .raw(`INSERT INTO _emdash_fts_pages(_emdash_fts_pages) VALUES('int…
+    246|     .execute(db),
+    247|   ).resolves.toBeDefined();
+       |    ^
+    248|
+    249|   const docsize = await sql<{ count: number }>`
+
+Caused by: Error: no such table: _emdash_fts_pages
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts:243:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_SQLITE_ERROR', errcode: 1, errstr: 'SQL logic error' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts > FTS corruption on publish (SQLITE_CORRUPT_VTAB) > survives editing a row while it's in the trash without corrupting the index
+AssertionError: promise rejected "Error: no such table: _emdash_fts_pages { …(3) }" instead of resolving
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts:284:4
+    282|     .raw(`INSERT INTO _emdash_fts_pages(_emdash_fts_pages) VALUES('int…
+    283|     .execute(db),
+    284|   ).resolves.toBeDefined();
+       |    ^
+    285|  });
+    286|
+
+Caused by: Error: no such table: _emdash_fts_pages
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts:280:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_SQLITE_ERROR', errcode: 1, errstr: 'SQL logic error' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/25]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts > FTS corruption on publish (SQLITE_CORRUPT_VTAB) > survives many edit/publish cycles without corrupting the index
+AssertionError: promise rejected "Error: no such table: _emdash_fts_pages { …(3) }" instead of resolving
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts:327:4
+    325|     .raw(`INSERT INTO _emdash_fts_pages(_emdash_fts_pages) VALUES('int…
+    326|     .execute(db),
+    327|   ).resolves.toBeDefined();
+       |    ^
+    328|  });
+    329| });
+
+Caused by: Error: no such table: _emdash_fts_pages
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts:323:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_SQLITE_ERROR', errcode: 1, errstr: 'SQL logic error' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/25]⎯
+
+
+ Test Files  14 failed | 1 passed (15)
+      Tests  13 failed | 7 passed (20)
+   Start at  11:56:12
+   Duration  5.49s (transform 418ms, setup 0ms, import 775ms, tests 431ms, environment 1ms)
+
+JSON report written to /tmp/full-search-02f4b863-whole70-baseline.json

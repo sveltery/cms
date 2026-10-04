@@ -7,3 +7,15 @@ docs/doctor-evidence/source-baseline.log whitespace=-blank-at-eof
 notices/jsonc-parser-3.3.1-MIT.txt whitespace=cr-at-eol
 docs/doctor-evidence/source-first-runtime.log whitespace=-blank-at-eof
 docs/doctor-evidence/source-refactor.log whitespace=-blank-at-eof
+
+# Preserve complete original search assertion-failure evidence.
+docs/search-evidence/whole70-baseline.log -whitespace
+docs/search-evidence/native6-baseline.log -whitespace
+docs/search-evidence/review8-baseline.log -whitespace
+docs/search-evidence/unknown-delete-baseline.log -whitespace
+docs/search-evidence/creator-initial-infra.log -whitespace
+docs/search-evidence/creator-second-infra.log -whitespace
+docs/search-evidence/creator-public41-baseline.log -whitespace
+docs/search-evidence/creator-pnpm-sync-failure.log -whitespace
+docs/search-evidence/creator-direct-sync.log -whitespace
+docs/search-evidence/public-c3-frozen-install.log -whitespace

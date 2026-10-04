@@ -1,0 +1,155 @@
+{
+  "head": "ec143e46d3ff2f500a164efa462d1ce8731b43b2",
+  "tree": "505993b73b3c479bbd9119b0ea725b4ba760ed16",
+  "publicHostHead": "41be644213bd8da5150d98b87d3a5c0cc0c7f3e1",
+  "publicHostTree": "46ac2a5174688df4d939d7d52e2db9739bc037fe",
+  "actualProductCallbackExecutions": 1,
+  "actualNewNativeCallbacks": 3,
+  "allPassed": 3,
+  "staticExpectExpressionsAndActualReachedCalls": 6,
+  "actualObservedExistingControls": [
+    {
+      "case": "API omitted searchable",
+      "dtoSearchable": false,
+      "storedSearchable": 0
+    },
+    {
+      "case": "API explicit false",
+      "dtoSearchable": false,
+      "storedSearchable": 0
+    },
+    {
+      "case": "raw metadata omitted searchable",
+      "storedSearchable": 0,
+      "actualCatalogueDefaultValue": "0"
+    }
+  ],
+  "substantiveNativeRed": 0,
+  "SourceCausalCredit": 0,
+  "previousInfraAttempts": 2,
+  "infraValueCredit": 0,
+  "initialInfraReceipt": {
+    "path": "/tmp/full-search-creator-public41-baseline-receipt.json",
+    "bytes": 1322,
+    "sha256": "5971a79e26285d22031f29a232bae1929524bc6168e3f70715d7a7f1bb82356d"
+  },
+  "wholeRawAttempts": [
+    {
+      "kind": "initial-infra",
+      "rawLog": {
+        "path": "/tmp/full-search-creator-public41-baseline.log",
+        "bytes": 1526,
+        "sha256": "1b6192e617dd6819771a1319aa9c03e151eed9ae11d6aa81657092a62dafff22"
+      },
+      "rawJson": {
+        "path": "/tmp/full-search-creator-public41-baseline.json",
+        "bytes": 868,
+        "sha256": "3fb32a6243ad6a02bfd9f3e4bd02467e4eab8d51a5fd750ac80646bdb3fba1dc"
+      },
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "assertionResults": []
+    },
+    {
+      "kind": "second-infra",
+      "rawLog": {
+        "path": "/tmp/full-search-creator-public41-r2-baseline.log",
+        "bytes": 1529,
+        "sha256": "3e402424b8d82c2dc11d327ebfd622cc16ff4cb5ff43356a74ad81b6c8fbbd63"
+      },
+      "rawJson": {
+        "path": "/tmp/full-search-creator-public41-r2-baseline.json",
+        "bytes": 868,
+        "sha256": "32998439138c74278c1757cca58f4024ea8d34742e766dd13e6a95e0e581d3e1"
+      },
+      "registered": 0,
+      "passed": 0,
+      "failed": 0,
+      "assertionResults": []
+    },
+    {
+      "kind": "actual-callback-baseline",
+      "rawLog": {
+        "path": "/tmp/full-search-creator-public41-r3-baseline.log",
+        "bytes": 366,
+        "sha256": "ac4537d935889c1346084ee77a0d297426af6ebc879ca9f2185f248bab99d2f8"
+      },
+      "rawJson": {
+        "path": "/tmp/full-search-creator-public41-r3-baseline.json",
+        "bytes": 1755,
+        "sha256": "436fed58d74529a0a49a5a21b38e3798a3b2cb5207bd7a6f9a7e489ec5628608"
+      },
+      "registered": 3,
+      "passed": 3,
+      "failed": 0,
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Native field creator and physical search defaults"
+          ],
+          "fullName": "Native field creator and physical search defaults uses the Source API false default when searchable is omitted",
+          "status": "passed",
+          "title": "uses the Source API false default when searchable is omitted",
+          "duration": 45.27548899999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "Native field creator and physical search defaults"
+          ],
+          "fullName": "Native field creator and physical search defaults preserves explicit false through the actual field creator",
+          "status": "passed",
+          "title": "preserves explicit false through the actual field creator",
+          "duration": 22.933933999999965,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "Native field creator and physical search defaults"
+          ],
+          "fullName": "Native field creator and physical search defaults preserves the Source SQL zero default for omitted raw metadata",
+          "status": "passed",
+          "title": "preserves the Source SQL zero default for omitted raw metadata",
+          "duration": 21.72038299999997,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ]
+    }
+  ],
+  "environmentCorrection": [
+    {
+      "log": "/tmp/full-search-creator-public41-sync.log",
+      "bytes": 546,
+      "sha256": "35d37ab3bd6e923bc4b0ac11bd3d56ef4d3135aec16853c3288d07bb40a4f95f"
+    },
+    {
+      "log": "/tmp/full-search-creator-public41-sync-direct-r3.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "actualHostGeneratedCompilerMetadata": {
+    "path": "/workspace/cms-search-creator-public41-readhost/.svelte-kit/tsconfig.json",
+    "bytes": 1010,
+    "sha256": "c01d35eee60b3cb21e230c392c72c947234d7f406b83959a042a63e09db454c4",
+    "origin": "Actual installed SvelteKit CLI sync invoked directly in genuine actual41 host after pnpm auto-install rejected symlink; no unrelated generated metadata copy or config spoof."
+  },
+  "authorMistake": "The second infra-only attempt was unnecessarily run after nonzero pnpm sync; no callback registered and no product result claimed. Final callback attempt explicitly gated on successful actual generation/clean host.",
+  "dependencyAliasProof": {
+    "path": "/tmp/full-search-creator-public41-testfirst-r1/dependency-alias-proof.json",
+    "bytes": 14401,
+    "sha256": "4a67c0d822e61935dfa44a42cb85f932ae6e16d5d93070694ff399ce73983d98"
+  },
+  "actualTrackedHostAndOwnedClean": true,
+  "sourceNativeOriginals": "All Source41/61 and old Native24 bodies/assertions/data/clocks unchanged/unrepeated. New inventoryNative27/future88 total; Sourcecredit0.",
+  "runtimeProductApply": false,
+  "creatorExplicit0": "Behavior-preserving insertion only; genuine Source012/API and actual Native physical SQL0 retained. Earlier SQL1 premise is disproved, no bug/causal repair credit.",
+  "next": "R5/current actual public UTC/CAS/package/compat union exact qualification, whole configured fixed/refactored gates and final feature integration/review/approval/merge pending."
+}

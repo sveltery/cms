@@ -1,0 +1,28 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+ ❯ tests/search-native-review/creator-defaults.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/search-native-review/creator-defaults.test.ts [ tests/search-native-review/creator-defaults.test.ts ]
+Error: Transform failed with 1 error:
+
+[31m[TSCONFIG_ERROR] [0mFailed to load tsconfig '../cms-search-creator-public41-readhost/.svelte-kit/tsconfig.json': Tsconfig not found
+
+  Plugin: vite:oxc
+  File: /workspace/cms-search-creator-public41-readhost/src/lib/server/database/sqlite.ts
+ ❯ transformWithOxc node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:7581:19
+ ❯ TransformPluginContext.transform node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:7653:26
+ ❯ EnvironmentPluginContainer.transform node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:8545:51
+ ❯ loadAndTransform node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:19988:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  15:43:35
+   Duration  286ms (transform 18ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+
+JSON report written to /tmp/full-search-creator-public41-baseline.json
