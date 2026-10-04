@@ -46,4 +46,16 @@ for (const { native, source } of inventory.runtime) {
   assert.equal(lines[1], '// Source ' + pin + ':' + source + '; complete import-adapted body.');
   assert.equal(normalizeImports(lines.slice(2).join('\n'), native), normalizeImports(read(snapshot + source).toString(), source), native + ' complete Source body');
 }
+for (const { native, source, declarations } of inventory.extractedRuntime ?? []) {
+  function selected(text, path) {
+    const file = ts.createSourceFile(path, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+    assert.deepEqual(file.parseDiagnostics, []);
+    return declarations.map(name => {
+      const matches = file.statements.filter(node => node.name?.text === name);
+      assert.equal(matches.length, 1, path + ':' + name);
+      return matches[0].getText(file);
+    });
+  }
+  assert.deepEqual(selected(read(native).toString(), native), selected(read(snapshot + source).toString(), source), native + ' entire named Source declarations');
+}
 console.log('Source seed guard:55 complete authorities and35 whole test families pinned; MIT retained. Static guard provides zero execution/parity credit.');

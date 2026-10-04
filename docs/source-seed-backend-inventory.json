@@ -2803,5 +2803,55 @@
     "Original test-db is static authority only: native test-only ordinary database adapter will execute whole selected families.",
     "No protected auth/session/signature/nonce/replay/concurrent or SC-49 relation-binding race family selected."
   ],
-  "runtime": []
+  "runtime": [
+    {
+      "native": "src/lib/server/seed/types.ts",
+      "source": "packages/core/src/seed/types.ts"
+    },
+    {
+      "native": "src/lib/server/seed/validate.ts",
+      "source": "packages/core/src/seed/validate.ts"
+    },
+    {
+      "native": "src/lib/server/seed/ownership.ts",
+      "source": "packages/core/src/seed/ownership.ts"
+    },
+    {
+      "native": "src/lib/server/seed/default.ts",
+      "source": "packages/core/src/seed/default.ts"
+    },
+    {
+      "native": "src/lib/server/seed/settings-types.ts",
+      "source": "packages/core/src/settings/types.ts"
+    },
+    {
+      "native": "src/lib/server/seed/storage-types.ts",
+      "source": "packages/core/src/storage/types.ts"
+    },
+    {
+      "native": "src/lib/server/seed/i18n-config.ts",
+      "source": "packages/core/src/i18n/config.ts"
+    },
+    {
+      "native": "src/lib/server/seed/block-type-contract.ts",
+      "source": "packages/core/src/schema/block-type-contract.ts"
+    }
+  ],
+  "extractedRuntime": [
+    {
+      "native": "src/lib/server/seed/fingerprint.ts",
+      "source": "packages/core/src/schema/registry.ts",
+      "declarations": [
+        "buildSeedCollectionCaptureFingerprint",
+        "canonicalizeFingerprintValue"
+      ]
+    },
+    {
+      "native": "src/lib/server/seed/schema-error.ts",
+      "source": "packages/core/src/schema/registry.ts",
+      "declarations": [
+        "SchemaError"
+      ]
+    }
+  ]
 }
