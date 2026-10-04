@@ -35,10 +35,7 @@ export function WelcomeModal(props: { open: boolean; onClose: () => void; userNa
       const response = await apiFetch('/_emdash/api/auth/me', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'dismissWelcome' }) });
       if (!response.ok) await throwResponseError(response, 'Failed to dismiss welcome');
     }
-    function onDismissed() {
-      queryClient.setQueryData(['currentUser'], (old: unknown) => old && typeof old === 'object' ? { ...old, isFirstLogin: false } : old);
-    }
-    const instance = flushSync(() => mount(NativeWelcome, { target: target.current!, props: { ...props, siteName: 'EmDash', dismissWelcome, onDismissed, ...{ queryClient } } }));
+    const instance = flushSync(() => mount(NativeWelcome, { target: target.current!, props: { ...props, siteName: 'EmDash', dismissWelcome, ...{ queryClient } } }));
     return () => { void unmount(instance); };
   }, [props, queryClient]);
   return React.createElement('div', { ref: target });

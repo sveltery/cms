@@ -36,7 +36,7 @@ afterEach(() => {
   document.body.replaceChildren();
 });
 export class Locator {
-  constructor(readonly read: () => HTMLElement | null) {}
+  constructor(readonly read: () => HTMLElement | null, readonly selector?: unknown, readonly actualText?: () => string) {}
   element() { const element = this.read(); if (!element) throw new Error('Control absent from actual native DOM'); return element; }
   async click() { const element = await vi.waitFor(() => this.element()); reactFlushSync(() => flushSync(() => element.click())); }
 }
@@ -49,10 +49,13 @@ export async function render(ui: React.ReactNode, { wrapper: UserWrapper }: Comp
   return {
     container,
     getByText(text: string | RegExp, options?: { exact?: boolean }) {
-      return new Locator(() => { flushSync(); return queries.queryByText(text, options); });
+      return new Locator(() => { flushSync(); return queries.queryByText(text, options); },
+        { kind: 'text', pattern: text instanceof RegExp ? { kind: 'regexp', source: text.source, flags: text.flags } : { kind: 'string', value: text } },
+        () => container.textContent ?? '');
     },
     getByRole(role: Parameters<typeof queries.queryByRole>[0], options?: Parameters<typeof queries.queryByRole>[1]) {
-      return new Locator(() => { flushSync(); return queries.queryByRole(role, options); });
+      return new Locator(() => { flushSync(); return queries.queryByRole(role, options); },
+        { kind: 'role', role, name: String(options?.name ?? '') }, () => container.textContent ?? '');
     },
     async unmount() { roots.splice(roots.indexOf(root), 1); reactFlushSync(() => root.unmount()); container.remove(); }
   };

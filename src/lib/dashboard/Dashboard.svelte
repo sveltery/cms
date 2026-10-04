@@ -2,24 +2,35 @@
   // Native Svelte transport for pinned Dashboard.tsx; Source fixture assertions
   // remain complete. Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
   import { onMount, untrack } from 'svelte';
+  import type { QueryClient } from '@tanstack/query-core';
+  import { observeDashboardQuery, observeDashboardMutation, resolveDashboardQueryClient, retainDashboardQueryClient } from './query.svelte';
+  import SiteImportHint from './SiteImportHint.svelte';
   import { Card, CardHeader, CardContent } from '../ui/vendor/sveltery/card/index';
   import { createDashboardClient } from './client';
   import { formatRelativeTime } from './time';
   import type { DashboardClient, DashboardManifest, DashboardStats } from './types';
-  let { manifest, user, client: suppliedClient, basePath = '', locale = 'en' }: {
+  let { manifest, user, client: suppliedClient, basePath = '', locale = 'en', queryClient: suppliedQueryClient }: {
     manifest: DashboardManifest; user?: { role: number } | null; client?: DashboardClient;
-    basePath?: string; locale?: string;
+    basePath?: string; locale?: string; queryClient?: QueryClient;
   } = $props();
   const client = $derived(suppliedClient ?? createDashboardClient(basePath));
-  let stats = $state<DashboardStats>();
-  let loading = $state(true);
-  let error = $state(false);
-  let policyError = $state<string | null>(null);
-  let dismissPending = $state(false);
-  let importDismissed = $state(false);
-  let importable = $state(false);
-  let importRequest: Promise<void> | undefined;
-  let active = true;
+  const queryClient = untrack(() => resolveDashboardQueryClient(suppliedQueryClient));
+  const dashboardQuery = observeDashboardQuery<DashboardStats>(queryClient, () => ({
+    queryKey: ['dashboard-stats'], queryFn: () => client.fetchDashboardStats(), refetchOnWindowFocus: true
+  }));
+  const stats = $derived(dashboardQuery.result.data);
+  const loading = $derived(dashboardQuery.result.isLoading);
+  const error = $derived(dashboardQuery.result.isError);
+  const policyMutation = observeDashboardMutation<void, { collection: string; id: string; revision: string }>(queryClient, () => ({
+    mutationFn: ({ collection, id, revision }) => client.dismissScheduledPolicyRejection(collection, id, revision),
+    onSettled: async () => { await queryClient.invalidateQueries({ queryKey: ['dashboard-stats'] }); }
+  }));
+  function getMutationError(cause: unknown): string | null {
+    if (!cause) return null;
+    return cause instanceof Error ? cause.message : 'An error occurred';
+  }
+  const policyError = $derived(getMutationError(policyMutation.result.error));
+  const dismissPending = $derived(policyMutation.result.isPending);
   const role = $derived(user?.role ?? 0);
   const drafts = $derived(stats?.collections.reduce((sum, collection) => sum + collection.draft, 0) ?? 0);
   const scheduled = $derived(stats?.collections.reduce((sum, collection) => sum + collection.scheduled, 0) ?? 0);
@@ -29,48 +40,11 @@
   const schedulerNeedsAttention = $derived(overdue > 0 && stats?.schedulerHealth !== undefined && stats.schedulerHealth.status !== 'healthy');
   const quickActions = $derived(Object.entries(manifest.collections).filter(([, collection]) => !collection.hidden && collection.quickCreate !== false));
   const statusLabels: Record<string, string> = { published: 'Published', draft: 'Draft', scheduled: 'Scheduled', pending: 'Pending changes', pending_changes: 'Pending changes', private: 'Private', archived: 'Archived' };
-  const hintKey = 'emdash:dashboard:site-import-hint-dismissed';
   const href = (path: string) => `${basePath}${path}`;
-  const importEnabled = $derived(role >= 50 && !importDismissed && stats !== undefined && stats.mediaCount === 0 && stats.collections.every(collection => collection.total === 0));
-  function checkImport(requestClient: DashboardClient = client): Promise<void> {
-    if (!active || !importEnabled) return Promise.resolve();
-    if (importRequest) return importRequest;
-    importRequest = Promise.resolve().then(async () => {
-      try { const capabilities = await requestClient.fetchTransferCapabilities(); if (active && importEnabled) importable = capabilities.portableDomain.empty; }
-      catch { /* Source retains cached eligibility on a later error; no initial data means no suggestion. */ }
-      finally { importRequest = undefined; }
-    });
-    return importRequest;
+  function dismissPolicy(collection: string, id: string, revision: string) {
+    void policyMutation.mutate({ collection, id, revision }).catch(() => {});
   }
-  $effect(() => {
-    const enabled = importEnabled;
-    const requestClient = client;
-    if (enabled) untrack(() => { void checkImport(requestClient); });
-    else importable = false;
-  });
-  async function refresh() {
-    try { const value = await client.fetchDashboardStats(); if (active) { stats = value; error = false; } }
-    catch { if (active) error = true; }
-    finally { if (active) loading = false; }
-  }
-  async function dismissPolicy(collection: string, id: string, revision: string) {
-    dismissPending = true; policyError = null;
-    try { await client.dismissScheduledPolicyRejection(collection, id, revision); }
-    catch (cause) { if (active) policyError = cause instanceof Error ? cause.message : 'An error occurred'; }
-    finally { await refresh(); if (active) dismissPending = false; }
-  }
-  function dismissImport() {
-    importDismissed = true;
-    try { localStorage.setItem(hintKey, '1'); } catch { /* Optional preference only. */ }
-  }
-  onMount(() => {
-    active = true;
-    try { importDismissed = localStorage.getItem(hintKey) === '1'; } catch { /* Denied storage retains the Source default. */ }
-    void refresh();
-    const focus = () => { void refresh(); void checkImport(); };
-    window.addEventListener('focus', focus);
-    return () => { active = false; window.removeEventListener('focus', focus); };
-  });
+  onMount(() => retainDashboardQueryClient(queryClient));
 </script>
 
 <div class="dashboard">
@@ -83,9 +57,7 @@
   </div></header>
   {#if error}<section class="notice" role="alert"><strong>Could not load dashboard data</strong><p>Refresh the page or try again.</p></section>{/if}
   {#if !error || stats}
-    {#if stats && importEnabled && importable}
-      <section class="notice"><h2>Moving from another EmDash site?</h2><p>This site has no content yet, so you can import a .emdash package exported from another EmDash site.</p><a class="button" href={href('/settings/transfer?start=import')}>Import a site package</a><button type="button" aria-label="Dismiss import suggestion" onclick={dismissImport}>×</button></section>
-    {/if}
+    {#if stats && role >= 50}<SiteImportHint {stats} {client} {queryClient} {basePath} />{/if}
     {#if stats && policyRejected > 0}
       <section class="notice" role="alert">
         <h2>Publication policy blocked scheduled content</h2>
@@ -96,7 +68,7 @@
       </section>
     {/if}
     {#if schedulerNeedsAttention}
-      <section class="notice" role="alert"><h2>Scheduled publishing needs attention</h2><p>{overdue === 1 ? 'One scheduled item is overdue' : `${overdue} scheduled items are overdue`}{stats?.schedulerHealth?.status === 'unknown' ? ', but no scheduler run has completed.' : ' and the scheduler heartbeat is stale.'} Check the scheduled publishing configuration.</p></section>
+      <section class="notice" role="alert"><h2>Scheduled publishing needs attention</h2><p>{overdue === 1 ? 'One scheduled item is overdue' : `${overdue} scheduled items are overdue`}{stats?.schedulerHealth?.status === 'unknown' ? ', but no scheduler run has completed.' : ' and the scheduler heartbeat is stale.'} Run <code>pnpm doctor</code> from your project and verify the deployed Cron Trigger. For a standalone installation, run <code>sveltery-doctor</code>.</p></section>
     {/if}
     {#if loading}<div class="metrics" aria-label="Loading dashboard data" aria-busy="true">{#each [1, 2, 3] as key (key)}<Card class="skeleton"><CardContent><span class="skeleton-line"></span><span class="skeleton-line short"></span></CardContent></Card>{/each}</div>
     {:else if stats}

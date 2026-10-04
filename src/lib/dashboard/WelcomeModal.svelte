@@ -1,23 +1,31 @@
 <script lang="ts">
   // Native Svelte transport for the pinned WelcomeModal.tsx role/scope and
   // dismissal contracts. Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
+  import { onMount, untrack } from 'svelte';
+  import type { QueryClient } from '@tanstack/query-core';
+  import { observeDashboardMutation, resolveDashboardQueryClient, retainDashboardQueryClient } from './query.svelte';
   import { createDashboardClient } from './client';
-  let { open, onClose, userName, userRole, siteName = 'Sveltery CMS', basePath = '', dismissWelcome: suppliedDismissWelcome, onDismissed }: {
+  let { open, onClose, userName, userRole, siteName = 'Sveltery CMS', basePath = '', dismissWelcome: suppliedDismissWelcome, onDismissed, queryClient: suppliedQueryClient }: {
     open: boolean; onClose: () => void; userName?: string | null; userRole: number;
-    siteName?: string; basePath?: string; dismissWelcome?: () => Promise<void>; onDismissed?: () => void;
+    siteName?: string; basePath?: string; dismissWelcome?: () => Promise<void>; onDismissed?: () => void; queryClient?: QueryClient;
   } = $props();
   const dismissWelcome = $derived(suppliedDismissWelcome ?? createDashboardClient(basePath).dismissWelcome);
-  let pending = $state(false);
+  const queryClient = untrack(() => resolveDashboardQueryClient(suppliedQueryClient));
+  const dismissal = observeDashboardMutation<void, void>(queryClient, () => ({
+    mutationFn: () => dismissWelcome(),
+    onSuccess: () => {
+      queryClient.setQueryData(['currentUser'], (old: unknown) => old && typeof old === 'object' ? { ...old, isFirstLogin: false } : old);
+      onDismissed?.(); onClose();
+    },
+    onError: () => { onClose(); }
+  }));
+  const pending = $derived(dismissal.result.isPending);
+  onMount(() => retainDashboardQueryClient(queryClient));
   let dialog = $state<HTMLDivElement>();
   const firstName = $derived(userName?.split(' ')?.[0]?.trim() ?? '');
   const role = $derived(userRole >= 50 ? 'Administrator' : userRole >= 40 ? 'Editor' : userRole >= 30 ? 'Author' : userRole >= 20 ? 'Contributor' : 'Subscriber');
   const scope = $derived(userRole >= 50 ? 'You have full access to manage this site, including users, settings, and all content.' : userRole >= 40 ? 'You can manage content, media, menus, and taxonomies.' : userRole >= 30 ? 'You can create and edit your own content.' : 'You can view and contribute to the site.');
-  async function dismiss() {
-    pending = true;
-    try { await dismissWelcome(); onDismissed?.(); }
-    catch { /* Source closes on failure so the welcome never blocks the user. */ }
-    finally { pending = false; onClose(); }
-  }
+  function dismiss() { void dismissal.mutate(undefined).catch(() => {}); }
   function keydown(event: KeyboardEvent) {
     if (event.key === 'Escape') { event.preventDefault(); void dismiss(); }
     if (event.key !== 'Tab') return;
