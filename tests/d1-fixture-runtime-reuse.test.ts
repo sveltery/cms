@@ -6,6 +6,12 @@ import { basename, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { asyncD1Storage } from './helpers/async-d1-storage.ts';
 
+async function freshPair() {
+  const first = await asyncD1Storage();
+  try { return { first, second: await asyncD1Storage() }; }
+  catch (cause) { await first.runtime.dispose(); throw cause; }
+}
+
 async function sqliteFiles(storage: Awaited<ReturnType<typeof asyncD1Storage>>) {
   const directory = storage.runtime.unsafeGetPersistPaths().get('d1');
   assert.ok(directory, 'actual Miniflare D1 storage has a physical directory');
@@ -16,8 +22,7 @@ async function sqliteFiles(storage: Awaited<ReturnType<typeof asyncD1Storage>>) 
 }
 
 test('fresh D1 fixtures keep separate real databases while sharing their runtime', { timeout: 30000 }, async () => {
-  const first = await asyncD1Storage();
-  const second = await asyncD1Storage();
+  const { first, second } = await freshPair();
   try {
     await first.binding.prepare('CREATE TABLE first_only(value TEXT)').all();
     await first.binding.prepare('INSERT INTO first_only VALUES (?)').bind('first').all();
@@ -33,8 +38,7 @@ test('fresh D1 fixtures keep separate real databases while sharing their runtime
 });
 
 test('closing one D1 fixture rejects stale queries and leaves its peer intact', { timeout: 30000 }, async () => {
-  const first = await asyncD1Storage();
-  const second = await asyncD1Storage();
+  const { first, second } = await freshPair();
   let firstClosed = false;
   try {
     await first.binding.prepare('CREATE TABLE closed_fixture(value TEXT)').all();
@@ -51,8 +55,7 @@ test('closing one D1 fixture rejects stale queries and leaves its peer intact', 
 test('D1 runtime groups rotate after 256 distinct databases without recycling a closed database', { timeout: 30000 }, async () => {
   // Keep the first lease alive across the boundary. A reused-and-cleared database
   // cannot satisfy the unique physical-file count and retained first-table check.
-  const first = await asyncD1Storage();
-  const second = await asyncD1Storage();
+  const { first, second } = await freshPair();
   const leases = [first, second];
   try {
     assert.equal(String(await first.runtime.ready), String(await second.runtime.ready),
