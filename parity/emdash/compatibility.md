@@ -1790,3 +1790,42 @@ DC-01 through DC-04 final acceptance, Root exact-head approval, author expected-
 head regular merge and actual post-Main verification. Source causal credit
 remains zero. Full scheduler/heartbeat, full Source users/CLI/PAT, remote D1 and
 general migration-runner parity remain unfinished.
+
+### Native doctor: published 3b6 validation and final status-documentation successor
+
+The preceding provider15 proposal received exact finite development qualification
+and was applied/published as ordinary merge
+`3b6feb58a86707fbc4d4c32fb643942a73bf5285`, tree
+`d2ccfb38fcbcc42eac58a3c6e258558e98d3787a`. All 1,816 expected entries match,
+all 1,783 actual public Main paths remain present, and the whole owned whitespace
+check passes. This paragraph closes the earlier proposal's application/push/gate
+status; every historical compatibility paragraph and actual result is retained.
+
+Current [CI 467](https://github.com/sveltery/cms/actions/runs/37209129237) passes
+complete normal and secured jobs on that exact 3b6 head; the tested synthetic
+merge has the same tree. All thirteen normal phases finish. Node groups pass
+1,492/28/280/16/8 with zero failures, cancellations or skips; all twenty-three
+Vitest groups pass, including the unchanged whole original Source doctor fifteen callbacks.
+The actual Native CLI/SQL/config thirteen cases, frozen production standalone package one case and
+real built official Worker filesystem one case pass. Source causal credit remains zero.
+Seven secured Source groups pass 14/30/25/3/35/4/3, both application suites pass 65,
+and all nine official Chromium 1243 launches exit 0 with the original sandbox and
+deadlines. The whole normal log is 625,530 bytes / SHA256
+`3c23e73f3e26f469f69cfa16cae292f86e82f1ca149ae413fde4889104fa185c`;
+the whole browser log is 396,263 bytes / SHA256
+`fb26461582c130d88d93afe35329e6e41305fedd398ebc20cc853a6e866bc20a`.
+These hashes and exact job IDs remain in the paired runtime inventory.
+
+This successor corrects only the three current-status records. It changes no
+runtime, test/body/assertion, dependency, notice, evidence byte, script, sandbox
+or deadline. This is an immutable preparation snapshot at basis head 3b6,
+recorded before the documentation successor commit. The completed 3b6 results
+validate that historical basis; they grant no successor-head receipt. At this
+recorded preparation point, successor full normal13/secured9 checks, new fresh-review
+closure and configured review were pending. DC-01 through DC-04 had development
+acceptance only; specific final exact-head Root approval, author expected-head
+regular merge and actual post-Main verification were pending. Subsequent current
+checks and closure are audited externally against their actual commit, without a
+self-referential future-head claim in this snapshot. Full scheduler/heartbeat,
+full Source users/CLI/PAT, remote D1 and general migration-runner parity remain
+unfinished. No new CLI/auth/HTTP probe or private provider is introduced.

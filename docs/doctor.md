@@ -129,7 +129,7 @@ remote/deployed D1 inspection and the other CLI commands remain unfinished. The
 paired [compatibility record](../parity/emdash/compatibility.md) retains each
 observable substitution and its pending decision status.
 
-## Public prerequisite integration status
+## Historical Main14 and fixture96 preparation
 
 The Main14 union is locally committed as `1d2ca68bac64362e05bc898ebedbb25d6d19a14a`,
 with the exact qualified tree and passing whole owned whitespace check. The next
@@ -141,21 +141,55 @@ secured gates wait for actual public fixture97 integration as well; review,
 final specific compatibility acceptance and expected-head author merge remain
 pending. No pending feature branch is used as an implementation prerequisite.
 
-## Published provider15 preparation
+## Historical provider15 preparation at f276
 
 The previous local checkpoint is `f27642a7cae35e4df1dd80051d5168cfb5eb337c`, with
 both qualified ordinary Main14/fixture96 merges and passing whole owned whitespace
 checks. Actual public Main `41be644213bd8da5150d98b87d3a5c0cc0c7f3e1` now supplies
 provider15, its real default/readiness/catalogue behavior and both fixtures96/97.
-The current sealed proposal adopts that exact public tree and preserves its
+The sealed proposal at that checkpoint adopted that public tree and preserved its
 complete Source chain, compatibility history and both public literal evidence
 rules alongside the six doctor rules. It changes no doctor runtime or tests and
 claims no private prerequisite or new diagnostic behavior.
 
 The unchanged Source15/Native13 and real package/Worker receipts remain historical
-for their recorded heads. Root approval of this finite union is pending before
-application, shared push or current normal13/secured9 execution. Current final
+for their recorded heads. At that preparation checkpoint, Root approval was
+pending before application, shared push or normal13/secured9 execution. Final
 fresh/configured review, specific DC-01 through DC-04 acceptance, exact-head PM
-approval, expected-head author merge and actual post-Main validation also remain
-pending. Full scheduler/heartbeat, full Source users/CLI/PAT, remote D1 and general
+approval, expected-head author merge and actual post-Main validation were also
+pending at that preparation checkpoint. Full scheduler/heartbeat, full Source users/CLI/PAT, remote D1 and general
 migration-runner parity are unfinished.
+
+## Published integration and validation basis
+
+Root qualified the five-file actual provider15 union, which is now applied and
+published in PR #98 as ordinary merge
+`3b6feb58a86707fbc4d4c32fb643942a73bf5285`, tree
+`d2ccfb38fcbcc42eac58a3c6e258558e98d3787a`. It preserves all 1,783 actual public
+Main paths and the exact combined 1,816-entry tree. The whole owned whitespace
+check passes. CI [467](https://github.com/sveltery/cms/actions/runs/37209129237)
+passes both complete jobs on that exact head; its tested synthetic merge has
+the same tree.
+
+The normal job finishes all thirteen original phases with zero Svelte errors or
+warnings. Node groups pass 1,492/28/280/16/8 cases with no failures, cancellation
+or skips; all twenty-three Vitest groups pass, including the whole original
+fifteen-callback doctor authority. The thirteen actual Native CLI/SQL/config cases,
+real frozen standalone package and actual official Worker filesystem case pass.
+The secured job passes all seven Source groups, both 65-case application suites,
+and nine official Chromium 1243 launches and matching zero-code exits while
+retaining the original sandbox and deadlines. The raw log hashes and job IDs
+are recorded in the [runtime inventory](doctor-evidence/runtime.json).
+
+This is an immutable preparation snapshot recorded at **3b6**, before the
+documentation successor commit. The completed results validate that basis head;
+they do not validate the successor. At this recorded preparation point, its own
+full normal13/secured9 checks, fresh-review closure, configured review, specific
+DC-01 through DC-04 final acceptance, Root exact-head approval, author expected-head
+regular merge and actual post-Main verification were pending. Subsequent current
+checks and review are audited externally against their actual commit, without
+requiring this historical snapshot to claim its own future head. Source causal
+credit stays zero; the original import-only Source baseline, genuine Native
+startup/package reds and subsequent actual diagnostic values remain classified
+separately. Full scheduler/heartbeat, full Source users/CLI/PAT, remote D1 and
+general migration-runner parity remain unfinished.
