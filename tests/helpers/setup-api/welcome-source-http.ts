@@ -30,6 +30,14 @@ export async function setupTestDatabase() {
   const internal = await import(/* @vite-ignore */ pathToFileURL(
     resolve(process.cwd(), '.svelte-kit/output/server/internal.js')
   ).href);
+  // Compiled Kit leaves hooks null until its supported Server.init lifecycle runs.
+  if (!internal.options.hooks) {
+    const built = (file: string) => import(/* @vite-ignore */ pathToFileURL(
+      resolve(process.cwd(), '.svelte-kit/output/server', file)
+    ).href);
+    const [{ Server }, { manifest }] = await Promise.all([built('index.js'), built('manifest.js')]);
+    await new Server(manifest).init({ env: {} });
+  }
   const hooks = internal.options.hooks as { handle: Handle };
   // Save the application handle before the unchanged helper installs its fixture.
   const previousHandle = hooks.handle;
