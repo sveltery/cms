@@ -157,7 +157,8 @@ function chunks<T>(values:readonly T[],size:number):T[][] {
 }
 
 export class TaxonomyRepository {
-	constructor(private db: Kysely<Database>) {}
+	private db: Kysely<Database>;
+	constructor(db: Kysely<Database>) { this.db = db; }
 
 	/**
 	 * Create a new taxonomy term. When `translationOf` is set the new row joins
