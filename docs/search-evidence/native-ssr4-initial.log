@@ -1,0 +1,26 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+ ❯ tests/search-native-ui/live-search-locale.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/search-native-ui/live-search-locale.test.ts [ tests/search-native-ui/live-search-locale.test.ts ]
+Error: Cannot find module '../../src/lib/search/LiveSearch.svelte' imported from /workspace/cms-full-search-query-api/tests/search-native-ui/live-search-locale.test.ts
+ ❯ tests/search-native-ui/live-search-locale.test.ts:5:1
+      3| import { render } from 'svelte/server';
+      4| import { describe, expect, it } from 'vitest';
+      5| import LiveSearch from '../../src/lib/search/LiveSearch.svelte';
+       | ^
+      6|
+      7| function renderConfig(props: Record<string, unknown>) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  17:27:10
+   Duration  425ms (transform 220ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+
+JSON report written to /tmp/full-search-native-ssr4-initial.json

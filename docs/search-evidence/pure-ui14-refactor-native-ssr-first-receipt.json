@@ -1,0 +1,77 @@
+{
+  "pureSourceFamilies": {
+    "files": 2,
+    "callbacks": 14,
+    "staticExpects": 24,
+    "initialRegistered": 0,
+    "firstFixedPass": 14,
+    "refactoredPass": 14,
+    "fail": 0,
+    "skip": 0,
+    "sourceCausalCredit": 0
+  },
+  "refactor": "Shared exact Math.min(Math.max(value,1),maximum) bounds; original flooring/default/NaN behavior unchanged",
+  "nativeSSRInitial": {
+    "callbacksInventory": 4,
+    "registered": 0,
+    "suiteImportFailures": 1,
+    "behavioralValueReds": 0,
+    "SourceAstroCredit": 0,
+    "reason": "Actual LiveSearch.svelte absent before implementation"
+  },
+  "componentAdaptations": [
+    "Source complete client scripts extracted to genuine Native modules; browser-only imports from actual Svelte onMount",
+    "Source stylesheet global mark selector syntax hosting",
+    "Native Svelte snippets replace Astro named slots",
+    "Native trusted currentLocale prop replaces Astro.currentLocale; automatic public host hand-off still pending",
+    "Both Source public search URLs delegate existing actual GET handler owners"
+  ],
+  "raw": [
+    {
+      "path": "docs/search-evidence/ui14-initial.log",
+      "sha256": "189b6a851062d5e512920f914b38b9a881d093f1f89dfb3e42a6175f46cc17c6",
+      "bytes": 2218
+    },
+    {
+      "path": "docs/search-evidence/ui14-initial.json",
+      "sha256": "0fd993a13c97d0cec25e450f8a8af7a5f1f2514bfa7f27fd74a83f4819e71d6b",
+      "bytes": 1410
+    },
+    {
+      "path": "docs/search-evidence/ui14-first-fixed.log",
+      "sha256": "5492ffa6186317e1ffbf5146534728648c9f28617c7c54ce71da3a5d7e15b402",
+      "bytes": 527
+    },
+    {
+      "path": "docs/search-evidence/ui14-first-fixed.json",
+      "sha256": "553ab370d2333a9d48e134b5d2d4b753e5a5aa9a41525b7faa684f905ce23126",
+      "bytes": 5147
+    },
+    {
+      "path": "docs/search-evidence/ui14-refactored.log",
+      "sha256": "70ff97aba1172c9018848269a8fbee41f0667c26b3dc879e26bc28a8e1ae408e",
+      "bytes": 526
+    },
+    {
+      "path": "docs/search-evidence/ui14-refactored.json",
+      "sha256": "f40d98d78bc74b06ba489c0769ca5b74f247f4230ca13087fb799079d546049b",
+      "bytes": 5159
+    },
+    {
+      "path": "docs/search-evidence/native-ssr4-initial.log",
+      "sha256": "e099bf0aec17bea669582585b203a040ee976e5b3e8db13ebeb0f3bd947f5fc7",
+      "bytes": 1086
+    },
+    {
+      "path": "docs/search-evidence/native-ssr4-initial.json",
+      "sha256": "dc13165f10c63e682a7ad2c0e5a04a42bd5ee553d3803dc1610350a1172eb743",
+      "bytes": 843
+    }
+  ],
+  "limits": [
+    "Native component fixed/render/browser evidence pending",
+    "Original whole AstroContainer locale family remains frozen unexecuted",
+    "Full Source SDK/API/MCP/browser/D1 integration and final gates remain incomplete",
+    "Publication approval pending"
+  ]
+}

@@ -1,0 +1,39 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/unit/components/webmcp-search.test.ts (0 test)
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/unit/components/live-search-routing.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/unit/components/live-search-routing.test.ts [ parity/emdash/full-search-source/upstream/packages/core/tests/unit/components/live-search-routing.test.ts ]
+Error: Cannot find module '/src/lib/search/live-search-routing.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/unit/components/live-search-routing.test.ts
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/unit/components/live-search-routing.test.ts:3:1
+      1| import { describe, expect, it } from "vitest";
+      2|
+      3| import { buildLiveSearchResultUrl } from "../../../src/components/live…
+       | ^
+      4|
+      5| describe("buildLiveSearchResultUrl", () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  parity/emdash/full-search-source/upstream/packages/core/tests/unit/components/webmcp-search.test.ts [ parity/emdash/full-search-source/upstream/packages/core/tests/unit/components/webmcp-search.test.ts ]
+Error: Cannot find module '/src/lib/search/webmcp-search.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/full-search-source/upstream/packages/core/tests/unit/components/webmcp-search.test.ts
+ ❯ parity/emdash/full-search-source/upstream/packages/core/tests/unit/components/webmcp-search.test.ts:3:1
+      1| import { describe, expect, it, vi } from "vitest";
+      2|
+      3| import {
+       | ^
+      4|  createSiteSearchTool,
+      5|  registerSiteSearchTool,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  no tests
+   Start at  17:21:02
+   Duration  356ms (transform 27ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+
+JSON report written to /tmp/full-search-ui14-initial-baseline.json
