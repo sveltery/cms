@@ -282,3 +282,23 @@ The catalog counters now reflect18 unique reached Source callbacks and17 observe
 The actual full unchanged bootstrap attempt on combined head3ec747f3cefb01497a4245194c454e6dc1b100b1 stopped at service stage3:1386 tests,1384 passed,2 failed,0 skipped. Dependency installation and type/Svelte checks finished green; later ten phases did not execute. Both failures report Miniflare synchronous notification `message?.id === id`, in the existing D1 auth-rollback and draft-trash pagination callbacks. This establishes no setup/Source causality. Full raw logs are retained without rerun or test rewrite.
 
 Secured9 remain unexecuted locally: standard official Chromium1243 installation into/tmp returned HTTP403 `Domain forbidden`; no alternate download, privileged flag or sandbox weakening was used. Published-head connector workflow/status arrays were empty, while the PR snapshot was unmergeable after newer public Main compatibility additions. The PM requires a separately qualified ordinary union of actual public Mainf351 before fresh combined-head gates. Its shared D1 helper does not establish a fix for these two legacy direct-Miniflare fixtures. No complete current normal/secured acceptance or additional Source credit is claimed.
+
+## Proposed ordinary actual public Mainf351 union
+
+This finite object-only integration candidate imports only actual public Main
+f351d2142319f60ce29b9ab98c8f1d94671e0ade (regular PR89 merge): the complete real
+shared async D1 fixture helper, complete four-case native reuse test and full
+incoming D1 feature/compatibility records. Four public files change. The sole
+append conflict keeps the entire incoming Main compatibility prefix followed
+by every unchanged owned byte after the previously integrated Mainfd1 prefix.
+Existing qualified transport package gates, bootstrap13, secured9 workflow,
+lockfile, production guards, fixtures and all54 frozen Source authorities are
+unchanged. No private branch/provider bytes are consumed.
+
+This proposal is unapplied and awaits finite PM qualification. The preserved
+failed normal13 attempt (1384/1386 service callbacks passing; two Miniflare
+synchronous notification failures) remains historical evidence. The new
+shared D1 pool does not establish a fix for those two separate direct-D1
+fixtures. Official local Chromium installation returned HTTP403; hosted
+current-head gates remain necessary. No unchanged rerun, isolated auth probe,
+dashboard16 rerun, Source causal credit or full feature acceptance is implied.

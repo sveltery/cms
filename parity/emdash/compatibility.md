@@ -1279,6 +1279,13 @@ The repaired and refactored whole Native23 result remains dated owned evidence a
 The unchanged17 Native byte cases pass after the exact fix and after the private coordinate-writer refactor; [the source/run ledger](../../docs/sec1-coordinate-codec-source.json) retains both whole green logs. This adds eight corrected Native byte outcomes, zero copied Source credit and zero causal attribution for prior CI failures. Full normal/secured checks remain pending.
 
 
+## Proposed fresh-D1 fixture runtime reuse (native harness only)
+
+The EmDash 1.1.0 authority remains immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, including `packages/cloudflare/src/db/d1-dialect.ts`. The [transport feature record](../../docs/d1-fixture-transport.md) describes a test-only substitution: fresh fixtures change from one real Miniflare runtime per database to bounded 256-binding groups of distinct, one-use UUID-qualified D1 databases. They never share or reset a leased database. Lease closure rejects stale queries and drains requests already started; exhausted groups close after their final lease and idle current groups close after 250 ms. Persistent fixtures keep a dedicated runtime, the original database identifier and supplied directory. Product adapters, providers 1–8, existing Source and native callback/assertion/fixture matrices, normal commands and deadlines remain unchanged.
+
+Original four-callback test-first head `ae06f004` has two genuine distinct-endpoint assertion failures and two already-green controls; the boundary matrix remains unreached before the reuse repair. Physical catalog-count mistakes and unfinished duplicate raw-disposal attempts earn zero causal/completed-run credit. The unchanged five native transport callbacks pass. An isolated 100-fixture characterization observes 100 actual runtime instances in 7314.85 ms; it establishes only local fixture cost, not the cause of a hosted/full-suite slowdown. Root authorized development of the exact 6486-byte helper candidate, SHA `a0705209c4bec16849bade728a8a044fdeb20d42a8e0935a373314fb4942758a`, before application at `d21c3bca`. Whole native four and existing transport five pass. The same 100-fixture characterization observes one actual runtime in 1379.29 ms, compared with 100 instances in 7314.85 ms at baseline; these separate local measurements do not establish whole-suite or hosted causation. Post-green test-only pair-acquisition refactor preserves all four titles and 15 exact assertion expressions; whole nine callbacks pass with zero failures, cancellations, skips or todos. Production helper and existing Source/native fixture bytes remain unchanged by refactor. Whole normal/secured gates and final independent/configured review remain pending. Idle cleanup, startup failure and pending-close drain remain static-review limits. This is native harness evidence with zero Source parity credit. Implementation development is authorized; specific PM acceptance and landing are pending.
+
+
 ### Welcome dismissal native persistence proposal — PR90
 
 Pinned EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, complete
@@ -1504,3 +1511,27 @@ The catalog counters now reflect18 unique reached Source callbacks and17 observe
 The actual full unchanged bootstrap attempt on combined head3ec747f3cefb01497a4245194c454e6dc1b100b1 stopped at service stage3:1386 tests,1384 passed,2 failed,0 skipped. Dependency installation and type/Svelte checks finished green; later ten phases did not execute. Both failures report Miniflare synchronous notification `message?.id === id`, in the existing D1 auth-rollback and draft-trash pagination callbacks. This establishes no setup/Source causality. Full raw logs are retained without rerun or test rewrite.
 
 Secured9 remain unexecuted locally: standard official Chromium1243 installation into/tmp returned HTTP403 `Domain forbidden`; no alternate download, privileged flag or sandbox weakening was used. Published-head connector workflow/status arrays were empty, while the PR snapshot was unmergeable after newer public Main compatibility additions. The PM requires a separately qualified ordinary union of actual public Mainf351 before fresh combined-head gates. Its shared D1 helper does not establish a fix for these two legacy direct-Miniflare fixtures. No complete current normal/secured acceptance or additional Source credit is claimed.
+
+
+### Proposed ordinary actual Mainf351 integration — PR90
+
+The finite object-only union imports actual public Main
+f351d2142319f60ce29b9ab98c8f1d94671e0ade, whose ordered merge parents are
+Mainfd1f and public PR89d3ff156c. Full public async-D1 helper, native four-case
+runtime-reuse test and D1 feature record are byte-exact. The complete incoming
+Main compatibility record precedes the complete unchanged owned suffix from
+the already integrated Mainfd1 prefix. No historical rejection, raw failure,
+Source assertion, lifecycle guard, hosted deadline, package transport gate or
+lockfile is deleted or normalized. Source pin913cb1 and all54 authority bytes
+remain unchanged; the immutable nine-family48-declaration193-expect catalog is
+retained. The preserved normal13 failure gives no causality claim or proof that
+the shared helper fixes the two separate legacy synchronous D1 fixtures.
+
+This ordinary union proposal remains unapplied pending exact PM qualification.
+It adds0 Source or Native causal credit. Prior welcome2/Native1 greens and
+actual dashboard16 missing-media reds do not qualify the new combined head.
+Actual media/seed/setup/import/dashboard UI and policy-dismissal closure remain
+incomplete. Current full normal13/secured9, independent/configured reviews,
+final acceptance/exact PM approval and author expected-head landing remain
+pending. [Paired feature record](../../docs/setup-api-backend.md);
+[Draft PR90](https://github.com/sveltery/cms/pull/90).

@@ -2,6 +2,7 @@
 // This does not change the application dialect or provide D1 session/bookmark APIs.
 import { Miniflare } from 'miniflare';
 import { parse, stringify } from 'devalue';
+import { randomUUID } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import type { D1Binding, D1Statement } from '../../src/lib/server/database/d1.ts';
 
@@ -12,9 +13,10 @@ const errors = { Error: value => value instanceof Error && { name: value.name, m
 export default {
   async fetch(request, env) {
     try {
-      const { operation, queries } = parse(await request.text());
-      const statements = queries.map(({ sql, parameters }) => env.DB.prepare(sql).bind(...parameters));
-      const result = operation === 'batch' ? await env.DB.batch(statements) : await statements[0].all();
+      const { bindingName, operation, queries } = parse(await request.text());
+      const database = env[bindingName];
+      const statements = queries.map(({ sql, parameters }) => database.prepare(sql).bind(...parameters));
+      const result = operation === 'batch' ? await database.batch(statements) : await statements[0].all();
       return new Response(stringify({ result }, errors));
     } catch (error) {
       return new Response(stringify({ error }, errors), { status: 500 });
@@ -30,7 +32,9 @@ const modules = Promise.all(files.map(async file => ({ type: 'ESModule' as const
   path: `${root}/devalue/${file}`, contents: await readFile(new URL(file, import.meta.resolve('devalue')), 'utf8') })));
 
 /** Only application-facing all/batch operations needed by the raw CMS dialect. */
-function bindingFor(runtime: Miniflare): D1Binding {
+function bindingFor(runtime: Miniflare, bindingName: string, lease?: {
+  closed(): boolean; pending: Set<Promise<unknown>>;
+}): D1Binding {
   const owned = new WeakMap<D1Statement, Query>();
   const revivers = { Error(value: { name: string; message: string; cause?: unknown }) {
     const error = new Error(value.message, { cause: value.cause });
@@ -38,12 +42,17 @@ function bindingFor(runtime: Miniflare): D1Binding {
     return error;
   } };
   async function execute(operation: 'all' | 'batch', queries: Query[]) {
-    const response = await runtime.dispatchFetch('http://cms-d1-fixture.invalid/', {
-      method: 'POST', body: stringify({ operation, queries })
-    });
-    const value = parse(await response.text(), revivers);
-    if (!response.ok) throw value.error;
-    return value.result;
+    if (lease?.closed()) throw new Error('D1 fixture has been disposed');
+    const request = (async () => {
+      const response = await runtime.dispatchFetch('http://cms-d1-fixture.invalid/', {
+        method: 'POST', body: stringify({ bindingName, operation, queries })
+      });
+      const value = parse(await response.text(), revivers);
+      if (!response.ok) throw value.error;
+      return value.result;
+    })();
+    lease?.pending.add(request);
+    try { return await request; } finally { lease?.pending.delete(request); }
   }
   function prepare(query: Query): D1Statement {
     const statement: D1Statement = {
@@ -66,16 +75,88 @@ function bindingFor(runtime: Miniflare): D1Binding {
   };
 }
 
-export async function asyncD1Storage(directory?: string) {
+async function newRuntime(d1Databases: Record<string, string>, directory?: string) {
   const runtime = new Miniflare({ modulesRoot: root,
     modules: [{ type: 'ESModule', path: `${root}/worker.js`, contents: worker }, ...await modules],
     compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0, cf: false,
-    d1Databases: { DB: 'cms-schema-admin' }, d1Persist: directory ?? false });
-  try {
-    await runtime.ready;
-    return { runtime, binding: bindingFor(runtime) };
-  } catch (cause) {
-    await runtime.dispose();
+    d1Databases, d1Persist: directory ?? false });
+  try { await runtime.ready; return runtime; }
+  catch (cause) { await runtime.dispose(); throw cause; }
+}
+
+// Each ephemeral lease consumes its own real D1 database exactly once. Sharing
+// workerd never resets, clears or reassigns a database to a later fixture.
+const groupSize = 256;
+const idleMilliseconds = 250;
+type Group = {
+  runtime: Promise<Miniflare>;
+  next: number;
+  active: number;
+  idle?: ReturnType<typeof setTimeout>;
+  closing?: Promise<void>;
+};
+let current: Group | undefined;
+
+function disposeGroup(group: Group) {
+  if (current === group) current = undefined;
+  if (group.idle) clearTimeout(group.idle);
+  group.idle = undefined;
+  return group.closing ??= group.runtime.then(runtime => runtime.dispose());
+}
+
+function acquireGroup() {
+  if (!current || current.next === groupSize) {
+    const id = randomUUID();
+    current = { runtime: newRuntime(Object.fromEntries(Array.from({ length: groupSize },
+      (_, index) => [`DB_${index}`, `cms-schema-admin-${id}-${index}`]))), next: 0, active: 0 };
+  }
+  const group = current;
+  if (group.idle) clearTimeout(group.idle);
+  group.idle = undefined;
+  group.active++;
+  return { group, bindingName: `DB_${group.next++}` };
+}
+
+async function releaseGroup(group: Group) {
+  if (--group.active !== 0) return;
+  if (group.next === groupSize || current !== group) await disposeGroup(group);
+  else {
+    // Keep the endpoint briefly available to the next fixture, then close it so
+    // an idle real workerd process cannot keep a completed test file alive.
+    group.idle = setTimeout(() => { void disposeGroup(group); }, idleMilliseconds);
+  }
+}
+
+export async function asyncD1Storage(directory?: string) {
+  if (directory !== undefined) {
+    // Preserve the original database identifier, directory and full dedicated
+    // runtime lifecycle for persistent-close/reopen fixtures.
+    const runtime = await newRuntime({ DB: 'cms-schema-admin' }, directory);
+    return { runtime, binding: bindingFor(runtime, 'DB') };
+  }
+  const { group, bindingName } = acquireGroup();
+  let runtime: Miniflare;
+  try { runtime = await group.runtime; }
+  catch (cause) {
+    if (current === group) current = undefined;
+    group.active--;
     throw cause;
   }
+  let closing: Promise<void> | undefined;
+  let closed = false;
+  const pending = new Set<Promise<unknown>>();
+  return {
+    runtime: {
+      ready: runtime.ready,
+      unsafeGetPersistPaths: () => runtime.unsafeGetPersistPaths(),
+      dispose() {
+        return closing ??= (async () => {
+          closed = true;
+          await Promise.allSettled([...pending]);
+          await releaseGroup(group);
+        })();
+      }
+    },
+    binding: bindingFor(runtime, bindingName, { closed: () => closed, pending })
+  };
 }
