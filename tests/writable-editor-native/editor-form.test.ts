@@ -106,6 +106,18 @@ it('an accepted actual trash receipt can navigate away from a dirty editor', asy
   expect(cancel).not.toHaveBeenCalled(); expect(confirm).not.toHaveBeenCalled();
   expect((await fixture.query('getTrashedContent', { collection: 'stories', id: entry.id }, 'author')).data.title).toBe('Original');
 });
+it('manual edit retains the native unkeyed update action and sends its stored locale and token', async () => {
+  const { target, entry } = await render();
+  const action = new URL(target.querySelector('form')!.getAttribute('action')!, fixture.origin);
+  expect(action.searchParams.get('/remote')).toBe(fixture.ids.get('updateContent'));
+  expect(action.searchParams.get('locale')).toBe(entry.locale);
+  expect((target.querySelector('input[name="id"]') as HTMLInputElement).value).toBe(entry.id);
+  expect((target.querySelector('input[name="_rev"]') as HTMLInputElement).value).toBe(entry._rev);
+  await edit(target, 'title', 'Manual stored copy');
+  target.querySelector('form')!.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+  await vi.waitFor(() => expect(target.querySelector('button')?.textContent).toBe('Saved'));
+  expect((await fixture.query('getContent', { collection: 'stories', id: entry.id, locale: entry.locale }, 'author')).data.title).toBe('Manual stored copy');
+});
 it('actual programmatic autosave enters pending and preserves later typing through a second stored revision', async () => {
   const { target, entry } = await render();
   delay = new Promise(resolve => { release = resolve; });
