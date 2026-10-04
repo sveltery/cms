@@ -295,3 +295,6 @@ At combined picker author dcc0b5d0fc4979c1670f31e8835a973b49cf4476, secured run3
 
 
 The picker ordinary Main311 integration preserves complete Comments gates alongside all prior Menus/Sections stages, unchanged dependency512/snapshot527/lock/bootstrap, and terminal whole picker additions. Prior dcc browser passes remain historical; current combined normal and public canonical8/final picker acceptance are pending.
+
+
+The picker development integration of actual PUBLIC PR83head0b0624b28feca959df7bf6f3691f987b5487a759 preserves every canonical Source/frozen1–5 assertion and Main stage. The public nullable search_config seam can now be exercised by whole unchanged Source19+Native3 and actual HTTP2; those/current normal runs remain pending. Canonical83 has not yet merged to Main, and final picker merge still waits actual Main adoption and qualification. Exact TanStack MIT notices are retained and verified in the actual Node package (notice-only aa71f11, package log SHA256 2d8d424d5fd5d8ae85026418fae80057dd79ca1a858cecf443c497e7ad4fac91).

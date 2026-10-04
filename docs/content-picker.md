@@ -107,3 +107,8 @@ The same hosted validate111316287232 passes frozen512/check0, all1246 Main servi
 
 
 The ordinary public Main311 integration additionally preserves all incoming complete Comments Source/native/browser gates. Source19+Native3 then NativeUI24 stay after every incoming normal stage; whole Picker3 follows Comments before unchanged default/Node browser targets. Dependency512/snapshot527, lock and bootstrap remain exact public Main. The dcc hosted results remain historical; public canonical8 and a complete final combined normal/approval remain pending.
+
+
+The development branch ordinarily incorporates actual PUBLIC PR83head0b0624b28feca959df7bf6f3691f987b5487a759, preserving its complete canonical6–8 closure and frozen1–5 assertions. Whole unchanged Source19+Native3 and actual HTTP2 can now test the public nullable search_config seam; execution and complete current normal/secured validation remain pending. PR83 has not yet merged to Main; final picker merge still requires actual canonical Main adoption. All incoming Source stages precede the owned terminal additions, with unchanged512/527 lock/bootstrap and source fingerprints.
+
+Exact locked TanStack react-query5.90.21/query-core5.90.20 MIT notices are retained in notices/ and copied byte-for-byte into the actual standalone Node package at notice-only aa71f11. Each file is1079B/SHA256 a405ee70c632bb938acb7ac5f210e814409b3760ea9d2329d8ed8ffcfd11a0e7. The unchanged package:node command exits0, log SHA256 2d8d424d5fd5d8ae85026418fae80057dd79ca1a858cecf443c497e7ad4fac91, with no runtime/dependency/assertion change.
