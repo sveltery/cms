@@ -1,0 +1,117 @@
+import { sql, type CompiledQuery, type Kysely } from 'kysely';
+import { ulid } from 'ulidx';
+import type { CmsDatabase } from '../database/contract.ts';
+import type { Database } from '../database/lifecycle/upstream/database/types.ts';
+import { chunks } from '../database/lifecycle/upstream/utils/chunks.ts';
+import type { RelationRepository, Relation } from './repository.ts';
+
+type Edge = { id: string; relation_id: string; parent_group: string; child_group: string; sort_order: number; created_at: string };
+type Side = 'parent' | 'child';
+const INSERT_BATCH = 16; // six bound values per edge, <=100 per statement.
+const REPOSITION_BATCH = 50; // an id twice; order is a validated integer literal.
+
+function dbFor(database: CmsDatabase) { return database.db as unknown as Kysely<Database>; }
+async function relationFor(repo: RelationRepository, key: string): Promise<Relation | null> {
+  return await repo.findById(key) ?? await repo.findBySlug(key);
+}
+function relationGuard(db: Kysely<Database>, relation: Relation, token: string): CompiledQuery {
+  return sql`INSERT INTO _cms_guards(token, pass) SELECT ${token}, CASE WHEN EXISTS
+    (SELECT 1 FROM _cms_relations WHERE id IS ${relation.id} AND slug IS ${relation.slug}
+      AND parent_collection IS ${relation.parentCollection} AND child_collection IS ${relation.childCollection}
+      AND max_children_per_parent IS ${relation.maxChildrenPerParent}
+      AND max_parents_per_child IS ${relation.maxParentsPerChild}) THEN 1 ELSE 0 END`.compile(db);
+}
+function addPlan(db: Kysely<Database>, rows: Edge[], limitedSide: Side, limit: number | null, token: string): CompiledQuery[] {
+  if (limit === null) return [...chunks(rows, INSERT_BATCH)].map(batch => db.insertInto('_cms_content_references').values(batch).onConflict(oc => oc.doNothing()).compile());
+  const column = limitedSide === 'parent' ? 'parent_group' : 'child_group';
+  return rows.flatMap(row => [
+    sql`UPDATE _cms_guards SET pass = CASE WHEN
+      (SELECT COUNT(*) FROM _cms_content_references WHERE relation_id = ${row.relation_id}
+       AND ${sql.ref(column)} = ${row[column]}) < ${limit} THEN 1 ELSE 0 END
+      WHERE token = ${token}`.compile(db),
+    db.insertInto('_cms_content_references').values(row).compile()
+  ]);
+}
+function removePlan(db: Kysely<Database>, ids: string[]): CompiledQuery[] {
+  return [...chunks(ids, 100)].map(batch => db.deleteFrom('_cms_content_references').where('id', 'in', batch).compile());
+}
+function positionPlan(db: Kysely<Database>, moves: {id: string; sortOrder: number}[]): CompiledQuery[] {
+  return [...chunks(moves, REPOSITION_BATCH)].map(batch => {
+    for (const move of batch) if (!Number.isInteger(move.sortOrder) || move.sortOrder < 0) throw new TypeError(`Invalid reference sort order: ${move.sortOrder}`);
+    return db.updateTable('_cms_content_references').set({ sort_order: sql<number>`CASE ${sql.ref('id')}
+      ${sql.join(batch.map(move => sql`WHEN ${move.id} THEN ${sql.lit(move.sortOrder)}`), sql` `)} END` })
+      .where('id', 'in', batch.map(move => move.id)).compile();
+  });
+}
+async function executeSelection(database: CmsDatabase, relation: Relation, additions: Edge[], limitedSide: Side,
+  limit: number | null, token: string, statements: CompiledQuery[]): Promise<string[]> {
+  try { await database.atomicBatch(statements); return []; }
+  catch (cause) {
+    // Only the actual cardinality guard failure can return a refused group.
+    // Unexpected storage errors and a changed/missing relation remain errors.
+    if (limit === null || !(cause instanceof Error) || !/CHECK constraint failed:\s*pass\s*=\s*1/.test(cause.message)) throw cause;
+    const db = dbFor(database);
+    const current = await db.selectFrom('_cms_relations').selectAll().where('id', '=', relation.id).executeTakeFirst();
+    if (!current || current.max_children_per_parent !== relation.maxChildrenPerParent || current.max_parents_per_child !== relation.maxParentsPerChild) throw cause;
+    const column = limitedSide === 'parent' ? 'parent_group' : 'child_group';
+    for (const row of additions) {
+      const count = await db.selectFrom('_cms_content_references').select(eb => eb.fn.countAll<number>().as('count'))
+        .where('relation_id', '=', relation.id).where(column, '=', row[column]).executeTakeFirstOrThrow();
+      if (Number(count.count) >= limit) return [row[column]];
+    }
+    // A changed transient state does not permit manufacturing a refusal.
+    throw cause;
+  }
+}
+
+/** Canonical fixed batches retain Source ordering/limits and native C-07. */
+export async function atomicSetChildren(database: CmsDatabase, repo: RelationRepository, key: string, parent: string, groups: string[]): Promise<string[]> {
+  const relation = await relationFor(repo, key); if (!relation) return [];
+  const db = dbFor(database);
+  const existing = await db.selectFrom('_cms_content_references').selectAll().where('relation_id', '=', relation.id).where('parent_group', '=', parent).execute();
+  const seen = new Set(existing.map(row => row.child_group));
+  const unique = [...new Set(groups)];
+  const positions = new Map(unique.map((group, index) => [group, index]));
+  const now = new Date().toISOString();
+  const additions = unique.flatMap((group, index) => seen.has(group) ? [] : [{id: ulid(), relation_id: relation.id, parent_group: parent, child_group: group, sort_order: index, created_at: now}]);
+  const removals = existing.filter(row => !positions.has(row.child_group)).map(row => row.id);
+  const moves = existing.flatMap(row => {
+    const order = positions.get(row.child_group);
+    return order === undefined || order === row.sort_order ? [] : [{id: row.id, sortOrder: order}];
+  });
+  const token = `relations:${ulid()}`;
+  return executeSelection(database, relation, additions, 'child', relation.maxParentsPerChild, token, [relationGuard(db, relation, token),
+    ...addPlan(db, additions, 'child', relation.maxParentsPerChild, token), ...removePlan(db, removals), ...positionPlan(db, moves),
+    sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)]);
+}
+
+export async function atomicSetParents(database: CmsDatabase, repo: RelationRepository, key: string, child: string, groups: string[]): Promise<string[]> {
+  const relation = await relationFor(repo, key); if (!relation) return [];
+  const db = dbFor(database);
+  const existing = await db.selectFrom('_cms_content_references').selectAll().where('relation_id', '=', relation.id).where('child_group', '=', child).execute();
+  const seen = new Set(existing.map(row => row.parent_group));
+  const unique = [...new Set(groups)];
+  const selected = new Set(unique);
+  const newParents = unique.filter(group => !seen.has(group));
+  const positions = new Map<string, number>();
+  for (const batch of chunks(newParents, INSERT_BATCH)) {
+    const maxima = await db.selectFrom('_cms_content_references').select(eb => ['parent_group', eb.fn.max('sort_order').as('max')])
+      .where('relation_id', '=', relation.id).where('parent_group', 'in', batch).groupBy('parent_group').execute();
+    for (const row of maxima) positions.set(row.parent_group, row.max === null ? 0 : Number(row.max) + 1);
+  }
+  const now = new Date().toISOString();
+  const additions = newParents.map(parent => ({id: ulid(), relation_id: relation.id, parent_group: parent, child_group: child, sort_order: positions.get(parent) ?? 0, created_at: now}));
+  const token = `relations:${ulid()}`;
+  return executeSelection(database, relation, additions, 'parent', relation.maxChildrenPerParent, token, [relationGuard(db, relation, token),
+    ...addPlan(db, additions, 'parent', relation.maxChildrenPerParent, token),
+    ...removePlan(db, existing.filter(row => !selected.has(row.parent_group)).map(row => row.id)),
+    sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)]);
+}
+
+export async function atomicDeleteRelation(database: CmsDatabase, repo: RelationRepository, id: string): Promise<boolean> {
+  const relation = await repo.findById(id); if (!relation) return false;
+  const db = dbFor(database);
+  const results = await database.atomicBatch([db.deleteFrom('_cms_content_references').where('relation_id', '=', id).compile(),
+    db.deleteFrom('_cms_relations').where('id', '=', id).compile()]);
+  return (results[1].numAffectedRows ?? 0n) > 0n;
+}

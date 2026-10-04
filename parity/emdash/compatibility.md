@@ -1829,3 +1829,12 @@ checks and closure are audited externally against their actual commit, without a
 self-referential future-head claim in this snapshot. Full scheduler/heartbeat,
 full Source users/CLI/PAT, remote D1 and general migration-runner parity remain
 unfinished. No new CLI/auth/HTTP probe or private provider is introduced.
+
+## Full relations backend development
+
+Immutable Source EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`; proposed [PR #107](https://github.com/sveltery/cms/pull/107). [Feature record](../../docs/relations-backend.md) and [whole-source ledger](../../docs/relations-backend-source.json) retain complete tests and raw runs. Initial Source8 genuine relation-DDL callbacks passed; repo33/setChildren3 were pre-expectation missing-module stops, not assertion reds. Original Source33+3+8 now pass44 on an actual Source043/086 reference host with unchanged real SQL logs. Native canonical storage1 passes separately. No full product, PostgreSQL, Source runner/Worker or content staging credit.
+
+| ID | Pinned behavior and native behavior | Rationale, evidence and decision |
+| --- | --- | --- |
+| REL-01 | Source relation repository receives Kysely over `_emdash_*`; native constructors accept trusted CmsDatabase or explicit Kysely, use canonical `_cms_*`, native imports and erasable property declarations. Source-name core fixtures apply finite query identifier transport to actual SourceDDL; the database logger and results remain actual. | Framework/storage hosting substitution. Whole Source44 and native persisted-row1 pass. Proposed PR107; specific acceptance pending. |
+| REL-02 | Source setChildren/setParents use ordered per-statement writes and compensating cleanup for limit refusal; unexpected SQL faults can leave earlier chunks. Native canonical CmsDatabase paths compose fixed guarded statement plans using the existing atomicBatch guarantee, retaining ordering, deduplication and limits. Explicit logical reference contexts preserve original algorithms. | Existing native C-07 stronger atomicity retained. Three actual SQL-abort value-reds on Node/raw/scoped D1 become green; raw evidence preserved. Not an upstream bug claim or Source causal-red credit. Proposed PR107; final specific acceptance pending. |

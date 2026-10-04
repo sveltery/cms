@@ -252,5 +252,124 @@
     "original conditional PostgreSQL execution",
     "original workerd families not yet ported",
     "full Source migration runner/locks"
-  ]
+  ],
+  "coreDevelopment": {
+    "testFirstCommits": [
+      "f228b8283d76dc2e70fe36b0e0acf76f82e5423f",
+      "a824a832616addcc9a265e83f8297597b17740ce"
+    ],
+    "atomicTestFirstCommit": "09ef76f5c1545b0edea2f3d8dcd3fcf6b113d98c",
+    "initialSource": {
+      "registeredCallbacks": 8,
+      "passes": 8,
+      "preexpectFamilies": 2,
+      "sourceCausalReds": 0,
+      "scope": "genuine Source43/86 storage fixture, no canonical runner credit"
+    },
+    "coreFirstGreen": {
+      "callbacks": 44,
+      "passes": 44,
+      "repositoryCallbacks": 33,
+      "setChildrenCallbacks": 3,
+      "referenceDdlCallbacks": 8,
+      "sourceCausalReds": 0,
+      "wholeBodiesUnchanged": true,
+      "actualSqlLogsUnchanged": true
+    },
+    "nativeFirst": {
+      "callbacks": 1,
+      "availabilityValueReds": 1
+    },
+    "nativeAtomicInitial": {
+      "callbacks": 3,
+      "completedValueReds": 3,
+      "modes": [
+        "Node",
+        "raw D1",
+        "scoped D1"
+      ]
+    },
+    "nativeAtomicFixed": {
+      "callbacks": 4,
+      "passes": 4,
+      "failures": 0
+    },
+    "checker": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "rawEvidence": [
+      {
+        "path": "docs/relations-backend-evidence/core/relations-native-initial.log",
+        "bytes": 965,
+        "sha256": "2533525b552a7eb219617b9b15e17ea57dcd5067a95c2bddc4eaf4ccd529be17"
+      },
+      {
+        "path": "docs/relations-backend-evidence/core/relations-source-first-guard.log",
+        "bytes": 115,
+        "sha256": "9872591bc4c112d2d5e3e88f0e1d9c9a4c52b92796f673a02a66ac833f52fdc0"
+      },
+      {
+        "path": "docs/relations-backend-evidence/core/relations-source-first-baseline.log",
+        "bytes": 2701,
+        "sha256": "86b7040c75e2619b10c5c22ad8f1d99a4012c3ee2600870b90ac837ca94b82d1"
+      },
+      {
+        "path": "docs/relations-backend-evidence/core/relations-source-first-baseline.json",
+        "bytes": 4180,
+        "sha256": "63c6569bd53063b70162f393d77252913976bdb03f33918f22e1a0668dd097ab"
+      },
+      {
+        "path": "docs/relations-backend-evidence/core/relations-native-core-first-green.log",
+        "bytes": 219,
+        "sha256": "83fa433ed8c58870bdf29d7063e32246b5cf75de2067fb481ecda4323be84672"
+      },
+      {
+        "path": "docs/relations-backend-evidence/core/relations-source-core-first.log",
+        "bytes": 692,
+        "sha256": "afbaf47f2721b319f916bc2915a7ad746c760873d6b9c1005ccfff83c441ea29"
+      },
+      {
+        "path": "docs/relations-backend-evidence/core/relations-source-core-first.json",
+        "bytes": 14562,
+        "sha256": "94960b3859167c9c4261474db642aac0781fb91fb194e0b3457ba358c633cf2e"
+      },
+      {
+        "path": "docs/relations-backend-evidence/core/relations-native-atomic-first-red.log",
+        "bytes": 4332,
+        "sha256": "39b039eaa9e4c7c49c1382b27a1f3a9fc9f3b863d3d9d4dc665e01b26f6a097b"
+      },
+      {
+        "path": "docs/relations-backend-evidence/core/relations-native-atomic-first-green.log",
+        "bytes": 498,
+        "sha256": "f3624448f1291bd3d29edf68161e338e216d68fca4da70c07dc981a316eb351e"
+      },
+      {
+        "path": "docs/relations-backend-evidence/core/relations-source-core-refactor.log",
+        "bytes": 695,
+        "sha256": "ad797c8826995f63b64c35faf3fe65981e8a1b7bf0316f7820a78961ac5c29fa"
+      },
+      {
+        "path": "docs/relations-backend-evidence/core/relations-source-core-refactor.json",
+        "bytes": 14565,
+        "sha256": "8c8f27b12d87b4dc6735d006fb7b3e9b0038a5f7576564b3908a9c2e0a0bf7ff"
+      },
+      {
+        "path": "docs/relations-backend-evidence/core/relations-check-core.log",
+        "bytes": 2964,
+        "sha256": "d0ddb194941efc225b94a00e297dd67329f660b9e92a1fc5b51d34204357191b"
+      },
+      {
+        "path": "docs/relations-backend-evidence/core/relations-check-atomic.log",
+        "bytes": 151,
+        "sha256": "47e1a29fe8cb9679ab8b2f9feaec5d539606bb28858388b95f272519a557815b"
+      }
+    ],
+    "limitations": [
+      "Source namespace core fixture is not actual native namespace integration",
+      "Source PostgreSQL remains unconfigured0",
+      "official Source Worker families not yet run",
+      "route, schema binding/cascade and draft staging not implemented"
+    ]
+  }
 }
