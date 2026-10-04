@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { Miniflare } from 'miniflare';
 import { openD1 } from '../src/lib/server/database/d1.ts';
-import { migrateCms } from '../src/lib/server/database/migrations.ts';
+import { installHistoricalCanonical5 } from './helpers/historical-canonical5.ts';
 import { menuSchemaStatements } from '../src/lib/server/menus/migrations.ts';
 import { handleMenuCreate, handleMenuSetItems, handleMenuItemReorder, handleMenuDelete } from '../src/lib/server/menus/handlers.ts';
 import type { Database } from '../src/lib/server/menus/database-types.ts';
@@ -14,7 +14,7 @@ async function fixture() {
     compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0,
     d1Databases: { CMS_DB: 'cms-menu-native-fixture' }, cf: false });
   const storage = openD1(await worker.getD1Database('CMS_DB'));
-  await migrateCms(storage);
+  await installHistoricalCanonical5(storage);
   await storage.atomicBatch(menuSchemaStatements(storage));
   return { storage, worker, db: storage.db.withTables<{[Name in keyof Database]:Database[Name]}>().$pickTables<keyof Database>() };
 }

@@ -1,0 +1,117 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "initialPublicBase": "ab43accd4de235b07a22dd0ac24289605902d959",
+  "proposedPublicIntegration": "90d62391e7ddc61f41f8f3dad9e7077c9fc9de52",
+  "currentOwnedRuntimeHead": "0860b38459e267ab44e73a5e4d82f2be80986297",
+  "ownPr": "https://github.com/sveltery/cms/pull/98",
+  "wholeSourceDeclarations": 15,
+  "wholeSourceExpectCalls": 26,
+  "sourceAssertionsChanged": false,
+  "sourceCausalCredit": 0,
+  "baselineClassification": {
+    "Source": "actual absent native module import; callbacks 0/reached assertions 0",
+    "Native12": "12 actual missing CLI startup assertion failures; later persisted SQL/config expectations unreached",
+    "Native13": "13 actual missing CLI startup assertion failures; later persisted SQL/config expectations unreached"
+  },
+  "developmentQualification": {
+    "exact17": "/tmp/root-doctor-cli-r1-finite-development-qualification.json",
+    "exact1ProducerFix": "/tmp/root-doctor-cli-standalone-banner-development-qualification.json",
+    "DC01": "bounded real Native CLI and generic explicit host contract accepted FOR DEVELOPMENT",
+    "DC02": "bounded read-only actual Native schema inspection accepted FOR DEVELOPMENT; full Source users/runner/remote D1 unfinished",
+    "DC03": "actual revision-maintenance static wiring and explicit full-scheduler warning accepted FOR DEVELOPMENT",
+    "DC04": "intentional location-only TOML diagnostic accepted FOR DEVELOPMENT; no Source bug claim"
+  },
+  "receipts": [
+    {
+      "path": "docs/doctor-evidence/source-first-runtime.log",
+      "bytes": 472,
+      "sha256": "0324b6598b87cead1ec6b78fec3c74a5e4605ccffc4793c5fb678bde53dabe5a",
+      "gitBlob": "05ec9f11500f3e75ff0c78f9c4cb5025a377d208",
+      "head": "a663130ab781575c10863930a593cdae8ef555a8",
+      "classification": "whole Source initial green",
+      "callbacks": 15,
+      "sourceCausalCredit": 0,
+      "protectedHttpProbes": 0
+    },
+    {
+      "path": "docs/doctor-evidence/native13-first-runtime.log",
+      "bytes": 1394,
+      "sha256": "27ac312152ed999d38b0149486dce6e9388582556c880903dcf538b7927efb50",
+      "gitBlob": "63fa29c75dc64167233faad8a3761bf31d34b65f",
+      "head": "a663130ab781575c10863930a593cdae8ef555a8",
+      "classification": "whole Native CLI initial green",
+      "callbacks": 13,
+      "sourceCausalCredit": null,
+      "protectedHttpProbes": 0
+    },
+    {
+      "path": "docs/doctor-evidence/source-refactor.log",
+      "bytes": 472,
+      "sha256": "ef60bc647096de815d1fbbdb58924c1aa0eac1eb751c2887b2b138b9e5b976e8",
+      "gitBlob": "ecb2804d5e0fd1d8878e0eec39e5326957986558",
+      "head": "471538283ff9cfc11fa463d328abe290a6c2742e",
+      "classification": "whole Source refactor green",
+      "callbacks": 15,
+      "sourceCausalCredit": 0,
+      "protectedHttpProbes": 0
+    },
+    {
+      "path": "docs/doctor-evidence/native13-refactor.log",
+      "bytes": 1395,
+      "sha256": "d8c72d94bed39bae33d14adcfe2da6e301ea34c1af7b77d9103789744444361b",
+      "gitBlob": "e30e5991a1ff182b3f7dea0aa55be142ef011f89",
+      "head": "471538283ff9cfc11fa463d328abe290a6c2742e",
+      "classification": "whole Native CLI refactor green",
+      "callbacks": 13,
+      "sourceCausalCredit": null,
+      "protectedHttpProbes": 0
+    },
+    {
+      "path": "docs/doctor-evidence/native-package-empty-bundle-red.log",
+      "bytes": 868,
+      "sha256": "64998e5236bd7f2e236a355b280fb8799c9ffd824cc9a5e62e1c609f7a6fa1db",
+      "gitBlob": "1d06c97bc9ec333be45dd49e76f8aac9052368c1",
+      "head": "faf2593104eccdea30181abc53b4a95dce87d102",
+      "classification": "meaningful packaged JSON value assertion red",
+      "callbacks": 1,
+      "sourceCausalCredit": null,
+      "protectedHttpProbes": 0
+    },
+    {
+      "path": "docs/doctor-evidence/native-package-fixed.log",
+      "bytes": 215,
+      "sha256": "dbf0d54a60225653264f12630d3464c573cff01246431f18e869878d1e07ea04",
+      "gitBlob": "ae81baec4e618faba9abd04666531ea5498c30ea",
+      "head": "0860b38459e267ab44e73a5e4d82f2be80986297",
+      "classification": "actual standalone package green",
+      "callbacks": 1,
+      "sourceCausalCredit": null,
+      "protectedHttpProbes": 0
+    },
+    {
+      "path": "docs/doctor-evidence/native-cloudflare-filesystem.log",
+      "bytes": 230,
+      "sha256": "7a20461cc9893acb040622b0f819cd55c24a2853a5485be38578ead62f9c5c82",
+      "gitBlob": "7562d7025a74fc28ed8c361a6e808d5591a53db3",
+      "head": "0860b38459e267ab44e73a5e4d82f2be80986297",
+      "classification": "actual compiled official Worker filesystem green",
+      "callbacks": 1,
+      "sourceCausalCredit": null,
+      "protectedHttpProbes": 0
+    }
+  ],
+  "packagingRegression": {
+    "fixtureStops": "Default pnpm engine and later absent npm_execpath stops are infrastructure, zero product credit. Scoped pinned selector corrected before the meaningful packaged-value failure.",
+    "red": "Actual frozen production install and real migrated database reach JSON availability assertion with empty CLI stdout; later JSON/SQL expectations unreached.",
+    "fix": "Only remove redundant 31-byte output shebang banner; source entry shebang and chmod retained.",
+    "green": "Actual frozen standalone production package emits JSON, reports persisted collection count, preserves database bytes."
+  },
+  "scopeLimits": [
+    "No full scheduled publishing, cron-task execution or scheduler heartbeat runtime.",
+    "Authentication identity COUNT does not establish full Source users/profile schema.",
+    "No remote/deployed D1 inspection or other Source CLI commands.",
+    "Source dashboard npx emdash doctor assertion remains honestly unmatched."
+  ],
+  "currentUnionGates": "Pending unchanged full 13 normal stages and 9 secured browser launches on the actual public Main14 union.",
+  "currentFinalReview": "Fresh independent/configured review, final specific DC acceptance, Root exact-head approval, author expected-head regular merge and actual post-Main validation pending."
+}

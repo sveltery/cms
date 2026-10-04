@@ -1,0 +1,165 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "license": "MIT; Copyright 2026 Cloudflare Inc.; notices/emdash-MIT.txt",
+  "derivation": "Final SQLite DDL from whole actual public Source029/035/081/090/091 migrations. No canonical registration or product test credit.",
+  "publicMain": "2f1b74bdb9f368f5f5a75e4f0cfb065657924f56",
+  "authorities": [
+    {
+      "path": "src/lib/server/redirects/migrations/029_redirects.ts",
+      "sha256": "ba57721eef9907d1149f6b8a9971b80601d7a71c109d3efd63d7487f10f3c942",
+      "bytes": 2585,
+      "gitBlob": "9e467fe0481c8590b59086451c6b2a18559e25d1"
+    },
+    {
+      "path": "src/lib/server/redirects/migrations/035_bounded_404_log.ts",
+      "sha256": "58aa83bcec61afb0a0dd0bf6f4507b42e8ff7b62c809ececdba3c12fd7d1e727",
+      "bytes": 4007,
+      "gitBlob": "6a773726e0ab2d1f2096fd7ce5385782a6eff9d7"
+    },
+    {
+      "path": "src/lib/server/redirects/migrations/081_redirect_write_guards.ts",
+      "sha256": "78edd5cb8f5e2f61f679a3cf7378e1af3976528e3cfa4cadb01d213ba95a9e8e",
+      "bytes": 9252,
+      "gitBlob": "fefb1dd66d0facacb16bc379d02a171b4db2912c"
+    },
+    {
+      "path": "src/lib/server/redirects/migrations/090_redirect_enable_loop_guard.ts",
+      "sha256": "2fd965eaa665ebd7ffd99dbe2601c5200e2ece0db15cf7a5b25aafe612154093",
+      "bytes": 2703,
+      "gitBlob": "b4ef135d1cbd99277c83b6ea05181646006fae95"
+    },
+    {
+      "path": "src/lib/server/redirects/migrations/091_redirect_artifacts.ts",
+      "sha256": "afe3033b4e5ff20487eca2d1fddc17d6159247e421c9579c7c00ddb27b21b08b",
+      "bytes": 5119,
+      "gitBlob": "251c12f06fc9025416f9e983ce87dbddbe4d9e54"
+    }
+  ],
+  "objects": [
+    {
+      "name": "idx_404_log_created",
+      "type": "index",
+      "sql": "CREATE INDEX \"idx_404_log_created\" on \"_cms_404_log\" (\"created_at\")"
+    },
+    {
+      "name": "idx_404_log_last_seen",
+      "type": "index",
+      "sql": "CREATE INDEX \"idx_404_log_last_seen\" on \"_cms_404_log\" (\"last_seen_at\")"
+    },
+    {
+      "name": "idx_404_log_path_unique",
+      "type": "index",
+      "sql": "CREATE UNIQUE INDEX \"idx_404_log_path_unique\" on \"_cms_404_log\" (\"path\")"
+    },
+    {
+      "name": "idx_cms_redirect_generation_artifacts_digest",
+      "type": "index",
+      "sql": "CREATE INDEX \"idx_cms_redirect_generation_artifacts_digest\" on \"_cms_redirect_generation_artifacts\" (\"digest\")"
+    },
+    {
+      "name": "idx_redirects_enabled",
+      "type": "index",
+      "sql": "CREATE INDEX \"idx_redirects_enabled\" on \"_cms_redirects\" (\"enabled\")"
+    },
+    {
+      "name": "idx_redirects_group",
+      "type": "index",
+      "sql": "CREATE INDEX \"idx_redirects_group\" on \"_cms_redirects\" (\"group_name\")"
+    },
+    {
+      "name": "idx_redirects_managed_source",
+      "type": "index",
+      "sql": "CREATE UNIQUE INDEX idx_redirects_managed_source\n\t\tON _cms_redirects (source)\n\t\tWHERE source_guard = 1\n\t"
+    },
+    {
+      "name": "idx_redirects_source",
+      "type": "index",
+      "sql": "CREATE INDEX \"idx_redirects_source\" on \"_cms_redirects\" (\"source\")"
+    },
+    {
+      "name": "_cms_404_log",
+      "type": "table",
+      "sql": "CREATE TABLE \"_cms_404_log\" (\"id\" text primary key, \"path\" text not null, \"referrer\" text, \"user_agent\" text, \"ip\" text, \"created_at\" text default (datetime('now')), \"hits\" integer default 1 not null, \"last_seen_at\" text)"
+    },
+    {
+      "name": "_cms_redirect_artifacts",
+      "type": "table",
+      "sql": "CREATE TABLE \"_cms_redirect_artifacts\" (\"digest\" text primary key, \"kind\" text not null, \"payload\" text not null)"
+    },
+    {
+      "name": "_cms_redirect_generation_artifacts",
+      "type": "table",
+      "sql": "CREATE TABLE \"_cms_redirect_generation_artifacts\" (\"generation\" text not null, \"position\" integer not null, \"digest\" text not null, constraint \"pk_cms_redirect_generation_artifacts\" primary key (\"generation\", \"position\"))"
+    },
+    {
+      "name": "_cms_redirect_state",
+      "type": "table",
+      "sql": "CREATE TABLE \"_cms_redirect_state\" (\"id\" integer primary key, \"revision\" integer default 0 not null, \"generation\" text, \"generation_revision\" integer default -1 not null, \"repair_expires_at\" integer default 0 not null)"
+    },
+    {
+      "name": "_cms_redirect_write_lock",
+      "type": "table",
+      "sql": "CREATE TABLE \"_cms_redirect_write_lock\" (\"id\" integer primary key, \"token\" text not null, \"expires_at\" integer not null, \"generation\" integer not null)"
+    },
+    {
+      "name": "_cms_redirects",
+      "type": "table",
+      "sql": "CREATE TABLE \"_cms_redirects\" (\"id\" text primary key, \"source\" text not null, \"destination\" text not null, \"type\" integer default 301 not null, \"is_pattern\" integer default 0 not null, \"enabled\" integer default 1 not null, \"hits\" integer default 0 not null, \"last_hit_at\" text, \"group_name\" text, \"auto\" integer default 0 not null, \"created_at\" text default (datetime('now')), \"updated_at\" text default (datetime('now')), \"config_revision\" text default '0' not null, \"source_guard\" integer default 0 not null, \"write_generation\" integer default 0 not null)"
+    },
+    {
+      "name": "emdash_redirect_fence_insert",
+      "type": "trigger",
+      "sql": "CREATE TRIGGER emdash_redirect_fence_insert\n\t\t\tBEFORE INSERT ON _cms_redirects\n\t\t\tWHEN NEW.write_generation <> 0 AND NOT EXISTS (\n\t\t\t\tSELECT 1 FROM _cms_redirect_write_lock\n\t\t\t\tWHERE id = 1 AND token <> '' AND generation = NEW.write_generation\n\t\t\t)\n\t\t\tBEGIN\n\t\t\t\tSELECT RAISE(ABORT, 'redirect write lease expired');\n\t\t\tEND"
+    },
+    {
+      "name": "emdash_redirect_fence_update",
+      "type": "trigger",
+      "sql": "CREATE TRIGGER emdash_redirect_fence_update\n\t\t\tBEFORE UPDATE OF source, destination, enabled, is_pattern, type, group_name ON _cms_redirects\n\t\t\tWHEN NEW.write_generation <> OLD.write_generation\n\t\t\tAND NEW.write_generation <> 0 AND NOT EXISTS (\n\t\t\t\tSELECT 1 FROM _cms_redirect_write_lock\n\t\t\t\tWHERE id = 1 AND token <> '' AND generation = NEW.write_generation\n\t\t\t)\n\t\t\tBEGIN\n\t\t\t\tSELECT RAISE(ABORT, 'redirect write lease expired');\n\t\t\tEND"
+    },
+    {
+      "name": "emdash_redirect_guard_insert",
+      "type": "trigger",
+      "sql": "CREATE TRIGGER emdash_redirect_guard_insert\n\t\t\tAFTER INSERT ON _cms_redirects\n\t\t\tWHEN NEW.source_guard = 0\n\t\t\tBEGIN\n\t\t\t\tUPDATE _cms_redirects SET source_guard = 1 WHERE id = NEW.id;\n\t\t\tEND"
+    },
+    {
+      "name": "emdash_redirect_guard_update",
+      "type": "trigger",
+      "sql": "CREATE TRIGGER emdash_redirect_guard_update\n\t\t\tAFTER UPDATE OF source ON _cms_redirects\n\t\t\tWHEN NEW.source_guard = 0 AND NEW.source <> OLD.source\n\t\t\tBEGIN\n\t\t\t\tUPDATE _cms_redirects SET source_guard = 1 WHERE id = NEW.id;\n\t\t\tEND"
+    },
+    {
+      "name": "emdash_redirect_loop_enable",
+      "type": "trigger",
+      "sql": "CREATE TRIGGER emdash_redirect_loop_enable\n\t\tBEFORE UPDATE OF enabled ON _cms_redirects\n\t\tWHEN NEW.enabled = 1 AND OLD.enabled IS NOT 1 AND NEW.destination <> ''\n\t\tBEGIN\n\t\t\tSELECT RAISE(ABORT, 'redirect loop') WHERE EXISTS (\n\t\t\t\tWITH RECURSIVE chain(source, destination) AS (\n\t\t\t\t\tSELECT source, destination FROM _cms_redirects\n\t\t\t\t\tWHERE source = NEW.destination AND enabled = 1 AND id <> NEW.id\n\t\t\t\t\tUNION\n\t\t\t\t\tSELECT redirect.source, redirect.destination\n\t\t\t\t\tFROM _cms_redirects AS redirect\n\t\t\t\t\tJOIN chain ON redirect.source = chain.destination\n\t\t\t\t\tWHERE redirect.enabled = 1 AND redirect.id <> NEW.id\n\t\t\t\t)\n\t\t\t\tSELECT 1 FROM chain WHERE destination = NEW.source\n\t\t\t);\n\t\tEND"
+    },
+    {
+      "name": "emdash_redirect_loop_insert",
+      "type": "trigger",
+      "sql": "CREATE TRIGGER emdash_redirect_loop_insert\n\t\t\tBEFORE INSERT ON _cms_redirects\n\t\t\tWHEN NEW.enabled = 1 AND NEW.destination <> ''\n\t\t\tBEGIN\n\t\t\t\tSELECT RAISE(ABORT, 'redirect loop') WHERE EXISTS (\n\t\t\t\t\tWITH RECURSIVE chain(source, destination) AS (\n\t\t\t\t\t\tSELECT source, destination FROM _cms_redirects\n\t\t\t\t\t\tWHERE source = NEW.destination AND enabled = 1\n\t\t\t\t\t\tUNION\n\t\t\t\t\t\tSELECT redirect.source, redirect.destination\n\t\t\t\t\t\tFROM _cms_redirects AS redirect\n\t\t\t\t\t\tJOIN chain ON redirect.source = chain.destination\n\t\t\t\t\t\tWHERE redirect.enabled = 1\n\t\t\t\t\t)\n\t\t\t\t\tSELECT 1 FROM chain WHERE destination = NEW.source\n\t\t\t\t);\n\t\t\tEND"
+    },
+    {
+      "name": "emdash_redirect_loop_update",
+      "type": "trigger",
+      "sql": "CREATE TRIGGER emdash_redirect_loop_update\n\t\t\tBEFORE UPDATE OF source, destination ON _cms_redirects\n\t\t\tWHEN NEW.enabled = 1 AND NEW.destination <> ''\n\t\t\tBEGIN\n\t\t\t\tSELECT RAISE(ABORT, 'redirect loop') WHERE EXISTS (\n\t\t\t\t\tWITH RECURSIVE chain(source, destination) AS (\n\t\t\t\t\t\tSELECT source, destination FROM _cms_redirects\n\t\t\t\t\t\tWHERE source = NEW.destination AND enabled = 1 AND id <> NEW.id\n\t\t\t\t\t\tUNION\n\t\t\t\t\t\tSELECT redirect.source, redirect.destination\n\t\t\t\t\t\tFROM _cms_redirects AS redirect\n\t\t\t\t\t\tJOIN chain ON redirect.source = chain.destination\n\t\t\t\t\t\tWHERE redirect.enabled = 1 AND redirect.id <> NEW.id\n\t\t\t\t\t)\n\t\t\t\t\tSELECT 1 FROM chain WHERE destination = NEW.source\n\t\t\t\t);\n\t\t\tEND"
+    },
+    {
+      "name": "emdash_redirect_revision_update",
+      "type": "trigger",
+      "sql": "CREATE TRIGGER emdash_redirect_revision_update\n\t\t\tAFTER UPDATE OF source, destination, enabled, is_pattern, type, group_name ON _cms_redirects\n\t\t\tWHEN NEW.config_revision = OLD.config_revision AND (\n\t\t\t\tNEW.source IS NOT OLD.source OR\n\t\t\t\tNEW.destination IS NOT OLD.destination OR\n\t\t\t\tNEW.enabled IS NOT OLD.enabled OR\n\t\t\t\tNEW.is_pattern IS NOT OLD.is_pattern OR\n\t\t\t\tNEW.type IS NOT OLD.type OR\n\t\t\t\tNEW.group_name IS NOT OLD.group_name\n\t\t\t)\n\t\t\tBEGIN\n\t\t\t\tUPDATE _cms_redirects\n\t\t\t\tSET config_revision = lower(hex(randomblob(16)))\n\t\t\t\tWHERE id = NEW.id;\n\t\t\tEND"
+    },
+    {
+      "name": "emdash_redirect_state_revision_delete",
+      "type": "trigger",
+      "sql": "CREATE TRIGGER emdash_redirect_state_revision_delete\n\t\tAFTER DELETE ON _cms_redirects\n\t\tWHEN OLD.enabled = 1\n\t\tBEGIN\n\t\t\tUPDATE _cms_redirect_state SET revision = revision + 1 WHERE id = 1;\n\t\tEND"
+    },
+    {
+      "name": "emdash_redirect_state_revision_insert",
+      "type": "trigger",
+      "sql": "CREATE TRIGGER emdash_redirect_state_revision_insert\n\t\tAFTER INSERT ON _cms_redirects\n\t\tWHEN NEW.enabled = 1\n\t\tBEGIN\n\t\t\tUPDATE _cms_redirect_state SET revision = revision + 1 WHERE id = 1;\n\t\tEND"
+    },
+    {
+      "name": "emdash_redirect_state_revision_update",
+      "type": "trigger",
+      "sql": "CREATE TRIGGER emdash_redirect_state_revision_update\n\t\tAFTER UPDATE OF source, destination, enabled, is_pattern, type, created_at ON _cms_redirects\n\t\tWHEN (NEW.enabled = 1 OR OLD.enabled = 1) AND (\n\t\t\tNEW.source IS NOT OLD.source OR\n\t\t\tNEW.destination IS NOT OLD.destination OR\n\t\t\tNEW.enabled IS NOT OLD.enabled OR\n\t\t\tNEW.is_pattern IS NOT OLD.is_pattern OR\n\t\t\tNEW.type IS NOT OLD.type OR\n\t\t\tNEW.created_at IS NOT OLD.created_at\n\t\t)\n\t\tBEGIN\n\t\t\tUPDATE _cms_redirect_state SET revision = revision + 1 WHERE id = 1;\n\t\tEND"
+    }
+  ]
+}

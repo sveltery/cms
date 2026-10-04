@@ -1,8 +1,10 @@
 # Database and scheduler diagnostics
 
-The native diagnostic workflow is proposed and has not yet been applied or
-validated. Its repository entry is `pnpm doctor`; its standalone Node package
-entry is `node build/doctor.js` and the package declares the `sveltery-doctor` bin.
+The native diagnostic workflow is implemented and validated locally in
+[PR #98](https://github.com/sveltery/cms/pull/98), with final integration and
+review pending. Its repository entry is `pnpm doctor`; its standalone Node
+package entry is `node build/doctor.js` and the package declares the
+`sveltery-doctor` bin.
 The command inspects an explicitly selected local database and configuration.
 It never creates a missing database, runs migrations, repairs values, starts a
 server, reads credentials, or makes network requests.
@@ -41,7 +43,7 @@ then `wrangler.toml`. JSONC permits comments and trailing commas. Invalid syntax
 reports a source location; a non-object configuration, absent `main`, missing or
 unreadable Worker entry, and a missing half of the Cron/maintenance pair produce
 actionable failures. JSONC errors and native TOML errors do not print configuration
-source excerpts. TOML's location-only error is a proposed intentional difference
+source excerpts. TOML's location-only error is an intentional native difference
 from Source's parser-message forwarding; it retains line/column information while
 omitting the parser's potentially sensitive code excerpt.
 
@@ -84,15 +86,43 @@ reaches twelve CLI assertion failures because the actual entrypoint is absent;
 later database/config value expectations are not yet reached. No SQL fixture,
 credential or authorization behavior is credited by those startup failures.
 
-`e4be77e0` adds a separate standalone package test, and `515ea050` adds a
-static inspection of the real built official Worker and its maintenance module;
-both remain unexecuted until their actual builds exist. `00c095b8` adds the native TOML-location case; the
+`e4be77e0` adds the separate standalone package test, and `515ea050` adds
+static inspection of the real built official Worker and its maintenance module.
+`00c095b8` adds the native TOML-location case; the
 [whole thirteen-case baseline](doctor-evidence/native13-baseline.log) reaches
-thirteen CLI assertion failures with no cancellation or skipped cases. Candidate
-dependency installation is a frozen two-parser prerequisite check, not product
-execution. Product green, refactor, the unchanged whole thirteen-stage normal
-and secured browser checks, current independent/configured review, specific PM
-decisions, author expected-head merge and post-Main validation remain pending.
+thirteen CLI assertion failures with no cancellation or skipped cases.
+
+After exact finite development qualification, `a663130a` implements the real
+command. All unchanged fifteen Source callbacks pass initially; the import-only
+baseline earns **zero Source causal credit**. All thirteen Native cases now reach
+and pass their persisted SQL/config values, including unchanged database bytes,
+real migration states, orphan detection and TOML line/column-only diagnostics.
+The meaningful output-format extraction in `47153828` preserves the whole
+fifteen Source and thirteen Native greens. The
+[whole raw receipts](doctor-evidence/runtime.json) distinguish those results.
+
+The standalone packaging test subsequently reaches a meaningful JSON assertion
+failure on `faf25931`: an actual frozen production installation and migrated
+Native database run a 20-byte executable that exits without diagnostics. Earlier
+package-manager engine/selector fixture stops earn no product credit. Removing
+only the redundant output shebang banner in `0860b384` produces the actual
+86,055-byte bundled command. The
+[standalone package test](doctor-evidence/native-package-fixed.log) passes JSON
+output, real collection inspection and unchanged database bytes after a fresh
+frozen production installation. The
+[Cloudflare filesystem test](doctor-evidence/native-cloudflare-filesystem.log)
+passes against the actual built official Worker and maintenance module: static
+wiring passes, explicit incomplete-scheduler coverage warns, and the deliberately
+missing local database still fails additively. No HTTP or protected probes run.
+
+The current integration proposal preserves actual public Main14
+`90d62391e7ddc61f41f8f3dad9e7077c9fc9de52`, its complete Source chain and all prior
+compatibility records. Existing lockfile records, policies, media patch/notices,
+Source callbacks, thirteen normal stages and nine secured browser commands,
+sandbox and deadlines remain unchanged. The four explicit substitutions DC-01
+through DC-04 have development acceptance only. Current union gates, final
+independent/configured review, specific final acceptance, Root exact-head approval,
+author expected-head merge and actual post-Main validation remain pending.
 
 Full scheduler execution/heartbeat, full Source users and migration runner,
 remote/deployed D1 inspection and the other CLI commands remain unfinished. The

@@ -1,7 +1,7 @@
 // Original native host for complete pinned callbacks. No canonical provider or auth probe.
 import { sql, type Kysely } from 'kysely';
 import { openSqlite } from '../../../src/lib/server/database/sqlite.ts';
-import { migrateCms } from '../../../src/lib/server/database/migrations.ts';
+import { installHistoricalCanonical5 } from '../historical-canonical5.ts';
 import { SchemaRegistry } from '../../../src/lib/server/database/registry.ts';
 import { commentSchemaStatements } from '../../../src/lib/server/comments/migrations.ts';
 import type { Database } from '../../../src/lib/server/comments/upstream/database/types.ts';
@@ -10,7 +10,7 @@ import { commentNamespacePlugin } from '../../../src/lib/server/comments/namespa
 const owned = new WeakMap<object, ReturnType<typeof openSqlite>>();
 export async function setupTestDatabase(): Promise<Kysely<Database>> {
   const database = openSqlite(':memory:');
-  await migrateCms(database);
+  await installHistoricalCanonical5(database);
   await database.atomicBatch(commentSchemaStatements(database.db));
   // This actual SQLite view/trigger adapts unchanged Source fixture inserts to
   // real native current-role users and profile rows. It is never app-owned DDL.

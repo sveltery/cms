@@ -47,7 +47,7 @@
   ],
   "sourceUnitWholeFile": "packages/core/tests/unit/cli/doctor.test.ts",
   "sourceAssertionsChanged": false,
-  "baselineEvidence": "Pending exact test-only execution; absent native implementation is an import failure, not a reached Source assertion.",
+  "baselineEvidence": "Whole Source baseline import fails at the absent native module: 0 callbacks and 0 reached assertions; zero Source causal credit. Native startup reds and later actual persisted SQL/config/package values are separately recorded.",
   "nativeEvidence": "Separate actual CLI subprocess and real persisted SQL/config fixtures; no protected credentials or principals.",
   "scopeLimits": [
     "Source scheduler identity is an explicit contract supplied by a test-only adapter to the same native inspector.",
@@ -118,5 +118,6 @@
       "line": 231,
       "title": "distinguishes unreadable Worker entries from missing files"
     }
-  ]
+  ],
+  "runtimeEvidence": "doctor-evidence/runtime.json"
 }
