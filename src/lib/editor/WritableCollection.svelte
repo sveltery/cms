@@ -20,7 +20,7 @@
 {#if content}
   <ul aria-label="Content drafts">
     {#each content.drafts.items as item (item.id)}
-      <li><a href={`${resolve('/content/[collection]/[id]', { collection: item.type, id: item.id })}?locale=${encodeURIComponent(item.locale)}`}>{item.title ?? item.slug ?? item.id}</a> <span>{item.status}</span></li>
+      <li><a href={`${resolve('/content/[collection]/[id]', { collection: item.type, id: item.id })}${item.locale === 'en' ? '' : `?locale=${encodeURIComponent(item.locale)}`}`}>{item.title ?? item.slug ?? item.id}</a> <span>{item.status}</span></li>
     {/each}
   </ul>
   {#if content.drafts.items.length === 0}<p role="status">{cursor ? 'No more drafts.' : 'No drafts in this collection.'}</p>

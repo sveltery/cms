@@ -7,6 +7,7 @@
   import { autosaveEditorDraft } from '../editor-autosave.remote';
   import { EditorSession, type EditorRecord, type SavePayload, type EditorReceipt } from './session';
   import { EditorResponseError, editorError } from './errors';
+  import { slugify } from '../sections-widgets/slugify';
   import WritableDraft from './WritableDraft.svelte';
   let { collection, definition, entry, canWrite, canTrash = false, isNew = false }: {
     collection: string; definition: EditorCollection; entry: EditorRecord;
@@ -15,6 +16,7 @@
   const session = untrack(() => new EditorSession(entry, canWrite, definition.fields, isNew));
   let values = $state<Record<string, unknown>>(untrack(() => session.data));
   let slug = $state(untrack(() => session.slug));
+  let slugTouched = $state(untrack(() => Boolean(entry.slug)));
   let revision = $state(untrack(() => session.revision));
   let pending = $state(false), dirty = $state(untrack(() => session.dirty));
   let conflict = $state(false), message = $state<string | undefined>();
@@ -37,10 +39,20 @@
   onMount(() => session.subscribe(sync));
   $effect(() => {
     const next = entry, writable = canWrite;
-    untrack(() => { session.writable = writable; session.receive(next); sync(); });
+    untrack(() => {
+      const previous = session.entry;
+      session.writable = writable; session.receive(next);
+      if (session.entry !== previous) slugTouched = Boolean(next.slug);
+      sync();
+    });
   });
-  function edit(next: Record<string, unknown>) { session.edit(next, slug); sync(); }
-  function editSlug(next: string) { session.edit(values, next); sync(); }
+  function edit(next: Record<string, unknown>) {
+    // Pinned ContentEditor:1314–1329 uses the literal title field, preserves
+    // Unicode, and stops generation after any manual slug change.
+    if (next.title !== session.data.title && !slugTouched && typeof next.title === 'string' && next.title) slug = slugify(next.title);
+    session.edit(next, slug); sync();
+  }
+  function editSlug(next: string) { slugTouched = true; session.edit(values, next); sync(); }
   // Source waits 2000ms, excludes new entries, and suppresses terminal repeats/conflicts.
   $effect(() => {
     const changed = JSON.stringify([values, slug, pending, dirty, conflict, canWrite, message]);
