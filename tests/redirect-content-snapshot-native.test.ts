@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {sql,type Kysely} from 'kysely';
 import {openSqlite} from '../src/lib/server/database/sqlite.ts';
-import {migrateCms} from '../src/lib/server/database/migrations.ts';
+import {installHistoricalCanonical5} from './helpers/historical-canonical5.ts';
 import {SchemaRegistry} from '../src/lib/server/database/registry.ts';
 import {cmsService} from '../src/lib/server/database/service.ts';
 import type {CmsDatabase} from '../src/lib/server/database/contract.ts';
@@ -16,7 +16,7 @@ import {up as redirectArtifacts} from '../src/lib/server/redirects/migrations/09
 import {RedirectRepository,RedirectWriteBusyError} from '../src/lib/server/redirects/repository.ts';
 import type {Database} from '../src/lib/server/redirects/database-types.ts';
 async function fixture(interruptedRevisionColumn=false){
- const database=openSqlite(':memory:');await migrateCms(database);const registry=new SchemaRegistry(database);
+ const database=openSqlite(':memory:');await installHistoricalCanonical5(database);const registry=new SchemaRegistry(database);
  await registry.createCollection({slug:'posts',label:'Posts',supports:[]});await registry.createField('posts',{slug:'title',label:'Title',type:'string'});
  const migrationDb=database.db as unknown as Kysely<unknown>;
  if(interruptedRevisionColumn){
