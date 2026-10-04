@@ -47,7 +47,9 @@ for (const mode of ['Node', 'raw D1', 'scoped D1'] as const) {
       wanted.push({ name: '_cms_operator_visible', type: 'table' },
         { name: 'EMDASH_MEDIA_USAGE_FENCE_SOURCE_GENERATION_INSERT', type: 'trigger' });
       const actual = await fixture.database.db.executeQuery(query);
-      assert.deepEqual(actual.rows.toSorted(compare), wanted.toSorted(compare));
+      // Node sqlite returns null-prototype records; compare the exact projected
+      // census values consistently with raw/scoped D1's plain records.
+      assert.deepEqual(actual.rows.map(({ name, type }) => ({ name, type })).toSorted(compare), wanted.toSorted(compare));
       assert.equal(actual.rows.some(row => row.name === 'EMDASH_MEDIA_USAGE_FENCE_SOURCE_GENERATION_INSERT' && row.type === 'table'), false);
     } finally { await fixture.close(); }
   });
