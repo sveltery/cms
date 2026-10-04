@@ -1,0 +1,1991 @@
+{
+  "formatVersion": 1,
+  "upstream": "https://github.com/emdash-cms/emdash",
+  "commit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "tag": "emdash@1.1.0",
+  "kind": "inventory-only",
+  "files": [
+    {
+      "path": "packages/core/tests/integration/api/setup-complete.test.ts",
+      "category": "setup-api-complete-original-families",
+      "stage": "authority-only",
+      "sourceBlob": "48b6cf6b0b1c89da591a90b97a856f79735f4c2c",
+      "sourceSha256": "68c1161827e79407a5ef3c90aedab147f116e25fa7c74be24b17b2898964e377",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/api/setup-complete.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/api/setup-complete.test.ts:27",
+          "title": "creates the admin only while no user exists",
+          "suites": [
+            "createFirstAdmin"
+          ],
+          "line": 27,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/api/setup-complete.test.ts#L27",
+          "registration": "it",
+          "registrationSha256": "ca5009eef9917e6f1cc7785823d4710df8692a8360d5e44051c403ce7ccba36e",
+          "expansion": [
+            {
+              "line": 12,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 29,
+              "expression": "expect(first).toMatchObject({ email: \"owner@example.com\", name: \"Owner\", role: 50 })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/api/setup-complete.test.ts#L29"
+            },
+            {
+              "line": 31,
+              "expression": "expect(await createFirstAdmin(ctx.db, { email: \"other@example.com\", name: null })).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/api/setup-complete.test.ts#L31"
+            },
+            {
+              "line": 32,
+              "expression": "expect(await users()).toEqual([{ email: \"owner@example.com\", role: 50 }])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/api/setup-complete.test.ts#L32"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/api/setup-complete.test.ts:35",
+          "title": "waits for a concurrent admin creation and then refuses",
+          "suites": [
+            "createFirstAdmin"
+          ],
+          "line": 35,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/api/setup-complete.test.ts#L35",
+          "registration": "it.runIf(dialect === \"postgres\")",
+          "registrationSha256": "a50b183afeaa6e34cb366827b2a47d268623d101233a7fdf54ea6287b0fee2cb",
+          "expansion": [
+            {
+              "line": 12,
+              "registration": "describeEachDialect",
+              "dataset": "sqlite; postgres only when EMDASH_TEST_PG is configured (tests/utils/test-db.ts)"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 68,
+              "expression": "expect(rows[0]?.n).toBe(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/api/setup-complete.test.ts#L68"
+            },
+            {
+              "line": 73,
+              "expression": "expect(await attempt).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/api/setup-complete.test.ts#L73"
+            },
+            {
+              "line": 74,
+              "expression": "expect(await users()).toEqual([{ email: \"concurrent@example.com\", role: 50 }])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/api/setup-complete.test.ts#L74"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": [
+        {
+          "line": 35,
+          "expression": "it.runIf(dialect === \"postgres\")(\n\t\t\"waits for a concurrent admin creation and then refuses\",\n\t\tasync () => {\n\t\t\tlet committed!: () => void;\n\t\t\tconst commit = new Promise<void>((resolve) => (committed = resolve));\n\t\t\tlet locked!: () => void;\n\t\t\tconst holding = new Promise<void>((resolve) => (locked = resolve));\n\n\t\t\tconst concurrent = ctx.db.transaction().execute(async (trx) => {\n\t\t\t\tawait sql`SELECT pg_advisory_xact_lock(${FIRST_ADMIN_LOCK_KEY})`.execute(trx);\n\t\t\t\tawait trx\n\t\t\t\t\t.insertInto(\"users\")\n\t\t\t\t\t.values({\n\t\t\t\t\t\tid: \"concurrent-admin\",\n\t\t\t\t\t\temail: \"concurrent@example.com\",\n\t\t\t\t\t\tname: null,\n\t\t\t\t\t\tavatar_url: null,\n\t\t\t\t\t\trole: 50,\n\t\t\t\t\t\temail_verified: 0,\n\t\t\t\t\t\tdata: null,\n\t\t\t\t\t})\n\t\t\t\t\t.execute();\n\t\t\t\tlocked();\n\t\t\t\tawait commit;\n\t\t\t});\n\t\t\tawait holding;\n\n\t\t\tconst attempt = createFirstAdmin(ctx.db, { email: \"late@example.com\", name: null });\n\t\t\tawait vi.waitFor(async () => {\n\t\t\t\tconst { rows } = await sql<{ n: number }>`\n\t\t\t\t\tSELECT count(*)::int AS n FROM pg_locks\n\t\t\t\t\tWHERE locktype = 'advisory' AND objid::bigint = ${FIRST_ADMIN_LOCK_KEY} AND NOT granted\n\t\t\t\t`.execute(ctx.db);\n\t\t\t\texpect(rows[0]?.n).toBe(1);\n\t\t\t});\n\t\t\tcommitted();\n\t\t\tawait concurrent;\n\n\t\t\texpect(await attempt).toBeNull();\n\t\t\texpect(await users()).toEqual([{ email: \"concurrent@example.com\", role: 50 }]);\n\t\t},\n\t)",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/api/setup-complete.test.ts#L35"
+        },
+        {
+          "line": 35,
+          "expression": "it.runIf(dialect === \"postgres\")",
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/api/setup-complete.test.ts#L35"
+        }
+      ]
+    },
+    {
+      "path": "packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts",
+      "category": "setup-api-complete-original-families",
+      "stage": "authority-only",
+      "sourceBlob": "78cbd9baef472c3dae13a66b36ae9404b073fe1c",
+      "sourceSha256": "a683f70d66ec6c2ee00966629c8c783c69c44fddf699c4933458aac6249df704",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts:162",
+          "title": "deletes the setup nonce cookie and marks setup complete when verify succeeds",
+          "suites": [
+            "POST /setup/admin/verify — success path"
+          ],
+          "line": 162,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L162",
+          "registration": "it",
+          "registrationSha256": "fc6ddd30292abdcbb098590b77becb77bd1380d4323b8041bfcd3c405a322278",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 166,
+              "expression": "expect(adminRes.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L166"
+            },
+            {
+              "line": 168,
+              "expression": "expect(setCookie).toBeDefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L168"
+            },
+            {
+              "line": 169,
+              "expression": "expect(setCookie!.deleted).toBeFalsy()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L169"
+            },
+            {
+              "line": 177,
+              "expression": "expect(verifyRes.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L177"
+            },
+            {
+              "line": 183,
+              "expression": "expect(afterVerify?.deleted).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L183"
+            },
+            {
+              "line": 184,
+              "expression": "expect(afterVerify?.options.path).toBe(\"/_emdash/\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L184"
+            },
+            {
+              "line": 189,
+              "expression": "expect(setupState).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L189"
+            },
+            {
+              "line": 191,
+              "expression": "expect(setupComplete).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L191"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts:194",
+          "title": "creates only one admin when a second verify completes while the first is in flight",
+          "suites": [
+            "POST /setup/admin/verify — success path"
+          ],
+          "line": 194,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L194",
+          "registration": "it",
+          "registrationSha256": "6b4beed9aac017268fdc5a93ceb59e21618468f63392167d64bceec5fce62087",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 196,
+              "expression": "expect(\n\t\t\t(await postAdmin(buildContext(db, buildAdminRequest(adminBody), operator.cookies))).status,\n\t\t).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L196"
+            },
+            {
+              "line": 220,
+              "expression": "expect(entered).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L220"
+            },
+            {
+              "line": 224,
+              "expression": "expect(\n\t\t\t(await postAdmin(buildContext(db, buildAdminRequest(otherBody), other.cookies))).status,\n\t\t).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L224"
+            },
+            {
+              "line": 227,
+              "expression": "expect(\n\t\t\t(await postAdminVerify(buildContext(db, buildVerifyRequest(fakeCredential), other.cookies)))\n\t\t\t\t.status,\n\t\t).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L227"
+            },
+            {
+              "line": 234,
+              "expression": "expect(operatorRes.status).toBe(400)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L234"
+            },
+            {
+              "line": 237,
+              "expression": "expect(users).toEqual([{ email: \"other@admin.example\", role: 50 }])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce-success.test.ts#L237"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    },
+    {
+      "path": "packages/core/tests/integration/astro/setup-admin-nonce.test.ts",
+      "category": "setup-api-complete-original-families",
+      "stage": "authority-only",
+      "sourceBlob": "5ca364dc19f24b99ba4d608629eaa7b67f33a993",
+      "sourceSha256": "98c59df463b29829e03d925d8bdd0728b28e8fde34ee492953ebb15f5490f3a3",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-admin-nonce.test.ts:126",
+          "title": "sets a HttpOnly nonce cookie on the response and stores it with setup state",
+          "suites": [
+            "POST /setup/admin — session nonce binding"
+          ],
+          "line": 126,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L126",
+          "registration": "it",
+          "registrationSha256": "ac4e6d2830a02f98e338db24e5ddfeb3c4641bea72b9f4662fd514f6fddf8848",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 130,
+              "expression": "expect(res.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L130"
+            },
+            {
+              "line": 133,
+              "expression": "expect(cookie).toBeDefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L133"
+            },
+            {
+              "line": 136,
+              "expression": "expect(cookie!.value).toMatch(/^[A-Za-z0-9_-]{43}$/)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L136"
+            },
+            {
+              "line": 137,
+              "expression": "expect(cookie!.options.httpOnly).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L137"
+            },
+            {
+              "line": 141,
+              "expression": "expect(cookie!.options.sameSite).toBe(\"strict\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L141"
+            },
+            {
+              "line": 142,
+              "expression": "expect(cookie!.options.path).toBe(\"/_emdash/\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L142"
+            },
+            {
+              "line": 146,
+              "expression": "expect(setupState).toBeDefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L146"
+            },
+            {
+              "line": 147,
+              "expression": "expect(setupState?.email).toBe(\"real@admin.example\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L147"
+            },
+            {
+              "line": 148,
+              "expression": "expect(setupState?.nonce).toBe(cookie!.value)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L148"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-admin-nonce.test.ts:151",
+          "title": "sets Secure on the nonce cookie when the public origin is HTTPS, even if the internal request URL is HTTP",
+          "suites": [
+            "POST /setup/admin — session nonce binding"
+          ],
+          "line": 151,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L151",
+          "registration": "it",
+          "registrationSha256": "199c65bd9e062b2c080ceb78a82999b7ab452059f786bbf163b74b0452c52bc0",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 167,
+              "expression": "expect(res.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L167"
+            },
+            {
+              "line": 170,
+              "expression": "expect(cookie).toBeDefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L170"
+            },
+            {
+              "line": 171,
+              "expression": "expect(cookie!.options.secure).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L171"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-admin-nonce.test.ts:174",
+          "title": "omits Secure on the nonce cookie when the public origin is HTTP (local dev)",
+          "suites": [
+            "POST /setup/admin — session nonce binding"
+          ],
+          "line": 174,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L174",
+          "registration": "it",
+          "registrationSha256": "299d178eb631527c01ecbae6de0a8c8af97c078ed09dfe7164a612007e458027",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 179,
+              "expression": "expect(res.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L179"
+            },
+            {
+              "line": 182,
+              "expression": "expect(cookie).toBeDefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L182"
+            },
+            {
+              "line": 183,
+              "expression": "expect(cookie!.options.secure).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L183"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-admin-nonce.test.ts:186",
+          "title": "rejects /admin/verify when no nonce cookie is present",
+          "suites": [
+            "POST /setup/admin — session nonce binding"
+          ],
+          "line": 186,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L186",
+          "registration": "it",
+          "registrationSha256": "f4596e103f9fc3389427c3402d58fc90bbbb18afe8de207d7d12b60b06e0439b",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 190,
+              "expression": "expect(adminRes.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L190"
+            },
+            {
+              "line": 197,
+              "expression": "expect(verifyRes.status).toBe(400)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L197"
+            },
+            {
+              "line": 199,
+              "expression": "expect(body.error?.code).toBe(\"INVALID_STATE\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L199"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-admin-nonce.test.ts:202",
+          "title": "rejects /admin/verify when the nonce cookie does not match the stored nonce",
+          "suites": [
+            "POST /setup/admin — session nonce binding"
+          ],
+          "line": 202,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L202",
+          "registration": "it",
+          "registrationSha256": "5515c8619f8a24c1f1c10f294bb6607d89a1f6316df63758b1ff517a0a315efb",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 205,
+              "expression": "expect(adminRes.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L205"
+            },
+            {
+              "line": 214,
+              "expression": "expect(verifyRes.status).toBe(400)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L214"
+            },
+            {
+              "line": 216,
+              "expression": "expect(body.error?.code).toBe(\"INVALID_STATE\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L216"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-admin-nonce.test.ts:219",
+          "title": "blocks the email-hijack attack: attacker overwrites setup_state but cannot complete verify",
+          "suites": [
+            "POST /setup/admin — session nonce binding"
+          ],
+          "line": 219,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L219",
+          "registration": "it",
+          "registrationSha256": "5ada2ae9eeecebf28a1574fc72ff38922b16166650578b989ab7cba0e17aec81",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 223,
+              "expression": "expect(firstRes.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L223"
+            },
+            {
+              "line": 233,
+              "expression": "expect(attackerRes.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L233"
+            },
+            {
+              "line": 235,
+              "expression": "expect(attackerNonce).not.toBe(adminNonce)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L235"
+            },
+            {
+              "line": 242,
+              "expression": "expect(verifyRes.status).toBe(400)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L242"
+            },
+            {
+              "line": 244,
+              "expression": "expect(body.error?.code).toBe(\"INVALID_STATE\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L244"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-admin-nonce.test.ts:247",
+          "title": "allows a legitimate admin to retry /setup/admin and reuse the new cookie",
+          "suites": [
+            "POST /setup/admin — session nonce binding"
+          ],
+          "line": 247,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L247",
+          "registration": "it",
+          "registrationSha256": "aec7d56373f1303d15c707673a19fb3be79e406f27b006e3985b42ab952eff48",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 251,
+              "expression": "expect(first.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L251"
+            },
+            {
+              "line": 257,
+              "expression": "expect(second.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L257"
+            },
+            {
+              "line": 259,
+              "expression": "expect(nonceB).not.toBe(nonceA)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L259"
+            },
+            {
+              "line": 263,
+              "expression": "expect(setupState?.nonce).toBe(nonceB)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-nonce.test.ts#L263"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    },
+    {
+      "path": "packages/core/tests/integration/astro/setup-admin-recovery.test.ts",
+      "category": "setup-api-complete-original-families",
+      "stage": "authority-only",
+      "sourceBlob": "9912e1e2e61ada82a22b0e495113d246c50d939a",
+      "sourceSha256": "46f86d404ee71fea59a4eeb942a3b79823d2a68ff8809fab9f13a4c96eddbd4d",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-recovery.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-admin-recovery.test.ts:113",
+          "title": "allows starting admin registration when setup_complete is true but users is empty",
+          "suites": [
+            "POST /setup/admin — recovery when setup_complete but no users exist"
+          ],
+          "line": 113,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-recovery.test.ts#L113",
+          "registration": "it",
+          "registrationSha256": "d94949038738c79ba93667063c58e07715d495708b03fbe5b2e513f79ba13a6b",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 124,
+              "expression": "expect(res.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-recovery.test.ts#L124"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-admin-recovery.test.ts:127",
+          "title": "accepts the string \"true\" flag variant the same way",
+          "suites": [
+            "POST /setup/admin — recovery when setup_complete but no users exist"
+          ],
+          "line": 127,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-recovery.test.ts#L127",
+          "registration": "it",
+          "registrationSha256": "2b8fcdf57470909fac4bf898112605175c2e8874adb2aab0e1298ecdf0c4d67a",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 136,
+              "expression": "expect(res.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-recovery.test.ts#L136"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-admin-recovery.test.ts:139",
+          "title": "lets /setup/admin/verify past the setup-complete guard in the same state",
+          "suites": [
+            "POST /setup/admin — recovery when setup_complete but no users exist"
+          ],
+          "line": 139,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-recovery.test.ts#L139",
+          "registration": "it",
+          "registrationSha256": "8d31f4a37392fdc685edaa5f82b5fc0858261441c31afe5956eb0940dee9f4d3",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 148,
+              "expression": "expect(adminRes.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-recovery.test.ts#L148"
+            },
+            {
+              "line": 169,
+              "expression": "expect(body.error?.code).not.toBe(\"SETUP_COMPLETE\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-recovery.test.ts#L169"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-admin-recovery.test.ts:172",
+          "title": "still rejects with SETUP_COMPLETE when setup is complete AND a user exists",
+          "suites": [
+            "POST /setup/admin — recovery when setup_complete but no users exist"
+          ],
+          "line": 172,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-recovery.test.ts#L172",
+          "registration": "it",
+          "registrationSha256": "ffb8d1a7c1cd76816c863c68726cb09cd2b77eb5b3570a839e963b67c5ad968a",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 182,
+              "expression": "expect(res.status).toBe(400)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-recovery.test.ts#L182"
+            },
+            {
+              "line": 184,
+              "expression": "expect(body.error?.code).toBe(\"SETUP_COMPLETE\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-recovery.test.ts#L184"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-admin-recovery.test.ts:187",
+          "title": "still rejects with ADMIN_EXISTS when a user exists without the complete flag",
+          "suites": [
+            "POST /setup/admin — recovery when setup_complete but no users exist"
+          ],
+          "line": 187,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-recovery.test.ts#L187",
+          "registration": "it",
+          "registrationSha256": "0113bc863c80a7e096345a99db871a9100afdca14cf079d34f267ceccacd546c",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 195,
+              "expression": "expect(res.status).toBe(400)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-recovery.test.ts#L195"
+            },
+            {
+              "line": 197,
+              "expression": "expect(body.error?.code).toBe(\"ADMIN_EXISTS\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-admin-recovery.test.ts#L197"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    },
+    {
+      "path": "packages/core/tests/integration/astro/setup-seed-budget.test.ts",
+      "category": "setup-api-complete-original-families",
+      "stage": "authority-only",
+      "sourceBlob": "cb46df9dbee5bb367efb6f6d9038d02ef7013be0",
+      "sourceSha256": "8e31d1bb8cf3d30f185cbd4945f581f8d5f2fc57684e5a2c5551b9ca1de9ae4f",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-seed-budget.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-seed-budget.test.ts:121",
+          "title": "applies 112 entries over requests that each stay under 1,000 queries",
+          "suites": [
+            "POST /setup with sample content"
+          ],
+          "line": 121,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-seed-budget.test.ts#L121",
+          "registration": "it",
+          "registrationSha256": "cf4fc56014e31221ca7368b95c115428c546d48b02c8e6e24379e84d2cda5f88",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 129,
+              "expression": "expect(response.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-seed-budget.test.ts#L129"
+            },
+            {
+              "line": 138,
+              "expression": "expect(Math.max(...responses.map((response) => response.queries))).toBeLessThan(1000)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-seed-budget.test.ts#L138"
+            },
+            {
+              "line": 139,
+              "expression": "expect(responses.length).toBeGreaterThan(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-seed-budget.test.ts#L139"
+            },
+            {
+              "line": 140,
+              "expression": "expect(responses.at(-1)?.body.data.seedComplete).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-seed-budget.test.ts#L140"
+            },
+            {
+              "line": 141,
+              "expression": "expect(afterFirst).toEqual({ siteUrl: \"http://site.example\", setupState: null })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-seed-budget.test.ts#L141"
+            },
+            {
+              "line": 144,
+              "expression": "expect(progress.every((step) => step?.total === 112)).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-seed-budget.test.ts#L144"
+            },
+            {
+              "line": 146,
+              "expression": "expect(done).toEqual(entriesAfter.slice(0, -1))",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-seed-budget.test.ts#L146"
+            },
+            {
+              "line": 147,
+              "expression": "expect(new Set(done).size).toBe(done.length)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-seed-budget.test.ts#L147"
+            },
+            {
+              "line": 149,
+              "expression": "expect(entriesAfter.at(-1)).toBe(112)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-seed-budget.test.ts#L149"
+            },
+            {
+              "line": 150,
+              "expression": "expect(await options.get(\"emdash:setup_state\")).toMatchObject({ step: \"site_complete\" })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-seed-budget.test.ts#L150"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    },
+    {
+      "path": "packages/core/tests/integration/astro/setup-site-url-lock.test.ts",
+      "category": "setup-api-complete-original-families",
+      "stage": "authority-only",
+      "sourceBlob": "129de55a832d1ba66c0d7d532f678c32d56811f2",
+      "sourceSha256": "c29997a9f45d2e1fb32c3019813e6cc028ffb7fd6a2a26236a08b4a139442e15",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-site-url-lock.test.ts:78",
+          "title": "rejects setup on a public host without a configured site URL",
+          "suites": [
+            "POST /setup — site_url write-once lock"
+          ],
+          "line": 78,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L78",
+          "registration": "it",
+          "registrationSha256": "f198f382c1f7108231c2a52a73679b6e16b0b84016df3d9cf4cae55866b6da15",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 85,
+              "expression": "expect(res.status).toBe(500)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L85"
+            },
+            {
+              "line": 86,
+              "expression": "expect(await res.json()).toMatchObject({\n\t\t\terror: { code: \"SITE_URL_REQUIRED\" },\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L86"
+            },
+            {
+              "line": 91,
+              "expression": "expect(await options.get(\"emdash:site_url\")).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L91"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-site-url-lock.test.ts:94",
+          "title": "uses the request origin for loopback development",
+          "suites": [
+            "POST /setup — site_url write-once lock"
+          ],
+          "line": 94,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L94",
+          "registration": "it",
+          "registrationSha256": "66359bf54368ff8d55f51b96f4f0deaa772ff4b191e53f3291ea00f9b0eead0a",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 99,
+              "expression": "expect(res.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L99"
+            },
+            {
+              "line": 102,
+              "expression": "expect(await options.get(\"emdash:site_url\")).toBe(\"http://127.0.0.1:4321\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L102"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-site-url-lock.test.ts:105",
+          "title": "stores the HTTPS request origin on Cloudflare Workers",
+          "suites": [
+            "POST /setup — site_url write-once lock"
+          ],
+          "line": 105,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L105",
+          "registration": "it",
+          "registrationSha256": "72e678c5aa967145710110d907d41927d88ad03ef41c1c8507a2b66cb9f30512",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 117,
+              "expression": "expect(res.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L117"
+            },
+            {
+              "line": 120,
+              "expression": "expect(await options.get(\"emdash:site_url\")).toBe(\"https://my-site.example.workers.dev\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L120"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-site-url-lock.test.ts:123",
+          "title": "rejects a public Host in development on workerd",
+          "suites": [
+            "POST /setup — site_url write-once lock"
+          ],
+          "line": 123,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L123",
+          "registration": "it",
+          "registrationSha256": "a3cc0e0ed2c97c08175c2801115557cfec34c5665534e2cf4a4b898b7e0bf588",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 130,
+              "expression": "expect(res.status).toBe(500)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L130"
+            },
+            {
+              "line": 131,
+              "expression": "expect(await res.json()).toMatchObject({\n\t\t\terror: { code: \"SITE_URL_REQUIRED\" },\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L131"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-site-url-lock.test.ts:136",
+          "title": "rejects a spoofed loopback Host in production",
+          "suites": [
+            "POST /setup — site_url write-once lock"
+          ],
+          "line": 136,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L136",
+          "registration": "it",
+          "registrationSha256": "2052f74737c930fc50c4957bd0a490f9a73fbebb7a27d6f601084875e7e52e41",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 142,
+              "expression": "expect(res.status).toBe(500)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L142"
+            },
+            {
+              "line": 143,
+              "expression": "expect(await res.json()).toMatchObject({\n\t\t\terror: { code: \"SITE_URL_REQUIRED\" },\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L143"
+            },
+            {
+              "line": 148,
+              "expression": "expect(await options.get(\"emdash:site_url\")).toBeNull()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L148"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-site-url-lock.test.ts:151",
+          "title": "does not overwrite site_url when a later setup call arrives with a spoofed Host",
+          "suites": [
+            "POST /setup — site_url write-once lock"
+          ],
+          "line": 151,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L151",
+          "registration": "it",
+          "registrationSha256": "6ec34183d4d2465511667d3b41e2fb22f1626eed12f71e2d77d9e507e9139c8c",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 160,
+              "expression": "expect(first.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L160"
+            },
+            {
+              "line": 172,
+              "expression": "expect(second.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L172"
+            },
+            {
+              "line": 175,
+              "expression": "expect(await options.get(\"emdash:site_url\")).toBe(\"https://real-site.example\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L175"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-site-url-lock.test.ts:178",
+          "title": "is atomic under concurrent setup POSTs with different Hosts",
+          "suites": [
+            "POST /setup — site_url write-once lock"
+          ],
+          "line": 178,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L178",
+          "registration": "it",
+          "registrationSha256": "2a4adbe6a840a9f3346d28f2a24f6fabc35f6142e701b309c5bfe32186cf39c5",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 198,
+              "expression": "expect(a.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L198"
+            },
+            {
+              "line": 199,
+              "expression": "expect(b.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L199"
+            },
+            {
+              "line": 205,
+              "expression": "expect(stored).toBe(\"https://real-site.example\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L205"
+            },
+            {
+              "line": 212,
+              "expression": "expect(third.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L212"
+            },
+            {
+              "line": 213,
+              "expression": "expect(await options.get(\"emdash:site_url\")).toBe(stored)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L213"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/astro/setup-site-url-lock.test.ts:216",
+          "title": "does not overwrite a legitimately-stored empty string",
+          "suites": [
+            "POST /setup — site_url write-once lock"
+          ],
+          "line": 216,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L216",
+          "registration": "it",
+          "registrationSha256": "6cf7e92cd61a06f749702707fba61f94e475f64c27c3db00ed46bc3a213e5b6a",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 230,
+              "expression": "expect(res.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L230"
+            },
+            {
+              "line": 232,
+              "expression": "expect(await options.get(\"emdash:site_url\")).toBe(\"\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/integration/astro/setup-site-url-lock.test.ts#L232"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    },
+    {
+      "path": "packages/core/tests/unit/api/dashboard-handlers.test.ts",
+      "category": "setup-api-complete-original-families",
+      "stage": "authority-only",
+      "sourceBlob": "1e00d69b67a66bb9d26988bc21c309b87c5448ee",
+      "sourceSha256": "a06324c07b503f54f82d938a56ef33ba2ff416212001adf5097b21c6c70dcc14",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:26",
+          "title": "returns empty stats when no collections exist",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 26,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L26",
+          "registration": "it",
+          "registrationSha256": "23457f5134a69ddb31212ddfe766cc18b5a470a1f2825b5c3ae1db3d0bd3c21a",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 31,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L31"
+            },
+            {
+              "line": 32,
+              "expression": "expect(result.data).toBeDefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L32"
+            },
+            {
+              "line": 33,
+              "expression": "expect(result.data!.collections).toEqual([])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L33"
+            },
+            {
+              "line": 34,
+              "expression": "expect(result.data!.mediaCount).toBe(0)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L34"
+            },
+            {
+              "line": 35,
+              "expression": "expect(result.data!.userCount).toBe(0)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L35"
+            },
+            {
+              "line": 36,
+              "expression": "expect(result.data!.recentItems).toEqual([])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L36"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:39",
+          "title": "returns collection stats with correct counts",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 39,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L39",
+          "registration": "it",
+          "registrationSha256": "1b8c36d3b01370b27312a7c23b5062820f572b36c486342b968884ee7ae6fce7",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 53,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L53"
+            },
+            {
+              "line": 57,
+              "expression": "expect(collections).toHaveLength(2)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L57"
+            },
+            {
+              "line": 60,
+              "expression": "expect(postStats).toBeDefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L60"
+            },
+            {
+              "line": 61,
+              "expression": "expect(postStats!.label).toBe(\"Posts\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L61"
+            },
+            {
+              "line": 62,
+              "expression": "expect(postStats!.total).toBe(3)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L62"
+            },
+            {
+              "line": 63,
+              "expression": "expect(postStats!.published).toBe(2)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L63"
+            },
+            {
+              "line": 64,
+              "expression": "expect(postStats!.draft).toBe(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L64"
+            },
+            {
+              "line": 65,
+              "expression": "expect(postStats!.scheduled).toBe(0)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L65"
+            },
+            {
+              "line": 68,
+              "expression": "expect(pageStats).toBeDefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L68"
+            },
+            {
+              "line": 69,
+              "expression": "expect(pageStats!.label).toBe(\"Pages\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L69"
+            },
+            {
+              "line": 70,
+              "expression": "expect(pageStats!.total).toBe(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L70"
+            },
+            {
+              "line": 71,
+              "expression": "expect(pageStats!.published).toBe(0)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L71"
+            },
+            {
+              "line": 72,
+              "expression": "expect(pageStats!.draft).toBe(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L72"
+            },
+            {
+              "line": 73,
+              "expression": "expect(pageStats!.scheduled).toBe(0)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L73"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:76",
+          "title": "counts entries with pending schedules in collection stats",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 76,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L76",
+          "registration": "it",
+          "registrationSha256": "579ac23fe79f267f4757787402d5af3b33940b25c3e344e58db5cbc830ac2c8f",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 103,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L103"
+            },
+            {
+              "line": 105,
+              "expression": "expect(postStats).toBeDefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L105"
+            },
+            {
+              "line": 106,
+              "expression": "expect(postStats!.total).toBe(3)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L106"
+            },
+            {
+              "line": 107,
+              "expression": "expect(postStats!.scheduled).toBe(2)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L107"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:110",
+          "title": "reports an unknown scheduler with overdue content when no heartbeat exists",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 110,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L110",
+          "registration": "it",
+          "registrationSha256": "fe567129652f2edd35c568ef7f568663f70d2093d5bef17aa06e79abfab86bad",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 122,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L122"
+            },
+            {
+              "line": 123,
+              "expression": "expect(result.data!.schedulerHealth).toEqual({\n\t\t\t\tstatus: \"unknown\",\n\t\t\t\tlastCompletedAt: null,\n\t\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L123"
+            },
+            {
+              "line": 127,
+              "expression": "expect(\n\t\t\t\tresult.data!.collections.find((collection) => collection.slug === \"post\"),\n\t\t\t).toMatchObject({\n\t\t\t\toverdueScheduled: 1,\n\t\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L127"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:134",
+          "title": "reports stale and healthy scheduler heartbeats",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 134,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L134",
+          "registration": "it",
+          "registrationSha256": "9fcc2c9308d1b224a51bc10a3befc04482baee9ce62bffb4ff45dadc3cc029f2",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 141,
+              "expression": "expect(stale.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L141"
+            },
+            {
+              "line": 142,
+              "expression": "expect(stale.data!.schedulerHealth.status).toBe(\"stale\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L142"
+            },
+            {
+              "line": 146,
+              "expression": "expect(healthy.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L146"
+            },
+            {
+              "line": 147,
+              "expression": "expect(healthy.data!.schedulerHealth.status).toBe(\"healthy\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L147"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:150",
+          "title": "counts scheduled publications that policy plugins rejected",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 150,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L150",
+          "registration": "it",
+          "registrationSha256": "0ff505810dc2105bdc5d25b06069c4e436e80ac47cfe027569880509bfd0062f",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 169,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L169"
+            },
+            {
+              "line": 170,
+              "expression": "expect(result.data!.policyRejectedScheduled).toBe(2)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L170"
+            },
+            {
+              "line": 171,
+              "expression": "expect(result.data!.policyRejections).toEqual(\n\t\t\t\texpect.arrayContaining([\n\t\t\t\t\texpect.objectContaining({\n\t\t\t\t\t\tid: \"post-1\",\n\t\t\t\t\t\tpluginId: \"content-guard\",\n\t\t\t\t\t\t_rev: expect.any(String),\n\t\t\t\t\t}),\n\t\t\t\t\texpect.objectContaining({ id: \"missing-page\", pluginId: \"removed-plugin\" }),\n\t\t\t\t]),\n\t\t\t)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L171"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:183",
+          "title": "bounds the policy-rejection records returned to the dashboard",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 183,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L183",
+          "registration": "it",
+          "registrationSha256": "9f038e2471de9f16958837b30b809e02b54a151f92b8da679f55af61a345765c",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 198,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L198"
+            },
+            {
+              "line": 199,
+              "expression": "expect(result.data!.policyRejectedScheduled).toBe(25)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L199"
+            },
+            {
+              "line": 200,
+              "expression": "expect(result.data!.policyRejections).toHaveLength(20)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L200"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:203",
+          "title": "returns recent items across collections",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 203,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L203",
+          "registration": "it",
+          "registrationSha256": "a05adbac81abca4fcf4082613d2fa9c7bfcb604f5eb01f1840851485b0fcce67",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 214,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L214"
+            },
+            {
+              "line": 217,
+              "expression": "expect(recentItems.length).toBeGreaterThanOrEqual(2)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L217"
+            },
+            {
+              "line": 220,
+              "expression": "expect(recentItems[0]!.collection).toBe(\"page\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L220"
+            },
+            {
+              "line": 221,
+              "expression": "expect(recentItems[0]!.collectionLabel).toBe(\"Pages\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L221"
+            },
+            {
+              "line": 222,
+              "expression": "expect(recentItems[0]!.slug).toBe(\"page-1\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L222"
+            },
+            {
+              "line": 223,
+              "expression": "expect(recentItems[0]!.status).toBe(\"draft\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L223"
+            },
+            {
+              "line": 225,
+              "expression": "expect(recentItems[1]!.collection).toBe(\"post\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L225"
+            },
+            {
+              "line": 226,
+              "expression": "expect(recentItems[1]!.collectionLabel).toBe(\"Posts\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L226"
+            },
+            {
+              "line": 227,
+              "expression": "expect(recentItems[1]!.slug).toBe(\"post-1\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L227"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:230",
+          "title": "recent items use title field when available",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 230,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L230",
+          "registration": "it",
+          "registrationSha256": "9fa7ec4f23775f943440ea5eb7e6a9a80c239c8e05d45eb39e8018cf7e654a04",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 244,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L244"
+            },
+            {
+              "line": 246,
+              "expression": "expect(postItem).toBeDefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L246"
+            },
+            {
+              "line": 247,
+              "expression": "expect(postItem!.title).toBe(\"My Great Post\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L247"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:250",
+          "title": "recent items fall back to slug when collection has no title field",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 250,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L250",
+          "registration": "it",
+          "registrationSha256": "ea73590429c8e1daf527b8412ec1fc04b6d31eeab39962325e7b3e475781554a",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 276,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L276"
+            },
+            {
+              "line": 278,
+              "expression": "expect(eventItem).toBeDefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L278"
+            },
+            {
+              "line": 280,
+              "expression": "expect(eventItem!.title).toBe(\"launch-party\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L280"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:283",
+          "title": "excludes soft-deleted items from recent items",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 283,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L283",
+          "registration": "it",
+          "registrationSha256": "41f348052513c78d0c83766ed894e7e50518c6be641fc118cb5410a57ff4252d",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 295,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L295"
+            },
+            {
+              "line": 297,
+              "expression": "expect(slugs).toContain(\"will-keep\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L297"
+            },
+            {
+              "line": 298,
+              "expression": "expect(slugs).not.toContain(\"will-delete\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L298"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:301",
+          "title": "limits recent items to 10",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 301,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L301",
+          "registration": "it",
+          "registrationSha256": "9de7b00cd2416304239e7dbbfd910270dcf997c24ad1df68be7e7475a6d969e1",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 312,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L312"
+            },
+            {
+              "line": 313,
+              "expression": "expect(result.data!.recentItems).toHaveLength(10)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L313"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:316",
+          "title": "recent items are ordered by updated_at descending",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 316,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L316",
+          "registration": "it",
+          "registrationSha256": "f9a982dd160d7f291ca32b098a0b956c8d0a0bb2dafa4c789f05e903ff343dc2",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 328,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L328"
+            },
+            {
+              "line": 330,
+              "expression": "expect(slugs).toEqual([\"newest\", \"middle\", \"oldest\"])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L330"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:333",
+          "title": "counts exclude soft-deleted items",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 333,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L333",
+          "registration": "it",
+          "registrationSha256": "079a794b200adcca66b530eb9fd5d403ec11204a1c18bcef8c6a2538b2c4076e",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 343,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L343"
+            },
+            {
+              "line": 346,
+              "expression": "expect(postStats!.total).toBe(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L346"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:349",
+          "title": "merges recent items across many title-bearing collections (#895)",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 349,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L349",
+          "registration": "it",
+          "registrationSha256": "d4dab6af1de8e51439c2a3eed66ab27a3b307c017669aa490bac5b20e23d2103",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 385,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L385"
+            },
+            {
+              "line": 389,
+              "expression": "expect(recentItems).toHaveLength(10)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L389"
+            },
+            {
+              "line": 393,
+              "expression": "expect(recentItems.map((i) => i.collection)).toEqual(expected)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L393"
+            },
+            {
+              "line": 394,
+              "expression": "expect(recentItems[0]!.title).toBe(`Title ${collectionCount - 1}`)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L394"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:397",
+          "title": "returns camelCase keys in recent items",
+          "suites": [
+            "Dashboard Handlers",
+            "handleDashboardStats"
+          ],
+          "line": 397,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L397",
+          "registration": "it",
+          "registrationSha256": "82d3fc8df04b42b3287e8529e8bf521cd30889d4babad40d609e7998eca61865",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 404,
+              "expression": "expect(result.success).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L404"
+            },
+            {
+              "line": 407,
+              "expression": "expect(item).toHaveProperty(\"id\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L407"
+            },
+            {
+              "line": 408,
+              "expression": "expect(item).toHaveProperty(\"collection\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L408"
+            },
+            {
+              "line": 409,
+              "expression": "expect(item).toHaveProperty(\"collectionLabel\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L409"
+            },
+            {
+              "line": 410,
+              "expression": "expect(item).toHaveProperty(\"title\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L410"
+            },
+            {
+              "line": 411,
+              "expression": "expect(item).toHaveProperty(\"slug\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L411"
+            },
+            {
+              "line": 412,
+              "expression": "expect(item).toHaveProperty(\"status\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L412"
+            },
+            {
+              "line": 413,
+              "expression": "expect(item).toHaveProperty(\"updatedAt\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L413"
+            },
+            {
+              "line": 414,
+              "expression": "expect(item).toHaveProperty(\"authorId\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L414"
+            },
+            {
+              "line": 416,
+              "expression": "expect(item).not.toHaveProperty(\"collection_label\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L416"
+            },
+            {
+              "line": 417,
+              "expression": "expect(item).not.toHaveProperty(\"updated_at\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L417"
+            },
+            {
+              "line": 418,
+              "expression": "expect(item).not.toHaveProperty(\"author_id\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/api/dashboard-handlers.test.ts#L418"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    },
+    {
+      "path": "packages/core/tests/unit/astro/setup-dev-bypass.test.ts",
+      "category": "setup-api-complete-original-families",
+      "stage": "authority-only",
+      "sourceBlob": "47191917553bf859b90cb324c716732a1a063383",
+      "sourceSha256": "07ebbf9379de512cea12b1e7a3a1ebc812dfe09b9bf51e751cb9a7bab0625343",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/astro/setup-dev-bypass.test.ts:117",
+          "title": "seeds sample data by default",
+          "suites": [
+            "setup dev-bypass seed gating"
+          ],
+          "line": 117,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L117",
+          "registration": "it",
+          "registrationSha256": "06a48c1ba95b2844d8c8d003db266f5302943c8861adfb5df90107a7aed5c211",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 119,
+              "expression": "expect(response.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L119"
+            },
+            {
+              "line": 121,
+              "expression": "expect(await countPosts(db)).toBe(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L121"
+            },
+            {
+              "line": 122,
+              "expression": "expect(await countRows(db, \"taxonomies\")).toBe(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L122"
+            },
+            {
+              "line": 123,
+              "expression": "expect(await countRows(db, \"_emdash_bylines\")).toBe(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L123"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/astro/setup-dev-bypass.test.ts:126",
+          "title": "makes seeded media usage ready without activating incremental capture",
+          "suites": [
+            "setup dev-bypass seed gating"
+          ],
+          "line": 126,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L126",
+          "registration": "it",
+          "registrationSha256": "5ffe3975812bb4bdafb74a8c4f4099c094881ad350fcdf87b8554d92c4fc63ba",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 128,
+              "expression": "expect(response.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L128"
+            },
+            {
+              "line": 135,
+              "expression": "expect(usage).toEqual([{ media_id: \"seed-media-1\", field_slug: \"featured_image\" }])",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L135"
+            },
+            {
+              "line": 144,
+              "expression": "expect(coverage).toEqual({ status: \"complete\", indexed_source_count: 1 })",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L144"
+            },
+            {
+              "line": 151,
+              "expression": "expect(activation.state).toBe(\"expanded\")",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L151"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/astro/setup-dev-bypass.test.ts:154",
+          "title": "applies schema only with ?content=0",
+          "suites": [
+            "setup dev-bypass seed gating"
+          ],
+          "line": 154,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L154",
+          "registration": "it",
+          "registrationSha256": "47a155a3b35c9909cbe45c8907a5b2cd1a03007cc52f7fe0df631ba75417189f",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 156,
+              "expression": "expect(response.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L156"
+            },
+            {
+              "line": 158,
+              "expression": "expect(await countPosts(db)).toBe(0)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L158"
+            },
+            {
+              "line": 159,
+              "expression": "expect(await countRows(db, \"taxonomies\")).toBe(0)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L159"
+            },
+            {
+              "line": 160,
+              "expression": "expect(await countRows(db, \"_emdash_bylines\")).toBe(0)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L160"
+            },
+            {
+              "line": 168,
+              "expression": "expect(collections).toHaveLength(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L168"
+            },
+            {
+              "line": 175,
+              "expression": "expect(taxonomyDefs).toHaveLength(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L175"
+            },
+            {
+              "line": 182,
+              "expression": "expect(menus).toHaveLength(1)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L182"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/astro/setup-dev-bypass.test.ts:185",
+          "title": "accepts ?content=false",
+          "suites": [
+            "setup dev-bypass seed gating"
+          ],
+          "line": 185,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L185",
+          "registration": "it",
+          "registrationSha256": "5072517d5d8bbc60ff43baee17860e2154b2fa3e6ad79ebc486860ef1540078d",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 187,
+              "expression": "expect(response.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L187"
+            },
+            {
+              "line": 189,
+              "expression": "expect(await countPosts(db)).toBe(0)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L189"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/astro/setup-dev-bypass.test.ts:192",
+          "title": "does not migrate from the %s route",
+          "suites": [
+            "setup dev-bypass seed gating"
+          ],
+          "line": 192,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L192",
+          "registration": "it.each([\n\t\t[\"setup dev bypass\", (database: Kysely<Database>) => GET(makeContext(database, \"?content=0\"))],\n\t\t[\"auth dev bypass\", (database: Kysely<Database>) => AUTH_GET(makeContext(database))],\n\t\t[\"setup wizard\", (database: Kysely<Database>) => SETUP_POST(makeSetupContext(database))],\n\t])",
+          "registrationSha256": "401e8bbdb4d95170a64fed01b97a8ee7e94899a0c978aa6108e09bd34837c1d6",
+          "expansion": [
+            {
+              "line": 192,
+              "registration": "it.each([\n\t\t[\"setup dev bypass\", (database: Kysely<Database>) => GET(makeContext(database, \"?content=0\"))],\n\t\t[\"auth dev bypass\", (database: Kysely<Database>) => AUTH_GET(makeContext(database))],\n\t\t[\"setup wizard\", (database: Kysely<Database>) => SETUP_POST(makeSetupContext(database))],\n\t])",
+              "dataset": "it.each([\n\t\t[\"setup dev bypass\", (database: Kysely<Database>) => GET(makeContext(database, \"?content=0\"))],\n\t\t[\"auth dev bypass\", (database: Kysely<Database>) => AUTH_GET(makeContext(database))],\n\t\t[\"setup wizard\", (database: Kysely<Database>) => SETUP_POST(makeSetupContext(database))],\n\t])"
+            }
+          ],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 202,
+              "expression": "expect(response.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L202"
+            },
+            {
+              "line": 208,
+              "expression": "expect(record).toBeUndefined()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/astro/setup-dev-bypass.test.ts#L208"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    },
+    {
+      "path": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+      "category": "setup-api-complete-original-families",
+      "stage": "authority-only",
+      "sourceBlob": "ba3b7a413e01f59cf21f831badf694120e7d6a3d",
+      "sourceSha256": "ccd11fb00a967ab4e1649755b3d86416b1d2a07464fb78acad8708ab6dbcb0b5",
+      "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts#L1",
+      "tests": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/auth/me-welcome-dismiss.test.ts:29",
+          "title": "persists welcomeDismissed in the database, not the session",
+          "suites": [
+            "GET/POST /_emdash/api/auth/me – welcome dismiss"
+          ],
+          "line": 29,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts#L29",
+          "registration": "it",
+          "registrationSha256": "04652b9ae032152ffaf2e08bcc05230d7fa7789ae7aa9fb5706c43a78688b550",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 42,
+              "expression": "expect(getRes1.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts#L42"
+            },
+            {
+              "line": 44,
+              "expression": "expect(body1.data.isFirstLogin).toBe(true)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts#L44"
+            },
+            {
+              "line": 58,
+              "expression": "expect(postRes.status).toBe(200)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts#L58"
+            },
+            {
+              "line": 72,
+              "expression": "expect(body2.data.isFirstLogin).toBe(false)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts#L72"
+            },
+            {
+              "line": 73,
+              "expression": "expect(staleSession.get).not.toHaveBeenCalled()",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts#L73"
+            }
+          ]
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/auth/me-welcome-dismiss.test.ts:76",
+          "title": "redacts playground user lookup failures",
+          "suites": [
+            "GET/POST /_emdash/api/auth/me – welcome dismiss"
+          ],
+          "line": 76,
+          "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts#L76",
+          "registration": "it",
+          "registrationSha256": "4a9f3bb9c901fd53bcbd523a39cb1a991bb7241e9d7e98a40777613b4bd0e461",
+          "expansion": [],
+          "loopContexts": [],
+          "runtimeGates": [],
+          "status": "inventory-only",
+          "productExecution": null,
+          "assertions": [
+            {
+              "line": 89,
+              "expression": "expect(response.status).toBe(500)",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts#L89"
+            },
+            {
+              "line": 90,
+              "expression": "expect(await response.json()).toEqual({\n\t\t\tsuccess: false,\n\t\t\terror: {\n\t\t\t\tcode: \"CURRENT_USER_ERROR\",\n\t\t\t\tmessage: \"Failed to fetch current user\",\n\t\t\t},\n\t\t})",
+              "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts#L90"
+            }
+          ]
+        }
+      ],
+      "sharedAssertions": [],
+      "runtimeGates": []
+    }
+  ]
+}
