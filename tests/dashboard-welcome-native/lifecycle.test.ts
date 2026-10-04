@@ -2,7 +2,7 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { flushSync, mount, tick, unmount } from 'svelte';
 import DashboardHost from '../helpers/dashboard-welcome/DashboardLifecycleHost.svelte';
 import WelcomeHost from '../helpers/dashboard-welcome/WelcomeLifecycleHost.svelte';
-import { lifecycleState } from '../helpers/dashboard-welcome/lifecycle-state.svelte';
+import { lifecycleState } from '../helpers/dashboard-welcome/lifecycle-state.svelte.ts';
 
 const mounted: ReturnType<typeof mount>[] = [];
 afterEach(async () => {
