@@ -192,6 +192,16 @@ export async function checkDoctor(cwd: string, databasePath: string, contract: W
   return results;
 }
 
+function formatDoctorResults(results: readonly CheckResult[]): string {
+  const fails = results.filter(result => result.status === 'fail').length;
+  const warns = results.filter(result => result.status === 'warn').length;
+  const summary = fails ? `${fails} issues found` : warns
+    ? `All critical checks passed (${warns} warnings)` : 'All checks passed';
+  return ['Sveltery Doctor', '',
+    ...results.map(result => `${result.status.toUpperCase()} ${result.name}: ${result.message}`),
+    '', summary, ''].join('\n');
+}
+
 /** Entry used by both the repository launcher and bundled standalone package. */
 export async function runDoctorCli(argv = process.argv.slice(2)): Promise<number> {
   const {values} = parseArgs({args: argv, options: {
@@ -205,13 +215,7 @@ export async function runDoctorCli(argv = process.argv.slice(2)): Promise<number
   }
   const cwd = resolve(values.cwd);
   const results = await checkDoctor(cwd, resolve(cwd, values.database));
-  const fails = results.filter(r => r.status === 'fail'), warns = results.filter(r => r.status === 'warn');
   if (values.json) process.stdout.write(JSON.stringify(results, null, 2) + '\n');
-  else {
-    process.stdout.write('Sveltery Doctor\n\n');
-    for (const result of results) process.stdout.write(`${result.status.toUpperCase()} ${result.name}: ${result.message}\n`);
-    process.stdout.write('\n' + (fails.length ? `${fails.length} issues found` : warns.length
-      ? `All critical checks passed (${warns.length} warnings)` : 'All checks passed') + '\n');
-  }
-  return fails.length ? 1 : 0;
+  else process.stdout.write(formatDoctorResults(results));
+  return results.some(result => result.status === 'fail') ? 1 : 0;
 }
