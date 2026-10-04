@@ -28,3 +28,6 @@ export function parseFolderState(raw: string | null): Record<string, boolean> {
     return state;
   } catch { return {}; }
 }
+
+// Native installed-route display projection; complete Source Sidebar remains separate.
+export { installedManagementNavigation } from '../common-navigation/installed.ts';

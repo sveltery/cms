@@ -2,7 +2,7 @@
   import { onMount, type Snippet } from 'svelte';
   import { page } from '$app/state';
   import { getWorkspaceNavigation } from '$lib/workspace.remote';
-  import { collectionNavigation, isItemActive, parseFolderState, type WorkspaceNavigation } from './nav/navigation';
+  import { collectionNavigation, installedManagementNavigation, isItemActive, parseFolderState, type WorkspaceNavigation } from './nav/navigation';
   import { formatAdminVersion } from './nav/admin-version';
   import { Card } from './vendor/sveltery/card/index';
   import './vendor/sveltery/themes-native.css';
@@ -26,6 +26,7 @@
   const schemaLink = $derived(schemaHref ?? `${prefix}schema`);
   const path = $derived(currentPath ?? page.url.pathname);
   const entries = $derived(collectionNavigation(navigationData, homeHref));
+  const managementLinks = $derived(installedManagementNavigation(navigationData.permissions, homeHref));
   const showSchema = $derived(navigationData.permissions.includes('schema:manage'));
   // Kit resolves links relative to the rendered route; source matching consumes paths.
   function destinationPath(href: string) {
@@ -73,13 +74,15 @@
       {#if mediaHref}<a href={mediaHref} aria-current={activePage === 'media' ? 'page' : undefined}>Media</a>{/if}
       {#if blocksHref}<a href={blocksHref} aria-current={activePage === 'blocks' ? 'page' : undefined}>Block types</a>{/if}
       {#if usersHref}<a href={usersHref} aria-current={activePage === 'users' ? 'page' : undefined}>Users</a>{/if}
-      {#if navigationData.permissions.includes('menus:read')}<a href={`${prefix}menus`} aria-current={isItemActive(destinationPath(`${prefix}menus`), path) ? 'page' : undefined}>Menus</a>{/if}
+      {#if managementLinks.length}
+        <h2>Manage</h2>
+        {#each managementLinks as item (item.href)}
+          <a href={item.href} aria-current={isItemActive(destinationPath(item.href), path) ? 'page' : undefined}>{item.label}</a>
+        {/each}
+      {/if}
       {#if showSchema}
         <h2>Administration</h2>
         <a href={schemaLink} aria-current={activePage === 'schema' ? 'page' : undefined}>Schema</a>
-      {/if}
-      {#if navigationData.permissions.includes('redirects:read')}
-        <a href={`${prefix}redirects`} aria-current={activePage === 'redirects' ? 'page' : undefined}>Redirects</a>
       {/if}
       {@render additionalNavigation?.()}
     </nav>

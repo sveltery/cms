@@ -33,7 +33,7 @@ function statements(database: CmsDatabase, group: 'mediaAttribution' | 'directed
     ...schema.filter(object => object.type === 'trigger')].map(object => sql.raw(object.sql).compile(database.db));
 }
 
-/** Unregistered owned descriptor. Actual canonical registration is a separate reviewed integration. */
+/** Physical descriptor consumed by the registered canonical provider9. */
 export const mediaAttributionStorageDescriptor = {
   version: 9,
   name: 'media-and-attribution-storage',
@@ -47,7 +47,7 @@ export const mediaAttributionStorageDescriptor = {
   }
 };
 
-/** Static final Source043→086 storage only. Source087 atomic backfill is still a prerequisite to registration. */
+/** Static final Source043→086 storage; provider10 prepares the Source087 atomic backfill. */
 export const directedRelationStorageObjects = {
   expectedObjects(): readonly FeatureStorageObject[] { return objects('directedRelations'); },
   statements(database: CmsDatabase): readonly CompiledQuery[] { return statements(database, 'directedRelations'); }
