@@ -1,0 +1,43 @@
+{
+  "testFirstHead": "383c0c1e83c8852dc690280b3d5e380e1a608673",
+  "baseline": {
+    "originalPureFamilies": 2,
+    "originalCallbacksInventory": 14,
+    "registeredCallbacks": 0,
+    "suiteImportFailures": 2,
+    "behavioralValueReds": 0,
+    "sourceCausalCredit": 0,
+    "reason": "Actual Native helper modules absent; full logs/JSON retained"
+  },
+  "correctedDefault": {
+    "head": "3ed11c81ee262157860e4dbcb3d617799775b2cb",
+    "callbacks": 1492,
+    "pass": 1492,
+    "fail": 0,
+    "cancelled": 0,
+    "skip": 0,
+    "todo": 0
+  },
+  "raw": [
+    {
+      "path": "docs/search-evidence/ui14-initial-baseline.log",
+      "bytes": 2218,
+      "sha256": "189b6a851062d5e512920f914b38b9a881d093f1f89dfb3e42a6175f46cc17c6"
+    },
+    {
+      "path": "docs/search-evidence/ui14-initial-baseline.json",
+      "bytes": 1410,
+      "sha256": "0fd993a13c97d0cec25e450f8a8af7a5f1f2514bfa7f27fd74a83f4819e71d6b"
+    },
+    {
+      "path": "docs/search-evidence/default-corrected-original1492.log",
+      "bytes": 167478,
+      "sha256": "42e1a009772f243adc2f014a48f45cee6768ad08f8d740044a0de7b52d0c2fe6"
+    }
+  ],
+  "limits": [
+    "No fixed helper result until actual implementation run",
+    "Default1492 is actual stated pre-helper head; not final current whole gate",
+    "Pure supplied browser/fetch tests are not HTTP/SSR/browser hosting acceptance"
+  ]
+}
