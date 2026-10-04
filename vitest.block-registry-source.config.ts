@@ -16,13 +16,18 @@ export default defineConfig({
       if(relative === 'tests/utils/test-db.js' || relative === 'src/database/migrations/runner.js') return path.join(root,'tests/helpers/blocks/source-db.ts');
       if(relative === 'src/schema/registry.js') return path.join(root,'tests/helpers/blocks/source-schema-registry.ts');
       if(relative === '../cloudflare/src/db/d1-dialect.js') return path.join(root,'tests/helpers/blocks/source-d1-dialect.ts');
-      if(relative === 'tests/workerd/d1-schema.js') return path.join(root,'parity/emdash/block-registry-source/executable/packages/core/tests/workerd/d1-schema.ts');
+      if(relative === 'tests/workerd/d1-schema.js') return path.join(root,'tests/helpers/blocks/source-d1-schema.ts');
       if(relative.startsWith('src/')) return path.join(runtime,relative.slice(4).replace(/[.]js$/,'.ts'));
     }
   }],
-  test:{environment:'node',fileParallelism:false,
-    include:['parity/emdash/block-registry-source/executable/packages/core/tests/integration/schema/block-type-registry.test.ts',
-      'parity/emdash/block-registry-source/executable/packages/core/tests/integration/database/block-types-migration.test.ts',
-      'parity/emdash/block-registry-source/executable/packages/core/tests/workerd/block-type-registry-d1.test.ts',
-      'parity/emdash/block-registry-source/executable/packages/core/tests/unit/schema/block-type-contract.test.ts']}
+  test:{fileParallelism:false,projects:[
+    {extends:true,test:{name:'wholeSourceNodeFamiliesAndAdditionalRawD1',environment:'node',globals:true,
+      include:['parity/emdash/block-registry-source/executable/packages/core/tests/integration/schema/block-type-registry.test.ts',
+        'parity/emdash/block-registry-source/executable/packages/core/tests/integration/database/block-types-migration.test.ts',
+        'parity/emdash/block-registry-source/executable/packages/core/tests/unit/schema/block-type-contract.test.ts']}},
+    {extends:true,test:{name:'wholeOriginalSourceD1FamilyOnActualRawBinding',environment:'node',
+      testTimeout:30_000,hookTimeout:30_000,
+      include:['parity/emdash/block-registry-source/executable/packages/core/tests/workerd/block-type-registry-d1.test.ts']}}
+  ]}
+
 });
