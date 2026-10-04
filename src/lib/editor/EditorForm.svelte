@@ -49,7 +49,9 @@
   function edit(next: Record<string, unknown>) {
     // Pinned ContentEditor:1314–1329 uses the literal title field, preserves
     // Unicode, and stops generation after any manual slug change.
-    if (next.title !== session.data.title && !slugTouched && typeof next.title === 'string' && next.title) slug = slugify(next.title);
+    const title = next.title;
+    const titleChanged = title !== session.data.title;
+    if (titleChanged && !slugTouched && typeof title === 'string' && title) slug = slugify(title);
     session.edit(next, slug); sync();
   }
   function editSlug(next: string) { slugTouched = true; session.edit(values, next); sync(); }
