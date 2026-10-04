@@ -87,3 +87,12 @@ use remain unfinished. Final combined normal/secured checks, independent and
 configured review, Root exact-head approval, author-owned PR merge and actual
 post-Main verification are also pending. Source executions and completed causal
 Source value reds at this initial inventory checkpoint are both zero.
+
+
+## Actual complete initial baseline
+
+Test-first commit `b02f30de8ebd932682e2d1f75fb64301ee4fb4eb` contains the exact Root-qualified107-file packet. [The whole initial receipt](taxonomy-evidence/initial-baseline.json) and its three unchanged complete raw logs record one ordinary baseline invocation per command. The immutable guard passes99 files/27 families/310 declarations/815 expect expressions; that is static provenance only. Native10 collects and executes all10: the real existing EN/FR group control passes, while9 `assert.doesNotReject` requirements reach completed assertion failures at the absent actual handler module. Later SQL-value assertions in those9 remain unreached, so none is claimed as a SQL-behavior or Source causal red. There are no DB-fixture failures or test timeouts.
+
+The whole Source matcher15 suite stops at the absent Native matcher before collection/expect:0 callbacks,0 reached assertions and0 completed Source value reds. The other26 complete Source families remain retained/unexecuted, with no passing credit. Root clarified that original supplied Source mocked/unit contexts are not blanket forbidden protected HTTP; their actual fixture/transport closure still requires a finite proposal. No new actual credentials, sessions, signatures, replay/race or protected HTTP probes occurred. Product implementation and Source behavior acceptance remain pending.
+
+Only the two literal raw baseline-log paths receive `whitespace=-blank-at-eof` attributes because original Vitest output ends with a second newline. Both complete raw receipts stay byte-exact; ordinary trailing-whitespace validation remains active on them, and all other paths retain the existing defaults. No full validation, browser, deployed runtime or feature-completion credit is established by this checkpoint.

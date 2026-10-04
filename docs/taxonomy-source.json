@@ -11914,5 +11914,97 @@
     "path": "parity/emdash/compatibility.md",
     "publicPrefixPreservedBytes": 408164,
     "publicPrefix": "Actual public Main343c0ff2 whole bytes, unchanged; append is separately qualified"
+  },
+  "actualInitialBaseline": {
+    "schemaVersion": 1,
+    "kind": "Actual complete initial taxonomy baseline",
+    "nativeHead": "b02f30de8ebd932682e2d1f75fb64301ee4fb4eb",
+    "nativeTree": "b4a4c5b67af26b3ec23229e06f218c60fe747ca3",
+    "immutableSourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "qualifiedTestOnlyPacket": "/tmp/taxonomy-full-testfirst-proposal-r2/manifest.json (60273 bytes, f3dd2c7e1d97171ca82f8a67395b65b209f850971b5596363859712ec229f811)",
+    "rootQualification": "/tmp/root-taxonomy-r2-exact107-testfirst-vector-qualification.json (691 bytes, 262b866827a031d83e065d78ac1e3e46b109d0a2782c19f6e17aaccee8fea233)",
+    "freshReview": "/tmp/taxonomy-testfirst-independent-review-r2.json (301236 bytes, 9a639ac03cff67f80bcd2a164e91db2e9284c850e48f391015583877f1b7d5cb)",
+    "runs": [
+      {
+        "label": "guard",
+        "command": [
+          "node",
+          "scripts/check-taxonomy-source.mjs"
+        ],
+        "path": "docs/taxonomy-evidence/guard-baseline.log",
+        "bytes": 106,
+        "sha256": "f64427cfad72ec7c9ca59b61093a77cb3462afc8c2eec677f02bdd7db7216c9b",
+        "exitCode": 0
+      },
+      {
+        "label": "native10",
+        "command": [
+          "node",
+          "/workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs",
+          "exec",
+          "vitest",
+          "run",
+          "--config",
+          "vitest.taxonomy-native.config.ts"
+        ],
+        "path": "docs/taxonomy-evidence/native10-baseline.log",
+        "bytes": 9558,
+        "sha256": "bac087523b8372bab957244119a5359a8d80444c3718b09903eb2ecbc68e9e95",
+        "exitCode": 1
+      },
+      {
+        "label": "source-matcher15",
+        "command": [
+          "node",
+          "/workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs",
+          "exec",
+          "vitest",
+          "run",
+          "--config",
+          "vitest.taxonomy-match-source.config.ts"
+        ],
+        "path": "docs/taxonomy-evidence/source-matcher15-baseline.log",
+        "bytes": 1045,
+        "sha256": "ac2c4f7b246d918331ed8dd11233a50b97d36fa2adce2e278ee14f7aa0307640",
+        "exitCode": 1
+      }
+    ],
+    "guard": {
+      "wholeSourceFiles": 99,
+      "wholeFamilies": 27,
+      "declarations": 310,
+      "expectExpressions": 815,
+      "result": "pass; static provenance only, no product tests"
+    },
+    "native10": {
+      "wholeCallbacksCollected": 10,
+      "wholeCallbacksExecuted": 10,
+      "passed": 1,
+      "failed": 9,
+      "reachedNativeAssertionFailures": 9,
+      "failure": "assert.doesNotReject at missing actual taxonomy handler module; no missing DB/fixture or timeout failure",
+      "initialControl": "Existing canonical provider7/current14 and whole TaxonomyRepository persist an actual EN/FR translation group",
+      "laterSqlValueAssertions": "Unreached in all nine missing-module cases; zero claimed SQL-behavior causal reds",
+      "sourceCredit": 0
+    },
+    "sourceMatcher15": {
+      "wholeStaticDeclarations": 15,
+      "wholeStaticExpectExpressions": 27,
+      "callbacksCollected": 0,
+      "callbacksExecuted": 0,
+      "assertionsReached": 0,
+      "completedSourceValueReds": 0,
+      "result": "One whole suite fails before collection at absent Native src/lib/taxonomies/match.ts",
+      "fixtureInfrastructureFailures": 0,
+      "moduleClosureGap": true
+    },
+    "remainingWholeSourceFamilies": {
+      "count": 26,
+      "status": "retained unchanged/unexecuted; not narrowed or counted as passing",
+      "originalSuppliedUnitContexts": "Root clarified original Source mocked/unit contexts are not blanket unauthorized protected HTTP. Their real fixture/transport closure still requires a finite qualified proposal.",
+      "newProtectedProbes": "No new actual credential/session/signature/replay/race or protected HTTP probe performed"
+    },
+    "productImplementationApplied": false,
+    "noIdenticalRetry": true
   }
 }
