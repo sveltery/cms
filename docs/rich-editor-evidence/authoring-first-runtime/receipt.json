@@ -118,5 +118,116 @@
       "sha256": "c501683f1fcd2fca9d73328133678dbea85ec5b121576f6344ea616d78043678",
       "gitBlob": "a52c24dd8cbcf311724d65a255a50896f4043714"
     }
+  },
+  "rawWhitespaceStorageAdaptation": {
+    "reason": "preserve complete actual compiler logs including their original trailing whitespace without introducing whitespace errors into repository diff",
+    "logRecords": [
+      {
+        "historicalRawPath": "check-first.log",
+        "originalIdentity": {
+          "bytes": 21807,
+          "sha256": "798121fbb413df540e621c6889cc09e5c3230e88a864f16cdc41bd45b47b3728",
+          "gitBlob": "d6af9fdbe851843bb81232f0b5d4b8b11ea6650f"
+        },
+        "currentLosslessStoragePath": "check-first.log.json",
+        "storageIdentity": {
+          "bytes": 22466,
+          "sha256": "b434c3755a7dde4bc886be695387ee810aa4ff8dacc7297b94eaa0067f430d82",
+          "gitBlob": "4613bcf9a3915335e21de173e2d8f67904cb48d6"
+        }
+      },
+      {
+        "historicalRawPath": "check-repair.log",
+        "originalIdentity": {
+          "bytes": 2960,
+          "sha256": "c6b200dffb7094be4cd69de4192fc03d0cd8da1690016590ca1c4e607db6f3a7",
+          "gitBlob": "4c04723a8e953461e7e2274689ddaba41847e11a"
+        },
+        "currentLosslessStoragePath": "check-repair.log.json",
+        "storageIdentity": {
+          "bytes": 3353,
+          "sha256": "53f4ec54815dbf6ebcbcf0a6e04e245b0282d24f77bd0bb2c1c11e32d437ed4a",
+          "gitBlob": "1632712e82d94b025c53138c57f2d5b92e3d2554"
+        }
+      }
+    ],
+    "originalRawStringsDecodedByteExact": true
+  },
+  "currentRawFiles": {
+    "build-first/writable-ui.exit": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "gitBlob": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d"
+    },
+    "build-first/writable-ui.log": {
+      "bytes": 2406,
+      "sha256": "3b23713310dd1491193fb102c09e9285fca557b92da61b6c5fb510f6ea50798c",
+      "gitBlob": "d928333e01cb942c671f56f5d26496f205bbd1c6"
+    },
+    "check-current.log": {
+      "bytes": 209,
+      "sha256": "1a9036a92c43a9ae37b653e6a082bef1dde2ef18b3cf7fc080799dc787472e95",
+      "gitBlob": "a176687dc9a67825b1724a968a349538c04f5d86"
+    },
+    "check-first.log.json": {
+      "bytes": 22466,
+      "sha256": "b434c3755a7dde4bc886be695387ee810aa4ff8dacc7297b94eaa0067f430d82",
+      "gitBlob": "4613bcf9a3915335e21de173e2d8f67904cb48d6"
+    },
+    "check-repair.log.json": {
+      "bytes": 3353,
+      "sha256": "53f4ec54815dbf6ebcbcf0a6e04e245b0282d24f77bd0bb2c1c11e32d437ed4a",
+      "gitBlob": "1632712e82d94b025c53138c57f2d5b92e3d2554"
+    },
+    "native17-report.json": {
+      "bytes": 6824,
+      "sha256": "f8dd95ff31d43e36eb3fe44522c31c23cf5d49d4e65b3df9dc7f73a7b7c69bd7",
+      "gitBlob": "8910c835d73641502e74c996e5e2eeae3ba73da9"
+    },
+    "native17.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "gitBlob": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56"
+    },
+    "native17.log": {
+      "bytes": 585,
+      "sha256": "10203e767c91d39d941ad95266572fbdbd95fe17a39848b098213a3181108b34",
+      "gitBlob": "622aa27ba8871d17e3cccd63856a83275a1d154c"
+    },
+    "provider-import-stop/writable-ui-report.json": {
+      "bytes": 5206,
+      "sha256": "89c93a059bbdf529718704072f5cda40a4703575344a7405f511cc7f37a88a23",
+      "gitBlob": "185b1530464b0637c42aff01444d8a5c574def4e"
+    },
+    "provider-import-stop/writable-ui.exit": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "gitBlob": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d"
+    },
+    "provider-import-stop/writable-ui.log.json": {
+      "bytes": 49268,
+      "sha256": "a4eab31dd5cfcc18267e4f9c380933f688be6c0a8ee2eb2092ce373ecd5fe677",
+      "gitBlob": "22d4b81b2abd2085555e47a2fffcbc84ea570d00"
+    },
+    "source-integrity.log": {
+      "bytes": 125,
+      "sha256": "78e0e8f3f301b806c7f6929edf81ddd3f1b7e592ea3e98fd43485a0a681c4aab",
+      "gitBlob": "c6abd00cadba9e9139988da351a5d2731995980e"
+    },
+    "writable-ui-report.json": {
+      "bytes": 8168,
+      "sha256": "ab328823c8f24e5cb4a003cd2cbc34c83ea3676099dbfc3700842280e4602eb3",
+      "gitBlob": "ee4a903e90a225fca77ba539788b789675cbc643"
+    },
+    "writable-ui.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "gitBlob": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56"
+    },
+    "writable-ui.log.json": {
+      "bytes": 47987,
+      "sha256": "c501683f1fcd2fca9d73328133678dbea85ec5b121576f6344ea616d78043678",
+      "gitBlob": "a52c24dd8cbcf311724d65a255a50896f4043714"
+    }
   }
 }
