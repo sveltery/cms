@@ -1,0 +1,38 @@
+{
+  "phase": "R12 test-first supplemental two only",
+  "productBefore": "020a576d4be01e5f3ee8869efd96553b0b4927a8",
+  "testFirstCommit": "d4174f70f6667c9c5055479079d34398ffd6fd5c",
+  "actualVitestExit": 1,
+  "wholePlannedNative": 24,
+  "actualSelected": 2,
+  "passedControls": 1,
+  "reachedValueFailures": 1,
+  "old22IntentionallyFilteredForThisSupplementalBaseline": true,
+  "retainedOriginal22WholeBaselines": true,
+  "infrastructureFailures": 0,
+  "productSourcePackageLockUnchanged": true,
+  "cases": [
+    {
+      "title": "native policy dismissal retains generic non-Error feedback while awaiting the stats refresh",
+      "result": "PASS meaningful existing-product control: notice retained, pending until refreshed real fixture and generic non-Error feedback survives."
+    },
+    {
+      "title": "native overdue scheduler guidance names the actual project and standalone doctor commands",
+      "result": "FAIL reached text value /pnpm doctor/ against actual mounted UI; /sveltery-doctor/ later assertion unreached. Real CLI is public c3 but UI has only configuration guidance."
+    }
+  ],
+  "files": [
+    {
+      "path": "parity/emdash/dashboard-welcome-source/evidence/r12-native-new2-baseline.log",
+      "bytes": 2185,
+      "sha256": "64dac3ab44f29c02a69ff8b0fa5a9558785d82a851e1a20f778ed88c49e65e3f"
+    },
+    {
+      "path": "parity/emdash/dashboard-welcome-source/evidence/r12-native-new2-baseline.json",
+      "bytes": 8029,
+      "sha256": "823b056432d4e3a56ba37c5e1f3e601684c332304c322d0f31036e218af71a1d"
+    }
+  ],
+  "SourceTestsRun": 0,
+  "privateBackendOrProtectedProbes": 0
+}

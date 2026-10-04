@@ -1,0 +1,41 @@
+
+ RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui
+
+ ✓ tests/dashboard-welcome-native/cache.test.ts (14 tests | 13 skipped) 169ms
+ ↓ tests/dashboard-welcome-native/lifecycle.test.ts (4 tests | 4 skipped)
+ ❯ tests/dashboard-welcome-native/ui.test.ts (6 tests | 1 failed | 5 skipped) 60ms
+   ↓ native welcome uses the supplied configured site name and a labelled modal
+   ↓ native welcome keeps a pending dismissal disabled and closes after a server error
+   ↓ native welcome handles Escape dismissal and restores the previous focus
+   ↓ native dashboard exposes an unavailable response without inventing zero counts
+   ↓ native dashboard retains loaded counts while a focus refresh fails
+   × native overdue scheduler guidance names the actual project and standalone doctor commands 59ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dashboard-welcome-native/ui.test.ts > native overdue scheduler guidance names the actual project and standalone doctor commands
+AssertionError: expected ' Dashboard Upload Media    Scheduled …' to match /pnpm doctor/
+
+- Expected:
+/pnpm doctor/
+
++ Received:
+" Dashboard Upload Media    Scheduled publishing needs attentionOne scheduled item is overdue, but no scheduler run has completed. Check the scheduled publishing configuration. Draft1 Scheduled1 Media files7 Users2 ContentPostsDrafts1 Recent ActivityNo recent activity"
+
+ ❯ tests/dashboard-welcome-native/ui.test.ts:78:30
+     76|   const target = await render(Dashboard, { manifest, client: api, user…
+     77|   await vi.waitFor(() => expect(target.textContent).toContain('Schedul…
+     78|   expect(target.textContent).toMatch(/pnpm doctor/);
+       |                              ^
+     79|   expect(target.textContent).toMatch(/sveltery-doctor/);
+     80| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed | 1 skipped (3)
+      Tests  1 failed | 1 passed | 22 skipped (24)
+   Start at  17:26:06
+   Duration  3.42s (transform 679ms, setup 0ms, import 1.14s, tests 229ms, environment 1.66s)
+
+JSON report written to /tmp/dashboard-welcome-r12-native-new2-baseline.json
