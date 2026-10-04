@@ -59,3 +59,12 @@ it('markdown text follows the pinned textarea defaults and leaves required valid
     expect(input.getAttribute('dir')).toBe('auto');
   } finally { await unmount(instance); target.remove(); }
 });
+
+it('English plural bounds format grouped numbers exactly like the complete pinned formatter', () => {
+  const error = new EditorResponseError(400, 'VALIDATION_ERROR', 'raw', { issues: [
+    { path: 'title', code: 'too_small', origin: 'string', minimum: 1000 },
+    { path: 'tags', code: 'too_big', origin: 'array', maximum: 2000 }
+  ] });
+  expect(describeContentValidationError(error, { title: { kind: 'string', label: 'Headline' }, tags: { kind: 'multiSelect', label: 'Tags' } }))
+    .toBe('Headline needs at least 1,000 characters. Tags can have at most 2,000 items.');
+});
