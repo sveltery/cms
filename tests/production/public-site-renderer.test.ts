@@ -138,7 +138,7 @@ for (const target of ['Node', 'D1'] as const) {
     const registry = new SchemaRegistry(database);
     const service = lifecycleService(database, { id: 'public-empty-slug-author', permissions: ['content:create', 'content:publish_own', 'content:edit_own'] }, { after: () => {} });
     for (const type of ['posts', 'pages']) {
-      await registry.createCollection({ slug: type, label: type });
+      await registry.createCollection({ slug: type, label: type, routable: false });
       await registry.createField(type, { slug: 'title', label: 'Title', type: 'string' });
       const title = `Empty-slug ${type}`;
       const item = await service.createContent({ type, slug: '', data: { title } });
