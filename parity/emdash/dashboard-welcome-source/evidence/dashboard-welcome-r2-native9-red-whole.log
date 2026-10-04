@@ -1,0 +1,89 @@
+
+ RUN  v4.1.10 /workspace/cms-dashboard-welcome-r2-library-probe
+
+ ❯ tests/dashboard-welcome-native/lifecycle.test.ts (4 tests | 4 failed) 2191ms
+   × native import suggestion retries eligibility after a transient failure on ordinary focus refresh 1047ms
+   × native import eligibility reacts to an administrator arriving after stats on the same mounted component 1061ms
+   × native retained welcome captures focus on opening and restores it on closing 18ms
+   × native default dashboard and welcome clients use the configured API base without client overrides 64ms
+ ✓ tests/dashboard-welcome-native/ui.test.ts (5 tests) 269ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dashboard-welcome-native/lifecycle.test.ts > native import suggestion retries eligibility after a transient failure on ordinary focus refresh
+AssertionError: expected "vi.fn()" to be called 2 times, but got 1 times
+ ❯ tests/dashboard-welcome-native/lifecycle.test.ts:34:64
+     32|   window.dispatchEvent(new Event('focus'));
+     33|   await vi.waitFor(() => expect(api.fetchDashboardStats).toHaveBeenCal…
+     34|   await vi.waitFor(() => expect(api.fetchTransferCapabilities).toHaveB…
+       |                                                                ^
+     35|   expect(target.textContent).toContain('Moving from another EmDash sit…
+     36| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/dashboard-welcome-native/lifecycle.test.ts > native import eligibility reacts to an administrator arriving after stats on the same mounted component
+AssertionError: expected "vi.fn()" to be called 1 times, but got 0 times
+ ❯ tests/dashboard-welcome-native/lifecycle.test.ts:45:64
+     43|   expect(api.fetchTransferCapabilities).not.toHaveBeenCalled();
+     44|   state.user = { role: 50 }; await tick();
+     45|   await vi.waitFor(() => expect(api.fetchTransferCapabilities).toHaveB…
+       |                                                                ^
+     46|   expect(api.fetchDashboardStats).toHaveBeenCalledTimes(1);
+     47|   expect(target.textContent).toContain('Moving from another EmDash sit…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/dashboard-welcome-native/lifecycle.test.ts > native retained welcome captures focus on opening and restores it on closing
+AssertionError: expected [ false, false ] to deeply equal [ true, true ]
+
+- Expected
++ Received
+
+  [
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ tests/dashboard-welcome-native/lifecycle.test.ts:61:44
+     59|   state.open = false; await tick();
+     60|   const restoredOnClose = document.activeElement === previous;
+     61|   expect([focusedOnOpen, restoredOnClose]).toEqual([true, true]);
+       |                                            ^
+     62| });
+     63|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/dashboard-welcome-native/lifecycle.test.ts > native default dashboard and welcome clients use the configured API base without client overrides
+AssertionError: expected [ '/api/dashboard', '/api/auth/me' ] to deeply equal [ '/cms/api/dashboard', …(1) ]
+
+- Expected
++ Received
+
+  [
+-   "/cms/api/dashboard",
+-   "/cms/api/auth/me",
++   "/api/dashboard",
++   "/api/auth/me",
+  ]
+
+ ❯ tests/dashboard-welcome-native/lifecycle.test.ts:75:40
+     73|   target.querySelector<HTMLButtonElement>('button.primary')!.click();
+     74|   await vi.waitFor(() => expect(onClose).toHaveBeenCalledTimes(1));
+     75|   expect(calls.map(call => call.path)).toEqual(['/cms/api/dashboard', …
+       |                                        ^
+     76|   expect(calls.map(call => new Headers(call.init?.headers).get('X-EmDa…
+     77|   expect(calls[1].init?.body).toBe(JSON.stringify({ action: 'dismissWe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  4 failed | 5 passed (9)
+   Start at  09:46:23
+   Duration  4.52s (transform 615ms, setup 0ms, import 872ms, tests 2.46s, environment 958ms)
+
+JSON report written to /tmp/dashboard-welcome-r2-native9-red-report.json
