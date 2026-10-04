@@ -33,10 +33,12 @@ function spans(children: unknown, markDefs: unknown): string {
       const definition = definitions.find(candidate => candidate._key === mark);
       if (definition?._type === 'link') {
         const href = sanitizeHref(text(definition.href));
-        const blank = !href.startsWith('#') && definition.blank === true;
+        const blank = !href.startsWith('#') && Boolean(definition.blank);
         html = `<a href="${escapeHtml(href)}"${blank ? ' target="_blank" rel="noopener noreferrer"' : ''}>${html}</a>`;
       } else {
-        const tag = ({ strong: 'strong', em: 'em', code: 'code', underline: 'u', 'strike-through': 's', strikethrough: 's' } as Record<string, string>)[String(mark)];
+        const tags: Record<string, string> = { strong: 'strong', em: 'em', code: 'code', underline: 'u', 'strike-through': 's', strikethrough: 's' };
+        const key = String(mark);
+        const tag = Object.hasOwn(tags, key) ? tags[key] : undefined;
         if (tag) html = `<${tag}>${html}</${tag}>`;
       }
     }
