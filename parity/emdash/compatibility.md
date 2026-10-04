@@ -1576,3 +1576,92 @@ The configured review of proposed PR [#97](https://github.com/sveltery/cms/pull/
 The literal `docs/receipts/runtime-port-lifecycle/baseline.log -whitespace` rule preserves all 2,024 actual raw bytes while allowing the required diff check to pass. The complete incoming D1 attributes comment and literal rule remain the exact prefix. Isolated ordinary Git negative controls confirm that other documentation and receipt paths still reject trailing whitespace; only the two specified baseline paths have the unset attribute.
 
 All prior compatibility and feature history, both teams' full raw receipts, original callbacks, Source authorities, runtime helpers, package chain, locks and validation guards remain unchanged. This documentation check repair earns zero Source or product parity credit. [CI #459](https://github.com/sveltery/cms/actions/runs/37198772585) belongs to the prior combined head: at this development checkpoint its browser job passed and validation was still running. Its eventual result remains historical. One changed final head's complete original 13-stage validation and secured browser checks, same-feature review closure, actual configured automatic review and exact-head manager approval remain pending. No manual review repeat or author merge has been attempted.
+
+
+## Full taxonomy admin UI test-first proposal
+
+EmDash1.1.0 immutable pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`
+Source whole Manager/Sidebar/term-cache/global-refresh UI families are retained
+with all79 registrations and245 static matcher expressions, including2 shared
+callback expressions. The exact14 Source authorities and MIT license are recorded
+in [the UI ledger](../../docs/taxonomy-admin-ui-source.json) and paired
+[feature documentation](../../docs/taxonomy-admin-ui.md). No tests have run, no
+product implementation is applied and no Source parity or causal credit is earned.
+
+**TAUI01 — React/browser to native Svelte DOM transport.** Source supplies React
+Query/I18n wrappers, Kumo wrappers and browser locators. The proposed fixture
+retains complete original provider declarations and supplied contexts, and mounts
+real native Svelte components with uniform props and actual DOM locators. Expected
+strings, roles, mock data, callback bytes and timeout arguments are unchanged.
+The ordinary development host is jsdom; it does not establish secured Chromium
+behavior. Rationale: preserve observable UI contracts while using the requested
+Svelte framework. Evidence: static inventories only; execution and review pending.
+Landed PR: none; proposed author PR not yet opened. Specific decision: not recorded.
+
+**TAUI02 — native API base and mutation-origin transport.** Source API functions
+request `/_emdash/api` and add `X-EmDash-Request:1`. The proposed native client will
+request real `/api` services. Native mutation authorization retains the existing
+trusted public-origin check; it does not treat the Source header as authority.
+The Source fixture uses whole original API functions and original mocked contexts,
+without URL, request-body, expected-value or result rewriting. Rationale: route
+the full taxonomy product through the existing Kit backend boundary. Evidence:
+no native client or protected HTTP execution yet; original Source contexts only.
+Landed PR: none; proposed author PR not yet opened. Specific decision: not recorded.
+
+**TAUI03 — native global route composition.** Source global refresh tests use the
+whole admin RouterProvider and original manifest/current-user fixtures. The test
+route tree will mount the real native taxonomy admin root through that original
+provider context. Actual global manifest/sidebar/dashboard integration remains
+pending public PR100 and the existing admin root; a missing service or component
+remains an honest dependency stop. No fabricated manifest, dashboard, callback
+result or second app-global cache is provided. Rationale: retain the complete
+creation/deletion refresh contracts in native routes. Evidence: zero executed
+global assertions. Landed PR: none; specific decision: not recorded.
+
+Four supplemental native cases first assert actual product import readiness,
+then inspect counts, picker choices, API request inputs and sibling row ordering.
+The planned original whole Source selection contains79 cases. Missing imports
+that stop Source registration/mounting will be recorded as infrastructure and
+receive zero Source value-red credit. Backend repository/atomic ownership PR102,
+app-scoped QueryCore ownership PR100, real global routes, whole UI green outcomes,
+current normal13/browser9 gates, independent/configured reviews and exact-head
+PM approval remain incomplete. This entry is a proposal, not accepted or landed.
+
+
+### Taxonomy UI R3 fixture correction — actual secured Browser
+
+The preceding TAUI01–03 entry describes the unexecuted R2 proposal, not an
+applied or accepted DOM equivalence. Independent review held four fixture
+findings: omitted hover, omitted ClipboardEvent, container-only queries and
+Node-default/independent1000ms polling clocks. That proposal produced zero tests,
+Source assertions, value-reds or green credit. Its immutable file and review
+remain history. R3 retains all prior14 whole Source authorities and adds the
+whole pinned admin Browser configuration as the fifteenth clock/context authority.
+
+The corrected Source79 host uses actual VitestBrowser4.1.10, original complete
+Source render/setup and installed vitest-browser-react2.2.0. Original Browser
+locators perform hover and native pointer/mouse actions; real official Chromium
+supplies ClipboardEvent/DataTransfer and preserves the original supplied payload.
+Original render queries defaultdocument.body includingportals; supplied
+baseElement/container and nestedlocator scope remain actual. Original physical
+visibility/layout checks are executed in the browser, without fabricated geometry.
+The exact79 callback bodies,245 static matcher expressions, mocks, data and
+literal clocks remain unchanged.
+
+Measured installedSource Browser defaults15000ms/test and30000ms/hook are
+explicitly retained. Actual expect.element uses each currenttask remaining
+deadline−100ms with50ms polling; explicit original overrides are preserved and
+no helper restarts the budget or replaces it with fixedNode polling. Original
+Source vi.waitFor remains1000ms/50ms. Source viewport1280x800 and
+America/New_York timezone remain. The standingofficial Playwright Chromium1243
+launch preserves chromiumSandbox:true and30000ms launchlimit. No new download,
+alternatebrowser, sandbox relaxation or policy bypass is part of this packet.
+
+Native4 remains separate supplemental ordinaryjsdom evidence with its unchanged
+bodies; no SourceBrowser equivalence is claimed for it. All30 proposed paths are
+unapplied. Product tests and all Source execution/causal/passing credit remain0.
+Missing productmodules or unavailablebrowser on the first complete79 selection
+remain honest infrastructure stops. Full actualpublic backend/App100/global
+composition, completeSource79 officialhosted success, final13+9 gates and
+independent/configured/exact-head PM review remain unfinished. TAUI01–03 final
+specific acceptance and author-owned PR are not yet recorded.

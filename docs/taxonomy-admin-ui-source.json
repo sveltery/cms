@@ -1,0 +1,3099 @@
+{
+  "schemaVersion": 1,
+  "feature": "Full taxonomy admin UI and API client",
+  "immutableSource": {
+    "repository": "https://github.com/emdash-cms/emdash",
+    "commit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "version": "1.1.0",
+    "license": "MIT; Copyright 2026 Cloudflare Inc."
+  },
+  "nativeBaseline": {
+    "head": "b5ed8e06c9c3034e99645ef85022e027130fec51",
+    "tree": "de8bf7da3c3d5a1f119e9463dd45cb469c8e3d45",
+    "worktree": "/workspace/cms-full-taxonomy-admin-ui",
+    "branch": "feat/full-taxonomy-admin-ui"
+  },
+  "files": [
+    {
+      "sourcePath": "LICENSE",
+      "path": "parity/emdash/taxonomy-admin-ui/source/LICENSE",
+      "bytes": 1079,
+      "sha256": "d5ab82c0225b0def1fa140af22ff2f3bed9791a527545be1b04ab4337dc88675",
+      "sourceGitBlob": "02cc4b8b0a5f883c5243927e683b00c10588bf4c",
+      "role": "immutable-source-authority",
+      "status": "retained-unexecuted"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/TaxonomyManager.tsx",
+      "path": "parity/emdash/taxonomy-admin-ui/source/packages/admin/src/components/TaxonomyManager.tsx",
+      "bytes": 45671,
+      "sha256": "edce00eb7cf697dc63398823e30ec695c5798c8979bcac057435ab1706a8553a",
+      "sourceGitBlob": "0ce026c005a11fb0f783c78145fcdfb24ec5b57a",
+      "role": "immutable-source-authority",
+      "status": "retained-unexecuted"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/TaxonomySidebar.tsx",
+      "path": "parity/emdash/taxonomy-admin-ui/source/packages/admin/src/components/TaxonomySidebar.tsx",
+      "bytes": 30513,
+      "sha256": "d682d1e9b0f2c02dbacc853d39dd5b9e8e0d29f48c7978ff2f19f744b8fe0ab9",
+      "sourceGitBlob": "0da4ff6e8afa8ff245c4c0a223a6d2e328ac6f63",
+      "role": "immutable-source-authority",
+      "status": "retained-unexecuted"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/ThemeProvider.tsx",
+      "path": "parity/emdash/taxonomy-admin-ui/source/packages/admin/src/components/ThemeProvider.tsx",
+      "bytes": 3170,
+      "sha256": "45fe21198df8b05376443bf150ce2b641814cc5e85114ad4c1f351fdccd3eb75",
+      "sourceGitBlob": "277bfe9c4ac253d5371c2e955dde801126a2fce3",
+      "role": "immutable-source-authority",
+      "status": "retained-unexecuted"
+    },
+    {
+      "sourcePath": "packages/admin/src/lib/api/client.ts",
+      "path": "parity/emdash/taxonomy-admin-ui/source/packages/admin/src/lib/api/client.ts",
+      "bytes": 11565,
+      "sha256": "2836ccbff42d891af6c789e01259c6912d7ba73c4799620499f3913081997e18",
+      "sourceGitBlob": "e9c26bde8b401e202b9046bed5ac78c2c26c44b2",
+      "role": "immutable-source-authority",
+      "status": "retained-unexecuted"
+    },
+    {
+      "sourcePath": "packages/admin/src/lib/api/taxonomies.ts",
+      "path": "parity/emdash/taxonomy-admin-ui/source/packages/admin/src/lib/api/taxonomies.ts",
+      "bytes": 8647,
+      "sha256": "6bb9b6d9f12e07c87a3bb6e48ce19c9f6a3d4e8439bf88690ec93910e3ffc041",
+      "sourceGitBlob": "9109aba526009c153b4b139fc25ee33620611646",
+      "role": "immutable-source-authority",
+      "status": "retained-unexecuted"
+    },
+    {
+      "sourcePath": "packages/admin/src/lib/api.ts",
+      "path": "parity/emdash/taxonomy-admin-ui/source/packages/admin/src/lib/api.ts",
+      "bytes": 226,
+      "sha256": "d3bd682aa226e8175391b869b82ec21c7265db0b06ddf7e65595ee41188b0539",
+      "sourceGitBlob": "95ab6fe795ea9ec1af05b724b6ef69cc5231ffdd",
+      "role": "immutable-source-authority",
+      "status": "retained-unexecuted"
+    },
+    {
+      "sourcePath": "packages/admin/src/router.tsx",
+      "path": "parity/emdash/taxonomy-admin-ui/source/packages/admin/src/router.tsx",
+      "bytes": 101609,
+      "sha256": "1bbed855b6c957e32a7bd5102ee13cb23fcbe09a570cc3dd7465174df0f38e75",
+      "sourceGitBlob": "4b4793ea63352f8a80ccb695a809586cef06db93",
+      "role": "immutable-source-authority",
+      "status": "retained-unexecuted"
+    },
+    {
+      "sourcePath": "packages/admin/tests/utils/render.tsx",
+      "path": "parity/emdash/taxonomy-admin-ui/source/packages/admin/tests/utils/render.tsx",
+      "bytes": 962,
+      "sha256": "71f7fc13dbc057eda13240e0df0fe0cd71797a5996c56bafd231bb75e91e3b3a",
+      "sourceGitBlob": "bd876f25e9510d5e49c31c701f8b3edb7ff20dec",
+      "role": "immutable-source-authority",
+      "status": "retained-unexecuted"
+    },
+    {
+      "sourcePath": "packages/admin/tests/setup.ts",
+      "path": "parity/emdash/taxonomy-admin-ui/source/packages/admin/tests/setup.ts",
+      "bytes": 188,
+      "sha256": "53fefd55be2b5d20695242be9d8cdcae43d0234eac7820f051d71f6874f2a891",
+      "sourceGitBlob": "60b705283b9d3788858a2589eaad21dbb5def59a",
+      "role": "immutable-source-authority",
+      "status": "retained-unexecuted"
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/TaxonomyManager.test.tsx",
+      "path": "parity/emdash/taxonomy-admin-ui/source/packages/admin/tests/components/TaxonomyManager.test.tsx",
+      "bytes": 36077,
+      "sha256": "c3acb7996e45c71c57b8006ebdc5224755485955e37969d1f61fafac7bb363ee",
+      "sourceGitBlob": "4bc73cc10d1281d188bfbe78de54213cbee97faa",
+      "role": "whole-test-family",
+      "status": "retained-unexecuted"
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/TaxonomySidebar.test.tsx",
+      "path": "parity/emdash/taxonomy-admin-ui/source/packages/admin/tests/components/TaxonomySidebar.test.tsx",
+      "bytes": 33732,
+      "sha256": "9b9c55208e574ee6e66240676e1df0c7c7936d03ea408f4a773bc1f36367d491",
+      "sourceGitBlob": "1d8cf6db1a18690be09332f7ce732c39a815bec2",
+      "role": "whole-test-family",
+      "status": "retained-unexecuted"
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/taxonomy-term-cache.test.tsx",
+      "path": "parity/emdash/taxonomy-admin-ui/source/packages/admin/tests/components/taxonomy-term-cache.test.tsx",
+      "bytes": 6265,
+      "sha256": "412f5ecb695a28d192625dddba1b3a45af67fc48e1b8a8769f52fe22d5f0f3b2",
+      "sourceGitBlob": "424b4b778898bae71cfcf4dacccb3818d836ba08",
+      "role": "whole-test-family",
+      "status": "retained-unexecuted"
+    },
+    {
+      "sourcePath": "packages/admin/tests/taxonomy-sidebar-refresh.test.tsx",
+      "path": "parity/emdash/taxonomy-admin-ui/source/packages/admin/tests/taxonomy-sidebar-refresh.test.tsx",
+      "bytes": 7729,
+      "sha256": "0e98367ec645a472207c8678533bb39c5292b37223e3dce8afad7d3eca43a02d",
+      "sourceGitBlob": "d267f13eedab30b5b1edf3eef6eb5cfbde337feb",
+      "role": "whole-test-family",
+      "status": "retained-unexecuted"
+    },
+    {
+      "sourcePath": "packages/admin/vitest.config.ts",
+      "path": "parity/emdash/taxonomy-admin-ui/source/packages/admin/vitest.config.ts",
+      "bytes": 1524,
+      "sha256": "59eda5b5a16a658b5cc4d96263d20fc568377801e9e04b88d88b49c44b471fda",
+      "sourceGitBlob": "10a597a3ea6011315d2d5a86cf7ae59121794870",
+      "role": "immutable-source-browser-clock-configuration",
+      "status": "retained-unexecuted"
+    }
+  ],
+  "sourceCatalogue": {
+    "formatVersion": 1,
+    "upstream": "https://github.com/emdash-cms/emdash",
+    "commit": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "tag": "emdash@1.1.0",
+    "kind": "inventory-only",
+    "files": [
+      {
+        "path": "packages/admin/tests/components/TaxonomyManager.test.tsx",
+        "category": "taxonomy-full-product",
+        "stage": "test-first-completion",
+        "sourceBlob": "4bc73cc10d1281d188bfbe78de54213cbee97faa",
+        "sourceSha256": "c3acb7996e45c71c57b8006ebdc5224755485955e37969d1f61fafac7bb363ee",
+        "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L1",
+        "tests": [
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:374",
+            "title": "displays taxonomy name as heading",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 374,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L374",
+            "registration": "it",
+            "registrationSha256": "f7d5fb144936c18438c97db214aef943177be64cca24990456dca2bfd90267fb",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 379,
+                "expression": "await expect.element(screen.getByRole(\"heading\", { name: \"Categories\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L379"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:382",
+            "title": "wraps the hierarchical term list in a horizontally scrollable container",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 382,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L382",
+            "registration": "it",
+            "registrationSha256": "b1b2d61e5bed5267b10a1ff2c4a68ba4ec4b26537c5cdd6ccbfd13df417e598e",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 388,
+                "expression": "await expect.element(screen.getByRole(\"heading\", { name: \"Categories\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L388"
+              },
+              {
+                "line": 391,
+                "expression": "expect(container).not.toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L391"
+              },
+              {
+                "line": 392,
+                "expression": "expect(container!.firstElementChild).toHaveClass(\"min-w-[560px]\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L392"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:395",
+            "title": "keeps the two tag actions together and moves taxonomy creation into More",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 395,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L395",
+            "registration": "it",
+            "registrationSha256": "a52ac29b5b306ed6371d9fe438306299b9d0e497583d8e2346bbc5dc2a80feda",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 399,
+                "expression": "await expect.element(screen.getByRole(\"button\", { name: \"Add tag\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L399"
+              },
+              {
+                "line": 400,
+                "expression": "await expect.element(screen.getByRole(\"button\", { name: \"Add to posts\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L400"
+              },
+              {
+                "line": 401,
+                "expression": "expect(screen.getByRole(\"button\", { name: \"New Taxonomy\" }).query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L401"
+              },
+              {
+                "line": 405,
+                "expression": "await expect.element(screen.getByRole(\"dialog\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L405"
+              },
+              {
+                "line": 406,
+                "expression": "await expect\n\t\t\t.element(screen.getByRole(\"heading\", { name: \"Create Taxonomy\" }))\n\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L406"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:411",
+            "title": "creates a taxonomy from the dialog footer",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 411,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L411",
+            "registration": "it",
+            "registrationSha256": "35d093e0b566e167bf1de89fcf038cd639612fb58738735728a766f77f49beb5",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 419,
+                "expression": "await expect.element(dialog.getByRole(\"textbox\", { name: \"Name\" })).toHaveValue(\"topics\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L419"
+              },
+              {
+                "line": 429,
+                "expression": "expect(call).toBeDefined()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L429"
+              },
+              {
+                "line": 431,
+                "expression": "expect(body).toMatchObject({ name: \"topics\", label: \"Topics\", hierarchical: false })",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L431"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:435",
+            "title": "shows slug guidance beside the label only when requested",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 435,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L435",
+            "registration": "it",
+            "registrationSha256": "b035c77408ec950dd9c7bb217151e0af087562129711f43b3c7385b5dd5fddb2",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 442,
+                "expression": "await expect.element(nameInput).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L442"
+              },
+              {
+                "line": 443,
+                "expression": "await expect.element(slugInput).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L443"
+              },
+              {
+                "line": 444,
+                "expression": "expect(screen.getByText(\"Auto-generated from name (you can edit)\").query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L444"
+              },
+              {
+                "line": 447,
+                "expression": "await expect.element(screen.getByText(\"Auto-generated from name (you can edit)\")).toBeVisible()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L447"
+              },
+              {
+                "line": 449,
+                "expression": "await expect.element(slugInput).toHaveFocus()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L449"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:452",
+            "title": "creates a tag from the dialog footer",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 452,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L452",
+            "registration": "it",
+            "registrationSha256": "c0a35a6a4607c5fceba8d0aed6ab7212d477f684a3b675676acc0b8f85f79e7a",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 468,
+                "expression": "expect(call).toBeDefined()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L468"
+              },
+              {
+                "line": 470,
+                "expression": "expect(body).toMatchObject({ label: \"Internship Experience\" })",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L470"
+              },
+              {
+                "line": 471,
+                "expression": "expect(body).not.toHaveProperty(\"slug\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L471"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:475",
+            "title": "filters tags by label or slug without changing their stored order",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 475,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L475",
+            "registration": "it",
+            "registrationSha256": "ffb1b3cd00fe5af05e06b745693b6feca371915b1c446c3e591f6323ad821d79",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 485,
+                "expression": "await expect.element(screen.getByText(\"Technology\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L485"
+              },
+              {
+                "line": 486,
+                "expression": "await expect.element(screen.getByText(\"Count\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L486"
+              },
+              {
+                "line": 487,
+                "expression": "expect(visibleOrder()).toEqual([\"Technology\", \"Science\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L487"
+              },
+              {
+                "line": 488,
+                "expression": "expect(screen.getByText(\"2 tags\").query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L488"
+              },
+              {
+                "line": 490,
+                "expression": "await expect.element(screen.getByText(\"Science\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L490"
+              },
+              {
+                "line": 491,
+                "expression": "expect(screen.getByText(\"Technology\", { exact: true }).query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L491"
+              },
+              {
+                "line": 492,
+                "expression": "expect(screen.getByText(\"1 of 2 tags\").query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L492"
+              },
+              {
+                "line": 494,
+                "expression": "expect(screen.getByRole(\"menuitem\", { name: \"Move up Science\" }).query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L494"
+              },
+              {
+                "line": 497,
+                "expression": "await expect.element(screen.getByText(\"Technology\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L497"
+              },
+              {
+                "line": 498,
+                "expression": "expect(screen.getByText(\"Science\", { exact: true }).query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L498"
+              },
+              {
+                "line": 500,
+                "expression": "await expect.element(screen.getByRole(\"table\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L500"
+              },
+              {
+                "line": 501,
+                "expression": "await expect.element(screen.getByText(\"Name\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L501"
+              },
+              {
+                "line": 502,
+                "expression": "await expect.element(screen.getByText(\"No matching tags\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L502"
+              },
+              {
+                "line": 505,
+                "expression": "await expect.element(search).toHaveFocus()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L505"
+              },
+              {
+                "line": 506,
+                "expression": "await expect.element(screen.getByText(\"Science\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L506"
+              },
+              {
+                "line": 507,
+                "expression": "expect(visibleOrder()).toEqual([\"Technology\", \"Science\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L507"
+              },
+              {
+                "line": 508,
+                "expression": "expect(screen.getByText(\"2 tags\").query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L508"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:511",
+            "title": "finds nested tags without showing unrelated siblings or losing ancestors",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 511,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L511",
+            "registration": "it",
+            "registrationSha256": "b1d1a7edb18c0c25520c9d58fa6ac4b3aba29aa540ea793a8baddf3db684c5d6",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 517,
+                "expression": "await expect.element(screen.getByText(\"Design\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L517"
+              },
+              {
+                "line": 518,
+                "expression": "await expect.element(screen.getByText(\"Test\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L518"
+              },
+              {
+                "line": 519,
+                "expression": "await expect.element(screen.getByText(\"Test child\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L519"
+              },
+              {
+                "line": 520,
+                "expression": "expect(screen.getByText(\"Development\", { exact: true }).query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L520"
+              },
+              {
+                "line": 523,
+                "expression": "await expect.element(screen.getByText(\"Design\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L523"
+              },
+              {
+                "line": 524,
+                "expression": "expect(screen.getByText(\"Test\", { exact: true }).query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L524"
+              },
+              {
+                "line": 525,
+                "expression": "expect(screen.getByText(\"Test child\", { exact: true }).query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L525"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:528",
+            "title": "searches labels using the active content locale and announces result counts",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 528,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L528",
+            "registration": "it",
+            "registrationSha256": "d6666fa6854cfefe16d1118e84af6de7b00fe15a81733761af60b4ca084e67c2",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 537,
+                "expression": "await expect.element(screen.getByRole(\"combobox\", { name: \"Locale\" })).toHaveValue(\"tr\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L537"
+              },
+              {
+                "line": 538,
+                "expression": "await expect.element(screen.getByText(\"\u0130zin\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L538"
+              },
+              {
+                "line": 540,
+                "expression": "await expect.element(screen.getByText(\"\u0130zin\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L540"
+              },
+              {
+                "line": 541,
+                "expression": "await expect.element(status).toHaveTextContent(\"1 matching tag\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L541"
+              },
+              {
+                "line": 543,
+                "expression": "await expect.element(screen.getByText(\"Music\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L543"
+              },
+              {
+                "line": 544,
+                "expression": "await expect.element(status).toHaveTextContent(\"1 matching tag\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L544"
+              },
+              {
+                "line": 546,
+                "expression": "await expect.element(status).toHaveTextContent(\"0 matching tags\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L546"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:549",
+            "title": "does not crash on a configured locale that Intl cannot canonicalize",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 549,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L549",
+            "registration": "it",
+            "registrationSha256": "6304ec810923b408b14408e0aa24ba51a9a54f34b8b6068ae7d6261463d866c5",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 553,
+                "expression": "await expect.element(screen.getByText(\"Technology\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L553"
+              },
+              {
+                "line": 555,
+                "expression": "await expect.element(screen.getByText(\"Technology\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L555"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:558",
+            "title": "keeps the leading slash of a tag slug in RTL",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 558,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L558",
+            "registration": "it",
+            "registrationSha256": "682904cf0ea88829560b8a8c943d6e4dbe1c220a40f1b193162ca8aa6dadd8de",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 564,
+                "expression": "await expect.element(screen.getByText(\"/tech\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L564"
+              },
+              {
+                "line": 565,
+                "expression": "expect(getComputedStyle(screen.getByText(\"/tech\", { exact: true }).element()).direction).toBe(\n\t\t\t\t\"ltr\",\n\t\t\t)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L565"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:573",
+            "title": "keeps tag editing visible and reorders from the row menu",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 573,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L573",
+            "registration": "it",
+            "registrationSha256": "97aa2b5d073d2179fe16cd2145c881567bfa0eb0c4ddf0acd389b454b45a234e",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 576,
+                "expression": "await expect\n\t\t\t.element(screen.getByRole(\"button\", { name: \"Edit Technology\" }))\n\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L576"
+              },
+              {
+                "line": 580,
+                "expression": "await expect\n\t\t\t.element(screen.getByRole(\"menuitem\", { name: \"Move up Technology\" }))\n\t\t\t.toBeDisabled()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L580"
+              },
+              {
+                "line": 584,
+                "expression": "expect(reorderRequestBody()).toEqual({ parentId: null, ids: [\"2\", \"1\"] })",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L584"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:587",
+            "title": "keeps deleting a tag behind its confirmation dialog",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 587,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L587",
+            "registration": "it",
+            "registrationSha256": "d78f2d977a6c2faa6667da4cab6f4d66a023e4293ca745eed2ec349eda5910e4",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 590,
+                "expression": "await expect.element(screen.getByText(\"Technology\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L590"
+              },
+              {
+                "line": 594,
+                "expression": "await expect.element(screen.getByText(DELETE_TECHNOLOGY_DESC_REGEX)).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L594"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:597",
+            "title": "shows list of terms with labels",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 597,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L597",
+            "registration": "it",
+            "registrationSha256": "0805c38e0e5d76a78f099c5c3a085a2c8ecaac931306b079b596adb17e212f4d",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 603,
+                "expression": "await expect.element(screen.getByText(\"Technology\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L603"
+              },
+              {
+                "line": 605,
+                "expression": "await expect.element(screen.getByText(\"(science)\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L605"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:608",
+            "title": "shows term slugs in parentheses",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 608,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L608",
+            "registration": "it",
+            "registrationSha256": "e47b78a53718dce120d689afde131df8b9314b60d40f3fb2dc9365cf8cea63a6",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 613,
+                "expression": "await expect.element(screen.getByText(\"(tech)\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L613"
+              },
+              {
+                "line": 614,
+                "expression": "await expect.element(screen.getByText(\"(science)\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L614"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:617",
+            "title": "add button opens create dialog",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 617,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L617",
+            "registration": "it",
+            "registrationSha256": "4745e18b9e094c7dbc1d6f25897088644d9f7547d547572772ad21df22cd1044",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 623,
+                "expression": "await expect.element(screen.getByRole(\"heading\", { name: \"Categories\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L623"
+              },
+              {
+                "line": 628,
+                "expression": "await expect\n\t\t\t.element(screen.getByRole(\"heading\", { name: ADD_CATEGORY_HEADING_REGEX }))\n\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L628"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:633",
+            "title": "create dialog has name, slug, and description inputs",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 633,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L633",
+            "registration": "it",
+            "registrationSha256": "4e64de1ce990eae44e2912e32e7675f55661aa5159c06fc4cabb7910afe8ca58",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 638,
+                "expression": "await expect.element(screen.getByRole(\"heading\", { name: \"Categories\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L638"
+              },
+              {
+                "line": 642,
+                "expression": "await expect.element(screen.getByLabelText(\"Name\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L642"
+              },
+              {
+                "line": 643,
+                "expression": "await expect.element(screen.getByRole(\"textbox\", { name: \"Slug\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L643"
+              },
+              {
+                "line": 645,
+                "expression": "await expect.element(screen.getByText(\"Description (optional)\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L645"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:648",
+            "title": "lets the server derive an auto-generated term slug",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 648,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L648",
+            "registration": "it",
+            "registrationSha256": "8c1044897f4f0e44bb379fba814640a3b54397ffd2dfef93e4ae4c8ffbecd941",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 654,
+                "expression": "await expect.element(screen.getByRole(\"textbox\", { name: \"Slug\" })).toHaveValue(\"\u97f3\u697d\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L654"
+              },
+              {
+                "line": 660,
+                "expression": "expect(call).toBeDefined()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L660"
+              },
+              {
+                "line": 662,
+                "expression": "expect(body).toMatchObject({ label: \"\u97f3\u697d\" })",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L662"
+              },
+              {
+                "line": 663,
+                "expression": "expect(body).not.toHaveProperty(\"slug\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L663"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:667",
+            "title": "sends a manually edited term slug",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 667,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L667",
+            "registration": "it",
+            "registrationSha256": "82364303cc99d3e00716e67322e9fec36bfbe091784d259188a47f94abb01860",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 680,
+                "expression": "expect(body).toMatchObject({ label: \"Music\", slug: \"custom-music\" })",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L680"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:684",
+            "title": "shows parent selector for hierarchical taxonomies",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 684,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L684",
+            "registration": "it",
+            "registrationSha256": "dada26dea7d9553f9ea024bb6dde855f056e5c7a8ae7278aab53a2fa23f60e0a",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 689,
+                "expression": "await expect.element(screen.getByRole(\"heading\", { name: \"Categories\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L689"
+              },
+              {
+                "line": 693,
+                "expression": "await expect.element(screen.getByLabelText(PARENT_SELECTOR_REGEX)).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L693"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:696",
+            "title": "lists each nested term once in the parent selector",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 696,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L696",
+            "registration": "it",
+            "registrationSha256": "e8b45c8e479d1c52ba9418d8e91b58900f234b8942475ecdddd5e2be6998f2e6",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 700,
+                "expression": "expect(labels).toEqual([\"Design\", \"Test\", \"Test child\", \"Development\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L700"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:703",
+            "title": "excludes the edited term and all descendants from parent choices",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 703,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L703",
+            "registration": "it",
+            "registrationSha256": "314e15a9f400dbb958d465623086cf42c8e6028c8c1f7333ec49bad108cb2dbb",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 707,
+                "expression": "expect(labels).toEqual([\"Development\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L707"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:710",
+            "title": "selects the current parent by translation group when editing a nested term",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 710,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L710",
+            "registration": "it",
+            "registrationSha256": "080cfa61bdd3a18407d0312b93148fb3f178f4e014a2a022298860c0125cd3af",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 716,
+                "expression": "await expect.element(screen.getByText(\"Test\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L716"
+              },
+              {
+                "line": 719,
+                "expression": "await expect.element(screen.getByLabelText(PARENT_SELECTOR_REGEX)).toHaveTextContent(\"Design\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L719"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:722",
+            "title": "edit button opens dialog",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 722,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L722",
+            "registration": "it",
+            "registrationSha256": "0ee6f11841c3fb9dd32d079635c14ff4969e1f43d37dd017c7c0561269711c04",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 727,
+                "expression": "await expect.element(screen.getByText(\"Technology\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L727"
+              },
+              {
+                "line": 732,
+                "expression": "await expect\n\t\t\t.element(screen.getByRole(\"heading\", { name: EDIT_CATEGORY_HEADING_REGEX }))\n\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L732"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:737",
+            "title": "delete button opens confirm dialog",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 737,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L737",
+            "registration": "it",
+            "registrationSha256": "da7ab9a7880688149e8ca41099d3b5e3ba6db69d1e4303f89b88f6712cca0e06",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 742,
+                "expression": "await expect.element(screen.getByText(\"Technology\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L742"
+              },
+              {
+                "line": 747,
+                "expression": "await expect\n\t\t\t.element(screen.getByRole(\"heading\", { name: DELETE_CATEGORY_HEADING_REGEX }))\n\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L747"
+              },
+              {
+                "line": 750,
+                "expression": "await expect.element(screen.getByText(DELETE_TECHNOLOGY_DESC_REGEX)).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L750"
+              },
+              {
+                "line": 751,
+                "expression": "await expect.element(screen.getByRole(\"button\", { name: \"Delete\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L751"
+              },
+              {
+                "line": 752,
+                "expression": "await expect.element(screen.getByRole(\"button\", { name: \"Cancel\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L752"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:796",
+            "title": "moving a term sends the whole sibling group in its new order",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 796,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L796",
+            "registration": "it",
+            "registrationSha256": "4d8fcec455e6b3d2feda518fd51b70c7a1d74367d446f6ea8eaf8b0282c6ff46",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 801,
+                "expression": "await expect.element(screen.getByText(\"Technology\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L801"
+              },
+              {
+                "line": 805,
+                "expression": "expect(reorderRequestBody()).toEqual({ parentId: null, ids: [\"2\", \"1\"] })",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L805"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:808",
+            "title": "moves the row on screen before the request comes back",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 808,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L808",
+            "registration": "it",
+            "registrationSha256": "d5e8ca8a6b4e9e80b7a6d3d475fa2deb8ca0ef68a119172fc57d46593a62f29e",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 815,
+                "expression": "await expect.element(screen.getByText(\"Technology\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L815"
+              },
+              {
+                "line": 816,
+                "expression": "expect(renderedOrder()).toEqual([\"Technology\", \"Science\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L816"
+              },
+              {
+                "line": 821,
+                "expression": "expect(defer.inFlight).toBe(1)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L821"
+              },
+              {
+                "line": 822,
+                "expression": "expect(renderedOrder()).toEqual([\"Science\", \"Technology\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L822"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:827",
+            "title": "queues rapid moves and refetches once at the end",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 827,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L827",
+            "registration": "it",
+            "registrationSha256": "79aa691c1f89914aa9326414952fb8a106ed1d55b9c935f8f5ecde4ba8f89984",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 834,
+                "expression": "await expect.element(screen.getByText(\"Technology\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L834"
+              },
+              {
+                "line": 840,
+                "expression": "expect(renderedOrder()).toEqual([\"Science\", \"Technology\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L840"
+              },
+              {
+                "line": 842,
+                "expression": "expect(renderedOrder()).toEqual([\"Technology\", \"Science\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L842"
+              },
+              {
+                "line": 845,
+                "expression": "expect(reorderRequestBodies()).toHaveLength(2)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L845"
+              },
+              {
+                "line": 849,
+                "expression": "expect(reorderRequestBodies()).toEqual([\n\t\t\t{ parentId: null, ids: [\"2\", \"1\"] },\n\t\t\t{ parentId: null, ids: [\"1\", \"2\"] },\n\t\t])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L849"
+              },
+              {
+                "line": 856,
+                "expression": "expect(termFetchCount()).toBe(fetchesBefore + 1)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L856"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:859",
+            "title": "cannot move the first term up or the last term down",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 859,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L859",
+            "registration": "it",
+            "registrationSha256": "a5c4bd4c7bed31150d9fd0ab9d0f73e79e4ebc45e298907e8a13b78efdbb9545",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 864,
+                "expression": "await expect.element(screen.getByText(\"Technology\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L864"
+              },
+              {
+                "line": 866,
+                "expression": "await expect.element(screen.getByRole(\"button\", { name: \"Move Technology up\" })).toBeDisabled()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L866"
+              },
+              {
+                "line": 867,
+                "expression": "await expect.element(screen.getByRole(\"button\", { name: \"Move Science down\" })).toBeDisabled()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L867"
+              },
+              {
+                "line": 868,
+                "expression": "await expect\n\t\t\t.element(screen.getByRole(\"button\", { name: \"Move Technology down\" }))\n\t\t\t.toBeEnabled()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L868"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:873",
+            "title": "reorders the top level while nested rows are on screen",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 873,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L873",
+            "registration": "it",
+            "registrationSha256": "31718876b28253c9983f0819198c78b0fa637c5b7798c600eed6ea0fd58d387d",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 879,
+                "expression": "await expect.element(screen.getByText(\"Test\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L879"
+              },
+              {
+                "line": 883,
+                "expression": "expect(reorderRequestBody()).toEqual({\n\t\t\tparentId: null,\n\t\t\tids: [\"development-group\", \"design-group\"],\n\t\t})",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L883"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:889",
+            "title": "reorders a nested group under its own parent, leaving the roots alone",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 889,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L889",
+            "registration": "it",
+            "registrationSha256": "b76bf2d13e0fe2bd6a0661a999b0c06f393cccc6a1377c44d7f6edba1b4a9006",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 895,
+                "expression": "await expect.element(screen.getByText(\"Fonts\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L895"
+              },
+              {
+                "line": 899,
+                "expression": "expect(reorderRequestBody()).toEqual({\n\t\t\tparentId: \"design-group\",\n\t\t\tids: [\"colour-group\", \"fonts-group\"],\n\t\t})",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L899"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:905",
+            "title": "cannot move a term whose parent is untranslated",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 905,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L905",
+            "registration": "it",
+            "registrationSha256": "99581ddcd1ec8e8f5084ec1e214cbd7eb9c740612ba0ae0b40398a0210c3c7e4",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 911,
+                "expression": "await expect.element(screen.getByText(\"Nino\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L911"
+              },
+              {
+                "line": 921,
+                "expression": "await expect.element(up).toBeDisabled()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L921"
+              },
+              {
+                "line": 922,
+                "expression": "await expect.element(down).toBeDisabled()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L922"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:925",
+            "title": "leaves an untranslated-parent term out of the group it is drawn in",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 925,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L925",
+            "registration": "it",
+            "registrationSha256": "f427734fa7158f2c0313aa03da64be0ff4fb72f7af199d7e06071d768b682b2f",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 931,
+                "expression": "await expect.element(screen.getByText(\"Gamma\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L931"
+              },
+              {
+                "line": 937,
+                "expression": "expect(reorderRequestBody()).toEqual({\n\t\t\tparentId: null,\n\t\t\tids: [\"gamma-group\", \"beta-group\"],\n\t\t})",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L937"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:943",
+            "title": "splices a reordered child group into its parent, leaving the roots alone",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 943,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L943",
+            "registration": "it",
+            "registrationSha256": "307767dc912b73df9d276fc88ede77a81ed1fb0c0fb755d60f57ba0d55f47f3b",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 949,
+                "expression": "expect(next.map((term) => term.label)).toEqual([\"Design\", \"Development\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L949"
+              },
+              {
+                "line": 950,
+                "expression": "expect(next[0]!.children.map((term) => term.label)).toEqual([\"Colour\", \"Fonts\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L950"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:953",
+            "title": "permutes movable terms within their slots, leaving the rest in place",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 953,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L953",
+            "registration": "it",
+            "registrationSha256": "636443eaf0127ae3fff79826c4714610ca7ad99dada745c5e82eadb1bd6685d3",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 962,
+                "expression": "expect(next.map((term) => term.label)).toEqual([\"Gamma\", \"Nino\", \"Beta\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L962"
+              },
+              {
+                "line": 963,
+                "expression": "expect(next[1]).toBe(nino)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L963"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:966",
+            "title": "replaces the root list when ordering the top level",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 966,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L966",
+            "registration": "it",
+            "registrationSha256": "d2e7d90c45477d6b2fb2d0c4541de4c7494cb0239407655b67a98083ab7f4ffe",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 971,
+                "expression": "expect(next.map((term) => term.label)).toEqual([\"Development\", \"Design\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L971"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:974",
+            "title": "shows empty state when no terms",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 974,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L974",
+            "registration": "it",
+            "registrationSha256": "504c9de10c1b0b9787b07e023b8ec9a25b1745ec4a31ba05e33ee36afb4e6aeb",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 981,
+                "expression": "await expect.element(screen.getByText(NO_CATEGORIES_REGEX)).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L981"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:984",
+            "title": "keeps the taxonomy label capitalized and falls back to the translated Term for a German admin",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 984,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L984",
+            "registration": "it",
+            "registrationSha256": "19b82f003545e112eb4adf366f80c3530899327b08389d7c629f85dbfe4b7389",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 992,
+                "expression": "await expect\n\t\t\t\t.element(screen.getByText(\"Manage Schlagw\u00f6rter for posts\", { exact: true }))\n\t\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L992"
+              },
+              {
+                "line": 995,
+                "expression": "await expect\n\t\t\t\t.element(\n\t\t\t\t\tscreen.getByText(\"No Schlagw\u00f6rter yet. Create one to get started.\", { exact: true }),\n\t\t\t\t)\n\t\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L995"
+              },
+              {
+                "line": 1002,
+                "expression": "await expect\n\t\t\t\t.element(screen.getByText(\"Create a new Begriff\", { exact: true }))\n\t\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L1002"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomyManager.test.tsx:1010",
+            "title": "titles the delete confirmation with the translated Term for a taxonomy without a singular label",
+            "suites": [
+              "TaxonomyManager"
+            ],
+            "line": 1010,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L1010",
+            "registration": "it",
+            "registrationSha256": "190cc2516e28f2fe6d7c870a460a1bb8c3211fe8bfec3f1281d2b8f94c12dd7a",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 1018,
+                "expression": "await expect.element(screen.getByText(\"Technology\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L1018"
+              },
+              {
+                "line": 1021,
+                "expression": "await expect\n\t\t\t\t.element(screen.getByRole(\"heading\", { name: \"Delete Begriff?\", exact: true }))\n\t\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomyManager.test.tsx#L1021"
+              }
+            ]
+          }
+        ],
+        "sharedAssertions": [],
+        "runtimeGates": []
+      },
+      {
+        "path": "packages/admin/tests/components/TaxonomySidebar.test.tsx",
+        "category": "taxonomy-full-product",
+        "stage": "test-first-completion",
+        "sourceBlob": "1d8cf6db1a18690be09332f7ce732c39a815bec2",
+        "sourceSha256": "9b9c55208e574ee6e66240676e1df0c7c7936d03ea408f4a773bc1f36367d491",
+        "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L1",
+        "tests": [
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:229",
+            "title": "shows flat terms in the shared searchable picker",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 229,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L229",
+            "registration": "it",
+            "registrationSha256": "64e0ee966253768917a82f57e0cde2cb737405c7fed35c9742e38149fb6afcb5",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 234,
+                "expression": "await expect.element(screen.getByRole(\"checkbox\", { name: \"Alpha\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L234"
+              },
+              {
+                "line": 235,
+                "expression": "await expect.element(screen.getByRole(\"checkbox\", { name: \"Beta\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L235"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:238",
+            "title": "places the picker trigger beside the visible taxonomy label",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 238,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L238",
+            "registration": "it",
+            "registrationSha256": "2cbdd471087593b7ee6d553e3c68725824ed922296af260a908460c269bb0704",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 245,
+                "expression": "await expect.element(label).toBeVisible()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L245"
+              },
+              {
+                "line": 246,
+                "expression": "expect(label.element().closest(\"label\")).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L246"
+              },
+              {
+                "line": 247,
+                "expression": "await expect.element(trigger).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L247"
+              },
+              {
+                "line": 248,
+                "expression": "expect(trigger.element().parentElement).toBe(label.element().parentElement)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L248"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:251",
+            "title": "hard-bounds large option lists while exact selected matches remain reachable",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 251,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L251",
+            "registration": "it",
+            "registrationSha256": "af4955de0ee98fdf93643c4f12ac2187bb2ca59b1ea9d40d4648e3b22ccaa607",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 263,
+                "expression": "await expect.element(screen.getByLabelText(\"Remove Term 250\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L263"
+              },
+              {
+                "line": 264,
+                "expression": "await expect.element(options).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L264"
+              },
+              {
+                "line": 265,
+                "expression": "expect(options.element().querySelectorAll('[role=\"checkbox\"]')).toHaveLength(100)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L265"
+              },
+              {
+                "line": 266,
+                "expression": "expect(screen.getByRole(\"checkbox\", { name: \"Term 250\" }).query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L266"
+              },
+              {
+                "line": 270,
+                "expression": "expect(options.element().querySelectorAll('[role=\"checkbox\"]')).toHaveLength(100)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L270"
+              },
+              {
+                "line": 274,
+                "expression": "await expect.element(screen.getByRole(\"checkbox\", { name: \"Term 250\" })).toBeChecked()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L274"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:277",
+            "title": "assigns an existing flat term by label",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 277,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L277",
+            "registration": "it",
+            "registrationSha256": "9d463a6b77ea83646bb202ad828f53962a1860b137d8de54b1be7a75412d2a19",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 287,
+                "expression": "expect(onChange).toHaveBeenCalledWith(\"tags\", [\"term_alpha\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L287"
+              },
+              {
+                "line": 288,
+                "expression": "await expect.element(screen.getByLabelText(\"Remove Alpha\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L288"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:291",
+            "title": "explains when saved term changes affect published content",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 291,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L291",
+            "registration": "it",
+            "registrationSha256": "a1982a5103b724c9917607bd79a4a25bb13c292e9b87f3c28bb7121ed06aff96",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 298,
+                "expression": "await expect\n\t\t\t.element(screen.getByText(\"Saved immediately; term changes do not wait for Publish changes.\"))\n\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L298"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:303",
+            "title": "assigns comma-separated existing terms together",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 303,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L303",
+            "registration": "it",
+            "registrationSha256": "aca3ca5953f90dd8bb8989049f7405d63264799b4208356bb3b48fcbb16d2fc4",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 313,
+                "expression": "expect(onChange).toHaveBeenCalledWith(\"tags\", [\"term_alpha\", \"term_beta\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L313"
+              },
+              {
+                "line": 314,
+                "expression": "await expect.element(screen.getByLabelText(\"Remove Alpha\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L314"
+              },
+              {
+                "line": 315,
+                "expression": "await expect.element(screen.getByLabelText(\"Remove Beta\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L315"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:318",
+            "title": "preserves pasted line breaks and creates separate tags",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 318,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L318",
+            "registration": "it",
+            "registrationSha256": "b84bb7c99f08bc16980311b82d1588be4c4b641fe9e09c57dedbc4e3231a2967",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 330,
+                "expression": "await expect.element(input).toHaveValue(\"First line, Second line, Third line\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L330"
+              },
+              {
+                "line": 341,
+                "expression": "expect(bodies).toEqual([\n\t\t\t\t{ label: \"First line\" },\n\t\t\t\t{ label: \"Second line\" },\n\t\t\t\t{ label: \"Third line\" },\n\t\t\t])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L341"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:349",
+            "title": "creates pasted tags sequentially",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 349,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L349",
+            "registration": "it",
+            "registrationSha256": "48cddc675717ff05514e379e9a242238ddb60b0e7a1e537009dfdfaae84c902b",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 368,
+                "expression": "expect(createTermRequest).toHaveBeenCalledTimes(1)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L368"
+              },
+              {
+                "line": 370,
+                "expression": "expect(createTermRequest).toHaveBeenCalledTimes(2)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L370"
+              },
+              {
+                "line": 372,
+                "expression": "expect(createTermRequest).toHaveBeenCalledTimes(3)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L372"
+              },
+              {
+                "line": 374,
+                "expression": "expect(activeRequests).toBe(0)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L374"
+              },
+              {
+                "line": 375,
+                "expression": "expect(maxActiveRequests).toBe(1)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L375"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:378",
+            "title": "preserves configured taxonomy label casing in picker copy",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 378,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L378",
+            "registration": "it",
+            "registrationSha256": "a7ece1fb6c5201c5b8ed26205843688f6413d324d4d6bb8f409fc90009af709c",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 388,
+                "expression": "await expect.element(input).toHaveAttribute(\"placeholder\", \"Search SEO Tags\u2026\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L388"
+              },
+              {
+                "line": 389,
+                "expression": "await expect.element(screen.getByText(\"No SEO Tags found.\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L389"
+              },
+              {
+                "line": 390,
+                "expression": "await expect\n\t\t\t.element(screen.getByRole(\"button\", { name: \"Create a new SEO Tag\" }))\n\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L390"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:395",
+            "title": "creates new terms and assigns exact matches in one update",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 395,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L395",
+            "registration": "it",
+            "registrationSha256": "76cc2fa1e59bf7ed72b81df7a628e526b3ba49c50a714928232653d7e0233a11",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 406,
+                "expression": "expect(onChange).toHaveBeenCalledWith(\"tags\", [\"term_alpha\", \"term_created\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L406"
+              },
+              {
+                "line": 408,
+                "expression": "await expect.element(screen.getByLabelText(\"Remove Alpha\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L408"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:411",
+            "title": "maps a folded exact label to the existing term instead of creating a duplicate",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 411,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L411",
+            "registration": "it",
+            "registrationSha256": "22cd3024be952bfe73b0d9dbd64b3f0d0ec25dcf08cfb979f91499dbe65c6762",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 422,
+                "expression": "expect(onChange).toHaveBeenCalledWith(\"tags\", [\"term_mexico\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L422"
+              },
+              {
+                "line": 423,
+                "expression": "expect(\n\t\t\tvi\n\t\t\t\t.mocked(apiFetch)\n\t\t\t\t.mock.calls.some(\n\t\t\t\t\t([url, init]) =>\n\t\t\t\t\t\trequestUrl(url).endsWith(\"/taxonomies/tags/terms\") && init?.method === \"POST\",\n\t\t\t\t),\n\t\t).toBe(false)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L423"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:433",
+            "title": "deduplicates folded labels within one tag batch",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 433,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L433",
+            "registration": "it",
+            "registrationSha256": "66296710690efc731df76d234c2fa970f214ecc2924b9c64d35d350c3423a1b1",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 449,
+                "expression": "expect(createCalls).toHaveLength(1)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L449"
+              },
+              {
+                "line": 451,
+                "expression": "expect(typeof body === \"string\" ? JSON.parse(body) : null).toEqual({ label: \"M\u00e9xico\" })",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L451"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:455",
+            "title": "marks assigned flat terms as selected in the shared picker",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 455,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L455",
+            "registration": "it",
+            "registrationSha256": "bac5d9dbe5af9738c3988248eb680dc99c4b0d84b928a716792263ddad743e22",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 461,
+                "expression": "await expect.element(screen.getByLabelText(\"Remove Alpha\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L461"
+              },
+              {
+                "line": 463,
+                "expression": "await expect.element(screen.getByRole(\"checkbox\", { name: \"Alpha\" })).toBeChecked()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L463"
+              },
+              {
+                "line": 464,
+                "expression": "await expect.element(screen.getByRole(\"checkbox\", { name: \"Beta\" })).not.toBeChecked()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L464"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:467",
+            "title": "removes the last selected flat term with Backspace",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 467,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L467",
+            "registration": "it",
+            "registrationSha256": "8db701e521aa545049261f00a516d61e5d4279f9691bc54c208227d4098961f5",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 481,
+                "expression": "await expect.element(screen.getByLabelText(\"Remove Alpha\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L481"
+              },
+              {
+                "line": 485,
+                "expression": "expect(onChange).toHaveBeenCalledWith(\"tags\", [])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L485"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:488",
+            "title": "serializes rapid flat-term saves",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 488,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L488",
+            "registration": "it",
+            "registrationSha256": "ea84de43f9a5296f60382cb0ddb6f5caf9553357ab6cb365423039011516ab48",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 502,
+                "expression": "await expect.element(screen.getByLabelText(\"Remove Alpha\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L502"
+              },
+              {
+                "line": 508,
+                "expression": "expect(saveEntryTerms).toHaveBeenCalledTimes(1)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L508"
+              },
+              {
+                "line": 510,
+                "expression": "expect(saveEntryTerms).toHaveBeenCalledTimes(2)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L510"
+              },
+              {
+                "line": 515,
+                "expression": "expect(requestBodies).toEqual([{ termIds: [] }, { termIds: [\"term_beta\"] }])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L515"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:518",
+            "title": "creates a flat term from the tag input",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 518,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L518",
+            "registration": "it",
+            "registrationSha256": "42899f57fa8f6d65ac5fce3fa7157c4b4dc503f4c1bc7794db0b3704030b6348",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 534,
+                "expression": "expect(apiFetch).toHaveBeenCalledWith(\n\t\t\t\t\"/_emdash/api/taxonomies/tags/terms\",\n\t\t\t\texpect.objectContaining({\n\t\t\t\t\tmethod: \"POST\",\n\t\t\t\t\tbody: JSON.stringify({ label: \"Gamma\" }),\n\t\t\t\t}),\n\t\t\t)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L534"
+              },
+              {
+                "line": 542,
+                "expression": "expect(onChange).toHaveBeenCalledWith(\"tags\", [\"term_created\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L542"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:545",
+            "title": "lets the server derive the slug for an inline Unicode term",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 545,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L545",
+            "registration": "it",
+            "registrationSha256": "06a0d95d85f5d6240f413ae3d0c13add21e30bfa7086ae1e800c31f15765c633",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 556,
+                "expression": "expect(call).toBeDefined()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L556"
+              },
+              {
+                "line": 558,
+                "expression": "expect(body).toEqual({ label: \"\u97f3\u697d\" })",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L558"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:562",
+            "title": "shows flat-term creation errors below the tag input",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 562,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L562",
+            "registration": "it",
+            "registrationSha256": "1000c7e59958c223fb00c0910807a0e4a0212dad8c5a18dc8602dafb60a63e3c",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 571,
+                "expression": "await expect.element(screen.getByText(\"Term could not be created\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L571"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:574",
+            "title": "selects successful terms and reports failed labels from a partial batch",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 574,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L574",
+            "registration": "it",
+            "registrationSha256": "248e317633910fdd4872b7c2fa339c022d81cb26786c6a917d3bb245983ff6b1",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 586,
+                "expression": "expect(onChange).toHaveBeenCalledWith(\"tags\", [\"term_created\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L586"
+              },
+              {
+                "line": 588,
+                "expression": "await expect.element(screen.getByText(\"Failed to create Second\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L588"
+              },
+              {
+                "line": 589,
+                "expression": "expect(\n\t\t\tvi\n\t\t\t\t.mocked(apiFetch)\n\t\t\t\t.mock.calls.filter(\n\t\t\t\t\t([url, init]) =>\n\t\t\t\t\t\trequestUrl(url).endsWith(\"/taxonomies/tags/terms\") && init?.method === \"POST\",\n\t\t\t\t),\n\t\t).toHaveLength(2)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L589"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:599",
+            "title": "keeps an existing match when the new label in its batch fails",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 599,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L599",
+            "registration": "it",
+            "registrationSha256": "898a6c055f3be2997da1b98974458133cdb3293e8b11567039b9040d679445f9",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 611,
+                "expression": "expect(onChange).toHaveBeenCalledWith(\"tags\", [\"term_alpha\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L611"
+              },
+              {
+                "line": 613,
+                "expression": "await expect.element(screen.getByText(\"Failed to create Second\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L613"
+              },
+              {
+                "line": 614,
+                "expression": "expect(\n\t\t\tvi\n\t\t\t\t.mocked(apiFetch)\n\t\t\t\t.mock.calls.filter(\n\t\t\t\t\t([url, init]) =>\n\t\t\t\t\t\trequestUrl(url).endsWith(\"/taxonomies/tags/terms\") && init?.method === \"POST\",\n\t\t\t\t),\n\t\t).toHaveLength(1)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L614"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:624",
+            "title": "renders hierarchical taxonomies as a searchable category picker",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 624,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L624",
+            "registration": "it",
+            "registrationSha256": "aa68796b303f176691030ff7db72c663008930059f64a308d5a5514276694c80",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 630,
+                "expression": "expect(screen.getByRole(\"searchbox\", { name: \"Search Categories\" }).query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L630"
+              },
+              {
+                "line": 631,
+                "expression": "expect(screen.getByRole(\"checkbox\", { name: \"Alpha\" }).query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L631"
+              },
+              {
+                "line": 634,
+                "expression": "await expect.element(screen.getByRole(\"checkbox\", { name: \"Alpha\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L634"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:637",
+            "title": "moves focus to the announced checkbox with arrow navigation",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 637,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L637",
+            "registration": "it",
+            "registrationSha256": "4b272372637e837a0893b8d3f3be3bade306a821bf5465b8bafd9e427a48a812",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 648,
+                "expression": "await expect.element(alpha).toHaveFocus()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L648"
+              },
+              {
+                "line": 651,
+                "expression": "expect(onChange).toHaveBeenCalledWith(\"categories\", [\"term_alpha\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L651"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:654",
+            "title": "finds and assigns nested categories with the keyboard",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 654,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L654",
+            "registration": "it",
+            "registrationSha256": "4e74e22d2d25a86298bffcefa8f76f5ddd7445634967eb19bd27a00f48c7a66c",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 669,
+                "expression": "expect(onChange).toHaveBeenCalledWith(\"categories\", [\"term_child\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L669"
+              },
+              {
+                "line": 670,
+                "expression": "await expect.element(screen.getByLabelText(\"Remove Child\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L670"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:673",
+            "title": "removes a selected category from its chip",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 673,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L673",
+            "registration": "it",
+            "registrationSha256": "f676ccc7b2e8ef409749f682096546d3aef191e4b72da2143ea34d3d66227a50",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 692,
+                "expression": "expect(onChange).toHaveBeenCalledWith(\"categories\", [])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L692"
+              },
+              {
+                "line": 693,
+                "expression": "await expect\n\t\t\t.element(screen.getByRole(\"button\", { name: \"Choose Categories\" }))\n\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L693"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:698",
+            "title": "opens the picker from the selected category field and supports keyboard selection",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 698,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L698",
+            "registration": "it",
+            "registrationSha256": "9515e1990178d2c1d6d8ffd608906d3249ca7b1542a5a8129e7b029c143d9630",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 718,
+                "expression": "await expect.element(input).toHaveFocus()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L718"
+              },
+              {
+                "line": 723,
+                "expression": "expect(onChange).toHaveBeenCalledWith(\"categories\", [\"term_alpha\", \"term_beta\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L723"
+              },
+              {
+                "line": 726,
+                "expression": "await expect.element(fieldTrigger).toHaveFocus()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L726"
+              },
+              {
+                "line": 727,
+                "expression": "expect(screen.getByRole(\"searchbox\", { name: \"Search Categories\" }).query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L727"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:730",
+            "title": "keeps selected chips inside the control and scrolls after three rows",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 730,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L730",
+            "registration": "it",
+            "registrationSha256": "54e0222ba788df7a8d7ce67e6da91bffc369124dc58b16f26fb69a8f3266837c",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 747,
+                "expression": "await expect.element(selectedList).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L747"
+              },
+              {
+                "line": 757,
+                "expression": "expect(listElement.clientHeight).toBeLessThanOrEqual(86)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L757"
+              },
+              {
+                "line": 758,
+                "expression": "expect(listElement.scrollHeight).toBeGreaterThan(listElement.clientHeight)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L758"
+              },
+              {
+                "line": 759,
+                "expression": "expect(firstChipRect.left).toBeGreaterThan(listRect.left)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L759"
+              },
+              {
+                "line": 760,
+                "expression": "expect(firstChipRect.top).toBeGreaterThan(listRect.top)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L760"
+              },
+              {
+                "line": 761,
+                "expression": "expect(listElement.scrollWidth).toBe(listElement.clientWidth)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L761"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:764",
+            "title": "closes the category picker with Escape and restores focus to its trigger",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 764,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L764",
+            "registration": "it",
+            "registrationSha256": "ddc89ac30f17f9d00774b45488848665e22dea7a3f13bcb3f77319633d608d14",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 774,
+                "expression": "await expect.element(screen.getByRole(\"checkbox\", { name: \"Alpha\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L774"
+              },
+              {
+                "line": 777,
+                "expression": "expect(screen.getByRole(\"checkbox\", { name: \"Alpha\" }).query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L777"
+              },
+              {
+                "line": 778,
+                "expression": "await expect.element(trigger).toHaveFocus()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L778"
+              },
+              {
+                "line": 779,
+                "expression": "expect(screen.getByRole(\"searchbox\", { name: \"Search Categories\" }).query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L779"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:782",
+            "title": "keeps rendering after creating a hierarchical term",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 782,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L782",
+            "registration": "it",
+            "registrationSha256": "a998ba6844412cbcafa81116e8cd60ff86dfb3f3fdef0ba2d81486a62bcb182e",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 804,
+                "expression": "await expect.element(screen.getByLabelText(\"Remove Gamma\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L804"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:807",
+            "title": "renders only the entry-locale definition for a translated taxonomy",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 807,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L807",
+            "registration": "it",
+            "registrationSha256": "c76d9bd4002b2b6f1b4667adc9640fb22baf535e2f16691803552262c80190aa",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 838,
+                "expression": "await expect.element(screen.getByText(\"Schlagw\u00f6rter\", { exact: true }).first()).toBeVisible()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L838"
+              },
+              {
+                "line": 839,
+                "expression": "expect(screen.getByText(\"Tags\").query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L839"
+              },
+              {
+                "line": 840,
+                "expression": "expect(screen.getByText(\"\u00c9tiquettes\").query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L840"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:844",
+            "title": "selects Arabic matches when the interface direction is RTL",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 844,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L844",
+            "registration": "it",
+            "registrationSha256": "d6b23f005df765576d4ffbb130ba516e0a23b4f8300af7118d3b46ef26a1dd56",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 863,
+                "expression": "expect(onChange).toHaveBeenCalledWith(\"tags\", [\"term_information\"])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L863"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:869",
+            "title": "shows the actual locale when a selected term uses the default fallback",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 869,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L869",
+            "registration": "it",
+            "registrationSha256": "b64cec68b8fbdaab215dbae4bcd7ca4e6cc64161b7b7e113cd330da9fff0f1b1",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 882,
+                "expression": "await expect.element(screen.getByText(\"EN fallback\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L882"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:885",
+            "title": "labels fallback terms in the shared picker",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 885,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L885",
+            "registration": "it",
+            "registrationSha256": "6d1f5e28002f3b2a8cb7dde6fa123c7726138357c559c7232231b27b94cc2899",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 897,
+                "expression": "await expect\n\t\t\t.element(screen.getByRole(\"checkbox\", { name: /Alpha.*EN fallback/ }))\n\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L897"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:902",
+            "title": "keeps unresolved groups visible and preserves them when another term is assigned",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 902,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L902",
+            "registration": "it",
+            "registrationSha256": "aa10e3e823abb34d4aeb0b11782a9e0ed0536f81efc67c2beac0588a3ac0ab11",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 923,
+                "expression": "await expect.element(screen.getByText(\"Unresolved assignment\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L923"
+              },
+              {
+                "line": 924,
+                "expression": "await expect.element(screen.getByText(\"Available in JA\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L924"
+              },
+              {
+                "line": 925,
+                "expression": "await expect\n\t\t\t.element(screen.getByRole(\"button\", { name: \"Create FR translation\" }))\n\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L925"
+              },
+              {
+                "line": 940,
+                "expression": "expect(save).toBeDefined()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L940"
+              },
+              {
+                "line": 942,
+                "expression": "expect(requestUrl(save[0])).not.toContain(\"locale=\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L942"
+              },
+              {
+                "line": 944,
+                "expression": "expect(typeof body).toBe(\"string\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L944"
+              },
+              {
+                "line": 946,
+                "expression": "expect(JSON.parse(body)).toEqual({\n\t\t\t\ttermIds: expect.arrayContaining([\"term_beta\", \"term_ja\"]),\n\t\t\t})",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L946"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:952",
+            "title": "requests exact/default resolution for the entry-locale picker",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 952,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L952",
+            "registration": "it",
+            "registrationSha256": "937ba54e08da0d13db53e89243a0d3c6fa71dc70f353631b0850cea900ebb64c",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 962,
+                "expression": "await expect.element(screen.getByRole(\"button\", { name: \"Choose Tags\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L962"
+              },
+              {
+                "line": 967,
+                "expression": "expect(termListCall).toBeDefined()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L967"
+              },
+              {
+                "line": 969,
+                "expression": "expect(requestUrl(termListCall[0])).toContain(\"resolveFallback=true\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L969"
+              },
+              {
+                "line": 974,
+                "expression": "expect(entryTermsCall).toBeDefined()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L974"
+              },
+              {
+                "line": 976,
+                "expression": "expect(requestUrl(entryTermsCall[0])).not.toContain(\"locale=\")",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L976"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:979",
+            "title": "hides flat-term and translation creation without taxonomy management permission",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 979,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L979",
+            "registration": "it",
+            "registrationSha256": "9230781d40fe1bfefaf981d63e2198b89745d3b6abc810e971b7a18837ee252e",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 999,
+                "expression": "await expect.element(screen.getByText(\"Unresolved assignment\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L999"
+              },
+              {
+                "line": 1000,
+                "expression": "expect(screen.getByRole(\"button\", { name: \"Create FR translation\" }).query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L1000"
+              },
+              {
+                "line": 1002,
+                "expression": "await expect.element(screen.getByText(\"No tags found.\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L1002"
+              },
+              {
+                "line": 1004,
+                "expression": "expect(\n\t\t\tvi\n\t\t\t\t.mocked(apiFetch)\n\t\t\t\t.mock.calls.some(\n\t\t\t\t\t([url, init]) =>\n\t\t\t\t\t\trequestUrl(url).endsWith(\"/taxonomies/tags/terms\") && init?.method === \"POST\",\n\t\t\t\t),\n\t\t).toBe(false)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L1004"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/TaxonomySidebar.test.tsx:1014",
+            "title": "hides hierarchical term creation without taxonomy management permission",
+            "suites": [
+              "TaxonomySidebar"
+            ],
+            "line": 1014,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L1014",
+            "registration": "it",
+            "registrationSha256": "616e70c49cead39c67b24086d368600fc295dfc67fd5bb20e0b677199414aa31",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 1022,
+                "expression": "await expect.element(screen.getByText(\"No categories found.\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L1022"
+              },
+              {
+                "line": 1024,
+                "expression": "expect(\n\t\t\tvi\n\t\t\t\t.mocked(apiFetch)\n\t\t\t\t.mock.calls.some(\n\t\t\t\t\t([url, init]) =>\n\t\t\t\t\t\trequestUrl(url).endsWith(\"/taxonomies/categories/terms\") && init?.method === \"POST\",\n\t\t\t\t),\n\t\t).toBe(false)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L1024"
+              }
+            ]
+          }
+        ],
+        "sharedAssertions": [
+          {
+            "line": 216,
+            "expression": "await expect.element(trigger).toBeInTheDocument()",
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L216"
+          },
+          {
+            "line": 219,
+            "expression": "await expect.element(input).toHaveFocus()",
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/TaxonomySidebar.test.tsx#L219"
+          }
+        ],
+        "runtimeGates": []
+      },
+      {
+        "path": "packages/admin/tests/components/taxonomy-term-cache.test.tsx",
+        "category": "taxonomy-full-product",
+        "stage": "test-first-completion",
+        "sourceBlob": "424b4b778898bae71cfcf4dacccb3818d836ba08",
+        "sourceSha256": "412f5ecb695a28d192625dddba1b3a45af67fc48e1b8a8769f52fe22d5f0f3b2",
+        "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/taxonomy-term-cache.test.tsx#L1",
+        "tests": [
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/taxonomy-term-cache.test.tsx:113",
+            "title": "shows real counts in the manager after the editor cached a count-free list",
+            "suites": [
+              "taxonomy term cache"
+            ],
+            "line": 113,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/taxonomy-term-cache.test.tsx#L113",
+            "registration": "it",
+            "registrationSha256": "ff07b6ce5ba323c21c10f78929c71eebc89eab55a88180f02111156a32c75a3e",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 117,
+                "expression": "await expect.element(screen.getByText(\"Technology\")).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/taxonomy-term-cache.test.tsx#L117"
+              },
+              {
+                "line": 122,
+                "expression": "await expect.element(screen.getByRole(\"heading\", { name: \"Categories\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/taxonomy-term-cache.test.tsx#L122"
+              },
+              {
+                "line": 123,
+                "expression": "await expect.element(screen.getByText(\"5\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/taxonomy-term-cache.test.tsx#L123"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/taxonomy-term-cache.test.tsx:171",
+            "title": "drops a deleted taxonomy from an editor sidebar that cached it",
+            "suites": [
+              "taxonomy list cache"
+            ],
+            "line": 171,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/taxonomy-term-cache.test.tsx#L171",
+            "registration": "it",
+            "registrationSha256": "dc005eae688a7e1899724280b22ff6e71751515ab9e4203e4fe6baeaa0d0d6b1",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 173,
+                "expression": "await expect.element(screen.getByRole(\"button\", { name: \"Choose Genres\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/taxonomy-term-cache.test.tsx#L173"
+              },
+              {
+                "line": 178,
+                "expression": "await expect\n\t\t\t.element(screen.getByRole(\"heading\", { name: \"Delete Taxonomy\" }))\n\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/taxonomy-term-cache.test.tsx#L178"
+              },
+              {
+                "line": 184,
+                "expression": "await expect.element(screen.getByText(\"Categories\", { exact: true })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/taxonomy-term-cache.test.tsx#L184"
+              },
+              {
+                "line": 185,
+                "expression": "await expect\n\t\t\t.element(screen.getByRole(\"button\", { name: \"Choose Genres\" }))\n\t\t\t.not.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/components/taxonomy-term-cache.test.tsx#L185"
+              }
+            ]
+          }
+        ],
+        "sharedAssertions": [],
+        "runtimeGates": []
+      },
+      {
+        "path": "packages/admin/tests/taxonomy-sidebar-refresh.test.tsx",
+        "category": "taxonomy-full-product",
+        "stage": "test-first-completion",
+        "sourceBlob": "d267f13eedab30b5b1edf3eef6eb5cfbde337feb",
+        "sourceSha256": "0e98367ec645a472207c8678533bb39c5292b37223e3dce8afad7d3eca43a02d",
+        "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/taxonomy-sidebar-refresh.test.tsx#L1",
+        "tests": [
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/taxonomy-sidebar-refresh.test.tsx:152",
+            "title": "shows a newly created taxonomy in the sidebar without reloading",
+            "suites": [
+              "taxonomy sidebar refresh"
+            ],
+            "line": 152,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/taxonomy-sidebar-refresh.test.tsx#L152",
+            "registration": "it",
+            "registrationSha256": "0adaa1b48b06ce3f43b94f5c1918041b250599d4a344446182c9f63c032e18c9",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 154,
+                "expression": "await expect.element(screen.getByRole(\"link\", { name: \"Categories\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/taxonomy-sidebar-refresh.test.tsx#L154"
+              },
+              {
+                "line": 155,
+                "expression": "expect(screen.getByRole(\"link\", { name: \"Genres\" }).query()).toBeNull()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/taxonomy-sidebar-refresh.test.tsx#L155"
+              },
+              {
+                "line": 161,
+                "expression": "await expect.element(screen.getByRole(\"link\", { name: \"Genres\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/taxonomy-sidebar-refresh.test.tsx#L161"
+              },
+              {
+                "line": 162,
+                "expression": "expect(manifestFetches).toBe(2)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/taxonomy-sidebar-refresh.test.tsx#L162"
+              }
+            ]
+          },
+          {
+            "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/taxonomy-sidebar-refresh.test.tsx:218",
+            "title": "removes a deleted taxonomy from the sidebar and leaves its page",
+            "suites": [
+              "taxonomy sidebar after deletion"
+            ],
+            "line": 218,
+            "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/taxonomy-sidebar-refresh.test.tsx#L218",
+            "registration": "it",
+            "registrationSha256": "7d16e6097a795bb4a4c490af653039df3370c067cab570f002f6b61ad0861612",
+            "expansion": [],
+            "loopContexts": [],
+            "runtimeGates": [],
+            "status": "inventory-only",
+            "productExecution": null,
+            "assertions": [
+              {
+                "line": 220,
+                "expression": "await expect.element(screen.getByRole(\"link\", { name: \"Genres\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/taxonomy-sidebar-refresh.test.tsx#L220"
+              },
+              {
+                "line": 224,
+                "expression": "await expect\n\t\t\t.element(screen.getByRole(\"heading\", { name: \"Delete Taxonomy\" }))\n\t\t\t.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/taxonomy-sidebar-refresh.test.tsx#L224"
+              },
+              {
+                "line": 230,
+                "expression": "await expect.element(screen.getByRole(\"heading\", { name: \"Dashboard\" })).toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/taxonomy-sidebar-refresh.test.tsx#L230"
+              },
+              {
+                "line": 231,
+                "expression": "await expect.element(screen.getByRole(\"link\", { name: \"Genres\" })).not.toBeInTheDocument()",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/taxonomy-sidebar-refresh.test.tsx#L231"
+              },
+              {
+                "line": 233,
+                "expression": "expect(deleteAt).toBeGreaterThanOrEqual(0)",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/taxonomy-sidebar-refresh.test.tsx#L233"
+              },
+              {
+                "line": 234,
+                "expression": "expect(requests.slice(deleteAt + 1).filter((r) => r.includes(\"/taxonomies\"))).toEqual([])",
+                "sourceUrl": "https://github.com/emdash-cms/emdash/blob/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e/packages/admin/tests/taxonomy-sidebar-refresh.test.tsx#L234"
+              }
+            ]
+          }
+        ],
+        "sharedAssertions": [],
+        "runtimeGates": []
+      }
+    ]
+  },
+  "staticCounts": {
+    "wholeFamilies": 4,
+    "staticDeclarations": 79,
+    "matcherExpressions": 245,
+    "sharedMatcherExpressions": 2,
+    "expandedCases": 79,
+    "nativeSupplementalCases": 4
+  },
+  "execution": {
+    "status": "not-run",
+    "sourceRegistered": 0,
+    "sourceExecuted": 0,
+    "sourceCompletedValueReds": 0,
+    "sourcePassingCredit": 0,
+    "nativeExecuted": 0
+  },
+  "testTransport": {
+    "sourceCallbacks": "whole original byte-exact files; no extraction or rewriting",
+    "providers": "WHOLE originalSource render.tsx962bytes and setup.ts188bytes duplicated byte-exact at native host boundary; original nearest supplied QueryClient/I18n/Kumo/router contexts preserved",
+    "components": "unchanged uniform React-to-actual-Svelte instance mount and prop update; no absentmodulefallback",
+    "api": "complete original Source API functions/mocks and explicit originalAPI_BASE, actual supplied data envelopes read without result rewriting",
+    "routing": "actual TanStack test route tree mounts planned real NativeAdmin, preserving original global fetch fixtures; fullpublicglobalcomposition remainsunfinished",
+    "sourceRuntime": "actual installed VitestBrowser4.1.10 + original vitest-browser-react2.2.0 renderedin official PlaywrightChromium1.63.0 revision1243 with chromiumSandbox:true; no jsdom Source locator/matcher/event/layout emulation",
+    "sourceInteractions": "actual installedBrowser locator.hover/real pointermouseevents and real Chromium ClipboardEvent/DataTransfer; originalSource suppliedclipboardData/getData/string unchanged",
+    "queryRoot": "actual Source installedrenderer defaultsdocument.body includingportals; explicitcontainer/baseElement retained; nestedlocatorsactualscope",
+    "clocks": "Source defaultBrowser test15000ms/hook30000ms explicitlyretained; actualBrowser expect.element uses currentcallback remainingdeadline\u2212100ms /pollinterval50ms; explicit originalcallbackoverrides preserved; originalSource vi.waitFor1000ms/50ms untouched; no helper clocks",
+    "sourceBrowserContext": "originalSource1280x800 viewport and America/New_York timezone; standingofficialsecuredlaunch timeout30000ms",
+    "nativeRuntime": "separate supplementalNative4 staysordinary jsdom5s/10s defaults; no Source timing/Browserclaim",
+    "firstBaseline": "unexecuted. Source complete79 selected; actualmissingmodule/browser infrastructure classified0Sourcecausal/greencredit; no alternatebrowserdownload or sandbox/policyworkaround"
+  },
+  "dependencies": {
+    "backend": "Actual public taxonomy API/repository/atomic owner PR102 after landing",
+    "matching": "same actual public matcher owner PR102 after landing; no duplicate product matcher",
+    "query": "actual public app-scoped QueryCore owner PR100 after landing; no duplicate global client",
+    "manifest": "full global manifest/sidebar composition pending actual public owner; source global family retained whole",
+    "bulkDialog": "existing actual public BulkTaxonomyDialog/BulkTaxonomySelection reused, full manager integration pending"
+  },
+  "scope": {
+    "changedProductFiles": 0,
+    "changedSharedPackage": 0,
+    "changedLockfile": 0,
+    "changedCanonicalGate": 0,
+    "newProtectedCredentialOrHttpProbes": 0,
+    "sourceExpectedValueChanges": 0
+  },
+  "incomplete": [
+    "all actual Manager/Sidebar/native client/global taxonomy routes remain unimplemented",
+    "full real backend and global shared cache integration pending actual public services",
+    "ordinary Source mounts and all245 Source assertions unexecuted; no parity credit",
+    "final hosted normal13/browser9/current independent/configured review and PM exact-head approval pending"
+  ],
+  "sourceHostProvenance": {
+    "kind": "read-only installed/pinned whole-authority inspection; no tests/build/launch",
+    "installedAuthorities": [
+      {
+        "path": "/workspace/cms-full-taxonomy-admin-ui/node_modules/vitest/dist/chunks/coverage.DM_a_rWm.js",
+        "resolvedPath": "/workspace/cms-full-taxonomy-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/coverage.DM_a_rWm.js",
+        "bytes": 54974,
+        "sha256": "e509f3cc1bd81ae6426265253fa926cbde02be5cebfe35b1df422017bffdca31",
+        "anchors": [
+          {
+            "line": 538,
+            "fact": "Browser test default15000ms / Node5000ms"
+          },
+          {
+            "line": 539,
+            "fact": "Browser hook default30000ms / Node10000ms"
+          }
+        ]
+      },
+      {
+        "path": "/workspace/cms-full-taxonomy-admin-ui/node_modules/vitest/dist/chunks/test.DNmyFkvJ.js",
+        "resolvedPath": "/workspace/cms-full-taxonomy-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/test.DNmyFkvJ.js",
+        "bytes": 153875,
+        "sha256": "f07fc8036b066834143b14748bd70c436a6a2f15f648455af8d3a003a4eafc94",
+        "anchors": [
+          {
+            "line": 3361,
+            "fact": "vi.waitFor default timeout1000ms interval50ms, untouched"
+          },
+          {
+            "line": 3714,
+            "fact": "expect.poll default timeout1000ms interval50ms before Browser remaining-deadline options"
+          }
+        ]
+      },
+      {
+        "path": "/workspace/cms-full-taxonomy-admin-ui/node_modules/vitest-browser-react/dist/pure-C_qo4W4L.js",
+        "resolvedPath": "/workspace/cms-full-taxonomy-admin-ui/node_modules/.pnpm/vitest-browser-react@2.2.0_@types+react-dom@19.3.0_@types+react@19.3.0__@types+react@19_8897821221b81424bbe5ae9bfc0aee0f/node_modules/vitest-browser-react/dist/pure-C_qo4W4L.js",
+        "bytes": 4542,
+        "sha256": "1b154ceabc31794a44541c292b6f634a3e62fb7c8986514d9cdedbd3bf61da74",
+        "anchors": [
+          {
+            "line": 40,
+            "fact": "render defaultbaseElement=document.body, preserves suppliedbaseElement/container"
+          },
+          {
+            "line": 81,
+            "fact": "queriesrooted getElementLocatorSelectors(baseElement)"
+          },
+          {
+            "symbol": "act/render/cleanup",
+            "fact": "Actual installedReact act/concurrentrender and native Browser selector transport"
+          }
+        ]
+      },
+      {
+        "path": "/workspace/cms-full-taxonomy-admin-ui/node_modules/vitest-browser-react/dist/index.js",
+        "resolvedPath": "/workspace/cms-full-taxonomy-admin-ui/node_modules/.pnpm/vitest-browser-react@2.2.0_@types+react-dom@19.3.0_@types+react@19.3.0__@types+react@19_8897821221b81424bbe5ae9bfc0aee0f/node_modules/vitest-browser-react/dist/index.js",
+        "bytes": 372,
+        "sha256": "270bedd997a663588d7da0526b862810c1ab30e11977d0f20bc5eaccb1279983",
+        "anchors": [
+          {
+            "line": 12,
+            "fact": "Actualrenderer beforeEach cleanup"
+          }
+        ]
+      },
+      {
+        "path": "/workspace/cms-full-taxonomy-admin-ui/node_modules/@vitest/browser-playwright/dist/index.js",
+        "resolvedPath": "/workspace/cms-full-taxonomy-admin-ui/node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js",
+        "bytes": 35901,
+        "sha256": "84ad06effb3079eead564d7ebe5b420b3809b9159c77a02c872d3edd5b4d6715",
+        "anchors": [
+          {
+            "line": 881,
+            "fact": "provider retains supplied launchOptions"
+          },
+          {
+            "line": 941,
+            "fact": "provider invokes pinned official playwright browserlaunch"
+          }
+        ]
+      },
+      {
+        "path": "/workspace/cms-full-taxonomy-admin-ui/node_modules/.pnpm/@vitest+browser@4.1.10_vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0__vitest@4.1.10/node_modules/@vitest/browser/dist/index-D8jtZoIM.js",
+        "resolvedPath": "/workspace/cms-full-taxonomy-admin-ui/node_modules/.pnpm/@vitest+browser@4.1.10_vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0__vitest@4.1.10/node_modules/@vitest/browser/dist/index-D8jtZoIM.js",
+        "bytes": 87449,
+        "sha256": "24caf489236b9cea8374f75ca0e9f414fa15898f788fb3ba216ac585f007df58",
+        "anchors": [
+          {
+            "symbol": "Tr/processTimeoutOptions",
+            "fact": "Actual currenttask start+timeout\u2212performance.now(), floor, then\u2212100ms; doesnotrestartassertionbudget; explicittimeouts preserved"
+          },
+          {
+            "symbol": "zr/Locator.hover/findElement",
+            "fact": "ActualBrowserhover/pointeractions/readinesslookup, defaultretryintervals[0,20,50,100,100,500]"
+          }
+        ]
+      },
+      {
+        "path": "/workspace/cms-full-taxonomy-admin-ui/node_modules/.pnpm/@vitest+browser@4.1.10_vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0__vitest@4.1.10/node_modules/@vitest/browser/dist/expect-element.js",
+        "resolvedPath": "/workspace/cms-full-taxonomy-admin-ui/node_modules/.pnpm/@vitest+browser@4.1.10_vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0__vitest@4.1.10/node_modules/@vitest/browser/dist/expect-element.js",
+        "bytes": 46109,
+        "sha256": "bbc159a115bf6c5abff31fa7f3609124b2d1bff3652b4edfc3f0d6fe2a37e158",
+        "anchors": [
+          {
+            "symbol": "bn/expect.element",
+            "fact": "ActualBrowser expect.poll uses remainingcallbackbudget and interval50ms; defaulttimeouts Source-faithful"
+          }
+        ]
+      },
+      {
+        "path": "/workspace/cms-full-taxonomy-admin-ui/node_modules/.pnpm/playwright-core@1.63.0/node_modules/playwright-core/browsers.json",
+        "resolvedPath": "/workspace/cms-full-taxonomy-admin-ui/node_modules/.pnpm/playwright-core@1.63.0/node_modules/playwright-core/browsers.json",
+        "bytes": 1137,
+        "sha256": "545d52f8382c391e605562c330e9c1c534a16045898203037a49bb8bd769a946",
+        "anchors": [
+          {
+            "browser": "chromium",
+            "fact": "Installedofficialbrowserrevision1243"
+          }
+        ]
+      }
+    ],
+    "unchangedPublicPolicyAuthorities": [
+      {
+        "path": "package.json",
+        "bytes": 6947,
+        "sha256": "18cf46a791181ac8b3dfe96c15fb106620f7123c6759d31aa9b93ee9248ed60a",
+        "gitBlob": "3f599b33cd8aa56af73d1519e649a3b31a93be68",
+        "status": "unchanged actual publicB5"
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "bytes": 182736,
+        "sha256": "f4fbd56e8785ce120ae2e9038e0be1186412fc3f73ddcab523bcc22c0bb1aa96",
+        "gitBlob": "6ca4c12b8c5d592cbc123d0d7906082d055a7145",
+        "status": "unchanged actual publicB5"
+      },
+      {
+        "path": "vitest.bulk-taxonomy.config.ts",
+        "bytes": 2158,
+        "sha256": "c92297b938797359cf924bdfbe56e44062760e539ce8d369621c1100c50b0ccf",
+        "gitBlob": "aa4ad75dd80182812a62a0c19862e4b63840148c",
+        "status": "unchanged actual publicB5"
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 2854,
+        "sha256": "d8fccd1e4f657de0121544eb7ed87dc75be1468620db6bf2bcbf85c3aee8603a",
+        "gitBlob": "9f7ceb758e36b95992c71bd0d80c05ec1e3f70cf",
+        "status": "unchanged actual publicB5"
+      },
+      {
+        "path": "playwright.config.ts",
+        "bytes": 1312,
+        "sha256": "278e86276ac60e3f87e31096e52ccc7640bd5b764b592a9eed1b7f9ecc0a42a2",
+        "gitBlob": "75d0058385ab7c9f9049faf336c8c25ceff3c80b",
+        "status": "unchanged actual publicB5"
+      }
+    ],
+    "findingsClosure": [
+      {
+        "id": "TAUIREV01",
+        "closure": "ActualinstalledBrowser Locator.hover, no custommethod missing/no productstate changes"
+      },
+      {
+        "id": "TAUIREV02",
+        "closure": "ActualofficialChromium ClipboardEvent/DataTransfer eventconstructors; originalcallback-suppliedclipboardData retained"
+      },
+      {
+        "id": "TAUIREV03",
+        "closure": "WHOLESource renderhelper and actualinstalled renderer document.body/defaultportal scope, suppliedbaseElement/container honored"
+      },
+      {
+        "id": "TAUIREV04",
+        "closure": "ActualBrowser host original15000/30000 test/hook budgets and installedremainingtaskdeadline\u2212100/50poll; vi.waitFor1000/50 unchanged"
+      }
+    ],
+    "executionCredit": 0
+  },
+  "fixtureCorrectionHistory": {
+    "previousUnappliedR2": "/tmp/taxonomy-admin-ui-testfirst-r2/manifest.json",
+    "previousSourceCopies": 14,
+    "currentSourceCopies": 15,
+    "sourceTestBodyDataClocksChanges": 0,
+    "previousSourceFixedNodePolling": "UnexecutedR2proposal used Node5000/10000 and separate1000ms locator polling; independentreview rejectedfixtureequivalence; retainedhistory earns0execution/paritycredit",
+    "correctedSourceRuntime": "actual originalsecuredBrowser, no fakegeometry/taskdeadline transport",
+    "native4BodiesChanged": false
+  }
+}
