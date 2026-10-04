@@ -1,0 +1,23 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "authorBefore": "43e41e00",
+  "wholeFiles": 3,
+  "totalCases": 22,
+  "firstEightUnchanged": true,
+  "previousSixUnchanged": true,
+  "newCatalogCases": 8,
+  "assertionReds": 22,
+  "preAssertionFailures": 0,
+  "sourceCredit": 0,
+  "additionalObservations": [
+    "Logical sqlite_master name and bound tbl_name read actual catalog but return zero rows under current namespace.",
+    "Node sql.ref PRAGMA returns zero physical field rows; raw-D1 read-only PRAGMA is caught as unavailable and fails an explicit null-error expectation.",
+    "Source _emdash_% listTablesLike returns zero logical names despite physical Native catalog entries."
+  ],
+  "evidence": {
+    "path": "/tmp/source-seed-namespace-native-catalog-baseline-red.log",
+    "bytes": 13798,
+    "sha256": "56c8d1ac1c4bb9c93335e0296c0aa770c503419442b2c4423197824ae0879f4e"
+  },
+  "decision": "Production namespace/canonical boundary unchanged. Candidate catalogue projection, identifier references and statement-template values await finite qualification. Native name/data/avatar/roles split profiles remain unimplemented as Source users semantics."
+}
