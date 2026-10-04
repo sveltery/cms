@@ -189,12 +189,38 @@
       "replace only ES256 encode expression; algorithm/type/curve/registration/credential and RSA behavior unchanged"
     ]
   },
-  "fixedHelperExecuted": false,
+  "fixedHelperExecuted": true,
   "specificDifferenceAcceptance": "Root SEC1-01 development decision after actual seventeen-byte-case baseline; final PR approval pending",
   "sourceIssue": "https://github.com/sveltery/cms/issues/93",
   "pullRequest": "not yet created",
   "landed": false,
   "newCopiedSourceParityCredit": 0,
   "earlierCiFailureCausalCredit": 0,
-  "implementationApplied": true
+  "implementationApplied": true,
+  "greenRuns": [
+    {
+      "kind": "fix",
+      "command": "node --test tests/sec1-coordinate-codec.test.ts",
+      "exitCode": 0,
+      "tests": 17,
+      "pass": 17,
+      "failCancelSkipTodo": 0,
+      "bytes": 1481,
+      "sha256": "0ef8a29a5d5cf3fc956e29ec63f3623fe70f6a3071a468e08351e406e7d9beef",
+      "log": "docs/sec1-coordinate-codec-evidence/native-seventeen-fix-green.log"
+    },
+    {
+      "kind": "refactor",
+      "command": "node --test tests/sec1-coordinate-codec.test.ts",
+      "exitCode": 0,
+      "tests": 17,
+      "pass": 17,
+      "failCancelSkipTodo": 0,
+      "bytes": 1482,
+      "sha256": "3c60f650a3662658db9f23e29baba62f4b0c10bc9e69dddf1f9f293b9d1b9eac",
+      "log": "docs/sec1-coordinate-codec-evidence/native-seventeen-refactor-green.log"
+    }
+  ],
+  "refactor": "Private coordinate writer replaces paired offset arithmetic; same unchanged Native17 cases pass, no copied Source assertion changed.",
+  "currentHelperSha256": "26426ee18635e5a4e4c72a1aaf25b6aa08264a87153412c8901e6711e065b4b6"
 }
