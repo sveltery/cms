@@ -1900,3 +1900,9 @@ checks and closure are audited externally against their actual commit, without a
 self-referential future-head claim in this snapshot. Full scheduler/heartbeat,
 full Source users/CLI/PAT, remote D1 and general migration-runner parity remain
 unfinished. No new CLI/auth/HTTP probe or private provider is introduced.
+
+### Standard collection-index test-first contracts
+
+Three supplementary Native callbacks now exercise the actual public15 migrations, Native SchemaRegistry and real Node SQLite: the complete Source sixteen-index catalogue, active case-folded translation-group uniqueness with nullable/trash controls, and an actual group/locale EXPLAIN lookup without ANALYZE. These are behavioral requirements against real created tables, not helper implementation tests or fabricated query/catalogue rows. They have not run at this test-first checkpoint. Original Source11/242/442 bodies/data/clocks remain unchanged; no copied Source-family credit is claimed. Four additional original Source index integration families remain audited and unexecuted.
+
+The fourteen missing new-table indexes must reuse the existing deleted-status and primary-byline producers. Shared registry/marker-guard/canonical ownership runtime integration requires finite Root qualification. Existing-data forward installation is separately incomplete: Source080 repairs duplicate active case-folded groups and copies their taxonomy links before installing uniqueness; index-only backfill would not preserve that behavior. The actual public Main15/Doctor prerequisite was adopted in an ordinary merge, preserving the whole prior compatibility prefix and all public appended sections. No private Search/Tax candidate, new provider or auth/race probe was adopted.
