@@ -70,10 +70,10 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     if(value.version!==item.version||value.updatedAt!==item.updatedAt)throw new CmsError('CONFLICT');
   }
   async function definition(type:string) {const value=await registry.getCollectionWithFields(type);if(!value)throw new CmsError('NOT_FOUND');return value;}
-  async function stored(value:ContentKey) {
+  async function stored(value:ContentKey,inferLocale=false) {
     await definition(value.type);
     const item=await content.findById(value.type,value.id);
-    if(!item||item.locale!==(value.locale??'en'))throw new CmsError('NOT_FOUND');return item;
+    if(!item||(!inferLocale&&item.locale!==(value.locale??'en')))throw new CmsError('NOT_FOUND');return item;
   }
   function owner(item:ContentItem,actor:NonNullable<typeof identity>,any:string) {
     if(!actor.permissions.has(any)&&item.authorId!==actor.id)throw new CmsError('FORBIDDEN');
@@ -203,14 +203,10 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     },
     async getContent(input:unknown,options:{inferLocale?:boolean}={}):Promise<ContentItem> {
       requirePermission('content:read');requirePermission('content:read_drafts');
-      const value=key(input);
-      // Trusted Source-shaped constructor hosts may infer an omitted locale.
-      // The same actual content owner performs the read after authorization.
-      if(options.inferLocale&&object(input).locale===undefined){
-        await definition(value.type);const item=await content.findById(value.type,value.id);
-        if(!item)throw new CmsError('NOT_FOUND');return hydrate(item);
-      }
-      return hydrate(await stored(value));
+      // Only the trusted constructor host opts into omitted-locale inference;
+      // all callers share the same actual definition/read/not-found owner.
+      const inferLocale=options.inferLocale===true&&object(input).locale===undefined;
+      return hydrate(await stored(key(input),inferLocale));
     },
     async listContent(input:unknown) {
       requirePermission('content:read');requirePermission('content:read_drafts');const value=object(input);
