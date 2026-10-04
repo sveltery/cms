@@ -11,5 +11,5 @@ export async function parseApiResponse<T>(response: Response, fallback: string):
   return body.data;
 }
 export async function fetchManifest() {
-  return parseApiResponse(await apiFetch('/_emdash/api/manifest'), 'Failed to fetch manifest');
+  return parseApiResponse<{ admin?: { logo?: string; siteName?: string } }>(await apiFetch('/_emdash/api/manifest'), 'Failed to fetch manifest');
 }
