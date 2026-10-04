@@ -183,6 +183,15 @@ test('doctor reports JSONC locations and does not print configuration values', a
   assert.doesNotMatch(result.stdout + result.stderr, /do-not-print-this/);
 });
 
+test('doctor reports TOML locations without including configuration source excerpts', async t => {
+  const cwd = await directory(t);
+  await writeFile(join(cwd, 'wrangler.toml'), 'main = "do-not-print-this" BROKEN');
+  const result = invoke(cwd, '--json');
+  const results = checks(result);
+  assert.match(results.find(r => r.name === 'scheduler config')!.message, /line 1, column 28/);
+  assert.doesNotMatch(result.stdout + result.stderr, /do-not-print-this/);
+});
+
 test('doctor accepts explicit database paths and prints native human-readable summaries', async t => {
   const cwd = await directory(t);
   const result = invoke(cwd, '-d', 'selected.sqlite');
