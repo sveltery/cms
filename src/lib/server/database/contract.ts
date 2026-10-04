@@ -2,12 +2,15 @@ import type { ContentValidationIssue } from '../schema/validate-content.ts';
 import type { FieldType, ColumnType, FieldValidation, CollectionSupport, CollectionSource, CollectionAdminConfig, FieldWidgetOptions } from '../schema/types.ts';
 import type { AuthIdentityTables } from '../auth/identity-migrations.ts';
 import type { AuthTables } from '../auth/schema.ts';
+import type { OptionTable, PluginStorageTable, PluginStateTable, PluginIndexTable, TaxonomyTable,
+  ContentTaxonomyTable, TaxonomyDefTable, TaxonomyDefGroupTable } from '../canonical-storage/types.ts';
 import type { CompiledQuery, Kysely, QueryResult } from 'kysely';
 
 export interface CollectionRow {
   id: string; slug: string; label: string; label_singular: string | null;
   description: string | null; supports: string; source: string;
   version: number; created_at: string; updated_at: string;
+  search_config?: string | null;
   icon?: string | null; admin_config?: string | null; has_seo?: number; title_field?: string | null;
   date_field?: string | null; url_pattern?: string | null; routable?: number; hidden?: number;
   sort_order?: number | null; nav_group?: string | null; comments_enabled?: number;
@@ -25,6 +28,14 @@ export interface CmsTables extends AuthTables, AuthIdentityTables {
   _cms_fields: FieldRow;
   _cms_migrations: { version: number };
   _cms_guards: { token: string; pass: number };
+  _cms_options: OptionTable;
+  _cms_plugin_storage: PluginStorageTable;
+  _cms_plugin_state: PluginStateTable;
+  _cms_plugin_indexes: PluginIndexTable;
+  _cms_taxonomies: TaxonomyTable;
+  _cms_content_taxonomies: ContentTaxonomyTable;
+  _cms_taxonomy_defs: TaxonomyDefTable;
+  _cms_taxonomy_def_groups: TaxonomyDefGroupTable;
 }
 
 /**

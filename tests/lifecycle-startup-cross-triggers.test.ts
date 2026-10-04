@@ -3,6 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { sql } from 'kysely';
 import { migrateCms } from '../src/lib/server/database/migrations.ts';
+import { assertCanonicalTriggerExtension } from './helpers/canonical-installation/triggers.ts';
 import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
 import { schemaAdminStorage } from './helpers/schema-admin-storage.ts';
 import { databaseSnapshot, installVersion4, legacyContentSql } from './helpers/lifecycle-startup.ts';
@@ -37,7 +38,7 @@ for (const target of ['Node','D1'] as const) {
 
         await assert.doesNotReject(()=>migrateCms(database));
         const after=await databaseSnapshot(database);
-        assert.deepEqual(after.objects.filter(row=>row.type==='trigger'),before.objects.filter(row=>row.type==='trigger'));
+        await assertCanonicalTriggerExtension(database,before.objects,after.objects);
         for (const name of ['ec_a','ec_b']) {
           const withoutByline=(rows:unknown[]|undefined)=>rows?.map(row=>{
             const retained={...(row as Record<string,unknown>)}; delete retained.primary_byline_id; return retained;
