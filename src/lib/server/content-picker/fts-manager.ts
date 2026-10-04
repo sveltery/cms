@@ -179,11 +179,17 @@ export class FTSManager {
 		this.validateInputs(collectionSlug);
 		const ftsTable = this.getFtsTableName(collectionSlug);
 		return [
-			sql.raw(`DROP TRIGGER IF EXISTS "${ftsTable}_insert"`).compile(this.db),
-			sql.raw(`DROP TRIGGER IF EXISTS "${ftsTable}_update"`).compile(this.db),
-			sql.raw(`DROP TRIGGER IF EXISTS "${ftsTable}_delete"`).compile(this.db),
+			...this.dropTriggerStatements(collectionSlug),
 			sql.raw(`DROP TABLE IF EXISTS "${ftsTable}"`).compile(this.db)
 		];
+	}
+
+	/** Shared trigger order for direct rebuilds and atomic schema batches. */
+	private dropTriggerStatements(collectionSlug: string): CompiledQuery[] {
+		this.validateInputs(collectionSlug);
+		const ftsTable = this.getFtsTableName(collectionSlug);
+		return ["insert", "update", "delete"].map(suffix =>
+			sql.raw(`DROP TRIGGER IF EXISTS "${ftsTable}_${suffix}"`).compile(this.db));
 	}
 
 	/**
@@ -414,12 +420,9 @@ export class FTSManager {
 	 * Drop triggers for a collection
 	 */
 	private async dropTriggers(collectionSlug: string): Promise<void> {
-		this.validateInputs(collectionSlug);
-		const ftsTable = this.getFtsTableName(collectionSlug);
-
-		await sql.raw(`DROP TRIGGER IF EXISTS "${ftsTable}_insert"`).execute(this.db);
-		await sql.raw(`DROP TRIGGER IF EXISTS "${ftsTable}_update"`).execute(this.db);
-		await sql.raw(`DROP TRIGGER IF EXISTS "${ftsTable}_delete"`).execute(this.db);
+		for (const statement of this.dropTriggerStatements(collectionSlug)) {
+			await this.db.executeQuery(statement);
+		}
 	}
 
 	/**
