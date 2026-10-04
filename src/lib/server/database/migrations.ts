@@ -10,6 +10,7 @@ import { taxonomyMigration } from './taxonomy-migrations.ts';
 import { metadataFidelityMigration } from './metadata-fidelity-migrations.ts';
 import { migrationObjects, normalizeMigrationSql, type CmsMigrationProvider } from './migration-provider.ts';
 import { guardLifecycleIndexRepair, lifecycleMigration } from './lifecycle-migrations.ts';
+import { currentContentObjects, guardCurrentContentIndexRepair } from './content-recognition.ts';
 import { ftsMetadataGuard, recognizeCompanionNamedFtsOwner, recognizeVersionedFtsOwner, type FtsCatalogueObject, type ReadOnlyOwnershipGuard, type RecognizedFtsOwner } from '../search/fts-ownership.ts';
 
 function foundationStatements(database: CmsDatabase): CompiledQuery[] {
@@ -222,7 +223,10 @@ async function migrationState(database: CmsDatabase): Promise<ValidatedMigration
   const managed=await managedFtsOwners(database,rows,candidates);
   for (const provider of CMS_MIGRATIONS) {
     if (provider.version>version) continue;
-    const descriptors = await provider.expectedObjects(database,version);
+    // Current recognition supersedes only dynamic content descriptors. Frozen provider DDL stays exact.
+    const descriptors = provider === lifecycleMigration && version >= 8
+      ? [...staticObjects.get(provider)!, ...await currentContentObjects(database)]
+      : await provider.expectedObjects(database,version);
     for (const object of descriptors) {
       owned.add(object.name.toLowerCase());
       expected.set(object.name,object);
@@ -241,7 +245,7 @@ function prerequisiteRace(message: string | null | undefined) {
 async function installIndexes(database: CmsDatabase, state: ValidatedMigrationState) {
   const statements = await pendingTrashIndexStatements(database);
   if (!statements.length) return;
-  const guarded=await guardLifecycleIndexRepair(database,statements);
+  const guarded=await (state.version >= 8 ? guardCurrentContentIndexRepair : guardLifecycleIndexRepair)(database,statements);
   try { await database.atomicBatch([state.prerequisiteGuard,...guarded]); }
   catch (cause) {
     const message=sqliteErrorMessage(cause);
@@ -286,7 +290,7 @@ export async function migrateCms(database: CmsDatabase): Promise<void> {
   // metadata. Keep its exact content/field prerequisite guard before all
   // startup writes, as latest trash-index repair already does.
   const guarded = state >= 5 ? [validated.prerequisiteGuard,
-    ...await guardLifecycleIndexRepair(database, statements.slice(1))] : statements;
+    ...await (state >= 8 ? guardCurrentContentIndexRepair : guardLifecycleIndexRepair)(database, statements.slice(1))] : statements;
   try { await database.atomicBatch(guarded); }
   catch (cause) {
     const message = sqliteErrorMessage(cause);
