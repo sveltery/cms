@@ -22,7 +22,7 @@ beforeEach(async () => {
 afterEach(async () => { await database?.close(); });
 
 async function contentRows() {
-  return (await sql`SELECT * FROM ec_posts ORDER BY id`.execute(database.db)).rows;
+  return (await sql<Record<string,unknown>>`SELECT * FROM ec_posts ORDER BY id`.execute(database.db)).rows;
 }
 async function assignments() {
   return (await sql`SELECT collection,entry_id,taxonomy_id FROM _cms_content_taxonomies
