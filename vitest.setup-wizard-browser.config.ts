@@ -9,15 +9,16 @@ export default defineConfig({
   plugins: [svelte({ configFile: false }), {
     name: 'whole-setup-wizard-native-mount', enforce: 'pre',
     resolveId(id, importer) {
-      if (id === '$lib/auth.remote') return resolve(root, 'tests/helpers/setup-wizard/baseline-auth-remote.ts');
-      if (id.startsWith('$lib/')) return resolve(root, 'src/lib', id.slice(5));
       if (!importer?.startsWith(frozen) || !id.startsWith('.')) return;
       const target = resolve(dirname(importer), id).replace(/\.(tsx?|js)$/, '');
       if (target === resolve(frozen, 'src/components/SetupWizard')) return resolve(root, 'tests/helpers/setup-wizard/browser-react.tsx');
       if (target === resolve(frozen, 'src/lib/api/client')) return resolve(root, 'tests/helpers/setup-wizard/source-client.ts');
     }
   }],
-  resolve: { conditions: ['browser'], dedupe: ['react', 'react-dom'] },
+  resolve: { conditions: ['browser'], dedupe: ['react', 'react-dom'], alias: [
+    { find: '$lib/auth.remote', replacement: resolve(root, 'tests/helpers/setup-wizard/baseline-auth-remote.ts') },
+    { find: '$lib', replacement: resolve(root, 'src/lib') }
+  ] },
   oxc: { jsx: { runtime: 'automatic' } },
   test: {
     globals: true, fileParallelism: false,
