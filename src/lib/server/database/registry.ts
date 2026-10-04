@@ -8,6 +8,7 @@ import { FIELD_TYPE_TO_COLUMN, FIELD_TYPES, REPEATER_SUB_FIELD_TYPES, isIndexabl
 import { fieldEditInput } from './field-edit-validation.ts';
 
 export const MAX_COLLECTIONS = 100;
+/** Historical supplemental fixture width; no longer a schema or read limit. */
 export const MAX_FIELDS = 32;
 const fieldMax = (input: { type: string; validation?: { maxLength?: number } | null }) =>
   Math.min(input.validation?.maxLength ?? (input.type === 'string' ? 200 : 100_000), 100_000);
@@ -99,7 +100,7 @@ export class SchemaRegistry {
   }
   async listFields(collectionId: string): Promise<Field[]> {
     const rows = await this.database.db.selectFrom('_cms_fields').selectAll().where('collection_id', '=', collectionId)
-      .orderBy('sort_order').orderBy('id').limit(MAX_FIELDS).execute();
+      .orderBy('sort_order').orderBy('id').execute();
     return rows.map(field);
   }
   async getField(collectionSlug: unknown, fieldSlug: unknown): Promise<Field | null> {
@@ -222,6 +223,78 @@ export class SchemaRegistry {
     return (await this.getCollection(value.slug))!;
   }
 
+  /**
+   * Native physical-schema prerequisite for Source seed creation.
+   * Source registry.ts:640 bulk table/field creation adapted to atomicBatch.
+   * This does not declare media-usage capture ready. The complete Source seed
+   * provider must separately install the actual capture lifecycle before use.
+   */
+  async createSeedCollectionSchema(input: unknown, fields: readonly unknown[]): Promise<void> {
+    const value = parse(collectionInput, { ...input as object, source: 'seed' });
+    if (reservedCollections.includes(value.slug)) throw new CmsError('RESERVED_SLUG');
+    const definitions = fields.map(input => parse(fieldInput, input));
+    const slugs = new Set<string>();
+    for (const field of definitions) {
+      if (reservedFields.includes(field.slug)) throw new CmsError('RESERVED_SLUG');
+      if (slugs.has(field.slug)) throw new CmsError('FIELD_EXISTS');
+      slugs.add(field.slug);
+      if (field.indexed && !isIndexableFieldType(field.type)) throw new CmsError('FIELD_NOT_INDEXABLE');
+      if (field.type === 'blocks') throw new CmsError('UNSUPPORTED_FIELD_TYPE', 'Seed blocks require the canonical block-type registry');
+      const maximum = fieldMax(field), minimum = field.validation?.minLength ?? 0;
+      if (minimum > maximum || typeof field.defaultValue === 'string' &&
+        (field.defaultValue.length < minimum || field.defaultValue.length > maximum || field.defaultValue.includes('\0'))) throw new CmsError('VALIDATION_ERROR');
+    }
+    if (await this.getCollection(value.slug)) throw new CmsError('COLLECTION_EXISTS');
+    const db = this.database.db, name = tableName(value.slug), id = ulid(), token = ulid();
+    const exists = await sql`SELECT name FROM sqlite_master WHERE type = 'table' AND name = ${name}`.execute(db);
+    if (exists.rows.length) throw new CmsError('COLLECTION_TABLE_ORPHANED');
+    const now = new Date().toISOString();
+    let maxSortOrder = -1;
+    const rows: FieldRow[] = definitions.map(field => {
+      const sortOrder = field.sortOrder ?? maxSortOrder + 1;
+      maxSortOrder = Math.max(maxSortOrder, sortOrder);
+      return { id: ulid(), collection_id: id, slug: field.slug, label: field.label, type: field.type,
+        column_type: FIELD_TYPE_TO_COLUMN[field.type], required: Number(field.required), unique: Number(field.unique),
+        default_value: field.defaultValue === undefined ? null : JSON.stringify(field.defaultValue),
+        validation: field.validation ? JSON.stringify(field.validation) : null, widget: field.widget ?? null,
+        options: field.options ? JSON.stringify(field.options) : null, sort_order: sortOrder,
+        searchable: Number(field.searchable ?? false), indexed: Number(field.indexed ?? false),
+        translatable: Number(field.translatable !== false), created_at: now };
+    });
+    const columns = definitions.filter(field => !isStoragelessField(field)).map(field =>
+      sql`${sql.ref(field.slug)} ${sql.raw(FIELD_TYPE_TO_COLUMN[field.type])} ${field.required ?
+        sql`NOT NULL DEFAULT ${sql.raw(formatFieldDefault(field.defaultValue, field.type))}` : sql``}`);
+    const statements: CompiledQuery[] = [
+      sql`INSERT INTO _cms_guards(token, pass) SELECT ${token},
+        CASE WHEN (SELECT COUNT(*) FROM _cms_collections) < ${MAX_COLLECTIONS} THEN 1 ELSE 0 END`.compile(db),
+      db.insertInto('_cms_collections').values({ id, slug: value.slug, label: value.label,
+        label_singular: value.labelSingular ?? null, description: value.description ?? null,
+        supports: JSON.stringify(value.supports ?? ['drafts', 'revisions']), source: 'seed',
+        version: 1, created_at: now, updated_at: now,
+        ...(value.hasSeo === undefined && value.supports?.includes('seo') ? { has_seo: 1 } : {}),
+        ...Object.fromEntries(Object.entries(collectionMetadataColumns).flatMap(([key,column]) => {
+          const item = value[key as keyof typeof value];
+          return item === undefined ? [] : [[column,typeof item === 'boolean' ? Number(item) : item === '' ? null : item]];
+        })), ...(value.admin === undefined ? {} : { admin_config: JSON.stringify(value.admin) }) }).compile(),
+      sql`CREATE TABLE ${sql.ref(name)} (
+        id TEXT PRIMARY KEY NOT NULL, slug TEXT, status TEXT NOT NULL DEFAULT 'draft',
+        author_id TEXT, primary_byline_id TEXT, created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+        updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+        published_at TEXT, scheduled_at TEXT, deleted_at TEXT, version INTEGER NOT NULL DEFAULT 1 CHECK(version > 0),
+        live_revision_id TEXT, draft_revision_id TEXT, locale TEXT NOT NULL DEFAULT 'en', translation_group TEXT,
+        ${columns.length ? sql`${sql.join(columns)},` : sql``} UNIQUE(slug, locale)
+      )`.compile(db),
+      db.schema.createIndex('idx_' + name + '_draft_list').on(name).columns(['locale', 'deleted_at', 'created_at', 'id']).compile(),
+      trashIndexStatement(this.database, value.slug)
+    ];
+    // Every metadata row has 19 bindings. Five rows use95, within raw D1's100.
+    for (let offset = 0; offset < rows.length; offset += 5) statements.push(
+      db.insertInto('_cms_fields').values(rows.slice(offset, offset + 5)).compile());
+    for (const field of rows) if (field.indexed) statements.push(...this.fieldIndexStatements(value.slug, field.id, field.slug));
+    statements.push(sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db));
+    await this.batch(statements, 'LIMIT_EXCEEDED');
+  }
+
   async createField(collectionSlug: unknown, input: unknown, expectedSchemaVersion?: number): Promise<Field> {
     const value = parse(fieldInput, input);
     if (reservedFields.includes(value.slug)) throw new CmsError('RESERVED_SLUG');
@@ -239,7 +312,6 @@ export class SchemaRegistry {
     const id = ulid();
     const name = tableName(definition.slug);
     const fields = await this.listFields(definition.id);
-    if (fields.length >= MAX_FIELDS) throw new CmsError('LIMIT_EXCEEDED');
     if(value.indexed && !isIndexableFieldType(value.type)) throw new CmsError('FIELD_NOT_INDEXABLE');
     const columnType = FIELD_TYPE_TO_COLUMN[value.type];
     const column = sql`ALTER TABLE ${sql.ref(name)} ADD COLUMN ${sql.ref(value.slug)} ${sql.raw(columnType)}
@@ -248,7 +320,6 @@ export class SchemaRegistry {
     const statements: CompiledQuery[] = [
       sql`INSERT INTO _cms_guards(token, pass) SELECT ${token},
         CASE WHEN EXISTS (SELECT 1 FROM _cms_collections WHERE id = ${definition.id} AND version = ${definition.version})
-        AND (SELECT COUNT(*) FROM _cms_fields WHERE collection_id = ${definition.id}) < ${MAX_FIELDS}
         THEN 1 ELSE 0 END`.compile(db),
       ...(isStoragelessField(value) ? [] : [column.compile(db)]),
       db.insertInto('_cms_fields').values({

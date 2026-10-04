@@ -121,14 +121,18 @@ for (const target of ['Node', 'D1'] as const) {
     } finally { await local.close(); }
   });
 
-  test(`${target} supplemental: each collection retains its 32-field cap, including ignored malformed rows`, { timeout: 30000 }, async () => {
+  test(`${target} supplemental: each collection reads every field and rejects malformed persisted rows`, { timeout: 30000 }, async () => {
     const local = await fixture(target);
     try {
       await seed(local.database, 2, MAX_FIELDS + 2);
       await sql`UPDATE _cms_fields SET validation = 'malformed', default_value = 'malformed' WHERE sort_order >= ${MAX_FIELDS / 2}`.execute(local.database.db);
+      await assert.rejects(() => editorManifest(local.observed, author), SyntaxError);
+      await assert.rejects(() => previousProjection(local.database), SyntaxError);
+      await local.database.db.updateTable('_cms_fields').set({ validation: null, default_value: null }).execute();
+      local.queries.length = 0;
       const manifest = await editorManifest(local.observed, author);
       assert.equal(local.queries.length, 2);
-      for (const collection of Object.values(manifest.collections)) assert.equal(Object.keys(collection.fields).length, MAX_FIELDS);
+      for (const collection of Object.values(manifest.collections)) assert.equal(Object.keys(collection.fields).length, MAX_FIELDS + 2);
       assert.equal(JSON.stringify(manifest), JSON.stringify(await previousProjection(local.database)));
       await local.database.db.updateTable('_cms_fields').set({ validation: 'malformed' }).where('slug', '=', 'field_000').execute();
       await assert.rejects(() => editorManifest(local.observed, author), SyntaxError);
