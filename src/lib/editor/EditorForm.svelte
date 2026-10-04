@@ -52,11 +52,11 @@
   beforeNavigate(navigation => {
     // The inline new editor is present on every collection visit. Preserve
     // Source's new-entry Save state while warning only after values change.
-    if ((session.changed || pending) && !window.confirm('You have unsaved changes. Leave this page?')) navigation.cancel();
+    if (((dirty && session.changed) || pending) && !window.confirm('You have unsaved changes. Leave this page?')) navigation.cancel();
   });
   onMount(() => {
     const warn = (event: BeforeUnloadEvent) => {
-      if (session.changed || session.pending) { event.preventDefault(); event.returnValue = ''; }
+      if ((dirty && session.changed) || session.pending) { event.preventDefault(); event.returnValue = ''; }
     };
     window.addEventListener('beforeunload', warn);
     return () => window.removeEventListener('beforeunload', warn);
