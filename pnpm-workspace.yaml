@@ -4,3 +4,5 @@ allowBuilds:
   workerd: false
 minimumReleaseAgeExclude:
   - vite@8.3.2
+patchedDependencies:
+  image-size@2.0.2: patches/image-size@2.0.2.patch

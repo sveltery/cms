@@ -32,7 +32,7 @@ test('anonymous scoped D1 redirects retain deferred hits and deduplicated misses
     const initial = event('/');
     await runtime.handle({ event: initial, resolve: async () => new Response('page') });
     const base = initial.locals.cms!.database;
-    await installRedirectTables(base.db as unknown as Kysely<unknown>);
+    // The ordinary configured runtime already installed the real latest schema.
     const db = base.db.withTables<{ [Name in keyof Database]: Database[Name] }>().$pickTables<keyof Database>();
     const repo = new RedirectRepository(db);
     const rule = await repo.create({ source: '/old', destination: '/new', type: 308 });

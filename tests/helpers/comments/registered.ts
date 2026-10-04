@@ -9,8 +9,6 @@ import { cmsService } from '../../../src/lib/server/database/service.ts';
 import { lifecycleService } from '../../../src/lib/server/database/lifecycle/service.ts';
 import { createCmsHandle } from '../../../src/lib/server/auth/composition.ts';
 import { hashSessionToken } from '../../../src/lib/server/auth/session.ts';
-import { commentSchemaStatements } from '../../../src/lib/server/comments/migrations.ts';
-import { commentRuntimeSchemaStatements } from '../../../src/lib/server/comments/runtime-migrations.ts';
 import { asyncD1Storage } from '../async-d1-storage.ts';
 import type { Handle } from '@sveltejs/kit';
 
@@ -33,7 +31,6 @@ export async function registeredComments(target: 'Node SQLite' | 'raw D1') {
  await lifecycleService(database, { id: 'comments-admin', permissions: ['content:publish_any'] }).publish({ type: 'post', id: content.id });
  await sql`UPDATE _cms_collections SET comments_enabled = 1, comments_moderation = 'first_time',
    comments_closed_after_days = 90, comments_auto_approve_users = 1 WHERE slug = 'post'`.execute(database.db);
- await database.atomicBatch([...commentSchemaStatements(database.db), ...commentRuntimeSchemaStatements(database.db)]);
  const built = (file: string) => import(new URL(`../../../.svelte-kit/output/server/${file}`, import.meta.url).href);
  const { manifest } = await built('manifest.js');
  const { Server } = await built('index.js');

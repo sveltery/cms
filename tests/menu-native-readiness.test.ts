@@ -4,7 +4,7 @@ import { sql } from 'kysely';
 import { Miniflare } from 'miniflare';
 import { openSqlite } from '../src/lib/server/database/sqlite.ts';
 import { openD1 } from '../src/lib/server/database/d1.ts';
-import { migrateCms } from '../src/lib/server/database/migrations.ts';
+import { installHistoricalCanonical8 } from './helpers/historical-canonical5.ts';
 import { menuSchemaStatements } from '../src/lib/server/menus/migrations.ts';
 import { menuStorageReady } from '../src/lib/server/menus/readiness.ts';
 
@@ -18,7 +18,7 @@ for (const backend of ['node', 'd1'] as const) {
       d1Databases: { CMS_DB: 'cms-menu-readiness-fixture' }, cf: false });
     const storage = worker ? openD1(await worker.getD1Database('CMS_DB')) : openSqlite(':memory:');
     try {
-      await migrateCms(storage);
+      await installHistoricalCanonical8(storage);
       const before = (await sql`SELECT name, type, sql FROM sqlite_master ORDER BY name`.execute(storage.db)).rows;
       assert.equal(await menuStorageReady(storage), false);
       assert.deepEqual((await sql`SELECT name, type, sql FROM sqlite_master ORDER BY name`.execute(storage.db)).rows, before);
@@ -57,7 +57,7 @@ for (const backend of ['node', 'd1'] as const) {
         d1Databases: { CMS_DB: `cms-menu-readiness-literal-${index}` }, cf: false });
       const storage = worker ? openD1(await worker.getD1Database('CMS_DB')) : openSqlite(':memory:');
       try {
-        await migrateCms(storage);
+        await installHistoricalCanonical8(storage);
         await storage.atomicBatch(menuSchemaStatements(storage, literal.actual));
         const before = (await sql`SELECT name, type, sql FROM sqlite_master ORDER BY name`.execute(storage.db)).rows;
         assert.equal(await menuStorageReady(storage, literal.expected), false);
@@ -79,7 +79,7 @@ for (const backend of ['node', 'd1'] as const) {
       d1Databases: { CMS_DB: 'cms-menu-readiness-timestamp-literal' }, cf: false });
     const storage = worker ? openD1(await worker.getD1Database('CMS_DB')) : openSqlite(':memory:');
     try {
-      await migrateCms(storage);
+      await installHistoricalCanonical8(storage);
       const wrongDefaults = menuSchemaStatements(storage).map(statement =>
         sql.raw(statement.sql.replaceAll('DEFAULT CURRENT_TIMESTAMP', 'DEFAULT "CURRENT_TIMESTAMP"')).compile(storage.db));
       await storage.atomicBatch(wrongDefaults);
