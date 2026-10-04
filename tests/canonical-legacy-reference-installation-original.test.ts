@@ -77,7 +77,7 @@ for (const mode of ['Node', 'raw D1', 'scoped D1'] as const) {
       assert.equal(relation.id, field.id); assert.equal(relation.max_children_per_parent, 1);
       const edges = (await sql<{ parent_group: string; child_group: string; sort_order: number }>`
         SELECT parent_group,child_group,sort_order FROM _cms_content_references WHERE relation_id=${field.id}`.execute(f.database.db)).rows;
-      assert.deepEqual(edges, [{ parent_group: postGroup, child_group: authorGroup, sort_order: 0 }]);
+      assert.deepEqual(edges.map(row=>({...row})), [{ parent_group: postGroup, child_group: authorGroup, sort_order: 0 }]);
       const retained = (await sql<{ author: string }>`SELECT author FROM ec_posts WHERE id=${post.id}`.execute(f.database.db)).rows[0];
       assert.equal(retained.author, author.id);
       await migrateCms(f.database);

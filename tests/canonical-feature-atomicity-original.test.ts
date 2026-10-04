@@ -40,13 +40,13 @@ for (const mode of ['Node', 'raw D1', 'scoped D1'] as const) {
       assert.deepEqual(await markers(fixture.database), markers14);
       assert.deepEqual(await operatorObjects(fixture.database), beforeObjects);
       assert.deepEqual((await sql`SELECT * FROM ec_posts WHERE id=${post.id}`.execute(fixture.database.db)).rows, beforeContent);
-      assert.deepEqual((await sql`SELECT note FROM operator_notes`.execute(fixture.database.db)).rows, [{ note: 'operator-retained' }]);
+      assert.deepEqual((await sql<{ note: string }>`SELECT note FROM operator_notes`.execute(fixture.database.db)).rows.map(row=>({...row})), [{ note: 'operator-retained' }]);
       await fixture.reopen(); await migrateCms(fixture.database);
       assert.deepEqual(await markers(fixture.database), markers14);
       assert.deepEqual(await operatorObjects(fixture.database), beforeObjects);
       assert.deepEqual((await sql`SELECT * FROM ec_posts WHERE id=${post.id}`.execute(fixture.database.db)).rows, beforeContent);
       await sql`INSERT INTO operator_notes VALUES ('reopened')`.execute(fixture.database.db);
-      assert.deepEqual((await sql`SELECT note FROM operator_notes ORDER BY rowid`.execute(fixture.database.db)).rows,
+      assert.deepEqual((await sql<{ note: string }>`SELECT note FROM operator_notes ORDER BY rowid`.execute(fixture.database.db)).rows.map(row=>({...row})),
         [{ note: 'operator-retained' }, { note: 'operator-reopened' }]);
     } finally { await fixture.close(); }
   });
@@ -95,7 +95,7 @@ for (const mode of ['Node', 'raw D1', 'scoped D1'] as const) {
         assert.deepEqual(await databaseSnapshot(fixture.database), before);
         await migrateCms(fixture.database);
         assert.deepEqual(await markers(fixture.database), markers14);
-        assert.deepEqual((await sql`SELECT note FROM operator_notes`.execute(fixture.database.db)).rows, [{ note: 'outside-CMS' }]);
+        assert.deepEqual((await sql<{ note: string }>`SELECT note FROM operator_notes`.execute(fixture.database.db)).rows.map(row=>({...row})), [{ note: 'outside-CMS' }]);
       } finally { await fixture.close(); }
     });
   }

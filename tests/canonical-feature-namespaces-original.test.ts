@@ -50,7 +50,7 @@ for (const mode of ['Node', 'raw D1', 'scoped D1'] as const) {
       assert.equal(response.status, 200);
       const options = (await sql<{ name: string; value: string }>`SELECT name,value FROM _cms_options WHERE name='_redirect_loop_ids'`
         .execute(fixture.database.db)).rows;
-      assert.deepEqual(options, [{ name: '_redirect_loop_ids', value: '[]' }]);
+      assert.deepEqual(options.map(row=>({...row})), [{ name: '_redirect_loop_ids', value: '[]' }]);
       assert.deepEqual((await sql`SELECT name FROM sqlite_master WHERE name='options'`.execute(fixture.database.db)).rows, []);
     } finally { await fixture.close(); }
   });

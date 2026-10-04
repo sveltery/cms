@@ -15,8 +15,8 @@ for (const mode of ['Node', 'raw D1', 'scoped D1'] as const) {
       await new SchemaRegistry(fixture.database).createCollection({ slug: 'posts', label: 'Posts' });
       await migrateCms(fixture.database);
       const expected = { name: 'idx_ec_posts_primary_byline', type: 'index', tbl_name: 'ec_posts' };
-      assert.deepEqual((await sql`SELECT name,type,tbl_name FROM sqlite_master WHERE name='idx_ec_posts_primary_byline'`
-        .execute(fixture.database.db)).rows, [expected]);
+      assert.deepEqual((await sql<{ name: string; type: string; tbl_name: string }>`SELECT name,type,tbl_name FROM sqlite_master WHERE name='idx_ec_posts_primary_byline'`
+        .execute(fixture.database.db)).rows.map(row=>({...row})), [expected]);
       await new SchemaRegistry(fixture.database).createCollection({ slug: 'authors', label: 'Authors' });
       assert.deepEqual((await sql<{ name: string }>`PRAGMA index_info(idx_ec_authors_primary_byline)`.execute(fixture.database.db)).rows
         .map(row => row.name), ['primary_byline_id']);
