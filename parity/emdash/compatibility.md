@@ -1496,6 +1496,88 @@ The five new production dependencies remain exactly `blurhash@2.0.5`, `image-siz
 The current 1472/280/15/7 and 21 Vitest/secured Source 7/default 65/Node 65 pass evaluates 7dbe only. New combined-head hosted gates and final review/acceptance must qualify the media dependency union; actual media Main's post-push outcome is not claimed by this proposal. The original fifteen-minute validate limit, 180-second host startup/30-second kill limits, assertions, fixture isolation and browser sandbox remain intact. Standing configured request 5976771105/quota-no-verdict 5976772262 is not repeated, and the unresolved attachment attempt is not retried. CFS-01/02/03 remain foundation decisions pending Root's explicit record; the full CMS and the eleven canonical Source families remain unfinished with zero additional Source execution/causal credit.
 
 
+## DT1-01: remaining direct D1 fixture transport
+
+EmDash 1.1.0 authority remains immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`,
+including `packages/cloudflare/src/db/d1-dialect.ts`. The
+[paired transport record](../../docs/d1-fixture-transport.md#remaining-direct-database-and-collection-update-fixtures)
+and [original Native family](../../tests/d1-direct-fixture-transport.test.ts)
+record a test-only harness substitution proposed in
+[PR #96](https://github.com/sveltery/cms/pull/96): the direct database and
+collection-update fixtures replace synchronous `getD1Database` proxies with the
+published asynchronous real workerd D1 transport. Their dedicated runtime,
+`cms-test-d1` and `cms-collection-update` identifiers, supplied persistence
+directories and original custom Worker dispatch are preserved. Existing
+schema-admin pooling/default/persistent behavior and the original transport
+Worker/binding bodies remain unchanged. Product drivers, providers, dependency
+versions, Source/native callbacks and assertions, auth behavior, whole normal
+commands and deadlines are unchanged. The private transport host is reserved by
+the test-only wrapper; application requests retain their original
+request/environment/execution context and fetch handler.
+
+At test-first `4ae51e2b`, the whole new four callbacks have two genuine Native
+value failures: each actual fixture performs 135 synchronous waits against zero,
+after all ordinary real D1 value/typed-binding/metadata/rollback assertions have
+succeeded. Custom Worker dispatch and exact original-identifier persistent
+reopen controls already pass. Infrastructure failures/cancellations/skips/todos
+are zero. The complete baseline receipt/log retain the actual result and four
+original whitespace-only console lines. An exact-path `.gitattributes` exemption
+keeps this byte-exact baseline log and makes the documented owned diff check pass;
+all other files retain their whitespace checks. Root qualified the unchanged extraction
+seam and exact three-helper repair before application at `2b6db0db`; the same
+whole four pass. A post-green owned cleanup refactor preserves all titles,
+fifteen static assertions and timeout expressions; all four pass again with
+zero bad counts. Complete baseline/fixed/refactored logs and receipts are linked
+from the paired feature record. Close-failure cleanup itself has static review
+coverage only. No earlier hosted failure causality is established; no new race,
+principal/credential/session/signature or protected HTTP probe is executed.
+This earns zero additional copied EmDash credit or deployed D1 support.
+
+Actual public Main `ab43accd4de235b07a22dd0ac24289605902d959` is adopted by
+ordinary merge `079b96f7`. Its package, full Source patch, seven media notices,
+validation commands and guards remain exact. DT1-01 decision status: Root
+specifically authorized bounded native harness development. Final exact-head
+whole normal/secured CI and independent/configured review, PM approval, author
+expected-head merge and post-Main verification remain pending. Other direct
+Miniflare fixtures and full product parity remain separate unfinished scope.
+
+## Native HTTP fixture listener lifecycle
+
+The [Native fixture record](../../docs/runtime-port-lifecycle.md) covers a test-only initial port allocation repair. The project authority remains EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`; this change copies no new upstream function or assertion and changes no production behavior. It adds three ordinary Native HTTP lifecycle callbacks with zero Source callbacks or parity credit.
+
+The old fixture reserved a temporary net port, closed it, then bound the actual child server at that released port. The child now requests port zero directly and reports its actual trusted localhost origin before platform/Kit initialization. Parent HTTP/browser requests and real process restart use that reported origin; their existing request, credential, authorization, callback and assertion logic remains unchanged. Fixed-origin restart keeps its numeric port and can still fail if an unrelated process occupies it. The historical `EADDRINUSE` port owner remains unassigned, and the separate Node hosting helper is unchanged. No retry, origin rotation, deadline widening, protected probe or validation slicing is introduced.
+
+The linked [whole TDD receipt](../../docs/receipts/runtime-port-lifecycle/tdd.json) records test-first Native3: two reached requested-port assertion failures and one genuine process-restart control green, followed by Native3 green after the single listener fix and after a shared-diagnostics refactor. Existing Source and Native test declarations are unchanged; full current-head bootstrap/browser execution and final reviews remain pending. PM has qualified this finite development scope; exact-head merge approval is pending and is not inferred from development qualification or the three Native greens. No intentional EmDash product-behavior difference or newly verified shared upstream bug is claimed.
+
+### Actual public version-14 Main integration checkpoint
+
+This checkpoint adopts actual signed public Main `90d62391e7ddc61f41f8f3dad9e7077c9fc9de52` (tree `862575551497942667d18465657dbc790e0661f7`, ordered parents `ab43accd4de235b07a22dd0ac24289605902d959` and `23b93f485808699b862d1fdac7302132631ee84d`). The shared compatibility document preserves that complete Main record, then the complete earlier Native listener appendix and this paired checkpoint. The feature document retains its complete earlier development checkpoint.
+
+Prior own head `61a7ad9971b5d208eed8f113951180c666eae46c` passed all 13 unchanged bootstrap stages and all secured browser checks in [CI #448](https://github.com/sveltery/cms/actions/runs/37192721863): Node 1400/280/15/7, 21 Vitest groups, whole Source browser counts 14/30/25/3/35/4/3, Native 65/65 and nine actual official Chromium 1243 zero exits. Its independent final-head review had no findings; its once-triggered configured review [completed](https://github.com/sveltery/cms/pull/97#issuecomment-5978725959) with no findings. Those receipts establish the prior head and are not validation of this new union.
+
+This union keeps all incoming version-14 storage, runtime, Source authorities, canonical 49-file guard, complete package/source-test chain, lockfiles, policy and hosting notices exact. It preserves both approved runtime-helper seams, the direct listener helper, the three whole Native callback declarations and all original TDD logs/receipt. It adds no helper/runtime/test fix, Source callback or product behavior. The initial-bind repair still earns zero Source parity credit; stable-origin restart retains the same numeric port and its unrelated-occupation limitation, with historical collision ownership unassigned.
+
+One full current-head 13-stage/bootstrap and secured-browser execution, same-feature independent final-head closure and exact-head manager approval remain pending for this union. The existing configured result is retained; no duplicate manual request is authorized. The manager released the integration hold for this finite Main adoption only; author CAS merge still requires explicit final approval.
+
+### Combined public D1 fixture and listener integration checkpoint
+
+This checkpoint adopts actual signed public Main `343c0ff2e69e66e03b848d258da7c288e9a67223`, tree `81a143bf8ed5e84091bf5f3214be01df0321b579`, ordered parents version-14 Main `90d62391e7ddc61f41f8f3dad9e7077c9fc9de52` and D1 fixture head `f5b201212c6a0732805d595a0b8008ebc1a56cc7`. The shared compatibility document preserves that complete Main history followed by the whole prior listener history and this paired checkpoint; the feature document retains its complete earlier checkpoints.
+
+Prior port head `4a3424c75fa71bb52113fd2b523c0f53856a340f` passed complete unchanged 13-stage validation and secured browser checks in [CI #454](https://github.com/sveltery/cms/actions/runs/37195758062). Its configured review [completed](https://github.com/sveltery/cms/pull/97#issuecomment-5978725959) on that head at 2026-10-04 10:35:59 UTC. Those successful prior-head receipts remain historical and do not qualify this new combined head.
+
+All incoming D1 fixture blobs are exact: the four Native transport tests, extracted `localD1` factory, original database declarations and their eighteen expanded callbacks, collection-update fixture, shared asynchronous storage transport, whole baseline/fixed/refactored receipts, paired D1 feature history and literal-path `.gitattributes` exception. The package/source-test chain, canonical 49-file guard, immutable Source authorities, complete locks, version-14 runtime, validation workflow and all original guards remain exact. Both approved listener-helper seams, all three whole ordinary HTTP callbacks and their raw TDD evidence are unchanged. No helper/runtime/test repair, protected probe, private prerequisite or new Source credit is added; fixed numeric-origin restart retains its unrelated-occupation limitation and historical collision ownership remains unassigned.
+
+One full current combined 13-stage validation and secured-browser execution, same-feature final reviewer closure, actual configured current-head result and explicit exact-head manager approval remain pending. No manual configured-review repeat is authorized. The author has not attempted the expected-head regular merge.
+
+### Literal raw listener evidence whitespace check
+
+The configured review of proposed PR [#97](https://github.com/sveltery/cms/pull/97) at combined head `0125b23570191abea5e21c347af25d71ab387832` [reported](https://github.com/sveltery/cms/pull/97#discussion_r4177305154) that the required `git diff --check` exits 2 on the unchanged baseline receipt's four whitespace-only formatter lines (19, 24, 41 and 46). Independent review confirmed the finding.
+
+The literal `docs/receipts/runtime-port-lifecycle/baseline.log -whitespace` rule preserves all 2,024 actual raw bytes while allowing the required diff check to pass. The complete incoming D1 attributes comment and literal rule remain the exact prefix. Isolated ordinary Git negative controls confirm that other documentation and receipt paths still reject trailing whitespace; only the two specified baseline paths have the unset attribute.
+
+All prior compatibility and feature history, both teams' full raw receipts, original callbacks, Source authorities, runtime helpers, package chain, locks and validation guards remain unchanged. This documentation check repair earns zero Source or product parity credit. [CI #459](https://github.com/sveltery/cms/actions/runs/37198772585) belongs to the prior combined head: at this development checkpoint its browser job passed and validation was still running. Its eventual result remains historical. One changed final head's complete original 13-stage validation and secured browser checks, same-feature review closure, actual configured automatic review and exact-head manager approval remain pending. No manual review repeat or author merge has been attempted.
+
+
 ## Block registry, Source083 storage and creation defaults — proposed [PR #91](https://github.com/sveltery/cms/pull/91)
 
 The [whole-source ledger](../../docs/block-registry-source.json) preserves fifty complete authorities at EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, including all four original owned test families (nineteen declarations and fifty-eight expect expressions), their complete reset helper and MIT notices. Public Draft PR91 remains the test-only checkpoint `caeabb92200073a2d21c301141637614a7ac8de0`. The separately qualified isolated candidate `b1b8c8381d15a693cd7c94b3c1948093fc4adc20` uses actual published Draft14 `dd80fe3f942aef2e44d3df92c28a818b5a45897c`; no unpublished canonical-storage payload is consumed. Actual public Main14 `90d62391e7ddc61f41f8f3dad9e7077c9fc9de52` has since landed from ordered parents ab43/23b93. OWN91 production adoption remains unapplied and requires separate Root development qualification; the preceding dd80 candidate receipt is isolated evidence.
