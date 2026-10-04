@@ -1269,6 +1269,16 @@ Actual public Mainaa6d942a9a5167a0bb656750880fdeeee134a218 contributes the compl
 The repaired and refactored whole Native23 result remains dated owned evidence after four genuine new Native value reds; the original four actual41b secured-browser failures and complete logs remain retained. No local combined Source/editor/browser success is inferred from the failed normal. The new complete hosted thirteen-stage command and secured Source/default/Node browser runs must verify this final combined payload, followed by final independent/configured review, exact project-manager approval, author expected-head merge and post-Main checks. Source15 stays exactly pinned: only the unchanged seven validation callbacks have executed, with historical six meaningful Source value reds. All eight whole editor/list/e2e families, complete Source provider/type closure, rich widgets/media/plugins/translations/full-list/scheduling parity remain unfinished. Bounded WE1 remains the accepted Native substitution.
 
 
+## SEC1 public-coordinate byte serialization
+
+| Record / immutable source | Observed pinned and proposed Native behavior | Rationale, evidence and decision |
+| --- | --- | --- |
+| SEC1-01: EmDash1.1.0 pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, `packages/auth/src/passkey/register.ts:223–227`, pinned `@oslojs/crypto@1.0.1` and `@oslojs/binary@1.0.0` | Actual pinned encoder right-aligns `x` but left-aligns minimal-width `y` in its 32-byte field. For `x=0,y=0xa5`, both buffers have 65 bytes, but Source puts `a5` before 31 trailing zeros rather than after 31 leading zeros. Proposed original Native serializer right-aligns both unsigned coordinates and changes only the actual ES256 registration import/encode expression. Existing COSE algorithm/type/curve checks, RSA and registration behavior remain. Representability guard is outside the existing decoder's unsigned32-byte domain. Existing stored values are not rewritten. | Verified shared Source dependency byte defect; intentional behavior difference, not fidelity repair. The [whole byte-only source/run ledger](../../docs/sec1-coordinate-codec-source.json) records exact Source and dependency identities, complete17 output reproduction, original Native8 genuine value failures/9 controls at test-first `19cef766`, and unchanged whole Source3 families/28 declarations/52 expressions/34 cases plus two type expectations. No new keys, credentials, signatures, HTTP, sessions, nonces or replay were exercised. Divergent Native math assertions earn zero copied Source parity and establish zero earlier CI failure causality. Root specifically accepted SEC1-01 for development after the actual byte baseline; [issue #93](https://github.com/sveltery/cms/issues/93) tracks the verified defect. Exact helper/callsite are applied, and the same whole17 cases pass after fix and refactor; both whole green logs are recorded in the ledger. PR approval and landing remain pending. [Paired feature record](../../docs/sec1-coordinate-codec.md); unchanged normal13 stages, secured9 browser launches and current reviews remain required. |
+
+
+The unchanged17 Native byte cases pass after the exact fix and after the private coordinate-writer refactor; [the source/run ledger](../../docs/sec1-coordinate-codec-source.json) retains both whole green logs. This adds eight corrected Native byte outcomes, zero copied Source credit and zero causal attribution for prior CI failures. Full normal/secured checks remain pending.
+
+
 ### Welcome dismissal native persistence proposal — PR90
 
 Pinned EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, complete
@@ -1436,3 +1446,25 @@ evidence, without dashboard green or new causal credit. The unchanged16 family
 was not rerun because public media storage remains absent; its observed16 first
 success failures and61 unreached expectations persist. Full final checks/reviews,
 final adaptation acceptance/landing and media/HTTP/UI/D1/hosting remain pending.
+
+
+### Proposed ordinary actual Mainfd1f integration — PR90
+
+The finite object-only union imports only actual public Main
+fd1f931f04a85d32ac740dfcfa2b37ca3b406c05 (regular PR94 merge), preserving all
+16 changed public files byte-exact, including SEC1-01 code/whole Native17 math
+cases/source evidence/notices/feature prose. No private engine/provider/stack is
+consumed. Existing Source pin913cb1bb9b7f08c3ff0d258b4420e53835b6a58e and whole
+setup/welcome/dashboard declaration/assertion bytes remain unchanged.
+
+The only append conflict preserves the entire actual Main compatibility prefix
+followed by the full unchanged owned suffix from original Main135. Both public
+SEC1-01 decision and complete owned Native setup/dashboard adaptations and raw
+receipt distinctions survive. This proposal is unapplied pending finite PM
+qualification; union itself adds0 causal Source/Native value-red credit. Prior
+welcome2/Native1 green and dashboard16 first-success red evidence do not qualify
+the new combined payload. Real public media provider/seed engine, dashboard UI,
+HTTP/D1/hosting and full setup parity remain incomplete; full current normal/
+secured gates, final adaptation acceptance/reviews/exact approval/landing remain
+pending. [Paired feature record](../../docs/setup-api-backend.md);
+[Draft PR90](https://github.com/sveltery/cms/pull/90).

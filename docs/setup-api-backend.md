@@ -235,3 +235,21 @@ missing public media storage. Its original16 value failures/61 unreached expects
 remain retained, with0 completed dashboard red→green credit. Current public
 Mainfd1f adds the separately reviewed SEC1 byte fix; finite ordinary union and
 separate package/docs qualification are pending before final current-head gates.
+
+## Proposed actual public Mainfd1f union
+
+The finite ordinary Main integration candidate imports only actual public
+fd1f931f04a85d32ac740dfcfa2b37ca3b406c05 (merged PR94), including its separately
+accepted SEC1 public-coordinate serializer, callsite, whole Native17 mathematical
+cases, notices and complete recorded evidence. All16 incoming changed files are
+byte-exact. The sole shared append conflict is compatibility.md: preserve the
+entire actual Main prefix, then append the complete unchanged owned suffix from
+the original Main135 base. No private provider/branch, source test/guard or own
+setup/dashboard product behavior is changed by this union.
+
+This object-only proposal is not applied. Prior dated welcome2/Native1 greens
+and actual dashboard16 missing-media reds remain historical receipts; the new
+combined payload needs its own normal/secured gates/reviews. Native registered
+storage/count/schema-cast scope and missing public media/seed/UI dependencies
+remain explicit. Shared package/passkey-prose candidate must be regenerated
+against the actual Main prefix rather than replacing its public SEC1 additions.

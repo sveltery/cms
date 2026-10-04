@@ -33,11 +33,13 @@
       "blob": "b8c28c34ebf9e37f0b5bb636f30ff1b466be0ca1",
       "source_sha256": "645c228570be61abf98a1cf24d1e342f0eee9ccfc31c8f859d644886528f8434",
       "local": "src/lib/server/auth/vendor/passkey/register.ts",
-      "local_sha256": "8274fce4d7959b9be8643d771e87e07e68df14741d5feeca3879c921ed51925f",
+      "local_sha256": "5efc074dd5a72cedee56d91e0379fba9d09a192e97e69475653e357c7f373973",
       "transformations": [
         "Relative module suffix .js to .ts for Node 24 type stripping.",
-        "Append explicit pin/blob/MIT provenance header."
-      ]
+        "Append explicit pin/blob/MIT provenance header.",
+        "Intentional SEC1-01 Source dependency byte fix: replace only ECDSAPublicKey/p256 import and ES256 encode expression with original Native fixed-width public-coordinate serializer; authority source bytes remain unchanged. Root explicitly accepted SEC1-01 for development after the reached byte reproduction; exact helper/callsite applied, issue #93 tracks the verified bug. Final PR approval and landing pending."
+      ],
+      "pinnedAdaptedSnapshotSha256": "8274fce4d7959b9be8643d771e87e07e68df14741d5feeca3879c921ed51925f"
     },
     {
       "source": "packages/auth/src/passkey/authenticate.ts",
