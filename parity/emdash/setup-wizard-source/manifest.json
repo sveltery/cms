@@ -569,7 +569,8 @@
     }
   },
   "execution": {
-    "component": "not run",
+    "checkpoint": "Source freeze at 53d34c8d190ba301f7308c8c365f3791a18d5be0; later execution is recorded separately in evidence/ and docs/setup-wizard-ui-source.md",
+    "component": "not run at freeze; subsequent complete red/green records are separate",
     "e2e": "not run; original fixture not authorized"
   },
   "limits": [
@@ -1078,7 +1079,7 @@
         },
         {
           "line": 94,
-          "expression": "expect(\n\t\t\tadmin.page.getByRole(\"heading\", {\n\t\t\t\tname: \"With a passkey, you don’t need to remember complex passwords\",\n\t\t\t}),\n\t\t).toBeVisible()",
+          "expression": "expect(\n\t\t\tadmin.page.getByRole(\"heading\", {\n\t\t\t\tname: \"With a passkey, you don\u2019t need to remember complex passwords\",\n\t\t\t}),\n\t\t).toBeVisible()",
           "sha256": "9014de9fd9393f194f548236b6b278cb67453ab38c7fc1dea4260f0ec5c6b07e"
         },
         {
@@ -1414,7 +1415,7 @@
         },
         {
           "line": 94,
-          "expression": "expect(\n\t\t\tadmin.page.getByRole(\"heading\", {\n\t\t\t\tname: \"With a passkey, you don’t need to remember complex passwords\",\n\t\t\t}),\n\t\t).toBeVisible()",
+          "expression": "expect(\n\t\t\tadmin.page.getByRole(\"heading\", {\n\t\t\t\tname: \"With a passkey, you don\u2019t need to remember complex passwords\",\n\t\t\t}),\n\t\t).toBeVisible()",
           "sha256": "9014de9fd9393f194f548236b6b278cb67453ab38c7fc1dea4260f0ec5c6b07e"
         },
         {
