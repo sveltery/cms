@@ -18,10 +18,10 @@ for (const mode of ['Node', 'raw D1', 'scoped D1'] as const) {
       assert.deepEqual((await sql`SELECT name,type,tbl_name FROM sqlite_master WHERE name='idx_ec_posts_primary_byline'`
         .execute(fixture.database.db)).rows, [expected]);
       await new SchemaRegistry(fixture.database).createCollection({ slug: 'authors', label: 'Authors' });
-      assert.deepEqual((await sql`PRAGMA index_info(idx_ec_authors_primary_byline)`.execute(fixture.database.db)).rows
+      assert.deepEqual((await sql<{ name: string }>`PRAGMA index_info(idx_ec_authors_primary_byline)`.execute(fixture.database.db)).rows
         .map(row => row.name), ['primary_byline_id']);
       await fixture.reopen(); await migrateCms(fixture.database);
-      assert.deepEqual((await sql`PRAGMA index_info(idx_ec_posts_primary_byline)`.execute(fixture.database.db)).rows
+      assert.deepEqual((await sql<{ name: string }>`PRAGMA index_info(idx_ec_posts_primary_byline)`.execute(fixture.database.db)).rows
         .map(row => row.name), ['primary_byline_id']);
     } finally { await fixture.close(); }
   });
@@ -50,7 +50,7 @@ for (const mode of ['Node', 'raw D1', 'scoped D1'] as const) {
       assert.deepEqual((await sql`SELECT * FROM ec_posts WHERE id=${post.id}`.execute(fixture.database.db)).rows, original);
       assert.deepEqual((await sql`SELECT relation_id,parent_group,child_group,sort_order FROM _cms_content_references
         WHERE relation_id=${field.id}`.execute(fixture.database.db)).rows, originalEdges);
-      assert.deepEqual((await sql`PRAGMA table_info(ec_posts)`.execute(fixture.database.db)).rows.filter(row => row.name === 'author')
+      assert.deepEqual((await sql<{ name: string; type: string }>`PRAGMA table_info(ec_posts)`.execute(fixture.database.db)).rows.filter(row => row.name === 'author')
         .map(row => row.type), ['TEXT']);
       await new DraftRepository(fixture.database).findById('posts', post.id);
     } finally { await fixture.close(); }
