@@ -140,3 +140,22 @@ rules. No public doctor runtime landing is claimed yet. Final full normal and
 secured gates wait for actual public fixture97 integration as well; review,
 final specific compatibility acceptance and expected-head author merge remain
 pending. No pending feature branch is used as an implementation prerequisite.
+
+## Published provider15 preparation
+
+The previous local checkpoint is `f27642a7cae35e4df1dd80051d5168cfb5eb337c`, with
+both qualified ordinary Main14/fixture96 merges and passing whole owned whitespace
+checks. Actual public Main `41be644213bd8da5150d98b87d3a5c0cc0c7f3e1` now supplies
+provider15, its real default/readiness/catalogue behavior and both fixtures96/97.
+The current sealed proposal adopts that exact public tree and preserves its
+complete Source chain, compatibility history and both public literal evidence
+rules alongside the six doctor rules. It changes no doctor runtime or tests and
+claims no private prerequisite or new diagnostic behavior.
+
+The unchanged Source15/Native13 and real package/Worker receipts remain historical
+for their recorded heads. Root approval of this finite union is pending before
+application, shared push or current normal13/secured9 execution. Current final
+fresh/configured review, specific DC-01 through DC-04 acceptance, exact-head PM
+approval, expected-head author merge and actual post-Main validation also remain
+pending. Full scheduler/heartbeat, full Source users/CLI/PAT, remote D1 and general
+migration-runner parity are unfinished.
