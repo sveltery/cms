@@ -1540,3 +1540,12 @@ specifically authorized bounded native harness development. Final exact-head
 whole normal/secured CI and independent/configured review, PM approval, author
 expected-head merge and post-Main verification remain pending. Other direct
 Miniflare fixtures and full product parity remain separate unfinished scope.
+
+
+## Full search test-first proposal (2026-10-04)
+
+Pinned EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`; proposed PR pending. The [feature record](../../docs/search.md) and [whole Source ledger](../../docs/search-source.json) retain fourteen exact core search families, nine remaining whole host families and fifteen Source authorities plus the MIT notice. This checkpoint adds tests/import transport only: zero product tests executed, zero Source causal assertion credit and no implementation or final acceptance inferred. Nine Native real-SQL cases are supplemental requirements, not Source parity.
+
+Proposed framework/provider substitutions use canonical Native Node SQLite, real schema/content repositories, the single existing FTS producer, constructor/CAS fixture adaptation and explicit Native imports. Three original Source raw physical-name families remain blocked until a separately qualified same-owner provider creates real `_emdash_fts_*` fixture objects; no raw SQL, catalogue, assertion or returned value is rewritten. Source query/schema imports are currently absent, and pre-expect/fixture failures earn no behavioral red credit. The actual registry-to-FTS lifecycle and trusted `search:manage` bridge also remain incomplete; test fixtures do not supply synthetic product hooks.
+
+Search/suggest public routing, published default, draft permission, admin index operations, actual global public helper, command palette, LiveSearch/WebMcpSearch, MCP, Node/D1 and hosted normal/secured acceptance all remain incomplete. Specific Root development qualification, actual red/green/refactor, current independent/configured review, final exact-head decision, author merge and post-Main verification remain pending. No specific final acceptance is recorded and full search remains unchecked.
