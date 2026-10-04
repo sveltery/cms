@@ -6,6 +6,5 @@
 </script>
 <svelte:head><title>Sections · Sveltery CMS</title></svelte:head>
 <WorkspaceShell homeHref={resolve('/')}>
-  {#snippet additionalNavigation()}<a href={resolve('/sections')} aria-current="page">Sections</a>{#if data.canReadWidgets}<a href={resolve('/widgets')}>Widgets</a>{/if}{/snippet}
   <Sections canManage={data.canManageSections} />
 </WorkspaceShell>

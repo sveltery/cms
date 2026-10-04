@@ -27,7 +27,6 @@
 </script>
 <svelte:head><title>Comments · Sveltery CMS</title></svelte:head>
 <WorkspaceShell homeHref={`${data.basePath}/`} activePage="settings">
- {#snippet additionalNavigation()}<a href={`${data.basePath}/comments`} aria-current="page">Comments</a>{/snippet}
  {#if data.canManageSettings}<nav aria-label="Comment settings">{#each Object.entries(data.collections) as [slug,collection]}<a href={`${data.basePath}/comments/settings/${encodeURIComponent(slug)}`}>Comment settings · {collection.label}</a>{/each}</nav>{/if}
  {#if !data.available}<h1>Comments</h1><p role="status">Comments are unavailable.</p>{:else}
  {#if loadError}<p role="alert">{loadError instanceof Error?loadError.message:'Comments could not be loaded.'}</p><button onclick={()=>reload()}>Try again</button>{/if}
