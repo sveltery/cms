@@ -33,7 +33,7 @@ beforeEach(async () => {
 });
 afterEach(async () => {
   release?.(); if (instance) await unmount(instance); instance = undefined;
-  document.body.replaceChildren(); vi.unstubAllGlobals(); await fixture?.close();
+  document.body.replaceChildren(); vi.useRealTimers(); vi.unstubAllGlobals(); await fixture?.close();
 });
 async function render() {
   const result = await fixture.mutate('createContent', { collection: 'stories', data: JSON.stringify({ title: 'Original' }) }, 'author');
@@ -62,11 +62,16 @@ it('actual programmatic autosave enters pending and preserves later typing throu
 
 it('actual terminal autosave validation displays the issue and stops repeating until changed', async () => {
   const { target, entry } = await render();
+  // Advance only the native UI clock; actual HTTP/storage responses stay real.
+  // Retain the original five-second test deadline and production 2000ms delay.
+  vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
   await edit(target, 'summary', 'short');
+  await vi.advanceTimersByTimeAsync(2000);
   await vi.waitFor(() => expect(target.querySelector('[role="alert"]')?.textContent ?? '').toContain('Summary needs at least 10 characters.'), { timeout: 4000 });
-  await new Promise(resolve => setTimeout(resolve, 2200)); expect(requestCount).toBe(1);
+  await vi.advanceTimersByTimeAsync(2200); expect(requestCount).toBe(1);
   expect((target.querySelector('[data-field="summary"]') as HTMLInputElement).value).toBe('short');
   await edit(target, 'summary', 'Long enough now');
+  await vi.advanceTimersByTimeAsync(2000);
   await vi.waitFor(() => expect(target.querySelector('button')?.textContent).toBe('Saved'), { timeout: 4000 });
   expect((await fixture.query('getContent', { collection: 'stories', id: entry.id }, 'author')).data.summary).toBe('Long enough now');
 });
