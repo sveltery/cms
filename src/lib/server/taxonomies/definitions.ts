@@ -1,5 +1,6 @@
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
-// Whole runtime body from EmDash 1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/src/database/repositories/taxonomy-def.ts; imports only adapted.
+// EmDash 1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/src/database/repositories/taxonomy-def.ts.
+// Native adaptation: finite actual atomic structure plans and persisted group reads.
 import { sql, type Kysely, type Compilable } from "kysely";
 
 import {executeTaxonomyWritePlan} from "./write-plan.ts";

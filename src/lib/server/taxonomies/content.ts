@@ -32,7 +32,7 @@ export function nativeTaxonomyContentHost(db:Kysely<Database>,storage:CmsDatabas
   create:(collection,body)=>service.createContent({...body,type:collection}),
   async update(collection,id,body){
    const {_rev,...values}=body;
-   const existing=await service.getContent({type:collection,id,...(body.locale===undefined?{}:{locale:body.locale})});
+   const existing=await service.getContent({type:collection,id,...(body.locale===undefined?{}:{locale:body.locale})},{inferLocale:body.locale===undefined});
    const check=validateRev(_rev,existing);if(!check.valid)throw new CmsError('CONFLICT',check.message);
    return (await service.updateContent({...values,type:collection,id,locale:existing.locale,
     expected:{version:existing.version,updatedAt:existing.updatedAt}})).item;

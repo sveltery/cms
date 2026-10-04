@@ -18,7 +18,7 @@ import {prepareContentSlugRedirect,executeContentSlugBatch,completeContentSlugRe
 import {publicationStatementExecutor} from '../../redirects/publication-atomic.ts';
 import * as v from 'valibot';
 import {canonicalSourceDatabase} from '../../canonical-storage/namespace.ts';
-import {getI18nConfig} from '../../menus/i18n-config.ts';
+import {getI18nConfig,resolveConfiguredLocale} from '../../menus/i18n-config.ts';
 import {resolveTaxonomySlugMap,contentTaxonomyStatements,newContentTaxonomyStatements,completeContentTaxonomies,type ResolvedTaxonomySelection} from '../../taxonomies/content-write.ts';
 
 // Runtime draft-stage, hydration and retention algorithms adapted from
@@ -191,7 +191,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
   return {
     async createContent(input:unknown):Promise<ContentItem> {
       const actor=requirePermission('content:create');const value=object(input);
-      const type=parse(identifier,value.type);const locale=parse(localeInput,value.locale??getI18nConfig()?.defaultLocale??'en');
+      const type=parse(identifier,value.type);const locale=parse(localeInput,value.locale===undefined?getI18nConfig()?.defaultLocale??'en':resolveConfiguredLocale(parse(localeInput,value.locale)));
       if(value.status!==undefined&&value.status!=='draft')throw new CmsError('VALIDATION_ERROR','Create a draft, then publish it');
       const collection=await definition(type);
       const data=normalizeBlankArrays(parse(schemaData,value.data),collection.fields);
@@ -201,8 +201,16 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       completeContentTaxonomies(selections);
       return stored({type,id:item.id,locale});
     },
-    async getContent(input:unknown):Promise<ContentItem> {
-      requirePermission('content:read');requirePermission('content:read_drafts');return hydrate(await stored(key(input)));
+    async getContent(input:unknown,options:{inferLocale?:boolean}={}):Promise<ContentItem> {
+      requirePermission('content:read');requirePermission('content:read_drafts');
+      const value=key(input);
+      // Trusted Source-shaped constructor hosts may infer an omitted locale.
+      // The same actual content owner performs the read after authorization.
+      if(options.inferLocale&&object(input).locale===undefined){
+        await definition(value.type);const item=await content.findById(value.type,value.id);
+        if(!item)throw new CmsError('NOT_FOUND');return hydrate(item);
+      }
+      return hydrate(await stored(value));
     },
     async listContent(input:unknown) {
       requirePermission('content:read');requirePermission('content:read_drafts');const value=object(input);
