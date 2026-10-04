@@ -8,7 +8,7 @@
  * https://webauthn.oslojs.dev/examples/registration
  */
 
-import { ECDSAPublicKey, p256 } from "@oslojs/crypto/ecdsa";
+import { encodeP256PublicCoordinates } from "../../sec1-public-coordinates.ts";
 import { RSAPublicKey } from "@oslojs/crypto/rsa";
 import { encodeBase64urlNoPadding, decodeBase64urlIgnorePadding } from "@oslojs/encoding";
 import {
@@ -223,11 +223,7 @@ export async function verifyRegistrationResponse<Type extends string, Context>(
 			throw new Error("Expected P-256 curve for ES256");
 		}
 		// Encode as SEC1 uncompressed format for storage
-		encodedPublicKey = new ECDSAPublicKey(
-			p256,
-			cosePublicKey.x,
-			cosePublicKey.y,
-		).encodeSEC1Uncompressed();
+		encodedPublicKey = encodeP256PublicCoordinates(cosePublicKey.x, cosePublicKey.y);
 	} else if (algorithm === coseAlgorithmRS256) {
 		// Verify RSA key type for RS256
 		if (credential.publicKey.type() !== COSEKeyType.RSA) {
