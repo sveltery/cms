@@ -32,6 +32,7 @@ function name(path: string, fields: Record<string, LabeledEditorField>) {
 function sentence(issue: Issue, label: string): string {
   const minimum = typeof issue.minimum === 'number' ? issue.minimum : undefined;
   const maximum = typeof issue.maximum === 'number' ? issue.maximum : undefined;
+  const number = (value: number) => new Intl.NumberFormat('en').format(value);
   switch (issue.code) {
     case 'required': return `${label} is required.`;
     case 'unknown_field': return `${label} is not a field in this collection.`;
@@ -43,15 +44,15 @@ function sentence(issue: Issue, label: string): string {
       break;
     case 'too_small':
       if (minimum === undefined) break;
-      if (issue.origin === 'string') return `${label} needs at least ${minimum} character${minimum === 1 ? '' : 's'}.`;
-      if (issue.origin === 'array') return `${label} needs at least ${minimum} item${minimum === 1 ? '' : 's'}.`;
-      if (issue.origin === 'number') return `${label} must be at least ${new Intl.NumberFormat('en').format(minimum)}.`;
+      if (issue.origin === 'string') return `${label} needs at least ${number(minimum)} character${minimum === 1 ? '' : 's'}.`;
+      if (issue.origin === 'array') return `${label} needs at least ${number(minimum)} item${minimum === 1 ? '' : 's'}.`;
+      if (issue.origin === 'number') return `${label} must be at least ${number(minimum)}.`;
       break;
     case 'too_big':
       if (maximum === undefined) break;
-      if (issue.origin === 'string') return `${label} can have at most ${maximum} character${maximum === 1 ? '' : 's'}.`;
-      if (issue.origin === 'array') return `${label} can have at most ${maximum} item${maximum === 1 ? '' : 's'}.`;
-      if (issue.origin === 'number') return `${label} must be at most ${new Intl.NumberFormat('en').format(maximum)}.`;
+      if (issue.origin === 'string') return `${label} can have at most ${number(maximum)} character${maximum === 1 ? '' : 's'}.`;
+      if (issue.origin === 'array') return `${label} can have at most ${number(maximum)} item${maximum === 1 ? '' : 's'}.`;
+      if (issue.origin === 'number') return `${label} must be at most ${number(maximum)}.`;
   }
   return `${label} has an invalid value.`;
 }

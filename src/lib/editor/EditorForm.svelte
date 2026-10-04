@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, untrack } from 'svelte';
+  import { onMount, untrack, tick } from 'svelte';
   import { goto, beforeNavigate } from '$app/navigation';
   import { resolve } from '$app/paths';
   import type { EditorCollection } from '../server/content/manifest';
@@ -19,7 +19,6 @@
   let pending = $state(false), dirty = $state(untrack(() => session.dirty));
   let conflict = $state(false), message = $state<string | undefined>();
   let trashPending = $state(false), trashError = $state<string | undefined>();
-  let automatic = false;
   const formKey = $derived(JSON.stringify([collection, entry.id, entry.locale]));
   const manualForm = $derived(isNew ? createContent.for(formKey) : updateContent.for(formKey));
   const automaticForm = $derived(autosaveEditorDraft.for(formKey));
@@ -45,7 +44,7 @@
     const changed = JSON.stringify([values, slug, pending, dirty, conflict, canWrite, message]);
     void changed;
     if (!untrack(() => session.canAutosave)) return;
-    const timer = setTimeout(() => { automatic = true; void automaticForm.submit(); }, 2000);
+    const timer = setTimeout(() => { void programmaticSave(automaticForm, true); }, 2000);
     return () => clearTimeout(timer);
   });
   beforeNavigate(navigation => {
@@ -63,10 +62,16 @@
     try {
       const latest = getContent({ collection, id: entry.id, locale: entry.locale });
       await latest.refresh(); session.acceptLatestToken(await latest); sync();
-      await manualForm.submit();
+      await programmaticSave(manualForm, false);
     } catch (cause) { message = editorError(cause).message; }
   }
   const localeAction = (action: string) => `${action}${action.includes('?') ? '&' : '?'}locale=${encodeURIComponent(entry.locale)}`;
+  async function programmaticSave(form: typeof manualForm, autosave: boolean) {
+    // Kit's public submit() performs transport directly, bypassing enhance().
+    // Flush the current values/token before its synchronous FormData snapshot.
+    await tick();
+    await saved(() => form.submit(), form, autosave);
+  }
   async function saved(submit: () => Promise<boolean>, form: typeof manualForm, autosave: boolean) {
     const success = await session.save(async (_payload: SavePayload): Promise<EditorReceipt> => {
       const accepted = await submit();
@@ -83,7 +88,7 @@
   }
 </script>
 
-<form {...manualForm.enhance(async ({ submit }) => { automatic = false; await saved(submit, manualForm, false); })}
+<form {...manualForm.enhance(async ({ submit }) => { await saved(submit, manualForm, false); })}
   action={localeAction(manualForm.action)} aria-label={isNew ? 'Create draft' : 'Edit draft'}>
   <input type="hidden" name="collection" value={collection} />
   <input type="hidden" name="locale" value={entry.locale} />
@@ -97,7 +102,7 @@
   {/if}
 </form>
 {#if !isNew}
-  <form hidden {...automaticForm.enhance(async ({ submit }) => { if (!automatic) return; automatic = false; await saved(submit, automaticForm, true); })}
+  <form hidden {...automaticForm.enhance(async ({ submit }) => { await saved(submit, automaticForm, true); })}
     action={localeAction(automaticForm.action)} aria-label="Autosave draft">
     <input type="hidden" name="collection" value={collection} /><input type="hidden" name="id" value={entry.id} />
     <input type="hidden" name="locale" value={entry.locale} /><input type="hidden" name="_rev" value={revision} />
