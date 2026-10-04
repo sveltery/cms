@@ -158,6 +158,42 @@
       ],
       "fullNormalGate": false,
       "securedGate": false
+    },
+    {
+      "kind": "Original Native built-HTML login continuation completed value baseline",
+      "head": "910f4842637152e1c375584c3eb932f84939685c",
+      "family": "tests/setup-api-native/login-continuation.test.ts",
+      "declarations": 1,
+      "expectExpressions": 2,
+      "PMQualification": "docs/setup-api-login-fixture-qualification.json",
+      "runtime": "Actual current branch compiled Kit build and loopback HTTP GET /login, fixed existing stored schema_admin/profile fixture; JSDOM reads HTML without script execution.",
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-login-native.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-login-native-initial-red.json",
+      "exit": 1,
+      "passed": 0,
+      "failed": 1,
+      "failedBeforeAnyAssertion": 0,
+      "completedNativeValueReds": 1,
+      "SourceCredit": 0,
+      "valueFailure": {
+        "line": 21,
+        "actualHttpStatus": 200,
+        "expectedHref": "/settings/transfer?start=import",
+        "receivedRawHref": "./",
+        "meaning": "Kit root-relative workspace link loses requested setup import continuation."
+      },
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/login-native-first-value-red.log",
+          "bytes": 1301,
+          "sha256": "1bff3280f72b31e4c90d9e5c64ec0a0da18ee78f9362f72e8aad8467f37976d7"
+        },
+        {
+          "path": "docs/setup-api-evidence/login-native-first-value-red.json",
+          "bytes": 1387,
+          "sha256": "8858776530ae85ad36165a329b2fdff5a61083758b6cc9c7bfc778f95afea601"
+        }
+      ],
+      "limits": "One ordinary read-only SSR feature case only. No credential/session/nonce/signature/replay/race/bypass probes, browser ceremony, transfer/import runtime, full dashboard or additional Source callback credit."
     }
   ],
   "latest": {
@@ -170,6 +206,11 @@
     "fullNormalGate": false,
     "securedGate": false,
     "setupParity": "incomplete",
-    "dashboardParity": "incomplete"
+    "dashboardParity": "incomplete",
+    "nativeLogin": {
+      "valueReds": 1,
+      "green": 0,
+      "SourceCredit": 0
+    }
   }
 }

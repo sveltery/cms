@@ -110,10 +110,12 @@ The one original Native characterization reads actual built login HTML using the
 ordinary fixture's existing stored administrator. It asserts that the rendered
 workspace link retains `/settings/transfer?start=import`. It performs no credential
 ceremony, session issuance/rotation, nonce, signature, replay or race probe.
-Current Main ignores the parameter and renders the root link. The test, its exact
-fixture amendment and the two production files are still proposed; no value red
-or green has executed for this continuation and no copied Source credit is
-claimed. Actual transfer/import functionality and complete dashboard rendering
+Current Main ignores the parameter and renders the root link. The PM [qualifies the exact ordinary fixture/case/config](setup-api-login-fixture-qualification.json),
+applied at910f4842. Its first completed run reaches HTTP200 and fails the actual
+workspace href assertion: raw Kit root-relative `./` instead of the intended
+import target. The full [receipt](setup-api-runs.json) preserves one Native value
+red and zero Source credit. The two production login files remain proposed and
+held; no fixed green has executed. Actual transfer/import functionality and complete dashboard rendering
 remain unfinished. The server load does not change authentication or enrollment.
 
 The [compatibility register](../parity/emdash/compatibility.md) records the native

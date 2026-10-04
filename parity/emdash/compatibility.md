@@ -1334,9 +1334,12 @@ fixed existing stored administrator and checks the workspace link's intended
 import pathname/query. Current Main renders the root link. Test-only fixture
 bootstrap/HTTP/storage substitutions are explicit in [the feature record](../../docs/setup-api-backend.md);
 there is no credential ceremony, session issuance/rotation, replay, race or bypass
-probe. This proposal is unexecuted: zero completed native value reds/greens and
-zero additional copied Source credit. [Draft PR90](https://github.com/sveltery/cms/pull/90)
-contains the freeze/initial welcome test-first work; the continuation files and
-this paired register/feature candidate await exact finite PM development
-qualification before application. No final adaptation acceptance or landing is
+probe. The PM qualifies the exact ordinary fixture/case/config in [the decision](../../docs/setup-api-login-fixture-qualification.json),
+applied at910f4842. One completed Native value red reaches HTTP200 and the
+actual raw href assertion (`./` rather than the intended import target); complete
+[raw receipts](../../docs/setup-api-runs.json) precede any production fix. Zero
+Source credit and zero fixed-green continuation are claimed. [Draft PR90](https://github.com/sveltery/cms/pull/90)
+contains the freeze/initial welcome test-first work; the paired feature/register appends and ordinary fixture are now qualified and
+applied; the two production continuation files remain held for a separate exact
+finite PM decision after this reached baseline. No final adaptation acceptance or landing is
 recorded; current full normal/secured gates and both reviews remain pending.
