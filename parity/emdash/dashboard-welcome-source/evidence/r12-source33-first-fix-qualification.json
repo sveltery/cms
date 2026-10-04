@@ -1,0 +1,33 @@
+{
+  "qualification": "complete Source33 with accepted actual Native CLI command divergence",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "executed": 33,
+  "sourcePassed": 32,
+  "sourceFailed": 1,
+  "runnerExit": 1,
+  "sourceAllGreen": false,
+  "acceptedCallback": "warns when scheduled content is overdue and the scheduler has never completed",
+  "declarationHash": "ccb63e7af54f541c31a5d33cc6ada61f0475779189c201ed5538b85f47bdb67a",
+  "expectedExpressionHash": "a7988810a852430af77f280816a2d4e4963af98929b7a842ae3663b3d21e90e9",
+  "sourceCreditForAcceptedCallback": 0,
+  "actualFailingValue": {
+    "operation": "toBeInTheDocument",
+    "negate": false,
+    "expectedPresent": true,
+    "actualPresent": false,
+    "selector": {
+      "kind": "text",
+      "pattern": {
+        "kind": "regexp",
+        "source": "npx emdash doctor",
+        "flags": "i"
+      }
+    },
+    "actualText": " DashboardPage Upload Media    Scheduled publishing needs attentionOne scheduled item is overdue, but no scheduler run has completed. Run pnpm doctor from your project and verify the deployed Cron Trigger. For a standalone installation, run sveltery-doctor. Draft1 Scheduled1 Media files0 Users0 ContentPagesDrafts1 Recent ActivityNo recent activity"
+  },
+  "reportPath": "/tmp/dashboard-source33-q9J4XX/whole-source33-report.json",
+  "logPath": "/tmp/dashboard-source33-q9J4XX/whole-source33.log",
+  "reportBytes": 11082,
+  "reportSha256": "16c387e02adc656373750af6a312fd7bf6f110c057c693882ddfd1fc55673525",
+  "logSha256": "399335e547031258993edfa6ab5d4f1cd45ee694071c0a268b209c54f4a7e6a1"
+}
