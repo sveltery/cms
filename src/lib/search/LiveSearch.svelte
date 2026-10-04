@@ -34,7 +34,7 @@
   <template class="emdash-live-search-result-template">
    {#if result}{@render result()}{:else}
     <!-- Source controller supplies each cloned link's text and URL before display. -->
-    <!-- svelte-ignore a11y_consider_explicit_label a11y_invalid_attribute -->
+    <!-- svelte-ignore a11y_consider_explicit_label, a11y_invalid_attribute -->
     <a class={['emdash-live-search-result',resultClass].filter(Boolean).join(' ')} href="">
      <span class="emdash-live-search-result-title"></span>
      <span class="emdash-live-search-result-collection"></span>
