@@ -6,7 +6,7 @@ import {Miniflare} from 'miniflare';
 import {sql,type Kysely} from 'kysely';
 import type {D1Database} from '@cloudflare/workers-types';
 import {openD1} from '../src/lib/server/database/d1.ts';
-import {migrateCms} from '../src/lib/server/database/migrations.ts';
+import {installHistoricalCanonical5} from './helpers/historical-canonical5.ts';
 import {SchemaRegistry} from '../src/lib/server/database/registry.ts';
 import {cmsService,type ServerPrincipal} from '../src/lib/server/database/service.ts';
 import {createRequestScopedDb} from '../src/lib/server/runtime/cloudflare-d1.ts';
@@ -20,7 +20,7 @@ async function fixture(mode:'raw'|'scoped') {
  const worker=new Miniflare({modules:true,script:'export default {fetch(){return new Response("fixture")}}',
   compatibilityDate:'2026-05-07',host:'127.0.0.1',port:0,d1Databases:{CMS_DB:`redirect-content-${mode}`},cf:false});
  const binding=await worker.getD1Database('CMS_DB');const storage=openD1(binding);
- await migrateCms(storage);const registry=new SchemaRegistry(storage);
+ await installHistoricalCanonical5(storage);const registry=new SchemaRegistry(storage);
  await registry.createCollection({slug:'posts',label:'Posts',supports:[]});
  await registry.createField('posts',{slug:'title',label:'Title',type:'string'});
  await installRedirectTables(storage.db as unknown as Kysely<unknown>);

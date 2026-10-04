@@ -2,7 +2,7 @@ import { describe } from 'vitest';
 import { SqliteDialect, sql, type Kysely as KyselyType } from 'kysely';
 import { Kysely } from './source-kysely.ts';
 import { openNodeSqliteDatabase } from '../../../src/lib/server/database/node-sqlite-compat.ts';
-import { migrateCms } from '../../../src/lib/server/database/migrations.ts';
+import { installHistoricalCanonical5 } from '../historical-canonical5.ts';
 import type { CmsDatabase } from '../../../src/lib/server/database/contract.ts';
 import type { Database } from '../../../src/lib/server/menus/database-types.ts';
 import { menuSchemaStatements } from '../../../src/lib/server/menus/migrations.ts';
@@ -29,7 +29,7 @@ export function createDatabase(_options: { url: string }): KyselyType<Database> 
 }
 export async function runMigrations(db: KyselyType<Database>): Promise<void> {
   const storage = fixtureStorage(db);
-  await migrateCms(storage);
+  await installHistoricalCanonical5(storage);
   await storage.atomicBatch(menuSchemaStatements(storage));
   // Actual Source036 taxonomy shape, solely for menu-reference fixture rows.
   // This is not an implemented taxonomy migration or canonical provider.

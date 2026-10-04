@@ -8,7 +8,7 @@ import type {D1Database} from '@cloudflare/workers-types';
 import {openSqlite} from '../src/lib/server/database/sqlite.ts';
 import {openD1} from '../src/lib/server/database/d1.ts';
 import {createRequestScopedDb} from '../src/lib/server/runtime/cloudflare-d1.ts';
-import {migrateCms} from '../src/lib/server/database/migrations.ts';
+import {installHistoricalCanonical5} from './helpers/historical-canonical5.ts';
 import {installRedirectTables} from '../src/lib/server/redirects/migrations/index.ts';
 import {RedirectRepository} from '../src/lib/server/redirects/repository.ts';
 import type {Database} from '../src/lib/server/redirects/database-types.ts';
@@ -20,14 +20,14 @@ async function fixture(redirects=true,mode:'node'|'raw'|'scoped'='node') {
  const worker=mode==='node'?null:new Miniflare({modules:true,script:'export default {fetch(){return new Response("ordinary API fixture")}}',
   compatibilityDate:'2026-05-07',host:'127.0.0.1',port:0,d1Databases:{CMS_DB:`redirect-http-${mode}`},cf:false});
  const binding=worker?await worker.getD1Database('CMS_DB'):null;
- const storage=binding?openD1(binding):openSqlite(':memory:');await migrateCms(storage);
+ const storage=binding?openD1(binding):openSqlite(':memory:');await installHistoricalCanonical5(storage);
  const scope=mode==='scoped'?createRequestScopedDb({config:{binding:'CMS_DB',session:'auto'},binding:binding as unknown as D1Database,
   isAuthenticated:false,isWrite:true,cookies:{get:()=>undefined,set(){}},url:new URL('https://cms.test/api/redirects')}):null;
  if(mode==='scoped')assert.ok(scope);
  const database=scope?.database??storage;
  if(redirects)await installRedirectTables(database.db as unknown as Kysely<unknown>);
  // Real options behavior is a Source dependency; this is fixture-only DDL.
- await sql`CREATE TABLE options(name TEXT PRIMARY KEY,value TEXT NOT NULL,revision TEXT NOT NULL DEFAULT '0')`.execute(database.db);
+ await sql`CREATE TABLE _cms_options(name TEXT PRIMARY KEY,value TEXT NOT NULL,revision TEXT NOT NULL DEFAULT '0')`.execute(database.db);
  const principal=servicePrincipal({id:'ordinary-admin',role:Role.ADMIN});assert.ok(principal);
  const locals={cms:{database,principal,mutationsEnabled:true}};
  const db=database.db.withTables<{[Name in keyof Database]:Database[Name]}>().$pickTables<keyof Database>();
@@ -84,7 +84,7 @@ test('actual redirect HTTP 404 summary, pruning and clearing mutate real stored 
   const clear=await f.request('clear404',{method:'DELETE'});assert.equal((await clear.json()).data.deleted,1);
  }finally{await f.close();}
 });
-test('current canonical redirect HTTP storage returns 503 without creating redirect tables',async()=>{
+test('actual historical5 redirect HTTP storage returns 503 without creating redirect tables',async()=>{
  const f=await fixture(false);try {
   const response=await f.request('list');assert.equal(response.status,503);
   assert.equal((await response.json()).error.code,'MIGRATION_REQUIRED');
