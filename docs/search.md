@@ -11,3 +11,8 @@ Actual schema-to-FTS lifecycle hooks are also missing in the Native registry. Te
 The pinned routes make search and suggestions public and force published status unless current trusted locals permit `content:read_drafts`. Index stats/enable/rebuild require `search:manage`. The persisted principal bridge needs a finite reviewed additive mapping because its current service permission allowlist omits that already-defined administrative permission. No new identity subsystem or credential/session/signature/race/protected HTTP probes are introduced by this test checkpoint.
 
 Pending: reviewed test-first application and actual complete baseline; query/schema/API implementation and meaningful refactor; real registry/namespace/permission bridge qualification; Node and raw-D1 evidence; actual global public search, command palette, LiveSearch/WebMcpSearch and MCP composition; original protected browser hosts; unchanged normal/secured hosted gates, final independent/configured review, exact Root decision and author merge. Physical/API substitutions remain proposed with no specific final acceptance decision recorded. The full search roadmap item remains incomplete.
+
+
+## Additional schema-to-FTS test-first checkpoint
+
+Six supplemental Native real-SQL cases target the pinned registry lifecycle: searchable field addition and toggles, dependent-trigger removal on field deletion, disabled last-field/search-support handling and FTS removal on collection deletion. They use actual canonical SQLite and the same public FTS owner with preserved trigram/weights. No credential, session, identity or HTTP fixture is introduced. Their baseline is pending; no runtime hook or Source causal credit is claimed.
