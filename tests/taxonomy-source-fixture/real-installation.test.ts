@@ -26,9 +26,9 @@ it('installs whole pinned Source90 migrations with real original taxonomy indexe
 it('keeps genuine Native ownership refusal for colliding Source indexes without changing Source catalogue or adding Native markers',async () => {
   db=actualDatabase();
   await runMigrations(db);
-  const before=(await sql`SELECT type,name,tbl_name,sql FROM sqlite_master ORDER BY type,name`.execute(db)).rows;
+  const before=(await sql<{type:string;name:string;tbl_name:string;sql:string|null}>`SELECT type,name,tbl_name,sql FROM sqlite_master ORDER BY type,name`.execute(db)).rows;
   await expect(migrateCms(fixtureStorage(db))).rejects.toMatchObject({code:'MIGRATION_REQUIRED'});
-  const after=(await sql`SELECT type,name,tbl_name,sql FROM sqlite_master ORDER BY type,name`.execute(db)).rows;
+  const after=(await sql<{type:string;name:string;tbl_name:string;sql:string|null}>`SELECT type,name,tbl_name,sql FROM sqlite_master ORDER BY type,name`.execute(db)).rows;
   expect(after).toEqual(before);
   expect(after.map(row=>row.name)).not.toContain('_cms_migrations');
 });
