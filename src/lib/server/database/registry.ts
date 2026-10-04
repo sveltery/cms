@@ -285,7 +285,7 @@ export class SchemaRegistry {
         validation: value.validation === undefined ? null : JSON.stringify(value.validation),
         sort_order: value.sortOrder ?? (fields.length ? Math.max(...fields.map(field => field.sortOrder))+1 : 0), created_at: new Date().toISOString(),
         ...(value.widget === undefined ? {} : {widget:value.widget}), ...(value.options === undefined ? {} : {options:JSON.stringify(value.options)}),
-        searchable: Number(value.searchable === true),
+        ...(value.searchable === undefined ? {} : {searchable:Number(value.searchable)}),
         ...(value.indexed === undefined ? {} : {indexed:Number(value.indexed)}),
         ...(value.translatable === undefined ? {} : {translatable:Number(value.translatable)})
       }).compile(),
