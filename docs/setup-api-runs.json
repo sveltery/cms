@@ -682,6 +682,95 @@
       "testsRunByMerge": 0,
       "addedSourceCredit": 0,
       "limits": "Full current combined normal13/secured9/current independent reviews and complete feature/provider acceptance remain pending. Dashboard16 stays outside aggregate until actual media prerequisite."
+    },
+    {
+      "kind": "Actual unchanged complete bootstrap13 attempt on qualified combined Mainfd1 payload",
+      "head": "3ec747f3cefb01497a4245194c454e6dc1b100b1",
+      "command": "PATH=/workspace/.tools/pnpm/node_modules/pnpm:$PATH sh scripts/bootstrap.sh",
+      "exit": 1,
+      "stageOutcomes": [
+        {
+          "stage": 1,
+          "name": "frozen dependency install",
+          "exit": 0
+        },
+        {
+          "stage": 2,
+          "name": "type and Svelte checks",
+          "exit": 0,
+          "errors": 0,
+          "warnings": 0
+        },
+        {
+          "stage": 3,
+          "name": "service tests",
+          "exit": 1,
+          "tests": 1386,
+          "passed": 1384,
+          "failed": 2,
+          "skipped": 0,
+          "suites": 44,
+          "durationMs": 208775.598856
+        }
+      ],
+      "unexecutedStages": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "failures": [
+        {
+          "test": "tests/database-d1.test.ts:64",
+          "title": "D1: fresh/v1 auth failures roll back all DDL and migration markers",
+          "actual": "Miniflare SynchronousFetcher assertion message?.id === id instead of expected absent_auth_table rejection",
+          "causality": "No Source algorithm or setup change causal diagnosis established."
+        },
+        {
+          "test": "tests/draft-trash-pagination.test.ts:116",
+          "title": "D1: 103 retained drafts paginate through repository/service and survive reopen",
+          "actual": "Miniflare SynchronousFetcher assertion message?.id === id during actual DraftRepository.delete",
+          "causality": "No Source algorithm or setup change causal diagnosis established."
+        }
+      ],
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/normal13-mainfd1-failed.log",
+          "bytes": 159225,
+          "sha256": "31ad9752e9ba6aaf6f6a086618ee61139e3e24bd027d7b63960ff69636ee8f21"
+        }
+      ],
+      "bootstrapSha256": "2ee61e1f3c84c6dfbbf69aeb732e3615781e4e2cfb312011d23fb240a75592a8",
+      "workflowSha256": "d8fccd1e4f657de0121544eb7ed87dc75be1468620db6bf2bcbf85c3aee8603a",
+      "lockSha256": "fb9c90936589349e902c93d3c301070b151598acea7588607d6b0c07f0031b34",
+      "wholePipelineGreen": false,
+      "addedSourceCredit": 0,
+      "addedCausalValueRedCredit": 0,
+      "limits": "Full unmodified pipeline stopped naturally at stage3. No isolated tests, unchanged rerun, test rewrite, supplemental phases or extra auth probes. Future actual public changes require a finite ordinary union before current full gates."
+    },
+    {
+      "kind": "Ordinary official Chromium1243 install prerequisite fails under environment network policy",
+      "head": "3ec747f3cefb01497a4245194c454e6dc1b100b1",
+      "command": "PATH=/workspace/.tools/pnpm/node_modules/pnpm:$PATH PLAYWRIGHT_BROWSERS_PATH=/tmp/setup-api-playwright-cache pnpm exec playwright install chromium",
+      "exit": 1,
+      "actualDownload": "https://cdn.playwright.dev/builds/cft/153.0.8010.12/linux64/chrome-linux64.zip",
+      "actualFailure": "HTTP403 Domain forbidden",
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/chromium1243-install-network-failed.log",
+          "bytes": 3948,
+          "sha256": "9269a22e9f4ab47bdeb6b60ed11051c91d82cf0ba0928bbad9026c2eb61a3642"
+        }
+      ],
+      "securedBrowserFamiliesRun": 0,
+      "addedSourceCredit": 0,
+      "limits": "Default installed Chromium absent. Writable/tmp cache only; no privileged flags, system policy edits, alternate CDN, sandbox weakening or retry. Hosted unchanged nine existing browser phases remain required."
     }
   ],
   "latest": {
@@ -725,6 +814,24 @@
     },
     "uniqueReachedSourceCallbacks": 18,
     "combinedPayloadHead": "c3e619785ec0ebdfa9bcc928f38f624ac205e503",
-    "currentPublicMain": "fd1f931f04a85d32ac740dfcfa2b37ca3b406c05"
+    "currentPublicMain": "fd1f931f04a85d32ac740dfcfa2b37ca3b406c05",
+    "normalGateAttempt": {
+      "head": "3ec747f3cefb01497a4245194c454e6dc1b100b1",
+      "exit": 1,
+      "finishedStages": 2,
+      "failedStage": 3,
+      "servicePassed": 1384,
+      "serviceFailed": 2,
+      "unexecutedStages": 10
+    },
+    "hostedAvailability": {
+      "head": "3ec747f3cefb01497a4245194c454e6dc1b100b1",
+      "connectorWorkflowRuns": [],
+      "connectorCombinedStatuses": [],
+      "ordinaryGhRestRead": "Forbidden; no retry/alternative after this response",
+      "prHeadApiConfirmed": true,
+      "prDraft": true,
+      "prMergeableSnapshot": false
+    }
   }
 }
