@@ -6,11 +6,14 @@ export let fixture: Awaited<ReturnType<typeof schemaAdminRemotes>>;
 const forms = new Map<string, ReturnType<typeof form>>();
 export function useFixture(value: typeof fixture) { fixture = value; forms.clear(); }
 function remote(name: string) {
-  return { for(key: string) {
+  // Lazily expose the complete actual installed RemoteForm, including its
+  // unkeyed create transport. The proxy changes no request or result behavior.
+  return new Proxy({} as ReturnType<typeof form>, { get(_target, key) {
     let instance = forms.get(name);
     if (!instance) { instance = form(fixture.ids.get(name)!); forms.set(name, instance); }
-    return instance.for(key);
-  } };
+    const value = Reflect.get(instance, key);
+    return typeof value === 'function' ? value.bind(instance) : value;
+  } });
 }
 export const createContent = remote('createContent');
 export const updateContent = remote('updateContent');
