@@ -16,13 +16,8 @@ import { createKyselySessionStore } from '../src/lib/server/auth/store.ts';
 import { hashSessionToken, resolvePrincipal, revokeSession } from '../src/lib/server/auth/session.ts';
 import { storageContract } from './helpers/storage-contract.ts';
 import { sqliteErrorMessage } from '../src/lib/server/database/errors.ts';
+import { localD1 } from './helpers/local-d1-fixture.ts';
 
-async function localD1(path?: string, script = 'export default { fetch() { return new Response("fixture"); } }') {
-  const runtime = new Miniflare({ modules: true, script, compatibilityDate: '2026-05-07', host: '127.0.0.1', port: 0,
-    d1Databases: { DB: 'cms-test-d1' }, d1Persist: path ?? false, cf: false });
-  const binding = await runtime.getD1Database('DB');
-  return { runtime, binding, database: openD1(binding) };
-}
 async function versionOne(database: CmsDatabase) {
   const statements = JSON.parse(await readFile(new URL('./fixtures/cms-v1.json', import.meta.url), 'utf8')) as string[];
   await database.atomicBatch(statements.map(statement => CompiledQuery.raw(statement)));

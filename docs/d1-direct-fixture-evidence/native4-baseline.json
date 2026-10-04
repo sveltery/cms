@@ -1,0 +1,31 @@
+{
+  "actualPublicBase": "f351d2142319f60ce29b9ab98c8f1d94671e0ade",
+  "testFirstNativeHead": "4ae51e2b32591cbae2fb75cefe52dc38a033b75f",
+  "command": "node --test tests/d1-direct-fixture-transport.test.ts",
+  "exit": 1,
+  "wholeExpandedCallbacks": 4,
+  "genuineValueRed": 2,
+  "initialControlGreen": 2,
+  "infrastructureFailures": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "todo": 0,
+  "observedSynchronousWaitsPerActualFixture": {
+    "local database": 135,
+    "collection update": 135
+  },
+  "firstFailures": "final zero-wait assertion after all preceding ordinary real D1 scalar/typed binding/result metadata/DML-DDL rollback assertions reached successfully",
+  "controls": [
+    "custom Worker original request/url/header/body and same actual DB",
+    "raw original cms-test-d1 and cms-collection-update identifiers under same persistent directory; fixture reads/writes and restart retains isolated rows"
+  ],
+  "priorHostedFailureCausality": "not established",
+  "copiedEmDashCredit": 0,
+  "protectedProbe": "none",
+  "rawLog": {
+    "path": "docs/d1-direct-fixture-evidence/native4-baseline.log",
+    "bytes": 2107,
+    "sha256": "eb46e22e9d377d305a38478929dceb6f849b92f9feb81b36897a855d071f800f"
+  },
+  "productionRepair": "unapplied; exact three-file helper proposal pending Root qualification"
+}
