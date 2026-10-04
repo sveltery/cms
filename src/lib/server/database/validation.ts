@@ -23,7 +23,8 @@ const metadata = {
 };
 export const collectionInput = v.strictObject({
   slug: identifier, label, labelSingular: v.optional(label), description: v.optional(shortText), ...metadata,
-  source: v.optional(v.pipe(v.string(),v.regex(/^(?:manual|discovered|seed|(?:template|import):.+)$/)))
+  source: v.optional(v.pipe(v.string(),v.regex(/^(?:manual|discovered|seed|(?:template|import):.+)$/))),
+  commentsAutoApproveUsers: v.optional(v.boolean())
 });
 // Optional keys have no defaults: omission/undefined preserves metadata.
 export const collectionMetadataInput = v.pipe(v.custom<Record<string, unknown>>(value =>
@@ -45,9 +46,17 @@ export const updateFieldLabelInput = v.strictObject({
 });
 export const entryId = v.pipe(v.string(), v.minLength(1), v.maxLength(128));
 export const localeInput = v.pipe(v.string(), v.minLength(1), v.maxLength(35), v.regex(/^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/));
+// Source003 SQLite defaults are UTC. Accept their exact stored literal for CAS,
+// while retaining the existing ISO input branch and literal equality in storage.
+const sourceSqliteTimestamp = v.pipe(v.string(), v.maxLength(40),
+  v.regex(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/),
+  v.check(value => {
+    const milliseconds = Date.parse(value.replace(' ', 'T') + 'Z');
+    return Number.isFinite(milliseconds) && new Date(milliseconds).toISOString().slice(0,19).replace('T',' ') === value;
+  }));
 export const revisionInput = v.strictObject({
   version: v.pipe(v.number(), v.safeInteger(), v.minValue(1)),
-  updatedAt: v.pipe(v.string(), v.isoTimestamp(), v.maxLength(40))
+  updatedAt: v.union([v.pipe(v.string(), v.isoTimestamp(), v.maxLength(40)), sourceSqliteTimestamp])
 });
 export const updateCollectionInput = v.strictObject({
   collection: identifier, input: collectionMetadataInput, expected: revisionInput

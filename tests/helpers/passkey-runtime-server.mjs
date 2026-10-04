@@ -6,11 +6,14 @@ import { readFile } from 'node:fs/promises';
 import { resolve, sep } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { Miniflare } from 'miniflare';
+import { listenRuntime } from './runtime-listener.mjs';
 
 const output = resolve(process.env.CMS_AUTH_OUTPUT ?? '.svelte-kit/output');
-const publicOrigin = process.env.SVELTERY_PUBLIC_ORIGIN;
-if (!publicOrigin) throw new Error('Fixture requires a trusted public origin');
-const url = new URL(publicOrigin);
+const configuredOrigin = process.env.SVELTERY_PUBLIC_ORIGIN;
+if (!configuredOrigin) throw new Error('Fixture requires a trusted public origin');
+const http = createServer();
+const publicOrigin = await listenRuntime(http, configuredOrigin);
+process.env.SVELTERY_PUBLIC_ORIGIN = publicOrigin;
 const built = file => import(pathToFileURL(resolve(output, 'server', file)).href);
 let d1;
 let platform;
@@ -29,7 +32,7 @@ const ids = {};
 for (const [hash, load] of Object.entries(manifest._.remotes)) {
   for (const name of Object.keys((await load()).default)) ids[name] = `${hash}/${name}`;
 }
-const http = createServer(async (incoming, outgoing) => {
+http.on('request', async (incoming, outgoing) => {
   try {
     const requestUrl = new URL(incoming.url ?? '/', publicOrigin);
     if (requestUrl.pathname.startsWith('/_app/') && !requestUrl.pathname.startsWith('/_app/remote/')) {
@@ -52,8 +55,7 @@ const http = createServer(async (incoming, outgoing) => {
     outgoing.end(Buffer.from(await response.arrayBuffer()));
   } catch (cause) { outgoing.writeHead(500); outgoing.end(String(cause)); }
 });
-await new Promise(resolve => http.listen(Number(url.port), '127.0.0.1', resolve));
-console.log('CMS_PASSKEY_READY ' + JSON.stringify({ ids }));
+console.log('CMS_PASSKEY_READY ' + JSON.stringify({ ids, origin: publicOrigin }));
 let closing = false;
 async function close() {
   if (closing) return;
