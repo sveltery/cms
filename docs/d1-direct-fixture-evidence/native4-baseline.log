@@ -1,0 +1,50 @@
+✖ local database: actual D1 values and atomic rollback use zero synchronous waits (478.642691ms)
+✖ collection update: actual D1 values and atomic rollback use zero synchronous waits (406.926551ms)
+✔ local database: custom Worker dispatch retains request data and the same actual DB (204.968324ms)
+✔ direct fixtures: original persistent DB identifiers remain separate across restart (1169.141244ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2669.684553
+
+✖ failing tests:
+
+test at tests/d1-direct-fixture-transport.test.ts:22:3
+✖ local database: actual D1 values and atomic rollback use zero synchronous waits (478.642691ms)
+  AssertionError [ERR_ASSERTION]: fixture operations must use asynchronous real Worker D1 requests
+  
+  135 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/cms-d1-direct-fixture-transport/tests/d1-direct-fixture-transport.test.ts:51:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 135,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/d1-direct-fixture-transport.test.ts:22:3
+✖ collection update: actual D1 values and atomic rollback use zero synchronous waits (406.926551ms)
+  AssertionError [ERR_ASSERTION]: fixture operations must use asynchronous real Worker D1 requests
+  
+  135 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/cms-d1-direct-fixture-transport/tests/d1-direct-fixture-transport.test.ts:51:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 135,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
