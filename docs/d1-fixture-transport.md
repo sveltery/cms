@@ -123,7 +123,7 @@ authentication behavior, normal commands and existing deadlines are unchanged.
 The private `localD1` factory was extracted unchanged to a test helper before
 running the [whole original Native fixture tests](../tests/d1-direct-fixture-transport.test.ts).
 Static reconstruction preserves every other original database test byte,
-including all sixteen `test(...)` declaration expressions. The new family has
+including all fourteen `test(...)` declaration expressions, expanding to eighteen callbacks. The new family has
 three declaration expressions, four expanded callbacks and fifteen static
 assertion expressions. At test-first commit `4ae51e2b`, both actual factories make
 135 `Atomics.wait` calls against the required zero. All preceding real D1 scalar,
