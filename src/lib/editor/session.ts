@@ -31,7 +31,8 @@ export class EditorSession {
     this.baseline = this.key();
   }
   private key() { return JSON.stringify({ data: this.data, slug: this.slug }); }
-  get dirty() { return this.isNew || this.key() !== this.baseline; }
+  get changed() { return this.key() !== this.baseline; }
+  get dirty() { return this.isNew || this.changed; }
   get canAutosave() { return !this.isNew && this.writable && this.dirty && !this.pending && !this.conflict && this.key() !== this.rejected; }
   subscribe(listener: () => void) { this.listeners.add(listener); return () => this.listeners.delete(listener); }
   private notify() { for (const listener of this.listeners) listener(); }

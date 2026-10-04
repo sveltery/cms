@@ -20,7 +20,9 @@
   let conflict = $state(false), message = $state<string | undefined>();
   let trashPending = $state(false), trashError = $state<string | undefined>();
   const formKey = $derived(JSON.stringify([collection, entry.id, entry.locale]));
-  const manualForm = $derived(isNew ? createContent.for(formKey) : updateContent.for(formKey));
+  // Kit's keyed form injects `id` when it is absent. Create has no existing id
+  // and its strict input contract rejects that injected key.
+  const manualForm = $derived(isNew ? createContent : updateContent.for(formKey));
   const automaticForm = $derived(autosaveEditorDraft.for(formKey));
   const trashForm = $derived(deleteContent.for(formKey));
   const scalarFields = $derived(Object.entries(definition.fields).filter(([, field]) =>
@@ -48,11 +50,13 @@
     return () => clearTimeout(timer);
   });
   beforeNavigate(navigation => {
-    if ((dirty || pending) && !window.confirm('You have unsaved changes. Leave this page?')) navigation.cancel();
+    // The inline new editor is present on every collection visit. Preserve
+    // Source's new-entry Save state while warning only after values change.
+    if ((session.changed || pending) && !window.confirm('You have unsaved changes. Leave this page?')) navigation.cancel();
   });
   onMount(() => {
     const warn = (event: BeforeUnloadEvent) => {
-      if (session.dirty || session.pending) { event.preventDefault(); event.returnValue = ''; }
+      if (session.changed || session.pending) { event.preventDefault(); event.returnValue = ''; }
     };
     window.addEventListener('beforeunload', warn);
     return () => window.removeEventListener('beforeunload', warn);
