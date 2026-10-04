@@ -115,8 +115,11 @@ applied at910f4842. Its first completed run reaches HTTP200 and fails the actual
 workspace href assertion: raw Kit root-relative `./` instead of the intended
 import target. The full [receipt](setup-api-runs.json) preserves one Native value
 red and zero Source credit. The PM now [qualifies the exact389B server load and973B page](setup-api-login-production-qualification.json).
-Those two files are applied after the retained baseline; the rebuilt ordinary
-Native1 and unchanged whole welcome2 repeats remain pending. Actual transfer/import functionality and complete dashboard rendering
+Those two files at1dd8079a build successfully. The same ordinary Native1 now
+passes1/1 with both expectations unchanged; actual HTML retains the intended
+import pathname/query. Whole welcome2 remains2/2 green with all7 expectations
+unchanged after the same build. The retained unique Native value-red count is1;
+repeats add none, and this Native case grants no copied Source credit. Actual transfer/import functionality and complete dashboard rendering
 remain unfinished. The server load does not change authentication or enrollment.
 
 The [compatibility register](../parity/emdash/compatibility.md) records the native

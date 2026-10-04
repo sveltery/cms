@@ -1342,6 +1342,9 @@ Source credit and zero fixed-green continuation are claimed. [Draft PR90](https:
 contains the freeze/initial welcome test-first work; the paired feature/register appends and ordinary fixture are now qualified and
 applied; the PM now qualifies the exact389B server load and973B page in
 [the separate production decision](../../docs/setup-api-login-production-qualification.json).
-The two files are applied after the reached baseline; actual build and ordinary
-Native1/whole welcome2 repeats remain pending. No final adaptation acceptance or landing is
+Exact production2 at1dd8079a builds successfully; same ordinary Native1 passes1/1
+with both expectations unchanged and actual HTML retaining the intended import
+pathname/query. Whole original welcome2 remains2/2 green/all7 unchanged after
+the same build. One Native href value red is retained; no repeated green adds
+causal or copied Source credit. No final adaptation acceptance or landing is
 recorded; current full normal/secured gates and both reviews remain pending.

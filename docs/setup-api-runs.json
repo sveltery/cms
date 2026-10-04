@@ -194,6 +194,74 @@
         }
       ],
       "limits": "One ordinary read-only SSR feature case only. No credential/session/nonce/signature/replay/race/bypass probes, browser ceremony, transfer/import runtime, full dashboard or additional Source callback credit."
+    },
+    {
+      "kind": "Native intended login destination fixed green",
+      "head": "1dd8079af0e4887f20945b2e280398258245fcbe",
+      "family": "tests/setup-api-native/login-continuation.test.ts",
+      "declarations": 1,
+      "expectExpressions": 2,
+      "allExpectationsReached": true,
+      "unchangedOriginalTestBytes": true,
+      "PMQualification": "docs/setup-api-login-production-qualification.json",
+      "build": {
+        "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm build",
+        "log": "/tmp/setup-api-login-continuation-fix-build.log",
+        "exit": 0
+      },
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-login-native.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-login-native-fix-green.json",
+      "exit": 0,
+      "passed": 1,
+      "failed": 0,
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/login-native-fix-green.log",
+          "bytes": 441,
+          "sha256": "4b7be2c177ebc5a50ed51fb0babf82973e28f3be597c040dae88e86ae19819d2"
+        },
+        {
+          "path": "docs/setup-api-evidence/login-native-fix-green.json",
+          "bytes": 947,
+          "sha256": "5b9b19f65cf9fd01fc8997a8d028217af09b3195f1b6f06749a306ffd03920c9"
+        }
+      ],
+      "addedSourceCredit": 0,
+      "addedCausalValueRedCredit": 0,
+      "limits": "Repeated green adds no causal credit. Actual transfer/import/full dashboard, Source Astro/session/credential implementations and final whole normal/secured gates remain incomplete."
+    },
+    {
+      "kind": "Whole original welcome2 remains green after login mapping",
+      "head": "1dd8079af0e4887f20945b2e280398258245fcbe",
+      "family": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+      "declarations": 2,
+      "expectExpressions": 7,
+      "allExpectationsReached": true,
+      "unchangedOriginalTestBytes": true,
+      "PMQualification": "docs/setup-api-welcome-production-qualification.json",
+      "build": {
+        "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm build",
+        "log": "/tmp/setup-api-login-continuation-fix-build.log",
+        "exit": 0
+      },
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-welcome.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-welcome-after-login-fix-green.json",
+      "exit": 0,
+      "passed": 2,
+      "failed": 0,
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/welcome-after-login-fix-green.log",
+          "bytes": 498,
+          "sha256": "3b23aa9ae30d8170fd44e662796a8a6949a6947f531a2705d1938dc4f69fd708"
+        },
+        {
+          "path": "docs/setup-api-evidence/welcome-after-login-fix-green.json",
+          "bytes": 1401,
+          "sha256": "67aed5ab0e6e0749076c0f40f2854b251372be5abc2c35f841cba21c126982e3"
+        }
+      ],
+      "addedSourceCredit": 0,
+      "addedCausalValueRedCredit": 0,
+      "limits": "Repeated green adds no causal credit. Actual transfer/import/full dashboard, Source Astro/session/credential implementations and final whole normal/secured gates remain incomplete."
     }
   ],
   "latest": {
@@ -208,9 +276,11 @@
     "setupParity": "incomplete",
     "dashboardParity": "incomplete",
     "nativeLogin": {
-      "valueReds": 1,
-      "green": 0,
-      "SourceCredit": 0
+      "uniqueValueReds": 1,
+      "green": 1,
+      "expectExpressionsReached": 2,
+      "SourceCredit": 0,
+      "fixHead": "1dd8079af0e4887f20945b2e280398258245fcbe"
     }
   }
 }
