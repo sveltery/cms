@@ -1,0 +1,107 @@
+{
+  "fixedHead": "285b98695cde3b0206ae3f226634c263a8629a30",
+  "fixedTree": "40391246b5fa54b4153f0e6ac7a15434b1296932",
+  "refactoredHead": "bca48a91d29d430ceea702a9e66edd0ce8f43f0e",
+  "refactoredTree": "0303ec01d9b04fd8dac67561a8d7694d49c15f21",
+  "runs": [
+    {
+      "kind": "fixed",
+      "head": "285b98695cde3b0206ae3f226634c263a8629a30",
+      "groups": [
+        {
+          "callbacks": 76,
+          "passed": 76,
+          "failed": 0,
+          "pending": 0,
+          "rawLog": {
+            "path": "/tmp/full-search-285b9869-core76-fixed.log",
+            "bytes": 2629,
+            "sha256": "9a32ae173513b46bf8d83ff869010f7f783aab5b6ee0f94e741a06bab36d1be9"
+          },
+          "rawJson": {
+            "path": "/tmp/full-search-285b9869-core76-fixed.json",
+            "bytes": 27989,
+            "sha256": "446518913f9958553c840653eaf22b9dc58db494b5b910c8a3a10f64ea184e13"
+          }
+        },
+        {
+          "callbacks": 12,
+          "passed": 12,
+          "failed": 0,
+          "pending": 0,
+          "rawLog": {
+            "path": "/tmp/full-search-285b9869-review12-fixed.log",
+            "bytes": 515,
+            "sha256": "a91e81f7e25192873a7feab6b2ecdf66eeda2d9b69a342821ad57f3e6d60b668"
+          },
+          "rawJson": {
+            "path": "/tmp/full-search-285b9869-review12-fixed.json",
+            "bytes": 6015,
+            "sha256": "28f18423507b5d6f450a4147de30b1c97886636f4209c84a911629113bc19db6"
+          }
+        }
+      ],
+      "selectedSourceWholeCallbacks": 61,
+      "supplementalNativeWholeCallbacks": 27,
+      "allPassed": 88,
+      "failureSkipPreexpectInfra": 0
+    },
+    {
+      "kind": "refactored",
+      "head": "bca48a91d29d430ceea702a9e66edd0ce8f43f0e",
+      "groups": [
+        {
+          "callbacks": 76,
+          "passed": 76,
+          "failed": 0,
+          "pending": 0,
+          "rawLog": {
+            "path": "/tmp/full-search-refactor-core76.log",
+            "bytes": 2623,
+            "sha256": "35653d7d44a8534d146ee34e3b6599463e6f86e6687f9191b3459517fc7d1b84"
+          },
+          "rawJson": {
+            "path": "/tmp/full-search-refactor-core76.json",
+            "bytes": 27977,
+            "sha256": "dbd6db80f01b8cf6fcf1760045827a780c90abd266bae9baaaea93ae1f419f39"
+          }
+        },
+        {
+          "callbacks": 12,
+          "passed": 12,
+          "failed": 0,
+          "pending": 0,
+          "rawLog": {
+            "path": "/tmp/full-search-refactor-review12.log",
+            "bytes": 509,
+            "sha256": "3525a1f70b0c3f52c17124bfceb554a117ba10d31b9d7ff40ffdfc6434e472d8"
+          },
+          "rawJson": {
+            "path": "/tmp/full-search-refactor-review12.json",
+            "bytes": 6024,
+            "sha256": "0584312d57ceece53a443ed7db130778bb775fd24041109b832f54ec06bc5550"
+          }
+        }
+      ],
+      "selectedSourceWholeCallbacks": 61,
+      "supplementalNativeWholeCallbacks": 27,
+      "allPassed": 88,
+      "failureSkipPreexpectInfra": 0
+    }
+  ],
+  "guard": {
+    "path": "/tmp/full-search-285b9869-whole-source-guard.log",
+    "bytes": 171,
+    "sha256": "b6229ca86859ca5da0592d73042b04bb23bacb6b098ec3b0efd62fffff0b9d06"
+  },
+  "sync": {
+    "path": "/tmp/full-search-285b9869-sync.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "sourceOriginalProvenance": "All41 pinned copies/selected14wholefamilies61callbacks/58declarations128staticexpectexpressions retained unchanged; original assertions/datasets/clocks untouched. Source initial imports/rawnamespace preexpect received0causalred, this is actual selectedSource61green behavior at stated heads only.",
+  "nativeTDD": "Native initial8 readiness reds distinct from unreached SQL values; Native6 actualschema values/promisered, Native8 semantic SQL/guard/mockhealth reds, Native1unknowndelete actualpromisered preserved; creatorNative3 actualpublic controls alreadygreen, no bugrepair/Sourcecredit.",
+  "refactor": "One private compiled trigger-drop producer now supplies identical ordered insert/update/delete SQL to direct rebuilds and atomic schema batches. Same owner, params/names/guards/drop ordering unchanged; both full88 rerun because of actual production refactor.",
+  "remainingScope": "9Sourceintegrationfamilies/API/publicQuerySDK/commandpalette/LiveSearch/WebMCP/MCP/http/rawD1/userintegration; actualpublishedTaxcache; current13normal9secured/finalindependentconfiguredreview/Rootacceptance/authormerge/postMain still pending.",
+  "fullSearchCompleted": false
+}
