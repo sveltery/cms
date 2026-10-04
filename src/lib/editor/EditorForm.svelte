@@ -9,6 +9,8 @@
   import { EditorResponseError, editorError } from './errors';
   import { slugify } from '../sections-widgets/slugify';
   import WritableDraft from './WritableDraft.svelte';
+  import FieldHost from './fields/FieldHost.svelte';
+  import { TYPED_FIELD_TYPES } from './fields/field-types';
   let { collection, definition, entry, canWrite, canTrash = false, isNew = false }: {
     collection: string; definition: EditorCollection; entry: EditorRecord;
     canWrite: boolean; canTrash?: boolean; isNew?: boolean;
@@ -30,7 +32,12 @@
   const scalarFields = $derived(Object.entries(definition.fields).filter(([, field]) =>
     (field.type === 'string' || field.type === 'text') && !field.widget && !field.unsupportedType
   ).map(([slug, field]) => ({ ...field, slug, validation: field.validation ?? null })));
-  const deferredFields = $derived(Object.entries(definition.fields).filter(([slug]) => !scalarFields.some(field => field.slug === slug)));
+  const typedFields = $derived(Object.entries(definition.fields).filter(([, field]) =>
+    TYPED_FIELD_TYPES.has(field.type) && !field.widget && !field.unsupportedType && field.kind !== 'unsupported'
+  ));
+  const deferredFields = $derived(Object.entries(definition.fields).filter(([slug]) =>
+    !scalarFields.some(field => field.slug === slug) && !typedFields.some(([name]) => name === slug)
+  ));
   const issues = $derived(message ? [message] : []);
   function sync() {
     values = session.data; slug = session.slug; revision = session.revision;
@@ -114,7 +121,12 @@
   {#if !isNew}<input type="hidden" name="id" value={entry.id} /><input type="hidden" name="_rev" value={revision} />{/if}
   <label for="entry-slug">Slug</label>
   <input id="entry-slug" name="slug" value={slug} oninput={event => editSlug(event.currentTarget.value)} disabled={!canWrite} maxlength="200" />
-  <WritableDraft fields={scalarFields} {values} {pending} {dirty} {issues} {canWrite} onValuesChange={edit} />
+  <WritableDraft fields={scalarFields} {values} {pending} {dirty} {issues} {canWrite} onValuesChange={edit}>
+    {#each typedFields as [name, field] (name)}
+      <FieldHost {name} {field} value={values[name]} readOnly={!canWrite}
+        onChange={value => edit({ ...values, [name]: value })} />
+    {/each}
+  </WritableDraft>
   {#if deferredFields.length}
     <p>Other field values are preserved when saving.</p>
     <ul>{#each deferredFields as [name, field]}<li>{field.label || name}: read only.</li>{/each}</ul>
