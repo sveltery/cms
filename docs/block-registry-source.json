@@ -1710,5 +1710,93 @@
     "specificPmAcceptanceRecorded": false,
     "sharedFixtureUnion": "Actual PR96 public merge343c; actual PR97 not yet landed. Adoption and resulting-tree qualification remain separate; no private files consumed.",
     "remaining": "Final corrected actual-public combined head whole Native/Source/checker, mandatory13+9 once, fresh exact review, configured review policy, specific BR decisions, PM approval, author CAS merge and postMain. Broad live usage/capture/cache/Seed/API/UI unfinished."
+  },
+  "ci457QualifiedCorrectionDevelopmentOutcome": {
+    "status": "qualified finite correction applied, current narrow gates green; actual-public combined mandatory gate/final approval pending",
+    "head": "9ed3d9747b8c59bd09577b163adb75c97325453e",
+    "tree": "af96abc685051c6f80072f49839dd623f73a10d6",
+    "testFirstCommit": "e725c2a0108ee6dd3992e1377834faa0f50d51a0",
+    "testedProductionHead": "83effbd8a52ed5e0a850384fe62c0c3c70c77353",
+    "exactRootDevelopmentProof": {
+      "path": "/tmp/root-block91-ci457-exact11-development-qualification.json",
+      "sha256": "8f68768e39db78401d80169593d4722e336351c07ccce035b2674f8a23e4a902"
+    },
+    "freshStaticReview": {
+      "path": "/tmp/block91-independent-initial-e396-and-correction-r1-review.json",
+      "sha256": "dd94422d7f5708a011bc60980d4b2292d9da396f622361e4c327f5e8d48e2265"
+    },
+    "developmentBr01Through05Accepted": true,
+    "finalExactHeadBrAcceptanceRecorded": false,
+    "readinessOriginalBaseline": {
+      "tests": 4,
+      "pass": 2,
+      "fail": 2,
+      "preexpectFailures": 0,
+      "causalNativeAssertionReds": [
+        "Node installed15 false!==true at line28",
+        "raw D1 installed15 false!==true at line28"
+      ],
+      "initialControls": [
+        "Node installed14 completes all assertions",
+        "raw D1 installed14 completes all assertions"
+      ],
+      "unreachableLaterAssertions": "For installed15 baseline, schema-preservation and invalid-default later assertions after line28 were unreachable; corrected four callbacks complete."
+    },
+    "corrected": {
+      "nativeOriginalCallbacks": 24,
+      "newReadinessCallbacks": 4,
+      "commentsOriginalLiteralCallbacks": 22,
+      "commentsOriginalDependencyCallbacks": 4,
+      "originalSourceCallbacks": 30,
+      "sourceAuthorityFiles": 50,
+      "sourceAuthorityBytes": 606359,
+      "sourceOriginalDeclarations": 19,
+      "sourceOriginalExpectExpressions": 58,
+      "checkerErrors": 0,
+      "checkerWarnings": 0,
+      "allExitCodes": 0,
+      "cancelledSkippedTodo": 0
+    },
+    "logs": {
+      "readiness4Red": {
+        "path": "/tmp/block91-ci457-readiness4-original-red.log",
+        "bytes": 2040,
+        "sha256": "f39837a401cdac38ccd81a642eb4c18f43336d7801e9a152d10a497522d18be0"
+      },
+      "native24Green": {
+        "path": "/tmp/block91-ci457-corrected-native28.log",
+        "bytes": 2726,
+        "sha256": "70bf4cb17a9b345022ae005b1464a990d7d891e819894fe48aaf5ddac8e4dfba"
+      },
+      "readiness4Green": {
+        "path": "/tmp/block91-ci457-corrected-readiness4.log",
+        "bytes": 522,
+        "sha256": "8e62d720eba6630651456a376f5334ef2ea546f41e11427b9059ac0594f01c9a"
+      },
+      "comments26Green": {
+        "path": "/tmp/block91-ci457-corrected-comments26.log",
+        "bytes": 2479,
+        "sha256": "7227759b00fa191afb0b97b4ec768ea93d94d3ae5bc09820b80e5bb91cfac88a"
+      },
+      "source30Green": {
+        "path": "/tmp/block91-ci457-corrected-source30.log",
+        "bytes": 556,
+        "sha256": "76b271d32735ab4164483d06d7096429931b6c7037b0c9185e5be82fd9a213c3"
+      },
+      "checkerGreen": {
+        "path": "/tmp/block91-ci457-corrected-checker.log",
+        "bytes": 209,
+        "sha256": "e74f7381e230318c8dfb747a850368927682c044b3508bdee6a04cb969a934aa"
+      }
+    },
+    "nativeCommandTruth": "Registered original Native script enumerates three files and currently runs24; new readiness4 ran separately once. The historical log filename corrected-native28 contains24, identified exactly here. One-argument package append proposed so mandatory CI includes all28.",
+    "unresolvedWholeIntegration": "CI457 47 first combined failures remain historical. Sixteen ordinary operator catalogue regressions and28 latest-marker first failures are not rerun separately; corrected full mandatory normal must actually reach/pass all original families on future actual-public combined head. Comments3 first combined failures have meaningful additional Native2 readiness causal reds and complete4 green, not a repeated combined service run.",
+    "proposedNativeGateExtension": "TZ=America/New_York node --test tests/blocks/provider-defaults-original.test.ts tests/blocks/catalogue-fixture.test.ts tests/blocks/provider-preservation.test.ts tests/blocks/comments-readiness-defaults-original.test.ts",
+    "gateExtensionApplied": false,
+    "actualPublic96Merge": "343c0ff2e69e66e03b848d258da7c288e9a67223",
+    "actualPublic97Merge": null,
+    "completedSourceCausalValueRedCredit": 0,
+    "actualMain15Acceptance": false,
+    "broaderScope": "unfinished; bounded support and tests add no completion claim"
   }
 }

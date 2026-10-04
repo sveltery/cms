@@ -50,7 +50,7 @@
     "test:content-picker-browser-source": "node scripts/check-content-picker-source.mjs && vitest run --config vitest.content-picker-browser.config.ts",
     "test:writable-editor-source": "node scripts/check-writable-editor-source.mjs && vitest run --config vitest.writable-editor-source.config.ts",
     "test:writable-editor-ui": "pnpm build && vitest run --config vitest.writable-editor-native.config.ts",
-    "test:block-registry-native": "TZ=America/New_York node --test tests/blocks/provider-defaults-original.test.ts tests/blocks/catalogue-fixture.test.ts tests/blocks/provider-preservation.test.ts",
+    "test:block-registry-native": "TZ=America/New_York node --test tests/blocks/provider-defaults-original.test.ts tests/blocks/catalogue-fixture.test.ts tests/blocks/provider-preservation.test.ts tests/blocks/comments-readiness-defaults-original.test.ts",
     "test:block-registry-source": "node scripts/check-block-registry-source.mjs && vitest run --config vitest.block-registry-source.config.ts"
   },
   "dependencies": {
