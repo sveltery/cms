@@ -190,3 +190,20 @@ red if an unchanged assertion is reached. This unexecuted proposal awaits
 separate finite PM qualification; actual media/provider14, HTTP/UI rendering,
 policy dismissal, scheduler execution, D1/hosting and full dashboard parity
 remain unfinished. Proposed Draft PR90/full current gates/reviews remain pending.
+
+The exact r3 eight-file runtime and paired suffixes were subsequently qualified
+and applied in62e62874. The whole unchanged16 callbacks now run real migrated
+Node SQLite and each fails at its first expected-success assertion: actual
+missing _cms_media is caught and produces false. All77 expectation expressions
+remain byte-exact;16 first expectations are reached and61 later expectations
+remain unreached. These are16 observed value reds for unfinished public storage,
+not a Source algorithm defect or a completed dashboard red→green result. Full
+raw receipts and exact PM proof are retained in setup-api-runs.json; public
+provider14 remains required, without fake DDL/count/cache/provider success.
+
+A read-only compiler-host overlay before application also identified four
+Kysely schema-invariance diagnostics at actual repository constructors. It wrote
+no repository candidate and executed no runtime or test; the full diagnostic
+log is retained with0credit. A finite schema-view constructor adapter/import-only
+amendment is being prepared separately. No protected HTTP/auth/principal probe,
+full dashboard/UI/D1/hosting acceptance or complete current gate is claimed.

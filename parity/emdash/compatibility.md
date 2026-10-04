@@ -1389,3 +1389,18 @@ providers, policy execution/dismissal, scheduler firing, HTTP/UI, D1, hosting or
 full dashboard. [Paired feature record](../../docs/setup-api-backend.md) and
 [Draft PR90](https://github.com/sveltery/cms/pull/90) retain these limits. Final
 adaptation acceptance/current full13+secured gates/both reviews/landing pending.
+
+The exact r3 proposal was then development-qualified and applied in62e62874.
+Actual whole original16 execution reaches only its16 first success assertions,
+each failing true versus false after a real missing _cms_media query is caught
+by the unchanged Source handler; remaining61 expectations are unreached. These
+observed value reds identify the absent public provider14, without algorithm-bug
+or completed dashboard red→green credit. All whole Source/fixture bytes and
+77 expects remain unchanged. No test media DDL/count/provider/cache synthesis
+or protected HTTP/auth/principal probe occurred. The separate read-only compiler
+overlay found four Kysely schema-invariance constructor diagnostics, adding
+0runtime/test credit; a finite import/constructor type-view amendment is pending.
+[Full actual receipts](../../docs/setup-api-runs.json) retain both initial import
+infrastructure0 and later reached value failures. Current full normal/secured
+gates, final adaptation acceptance/reviews/landing and real dashboard/UI/media
+provider/D1/hosting completion remain pending.

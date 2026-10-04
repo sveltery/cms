@@ -295,13 +295,278 @@
         }
       ],
       "limits": "No production dashboard namespace/handler/policy/scheduler/count/route applied; no principal/session/credential/auth probe or media fixture DDL. Actual public media provider14 remains unavailable; whole dashboard green and final combined gates/reviews remain pending."
+    },
+    {
+      "kind": "First completed actual whole dashboard16 expected-success value baseline",
+      "head": "62e628744dc796b549fc6ff95d449e9136a81481",
+      "wholeFamily": "packages/core/tests/unit/api/dashboard-handlers.test.ts",
+      "sourceBlob": "1e00d69b67a66bb9d26988bc21c309b87c5448ee",
+      "declarations": 16,
+      "expectExpressions": 77,
+      "unchangedSourceBytes": true,
+      "PMQualification": "docs/setup-api-dashboard-production-qualification.json",
+      "productionManifestSha256": "b2454434a16dedb4de59075e1452036a082b95387c726121688d7f3aec916044",
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-dashboard.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-dashboard-whole16-first-reached-value-red.json",
+      "exit": 1,
+      "attemptedWholeSourceCallbacks": 16,
+      "passed": 0,
+      "failed": 16,
+      "failedBeforeAnySourceAssertion": 0,
+      "completedSourceValueReds": 16,
+      "reachedExpectExpressions": 16,
+      "unreachedExpectExpressions": 61,
+      "wholeSourceFamilyGreen": false,
+      "completedDashboardRedToGreenCredit": 0,
+      "actualMissingMediaTableErrors": 16,
+      "cases": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:26",
+          "title": "returns empty stats when no collections exist",
+          "status": "failed",
+          "valueFailure": {
+            "line": 31,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 5
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:39",
+          "title": "returns collection stats with correct counts",
+          "status": "failed",
+          "valueFailure": {
+            "line": 53,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 13
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:76",
+          "title": "counts entries with pending schedules in collection stats",
+          "status": "failed",
+          "valueFailure": {
+            "line": 103,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 3
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:110",
+          "title": "reports an unknown scheduler with overdue content when no heartbeat exists",
+          "status": "failed",
+          "valueFailure": {
+            "line": 122,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 2
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:134",
+          "title": "reports stale and healthy scheduler heartbeats",
+          "status": "failed",
+          "valueFailure": {
+            "line": 141,
+            "expression": "expect(stale.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 3
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:150",
+          "title": "counts scheduled publications that policy plugins rejected",
+          "status": "failed",
+          "valueFailure": {
+            "line": 169,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 2
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:183",
+          "title": "bounds the policy-rejection records returned to the dashboard",
+          "status": "failed",
+          "valueFailure": {
+            "line": 198,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 2
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:203",
+          "title": "returns recent items across collections",
+          "status": "failed",
+          "valueFailure": {
+            "line": 214,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 8
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:230",
+          "title": "recent items use title field when available",
+          "status": "failed",
+          "valueFailure": {
+            "line": 244,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 2
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:250",
+          "title": "recent items fall back to slug when collection has no title field",
+          "status": "failed",
+          "valueFailure": {
+            "line": 276,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 2
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:283",
+          "title": "excludes soft-deleted items from recent items",
+          "status": "failed",
+          "valueFailure": {
+            "line": 295,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 2
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:301",
+          "title": "limits recent items to 10",
+          "status": "failed",
+          "valueFailure": {
+            "line": 312,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 1
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:316",
+          "title": "recent items are ordered by updated_at descending",
+          "status": "failed",
+          "valueFailure": {
+            "line": 328,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 1
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:333",
+          "title": "counts exclude soft-deleted items",
+          "status": "failed",
+          "valueFailure": {
+            "line": 343,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 1
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:349",
+          "title": "merges recent items across many title-bearing collections (#895)",
+          "status": "failed",
+          "valueFailure": {
+            "line": 385,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 3
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/api/dashboard-handlers.test.ts:397",
+          "title": "returns camelCase keys in recent items",
+          "status": "failed",
+          "valueFailure": {
+            "line": 404,
+            "expression": "expect(result.success).toBe(true)",
+            "expected": true,
+            "received": false
+          },
+          "reachedExpectExpressions": 1,
+          "unreachedExpectExpressions": 11
+        }
+      ],
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/dashboard-whole16-first-reached-value-red.log",
+          "bytes": 43777,
+          "sha256": "aeacd5d056b1c0bd6bc327b7f9785e5b16155cad8294dd19e9d9c4fc537f016a"
+        },
+        {
+          "path": "docs/setup-api-evidence/dashboard-whole16-first-reached-value-red.json",
+          "bytes": 12471,
+          "sha256": "0d4baa6363cc558e6a736dfcbedebbfe25def7b5c7fc761271c403945d6d51b6"
+        }
+      ],
+      "diagnosis": "All sixteen actual handlers catch real SQL missing _cms_media and return unchanged Source success:false; each first original success:true assertion fails. Actual public provider14 is absent. This is unfinished product storage rather than a reproduced Source algorithm bug.",
+      "limits": "No media fixture DDL/fake count/provider/cache success; no protected HTTP/auth/principal/session/credential probe. Actual Node domain only. All downstream61 expectations, media/file provider, HTTP/dashboard UI/D1/hosting and final normal/secured/reviews remain pending."
+    },
+    {
+      "kind": "Read-only candidate compiler-host overlay diagnostics; zero runtime/test credit",
+      "head": "4df0fb69d5363c22efb68de8bb3a52dd331db474",
+      "productionAppliedDuringCheck": false,
+      "candidateLibraries": 7,
+      "routeExcluded": "Requires generated Kit route types; no HTTP probe",
+      "errors": 4,
+      "diagnosis": "Kysely schema generic invariance at handler ContentRepository/OptionsRepository and both scheduler OptionsRepository constructors despite structural logical aliases. No Source runtime result was executed during this check.",
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/dashboard-r3-read-only-types.log",
+          "bytes": 14004,
+          "sha256": "19260c8d33efc2df8a6bb1025f1e1b56d2ef635a288ccc47f0a3940db5fff3fa"
+        }
+      ],
+      "SourceCausalCredit": 0,
+      "fix": "Finite explicit constructor schema-view adapter and import-only amendment proposed separately before application."
     }
   ],
   "latest": {
     "wholeSourceFamiliesGreen": 1,
     "wholeSourceCallbacksGreen": 2,
     "expectExpressionsReached": 7,
-    "uniqueSourceValueReds": 1,
+    "uniqueSourceValueReds": 17,
     "firstGreenControls": 1,
     "refactorPending": false,
     "fullNormalGate": false,
@@ -318,10 +583,14 @@
     "dashboard": {
       "wholeOriginalDeclarations": 16,
       "wholeOriginalExpectExpressions": 77,
-      "attemptedCallbacks": 0,
-      "completedValueReds": 0,
+      "attemptedCallbacks": 16,
+      "reachedExpectExpressions": 16,
+      "unreachedExpectExpressions": 61,
+      "completedValueReds": 16,
+      "completedRedToGreenCredit": 0,
       "wholeFamilyGreen": false,
-      "latestOutcome": "missing product module infrastructure"
-    }
+      "latestOutcome": "actual missing public media provider SQL caught; all original success assertions fail"
+    },
+    "completedCausalSourceGreenCredit": 1
   }
 }

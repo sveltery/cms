@@ -1,0 +1,606 @@
+
+ RUN  v4.1.10 /workspace/cms-source-setup-api-backend-fresh
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > returns empty stats when no collections exist
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > returns collection stats with correct counts
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > counts entries with pending schedules in collection stats
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > reports an unknown scheduler with overdue content when no heartbeat exists
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > reports stale and healthy scheduler heartbeats
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > counts scheduled publications that policy plugins rejected
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > bounds the policy-rejection records returned to the dashboard
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > returns recent items across collections
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0)
+    at handleDashboardStats (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/handler.ts:106:7) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > recent items use title field when available
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0)
+    at handleDashboardStats (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/handler.ts:106:7) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > recent items fall back to slug when collection has no title field
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0)
+    at handleDashboardStats (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/handler.ts:106:7) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > excludes soft-deleted items from recent items
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0)
+    at handleDashboardStats (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/handler.ts:106:7) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > limits recent items to 10
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0)
+    at handleDashboardStats (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/handler.ts:106:7) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > recent items are ordered by updated_at descending
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0)
+    at handleDashboardStats (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/handler.ts:106:7) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > counts exclude soft-deleted items
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0)
+    at handleDashboardStats (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/handler.ts:106:7) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > merges recent items across many title-bearing collections (#895)
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0)
+    at handleDashboardStats (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/handler.ts:106:7) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+stderr | parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > returns camelCase keys in recent items
+Dashboard stats error: Error: no such table: _cms_media
+    at NodeSqliteCompatDatabase.prepare (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-source-setup-api-backend-fresh/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at MediaRepository.count (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/counts.ts:55:18)
+    at async Promise.all (index 0)
+    at handleDashboardStats (/workspace/cms-source-setup-api-backend-fresh/src/lib/server/setup/dashboard/handler.ts:106:7) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts (16 tests | 16 failed) 349ms
+       × returns empty stats when no collections exist 22ms
+       × returns collection stats with correct counts 24ms
+       × counts entries with pending schedules in collection stats 21ms
+       × reports an unknown scheduler with overdue content when no heartbeat exists 15ms
+       × reports stale and healthy scheduler heartbeats 8ms
+       × counts scheduled publications that policy plugins rejected 7ms
+       × bounds the policy-rejection records returned to the dashboard 12ms
+       × returns recent items across collections 24ms
+       × recent items use title field when available 13ms
+       × recent items fall back to slug when collection has no title field 14ms
+       × excludes soft-deleted items from recent items 13ms
+       × limits recent items to 10 19ms
+       × recent items are ordered by updated_at descending 34ms
+       × counts exclude soft-deleted items 14ms
+       × merges recent items across many title-bearing collections (#895) 95ms
+       × returns camelCase keys in recent items 13ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 16 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > returns empty stats when no collections exist
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:31:27
+     29|    const result = await handleDashboardStats(db);
+     30|
+     31|    expect(result.success).toBe(true);
+       |                           ^
+     32|    expect(result.data).toBeDefined();
+     33|    expect(result.data!.collections).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/16]⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > returns collection stats with correct counts
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:53:27
+     51|    const result = await handleDashboardStats(db);
+     52|
+     53|    expect(result.success).toBe(true);
+       |                           ^
+     54|    const { collections } = result.data!;
+     55|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/16]⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > counts entries with pending schedules in collection stats
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:103:27
+    101|    const result = await handleDashboardStats(db);
+    102|
+    103|    expect(result.success).toBe(true);
+       |                           ^
+    104|    const postStats = result.data!.collections.find((c) => c.slug === "…
+    105|    expect(postStats).toBeDefined();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/16]⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > reports an unknown scheduler with overdue content when no heartbeat exists
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:122:27
+    120|    const result = await handleDashboardStats(db, now);
+    121|
+    122|    expect(result.success).toBe(true);
+       |                           ^
+    123|    expect(result.data!.schedulerHealth).toEqual({
+    124|     status: "unknown",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/16]⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > reports stale and healthy scheduler heartbeats
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:141:26
+    139|
+    140|    const stale = await handleDashboardStats(db, now);
+    141|    expect(stale.success).toBe(true);
+       |                          ^
+    142|    expect(stale.data!.schedulerHealth.status).toBe("stale");
+    143|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/16]⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > counts scheduled publications that policy plugins rejected
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:169:27
+    167|
+    168|    const result = await handleDashboardStats(db);
+    169|    expect(result.success).toBe(true);
+       |                           ^
+    170|    expect(result.data!.policyRejectedScheduled).toBe(2);
+    171|    expect(result.data!.policyRejections).toEqual(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/16]⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > bounds the policy-rejection records returned to the dashboard
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:198:27
+    196|
+    197|    const result = await handleDashboardStats(db);
+    198|    expect(result.success).toBe(true);
+       |                           ^
+    199|    expect(result.data!.policyRejectedScheduled).toBe(25);
+    200|    expect(result.data!.policyRejections).toHaveLength(20);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/16]⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > returns recent items across collections
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:214:27
+    212|    const result = await handleDashboardStats(db);
+    213|
+    214|    expect(result.success).toBe(true);
+       |                           ^
+    215|    const { recentItems } = result.data!;
+    216|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/16]⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > recent items use title field when available
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:244:27
+    242|    const result = await handleDashboardStats(db);
+    243|
+    244|    expect(result.success).toBe(true);
+       |                           ^
+    245|    const postItem = result.data!.recentItems.find((i) => i.slug === "m…
+    246|    expect(postItem).toBeDefined();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/16]⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > recent items fall back to slug when collection has no title field
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:276:27
+    274|    const result = await handleDashboardStats(db);
+    275|
+    276|    expect(result.success).toBe(true);
+       |                           ^
+    277|    const eventItem = result.data!.recentItems.find((i) => i.collection…
+    278|    expect(eventItem).toBeDefined();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/16]⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > excludes soft-deleted items from recent items
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:295:27
+    293|    const result = await handleDashboardStats(db);
+    294|
+    295|    expect(result.success).toBe(true);
+       |                           ^
+    296|    const slugs = result.data!.recentItems.map((i) => i.slug);
+    297|    expect(slugs).toContain("will-keep");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/16]⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > limits recent items to 10
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:312:27
+    310|    const result = await handleDashboardStats(db);
+    311|
+    312|    expect(result.success).toBe(true);
+       |                           ^
+    313|    expect(result.data!.recentItems).toHaveLength(10);
+    314|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/16]⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > recent items are ordered by updated_at descending
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:328:27
+    326|    const result = await handleDashboardStats(db);
+    327|
+    328|    expect(result.success).toBe(true);
+       |                           ^
+    329|    const slugs = result.data!.recentItems.map((i) => i.slug);
+    330|    expect(slugs).toEqual(["newest", "middle", "oldest"]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/16]⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > counts exclude soft-deleted items
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:343:27
+    341|    const result = await handleDashboardStats(db);
+    342|
+    343|    expect(result.success).toBe(true);
+       |                           ^
+    344|    const postStats = result.data!.collections.find((c) => c.slug === "…
+    345|    // count() in ContentRepository filters deleted_at IS NULL
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/16]⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > merges recent items across many title-bearing collections (#895)
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:385:27
+    383|    const result = await handleDashboardStats(db);
+    384|
+    385|    expect(result.success).toBe(true);
+       |                           ^
+    386|    const { recentItems } = result.data!;
+    387|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/16]⎯
+
+ FAIL  parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts > Dashboard Handlers > handleDashboardStats > returns camelCase keys in recent items
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/setup-api-source/upstream/packages/core/tests/unit/api/dashboard-handlers.test.ts:404:27
+    402|    const result = await handleDashboardStats(db);
+    403|
+    404|    expect(result.success).toBe(true);
+       |                           ^
+    405|    const item = result.data!.recentItems[0]!;
+    406|    // Verify camelCase API shape
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/16]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  16 failed (16)
+   Start at  07:35:45
+   Duration  942ms (transform 258ms, setup 0ms, import 476ms, tests 349ms, environment 0ms)
+
+JSON report written to /tmp/setup-api-dashboard-whole16-first-reached-value-red.json
