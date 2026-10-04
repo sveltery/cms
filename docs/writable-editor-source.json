@@ -302,6 +302,16 @@
       "file": "writable-editor-integrated-default-build.log",
       "bytes": 28603,
       "sha256": "2b08a16392e37147ab6f00a450117d237771e80e507d77e95568622a6d75ba7d"
+    },
+    {
+      "file": "writable-editor-whole-normal-bootstrap-first.log",
+      "bytes": 4772,
+      "sha256": "484d65668ca5651049b01779fe50be8228c8d4067bd0fe16d1462559f5847a46"
+    },
+    {
+      "file": "writable-editor-whole-normal-bootstrap-retry.log",
+      "bytes": 4118,
+      "sha256": "2b8b8ca3c7ee9c942a46ea3f5a9edd125f268905a3f1afa1ea8eabaad14cde28"
     }
   ],
   "execution": {
@@ -331,5 +341,15 @@
     "causalSourceCredit": 0
   },
   "adoptedPublicMain": "311ec0cb1bb33a66fb937d876f9387cca37b3087",
-  "preservedWholeTestFamilies": 9
+  "preservedWholeTestFamilies": 9,
+  "normalBootstrapAttempts": [
+    {
+      "head": "32f2a53ff249a4d33bb61487c701ee1a45a0f585",
+      "result": "exit1 first frozen512 metadata phase npmHTTP503 @babel/helper-module-transforms; no repository checks/tests/builds execute; complete pass credit0"
+    },
+    {
+      "head": "92b6b0ac4d561760a0f4957d0e503861221f01f2",
+      "result": "exit1 first frozen512 metadata phase npmHTTP503 @playwright/test; no repository checks/tests/builds execute; complete pass credit0"
+    }
+  ]
 }
