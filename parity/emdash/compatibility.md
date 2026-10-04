@@ -1268,6 +1268,16 @@ Actual public Mainaa6d942a9a5167a0bb656750880fdeeee134a218 contributes the compl
 
 The repaired and refactored whole Native23 result remains dated owned evidence after four genuine new Native value reds; the original four actual41b secured-browser failures and complete logs remain retained. No local combined Source/editor/browser success is inferred from the failed normal. The new complete hosted thirteen-stage command and secured Source/default/Node browser runs must verify this final combined payload, followed by final independent/configured review, exact project-manager approval, author expected-head merge and post-Main checks. Source15 stays exactly pinned: only the unchanged seven validation callbacks have executed, with historical six meaningful Source value reds. All eight whole editor/list/e2e families, complete Source provider/type closure, rich widgets/media/plugins/translations/full-list/scheduling parity remain unfinished. Bounded WE1 remains the accepted Native substitution.
 
+
+## SEC1 public-coordinate byte serialization
+
+| Record / immutable source | Observed pinned and proposed Native behavior | Rationale, evidence and decision |
+| --- | --- | --- |
+| SEC1-01: EmDash1.1.0 pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, `packages/auth/src/passkey/register.ts:223–227`, pinned `@oslojs/crypto@1.0.1` and `@oslojs/binary@1.0.0` | Actual pinned encoder right-aligns `x` but left-aligns minimal-width `y` in its 32-byte field. For `x=0,y=0xa5`, both buffers have 65 bytes, but Source puts `a5` before 31 trailing zeros rather than after 31 leading zeros. Proposed original Native serializer right-aligns both unsigned coordinates and changes only the actual ES256 registration import/encode expression. Existing COSE algorithm/type/curve checks, RSA and registration behavior remain. Representability guard is outside the existing decoder's unsigned32-byte domain. Existing stored values are not rewritten. | Verified shared Source dependency byte defect; intentional behavior difference, not fidelity repair. The [whole byte-only source/run ledger](../../docs/sec1-coordinate-codec-source.json) records exact Source and dependency identities, complete17 output reproduction, original Native8 genuine value failures/9 controls at test-first `19cef766`, and unchanged whole Source3 families/28 declarations/52 expressions/34 cases plus two type expectations. No new keys, credentials, signatures, HTTP, sessions, nonces or replay were exercised. Divergent Native math assertions earn zero copied Source parity and establish zero earlier CI failure causality. Root specifically accepted SEC1-01 for development after the actual byte baseline; [issue #93](https://github.com/sveltery/cms/issues/93) tracks the verified defect. Exact helper/callsite are applied, and the same whole17 cases pass after fix and refactor; both whole green logs are recorded in the ledger. PR approval and landing remain pending. [Paired feature record](../../docs/sec1-coordinate-codec.md); unchanged normal13 stages, secured9 browser launches and current reviews remain required. |
+
+
+The unchanged17 Native byte cases pass after the exact fix and after the private coordinate-writer refactor; [the source/run ledger](../../docs/sec1-coordinate-codec-source.json) retains both whole green logs. This adds eight corrected Native byte outcomes, zero copied Source credit and zero causal attribution for prior CI failures. Full normal/secured checks remain pending.
+
 ## Shared media dependency prerequisite (proposed, 2026-10-04)
 
 Proposed [PR #95](https://github.com/sveltery/cms/pull/95); not merged.
@@ -1318,3 +1328,36 @@ Final hosted normal/secured execution, independent/configured review,
 exact-head PM acceptance, proposed PR and author merge are pending. This is a
 proposed package-layout substitution; no final specific acceptance or landed
 state is recorded yet.
+
+### Public Main integration checkpoint, 2026-10-04
+
+PR #95 adopts actual public Main
+`fd1f931f04a85d32ac740dfcfa2b37ca3b406c05` (signed merge of PR #94) by an ordinary
+merge after finite development qualification. The entire incoming compatibility
+record and all twelve added public SEC1 evidence/helper/test paths are preserved,
+along with the complete owned dependency prerequisite record. Incoming native
+registration/helper, vendor notice and existing setup/login documentation remain
+byte-exact. The original thirteen dependency/patch/package/test files retain their
+qualified hashes, including all seven notices and the whole pinned image-size
+patch; normal and secured commands, bootstrap and deadlines do not change.
+
+The ordinary existing service-test glob now includes the seventeen public Native
+SEC1 mathematical cases. This integration adds no isolated auth/hosting execution,
+Source assertion changes, helper rewrite or credential/session probes. Main's
+post-merge gates were running at proposal time and are not inferred successful.
+
+The previous exact public `8244fca6fc11244e9cca1c3c36089635ab867c20` passed hosted
+[CI 433](https://github.com/sveltery/cms/actions/runs/37186193708), including the
+whole thirteen normal phases, Node groups 1,376/280/15/7, twenty-one Vitest groups,
+seven Source browser groups 14/30/25/3/35/4/3 and both default/Node 65-case suites.
+Nine official Chromium 1243 launches and exits retained the original sandbox and
+existing deadlines. Fresh independent review found no actionable issues on that
+head. These are historical receipts for 8244; the integrated head requires its
+own complete normal/secured gates and current final review before configured
+review, specific PM acceptance and an expected-head author merge.
+
+The six new dependency integrity/snapshot records match pinned Source. Four
+whole package metadata records match; pnpm 12's verified `hasBin` entries for
+image-size and mime differ from the pinned Source pnpm 11 metadata. Six whole
+Source package metadata records are not claimed identical. This integration
+remains a dependency prerequisite with zero new Source parity credit.

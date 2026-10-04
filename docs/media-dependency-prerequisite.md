@@ -61,3 +61,36 @@ This PR supplies dependencies and package layout only. It ports no upstream
 behavior assertions, earns no new Source parity credit and does not install the
 media runtime, storage providers, permissions, seed engine, image endpoint or
 admin UI. Those features remain incomplete in their own PRs.
+
+### Public Main integration checkpoint, 2026-10-04
+
+PR #95 adopts actual public Main
+`fd1f931f04a85d32ac740dfcfa2b37ca3b406c05` (signed merge of PR #94) by an ordinary
+merge after finite development qualification. The entire incoming compatibility
+record and all twelve added public SEC1 evidence/helper/test paths are preserved,
+along with the complete owned dependency prerequisite record. Incoming native
+registration/helper, vendor notice and existing setup/login documentation remain
+byte-exact. The original thirteen dependency/patch/package/test files retain their
+qualified hashes, including all seven notices and the whole pinned image-size
+patch; normal and secured commands, bootstrap and deadlines do not change.
+
+The ordinary existing service-test glob now includes the seventeen public Native
+SEC1 mathematical cases. This integration adds no isolated auth/hosting execution,
+Source assertion changes, helper rewrite or credential/session probes. Main's
+post-merge gates were running at proposal time and are not inferred successful.
+
+The previous exact public `8244fca6fc11244e9cca1c3c36089635ab867c20` passed hosted
+[CI 433](https://github.com/sveltery/cms/actions/runs/37186193708), including the
+whole thirteen normal phases, Node groups 1,376/280/15/7, twenty-one Vitest groups,
+seven Source browser groups 14/30/25/3/35/4/3 and both default/Node 65-case suites.
+Nine official Chromium 1243 launches and exits retained the original sandbox and
+existing deadlines. Fresh independent review found no actionable issues on that
+head. These are historical receipts for 8244; the integrated head requires its
+own complete normal/secured gates and current final review before configured
+review, specific PM acceptance and an expected-head author merge.
+
+The six new dependency integrity/snapshot records match pinned Source. Four
+whole package metadata records match; pnpm 12's verified `hasBin` entries for
+image-size and mime differ from the pinned Source pnpm 11 metadata. Six whole
+Source package metadata records are not claimed identical. This integration
+remains a dependency prerequisite with zero new Source parity credit.
