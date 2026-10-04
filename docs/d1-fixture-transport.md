@@ -135,6 +135,9 @@ assertion failures, two initially green controls and zero infrastructure failure
 cancellations, skips or todos. The [complete baseline receipt](d1-direct-fixture-evidence/native4-baseline.json)
 and [whole baseline log](d1-direct-fixture-evidence/native4-baseline.log) are retained.
 Their four original whitespace-only console lines remain unmodified.
+A `.gitattributes` whitespace exemption is scoped only to this exact baseline
+log path, preserving its complete bytes while keeping checks for every other
+file active. The required whole owned diff check passes with that narrow policy.
 
 The exact three-helper repair adds a dedicated `asyncD1StorageFor` entry point.
 It preserves `cms-test-d1`, `cms-collection-update`, each supplied persistence

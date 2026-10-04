@@ -1437,7 +1437,9 @@ after all ordinary real D1 value/typed-binding/metadata/rollback assertions have
 succeeded. Custom Worker dispatch and exact original-identifier persistent
 reopen controls already pass. Infrastructure failures/cancellations/skips/todos
 are zero. The complete baseline receipt/log retain the actual result and four
-original whitespace-only console lines. Root qualified the unchanged extraction
+original whitespace-only console lines. An exact-path `.gitattributes` exemption
+keeps this byte-exact baseline log and makes the documented owned diff check pass;
+all other files retain their whitespace checks. Root qualified the unchanged extraction
 seam and exact three-helper repair before application at `2b6db0db`; the same
 whole four pass. A post-green owned cleanup refactor preserves all titles,
 fifteen static assertions and timeout expressions; all four pass again with
