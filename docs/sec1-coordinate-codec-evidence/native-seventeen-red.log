@@ -1,0 +1,211 @@
+✔ SEC1 uncompressed public-coordinate bytes: x=zero, y=zero (0.925091ms)
+✖ SEC1 uncompressed public-coordinate bytes: x=zero, y=one-byte (0.889177ms)
+✖ SEC1 uncompressed public-coordinate bytes: x=zero, y=31-byte (0.20088ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=zero, y=32-byte (0.115502ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=one-byte, y=zero (0.11383ms)
+✖ SEC1 uncompressed public-coordinate bytes: x=one-byte, y=one-byte (0.164195ms)
+✖ SEC1 uncompressed public-coordinate bytes: x=one-byte, y=31-byte (0.129604ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=one-byte, y=32-byte (0.138637ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=31-byte, y=zero (0.14776ms)
+✖ SEC1 uncompressed public-coordinate bytes: x=31-byte, y=one-byte (0.292487ms)
+✖ SEC1 uncompressed public-coordinate bytes: x=31-byte, y=31-byte (0.180249ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=31-byte, y=32-byte (0.086779ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=32-byte, y=zero (0.085848ms)
+✖ SEC1 uncompressed public-coordinate bytes: x=32-byte, y=one-byte (0.131276ms)
+✖ SEC1 uncompressed public-coordinate bytes: x=32-byte, y=31-byte (0.161772ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=32-byte, y=32-byte (0.12089ms)
+✔ SEC1 uncompressed public-coordinate bytes: public NIST P-256 generator (0.104606ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 9
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 107.320757
+
+✖ failing tests:
+
+test at tests/sec1-coordinate-codec.test.ts:7:3
+✖ SEC1 uncompressed public-coordinate bytes: x=zero, y=one-byte (0.889177ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '040000000000000000000000000000000000000000000000000000000000000000a500000000000000000000000000000000000000000000000000000000000000'
+  - '04000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a5'
+  
+      at TestContext.<anonymous> (file:///workspace/cms-sec1-coordinate-codec-fresh/tests/sec1-coordinate-codec.test.ts:10:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '040000000000000000000000000000000000000000000000000000000000000000a500000000000000000000000000000000000000000000000000000000000000',
+    expected: '04000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a5',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/sec1-coordinate-codec.test.ts:7:3
+✖ SEC1 uncompressed public-coordinate bytes: x=zero, y=31-byte (0.20088ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '040000000000000000000000000000000000000000000000000000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500'
+  - '04000000000000000000000000000000000000000000000000000000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5'
+  
+      at TestContext.<anonymous> (file:///workspace/cms-sec1-coordinate-codec-fresh/tests/sec1-coordinate-codec.test.ts:10:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '040000000000000000000000000000000000000000000000000000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500',
+    expected: '04000000000000000000000000000000000000000000000000000000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/sec1-coordinate-codec.test.ts:7:3
+✖ SEC1 uncompressed public-coordinate bytes: x=one-byte, y=one-byte (0.164195ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '0400000000000000000000000000000000000000000000000000000000000000a5a500000000000000000000000000000000000000000000000000000000000000'
+  - '0400000000000000000000000000000000000000000000000000000000000000a500000000000000000000000000000000000000000000000000000000000000a5'
+  
+      at TestContext.<anonymous> (file:///workspace/cms-sec1-coordinate-codec-fresh/tests/sec1-coordinate-codec.test.ts:10:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '0400000000000000000000000000000000000000000000000000000000000000a5a500000000000000000000000000000000000000000000000000000000000000',
+    expected: '0400000000000000000000000000000000000000000000000000000000000000a500000000000000000000000000000000000000000000000000000000000000a5',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/sec1-coordinate-codec.test.ts:7:3
+✖ SEC1 uncompressed public-coordinate bytes: x=one-byte, y=31-byte (0.129604ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '0400000000000000000000000000000000000000000000000000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500'
+  - '0400000000000000000000000000000000000000000000000000000000000000a500a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5'
+  
+      at TestContext.<anonymous> (file:///workspace/cms-sec1-coordinate-codec-fresh/tests/sec1-coordinate-codec.test.ts:10:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '0400000000000000000000000000000000000000000000000000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500',
+    expected: '0400000000000000000000000000000000000000000000000000000000000000a500a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/sec1-coordinate-codec.test.ts:7:3
+✖ SEC1 uncompressed public-coordinate bytes: x=31-byte, y=one-byte (0.292487ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '0400a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000000000000000000000000000000000'
+  - '0400a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000000000000000000000000000000000a5'
+  
+      at TestContext.<anonymous> (file:///workspace/cms-sec1-coordinate-codec-fresh/tests/sec1-coordinate-codec.test.ts:10:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '0400a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000000000000000000000000000000000',
+    expected: '0400a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000000000000000000000000000000000a5',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/sec1-coordinate-codec.test.ts:7:3
+✖ SEC1 uncompressed public-coordinate bytes: x=31-byte, y=31-byte (0.180249ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '0400a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500'
+  - '0400a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5'
+  
+      at TestContext.<anonymous> (file:///workspace/cms-sec1-coordinate-codec-fresh/tests/sec1-coordinate-codec.test.ts:10:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '0400a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500',
+    expected: '0400a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/sec1-coordinate-codec.test.ts:7:3
+✖ SEC1 uncompressed public-coordinate bytes: x=32-byte, y=one-byte (0.131276ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '04a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000000000000000000000000000000000'
+  - '04a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000000000000000000000000000000000a5'
+  
+      at TestContext.<anonymous> (file:///workspace/cms-sec1-coordinate-codec-fresh/tests/sec1-coordinate-codec.test.ts:10:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '04a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000000000000000000000000000000000',
+    expected: '04a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000000000000000000000000000000000a5',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/sec1-coordinate-codec.test.ts:7:3
+✖ SEC1 uncompressed public-coordinate bytes: x=32-byte, y=31-byte (0.161772ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '04a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500'
+  - '04a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5'
+  
+      at TestContext.<anonymous> (file:///workspace/cms-sec1-coordinate-codec-fresh/tests/sec1-coordinate-codec.test.ts:10:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '04a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500',
+    expected: '04a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
