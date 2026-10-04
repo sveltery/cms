@@ -247,7 +247,16 @@ test('unique flags remain metadata across collection/field underscore boundaries
     assert.equal((await registry.getField('foo', 'bar_baz'))!.unique, true);
     const uniqueIndexes = (await sql<{name:string;tbl_name:string}>`SELECT name,tbl_name FROM sqlite_master WHERE type='index' AND name LIKE '%_unique' ORDER BY name`.execute(database.db)).rows;
     assert.equal(uniqueIndexes.filter(row=>['ec_foo','ec_foo_bar'].includes(row.tbl_name)).length, 0);
-    assert.deepEqual(uniqueIndexes.map(({name,tbl_name})=>({name,tbl_name})),[{name:'idx_cms_taxonomies_translation_group_locale_unique',tbl_name:'_cms_taxonomies'}]);
+    // Retain the exact historical8 taxonomy inventory and field-uniqueness
+    // absence above, alongside the complete genuinely installed14 inventory.
+    assert.deepEqual(uniqueIndexes.filter(row=>row.tbl_name==='_cms_taxonomies').map(({name,tbl_name})=>({name,tbl_name})),[{name:'idx_cms_taxonomies_translation_group_locale_unique',tbl_name:'_cms_taxonomies'}]);
+    assert.deepEqual(uniqueIndexes.map(({name,tbl_name})=>({name,tbl_name})),[
+      {name:'idx_404_log_path_unique',tbl_name:'_cms_404_log'},
+      {name:'idx_bylines_group_locale_unique',tbl_name:'_cms_bylines'},
+      {name:'idx_bylines_user_id_locale_unique',tbl_name:'_cms_bylines'},
+      {name:'idx_cms_taxonomies_translation_group_locale_unique',tbl_name:'_cms_taxonomies'},
+      {name:'idx_comment_reactions_unique',tbl_name:'_cms_comment_reactions'}
+    ]);
   } finally { await database.close(); }
 });
 

@@ -2,21 +2,23 @@
 // One trusted pre-resolved principal; no sessions, signatures or protected probes.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {sql,type Kysely} from 'kysely';
+import {sql} from 'kysely';
 import {openSqlite} from '../../src/lib/server/database/sqlite.ts';
 import {migrateCms} from '../../src/lib/server/database/migrations.ts';
+import {installHistoricalCanonical8} from '../helpers/historical-canonical5.ts';
 import {SchemaRegistry} from '../../src/lib/server/database/registry.ts';
 import {servicePrincipal} from '../../src/lib/server/auth/composition.ts';
 import {Role} from '../../src/lib/server/auth/roles.ts';
-import {installRedirectTables} from '../../src/lib/server/redirects/migrations/index.ts';
 import {RedirectRepository} from '../../src/lib/server/redirects/repository.ts';
 import type {Database} from '../../src/lib/server/redirects/database-types.ts';
 
 async function fixture(redirects=true){
- const database=openSqlite(':memory:');await migrateCms(database);
+ const database=openSqlite(':memory:');
+ // Positive coverage uses actual ordinary latest startup; refusal coverage
+ // installs genuine immutable public1–8 with Redirect storage absent.
+ if(redirects)await migrateCms(database);else await installHistoricalCanonical8(database);
  const registry=new SchemaRegistry(database);await registry.createCollection({slug:'posts',label:'Posts',supports:[]});
  await registry.createField('posts',{slug:'title',label:'Title',type:'string'});
- if(redirects)await installRedirectTables(database.db as unknown as Kysely<unknown>);
  await sql`CREATE TABLE options(name TEXT PRIMARY KEY,value TEXT NOT NULL,revision TEXT NOT NULL DEFAULT '0')`.execute(database.db);
  const principal=servicePrincipal({id:'ordinary-route-admin',role:Role.ADMIN});assert.ok(principal);
  // Runtime URL imports keep generated bundles out of native source discovery.

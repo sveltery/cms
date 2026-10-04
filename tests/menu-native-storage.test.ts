@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { openSqlite } from '../src/lib/server/database/sqlite.ts';
-import { migrateCms } from '../src/lib/server/database/migrations.ts';
+import { installHistoricalCanonical5 } from './helpers/historical-canonical5.ts';
 import { menuSchemaStatements } from '../src/lib/server/menus/migrations.ts';
 import { handleMenuCreate, handleMenuList, handleMenuGet } from '../src/lib/server/menus/handlers.ts';
 import type { Database } from '../src/lib/server/menus/database-types.ts';
@@ -10,7 +10,7 @@ import type { Database } from '../src/lib/server/menus/database-types.ts';
 // explicitly as a named fixture, with zero canonical-startup or Source credit.
 async function fixture() {
   const storage = openSqlite(':memory:');
-  await migrateCms(storage);
+  await installHistoricalCanonical5(storage);
   await storage.atomicBatch(menuSchemaStatements(storage));
   return { storage, db: storage.db.withTables<{[Name in keyof Database]:Database[Name]}>().$pickTables<keyof Database>() };
 }
