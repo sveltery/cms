@@ -1,0 +1,200 @@
+{
+  "kind": "pure-public-coordinate-source-and-run-ledger",
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "classification": "intentional Source byte difference SEC1-01 accepted for development",
+  "sourceAuthorities": [
+    {
+      "path": "packages/auth/package.json",
+      "bytes": 1832,
+      "sha256": "207c369bb2fcea4a48d5fd85ec893ee811dcd75e95e8c3fd3561d1e4069985d8",
+      "gitBlob": "bd7b189cf2594dd66cc97e60fc4b75ad823f37e2"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 869156,
+      "sha256": "385a0995c565c14ccccf822424398987df233967f4a1d8e3a3a18c01703395ea",
+      "gitBlob": "61f97a2c9442af5a0c84e329a67ef4b9fca74698"
+    },
+    {
+      "path": "packages/auth/src/passkey/register.ts",
+      "bytes": 9920,
+      "sha256": "645c228570be61abf98a1cf24d1e342f0eee9ccfc31c8f859d644886528f8434",
+      "gitBlob": "b8c28c34ebf9e37f0b5bb636f30ff1b466be0ca1"
+    },
+    {
+      "path": "packages/auth/src/passkey/register.test.ts",
+      "bytes": 9594,
+      "sha256": "3822f00ca067885e76d7973d084a6630a068a7769c0f151efa9dd76d7e44faa0",
+      "gitBlob": "d8ce4b6930d1531aaa5c903dc41eaef50a19bf84"
+    },
+    {
+      "path": "packages/auth/src/passkey/authenticate.test.ts",
+      "bytes": 17375,
+      "sha256": "cba47c31e798631d680b582e3551958afe8486ed75a20093c013b4d2b8d9fee5",
+      "gitBlob": "1c2ab94a6c51f73374d1ccedb6a41fa16d1966e0"
+    },
+    {
+      "path": "packages/auth/src/passkey/challenge-context.test.ts",
+      "bytes": 3741,
+      "sha256": "35ed0d779946b7c2843a46256a4254bfe41fb9b45a4ef353b18be394eecfa240",
+      "gitBlob": "7e4b1e707f18fdf0b6913c9d71c9eed53f374818"
+    }
+  ],
+  "dependencyAuthorities": [
+    {
+      "package": "@oslojs/crypto",
+      "version": "1.0.1",
+      "integrity": "sha512-7n08G8nWjAr/Yu3vu9zzrd0L9XnrJfpMioQcvCMxBIiF5orECHe5/3J0jmXRVvgfqMm/+4oxlQ+Sq39COYLcNQ==",
+      "implementation": "dist/ecdsa/ecdsa.js",
+      "bytes": 7431,
+      "sha256": "840479ed5f7987c08e0831f79bca48ce72ff0031b989f4cdb42229d7bffdeb31"
+    },
+    {
+      "package": "@oslojs/binary",
+      "version": "1.0.0",
+      "integrity": "sha512-9RCU6OwXU6p67H4NODbuxv2S3eenuQ4/WFLrsq+K/k682xrznH5EVWA7N4VFk9VYVcbFtKqur5YQQZc0ySGhsQ==",
+      "implementation": "dist/big.js",
+      "bytes": 725,
+      "sha256": "b657109c467be9a8e7b83ba60bba4e4a08bafd6fc3d2888433c4c990771865f9"
+    }
+  ],
+  "wholeUnchangedSourceFamilies": [
+    {
+      "path": "tests/source-port/passkey/register.test.ts",
+      "bytes": 9996,
+      "sha256": "e6f250372f6a610ee453e63f6f92111b0f2fdbaecade11acd7fdb901281f11b8",
+      "source": "packages/auth/src/passkey/register.test.ts",
+      "unchanged": true,
+      "isolatedExecutionRequested": false
+    },
+    {
+      "path": "tests/source-port/passkey/authenticate.test.ts",
+      "bytes": 17814,
+      "sha256": "7cf5d97b01629624699be7985076e39f3778b74885d2b9175a49c31e998a919f",
+      "source": "packages/auth/src/passkey/authenticate.test.ts",
+      "unchanged": true,
+      "isolatedExecutionRequested": false
+    },
+    {
+      "path": "tests/source-port/passkey/challenge-context.test.ts",
+      "bytes": 4110,
+      "sha256": "429756ee624f450b403262878874240d2a5ad7f1c7c12a289e49ed773b674511",
+      "source": "packages/auth/src/passkey/challenge-context.test.ts",
+      "unchanged": true,
+      "isolatedExecutionRequested": false
+    }
+  ],
+  "existingCopiedSourceTotals": {
+    "selectedFiles": 3,
+    "completeRuntimeDeclarations": 28,
+    "runtimeExpectationExpressionLocations": 52,
+    "parameterizedCasesPerRun": 34,
+    "typeExpectationLocations": 2
+  },
+  "reachedBaseline": {
+    "kind": "actual-offline-seventeen-sec1-source-and-native-red-receipt",
+    "actualHead": "19cef7668bc7d07bbd65639e4bc6b5d2a3c56cac",
+    "base": "135e7be689885fd23678569d0d373a1131f5302b",
+    "rootDevelopmentQualification": "/tmp/root-sec1-pure-seventeen-baseline-development-qualification.json",
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "runs": [
+      {
+        "command": "node /workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs install --frozen-lockfile",
+        "exitCode": 0,
+        "wholeLog": "/tmp/sec1-codec-baseline-frozen-install.log"
+      },
+      {
+        "command": "node scripts/reproduce-sec1-coordinate-padding-upstream.mjs /tmp/cms-emdash-full",
+        "exitCode": 0,
+        "wholeLog": "/tmp/sec1-codec-pinned-source-seventeen.log",
+        "wholeCases": 17,
+        "reachedByteMismatches": 8,
+        "matchingControls": 9
+      },
+      {
+        "command": "node --test tests/sec1-coordinate-codec.test.ts",
+        "exitCode": 1,
+        "wholeLog": "/tmp/sec1-codec-native-seventeen-red.log",
+        "tests": 17,
+        "passed": 9,
+        "failed": 8,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "genuineValueAssertionFailures": 8,
+        "infrastructureFailures": 0
+      }
+    ],
+    "files": [
+      {
+        "path": "/tmp/sec1-codec-baseline-frozen-install.log",
+        "bytes": 1844,
+        "sha256": "1acd56c4477a9be9adf3ab8b2e58c107ae40fc7a868a7cdd00581d45197fe2b4"
+      },
+      {
+        "path": "/tmp/sec1-codec-pinned-source-seventeen.log",
+        "bytes": 7027,
+        "sha256": "1efd0ad5cf8af9d22b1d27f3d32cf6969283f34339492b7c2b8f50e67aaf3851"
+      },
+      {
+        "path": "/tmp/sec1-codec-native-seventeen-red.log",
+        "bytes": 12941,
+        "sha256": "82f56783f3887ae4005c3fffeecd835ae72e7f1226bb81742efe8bf6ecbfb997"
+      }
+    ],
+    "wholeSourceFamiliesUnchanged": [
+      {
+        "path": "tests/source-port/passkey/register.test.ts",
+        "bytes": 9996,
+        "sha256": "e6f250372f6a610ee453e63f6f92111b0f2fdbaecade11acd7fdb901281f11b8",
+        "source": "packages/auth/src/passkey/register.test.ts",
+        "unchanged": true,
+        "isolatedExecutionRequested": false
+      },
+      {
+        "path": "tests/source-port/passkey/authenticate.test.ts",
+        "bytes": 17814,
+        "sha256": "7cf5d97b01629624699be7985076e39f3778b74885d2b9175a49c31e998a919f",
+        "source": "packages/auth/src/passkey/authenticate.test.ts",
+        "unchanged": true,
+        "isolatedExecutionRequested": false
+      },
+      {
+        "path": "tests/source-port/passkey/challenge-context.test.ts",
+        "bytes": 4110,
+        "sha256": "429756ee624f450b403262878874240d2a5ad7f1c7c12a289e49ed773b674511",
+        "source": "packages/auth/src/passkey/challenge-context.test.ts",
+        "unchanged": true,
+        "isolatedExecutionRequested": false
+      }
+    ],
+    "actualProductionRegistrationUnchanged": true,
+    "status": "Baseline reached; fixed helper, actual registration callsite, Source issue and PR not yet applied/published.",
+    "credit": {
+      "newCopiedSourceAssertions": 0,
+      "sourceParity": 0,
+      "pr89FailureCausality": 0,
+      "authOrSignatureRuntime": 0,
+      "newCredentialOrSession": 0
+    }
+  },
+  "proposedProductionDelta": {
+    "path": "src/lib/server/auth/vendor/passkey/register.ts",
+    "beforeBytes": 10179,
+    "beforeSha256": "8274fce4d7959b9be8643d771e87e07e68df14741d5feeca3879c921ed51925f",
+    "afterBytes": 10162,
+    "afterSha256": "5efc074dd5a72cedee56d91e0379fba9d09a192e97e69475653e357c7f373973",
+    "changes": [
+      "replace only ECDSAPublicKey/p256 import with pure Native codec import",
+      "replace only ES256 encode expression; algorithm/type/curve/registration/credential and RSA behavior unchanged"
+    ]
+  },
+  "fixedHelperExecuted": false,
+  "specificDifferenceAcceptance": "Root SEC1-01 development decision after actual seventeen-byte-case baseline; final PR approval pending",
+  "sourceIssue": "https://github.com/sveltery/cms/issues/93",
+  "pullRequest": "not yet created",
+  "landed": false,
+  "newCopiedSourceParityCredit": 0,
+  "earlierCiFailureCausalCredit": 0,
+  "implementationApplied": true
+}
