@@ -9,10 +9,14 @@ import { join } from 'node:path';
 import { localD1 } from './helpers/local-d1-fixture.ts';
 import { collectionUpdateStorage } from './helpers/collection-update-fixture.ts';
 
+async function closeLocal({ runtime, database }: Awaited<ReturnType<typeof localD1>>) {
+  try { await database.close(); } finally { await runtime.dispose(); }
+}
+
 const fixtures = {
   'local database': async (directory?: string) => {
-    const { runtime, database } = await localD1(directory);
-    return { database, close: async () => { await database.close(); await runtime.dispose(); } };
+    const local = await localD1(directory);
+    return { database: local.database, close: () => closeLocal(local) };
   },
   'collection update': (directory?: string) => collectionUpdateStorage('D1', directory)
 };
@@ -60,7 +64,8 @@ test('local database: custom Worker dispatch retains request data and the same a
     await env.DB.prepare('INSERT INTO custom_dispatch(value) VALUES (?)').bind(input).run();
     return Response.json({ url: request.url, method: request.method, marker: request.headers.get('X-Fixture-Marker'), input });
   } };`;
-  const { runtime, database } = await localD1(undefined, script);
+  const local = await localD1(undefined, script);
+  const { runtime, database } = local;
   try {
     await sql`CREATE TABLE custom_dispatch(value TEXT)`.execute(database.db);
     const response = await runtime.dispatchFetch('https://cms.example/custom?retained=1', {
@@ -70,7 +75,7 @@ test('local database: custom Worker dispatch retains request data and the same a
     assert.deepEqual(await response.json(), { url: 'https://cms.example/custom?retained=1', method: 'POST',
       marker: 'ordinary fixture', input: 'literal\u0000body' });
     assert.deepEqual((await sql`SELECT value FROM custom_dispatch`.execute(database.db)).rows, [{ value: 'literal\u0000body' }]);
-  } finally { await database.close(); await runtime.dispose(); }
+  } finally { await closeLocal(local); }
 });
 
 test('direct fixtures: original persistent DB identifiers remain separate across restart', { timeout: 15000 }, async () => {
