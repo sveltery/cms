@@ -3,8 +3,8 @@
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "publicBase": "135e7be689885fd23678569d0d373a1131f5302b",
   "actualPublicCanonical14Draft": "dd80fe3f942aef2e44d3df92c28a818b5a45897c",
-  "authorityCount": 48,
-  "authorityBytes": 602308,
+  "authorityCount": 50,
+  "authorityBytes": 606359,
   "records": [
     {
       "source": "LICENSE",
@@ -485,6 +485,26 @@
       "wholeBytesPreserved": true,
       "kind": "source-test",
       "productExecution": "unexecuted"
+    },
+    {
+      "source": "packages/core/vitest.config.ts",
+      "sourceGitBlob": "c842e3571711cc32f61f0ec88799100d8c541787",
+      "bytes": 2820,
+      "sha256": "cf845d55e85b84542334cfe0621925b974968f9df9cfb726df5b91b114090003",
+      "destination": "parity/emdash/block-registry-source/authority/packages/core/vitest.config.ts.txt",
+      "wholeBytesPreserved": true,
+      "kind": "source-test-configuration-authority",
+      "productExecution": "authority-only; no Source configuration execution"
+    },
+    {
+      "source": "packages/core/vitest.workerd.config.ts",
+      "sourceGitBlob": "a0c96e947cb0de99a03aeacfb79d39e799e4360c",
+      "bytes": 1231,
+      "sha256": "6525998f10c41095b0ae9f8b0ae5f8f820ecef414435031655c3b80cedb5c5aa",
+      "destination": "parity/emdash/block-registry-source/authority/packages/core/vitest.workerd.config.ts.txt",
+      "wholeBytesPreserved": true,
+      "kind": "source-test-configuration-authority",
+      "productExecution": "authority-only; no Source configuration execution"
     }
   ],
   "familiesInitiallyOwned": [
@@ -500,13 +520,13 @@
     "packages/core/tests/workerd/blocks-seed-d1.test.ts",
     "packages/core/tests/unit/seed/blocks.test.ts"
   ],
-  "productTestsRun": 0,
+  "productTestsRun": 2,
   "sourceCausalCredit": 0,
   "privatePayloadImports": 0,
   "sourceNotice": "notices/emdash-MIT.txt",
   "sharedFilesApplied": 0,
   "providerRegistered": false,
-  "status": "whole Source authorities and complete original AST test/assertion inventories frozen; zero product tests executed",
+  "status": "whole-source authorities and all four initial executable families preserved; Native4 genuine value-red baseline; Sourcewhole4 initial0callbacks/missing-runtime imports; productionimplementation unapplied",
   "testInventory": [
     {
       "source": "packages/core/tests/integration/schema/block-type-registry.test.ts",
@@ -1353,5 +1373,28 @@
   "ownedDeclarations": 19,
   "ownedExpectExpressions": 58,
   "referenceDeclarations": 19,
-  "referenceExpectExpressions": 66
+  "referenceExpectExpressions": 66,
+  "nativeOriginalBaseline": {
+    "head": "06789df3293969cb39fa5843bfa4771c57e9de75",
+    "callbacks": 4,
+    "pass": 0,
+    "genuineValueFailures": 4,
+    "logSHA256": "02353aca95c044c6c80a5a6da4b06643a75141c5226d145367dbf8a9b01e2a60",
+    "laterImplicitExplicitFalseAssertionsReached": false,
+    "sourceCredit": 0
+  },
+  "sourceWholeInitialRun": {
+    "head": "5f681c1f87c937905ab1fc3c5e7cdddbff7ff1d7",
+    "wholeFamilies": 4,
+    "callbacksCollected": 0,
+    "failedSuites": 4,
+    "cause": "missing unapplied block runtime imports",
+    "logSHA256": "a7b550a2e8b254c80424e22d3d7a2ce1ecf991935700cd0ea59b508062c52ae5",
+    "sourceCausalCredit": 0
+  },
+  "sourceDeadlines": {
+    "node": "complete SourceNode config retains defaultVitest deadlines",
+    "workerd": "complete Sourceworkerd config explicitlytestTimeout30000/hookTimeout30000",
+    "harnessGap": "initial singleproject used defaultNode deadlines forSource3D1 cases; initial0callbacks so no completedSourcebehaviorcredit; finiteprojectsplit proposal pendingRootqualification"
+  }
 }
