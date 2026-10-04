@@ -12,7 +12,7 @@ const inventory = JSON.parse(read('docs/source-seed-backend-inventory.json'));
 const pin = '913cb1bb9b7f08c3ff0d258b4420e53835b6a58e';
 assert.equal(inventory.sourcePin, pin);
 assert.equal(inventory.publicBase, 'aa6d942a9a5167a0bb656750880fdeeee134a218');
-assert.equal(inventory.authorities.length, 56);
+assert.equal(inventory.authorities.length, 62);
 assert.equal(inventory.testFamilies.length, 35);
 const snapshot = 'parity/emdash/source-seed-backend/source/';
 for (const file of inventory.authorities) {
@@ -75,4 +75,4 @@ for (const { native, source, declarations } of inventory.extractedNestedRuntime 
   }
   assert.deepEqual(selected(read(native).toString(), native), selected(read(snapshot + source).toString(), source), native + ' entire named nested Source declarations');
 }
-console.log('Source seed guard:56 complete authorities and35 whole test families pinned; MIT retained. Static guard provides zero execution/parity credit.');
+console.log('Source seed guard:62 complete authorities and35 whole test families pinned; MIT retained. Static guard provides zero execution/parity credit.');

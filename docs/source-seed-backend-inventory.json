@@ -33,6 +33,12 @@
       "gitBlob": "2438f258ef385c4c62a66e5490a3c4f4e495a14c"
     },
     {
+      "path": "packages/core/src/astro/dev-typegen.ts",
+      "bytes": 1026,
+      "sha256": "7fd3db4b87ec5edb5071200277c4a135b5514f00218eb9d4b3f3e82d834f1909",
+      "gitBlob": "3063442506e48e56a5c3497f0169b90d11191364"
+    },
+    {
       "path": "packages/core/src/astro/integration/virtual-modules.ts",
       "bytes": 26425,
       "sha256": "d9b479700e905f2d1091a7dd406bf466dc99bc283753880b49820b586fe214dd",
@@ -51,10 +57,40 @@
       "gitBlob": "719e9aef4960f292778fb7e0fafe4e2f2e4c13fb"
     },
     {
+      "path": "packages/core/src/database/dialect-helpers.ts",
+      "bytes": 18242,
+      "sha256": "31606b29b5a98cb657078a9d89a8ab9b9f0be1694ac7410e34af6cbf49dda154",
+      "gitBlob": "d2883911f5c0a158ddcdf72e3b35020c377a8c24"
+    },
+    {
+      "path": "packages/core/src/database/types.ts",
+      "bytes": 31530,
+      "sha256": "ebd3a2d8aded68ada1731adb4838d7eda5b85778d373b248211e0f8fe75c2b1d",
+      "gitBlob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7"
+    },
+    {
+      "path": "packages/core/src/database/validate.ts",
+      "bytes": 5766,
+      "sha256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4",
+      "gitBlob": "73d3b303764b473d4238e0cb17f1a904998671f8"
+    },
+    {
+      "path": "packages/core/src/db/adapters.ts",
+      "bytes": 6397,
+      "sha256": "98c0bc2bd8aacc1a65c0f2679459bdc9b2bff428d38dc70498cbace71dbee9de",
+      "gitBlob": "1f98d07ec556ee5897796cefb1f250a7a50b1272"
+    },
+    {
       "path": "packages/core/src/i18n/config.ts",
       "bytes": 3209,
       "sha256": "e354441e19a9013b520112fc1722a1e861ea0a381ceec7ff4e28218bc9c652f7",
       "gitBlob": "fe714e5ad514485fe1737585c663e470d50519df"
+    },
+    {
+      "path": "packages/core/src/references/staged.ts",
+      "bytes": 5963,
+      "sha256": "50ffcaf8234258aa3eb8d335c4e415a9ae041da7558ab28b0a8a3563cbe9148b",
+      "gitBlob": "a025145de7e59b0c92924394a97f05dd1ce32895"
     },
     {
       "path": "packages/core/src/schema/block-type-contract.ts",
@@ -2894,5 +2930,16 @@
     "declarations": 84,
     "expandedCases": 85,
     "status": "Not executed against complete provider closure; do not claim missing import/table/preassertion failures as red or parity."
+  },
+  "seedEngineSupportAuthorities": {
+    "wholeFiles": [
+      "packages/core/src/database/types.ts",
+      "packages/core/src/database/validate.ts",
+      "packages/core/src/database/dialect-helpers.ts",
+      "packages/core/src/db/adapters.ts",
+      "packages/core/src/references/staged.ts",
+      "packages/core/src/astro/dev-typegen.ts"
+    ],
+    "scope": "Provider-independent complete Source support bodies for future full engine; static provenance only until actual native integration. Descriptor types do not implement PostgreSQL."
   }
 }
