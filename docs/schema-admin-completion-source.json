@@ -36233,5 +36233,49 @@
     },
     "sourceContainerAuthority": "Source Zod isObject excludes arrays but permits normal non-array objects/class instances; record uses its own isPlainObject predicate. Native Valibot object/strictObject/record currently accepts arrays. Only ordinary array observables and a normal class control are tested; no exotic record-key/prototype equivalence claimed.",
     "history": "R1 regression7 was sealed before the second runtime finding arrived; it remains immutable/unapplied/unexecuted. R2 retains its exact runtime R1 snapshot, import-only config and provenance guard byte-exact; only Native callback and current paired facts are extended."
+  },
+  "responseRegressionInitialBaseline": {
+    "testFirstHead": "8ac91af7511f38a0e1c5e215526d35da7520a464",
+    "evidence": "docs/receipts/schema-admin-completion/response-regression-initial-baseline.json",
+    "guardPassed": true,
+    "wholeBaselineExitCode": 1,
+    "executions": 1,
+    "callbacksRegistered": 1,
+    "callbacksExecuted": 1,
+    "completedAssertionValueFailures": 1,
+    "wholeCallbackControls": 0,
+    "preExpectationFailures": 0,
+    "infrastructureFailures": 0,
+    "directExpectsRetained": 4,
+    "directExpectsReached": 4,
+    "partialAssertionsPassed": 3,
+    "assertionsFailed": 1,
+    "invalidAcceptanceResultsObserved": 9,
+    "originalSourceCallbackCredit": 0,
+    "productionRuntimeExecutionCredit": 0,
+    "sourceCausalRepairCredit": 0,
+    "actualExpected": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "actualReceived": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "historicalCandidateOnly": true
   }
 }
