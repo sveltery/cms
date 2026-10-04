@@ -43,9 +43,13 @@ interface UserRow {
 export class UserRepository {
   constructor(private database: CmsDatabase) {}
 
-  private userQuery() {
+  private joinedUsers() {
     return this.database.db.selectFrom('_cms_auth_users as u')
-      .innerJoin('_cms_auth_profiles as p', 'p.user_id', 'u.id')
+      .innerJoin('_cms_auth_profiles as p', 'p.user_id', 'u.id');
+  }
+
+  private userQuery() {
+    return this.joinedUsers()
       .select(['u.id', 'u.role', 'u.disabled', 'p.email', 'p.name', 'p.avatar_url',
         'p.email_verified', 'p.data', 'p.created_at', 'p.updated_at']);
   }
@@ -149,8 +153,7 @@ export class UserRepository {
   }
 
   async count(role?: UserRole | UserRoleName): Promise<number> {
-    let query = this.database.db.selectFrom('_cms_auth_users as u')
-      .innerJoin('_cms_auth_profiles as p', 'p.user_id', 'u.id')
+    let query = this.joinedUsers()
       .select(eb => eb.fn.count('u.id').as('count'));
     if (role !== undefined) query = query.where('u.role', '=', UserRepository.resolveRole(role));
     const result = await query.executeTakeFirst();
