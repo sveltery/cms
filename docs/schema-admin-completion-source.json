@@ -36180,5 +36180,58 @@
     "originalProposedScopesRemainHistorical": true,
     "wholeUI138Executed": 0,
     "noProductChanges": true
+  },
+  "responseFiniteRegressionTestfirst": {
+    "artifact": "/tmp/schema-admin-completion-response-regression-testfirst-proposal-r2/manifest.json",
+    "nativeBase": "62af11df1a628f6b28395668eeaabbb188a71618",
+    "runtimeR1Authority": {
+      "path": "/tmp/schema-admin-completion-response-runtime-proposal-r1/manifest.json",
+      "bytes": 15024,
+      "sha256": "f618e0c4858b8cdd15a9608f01f873caaf2c1a94cb19014b7346c8712c029a53",
+      "gitBlob": "e40b0a406cc6e08153cbac14da9f678b551e77c2"
+    },
+    "retainedCandidate": {
+      "path": "tests/schema-admin-completion/candidate-authorities/response-contracts-r1.ts",
+      "bytes": 5632,
+      "sha256": "810bcacacde705d13d8baff97786cacd3602e795900fa1b0755e2aee6ad36c19",
+      "gitBlob": "ad53856954382c8a90274b1aeb9e27935258f7fc"
+    },
+    "nativeSupplementaryCallbacks": 1,
+    "originalSourceCallbacksAddedOrChanged": 0,
+    "caseVectors": [
+      "ordinary non-array class min12.5/max-4.25 reversed finite control",
+      "collection admin{} and field validation{} options{} controls",
+      "min +Infinity",
+      "min -Infinity",
+      "max +Infinity",
+      "max -Infinity",
+      "collection admin[]",
+      "block validation[]",
+      "block options[]",
+      "field validation[]",
+      "field options[]"
+    ],
+    "directNativeExpectCalls": 4,
+    "actualExecution": null,
+    "importSubstitution": "Only the retained exact R1 candidate relative ./types.ts and ./block-types.ts imports resolve to actual unchanged Native Source-derived schema constants. No validator, row, expected result, package or production module is substituted.",
+    "clocks": "Native ordinary Node/Vitest defaults5000/10000 unchanged; no Source callback clocks touched.",
+    "classification": "Against unapplied exact R1 candidate only. Finite earlier successful expectations are partial checks, not whole callback controls. After exact Root qualification run once, retain actual outcome. No original Source/production/HTTP/Browser/backend or causal repair credit.",
+    "sourceNumberAuthority": "Pinned Source catalog/lock Zod4.5.4 $ZodNumber finite parser and actual Valibot1.5.0 NaN-only number parser, independently reviewed without execution.",
+    "status": "Unapplied/uncompiled/unexecuted. Exact R1 production proposal remains held; no R2 real pipeline correction exists yet.",
+    "revision": "r2",
+    "invalidAcceptanceResults": 9,
+    "freshRuntimeReview": {
+      "path": "/tmp/schema103-response-runtime-r1-independent-semantic-review.json",
+      "bytes": 231776,
+      "sha256": "f3ed556393d1ce4d5dd5cd9983fb9e463960eb1f4eaac9241b9d272f7c8223f2",
+      "gitBlob": "131c2d5f3767c37fc44b8dde9b9fca6a7e28bfa9",
+      "status": "HOLD: two concrete response acceptance differences",
+      "findings": [
+        "SCHEMARESPREV01",
+        "SCHEMARESPREV02"
+      ]
+    },
+    "sourceContainerAuthority": "Source Zod isObject excludes arrays but permits normal non-array objects/class instances; record uses its own isPlainObject predicate. Native Valibot object/strictObject/record currently accepts arrays. Only ordinary array observables and a normal class control are tested; no exotic record-key/prototype equivalence claimed.",
+    "history": "R1 regression7 was sealed before the second runtime finding arrived; it remains immutable/unapplied/unexecuted. R2 retains its exact runtime R1 snapshot, import-only config and provenance guard byte-exact; only Native callback and current paired facts are extended."
   }
 }
