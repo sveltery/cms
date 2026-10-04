@@ -6,11 +6,11 @@ import { Locator } from './dom-render';
 Object.assign(expect, { element(value: Element | Locator | null) {
   const read = () => value instanceof Locator ? value.read() : value;
   const assertion = (negate: boolean) => ({
-    toBeInTheDocument: () => vi.waitFor(() => expect(Boolean(read()?.isConnected)).toBe(!negate), { timeout: 5000 }),
+    toBeInTheDocument: () => vi.waitFor(() => expect(Boolean(read()?.isConnected)).toBe(!negate)),
     toHaveAttribute: (name: string, expected: string) => vi.waitFor(() => {
       const result = expect(read()?.getAttribute(name));
       if (negate) result.not.toBe(expected); else result.toBe(expected);
-    }, { timeout: 5000 })
+    })
   });
   return { ...assertion(false), not: assertion(true) };
 } });

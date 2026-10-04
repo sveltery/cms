@@ -1,0 +1,97 @@
+
+ RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui
+
+ ❯ tests/dashboard-welcome-native/ui.test.ts (5 tests | 5 failed) 2060ms
+   × native welcome uses the supplied configured site name and a labelled modal 35ms
+   × native welcome keeps a pending dismissal disabled and closes after a server error 5ms
+   × native welcome handles Escape dismissal and restores the previous focus 6ms
+   × native dashboard exposes an unavailable response without inventing zero counts 1007ms
+   × native dashboard retains loaded counts while a focus refresh fails 1005ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dashboard-welcome-native/ui.test.ts > native welcome uses the supplied configured site name and a labelled modal
+AssertionError: expected undefined to be 'true' // Object.is equality
+
+- Expected:
+"true"
+
++ Received:
+undefined
+
+ ❯ tests/dashboard-welcome-native/ui.test.ts:23:77
+     21| it('native welcome uses the supplied configured site name and a labell…
+     22|   const target = await render(WelcomeModal, { open: true, onClose: vi.…
+     23|   expect(target.querySelector('[role=dialog]')?.getAttribute('aria-mod…
+       |                                                                             ^
+     24|   expect(target.querySelector('h2')?.textContent).toBe('Welcome to Ced…
+     25| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/dashboard-welcome-native/ui.test.ts > native welcome keeps a pending dismissal disabled and closes after a server error
+AssertionError: expected undefined to be defined
+ ❯ tests/dashboard-welcome-native/ui.test.ts:33:18
+     31|   const target = await render(WelcomeModal, { open: true, userRole: 40…
+     32|   const button = [...target.querySelectorAll<HTMLButtonElement>('butto…
+     33|   expect(button).toBeDefined(); button!.click(); await tick();
+       |                  ^
+     34|   expect(button!.disabled).toBe(true); expect(onClose).not.toHaveBeenC…
+     35|   reject(new Error('Storage unavailable')); await vi.waitFor(() => exp…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/dashboard-welcome-native/ui.test.ts > native welcome handles Escape dismissal and restores the previous focus
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/dashboard-welcome-native/ui.test.ts:43:51
+     41|   const dismissWelcome = vi.fn(async () => {}), onClose = vi.fn();
+     42|   const target = await render(WelcomeModal, { open: true, userRole: 10…
+     43|   expect(target.contains(document.activeElement)).toBe(true);
+       |                                                   ^
+     44|   target.querySelector('[role=dialog]')!.dispatchEvent(new KeyboardEve…
+     45|   await vi.waitFor(() => expect(onClose).toHaveBeenCalledTimes(1));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/dashboard-welcome-native/ui.test.ts > native dashboard exposes an unavailable response without inventing zero counts
+AssertionError: expected ' Draft preview  Save draft Writes wil…' to contain 'Could not load dashboard data'
+
+Expected: "Could not load dashboard data"
+Received: " Draft preview  Save draft Writes will be available after authentication and persistence are configured."
+
+ ❯ tests/dashboard-welcome-native/ui.test.ts:54:53
+     52|   const api = client(); api.fetchDashboardStats.mockRejectedValue(new …
+     53|   const target = await render(Dashboard, { manifest, client: api, user…
+     54|   await vi.waitFor(() => expect(target.textContent).toContain('Could n…
+       |                                                     ^
+     55|   expect(target.querySelector('[data-testid=dashboard-metric-value]'))…
+     56|   expect(target.querySelector('h2')).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/dashboard-welcome-native/ui.test.ts > native dashboard retains loaded counts while a focus refresh fails
+AssertionError: expected null not to be null
+ ❯ tests/dashboard-welcome-native/ui.test.ts:62:99
+     60|   const api = client();
+     61|   const target = await render(Dashboard, { manifest, client: api, user…
+     62|   await vi.waitFor(() => expect(target.querySelector('[data-testid=das…
+       |                                                                                                   ^
+     63|   api.fetchDashboardStats.mockRejectedValue(new Error('Storage unavail…
+     64|   window.dispatchEvent(new Event('focus'));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed (5)
+   Start at  09:05:49
+   Duration  3.42s (transform 542ms, setup 0ms, import 678ms, tests 2.06s, environment 553ms)
+
+JSON report written to /tmp/dashboard-welcome-native-baseline-report.json

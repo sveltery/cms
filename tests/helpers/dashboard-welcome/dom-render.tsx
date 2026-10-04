@@ -4,7 +4,7 @@ import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { flushSync as reactFlushSync } from 'react-dom';
 import { flushSync } from 'svelte';
-import { afterEach } from 'vitest';
+import { afterEach, vi } from 'vitest';
 import { within } from '@testing-library/react';
 
 const roots: ReturnType<typeof createRoot>[] = [];
@@ -15,7 +15,7 @@ afterEach(() => {
 export class Locator {
   constructor(readonly read: () => HTMLElement | null) {}
   element() { const element = this.read(); if (!element) throw new Error('Control absent from actual native DOM'); return element; }
-  async click() { reactFlushSync(() => flushSync(() => this.element().click())); }
+  async click() { const element = await vi.waitFor(() => this.element()); reactFlushSync(() => flushSync(() => element.click())); }
 }
 export async function render(ui: React.ReactNode) {
   const container = document.createElement('div'); document.body.append(container);
