@@ -1,0 +1,4380 @@
+{
+  "schemaVersion": 1,
+  "artifact": "Scheduling and calendar immutable whole-family census r1",
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "actualNativeBase": "b5ed8e06c9c3034e99645ef85022e027130fec51",
+  "families": [
+    {
+      "path": "packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "bytes": 6901,
+      "sha256": "a0dc16cc954e3ae4cd77c71f32f15bba089278a7f963f5d6f03c303bd43c61cc",
+      "gitBlob": "84b7e454d42c3aa5e280d0d5e3b3a6a31551b3ba",
+      "declarations": [
+        {
+          "line": 55,
+          "name": "\"places published entries, schedules, and scheduled updates\"",
+          "registration": "it",
+          "originalCallbackBytes": 1558,
+          "originalDeadline": null
+        },
+        {
+          "line": 90,
+          "name": "\"walks every event exactly once across pages\"",
+          "registration": "it",
+          "originalCallbackBytes": 1169,
+          "originalDeadline": null
+        },
+        {
+          "line": 121,
+          "name": "\"uses the collection's title field, then title, then slug\"",
+          "registration": "it",
+          "originalCallbackBytes": 1120,
+          "originalDeadline": null
+        },
+        {
+          "line": 164,
+          "name": "\"leaves out hidden collections\"",
+          "registration": "it",
+          "originalCallbackBytes": 321,
+          "originalDeadline": null
+        },
+        {
+          "line": 174,
+          "name": "\"rejects malformed cursors\"",
+          "registration": "it",
+          "originalCallbackBytes": 704,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 5,
+      "staticExpectCalls": 8,
+      "multilineElementExpectCalls": 0,
+      "assertions": [
+        {
+          "line": 72,
+          "kind": "expect",
+          "target": "result.map((e) => [e.collection, e.title, e.kind, e.status, e.at])"
+        },
+        {
+          "line": 79,
+          "kind": "expect",
+          "target": "result[0]"
+        },
+        {
+          "line": 102,
+          "kind": "expect",
+          "target": "all"
+        },
+        {
+          "line": 105,
+          "kind": "expect",
+          "target": "exact.data.nextCursor"
+        },
+        {
+          "line": 118,
+          "kind": "expect",
+          "target": "walked"
+        },
+        {
+          "line": 156,
+          "kind": "expect",
+          "target": "result.map((e) => e.title)"
+        },
+        {
+          "line": 171,
+          "kind": "expect",
+          "target": "result.map((e) => e.title)"
+        },
+        {
+          "line": 188,
+          "kind": "expect",
+          "target": "result"
+        }
+      ],
+      "imports": [
+        "vitest",
+        "../../../src/api/handlers/calendar.js",
+        "../../../src/database/repositories/content.js",
+        "../../../src/database/repositories/types.js",
+        "../../../src/schema/registry.js",
+        "../../utils/test-db.js"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    },
+    {
+      "path": "packages/core/tests/unit/astro/calendar-route.test.ts",
+      "bytes": 2813,
+      "sha256": "3e2932ef92997fa76a203a66ed3a1d34db28c9ce3bdf99b4ff9aa8fad5d9918e",
+      "gitBlob": "5a25a9e0815db3825288c78d62d149cb1917ed19",
+      "declarations": [
+        {
+          "line": 31,
+          "name": "\"lets contributors and above read the calendar\"",
+          "registration": "it",
+          "originalCallbackBytes": 344,
+          "originalDeadline": null
+        },
+        {
+          "line": 41,
+          "name": "\"reads bounds with an offset as instants\"",
+          "registration": "it",
+          "originalCallbackBytes": 508,
+          "originalDeadline": null
+        },
+        {
+          "line": 60,
+          "name": "\"rejects a reversed range and a range over 62 days\"",
+          "registration": "it",
+          "originalCallbackBytes": 438,
+          "originalDeadline": null
+        },
+        {
+          "line": 76,
+          "name": "\"rejects a malformed cursor\"",
+          "registration": "it",
+          "originalCallbackBytes": 233,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 4,
+      "staticExpectCalls": 10,
+      "multilineElementExpectCalls": 0,
+      "assertions": [
+        {
+          "line": 32,
+          "kind": "expect",
+          "target": "(await GET(context(null, march))).status"
+        },
+        {
+          "line": 33,
+          "kind": "expect",
+          "target": "(await GET(context(Role.SUBSCRIBER, march))).status"
+        },
+        {
+          "line": 37,
+          "kind": "expect",
+          "target": "response.status"
+        },
+        {
+          "line": 38,
+          "kind": "expect",
+          "target": "response.json()"
+        },
+        {
+          "line": 54,
+          "kind": "expect",
+          "target": "response.status"
+        },
+        {
+          "line": 55,
+          "kind": "expect",
+          "target": "response.json()"
+        },
+        {
+          "line": 69,
+          "kind": "expect",
+          "target": "response.status"
+        },
+        {
+          "line": 70,
+          "kind": "expect",
+          "target": "response.json()"
+        },
+        {
+          "line": 79,
+          "kind": "expect",
+          "target": "response.status"
+        },
+        {
+          "line": 80,
+          "kind": "expect",
+          "target": "response.json()"
+        }
+      ],
+      "imports": [
+        "@emdash-cms/auth",
+        "astro",
+        "kysely",
+        "vitest",
+        "../../../src/astro/routes/api/calendar.js",
+        "../../../src/database/repositories/content.js",
+        "../../../src/database/types.js",
+        "../../utils/test-db.js"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    },
+    {
+      "path": "packages/admin/tests/lib/calendar.test.ts",
+      "bytes": 10208,
+      "sha256": "b57b16a5871ba8bb70f6813903719e9800ec455c4cbbf300d4d7c86e04e83907",
+      "gitBlob": "9f1fc7847f2205a86d33eb14718aaec3f4a083f4",
+      "declarations": [
+        {
+          "line": 18,
+          "name": "\"covers whole weeks from the locale's first day of the week\"",
+          "registration": "it",
+          "originalCallbackBytes": 389,
+          "originalDeadline": null
+        },
+        {
+          "line": 32,
+          "name": "\"places an instant on the site zone's calendar day\"",
+          "registration": "it",
+          "originalCallbackBytes": 207,
+          "originalDeadline": null
+        },
+        {
+          "line": 39,
+          "name": "\"fetches every grid day in the most extreme UTC offsets\"",
+          "registration": "it",
+          "originalCallbackBytes": 439,
+          "originalDeadline": null
+        },
+        {
+          "line": 50,
+          "name": "\"fetches every grid day in the local mean time of historical zones\"",
+          "registration": "it",
+          "originalCallbackBytes": 436,
+          "originalDeadline": null
+        },
+        {
+          "line": 65,
+          "name": "\"shades the admin locale's weekend\"",
+          "registration": "it",
+          "originalCallbackBytes": 444,
+          "originalDeadline": null
+        },
+        {
+          "line": 75,
+          "name": "\"shows the browser's time, with its weekday when the date differs\"",
+          "registration": "it",
+          "originalCallbackBytes": 384,
+          "originalDeadline": null
+        },
+        {
+          "line": 88,
+          "name": "\"formats entry dates on the Gregorian calendar the grid uses\"",
+          "registration": "it",
+          "originalCallbackBytes": 258,
+          "originalDeadline": null
+        },
+        {
+          "line": 96,
+          "name": "\"treats zones with the same name as the same, and falls back to UTC\"",
+          "registration": "it",
+          "originalCallbackBytes": 265,
+          "originalDeadline": null
+        },
+        {
+          "line": 112,
+          "name": "\"derives each state, waiting out the grace period before Overdue\"",
+          "registration": "it",
+          "originalCallbackBytes": 590,
+          "originalDeadline": null
+        },
+        {
+          "line": 132,
+          "name": "\"keeps a known view and a month from 1000 to 9999\"",
+          "registration": "it",
+          "originalCallbackBytes": 446,
+          "originalDeadline": null
+        },
+        {
+          "line": 145,
+          "name": "\"splits, de-duplicates, and bounds list params, keeping only known states\"",
+          "registration": "it",
+          "originalCallbackBytes": 580,
+          "originalDeadline": null
+        },
+        {
+          "line": 162,
+          "name": "\"drops unknown views and invalid months\"",
+          "registration": "it",
+          "originalCallbackBytes": 224,
+          "originalDeadline": null
+        },
+        {
+          "line": 171,
+          "name": "\"keeps an entry key only in its collection, id, and kind form\"",
+          "registration": "it",
+          "originalCallbackBytes": 321,
+          "originalDeadline": null
+        },
+        {
+          "line": 188,
+          "name": "\"uses the largest whole unit\"",
+          "registration": "it",
+          "originalCallbackBytes": 208,
+          "originalDeadline": null
+        },
+        {
+          "line": 196,
+          "name": "\"counts down to a future time and never reads as past\"",
+          "registration": "it",
+          "originalCallbackBytes": 278,
+          "originalDeadline": null
+        },
+        {
+          "line": 240,
+          "name": "\"combines filters and treats an empty filter as all\"",
+          "registration": "it",
+          "originalCallbackBytes": 364,
+          "originalDeadline": null
+        },
+        {
+          "line": 271,
+          "name": "\"stops after ten pages and drops entries that repeat across pages\"",
+          "registration": "it",
+          "originalCallbackBytes": 743,
+          "originalDeadline": null
+        },
+        {
+          "line": 293,
+          "name": "\"reports a complete walk when the last page has no cursor\"",
+          "registration": "it",
+          "originalCallbackBytes": 429,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 18,
+      "staticExpectCalls": 56,
+      "multilineElementExpectCalls": 0,
+      "assertions": [
+        {
+          "line": 20,
+          "kind": "expect",
+          "target": "sundayFirst[0]"
+        },
+        {
+          "line": 21,
+          "kind": "expect",
+          "target": "sundayFirst.at(-1)"
+        },
+        {
+          "line": 22,
+          "kind": "expect",
+          "target": "sundayFirst"
+        },
+        {
+          "line": 25,
+          "kind": "expect",
+          "target": "saturdayFirst[0]"
+        },
+        {
+          "line": 26,
+          "kind": "expect",
+          "target": "saturdayFirst.at(-1)"
+        },
+        {
+          "line": 27,
+          "kind": "expect",
+          "target": "saturdayFirst"
+        },
+        {
+          "line": 35,
+          "kind": "expect",
+          "target": "dayKeyInZone(instant, \"America/New_York\")"
+        },
+        {
+          "line": 36,
+          "kind": "expect",
+          "target": "dayKeyInZone(instant, \"Asia/Tokyo\")"
+        },
+        {
+          "line": 44,
+          "kind": "expect",
+          "target": "dayKeyInZone(earliest, \"Pacific/Kiritimati\")"
+        },
+        {
+          "line": 45,
+          "kind": "expect",
+          "target": "earliest"
+        },
+        {
+          "line": 46,
+          "kind": "expect",
+          "target": "dayKeyInZone(latest, \"Etc/GMT+12\")"
+        },
+        {
+          "line": 47,
+          "kind": "expect",
+          "target": "latest"
+        },
+        {
+          "line": 55,
+          "kind": "expect",
+          "target": "dayKeyInZone(earliest, \"America/Juneau\")"
+        },
+        {
+          "line": 56,
+          "kind": "expect",
+          "target": "earliest"
+        },
+        {
+          "line": 57,
+          "kind": "expect",
+          "target": "dayKeyInZone(latest, \"Asia/Manila\")"
+        },
+        {
+          "line": 58,
+          "kind": "expect",
+          "target": "latest"
+        },
+        {
+          "line": 71,
+          "kind": "expect",
+          "target": "days.map((day) => english.isWeekend(day))"
+        },
+        {
+          "line": 72,
+          "kind": "expect",
+          "target": "days.map((day) => arabic.isWeekend(day))"
+        },
+        {
+          "line": 83,
+          "kind": "expect",
+          "target": "display.viewerZoneDiffers"
+        },
+        {
+          "line": 84,
+          "kind": "expect",
+          "target": "display.formatTime(lateEvening)"
+        },
+        {
+          "line": 85,
+          "kind": "expect",
+          "target": "display.formatViewerTime(lateEvening)"
+        },
+        {
+          "line": 92,
+          "kind": "expect",
+          "target": "when"
+        },
+        {
+          "line": 93,
+          "kind": "expect",
+          "target": "when"
+        },
+        {
+          "line": 97,
+          "kind": "expect",
+          "target": "createCalendarDisplay({\n\t\t\t\t...options,\n\t\t\t\ttimeZone: \"Europe/Paris\",\n\t\t\t\tviewerTimeZone: \"Europe/Berlin\",\n\t\t\t}).viewerZoneDiffers"
+        },
+        {
+          "line": 104,
+          "kind": "expect",
+          "target": "createCalendarDisplay({ ...options, timeZone: \"Not/AZone\" }).timeZone"
+        },
+        {
+          "line": 113,
+          "kind": "expect",
+          "target": "calendarState(entry(\"published\", \"published\", \"2026-10-15T09:00:00.000Z\"), now)"
+        },
+        {
+          "line": 116,
+          "kind": "expect",
+          "target": "calendarState(entry(\"scheduled\", \"scheduled\", \"2026-10-16T09:00:00.000Z\"), now)"
+        },
+        {
+          "line": 119,
+          "kind": "expect",
+          "target": "calendarState(entry(\"scheduled\", \"published\", \"2026-10-16T09:00:00.000Z\"), now)"
+        },
+        {
+          "line": 122,
+          "kind": "expect",
+          "target": "calendarState(entry(\"scheduled\", \"scheduled\", \"2026-10-15T11:59:00.000Z\"), now)"
+        },
+        {
+          "line": 125,
+          "kind": "expect",
+          "target": "calendarState(entry(\"scheduled\", \"published\", \"2026-10-15T11:57:00.000Z\"), now)"
+        },
+        {
+          "line": 133,
+          "kind": "expect",
+          "target": "parseCalendarSearch({ view: \"agenda\", month: \"2026-10\" })"
+        },
+        {
+          "line": 137,
+          "kind": "expect",
+          "target": "parseCalendarSearch({ view: \"month\", month: \"9999-12\" })"
+        },
+        {
+          "line": 141,
+          "kind": "expect",
+          "target": "parseCalendarSearch({ month: \"1969-12\" })"
+        },
+        {
+          "line": 142,
+          "kind": "expect",
+          "target": "parseCalendarSearch({ month: \"1000-01\" })"
+        },
+        {
+          "line": 148,
+          "kind": "expect",
+          "target": "parseCalendarSearch({\n\t\t\t\tcollections: \" posts, pages,posts,,\",\n\t\t\t\tlocales: `en,${\"x\".repeat(65)}`,\n\t\t\t\tstates: \"overdue,bogus,published\",\n\t\t\t})"
+        },
+        {
+          "line": 155,
+          "kind": "expect",
+          "target": "parseCalendarSearch({ collections: many }).collections?.split(\",\")"
+        },
+        {
+          "line": 156,
+          "kind": "expect",
+          "target": "parseCalendarSearch({ states: \"bogus\", collections: 42 })"
+        },
+        {
+          "line": 164,
+          "kind": "expect",
+          "target": "parseCalendarSearch({ view: \"week\", month })"
+        },
+        {
+          "line": 172,
+          "kind": "expect",
+          "target": "parseCalendarSearch({ entry: \"posts:01J9Z:scheduled\" }).entry"
+        },
+        {
+          "line": 182,
+          "kind": "expect",
+          "target": "parseCalendarSearch({ entry }).entry"
+        },
+        {
+          "line": 189,
+          "kind": "expect",
+          "target": "formatShortDuration(12 * 60_000, \"en\")"
+        },
+        {
+          "line": 190,
+          "kind": "expect",
+          "target": "formatShortDuration(3 * 3_600_000, \"en\")"
+        },
+        {
+          "line": 191,
+          "kind": "expect",
+          "target": "formatShortDuration(3 * 86_400_000, \"en\")"
+        },
+        {
+          "line": 197,
+          "kind": "expect",
+          "target": "formatTimeUntil(3 * 3_600_000, \"en\")"
+        },
+        {
+          "line": 198,
+          "kind": "expect",
+          "target": "formatTimeUntil(-90_000, \"en\")"
+        },
+        {
+          "line": 199,
+          "kind": "expect",
+          "target": "formatTimeUntil(-3 * 3_600_000, \"en\")"
+        },
+        {
+          "line": 200,
+          "kind": "expect",
+          "target": "formatTimeUntil(-3 * 86_400_000, \"en\")"
+        },
+        {
+          "line": 241,
+          "kind": "expect",
+          "target": "ids(filterItems(items, { collections: [], locales: [], states: [] }))"
+        },
+        {
+          "line": 246,
+          "kind": "expect",
+          "target": "ids(filterItems(items, { collections: [\"posts\"], locales: [\"fr\"], states: [] }))"
+        },
+        {
+          "line": 249,
+          "kind": "expect",
+          "target": "ids(filterItems(items, { collections: [], locales: [\"fr\"], states: [\"published\"] }))"
+        },
+        {
+          "line": 284,
+          "kind": "expect",
+          "target": "fetchSpy"
+        },
+        {
+          "line": 285,
+          "kind": "expect",
+          "target": "fetchSpy.mock.calls[1]?.[0]"
+        },
+        {
+          "line": 286,
+          "kind": "expect",
+          "target": "result.truncated"
+        },
+        {
+          "line": 287,
+          "kind": "expect",
+          "target": "result.items.map((item) => item.id)"
+        },
+        {
+          "line": 301,
+          "kind": "expect",
+          "target": "fetchSpy"
+        },
+        {
+          "line": 302,
+          "kind": "expect",
+          "target": "result"
+        }
+      ],
+      "imports": [
+        "vitest",
+        "../../src/lib/api/calendar",
+        "../../src/lib/calendar"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarAgenda.test.tsx",
+      "bytes": 7697,
+      "sha256": "3cdbf13220bf180b2ffc07aaf60ebdaef0e891d34c14dd9cddb1fb4a90ded317",
+      "gitBlob": "0bbb61fc89ff79a41a7ad8e423c84474547088da",
+      "declarations": [
+        {
+          "line": 64,
+          "name": "\"lists the month's days in order and reveals the days before today\"",
+          "registration": "it",
+          "originalCallbackBytes": 944,
+          "originalDeadline": null
+        },
+        {
+          "line": 93,
+          "name": "\"opens an entry on a plain click and leaves modified clicks to the editor link\"",
+          "registration": "it",
+          "originalCallbackBytes": 877,
+          "originalDeadline": null
+        },
+        {
+          "line": 128,
+          "name": "\"marks the present between days and says when nothing follows it\"",
+          "registration": "it",
+          "originalCallbackBytes": 1387,
+          "originalDeadline": null
+        },
+        {
+          "line": 172,
+          "name": "\"does not claim nothing else is scheduled when the range was cut off\"",
+          "registration": "it",
+          "originalCallbackBytes": 692,
+          "originalDeadline": null
+        },
+        {
+          "line": 198,
+          "name": "\"does not call a month empty when the range was cut off before its entries\"",
+          "registration": "it",
+          "originalCallbackBytes": 703,
+          "originalDeadline": null
+        },
+        {
+          "line": 228,
+          "name": "\"keeps earlier days open while one of them holds an overdue entry\"",
+          "registration": "it",
+          "originalCallbackBytes": 693,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 6,
+      "staticExpectCalls": 16,
+      "multilineElementExpectCalls": 9,
+      "assertions": [
+        {
+          "line": 74,
+          "kind": "expect",
+          "target": "dayLists()"
+        },
+        {
+          "line": 75,
+          "kind": "expect.element",
+          "target": "screen.getByText(\"Overdue \u00b7 3 hours ago\")"
+        },
+        {
+          "line": 76,
+          "kind": "expect.element",
+          "target": "screen.getByText(\"Update\", { exact: true })"
+        },
+        {
+          "line": 107,
+          "kind": "expect",
+          "target": "onSelect"
+        },
+        {
+          "line": 122,
+          "kind": "expect",
+          "target": "isPlainClick(click({}))"
+        },
+        {
+          "line": 123,
+          "kind": "expect",
+          "target": "isPlainClick(click({ metaKey: true }))"
+        },
+        {
+          "line": 124,
+          "kind": "expect",
+          "target": "isPlainClick(click({ ctrlKey: true }))"
+        },
+        {
+          "line": 125,
+          "kind": "expect",
+          "target": "isPlainClick(click({ button: 1 }))"
+        },
+        {
+          "line": 150,
+          "kind": "expect",
+          "target": "nowLine.compareDocumentPosition(laterList) & Node.DOCUMENT_POSITION_FOLLOWING"
+        },
+        {
+          "line": 168,
+          "kind": "expect.element",
+          "target": "screen.getByText(\"Now \u00b7 12:00 PM\")"
+        },
+        {
+          "line": 169,
+          "kind": "expect.element",
+          "target": "screen.getByText(\"Nothing else is scheduled this month.\")"
+        },
+        {
+          "line": 191,
+          "kind": "expect.element",
+          "target": "screen.getByText(\"Now \u00b7 12:00 PM\")"
+        },
+        {
+          "line": 195,
+          "kind": "expect.element",
+          "target": "screen.getByText(/^Later entries weren't loaded\\./)"
+        },
+        {
+          "line": 210,
+          "kind": "expect.element",
+          "target": "screen.getByText(\"This month wasn't loaded\")"
+        },
+        {
+          "line": 224,
+          "kind": "expect.element",
+          "target": "screen.getByText(\"No loaded entries match these filters\")"
+        },
+        {
+          "line": 225,
+          "kind": "expect.element",
+          "target": "screen.getByRole(\"button\", { name: \"Clear filters\" })"
+        }
+      ],
+      "imports": [
+        "react",
+        "vitest",
+        "../../../src/lib/api/calendar",
+        "../../../src/lib/calendar",
+        "../../utils/render.tsx"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarEntryPanel.test.tsx",
+      "bytes": 5281,
+      "sha256": "def3cc72e203f348b0651ef01241ecabe722f2adbb620a459ee11998c548e8a3",
+      "gitBlob": "27587b6c11f7dd78e052e6cb340e65626d21f1d5",
+      "declarations": [
+        {
+          "line": 118,
+          "name": "\"shows a schedule's details and lets an editor remove it\"",
+          "registration": "it",
+          "originalCallbackBytes": 643,
+          "originalDeadline": null
+        },
+        {
+          "line": 132,
+          "name": "\"publishes an overdue schedule now with the revision it loaded\"",
+          "registration": "it",
+          "originalCallbackBytes": 609,
+          "originalDeadline": null
+        },
+        {
+          "line": 146,
+          "name": "\"keeps publishing actions from roles that can't publish the entry\"",
+          "registration": "it",
+          "originalCallbackBytes": 676,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 3,
+      "staticExpectCalls": 11,
+      "multilineElementExpectCalls": 6,
+      "assertions": [
+        {
+          "line": 122,
+          "kind": "expect.element",
+          "target": "panel.getByText(\"Tue, Oct 20, 9:00 AM UTC\").first()"
+        },
+        {
+          "line": 123,
+          "kind": "expect.element",
+          "target": "panel.getByText(\"Maya Chen\")"
+        },
+        {
+          "line": 124,
+          "kind": "expect.element",
+          "target": "panel.getByText(\"Goes live in 5 days\")"
+        },
+        {
+          "line": 128,
+          "kind": "expect.poll",
+          "target": "() => onClose.mock.calls.length"
+        },
+        {
+          "line": 129,
+          "kind": "expect",
+          "target": "unscheduleContent"
+        },
+        {
+          "line": 138,
+          "kind": "expect.element",
+          "target": "panel.getByText(/was due 1 hour ago/)"
+        },
+        {
+          "line": 151,
+          "kind": "expect.element",
+          "target": "panel.getByText(\"Maya Chen\")"
+        },
+        {
+          "line": 152,
+          "kind": "expect.element",
+          "target": "panel.getByRole(\"link\", { name: \"Open in editor\" })"
+        },
+        {
+          "line": 153,
+          "kind": "expect",
+          "target": "panel.getByRole(\"button\", { name: \"Publish now\" }).query()"
+        },
+        {
+          "line": 154,
+          "kind": "expect",
+          "target": "panel.getByRole(\"button\", { name: \"Reschedule\" }).query()"
+        },
+        {
+          "line": 155,
+          "kind": "expect",
+          "target": "panel.getByRole(\"button\", { name: \"Remove schedule\" }).query()"
+        }
+      ],
+      "imports": [
+        "@cloudflare/kumo",
+        "vitest",
+        "../../../src/lib/api/calendar",
+        "../../../src/lib/api/content",
+        "../../../src/lib/api/current-user",
+        "../../../src/lib/calendar",
+        "../../utils/render.tsx"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarFilters.test.tsx",
+      "bytes": 2346,
+      "sha256": "6c4c56fec18221b3cbcc3e956182e6b0a9bdc4d9fff2df7345d5e0cd99cb5ba2",
+      "gitBlob": "2aded3cd7e7c991f9f8bfa1348fe794e8df593a0",
+      "declarations": [
+        {
+          "line": 20,
+          "name": "\"counts the chosen options and adds or removes one\"",
+          "registration": "it",
+          "originalCallbackBytes": 880,
+          "originalDeadline": null
+        },
+        {
+          "line": 45,
+          "name": "\"filters by locale on multilingual sites and clears every filter\"",
+          "registration": "it",
+          "originalCallbackBytes": 806,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 2,
+      "staticExpectCalls": 6,
+      "multilineElementExpectCalls": 0,
+      "assertions": [
+        {
+          "line": 36,
+          "kind": "expect",
+          "target": "screen.getByRole(\"menuitemcheckbox\", { name: \"English\" }).query()"
+        },
+        {
+          "line": 39,
+          "kind": "expect",
+          "target": "onChange"
+        },
+        {
+          "line": 42,
+          "kind": "expect",
+          "target": "onChange"
+        },
+        {
+          "line": 59,
+          "kind": "expect",
+          "target": "onChange"
+        },
+        {
+          "line": 62,
+          "kind": "expect",
+          "target": "onChange"
+        },
+        {
+          "line": 65,
+          "kind": "expect",
+          "target": "onChange"
+        }
+      ],
+      "imports": [
+        "vitest",
+        "../../../src/components/calendar/CalendarFilters",
+        "../../../src/lib/calendar",
+        "../../utils/render.tsx"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarMonth.test.tsx",
+      "bytes": 8925,
+      "sha256": "7dadf8c51640eaee581b6bfd12985dc3b5b62d8773eaa6f7c804c664c4c41865",
+      "gitBlob": "f17dbd30fb072319c3e05f34275fcdad05b7479b",
+      "declarations": [
+        {
+          "line": 105,
+          "name": "\"keeps each week's height whichever entries filters leave\"",
+          "registration": "it",
+          "originalCallbackBytes": 927,
+          "originalDeadline": null
+        },
+        {
+          "line": 126,
+          "name": "\"places entries on site-zone days and folds a busy day into a popover\"",
+          "registration": "it",
+          "originalCallbackBytes": 671,
+          "originalDeadline": null
+        },
+        {
+          "line": 147,
+          "name": "\"opens an entry card, or one from a busy day's popover, in the panel\"",
+          "registration": "it",
+          "originalCallbackBytes": 738,
+          "originalDeadline": null
+        },
+        {
+          "line": 173,
+          "name": "\"draws the present in the popover when it falls among folded entries\"",
+          "registration": "it",
+          "originalCallbackBytes": 822,
+          "originalDeadline": null
+        },
+        {
+          "line": 195,
+          "name": "\"draws the present after the folded entries once they are all past\"",
+          "registration": "it",
+          "originalCallbackBytes": 473,
+          "originalDeadline": null
+        },
+        {
+          "line": 211,
+          "name": "\"lists the entries of the day picked on a phone\"",
+          "registration": "it",
+          "originalCallbackBytes": 399,
+          "originalDeadline": null
+        },
+        {
+          "line": 222,
+          "name": "\"marks the grid's empty days from the cut-off onward as not loaded\"",
+          "registration": "it",
+          "originalCallbackBytes": 356,
+          "originalDeadline": null
+        },
+        {
+          "line": 232,
+          "name": "\"says a day past the loaded entries was not loaded instead of empty\"",
+          "registration": "it",
+          "originalCallbackBytes": 392,
+          "originalDeadline": null
+        },
+        {
+          "line": 249,
+          "name": "\"says no entries match on a phone when only next month was cut off\"",
+          "registration": "it",
+          "originalCallbackBytes": 275,
+          "originalDeadline": null
+        },
+        {
+          "line": 261,
+          "name": "\"moves to the next month when the arrow keys cross the last day\"",
+          "registration": "it",
+          "originalCallbackBytes": 656,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 10,
+      "staticExpectCalls": 19,
+      "multilineElementExpectCalls": 5,
+      "assertions": [
+        {
+          "line": 120,
+          "kind": "expect",
+          "target": "busyWeek()"
+        },
+        {
+          "line": 123,
+          "kind": "expect",
+          "target": "busyWeek()"
+        },
+        {
+          "line": 138,
+          "kind": "expect",
+          "target": "busy.getByRole(\"link\").elements()"
+        },
+        {
+          "line": 143,
+          "kind": "expect.element",
+          "target": "popover.getByText(\"Tuesday, October 20, 2026\")"
+        },
+        {
+          "line": 144,
+          "kind": "expect",
+          "target": "popover.getByRole(\"link\").elements()"
+        },
+        {
+          "line": 152,
+          "kind": "expect",
+          "target": "onSelect"
+        },
+        {
+          "line": 166,
+          "kind": "expect",
+          "target": "onSelect"
+        },
+        {
+          "line": 170,
+          "kind": "expect.element",
+          "target": "screen.getByRole(\"dialog\")"
+        },
+        {
+          "line": 186,
+          "kind": "expect",
+          "target": "links"
+        },
+        {
+          "line": 187,
+          "kind": "expect",
+          "target": "links[3]?.compareDocumentPosition(nowLine) & Node.DOCUMENT_POSITION_FOLLOWING"
+        },
+        {
+          "line": 190,
+          "kind": "expect",
+          "target": "nowLine.compareDocumentPosition(links[4]!) & Node.DOCUMENT_POSITION_FOLLOWING"
+        },
+        {
+          "line": 207,
+          "kind": "expect",
+          "target": "last?.getAttribute(\"aria-hidden\")"
+        },
+        {
+          "line": 208,
+          "kind": "expect",
+          "target": "last?.previousElementSibling"
+        },
+        {
+          "line": 214,
+          "kind": "expect.element",
+          "target": "screen.getByText(\"Nothing on this day.\")"
+        },
+        {
+          "line": 219,
+          "kind": "expect.poll",
+          "target": "() => list.getByRole(\"link\").elements()"
+        },
+        {
+          "line": 226,
+          "kind": "expect",
+          "target": "screen.getByText(\"Not loaded\").elements()"
+        },
+        {
+          "line": 246,
+          "kind": "expect.element",
+          "target": "screen.getByText(\"Nothing on this day.\")"
+        },
+        {
+          "line": 258,
+          "kind": "expect.element",
+          "target": "screen.getByText(\"No entries match these filters\")"
+        },
+        {
+          "line": 268,
+          "kind": "expect",
+          "target": "onMonthChange"
+        }
+      ],
+      "imports": [
+        "vitest",
+        "vitest/browser",
+        "../../../dist/styles.css",
+        "../../../src/lib/api/calendar",
+        "../../../src/lib/calendar",
+        "../../utils/render.tsx"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    },
+    {
+      "path": "packages/admin/tests/routes/calendar.test.tsx",
+      "bytes": 10708,
+      "sha256": "b7d6f600b795040cdd3056872cbce7d118cbaed9f5f021024bce0d1921c79d5c",
+      "gitBlob": "d7a4925e5d18834a82a0452912decdc062b509ed",
+      "declarations": [
+        {
+          "line": 102,
+          "name": "\"ignores filters in the URL that match no collection or locale\"",
+          "registration": "it",
+          "originalCallbackBytes": 449,
+          "originalDeadline": null
+        },
+        {
+          "line": 114,
+          "name": "\"says when filters hide every entry in the month grid\"",
+          "registration": "it",
+          "originalCallbackBytes": 661,
+          "originalDeadline": null
+        },
+        {
+          "line": 132,
+          "name": "\"counts only the month's own days on a phone, where the picker hides the rest\"",
+          "registration": "it",
+          "originalCallbackBytes": 366,
+          "originalDeadline": null
+        },
+        {
+          "line": 144,
+          "name": "\"opens the entry named in the URL in the side panel\"",
+          "registration": "it",
+          "originalCallbackBytes": 869,
+          "originalDeadline": null
+        },
+        {
+          "line": 166,
+          "name": "\"adds a history entry for the panel and goes back to close it\"",
+          "registration": "it",
+          "originalCallbackBytes": 700,
+          "originalDeadline": null
+        },
+        {
+          "line": 187,
+          "name": "\"keeps the panel while another month loads and closes it if the entry isn't there\"",
+          "registration": "it",
+          "originalCallbackBytes": 1645,
+          "originalDeadline": null
+        },
+        {
+          "line": 227,
+          "name": "\"says where a range cut off at the entry cap ends\"",
+          "registration": "it",
+          "originalCallbackBytes": 559,
+          "originalDeadline": null
+        },
+        {
+          "line": 248,
+          "name": "\"judges schedules by when the entries loaded, not by the current time\"",
+          "registration": "it",
+          "originalCallbackBytes": 945,
+          "originalDeadline": null
+        },
+        {
+          "line": 277,
+          "name": "\"explains a permission error\"",
+          "registration": "it",
+          "originalCallbackBytes": 317,
+          "originalDeadline": null
+        },
+        {
+          "line": 292,
+          "name": "\"opens the agenda on a narrow screen\"",
+          "registration": "it",
+          "originalCallbackBytes": 468,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 10,
+      "staticExpectCalls": 19,
+      "multilineElementExpectCalls": 11,
+      "assertions": [
+        {
+          "line": 110,
+          "kind": "expect.element",
+          "target": "screen.getByRole(\"link\", { name: /Entry launch/ })"
+        },
+        {
+          "line": 111,
+          "kind": "expect.element",
+          "target": "screen.getByRole(\"button\", { name: \"Filter\", exact: true })"
+        },
+        {
+          "line": 122,
+          "kind": "expect.element",
+          "target": "screen.getByText(\"No entries match these filters\")"
+        },
+        {
+          "line": 124,
+          "kind": "expect",
+          "target": "navigatedSearch(router.navigate.mock.lastCall).search"
+        },
+        {
+          "line": 129,
+          "kind": "expect.element",
+          "target": "screen.getByRole(\"button\", { name: \"Filter: 1 selected\" })"
+        },
+        {
+          "line": 141,
+          "kind": "expect.element",
+          "target": "screen.getByText(\"No entries match these filters\")"
+        },
+        {
+          "line": 153,
+          "kind": "expect.element",
+          "target": "panel"
+        },
+        {
+          "line": 154,
+          "kind": "expect.element",
+          "target": "panel.getByText(\"Thu, Mar 5, 9:00 AM UTC\").first()"
+        },
+        {
+          "line": 155,
+          "kind": "expect.element",
+          "target": "panel.getByRole(\"link\", { name: \"Open in editor\" })"
+        },
+        {
+          "line": 159,
+          "kind": "expect",
+          "target": "router.back"
+        },
+        {
+          "line": 160,
+          "kind": "expect",
+          "target": "navigatedSearch(router.navigate.mock.lastCall)"
+        },
+        {
+          "line": 175,
+          "kind": "expect",
+          "target": "opened"
+        },
+        {
+          "line": 184,
+          "kind": "expect",
+          "target": "router.back"
+        },
+        {
+          "line": 208,
+          "kind": "expect.element",
+          "target": "screen.getByRole(\"dialog\", { name: \"Entry launch\" })"
+        },
+        {
+          "line": 212,
+          "kind": "expect.poll",
+          "target": "() => vi.mocked(globalThis.fetch).mock.calls.length"
+        },
+        {
+          "line": 218,
+          "kind": "expect",
+          "target": "router.navigate"
+        },
+        {
+          "line": 245,
+          "kind": "expect.element",
+          "target": "screen.getByText(/^Later entries weren't loaded\\./)"
+        },
+        {
+          "line": 273,
+          "kind": "expect.element",
+          "target": "screen.getByRole(\"link\", { name: /Entry launch/ })"
+        },
+        {
+          "line": 274,
+          "kind": "expect",
+          "target": "screen.getByText(/Overdue/).query()"
+        }
+      ],
+      "imports": [
+        "@cloudflare/kumo",
+        "@tanstack/react-query",
+        "react",
+        "vitest",
+        "vitest/browser",
+        "../../src/lib/api/calendar",
+        "../../src/lib/calendar",
+        "../../src/routes/calendar",
+        "../utils/render.tsx"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    },
+    {
+      "path": "packages/core/tests/integration/content/lifecycle-schedule.test.ts",
+      "bytes": 7013,
+      "sha256": "5d74639cd47bf9a14a86bb4e845dc41316efea08c391778bcb6f033b3ded1fe9",
+      "gitBlob": "e1b816b759d678b5a6e278f79f17c354c60924e1",
+      "declarations": [
+        {
+          "line": 72,
+          "name": "\"unpublishing an entry with scheduled changes cancels the schedule\"",
+          "registration": "it",
+          "originalCallbackBytes": 447,
+          "originalDeadline": null
+        },
+        {
+          "line": 86,
+          "name": "\"unpublishing a scheduled draft cancels its first publication\"",
+          "registration": "it",
+          "originalCallbackBytes": 448,
+          "originalDeadline": null
+        },
+        {
+          "line": 100,
+          "name": "\"unpublishing a draft that still carries a schedule cancels it\"",
+          "registration": "it",
+          "originalCallbackBytes": 529,
+          "originalDeadline": null
+        },
+        {
+          "line": 119,
+          "name": "\"restores a trashed published entry as a draft that keeps its content\"",
+          "registration": "it",
+          "originalCallbackBytes": 649,
+          "originalDeadline": null
+        },
+        {
+          "line": 138,
+          "name": "\"restores a trashed entry with pending changes as a draft of those changes\"",
+          "registration": "it",
+          "originalCallbackBytes": 648,
+          "originalDeadline": null
+        },
+        {
+          "line": 157,
+          "name": "\"restoring an entry whose schedule fell due in the trash does not publish it\"",
+          "registration": "it",
+          "originalCallbackBytes": 467,
+          "originalDeadline": null
+        },
+        {
+          "line": 171,
+          "name": "\"shows edits saved after restoring an entry in a collection without revisions\"",
+          "registration": "it",
+          "originalCallbackBytes": 462,
+          "originalDeadline": null
+        },
+        {
+          "line": 187,
+          "name": "\"refuses a revision token read before the entry was trashed\"",
+          "registration": "it",
+          "originalCallbackBytes": 388,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 8,
+      "staticExpectCalls": 30,
+      "multilineElementExpectCalls": 0,
+      "assertions": [
+        {
+          "line": 57,
+          "kind": "expect",
+          "target": "(await runtime.handleContentDelete(\"post\", id)).success"
+        },
+        {
+          "line": 80,
+          "kind": "expect",
+          "target": "unpublished.item.status"
+        },
+        {
+          "line": 81,
+          "kind": "expect",
+          "target": "unpublished.item.scheduledAt"
+        },
+        {
+          "line": 82,
+          "kind": "expect",
+          "target": "await publishDueContent(db)"
+        },
+        {
+          "line": 83,
+          "kind": "expect",
+          "target": "(await repo.findById(\"post\", item.id))?.status"
+        },
+        {
+          "line": 94,
+          "kind": "expect",
+          "target": "unpublished.item.status"
+        },
+        {
+          "line": 95,
+          "kind": "expect",
+          "target": "unpublished.item.scheduledAt"
+        },
+        {
+          "line": 96,
+          "kind": "expect",
+          "target": "await publishDueContent(db)"
+        },
+        {
+          "line": 97,
+          "kind": "expect",
+          "target": "(await repo.findById(\"post\", draft.id))?.status"
+        },
+        {
+          "line": 114,
+          "kind": "expect",
+          "target": "unpublished.item.scheduledAt"
+        },
+        {
+          "line": 115,
+          "kind": "expect",
+          "target": "await publishDueContent(db)"
+        },
+        {
+          "line": 116,
+          "kind": "expect",
+          "target": "(await repo.findById(\"post\", draft.id))?.status"
+        },
+        {
+          "line": 125,
+          "kind": "expect",
+          "target": "restored.item.status"
+        },
+        {
+          "line": 126,
+          "kind": "expect",
+          "target": "restored.item.liveRevisionId"
+        },
+        {
+          "line": 127,
+          "kind": "expect",
+          "target": "restored.item.scheduledAt"
+        },
+        {
+          "line": 129,
+          "kind": "expect",
+          "target": "current.item.data.title"
+        },
+        {
+          "line": 134,
+          "kind": "expect",
+          "target": "republished.item.status"
+        },
+        {
+          "line": 135,
+          "kind": "expect",
+          "target": "republished.item.data.title"
+        },
+        {
+          "line": 150,
+          "kind": "expect",
+          "target": "restored.item.status"
+        },
+        {
+          "line": 151,
+          "kind": "expect",
+          "target": "restored.item.liveRevisionId"
+        },
+        {
+          "line": 152,
+          "kind": "expect",
+          "target": "restored.item.draftRevisionId"
+        },
+        {
+          "line": 154,
+          "kind": "expect",
+          "target": "current.item.data.title"
+        },
+        {
+          "line": 161,
+          "kind": "expect",
+          "target": "await publishDueContent(db)"
+        },
+        {
+          "line": 165,
+          "kind": "expect",
+          "target": "restored.item.status"
+        },
+        {
+          "line": 166,
+          "kind": "expect",
+          "target": "restored.item.scheduledAt"
+        },
+        {
+          "line": 167,
+          "kind": "expect",
+          "target": "await publishDueContent(db)"
+        },
+        {
+          "line": 168,
+          "kind": "expect",
+          "target": "(await repo.findById(\"post\", draft.id))?.status"
+        },
+        {
+          "line": 184,
+          "kind": "expect",
+          "target": "ok(await runtime.handleContentGet(\"post\", item.id)).item.data.title"
+        },
+        {
+          "line": 194,
+          "kind": "expect",
+          "target": "stale"
+        },
+        {
+          "line": 195,
+          "kind": "expect",
+          "target": "(await repo.findById(\"post\", item.id))?.status"
+        }
+      ],
+      "imports": [
+        "kysely",
+        "vitest",
+        "../../../src/database/repositories/content.js",
+        "../../../src/database/types.js",
+        "../../../src/emdash-runtime.js",
+        "../../../src/scheduled-publish.js",
+        "../../../src/schema/registry.js",
+        "../../utils/mcp-runtime.js",
+        "../../utils/test-db.js"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    },
+    {
+      "path": "packages/core/tests/integration/database/scheduled-publish-plan.test.ts",
+      "bytes": 5341,
+      "sha256": "7e18a20fc15117cfd84b9adc8d4590aca50ee8fdacda7982c014c99e42a1b312",
+      "gitBlob": "94b4708ea8029070f0dcc8466aa97fbe6c55dc58",
+      "declarations": [
+        {
+          "line": 54,
+          "name": "\"seeks due content through the scheduled index instead of scanning live rows\"",
+          "registration": "it",
+          "originalCallbackBytes": 390,
+          "originalDeadline": null
+        },
+        {
+          "line": 67,
+          "name": "\"still returns due content oldest-first, skipping soft-deleted rows\"",
+          "registration": "it",
+          "originalCallbackBytes": 474,
+          "originalDeadline": null
+        },
+        {
+          "line": 81,
+          "name": "\"migrates a pre-074 table off the deleted_at-leading plan\"",
+          "registration": "it",
+          "originalCallbackBytes": 836,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 3,
+      "staticExpectCalls": 11,
+      "multilineElementExpectCalls": 0,
+      "assertions": [
+        {
+          "line": 57,
+          "kind": "expect",
+          "target": "due"
+        },
+        {
+          "line": 60,
+          "kind": "expect",
+          "target": "contentAccess(plan)"
+        },
+        {
+          "line": 63,
+          "kind": "expect",
+          "target": "plan"
+        },
+        {
+          "line": 64,
+          "kind": "expect",
+          "target": "plan"
+        },
+        {
+          "line": 78,
+          "kind": "expect",
+          "target": "due.map((item) => item.id)"
+        },
+        {
+          "line": 89,
+          "kind": "expect",
+          "target": "contentAccess(before)"
+        },
+        {
+          "line": 90,
+          "kind": "expect",
+          "target": "before"
+        },
+        {
+          "line": 94,
+          "kind": "expect",
+          "target": "indexNames()"
+        },
+        {
+          "line": 98,
+          "kind": "expect",
+          "target": "contentAccess(after)"
+        },
+        {
+          "line": 101,
+          "kind": "expect",
+          "target": "after"
+        },
+        {
+          "line": 136,
+          "kind": "expect",
+          "target": "queries"
+        }
+      ],
+      "imports": [
+        "kysely",
+        "vitest",
+        "#node-sqlite",
+        "../../../src/database/migrations/074_content_deleted_scheduled_index.js",
+        "../../../src/database/migrations/runner.js",
+        "../../../src/database/repositories/content.js",
+        "../../../src/database/types.js",
+        "../../../src/schema/registry.js"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    },
+    {
+      "path": "packages/core/tests/unit/scheduled-publish.test.ts",
+      "bytes": 25726,
+      "sha256": "5faa2df396c4d939f3b65b58dbfd67b7ea70c4dea022f90d9045e8a5dccd6769",
+      "gitBlob": "f5aa207b7461269ee169977128f6b3048311a401",
+      "declarations": [
+        {
+          "line": 78,
+          "name": "\"promotes a scheduled draft whose time has passed\"",
+          "registration": "it",
+          "originalCallbackBytes": 668,
+          "originalDeadline": null
+        },
+        {
+          "line": 95,
+          "name": "\"leaves future-scheduled content untouched\"",
+          "registration": "it",
+          "originalCallbackBytes": 370,
+          "originalDeadline": null
+        },
+        {
+          "line": 107,
+          "name": "\"records the scheduled time as published_at, not the (later) sweep time\"",
+          "registration": "it",
+          "originalCallbackBytes": 502,
+          "originalDeadline": null
+        },
+        {
+          "line": 120,
+          "name": "\"routes each publish through the provided callback with requireScheduledDue\"",
+          "registration": "it",
+          "originalCallbackBytes": 870,
+          "originalDeadline": null
+        },
+        {
+          "line": 144,
+          "name": "\"skips (without failing) items the publish callback reports as NOT_DUE\"",
+          "registration": "it",
+          "originalCallbackBytes": 534,
+          "originalDeadline": null
+        },
+        {
+          "line": 161,
+          "name": "\"sweeps every collection and is idempotent across runs\"",
+          "registration": "it",
+          "originalCallbackBytes": 653,
+          "originalDeadline": null
+        },
+        {
+          "line": 177,
+          "name": "\"advances past a bounded window of repeatedly failing entries\"",
+          "registration": "it",
+          "originalCallbackBytes": 819,
+          "originalDeadline": null
+        },
+        {
+          "line": 202,
+          "name": "\"does not let an older concurrent sweep move the cursor backwards\"",
+          "registration": "it",
+          "originalCallbackBytes": 1213,
+          "originalDeadline": null
+        },
+        {
+          "line": 240,
+          "name": "\"bounds promotions per collection per sweep and drains the rest on later sweeps\"",
+          "registration": "it",
+          "originalCallbackBytes": 617,
+          "originalDeadline": null
+        },
+        {
+          "line": 258,
+          "name": "\"invokes onPublished once per non-empty collection batch with only that batch's refs\"",
+          "registration": "it",
+          "originalCallbackBytes": 824,
+          "originalDeadline": null
+        },
+        {
+          "line": 281,
+          "name": "\"treats an onPublished failure as non-fatal \u2014 content still publishes\"",
+          "registration": "it",
+          "originalCallbackBytes": 741,
+          "originalDeadline": null
+        },
+        {
+          "line": 316,
+          "name": "\"promotes due content and returns it for cache invalidation\"",
+          "registration": "it",
+          "originalCallbackBytes": 479,
+          "originalDeadline": null
+        },
+        {
+          "line": 329,
+          "name": "\"records a heartbeat after Cloudflare scheduled maintenance completes\"",
+          "registration": "it",
+          "originalCallbackBytes": 347,
+          "originalDeadline": null
+        },
+        {
+          "line": 341,
+          "name": "\"does not fail Cloudflare scheduled maintenance when the heartbeat write fails\"",
+          "registration": "it",
+          "originalCallbackBytes": 530,
+          "originalDeadline": null
+        },
+        {
+          "line": 359,
+          "name": "\"leaves due content untouched while media usage activation is incomplete\"",
+          "registration": "it",
+          "originalCallbackBytes": 922,
+          "originalDeadline": null
+        },
+        {
+          "line": 401,
+          "name": "\"publishes a still-due item\"",
+          "registration": "it",
+          "originalCallbackBytes": 328,
+          "originalDeadline": null
+        },
+        {
+          "line": 410,
+          "name": "\"refuses to publish an item that was unscheduled (race guard)\"",
+          "registration": "it",
+          "originalCallbackBytes": 526,
+          "originalDeadline": null
+        },
+        {
+          "line": 425,
+          "name": "\"allows only one publisher prepared from the same scheduled snapshot\"",
+          "registration": "it",
+          "originalCallbackBytes": 1343,
+          "originalDeadline": null
+        },
+        {
+          "line": 465,
+          "name": "\"refuses to publish an item rescheduled into the future\"",
+          "registration": "it",
+          "originalCallbackBytes": 519,
+          "originalDeadline": null
+        },
+        {
+          "line": 478,
+          "name": "\"rejects a schedule changed after sweep selection even when the new time is also due\"",
+          "registration": "it",
+          "originalCallbackBytes": 695,
+          "originalDeadline": null
+        },
+        {
+          "line": 497,
+          "name": "\"rejects publication when a draft swap wins during revision preparation\"",
+          "registration": "it",
+          "originalCallbackBytes": 1690,
+          "originalDeadline": null
+        },
+        {
+          "line": 545,
+          "name": "\"rejects a stale draft swap after publication wins\"",
+          "registration": "it",
+          "originalCallbackBytes": 996,
+          "originalDeadline": null
+        },
+        {
+          "line": 572,
+          "name": "\"does not publish when the entry is rescheduled during revision preparation\"",
+          "registration": "it",
+          "originalCallbackBytes": 1210,
+          "originalDeadline": null
+        },
+        {
+          "line": 604,
+          "name": "\"does not leak staged fields when the promotion statement fails\"",
+          "registration": "it",
+          "originalCallbackBytes": 1085,
+          "originalDeadline": null
+        },
+        {
+          "line": 638,
+          "name": "\"leaves a scheduled draft unchanged when publication preparation fails\"",
+          "registration": "it",
+          "originalCallbackBytes": 729,
+          "originalDeadline": null
+        },
+        {
+          "line": 659,
+          "name": "\"leaves a published replacement schedule unchanged when preparation fails\"",
+          "registration": "it",
+          "originalCallbackBytes": 596,
+          "originalDeadline": null
+        },
+        {
+          "line": 677,
+          "name": "\"ignores the gate when requireDue is false (manual publish path)\"",
+          "registration": "it",
+          "originalCallbackBytes": 203,
+          "originalDeadline": null
+        },
+        {
+          "line": 684,
+          "name": "\"maps a lost manual publication CAS to CONFLICT\"",
+          "registration": "it",
+          "originalCallbackBytes": 338,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 28,
+      "staticExpectCalls": 74,
+      "multilineElementExpectCalls": 0,
+      "assertions": [
+        {
+          "line": 87,
+          "kind": "expect",
+          "target": "published"
+        },
+        {
+          "line": 90,
+          "kind": "expect",
+          "target": "updated?.status"
+        },
+        {
+          "line": 91,
+          "kind": "expect",
+          "target": "updated?.publishedAt"
+        },
+        {
+          "line": 92,
+          "kind": "expect",
+          "target": "updated?.scheduledAt"
+        },
+        {
+          "line": 102,
+          "kind": "expect",
+          "target": "published"
+        },
+        {
+          "line": 104,
+          "kind": "expect",
+          "target": "updated?.status"
+        },
+        {
+          "line": 117,
+          "kind": "expect",
+          "target": "updated?.publishedAt"
+        },
+        {
+          "line": 134,
+          "kind": "expect",
+          "target": "published"
+        },
+        {
+          "line": 135,
+          "kind": "expect",
+          "target": "calls"
+        },
+        {
+          "line": 136,
+          "kind": "expect",
+          "target": "calls[0]?.options"
+        },
+        {
+          "line": 158,
+          "kind": "expect",
+          "target": "published"
+        },
+        {
+          "line": 169,
+          "kind": "expect",
+          "target": "first"
+        },
+        {
+          "line": 170,
+          "kind": "expect",
+          "target": "first.map((r) => r.collection).toSorted()"
+        },
+        {
+          "line": 174,
+          "kind": "expect",
+          "target": "second"
+        },
+        {
+          "line": 194,
+          "kind": "expect",
+          "target": "attempts"
+        },
+        {
+          "line": 198,
+          "kind": "expect",
+          "target": "attempts.length"
+        },
+        {
+          "line": 199,
+          "kind": "expect",
+          "target": "attempts"
+        },
+        {
+          "line": 235,
+          "kind": "expect",
+          "target": "await new OptionsRepository(db).get(\"emdash:scheduled-publish-cursor:post\")"
+        },
+        {
+          "line": 249,
+          "kind": "expect",
+          "target": "first"
+        },
+        {
+          "line": 252,
+          "kind": "expect",
+          "target": "second"
+        },
+        {
+          "line": 255,
+          "kind": "expect",
+          "target": "third"
+        },
+        {
+          "line": 272,
+          "kind": "expect",
+          "target": "published"
+        },
+        {
+          "line": 274,
+          "kind": "expect",
+          "target": "batches"
+        },
+        {
+          "line": 277,
+          "kind": "expect",
+          "target": "new Set(batch.map((r) => r.collection)).size"
+        },
+        {
+          "line": 295,
+          "kind": "expect",
+          "target": "published"
+        },
+        {
+          "line": 296,
+          "kind": "expect",
+          "target": "(await repo.findById(\"post\", post.id))?.status"
+        },
+        {
+          "line": 297,
+          "kind": "expect",
+          "target": "(await repo.findById(\"page\", page.id))?.status"
+        },
+        {
+          "line": 324,
+          "kind": "expect",
+          "target": "published"
+        },
+        {
+          "line": 326,
+          "kind": "expect",
+          "target": "updated?.status"
+        },
+        {
+          "line": 337,
+          "kind": "expect",
+          "target": "heartbeat"
+        },
+        {
+          "line": 338,
+          "kind": "expect",
+          "target": "Date.parse(heartbeat!)"
+        },
+        {
+          "line": 352,
+          "kind": "expect",
+          "target": "buildRuntime(db).runScheduledTasks()"
+        },
+        {
+          "line": 353,
+          "kind": "expect",
+          "target": "consoleError"
+        },
+        {
+          "line": 372,
+          "kind": "expect",
+          "target": "runtime.publishScheduled()"
+        },
+        {
+          "line": 377,
+          "kind": "expect",
+          "target": "runtime.runScheduledTasks()"
+        },
+        {
+          "line": 379,
+          "kind": "expect",
+          "target": "unchanged?.status"
+        },
+        {
+          "line": 380,
+          "kind": "expect",
+          "target": "unchanged?.scheduledAt"
+        },
+        {
+          "line": 407,
+          "kind": "expect",
+          "target": "result.status"
+        },
+        {
+          "line": 417,
+          "kind": "expect",
+          "target": "repo.publish(\"post\", post.id, undefined, true)"
+        },
+        {
+          "line": 422,
+          "kind": "expect",
+          "target": "updated?.status"
+        },
+        {
+          "line": 459,
+          "kind": "expect",
+          "target": "second.status"
+        },
+        {
+          "line": 460,
+          "kind": "expect",
+          "target": "await firstResult"
+        },
+        {
+          "line": 461,
+          "kind": "expect",
+          "target": "await revisionRepo.countByEntry(\"post\", post.id)"
+        },
+        {
+          "line": 473,
+          "kind": "expect",
+          "target": "repo.publish(\"post\", post.id, undefined, true)"
+        },
+        {
+          "line": 488,
+          "kind": "expect",
+          "target": "repo.publish(\"post\", post.id, selectedSchedule, true, selectedSchedule)"
+        },
+        {
+          "line": 493,
+          "kind": "expect",
+          "target": "after?.scheduledAt"
+        },
+        {
+          "line": 494,
+          "kind": "expect",
+          "target": "after?.status"
+        },
+        {
+          "line": 507,
+          "kind": "expect",
+          "target": "expected"
+        },
+        {
+          "line": 534,
+          "kind": "expect",
+          "target": "await repo.replaceDraftRevision(\"post\", post.id, replacement.id, expected!)"
+        },
+        {
+          "line": 537,
+          "kind": "expect",
+          "target": "await publishResult"
+        },
+        {
+          "line": 539,
+          "kind": "expect",
+          "target": "after?.status"
+        },
+        {
+          "line": 540,
+          "kind": "expect",
+          "target": "after?.liveRevisionId"
+        },
+        {
+          "line": 541,
+          "kind": "expect",
+          "target": "after?.draftRevisionId"
+        },
+        {
+          "line": 555,
+          "kind": "expect",
+          "target": "expected"
+        },
+        {
+          "line": 566,
+          "kind": "expect",
+          "target": "swapped"
+        },
+        {
+          "line": 567,
+          "kind": "expect",
+          "target": "cleaned"
+        },
+        {
+          "line": 568,
+          "kind": "expect",
+          "target": "published.liveRevisionId"
+        },
+        {
+          "line": 569,
+          "kind": "expect",
+          "target": "await revisionRepo.findById(losingDraft.id)"
+        },
+        {
+          "line": 593,
+          "kind": "expect",
+          "target": "repo.publish(\"post\", post.id, undefined, true)"
+        },
+        {
+          "line": 599,
+          "kind": "expect",
+          "target": "after?.status"
+        },
+        {
+          "line": 600,
+          "kind": "expect",
+          "target": "after?.scheduledAt"
+        },
+        {
+          "line": 601,
+          "kind": "expect",
+          "target": "after?.draftRevisionId"
+        },
+        {
+          "line": 624,
+          "kind": "expect",
+          "target": "repo.publish(\"post\", post.id, undefined, true)"
+        },
+        {
+          "line": 629,
+          "kind": "expect",
+          "target": "after"
+        },
+        {
+          "line": 635,
+          "kind": "expect",
+          "target": "after?.data.title"
+        },
+        {
+          "line": 650,
+          "kind": "expect",
+          "target": "repo.publish(\"post\", post.id, undefined, true)"
+        },
+        {
+          "line": 654,
+          "kind": "expect",
+          "target": "after?.scheduledAt"
+        },
+        {
+          "line": 655,
+          "kind": "expect",
+          "target": "after?.status"
+        },
+        {
+          "line": 656,
+          "kind": "expect",
+          "target": "after?.updatedAt"
+        },
+        {
+          "line": 669,
+          "kind": "expect",
+          "target": "repo.publish(\"post\", post.id, undefined, true)"
+        },
+        {
+          "line": 673,
+          "kind": "expect",
+          "target": "after?.scheduledAt"
+        },
+        {
+          "line": 674,
+          "kind": "expect",
+          "target": "after?.status"
+        },
+        {
+          "line": 681,
+          "kind": "expect",
+          "target": "result.status"
+        },
+        {
+          "line": 692,
+          "kind": "expect",
+          "target": "result"
+        }
+      ],
+      "imports": [
+        "kysely",
+        "vitest",
+        "../../src/api/handlers/content.js",
+        "../../src/astro/integration/runtime.js",
+        "../../src/database/repositories/content.js",
+        "../../src/database/repositories/options.js",
+        "../../src/database/repositories/revision.js",
+        "../../src/database/repositories/types.js",
+        "../../src/database/types.js",
+        "../../src/emdash-runtime.js",
+        "../../src/plugins/hooks.js",
+        "../../src/scheduled-publish.js",
+        "../../src/scheduler-health.js",
+        "../utils/fixtures.js",
+        "../utils/test-db.js"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    },
+    {
+      "path": "packages/core/tests/unit/loader-scheduled-publishing.test.ts",
+      "bytes": 7798,
+      "sha256": "17d1cb65204d768e8a42ab5126a389752ecda3c5791969854773353f423bd3af",
+      "gitBlob": "8476c1425f2dfaa11d8bce2a3fb247d735431f20",
+      "declarations": [
+        {
+          "line": 49,
+          "name": "\"excludes scheduled posts whose scheduled_at has passed\"",
+          "registration": "it",
+          "originalCallbackBytes": 157,
+          "originalDeadline": null
+        },
+        {
+          "line": 54,
+          "name": "\"should exclude scheduled posts whose scheduled_at is still in the future\"",
+          "registration": "it",
+          "originalCallbackBytes": 164,
+          "originalDeadline": null
+        },
+        {
+          "line": 59,
+          "name": "\"never exposes the initial slug or fields before the staged revision is promoted\"",
+          "registration": "it",
+          "originalCallbackBytes": 2505,
+          "originalDeadline": null
+        },
+        {
+          "line": 132,
+          "name": "\"only exposes fully promoted entries while publishing eight posts scheduled together\"",
+          "registration": "it",
+          "originalCallbackBytes": 2749,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 4,
+      "staticExpectCalls": 17,
+      "multilineElementExpectCalls": 0,
+      "assertions": [
+        {
+          "line": 51,
+          "kind": "expect",
+          "target": "await publishedSlugs()"
+        },
+        {
+          "line": 56,
+          "kind": "expect",
+          "target": "await publishedSlugs()"
+        },
+        {
+          "line": 82,
+          "kind": "expect",
+          "target": "created.success"
+        },
+        {
+          "line": 118,
+          "kind": "expect",
+          "target": "await load()"
+        },
+        {
+          "line": 119,
+          "kind": "expect",
+          "target": "await load({ category: \"technology\" })"
+        },
+        {
+          "line": 120,
+          "kind": "expect",
+          "target": "await load({ byline: byline.translationGroup ?? byline.id })"
+        },
+        {
+          "line": 125,
+          "kind": "expect",
+          "target": "entries"
+        },
+        {
+          "line": 126,
+          "kind": "expect",
+          "target": "entries[0]?.slug"
+        },
+        {
+          "line": 127,
+          "kind": "expect",
+          "target": "entries[0]?.data.title"
+        },
+        {
+          "line": 128,
+          "kind": "expect",
+          "target": "entries[0]?.data.content"
+        },
+        {
+          "line": 129,
+          "kind": "expect",
+          "target": "entries.map((entry) => entry.slug)"
+        },
+        {
+          "line": 144,
+          "kind": "expect",
+          "target": "created.success"
+        },
+        {
+          "line": 204,
+          "kind": "expect",
+          "target": "finalContentBySlug.has(entry.slug)"
+        },
+        {
+          "line": 205,
+          "kind": "expect",
+          "target": "entry.data.content"
+        },
+        {
+          "line": 213,
+          "kind": "expect",
+          "target": "entriesDuringSweep"
+        },
+        {
+          "line": 215,
+          "kind": "expect",
+          "target": "published"
+        },
+        {
+          "line": 217,
+          "kind": "expect",
+          "target": "entriesAfterSweep"
+        }
+      ],
+      "imports": [
+        "kysely",
+        "vitest",
+        "../../src/api/index.js",
+        "../../src/database/repositories/byline.js",
+        "../../src/database/repositories/content.js",
+        "../../src/database/repositories/revision.js",
+        "../../src/database/repositories/taxonomy.js",
+        "../../src/loader.js",
+        "../../src/request-context.js",
+        "../../src/scheduled-publish.js",
+        "../utils/test-db.js"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    },
+    {
+      "path": "packages/core/tests/unit/api/scheduled-policy-rejection-d1.test.ts",
+      "bytes": 4737,
+      "sha256": "6ba4dbd952116c3b12973716c2e815961e2ffd1cd6f31fcabd4ba98928d02a19",
+      "gitBlob": "a56f366a9f77cc604db108bd73837273ca35a9a3",
+      "declarations": [
+        {
+          "line": 26,
+          "name": "\"keeps content scheduled when persisting the rejection fails\"",
+          "registration": "it",
+          "originalCallbackBytes": 1261,
+          "originalDeadline": null
+        },
+        {
+          "line": 70,
+          "name": "\"keeps an actionable rejection when unscheduling fails\"",
+          "registration": "it",
+          "originalCallbackBytes": 1189,
+          "originalDeadline": null
+        },
+        {
+          "line": 111,
+          "name": "\"removes its stale rejection when the content revision conflicts\"",
+          "registration": "it",
+          "originalCallbackBytes": 1037,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 3,
+      "staticExpectCalls": 9,
+      "multilineElementExpectCalls": 0,
+      "assertions": [
+        {
+          "line": 56,
+          "kind": "expect",
+          "target": "result"
+        },
+        {
+          "line": 57,
+          "kind": "expect",
+          "target": "await repo.findById(\"post\", item.id)"
+        },
+        {
+          "line": 61,
+          "kind": "expect",
+          "target": "await db\n\t\t\t\t.selectFrom(\"options\")\n\t\t\t\t.select(\"name\")\n\t\t\t\t.where(\"name\", \"=\", scheduledPolicyRejectionKey(\"post\", item.id))\n\t\t\t\t.executeTakeFirst()"
+        },
+        {
+          "line": 101,
+          "kind": "expect",
+          "target": "result"
+        },
+        {
+          "line": 102,
+          "kind": "expect",
+          "target": "await repo.findById(\"post\", item.id)"
+        },
+        {
+          "line": 106,
+          "kind": "expect",
+          "target": "await new OptionsRepository(db).get(scheduledPolicyRejectionKey(\"post\", item.id))"
+        },
+        {
+          "line": 138,
+          "kind": "expect",
+          "target": "result"
+        },
+        {
+          "line": 139,
+          "kind": "expect",
+          "target": "await repo.findById(\"post\", created.id)"
+        },
+        {
+          "line": 142,
+          "kind": "expect",
+          "target": "await new OptionsRepository(db).get(scheduledPolicyRejectionKey(\"post\", created.id))"
+        }
+      ],
+      "imports": [
+        "kysely",
+        "vitest",
+        "../../../src/api/handlers/content.js",
+        "../../../src/api/rev.js",
+        "../../../src/database/repositories/content.js",
+        "../../../src/database/repositories/options.js",
+        "../../../src/plugins/content-policy.js",
+        "../../utils/test-db.js"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    },
+    {
+      "path": "packages/core/tests/unit/astro/scheduled-policy-rejections-route.test.ts",
+      "bytes": 2961,
+      "sha256": "5ca28a248ac0e4ed8dbd4371e0b9c6773102a2a6f4c39f597bca670d841b2257",
+      "gitBlob": "c12b19fe2fc706f1c1aeb7b7cd2cae9b8b77ac26",
+      "declarations": [
+        {
+          "line": 29,
+          "name": "\"lets publishers dismiss the displayed rejection revision\"",
+          "registration": "it",
+          "originalCallbackBytes": 505,
+          "originalDeadline": null
+        },
+        {
+          "line": 43,
+          "name": "\"does not let a reader clear publication-policy attention\"",
+          "registration": "it",
+          "originalCallbackBytes": 513,
+          "originalDeadline": null
+        },
+        {
+          "line": 57,
+          "name": "\"does not let a stale dismissal erase a newer rejection\"",
+          "registration": "it",
+          "originalCallbackBytes": 580,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 3,
+      "staticExpectCalls": 6,
+      "multilineElementExpectCalls": 0,
+      "assertions": [
+        {
+          "line": 39,
+          "kind": "expect",
+          "target": "response.status"
+        },
+        {
+          "line": 40,
+          "kind": "expect",
+          "target": "options.get(key)"
+        },
+        {
+          "line": 53,
+          "kind": "expect",
+          "target": "response.status"
+        },
+        {
+          "line": 54,
+          "kind": "expect",
+          "target": "options.get(key)"
+        },
+        {
+          "line": 68,
+          "kind": "expect",
+          "target": "response.status"
+        },
+        {
+          "line": 69,
+          "kind": "expect",
+          "target": "options.get(key)"
+        }
+      ],
+      "imports": [
+        "@emdash-cms/auth",
+        "astro",
+        "kysely",
+        "vitest",
+        "../../../src/astro/routes/api/admin/scheduled-policy-rejections/[collection]/[id].js",
+        "../../../src/database/repositories/options.js",
+        "../../../src/database/types.js",
+        "../../../src/plugins/content-policy.js",
+        "../../utils/test-db.js"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    },
+    {
+      "path": "packages/core/tests/integration/runtime/media-usage-scheduled-driver.test.ts",
+      "bytes": 20988,
+      "sha256": "b4876eb1ef25dd9f79a6d4e4489e39517b41dc6c63d975cdff9bf26957bdf722",
+      "gitBlob": "00ddd035c37ab5d3a5f7b927ec1bb9ca46d70481",
+      "declarations": [
+        {
+          "line": 28,
+          "name": "\"skips idle maintenance classes and processes due entry work\"",
+          "registration": "it",
+          "originalCallbackBytes": 401,
+          "originalDeadline": null
+        },
+        {
+          "line": 40,
+          "name": "\"delays one continuation when every visible claim is blocked\"",
+          "registration": "it",
+          "originalCallbackBytes": 624,
+          "originalDeadline": null
+        },
+        {
+          "line": 60,
+          "name": "\"keeps a delayed continuation while retry work is waiting\"",
+          "registration": "it",
+          "originalCallbackBytes": 565,
+          "originalDeadline": null
+        },
+        {
+          "line": 76,
+          "name": "\"keeps a delayed continuation while collection deletion retry is waiting\"",
+          "registration": "it",
+          "originalCallbackBytes": 613,
+          "originalDeadline": null
+        },
+        {
+          "line": 97,
+          "name": "\"continues useful entry work after a reconciliation claim is lost\"",
+          "registration": "it",
+          "originalCallbackBytes": 913,
+          "originalDeadline": null
+        },
+        {
+          "line": 123,
+          "name": "\"keeps a blocked due reconciliation on its delayed continuation\"",
+          "registration": "it",
+          "originalCallbackBytes": 1221,
+          "originalDeadline": null
+        },
+        {
+          "line": 165,
+          "name": "\"stops continuation only after a full idle maintenance pass\"",
+          "registration": "it",
+          "originalCallbackBytes": 261,
+          "originalDeadline": null
+        },
+        {
+          "line": 175,
+          "name": "\"continues reconciliation immediately after entry work drains\"",
+          "registration": "it",
+          "originalCallbackBytes": 1543,
+          "originalDeadline": null
+        },
+        {
+          "line": 218,
+          "name": "\"records a heartbeat from the Node timer maintenance callback\"",
+          "registration": "it",
+          "originalCallbackBytes": 384,
+          "originalDeadline": null
+        },
+        {
+          "line": 231,
+          "name": "\"does not fail Node maintenance when the heartbeat write fails\"",
+          "registration": "it",
+          "originalCallbackBytes": 756,
+          "originalDeadline": null
+        },
+        {
+          "line": 255,
+          "name": "\"offers every due maintenance class one opportunity per cycle\"",
+          "registration": "it",
+          "originalCallbackBytes": 1153,
+          "originalDeadline": null
+        },
+        {
+          "line": 283,
+          "name": "\"finishes post-Ready collection deletion before declaring Ready again\"",
+          "registration": "it",
+          "originalCallbackBytes": 982,
+          "originalDeadline": null
+        },
+        {
+          "line": 307,
+          "name": "\"resumes historical reconciliation after failed entry work is retried\"",
+          "registration": "it",
+          "originalCallbackBytes": 2005,
+          "originalDeadline": null
+        },
+        {
+          "line": 368,
+          "name": "\"processes a trigger-created job before returning from an authenticated write\"",
+          "registration": "it",
+          "originalCallbackBytes": 600,
+          "originalDeadline": null
+        },
+        {
+          "line": 389,
+          "name": "\"continues confirmed activation one bounded collection at a time\"",
+          "registration": "it",
+          "originalCallbackBytes": 949,
+          "originalDeadline": null
+        },
+        {
+          "line": 416,
+          "name": "\"does not automatically retry a stored activation failure\"",
+          "registration": "it",
+          "originalCallbackBytes": 892,
+          "originalDeadline": null
+        },
+        {
+          "line": 447,
+          "name": "\"rejects an incompatible active generation before advancing maintenance\"",
+          "registration": "it",
+          "originalCallbackBytes": 457,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 17,
+      "staticExpectCalls": 45,
+      "multilineElementExpectCalls": 0,
+      "assertions": [
+        {
+          "line": 33,
+          "kind": "expect",
+          "target": "runMediaUsageMaintenanceStep(runtime.db)"
+        },
+        {
+          "line": 37,
+          "kind": "expect",
+          "target": "await countWork(runtime)"
+        },
+        {
+          "line": 53,
+          "kind": "expect",
+          "target": "runMediaUsageMaintenanceStep(runtime.db)"
+        },
+        {
+          "line": 57,
+          "kind": "expect",
+          "target": "await countWork(runtime)"
+        },
+        {
+          "line": 69,
+          "kind": "expect",
+          "target": "runMediaUsageMaintenanceStep(runtime.db)"
+        },
+        {
+          "line": 73,
+          "kind": "expect",
+          "target": "await countWork(runtime)"
+        },
+        {
+          "line": 91,
+          "kind": "expect",
+          "target": "runMediaUsageMaintenanceStep(runtime.db)"
+        },
+        {
+          "line": 116,
+          "kind": "expect",
+          "target": "runMediaUsageMaintenanceStep(runtime.db)"
+        },
+        {
+          "line": 120,
+          "kind": "expect",
+          "target": "await countWork(runtime)"
+        },
+        {
+          "line": 159,
+          "kind": "expect",
+          "target": "runMediaUsageMaintenanceStep(runtime.db)"
+        },
+        {
+          "line": 169,
+          "kind": "expect",
+          "target": "runMediaUsageMaintenanceStep(runtime.db)"
+        },
+        {
+          "line": 198,
+          "kind": "expect",
+          "target": "activateMediaUsageCapture(runtime.db, { writersDrained: true })"
+        },
+        {
+          "line": 203,
+          "kind": "expect",
+          "target": "processDueMediaUsageReconciliation(runtime.db)"
+        },
+        {
+          "line": 204,
+          "kind": "expect",
+          "target": "processDueMediaUsageReconciliation(runtime.db)"
+        },
+        {
+          "line": 207,
+          "kind": "expect",
+          "target": "await countWork(runtime)"
+        },
+        {
+          "line": 208,
+          "kind": "expect",
+          "target": "await runtime.db.selectFrom(\"_emdash_media_usage_reconciliations\").select(\"state\").execute()"
+        },
+        {
+          "line": 212,
+          "kind": "expect",
+          "target": "runMediaUsageMaintenanceStep(runtime.db)"
+        },
+        {
+          "line": 227,
+          "kind": "expect",
+          "target": "heartbeat"
+        },
+        {
+          "line": 228,
+          "kind": "expect",
+          "target": "Number.isNaN(Date.parse(heartbeat!))"
+        },
+        {
+          "line": 248,
+          "kind": "expect",
+          "target": "scheduler.runMaintenance()"
+        },
+        {
+          "line": 249,
+          "kind": "expect",
+          "target": "consoleError"
+        },
+        {
+          "line": 268,
+          "kind": "expect",
+          "target": "runMediaUsageMaintenanceStep(runtime.db)"
+        },
+        {
+          "line": 272,
+          "kind": "expect",
+          "target": "await countWork(runtime)"
+        },
+        {
+          "line": 273,
+          "kind": "expect",
+          "target": "await deletionPhase(runtime, deletion.collectionId)"
+        },
+        {
+          "line": 274,
+          "kind": "expect",
+          "target": "await runtime.db\n\t\t\t\t.selectFrom(\"_emdash_media_usage_reconciliations\")\n\t\t\t\t.select(\"collection_id\")\n\t\t\t\t.where(\"collection_id\", \"=\", reconciliation.collectionId)\n\t\t\t\t.executeTakeFirst()"
+        },
+        {
+          "line": 290,
+          "kind": "expect",
+          "target": "await deletionPhase(runtime, fixture.collectionId)"
+        },
+        {
+          "line": 291,
+          "kind": "expect",
+          "target": "new MediaUsageRepository(runtime.db).findCollectionProgress()"
+        },
+        {
+          "line": 301,
+          "kind": "expect",
+          "target": "await deletionPhase(runtime, fixture.collectionId)"
+        },
+        {
+          "line": 302,
+          "kind": "expect",
+          "target": "runtime.schemaRegistry.createCollection({ slug: \"reusable_posts\", label: \"Reusable posts\" })"
+        },
+        {
+          "line": 344,
+          "kind": "expect",
+          "target": "new MediaUsageWorkRepository(runtime.db).retryOperatorWork({\n\t\t\t\tcollectionId: fixture.collectionId,\n\t\t\t\tcontentId: \"entry-1\",\n\t\t\t})"
+        },
+        {
+          "line": 350,
+          "kind": "expect",
+          "target": "new MediaUsageRepository(runtime.db).findCollectionProgress()"
+        },
+        {
+          "line": 361,
+          "kind": "expect",
+          "target": "new MediaUsageRepository(runtime.db).findCollectionProgress()"
+        },
+        {
+          "line": 378,
+          "kind": "expect",
+          "target": "result.success"
+        },
+        {
+          "line": 380,
+          "kind": "expect",
+          "target": "contentId"
+        },
+        {
+          "line": 381,
+          "kind": "expect",
+          "target": "await countWork(runtime)"
+        },
+        {
+          "line": 382,
+          "kind": "expect",
+          "target": "await new MediaUsageRepository(runtime.db).findSource(\n\t\t\t\tcanonicalSourceKey(fixture.collectionId, contentId!),\n\t\t\t)"
+        },
+        {
+          "line": 395,
+          "kind": "expect",
+          "target": "activateMediaUsageCapture(runtime.db, { writersDrained: true })"
+        },
+        {
+          "line": 402,
+          "kind": "expect",
+          "target": "runMediaUsageMaintenanceStep(runtime.db)"
+        },
+        {
+          "line": 406,
+          "kind": "expect",
+          "target": "await activationState(runtime)"
+        },
+        {
+          "line": 428,
+          "kind": "expect",
+          "target": "runMediaUsageMaintenanceStep(runtime.db)"
+        },
+        {
+          "line": 432,
+          "kind": "expect",
+          "target": "await activationState(runtime)"
+        },
+        {
+          "line": 434,
+          "kind": "expect",
+          "target": "activateMediaUsageCapture(runtime.db, { writersDrained: true })"
+        },
+        {
+          "line": 438,
+          "kind": "expect",
+          "target": "await activationState(runtime)"
+        },
+        {
+          "line": 455,
+          "kind": "expect",
+          "target": "runMediaUsageMaintenanceStep(runtime.db)"
+        },
+        {
+          "line": 459,
+          "kind": "expect",
+          "target": "await activationState(runtime)"
+        }
+      ],
+      "imports": [
+        "node:crypto",
+        "kysely",
+        "vitest",
+        "#node-sqlite",
+        "../../../src/database/repositories/media-usage-work.js",
+        "../../../src/database/repositories/media-usage.js",
+        "../../../src/database/repositories/options.js",
+        "../../../src/emdash-runtime.js",
+        "../../../src/media/usage/activation.js",
+        "../../../src/media/usage/capture-triggers.js",
+        "../../../src/media/usage/maintenance-engine.js",
+        "../../../src/media/usage/reconciliation-processor.js",
+        "../../../src/media/usage/work-processor.js",
+        "../../../src/plugins/scheduler/types.js",
+        "../../../src/scheduler-health.js"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    },
+    {
+      "path": "packages/core/tests/integration/runtime/plugin-cron-route.test.ts",
+      "bytes": 3469,
+      "sha256": "30f4c979224a6a1579db98369c0c21a06ef7706345fa62eb25b4fed73f8a099f",
+      "gitBlob": "1ce6ad65641b06a373a2bd4615f949a4573ac932",
+      "declarations": [
+        {
+          "line": 50,
+          "name": "\"provides database-backed cron access without an in-process scheduler\"",
+          "registration": "it",
+          "originalCallbackBytes": 635,
+          "originalDeadline": null
+        },
+        {
+          "line": 74,
+          "name": "\"keeps public plugin reads query-free and fences only actual content writes\"",
+          "registration": "it",
+          "originalCallbackBytes": 1008,
+          "originalDeadline": null
+        }
+      ],
+      "declarationCount": 2,
+      "staticExpectCalls": 5,
+      "multilineElementExpectCalls": 0,
+      "assertions": [
+        {
+          "line": 64,
+          "kind": "expect",
+          "target": "result"
+        },
+        {
+          "line": 68,
+          "kind": "expect",
+          "target": "activateHasCron"
+        },
+        {
+          "line": 88,
+          "kind": "expect",
+          "target": "readResult"
+        },
+        {
+          "line": 89,
+          "kind": "expect",
+          "target": "metrics.dbCount"
+        },
+        {
+          "line": 98,
+          "kind": "expect",
+          "target": "writeResult"
+        }
+      ],
+      "imports": [
+        "node:crypto",
+        "kysely",
+        "vitest",
+        "#node-sqlite",
+        "../../../src/astro/public-plugin-api-routes.js",
+        "../../../src/emdash-runtime.js",
+        "../../../src/plugins/define-plugin.js",
+        "../../../src/request-context.js"
+      ],
+      "clocks": [],
+      "expandedCount": null,
+      "expansionLimit": "Static declaration count excludes describe and hooks. Loop expansions, dialect expansions and runtime registrations are separately classified from actual runs."
+    }
+  ],
+  "totals": {
+    "wholeFamilies": 16,
+    "declarations": 126,
+    "staticExpectCalls": 342,
+    "multilineElementExpectCalls": 31,
+    "sourceExecuted": 0,
+    "sourceAssertionCredit": 0,
+    "nativeExecuted": 0
+  },
+  "sourceFiles": [
+    {
+      "source": "LICENSE",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/LICENSE",
+      "bytes": 1079,
+      "sha256": "d5ab82c0225b0def1fa140af22ff2f3bed9791a527545be1b04ab4337dc88675",
+      "gitBlob": "02cc4b8b0a5f883c5243927e683b00c10588bf4c",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/components/ArrowIcons.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/ArrowIcons.tsx",
+      "bytes": 1068,
+      "sha256": "c43005b42452c3c0c287f056c8a2ad3b3243ed5ade7515368c4f99b33c055813",
+      "gitBlob": "1d59c9c9ea863d96b763d0e283c9673e29450326",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/components/DialogError.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/DialogError.tsx",
+      "bytes": 879,
+      "sha256": "6a61cbfc182205e93d369b78039c61c1e5c9089650834baba52d8f0589062701",
+      "gitBlob": "a5c0f711b47269d11216c01176001d72cdd10f6c",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/components/PageHeader.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/PageHeader.tsx",
+      "bytes": 1535,
+      "sha256": "046174be24bd265ca73c8f8f77f7ebc9c6b62954fb2b6c80d77ae6607b45f3be",
+      "gitBlob": "af440381a126d1517426df536416fef672ff8547",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/components/PublishingDateTimeEditor.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/PublishingDateTimeEditor.tsx",
+      "bytes": 19826,
+      "sha256": "e5c2edb222afe610791ba6aaeb0cc3da92c188e4a046e6c0ec45be0f8406c974",
+      "gitBlob": "62984d8d570a4c6a62cb27614d5749366c367233",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/components/RouterLinkButton.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/RouterLinkButton.tsx",
+      "bytes": 2053,
+      "sha256": "d19ed7394ca0b4ab570ef52136be59d9828a9c3a511f9469cf46b632ecf6a731",
+      "gitBlob": "3f75abb8c1553445d68db5a3821ace31e3a60465",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/components/Sidebar.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/Sidebar.tsx",
+      "bytes": 20190,
+      "sha256": "b7eeb8e26d55bdd659002ada6ef515c1ad4e79e8f0019c63a5ddb70e237fd5dd",
+      "gitBlob": "b891d252b386316df9be68d7164d601a070a825b",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/components/admin-navigation-icons.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/admin-navigation-icons.ts",
+      "bytes": 4198,
+      "sha256": "8a937c96d30827978a5a12bfc86ee7198b22d2c46424390781b0d80861e29dde",
+      "gitBlob": "ef9bf6ad343d69a732c03716e52693de9f04ee48",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/components/calendar/CalendarAgenda.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/calendar/CalendarAgenda.tsx",
+      "bytes": 6908,
+      "sha256": "f408cbdeb7b39ef0c1517a74305173ea1229993edb785d7825d76e124edf8bf0",
+      "gitBlob": "a282b25b47c92b7a24763cf90d5d28529c1cf798",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "bytes": 12932,
+      "sha256": "fabc7f614cc7959124dc369005abd077c532902d9b97da95281c4a331074dafe",
+      "gitBlob": "20aed210503af18765fa5e1f315d31307b313b8c",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "bytes": 16907,
+      "sha256": "c0785bc4c588e7834d14969725c57ea91b17fa005104e4849930560d058bef94",
+      "gitBlob": "27eec6c0f4ab8babb76d8f6c01f2bd3fe549bb96",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/components/calendar/CalendarFilters.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/calendar/CalendarFilters.tsx",
+      "bytes": 5961,
+      "sha256": "fbbe37f11196943895e139453c7c564ba87c4f068d7f661d5dd8c66121784a07",
+      "gitBlob": "cb727e4871809edfb3ddea3e9380a93b766e1c58",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/components/calendar/CalendarMonth.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/calendar/CalendarMonth.tsx",
+      "bytes": 17302,
+      "sha256": "fc6b2e3a52b9fabbab23c26d8c27bbc4a1b9d8aa18465603e075a373e089a699",
+      "gitBlob": "9a8390ebab64021a1d4d86a91fe5926c9e0c19ac",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/components/calendar/CalendarToolbar.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/components/calendar/CalendarToolbar.tsx",
+      "bytes": 2677,
+      "sha256": "7070a5e675bc983f30eff35d4a69bddd0db3687fdbc8fc3996a2607a423f1003",
+      "gitBlob": "60f72d391dd59d9a07284c51f2de0b5b2aa1766e",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/lib/api/calendar.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/lib/api/calendar.ts",
+      "bytes": 2691,
+      "sha256": "834bf5bc1bba300dfb297f0cfb5ba3aafdc5154e366a3e4fc20dc8e45d858e28",
+      "gitBlob": "24b907dc31721b485574d260e5dd1966115ee972",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/lib/api/client.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/lib/api/client.ts",
+      "bytes": 11565,
+      "sha256": "2836ccbff42d891af6c789e01259c6912d7ba73c4799620499f3913081997e18",
+      "gitBlob": "e9c26bde8b401e202b9046bed5ac78c2c26c44b2",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/lib/api/content.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/lib/api/content.ts",
+      "bytes": 20103,
+      "sha256": "57eda2d1615d29d08fe7c4084fd1f6d5127acef4abbd11aa0e2335a173e48a5d",
+      "gitBlob": "b18e6eba3a7485400f07002175d0c143b175b422",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/lib/api/current-user.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/lib/api/current-user.ts",
+      "bytes": 788,
+      "sha256": "e8296763d86b4c6648ead9a7420d0f79d4234f77ca306620ce6793331120c726",
+      "gitBlob": "5d0940e21455ee71320b6ae6abf33efda943eb4f",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/lib/calendar.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/lib/calendar.ts",
+      "bytes": 15947,
+      "sha256": "d056d30a7bae75b24c94b36d4302ebbaa52ce0f52c45cae763817907bdf98551",
+      "gitBlob": "1b47b3d83394e11315d2785481614bb48962ef6c",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/lib/url.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/lib/url.ts",
+      "bytes": 4275,
+      "sha256": "3c65bdcf038100e7a6076e7444f62f968771125320dc405d4a13e2e4f6d97730",
+      "gitBlob": "33d7329282c29dd2a275f6020a7077b0b0f7dbda",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/lib/utils.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/lib/utils.ts",
+      "bytes": 1907,
+      "sha256": "367bba30aa1027ab640b5a2105e5ca8bfd99aa3a6ed27c4467e4da5ce98d2c32",
+      "gitBlob": "29e47ab274546ebe1304d36f1e7949debd6ce797",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/locales/day-picker.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/locales/day-picker.ts",
+      "bytes": 691,
+      "sha256": "cd214e13b7783e0a0dbf5d9551599ba667d253663dedc1d425628cf0fe499f57",
+      "gitBlob": "c43dacdb902396c31b7e3520c67cf246483ace58",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/locales/index.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/locales/index.ts",
+      "bytes": 530,
+      "sha256": "fd294772a693dd6db6fb327ddb310e045b33ca822134629628a8485b9bb974af",
+      "gitBlob": "5661d780ba005d880b70d8050de5bd44a5b65454",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/src/routes/calendar.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/src/routes/calendar.tsx",
+      "bytes": 13865,
+      "sha256": "801a665a05aa85369636ab3317922f4665fbd8f26a971923ce2b99d037efd948",
+      "gitBlob": "525a1359b976a8af9cc319cee5889132d523d751",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/admin/tests/components/calendar/CalendarAgenda.test.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/components/calendar/CalendarAgenda.test.tsx",
+      "bytes": 7697,
+      "sha256": "3cdbf13220bf180b2ffc07aaf60ebdaef0e891d34c14dd9cddb1fb4a90ded317",
+      "gitBlob": "0bbb61fc89ff79a41a7ad8e423c84474547088da",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/admin/tests/components/calendar/CalendarEntryPanel.test.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/components/calendar/CalendarEntryPanel.test.tsx",
+      "bytes": 5281,
+      "sha256": "def3cc72e203f348b0651ef01241ecabe722f2adbb620a459ee11998c548e8a3",
+      "gitBlob": "27587b6c11f7dd78e052e6cb340e65626d21f1d5",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/admin/tests/components/calendar/CalendarFilters.test.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/components/calendar/CalendarFilters.test.tsx",
+      "bytes": 2346,
+      "sha256": "6c4c56fec18221b3cbcc3e956182e6b0a9bdc4d9fff2df7345d5e0cd99cb5ba2",
+      "gitBlob": "2aded3cd7e7c991f9f8bfa1348fe794e8df593a0",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/admin/tests/components/calendar/CalendarMonth.test.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/components/calendar/CalendarMonth.test.tsx",
+      "bytes": 8925,
+      "sha256": "7dadf8c51640eaee581b6bfd12985dc3b5b62d8773eaa6f7c804c664c4c41865",
+      "gitBlob": "f17dbd30fb072319c3e05f34275fcdad05b7479b",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/admin/tests/lib/calendar.test.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts",
+      "bytes": 10208,
+      "sha256": "b57b16a5871ba8bb70f6813903719e9800ec455c4cbbf300d4d7c86e04e83907",
+      "gitBlob": "9f1fc7847f2205a86d33eb14718aaec3f4a083f4",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/admin/tests/routes/calendar.test.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/routes/calendar.test.tsx",
+      "bytes": 10708,
+      "sha256": "b7d6f600b795040cdd3056872cbce7d118cbaed9f5f021024bce0d1921c79d5c",
+      "gitBlob": "d7a4925e5d18834a82a0452912decdc062b509ed",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/admin/tests/utils/render.tsx",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/utils/render.tsx",
+      "bytes": 962,
+      "sha256": "71f7fc13dbc057eda13240e0df0fe0cd71797a5996c56bafd231bb75e91e3b3a",
+      "gitBlob": "bd876f25e9510d5e49c31c701f8b3edb7ff20dec",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/api/handlers/calendar.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/api/handlers/calendar.ts",
+      "bytes": 7358,
+      "sha256": "df2c67e55709aa3ec9cab85f54202049abe56ae6fa8cd0c2c944b980629d899f",
+      "gitBlob": "6b5d4361841de65c484b9c8d33a6d4ce60b59b7e",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/api/handlers/content.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/api/handlers/content.ts",
+      "bytes": 88776,
+      "sha256": "f31d9d08cf7ad3ba863ed0b2f9b9d91729a4ce364ce63024077d81f1c6a4969c",
+      "gitBlob": "34c2528c51a54119cd1730e876d699319c9f3702",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/api/index.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/api/index.ts",
+      "bytes": 186,
+      "sha256": "ccb827915dab8626c755a882f78d08241a44d4390e65eabba35b3b6b0bb2c906",
+      "gitBlob": "4b4f59cb64e293a87b2403b32c541497c56c7520",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/api/rev.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/api/rev.ts",
+      "bytes": 1874,
+      "sha256": "6040c7abfded4bcf2ad52dacef08d15c6b953847198b4c8bdc8449e448c386ca",
+      "gitBlob": "388a727d6138f5cb41b706d67aef6520fbeeb43a",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/api/types.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/api/types.ts",
+      "bytes": 3033,
+      "sha256": "8ee06f5fee0b47ab8891eb4b2980d06d3ad5317464db33d637f7c1b33aa28974",
+      "gitBlob": "462b0800408c270a8ac0b7e59b89adb46426fc3f",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/astro/integration/runtime.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/astro/integration/runtime.ts",
+      "bytes": 24212,
+      "sha256": "9087a37e019d4309d8532a833e85313c518624782b4f416f89a2cf99649b4569",
+      "gitBlob": "fa7baed32a820ad54615f3f69a720833c7ec7132",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/astro/public-plugin-api-routes.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/astro/public-plugin-api-routes.ts",
+      "bytes": 1037,
+      "sha256": "26d84309ac3b411112f8f201d988eda3fb8fc2594c74f2e589950fffaec403d7",
+      "gitBlob": "0d1a0a0f280336e4a9a6e35e60e816b6b3344ed0",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/admin/scheduled-policy-rejections/[collection]/[id].ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/astro/routes/api/admin/scheduled-policy-rejections/[collection]/[id].ts",
+      "bytes": 1217,
+      "sha256": "a67baa33ea66369f265b245a232720182cb262083f830cbce50714e1292a373f",
+      "gitBlob": "b0ecfb9622fc2c28f23d9a939f0bd4191ce4bf56",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/calendar.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/astro/routes/api/calendar.ts",
+      "bytes": 1017,
+      "sha256": "2d7cfb8c26b7f7d685ab62a5e65a695149503186dab03811d02f46d53cdab853",
+      "gitBlob": "529b7be0324c7f4c435e25a85b056855fa37c5f3",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/database/migrations/074_content_deleted_scheduled_index.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/database/migrations/074_content_deleted_scheduled_index.ts",
+      "bytes": 2142,
+      "sha256": "ccf1d0d8a184af09d1ea72ece6726f64d784c24f16f06581fcdf403013200133",
+      "gitBlob": "2b2d91c783880ebf1ebe9b185d6a735e3d28fc8f",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/database/migrations/runner.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/database/migrations/runner.ts",
+      "bytes": 22736,
+      "sha256": "93fede33fd1223b501f7745f4ecc64034fd570951993f0c9b95d8ef44b8a0498",
+      "gitBlob": "252ce5d8fb5b683ba8c71d09cd27e51593ff0eac",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/database/repositories/byline.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/database/repositories/byline.ts",
+      "bytes": 52067,
+      "sha256": "15f19e3f027660493891ca2130fdb73df79b4ea69d74edf1b0a003c2847635bc",
+      "gitBlob": "a358c74cee5604bcb8a56924358fb375c2870c9f",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/database/repositories/content.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/database/repositories/content.ts",
+      "bytes": 106516,
+      "sha256": "b334660e351c6953e41bde5058b29a7b1d00219c5afa96a0773d09bd251e63ee",
+      "gitBlob": "29dab9decf9af0d9fb21b464dc185ed48ab958ea",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/database/repositories/media-usage-work.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/database/repositories/media-usage-work.ts",
+      "bytes": 38353,
+      "sha256": "cb02de1bd21a5d4c42680d15c4bec13df8901beaf7c05c77eed2cea0536a3428",
+      "gitBlob": "1b15a6821e6396eac7b7452a7478b0fba2253820",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/database/repositories/media-usage.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/database/repositories/media-usage.ts",
+      "bytes": 141937,
+      "sha256": "dc726347a6ad1652ccc8b0200020005ac266851dd9efee5cc07b8935ef9cbbd5",
+      "gitBlob": "89dc87090b7cd555b6969e28abce96946d06ce77",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/database/repositories/options.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/database/repositories/options.ts",
+      "bytes": 8714,
+      "sha256": "af2759276976aa457fed9ae3d64f11ddbf4c8970fe298f5e1f9e49bfd12cc921",
+      "gitBlob": "d4f630ca0e24721dc25bed0189699daceccdb8ae",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/database/repositories/revision.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/database/repositories/revision.ts",
+      "bytes": 10687,
+      "sha256": "c6f680af45cdcd074e6dcc161487bff8f506fc48dbb45967e0cb131d0127e90c",
+      "gitBlob": "e1fa0f08bf3affdb97367bea2261ef2fc6feb45f",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/database/repositories/taxonomy.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/database/repositories/taxonomy.ts",
+      "bytes": 33195,
+      "sha256": "e5f1619a9aa1262a5ec752dacbc5006c555d4c8a4db53c15a8fc222636d529d5",
+      "gitBlob": "a1eaae54f6d887e5647be69ef3aab15ebe862705",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/database/repositories/types.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/database/repositories/types.ts",
+      "bytes": 13959,
+      "sha256": "880e1ee7c6b2792d0f0316d4853dea590ce10f89073dd5a4f5ef56ebd118fa04",
+      "gitBlob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/database/types.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/database/types.ts",
+      "bytes": 31530,
+      "sha256": "ebd3a2d8aded68ada1731adb4838d7eda5b85778d373b248211e0f8fe75c2b1d",
+      "gitBlob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/database/validate.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/database/validate.ts",
+      "bytes": 5766,
+      "sha256": "f480bfa2ace0b4776570235f3242d6b58d0cf41a1cb17d02df5544a63ac1b6f4",
+      "gitBlob": "73d3b303764b473d4238e0cb17f1a904998671f8",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/emdash-runtime.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/emdash-runtime.ts",
+      "bytes": 216950,
+      "sha256": "7954be3d12857ff307e9d2b15846662814f092e49807bcfb3b188a8f2ae847fc",
+      "gitBlob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/loader.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/loader.ts",
+      "bytes": 77354,
+      "sha256": "81acd040269ce126c3da272cd635cf1501b4874906eed52e362f6da952b6dd42",
+      "gitBlob": "e686d071e9e9f76d6e11f3437117f336b8b02a93",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/media/usage/activation.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/media/usage/activation.ts",
+      "bytes": 24933,
+      "sha256": "18ea56921e5fd62b406a12bda937aa0f6e7bcc84c51c3e2e483fa13c19f5d1c1",
+      "gitBlob": "2ae446a3c0987a3d733e23a11527a3573666778e",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/media/usage/capture-triggers.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/media/usage/capture-triggers.ts",
+      "bytes": 16459,
+      "sha256": "6319d59395354d6364dcf008fd19947b9da60a7040879f035c85ea585c55d50e",
+      "gitBlob": "620065f3858633a4d54d144fbd6ba1c3a50fcd2a",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/media/usage/maintenance-engine.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/media/usage/maintenance-engine.ts",
+      "bytes": 6719,
+      "sha256": "88d74fd12507ecca1e55c76164d7e641ef37487f82f6b475acde249fe66943c8",
+      "gitBlob": "4a765a88b23eca6f2956b3a61fe1d9b44f5eeb36",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/media/usage/reconciliation-processor.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/media/usage/reconciliation-processor.ts",
+      "bytes": 14390,
+      "sha256": "b2c685652e46051a0684fbbed3fcfbd8eba999ac32d56efc73fe99d823a6c41e",
+      "gitBlob": "0f54c5d7d1bda47f8ff7609f36a42f89ae2eac74",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/media/usage/work-processor.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/media/usage/work-processor.ts",
+      "bytes": 17192,
+      "sha256": "5acf2169eb6b228410287534934223ca80552fd282992604335d3f4589c39937",
+      "gitBlob": "061161d771d534169627d97a0b074976d7019c6f",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/plugins/content-policy.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/plugins/content-policy.ts",
+      "bytes": 2382,
+      "sha256": "f167fc3d33007e123b98a97acdcf22d5ba9c2069853d194f1fed5fc1bb9f22c6",
+      "gitBlob": "b93f2c98a1bce55efb0ec79dc66e7800f26757b4",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/plugins/define-plugin.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/plugins/define-plugin.ts",
+      "bytes": 10173,
+      "sha256": "3dc46465bf0ecfd79a8675b667be4e9074443049bcf4ee02604abca4d01c94d0",
+      "gitBlob": "a40ad782066a9a3841050a07d90385d1da7c1a00",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/plugins/hooks.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/plugins/hooks.ts",
+      "bytes": 51540,
+      "sha256": "6b72dd30c5d34ea38764caa8bb9f16b727abef0589118e04368f81291e714cec",
+      "gitBlob": "c29944d02b11858ff7b824090ed02cf1be705626",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/plugins/scheduler/types.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/plugins/scheduler/types.ts",
+      "bytes": 888,
+      "sha256": "647bc28440fcac494188ad2ba51ca5b108e1ed1c9e3102dc9b66fc4013dd7b2b",
+      "gitBlob": "511f9b8fcc1d8886e2c3e389282edbd5cec4fbe0",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/request-context.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/request-context.ts",
+      "bytes": 4956,
+      "sha256": "c18cdd22e012f26b109919cbd1c780406132ff2505d6245614e4040f215bae1f",
+      "gitBlob": "4f140c77a1dca951defb43fd1a114e838b6f691f",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/scheduled-publish.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/scheduled-publish.ts",
+      "bytes": 7971,
+      "sha256": "fc56d0d7b0399a8771163e6c21fa67738f324e1c329524be69af00405e87981b",
+      "gitBlob": "ef325a0165f2d70821afa578f062551fa7053a30",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/scheduler-health.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/scheduler-health.ts",
+      "bytes": 1447,
+      "sha256": "57c55cda00f544a3650a6204f6adce4ca84497c1e71b71290c3c7c8607b396a0",
+      "gitBlob": "60d26809dca8e482fe209643631f389d6b346aac",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/schema/registry.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/schema/registry.ts",
+      "bytes": 88618,
+      "sha256": "db26cf5bd9c9442c3b41185c879281914410cd9ece94cf2f9716533eb6e71516",
+      "gitBlob": "da7bbcdda224dfca8d9146b2f36659ab90bcac2e",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/tests/integration/content/lifecycle-schedule.test.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/integration/content/lifecycle-schedule.test.ts",
+      "bytes": 7013,
+      "sha256": "5d74639cd47bf9a14a86bb4e845dc41316efea08c391778bcb6f033b3ded1fe9",
+      "gitBlob": "e1b816b759d678b5a6e278f79f17c354c60924e1",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/core/tests/integration/database/scheduled-publish-plan.test.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/integration/database/scheduled-publish-plan.test.ts",
+      "bytes": 5341,
+      "sha256": "7e18a20fc15117cfd84b9adc8d4590aca50ee8fdacda7982c014c99e42a1b312",
+      "gitBlob": "94b4708ea8029070f0dcc8466aa97fbe6c55dc58",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/core/tests/integration/runtime/media-usage-scheduled-driver.test.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/integration/runtime/media-usage-scheduled-driver.test.ts",
+      "bytes": 20988,
+      "sha256": "b4876eb1ef25dd9f79a6d4e4489e39517b41dc6c63d975cdff9bf26957bdf722",
+      "gitBlob": "00ddd035c37ab5d3a5f7b927ec1bb9ca46d70481",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/core/tests/integration/runtime/plugin-cron-route.test.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/integration/runtime/plugin-cron-route.test.ts",
+      "bytes": 3469,
+      "sha256": "30f4c979224a6a1579db98369c0c21a06ef7706345fa62eb25b4fed73f8a099f",
+      "gitBlob": "1ce6ad65641b06a373a2bd4615f949a4573ac932",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "bytes": 6901,
+      "sha256": "a0dc16cc954e3ae4cd77c71f32f15bba089278a7f963f5d6f03c303bd43c61cc",
+      "gitBlob": "84b7e454d42c3aa5e280d0d5e3b3a6a31551b3ba",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/core/tests/unit/api/scheduled-policy-rejection-d1.test.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/api/scheduled-policy-rejection-d1.test.ts",
+      "bytes": 4737,
+      "sha256": "6ba4dbd952116c3b12973716c2e815961e2ffd1cd6f31fcabd4ba98928d02a19",
+      "gitBlob": "a56f366a9f77cc604db108bd73837273ca35a9a3",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/core/tests/unit/astro/calendar-route.test.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/astro/calendar-route.test.ts",
+      "bytes": 2813,
+      "sha256": "3e2932ef92997fa76a203a66ed3a1d34db28c9ce3bdf99b4ff9aa8fad5d9918e",
+      "gitBlob": "5a25a9e0815db3825288c78d62d149cb1917ed19",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/core/tests/unit/astro/scheduled-policy-rejections-route.test.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/astro/scheduled-policy-rejections-route.test.ts",
+      "bytes": 2961,
+      "sha256": "5ca28a248ac0e4ed8dbd4371e0b9c6773102a2a6f4c39f597bca670d841b2257",
+      "gitBlob": "c12b19fe2fc706f1c1aeb7b7cd2cae9b8b77ac26",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/core/tests/unit/loader-scheduled-publishing.test.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts",
+      "bytes": 7798,
+      "sha256": "17d1cb65204d768e8a42ab5126a389752ecda3c5791969854773353f423bd3af",
+      "gitBlob": "8476c1425f2dfaa11d8bce2a3fb247d735431f20",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/core/tests/unit/scheduled-publish.test.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/scheduled-publish.test.ts",
+      "bytes": 25726,
+      "sha256": "5faa2df396c4d939f3b65b58dbfd67b7ea70c4dea022f90d9045e8a5dccd6769",
+      "gitBlob": "f5aa207b7461269ee169977128f6b3048311a401",
+      "kind": "whole-test"
+    },
+    {
+      "source": "packages/core/tests/utils/fixtures.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/utils/fixtures.ts",
+      "bytes": 965,
+      "sha256": "7bca3d4ac15f3986c0cd9d1e826be6b64dda8cea8cf2a142284d912da3cfb95d",
+      "gitBlob": "70801b7bffcf977674c67f554ad289a6e4bf27b2",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/tests/utils/mcp-runtime.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/utils/mcp-runtime.ts",
+      "bytes": 13969,
+      "sha256": "57f330866a627bf5aed48ed2dea1e5f04c178021ec823ffcc78761624503ff8f",
+      "gitBlob": "bd13311dc203f41c22e709b13b5b74c531257c53",
+      "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/tests/utils/test-db.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/utils/test-db.ts",
+      "bytes": 18803,
+      "sha256": "0e6a59b5d2109e4134aed1277f82089725a53fe079ee0ec0c2622169d2480dc0",
+      "gitBlob": "b75bd5b5770e44050b2d0da28e87c155c603ed66",
+      "kind": "whole-authority"
+    }
+  ],
+  "calendarProductionRoots": [
+    "packages/core/src/api/handlers/calendar.ts",
+    "packages/core/src/astro/routes/api/calendar.ts",
+    "packages/admin/src/lib/api/calendar.ts",
+    "packages/admin/src/lib/calendar.ts",
+    "packages/admin/src/components/calendar/CalendarFilters.tsx",
+    "packages/admin/src/routes/calendar.tsx",
+    "packages/core/src/scheduled-publish.ts",
+    "packages/core/src/scheduler-health.ts"
+  ],
+  "graph": [
+    {
+      "importer": "packages/core/src/api/handlers/calendar.ts",
+      "specifier": "kysely",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/api/handlers/calendar.ts",
+      "specifier": "../../database/repositories/types.js",
+      "target": "packages/core/src/database/repositories/types.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/api/handlers/calendar.ts",
+      "specifier": "../../database/types.js",
+      "target": "packages/core/src/database/types.ts",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/api/handlers/calendar.ts",
+      "specifier": "../../database/validate.js",
+      "target": "packages/core/src/database/validate.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/api/handlers/calendar.ts",
+      "specifier": "../types.js",
+      "target": "packages/core/src/api/types.ts",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/calendar.ts",
+      "specifier": "astro",
+      "target": null,
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/calendar.ts",
+      "specifier": "#api/authorize.js",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/calendar.ts",
+      "specifier": "#api/error.js",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/calendar.ts",
+      "specifier": "#api/handlers/calendar.js",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/calendar.ts",
+      "specifier": "#api/parse.js",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/astro/routes/api/calendar.ts",
+      "specifier": "#api/schemas.js",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/lib/api/calendar.ts",
+      "specifier": "@lingui/core",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/lib/api/calendar.ts",
+      "specifier": "@lingui/core/macro",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/lib/api/calendar.ts",
+      "specifier": "@tanstack/react-query",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/lib/api/calendar.ts",
+      "specifier": "./client.js",
+      "target": "packages/admin/src/lib/api/client.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/lib/calendar.ts",
+      "specifier": "./api/calendar.js",
+      "target": "packages/admin/src/lib/api/calendar.ts",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/lib/calendar.ts",
+      "specifier": "./api/calendar.js",
+      "target": "packages/admin/src/lib/api/calendar.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarFilters.tsx",
+      "specifier": "@cloudflare/kumo",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarFilters.tsx",
+      "specifier": "@lingui/react/macro",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarFilters.tsx",
+      "specifier": "@phosphor-icons/react",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarFilters.tsx",
+      "specifier": "react",
+      "target": null,
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarFilters.tsx",
+      "specifier": "../../lib/calendar.js",
+      "target": "packages/admin/src/lib/calendar.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarFilters.tsx",
+      "specifier": "../../locales/index.js",
+      "target": "packages/admin/src/locales/index.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarFilters.tsx",
+      "specifier": "./CalendarEntry.js",
+      "target": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "@cloudflare/kumo",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "@lingui/react/macro",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "@phosphor-icons/react",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "@tanstack/react-query",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "@tanstack/react-router",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "react",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "../components/calendar/CalendarAgenda.js",
+      "target": "packages/admin/src/components/calendar/CalendarAgenda.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "../components/calendar/CalendarEntryPanel.js",
+      "target": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "../components/calendar/CalendarFilters.js",
+      "target": "packages/admin/src/components/calendar/CalendarFilters.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "../components/calendar/CalendarMonth.js",
+      "target": "packages/admin/src/components/calendar/CalendarMonth.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "../components/calendar/CalendarToolbar.js",
+      "target": "packages/admin/src/components/calendar/CalendarToolbar.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "../components/PageHeader.js",
+      "target": "packages/admin/src/components/PageHeader.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "../components/Sidebar.js",
+      "target": "packages/admin/src/components/Sidebar.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "../lib/api/calendar.js",
+      "target": "packages/admin/src/lib/api/calendar.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "../lib/api/client.js",
+      "target": "packages/admin/src/lib/api/client.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "../lib/api/current-user.js",
+      "target": "packages/admin/src/lib/api/current-user.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "../lib/calendar.js",
+      "target": "packages/admin/src/lib/calendar.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/routes/calendar.tsx",
+      "specifier": "../locales/day-picker.js",
+      "target": "packages/admin/src/locales/day-picker.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/scheduled-publish.ts",
+      "specifier": "kysely",
+      "target": null,
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/scheduled-publish.ts",
+      "specifier": "./api/handlers/content.js",
+      "target": "packages/core/src/api/handlers/content.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/scheduled-publish.ts",
+      "specifier": "./database/repositories/content.js",
+      "target": "packages/core/src/database/repositories/content.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/scheduled-publish.ts",
+      "specifier": "./database/repositories/options.js",
+      "target": "packages/core/src/database/repositories/options.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/scheduled-publish.ts",
+      "specifier": "./database/types.js",
+      "target": "packages/core/src/database/types.ts",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/scheduled-publish.ts",
+      "specifier": "./schema/registry.js",
+      "target": "packages/core/src/schema/registry.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/scheduler-health.ts",
+      "specifier": "kysely",
+      "target": null,
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/core/src/scheduler-health.ts",
+      "specifier": "./database/repositories/options.js",
+      "target": "packages/core/src/database/repositories/options.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/core/src/scheduler-health.ts",
+      "specifier": "./database/types.js",
+      "target": "packages/core/src/database/types.ts",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "specifier": "@cloudflare/kumo",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "specifier": "@lingui/core",
+      "target": null,
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "specifier": "@lingui/core/macro",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "specifier": "@lingui/react/macro",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "specifier": "@phosphor-icons/react",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "specifier": "@tanstack/react-router",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "specifier": "react",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "specifier": "../../lib/calendar.js",
+      "target": "packages/admin/src/lib/calendar.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "specifier": "../../lib/utils.js",
+      "target": "packages/admin/src/lib/utils.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "specifier": "../../locales/index.js",
+      "target": "packages/admin/src/locales/index.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "specifier": "../admin-navigation-icons.js",
+      "target": "packages/admin/src/components/admin-navigation-icons.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "specifier": "../Sidebar.js",
+      "target": "packages/admin/src/components/Sidebar.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarAgenda.tsx",
+      "specifier": "@cloudflare/kumo",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarAgenda.tsx",
+      "specifier": "@lingui/core/macro",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarAgenda.tsx",
+      "specifier": "@lingui/react/macro",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarAgenda.tsx",
+      "specifier": "@phosphor-icons/react",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarAgenda.tsx",
+      "specifier": "react",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarAgenda.tsx",
+      "specifier": "../../lib/calendar.js",
+      "target": "packages/admin/src/lib/calendar.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarAgenda.tsx",
+      "specifier": "../ArrowIcons.js",
+      "target": "packages/admin/src/components/ArrowIcons.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarAgenda.tsx",
+      "specifier": "./CalendarEntry.js",
+      "target": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "@cloudflare/kumo",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "@cloudflare/kumo/primitives",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "@lingui/react/macro",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "@phosphor-icons/react",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "@tanstack/react-query",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "react",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "../../lib/api/client.js",
+      "target": "packages/admin/src/lib/api/client.ts",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "../../lib/api/content.js",
+      "target": "packages/admin/src/lib/api/content.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "../../lib/api/current-user.js",
+      "target": "packages/admin/src/lib/api/current-user.ts",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "../../lib/calendar.js",
+      "target": "packages/admin/src/lib/calendar.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "../../lib/url.js",
+      "target": "packages/admin/src/lib/url.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "../../lib/utils.js",
+      "target": "packages/admin/src/lib/utils.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "../../locales/index.js",
+      "target": "packages/admin/src/locales/index.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "../DialogError.js",
+      "target": "packages/admin/src/components/DialogError.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "../PublishingDateTimeEditor.js",
+      "target": "packages/admin/src/components/PublishingDateTimeEditor.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "../RouterLinkButton.js",
+      "target": "packages/admin/src/components/RouterLinkButton.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarEntryPanel.tsx",
+      "specifier": "./CalendarEntry.js",
+      "target": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarMonth.tsx",
+      "specifier": "@cloudflare/kumo",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarMonth.tsx",
+      "specifier": "@lingui/core/macro",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarMonth.tsx",
+      "specifier": "@lingui/react/macro",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarMonth.tsx",
+      "specifier": "@phosphor-icons/react",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarMonth.tsx",
+      "specifier": "react",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarMonth.tsx",
+      "specifier": "react-day-picker",
+      "target": null,
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarMonth.tsx",
+      "specifier": "../../lib/calendar.js",
+      "target": "packages/admin/src/lib/calendar.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarMonth.tsx",
+      "specifier": "../../lib/utils.js",
+      "target": "packages/admin/src/lib/utils.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarMonth.tsx",
+      "specifier": "../../locales/day-picker.js",
+      "target": "packages/admin/src/locales/day-picker.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarMonth.tsx",
+      "specifier": "../../locales/index.js",
+      "target": "packages/admin/src/locales/index.ts",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarMonth.tsx",
+      "specifier": "./CalendarEntry.js",
+      "target": "packages/admin/src/components/calendar/CalendarEntry.tsx",
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarToolbar.tsx",
+      "specifier": "@cloudflare/kumo",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarToolbar.tsx",
+      "specifier": "@lingui/react/macro",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarToolbar.tsx",
+      "specifier": "@phosphor-icons/react",
+      "target": null,
+      "typeOnly": false
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarToolbar.tsx",
+      "specifier": "../../lib/calendar.js",
+      "target": "packages/admin/src/lib/calendar.ts",
+      "typeOnly": true
+    },
+    {
+      "importer": "packages/admin/src/components/calendar/CalendarToolbar.tsx",
+      "specifier": "../ArrowIcons.js",
+      "target": "packages/admin/src/components/ArrowIcons.tsx",
+      "typeOnly": false
+    }
+  ],
+  "authorityLimit": "All16 whole tests and all direct test authority imports are preserved. Calendar-specific production closure is preserved; external packages and noncalendar runtime/plugin/media dependency graphs retain ownership elsewhere and are not claimed executable.",
+  "initialExecutionFamilies": [
+    "packages/core/tests/unit/api/calendar-handlers.test.ts",
+    "packages/admin/tests/lib/calendar.test.ts"
+  ],
+  "retainedUnexecutedFamilies": [
+    "packages/core/tests/unit/astro/calendar-route.test.ts",
+    "packages/admin/tests/components/calendar/CalendarAgenda.test.tsx",
+    "packages/admin/tests/components/calendar/CalendarEntryPanel.test.tsx",
+    "packages/admin/tests/components/calendar/CalendarFilters.test.tsx",
+    "packages/admin/tests/components/calendar/CalendarMonth.test.tsx",
+    "packages/admin/tests/routes/calendar.test.tsx",
+    "packages/core/tests/integration/content/lifecycle-schedule.test.ts",
+    "packages/core/tests/integration/database/scheduled-publish-plan.test.ts",
+    "packages/core/tests/unit/scheduled-publish.test.ts",
+    "packages/core/tests/unit/loader-scheduled-publishing.test.ts",
+    "packages/core/tests/unit/api/scheduled-policy-rejection-d1.test.ts",
+    "packages/core/tests/unit/astro/scheduled-policy-rejections-route.test.ts",
+    "packages/core/tests/integration/runtime/media-usage-scheduled-driver.test.ts",
+    "packages/core/tests/integration/runtime/plugin-cron-route.test.ts"
+  ],
+  "status": "Proposed test-only packet; not applied, not executed, no product implementation and no acceptance credit.",
+  "nativeRequirements": {
+    "file": "tests/scheduling-native/calendar.test.ts",
+    "declarations": 11,
+    "ordinaryControls": 3,
+    "newCalendarRequirements": 8,
+    "observedExecuted": 0,
+    "observedPassing": 0,
+    "observedFailing": 0,
+    "causalCredit": 0
+  },
+  "baselinePlan": {
+    "command": "node scripts/check-scheduled-publishing-source.mjs && pnpm exec vitest run --config vitest.calendar-source.config.ts",
+    "wholeInitialFamilies": [
+      "packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "packages/admin/tests/lib/calendar.test.ts"
+    ],
+    "sourceRequestedDeclarations": 23,
+    "nativeRequestedDeclarations": 11,
+    "requestedTotal": 34,
+    "scope": "Original whole ordinary SQL calendar handler and pure admin calendar library, plus eleven supplemental ordinary Native SQL/pure contracts; no principal/session/credentials, protected HTTP, publication or scheduler race probe.",
+    "classification": "Record actual registrations, pre-expectation import/fixture stops, controls, reached value reds and later unexecuted assertions separately. Missing Source modules do not establish Source assertion-caused credit.",
+    "originalTimeouts": "All16 Source bytes/clocks/deadlines are immutable; config supplies no new timeout. Native callbacks use original Vitest default; no retries, filtering or clock widening."
+  },
+  "integrationLimits": [
+    "Fourteen other whole Source families copied unchanged and unexecuted, including every Source concurrency/draft-swap callback.",
+    "The six whole admin calendar families need a finite real Svelte mounting and native client/query context proposal before execution; only the whole pure calendar library is initially selected.",
+    "Due publication requires actual public media-usage activation and plugin publication policy; no private imports, permanently-ready provider or heartbeat writes are added.",
+    "Full service/remotes/CAS/revisions/Node+Worker scheduling wiring remains incomplete and requires finite shared ownership review.",
+    "The original13 normal +9 secured browser gates, public package/lock, frozen providers, current auth/session/Origin and existing callbacks are unchanged."
+  ],
+  "intentionalDifferences": [
+    {
+      "id": "SC-01",
+      "source": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e packages/core/tests/utils/test-db.ts / packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "upstream": "Whole original tests create standard post/page collections using Source constructor shapes and Source metadata names.",
+      "native": "A test-only constructor owner runs actual public migrateCms and actual NativeRegistry; only metadata TableNode identifiers _emdash_collections/_emdash_fields map to physical _cms names. Results, raw SQL literals, values and assertions are untouched.",
+      "rationale": "Preserve the immutable calendar test body while exercising current Native physical storage; no schema or provider impersonation.",
+      "evidence": "Proposed only; no tests run and no Source assertion credit. Whole original fixture helper and MIT are retained.",
+      "decisionStatus": "Proposed finite development qualification; no recorded acceptance decision.",
+      "publicationStatus": "No PR yet; author-owned draft follows qualified test-first commit."
+    },
+    {
+      "id": "SC-02",
+      "source": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e packages/admin/src/lib/calendar.ts and packages/admin/src/lib/api/calendar.ts",
+      "upstream": "React/TanStack browser test helpers and Astro /_emdash/api/calendar transport.",
+      "native": "Planned Svelte calendar and /api/calendar transport. This packet implements neither; Source bodies remain immutable and no test adapter supplies expected output.",
+      "rationale": "Native SvelteKit framework substitution; full DOM/month/panel/query semantics remain requirements.",
+      "evidence": "No product runtime or UI evidence in this packet.",
+      "decisionStatus": "Unimplemented; no recorded acceptance decision.",
+      "publicationStatus": "No PR yet."
+    }
+  ]
+}
