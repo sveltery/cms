@@ -1468,3 +1468,29 @@ HTTP/D1/hosting and full setup parity remain incomplete; full current normal/
 secured gates, final adaptation acceptance/reviews/exact approval/landing remain
 pending. [Paired feature record](../../docs/setup-api-backend.md);
 [Draft PR90](https://github.com/sveltery/cms/pull/90).
+
+
+### Proposed welcome/native-login transport gate and shared feature record — PR90
+
+The authority remains immutable EmDash1.1.0
+913cb1bb9b7f08c3ff0d258b4420e53835b6a58e, including whole original
+core/tests/unit/auth/me-welcome-dismiss.test.ts (two declarations/seven expects).
+The package proposal preserves the full existing test:source-ports command prefix
+and appends the exact previously qualified welcome and ordinary Native login
+configs after its unchanged build-producing writable-editor UI gate. A standalone
+command builds actual default Kit output before the same built command. Entire incoming public SEC1 passkey prose remains intact. No
+bootstrap13 or secured job step, deadline, dependency/lock or assertion changes.
+No dashboard test, isolated auth/session/credential probe or fake-success result
+is introduced by this package amendment; previously recorded genuine Source1
+and Native1 value-red receipts remain the only unique causal counts.
+
+The paired passkey feature record corrects its stale welcome-state sentence to
+reference proposed PR90's actual stored-profile persistence and whole original
+fail→fix→refactor evidence while retaining pending welcome UI, complete setup,
+provider/hosting and authentication scope. This is documentation/gate composition,
+not new feature acceptance. [Owned feature record](../../docs/setup-api-backend.md),
+[shared passkey record](../../docs/passkey-setup-login.md) and
+[Draft PR90](https://github.com/sveltery/cms/pull/90) retain current limits. These
+exact edits remain unapplied pending finite PM development qualification; final
+adaptation acceptance/full current normal and secured gates/both reviews/landing
+remain pending.

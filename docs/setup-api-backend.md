@@ -253,3 +253,22 @@ combined payload needs its own normal/secured gates/reviews. Native registered
 storage/count/schema-cast scope and missing public media/seed/UI dependencies
 remain explicit. Shared package/passkey-prose candidate must be regenerated
 against the actual Main prefix rather than replacing its public SEC1 additions.
+
+## Proposed complete owned transport gate
+
+The package proposal appends the existing qualified whole welcome2 and ordinary
+Native login1 fixtures to the end of test:source-ports. The preceding unchanged
+writable-editor UI gate builds the actual default Kit artifact; the appended
+built command runs the owned provenance check then both exact qualified configs.
+The standalone command first builds that same artifact. Original bootstrap13
+stages, all preceding source commands, secured browser steps, deadlines, locks
+and assertions remain unchanged. This adds no test callbacks, authorization
+probe or causal credit, and the dashboard16 proposal remains outside this gate
+until its real public dependencies are available and its own receipts are complete.
+
+The shared passkey feature record proposal replaces only the stale welcome
+unimplemented sentence and distinguishes pending welcome UI from the proposed
+persistence addition in PR90. These finite shared edits are not applied yet;
+Root development qualification, exact ordinary public Mainfd1f union and actual full current-head gates/reviews/merge
+remain pending. Targeted welcome2 and Native1 are already green with immutable
+receipts; targeted success alone does not establish complete product parity.
