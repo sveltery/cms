@@ -1,0 +1,11 @@
+$ node scripts/check-doctor-source.mjs && vitest run --config vitest.doctor-source.config.ts
+{"wholeAuthorities":7,"sourceDeclarations":15,"sourceExpectCalls":26,"productTestsRun":0,"message":"Immutable inventory verification grants no runtime parity credit."}
+
+ RUN  v4.1.10 /workspace/cms-doctor-cli
+
+
+ Test Files  1 passed (1)
+      Tests  15 passed (15)
+   Start at  10:24:06
+   Duration  540ms (transform 198ms, setup 0ms, import 390ms, tests 37ms, environment 0ms)
+
