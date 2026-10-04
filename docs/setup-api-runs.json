@@ -40,13 +40,66 @@
         }
       ],
       "retainedLimits": "No HTTP POST baseline, persistence fix, credential/session/replay/race/bypass probe or complete family green is claimed. Proposed r3 changes only supported compiled Server.init before the unchanged cleanup snapshot; exact PM qualification is required before application and rerun."
+    },
+    {
+      "kind": "First completed genuine Source welcome POST value baseline",
+      "head": "31a7e808bac49ce007907d7193d1544cf38679f2",
+      "wholeFamily": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+      "sourceBlob": "ba3b7a413e01f59cf21f831badf694120e7d6a3d",
+      "declarations": 2,
+      "expectExpressions": 7,
+      "unchangedSourceBytes": true,
+      "fixtureHost": {
+        "bytes": 5511,
+        "sha256": "c752a75f9fcc439233350660fabc198d280e4706a7a3116cc7b5c8f4f870c843"
+      },
+      "PMQualification": "docs/setup-api-welcome-r3-qualification.json",
+      "runtime": "Same actual public Main135 compiled Kit build, supported Server.init, real loopback HTTP and actual stored schema_admin/profile SQLite. No product fix applied.",
+      "command": "/workspace/.tools/pnpm/node_modules/pnpm/pnpm exec vitest run --config vitest.setup-api-welcome.config.ts --reporter=default --reporter=json --outputFile=/tmp/setup-api-welcome-source-first-value-red.json",
+      "exit": 1,
+      "attemptedWholeSourceCallbacks": 2,
+      "passed": 1,
+      "failed": 1,
+      "failedBeforeAnySourceAssertion": 0,
+      "completedSourceValueReds": 1,
+      "firstGreenControls": 1,
+      "wholeSourceFamilyGreen": false,
+      "valueFailure": {
+        "sourceLine": 58,
+        "assertion": "expect(postRes.status).toBe(200)",
+        "expected": 200,
+        "received": 405,
+        "actualRequest": "POST /api/auth/me"
+      },
+      "control": "Original sanitized profile lookup-failure callback passes on its first reached run; zero causal credit.",
+      "raw": [
+        {
+          "path": "docs/setup-api-evidence/welcome-r3-first-value-red.log",
+          "bytes": 1376,
+          "sha256": "11e85cb202970a0742fbd7455cceb80f511cf269121666fd2892ea89439e1695"
+        },
+        {
+          "path": "docs/setup-api-evidence/welcome-r3-first-value-red.json",
+          "bytes": 1857,
+          "sha256": "81a13638c19ee32a93c9c84442bfae8cfe66deaf2dcd57f0ea2596f4b3c195fe"
+        }
+      ],
+      "limits": "Native fixture/request/storage substitution explicitly qualified. No Source UserRepository, Astro session, credential/session rotation, replay/race/bypass or complete setup/dashboard credit."
     }
   ],
   "latest": {
     "wholeSourceFamiliesGreen": 0,
-    "completedSourceValueReds": 0,
-    "SourceCausalCredit": 0,
+    "completedSourceValueReds": 1,
+    "firstGreenControls": 1,
+    "SourceProductCreditBeforeFix": 0,
     "setupParity": "incomplete",
-    "dashboardParity": "incomplete"
+    "dashboardParity": "incomplete",
+    "checker": {
+      "head": "fba8e178a0caa73eb33786ded0a8c9b470a40171",
+      "errors": 0,
+      "warnings": 0,
+      "log": "/tmp/setup-api-welcome-r2-check.log",
+      "wholeNormalGate": false
+    }
   }
 }
