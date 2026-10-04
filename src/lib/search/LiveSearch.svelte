@@ -3,6 +3,7 @@
  // Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
  // Native SSR/prop/snippet hosting; the complete Source browser controller is shared unchanged.
  import { onMount, type Snippet } from 'svelte';
+ import { resolveSearchLocale } from './search-locale.ts';
  import './live-search.css';
  interface Props {
   placeholder?: string; collections?: string[]; locale?: string|null;
@@ -19,7 +20,7 @@
   showSnippets=true,autofocus=false,suggestMode=false,expandOnFocus,searchPage='',routeMap={},
   loading,noResults,result }:Props=$props();
  const config=$derived({collections:collections?.join(',')??'',
-  locale:(locale===undefined?currentLocale:locale)??'',minChars,debounce,limit,showSnippets,
+  locale:resolveSearchLocale(locale,currentLocale),minChars,debounce,limit,showSnippets,
   suggestMode,expandOnFocus:expandOnFocus??null,searchPage,routeMap});
  onMount(()=>{void import('./live-search-element.ts');});
 </script>
@@ -32,6 +33,8 @@
   {#if noResults}{@render noResults()}{:else}<div class="emdash-live-search-no-results">No results found</div>{/if}
   <template class="emdash-live-search-result-template">
    {#if result}{@render result()}{:else}
+    <!-- Source controller supplies each cloned link's text and URL before display. -->
+    <!-- svelte-ignore a11y_consider_explicit_label a11y_invalid_attribute -->
     <a class={['emdash-live-search-result',resultClass].filter(Boolean).join(' ')} href="">
      <span class="emdash-live-search-result-title"></span>
      <span class="emdash-live-search-result-collection"></span>
