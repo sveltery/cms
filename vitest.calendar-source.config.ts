@@ -9,6 +9,7 @@ export default defineConfig({
   plugins: [{
     name: 'whole-calendar-source-native-node-host', enforce: 'pre',
     resolveId(id, importer) {
+      if (id === '#node-sqlite' && importer?.startsWith(frozen)) return path.join(root, 'src/lib/server/database/node-sqlite-compat.ts');
       if (id === '$app/paths') return '\0calendar-native-base';
       if (id === '@emdash-cms/auth' && importer?.startsWith(frozen)) return path.join(root, 'tests/helpers/calendar/auth-reference.ts');
       if (!importer?.startsWith(frozen) || !id.startsWith('.')) return;
@@ -16,6 +17,8 @@ export default defineConfig({
       const relative = path.relative(frozen, target).replaceAll(path.sep, '/');
       const map: Record<string, string> = {
         'packages/core/src/astro/routes/api/calendar.ts': path.join(root, 'tests/helpers/calendar/source-route.ts'),
+        'packages/core/src/database/migrations/runner.ts': sourceHost,
+        'packages/core/src/database/dialect-helpers.ts': path.join(product, 'database/dialect-helpers.ts'),
         'packages/core/src/api/handlers/calendar.ts': path.join(root, 'src/lib/server/calendar/handlers.ts'),
         'packages/core/src/database/repositories/content.ts': path.join(product, 'database/repositories/content.ts'),
         'packages/core/src/database/repositories/types.ts': path.join(product, 'database/repositories/types.ts'),
@@ -37,7 +40,8 @@ export default defineConfig({
       'parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/api/calendar-handlers.test.ts',
       'parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts',
       'tests/scheduling-native/calendar.test.ts',
-      'parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/astro/calendar-route.test.ts'
+      'parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/astro/calendar-route.test.ts',
+      'parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/integration/database/scheduled-publish-plan.test.ts'
     ]
   }
 });

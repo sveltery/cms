@@ -1,5 +1,5 @@
 import { describe } from 'vitest';
-import { OperationNodeTransformer, type KyselyPlugin, type TableNode } from 'kysely';
+import { OperationNodeTransformer, type KyselyPlugin, type TableNode, type Kysely } from 'kysely';
 import { openSqlite } from '../../../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry as NativeRegistry } from '../../../src/lib/server/database/registry.ts';
@@ -63,4 +63,22 @@ export async function setupForDialectWithCollections(dialect: 'sqlite'): Promise
 }
 export async function teardownForDialect(context: DialectTestContext | undefined) {
   await teardownTestDatabase(context?.db);
+}
+
+// Original query-plan family constructs its own actual NodeSqliteCompat/Kysely
+// connection with a real query log. Bind that same connection as the Native
+// fixture owner; never replace the driver, query text, rows or sqlite_master.
+export async function runMigrations(db: Kysely<any>): Promise<void> {
+  const database: CmsDatabase = {
+    db,
+    atomicBatch: statements => db.transaction().execute(async transaction => {
+      const results = [];
+      for (const statement of statements) results.push(await transaction.executeQuery(statement));
+      return results;
+    }),
+    close: () => db.destroy()
+  };
+  await migrateCms(database);
+  bindings.set(db, database);
+  registerLifecycleDatabase(database);
 }
