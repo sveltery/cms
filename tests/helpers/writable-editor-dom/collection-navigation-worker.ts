@@ -18,7 +18,10 @@ try {
     const html = await response.text();
     const list = /<ul\b[^>]*aria-label="Content drafts"[^>]*>([\s\S]*?)<\/ul>/.exec(html);
     assert.ok(list, 'actual collection draft list is rendered');
-    return [...list[1].matchAll(/<a\b[^>]*href="([^"]+)"/g)].map(match => match[1]);
+    // Kit may emit relative hrefs; compare the URL a real browser navigates to.
+    return [...list[1].matchAll(/<a\b[^>]*href="([^"]+)"/g)].map(match => {
+      const url = new URL(match[1], response.url); return `${url.pathname}${url.search}`;
+    });
   };
   assert.deepEqual(await links('en'), [`/content/stories/${english._.result.id}`]);
   assert.deepEqual(await links('fr'), [`/content/stories/${french._.result.id}?locale=fr`]);
