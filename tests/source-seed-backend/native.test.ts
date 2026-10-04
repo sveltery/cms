@@ -1,15 +1,15 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { sql, type CompiledQuery, type KyselyPlugin } from 'kysely';
 import { Miniflare } from 'miniflare';
-import { openSqlite } from '../src/lib/server/database/sqlite.ts';
-import { openD1 } from '../src/lib/server/database/d1.ts';
-import { migrateCms } from '../src/lib/server/database/migrations.ts';
-import { SchemaRegistry } from '../src/lib/server/database/registry.ts';
-import type { CmsDatabase } from '../src/lib/server/database/contract.ts';
-import type { CreateCollectionInput, CreateFieldInput } from '../src/lib/server/schema/types.ts';
-import { editorManifest } from '../src/lib/server/content/manifest.ts';
-import { schemaData, parse } from '../src/lib/server/database/validation.ts';
-import { validateContentData } from '../src/lib/server/schema/validate-content.ts';
+import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
+import { openD1 } from '../../src/lib/server/database/d1.ts';
+import { migrateCms } from '../../src/lib/server/database/migrations.ts';
+import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
+import type { CmsDatabase } from '../../src/lib/server/database/contract.ts';
+import type { CreateCollectionInput, CreateFieldInput } from '../../src/lib/server/schema/types.ts';
+import { editorManifest } from '../../src/lib/server/content/manifest.ts';
+import { schemaData, parse } from '../../src/lib/server/database/validation.ts';
+import { validateContentData } from '../../src/lib/server/schema/validate-content.ts';
 
 const fields: CreateFieldInput[] = Array.from({ length: 74 }, (_, index) => ({
   slug: `field_${index}`, label: `Field ${index}`, type: 'string', required: index === 73
