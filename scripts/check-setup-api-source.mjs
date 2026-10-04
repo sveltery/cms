@@ -1,5 +1,5 @@
 // Inventory/provenance checks only; no CMS or Source test is executed.
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 
@@ -19,6 +19,11 @@ for (const record of ledger.authorities) {
   if (bytes.length !== record.bytes || digest(bytes) !== record.sha256 || gitBlob !== record.sourceBlob) {
     throw new Error(`Source authority changed: ${record.path}`);
   }
+}
+const executable = resolve(root, 'parity/emdash/setup-api-source/upstream/packages/core/tests/unit/auth/me-welcome-dismiss.test.ts');
+if (existsSync(executable)) {
+  const original = ledger.authorities.find(record => record.path === 'packages/core/tests/unit/auth/me-welcome-dismiss.test.ts');
+  if (digest(readFileSync(executable)) !== original.sha256) throw new Error('Whole executable welcome family changed.');
 }
 let declarations = 0, expectations = 0;
 for (const file of catalog.files) {

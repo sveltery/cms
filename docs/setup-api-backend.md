@@ -51,3 +51,13 @@ current combined thirteen-stage bootstrap and secured browser checks, independen
 review, configured review, exact project-manager approval and author merge are
 required. Shared file/config/fixture candidates require exact PM qualification
 before application.
+
+## Qualified first executable family
+
+The PM specifically qualifies the whole original two-case welcome family and its
+real-built-HTTP fixture; [the exact decision](setup-api-welcome-fixture-qualification.json)
+records the three complete payloads and cleanup closure. Both original callbacks,
+all seven expectation expressions and original mocks/deadlines are unchanged.
+This test-first commit has no POST implementation. Current Main owns only GET,
+so the first POST must expose its actual missing route behavior. No execution or
+Source causal credit is claimed before the completed run.
