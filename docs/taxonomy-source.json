@@ -12146,4 +12146,42 @@
   "causalTaxonomyShapePassCredit": 0,
   "receipt": "docs/taxonomy-evidence/native-source7-baseline-receipt.json"
 }
+,
+  "fullRuntimeDevelopmentEvidence": {
+  "receipt": "docs/taxonomy-evidence/runtime-development-receipt.json",
+  "bytes": 34338,
+  "sha256": "487a8c146b6c4a92a2af8bcbed3509cd34c72bed820527d6b92a4c63a818e8d2",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "status": "actual local runtime development evidence; same-reviewer closure, final exact-head gates and actual public integration still pending",
+  "counts": {
+    "sourceCore22": {
+      "registered": 222,
+      "passed": 222
+    },
+    "pureOriginalMatcher15": {
+      "registered": 15,
+      "passed": 15
+    },
+    "actualNative15Source7": {
+      "registered": 7,
+      "passed": 7
+    },
+    "native15Api10": {
+      "registered": 10,
+      "passed": 10
+    },
+    "actualNative15D1eight": {
+      "registered": 8,
+      "passed": 8
+    },
+    "supplementalRegression3": {
+      "assertionRed": 3,
+      "passedAfterFixAndRefactor": 3
+    },
+    "additionalAtomic8": {
+      "registeredAfterNodeImportRepair": 8,
+      "passed": 8
+    }
+  }
+}
 }
