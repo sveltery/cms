@@ -2841,6 +2841,10 @@
     {
       "native": "src/lib/server/seed/block-type-contract.ts",
       "source": "packages/core/src/schema/block-type-contract.ts"
+    },
+    {
+      "native": "src/lib/server/seed/load.ts",
+      "source": "packages/core/src/seed/load.ts"
     }
   ],
   "extractedRuntime": [
@@ -2857,6 +2861,13 @@
       "source": "packages/core/src/schema/registry.ts",
       "declarations": [
         "SchemaError"
+      ]
+    },
+    {
+      "native": "scripts/source-seed-virtual-module.ts",
+      "source": "packages/core/src/astro/integration/virtual-modules.ts",
+      "declarations": [
+        "generateSeedModule"
       ]
     }
   ]
