@@ -123,3 +123,10 @@ export async function POST(context: SourceContext) {
   });
 }
 export type Database = CmsDatabase['db'];
+
+/** Read-only real built login HTML for the ordinary fixed-principal continuation case. */
+export function builtLoginPage(db: object, redirect: string) {
+  return fixtureFor(db).request(
+    '/login?' + new URLSearchParams({ redirect }).toString(), 'admin'
+  );
+}

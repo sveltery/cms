@@ -1302,7 +1302,41 @@ route1780B/helper750B and paired appends in [the development decision](../../doc
 Qualified fixc4b10d42 builds successfully and unchanged whole2 passes2/2 with
 all7 expectations reached through actual HTTP/SQLite. The retained causal Source
 value-red count is1; the first-green control and initial infrastructure failures
-add none. Owned-helper readability refactor and final gates remain pending. [The paired feature record](../../docs/setup-api-backend.md)
+add none. Owned-helper readability refactor3609b665 rebuilds successfully and unchanged
+whole2 passes2/2 again, with no further causal credit. Final gates remain pending. [The paired feature record](../../docs/setup-api-backend.md)
 retains these limits. [Draft PR90](https://github.com/sveltery/cms/pull/90) remains
 unlanded; no final adaptation acceptance is recorded. The reached value baseline and whole2 fixed green are established; refactor receipts and current combined full normal/secured gates plus final
 independent/configured review remain pending.
+
+
+### Setup wizard login destination framework proposal — PR90
+
+EmDash1.1.0 immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e` is the
+behavior authority. Complete pinned `core/src/astro/routes/api/setup/admin-verify.ts`
+enrolls and completes setup without signing in. Complete `admin/src/components/SetupWizard.tsx`
+selects `/_emdash/admin` or `/_emdash/admin/settings/transfer?start=import`;
+complete `core/src/astro/middleware/auth.ts` preserves requested pathname/query
+in the anonymous login redirect. Actual authentication is the separate passkey
+verify route's session write. The Source wizard callbacks/assertions remain exact
+and grant no native session or import-runtime credit.
+
+The native framework proposal carries the intended native root or
+`/settings/transfer?start=import` through `/login?redirect=`. A server-only Kit
+login load uses existing unchanged `src/lib/server/auth/safe-redirect.ts`
+(Source `core/src/api/redirect.ts`, blob `133b0477ac6e450f2aed830beb334722e4e10678`)
+and supplies accepted targets to the existing PasskeyLogin homeHref. Existing
+credential/session/nonce/Origin guards, PasskeyLogin and auth.remote bytes stay
+unchanged. The native route names and existing root fallback substitute for
+Source admin routes; transfer/import and complete dashboard remain unimplemented.
+
+One proposed original Native feature case reads actual built login HTML for the
+fixed existing stored administrator and checks the workspace link's intended
+import pathname/query. Current Main renders the root link. Test-only fixture
+bootstrap/HTTP/storage substitutions are explicit in [the feature record](../../docs/setup-api-backend.md);
+there is no credential ceremony, session issuance/rotation, replay, race or bypass
+probe. This proposal is unexecuted: zero completed native value reds/greens and
+zero additional copied Source credit. [Draft PR90](https://github.com/sveltery/cms/pull/90)
+contains the freeze/initial welcome test-first work; the continuation files and
+this paired register/feature candidate await exact finite PM development
+qualification before application. No final adaptation acceptance or landing is
+recorded; current full normal/secured gates and both reviews remain pending.

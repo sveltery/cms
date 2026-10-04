@@ -91,7 +91,33 @@ append in [the decision](setup-api-welcome-production-qualification.json). The
 production fix atc4b10d42 builds successfully and the same unchanged whole2 now
 passes2/2 with all7 expectations reached through actual HTTP/SQLite. One causal
 Source value red is retained; the first-green control and initial infrastructure
-failures add none. The owned-helper readability refactor and final gates remain
-pending. No session-rotation credit is claimed.
+failures add none. The owned-helper readability refactor3609b665 rebuilds successfully and the
+same whole2 passes2/2 again; repeat testing adds no further causal credit. Final
+gates remain pending. No session-rotation credit is claimed.
 [Draft PR90](https://github.com/sveltery/cms/pull/90), final current full gates and
 both reviews remain pending.
+
+## Setup destination through native login
+
+Pinned setup enrollment does not create a login session. The whole Source wizard
+selects the dashboard or import destination, and Source authentication middleware
+retains its pathname and query in the login redirect parameter. Native setup must
+carry its intended destination to `/login?redirect=`; the proposed login server
+load accepts it through the already-landed unchanged Source `isSafeRedirect`
+predicate, and supplies the result to the existing PasskeyLogin `homeHref`.
+
+The one original Native characterization reads actual built login HTML using the
+ordinary fixture's existing stored administrator. It asserts that the rendered
+workspace link retains `/settings/transfer?start=import`. It performs no credential
+ceremony, session issuance/rotation, nonce, signature, replay or race probe.
+Current Main ignores the parameter and renders the root link. The test, its exact
+fixture amendment and the two production files are still proposed; no value red
+or green has executed for this continuation and no copied Source credit is
+claimed. Actual transfer/import functionality and complete dashboard rendering
+remain unfinished. The server load does not change authentication or enrollment.
+
+The [compatibility register](../parity/emdash/compatibility.md) records the native
+route substitution and decision status alongside this feature record. Proposed
+[PR #90](https://github.com/sveltery/cms/pull/90) remains draft; its final combined
+normal/secured gates, independent/configured review and exact PM approval are
+pending.
