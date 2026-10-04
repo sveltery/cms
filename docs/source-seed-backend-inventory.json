@@ -2870,5 +2870,16 @@
         "generateSeedModule"
       ]
     }
+  ],
+  "extractedNestedRuntime": [
+    {
+      "native": "src/lib/server/seed/info.ts",
+      "source": "packages/core/src/astro/routes/api/setup/status.ts",
+      "declarations": [
+        "seed",
+        "seedInfo"
+      ],
+      "scope": "Complete named Source declarations inside route; native wrapper only. This is not a whole Source route port."
+    }
   ]
 }

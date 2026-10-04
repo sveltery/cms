@@ -58,4 +58,21 @@ for (const { native, source, declarations } of inventory.extractedRuntime ?? [])
   }
   assert.deepEqual(selected(read(native).toString(), native), selected(read(snapshot + source).toString(), source), native + ' entire named Source declarations');
 }
+for (const { native, source, declarations } of inventory.extractedNestedRuntime ?? []) {
+  function selected(text, path) {
+    const file = ts.createSourceFile(path, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+    assert.deepEqual(file.parseDiagnostics, []);
+    return declarations.map(name => {
+      const matches = [];
+      function visit(node) {
+        if (ts.isVariableStatement(node) && node.declarationList.declarations.some(declaration => declaration.name.getText(file) === name)) matches.push(node);
+        ts.forEachChild(node, visit);
+      }
+      visit(file);
+      assert.equal(matches.length, 1, path + ':' + name);
+      return matches[0].getText(file);
+    });
+  }
+  assert.deepEqual(selected(read(native).toString(), native), selected(read(snapshot + source).toString(), source), native + ' entire named nested Source declarations');
+}
 console.log('Source seed guard:56 complete authorities and35 whole test families pinned; MIT retained. Static guard provides zero execution/parity credit.');
