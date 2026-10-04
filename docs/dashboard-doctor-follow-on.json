@@ -1,0 +1,64 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "purpose": "Read-only whole authority handoff for a fresh native diagnostics developer; no copied test, implementation or execution credit.",
+  "sourceAuthorities": [
+    {
+      "sourcePath": "packages/core/src/cli/commands/doctor.ts",
+      "bytes": 12019,
+      "sha256": "accfe9e84587f84c8986be9f3cd21ace35cf15e8ae1762c3a7c0193fa394f362",
+      "gitBlob": "539e54131100d442b9cac01a87f3d1b49def9e4d",
+      "wholeBodyRead": true
+    },
+    {
+      "sourcePath": "packages/core/tests/unit/cli/doctor.test.ts",
+      "bytes": 7586,
+      "sha256": "f73cdc12d1a68c5998f4b4a91f0b8826a34471f57505427a023a002c5ec18820",
+      "gitBlob": "13d509fab5a4a1b907195f6cb77643a894c412df",
+      "wholeBodyRead": true
+    },
+    {
+      "sourcePath": "packages/core/src/scheduler-health.ts",
+      "bytes": 1447,
+      "sha256": "57c55cda00f544a3650a6204f6adce4ca84497c1e71b71290c3c7c8607b396a0",
+      "gitBlob": "60d26809dca8e482fe209643631f389d6b346aac",
+      "wholeBodyRead": true
+    },
+    {
+      "sourcePath": "packages/core/src/cli/index.ts",
+      "bytes": 1498,
+      "sha256": "4082aaa17efe9eac6fd2e1d0cad2c5ae666b9d0c8be01e6c756f024874bf1267",
+      "gitBlob": "5f552874fa4a96a1fb7df645fe1da0dace2874c1",
+      "wholeBodyRead": true
+    }
+  ],
+  "sourceDoctorContracts": [
+    "Connection, migration status and collection inventory",
+    "Orphaned content tables and canonical datetime storage",
+    "Existing users and database file availability",
+    "Wrangler JSONC/JSON/TOML syntax and source positions",
+    "Cron Trigger plus scheduled maintenance handler pairing",
+    "Missing/unreadable Worker entries and actionable fixes",
+    "Additive Node/Cloudflare database and wiring results",
+    "CLI JSON output and failing-check exit status"
+  ],
+  "sourceRuntimeImports": [
+    "citty",
+    "consola",
+    "jsonc-parser",
+    "smol-toml",
+    "database/connection.ts",
+    "database/datetime-storage.ts",
+    "database/dialect-helpers.ts",
+    "database/migrations/runner.ts"
+  ],
+  "nativeObservedAt": "f351d2142319f60ce29b9ab98c8f1d94671e0ade",
+  "nativeDoctorEntrypoint": "Absent; package.json has no bin or doctor script, and scripts/src contain no doctor CLI",
+  "nativeRelevantExistingScope": [
+    "scripts/build-revision-maintenance.mjs packages bounded native maintenance entrypoints",
+    "src/lib/server/maintenance/runtime.ts supplies existing runtime maintenance",
+    "Full provider/schema installation, real scheduler heartbeat and Worker scheduled handler remain owned integration work"
+  ],
+  "wholeSourceCallbackRun": false,
+  "productTestsRun": 0,
+  "decision": "PM accepted only actionable copy as an unfinished substitution on 2026-10-04; real equivalent diagnostic workflow still required."
+}
