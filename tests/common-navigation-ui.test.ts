@@ -59,7 +59,7 @@ test('ordinary content workspace exposes both installed Sections and Widgets', a
 });
 test('common management links retain the pinned Comments Menus Redirects Widgets Sections order', async () => {
   const html = await links();
-  assert.match(html, /<h2>Manage<\/h2>/);
+  assert.match(html, /<h2[^>]*>Manage<\/h2>/);
   const actual = Array.from(html.matchAll(/href="\/(comments|menus|redirects|widgets|sections)"/g), match => match[1]);
   assert.deepEqual(actual, ['comments', 'menus', 'redirects', 'widgets', 'sections']);
 });
