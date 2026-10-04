@@ -54,6 +54,10 @@ jobs:
         run: timeout --kill-after=30s 180s pnpm test:sections-widgets-browser
         env:
           DEBUG: pw:browser
+      - name: Run complete comments Source inbox assertions in sandboxed Chromium
+        run: timeout --kill-after=30s 180s pnpm test:comments-browser
+        env:
+          DEBUG: pw:browser
       - name: Run complete content picker Source callbacks in sandboxed Chromium
         run: timeout --kill-after=30s 180s pnpm test:content-picker-browser-source
         env:
