@@ -1,0 +1,137 @@
+{
+  "publicCommit": "37d5ed93a553c6ddef86c50a0eb596acbc9da63b",
+  "capture": "Actual normal public migrateCms on Node SQLite, all sqlite_master SQL in original creation order and all marker rows.",
+  "objects": [
+    {
+      "name": "_cms_migrations",
+      "type": "table",
+      "tbl_name": "_cms_migrations",
+      "sql": "CREATE TABLE _cms_migrations (version INTEGER PRIMARY KEY CHECK(version > 0))"
+    },
+    {
+      "name": "_cms_guards",
+      "type": "table",
+      "tbl_name": "_cms_guards",
+      "sql": "CREATE TABLE _cms_guards (token TEXT PRIMARY KEY NOT NULL, pass INTEGER NOT NULL CHECK(pass = 1))"
+    },
+    {
+      "name": "_cms_auth_users",
+      "type": "table",
+      "tbl_name": "_cms_auth_users",
+      "sql": "CREATE TABLE _cms_auth_users (\n      id TEXT PRIMARY KEY NOT NULL CHECK(length(id) > 0),\n      role INTEGER NOT NULL CHECK(role IN (10, 20, 30, 40, 50)),\n      disabled INTEGER NOT NULL CHECK(disabled IN (0, 1))\n    )"
+    },
+    {
+      "name": "_cms_auth_sessions",
+      "type": "table",
+      "tbl_name": "_cms_auth_sessions",
+      "sql": "CREATE TABLE _cms_auth_sessions (\n      hash TEXT PRIMARY KEY NOT NULL CHECK(length(hash) = 43),\n      user_id TEXT NOT NULL REFERENCES _cms_auth_users(id) ON DELETE CASCADE,\n      expires_at INTEGER NOT NULL CHECK(expires_at > 0)\n    )"
+    },
+    {
+      "name": "idx_cms_auth_sessions_user",
+      "type": "index",
+      "tbl_name": "_cms_auth_sessions",
+      "sql": "CREATE INDEX idx_cms_auth_sessions_user ON _cms_auth_sessions(user_id)"
+    },
+    {
+      "name": "_cms_collections",
+      "type": "table",
+      "tbl_name": "_cms_collections",
+      "sql": "CREATE TABLE \"_cms_collections\" (\n    id TEXT PRIMARY KEY NOT NULL, slug TEXT NOT NULL UNIQUE, label TEXT NOT NULL,\n    label_singular TEXT, description TEXT, supports TEXT NOT NULL, source TEXT NOT NULL DEFAULT 'manual',\n    version INTEGER NOT NULL DEFAULT 1 CHECK(version > 0), created_at TEXT NOT NULL, updated_at TEXT NOT NULL,\n    icon TEXT, admin_config TEXT, has_seo INTEGER NOT NULL DEFAULT 0 CHECK(has_seo IN (0,1)),\n    title_field TEXT, date_field TEXT, url_pattern TEXT,\n    routable INTEGER NOT NULL DEFAULT 1 CHECK(routable IN (0,1)),\n    hidden INTEGER NOT NULL DEFAULT 0 CHECK(hidden IN (0,1)), sort_order INTEGER, nav_group TEXT,\n    comments_enabled INTEGER NOT NULL DEFAULT 0 CHECK(comments_enabled IN (0,1)),\n    comments_moderation TEXT NOT NULL DEFAULT 'first_time' CHECK(comments_moderation IN ('all','first_time','none')),\n    comments_closed_after_days INTEGER NOT NULL DEFAULT 90,\n    comments_auto_approve_users INTEGER NOT NULL DEFAULT 0 CHECK(comments_auto_approve_users IN (0,1)),\n    edit_locking INTEGER NOT NULL DEFAULT 1 CHECK(edit_locking IN (0,1))\n  )"
+    },
+    {
+      "name": "_cms_fields",
+      "type": "table",
+      "tbl_name": "_cms_fields",
+      "sql": "CREATE TABLE \"_cms_fields\" (\n    id TEXT PRIMARY KEY NOT NULL, collection_id TEXT NOT NULL REFERENCES \"_cms_collections\"(id),\n    slug TEXT NOT NULL, label TEXT NOT NULL, type TEXT NOT NULL,\n    column_type TEXT NOT NULL CHECK(column_type IN ('TEXT','REAL','INTEGER','JSON')),\n    required INTEGER NOT NULL CHECK(required IN (0,1)), \"unique\" INTEGER NOT NULL CHECK(\"unique\" IN (0,1)),\n    default_value TEXT, validation TEXT, sort_order INTEGER NOT NULL, created_at TEXT NOT NULL,\n    widget TEXT, options TEXT, searchable INTEGER NOT NULL DEFAULT 0 CHECK(searchable IN (0,1)),\n    indexed INTEGER NOT NULL DEFAULT 0 CHECK(indexed IN (0,1)),\n    translatable INTEGER NOT NULL DEFAULT 1 CHECK(translatable IN (0,1)), UNIQUE(collection_id, slug)\n  )"
+    },
+    {
+      "name": "idx_cms_fields_collection",
+      "type": "index",
+      "tbl_name": "_cms_fields",
+      "sql": "CREATE INDEX idx_cms_fields_collection ON _cms_fields(collection_id, sort_order)"
+    },
+    {
+      "name": "_cms_auth_profiles",
+      "type": "table",
+      "tbl_name": "_cms_auth_profiles",
+      "sql": "CREATE TABLE _cms_auth_profiles (\n      user_id TEXT PRIMARY KEY NOT NULL REFERENCES _cms_auth_users(id) ON DELETE CASCADE,\n      email TEXT NOT NULL UNIQUE, name TEXT, avatar_url TEXT,\n      email_verified INTEGER NOT NULL DEFAULT 0, data TEXT,\n      created_at TEXT NOT NULL, updated_at TEXT NOT NULL\n    )"
+    },
+    {
+      "name": "_cms_auth_credentials",
+      "type": "table",
+      "tbl_name": "_cms_auth_credentials",
+      "sql": "CREATE TABLE _cms_auth_credentials (\n      id TEXT PRIMARY KEY NOT NULL, user_id TEXT NOT NULL REFERENCES _cms_auth_users(id) ON DELETE CASCADE,\n      public_key BLOB NOT NULL, algorithm INTEGER NOT NULL DEFAULT -7, counter INTEGER NOT NULL DEFAULT 0,\n      device_type TEXT NOT NULL, backed_up INTEGER NOT NULL DEFAULT 0, transports TEXT, name TEXT,\n      created_at TEXT NOT NULL, last_used_at TEXT NOT NULL\n    )"
+    },
+    {
+      "name": "idx_cms_auth_credentials_user",
+      "type": "index",
+      "tbl_name": "_cms_auth_credentials",
+      "sql": "CREATE INDEX idx_cms_auth_credentials_user ON _cms_auth_credentials(user_id)"
+    },
+    {
+      "name": "_cms_auth_challenges",
+      "type": "table",
+      "tbl_name": "_cms_auth_challenges",
+      "sql": "CREATE TABLE _cms_auth_challenges (\n      challenge TEXT PRIMARY KEY NOT NULL, type TEXT NOT NULL, user_id TEXT, data TEXT,\n      expires_at TEXT NOT NULL, created_at TEXT NOT NULL\n    )"
+    },
+    {
+      "name": "idx_cms_auth_challenges_expires",
+      "type": "index",
+      "tbl_name": "_cms_auth_challenges",
+      "sql": "CREATE INDEX idx_cms_auth_challenges_expires ON _cms_auth_challenges(expires_at)"
+    },
+    {
+      "name": "_cms_auth_setup",
+      "type": "table",
+      "tbl_name": "_cms_auth_setup",
+      "sql": "CREATE TABLE _cms_auth_setup (key TEXT PRIMARY KEY NOT NULL, value TEXT NOT NULL)"
+    },
+    {
+      "name": "_cms_auth_rate_limits",
+      "type": "table",
+      "tbl_name": "_cms_auth_rate_limits",
+      "sql": "CREATE TABLE _cms_auth_rate_limits (\n      key TEXT NOT NULL, \"window\" TEXT NOT NULL, count INTEGER NOT NULL,\n      PRIMARY KEY (key, \"window\")\n    )"
+    },
+    {
+      "name": "_cms_revisions",
+      "type": "table",
+      "tbl_name": "_cms_revisions",
+      "sql": "CREATE TABLE _cms_revisions (id TEXT PRIMARY KEY, collection TEXT NOT NULL,\n      entry_id TEXT NOT NULL, data TEXT NOT NULL, author_id TEXT,\n      created_at TEXT DEFAULT (datetime('now')))"
+    },
+    {
+      "name": "idx_cms_revisions_entry",
+      "type": "index",
+      "tbl_name": "_cms_revisions",
+      "sql": "CREATE INDEX idx_cms_revisions_entry ON _cms_revisions (collection, entry_id)"
+    },
+    {
+      "name": "_cms_revision_prune_queue",
+      "type": "table",
+      "tbl_name": "_cms_revision_prune_queue",
+      "sql": "CREATE TABLE _cms_revision_prune_queue (collection TEXT NOT NULL, entry_id TEXT NOT NULL,\n      revision_id TEXT NOT NULL, PRIMARY KEY(collection, entry_id))"
+    },
+    {
+      "name": "idx_cms_revision_prune_queue_revision_id",
+      "type": "index",
+      "tbl_name": "_cms_revision_prune_queue",
+      "sql": "CREATE INDEX idx_cms_revision_prune_queue_revision_id ON _cms_revision_prune_queue (revision_id)"
+    }
+  ],
+  "markers": [
+    {
+      "version": 1
+    },
+    {
+      "version": 2
+    },
+    {
+      "version": 3
+    },
+    {
+      "version": 4
+    },
+    {
+      "version": 5
+    }
+  ]
+}
