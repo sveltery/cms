@@ -79,4 +79,32 @@ for (const target of ['Node', 'D1'] as const) {
       expect(query.compile(db).parameters).toEqual(['_cms_options']);
     } finally { await storage.close(); }
   }, 30000);
+
+  it(`${target}: preserves opaque object names without selecting type`, async () => {
+    const storage = await fixture(target);
+    try {
+      const db = seedSourceDatabase(storage.database);
+      const query = sql<{ name: string; tbl_name: string; hint: string }>`SELECT name, tbl_name, 'type=''table''' AS hint FROM sqlite_master WHERE type = 'index' AND tbl_name = ${'options'} AND name = ${'_cms_media'} /* type = 'table' is only a comment */`;
+      const result = await query.execute(db);
+      expect(result.rows).toHaveLength(1);
+      expect(result.rows[0].name).toBe('_cms_media');
+      expect(result.rows[0].tbl_name).toBe('options');
+      expect(result.rows[0].hint).toBe("type='table'");
+      expect(query.compile(db).sql).toContain("/* type = 'table' is only a comment */");
+    } finally { await storage.close(); }
+  }, 30000);
+
+  it(`${target}: ignores a SELECT comparison when identifying table-only rows`, async () => {
+    const storage = await fixture(target);
+    try {
+      const db = seedSourceDatabase(storage.database);
+      const query = sql<{ name: string; tbl_name: string; table_hint: number }>`SELECT name, tbl_name, type = 'table' AS table_hint FROM sqlite_master WHERE type = 'index' AND tbl_name = ${'options'} AND name = ${'_cms_media'}`;
+      const result = await query.execute(db);
+      expect(result.rows).toHaveLength(1);
+      expect(result.rows[0].name).toBe('_cms_media');
+      expect(result.rows[0].tbl_name).toBe('options');
+      expect(result.rows[0].table_hint).toBe(0);
+      expect(query.compile(db).parameters).toEqual(['_cms_options', '_cms_media']);
+    } finally { await storage.close(); }
+  }, 30000);
 }
