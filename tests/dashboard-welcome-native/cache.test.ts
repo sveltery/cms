@@ -165,3 +165,21 @@ it('an offline pending stats query waits for connectivity before making its firs
   onlineManager.setOnline(true); await loaded(target);
   expect([client.fetchDashboardStats.mock.calls.length, metrics(target)]).toEqual([1, ['0', '7', '2']]);
 });
+
+
+it('native policy dismissal retains generic non-Error feedback while awaiting the stats refresh', async () => {
+  const queryClient = fixtureQueryClient(60_000), client = api();
+  const blocked = { ...stats(1), policyRejectedScheduled: 1, policyRejections: [{ collection: 'posts', id: 'item', pluginId: 'policy', reason: 'Needs review', rejectedAt: '2026-01-01T00:00:00Z', _rev: 'rev-1' }] };
+  client.fetchDashboardStats.mockResolvedValue(blocked);
+  const { target } = await render(Dashboard, { manifest, user: { role: 40 }, client, ...{ queryClient } });
+  await loaded(target);
+  const refresh = deferred<DashboardStats>(); client.fetchDashboardStats.mockImplementation(() => refresh.promise);
+  client.dismissScheduledPolicyRejection.mockRejectedValue({ code: 'policy_unavailable' });
+  const button = [...target.querySelectorAll<HTMLButtonElement>('button')].find(node => node.textContent === 'Dismiss')!;
+  button.click(); await vi.waitFor(() => expect(client.fetchDashboardStats).toHaveBeenCalledTimes(2));
+  expect(button.disabled).toBe(true);
+  refresh.resolve({ ...blocked, mediaCount: 9 });
+  await vi.waitFor(() => expect(target.textContent).toContain('An error occurred'));
+  await vi.waitFor(() => expect(button.disabled).toBe(false));
+  expect([metrics(target), client.dismissScheduledPolicyRejection.mock.calls]).toEqual([['0', '9', '2'], [['posts', 'item', 'rev-1']]]);
+});

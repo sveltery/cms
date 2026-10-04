@@ -66,3 +66,15 @@ it('native dashboard retains loaded counts while a focus refresh fails', async (
   await vi.waitFor(() => expect(target.textContent).toContain('Could not load dashboard data'));
   expect([...target.querySelectorAll('[data-testid=dashboard-metric-value]')].map(node => node.textContent?.trim())).toEqual(['0', '7', '2']);
 });
+
+
+it('native overdue scheduler guidance names the actual project and standalone doctor commands', async () => {
+  const api = { ...client(), fetchDashboardStats: vi.fn(async () => ({
+    ...stats, collections: [{ slug: 'posts', label: 'Posts', total: 1, published: 0, draft: 1, scheduled: 1, overdueScheduled: 1 }],
+    schedulerHealth: { status: 'unknown' as const, lastCompletedAt: null }
+  })) };
+  const target = await render(Dashboard, { manifest, client: api, user: { role: 50 } });
+  await vi.waitFor(() => expect(target.textContent).toContain('Scheduled publishing needs attention'));
+  expect(target.textContent).toMatch(/pnpm doctor/);
+  expect(target.textContent).toMatch(/sveltery-doctor/);
+});
