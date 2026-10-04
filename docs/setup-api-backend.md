@@ -61,3 +61,34 @@ all seven expectation expressions and original mocks/deadlines are unchanged.
 This test-first commit has no POST implementation. Current Main owns only GET,
 so the first POST must expose its actual missing route behavior. No execution or
 Source causal credit is claimed before the completed run.
+
+## Welcome dismissal production proposal
+
+The pinned `POST /_emdash/api/auth/me` accepts a nonempty action string, strips
+unknown body keys, returns UNKNOWN_ACTION for an unrecognized action, and merges
+`welcomeDismissed:true` into the authenticated user's persisted data. Its normal
+response is `{success:true,data:{success:true}}`. The native proposal adds only
+`POST /api/auth/me` and a server-only persistence helper. It uses the existing
+resolved request principal, reads that actual stored user's profile, parses the
+body through existing native JSON handling, and writes only the profile JSON
+column; no client-selected identity, profile fabrication or session update occurs.
+Existing exact configured Origin guarding remains mandatory for this mutation.
+
+Source `users.data` maps to the existing native split-profile
+`_cms_auth_profiles.data`. The unchanged current-user GET already rereads that
+column. The two original Source callbacks and all seven expectations remain
+unchanged; the fixture uses real built HTTP and SQLite with only its documented
+framework imports, stored-principal/profile setup, required Origin and users-table
+DROP mapping. The first executed r2 fixture run failed before assertions because
+Kit hooks were uninitialized; both raw outputs remain preserved and earn zero
+causal credit. The exact supported Server.init correction was separately qualified and applied
+at31a7e808. Both whole callbacks then completed: the first reached the original
+POST expected200 assertion with actualHTTP405; the sanitized lookup control passed
+first-green with zero causal credit. The [run receipt](setup-api-runs.json) retains
+both raw outputs and the earlier infrastructure failures. The PM now qualifies
+the exact route1780B and persistence helper750B plus this paired documentation
+append in [the decision](setup-api-welcome-production-qualification.json). The
+production fix is applied in this test-first sequence; its unchanged whole2 green,
+refactor and final gates remain pending. No session-rotation credit is claimed.
+[Draft PR90](https://github.com/sveltery/cms/pull/90), final current full gates and
+both reviews remain pending.

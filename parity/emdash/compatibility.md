@@ -1267,3 +1267,40 @@ The ordinary Main091 merge d8be24d76fdc8d1e436b6d9889b4e2b4200fe634 has native t
 Actual public Mainaa6d942a9a5167a0bb656750880fdeeee134a218 contributes the complete installed-feature navigation and its eighteen whole pinned authorities, alongside the thirty-one incoming picker authorities. The ordinary candidate union preserves every incoming Main code/test/gate/dependency/notice byte except the nine existing explicit editor integration seams. The complete incoming338656-byte compatibility prefix and the entire19606-byte owned Main091 suffix remain intact before this dated append. Incoming package6444B SHAfbbb7eb8c505eac5f6c3cb646a721de9f222d86e010421581e7fcbe0fc0d1f02 is unchanged from Main091; its whole Source command remains before the exact owned editorSource7/Native23 leaves. Bootstrap, secured browser workflow, original Native/Source/browser callbacks, five-second UI and180s/120s Node deadlines, canonical providers1–8 and frozen512/527 snapshots are unchanged.
 
 The repaired and refactored whole Native23 result remains dated owned evidence after four genuine new Native value reds; the original four actual41b secured-browser failures and complete logs remain retained. No local combined Source/editor/browser success is inferred from the failed normal. The new complete hosted thirteen-stage command and secured Source/default/Node browser runs must verify this final combined payload, followed by final independent/configured review, exact project-manager approval, author expected-head merge and post-Main checks. Source15 stays exactly pinned: only the unchanged seven validation callbacks have executed, with historical six meaningful Source value reds. All eight whole editor/list/e2e families, complete Source provider/type closure, rich widgets/media/plugins/translations/full-list/scheduling parity remain unfinished. Bounded WE1 remains the accepted Native substitution.
+
+
+### Welcome dismissal native persistence proposal — PR90
+
+Pinned EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, complete
+`core/src/astro/routes/api/auth/me.ts` blob`6053a7d0fbb038beab5d6841cb007fecac68e3a3`
+and whole `core/tests/unit/auth/me-welcome-dismiss.test.ts`
+blob`ba3b7a413e01f59cf21f831badf694120e7d6a3d`, establish persisted welcome
+dismissal and sanitized current-user lookup failure. Both original callbacks,
+seven expectations, mocks and deadlines are unchanged in the executable copy.
+
+The framework proposal adds native POST transport with the existing resolved
+principal and actual stored profile; nonempty action-string parsing/unknown-key
+stripping, UNKNOWN_ACTION, persisted merged user.data and successful envelope
+retain the pinned behavior. Source users.data maps to native split-profile
+`_cms_auth_profiles.data`; existing currentUser GET rereads it on every request.
+Native identityBody error sanitization and existing exact configured Origin guard
+are inherited transport substitutions, with no credential/session/nonce/role
+guard changes. No caller identity, fabricated profile or session mutation occurs.
+
+The whole-family fixture reaches actual built Kit HTTP and native SQLite for the
+fixed existing stored administrator. Source UserRepository.create supplies only
+that real fixture profile; its users-table DROP maps to the actual profile table.
+These are explicit framework fixture seams, not Source repository/auth/session
+implementation credit. The initial whole2 run at03303bb2 has two pre-assertion
+Kit-hooks initialization failures, zero value-red/green or causal credit; complete
+logs/JSON are preserved. The exact supported Server.init correction was separately qualified and applied
+at31a7e808. Both whole callbacks completed with one reached Source value red
+(actual POST405 against original expected200) and one first-green sanitized-error
+control with zero causal credit. [Full raw receipts](../../docs/setup-api-runs.json)
+remain preserved before this fix. The PM independently qualifies the exact
+route1780B/helper750B and paired appends in [the development decision](../../docs/setup-api-welcome-production-qualification.json).
+The qualified production fix is now applied; the unchanged whole2 green/refactor
+and final gates remain pending. [The paired feature record](../../docs/setup-api-backend.md)
+retains these limits. [Draft PR90](https://github.com/sveltery/cms/pull/90) remains
+unlanded; no final adaptation acceptance is recorded. The reached value baseline is established; fix/refactor receipts and current combined full normal/secured gates plus final
+independent/configured review remain pending.
