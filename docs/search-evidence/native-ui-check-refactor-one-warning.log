@@ -1,0 +1,13 @@
+$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+Loading svelte-check in workspace: /workspace/cms-full-search-query-api
+Getting Svelte diagnostics...
+
+/workspace/cms-full-search-query-api/src/lib/search/LiveSearch.svelte:38:84
+Warn: '' is not a valid href attribute
+https://svelte.dev/e/a11y_invalid_attribute (svelte)
+    <!-- svelte-ignore a11y_consider_explicit_label a11y_invalid_attribute -->
+    <a class={['emdash-live-search-result',resultClass].filter(Boolean).join(' ')} href="">
+     <span class="emdash-live-search-result-title"></span>
+
+====================================
+svelte-check found 0 errors and 1 warning in 1 file

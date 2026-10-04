@@ -1,0 +1,24 @@
+$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+Loading svelte-check in workspace: /workspace/cms-full-search-query-api
+Getting Svelte diagnostics...
+
+/workspace/cms-full-search-query-api/src/lib/search/LiveSearch.svelte:35:5
+Warn: Buttons and links should either contain text or have an `aria-label`, `aria-labelledby` or `title` attribute
+https://svelte.dev/e/a11y_consider_explicit_label (svelte)
+   {#if result}{@render result()}{:else}
+    <a class={['emdash-live-search-result',resultClass].filter(Boolean).join(' ')} href="">
+     <span class="emdash-live-search-result-title"></span>
+     <span class="emdash-live-search-result-collection"></span>
+     <span class="emdash-live-search-result-snippet"></span>
+    </a>
+   {/if}
+
+/workspace/cms-full-search-query-api/src/lib/search/LiveSearch.svelte:35:84
+Warn: '' is not a valid href attribute
+https://svelte.dev/e/a11y_invalid_attribute (svelte)
+   {#if result}{@render result()}{:else}
+    <a class={['emdash-live-search-result',resultClass].filter(Boolean).join(' ')} href="">
+     <span class="emdash-live-search-result-title"></span>
+
+====================================
+svelte-check found 0 errors and 2 warnings in 1 file
