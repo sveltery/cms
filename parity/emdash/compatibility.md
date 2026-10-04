@@ -1278,6 +1278,13 @@ The repaired and refactored whole Native23 result remains dated owned evidence a
 
 The unchanged17 Native byte cases pass after the exact fix and after the private coordinate-writer refactor; [the source/run ledger](../../docs/sec1-coordinate-codec-source.json) retains both whole green logs. This adds eight corrected Native byte outcomes, zero copied Source credit and zero causal attribution for prior CI failures. Full normal/secured checks remain pending.
 
+
+## Proposed fresh-D1 fixture runtime reuse (native harness only)
+
+The EmDash 1.1.0 authority remains immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, including `packages/cloudflare/src/db/d1-dialect.ts`. The [transport feature record](../../docs/d1-fixture-transport.md) describes a test-only substitution: fresh fixtures change from one real Miniflare runtime per database to bounded 256-binding groups of distinct, one-use UUID-qualified D1 databases. They never share or reset a leased database. Lease closure rejects stale queries and drains requests already started; exhausted groups close after their final lease and idle current groups close after 250 ms. Persistent fixtures keep a dedicated runtime, the original database identifier and supplied directory. Product adapters, providers 1–8, existing Source and native callback/assertion/fixture matrices, normal commands and deadlines remain unchanged.
+
+Original four-callback test-first head `ae06f004` has two genuine distinct-endpoint assertion failures and two already-green controls; the boundary matrix remains unreached before the reuse repair. Physical catalog-count mistakes and unfinished duplicate raw-disposal attempts earn zero causal/completed-run credit. The unchanged five native transport callbacks pass. An isolated 100-fixture characterization observes 100 actual runtime instances in 7314.85 ms; it establishes only local fixture cost, not the cause of a hosted/full-suite slowdown. Root authorized development of the exact 6486-byte helper candidate, SHA `a0705209c4bec16849bade728a8a044fdeb20d42a8e0935a373314fb4942758a`, before application at `d21c3bca`. Whole native four and existing transport five pass. The same 100-fixture characterization observes one actual runtime in 1379.29 ms, compared with 100 instances in 7314.85 ms at baseline; these separate local measurements do not establish whole-suite or hosted causation. Post-green test-only pair-acquisition refactor preserves all four titles and 15 exact assertion expressions; whole nine callbacks pass with zero failures, cancellations, skips or todos. Production helper and existing Source/native fixture bytes remain unchanged by refactor. Whole normal/secured gates and final independent/configured review remain pending. Idle cleanup, startup failure and pending-close drain remain static-review limits. This is native harness evidence with zero Source parity credit. Implementation development is authorized; specific PM acceptance and landing are pending.
+
 ## Shared media dependency prerequisite (proposed, 2026-10-04)
 
 Proposed [PR #95](https://github.com/sveltery/cms/pull/95); not merged.
@@ -1361,3 +1368,45 @@ whole package metadata records match; pnpm 12's verified `hasBin` entries for
 image-size and mime differ from the pinned Source pnpm 11 metadata. Six whole
 Source package metadata records are not claimed identical. This integration
 remains a dependency prerequisite with zero new Source parity credit.
+
+### Public D1 integration and package-documentation closure, 2026-10-04
+
+PR #95 adopts signed public Main
+`f351d2142319f60ce29b9ab98c8f1d94671e0ade`, the ordinary merge of PR #89,
+after finite development qualification. The four incoming D1 harness/test/record
+paths retain their whole public bytes. The entire incoming compatibility record
+and the entire owned dependency prerequisite suffix are preserved. All thirteen
+qualified dependency, patch, notice, packaging and inventory-test files retain
+their exact hashes. Existing Source callbacks, normal/secured commands, browser
+sandbox and deadlines remain unchanged. The service-test glob gains only the four
+already-public Native D1 reuse cases; this adds zero copied Source parity credit.
+
+The ready-triggered configured review ran once on
+`aeabc75103aedff39412e2d06ff2218bcfad21ac` and completed with
+[one package-documentation finding](https://github.com/sveltery/cms/pull/95#discussion_r4176777727).
+The standalone README now includes `patches/` in its complete package inventory
+and records that `patchedDependencies` requires
+`patches/image-size@2.0.2.patch` during frozen production installation. The Node
+hosting contract records that the original policies remain alongside this new
+patch declaration and copied directory. These documentation corrections preserve
+the existing install/start commands and historical hosting evidence. Review-thread
+closure and current final independent review remain pending; no duplicate manual
+configured-review request is made.
+
+The preceding exact aeabc head passed whole normal and secured
+[CI 438](https://github.com/sveltery/cms/actions/runs/37188155932): Node groups
+1,393/280/15/7, twenty-one Vitest groups, seven Source browser groups
+14/30/25/3/35/4/3, both 65-case default/Node suites and nine official Chromium 1243
+launches with the existing sandbox and deadlines. The same fresh independent
+reviewer found no actionable issues on that head. Those receipts are historical
+for aeabc, not validation of this newer union. The current head still requires
+its own unchanged full thirteen normal stages and nine secured browser launches;
+the expected service group is 1,397 because Main adds four Native D1 cases. Exact
+PM approval, author expected-head merge and actual post-Main verification remain
+pending. No isolated hosting/auth execution, new credential/session callback,
+runtime change or additional Source credit is introduced by this integration.
+
+The dependency metadata qualification remains six exact Source integrities and
+snapshots, four exact whole Source package records and two verified pnpm 12
+`hasBin` metadata additions for image-size and mime. The original test-first
+package-layout failure and subsequent whole green receipts remain retained.

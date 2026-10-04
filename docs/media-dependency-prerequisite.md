@@ -94,3 +94,45 @@ whole package metadata records match; pnpm 12's verified `hasBin` entries for
 image-size and mime differ from the pinned Source pnpm 11 metadata. Six whole
 Source package metadata records are not claimed identical. This integration
 remains a dependency prerequisite with zero new Source parity credit.
+
+### Public D1 integration and package-documentation closure, 2026-10-04
+
+PR #95 adopts signed public Main
+`f351d2142319f60ce29b9ab98c8f1d94671e0ade`, the ordinary merge of PR #89,
+after finite development qualification. The four incoming D1 harness/test/record
+paths retain their whole public bytes. The entire incoming compatibility record
+and the entire owned dependency prerequisite suffix are preserved. All thirteen
+qualified dependency, patch, notice, packaging and inventory-test files retain
+their exact hashes. Existing Source callbacks, normal/secured commands, browser
+sandbox and deadlines remain unchanged. The service-test glob gains only the four
+already-public Native D1 reuse cases; this adds zero copied Source parity credit.
+
+The ready-triggered configured review ran once on
+`aeabc75103aedff39412e2d06ff2218bcfad21ac` and completed with
+[one package-documentation finding](https://github.com/sveltery/cms/pull/95#discussion_r4176777727).
+The standalone README now includes `patches/` in its complete package inventory
+and records that `patchedDependencies` requires
+`patches/image-size@2.0.2.patch` during frozen production installation. The Node
+hosting contract records that the original policies remain alongside this new
+patch declaration and copied directory. These documentation corrections preserve
+the existing install/start commands and historical hosting evidence. Review-thread
+closure and current final independent review remain pending; no duplicate manual
+configured-review request is made.
+
+The preceding exact aeabc head passed whole normal and secured
+[CI 438](https://github.com/sveltery/cms/actions/runs/37188155932): Node groups
+1,393/280/15/7, twenty-one Vitest groups, seven Source browser groups
+14/30/25/3/35/4/3, both 65-case default/Node suites and nine official Chromium 1243
+launches with the existing sandbox and deadlines. The same fresh independent
+reviewer found no actionable issues on that head. Those receipts are historical
+for aeabc, not validation of this newer union. The current head still requires
+its own unchanged full thirteen normal stages and nine secured browser launches;
+the expected service group is 1,397 because Main adds four Native D1 cases. Exact
+PM approval, author expected-head merge and actual post-Main verification remain
+pending. No isolated hosting/auth execution, new credential/session callback,
+runtime change or additional Source credit is introduced by this integration.
+
+The dependency metadata qualification remains six exact Source integrities and
+snapshots, four exact whole Source package records and two verified pnpm 12
+`hasBin` metadata additions for image-size and mime. The original test-first
+package-layout failure and subsequent whole green receipts remain retained.
