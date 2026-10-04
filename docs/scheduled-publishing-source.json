@@ -3665,6 +3665,22 @@
       "sha256": "0e6a59b5d2109e4134aed1277f82089725a53fe079ee0ec0c2622169d2480dc0",
       "gitBlob": "b75bd5b5770e44050b2d0da28e87c155c603ed66",
       "kind": "whole-authority"
+    },
+    {
+      "source": "packages/core/src/api/schemas/common.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/api/schemas/common.ts",
+      "bytes": 4130,
+      "sha256": "9df0fc5f1d40a33f87c131b151278ba639f35013b387c7b7bef15523c11c3e08",
+      "gitBlob": "ba9be767aa9a2c564f3ebfd2c4106ad904324c59",
+      "kind": "whole-calendar-schema-authority"
+    },
+    {
+      "source": "packages/core/src/api/schemas/content.ts",
+      "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/api/schemas/content.ts",
+      "bytes": 17210,
+      "sha256": "9529755837ab6722848c47446122d0b25a6c35edd79afdbf780b25b8b1c6cf13",
+      "gitBlob": "9ab0e9f9d3c6b49d5b1eb3e49ce1094a55c6e8db",
+      "kind": "whole-calendar-schema-authority"
     }
   ],
   "calendarProductionRoots": [
@@ -4570,17 +4586,93 @@
       "tree": "a20e9f7e798a8468fbf6c68726e6199d7a054c2e",
       "kind": "Test-first, exact manager-qualified87-file packet",
       "sourceAssertionCredit": 0
+    },
+    {
+      "commit": "8e535d9ec98224216eb19ce26eaab4cad6bad0b9",
+      "tree": "3153e44284ec0cc82521e4a5d49e5c10c40b984d",
+      "kind": "Exact manager-qualified eight-file actual first-baseline evidence, author regular commit/push to Own105",
+      "sourceAssertionCredit": 0
     }
   ],
   "currentOwnDraft": {
     "number": 105,
     "url": "https://github.com/sveltery/cms/pull/105",
-    "head": "4c79ede65d54fdef21b7adc4c4734f174defbf35",
-    "headTree": "a20e9f7e798a8468fbf6c68726e6199d7a054c2e",
+    "head": "8e535d9ec98224216eb19ce26eaab4cad6bad0b9",
+    "headTree": "3153e44284ec0cc82521e4a5d49e5c10c40b984d",
     "baseWhenCreated": "41be644213bd8da5150d98b87d3a5c0cc0c7f3e1",
     "nativeBaselineParent": "b5ed8e06c9c3034e99645ef85022e027130fec51",
     "publicPush": "Author native regular git push succeeded",
     "attachment": "One codex_app attach_artifact call yielded without result and was bounded-terminated; outcome unknown; no success claim or retry"
   },
-  "latestProgress": "Actual first requested34 baseline: Native11 registered/3 initially green storage controls/8 reached readiness AssertionError reds. Source23 unregistered at missing product imports,0 expect/causal credit. Other14 whole families remain unexecuted. Product implementation remains0."
+  "latestProgress": "Test-first and exact first-baseline evidence committed/pushed on Own105 at8e535. Calendar core runtime/API/client candidate sealed UNAPPLIED; Source execution/credit remain0. Full scheduling/UI/lifecycle/Node+Worker dependencies unfinished.",
+  "calendarCoreProposalR1": {
+    "status": "Sealed UNAPPLIED finite calendar core implementation proposal; awaiting fresh independent review and Root exact development/execution qualification. No product implementation applied or new Source run.",
+    "nativeBefore": {
+      "commit": "8e535d9ec98224216eb19ce26eaab4cad6bad0b9",
+      "tree": "3153e44284ec0cc82521e4a5d49e5c10c40b984d"
+    },
+    "sourceAuthority": {
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "original80Unchanged": true,
+      "additionalWholeAuthorities": [
+        {
+          "source": "packages/core/src/api/schemas/common.ts",
+          "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/api/schemas/common.ts",
+          "bytes": 4130,
+          "sha256": "9df0fc5f1d40a33f87c131b151278ba639f35013b387c7b7bef15523c11c3e08",
+          "gitBlob": "ba9be767aa9a2c564f3ebfd2c4106ad904324c59",
+          "kind": "whole-calendar-schema-authority"
+        },
+        {
+          "source": "packages/core/src/api/schemas/content.ts",
+          "copy": "parity/emdash/scheduled-publishing-source/upstream/packages/core/src/api/schemas/content.ts",
+          "bytes": 17210,
+          "sha256": "9529755837ab6722848c47446122d0b25a6c35edd79afdbf780b25b8b1c6cf13",
+          "gitBlob": "9ab0e9f9d3c6b49d5b1eb3e49ce1094a55c6e8db",
+          "kind": "whole-calendar-schema-authority"
+        }
+      ],
+      "wholeFamilies": 16,
+      "semanticDeclarations": 126,
+      "staticExpectCalls": 342,
+      "multilineElementExpectCalls": 31,
+      "observedSourceCallbacks": 0,
+      "observedSourceExpectCalls": 0,
+      "completedSourceCausalCredit": 0
+    },
+    "runtime": [
+      "Calendar handler is whole Source algorithm with imports rebased to existing public Native content types/validation/API result and only the two metadata identifiers moved to canonical _cms tables. Raw ec_* queries, bounds, cursor/title/hidden/stream/order algorithms are unchanged.",
+      "Calendar placement/formatting is whole Source with only its two API import paths rebased. Site timezone, loadedAt grace, Gregorian/weekend/search/filter/date/year/range behavior is unchanged.",
+      "Calendar API keeps actual public Lingui i18n and TanStack queryOptions. It reuses the existing public Native API_BASE/apiFetch/ApiResponseError/parseApiResponse; original Source retry predicate is copied unchanged against that shared error class. Its original Lingui message descriptor is precompiled with the actual public macro compiler (id s2+GNH/message unchanged); no query cache/provider is created.",
+      "Calendar GET consumes only current trusted locals.cms and the existing published authorization, parsing and error helpers. The SvelteKit route is /api/calendar. Missing configured storage uses the Native explanatory message instead of the Source brand string; status/code/auth ordering and calendar behavior remain Source.",
+      "Schema candidate retains the whole Source calendar and cursor-schema declarations extracted from two additionally preserved whole original schema files. No test SQL, literal, assertion, data or result rewrite."
+    ],
+    "nextWholeExecutionProposal": {
+      "requestedWholeSourceFamilies": [
+        "packages/core/tests/unit/api/calendar-handlers.test.ts",
+        "packages/admin/tests/lib/calendar.test.ts",
+        "packages/core/tests/unit/astro/calendar-route.test.ts"
+      ],
+      "sourceStaticDeclarations": 27,
+      "nativeDeclarations": 11,
+      "requestedTotalStatic": 38,
+      "sourceStaticExpectCalls": 74,
+      "execution": "After exact Root qualification, run the entire source guard and one whole config invocation unchanged default clocks/deadlines. Record actual runtime registrations and reached assertions separately; Source Node SQLite is the qualified physical adapter, optional original PG helper branches remain copied whole but unexecuted.",
+      "originalRouteScope": "The third family is the unchanged whole original four-callback mocked Astro GET context (role/null locals). A uniform fixture converts it to actual public servicePrincipal and registered real Native storage; it invokes the actual Native calendarGet. No newly authored principal/session/credential/HTTP/race probes.",
+      "frameworkFixture": "$app/paths maps uniformly to a single explicit test-only default base empty virtual module. Product reuses actual SvelteKit base. @emdash-cms/auth maps only frozen Source imports to actual public Native Role values. All old Native11 and whole Source tests retain exact bytes.",
+      "previousBaselinePreserved": "Exactly one initial requested34 baseline remains Source23 pre-collection import stops/0 callbacks/0 expect/0 credit and Native11=3 SQL control passes+8 reached readiness AssertionError reds. No rerun has occurred.",
+      "retainedOtherWholeFamilies": 13,
+      "retainedOtherSemanticDeclarations": 99,
+      "retainedOtherExecuted": 0
+    },
+    "sharedOwnership": "This finite core packet changes no LifecycleService/remotes/DraftRepository/content repository/maintenance/media/plugin/auth/hosting/gate/package path. Subsequent schedule/due-publication paths are coordinated with the sole taxonomy assignment owner before sealing.",
+    "fullFeaturePending": [
+      "Real Calendar UI and actual app-scoped observer/cache/router/date/localization mounting plus all six whole original admin families.",
+      "Editor schedule/unschedule commands and Source exact scheduled-draft revision/CAS/policy semantics.",
+      "Actual published media activation/capture/reconciliation, plugin policy/rejection executors, global site write fence and Node/Worker scheduler/maintenance/real heartbeat after completed actual pass.",
+      "Remaining unchanged full Source16 original-context acceptance including original concurrency/draft-swap/media/cron/policy contexts after exact scope qualification.",
+      "Final actual published prerequisite union, unchanged13 normal+9 secured Chromium1243 gates, docs/check, fresh independent and configured review, Root final exact-head approval, author expected-head regular merge and actual post-Main validation."
+    ],
+    "decisionStatus": "Finite proposal only. No Source behavior acceptance, no feature completion, no final-head approval or merge."
+  }
 }

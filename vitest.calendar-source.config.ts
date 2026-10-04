@@ -9,10 +9,13 @@ export default defineConfig({
   plugins: [{
     name: 'whole-calendar-source-native-node-host', enforce: 'pre',
     resolveId(id, importer) {
+      if (id === '$app/paths') return '\0calendar-native-base';
+      if (id === '@emdash-cms/auth' && importer?.startsWith(frozen)) return path.join(root, 'tests/helpers/calendar/auth-reference.ts');
       if (!importer?.startsWith(frozen) || !id.startsWith('.')) return;
       const target = path.resolve(path.dirname(importer), id).replace(/\.js$/, '.ts');
       const relative = path.relative(frozen, target).replaceAll(path.sep, '/');
       const map: Record<string, string> = {
+        'packages/core/src/astro/routes/api/calendar.ts': path.join(root, 'tests/helpers/calendar/source-route.ts'),
         'packages/core/src/api/handlers/calendar.ts': path.join(root, 'src/lib/server/calendar/handlers.ts'),
         'packages/core/src/database/repositories/content.ts': path.join(product, 'database/repositories/content.ts'),
         'packages/core/src/database/repositories/types.ts': path.join(product, 'database/repositories/types.ts'),
@@ -24,14 +27,16 @@ export default defineConfig({
         'packages/admin/src/lib/api/calendar.ts': path.join(root, 'src/lib/calendar/api.ts')
       };
       return map[relative];
-    }
+    },
+    load(id) { if (id === '\0calendar-native-base') return "export const base = '';"; }
   }],
   test: {
     environment: 'node', fileParallelism: false,
     include: [
       'parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/api/calendar-handlers.test.ts',
       'parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts',
-      'tests/scheduling-native/calendar.test.ts'
+      'tests/scheduling-native/calendar.test.ts',
+      'parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/astro/calendar-route.test.ts'
     ]
   }
 });
