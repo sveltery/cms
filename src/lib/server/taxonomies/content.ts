@@ -22,6 +22,7 @@ export interface TaxonomyContentResponse {item:ContentItem;_rev:string}
  * physical owner; neither environment selection nor callback emulation exists. */
 export interface TaxonomyContentHost {
  readonly database:object;
+ get(collection:string,id:string,locale?:string):Promise<ContentItem>;
  create(collection:string,body:TaxonomyContentBody):Promise<ContentItem>;
  update(collection:string,id:string,body:TaxonomyContentBody):Promise<ContentItem>;
 }
@@ -29,12 +30,13 @@ export function nativeTaxonomyContentHost(db:Kysely<Database>,storage:CmsDatabas
  if(taxonomyStorage(db)!==storage)throw new Error('Content and taxonomy physical owners differ');
  const service=lifecycleService(storage,principal,dependencies);
  return {database:db,
+  get:(collection,id,locale)=>service.getContent({type:collection,id,...(locale===undefined?{}:{locale})},{inferLocale:locale===undefined,resolveIdentifier:true}),
   create:(collection,body)=>service.createContent({...body,type:collection}),
   async update(collection,id,body){
    const {_rev,...values}=body;
-   const existing=await service.getContent({type:collection,id,...(body.locale===undefined?{}:{locale:body.locale})},{inferLocale:body.locale===undefined});
+   const existing=await service.getContent({type:collection,id,...(body.locale===undefined?{}:{locale:body.locale})},{inferLocale:body.locale===undefined,resolveIdentifier:true});
    const check=validateRev(_rev,existing);if(!check.valid)throw new CmsError('CONFLICT',check.message);
-   return (await service.updateContent({...values,type:collection,id,locale:existing.locale,
+   return (await service.updateContent({...values,type:collection,id:existing.id,locale:existing.locale,
     expected:{version:existing.version,updatedAt:existing.updatedAt}})).item;
   }
  };
@@ -43,7 +45,7 @@ function requireHost(db:object,host:TaxonomyContentHost|undefined):TaxonomyConte
  if(!host||host.database!==db)throw new Error('Content mutation requires its explicit physical owner');
  return host;
 }
-function failure(cause:unknown,operation:'CREATE'|'UPDATE'):ApiResult<TaxonomyContentResponse> {
+function failure(cause:unknown,operation:'CREATE'|'UPDATE'|'GET'):ApiResult<TaxonomyContentResponse> {
  if(cause instanceof CmsError)return{success:false,error:{code:cause.code,message:cause.message}};
  if(cause instanceof EmDashValidationError)return{success:false,error:{code:'VALIDATION_ERROR',message:cause.message}};
  console.error(`Content ${operation.toLowerCase()} error:`,cause);
@@ -56,4 +58,11 @@ export async function handleContentCreate(db:Kysely<Database>,collection:string,
 export async function handleContentUpdate(db:Kysely<Database>,collection:string,id:string,body:TaxonomyContentBody,host?:TaxonomyContentHost):Promise<ApiResult<TaxonomyContentResponse>> {
  try{const item=await requireHost(db,host).update(collection,id,body);return{success:true,data:{item,_rev:encodeRev(item)}};}
  catch(cause){return failure(cause,'UPDATE');}
+}
+
+/** Genuine owner read used by taxonomy assignment routes; this bridge does not
+ * claim generic Source SEO/byline/reference hydration or public QueryCore. */
+export async function handleContentGet(db:Kysely<Database>,collection:string,id:string,locale?:string,host?:TaxonomyContentHost):Promise<ApiResult<TaxonomyContentResponse>> {
+ try{const item=await requireHost(db,host).get(collection,id,locale);return{success:true,data:{item,_rev:encodeRev(item)}};}
+ catch(cause){return failure(cause,'GET');}
 }

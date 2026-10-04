@@ -7,9 +7,13 @@ import {getI18nConfig,resolveConfiguredLocale} from '../../../src/lib/server/men
 import {validateRev} from '../../../src/lib/server/database/lifecycle/upstream/api/rev.ts';
 import {CmsError} from '../../../src/lib/server/database/contract.ts';
 import {resolveTaxonomySlugMap,applyResolvedTaxonomySelections,completeContentTaxonomies} from '../../../src/lib/server/taxonomies/content-write.ts';
-import {handleContentCreate as create,handleContentUpdate as update} from '../../../src/lib/server/taxonomies/content.ts';
+import {handleContentCreate as create,handleContentUpdate as update,handleContentGet as get} from '../../../src/lib/server/taxonomies/content.ts';
 
 function sourceHost(db){return{database:db,
+ async get(collection,id,locale){
+  const item=await new ContentRepository(db).findByIdOrSlug(collection,id,locale?resolveConfiguredLocale(locale):undefined);
+  if(!item)throw new CmsError('NOT_FOUND',`Content item not found: ${id}`);return item;
+ },
  async create(collection,body){
   let selections=[];
   const item=await withTransaction(db,async transaction=>{
@@ -40,3 +44,5 @@ function sourceHost(db){return{database:db,
 };}
 export function handleContentCreate(db,collection,body){return create(db,collection,body,sourceHost(db));}
 export function handleContentUpdate(db,collection,id,body){return update(db,collection,id,body,sourceHost(db));}
+
+export function handleContentGet(db,collection,id,locale){return get(db,collection,id,locale,sourceHost(db));}

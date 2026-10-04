@@ -70,10 +70,10 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     if(value.version!==item.version||value.updatedAt!==item.updatedAt)throw new CmsError('CONFLICT');
   }
   async function definition(type:string) {const value=await registry.getCollectionWithFields(type);if(!value)throw new CmsError('NOT_FOUND');return value;}
-  async function stored(value:ContentKey,inferLocale=false) {
+  async function stored(value:ContentKey,inferLocale=false,resolveIdentifier=false) {
     await definition(value.type);
-    const item=await content.findById(value.type,value.id);
-    if(!item||(!inferLocale&&item.locale!==(value.locale??'en')))throw new CmsError('NOT_FOUND');return item;
+    const item=resolveIdentifier?await content.findByIdOrSlug(value.type,value.id,inferLocale?undefined:value.locale):await content.findById(value.type,value.id);
+    if(!item||(!resolveIdentifier&&!inferLocale&&item.locale!==(value.locale??'en')))throw new CmsError('NOT_FOUND');return item;
   }
   function owner(item:ContentItem,actor:NonNullable<typeof identity>,any:string) {
     if(!actor.permissions.has(any)&&item.authorId!==actor.id)throw new CmsError('FORBIDDEN');
@@ -201,12 +201,12 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       completeContentTaxonomies(selections);
       return stored({type,id:item.id,locale});
     },
-    async getContent(input:unknown,options:{inferLocale?:boolean}={}):Promise<ContentItem> {
+    async getContent(input:unknown,options:{inferLocale?:boolean;resolveIdentifier?:boolean}={}):Promise<ContentItem> {
       requirePermission('content:read');requirePermission('content:read_drafts');
       // Only the trusted constructor host opts into omitted-locale inference;
       // all callers share the same actual definition/read/not-found owner.
       const inferLocale=options.inferLocale===true&&object(input).locale===undefined;
-      return hydrate(await stored(key(input),inferLocale));
+      return hydrate(await stored(key(input),inferLocale,options.resolveIdentifier===true));
     },
     async listContent(input:unknown) {
       requirePermission('content:read');requirePermission('content:read_drafts');const value=object(input);
