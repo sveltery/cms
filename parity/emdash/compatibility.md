@@ -1285,6 +1285,132 @@ The EmDash 1.1.0 authority remains immutable `913cb1bb9b7f08c3ff0d258b4420e53835
 
 Original four-callback test-first head `ae06f004` has two genuine distinct-endpoint assertion failures and two already-green controls; the boundary matrix remains unreached before the reuse repair. Physical catalog-count mistakes and unfinished duplicate raw-disposal attempts earn zero causal/completed-run credit. The unchanged five native transport callbacks pass. An isolated 100-fixture characterization observes 100 actual runtime instances in 7314.85 ms; it establishes only local fixture cost, not the cause of a hosted/full-suite slowdown. Root authorized development of the exact 6486-byte helper candidate, SHA `a0705209c4bec16849bade728a8a044fdeb20d42a8e0935a373314fb4942758a`, before application at `d21c3bca`. Whole native four and existing transport five pass. The same 100-fixture characterization observes one actual runtime in 1379.29 ms, compared with 100 instances in 7314.85 ms at baseline; these separate local measurements do not establish whole-suite or hosted causation. Post-green test-only pair-acquisition refactor preserves all four titles and 15 exact assertion expressions; whole nine callbacks pass with zero failures, cancellations, skips or todos. Production helper and existing Source/native fixture bytes remain unchanged by refactor. Whole normal/secured gates and final independent/configured review remain pending. Idle cleanup, startup failure and pending-close drain remain static-review limits. This is native harness evidence with zero Source parity credit. Implementation development is authorized; specific PM acceptance and landing are pending.
 
+## Shared media dependency prerequisite (proposed, 2026-10-04)
+
+Proposed [PR #95](https://github.com/sveltery/cms/pull/95); not merged.
+
+Authority: EmDash 1.1.0, immutable pin
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, pinned core dependency/lock records,
+workspace image-size patch configuration and the whole 15,746-byte
+`patches/image-size@2.0.2.patch` (SHA256
+`77c12533e3a635c4066c55da8952f4912e8210416539dc1249550fa639271595`).
+The [feature record](../../docs/media-dependency-prerequisite.md) describes the
+five exact direct dependencies, six new locked package/snapshot entries and
+seven retained notices. The entire original 512/527 lock inventory, both YAML
+documents, scripts and policies remain unchanged except for the explicit additions.
+
+Framework/package substitution: pinned EmDash core declares `image-size` through
+its development catalog; the native standalone package declares exact 2.0.2 as
+a production dependency and carries `patches/` so its ordinary frozen production
+installation can apply the pinned Source patch outside the checkout. The existing packaging copy list and two
+existing sorted directory inventory assertions add that directory; all seven
+parent/nested declarations and 56 expressions retain their full original bodies
+apart from those two expected arrays. No Source assertion is ported or changed,
+no new callback is added, and changed original Native inventory expectations
+supply zero Source parity credit. Credential/session fixtures, deadlines,
+authorization, runtime, thirteen normal stages and nine secured browser stages
+remain unchanged. Media/seed runtime and UI parity remain unimplemented.
+
+The project manager's exact thirteen-file development qualification approved the prerequisite
+application and own Draft publication on actual public Main
+`135e7be689885fd23678569d0d373a1131f5302b`; it did not approve feature parity or
+final merging. Test-first `6f7ef2fc8a82dddb0f1c4cdc2809fddc70ef1948` precedes the
+fix `7a286ffafd1fb065fc9f2b00792baaca695f57e9`. The whole baseline completed ten
+phases, services 1,376/1,376 and production 280/280; phase eleven reports one Native
+layout `ERR_ASSERTION` for absent `patches/`, plus two other hosting callbacks green.
+The second directory assertion, nested hosting cases and both Cloudflare phases
+were unreached. Complete baseline 370,930 bytes, SHA256
+`c82aa0a2df45a76239501f6d05d62f5abe233640ed75d1e2120d93fe32140702` is retained.
+The exact fixed whole bootstrap exits 0 with all thirteen paired phases complete,
+Node groups 1,376/280/15/7 all passing and twenty-one mandatory Vitest groups green.
+All original nested hosting callbacks and the second inventory assertion now run
+and pass; one measured Native layout value red closes, with zero Source credit.
+Complete fixed log 417,446 bytes, SHA256
+`b4345974065edb6d2ae93f0283878065bff6b64a65db0d36344eeb2549a5da68`. No isolated hosting/auth family ran.
+No further executable refactor is justified beyond the exact dependency/Source
+patch bodies and one packaging-array member.
+Six upstream jpeg-js license lines preserve original trailing whitespace and the
+qualified whole-notice hash; other changed files pass whitespace validation.
+Final hosted normal/secured execution, independent/configured review,
+exact-head PM acceptance, proposed PR and author merge are pending. This is a
+proposed package-layout substitution; no final specific acceptance or landed
+state is recorded yet.
+
+### Public Main integration checkpoint, 2026-10-04
+
+PR #95 adopts actual public Main
+`fd1f931f04a85d32ac740dfcfa2b37ca3b406c05` (signed merge of PR #94) by an ordinary
+merge after finite development qualification. The entire incoming compatibility
+record and all twelve added public SEC1 evidence/helper/test paths are preserved,
+along with the complete owned dependency prerequisite record. Incoming native
+registration/helper, vendor notice and existing setup/login documentation remain
+byte-exact. The original thirteen dependency/patch/package/test files retain their
+qualified hashes, including all seven notices and the whole pinned image-size
+patch; normal and secured commands, bootstrap and deadlines do not change.
+
+The ordinary existing service-test glob now includes the seventeen public Native
+SEC1 mathematical cases. This integration adds no isolated auth/hosting execution,
+Source assertion changes, helper rewrite or credential/session probes. Main's
+post-merge gates were running at proposal time and are not inferred successful.
+
+The previous exact public `8244fca6fc11244e9cca1c3c36089635ab867c20` passed hosted
+[CI 433](https://github.com/sveltery/cms/actions/runs/37186193708), including the
+whole thirteen normal phases, Node groups 1,376/280/15/7, twenty-one Vitest groups,
+seven Source browser groups 14/30/25/3/35/4/3 and both default/Node 65-case suites.
+Nine official Chromium 1243 launches and exits retained the original sandbox and
+existing deadlines. Fresh independent review found no actionable issues on that
+head. These are historical receipts for 8244; the integrated head requires its
+own complete normal/secured gates and current final review before configured
+review, specific PM acceptance and an expected-head author merge.
+
+The six new dependency integrity/snapshot records match pinned Source. Four
+whole package metadata records match; pnpm 12's verified `hasBin` entries for
+image-size and mime differ from the pinned Source pnpm 11 metadata. Six whole
+Source package metadata records are not claimed identical. This integration
+remains a dependency prerequisite with zero new Source parity credit.
+
+### Public D1 integration and package-documentation closure, 2026-10-04
+
+PR #95 adopts signed public Main
+`f351d2142319f60ce29b9ab98c8f1d94671e0ade`, the ordinary merge of PR #89,
+after finite development qualification. The four incoming D1 harness/test/record
+paths retain their whole public bytes. The entire incoming compatibility record
+and the entire owned dependency prerequisite suffix are preserved. All thirteen
+qualified dependency, patch, notice, packaging and inventory-test files retain
+their exact hashes. Existing Source callbacks, normal/secured commands, browser
+sandbox and deadlines remain unchanged. The service-test glob gains only the four
+already-public Native D1 reuse cases; this adds zero copied Source parity credit.
+
+The ready-triggered configured review ran once on
+`aeabc75103aedff39412e2d06ff2218bcfad21ac` and completed with
+[one package-documentation finding](https://github.com/sveltery/cms/pull/95#discussion_r4176777727).
+The standalone README now includes `patches/` in its complete package inventory
+and records that `patchedDependencies` requires
+`patches/image-size@2.0.2.patch` during frozen production installation. The Node
+hosting contract records that the original policies remain alongside this new
+patch declaration and copied directory. These documentation corrections preserve
+the existing install/start commands and historical hosting evidence. Review-thread
+closure and current final independent review remain pending; no duplicate manual
+configured-review request is made.
+
+The preceding exact aeabc head passed whole normal and secured
+[CI 438](https://github.com/sveltery/cms/actions/runs/37188155932): Node groups
+1,393/280/15/7, twenty-one Vitest groups, seven Source browser groups
+14/30/25/3/35/4/3, both 65-case default/Node suites and nine official Chromium 1243
+launches with the existing sandbox and deadlines. The same fresh independent
+reviewer found no actionable issues on that head. Those receipts are historical
+for aeabc, not validation of this newer union. The current head still requires
+its own unchanged full thirteen normal stages and nine secured browser launches;
+the expected service group is 1,397 because Main adds four Native D1 cases. Exact
+PM approval, author expected-head merge and actual post-Main verification remain
+pending. No isolated hosting/auth execution, new credential/session callback,
+runtime change or additional Source credit is introduced by this integration.
+
+The dependency metadata qualification remains six exact Source integrities and
+snapshots, four exact whole Source package records and two verified pnpm 12
+`hasBin` metadata additions for image-size and mime. The original test-first
+package-layout failure and subsequent whole green receipts remain retained.
+
 ## Canonical feature-storage integration (proposed)
 
 Source authority is EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. [The owning record](../../docs/canonical-feature-storage.md) and [complete Source manifest](../../docs/canonical-feature-storage-source.json) retain49 whole authorities, including33 complete migrations and11 immutable test files. The proposed PR is not yet published. Source files, assertion bodies, original fixtures and deadlines remain unchanged. All11 copied Source test families remain unexecuted, including complete named-runner families and families whose closure requires prohibited protected probes; Native evidence supplies zero Source execution or causal Source credit.
@@ -1352,3 +1478,19 @@ The exact public shared D1 helper is 6,486 bytes, SHA256 `a0705209c4bec16849bade
 The prior dd80 hosted run 37180925680 is retained separately from the older fc25 EADDRINUSE setup failure. Actual prior checkout `d3826d7fb7f28de9054d38be964b5b496c4f5a4d` has tree `1cf07623654312c3d761d9fa6e126430dea7435d` and ordered parents `[135e7be689885fd23678569d0d373a1131f5302b,dd80fe3f942aef2e44d3df92c28a818b5a45897c]`. It completed eight normal stages: frozen 512/checker 0/0, all 1,451 service tests with failures/cancellations/skips/todos 0 in 706,249.218069ms, twenty reached Vitest groups and default build. The unchanged fifteen-minute validate deadline cancelled production stage 9 before its aggregate result; stages 10–13 were unreached. Full normal pass credit remains 0. The complete 454,772-byte normal log has SHA256 `73d3510a42508b0dc4392d1737da1f2267c1a7ee747a5cbf5e612c8761edab30`. Its separate complete 390,647-byte browser log SHA256 `985ddf84f74613fcce3756173acf8ac3fb6bceffa64290a4f90bbadd636b3aec` records Source groups `[14,30,25,3,35,4,3]`, default 65/Node 65 and nine successful sandboxed official 1243 launches/exits. Those older-head browser passes do not qualify this new union. The earlier successful whole 13 local receipt at Native 36f1 remains unchanged and specific to its evaluated head. No unchanged dd80 rerun, selected-family probe, timeout increase or isolation reduction is introduced.
 
 After manager qualification of this finite actual-public union, one changed-head whole 13 normal and secured 9 browser run must execute with the original fifteen-minute validation, 180-second host-start/30-second kill limits and sandbox flags. Actual Main's post-push run 37189287969 is a separate check; this proposal claims no post-Main pass. Final current-head independent review, specific CFS-01/02/03 decisions, expected-head author merge and actual post-Main checks remain pending. The configured request 5976771105 and actual quota/no-verdict response 5976772262 stand without repetition; the existing unresolved attachment attempt is not retried. All eleven whole canonical Source test families remain unexecuted and earn zero Source execution/causal credit. Source027's creation DEFAULT 1 versus immutable Native 0 still requires a separate provider 15. Universal direct-DB Menu namespaces, complete Media/attribution/relations APIs/UI, the complete Source runner/locks and deployed-hosting parity remain unfinished.
+
+## Whole hosted storage qualification at public D1 Main — 2026-10-04
+
+Author-owned draft [PR #87](https://github.com/sveltery/cms/pull/87), public head `7dbe5c433c68b75d3e5f2832bf6ba05b6ffd19a8`, passed both jobs of [run 37191139551](https://github.com/sveltery/cms/actions/runs/37191139551). Actual checkout `2be26728c281c1ed5500d8b3d006ff6814ee0ef9` has tree `767a449f0302ddf61c9083df9a4186f00ca62102` and ordered parents `[f351d2142319f60ce29b9ab98c8f1d94671e0ade,7dbe5c433c68b75d3e5f2832bf6ba05b6ffd19a8]`. All thirteen paired normal phases completed: frozen 512/checker 0/0, services 1,472/production 280/Node 15/Worker 7, all failure/cancellation/skip/todo counts 0. All twenty-one whole inherited Vitest groups passed `[115,203,14,128,6,12,4,38,140,3,38,105,14,2,22,24,7,23,23,30,23]`; default build, actual standalone frozen production package and official Cloudflare dry build/Worker execution completed. The complete 620,066-byte normal receipt SHA256 `46db7f668e330eab66932dd2eb3b5de770a115daf4a24e355a734f3e0b9bc938` retains the service duration 499,807.890458ms. It establishes the stated head's pass within the unchanged fifteen-minute job limit; no causal attribution to the shared helper or extra Source credit is inferred.
+
+The separate complete 395,292-byte browser receipt SHA256 `caf403c656f8be750fbd7b9d8a45b05a021e99b8ba0613ae18814712b64306e2` records all seven Source groups `[14,30,25,3,35,4,3]`, default 65/Node 65 and nine actual official Chromium 1243 sandboxed launches. Nine distinct physical process IDs each exit 0 with no signal. Saved whole logs match the tool's original Unicode-character and UTF8-byte sizes exactly. The failed fc25 port-collision receipt, failed dd80 fifteen-minute receipt and earlier Native 36f1 local success remain preserved separately. No unchanged 7dbe rerun, partial-family retry, increased deadline, weaker isolation or new protected authentication/session probe is introduced.
+
+This qualifies Native storage execution and the inherited normal/browser graph at this evaluated head. All eleven whole canonical Source test families remain unexecuted; canonical Source execution/causal credit is 0. All 113 complete canonical 49/Picker 31/Navigation 18/Editor 15 authority destinations remain pinned. Specific CFS-01/02/03 foundation acceptance, fresh final review, exact expected-head author merge and actual post-Main verification remain separate pending decisions. Full named Source runner/locks, universal direct-DB Menu namespaces, Media/attribution/relations APIs/UI and deployed-hosting parity remain incomplete. Source027's creation DEFAULT 1 versus immutable Native 0 still requires an explicit later provider 15.
+
+## Actual public media dependency integration target — 2026-10-04
+
+The next ordinary merge uses ordered public parents `[7dbe5c433c68b75d3e5f2832bf6ba05b6ffd19a8,ab43accd4de235b07a22dd0ac24289605902d959]`. Actual signed public Main `ab43accd4de235b07a22dd0ac24289605902d959`, tree `a8041f768cd1366b9dd3b95804609290927ae97d`, has ordered parents `[f351d2142319f60ce29b9ab98c8f1d94671e0ade,ae07826d72f18ec5c246c424a2dc0c56a994fd5a]` after author merge of dependency PR #95. All 1,591 public Main paths, thirteen dependency/patch/notice/package/inventory-test paths and four paired public documentation changes are preserved. The complete incoming 374,535-byte compatibility prefix and the entire 25,038-byte existing owned storage tail are retained before these two current appendices. The complete existing Native test-first/mapped 32 history, public Editor/D1 merges and clean original Native 92 history remain intact.
+
+The five new production dependencies remain exactly `blurhash@2.0.5`, `image-size@2.0.2`, `jpeg-js@0.4.4`, `mime@4.1.0` and `upng-js@2.1.0`, with transitive `pako@1.0.11`. Incoming lock/workspace metadata preserves 518 package/533 snapshot records, original install policies and patch hash. The complete 15,746-byte image-size patch, SHA256 `77c12533e3a635c4066c55da8952f4912e8210416539dc1249550fa639271595`, remains exact to the whole pinned Source patch. All seven dependency notices retain their entire public bytes, including verbatim license whitespace. Public Node packaging copies `patches/`; its two explicitly qualified inventory literals and every other callback/body/assertion/deadline remain exact. This union introduces no new assertion rewrite. The entire incoming package scripts/dependency graph is retained with only the existing canonical 49 provenance guard after its complete normal Source sequence. SEC1, shared D1, Editor/Picker/Navigation, frozen providers 1–8, actual providers 9–14 and all 75 Native canonical controls/requirements remain intact.
+
+The current 1472/280/15/7 and 21 Vitest/secured Source 7/default 65/Node 65 pass evaluates 7dbe only. New combined-head hosted gates and final review/acceptance must qualify the media dependency union; actual media Main's post-push outcome is not claimed by this proposal. The original fifteen-minute validate limit, 180-second host startup/30-second kill limits, assertions, fixture isolation and browser sandbox remain intact. Standing configured request 5976771105/quota-no-verdict 5976772262 is not repeated, and the unresolved attachment attempt is not retried. CFS-01/02/03 remain foundation decisions pending Root's explicit record; the full CMS and the eleven canonical Source families remain unfinished with zero additional Source execution/causal credit.
