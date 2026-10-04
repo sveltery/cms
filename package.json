@@ -54,7 +54,8 @@
     "test:block-registry-source": "node scripts/check-block-registry-source.mjs && vitest run --config vitest.block-registry-source.config.ts",
     "doctor": "node scripts/doctor.mjs",
     "test:doctor-source": "node scripts/check-doctor-source.mjs && vitest run --config vitest.doctor-source.config.ts",
-    "test:full-search": "node scripts/check-search-source.mjs && vitest run --config vitest.full-search.config.ts && vitest run --config vitest.search-review.config.ts"
+    "test:full-search": "node scripts/check-search-source.mjs && vitest run --config vitest.full-search.config.ts && vitest run --config vitest.search-review.config.ts && pnpm test:search-ui-source",
+    "test:search-ui-source": "node scripts/check-search-ui-source.mjs && vitest run --config vitest.search-ui-source.config.ts"
   },
   "dependencies": {
     "@oslojs/crypto": "1.0.1",
