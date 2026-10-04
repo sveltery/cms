@@ -2,7 +2,7 @@
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 // Native imports, namespace and erasable constructor; original algorithms preserved.
 import type { CmsDatabase } from '../database/contract.ts';
-import { atomicSetChildren, atomicSetParents, atomicDeleteRelation } from './atomic.ts';
+import { atomicSetChildren, atomicSetParents, atomicDeleteRelation, atomicCopyParentEdges } from './atomic.ts';
 import { relationDatabase, registerRelationDatabase } from './storage.ts';
 import { sql, type Kysely, type Selectable } from "kysely";
 import { ulid } from "ulidx";
@@ -765,6 +765,7 @@ export class RelationRepository {
 	 * duplicate that cannot carry its selection should do.
 	 */
 	async copyParentEdges(fromParentGroup: string, toParentGroup: string): Promise<string[]> {
+		if (this.database) return atomicCopyParentEdges(this.database, this, fromParentGroup, toParentGroup);
 		const rows = await this.db
 			.selectFrom("_cms_content_references")
 			.selectAll()

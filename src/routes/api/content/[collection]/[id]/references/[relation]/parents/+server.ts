@@ -1,7 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { withRelationRequest } from '../../../../../../../../lib/server/relations/http.ts';
 import { parseQuery,isParseError } from '../../../../../../../../lib/server/menus/parse.ts';
-import { unwrapResult,apiError } from '../../../../../../../../lib/server/menus/http-errors.ts';
+import { unwrapResult,apiError } from '../../../../../../../../lib/server/relations/response.ts';
 import { cursorPaginationQuery } from '../../../../../../../../lib/server/relations/pagination.ts';
 export const prerender=false;
 export const GET:RequestHandler=event=>withRelationRequest(event,false,'content','REFERENCES_GET_ERROR','Failed to get references',async service=>{

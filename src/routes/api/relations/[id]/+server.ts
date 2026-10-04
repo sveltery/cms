@@ -1,7 +1,8 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { withRelationRequest } from '../../../../lib/server/relations/http.ts';
 import { parseBody,isParseError } from '../../../../lib/server/menus/parse.ts';
-import { unwrapResult,apiError } from '../../../../lib/server/menus/http-errors.ts';
+import { apiError } from '../../../../lib/server/menus/http-errors.ts';
+import { unwrapResult } from '../../../../lib/server/relations/response.ts';
 import { updateRelationBody } from '../../../../lib/server/relations/schemas.ts';
 export const prerender=false;
 export const GET:RequestHandler=event=>withRelationRequest(event,false,'schema','RELATION_GET_ERROR','Failed to get relation',async service=>{

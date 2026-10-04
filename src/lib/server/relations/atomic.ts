@@ -115,3 +115,47 @@ export async function atomicDeleteRelation(database: CmsDatabase, repo: Relation
     db.deleteFrom('_cms_relations').where('id', '=', id).compile()]);
   return (results[1].numAffectedRows ?? 0n) > 0n;
 }
+
+/** A duplicated selection spans relations, so all relation plans commit together. */
+export async function atomicCopyParentEdges(database: CmsDatabase, repo: RelationRepository, from: string, to: string): Promise<string[]> {
+  const db = dbFor(database);
+  const original = await db.selectFrom('_cms_content_references').selectAll().where('parent_group', '=', from).execute();
+  if (!original.length) return [];
+  const grouped = new Map<string, Edge[]>();
+  const now = new Date().toISOString();
+  for (const row of original) {
+    const rows = grouped.get(row.relation_id) ?? [];
+    rows.push({...row,id:ulid(),parent_group:to,created_at:now});
+    grouped.set(row.relation_id,rows);
+  }
+  const plans: {relation:Relation;rows:Edge[]}[] = [];
+  const statements: CompiledQuery[] = [];
+  for (const [id,rows] of grouped) {
+    const relation = await repo.findById(id);
+    if (!relation) throw new Error('Reference relation no longer exists');
+    const token = `relation-copy:${ulid()}`;
+    plans.push({relation,rows});
+    statements.push(relationGuard(db,relation,token),...addPlan(db,rows,'child',relation.maxParentsPerChild,token),
+      sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db));
+  }
+  try { await database.atomicBatch(statements); return []; }
+  catch (cause) {
+    if (!(cause instanceof Error) || !/CHECK constraint failed:\s*pass\s*=\s*1/.test(cause.message)) throw cause;
+    // Validate actual current definitions before identifying an actual refused
+    // child. A definition change is a failed operation, not a fabricated refusal.
+    for (const {relation} of plans) {
+      const current = await repo.findById(relation.id);
+      if (!current || current.slug !== relation.slug || current.parentCollection !== relation.parentCollection
+        || current.childCollection !== relation.childCollection || current.maxChildrenPerParent !== relation.maxChildrenPerParent
+        || current.maxParentsPerChild !== relation.maxParentsPerChild) throw cause;
+    }
+    for (const {relation,rows} of plans) {
+      if (relation.maxParentsPerChild === null) continue;
+      for (const row of rows) {
+        const count = await repo.countParents(relation.id,row.child_group);
+        if (count >= relation.maxParentsPerChild) return [row.child_group];
+      }
+    }
+    throw cause;
+  }
+}

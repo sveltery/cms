@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { unwrapResult } from '../src/lib/server/menus/http-errors.ts';
+import { unwrapResult } from '../src/lib/server/relations/response.ts';
 
 // Pure envelope/status comparison for the Source codes actually emitted by
 // relations. No new credential, session, protected HTTP or race probe.

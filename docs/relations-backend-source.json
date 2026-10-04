@@ -235,6 +235,54 @@
       "sha256": "e354441e19a9013b520112fc1722a1e861ea0a381ceec7ff4e28218bc9c652f7",
       "gitBlob": "fe714e5ad514485fe1737585c663e470d50519df",
       "runtimeStatus": "unexecuted"
+    },
+    {
+      "sourcePath": "packages/core/src/api/errors.ts",
+      "path": "parity/emdash/relations-source/authority/packages/core/src/api/errors.ts.txt",
+      "bytes": 21806,
+      "sha256": "e1d2ffcf77f31ffef22c8a18c4ea6cbb0cd86bb8d950c02d7ca82de3e2f2aed5",
+      "gitBlob": "2e99070d97edc14d2797795e13cc82636a0cf500",
+      "runtimeStatus": "unexecuted"
+    },
+    {
+      "sourcePath": "packages/core/src/api/schemas/common.ts",
+      "path": "parity/emdash/relations-source/authority/packages/core/src/api/schemas/common.ts.txt",
+      "bytes": 4130,
+      "sha256": "9df0fc5f1d40a33f87c131b151278ba639f35013b387c7b7bef15523c11c3e08",
+      "gitBlob": "ba9be767aa9a2c564f3ebfd2c4106ad904324c59",
+      "runtimeStatus": "unexecuted"
+    },
+    {
+      "sourcePath": "packages/core/tests/utils/test-db.ts",
+      "path": "parity/emdash/relations-source/authority/packages/core/tests/utils/test-db.ts.txt",
+      "bytes": 18803,
+      "sha256": "0e6a59b5d2109e4134aed1277f82089725a53fe079ee0ec0c2622169d2480dc0",
+      "gitBlob": "b75bd5b5770e44050b2d0da28e87c155c603ed66",
+      "runtimeStatus": "unexecuted"
+    },
+    {
+      "sourcePath": "packages/core/tests/integration/content/content-references-write.test.ts",
+      "path": "parity/emdash/relations-source/authority/packages/core/tests/integration/content/content-references-write.test.ts.txt",
+      "bytes": 40389,
+      "sha256": "8e49da191c1c8b0f2823b5f14433283cf5b7ce1151f53b4f257ff98bd3d9df2c",
+      "gitBlob": "0f335b8fe9d2f89bebd0cca6b0bb853cb2cdde7e",
+      "runtimeStatus": "unexecuted"
+    },
+    {
+      "sourcePath": "packages/core/tests/integration/content/reference-constraints.test.ts",
+      "path": "parity/emdash/relations-source/authority/packages/core/tests/integration/content/reference-constraints.test.ts.txt",
+      "bytes": 15916,
+      "sha256": "cfa9479ab94bd82ae2acf61754d8c2cf8d5dff37a8f7597db7514051dad26459",
+      "gitBlob": "e4ec1aba701c379286373cdce3d3bc8cf990858f",
+      "runtimeStatus": "unexecuted"
+    },
+    {
+      "sourcePath": "packages/core/tests/integration/content/reference-draft-lifecycle.test.ts",
+      "path": "parity/emdash/relations-source/authority/packages/core/tests/integration/content/reference-draft-lifecycle.test.ts.txt",
+      "bytes": 23200,
+      "sha256": "ea143e05048181775e65e23ac7d3172e826a67054035193422f66d0a3a531121",
+      "gitBlob": "abfcbb38494d8183b29a2901b86efa5e411ec3b1",
+      "runtimeStatus": "unexecuted"
     }
   ],
   "wholeTestFamilies": [
@@ -443,6 +491,64 @@
         "bytes": 0,
         "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       }
+    ]
+  },
+  "duplicateAndResponseDevelopment": {
+    "nativeCompletedCallbacks": 7,
+    "nativeValueReds": 4,
+    "controlsAlreadyGreen": 3,
+    "originalSourceWholeCallbacksAfterRefactor": 87,
+    "sourceCausalRedCredit": 0,
+    "checker": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "nativeResponseTransport": "Initial test imports the actual currently consumed shared response primitive, then the owned Source-faithful relation adapter after producer replacement; expectation/envelope remain unchanged. No shared cache/auth/response owner overwritten.",
+    "rawEvidence": [
+      {
+        "path": "docs/relations-backend-evidence/atomic-copy/relations-copy-response-first-red.log",
+        "bytes": 9641,
+        "sha256": "c13eaa15d64895b6feb15699b304a96d94acbd72786ffb31a456cb444f4bb47e"
+      },
+      {
+        "path": "docs/relations-backend-evidence/atomic-copy/relations-copy-response-first-green.log",
+        "bytes": 5001,
+        "sha256": "fd50fd507771dd630f6ddee7627513dab7f9a54648197cdd86fa094dafe35bb7"
+      },
+      {
+        "path": "docs/relations-backend-evidence/atomic-copy/relations-refactor-guard.log",
+        "bytes": 115,
+        "sha256": "8534a8212422ae385bb684d29410ea500ce093016b820d9a04870a0f449d088e"
+      },
+      {
+        "path": "docs/relations-backend-evidence/atomic-copy/relations-core-final-development.json",
+        "bytes": 14573,
+        "sha256": "0ecbb0433f69a03e106decab92de49c50581e2e536954d496e0032e4185bb1d5"
+      },
+      {
+        "path": "docs/relations-backend-evidence/atomic-copy/relations-core-final-development.log",
+        "bytes": 697,
+        "sha256": "bd167d36c3359186f9222ac5fb4666f298763158e100a61cf3b077385f332094"
+      },
+      {
+        "path": "docs/relations-backend-evidence/atomic-copy/relations-handlers-refactor.json",
+        "bytes": 15045,
+        "sha256": "acd15a296b48d015803b105333de004d405d078b9553aa7ec261a3f120a5567e"
+      },
+      {
+        "path": "docs/relations-backend-evidence/atomic-copy/relations-handlers-refactor.log",
+        "bytes": 541,
+        "sha256": "10c6ab5d17dc0591bdd4f0f750f4341c5cfcdbc630f6ae19f3f61c6b5ee7146a"
+      },
+      {
+        "path": "docs/relations-backend-evidence/atomic-copy/relations-check-copy-response.log",
+        "bytes": 151,
+        "sha256": "47e1a29fe8cb9679ab8b2f9feaec5d539606bb28858388b95f272519a557815b"
+      }
+    ],
+    "remaining": [
+      "full content reference lifecycle needs actual published sole lifecycle fixed-plan owner",
+      "fresh configured review and normal13/secured9 final gates"
     ]
   }
 }
