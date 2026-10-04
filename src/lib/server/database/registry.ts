@@ -40,10 +40,13 @@ function field(row: FieldRow): Field {
 export { field as fieldFromRow };
 export class SchemaRegistry {
   private readonly database: CmsDatabase;
-  private readonly searchOwner: FTSManager;
+  private configuredSearchOwner?: FTSManager;
   constructor(database: CmsDatabase, searchOwner?: FTSManager) {
     this.database = database;
-    this.searchOwner = searchOwner ?? new FTSManager(database.db as any);
+    this.configuredSearchOwner = searchOwner;
+  }
+  private get searchOwner(): FTSManager {
+    return this.configuredSearchOwner ??= new FTSManager(this.database.db as any);
   }
 
   async getCollection(input: unknown): Promise<Collection | null> {

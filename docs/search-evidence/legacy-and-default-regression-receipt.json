@@ -1,0 +1,92 @@
+{
+  "feature": "Search101 ordinary legacy/service-construction regressions",
+  "baseHead": "f9cd9ece12efa69a41115972fbf51a049498eda0",
+  "currentProductNotCommitted": true,
+  "originalDefault": {
+    "callbacks": 1492,
+    "pass": 1470,
+    "fail": 22,
+    "skip": 0,
+    "cancelled": 0
+  },
+  "failureGroups": {
+    "historicalV5AbsentSearchConfig": 9,
+    "eagerRegistryDatabaseAccess": 12,
+    "nativeAdminCount23VersusSearchManage24": 1
+  },
+  "currentCorrection": {
+    "registry": "Lazy same FTS owner; no storage access during service construction",
+    "fts": "Actual PRAGMA _cms_collections readiness before search snapshot; only absent search provider omits FTS plan; installed inactive and active guards unchanged",
+    "creator": "Original optional-column insertion restored at f9; actual canonical SQL DEFAULT0 preserved"
+  },
+  "affectedUnchangedFamilies": {
+    "files": 7,
+    "callbacks": 115,
+    "pass": 115,
+    "fail": 0,
+    "skip": 0
+  },
+  "historicalTrashWholeFamily": {
+    "callbacks": 18,
+    "pass": 18,
+    "fail": 0
+  },
+  "postCreatorRepairSelectedSearch": {
+    "source": 61,
+    "native": 27,
+    "pass": 88,
+    "fail": 0,
+    "skip": 0
+  },
+  "limits": [
+    "One Native administrator permission-cardinality assertion remains stale; no protected assertion edited without Root finite qualification",
+    "Latest lazy/readiness correction still needs selected whole88 rerun",
+    "Earlier572 default raw is partial failure followed by owned runner termination; no full count inferred",
+    "Source initial causal repair credit0; Native supplemental TDD evidence remains separate",
+    "Source assertion/data/clock and providers/default SQL/auth guards unchanged",
+    "Full SDK/API/public/UI/MCP/D1/final gates/review/merge unfinished",
+    "Public upload currently rejected pending specific approval; these are local regular development artifacts"
+  ],
+  "raw": [
+    {
+      "path": "docs/search-evidence/legacy-default-partial-failure.log",
+      "bytes": 56625,
+      "sha256": "78d1f414ed739d88de44aae8402a5682b06f256d1d1dfa88861abb8d33509346"
+    },
+    {
+      "path": "docs/search-evidence/legacy-trash-fix-original18.log",
+      "bytes": 1949,
+      "sha256": "03c7f1be2c33d423dd77da1b2ef57d041ba6738d721bc2dd6ddfadb8061b6785"
+    },
+    {
+      "path": "docs/search-evidence/default-f9-original1492.log",
+      "bytes": 191431,
+      "sha256": "703605d0d143cfc8738f43e31e9a4f4f65d15e9c99ae60ded65db0c9fc0f938c"
+    },
+    {
+      "path": "docs/search-evidence/default-regression-fix-original115.log",
+      "bytes": 12885,
+      "sha256": "c5112713cdcb0a343b50e00eefe1355d27e92fc0820aaa12697bb63274f60a8c"
+    },
+    {
+      "path": "docs/search-evidence/legacy-creator-fix-core76.log",
+      "bytes": 2626,
+      "sha256": "c229fae74e41d73fd066ce816b58414c3098dfda5694defbce70a53d7f89145d"
+    },
+    {
+      "path": "docs/search-evidence/legacy-creator-fix-core76.json",
+      "bytes": 27971,
+      "sha256": "f1f27ed76572d83c75c5889bdceaef68ed531f66619528541fda87eac4e8bd31"
+    },
+    {
+      "path": "docs/search-evidence/legacy-creator-fix-review12.log",
+      "bytes": 512,
+      "sha256": "3600f891f300224f2250a82f945c207f58a8eaf5dff944e5394bad659a7ee5b4"
+    },
+    {
+      "path": "docs/search-evidence/legacy-creator-fix-review12.json",
+      "bytes": 6025,
+      "sha256": "36fdc94d9a2b0a77357e5a3f343723535e8cb496efc3d13f205bd4eb8344225d"
+    }
+  ]
+}

@@ -135,6 +135,11 @@ export class FTSManager {
 	): Promise<SearchSchemaPlan> {
 		if (!isSqlite(this.db)) return { before: [], after: [] };
 		this.validateInputs(collectionSlug);
+		// Historical metadata may precede the search provider. Its ordinary
+		// schema mutations remain usable while that provider is absent; once
+		// installed, every inactive or active configuration uses the full guard.
+		const columns = await sql<{ name: string }>`PRAGMA table_info(_cms_collections)`.execute(this.db);
+		if (!columns.rows.some(column => column.name === "search_config")) return { before: [], after: [] };
 		const result = await sql<SearchSchemaSnapshot>`SELECT c.id, c.slug, c.supports,
 			c.search_config, c.title_field, c.version, c.updated_at,
 			(SELECT json_group_array(json_object('id', f.id, 'slug', f.slug, 'type', f.type,
