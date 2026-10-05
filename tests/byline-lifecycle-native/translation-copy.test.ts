@@ -41,6 +41,13 @@ describe('byline copy through the one content lifecycle',()=>{
   const translated=await service.createContent({type:'post',locale:'fr',translationOf:original.id,data:{title:'French'}});
   expect(translated.primaryBylineId).toBe(en.translationGroup);expect(translated.bylines).toEqual([]);expect(translated.byline).toBeNull();
  });
+ it('hydrates an explicitly unscoped list by each entry locale while keeping the default list scoped',async()=>{
+  const {en,fr}=await profile();const original=await service.createContent({type:'post',data:{title:'English'},bylines:[{bylineId:en.id}]});
+  const translated=await service.createContent({type:'post',locale:'fr',translationOf:original.id,data:{title:'French'}});
+  const defaults=await service.listContent({type:'post'});expect(defaults.items.map(item=>item.id)).toEqual([original.id]);
+  const all=await service.listContent({type:'post'},{allLocales:true});
+  expect(all.items.find(item=>item.id===original.id)?.byline?.id).toBe(en.id);expect(all.items.find(item=>item.id===translated.id)?.byline?.id).toBe(fr.id);
+ });
  it('refuses a second translation at the same locale without adding extra row or credit writes',async()=>{
   const {en}=await profile();const original=await service.createContent({type:'post',data:{title:'English'},bylines:[{bylineId:en.id}]});
   await service.createContent({type:'post',locale:'fr',translationOf:original.id,data:{title:'French'}});
@@ -55,7 +62,7 @@ describe('byline copy through the one content lifecycle',()=>{
  });
  it('rolls back the duplicate row when its copied primary pointer fails',async()=>{
   const {en}=await profile();const original=await service.createContent({type:'post',data:{title:'Story'},bylines:[{bylineId:en.id}]});
-  await sql`CREATE TRIGGER original_byline_copy_failure BEFORE UPDATE OF primary_byline_id ON ec_post WHEN NEW.id!=${original.id} BEGIN SELECT RAISE(ABORT,'original-copy-rollback'); END`.execute(database.db);
+  await sql`CREATE TRIGGER original_byline_copy_failure BEFORE UPDATE OF primary_byline_id ON ec_post WHEN NEW.slug='story-copy' BEGIN SELECT RAISE(ABORT,'original-copy-rollback'); END`.execute(database.db);
   await expect(service.duplicateContent(key(original.id))).rejects.toThrow('original-copy-rollback');
   expect((await sql`SELECT id FROM ec_post`.execute(database.db)).rows).toEqual([{id:original.id}]);expect((await sql`SELECT content_id FROM _cms_content_bylines`.execute(database.db)).rows).toEqual([{content_id:original.id}]);
  });
