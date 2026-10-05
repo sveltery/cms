@@ -69,7 +69,8 @@ test('required validate runs after every outcome and forwards every mandatory re
 test('local bootstrap and the entire secured browser job remain byte-exact', () => {
   const hash = (value) => createHash('sha256').update(value).digest('hex');
   assert.equal(hash(readFileSync(join(root, 'scripts/bootstrap.sh'))), '2ee61e1f3c84c6dfbbf69aeb732e3615781e4e2cfb312011d23fb240a75592a8');
-  for (const input of [workflow, `${workflow}\n  additive-feature-browser:\n    runs-on: ubuntu-22.04\n    timeout-minutes: 15\n`]) {
+  const additiveJobIds = ['additive-feature-browser', 'rich104-html-source', 'Extra_task', '_doc'];
+  for (const input of [workflow, ...additiveJobIds.map((id) => `${workflow}\n  ${id}:\n    runs-on: ubuntu-22.04\n    timeout-minutes: 15\n`)]) {
     const section = input.match(/^  browser:\n[\s\S]*?(?=^  [a-z][a-z_-]*:|$(?![\s\S]))/m);
     assert.ok(section, 'the secured browser job exists');
     assert.equal(hash(section[0].replace(/\n+$/, '\n')), 'a20f5891e0c2e4fb056f75a10bde8fd026fd711a88b3fe83f656832f4b863e78');
