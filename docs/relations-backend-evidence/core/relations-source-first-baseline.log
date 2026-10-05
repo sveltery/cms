@@ -1,0 +1,40 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-relations-backend
+
+ ❯ parity/emdash/relations-source/executable/packages/core/tests/integration/database/relation-repository.test.ts (0 test)
+ ✓ parity/emdash/relations-source/executable/packages/core/tests/integration/database/content-references.test.ts (8 tests) 35ms
+ ❯ parity/emdash/relations-source/executable/packages/core/tests/integration/database/relation-set-children-writes.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/relations-source/executable/packages/core/tests/integration/database/relation-repository.test.ts [ parity/emdash/relations-source/executable/packages/core/tests/integration/database/relation-repository.test.ts ]
+Error: Cannot find module '/src/lib/server/relations/repository.ts' imported from /workspace/cms-complete-relations-backend/parity/emdash/relations-source/executable/packages/core/tests/integration/database/relation-repository.test.ts
+ ❯ parity/emdash/relations-source/executable/packages/core/tests/integration/database/relation-repository.test.ts:4:1
+      2| import { afterEach, beforeEach, expect, it } from "vitest";
+      3|
+      4| import { RelationRepository } from "../../../src/database/repositories…
+       | ^
+      5| import {
+      6|  describeEachDialect,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  parity/emdash/relations-source/executable/packages/core/tests/integration/database/relation-set-children-writes.test.ts [ parity/emdash/relations-source/executable/packages/core/tests/integration/database/relation-set-children-writes.test.ts ]
+Error: Cannot find module '/src/lib/server/relations/repository.ts' imported from /workspace/cms-complete-relations-backend/parity/emdash/relations-source/executable/packages/core/tests/integration/database/relation-set-children-writes.test.ts
+ ❯ parity/emdash/relations-source/executable/packages/core/tests/integration/database/relation-set-children-writes.test.ts:13:1
+     11|
+     12| import { runMigrations } from "../../../src/database/migrations/runner…
+     13| import { RelationRepository } from "../../../src/database/repositories…
+       | ^
+     14| import type { Database as DatabaseSchema } from "../../../src/database…
+     15| import { openNodeSqliteDatabase } from "../../../src/db/node-sqlite-co…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 1 passed (3)
+      Tests  8 passed (8)
+   Start at  17:05:25
+   Duration  773ms (transform 105ms, setup 0ms, import 184ms, tests 35ms, environment 0ms)
+
+JSON report written to /tmp/relations-source-first-baseline.json

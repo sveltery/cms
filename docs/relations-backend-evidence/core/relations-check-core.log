@@ -1,0 +1,33 @@
+Loading svelte-check in workspace: /workspace/cms-complete-relations-backend
+Getting Svelte diagnostics...
+
+/workspace/cms-complete-relations-backend/parity/emdash/relations-source/executable/packages/core/src/database/migrations/043_content_references.ts:4:34
+Error: Cannot find module '../dialect-helpers.js' or its corresponding type declarations. 
+import { getI18nConfig } from "../../i18n/config.js";
+import { currentTimestamp } from "../dialect-helpers.js";
+
+/workspace/cms-complete-relations-backend/parity/emdash/relations-source/executable/packages/core/src/database/migrations/086_relations_structural.ts:4:61
+Error: Cannot find module '../dialect-helpers.js' or its corresponding type declarations. 
+
+import { columnExists, currentTimestamp, tableExists } from "../dialect-helpers.js";
+
+/workspace/cms-complete-relations-backend/tests/helpers/relations/source-db.ts:27:92
+Error: Argument of type 'Kysely<Database>' is not assignable to parameter of type 'Kysely<unknown>'.
+  The types returned by 'fn.any(...)' are incompatible between these types.
+    Type 'KyselyTypeError<"any(expr) call failed: expr must be an array"> | ExpressionWrapper<Database, keyof Database, unknown>' is not assignable to type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'.
+      Property '__kyselyTypeError__' is missing in type 'ExpressionWrapper<Database, keyof Database, unknown>' but required in type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'. 
+export function withRelationReferenceNamespace(db: Kysely<Database>): Kysely<Database> { return db.withPlugin(relationReferencePlugin); }
+export async function runMigrations(db: Kysely<Database>): Promise<void> { await relations(db); await structural(db); }
+export interface DialectTestContext { db: Kysely<Database>; dialect: 'sqlite' | 'postgres' }
+
+/workspace/cms-complete-relations-backend/tests/helpers/relations/source-db.ts:27:114
+Error: Argument of type 'Kysely<Database>' is not assignable to parameter of type 'Kysely<unknown>'.
+  The types returned by 'fn.any(...)' are incompatible between these types.
+    Type 'KyselyTypeError<"any(expr) call failed: expr must be an array"> | ExpressionWrapper<Database, keyof Database, unknown>' is not assignable to type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'.
+      Property '__kyselyTypeError__' is missing in type 'ExpressionWrapper<Database, keyof Database, unknown>' but required in type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'. 
+export function withRelationReferenceNamespace(db: Kysely<Database>): Kysely<Database> { return db.withPlugin(relationReferencePlugin); }
+export async function runMigrations(db: Kysely<Database>): Promise<void> { await relations(db); await structural(db); }
+export interface DialectTestContext { db: Kysely<Database>; dialect: 'sqlite' | 'postgres' }
+
+====================================
+svelte-check found 4 errors and 0 warnings in 3 files
