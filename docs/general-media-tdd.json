@@ -116,6 +116,26 @@
       "privatePath": "/tmp/general-media-native-r2-first-red.log",
       "bytes": 957,
       "sha256": "b6a70298512e8aa2aba921800c3775b763fcc7e3c16a038cb6b6f6778bb91ff6"
+    },
+    {
+      "privatePath": "/tmp/general-media-r2-source-first-implementation.log",
+      "bytes": 227,
+      "sha256": "87ff01d9a3e8b0c65698bfb6d8d0c23e279eee8600f1b926567efbea503cb635"
+    },
+    {
+      "privatePath": "/tmp/general-media-native-r2-first-implementation.log",
+      "bytes": 232,
+      "sha256": "9784b20e1f651db1fd02d78cf4549b05e34b2d17df20feadcce50a021b541649"
+    },
+    {
+      "privatePath": "/tmp/general-media-check-r2-first.log",
+      "bytes": 4074,
+      "sha256": "83fcd9a18728e924dcaeeee8fdacfea8f10f833587cb466479f897b83e96ed35"
+    },
+    {
+      "privatePath": "/tmp/general-media-check-r2-second.log",
+      "bytes": 216,
+      "sha256": "834cdc203986df67b0e7bd3abc36ee349dc3f316e5e840067a8126accb31fb73"
     }
   ],
   "implementationCheckpoint": {
@@ -150,5 +170,13 @@
     "nativeR2ValueReds": 1,
     "otherNativePassed": 11,
     "scope": "Whole Source R2 test unchanged with supplied Original mock; native missing-adapter value red precedes actual local Miniflare binding implementation. No external R2/credentials/signature or Source framework env factory evidence."
+  },
+  "r2Checkpoint": {
+    "wholeSourceMockCallbacksPassed": 1,
+    "nativeWorkflowsPassed": 12,
+    "nativeR2ValueRedsFixed": 1,
+    "checkerErrors": 0,
+    "checkerWarnings": 0,
+    "scope": "Exact complete pinned R2Storage class/URL constant. Actual owned local Miniflare R2/rawD1 byte lifecycle. Native ambient Web/Worker stream type-only binding contract; no runtime wrapping. Zero actual external bucket/credential/signature/Source env-factory credit."
   }
 }
