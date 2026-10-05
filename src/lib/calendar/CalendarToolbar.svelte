@@ -1,0 +1,11 @@
+<script lang="ts">
+  // Native Calendar toolbar extracted before the targeted Source zone controls.
+  // EmDash1.1.0 pin913cb1bb; MIT notices/emdash-MIT.txt.
+  import type { CalendarDisplay } from './calendar.ts';
+  let {title,display,zoneTime,loading,onPrevious,onNext,onToday,onPreviewPrevious,onPreviewNext}:{
+    title:string;display:CalendarDisplay;zoneTime:number;loading:boolean;
+    onPrevious:()=>void;onNext:()=>void;onToday:()=>void;onPreviewPrevious?:()=>void;onPreviewNext?:()=>void;
+  }=$props();
+</script>
+<div class="toolbar"><div><h2>{title}</h2><p title={`Times are in ${display.zoneName}.`}>{display.zoneShortName(zoneTime)}{#if display.viewerZoneDiffers} · Your time: {display.viewerZoneShortName(zoneTime)}{/if}</p></div><div class="month-nav">{#if loading}<span class="loader" role="img" aria-label="Loading">◌</span>{/if}<button type="button" aria-label="Previous month" onclick={onPrevious} onpointerenter={onPreviewPrevious} onfocus={onPreviewPrevious}>‹</button><button type="button" onclick={onToday}>Today</button><button type="button" aria-label="Next month" onclick={onNext} onpointerenter={onPreviewNext} onfocus={onPreviewNext}>›</button></div></div>
+<style>.toolbar{display:flex;justify-content:space-between;gap:1rem;align-items:start;}h2{margin:0;font-size:1.25rem;}p{font-size:.875rem;color:var(--muted-foreground,#666);}.month-nav{display:flex;gap:.35rem;align-items:center;}button{font:inherit;color:inherit;background:var(--card,#fff);border:1px solid var(--border,#ccc);border-radius:.35rem;padding:.55rem .8rem;cursor:pointer;}button:focus-visible{outline:2px solid var(--ring,#165ccc);outline-offset:2px;}.loader{font-size:1.25rem;}</style>
