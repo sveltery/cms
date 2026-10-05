@@ -10,6 +10,10 @@ import {RelationRepository} from '../src/lib/server/relations/repository.ts';
 import {RevisionRepository} from '../src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts';
 import {servicePrincipal} from '../src/lib/server/auth/composition.ts';
 import {Role} from '../src/lib/server/auth/roles.ts';
+import {runWithContext} from '../src/lib/server/menus/context.ts';
+import {requestCached} from '../src/lib/server/menus/request-cache.ts';
+import {cachedQuery,contentCacheNamespaces,__setObjectCacheBackendForTests} from '../src/lib/server/menus/object-cache.ts';
+import {createDeferredTaskTracker,waitForDeferredTasks} from '../src/lib/server/redirects/deferred-tasks.ts';
 
 // Supplemental actual-owner controls derived from the complete pinned
 // reference-draft-lifecycle and reference-constraints families. These are not
@@ -88,3 +92,50 @@ test('Node hydration pages the actual 51-entry draft selection and retains its n
   assert.ok(selection?.nextCursor);
  }finally{await host.close();}
 });
+
+function memoryBackend(){
+ const values=new Map<string,string>();
+ return {values,async get(key:string){return values.get(key)??null;},async set(key:string,value:string){values.set(key,value);},async delete(key:string){values.delete(key);}};
+}
+async function cacheHost(run:(value:Awaited<ReturnType<typeof setup>>,tracker:ReturnType<typeof createDeferredTaskTracker>)=>Promise<void>){
+ const value=await setup('Node');const backend=memoryBackend();const tracker=createDeferredTaskTracker(()=>{});
+ __setObjectCacheBackendForTests(backend,{revalidate:0});
+ try{await run(value,tracker);await waitForDeferredTasks();}finally{__setObjectCacheBackendForTests(null);await value.host.close();}
+}
+test('a committed reference draft refreshes only the selecting collection in the same actual request cache',async()=>cacheHost(async({owner,a,b,published},tracker)=>{
+ await runWithContext({editMode:false,deferredTasks:tracker},async()=>{
+  let reads=0;const read=()=>requestCached('collection:post:',async()=>{reads++;return (await owner.getContent({type:'post',id:published.id,locale:'en'})).references?.related?.children.map(child=>child.id);});
+  const sibling=await requestCached('collection:post2:',async()=>({retained:true}));
+  const unrelated=await requestCached('menu:header',async()=>({retained:true}));
+  assert.deepEqual(await read(),[a.id]);
+  await owner.updateContent({type:'post',id:published.id,locale:'en',references:{related:[b.id]},expected:{version:published.version,updatedAt:published.updatedAt}});
+  assert.deepEqual(await read(),[b.id]);assert.equal(reads,2);
+  assert.equal(await requestCached('collection:post2:',async()=>({retained:false})),sibling);
+  assert.equal(await requestCached('menu:header',async()=>({retained:false})),unrelated);
+ });
+}));
+test('a committed reference-only draft refreshes the existing configured L2 collection snapshot',async()=>cacheHost(async({owner,a,b,published},tracker)=>{
+ let reads=0;const read=()=>runWithContext({editMode:false,deferredTasks:tracker},()=>cachedQuery({namespace:contentCacheNamespaces('post'),key:'actual-reference-read',load:async()=>{reads++;return(await owner.getContent({type:'post',id:published.id,locale:'en'})).references?.related?.children.map(child=>child.id);}}));
+ assert.deepEqual(await read(),[a.id]);await waitForDeferredTasks();assert.deepEqual(await read(),[a.id]);assert.equal(reads,1);
+ await owner.updateContent({type:'post',id:published.id,locale:'en',references:{related:[b.id]},expected:{version:published.version,updatedAt:published.updatedAt}});
+ assert.deepEqual(await read(),[b.id]);assert.equal(reads,2);
+}));
+test('publication with no staged reference selection refreshes the bound collection snapshot',async()=>cacheHost(async({owner,published},tracker)=>{
+ let reads=0;const read=()=>runWithContext({editMode:false,deferredTasks:tracker},()=>cachedQuery({namespace:contentCacheNamespaces('post'),key:'actual-published-read',load:async()=>{reads++;return(await (owner as any).getPublishedContent({type:'post',id:published.id,locale:'en'})).data.title;}}));
+ assert.equal(await read(),'Original');await waitForDeferredTasks();assert.equal(await read(),'Original');
+ const saved=await owner.updateContent({type:'post',id:published.id,locale:'en',data:{title:'Retitled'},expected:{version:published.version,updatedAt:published.updatedAt}});
+ assert.equal(await read(),'Original');assert.equal(reads,1);
+ await owner.publish({type:'post',id:published.id,locale:'en',expected:{version:saved.item.version,updatedAt:saved.item.updatedAt}});
+ assert.equal(await read(),'Retitled');assert.equal(reads,2);
+}));
+test('an actual staged-reference SQL abort retains warm L1/L2 snapshots and the stored selection',async()=>cacheHost(async({host,owner,a,b,published},tracker)=>{
+ await runWithContext({editMode:false,deferredTasks:tracker},async()=>{
+  let reads=0;const read=()=>requestCached('collection:post:',()=>cachedQuery({namespace:contentCacheNamespaces('post'),key:'rollback-reference-read',load:async()=>{reads++;return(await owner.getContent({type:'post',id:published.id,locale:'en'})).references?.related?.children.map(child=>child.id);}}));
+  assert.deepEqual(await read(),[a.id]);await waitForDeferredTasks();
+  await sql`CREATE TRIGGER read_stage_actual_abort BEFORE INSERT ON _cms_revisions BEGIN SELECT RAISE(ABORT,'actual read stage failure'); END`.execute(host.database.db);
+  const failure=await owner.updateContent({type:'post',id:published.id,locale:'en',references:{related:[b.id]},expected:{version:published.version,updatedAt:published.updatedAt}}).then(()=>null,error=>error);
+  assert.match(String(failure),/actual read stage failure/);
+  assert.deepEqual(await read(),[a.id]);assert.equal(reads,1);
+  assert.deepEqual((await owner.getContent({type:'post',id:published.id,locale:'en'})).references?.related?.children.map(child=>child.id),[a.id]);
+ });
+}));
