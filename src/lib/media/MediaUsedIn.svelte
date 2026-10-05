@@ -11,6 +11,11 @@
  let manifest=$state.raw<MediaManifest|undefined>(),usage=$state.raw<InfiniteQueryObserverResult<InfiniteData<MediaUsageDetailsResponse>,Error>>();
  type UsageObserver=InfiniteQueryObserver<MediaUsageDetailsResponse,Error,InfiniteData<MediaUsageDetailsResponse>,readonly ['media-usage',string],string|undefined>;
  let observer=$state.raw<UsageObserver>(),manifestObserver=$state.raw<QueryObserver<MediaManifest>>();
+ function usageOptions(id:string,enabled:boolean):Parameters<UsageObserver['setOptions']>[0]{
+  return{queryKey:['media-usage',id] as const,queryFn:({pageParam,signal})=>fetchMediaUsageDetails(id,{cursor:pageParam,limit:50,signal}),
+   initialPageParam:undefined as string|undefined,getNextPageParam:page=>page.nextCursor,enabled,retry:false,
+   refetchOnWindowFocus:false,refetchOnReconnect:false,refetchOnMount:'always',gcTime:0};
+ }
  $effect(()=>{const client=queryClient;client.mount();return()=>client.unmount();});
  onDestroy(()=>ownClient.clear());
  $effect(()=>{
@@ -21,15 +26,11 @@
  });
  $effect(()=>{
   const client=queryClient,id=mediaId;
-  const current:UsageObserver=new InfiniteQueryObserver(client,{
-   queryKey:['media-usage',id] as const,queryFn:({pageParam,signal})=>fetchMediaUsageDetails(id,{cursor:pageParam,limit:50,signal}),
-   initialPageParam:undefined as string|undefined,getNextPageParam:page=>page.nextCursor,enabled:untrack(()=>open),retry:false,
-   refetchOnWindowFocus:false,refetchOnReconnect:false,refetchOnMount:'always',gcTime:0,
-  });
+  const current:UsageObserver=new InfiniteQueryObserver(client,usageOptions(id,untrack(()=>open)));
   observer=current;const stop=current.subscribe(result=>usage=result);usage=current.getCurrentResult();
   return()=>{stop();current.destroy();};
  });
- $effect(()=>{const enabled=open;if(observer)observer.setOptions({...observer.options,initialPageParam:undefined as string|undefined,getNextPageParam:page=>page.nextCursor,enabled});if(manifestObserver)manifestObserver.setOptions({...manifestObserver.options,enabled});});
+ $effect(()=>{const enabled=open;if(observer)observer.setOptions(usageOptions(observer.options.queryKey[1],enabled));if(manifestObserver)manifestObserver.setOptions({...manifestObserver.options,enabled});});
  const pages=$derived(usage?.data?.pages??[]),entries=$derived(pages.flatMap(page=>page.items)),settings=$derived(pages[0]?.siteSettings??[]);
  const denied=$derived(usage?.error instanceof MediaUsageAccessDeniedError);
  function aggregate(statuses:readonly MediaUsageCoverageStatus[]):MediaUsageCoverageStatus|undefined{
