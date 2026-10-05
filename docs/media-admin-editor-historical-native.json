@@ -1,0 +1,89 @@
+{
+  "decision": "Root explicit approval 2026-10-05: archive four never-landed unapproved Native candidate suites and solely obsolete cache/image helpers",
+  "sourceCallbackCredit": 0,
+  "nativeAcceptanceCredit": 0,
+  "preservesAllMainAndSourceTests": true,
+  "historicalHead": "9599ad5761c3907a1d5a777d062e7a1e748d541e",
+  "files": [
+    {
+      "originalPath": "tests/media-schema.test.ts",
+      "retainedPath": "parity/emdash/media-admin-editor/historical-native-candidates/tests/media-schema.test.ts",
+      "bytes": 1454,
+      "sha256": "a89047aefec38e74ed085233bb5ed6eb11ab1c637c2922f42a41c212926257cc",
+      "gitBlob": "cf9c8f06128a77aed893fb07ddef80dc041f8165"
+    },
+    {
+      "originalPath": "tests/media-startup.test.ts",
+      "retainedPath": "parity/emdash/media-admin-editor/historical-native-candidates/tests/media-startup.test.ts",
+      "bytes": 5375,
+      "sha256": "3e162cf1d7bb7e8d80c52c6247f646ab60021db48111fd7322d4932344f2d143",
+      "gitBlob": "254643fe2b7b226ecaf1ddcfb51aace660ca36c3"
+    },
+    {
+      "originalPath": "tests/media-cache-worker.test.ts",
+      "retainedPath": "parity/emdash/media-admin-editor/historical-native-candidates/tests/media-cache-worker.test.ts",
+      "bytes": 1327,
+      "sha256": "30e7d7e77635dc558fc8955675b860194647ddbd1e661908e708d14932f2d843",
+      "gitBlob": "8dcd56d34ab7a2daadd2b41232b20b2907b8385b"
+    },
+    {
+      "originalPath": "tests/media-image-worker.test.ts",
+      "retainedPath": "parity/emdash/media-admin-editor/historical-native-candidates/tests/media-image-worker.test.ts",
+      "bytes": 2945,
+      "sha256": "e651fd923d9fe885ac680e86778a8731912c5407186dab33f2d96c5d436921a9",
+      "gitBlob": "38f55e468017f17cd1ce898cefe9c79e88c30c7c"
+    },
+    {
+      "originalPath": "tests/helpers/media-cache-worker.ts",
+      "retainedPath": "parity/emdash/media-admin-editor/historical-native-candidates/tests/helpers/media-cache-worker.ts",
+      "bytes": 1008,
+      "sha256": "4594d37d777a256cef1965e145fc5c3f06a8b6f13f4cd2abd757ecd2c35a025e",
+      "gitBlob": "3066b78e1bda44cda04aeff9888d1ec7789943f9"
+    },
+    {
+      "originalPath": "tests/helpers/media-image-worker.ts",
+      "retainedPath": "parity/emdash/media-admin-editor/historical-native-candidates/tests/helpers/media-image-worker.ts",
+      "bytes": 609,
+      "sha256": "340897130f0df6e358a0ed4fae2060064ca002105304c62ba23f37ec4b2034f5",
+      "gitBlob": "deb39fa99a61aa4d2a84c7c750bde6f3c91ff8d7"
+    },
+    {
+      "originalPath": "tests/media-storage-native/selection.test.ts",
+      "retainedPath": "parity/emdash/media-admin-editor/historical-native-candidates/tests/media-storage-native/selection.test.ts",
+      "bytes": 3941,
+      "sha256": "784bdd841028c71ed6c35997af73eeb62183916e4995a98c1d7ced32ddba8a44",
+      "gitBlob": "b639d7a07753f1e47cbd75d8e82b65370208c818"
+    },
+    {
+      "originalPath": "tests/media-picker-native/picker-real-api.integration.ts",
+      "retainedPath": "parity/emdash/media-admin-editor/historical-native-candidates/tests/media-picker-native/picker-real-api.integration.ts",
+      "bytes": 3927,
+      "sha256": "e6105ced09ef52b06acd36d9fda58a5eb412fc683f43f37161d0bc0d526da789",
+      "gitBlob": "6dc58889ec1c88f3e3109ab570601df27c88ff7e"
+    },
+    {
+      "originalPath": "tests/media-picker-native/picker-detail-api.integration.ts",
+      "retainedPath": "parity/emdash/media-admin-editor/historical-native-candidates/tests/media-picker-native/picker-detail-api.integration.ts",
+      "bytes": 3516,
+      "sha256": "b7bf9c626da909ecada79560c8d18ef6109e032622b838c68b4148dda90fe9e0",
+      "gitBlob": "301a3f76a512d3e49d18921b7dc2284902194568"
+    },
+    {
+      "originalPath": "tests/helpers/media-authenticated-browser.ts",
+      "retainedPath": "parity/emdash/media-admin-editor/historical-native-candidates/tests/helpers/media-authenticated-browser.ts",
+      "bytes": 1642,
+      "sha256": "7ea5ae677fba084d109233a75e738c702f21f355f2f23f054c7a897e6ef42131",
+      "gitBlob": "7e7fb9955afc0f6d3022a0b73df595c203626e2c"
+    },
+    {
+      "originalPath": "tests/media-panel-host/native-row-preservation.browser.tsx",
+      "retainedPath": "parity/emdash/media-admin-editor/historical-native-candidates/tests/media-panel-host/native-row-preservation.browser.tsx",
+      "bytes": 2058,
+      "sha256": "e1d1187844b8452fd30161675afcfb228e1785ff3167c16ecc8f3544c4021a96",
+      "gitBlob": "6e0efc4419a5ac4e1a7ca591b4fc26586e80ad43",
+      "reason": "Never-landed Native controls require obsolete Alt text/Save changes labels and omit the real QueryClient provider. Root read both original bodies and approved byte-exact archival; current native controls are separate, use actual pinned labels and genuine supplied QueryClient."
+    }
+  ],
+  "additionalDecision": "Root explicit full-read approval: archive three additional never-landed Native candidates and unused obsolete authenticated-browser helper, preserving Source/Main tests and protected passkey signature.",
+  "rowControlDecision": "Root explicit full-read approval 2026-10-05; two original Native bodies and all prior history/raw results preserved, zero parity or current acceptance credit."
+}

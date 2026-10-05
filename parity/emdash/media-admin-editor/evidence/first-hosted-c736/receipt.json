@@ -1,0 +1,587 @@
+{
+  "head": "c73698dcba0f938d26e6fa1d60457dcfa2609fac",
+  "run": 37385528464,
+  "attempt": 1,
+  "browser": "official Chromium/headless shell1243; chromiumSandbox true; whole Original Source setup/context unchanged",
+  "artifactArchives": [
+    {
+      "id": 11379440306,
+      "name": "media-source-panel",
+      "bytes": 15512,
+      "digest": "sha256:76e7044015ba8db0be0f3bddbade06d0601ffa6dc42d99a2edd7acc84189d093",
+      "archivePath": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media-source-panel.zip",
+      "members": [
+        {
+          "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media-source-panel/media-source-results.json",
+          "bytes": 462416,
+          "sha256": "396be41eee4ffdf2d7cc21fee3de753b0568483d5ec48bf77f444551222ce780"
+        }
+      ],
+      "result": {
+        "numTotalTestSuites": 10,
+        "numPassedTestSuites": 2,
+        "numFailedTestSuites": 8,
+        "numTotalTests": 98,
+        "numPassedTests": 23,
+        "numFailedTests": 75,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "success": false
+      },
+      "wholeFiles": [
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/FocalPointEditor.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaDetailPanel.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 86,
+          "passed": 11,
+          "failed": 75,
+          "importOrSetupOnly": false
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaDetailPanelNavigation.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaImageCropper.test.tsx",
+          "status": "passed",
+          "expandedCallbacks": 12,
+          "passed": 12,
+          "failed": 0,
+          "importOrSetupOnly": false
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaUsedIn.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/useContainedMediaSize.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        }
+      ]
+    },
+    {
+      "id": 11379305726,
+      "name": "media-source-picker",
+      "bytes": 4561,
+      "digest": "sha256:72f1053c6cbe83e5bef69ae93433e8a4e5cfd02f1ab3a35a043e006e7b7fa846",
+      "archivePath": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media-source-picker.zip",
+      "members": [
+        {
+          "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media-source-picker/media-source-results.json",
+          "bytes": 67580,
+          "sha256": "6444ff90542fb108da77dcc4b1e4c195c9bbb6b3eaba8e9519e7db4dd8a9fdd4"
+        }
+      ],
+      "result": {
+        "numTotalTestSuites": 16,
+        "numPassedTestSuites": 1,
+        "numFailedTestSuites": 15,
+        "numTotalTests": 53,
+        "numPassedTests": 7,
+        "numFailedTests": 46,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "success": false
+      },
+      "wholeFiles": [
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/media-picker-multiselect.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 6,
+          "passed": 1,
+          "failed": 5,
+          "importOrSetupOnly": false
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/BlockKitMediaPickerField.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/ImageFieldRenderer.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaPickerModal.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 37,
+          "passed": 6,
+          "failed": 31,
+          "importOrSetupOnly": false
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaPickerUpload.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 10,
+          "passed": 0,
+          "failed": 10,
+          "importOrSetupOnly": false
+        }
+      ]
+    },
+    {
+      "id": 11378461012,
+      "name": "media-source-settings",
+      "bytes": 522,
+      "digest": "sha256:50d17fc561688b38ac63886cc143857ed5e8898dab8cacb58c6ea818588bc811",
+      "archivePath": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media-source-settings.zip",
+      "members": [
+        {
+          "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media-source-settings/media-source-results.json",
+          "bytes": 892,
+          "sha256": "92cc230253621720d928ec1891d86a29b2ccaf907be15372be8036bbeca07728"
+        }
+      ],
+      "result": {
+        "numTotalTestSuites": 1,
+        "numPassedTestSuites": 0,
+        "numFailedTestSuites": 1,
+        "numTotalTests": 0,
+        "numPassedTests": 0,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "success": false
+      },
+      "wholeFiles": [
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/settings/MediaUsageSettings.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        }
+      ]
+    },
+    {
+      "id": 11378446037,
+      "name": "media-source-image",
+      "bytes": 656,
+      "digest": "sha256:950648d792faf7ff28434bfb0fd423d44c5ecb9a512e3628133b1da4aa94ddb7",
+      "archivePath": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media-source-image.zip",
+      "members": [
+        {
+          "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media-source-image/media-source-results.json",
+          "bytes": 4262,
+          "sha256": "b81cd8ff4e24d9005055d00d838055b492b0cff240b199db567b9b693a1cd9d7"
+        }
+      ],
+      "result": {
+        "numTotalTestSuites": 10,
+        "numPassedTestSuites": 0,
+        "numFailedTestSuites": 10,
+        "numTotalTests": 0,
+        "numPassedTests": 0,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "success": false
+      },
+      "wholeFiles": [
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/editor-image-caption.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/editor-image-media-refresh.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/ImageDetailPanel.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/ImageDropTargets.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/editor/image-alignment.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/editor/image-lqip.test.ts",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/editor/image-metadata.test.ts",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/editor/image-selection.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/editor/image-toolbar.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/editor/image-upload.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        }
+      ]
+    },
+    {
+      "id": 11378271028,
+      "name": "media-source-library",
+      "bytes": 595,
+      "digest": "sha256:2768739e081a28b175514f461153dcdb478555f86dd08ac69ab7e733af43acc7",
+      "archivePath": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media-source-library.zip",
+      "members": [
+        {
+          "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media-source-library/media-source-results.json",
+          "bytes": 2822,
+          "sha256": "c8a9c3dcde2af8be0f33d2db06ad6a0fa142c29131982b24b8e0fe9bd485a4b7"
+        }
+      ],
+      "result": {
+        "numTotalTestSuites": 6,
+        "numPassedTestSuites": 0,
+        "numFailedTestSuites": 6,
+        "numTotalTests": 0,
+        "numPassedTests": 0,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "success": false
+      },
+      "wholeFiles": [
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaFolderDialog.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaImportSummary.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaLibrary.layout.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaLibrary.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/MediaUploadDialog.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/useMediaUploadQueue.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        }
+      ]
+    },
+    {
+      "id": 11378116193,
+      "name": "media-source-helpers",
+      "bytes": 3048,
+      "digest": "sha256:18a632c68e74b1398ce32f7fdf529190ea6bf16867c0805b10a1ea333dfa2273",
+      "archivePath": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media-source-helpers.zip",
+      "members": [
+        {
+          "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media-source-helpers/media-source-results.json",
+          "bytes": 21148,
+          "sha256": "dd3ad6d41d56487d701167d0e299104eb64420d558adfb4da8863d39d3ae7aa6"
+        }
+      ],
+      "result": {
+        "numTotalTestSuites": 23,
+        "numPassedTestSuites": 20,
+        "numFailedTestSuites": 3,
+        "numTotalTests": 65,
+        "numPassedTests": 65,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "success": false
+      },
+      "wholeFiles": [
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/pt-gallery-converters.test.ts",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/pt-image-converters.test.ts",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/lib/crop-image.test.ts",
+          "status": "passed",
+          "expandedCallbacks": 15,
+          "passed": 15,
+          "failed": 0,
+          "importOrSetupOnly": false
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/lib/media-api.test.ts",
+          "status": "passed",
+          "expandedCallbacks": 5,
+          "passed": 5,
+          "failed": 0,
+          "importOrSetupOnly": false
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/lib/media-file-url.test.ts",
+          "status": "passed",
+          "expandedCallbacks": 8,
+          "passed": 8,
+          "failed": 0,
+          "importOrSetupOnly": false
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/lib/media-folders.test.ts",
+          "status": "passed",
+          "expandedCallbacks": 3,
+          "passed": 3,
+          "failed": 0,
+          "importOrSetupOnly": false
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/lib/media-pagination.test.ts",
+          "status": "passed",
+          "expandedCallbacks": 2,
+          "passed": 2,
+          "failed": 0,
+          "importOrSetupOnly": false
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/lib/media-playback.test.ts",
+          "status": "passed",
+          "expandedCallbacks": 3,
+          "passed": 3,
+          "failed": 0,
+          "importOrSetupOnly": false
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/lib/media-search.test.ts",
+          "status": "passed",
+          "expandedCallbacks": 4,
+          "passed": 4,
+          "failed": 0,
+          "importOrSetupOnly": false
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/lib/media-thumbnail.test.ts",
+          "status": "passed",
+          "expandedCallbacks": 8,
+          "passed": 8,
+          "failed": 0,
+          "importOrSetupOnly": false
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/lib/media-upload.test.ts",
+          "status": "passed",
+          "expandedCallbacks": 17,
+          "passed": 17,
+          "failed": 0,
+          "importOrSetupOnly": false
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/lib/media-usage-activation-api.test.ts",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        }
+      ]
+    },
+    {
+      "id": 11377821429,
+      "name": "media-source-gallery",
+      "bytes": 551,
+      "digest": "sha256:3ee456e3f4d1d1178e0f1f5ca1bac358b6a9242fd9445d6f3880ebabb4c08419",
+      "archivePath": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media-source-gallery.zip",
+      "members": [
+        {
+          "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media-source-gallery/media-source-results.json",
+          "bytes": 1244,
+          "sha256": "898253bdd116c26a70b385c23dcc1b02ed3c7d4fa51236cac8720ae7d3ccc3df"
+        }
+      ],
+      "result": {
+        "numTotalTestSuites": 2,
+        "numPassedTestSuites": 0,
+        "numFailedTestSuites": 2,
+        "numTotalTests": 0,
+        "numPassedTests": 0,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "success": false
+      },
+      "wholeFiles": [
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/gallery-detail-panel.test.tsx",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        },
+        {
+          "path": "/home/runner/work/cms/cms/parity/emdash/media-admin-editor/source/packages/admin/tests/components/GalleryFocalPoint.test.ts",
+          "status": "failed",
+          "expandedCallbacks": 0,
+          "passed": 0,
+          "failed": 0,
+          "importOrSetupOnly": true
+        }
+      ]
+    }
+  ],
+  "rawDecodedJobLogs": [
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media120-first-job-112017738945.log",
+      "bytes": 40811,
+      "sha256": "c20fba66e93382a71e9c5e038ad24f709f9cd3d66a38eb73ba492c4543893081"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media120-first-job-112017739109.log",
+      "bytes": 411634,
+      "sha256": "82a72de97dd794d818051dd6cc217ae59e0b3ee2871c395d96c5135f538f61d3"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media120-first-job-112017739143.log",
+      "bytes": 135839,
+      "sha256": "aab61f42bf61f67e54ab20141fcc0f60328724fdc6d9f2e9ef592ace6d2e1093"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media120-first-job-112017739171.log",
+      "bytes": 70489,
+      "sha256": "b3fc7f52cd2d41c1aca54f73554eec9bc7f02c9603dda970097f2db02d2d07ff"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media120-first-job-112017739185.log",
+      "bytes": 56860,
+      "sha256": "1079617af9c075b4c8c616729070e9b8c0e655bed7fdc2e7b8a88031648f1841"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media120-first-job-112017739253.log",
+      "bytes": 78520,
+      "sha256": "7de17c2cae20bd16ee2721bd2b02a886be59373ee706f729496589823d978f03"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media120-first-job-112017739254.log",
+      "bytes": 97157,
+      "sha256": "7520488f0c29151ccbca1bc62f2398b6cd45f3ffe7e92440922ed53aaba6b78e"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media120-first-job-112017739263.log",
+      "bytes": 61063,
+      "sha256": "b72ccb428e3a2dd7674e0052b137cba54915fa6d55802dc2ec51896b4659076f"
+    },
+    {
+      "path": "parity/emdash/media-admin-editor/evidence/first-hosted-c736/media120-first-job-112017739421.log",
+      "bytes": 728955,
+      "sha256": "6500f02b11d15ddba53ee66701d3e6af342ceb23322b2b0a4794711dcc305cee"
+    }
+  ],
+  "claims": {
+    "allWholeFamilyGreen": false,
+    "newCausalCreditFor65PreviouslyPortedHelperCallbacks": 0,
+    "pickerTransportStopsCredit": 0,
+    "libraryImageGallerySettingsImportStopsCredit": 0,
+    "detailPanelGenuineReds": "Nine direct value/call assertion failures qualified by child121; full raw and Original JSON retained here and by author."
+  }
+}

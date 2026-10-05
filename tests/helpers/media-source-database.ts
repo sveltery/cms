@@ -5,8 +5,8 @@ import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
 import { openD1 } from '../../src/lib/server/database/d1.ts';
 import type { CmsDatabase } from '../../src/lib/server/database/contract.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
-import { mediaDatabase } from '../../src/lib/server/media/schema.ts';
-import type { Database } from '../../src/lib/server/media/source/database/types.ts';
+import { generalMediaDatabase as mediaDatabase } from '../../src/lib/server/general-media/storage.ts';
+import type { Database } from '../../src/lib/server/general-media/upstream/database/types.ts';
 
 // Actual canonical providers1–9; public named development dependencies6–8
 // remain unapproved and require final own-only replay onto their approved main.
