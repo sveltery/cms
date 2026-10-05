@@ -2635,3 +2635,45 @@ and configured review, exact Root approval, author regular merge and actual
 post-main verification remain pending.
 
 [Paired Media scope and retained evidence](../../docs/general-media-backend.md).
+
+
+### MED-REPO01 / MED-ENV01 published main99 integration
+
+Regular union `64fe89d3` has ordered parents Media `6908b076` and actual published
+main `99c659f6` (Schema111, Picker110, CI116 and Calendar112). It retains the
+complete 610,050-byte incoming compatibility document, including its insertions,
+followed by the complete 10,062-byte owned Media tail. The complete incoming
+Source command chain precedes the same three Media commands. All old dependency
+versions remain; the incoming Calendar dependency additions and frozen lock are
+kept exactly as published. Twelve protected owners match current main exactly.
+At the union checkpoint, all nine shared Media product/test paths and all318
+owned added files were unchanged from the scoped independently reviewed
+`6908b076`. This follow-up changes only the paired feature documentation, ledger
+and owned compatibility tail. No combined Byline
+writer, second content/usage writer, new provider or private feature graph is
+adopted. The D1 counting bug remains preserved in issue114.
+
+This integrated code checkpoint passes whole Source36/321, original R2mock1,
+Native7/22 (including environment4), the three complete existing runtime files24
+and checker0/0. Original bodies, fixtures, mocks and clocks remain exact. These
+checks used sequential bounded-heap processes; heap bounds do not change test
+deadlines or behavior. The earlier scoped semantic review applies to6908 only;
+a current main-union review and exact-head approval remain required.
+
+Historical6908 hosted attempt1 started13 normal phases and completed12 before
+its original deadline cancellation; attempt2's queued validate job has no steps.
+Neither earns complete normal credit. Its secured10 passed using official
+headless-shell1243 without --no-sandbox. The retained local6908 bootstrap stopped
+at frozen install on npm metadata503 with no completed stage or product test.
+No third old-head normal rerun was launched.
+
+Published CI116 now runs the same complete13 normal stages through three
+sequential15-minute phase jobs and a required aggregate. The browser job remains
+byte-exact current main and keeps all10 secured launches; the incoming Calendar
+Source/browser job is also retained. Local bootstrap and its previous receipts
+remain unchanged. Current full phase/aggregate/browser gates, the current
+configured-review request, Root exact-head technical approval, author regular
+merge and post-main verification remain pending. No full Media feature or
+product completion is claimed.
+
+[Paired Media feature scope and evidence](../../docs/general-media-backend.md).
