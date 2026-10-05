@@ -147,6 +147,9 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
   }
   async function prepareAtomicUpdate(value:ReturnType<typeof key>,item:ContentItem,input:Record<string,any>,data:Record<string,unknown>|undefined,anyPermission:string,selections:readonly ResolvedTaxonomySelection[]=[]) {
     const actor=authenticated();const assignments=[];
+    const collection=await definition(value.type);
+    if((input.status??item.status)==='published'&&collection.routable&&!(input.slug!==undefined?input.slug:item.slug)?.trim())
+      throw new CmsError('VALIDATION_ERROR','Cannot publish routable content without a slug');
     let newPublishedAt=item.publishedAt??null;
     if(data!==undefined)for(const[field,contentValue]of Object.entries(data))assignments.push(sql`${sql.ref(field)}=${serializeValue(contentValue)}`);
     if(input.slug!==undefined)assignments.push(sql`slug=${input.slug}`);
@@ -154,7 +157,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     if(input.publishedAt!==undefined){newPublishedAt=input.publishedAt===null?null:await translate(()=>datetimes.normalizeValue(value.type,input.publishedAt));assignments.push(sql`published_at=${newPublishedAt}`);}
     if(assignments.length)assignments.push(sql`updated_at=${new Date().toISOString()}`);
     assignments.push(sql`version=version+1`);
-    const collection=await definition(value.type);const token=ulid();
+    const token=ulid();
     const redirects=await prepareContentSlugRedirect(database,{collection:value.type,id:value.id,
       oldSlug:item.slug,newSlug:input.slug,urlPattern:collection.urlPattern??null,
       oldPublishedAt:item.publishedAt??null,newPublishedAt});
@@ -202,6 +205,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
   return {
     async createContent(input:unknown):Promise<ContentItem> {
       const actor=requirePermission('content:create');const value=object(input);
+      publicationDatePermission(value);
       const type=parse(identifier,value.type);const locale=parse(localeInput,value.locale===undefined?getI18nConfig()?.defaultLocale??'en':resolveConfiguredLocale(parse(localeInput,value.locale)));
       if(value.status!==undefined&&value.status!=='draft')throw new CmsError('VALIDATION_ERROR','Create a draft, then publish it');
       const collection=await definition(type);
@@ -217,12 +221,16 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const slug=value.slug===undefined?(slugSource?await content.generateUniqueSlug(type,slugSource,locale):null):value.slug;
       const selections=value.taxonomies===undefined?[]:await translate(()=>resolveTaxonomySlugMap(canonicalSourceDatabase(database),value.taxonomies,locale));
       const hasSideWrites=selections.length>0||value.bylines!==undefined||translation!==undefined;
+      const dates={
+        createdAt:value.createdAt?await translate(()=>datetimes.normalizeValue(type,value.createdAt)):undefined,
+        publishedAt:value.publishedAt?await translate(()=>datetimes.normalizeValue(type,value.publishedAt)):null
+      };
       const item=await drafts.create({type,locale,data,slug},actor.id,hasSideWrites?async entry=>{
         const taxonomy=newContentTaxonomyStatements(database,type,entry,selections);
         const statements=value.bylines!==undefined?await bylines.planContentBylineReplacement(type,entry.id,value.bylines)
           :translation?await bylines.planContentBylineCopy(type,translation.id,entry.id):[];
         return {...taxonomy,after:[...taxonomy.after,...statements]};
-      }:undefined,translation);
+      }:undefined,translation,dates);
       await completeContentTaxonomies(selections);if(value.bylines!==undefined||translation)invalidateCollectionCache(type);
       return hydratedBylines(await stored({type,id:item.id,locale}));
     },
@@ -281,12 +289,16 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const inferLocale=options.inferLocale===true&&object(input).locale===undefined;
       return hydrate(await stored(key(input),inferLocale,options.resolveIdentifier===true));
     },
-    async listContent(input:unknown,options:{allLocales?:boolean}={}) {
+    async listContent(input:unknown,options:{allLocales?:boolean;sourceSchemaDiscovery?:boolean}={}) {
       requirePermission('content:read');requirePermission('content:read_drafts');const value=object(input);
-      const type=parse(identifier,value.type);const locale=parse(localeInput,value.locale??'en');await definition(type);
+      const type=parse(identifier,value.type);const locale=parse(localeInput,value.locale??'en');
+      const collection=options.sourceSchemaDiscovery===true?await registry.getCollectionWithFields(type):await definition(type);
       if(value.status!==undefined&&typeof value.status!=='string')throw new CmsError('VALIDATION_ERROR');
       if(value.limit!==undefined&&(!Number.isSafeInteger(value.limit)||value.limit<1))throw new CmsError('VALIDATION_ERROR');
-      const result=await content.findMany(type,{limit:value.limit,cursor:value.cursor,where:{...(options.allLocales===true&&value.locale===undefined?{}:{locale}),...(value.status===undefined?{}:{status:value.status})}});
+      const result=await content.findMany(type,{limit:value.limit,cursor:value.cursor,
+        ...(value.orderBy?{orderBy:{field:value.orderBy,direction:value.order??'desc'}}:{}),
+        sortableExtras:[collection?.titleField,collection?.dateField].filter((field):field is string=>Boolean(field)),
+        where:{...(options.allLocales===true&&value.locale===undefined?{}:{locale}),...(value.status===undefined?{}:{status:value.status})}});
       await hydrateBylinesMany(bylineDatabase(database),type,result.items);return result;
     },
     async updateContent(input:unknown):Promise<ContentReceipt> {
@@ -378,6 +390,18 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         {version:item.version,updatedAt:item.updatedAt},undefined,executePublication));
       if(redirectCreated)completeContentSlugRedirect(database,dependencies.after);
       return hydratedBylines(published);
+    },
+    async scheduleContent(input:unknown,currentTime:Date=new Date()):Promise<ContentItem> {
+      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);
+      const item=await stored(value,value.locale===undefined,true);owner(item,actor,'content:publish_any');precondition(value.expected,item);
+      const collection=await definition(value.type);
+      if(collection.routable&&!item.slug?.trim())throw new CmsError('VALIDATION_ERROR','Cannot publish routable content without a slug');
+      return hydratedBylines(await translate(()=>content.schedule(value.type,item.id,value.scheduledAt,currentTime,{version:item.version,updatedAt:item.updatedAt})));
+    },
+    async unscheduleContent(input:unknown):Promise<ContentItem> {
+      const actor=mutationPermission('content:publish_own','content:publish_any');const raw=object(input);const value=key(raw);
+      const item=await stored(value,raw.locale===undefined,true);owner(item,actor,'content:publish_any');precondition(value.expected,item);
+      return hydratedBylines(await translate(()=>content.unschedule(value.type,item.id,{version:item.version,updatedAt:item.updatedAt})));
     },
     async unpublish(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);

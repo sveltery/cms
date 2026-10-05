@@ -54,6 +54,7 @@ function cursorDecode(input: unknown, type: string, locale: string): { createdAt
 
 /** Internal storage API. Request callers must use cmsService for authorization. */
 interface DraftTranslationSource {id:string;translationGroup:string;version:number;updatedAt:string;inheritFields:readonly string[]}
+interface DraftCreationDates {createdAt?:string;publishedAt?:string|null}
 export class DraftRepository {
   private readonly registry: SchemaRegistry;
   private readonly database: CmsDatabase;
@@ -64,7 +65,7 @@ export class DraftRepository {
     if (!definition) throw new CmsError('NOT_FOUND');
     return definition;
   }
-  async create(input: unknown, authorId: string, postInsert?: (entry: {id:string;translationGroup:string;locale:string}) => {before: readonly CompiledQuery[];after: readonly CompiledQuery[];cleanup: readonly CompiledQuery[]} | Promise<{before: readonly CompiledQuery[];after: readonly CompiledQuery[];cleanup: readonly CompiledQuery[]}>, translation?: DraftTranslationSource): Promise<DraftEntry> {
+  async create(input: unknown, authorId: string, postInsert?: (entry: {id:string;translationGroup:string;locale:string}) => {before: readonly CompiledQuery[];after: readonly CompiledQuery[];cleanup: readonly CompiledQuery[]} | Promise<{before: readonly CompiledQuery[];after: readonly CompiledQuery[];cleanup: readonly CompiledQuery[]}>, translation?: DraftTranslationSource, dates?:DraftCreationDates): Promise<DraftEntry> {
     const value = parse(createDraftInput, input);
     if (!authorId || authorId.length > 128) throw new CmsError('VALIDATION_ERROR');
     const definition = await this.definition(value.type);
@@ -74,7 +75,8 @@ export class DraftRepository {
     const id = ulid();
     const now = new Date().toISOString();
     const columns = ['id', 'slug', 'status', 'author_id', 'created_at', 'updated_at', 'version', 'locale', 'translation_group', ...Object.keys(value.data)];
-    const values = [id, value.slug || null, 'draft', authorId, now, now, 1, value.locale, translation?.translationGroup??id, ...Object.values(value.data).map(serializeValue)];
+    const values = [id, value.slug || null, 'draft', authorId, dates?.createdAt??now, now, 1, value.locale, translation?.translationGroup??id, ...Object.values(value.data).map(serializeValue)];
+    if(dates?.publishedAt!==undefined){columns.push('published_at');values.push(dates.publishedAt);}
     const db = this.database.db;
     const inherited=new Set(translation?.inheritFields??[]);
     for(const field of inherited)if(!columns.includes(field)){columns.push(field);values.push(null);}
