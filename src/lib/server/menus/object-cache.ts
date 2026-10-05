@@ -30,6 +30,7 @@ import { AsyncLocalStorage } from "node:async_hooks";
 
 import { after } from "./after.ts";
 import { getRequestContext } from "./context.ts";
+import { clearRequestCachePrefix } from "./request-cache.ts";
 import { decode, encode } from "./object-cache-codec.ts";
 import type {
 	CreateObjectCacheBackendFn,
@@ -816,6 +817,9 @@ export function contentNamespaces(collection: string): readonly string[] {
  * Call from every write path that mutates rows in `ec_<collection>`.
  */
 export function invalidateCollectionCache(collection: string): void {
+	// Pinned query.ts collectionCacheKey: exact delimiter preserves sibling
+	// collection names and every unrelated request-cache namespace.
+	clearRequestCachePrefix(`collection:${collection}:`);
 	for (const namespace of contentInvalidationNamespaces(collection)) {
 		invalidateObjectCache(namespace);
 	}

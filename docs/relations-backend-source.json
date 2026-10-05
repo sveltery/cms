@@ -291,6 +291,14 @@
       "sha256": "eabe929fa7e0047ac59d8a87d506acdf77835e845171a0a1d56a02873f6584be",
       "gitBlob": "14bb8ab44d9f19aee04d499d5e24a213d4850d0e",
       "runtimeStatus": "complete authority; readonly Native stage/publication adapter in development"
+    },
+    {
+      "sourcePath": "packages/core/src/api/handlers/content.ts",
+      "path": "parity/emdash/relations-source/authority/packages/core/src/api/handlers/content.ts.txt",
+      "bytes": 88776,
+      "sha256": "f31d9d08cf7ad3ba863ed0b2f9b9d91729a4ce364ce63024077d81f1c6a4969c",
+      "gitBlob": "34c2528c51a54119cd1730e876d699319c9f3702",
+      "runtimeStatus": "complete readonly fragments only; whole content Source families unregistered"
     }
   ],
   "wholeTestFamilies": [
@@ -866,5 +874,22 @@
     "fullOriginalContentCallbacks": 0,
     "old22PublicationHoldUnchanged": true,
     "publicUploadOrMerge": false
-  }
+  },
+  "relLif03ReadBodyFragments": [
+    {
+      "name": "isRecord",
+      "bytes": 124,
+      "sha256": "e955a2a2d3f529f3bf5d7ab05e8eae517cf30c88a7ea0fd1b7668f43472ab9a6"
+    },
+    {
+      "name": "hydrateReferences",
+      "bytes": 2992,
+      "sha256": "ef1f5fc3b7d8b0846ed4581ee8ae4919a5f17de0c0caf76726e68451f4891590"
+    },
+    {
+      "name": "handleContentCompare",
+      "bytes": 2062,
+      "sha256": "a497fbc263fbe79cbe5b656c95e1dc66de3d9bf0cc29a879a89201b7b98f3507"
+    }
+  ]
 }

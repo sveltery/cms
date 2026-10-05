@@ -28,8 +28,16 @@ export async function prepareContentReferencesUpdate(database:CmsDatabase,collec
  return prepareContentReferenceWrites(database,selections);
 }
 /** Called only after the sole content writer confirms its whole batch. */
-export function completeContentReferences(plan:ContentReferencePlan):void{
- for(const collection of plan.touchedCollections)invalidateCollectionCache(collection);
+export function completeContentReferences(plan:ContentReferencePlan,selectingCollection?:string):void{
+ const collections=new Set(plan.touchedCollections);
+ if(selectingCollection)collections.add(selectingCollection);
+ for(const collection of collections)invalidateCollectionCache(collection);
+}
+
+/** A committed reference-only draft changes the selecting collection's read
+ * snapshot while the live links and opposite collection remain unchanged. */
+export function completeContentReferenceDraft(collection:string):void{
+ invalidateCollectionCache(collection);
 }
 
 /** Source runtime staging reads actual targets and the live selection once;

@@ -113,6 +113,11 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     for(const [field,value]of Object.entries(revision.data))if(!field.startsWith('_'))draftData[field]=value;
     return {...item,data:{...item.data,...draftData},liveData:item.data};
   }
+  async function hydrateReferences(item:ContentItem,includeDrafts:boolean):Promise<ContentItem> {
+    const collection=await definition(item.type);
+    if(!collection.fields.some(field=>field.type==='reference'&&field.validation?.relation))return item;
+    return (await import('../../relations/content-read.ts')).hydrateContentReferences(database,item,includeDrafts);
+  }
   function prune(collection:string,id:string,revisionId:string) {
     // Pinned runtime/cleanup isolate deferred bookkeeping failures. The queue
     // remains unacknowledged when pruning fails, so later work can retry it.
@@ -218,7 +223,18 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       // Only the trusted constructor host opts into omitted-locale inference;
       // all callers share the same actual definition/read/not-found owner.
       const inferLocale=options.inferLocale===true&&object(input).locale===undefined;
-      return hydrate(await stored(key(input),inferLocale,options.resolveIdentifier===true));
+      return hydrateReferences(await hydrate(await stored(key(input),inferLocale,options.resolveIdentifier===true)),true);
+    },
+    async getPublishedContent(input:unknown):Promise<ContentItem> {
+      requirePermission('content:read');const item=await stored(key(input));
+      if(item.status!=='published')throw new CmsError('NOT_FOUND');
+      return hydrateReferences(item,false);
+    },
+    async compareContent(input:unknown) {
+      requirePermission('content:read');requirePermission('content:read_drafts');const value=key(input);await stored(value);
+      const result=await (await import('../../relations/content-read.ts')).compareContentReferences(database,value.type,value.id);
+      if(!result.success){if(result.error.code==='NOT_FOUND')throw new CmsError('NOT_FOUND',result.error.message);throw new Error(result.error.message);}
+      return result.data;
     },
     async listContent(input:unknown) {
       requirePermission('content:read');requirePermission('content:read_drafts');const value=object(input);
@@ -297,6 +313,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
             if(value.expected!==undefined||attempt===31)throw new CmsError('CONFLICT');existing=await stored(value);continue;
           }
           if(prepared){await revisions.queuePruning(value.type,value.id,prepared.id);await completeContentTaxonomies(taxonomySelections);}
+          if(referenceDraft){const {completeContentReferenceDraft}=await import('../../relations/content-input.ts');completeContentReferenceDraft(value.type);}
           if(value.skipRevision&&existing.draftRevisionId)await revisions.deleteIfUnreferenced(value.type,value.id,existing.draftRevisionId);
           else prune(value.type,value.id,revision.id);
           let item=await stored(value);
@@ -320,7 +337,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const published=await translate(()=>content.publish(value.type,value.id,value.publishedAt,false,undefined,collection.supports.includes('revisions'),collection.routable,
         {version:item.version,updatedAt:item.updatedAt},undefined,executePublication));
       if(redirectCreated)completeContentSlugRedirect(database,dependencies.after);
-      if(publicationReferences){const {completeContentReferences}=await import('../../relations/content-input.ts');completeContentReferences(publicationReferences);}
+      if(publicationReferences){const {completeContentReferences}=await import('../../relations/content-input.ts');completeContentReferences(publicationReferences,value.type);}
       return published;
     },
     async unpublish(input:unknown):Promise<ContentItem> {
