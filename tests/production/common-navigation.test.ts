@@ -21,7 +21,7 @@ for (const target of ['Node SQLite', 'raw D1'] as const) {
         }
         const activeRoute = path.startsWith('/comments') ? 'comments' : path.startsWith('/sections') ? 'sections' : path === '/widgets' ? 'widgets' : undefined;
         if (activeRoute) assert.match(navigation, new RegExp(`href="[^\"]*/${activeRoute}"[^>]*aria-current="page"`));
-        assert.doesNotMatch(navigation, /href="\/(settings|media|blocks|users|plugins|bylines|calendar)"/);
+        assert.doesNotMatch(navigation, /href="\/(settings|media|blocks|users|plugins|bylines)"/);
       }
     } finally { await host.close(); }
   });

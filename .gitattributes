@@ -107,3 +107,39 @@ docs/receipts/schema-admin-ui/repeater-label-fixed.log -whitespace
 docs/receipts/schema-admin-ui/repeater-label-refactor.log -whitespace
 docs/receipts/schema-admin-ui/repeater-label-source138.log -whitespace
 docs/receipts/schema-admin-ui/repeater-label-check.log -whitespace
+
+# Preserve literal trailing whitespace in exactly the 31 whole pinned locale catalogs.
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ar/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/bn/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ca/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/cs/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/da/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/de/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/en/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/en-GB/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/es-419/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/es-ES/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/eu/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/fa/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/fr/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/hi/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/hu/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/id/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ja/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ka/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ko/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/nb/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/nl/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/pl/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/pseudo/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/pt-BR/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/sr-Latn/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/sv/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/th/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/tr/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/uk/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/zh-CN/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/zh-TW/messages.po whitespace=-blank-at-eol
+
+# Preserve the frozen DayPicker whole-module source formatting.
+parity/emdash/calendar-shared-picker-labels/vendor/kumo-2.6.0-internal-day-picker-9.13.2/DayPicker.js whitespace=-blank-at-eol
