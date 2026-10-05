@@ -1,5 +1,6 @@
 // Supplemental Native date-value controls for EmDash's compact Calendar picker.
-// Source pin 913cb1bb / frozen Kumo2.6.0 + react-day-picker9.14.0 behavior.
+// Source pin 913cb1bb / Kumo2.6.0's bundled DayPicker9.13.2 behavior,
+// statically cross-checked against the frozen external react-day-picker9.14.0.
 // These are not copied Source callbacks and establish no browser/auth/storage credit.
 import { describe, expect, it } from 'vitest';
 import { moveCalendarFocus, type CalendarPickerDirection } from '../../src/lib/calendar/picker-keyboard.ts';
