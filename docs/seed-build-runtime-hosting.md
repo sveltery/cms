@@ -57,3 +57,26 @@ pending. The parent
 Byline/Seed feature work retains its separate failures and incomplete scope.
 Neither these infrastructure controls nor this proposed PR establishes deployed
 Worker support or full EmDash parity.
+
+
+## Public parent repair integration
+
+The hosting branch ordinarily merges actual public Byline118
+`9a2270b87a0b91fd55d682eb11893dc1e3bad19e` (tree
+`c650a24c9b2a3ebb5083d5cefbb02c7c78ab34cf`), preserving both regular histories.
+The complete parent compatibility text remains a prefix, followed by this
+feature's unchanged compatibility appendix. The ten executable hosting
+overlays and all prior hosting tests/receipts remain exact. No private Seed,
+Media or editor successor is adopted. This union carries the parent's own
+reviewed lifecycle repairs without changing the hosting implementation.
+
+The combined tree reruns all 13 supplemental Native hosting controls, all four
+unchanged actual no-node compatibility Worker callbacks, and the whole
+unchanged Source object-cache family35: all pass. These existing Source passes
+earn no new causal repair credit. No new heavy local checker or bootstrap is
+claimed for this union; complete current hosted gates remain required.
+
+The prior CI601 browser result is retained: all eight Source browser groups and
+the default65 pass, while the later Node workload exits124 at its unchanged
+180-second deadline. It is a failed gate, not a full secured10 success, and is
+not retried at the old head. Literal earlier failures remain unchanged.
