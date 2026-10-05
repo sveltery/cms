@@ -1,0 +1,454 @@
+{
+  "kind": "fresh-independent-full-owned-final-review",
+  "reviewer": "user99_complete_stored_backend_independent_final_reviewer",
+  "reviewedAt": "2026-10-05T21:52:09Z",
+  "pr": 99,
+  "url": "https://github.com/sveltery/cms/pull/99",
+  "head": "8fb6f13beebd51ab01b72a134465b4e0b76d4865",
+  "tree": "84edc3fbf7f0dad4ca9266e2ad08c4054a48562c",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "verdict": "REQUEST_CHANGES",
+  "findings": [
+    {
+      "id": "USER99-DISABLED-ATOMIC-01",
+      "priority": "P2",
+      "path": "src/lib/server/accounts/repository.ts",
+      "line": 78,
+      "endLine": 80,
+      "title": "Keep disable/enable identity and profile writes in one atomic batch",
+      "description": "setDisabled commits the disabled flag with executeTakeFirst before updating profile.updated_at. If an operator profile update rejects, the request reports an error but the account flag has already changed. Source updates disabled and updated_at in a single users UPDATE (disable also uses withTransaction), so the same rejected update preserves all prior user bytes. Use the existing canonical atomicBatch for both physical writes while preserving the self/last-admin checks, affected-row guard and exact error messages.",
+      "sourceProof": [
+        "packages/auth/src/adapters/kysely.ts:155-168",
+        "packages/core/src/astro/routes/api/admin/users/[id]/disable.ts:49-57",
+        "packages/core/src/astro/routes/api/admin/users/[id]/enable.ts:42"
+      ],
+      "reproducer": {
+        "fixture": "/tmp/user99-reviewer-rollback.test.ts",
+        "raw": "/tmp/user99-reviewer-rollback-qualified.log",
+        "completeCases": 4,
+        "sourceControlsPassed": 2,
+        "nativeReachedPersistenceValueFailures": 2,
+        "nativeDisabledFailure": "expected disabled0; actual1 after rejected profile update",
+        "nativeEnabledFailure": "expected disabled1; actual0 after rejected profile update",
+        "classification": "Original supplementary reviewer storage/operator rollback witness. Zero copied Source declaration/causal Source test/credential/session/race/HTTP consequence credit. Initial incorrect Kysely import run had0 collected tests, retained separately and0 causal credit."
+      }
+    }
+  ],
+  "semanticAreas": [
+    "Complete Source Core UserRepository creation/read/batch/email/count/delete fields",
+    "Source timestamps, cursor encoding/order/invalid handling and exact role filtering",
+    "Source role-name/numeric-level resolution and unknown-role fallback",
+    "Canonical split identity/profile storage, same-batch creation/update rollback, real affected rows",
+    "Profileless historical identity preservation and proposal USR-01/02/03",
+    "Pinned RBAC scope policy tail, transfer constants/type and unchanged Native guards",
+    "Actual list/search/role/stored-timestamp admin pagination",
+    "Stored profile/detail and existing safe credential metadata projection",
+    "Original update DTO exactly nine fields and omitted-field/custom-JSON preservation",
+    "Self role/email conflicts/enabled last-admin restrictions and batch guard policy",
+    "Disable/enable persistence, missing target, self and last-admin policy",
+    "RequestEvent adapter current stored role and disabled verification",
+    "Existing origin/trusted runtime/mutation opt-in guards, no protected probe expansion",
+    "Whole shared request parser and original schemas/coercion/structured issue details",
+    "Missing ID, malformed profile JSON, exact fallback messages and private no-store envelope",
+    "Full whole Source authority/runtime import graph and extension-only TypeScript emit",
+    "Complete Native and Source test fixtures, fixed datasets/clocks/mocks and genuine Node/raw-D1 owners",
+    "Entire public mode/type/path/SHA/size vectors and Native blob objects",
+    "Entire owned commit history, raw Git object SHA/tree/parents/messages and retained historical aliases",
+    "Historical and current raw TDD controls, value-red versus pre-expectation-stop classification",
+    "Package versions/dependencies/SRI/lock/providers/bootstrap/CI/security protected Main vector preservation",
+    "Entire Main compatibility prefix and whole Source chain plus appended owned gates",
+    "Original inherited test erased-only correction and original before bytes/runtime SHA",
+    "Independent current full focused suites and check zero/zero",
+    "Current exact synthetic hosted normal thirteen stages and secured ten launches",
+    "Configured review genuine exact-current quota notice, no completed verdict",
+    "Actual current Main advancement and unresolved merge conflict, no unqualified main adoption",
+    "Explicit incomplete OAuth/PAT/invites/user UI/broader whole consumer families"
+  ],
+  "semanticAreaCount": 28,
+  "vectors": {
+    "head": "8fb6f13beebd51ab01b72a134465b4e0b76d4865",
+    "tree": "84edc3fbf7f0dad4ca9266e2ad08c4054a48562c",
+    "fullPublicEntries": 4565,
+    "fullBlobs": 3464,
+    "vectorsEqual": true,
+    "allBlobObjectByteHashes": true,
+    "mainBlobs": 3296,
+    "protectedMainExact": 3292,
+    "ownedMainOverlays": [
+      ".gitattributes",
+      "package.json",
+      "parity/emdash/compatibility.md",
+      "src/lib/server/auth/permissions.ts"
+    ],
+    "newPaths": 168,
+    "publicRawHistories": 28,
+    "historicalAppNoLfCommits": [
+      "1aa73216cbab78e69b7299720975de7aa94cccee",
+      "b4ec05ffddf43a8c91e8fab6ee1e501ccef2437f"
+    ],
+    "pinnedSourceBodies": 63,
+    "customReferenceQualifiers": []
+  },
+  "sourceGuard": {
+    "coreWholeAuthorities": 23,
+    "administrationWholeAuthorities": 33,
+    "inputWholeSourceFiles": 7,
+    "allRetainedDestinationBodiesActuallyComparedToPin": 63,
+    "completeWholeSourceRuntimeEmissionGuardPassed": true,
+    "customNineQualifierWholeBytesGuardPassed": true,
+    "nativeHelpersRealSourceSqliteAndRawD1": true
+  },
+  "historicalRawReceiptsVerified": [
+    {
+      "path": "docs/evidence/user-admin-native/current-installed-whole65.log",
+      "bytes": 225,
+      "sha256": "8dfe57e98e1c4b6cb5241f80ed0a55781549661ffc0bae13f6351334ab3d275d"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/current-frozen-install.log",
+      "bytes": 7370,
+      "sha256": "86b5d265f2e5e7051f0539fa79e04540d0552058a94974b88f07e362a8028bea"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/admin-testfirst-whole24.log",
+      "bytes": 14249,
+      "sha256": "e75f5e3b57810196163521ef08f8a46f53e79ca4c6ff73a4f8287a1c39cb317a"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/admin-adoption-whole24.log",
+      "bytes": 2469,
+      "sha256": "bcea2b83497e7637e9ecedfff819b2660367f1299c6bc2b3687e04dbd4e70103"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/admin-fixed-whole24.log",
+      "bytes": 225,
+      "sha256": "267c27a8bc13b6ad9bf909c4d3be238216ab0e50bdf32499a356d94ec7c84167"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/admin-api-testfirst-whole36.log",
+      "bytes": 1908,
+      "sha256": "5ef5b9b5a99f9370ae522498386ebd5002af917aec460f01c0dce318187ea97f"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/admin-api-expanded-testfirst-whole36.log",
+      "bytes": 1264,
+      "sha256": "8043c85543a476d14309d02c4947f2e7e480f927e7910f9f3beb7e185a337855"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/admin-api-fixed-whole36.log",
+      "bytes": 225,
+      "sha256": "b1f8d76f0ee9916ed848fd2fc56ea2fb57a0ae91559f5ef2b3bc0e54f3dbb315"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/reference-original-qualified9.log",
+      "bytes": 222,
+      "sha256": "6c8b2e2d1cd7d0e1b63b8bb125dfa2cd1a72fa4865c9b48f74e0de1d3da63c1b"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/reference-emitted-import-stop-2.log",
+      "bytes": 1458,
+      "sha256": "4197909887d448acd67b5cb94d3fce9b3d082e2a8adfc98ce269bbff4a50260e"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/reference-complete-emitted-qualified9.log",
+      "bytes": 222,
+      "sha256": "a7a89225924aee40854c0c8adbff0a89cd09ec954fbebeb34a1400e7cd458e02"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/current-check.log",
+      "bytes": 30271,
+      "sha256": "0b2d626f67799502862d36c46954540a2f27cdb94f02240e0267933402ba5956"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/corrected-final-check.log",
+      "bytes": 57717,
+      "sha256": "a65d4d87d79bed18541ec2cf0ba858c36af390f0d5e312b022c67e311215cf21"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/complete-source-transport-check.log",
+      "bytes": 148,
+      "sha256": "916c119ca17d456821decb64dbc5b315d1ec367c42933dc5bf5358d550bead7c"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/admin-unknown-role-testfirst-whole38.log",
+      "bytes": 4702,
+      "sha256": "89787556bb91af23a517bdba670a3fa2e941d37fef387c42d0e47a791a8bc1fd"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/admin-unknown-role-fixed-whole38.log",
+      "bytes": 4701,
+      "sha256": "bede30da6c54edd1504444181c37e6eb2fcc7f6350b0b739407500b83cb01d47"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/admin-retained-final-whole36.log",
+      "bytes": 225,
+      "sha256": "93d4d3bb401fbd71c0481930023d6ef9095c63fe32f2e2b04bfe0006f0ef6ac3"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/final-core-whole65.log",
+      "bytes": 225,
+      "sha256": "7b78d62565248c53c78184cd89e60f879cd77f494a65840d84962cd197fe280b"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/final-owned-check.log",
+      "bytes": 148,
+      "sha256": "916c119ca17d456821decb64dbc5b315d1ec367c42933dc5bf5358d550bead7c"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/native-fallback-fixed42.log",
+      "bytes": 225,
+      "sha256": "6cf07590a6c5d2d749137a1ef86d7feda2eb94cfc5710db9a957c0ffadb6ff29"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/native-fallback-testfirst42.log",
+      "bytes": 1745,
+      "sha256": "3579e6293017cce36203d347c71d125d32f61c249477a69981feea2598cf3954"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/native-refactor-whole40.log",
+      "bytes": 225,
+      "sha256": "172eab9a8adf1bc6f6de5fa644a6fca15aa6efcb0efedc48b40be7b023d092e6"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/native-structured-validation-fixed38.log",
+      "bytes": 226,
+      "sha256": "fcf06fcd7909060bfbe33a70ba9bf62615e2a6c105955dcdbac5d2f38a3be4ee"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/native-structured-validation-testfirst38.log",
+      "bytes": 1620,
+      "sha256": "5e61d31042f3407c7b350ed12305b1c3542d8e0e77d26911adde17eb61cea133"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/native-update-projection-fixed40.log",
+      "bytes": 227,
+      "sha256": "24f390578d7dc4d3c0e324397a53e80af71336a72eac48777b732734802eca18"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/native-update-projection-testfirst40.log",
+      "bytes": 1836,
+      "sha256": "cee883e2492077ee72046da7f7caee1d6e3e262ba979f79b28bd6e22d856ae72"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/owned-offline-frozen-install.log",
+      "bytes": 459,
+      "sha256": "8ae731487a3ecfbc1bc1e2d9e9f7ecaaa65eff70f032481a228cf6d5e5038b29"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/owned-online-frozen-install.log",
+      "bytes": 1838,
+      "sha256": "ce519b134c881505b1158ce0729f395a00a935b9f648f8530a54b9bfcf71f680"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/source-reference-final9.log",
+      "bytes": 223,
+      "sha256": "0fd326a879d1241d20273e4f751c4985066db031fc81c106dd053932631db9e0"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/whole-source-parser-fixed2.log",
+      "bytes": 222,
+      "sha256": "1bf07bff9a71f483cac436b138b5c383a26f755d13926696f552c329c682da60"
+    },
+    {
+      "path": "docs/evidence/user-admin-native/whole-source-parser-initial2.log",
+      "bytes": 222,
+      "sha256": "6a93b181d68bfe11775258db5776188bc4effc222506dd093dcff0941cdfa38e"
+    },
+    {
+      "path": "docs/evidence/user-repository-roles/testfirst-whole65.log",
+      "bytes": 26954,
+      "sha256": "17778243019e00b6277b0150582a47602829f8e9227156e6a1f4a0116b5effee"
+    },
+    {
+      "path": "docs/evidence/user-repository-roles/fix-whole65.log",
+      "bytes": 610,
+      "sha256": "63bfa37352052a83be72d86b723281f4574e56edfad696d68b9fda2d3adb90cc"
+    },
+    {
+      "path": "docs/evidence/user-repository-roles/refactor-whole65.log",
+      "bytes": 610,
+      "sha256": "45e027c617a7c0f6c11dedec35b9b43822778d00b6095bdfa198d86082ba2c40"
+    }
+  ],
+  "historicalTddClassification": {
+    "core65InitialPass": 29,
+    "core65InitialNativeAvailabilityAssertionReds": 31,
+    "core65InitialSourceMissingFunctionPreExpectationStops": 5,
+    "causalReachedOriginalSourceAssertionReds": 0,
+    "core65FixAndRefactorPass": 65,
+    "native24Baseline": 24,
+    "native24CursorRepairedValues": 2,
+    "native36MissingIdValues": 2,
+    "native38StructuredValidationValues": 2,
+    "native40DtoValues": 2,
+    "native42FallbackValues": 2,
+    "withdrawnUnknownRoleFixture": "Canonical CHECK stop before API expectation,0 credit; old denial withdrawn, schema and thresholds unchanged",
+    "inheritedTestCorrection": "exact existing.id to existing!.id only; emitted full runtime identical SHAfb8336392ebca0ece49b14e8e0e4373ff3f5968966a3611dd0499bbf142eddea,0 behavior credit"
+  },
+  "independentRuntime": {
+    "node": "24.19.0",
+    "boundedHeapMiB": 2048,
+    "initialWrongDefaultPnpm": "11.19 engine rejection before callbacks; retained0 credit; no install/config mutation used for verification",
+    "actualCommands": "Exact package guard and vitest commands executed directly with installed Node and actual repository binaries; no suite edits or pnpm dependency/version changes",
+    "wholeCore65": "PASS65 (33 whole original Source RBAC+32 Native)",
+    "wholeParser2": "PASS2 originally green controls",
+    "wholeReference9": "PASS9 original supplementary Source-only qualifiers, not a whole Users family",
+    "wholeAdmin42": "PASS42 =21 SQLite+21 raw workerd D1",
+    "check": "0 errors0 warnings",
+    "gitTrackedStatus": "clean",
+    "whitespace": "git diff --check detects three immutable raw receipts blank EOF and one exact frozen Source trailing whitespace; not a product finding, no Source/raw edits"
+  },
+  "currentHosted": {
+    "run": 37376176139,
+    "normalJob": 111985504631,
+    "normalStatus": "SUCCESS",
+    "normalFinishedStages": [
+      "frozen dependency install",
+      "type and Svelte checks",
+      "service tests",
+      "auth source assertions",
+      "auth source type assertions",
+      "pinned UI component source assertions",
+      "pinned datetime widget assertions",
+      "default production build",
+      "production remote tests",
+      "Node package and build",
+      "Node hosting tests",
+      "Cloudflare build and dry deployment bundle",
+      "Cloudflare source and Worker tests"
+    ],
+    "normalNodeWholeTests": [
+      1498,
+      30,
+      8,
+      280,
+      16,
+      8
+    ],
+    "normalAllNodeFailZero": true,
+    "normalOwn65_2_9_42Complete": true,
+    "browserJob": 111985505052,
+    "browserStatus": "SUCCESS",
+    "browserWholeSourceGroups": [
+      14,
+      30,
+      25,
+      3,
+      35,
+      4,
+      3,
+      139
+    ],
+    "defaultWholeBrowser": 65,
+    "nodeWholeBrowser": 65,
+    "officialBuild": 1243,
+    "launches": 10,
+    "zeroExitProcesses": 10,
+    "noNoSandboxFlag": true,
+    "checkout": "c98ba24b6190bd882a73d4f5299779fdf97fa83e",
+    "syntheticTree": "84edc3fbf7f0dad4ca9266e2ad08c4054a48562c",
+    "syntheticOrderedParents": [
+      "fa86186aa2bd83b7678f59c26026b7fc6c9d57cf",
+      "8fb6f13beebd51ab01b72a134465b4e0b76d4865"
+    ],
+    "syntheticGithubSignature": "valid",
+    "localOriginalNormal": "Worker exited unexpectedly after byline Source216; no full local normal credit and no exact underlying-cause claim"
+  },
+  "configuredReview": {
+    "request": "ready once at21:30:53UTC",
+    "quotaNotice": 6003351173,
+    "createdAt": "2026-10-05T21:30:56Z",
+    "currentAssociation": "PR head8fb public since21:29:26; unchanged stationary exact8fb",
+    "actualCompletedVerdict": null,
+    "standingConfiguredReviewOnlyException": "Root decision separate; not a test or semantic finding waiver"
+  },
+  "actualMainAtReview": "cdc5b8d9d8fcf90f9899ea8ee4c0b3614010ecdb",
+  "candidateMainIncluded": "fa86186aa2bd83b7678f59c26026b7fc6c9d57cf",
+  "currentMergeable": false,
+  "approval": "None. Root exact-head decision required after repair and ordinary actual Main union/current checks. Author regular expected-head merge only.",
+  "scopeLimits": [
+    "No whole UsersAPI90 exists at frozen pin; no such runner credit",
+    "OAuth account/provider fields/storage and disable token revocation unimplemented separate owner",
+    "User administration UI, invites/recovery/PAT/allowed domains and historical profile enrollment unfinished",
+    "Nine broader Core consumer families and six additional Users/Transfer/OpenAPI/auth UI files retained whole but not executed here",
+    "No new live protected credentials/sessions/authenticated HTTP/race/SC49 probes",
+    "No PostgreSQL/deployed full product parity claim"
+  ],
+  "rawArtifacts": [
+    {
+      "path": "/tmp/user99-reviewer-full-vector-source-history-qualification.json",
+      "bytes": 24190,
+      "sha256": "5db42b3b777f35f6b504d952b1c0fac7ba09afcec503158ee242c4701a90f56c"
+    },
+    {
+      "path": "/tmp/user99-reviewer-public-tree.json",
+      "bytes": 1204695,
+      "sha256": "ef5dda65a7e8d7e27e7a30855a2e53ab47b78cfcff237c14d8c0b83750cf85df"
+    },
+    {
+      "path": "/tmp/user99-reviewer-public-main-tree.json",
+      "bytes": 1130458,
+      "sha256": "75eb17294fa7228b333059c05eca191e1ef7de1eff1a916d6fc44056c9a5e259"
+    },
+    {
+      "path": "/tmp/user99-reviewer-public-histories.json",
+      "bytes": 32777,
+      "sha256": "668c1ef40236621a865f4ea9cb15c59df33ea7607be468d1bca26a3f81a3c972"
+    },
+    {
+      "path": "/tmp/user99-reviewer-final-api-snapshot.json",
+      "bytes": 31627,
+      "sha256": "0f05f54abfd64eb1e0aea6dd6c0c42daa6e8151fd9ad2f9d0ca1491f4200437e"
+    },
+    {
+      "path": "/tmp/user99-reviewer-core65.log",
+      "bytes": 2185,
+      "sha256": "b154b59e4c300a09cf8b01aa7f74079f567c406c0755d3f239b38e235b02fd14"
+    },
+    {
+      "path": "/tmp/user99-reviewer-core65-qualified.log",
+      "bytes": 518,
+      "sha256": "1e95e3434f6e6f146e42739dc121166232182e656b8285dc9215522b4ebfd7c6"
+    },
+    {
+      "path": "/tmp/user99-reviewer-admin53.log",
+      "bytes": 976,
+      "sha256": "1a173c1463049a9f5fd2d6d758f55bae4ebcae819cb2184d7194d8d3f66aab75"
+    },
+    {
+      "path": "/tmp/user99-reviewer-rollback.test.ts",
+      "bytes": 3682,
+      "sha256": "ad7975599d6d7664b2a0826812da5f802d886ebec4e51aaaeb94c613f5f71030"
+    },
+    {
+      "path": "/tmp/user99-reviewer-rollback.config.ts",
+      "bytes": 199,
+      "sha256": "55ac1fb0db8a3d63414c0cb925b4a2d7dc01dcaa08b53dca69b44234f0e594be"
+    },
+    {
+      "path": "/tmp/user99-reviewer-rollback.log",
+      "bytes": 1255,
+      "sha256": "f9dbcfb625232a9b4194d4a58834d403f618acd23d025525b44a387295a25539"
+    },
+    {
+      "path": "/tmp/user99-reviewer-rollback-qualified.log",
+      "bytes": 2653,
+      "sha256": "1f17e3f97a6c6f2b775892c9f9ad83bb6a471cb80f73c5cdcff0467e9491c62a"
+    },
+    {
+      "path": "/tmp/user99-reviewer-check.log",
+      "bytes": 148,
+      "sha256": "916c119ca17d456821decb64dbc5b315d1ec367c42933dc5bf5358d550bead7c"
+    },
+    {
+      "path": "/tmp/user99-reviewer-hosted-secured10-original.log",
+      "bytes": 467136,
+      "sha256": "94a486afa9b3cee6bd7764f57c31a9b8f859079eccc3008740d37e90c7198357"
+    },
+    {
+      "path": "/tmp/user99-reviewer-hosted-normal-original.log",
+      "bytes": 987603,
+      "sha256": "5e62ef052b2516bb6fb3c5d2769ca1d5a2e328fc16ff110385a42ca3558c0f22"
+    }
+  ]
+}

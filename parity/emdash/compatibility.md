@@ -2559,3 +2559,32 @@ credit. The previous foundation's broader consumer inventory remains historical;
 Byline PR #118 separately owns its whole content54/filter14 and real user bridge.
 The two original shared-parser tests run unchanged against an existing public
 Native parser and initially passed; Source causal assertion-red credit remains0.
+
+
+## USER99-DISABLED-ATOMIC-01 fidelity repair
+
+Source `auth/src/adapters/kysely.ts:155–168` and the complete public
+`astro/routes/api/admin/users/[id]/disable.ts` and `enable.ts` at immutable
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e` update the disabled flag and timestamp
+as one Source row. The previous Native split committed identity before profile,
+so profile operator rejection left a partial toggle. The
+[owning repair record](../../docs/user-administration-backend.md) preserves the
+exact independent witness, two Source controls, two Native value failures and
+new whole46 test-first42 pass/4 genuine SQLite/raw-D1 rollback failures.
+
+Both Native physical writes now use the existing canonical atomic batch. The
+existing enabled-admin count threshold, SQL conditional predicate, affected-row
+check, self/last-admin messages, stored role/principal/origin/write safeguards and
+profileless policy remain. For stored-admin disable, the existing role/profile
+canonical guard/batch pattern prevents a rejected last-admin predicate from
+committing a timestamp. No provider, table, credential/session algorithm or
+concurrency probe is added. Complete unchanged whole46 repair/refactor greens
+and two later initially green admin controls yield current whole48.
+
+This restores Source rollback behavior and is not an upstream bug or intentional
+policy change. Original Source bodies and old Native42 assertions remain exact;
+Source causal/copied-case credit is0. Proposed PR #99 continuation; reviewer
+finite-delta closure, current full normal13/secured10, explicit Root acceptance
+and author merge remain pending. Future whole Source leaves may append after the
+adjacent exactly-once user gates; that provenance integration earns0 behavioral
+or Source credit.

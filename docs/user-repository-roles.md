@@ -3,7 +3,7 @@
 [PR #99](https://github.com/sveltery/cms/pull/99) implements Core `UserRepository`
 over the existing identity/profile tables, the pinned pure role scope policy, and
 real stored-user list/detail/update/disable/enable JSON endpoints. Complete Core65
-and stored-administration42 families pass on genuine SQLite/raw-D1 fixtures;
+and stored-administration48 families pass on genuine SQLite/raw-D1 fixtures;
 the two original shared-parser cases and nine Source-only reference qualifiers
 also pass. Final combined normal/browser validation, independent/configured
 review, exact-head acceptance, author merge and post-Main verification remain

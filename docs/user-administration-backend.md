@@ -95,8 +95,10 @@ assertions:
 | Native42 malformed-profile requirements | 40 pass/2 actual fallback-message failures |
 | Fallback fidelity repair | 42 pass |
 
-Native42 comprises12 repository callbacks and9 endpoint callbacks per runtime:
-Node SQLite21 plus actual asynchronous workerd-D1 bindings21. There are zero
+The historical Native42 comprises12 repository callbacks and9 endpoint callbacks
+per runtime: Node SQLite21 plus actual asynchronous workerd-D1 bindings21. The
+review repair adds two rollback directions and one guarded-ADMIN control per
+runtime; the current complete Native48 runs SQLite24 plus raw-D124. There are zero
 copied Source assertion or Source causal credits from these original Native
 requirements. The entire original Source parser2 initially passed the already
 public parser, so it earns no causal Source red. The unsupported extra stored-role
@@ -115,3 +117,40 @@ remain mandatory. The earlier registry503/offline metadata failures remain prese
 owned online frozen install now succeeds with pnpm12.6.0. Focused test passes and
 an install do not establish combined normal/browser qualification. Final-head
 gates and review remain pending.
+
+
+## Independent review rollback repair
+
+The full independent review of `8fb6f13b` requested one correction,
+`USER99-DISABLED-ATOMIC-01`. The two physical disable/enable writes committed
+separately: an operator rejection of `profile.updated_at` left the identity's
+`disabled` flag changed. The exact reviewer witness and raw four-case result are
+retained: two Source controls pass and two Native persistence assertions fail.
+These are supplementary stored-SQL witnesses, not copied Source cases, new HTTP
+or credential/session/concurrency investigations, or an upstream bug.
+
+A separate test-first family preserves all old Core65/Native42/parser2/reference9
+bodies. All four new callbacks reach the actual failure on SQLite/raw D1, for both
+directions: the rejected profile stays unchanged but the identity flag differs.
+The whole46 baseline is42 pass/4 fail. The repair compiles both physical writes
+into existing `CmsDatabase.atomicBatch`; the whole46 passes after repair and a
+separate refactor without changing assertions. Two further initially green
+controls exercise a real second stored admin, successful disable/enable, failed
+profile update, complete rollback and no leftover canonical guard rows, bringing
+the current whole administration family to48.
+
+The stored-ADMIN branch retains the exact enabled-admin count threshold,
+conditional identity SQL predicate, affected-row guard, self rule and error
+messages. It uses the existing guard/batch pattern already established for split
+role/profile writes. The refactor shares one local condition and error constructor.
+This is a Source-faithful rollback repair; no new denial or authentication policy
+is proposed. Source OAuth token effects remain part of the explicitly unfinished
+OAuth owner.
+
+The ordinary public Main union includes CI #116's complete sequential services,
+Source and hosting jobs, while preserving the original full bootstrap workload,
+versions and browser10/deadlines. Old `8fb6f13b` hosted normal13 and browser10 were
+independently verified passing; those historical results do not qualify this
+repair. New exact-head hosted gates, the independent reviewer's finite delta and
+Root's explicit approval remain pending. Configured review previously returned
+only a quota notice; no completed configured verdict is inferred.
