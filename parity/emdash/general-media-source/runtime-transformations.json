@@ -1437,6 +1437,24 @@
           "native": "./types.ts"
         }
       ]
+    },
+    {
+      "source": "packages/core/src/media/usage/cleanup.ts",
+      "runtime": "src/lib/server/general-media/upstream/media/usage/cleanup.ts",
+      "sourceSha256": "9fc21331526ba220f661e771babb8e39185d3717e4bf82167a54d6db96663b87",
+      "transformation": "Attribution prefix; finite .js to .ts imports to sole published MediaUsageRepository wrapper and existing native database types only",
+      "imports": [
+        {
+          "statement": 2,
+          "source": "../../database/repositories/media-usage.js",
+          "native": "../../database/repositories/media-usage.ts"
+        },
+        {
+          "statement": 3,
+          "source": "../../database/types.js",
+          "native": "../../database/types.ts"
+        }
+      ]
     }
   ]
 }

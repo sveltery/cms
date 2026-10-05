@@ -8,7 +8,9 @@ import type { FindManyMediaOptions } from './upstream/database/repositories/medi
 import type { Storage } from './upstream/storage/types.ts';
 import { invalidateSiteSettingsCache } from './cache.ts';
 import {cleanupMediaUploads} from './cleanup.ts';
+import {cleanupGeneralMediaUsage} from './usage-cleanup.ts';
 export {cleanupMediaUploads} from './cleanup.ts';
+export {cleanupGeneralMediaUsage} from './usage-cleanup.ts';
 export { LocalStorage } from './upstream/storage/local.ts';
 export type * from './upstream/storage/types.ts';
 export type * from './upstream/database/repositories/media.ts';
@@ -27,6 +29,7 @@ export function createGeneralMediaBackend(database:CmsDatabase,storage:Storage) 
     list:(options:FindManyMediaOptions={})=>handleMediaList(db,options),
     get:(id:string)=>handleMediaGet(db,id),
     cleanup:()=>cleanupMediaUploads(database,storage),
+    cleanupUsage:()=>cleanupGeneralMediaUsage(database),
     update:(id:string,input:Parameters<typeof handleMediaUpdate>[2])=>handleMediaUpdate(db,id,input),
     upload:(input:MediaUploadInput,hooks:MediaUploadHooks={})=>handleMediaUpload(db,storage,input,hooks),
     delete:async(id:string)=>{

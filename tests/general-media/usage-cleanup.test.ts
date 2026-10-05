@@ -32,6 +32,10 @@ describe('Original trusted canonical media usage maintenance',()=>{
       expect(await db.selectFrom('_cms_media_usage').select(['id','generation','media_id']).execute()).toEqual([{id:'live',generation:'live-generation',media_id:'media-live'}]);
       expect(await new MediaUsageRepository(db).findCurrentUsageByMediaId('media-live')).toHaveLength(1);
       expect(await db.selectFrom('_cms_media_usage_cleanup').select(['lease_token','last_deleted_orphans','last_deleted_stale','last_deleted_abandoned']).where('task_key','=','projection_gc').executeTakeFirst()).toEqual({lease_token:null,last_deleted_orphans:1,last_deleted_stale:1,last_deleted_abandoned:1});
+      await db.updateTable('_cms_media_usage_cleanup').set({lease_token:'owned-existing-lease',lease_expires_at:'2099-01-01T00:00:00.000Z',next_eligible_at:'2099-01-01T00:00:00.000Z',cursor_created_at:'2000-01-01T00:00:00.000Z',cursor_id:'owned-existing-cursor',consecutive_failures:7,last_error_code:'retained-existing-backoff'}).where('task_key','=','projection_gc').execute();
+      const existing=await db.selectFrom('_cms_media_usage_cleanup').selectAll().where('task_key','=','projection_gc').executeTakeFirst();
+      expect(await cleanupGeneralMediaUsage(database)).toMatchObject({status:'skipped',deletedRows:0});
+      expect(await db.selectFrom('_cms_media_usage_cleanup').selectAll().where('task_key','=','projection_gc').executeTakeFirst()).toEqual(existing);
     }finally{await database.close();await worker?.dispose();}
   });
 });
