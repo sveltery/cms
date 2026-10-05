@@ -88,6 +88,19 @@ export function createCmsRuntime(
     return cachedAdapter(bindings, binding, () => openD1(binding));
   }
 
+  async function storageFor(config: RuntimeConfiguration): Promise<Storage | undefined> {
+    if (config.mediaStorage && config.kind !== 'sqlite') {
+      throw new Error('SVELTERY_MEDIA_DIRECTORY requires the Node SQLite runtime');
+    }
+    if (config.storage || !config.mediaStorage) return config.storage;
+    const { createRuntimeLocalStorage } = await import('./node.ts');
+    assertOpen();
+    return createRuntimeLocalStorage({
+      directory: config.mediaStorage.directory,
+      baseUrl: config.publicOrigin + (config.basePath ?? '') + '/api/media/file'
+    });
+  }
+
   const sessionHandle = createCmsHandle(async event => {
     assertOpen();
     const config = await configuration(event);
@@ -104,18 +117,7 @@ export function createCmsRuntime(
       throw new Error('CMS base path must be an absolute path without a trailing slash');
     }
     if (typeof rpName !== 'string' || !rpName.trim()) throw new Error('SVELTERY_RP_NAME must be nonempty');
-    if (config.mediaStorage && config.kind !== 'sqlite') {
-      throw new Error('SVELTERY_MEDIA_DIRECTORY requires the Node SQLite runtime');
-    }
-    let storage = config.storage;
-    if (!storage && config.mediaStorage) {
-      const { createRuntimeLocalStorage } = await import('./node.ts');
-      storage = createRuntimeLocalStorage({
-        directory: config.mediaStorage.directory,
-        baseUrl: publicOrigin + basePath + '/api/media/file'
-      });
-      assertOpen();
-    }
+    const storage = await storageFor(config);
     const database = await databaseFor(config);
     assertOpen();
     event.locals.cmsRuntime = Object.freeze({ publicOrigin, basePath, rpName });
