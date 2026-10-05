@@ -154,3 +154,39 @@ independently verified passing; those historical results do not qualify this
 repair. New exact-head hosted gates, the independent reviewer's finite delta and
 Root's explicit approval remain pending. Configured review previously returned
 only a quota notice; no completed configured verdict is inferred.
+
+## Independent review command-gate repair
+
+The complete successor review of `c6b2c936` closes the stored rollback finding
+and requests the infrastructure correction `USER99-SOURCE-GATE-EXACT-01`.
+Substring matching accepted `pnpm test:user-admin-other` in place of the required
+administration gate and rejected a legitimate later `pnpm test:user-admin-ui`.
+The exact reviewer report, four whole-checker witnesses and original checker
+bytes are retained with the raw receipts.
+
+The test-first fixture executes the complete unchanged checker in a temporary
+root, reading the real frozen Source authorities, Native bodies and inventories.
+Only a copied package command chain varies; no product, Source callback, data,
+clock or mock changes. Eleven cases produce eight passes and three genuine
+exit/value failures: the false admin acceptance and false rejections of future
+admin and repository commands with shared prefixes. The repair compares complete
+trimmed `&&` command tokens, requires exactly one real Core gate and one real
+administration gate, and requires their original order and adjacency. All eleven
+cases pass. A separate naming refactor and initially green whitespace control
+produce twelve passing cases. Missing/substituted, duplicate, reordered and
+nonadjacent gates and loss of the historical workload remain rejected.
+
+`pnpm test:user-source-gate` exercises this infrastructure family as a later leaf
+of the complete mandatory Source chain. The actual public Calendar Main chain
+and CI jobs precede the unchanged adjacent Core/administration gates, followed
+by this new fixture leaf. All actual Main lock bytes and compatibility text are
+preserved. The ordinary merge's prematurely staged package conflict was corrected
+immediately in the following regular commit; both commits remain in history.
+The final package and both provenance guards pass. This correction changes no
+product behavior and earns zero Source or product causal credit.
+
+After the Main union, complete Core65, Native48, original parser2, original
+reference9, whole-checker12 and CI orchestration26 pass. These focused results
+do not replace the final-head full phase CI, original secured browser workload,
+Calendar browser jobs, configured review and independent finite-delta review.
+Root's exact-head approval and the author's regular merge remain pending.

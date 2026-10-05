@@ -2733,3 +2733,19 @@ finite-delta closure, current full normal13/secured10, explicit Root acceptance
 and author merge remain pending. Future whole Source leaves may append after the
 adjacent exactly-once user gates; that provenance integration earns0 behavioral
 or Source credit.
+
+## USER99-SOURCE-GATE-EXACT-01 infrastructure repair
+
+The successor independent review closes the preceding atomic rollback issue and
+identifies substring matching in the user provenance guard. The full unchanged
+checker incorrectly accepted a substituted `test:user-admin-other` and rejected
+a legitimate appended `test:user-admin-ui`. Controlled package copies preserve
+all whole Source/Native files and checker bytes. Eleven test-first controls have
+eight passes and three actual command-acceptance failures, including the same
+future-prefix defect for a repository leaf. Complete trimmed `&&` tokens now
+require the actual Core/admin commands exactly once and adjacent in that order.
+All eleven pass; the separate refactor plus an initially green whitespace
+control passes twelve. The complete fixture gate appends after the entire actual
+public Calendar Main chain and adjacent owned gates. No workload is dropped or
+reordered. Product and Source causal credit remains zero; full final-head CI,
+browser jobs, reviewer qualification, exact Root approval and merge are pending.
