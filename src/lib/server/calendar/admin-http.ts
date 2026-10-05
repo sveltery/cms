@@ -8,14 +8,14 @@ import { editorManifest } from '../content/manifest.ts';
 import { currentUser } from '../auth/current-user.ts';
 import { requireSessionMutationOrigin,SessionOriginError } from '../auth/request.ts';
 import { apiError,apiSuccess } from '../sections-widgets/api/error.ts';
-import { withRevision,precondition,revisionToken } from '../content/schema.ts';
+import { withRevision,precondition } from '../content/schema.ts';
 import { contentEntry } from '../lifecycle/schema.ts';
 import { parse } from '../database/validation.ts';
 import { canonicalSourceDatabase } from '../canonical-storage/namespace.ts';
 import { OptionsRepository } from '../options/repository.ts';
 import { getI18nConfig } from '../menus/i18n-config.ts';
 import { readCalendarContent } from './content-read.ts';
-import * as v from 'valibot';
+import { calendarMutation } from './mutation.ts';
 type Event=Pick<RequestEvent,'request'|'url'|'params'|'locals'>;
 function failure(cause:unknown):Response {
   if(cause instanceof CmsError){
@@ -64,17 +64,12 @@ export async function calendarContentGet(event:Event):Promise<Response>{
     return apiSuccess({...withRevision(contentEntry(item)),bylines});
   }catch(cause){return failure(cause);}
 }
-const mutation=v.variant('action',[
-  v.strictObject({action:v.literal('publish'),_rev:v.optional(revisionToken)}),
-  v.strictObject({action:v.literal('schedule'),scheduledAt:v.pipe(v.string(),v.minLength(1),v.maxLength(128)),_rev:v.optional(revisionToken)}),
-  v.strictObject({action:v.literal('unschedule'),_rev:v.optional(revisionToken)})
-]);
 export async function calendarContentPost(event:Event):Promise<Response>{
   try{
     const cms=context(event,true);if(cms instanceof Response)return cms;
     const text=await event.request.text();if(text.length>8192)return apiError('VALIDATION_ERROR','Request is too large',400);
     let raw:unknown;try{raw=JSON.parse(text);}catch{return apiError('VALIDATION_ERROR','Invalid JSON',400);}
-    const value=parse(mutation,raw);
+    const value=parse(calendarMutation,raw);
     const key={collection:event.params.collection!,id:event.params.id!,locale:event.url.searchParams.get('locale')??'en'};
     const input={type:key.collection,id:key.id,locale:key.locale,...(value._rev===undefined?{}:{expected:precondition({...key,_rev:value._rev})})};
     const keepAlive=cms.keepAlive;
