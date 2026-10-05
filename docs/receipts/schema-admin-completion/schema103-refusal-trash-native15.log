@@ -1,0 +1,23 @@
+✔ native atomic batch follows queued reads and commits the completed write bookmark (false) (92.034417ms)
+✔ native atomic batch issued before reads remains first (false) (86.841666ms)
+✔ failed native atomic batch rejects its caller and leaves later reads ordered (false) (65.31227ms)
+✔ native atomic batch follows queued reads and commits the completed write bookmark (true) (51.857176ms)
+✔ native atomic batch issued before reads remains first (true) (43.074294ms)
+✔ failed native atomic batch rejects its caller and leaves later reads ordered (true) (51.325744ms)
+✔ Node: one-row all-locale trash plan matches the complete pinned Source index set (99.282249ms)
+✔ Node: explicit migration adds missing trash indexes idempotently without changing retained data or schema metadata (200.543436ms)
+✔ Node: index batch failure rolls back every newly added index and leaves marker/data unchanged (149.474141ms)
+✔ D1: one-row all-locale trash plan matches the complete pinned Source index set (812.795694ms)
+✔ D1: explicit migration adds missing trash indexes idempotently without changing retained data or schema metadata (1532.722921ms)
+✔ D1: index batch failure rolls back every newly added index and leaves marker/data unchanged (1635.974645ms)
+✔ coalescing actual D1 refuses registered dynamic operations before flushing, preparing or enqueuing (597.326126ms)
+✔ coalescing actual D1 refuses serialized dynamic operations before flushing, preparing or enqueuing (332.769951ms)
+✔ coalescing actual D1 ordinary atomic writes and real result positions remain intact (226.808001ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5695.314478
