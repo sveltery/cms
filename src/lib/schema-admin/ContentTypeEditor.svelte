@@ -7,7 +7,7 @@
   import { modal } from './modal';
   import * as defaultClient from './client';
   let { collection, isNew = false, isSaving = false, onSave, onAddField, onUpdateField, onDeleteField, onReorderFields,
-    onCreateRelation, onUpdateRelation, onDeleteRelation, fieldEditor, client = defaultClient, disabled = false, relationsAvailable = true }: any = $props();
+    onCreateRelation, onUpdateRelation, onDeleteRelation, fieldEditor, client = defaultClient, disabled = false, relationsAvailable = true, deletionAvailable = true }: any = $props();
   const formId = $props.id();
   let label = $state(untrack(() => (collection?.label ?? ''))), labelSingular = $state(untrack(() => (collection?.labelSingular ?? ''))), slug = $state(untrack(() => (collection?.slug ?? ''))), description = $state(untrack(() => (collection?.description ?? ''))), urlPattern = $state(untrack(() => (collection?.urlPattern ?? '')));
   let routable = $state(untrack(() => (collection?.routable ?? true))), editLocking = $state(untrack(() => (collection?.editLocking ?? true))), hidden = $state(untrack(() => (collection?.hidden ?? false))), quickCreate = $state(untrack(() => (collection?.admin?.quickCreate ?? true)));
@@ -60,7 +60,7 @@
   }
   async function fieldSave(input: any) { await (editingField ? onUpdateField?.(editingField.slug,input) : onAddField?.(input)); fieldOpen = false; editingField = undefined; }
   async function confirmFieldDelete() {
-    if (!deleteTarget || deleting || locked) return;
+    if (!deleteTarget || deleting || locked || !deletionAvailable) return;
     deleting = true; deleteError = '';
     try { await onDeleteField?.(deleteTarget.slug,targetRelation ? {deleteRelation} : undefined); deleteTarget = null; }
     catch (cause) { deleteError = cause instanceof Error ? cause.message : 'Field could not be deleted'; }
@@ -111,13 +111,14 @@
 </form>
 {#if !isNew}
 <section><h2>Fields</h2><p>6 system + {fields.length} custom fields</p>{#if !locked}<button type="button" onclick={() => { editingField = undefined; fieldOpen = true; }}>Add Field</button>{/if}
+  {#if !deletionAvailable}<p role="status">Deletion is unavailable until relationships and content references can be cleaned up</p>{/if}
   {#if reorderError}<p role="alert">{reorderError}</p>{/if}
   {#each fields as field (field.id)}<div role="group" aria-label={`Field ${field.label}`} class="field" ondragover={event => event.preventDefault()} ondrop={event => { event.preventDefault(); reorder(dragging,field.slug); dragging = ''; }}>
     {#if !locked}<button type="button" disabled={reordering} draggable="true" aria-label={`Reorder ${field.label} field`} ondragstart={() => dragging = field.slug}
       onkeydown={event => { const index = fields.findIndex((value: any) => value.slug === field.slug); if (event.key === 'ArrowUp' && index > 0) { event.preventDefault(); void reorder(field.slug,fields[index - 1].slug); } if (event.key === 'ArrowDown' && index < fields.length - 1) { event.preventDefault(); void reorder(field.slug,fields[index + 1].slug); } }}>↕</button>{/if}
     <span>{field.label}</span><code>{field.slug}</code><span>{field.unsupportedType?.type ?? field.type}</span>
     {#if field.unsupportedType}<span>Unsupported</span>{/if}{#if field.required}<span>Required</span>{/if}{#if field.unique}<span>Unique</span>{/if}{#if field.searchable}<span>Searchable</span>{/if}
-    {#if !locked}<button type="button" disabled={Boolean(field.unsupportedType)} aria-label={`Edit ${field.label} field`} onclick={() => { editingField = field; fieldOpen = true; }}>Edit</button><button type="button" aria-label={`Delete ${field.label} field`} onclick={() => { deleteError = ''; deleteTarget = field; deleteRelation = true; }}>Delete</button>{/if}
+    {#if !locked}<button type="button" disabled={Boolean(field.unsupportedType)} aria-label={`Edit ${field.label} field`} onclick={() => { editingField = field; fieldOpen = true; }}>Edit</button><button type="button" disabled={!deletionAvailable} aria-label={`Delete ${field.label} field`} onclick={() => { deleteError = ''; deleteTarget = field; deleteRelation = true; }}>Delete</button>{/if}
   </div>{:else}<p>No custom fields yet</p><p>Add fields to define the structure of your content</p>{/each}
   <h3>System Fields</h3>{#each systems as system}<p>{system[0]} <code>{system[1]}</code> · <span>{system[2]}</span></p>{/each}
 </section>

@@ -16,7 +16,7 @@
 <svelte:head><title>{collection?.label ?? 'Content Type'} · Sveltery CMS</title></svelte:head>
 <a href={resolve('/schema/_manage')}>Content Types</a>{#if error}<p role="alert">{error}</p>{/if}
 {#if collection}{#key collection.slug}
-<ContentTypeEditor {collection} isSaving={pending} disabled={!data.canMutateSchema} relationsAvailable={false}
+<ContentTypeEditor {collection} isSaving={pending} disabled={!data.canMutateSchema} relationsAvailable={false} deletionAvailable={false}
   onSave={(input:unknown)=>mutate(()=>adminClient.updateCollection(collection!,input))}
   onAddField={(input:unknown)=>mutate(()=>adminClient.addField(collection!,input))}
   onUpdateField={(field:string,input:{slug?:string})=>mutate(()=>adminClient.updateField(collection!.slug,field,input))}

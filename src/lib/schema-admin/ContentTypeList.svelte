@@ -3,7 +3,7 @@
   import RelationImpact from './RelationImpact.svelte';
   import { moveCollection } from './order';
   import { modal } from './modal';
-  let { collections = [], orphanedTables = [], isLoading = false, onDelete, onRegisterOrphan, onReorder, client = defaultClient, basePath = '/schema', disabled = false }: any = $props();
+  let { collections = [], orphanedTables = [], isLoading = false, onDelete, onRegisterOrphan, onReorder, client = defaultClient, basePath = '/schema', disabled = false, deletionAvailable = true }: any = $props();
   let target = $state<any>(null), relations = $state<any[]>([]), order = $state<string[] | null>(null), dragging = $state('');
   let deleting = $state(false), deleteError = $state(''), loadError = $state('');
   let moving = $state(false), reorderError = $state('');
@@ -21,7 +21,7 @@
     finally { moving = false; }
   }
   async function confirmDelete() {
-    if (!target || deleting || disabled) return;
+    if (!target || deleting || disabled || !deletionAvailable) return;
     deleting=true;deleteError='';
     try { await onDelete?.(target.slug);target=null; }
     catch(cause) { deleteError=cause instanceof Error?cause.message:'Content type could not be deleted'; }
@@ -30,6 +30,7 @@
 </script>
 <div inert={Boolean(target)} aria-hidden={target ? true : undefined}>
 <header><div><h1>Content Types</h1><p>Define the structure of your content</p></div><a href={`${basePath}/relations`}>Relations</a><a href={`${basePath}/new`}>New Content Type</a></header>
+{#if !deletionAvailable}<p role="status">Deletion is unavailable until relationships and content references can be cleaned up</p>{/if}
 {#if orphanedTables.length}<aside><h2>Unregistered Content Tables Found</h2><p>The following tables contain content but aren't registered as collections. Register them to manage this content in the admin.</p>
   {#each orphanedTables as orphan}<div><code>{orphan.slug}</code><span>({orphan.rowCount} {orphan.rowCount === 1 ? 'item' : 'items'})</span><button type="button" onclick={() => onRegisterOrphan?.(orphan.slug)}>Register</button></div>{/each}
 </aside>{/if}
@@ -43,7 +44,7 @@
   <td><div class="name"><div class="shrink-0" aria-hidden="true">▣</div><div class="min-w-0"><a href={`${basePath}/${collection.slug}`}>{collection.label}</a>{#if collection.description}<p>{collection.description}</p>{/if}</div></div></td>
   <td><code>{collection.slug}</code></td><td>{collection.source === 'code' ? 'Code' : collection.source === 'dashboard' || collection.source === 'manual' ? 'Dashboard' : collection.source}</td>
   <td>{#each [...collection.supports.filter((value: string) => value !== 'seo'),...(collection.hasSeo ? ['seo'] : [])] as feature}<span>{feature}</span>{/each}</td>
-  <td><a href={`${basePath}/${collection.slug}`} aria-label={`Edit ${collection.label}`}>Edit</a>{#if collection.source !== 'code'}<button type="button" {disabled} aria-label={`Delete ${collection.label}`} onclick={() => { deleteError='';target=collection; }}>Delete</button>{/if}</td>
+  <td><a href={`${basePath}/${collection.slug}`} aria-label={`Edit ${collection.label}`}>Edit</a>{#if collection.source !== 'code'}<button type="button" disabled={disabled || !deletionAvailable} aria-label={`Delete ${collection.label}`} onclick={() => { deleteError='';target=collection; }}>Delete</button>{/if}</td>
 </tr>{/each}{/if}
 </tbody></table>
 {#if loadError}<p role="alert">Relationship impact is unavailable: {loadError}</p>{/if}

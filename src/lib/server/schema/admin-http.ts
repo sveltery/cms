@@ -2,6 +2,7 @@ import { json, type RequestEvent } from '@sveltejs/kit';
 import { cmsService } from '../database/service';
 import { CmsError } from '../database/contract';
 import { requireSessionMutationOrigin, SessionOriginError } from '../auth/request';
+import { SchemaDeletionUnavailable } from '../../schema-admin/deletion-readiness';
 
 /** Only the existing trusted composition can supply identity and storage. */
 export async function schemaAdminHttp(event: Pick<RequestEvent, 'request' | 'locals'>, mutation: boolean,
@@ -17,6 +18,7 @@ export async function schemaAdminHttp(event: Pick<RequestEvent, 'request' | 'loc
   if (!configuration?.database) return failure('NOT_CONFIGURED', 'Schema storage is not configured', 503);
   try { return json({ success: true, data: await run(cmsService(configuration.database, principal)) }); }
   catch (cause) {
+    if (cause instanceof SchemaDeletionUnavailable) return failure(cause.code, cause.message, cause.status);
     if (cause instanceof CmsError) return failure(cause.code, cause.code.toLowerCase().replaceAll('_','-'),
       cause.code === 'NOT_FOUND' ? 404 : cause.code === 'FORBIDDEN' ? 403 : cause.code === 'VALIDATION_ERROR' ? 400 : cause.code === 'MIGRATION_REQUIRED' ? 503 : 409);
     if (cause instanceof SyntaxError) return failure('VALIDATION_ERROR', 'Invalid JSON request', 400);
