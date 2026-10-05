@@ -28,6 +28,16 @@ docs/taxonomy-evidence/ci482-normal-first-integration-failure.log whitespace=-bl
 docs/taxonomy-evidence/integration-first-native-fixture-type-gap.log whitespace=-blank-at-eol
 docs/taxonomy-evidence/local38ad-normal-first-integration-failure.log whitespace=-blank-at-eol
 docs/taxonomy-evidence/worker-integration-current-baseline.log whitespace=-blank-at-eol
+# Exact pinned byline Source/evidence bytes retain inherited trailing spaces.
+parity/emdash/byline-source/upstream/packages/core/src/database/migrations/013_scheduled_publishing.ts whitespace=-blank-at-eol
+parity/emdash/byline-source/upstream/packages/core/src/database/migrations/015_indexes.ts whitespace=-blank-at-eol
+parity/emdash/byline-source/upstream/packages/core/src/database/migrations/019_i18n.ts whitespace=-blank-at-eol
+docs/byline-evidence/byline-check-api-first.log whitespace=-blank-at-eol
+docs/byline-evidence/byline-permission-projection-initial.log whitespace=-blank-at-eol
+/docs/byline-evidence/cache-owner-fix-green.log -whitespace
+/docs/byline-evidence/cache-owner-refactor-green.log -whitespace
+/docs/byline-evidence/cache-owner-source216.log -whitespace
+docs/receipts/scheduled-publishing/public-c3-check-first.log -whitespace
 
 # Preserve complete original search assertion-failure evidence.
 docs/search-evidence/whole70-baseline.log -whitespace
@@ -44,7 +54,6 @@ docs/search-evidence/sdk-constructor-native8-recovery.log whitespace=-blank-at-e
 docs/search-evidence/sdk-constructor-render3-recovery.log whitespace=-blank-at-eof
 docs/search-evidence/sdk-current13-type-producer-gap.log whitespace=-blank-at-eol
 docs/search-evidence/sdk-search-pinned-host-fixed.log whitespace=-blank-at-eof
-
 # Preserve only observed immutable published schema evidence formats.
 docs/receipts/schema-admin-completion/collection-index-forward3-initial.log whitespace=-blank-at-eof
 docs/receipts/schema-admin-completion/collection-index-native3-initial.log whitespace=-blank-at-eof
@@ -79,7 +88,6 @@ docs/receipts/schema-admin-completion/schema103-terminal-source22.log whitespace
 docs/receipts/schema-admin-completion/schema103-whole-cloudflare-source-refusal-followup.log whitespace=-blank-at-eof
 docs/receipts/schema-admin-completion/source22-initial-baseline.log whitespace=-blank-at-eof
 docs/search-evidence/sdk-public16-incoming-original-whitespace-check.log whitespace=-blank-at-eol
-
 # Preserve only these nine existing whole Search raw-log formats.
 docs/search-evidence/default-f9-original1492.log whitespace=-blank-at-eol
 docs/search-evidence/search101-existing-content-list-whole22-current.log whitespace=-blank-at-eof

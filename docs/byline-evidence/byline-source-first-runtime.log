@@ -1,0 +1,29 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-byline-backend
+
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts (0 test)
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/schema/byline-registry.test.ts (43 tests) 791ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/api/handlers/bylines.test.ts (18 tests) 589ms
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts [ parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts ]
+ FAIL  parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts [ parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts ]
+Error: Cannot find package '@emdash-cms/admin/slugify' imported from /workspace/cms-complete-byline-backend/parity/emdash/byline-source/upstream/packages/core/src/utils/slugify.ts
+ ❯ parity/emdash/byline-source/upstream/packages/core/src/utils/slugify.ts:1:1
+      1| export { slugify } from "@emdash-cms/admin/slugify";
+       | ^
+      2|
+      3| /**
+ ❯ parity/emdash/byline-source/upstream/packages/core/src/database/repositories/content.ts:12:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  2 failed | 2 passed (4)
+      Tests  61 passed (61)
+   Start at  01:28:30
+   Duration  5.47s (transform 1.33s, setup 0ms, import 1.13s, tests 1.38s, environment 0ms)
+
+JSON report written to /tmp/byline-source-first-runtime.json

@@ -1,0 +1,40 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-byline-backend
+
+ ❯ tests/bylines/canonical-storage.test.ts (2 tests | 2 failed) 65ms
+     × provides a working profile repository without installing Source tables 44ms
+     × provides working custom-field registration on the canonical options counter 20ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/bylines/canonical-storage.test.ts > Original byline producer on ordinary canonical installation > provides a working profile repository without installing Source tables
+AssertionError: installed byline repository: expected null not to be null
+ ❯ tests/bylines/canonical-storage.test.ts:20:57
+     18|       expect(tables.rows.some(row => row.name.startsWith('_emdash_')))…
+     19|       const module = await ownedModule('repository');
+     20|       expect(module, 'installed byline repository').not.toBeNull();
+       |                                                         ^
+     21|       const repository = new module!.BylineRepository(database);
+     22|       const profile = await repository.create({ slug: 'native-author',…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/bylines/canonical-storage.test.ts > Original byline producer on ordinary canonical installation > provides working custom-field registration on the canonical options counter
+AssertionError: installed byline field registry: expected null not to be null
+ ❯ tests/bylines/canonical-storage.test.ts:33:61
+     31|       await migrateCms(database);
+     32|       const module = await ownedModule('schema');
+     33|       expect(module, 'installed byline field registry').not.toBeNull();
+       |                                                             ^
+     34|       const registry = new module!.BylineSchemaRegistry(database);
+     35|       const field = await registry.createField({slug:'job_title',label…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  01:21:29
+   Duration  558ms (transform 221ms, setup 0ms, import 372ms, tests 65ms, environment 0ms)
+
+JSON report written to /tmp/byline-native-initial-r2.json

@@ -1,0 +1,58 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-byline-backend
+
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts (0 test)
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/database/repositories/byline.test.ts (64 tests) 784ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/schema/byline-registry.test.ts (43 tests) 345ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts (23 tests) 320ms
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/integration/api/bylines-customfields-create.test.ts (0 test)
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/integration/api/bylines-customfields-write.test.ts (0 test)
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/api/handlers/bylines.test.ts (18 tests) 251ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/field-defs-cache.test.ts (6 tests) 235ms
+ ✓ parity/emdash/byline-source/upstream/packages/core/tests/integration/database/byline-fields-races.test.ts (5 tests) 80ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts [ parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts ]
+Error: Cannot find module '/tests/helpers/bylines/reference-field-routes.ts' imported from /workspace/cms-complete-byline-backend/parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts:29:1
+     27| import { afterEach, beforeEach, describe, expect, it } from "vitest";
+     28|
+     29| import {
+       | ^
+     30|  GET as getOne,
+     31|  PATCH as patchOne,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  parity/emdash/byline-source/upstream/packages/core/tests/integration/api/bylines-customfields-create.test.ts [ parity/emdash/byline-source/upstream/packages/core/tests/integration/api/bylines-customfields-create.test.ts ]
+Error: Cannot find module '/tests/helpers/bylines/reference-profile-one.ts' imported from /workspace/cms-complete-byline-backend/parity/emdash/byline-source/upstream/packages/core/tests/integration/api/bylines-customfields-create.test.ts
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/integration/api/bylines-customfields-create.test.ts:11:1
+      9| import { afterEach, beforeEach, describe, expect, it } from "vitest";
+     10|
+     11| import { GET as getById } from "../../../src/astro/routes/api/admin/by…
+       | ^
+     12| import { POST as createByline } from "../../../src/astro/routes/api/ad…
+     13| import { resetBylineFieldDefsCacheForTests } from "../../../src/byline…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  parity/emdash/byline-source/upstream/packages/core/tests/integration/api/bylines-customfields-write.test.ts [ parity/emdash/byline-source/upstream/packages/core/tests/integration/api/bylines-customfields-write.test.ts ]
+Error: Cannot find module '/tests/helpers/bylines/reference-profile-one.ts' imported from /workspace/cms-complete-byline-backend/parity/emdash/byline-source/upstream/packages/core/tests/integration/api/bylines-customfields-write.test.ts
+ ❯ parity/emdash/byline-source/upstream/packages/core/tests/integration/api/bylines-customfields-write.test.ts:28:1
+     26| import { afterEach, beforeEach, describe, expect, it } from "vitest";
+     27|
+     28| import {
+       | ^
+     29|  GET as getById,
+     30|  PUT as putById,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  3 failed | 6 passed (9)
+      Tests  159 passed (159)
+   Start at  01:48:28
+   Duration  4.82s (transform 578ms, setup 0ms, import 1.51s, tests 2.01s, environment 1ms)
+
+JSON report written to /tmp/byline-source-all-route-import-initial.json

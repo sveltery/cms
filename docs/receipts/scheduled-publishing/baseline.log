@@ -1,0 +1,214 @@
+
+ RUN  v4.1.10 /workspace/cms-full-scheduling-calendar
+
+ ❯ tests/scheduling-native/calendar.test.ts (11 tests | 8 failed) 130ms
+   ✓ storage control: first publication scheduling and removal preserve the real row 43ms
+   ✓ storage control: scheduling changes keeps an already published entry live 22ms
+   ✓ storage control: due selection excludes later and trashed rows 24ms
+   × calendar lists both events for published content with scheduled changes 14ms
+   × calendar walks ties in collection and event order without skipping an event 12ms
+   × calendar uses persisted hidden and titleField metadata without changing content 2ms
+   × calendar returns the original invalid-cursor envelope 3ms
+   × calendar placement uses site timezone and the time entries loaded 4ms
+   × calendar filters intersect collection, locale and state without changing the input 2ms
+   × calendar client bounds a repeating page stream to ten pages and de-duplicates event keys 2ms
+   × calendar client sends bounds and cursor through the ordinary calendar API 1ms
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts (0 test)
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/api/calendar-handlers.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts [ parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts ]
+Error: Cannot find module '/src/lib/calendar/api.ts' imported from /workspace/cms-full-scheduling-calendar/parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts:3:1
+      1| import { afterEach, describe, expect, it, vi } from "vitest";
+      2|
+      3| import { fetchCalendarRange, type CalendarEntry } from "../../src/lib/…
+       | ^
+      4| import {
+      5|  calendarState,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/api/calendar-handlers.test.ts [ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/api/calendar-handlers.test.ts ]
+Error: Cannot find module '/src/lib/server/calendar/handlers.ts' imported from /workspace/cms-full-scheduling-calendar/parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/api/calendar-handlers.test.ts
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/api/calendar-handlers.test.ts:3:1
+      1| import { afterEach, beforeEach, expect, it } from "vitest";
+      2|
+      3| import { handleCalendarEntries, type CalendarEntry } from "../../../sr…
+       | ^
+      4| import { ContentRepository } from "../../../src/database/repositories/…
+      5| import { encodeCursor } from "../../../src/database/repositories/types…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/scheduling-native/calendar.test.ts > calendar lists both events for published content with scheduled changes
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ serverModule tests/scheduling-native/calendar.test.ts:29:70
+     27|   const specifier = '../../src/lib/server/calendar/' + 'handlers.ts';
+     28|   let module: any;
+     29|   await expect((async () => { module = await import(specifier); })()).…
+       |                                                                      ^
+     30|   return module;
+     31| }
+ ❯ tests/scheduling-native/calendar.test.ts:83:43
+
+Caused by: Error: Cannot find module '/src/lib/server/calendar/handlers.ts' imported from /workspace/cms-full-scheduling-calendar/tests/scheduling-native/calendar.test.ts
+ ❯ tests/scheduling-native/calendar.test.ts:29:40
+ ❯ serverModule tests/scheduling-native/calendar.test.ts:29:3
+ ❯ tests/scheduling-native/calendar.test.ts:83:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  tests/scheduling-native/calendar.test.ts > calendar walks ties in collection and event order without skipping an event
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ serverModule tests/scheduling-native/calendar.test.ts:29:70
+     27|   const specifier = '../../src/lib/server/calendar/' + 'handlers.ts';
+     28|   let module: any;
+     29|   await expect((async () => { module = await import(specifier); })()).…
+       |                                                                      ^
+     30|   return module;
+     31| }
+ ❯ tests/scheduling-native/calendar.test.ts:96:43
+
+Caused by: Error: Cannot find module '/src/lib/server/calendar/handlers.ts' imported from /workspace/cms-full-scheduling-calendar/tests/scheduling-native/calendar.test.ts
+ ❯ tests/scheduling-native/calendar.test.ts:29:40
+ ❯ serverModule tests/scheduling-native/calendar.test.ts:29:3
+ ❯ tests/scheduling-native/calendar.test.ts:96:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  tests/scheduling-native/calendar.test.ts > calendar uses persisted hidden and titleField metadata without changing content
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ serverModule tests/scheduling-native/calendar.test.ts:29:70
+     27|   const specifier = '../../src/lib/server/calendar/' + 'handlers.ts';
+     28|   let module: any;
+     29|   await expect((async () => { module = await import(specifier); })()).…
+       |                                                                      ^
+     30|   return module;
+     31| }
+ ❯ tests/scheduling-native/calendar.test.ts:116:43
+
+Caused by: Error: Cannot find module '/src/lib/server/calendar/handlers.ts' imported from /workspace/cms-full-scheduling-calendar/tests/scheduling-native/calendar.test.ts
+ ❯ tests/scheduling-native/calendar.test.ts:29:40
+ ❯ serverModule tests/scheduling-native/calendar.test.ts:29:3
+ ❯ tests/scheduling-native/calendar.test.ts:116:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+ FAIL  tests/scheduling-native/calendar.test.ts > calendar returns the original invalid-cursor envelope
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/serve… { …(2) }" instead of resolving
+ ❯ serverModule tests/scheduling-native/calendar.test.ts:29:70
+     27|   const specifier = '../../src/lib/server/calendar/' + 'handlers.ts';
+     28|   let module: any;
+     29|   await expect((async () => { module = await import(specifier); })()).…
+       |                                                                      ^
+     30|   return module;
+     31| }
+ ❯ tests/scheduling-native/calendar.test.ts:132:43
+
+Caused by: Error: Cannot find module '/src/lib/server/calendar/handlers.ts' imported from /workspace/cms-full-scheduling-calendar/tests/scheduling-native/calendar.test.ts
+ ❯ tests/scheduling-native/calendar.test.ts:29:40
+ ❯ serverModule tests/scheduling-native/calendar.test.ts:29:3
+ ❯ tests/scheduling-native/calendar.test.ts:132:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+
+ FAIL  tests/scheduling-native/calendar.test.ts > calendar placement uses site timezone and the time entries loaded
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/calen… { …(2) }" instead of resolving
+ ❯ clientModule tests/scheduling-native/calendar.test.ts:35:70
+     33|   const specifier = '../../src/lib/calendar/' + 'calendar.ts';
+     34|   let module: any;
+     35|   await expect((async () => { module = await import(specifier); })()).…
+       |                                                                      ^
+     36|   return module;
+     37| }
+ ❯ tests/scheduling-native/calendar.test.ts:138:37
+
+Caused by: Error: Cannot find module '/src/lib/calendar/calendar.ts' imported from /workspace/cms-full-scheduling-calendar/tests/scheduling-native/calendar.test.ts
+ ❯ tests/scheduling-native/calendar.test.ts:35:40
+ ❯ clientModule tests/scheduling-native/calendar.test.ts:35:3
+ ❯ tests/scheduling-native/calendar.test.ts:138:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+
+ FAIL  tests/scheduling-native/calendar.test.ts > calendar filters intersect collection, locale and state without changing the input
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/calen… { …(2) }" instead of resolving
+ ❯ clientModule tests/scheduling-native/calendar.test.ts:35:70
+     33|   const specifier = '../../src/lib/calendar/' + 'calendar.ts';
+     34|   let module: any;
+     35|   await expect((async () => { module = await import(specifier); })()).…
+       |                                                                      ^
+     36|   return module;
+     37| }
+ ❯ tests/scheduling-native/calendar.test.ts:145:50
+
+Caused by: Error: Cannot find module '/src/lib/calendar/calendar.ts' imported from /workspace/cms-full-scheduling-calendar/tests/scheduling-native/calendar.test.ts
+ ❯ tests/scheduling-native/calendar.test.ts:35:40
+ ❯ clientModule tests/scheduling-native/calendar.test.ts:35:3
+ ❯ tests/scheduling-native/calendar.test.ts:145:44
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+
+ FAIL  tests/scheduling-native/calendar.test.ts > calendar client bounds a repeating page stream to ten pages and de-duplicates event keys
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/calen… { …(2) }" instead of resolving
+ ❯ apiModule tests/scheduling-native/calendar.test.ts:41:70
+     39|   const specifier = '../../src/lib/calendar/' + 'api.ts';
+     40|   let module: any;
+     41|   await expect((async () => { module = await import(specifier); })()).…
+       |                                                                      ^
+     42|   return module;
+     43| }
+ ❯ tests/scheduling-native/calendar.test.ts:156:40
+
+Caused by: Error: Cannot find module '/src/lib/calendar/api.ts' imported from /workspace/cms-full-scheduling-calendar/tests/scheduling-native/calendar.test.ts
+ ❯ tests/scheduling-native/calendar.test.ts:41:40
+ ❯ apiModule tests/scheduling-native/calendar.test.ts:41:3
+ ❯ tests/scheduling-native/calendar.test.ts:156:34
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯
+
+ FAIL  tests/scheduling-native/calendar.test.ts > calendar client sends bounds and cursor through the ordinary calendar API
+AssertionError: promise rejected "Error: Cannot find module '/src/lib/calen… { …(2) }" instead of resolving
+ ❯ apiModule tests/scheduling-native/calendar.test.ts:41:70
+     39|   const specifier = '../../src/lib/calendar/' + 'api.ts';
+     40|   let module: any;
+     41|   await expect((async () => { module = await import(specifier); })()).…
+       |                                                                      ^
+     42|   return module;
+     43| }
+ ❯ tests/scheduling-native/calendar.test.ts:172:39
+
+Caused by: Error: Cannot find module '/src/lib/calendar/api.ts' imported from /workspace/cms-full-scheduling-calendar/tests/scheduling-native/calendar.test.ts
+ ❯ tests/scheduling-native/calendar.test.ts:41:40
+ ❯ apiModule tests/scheduling-native/calendar.test.ts:41:3
+ ❯ tests/scheduling-native/calendar.test.ts:172:33
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  8 failed | 3 passed (11)
+   Start at  14:25:26
+   Duration  1.20s (transform 387ms, setup 0ms, import 625ms, tests 130ms, environment 0ms)
+
+JSON report written to /tmp/scheduling-calendar-4c79-whole34-baseline.json
