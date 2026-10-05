@@ -5,7 +5,7 @@ import { iframeEmbedAttrs, iframeEmbedFromAttrs, iframeEmbedToCode, parseIframeI
 // debounce parsing at the original delay, and keep unwritable valid input pending.
 const PARSE_DELAY_MS = 250;
 export function iframeDraft(getViewState: () => NodeViewState) {
-  const state = $state({ typed: null as string | null, error: '' });
+  const state = $state({ typed: null as string | null, error: '', revision: 0, loadable: null as string | null });
   let pending: string | null = null;
   let valid = true;
   const initialNode = getViewState().node;
@@ -30,6 +30,7 @@ export function iframeDraft(getViewState: () => NodeViewState) {
     pending = null;
     known = result.embed ? iframeEmbedToCode(result.embed) : '';
     viewState.updateAttributes(iframeEmbedAttrs(result.embed));
+    state.loadable = result.embed?.src ?? null;
     return true;
   }
 
@@ -41,6 +42,7 @@ export function iframeDraft(getViewState: () => NodeViewState) {
     pending = null;
     state.typed = null;
     state.error = '';
+    state.revision += 1;
   }
 
   function change(text: string) {
@@ -50,13 +52,10 @@ export function iframeDraft(getViewState: () => NodeViewState) {
     timer = setTimeout(flush, PARSE_DELAY_MS);
   }
 
-  function blur() {
-    // Queue writes outside the ProseMirror command that moved focus, then
-    // canonicalize only text that could be saved while the document kept focus.
-    queueMicrotask(flush);
+  function canonicalizeAfterBlur() {
     queueMicrotask(() => {
       if (!document.hasFocus() || !valid || pending !== null) return;
-      if (state.typed !== null && state.typed !== known) state.typed = null;
+      if (state.typed !== null && state.typed !== known) { state.typed = null; state.revision += 1; }
     });
   }
 
@@ -68,5 +67,5 @@ export function iframeDraft(getViewState: () => NodeViewState) {
 
   // The Source focus owner flushes during cleanup. Real editor/getPos guards
   // prevent writes to a deleted block or destroyed editor.
-  return { state, synchronize, change, blur, changeTab, cleanup: () => queueMicrotask(flush) };
+  return { state, synchronize, change, flush, canonicalizeAfterBlur, changeTab };
 }

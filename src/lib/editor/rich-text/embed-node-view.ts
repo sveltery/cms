@@ -8,6 +8,7 @@ import { stopEvent } from './top-block';
 export const embedBlockNodeView: NodeViewRenderer = ({ node, editor, getPos }) => {
   let current = node;
   const dom = document.createElement('div'); dom.dataset.type = node.type.name;
+  dom.className = node.type.name === 'iframeBlock' ? 'iframe-block' : 'html-block';
   // Both controls resolve the owning position at activation. Never retain a
   // mount-time offset: inserting an earlier block can move this node view.
   function atEditablePosition(action: (position: number) => void) {
@@ -23,10 +24,13 @@ export const embedBlockNodeView: NodeViewRenderer = ({ node, editor, getPos }) =
     });
   }, getPos);
   const instance = flushSync(() => mount(EmbedBlockEditor, { target: dom, props: { state } }));
+  const editableChanged = () => { state.editable = editor.isEditable; };
+  editor.on('update', editableChanged);
+  editor.on('transaction', editableChanged);
   return { dom,
     update(next) { if (next.type !== current.type) return false; current = next; state.node = next; state.editable = editor.isEditable; return true; },
     ignoreMutation() { return true; },
     stopEvent(event) { return stopEvent(event, editor.view.dragging !== null); },
-    destroy() { void unmount(instance); }
+    destroy() { editor.off('update', editableChanged); editor.off('transaction', editableChanged); void unmount(instance); }
   };
 };

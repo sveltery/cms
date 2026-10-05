@@ -3,6 +3,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { tick } from 'svelte';
 import { CellSelection } from '@tiptap/pm/tables';
+import { EditorView } from '@codemirror/view';
 import { getTableControlState } from '../../src/lib/editor/rich-text/TableActions';
 import { iframeEmbedToCode } from '../../src/lib/editor/portable-text/iframe-embed';
 import { renderInDraftForm } from '../helpers/rich-editor/native-authoring-dom';
@@ -11,11 +12,25 @@ afterEach(async () => { for (const cleanup of cleanups.splice(0)) await cleanup(
 async function render(value: NonNullable<Parameters<typeof renderInDraftForm>[0]>['value']) {
   const result = await renderInDraftForm({ value }); cleanups.push(result.cleanup); return result;
 }
-function inputValue(input: HTMLTextAreaElement, value: string) { input.value = value; input.dispatchEvent(new Event('input', { bubbles: true })); }
+// Framework transport for the actual CodeMirror editor. The live owner follows
+// real external/blur remounts; no textarea or browser layout is simulated.
+type CodeInput = { readonly value: string; focus(): void; view(): EditorView };
+function inputValue(input: CodeInput, value: string) {
+  const view = input.view(); view.dispatch({ changes: { from: 0, to: view.state.doc.length, insert: value } });
+}
 async function iframe(src = '') {
   const result = await render([{ _type: 'iframe', _key: 'frame', src }]);
-  const input = result.host.querySelector<HTMLTextAreaElement>('[data-type="iframeBlock"] textarea')!;
-  expect(input).toBeTruthy(); input.focus(); result.onChange.mockClear();
+  if (src) {
+    [...result.host.querySelectorAll<HTMLButtonElement>('[data-type="iframeBlock"] [role="tab"]')].find(button => button.textContent === 'Code')!.click();
+    await tick();
+  }
+  const view = () => EditorView.findFromDOM(result.host.querySelector<HTMLElement>('[data-type="iframeBlock"] .cm-content')!)!;
+  await vi.waitFor(() => expect(result.host.querySelector('[data-type="iframeBlock"] .cm-content')).toBeTruthy());
+  // Let the Source's real initial empty-block focus frame complete before the
+  // supplemental parsing clock begins. This does not fake animation or layout.
+  await new Promise<void>(resolve => requestAnimationFrame(() => resolve())); await tick();
+  const input: CodeInput = { get value() { return view().state.doc.toString(); }, focus() { view().focus(); }, view };
+  input.focus(); result.onChange.mockClear();
   vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
   return { ...result, input, attrs: () => result.editor.state.doc.firstChild!.attrs };
 }

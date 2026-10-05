@@ -9,6 +9,7 @@
   import { portableTextToProsemirror } from '../portable-text/admin-converters';
   import EditorFooter from './EditorFooter.svelte';
   import TableSizePicker from './TableSizePicker.svelte';
+  import TableSelectionAnnouncer from './TableSelectionAnnouncer.svelte';
   import { createPortableTextEditor } from './create-editor';
   import { defaultSlashCommands, insertHtmlBlock, insertIframeBlock, type SlashCommandItem, type SlashMenuState } from './slash-commands';
   import { insertTable } from './insert-table';
@@ -218,6 +219,7 @@
         {#if linkOpen}<div class="link-form"><label>Link URL<input value={href} oninput={event => { href = event.currentTarget.value; }} onkeydown={event => { if (event.key === 'Enter') { event.preventDefault(); applyLink(); } else if (event.key === 'Escape') { event.preventDefault(); linkOpen = false; editor?.view.focus(); } }} placeholder="https://" /></label><button type="button" onclick={applyLink}>Apply</button><button type="button" onclick={() => { linkOpen = false; editor?.view.focus(); }}>Cancel</button></div>{/if}
       {/if}
       <div bind:this={element} class:spotlight-mode={props.focusMode === 'spotlight'} aria-labelledby={props['aria-labelledby']}></div>
+      {#if editor}<TableSelectionAnnouncer {editor} onChange={message => { announcement = message; }} translate={t} />{/if}
       {#if editor && !props.minimal}<EditorFooter {editor} translate={t} />{/if}
       {#if editor && editable && !props.onGutterReady}<button type="button" class="gutter-insert" aria-label="Insert block" onclick={() => { const selection = editor!.state.selection.$from; const at = selection.depth ? selection.after(1) : selection.pos; openGutter(at); }}>+</button>{/if}
     </div>

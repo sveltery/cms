@@ -47,7 +47,7 @@ export const PluginBlockExtension = Node.create({
   renderHTML({ HTMLAttributes }) { return ['div', mergeAttributes(HTMLAttributes, { 'data-plugin-block': '' })]; },
   addNodeView() {
     return ({ node }) => {
-      const dom = document.createElement('div'); dom.dataset.pluginBlock = ''; dom.contentEditable = 'false';
+      const dom = document.createElement('div'); dom.className = 'plugin-block'; dom.dataset.pluginBlock = ''; dom.contentEditable = 'false';
       function render(current: typeof node) { dom.textContent = `Block: ${current.attrs.blockType ?? ''}`; }
       render(node);
       return { dom, update(next) { if (next.type !== node.type) return false; render(next); return true; } };

@@ -21,6 +21,9 @@ export default defineConfig({
       if (target === resolve(source, 'src/components/PortableTextEditor')) return resolve(helper, 'react-bridge.tsx');
       if (target === resolve(source, 'src/components/editor/ImageNode')) return resolve(native, 'image-node.ts');
       if (target === resolve(source, 'src/components/editor/PluginBlockNode')) return resolve(native, 'plugin-node.ts');
+      if (target === resolve(source, 'src/components/editor/TableActions')) return resolve(native, 'TableActions.ts');
+      if (target === resolve(source, 'src/components/editor/TableExtensions')) return resolve(native, 'TableExtensions.ts');
+      if (target === resolve(source, 'src/components/editor/TableControls')) return resolve(helper, 'table-react-bridge.tsx');
       if (target === resolve(source, 'dist/styles.css') || target === resolve(source, 'src/styles.css')) return resolve(native, 'editor.css');
     },
     load(id) { if (id === '\0rich-editor-native-default-base') return "export const base = '';"; },
@@ -39,7 +42,7 @@ export default defineConfig({
   resolve: { alias: { $lib: resolve(root, 'src/lib') }, conditions: ['browser'] },
   // Transform the real Native Svelte graph before the first lazy React mount;
   // original Source readiness clocks and every callback remain unchanged.
-  server: { warmup: { clientFiles: ['tests/helpers/rich-editor/EditorHost.svelte', 'src/lib/editor/rich-text/PortableTextEditor.svelte'] } },
+  server: { warmup: { clientFiles: ['tests/helpers/rich-editor/EditorHost.svelte', 'src/lib/editor/rich-text/PortableTextEditor.svelte', 'src/lib/ui/sections-widgets/SectionPickerModal.svelte', 'src/lib/editor/rich-text/CodeEditor.svelte', 'tests/helpers/rich-editor/TableControlsHost.svelte'] } },
   // The whole Source families retain original provider mocks. Do not scan those
   // mocked module bodies: their unmounted React providers are not prerequisites
   // of the Native editor. Prebundle the actual harness/authoring graph before
@@ -56,7 +59,9 @@ export default defineConfig({
       '@tiptap/extension-subscript', '@tiptap/extension-superscript', '@tiptap/extension-text-align',
       '@tiptap/extension-typography', '@tiptap/extension-table', '@tiptap/extension-table-cell',
       '@tiptap/extension-table-header', '@tiptap/extension-table-row',
-      'lowlight', 'highlight.js/lib/languages/dockerfile'
+      'lowlight', 'highlight.js/lib/languages/dockerfile',
+      '@codemirror/autocomplete', '@codemirror/commands', '@codemirror/lang-css', '@codemirror/lang-html',
+      '@codemirror/lang-javascript', '@codemirror/language', '@codemirror/state', '@codemirror/view', '@lezer/highlight'
     ]
   },
   oxc: { jsx: { runtime: 'automatic' } },
