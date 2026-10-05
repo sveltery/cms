@@ -150,6 +150,36 @@
       "bytes": 1231,
       "sha256": "6525998f10c41095b0ae9f8b0ae5f8f820ecef414435031655c3b80cedb5c5aa",
       "gitBlob": "a0c96e947cb0de99a03aeacfb79d39e799e4360c"
+    },
+    {
+      "path": "packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts",
+      "bytes": 5803,
+      "sha256": "455adcf432bb6a7c3e449405bede932766d08d2191ec6e3e8e3cfb839b92a209",
+      "gitBlob": "7c70d7c32de3d137f0e8f926dc0dc3f6fa950976"
+    },
+    {
+      "path": "packages/core/tests/integration/runtime/invalid-auto-seed.test.ts",
+      "bytes": 1381,
+      "sha256": "a6ff1a62be36a9cea2247954bb67cb605e16be49474ddb3f6473f9663b3a9c3d",
+      "gitBlob": "e921e497f6e0e8644dd537aa4ca487e699bd4869"
+    },
+    {
+      "path": "packages/core/tests/integration/astro/setup-seed-budget.test.ts",
+      "bytes": 4734,
+      "sha256": "8e31d1bb8cf3d30f185cbd4945f581f8d5f2fc57684e5a2c5551b9ca1de9ae4f",
+      "gitBlob": "cb46df9dbee5bb367efb6f6d9038d02ef7013be0"
+    },
+    {
+      "path": "packages/core/src/emdash-runtime.ts",
+      "bytes": 216950,
+      "sha256": "7954be3d12857ff307e9d2b15846662814f092e49807bcfb3b188a8f2ae847fc",
+      "gitBlob": "055ed1307ba4029e120cad989bc9b0e8c2d72afe"
+    },
+    {
+      "path": "packages/core/src/astro/routes/api/setup/index.ts",
+      "bytes": 5990,
+      "sha256": "352ffe4b15dc1ab89415ed35adcd9b072ee32c26f19e0f5c09f08c99d4d36cf9",
+      "gitBlob": "1aa25e455430feb878517da7be7821a0a51ce4ac"
     }
   ],
   "runtime": [
@@ -290,6 +320,21 @@
       "path": "packages/core/tests/workerd/blocks-seed-d1.test.ts",
       "kind": "whole-original-workerd-d1",
       "deadlineMs": 30000,
+      "causalCredit": 0
+    },
+    {
+      "path": "packages/core/tests/integration/runtime/fresh-site-media-usage.test.ts",
+      "kind": "whole-original-default-runtime-consumer",
+      "causalCredit": 0
+    },
+    {
+      "path": "packages/core/tests/integration/runtime/invalid-auto-seed.test.ts",
+      "kind": "whole-original-default-runtime-consumer",
+      "causalCredit": 0
+    },
+    {
+      "path": "packages/core/tests/integration/astro/setup-seed-budget.test.ts",
+      "kind": "whole-original-default-runtime-consumer",
       "causalCredit": 0
     }
   ],
