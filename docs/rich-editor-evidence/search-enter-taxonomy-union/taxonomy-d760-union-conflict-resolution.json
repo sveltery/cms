@@ -1,0 +1,39 @@
+{
+  "ownBefore": "ab9ad84d1149eec38e915b61fb500234f1f51a2a",
+  "actualIncoming": "d76016cb022269aa4a9127f139728e6213f7c785",
+  "commonBase": "c3d135a6f20e4319ee07eebb0f9009b57f2985f9",
+  "conflictFiles": [
+    "package.json",
+    "pnpm-lock.yaml",
+    "parity/emdash/compatibility.md"
+  ],
+  "wholeIncomingCompatPrefix": true,
+  "wholeOwnedCompatSuffix": true,
+  "publishedTaxMainInsertedHistoryWithinCommonBase": "All originalC3lines retained identically; entire publishedincoming preserved, not rebuilt/reordered. SequenceMatcher operations only equal/insert.",
+  "compatibilityIncomingOperations": [
+    "equal",
+    "insert",
+    "equal",
+    "insert"
+  ],
+  "allIncomingAndOwnedPackageScriptDependencyValuesExact": true,
+  "wholeCombinedSourceChain": "node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && node scripts/check-redirect-source-ports.mjs && vitest run --config vitest.redirect-source.config.ts && pnpm test:bulk-taxonomy-native && pnpm test:menu-source && pnpm test:menu-native-ui && node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-source.config.ts && vitest run --config vitest.redirect-ui-native.config.ts && pnpm test:sections-widgets-core && pnpm test:sections-widgets-converter && pnpm test:sections-widgets-transport && pnpm test:sections-widgets-core-d1 && pnpm test:comments-source && pnpm test:comments-native && pnpm test:canonical-installation-source && pnpm test:content-picker-source && pnpm test:content-picker-native-ui && pnpm test:writable-editor-source && pnpm test:writable-editor-ui && node scripts/check-canonical-feature-storage-source.mjs && pnpm test:block-registry-native && pnpm test:block-registry-source && pnpm test:doctor-source && pnpm test:taxonomy && pnpm test:rich-editor-source && pnpm test:rich-editor-native",
+  "lockManagerDocumentByteExact": true,
+  "everyIncomingAndOwnedApplicationImporterPackageSnapshotRecordExact": true,
+  "applicationPackages": 617,
+  "applicationSnapshots": 632,
+  "vectors": {
+    "package.json": {
+      "bytes": 9701,
+      "sha256": "6bd1c2e5a03f9448f2191d105d188f59d6fc15f8cc4e3cc831974c1fee27d24e"
+    },
+    "pnpm-lock.yaml": {
+      "bytes": 221574,
+      "sha256": "f21f6daf2475bf073354e931e83f87e4a5c003c285604f3122e951164553eeb2"
+    },
+    "parity/emdash/compatibility.md": {
+      "bytes": 511040,
+      "sha256": "c4888775f98c6457991a310990c4d2c266bcdd2f9eab30aa1df4cfc1774a27d2"
+    }
+  }
+}
