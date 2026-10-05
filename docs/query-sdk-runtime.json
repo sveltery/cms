@@ -130,7 +130,10 @@
     {
       "path": "src/lib/server/query-sdk/bindings.ts",
       "bytes": 1433,
-      "sha256": "962ea5924b8175fa5f2742e07d3595b8dfbe2e74552f1f5248cf78576eb9f0c2"
+      "sha256": "962ea5924b8175fa5f2742e07d3595b8dfbe2e74552f1f5248cf78576eb9f0c2",
+      "status": "HISTORICAL",
+      "basis": "56a4eb093112af1d59375217c354da032851fb65",
+      "currentRecord": "currentNativeFrameworkFiles"
     },
     {
       "path": "src/lib/server/query-sdk/live-provider.ts",
@@ -142,7 +145,28 @@
       "path": "src/lib/server/query-sdk/scope.ts",
       "bytes": 846,
       "sha256": "778bca8fbb5201a9c0baf7d0f88a7f516cf146d07317cb4c28cde936e6c6388f",
-      "transport": "Stable weak per-SDK database-bound request view; existing ALS/cache owner unchanged; trusted override returns original context"
+      "transport": "Stable weak per-SDK database-bound request view; existing ALS/cache owner unchanged; trusted override returns original context",
+      "status": "HISTORICAL",
+      "basis": "56a4eb093112af1d59375217c354da032851fb65",
+      "currentRecord": "currentNativeFrameworkFiles"
+    }
+  ],
+  "currentNativeFrameworkFiles": [
+    {
+      "path": "src/lib/server/query-sdk/bindings.ts",
+      "status": "CURRENT",
+      "basis": "e6831be0e76dc3128d18485b0d1e3af4bd59a181",
+      "bytes": 1752,
+      "sha256": "2683752766dd5067a2d3d4978b9b95539d9ef933897f9796d5666ef37b3a568a",
+      "gitBlob": "45d436fb0f403bf8a96e02d3eafeecbbc60d817f"
+    },
+    {
+      "path": "src/lib/server/query-sdk/scope.ts",
+      "status": "CURRENT",
+      "basis": "e6831be0e76dc3128d18485b0d1e3af4bd59a181",
+      "bytes": 957,
+      "sha256": "7ebbf6419f2ecfff14c531ee8d1b8c5e1e4a44c410068072d1bfb758c9dd3f82",
+      "gitBlob": "c93b44c8c907c683b7db7f30deddc3b8b235d4e8"
     }
   ]
 }
