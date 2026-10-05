@@ -144,6 +144,51 @@ parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/zh-TW/
 # Preserve the frozen DayPicker whole-module source formatting.
 parity/emdash/calendar-shared-picker-labels/vendor/kumo-2.6.0-internal-day-picker-9.13.2/DayPicker.js whitespace=-blank-at-eol
 
+# Preserve exact SEO diagnostic bytes, including final Vitest blank lines.
+docs/seo-storage-evidence/native-read-producer-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/reference-repository-hreflang-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/reference-sitemap-producer-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/sitemap-source-producer-first-infra.log whitespace=-blank-at-eof
+
+# Preserve only these exact complete SEO provider/lifecycle evidence formats.
+docs/seo-storage-evidence/lifecycle-nine-first-red.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/provider17-admission-first-stop.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/provider17-native-nine-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/reference-content-sixty-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/provider17-native-markers-first-red.log whitespace=-blank-at-eol
+docs/seo-storage-evidence/provider17-other-markers-first-red.log whitespace=-blank-at-eol
+docs/seo-storage-evidence/read-seams-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/sitemap-producer-first-red.log whitespace=-blank-at-eof
+
+# Preserve exact complete SEO context/transport runner diagnostics only.
+docs/seo-storage-evidence/lifecycle-first-implementation-failure.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/lifecycle-twentyone-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/context-native25-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/loader-seven-first-panel-red.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/loader-seven-shared-owner-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/pure115-shared-owner-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/native1500-first-marker-red.log whitespace=-blank-at-eol
+docs/seo-storage-evidence/worker-source23-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/public-sitemap-first-header-error.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/public-sitemap-two-basepath-red.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/public-sitemap-native27-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/storage-source97-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/f7cb-normal13-first-marker-scalar-red.log whitespace=-blank-at-eol
+docs/seo-storage-evidence/279-normal13-block-marker-red.log whitespace=-blank-at-eol
+docs/seo-storage-evidence/read02-native31-first-property-red.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/03e9-normal13-timeout.log whitespace=-blank-at-eol
+docs/seo-storage-evidence/read02-native31-green.log whitespace=-blank-at-eof
+docs/seo-storage-evidence/read02-source97-green.log whitespace=-blank-at-eof
+
+# Exact current Main schema111 SEO integration receipt.
+docs/seo-storage-evidence/current-main-schema111-focus.log -whitespace
+
+# Exact Main99 SEO and Calendar integration TDD receipts.
+docs/seo-storage-evidence/main99-calendar-first-union.log -whitespace
+docs/seo-storage-evidence/main99-native35-first-red.log -whitespace
+docs/seo-storage-evidence/main99-native35-calendar56-fixed.log -whitespace
+docs/seo-storage-evidence/main99-final-focused-refactor.log -whitespace
+
 # Exact user administration Source and raw evidence leaves.
 docs/evidence/user-admin-native/current-check.log -whitespace
 docs/evidence/user-admin-native/corrected-final-check.log -whitespace

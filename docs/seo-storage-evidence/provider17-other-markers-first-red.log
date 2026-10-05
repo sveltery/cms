@@ -1,0 +1,381 @@
+✖ Node: ordinary canonical startup installs actual contiguous providers through 16 (86.235469ms)
+✔ Node: fresh ordinary startup makes media and byline prerequisites storage available (152.28272ms)
+✔ Node: fresh ordinary startup makes directed content links storage available (147.339062ms)
+✔ Node: fresh ordinary startup makes menus storage available (101.048627ms)
+✔ Node: fresh ordinary startup makes sections and site widgets storage available (84.155858ms)
+✔ Node: fresh ordinary startup makes comments and moderation storage available (66.399234ms)
+✔ Node: fresh ordinary startup makes redirects storage available (43.089097ms)
+✖ raw D1: ordinary canonical startup installs actual contiguous providers through 16 (4548.867557ms)
+✔ raw D1: fresh ordinary startup makes media and byline prerequisites storage available (6438.975907ms)
+✔ raw D1: fresh ordinary startup makes directed content links storage available (7088.313826ms)
+✔ raw D1: fresh ordinary startup makes menus storage available (9503.668691ms)
+✔ raw D1: fresh ordinary startup makes sections and site widgets storage available (8110.936521ms)
+✔ raw D1: fresh ordinary startup makes comments and moderation storage available (7616.074753ms)
+✔ raw D1: fresh ordinary startup makes redirects storage available (4497.509087ms)
+✖ scoped D1: ordinary canonical startup installs actual contiguous providers through 16 (3206.136845ms)
+✔ scoped D1: fresh ordinary startup makes media and byline prerequisites storage available (7656.64195ms)
+✔ scoped D1: fresh ordinary startup makes directed content links storage available (4833.304936ms)
+✔ scoped D1: fresh ordinary startup makes menus storage available (6221.16749ms)
+✔ scoped D1: fresh ordinary startup makes sections and site widgets storage available (3669.546516ms)
+✔ scoped D1: fresh ordinary startup makes comments and moderation storage available (3975.929555ms)
+✔ scoped D1: fresh ordinary startup makes redirects storage available (2493.904484ms)
+(node:2519799) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ Node SQLite: ordinary options persist across normal installation and reopen (150.859059ms)
+✔ Node SQLite: real taxonomy seeds defaults indexes and group pivot semantics (144.692936ms)
+✔ Node SQLite: normal v5 upgrade preserves every field and exact operator SQL (306.680725ms)
+✔ Node SQLite: failed normal metadata upgrade rolls back all providers and preserves v5 values (131.620882ms)
+✔ Node SQLite: external metadata foreign keys refuse the normal upgrade before writes (70.522482ms)
+✔ Node SQLite: missing or changed owned trigger refuses normal readiness without writes (187.33628ms)
+✖ raw D1: ordinary options persist across normal installation and reopen (3720.706036ms)
+✔ raw D1: real taxonomy seeds defaults indexes and group pivot semantics (4497.317696ms)
+✔ raw D1: normal v5 upgrade preserves every field and exact operator SQL (12883.615621ms)
+✔ raw D1: failed normal metadata upgrade rolls back all providers and preserves v5 values (8032.408945ms)
+✔ raw D1: external metadata foreign keys refuse the normal upgrade before writes (3804.1039ms)
+✔ raw D1: missing or changed owned trigger refuses normal readiness without writes (9307.039596ms)
+✖ scoped D1: ordinary options persist across normal installation and reopen (5789.652149ms)
+✔ scoped D1: real taxonomy seeds defaults indexes and group pivot semantics (3404.19934ms)
+✔ scoped D1: normal v5 upgrade preserves every field and exact operator SQL (10467.424252ms)
+✔ scoped D1: failed normal metadata upgrade rolls back all providers and preserves v5 values (5226.831625ms)
+✔ scoped D1: external metadata foreign keys refuse the normal upgrade before writes (1306.964213ms)
+✔ scoped D1: missing or changed owned trigger refuses normal readiness without writes (3529.312111ms)
+✖ Node SQLite: normal installer applies real contiguous providers through eight (71.49424ms)
+✔ Node SQLite: normal installation enables actual settings and taxonomy storage (26.879794ms)
+✔ Node SQLite: normal metadata upgrade enables the Source collection field cascade (26.524642ms)
+✖ raw D1: normal installer applies real contiguous providers through eight (3870.398802ms)
+✔ raw D1: normal installation enables actual settings and taxonomy storage (4880.486467ms)
+✔ raw D1: normal metadata upgrade enables the Source collection field cascade (6952.226057ms)
+✖ scoped D1: normal installer applies real contiguous providers through eight (3582.999235ms)
+✔ scoped D1: normal installation enables actual settings and taxonomy storage (8423.608384ms)
+✔ scoped D1: normal metadata upgrade enables the Source collection field cascade (5369.590686ms)
+ℹ tests 48
+ℹ suites 0
+ℹ pass 39
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 82040.897178
+
+✖ failing tests:
+
+test at tests/canonical-feature-storage-original.test.ts:51:3
+✖ Node: ordinary canonical startup installs actual contiguous providers through 16 (86.235469ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-feature-storage-original.test.ts:57:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-storage-original.test.ts:51:3
+✖ raw D1: ordinary canonical startup installs actual contiguous providers through 16 (4548.867557ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-feature-storage-original.test.ts:57:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-storage-original.test.ts:51:3
+✖ scoped D1: ordinary canonical startup installs actual contiguous providers through 16 (3206.136845ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-feature-storage-original.test.ts:57:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-installation-values.test.ts:45:3
+✖ Node SQLite: ordinary options persist across normal installation and reopen (150.859059ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-installation-values.test.ts:51:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-installation-values.test.ts:45:3
+✖ raw D1: ordinary options persist across normal installation and reopen (3720.706036ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-installation-values.test.ts:51:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-installation-values.test.ts:45:3
+✖ scoped D1: ordinary options persist across normal installation and reopen (5789.652149ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-installation-values.test.ts:51:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-installation.test.ts:45:3
+✖ Node SQLite: normal installer applies real contiguous providers through eight (71.49424ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-installation.test.ts:51:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-installation.test.ts:45:3
+✖ raw D1: normal installer applies real contiguous providers through eight (3870.398802ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-installation.test.ts:51:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-installation.test.ts:45:3
+✖ scoped D1: normal installer applies real contiguous providers through eight (3582.999235ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-installation.test.ts:51:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
