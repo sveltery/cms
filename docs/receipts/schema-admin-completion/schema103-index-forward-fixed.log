@@ -1,0 +1,28 @@
+
+ RUN  v4.1.10 /workspace/cms-full-schema-admin
+
+ ❯ tests/schema-admin-completion/native/collection-index-forward.test.ts (3 tests | 1 failed) 193ms
+   × replaces legacy translation/scheduling indexes while retaining real scheduled content 44ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-forward.test.ts > replaces legacy translation/scheduling indexes while retaining real scheduled content
+CmsError: MIGRATION_REQUIRED
+ ❯ Object.prepare src/lib/server/database/collection-index-migration.ts:174:102
+    172|       // or overwritten. Legacy replacements must have the Source exac…
+    173|       if (!expected || object.type!=='index' || object.tbl_name!==tabl…
+    174|         normalizeFeatureStorageSql(object.sql??'')!==normalizeFeatureS…
+       |                                                                                                      ^
+    175|     }
+    176|     const duplicates=await planDuplicateLocales(database,slug);
+ ❯ migrateCms src/lib/server/database/migrations.ts:300:22
+ ❯ tests/schema-admin-completion/native/collection-index-forward.test.ts:78:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  00:46:14
+   Duration  764ms (transform 278ms, setup 0ms, import 446ms, tests 193ms, environment 0ms)
+

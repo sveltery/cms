@@ -1,0 +1,117 @@
+{
+  "artifact": "Schema administration initial Native DOM baseline",
+  "runtime": "Node24.19.0/pnpm12.6.0/Vitest4.1.10/jsdom30.1.1/Svelte5.57.1",
+  "testFirstHead": "16916aeca0d4ac980b9cb81d2a77e30e293aa566",
+  "publicBase": "b5ed8e06c9c3034e99645ef85022e027130fec51",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "commands": {
+    "frozenInstallation": {
+      "command": "node /workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs install --frozen-lockfile",
+      "exitCode": 0,
+      "lockEntries": 518,
+      "installedPackages": 387
+    },
+    "sourceGuard": {
+      "command": "node scripts/check-schema-admin-completion-source.mjs",
+      "exitCode": 0,
+      "provenanceOnly": true
+    },
+    "wholeNativeBaseline": {
+      "command": "node /workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs exec vitest run --config vitest.schema-admin-completion-native.config.ts",
+      "exitCode": 1,
+      "executions": 1,
+      "defaultClockAndDeadlinesUnchanged": true
+    }
+  },
+  "native": {
+    "declared": 8,
+    "registered": 8,
+    "failed": 8,
+    "completedAssertionReds": 0,
+    "preExpectationFixtureFailures": 8,
+    "passingControls": 0,
+    "importCollectionFailures": 0,
+    "callbacks": [
+      {
+        "title": "offers every stored Source field type rather than only string and text",
+        "result": "pre-expectation fixture failure during actual component mount",
+        "error": "TypeError: object is not a function",
+        "stack": "webidl-conversions.DOMString -> jsdom.Element.setAttribute -> Svelte.set_attribute/set_attributes"
+      },
+      {
+        "title": "exposes the pinned support toggles and separate SEO control",
+        "result": "pre-expectation fixture failure during actual component mount",
+        "error": "TypeError: object is not a function",
+        "stack": "webidl-conversions.DOMString -> jsdom.Element.setAttribute -> Svelte.set_attribute/set_attributes"
+      },
+      {
+        "title": "exposes presentation metadata and display fields over the real collection form",
+        "result": "pre-expectation fixture failure during actual component mount",
+        "error": "TypeError: object is not a function",
+        "stack": "webidl-conversions.DOMString -> jsdom.Element.setAttribute -> Svelte.set_attribute/set_attributes"
+      },
+      {
+        "title": "keeps a code-defined collection visibly read only",
+        "result": "pre-expectation fixture failure during actual component mount",
+        "error": "TypeError: object is not a function",
+        "stack": "webidl-conversions.DOMString -> jsdom.Element.setAttribute -> Svelte.set_attribute/set_attributes"
+      },
+      {
+        "title": "renders collection labels and slugs in the administration table",
+        "result": "pre-expectation fixture failure during actual component mount",
+        "error": "TypeError: object is not a function",
+        "stack": "webidl-conversions.DOMString -> jsdom.Element.setAttribute -> Svelte.set_attribute/set_attributes"
+      },
+      {
+        "title": "shows all six original system fields independently of custom fields",
+        "result": "pre-expectation fixture failure during actual component mount",
+        "error": "TypeError: object is not a function",
+        "stack": "webidl-conversions.DOMString -> jsdom.Element.setAttribute -> Svelte.set_attribute/set_attributes"
+      },
+      {
+        "title": "exposes field reorder and deletion controls",
+        "result": "pre-expectation fixture failure during actual component mount",
+        "error": "TypeError: object is not a function",
+        "stack": "webidl-conversions.DOMString -> jsdom.Element.setAttribute -> Svelte.set_attribute/set_attributes"
+      },
+      {
+        "title": "displays an unsupported stored field type without erasing its identity",
+        "result": "pre-expectation fixture failure during actual component mount",
+        "error": "TypeError: object is not a function",
+        "stack": "webidl-conversions.DOMString -> jsdom.Element.setAttribute -> Svelte.set_attribute/set_attributes"
+      }
+    ]
+  },
+  "source": {
+    "wholeFamiliesRetained": 11,
+    "expandedCallbacksRetained": 242,
+    "callbacksExecuted": 0,
+    "completedAssertionReds": 0,
+    "passingControls": 0,
+    "causalCredit": 0,
+    "e2eAndConcurrentExecutions": "Whole retained/unregistered; exact execution qualification pending."
+  },
+  "fixtureFinding": "Actual initial mount failed before assertions. The form descriptor exposes API objects as enumerable HTML attributes. A separate finite correction must model Kit enumerable attributes and nonenumerable fields/result/pending/for. SACREV06 missing named export was never an executed failure.",
+  "productChanges": 0,
+  "acceptance": "None; full schema product and substantive whole Source adapters remain incomplete.",
+  "artifacts": [
+    {
+      "path": "docs/receipts/schema-admin-completion/public518-install.log",
+      "bytes": 1925,
+      "sha256": "22e35767ff68af547f4eb73d40bdb29a18705626e02e124514566c9a7278fc49",
+      "rawUnchanged": true
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/initial-source-guard.log",
+      "bytes": 139,
+      "sha256": "cc357961c6ae021b6a01748a2db74f3dda9793d8b928b2361e12be85f350a9a1",
+      "rawUnchanged": true
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/initial-native-baseline.log",
+      "bytes": 3651,
+      "sha256": "ca0d3c35dc77a62455015059306cb5e86f1298ec2782e5b8fb8aac2c54f5d090",
+      "rawUnchanged": true
+    }
+  ]
+}
