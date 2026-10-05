@@ -1,0 +1,47 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/native-observer-transport.test.ts (2 tests | 2 failed) 1083ms
+   × retains a query-builder observer on the actual read and its real result 902ms
+   × refuses mutations nested in a read CTE before executing the actual adapter 179ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/native-observer-transport.test.ts > retains a query-builder observer on the actual read and its real result
+AssertionError: expected [] to deeply equal [ LazyQueryId{} ]
+
+- Expected
++ Received
+
+- [
+-   LazyQueryId {},
+- ]
++ []
+
+ ❯ tests/source-seed-backend/native-observer-transport.test.ts:22:79
+     20|   const plugin:KyselyPlugin={transformQuery({node,queryId}){queries.pu…
+     21|   const row=await f.db.selectFrom('_cms_options').select('key').where(…
+     22|   expect(row).toBeUndefined();expect(queries).toHaveLength(1);expect(r…
+       |                                                                               ^
+     23|  }finally{await f.storage.close();}
+     24| },30000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/source-seed-backend/native-observer-transport.test.ts > refuses mutations nested in a read CTE before executing the actual adapter
+AssertionError: expected [Function] to throw error including 'executes only real reads' but got 'D1_ERROR: near "insert": syntax error…'
+
+Expected: "executes only real reads"
+Received: "D1_ERROR: near "insert": syntax error at offset 19: SQLITE_ERROR"
+
+ ❯ tests/source-seed-backend/native-observer-transport.test.ts:27:191
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  23:23:10
+   Duration  3.21s (transform 1.32s, setup 0ms, import 1.97s, tests 1.08s, environment 0ms)
+
