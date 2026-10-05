@@ -100,3 +100,7 @@ jobs:
         run: timeout --kill-after=30s 180s pnpm test:calendar-admin-browser
         env:
           DEBUG: pw:browser
+      - name: Run supplemental native calendar schedule dialog controls
+        run: timeout --kill-after=30s 180s pnpm test:calendar-admin-native-browser
+        env:
+          DEBUG: pw:browser

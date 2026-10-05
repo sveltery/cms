@@ -65,7 +65,8 @@
     "test:calendar-source": "node scripts/check-scheduled-publishing-source.mjs && vitest run --config vitest.calendar-source.config.ts",
     "test:scheduled-sweep-native": "vitest run --config vitest.scheduled-sweep-native.config.ts",
     "test:calendar-admin-native": "node scripts/check-scheduled-publishing-source.mjs && vitest run --config vitest.calendar-admin-native.config.ts",
-    "test:calendar-admin-browser": "node scripts/check-scheduled-publishing-source.mjs && vitest run --config vitest.calendar-admin.browser.config.ts"
+    "test:calendar-admin-browser": "node scripts/check-scheduled-publishing-source.mjs && vitest run --config vitest.calendar-admin.browser.config.ts",
+    "test:calendar-admin-native-browser": "vitest run --config vitest.calendar-admin-native.browser.config.ts"
   },
   "dependencies": {
     "@oslojs/crypto": "1.0.1",
