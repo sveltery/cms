@@ -28,14 +28,15 @@
     {
       "path": "src/lib/server/query.ts",
       "source": "packages/core/src/query.ts",
-      "bytes": 70525,
-      "sha256": "7c1cf36a71b77f5025c50c81ab4a1b8662127b5f3b6f4c4683e5e918adfb94c6",
+      "bytes": 70056,
+      "sha256": "19fb640dfbd0b7eace574de8b6585f9b368a36c3a19b44c5f73a96549884866a",
       "adapters": {
         "imports": "Existing Native single caches/context/i18n/types/URL/errors + same actual Native live provider resolved by original mocked astro module",
         "pendingProducers": "Taxonomy/Byline actual published exports; sole SourceSlug cache producer",
         "algorithms": "Complete original body retained; no assertion/data/clock/query-result substitution",
         "constructor": "Actual Native CmsDatabase owner required by SchemaRegistry path resolver",
-        "typeTransport": "Actual Native loader entry receives existing Source edit proxy only in query wrapping; genericdata casts and guaranteednonempty-page erasednonnull preserved"
+        "typeTransport": "Actual Native loader entry receives existing Source edit proxy only in query wrapping; genericdata casts and guaranteednonempty-page erasednonnull preserved",
+        "scope": "Actual createQuerySdk uses tested Native scope helper; original Source algorithms unchanged"
       }
     },
     {
@@ -133,6 +134,12 @@
       "path": "src/lib/server/query-sdk/live-provider.ts",
       "bytes": 991,
       "sha256": "4284ed8390f13726d21f75549ceaf8f8beaacd9d0fb215d515bb5ffe98815ca5"
+    },
+    {
+      "path": "src/lib/server/query-sdk/scope.ts",
+      "bytes": 846,
+      "sha256": "778bca8fbb5201a9c0baf7d0f88a7f516cf146d07317cb4c28cde936e6c6388f",
+      "transport": "Stable weak per-SDK database-bound request view; existing ALS/cache owner unchanged; trusted override returns original context"
     }
   ]
 }

@@ -1,0 +1,37 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+ ❯ tests/query-sdk-native/scope.test.ts (3 tests | 1 failed) 121ms
+     × retains one request-cache identity for the bound database across SDK calls 43ms
+     ✓ keeps separate request contexts and databases out of one another’s caches 40ms
+     ✓ preserves the original trusted database override, locale, preview and lifetime hook 37ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/query-sdk-native/scope.test.ts > Native query constructor request scope > retains one request-cache identity for the bound database across SDK calls
+AssertionError: expected 2 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/query-sdk-native/scope.test.ts:32:27
+     30|       expect(await read()).toBe(15);
+     31|       expect(await read()).toBe(15);
+     32|       expect(actualReads).toBe(1);
+       |                           ^
+     33|       expect(scope(getRequestContext)).toBe(firstContext);
+     34|     });
+ ❯ tests/query-sdk-native/scope.test.ts:28:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  01:10:18
+   Duration  835ms (transform 322ms, setup 0ms, import 555ms, tests 121ms, environment 0ms)
+
+JSON report written to /tmp/search101-sdk-native-scope3-initial.json

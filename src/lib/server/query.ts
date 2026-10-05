@@ -27,8 +27,8 @@
  */
 
 import type { CmsDatabase } from "./database/contract.ts";
-import { runWithContext } from "./menus/context.ts";
 import { bindQueryDatabase, queryDatabaseOwner } from "./query-sdk/bindings.ts";
+import { createQueryScope } from "./query-sdk/scope.ts";
 import type { ContentSeo } from "./database/lifecycle/upstream/database/repositories/types.ts";
 import { getFallbackChain, getI18nConfig, isI18nEnabled } from "./menus/i18n-config.ts";
 import {
@@ -1907,15 +1907,7 @@ export async function resolveEmDashPath<T = Record<string, unknown>>(
 /** Bind the full query SDK to an actual already-migrated Native database. */
 export function createQuerySdk(database: CmsDatabase) {
   bindQueryDatabase(database);
-  function scoped<T>(read: () => T): T {
-    const context = getRequestContext();
-    // The original trusted request-local override takes precedence, including
-    // isolated preview databases. A normal request retains its context identity
-    // so the existing request-cache owner can deduplicate widget/layout reads.
-    if (context?.db) return read();
-    return runWithContext({...context, editMode: context?.editMode ?? false,
-      db: database.db as unknown as NonNullable<typeof context>["db"]}, read);
-  }
+  const scoped = createQueryScope(database);
   return {
     getEmDashCollection: (...args: Parameters<typeof getEmDashCollection>) => scoped(() => getEmDashCollection(...args)),
     getEmDashEntry: (...args: Parameters<typeof getEmDashEntry>) => scoped(() => getEmDashEntry(...args)),

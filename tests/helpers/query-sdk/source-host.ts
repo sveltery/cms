@@ -1,6 +1,7 @@
 // Existing actual canonical installation/registry fixture transport, shared by
 // whole pinned query families. No rows, SQL, expectations or principals are faked.
 import { describe } from 'vitest';
+import { OperationNodeTransformer, type KyselyPlugin, type TableNode } from 'kysely';
 import { setupTestDatabase as setupExistingDatabase } from '../full-search/source-host.ts';
 import { lifecycleDatabase, registerLifecycleDatabase } from '../../../src/lib/server/database/lifecycle/upstream/host.ts';
 import { lifecycleService } from '../../../src/lib/server/database/lifecycle/service.ts';
@@ -9,10 +10,28 @@ import { SchemaRegistry as NativeRegistry } from '../../../src/lib/server/databa
 import { queryDatabaseOwner, queryReadDatabase } from '../../../src/lib/server/query-sdk/bindings.ts';
 import type { CmsDatabase } from '../../../src/lib/server/database/contract.ts';
 
+// The original byline-filter fixtures insert through ordinary Kysely builders.
+// Map only their TableNode to the real already-installed Native pivot. Raw SQL,
+// literals, supplied rows and whole Source assertion bodies remain untouched.
+class BylineFixtureTable extends OperationNodeTransformer {
+  protected override transformTable(node: TableNode): TableNode {
+    const value = super.transformTable(node);
+    if (value.table.schema || value.table.identifier.name !== '_emdash_content_bylines') return value;
+    return {...value, table: {...value.table, identifier: {...value.table.identifier, name: '_cms_content_bylines'}}};
+  }
+}
+const bylineFixtureTable = new BylineFixtureTable();
+const bylineFixturePlugin: KyselyPlugin = {
+  transformQuery({node}) {return bylineFixtureTable.transformNode(node);},
+  async transformResult({result}) {return result;}
+};
+
 export async function setupTestDatabase() {
   const original = await setupExistingDatabase();
   const database = queryDatabaseOwner(original);
-  const db = queryReadDatabase(original as unknown as import('kysely').Kysely<unknown>) as unknown as CmsDatabase['db'];
+  const sourceFixtureDb = original.withPlugin(bylineFixturePlugin);
+  registerLifecycleDatabase({...database, db: sourceFixtureDb}, {after: task => {void task();}});
+  const db = queryReadDatabase(sourceFixtureDb as unknown as import('kysely').Kysely<unknown>) as unknown as CmsDatabase['db'];
   registerLifecycleDatabase({...database, db}, {after: task => {void task();}});
   return db;
 }
