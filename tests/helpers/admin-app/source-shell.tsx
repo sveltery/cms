@@ -11,7 +11,7 @@ export function Shell({ children }: React.PropsWithChildren<{ manifest: unknown 
   const { data: user } = useCurrentUser() as { data?: unknown };
   queryClient.setQueryData(['currentUser'], user);
   React.useLayoutEffect(() => {
-    const instance = flushSync(() => mount(NativeHost, { target: target.current!, props: { queryClient, content: createRawSnippet(() => ({ render: () => renderToStaticMarkup(children) })) } }));
+    const instance = flushSync(() => mount(NativeHost, { target: target.current!, props: { queryClient, currentUserClient: { currentUser: async () => user as import('../../../src/lib/dashboard/types').CurrentUser | null }, content: createRawSnippet(() => ({ render: () => renderToStaticMarkup(children) })) } }));
     return () => { void unmount(instance); };
   }, [queryClient, user, children]);
   // The complete Source fixtures contain static React children. Their actual

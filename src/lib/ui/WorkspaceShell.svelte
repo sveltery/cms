@@ -1,12 +1,14 @@
 <script lang="ts">
   import { onMount, type Snippet } from 'svelte';
   import { page } from '$app/state';
+  import type { QueryClient } from '@tanstack/query-core';
+  import WorkspaceAccount, { type CurrentUserClient } from '../admin-app/WorkspaceAccount.svelte';
   import { getWorkspaceNavigation } from '$lib/workspace.remote';
   import { collectionNavigation, installedManagementNavigation, isItemActive, parseFolderState, type WorkspaceNavigation } from './nav/navigation';
   import { formatAdminVersion } from './nav/admin-version';
   import { Card } from './vendor/sveltery/card/index';
   import './vendor/sveltery/themes-native.css';
-  let { children, homeHref = '/', schemaHref, activePage = 'content', currentPath, navigation, additionalNavigation, mediaHref, blocksHref, usersHref, version, footerLabel = 'Sveltery CMS' }: {
+  let { children, homeHref = '/', schemaHref, activePage = 'content', currentPath, navigation, additionalNavigation, mediaHref, blocksHref, usersHref, version, footerLabel = 'Sveltery CMS', queryClient, currentUserClient, siteName, toolbarLabels }: {
     children: Snippet; homeHref?: string; schemaHref?: string;
     activePage?: 'content' | 'schema' | 'settings' | 'dashboard' | 'media' | 'blocks' | 'users' | 'redirects';
     currentPath?: string; navigation?: WorkspaceNavigation;
@@ -14,6 +16,8 @@
     additionalNavigation?: Snippet;
     mediaHref?: string; blocksHref?: string; usersHref?: string;
     version?: string; footerLabel?: string | false;
+    queryClient?: QueryClient; currentUserClient?: CurrentUserClient; siteName?: string;
+    toolbarLabels?: { editMode: string; hideToolbar: string };
   } = $props();
   const navigationQuery = $derived(navigation ? undefined : getWorkspaceNavigation());
   const loadedNavigation = $derived(navigationQuery ? await navigationQuery.then(value => value,
@@ -89,8 +93,10 @@
     <a class="account-link" href={`${prefix}login`}>{navigationData.authenticated ? 'Your account' : navigationData.unavailable ? 'Account' : 'Sign in'}</a>
     <small>{formatAdminVersion(version, undefined, footerLabel)}</small>
   </aside>
-  <main id="workspace-main" tabindex="-1"><Card class="workspace-surface">{@render children()}</Card></main>
+  <main class="bg-kumo-elevated" id="workspace-main" tabindex="-1"><Card class="workspace-surface">{@render children()}</Card></main>
 </div>
+
+<WorkspaceAccount basePath={homeHref.replace(/\/$/, '')} {queryClient} {currentUserClient} {siteName} {toolbarLabels} />
 
 <style>
   :global(body) { margin: 0; font-family: system-ui, sans-serif; background: var(--background); color: var(--foreground); }
@@ -110,7 +116,7 @@
   nav a[aria-current="page"] { background: var(--sidebar-accent); font-weight: 650; }
   .account-link { margin-top: auto; font-size: 13px; padding: 12px; border-top: 1px solid var(--sidebar-border); }
   small { color: var(--muted-foreground); font-size: 11px; padding: 0 12px; }
-  main { min-width: 0; padding: 40px; }
+  main { min-width: 0; padding: 40px; background: var(--sidebar); }
   :global(.workspace-surface) { display: flex; flex-direction: column; gap: 16px; min-width: 0; max-width: 1120px; margin: 0 auto; padding: 32px; background: var(--card); color: var(--card-foreground); border: 1px solid var(--border); border-radius: 12px; }
   .mobile-header { display: none; }
   button { font: inherit; color: inherit; border: 1px solid var(--border); background: var(--background); padding: 10px 12px; border-radius: 6px; cursor: pointer; }

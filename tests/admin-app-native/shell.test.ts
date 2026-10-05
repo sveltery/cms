@@ -17,7 +17,7 @@ it('the application shell loads one shared current-user query with Source key an
  await render({ currentUserClient: { currentUser } }, queryClient);
  await vi.waitFor(() => expect(currentUser).toHaveBeenCalledTimes(1));
  const query = queryClient.getQueryCache().find({ queryKey: ['currentUser'] })!;
- expect([query.state.data, query.options.staleTime, query.options.retry]).toEqual([{ ...user, isFirstLogin: false }, 300_000, false]);
+ expect([query.state.data, (query.options as { staleTime?: number }).staleTime, query.options.retry]).toEqual([{ ...user, isFirstLogin: false }, 300_000, false]);
  await render({ currentUserClient: { currentUser } }, queryClient);
  expect(currentUser).toHaveBeenCalledTimes(1);
 });
