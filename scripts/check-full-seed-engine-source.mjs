@@ -35,4 +35,12 @@ for(const item of inventory.selected) {
   const select=(path)=>{const text=fs.readFileSync(path,'utf8'),file=parsed(text,path);return item.declarations.map(name=>{const found=file.statements.filter(node=>node.name?.text===name||ts.isVariableStatement(node)&&node.declarationList.declarations.some(d=>d.name.getText(file)===name));assert.equal(found.length,1,path+':'+name);return found[0].getText(file);});};
   assert.deepEqual(select(item.native),select(prefix+item.source),item.native+' complete named declarations');
 }
+for(const item of inventory.members ?? []) {
+  const select=path=>{const text=fs.readFileSync(path,'utf8'),file=parsed(text,path);
+    const klass=file.statements.find(node=>ts.isClassDeclaration(node)&&node.name?.text===item.class);
+    assert.ok(klass,path+':'+item.class);
+    return item.members.map(name=>{const found=klass.members.filter(node=>node.name?.getText(file)===name);
+      assert.equal(found.length,1,path+':'+name);return found[0].getText(file);});};
+  assert.deepEqual(select(item.native),select(prefix+item.source),item.native+' complete Source members');
+}
 console.log(`Full seed source guard: ${inventory.authorities.length} exact authorities, ${inventory.testFamilies.length} additional whole families; zero static execution credit.`);

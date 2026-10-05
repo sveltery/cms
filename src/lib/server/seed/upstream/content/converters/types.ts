@@ -6,14 +6,14 @@
  * Defines the structure of Portable Text blocks used in EmDash.
  */
 
-import type { PortableTextTableBlock } from "@emdash-cms/admin/portable-text-table";
+import type { PortableTextTableBlock } from "./portable-text-table.ts";
 
 export type {
 	PortableTextTableAlignment,
 	PortableTextTableBlock,
 	PortableTextTableCell,
 	PortableTextTableRow,
-} from "@emdash-cms/admin/portable-text-table";
+} from "./portable-text-table.ts";
 
 /**
  * Base span (inline text)

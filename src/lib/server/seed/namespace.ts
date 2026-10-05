@@ -56,7 +56,10 @@ const names: Readonly<Record<string, string>> = {
   "_emdash_byline_field_values": "_cms_byline_field_values",
   "_emdash_byline_field_group_values": "_cms_byline_field_group_values",
   "_emdash_relations": "_cms_relations",
-  "_emdash_content_references": "_cms_content_references"
+  "_emdash_content_references": "_cms_content_references",
+  "_emdash_block_types": "_cms_block_types",
+  "_emdash_block_type_versions": "_cms_block_type_versions",
+  "_emdash_seo": "_cms_seo"
 };
 const unavailable = new Set([
   "users", // Native authentication rows do not supply Source split-profile/role semantics.
@@ -67,14 +70,11 @@ const unavailable = new Set([
   "auth_challenges",
   "audit_logs",
   "_emdash_migrations",
-  "_emdash_block_types",
-  "_emdash_block_type_versions",
   "_emdash_api_tokens",
   "_emdash_oauth_tokens",
   "_emdash_device_codes",
   "_emdash_authorization_codes",
   "_emdash_oauth_clients",
-  "_emdash_seo",
   "_emdash_cron_tasks",
   "_emdash_rate_limits",
   "_emdash_entry_locks",

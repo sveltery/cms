@@ -7,7 +7,7 @@ import {
 	MediaUsageRepository,
 	type MediaUsageNewSourceProjection,
 	type MediaUsageSource,
-} from "../../../../blocks/upstream/database/repositories/media-usage.ts";
+} from "../../../providers.ts";
 import type { Database } from "../../database/types.ts";
 import { validateIdentifier } from "../../database/validate.ts";
 import { isI18nEnabled } from "../../../i18n-config.ts";
@@ -26,7 +26,7 @@ import {
 	CONTENT_MEDIA_USAGE_COLLECTION_SCOPE,
 	markContentMediaUsageCollectionStale,
 	markContentMediaUsageCollectionStaleSafely,
-} from "../../../../blocks/upstream/media/usage/schema-invalidation.ts";
+} from "../../../providers.ts";
 import {
 	buildContentMediaUsageSourceKey,
 	MEDIA_USAGE_CONTENT_SOURCE_VARIANTS,
@@ -38,7 +38,7 @@ export {
 	invalidateContentMediaUsageSchemaChange,
 	markContentMediaUsageCollectionStale,
 	markContentMediaUsageCollectionStaleSafely,
-} from "../../../../blocks/upstream/media/usage/schema-invalidation.ts";
+} from "../../../providers.ts";
 
 const CONTENT_USAGE_LOCKS_KEY = Symbol.for("emdash.mediaUsage.contentLocks");
 const CONTENT_USAGE_COLLECTION_LOCKS_KEY = Symbol.for("emdash.mediaUsage.collectionLocks");
