@@ -12,4 +12,7 @@ describe('Calendar administration production components', () => {
   it('provides the entry panel component used by the actual route', async () => {
     await expect(import('../../src/lib/calendar/CalendarEntryPanel.svelte').then(m => typeof m.default).catch(() => 'missing')).resolves.toBe('function');
   });
+  it('provides the schedule dialog using the published date and time fields', async () => {
+    await expect(import('../../src/lib/calendar/CalendarScheduleDialog.svelte').then(m => typeof m.default).catch(() => 'missing')).resolves.toBe('function');
+  });
 });
