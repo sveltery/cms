@@ -22,7 +22,7 @@ class SourceFieldDefault extends OperationNodeTransformer {
   const values=result.values as ValuesNode;
   return{...result,columns:[...(result.columns??[]),ColumnNode.create('created_at')],values:{...values,values:values.values.map(row=>ValueListNode.create([
    ...(row.kind==='PrimitiveValueListNode'?row.values.map(value=>ValueNode.create(value)):row.values),sql`strftime('%Y-%m-%dT%H:%M:%fZ', 'now')`.toOperationNode()
-  ]))}};
+  ]))} as ValuesNode};
  }
 }
 const fieldDefault=new SourceFieldDefault();
