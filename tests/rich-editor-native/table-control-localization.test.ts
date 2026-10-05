@@ -9,15 +9,11 @@ const releases: (() => Promise<void>)[] = [];
 afterEach(async () => { for (const release of releases.splice(0)) await release(); vi.unstubAllGlobals(); });
 it('uses actual Source catalog IDs for picker controls and interpolated dimensions', async () => {
   vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: false })));
+  // Fixed IDs independently read from the pinned Source macro output.
   const i18n = setupI18n({ locale: 'es', messages: { es: {
-    'bYiWwE': 'Unused control',
-    // Actual IDs below are copied from pinned TableControls.tsx macro output.
+    'Gi0VDy': 'Fila de encabezado', 'y9fIj7': 'Tamaño de tabla',
+    'wcydjE': 'Tabla {row} × {column}', 'QtjT8L': 'Vista {previewRows} × {previewColumns}'
   } } });
-  // Load the real IDs from the immutable compiler output inventory in this
-  // fixture. The values are language messages, never product DOM substitutes.
-  const ids = (await import('../../src/lib/editor/rich-text/table-control-messages.source')).TABLE_CONTROL_MESSAGE_IDS;
-  i18n.load('es', { [ids['Header row']]: 'Fila de encabezado', [ids['Table size']]: 'Tamaño de tabla',
-    [ids['{row} × {column} table']]: 'Tabla {row} × {column}', [ids['{previewRows} × {previewColumns} table']]: 'Vista {previewRows} × {previewColumns}' });
   const host = document.createElement('div'); document.body.append(host);
   const translate: Translate = descriptor => i18n._(descriptor);
   const props = { translate, onInsert: vi.fn(), onCancel: vi.fn() };

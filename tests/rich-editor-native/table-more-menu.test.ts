@@ -16,7 +16,7 @@ it('provides the reusable More menu with actual selected-cell actions and result
   const editor = new Editor({ element: content, extensions: [StarterKit, EmDashTable.configure({ resizable: false }), EmDashTableRow,
     EmDashTableHeader, EmDashTableCell, TableIdentity], content: { type: 'doc', content: [{ type: 'table', content: [{ type: 'tableRow', content: [
       { type: 'tableCell', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Cell' }] }] }
-    ] }] }, { type: 'paragraph' }] }, editorProps: { handleScrollToSelection: () => true } });
+    ] }] }, { type: 'paragraph' }] }, editorProps: { attributes: { tabindex: '0' }, handleScrollToSelection: () => true } });
   let cell = -1; editor.state.doc.descendants((node, position) => { if (node.type.name === 'tableCell') cell = position; });
   editor.view.dispatch(editor.state.tr.setSelection(CellSelection.create(editor.state.doc, cell)));
   const onRun = vi.fn(); const instance = mount(module!.default, { target: host, props: { editor, more: true, onRun } });
