@@ -5,6 +5,7 @@
   import RelationForm from './RelationForm.svelte';
   import { singularize } from './singularize';
   import * as defaultClient from './client';
+  import { modal } from './modal';
   let { open = false, onOpenChange, onSave, field, isSaving = false, collectionSlug, onCreateRelation,
     client = defaultClient, relationsHref = '/schema/relations' }: any = $props();
   const types = [
@@ -23,7 +24,7 @@
   let required = $state(untrack(() => (field?.required ?? false))), unique = $state(untrack(() => (field?.unique ?? false))), searchable = $state(untrack(() => (field?.searchable ?? false))), indexed = $state(untrack(() => (field?.indexed ?? false)));
   let minLength = $state(untrack(() => (String(field?.validation?.minLength ?? '')))), maxLength = $state(untrack(() => (String(field?.validation?.maxLength ?? ''))));
   let min = $state(untrack(() => (String(field?.validation?.min ?? '')))), max = $state(untrack(() => (String(field?.validation?.max ?? '')))), pattern = $state(untrack(() => (field?.validation?.pattern ?? '')));
-  let options = $state(untrack(() => (field?.validation?.options?.join('\n') ?? ''))), subFields = $state<any[]>(untrack(() => (field?.validation?.subFields ?? [])));
+  let options = $state(untrack(() => (field?.validation?.options?.join('\n') ?? ''))), subFields = $state<any[]>(untrack(() => (field?.validation?.subFields?.map((value: any) => ({ ...value, ...(value.options ? { options: [...value.options] } : {}) })) ?? [])));
   let minItems = $state(untrack(() => (String(field?.validation?.minItems ?? '')))), maxItems = $state(untrack(() => (String(field?.validation?.maxItems ?? ''))));
   let allowedMimeTypes = $state<string[]>(untrack(() => (field?.validation?.allowedMimeTypes ?? []))), darkVariant = $state(untrack(() => (field?.options?.darkVariant === true)));
   let targetCollection = $state(untrack(() => (field?.validation?.targetCollection ?? field?.options?.collection ?? ''))), multiple = $state(untrack(() => (field?.validation?.multiple ?? false)));
@@ -58,7 +59,7 @@
     label = side === 'parent' ? rel.childLabel : rel.parentLabel; slug = slugify(label);
   }
   function chooseRelation(value: string) { relation = value; relationSide = sides(candidates.find(rel => rel.slug === value) ?? {boundFields:[]})[0] ?? 'parent'; nameRelation(candidates.find(rel => rel.slug === value), relationSide); }
-  function save() {
+  async function save() {
     if (!selectedType || !label || !slug) return;
     if (selectedType === 'reference' && !relation && !targetCollection) { error = 'A referenced collection is required'; return; }
     const validation: Record<string, unknown> = {};
@@ -71,11 +72,11 @@
     if (selectedType === 'reference') { if (relation && relation !== 'create:relation') { validation.relation = relation; validation.relationSide = effectiveSide; } else { validation.targetCollection = targetCollection; validation.multiple = multiple; } }
     const input: any = {slug,label,type:selectedType,required,unique,searchable:searchableTypes.has(selectedType) ? searchable : undefined,indexed:indexedTypes.has(selectedType) ? indexed : false,validation:Object.keys(validation).length ? validation : null};
     if (selectedType === 'image') { input.options = {...field?.options}; delete input.options.darkVariant; if (darkVariant) input.options.darkVariant = true; }
-    onSave(input);
+    try { await onSave(input); } catch(cause) { error = cause instanceof Error ? cause.message : 'Field could not be saved'; }
   }
 </script>
 {#if open}
-<dialog open aria-label={step === 'type' ? 'Add Field' : 'Configure Field'}>
+<dialog open use:modal={() => { if(!isSaving)onOpenChange(false); }} aria-label={step === 'type' ? 'Add Field' : 'Configure Field'}>
   {#if step === 'relation'}
     <RelationForm {collections} defaultParentCollection={collectionSlug} onCancel={() => step = 'config'} onSubmit={async (input: any) => {
       const created = await onCreateRelation(input); const value = {...created,boundFields:[],linkCount:0}; relations = [...relations,value]; relation = value.slug; relationSide = sides(value)[0] ?? 'parent'; nameRelation(value,relationSide); step = 'config';

@@ -66,6 +66,11 @@ export function cmsService(database: CmsDatabase, principal: ServerPrincipal | n
       if (!definition) throw new CmsError('NOT_FOUND');
       return definition;
     },
+    async listSchemaBlockTypes() {
+      requirePermission('schema:read');
+      const { createBlockTypeRegistry } = await import('../blocks/registry.ts');
+      return createBlockTypeRegistry(database).listBlockTypes();
+    },
     async createCollection(input: unknown) { requirePermission('schema:manage'); return registry.createCollection(input); },
     async updateCollection(input: unknown) {
       requirePermission('schema:manage');

@@ -11,8 +11,8 @@
   onMount(()=>{void refresh().catch(cause=>error=cause instanceof Error?cause.message:'Schema unavailable');});
 </script>
 <svelte:head><title>{collection?.label ?? 'Content Type'} · Sveltery CMS</title></svelte:head>
-<a href={resolve('/schema/manage')}>Content Types</a>{#if error}<p role="alert">{error}</p>{/if}
-{#if collection}{#key `${collection.slug}/${collection.version}/${collection.updatedAt}`}
+<a href={resolve('/schema/_manage')}>Content Types</a>{#if error}<p role="alert">{error}</p>{/if}
+{#if collection}{#key collection.slug}
 <ContentTypeEditor {collection} isSaving={pending} disabled={!data.canMutateSchema}
   onSave={(input:unknown)=>mutate(()=>adminClient.updateCollection(collection!,input))}
   onAddField={(input:unknown)=>mutate(()=>adminClient.addField(collection!,input))}

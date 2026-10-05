@@ -10,6 +10,7 @@ export default defineConfig({
     if (resolve(dirname(importer),specifier).replace(/\.(tsx?|js)$/,'') === resolve(frozen,'tests/utils/render')) return resolve(root,'tests/helpers/schema-ui/browser-render.ts');
   } }, ...(base.plugins ?? [])],
   test: { ...base.test, environment: undefined, setupFiles: [],
+    include: [...(base.test?.include ?? []), 'tests/schema-admin-ui-browser/*.test.tsx'],
     browser: { enabled:true, headless:true, provider:playwright({launchOptions:{chromiumSandbox:true,timeout:30000}}),
       instances:[{browser:'chromium'}], viewport:{width:1280,height:800} }
   }
