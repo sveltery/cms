@@ -2,7 +2,7 @@
 // Complete Source read/projection and block validation members; sole Native writer composition.
 import {sql,type Kysely,type Selectable} from 'kysely';
 import {SchemaRegistry as NativeSchemaRegistry} from '../database/registry.ts';
-import {seedDatabaseOwner} from './namespace.ts';
+import {seedNativeSchemaRegistry} from './namespace.ts';
 import {SchemaError} from '../blocks/upstream/schema/registry.ts';
 import type {Database,CollectionTable,FieldTable} from './upstream/database/types.ts';
 import {FIELD_TYPE_TO_COLUMN,REPEATER_SUB_FIELD_TYPES,type Collection,type CollectionWithFields,type Field,type CollectionSource,type FieldType,type ColumnType,type UnsupportedFieldType,type CollectionSupport,type CollectionAdminConfig,type CreateCollectionInput,type CreateFieldInput,type FieldValidation,type UpdateCollectionInput,type UpdateFieldInput} from '../schema/types.ts';
@@ -89,7 +89,7 @@ function parseCollectionAdmin(raw: string | null | undefined): CollectionAdminCo
 export class SchemaRegistry {
   private readonly db:Kysely<Database>;
   private readonly writer:NativeSchemaRegistry;
-  constructor(db:Kysely<Database>){this.db=db;this.writer=new NativeSchemaRegistry(seedDatabaseOwner(db));}
+  constructor(db:Kysely<Database>){this.db=db;this.writer=seedNativeSchemaRegistry(db);}
 async listCollections(): Promise<Collection[]> {
 		const rows = await this.db
 			.selectFrom("_emdash_collections")

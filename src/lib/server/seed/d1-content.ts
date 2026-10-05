@@ -7,7 +7,7 @@ import {registeredBylineDatabaseOwner} from '../bylines/storage.ts';
 import {createSourceContent,deleteSourceContent} from '../database/lifecycle/seed-plan.ts';
 import type {Database} from './upstream/database/types.ts';
 import type {DatetimeContextCache} from './upstream/database/content-datetime.ts';
-import type {CreateContentInput} from './upstream/database/repositories/types.ts';
+import type {CreateContentInput} from '../database/lifecycle/upstream/database/repositories/types.ts';
 export class ContentRepository extends SourceContent {
  private readonly sourceHandle:Kysely<Database>;
  constructor(db:Kysely<Database>,datetimes?:DatetimeContextCache){super(db,datetimes);this.sourceHandle=db;}

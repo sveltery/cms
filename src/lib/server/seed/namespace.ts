@@ -1,4 +1,4 @@
-// Native seed namespace proposal; no production import or provider activation.
+// Registered Native seed composition on the existing canonical storage owner.
 import { registerCanonicalTaxonomyDatabaseHandle } from '../canonical-storage/namespace.ts';
 import { OperationNodeTransformer, NoResultError, isNoResultErrorConstructor, type CompiledQuery, type AliasNode, type Kysely, type KyselyPlugin,
   type TableNode, type RawNode, type RootOperationNode, type OperationNode,
@@ -12,6 +12,15 @@ import { registerLifecycleDatabase } from '../database/lifecycle/upstream/host.t
 import type { Database } from './upstream/database/types.ts';
 import {applySeedContentCreate,applySeedContentUpdate,type SeedContentCreate,type SeedContentUpdate} from '../database/lifecycle/seed-plan.ts';
 import {BylineRepository} from '../bylines/repository.ts';
+import {TaxonomyRepository} from '../taxonomies/repository.ts';
+import {RelationRepository} from '../relations/repository.ts';
+import {SchemaRegistry as NativeSchemaRegistry} from '../database/registry.ts';
+import {MediaRepository} from '../general-media/index.ts';
+import {RedirectRepository} from '../redirects/repository.ts';
+import {FTSManager} from '../content-picker/fts-manager.ts';
+import {BlockTypeRegistry} from '../blocks/upstream/schema/block-type-registry.ts';
+import {MediaUsageRepository} from './d1-media-usage.ts';
+import {markContentMediaUsageCollectionStale,markContentMediaUsageCollectionStaleSafely} from '../blocks/upstream/media/usage/schema-invalidation.ts';
 
 // Contracts inspected at public Draft14 dd80fe3f; table installation is a separate prerequisite.
 const names: Readonly<Record<string, string>> = {
@@ -538,11 +547,11 @@ function nativeReadCompiler<T extends object>(target:T,executionTarget:any=targe
     return value&&typeof value==='object'&&key==='schema'?builder(value):value;
   }});
 }
-function nativeContentOwner(db:Kysely<any>):CmsDatabase {
-  const context=views.get(db);if(!context)throw new Error('Seed Native content requires its actual registered query handle');
-  const target=context.atomicLogical.withPlugin(namespace),compiler=nativeReadCompiler(target);
+function nativeHostedOwner(db:Kysely<any>,readonly:boolean):CmsDatabase {
+  const context=views.get(db);if(!context)throw new Error('Seed Native domain requires its actual registered query handle');
+  const target=context.atomicLogical.withPlugin(namespace),hosted=readonly?nativeReadCompiler(target):target;
   const plugins=target.getExecutor().plugins;
-  return{...context.owner,db:compiler as unknown as CmsDatabase['db'],async atomicBatch(statements){
+  return{...context.owner,db:hosted as unknown as CmsDatabase['db'],async atomicBatch(statements){
     const results=await context.owner.atomicBatch(statements),transformed:QueryResult<unknown>[]=[];
     for(let index=0;index<results.length;index++){
       let result=results[index];for(const plugin of plugins)result=await plugin.transformResult({result:result as QueryResult<import('kysely').UnknownRow>,queryId:statements[index].queryId});
@@ -552,9 +561,38 @@ function nativeContentOwner(db:Kysely<any>):CmsDatabase {
   },async close(){throw new Error('Seed Native content does not own the database lifecycle');}};
 }
 /** Finite existing canonical domains; neither exposes an executable write handle. */
-export function seedNativeContentCreate(db:Kysely<any>,input:SeedContentCreate){return applySeedContentCreate(nativeContentOwner(db),input);}
-export function seedNativeContentUpdate(db:Kysely<any>,input:SeedContentUpdate){return applySeedContentUpdate(nativeContentOwner(db),input);}
-export function seedNativeBylines(db:Kysely<any>){return new BylineRepository(nativeContentOwner(db));}
+export function seedNativeContentCreate(db:Kysely<any>,input:SeedContentCreate){return applySeedContentCreate(nativeHostedOwner(db,true),input);}
+export function seedNativeContentUpdate(db:Kysely<any>,input:SeedContentUpdate){return applySeedContentUpdate(nativeHostedOwner(db,true),input);}
+export function seedNativeBylines(db:Kysely<any>){return new BylineRepository(nativeHostedOwner(db,true));}
+export function seedNativeTaxonomies(db:Kysely<any>){const owner=nativeHostedOwner(db,true);registerCanonicalTaxonomyDatabaseHandle(owner,owner.db as unknown as ConstructorParameters<typeof TaxonomyRepository>[0]);return new TaxonomyRepository(owner.db as unknown as ConstructorParameters<typeof TaxonomyRepository>[0]);}
+/** These existing imperative repositories execute their own qualified methods.
+ * Their private query view retains real caller observers on the same adapter;
+ * no general executable query handle is returned by this composition API. */
+export function seedNativeMedia(db:Kysely<any>){return new MediaRepository(nativeHostedOwner(db,false));}
+export function seedNativeRelations(db:Kysely<any>){return new RelationRepository(nativeHostedOwner(db,false));}
+export function seedNativeRedirects(db:Kysely<any>){return new RedirectRepository(nativeHostedOwner(db,false).db as unknown as ConstructorParameters<typeof RedirectRepository>[0]);}
+export function seedNativeFts(db:Kysely<any>){return new FTSManager(nativeHostedOwner(db,false).db as unknown as ConstructorParameters<typeof FTSManager>[0]);}
+export function seedNativeBlocks(db:Kysely<any>){const owner=nativeHostedOwner(db,false);registerBlockDatabaseHost(owner);return new BlockTypeRegistry(owner.db as unknown as ConstructorParameters<typeof BlockTypeRegistry>[0]);}
+export function seedNativeSchemaRegistry(db:Kysely<any>){return new NativeSchemaRegistry(nativeHostedOwner(db,false));}
+export function seedNativeMediaUsage(db:Kysely<any>){const owner=nativeHostedOwner(db,false);registerBlockDatabaseHost(owner);return new MediaUsageRepository(owner.db as unknown as ConstructorParameters<typeof MediaUsageRepository>[0]);}
+export function seedNativeMarkMediaStale(db:Kysely<any>,...args:Parameters<typeof markContentMediaUsageCollectionStale> extends [unknown,...infer A]?A:never){const owner=nativeHostedOwner(db,false);registerBlockDatabaseHost(owner);return markContentMediaUsageCollectionStale(owner.db as unknown as Parameters<typeof markContentMediaUsageCollectionStale>[0],...args);}
+export function seedNativeMarkMediaStaleSafely(db:Kysely<any>,...args:Parameters<typeof markContentMediaUsageCollectionStaleSafely> extends [unknown,...infer A]?A:never){const owner=nativeHostedOwner(db,false);registerBlockDatabaseHost(owner);return markContentMediaUsageCollectionStaleSafely(owner.db as unknown as Parameters<typeof markContentMediaUsageCollectionStaleSafely>[0],...args);}
+function nativeRefreshReadView(db:Kysely<any>):Kysely<Database>{
+  const context=views.get(db);if(!context)throw new Error('Seed Native refresh requires its actual registered query handle');
+  const read=nativeReadCompiler(context.atomicLogical.withPlugin(namespace));
+  // Only these finite real refresh functions receive this private view. Their
+  // qualified usage/invalidation factories retain the same underlying context.
+  views.set(read,context);
+  return read as Kysely<Database>;
+}
+type RefreshModule=typeof import('./upstream/media/usage/content-refresh-d1.ts');
+type DomainArguments<F extends (...args:any[])=>any>=Parameters<F> extends [unknown,...infer A]?A:never;
+export async function seedNativeRefreshContentMediaUsage(db:Kysely<Database>,...args:DomainArguments<RefreshModule['refreshContentMediaUsage']>){const read=nativeRefreshReadView(db),actual=await import('./upstream/media/usage/content-refresh-d1.ts');return actual.refreshContentMediaUsage(read,...args);}
+export async function seedNativeRefreshContentMediaUsageForWorkBatch(db:Kysely<Database>,...args:DomainArguments<RefreshModule['refreshContentMediaUsageForWorkBatch']>){const read=nativeRefreshReadView(db),actual=await import('./upstream/media/usage/content-refresh-d1.ts');return actual.refreshContentMediaUsageForWorkBatch(read,...args);}
+export async function seedNativeDeleteContentMediaUsage(db:Kysely<Database>,...args:DomainArguments<RefreshModule['deleteContentMediaUsage']>){const read=nativeRefreshReadView(db),actual=await import('./upstream/media/usage/content-refresh-d1.ts');return actual.deleteContentMediaUsage(read,...args);}
+export async function seedNativeDeleteContentMediaUsageCollection(db:Kysely<Database>,...args:DomainArguments<RefreshModule['deleteContentMediaUsageCollection']>){const read=nativeRefreshReadView(db),actual=await import('./upstream/media/usage/content-refresh-d1.ts');return actual.deleteContentMediaUsageCollection(read,...args);}
+export async function seedNativeRefreshContentMediaUsageAfterWrite(db:Kysely<Database>,...args:DomainArguments<RefreshModule['refreshContentMediaUsageAfterWrite']>){const read=nativeRefreshReadView(db),actual=await import('./upstream/media/usage/content-refresh-d1.ts');return actual.refreshContentMediaUsageAfterWrite(read,...args);}
+export async function seedNativeFindNonTranslatableSiblingContentIds(db:Kysely<Database>,...args:DomainArguments<RefreshModule['findNonTranslatableSiblingContentIds']>){const read=nativeRefreshReadView(db),actual=await import('./upstream/media/usage/content-refresh-d1.ts');return actual.findNonTranslatableSiblingContentIds(read,...args);}
 const executeMethods = new Set(['execute','executeQuery','executeTakeFirst','executeTakeFirstOrThrow','stream','explain']);
 /** Builders used to prepare a batch cannot execute queries or callbacks themselves. */
 function compilationOnly<T extends object>(target: T): T {

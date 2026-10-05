@@ -39,8 +39,12 @@ export class MediaUsageRepository extends SourceUsage {
  override async replaceSourceIfMatching(source:MediaUsageSourceInput,occurrences:readonly MediaUsageOccurrenceInput[],expectedSource:MediaUsageSource|null):Promise<MediaUsageGuardedReplaceResult> {
   if(!this.nativeD1)return super.replaceSourceIfMatching(source,occurrences,expectedSource);
   if(expectedSource!==null&&await this.projectionMatchesExpectedSource(source,expectedSource))return{replaced:false,unchanged:true,source:null};
-  const status=source.collectionSlug?await this.findIndexStatus({adapterId:'content-media',scopeType:'collection',scopeKey:source.collectionSlug}):null;
-  if(status?.captureState!=='active')return this.replacePreActivationSource(source,occurrences,expectedSource);
+  // The public progress DTO intentionally omits capture_state. Read the real
+  // canonical capture identity instead of treating that omission as inactive.
+  const db=this.owner!.db as unknown as Kysely<Database>;
+  const capture=source.collectionSlug&&source.collectionId?await db.selectFrom('_cms_media_usage_index_status').select('capture_state')
+   .where('adapter_id','=','content-media').where('scope_type','=','collection').where('scope_key','=',source.collectionSlug).where('collection_id','=',source.collectionId).executeTakeFirst():undefined;
+  if(capture?.capture_state!=='active')return this.replacePreActivationSource(source,occurrences,expectedSource);
   const changed=expectedSource===null
    ?await this.replaceNewSourcesBatch([{source,occurrences}])
    :await this.replaceExistingSourcesBatch([{source,occurrences,expectedSource}]);

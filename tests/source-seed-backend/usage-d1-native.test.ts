@@ -21,7 +21,7 @@ async function fixture(active=true) {
   const stamp='2026-01-01T00:00:00.000Z';
   await sql`INSERT INTO ec_usage_posts(id,slug,status,version,created_at,updated_at) VALUES ('usage-entry','usage-entry','published',1,${stamp},${stamp})`.execute(db);
   const source:MediaUsageSourceInput={sourceKey:'content:usage_posts:usage-entry:columns',sourceType:'content',collectionId:collection.id,collectionSlug:collection.slug,contentId:'usage-entry',sourceVariant:'columns',sourceVersion:1,sourceUpdatedAt:stamp,sourceFingerprint:'media-usage-projection:v1:sha256:'+ 'a'.repeat(64),sourceCompleteness:'complete'};
-  const occurrence:MediaUsageOccurrenceInput={fieldSlug:'hero',fieldPath:'hero',referenceType:'media',mediaId:'actual-media',provider:'local',providerAssetId:'actual-media'};
+ const occurrence:MediaUsageOccurrenceInput={fieldSlug:'hero',fieldPath:'hero',referenceType:'image_field',mediaId:'actual-media',provider:'local',providerAssetId:'actual-media'};
   return{storage,db,source,occurrence,repo:new MediaUsageRepository(db)};
  }catch(error){await storage.close();throw error;}
 }

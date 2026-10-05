@@ -3,8 +3,8 @@ import type {Database} from './upstream/database/types.ts';
 import type {SeedContentEntry,SeedField} from './types.ts';
 import type {CreateFieldInput} from '../schema/types.ts';
 import {SchemaRegistry} from './registry.ts';
-import {createFieldRelation} from './field-relations.ts';
-import {TaxonomyRepository} from './providers.ts';
+import {createFieldRelation} from './d1-field-relations.ts';
+import {TaxonomyRepository} from './d1-providers.ts';
 export function resolveNativeBylines(entry:SeedContentEntry,ids:Map<string,string>,collection:string,isUpdate:boolean){
  if(!entry.bylines?.length)return isUpdate?[]:undefined;
  const credits=entry.bylines.map(credit=>{const bylineId=ids.get(credit.byline);return bylineId?{bylineId,roleLabel:credit.roleLabel??null}:null;}).filter((credit):credit is {bylineId:string;roleLabel:string|null}=>Boolean(credit));

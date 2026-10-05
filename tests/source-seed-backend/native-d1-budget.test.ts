@@ -6,7 +6,7 @@ import {beforeEach,afterEach,expect,it} from 'vitest';
 import {applySeedWithinBudget,type SeedApplyBudget,type SeedApplyProgress} from '../../src/lib/server/seed/index.ts';
 import type {SeedFile} from '../../src/lib/server/seed/types.ts';
 import type {Database} from '../../src/lib/server/seed/upstream/database/types.ts';
-import {TaxonomyRepository} from '../../src/lib/server/taxonomies/repository.ts';
+import {TaxonomyRepository} from '../../src/lib/server/seed/providers.ts';
 import {schemaAdminStorage} from '../helpers/schema-admin-storage.ts';
 import {migrateCms} from '../../src/lib/server/database/migrations.ts';
 import {seedSourceDatabase} from '../../src/lib/server/seed/namespace.ts';
