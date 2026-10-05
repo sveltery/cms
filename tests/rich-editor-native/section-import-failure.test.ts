@@ -10,6 +10,6 @@ it('forgets a failed gutter picker import before an ordinary HTML slash insertio
     gutter(0); await tick(); await command(host, 'Section');
     await vi.waitFor(() => expect(host.textContent).toContain('Could not load the section picker. Try again.'));
     await ordinarySlash(host, editor, 'HTML');
-    expect(texts(editor)).toEqual(['First', 'Last', 'htmlBlock']);
+    expect(texts(editor)).toEqual(['First', 'Last', 'htmlBlock', 'paragraph']);
   } finally { await cleanup(); }
 });

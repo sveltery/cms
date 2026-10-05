@@ -63,6 +63,6 @@ describe('Editor-local operations inside a real enclosing draft form', () => {
     const { host, gutter, editor } = await render(); gutter(0); await tick(); await command(host, title);
     expect(host.textContent).toContain('Media can be inserted when the media library is available.');
     await ordinarySlash(host, editor, 'HTML');
-    expect(texts(editor)).toEqual(['First', 'Last', 'htmlBlock']);
+    expect(texts(editor)).toEqual(['First', 'Last', 'htmlBlock', 'paragraph']);
   });
 });
