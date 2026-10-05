@@ -1,0 +1,24 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "authorBefore": "2f279c0c",
+  "wholeFiles": 4,
+  "cases": 28,
+  "first22Unchanged": true,
+  "newPlanCases": 6,
+  "reachedAssertionReds": 27,
+  "nativeControlPasses": 1,
+  "preAssertionFailures": 0,
+  "sourceCredit": 0,
+  "control": "Actual raw-D1 binding rejects the102-binding options insert on the existing baseline; do not claim this control as a namespace repair. Native Node executes the102-binding statement and fails the null-error assertion.",
+  "additionalRedTriggers": [
+    "RawBuilder table identifier/qualified options alias compiled SQL mismatch.",
+    "Actual Node foreign-key PRAGMA returns no logical table name; D1 readonly PRAGMA refusal is caught and reaches an explicit assertion.",
+    "Node102-binding statement succeeds on baseline and reaches a failing error-presence expectation."
+  ],
+  "evidence": {
+    "path": "/tmp/source-seed-namespace-native-plan-baseline-final-red.log",
+    "bytes": 17678,
+    "sha256": "93bddbb7ec56006d5d48ece1d8144a18623049719e2ad2cd180dc64c2c678999"
+  },
+  "status": "Candidate28 green exists only in an isolated /tmp copy. Source85, capture DDL/order, complete production provider availability and stored user-profile/role semantics remain incomplete."
+}

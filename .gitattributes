@@ -114,6 +114,9 @@ docs/relations-backend-evidence/core/relations-check-core.log whitespace=-blank-
 docs/relations-backend-evidence/core/relations-native-atomic-first-red.log whitespace=-blank-at-eol
 docs/relations-backend-evidence/core/relations-native-initial.log whitespace=-blank-at-eol
 docs/relations-backend-evidence/handlers/relations-native-service-first-red.log whitespace=-blank-at-eol
+
+# Preserve literal seed TDD evidence, including original formatter whitespace.
+docs/seed-engine-evidence/*.log -whitespace
 # Preserve exact SEO diagnostic bytes, including final Vitest blank lines.
 docs/seo-storage-evidence/native-read-producer-green.log whitespace=-blank-at-eof
 docs/seo-storage-evidence/reference-repository-hreflang-green.log whitespace=-blank-at-eof
@@ -152,3 +155,11 @@ docs/seo-storage-evidence/read02-source97-green.log whitespace=-blank-at-eof
 
 # Exact current Main schema111 SEO integration receipt.
 docs/seo-storage-evidence/current-main-schema111-focus.log -whitespace
+
+# Preserve exact public dependency Source and diagnostic bytes during regular union.
+docs/byline-lifecycle-evidence/source68-inherited-user-check-prerequisite.log -whitespace
+docs/evidence/user-admin-native/current-check.log -whitespace
+docs/evidence/user-repository-roles/fix-whole65.log -whitespace
+docs/evidence/user-repository-roles/refactor-whole65.log -whitespace
+docs/evidence/user-repository-roles/testfirst-whole65.log -whitespace
+parity/emdash/users/source/packages/core/tests/integration/plugins/capabilities.test.ts -whitespace

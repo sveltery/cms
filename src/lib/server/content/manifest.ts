@@ -4,9 +4,8 @@
 // Field batching follows schema/registry.ts:418 and utils/chunks.ts at the same pin.
 // Local ordering, field caps and error behavior: docs/editor-manifest-batching.md.
 import { MAX_COLLECTION_LIST_COLUMNS, type CollectionSupport, type FieldType, type FieldValidation, type FieldWidgetOptions, type RepeaterSubField, type UnsupportedFieldType } from '../schema/types.ts';
-import { sql } from 'kysely';
 import { CmsError, type CmsDatabase, type Field, type FieldRow } from '../database/contract.ts';
-import { MAX_FIELDS, SchemaRegistry, fieldFromRow } from '../database/registry.ts';
+import { SchemaRegistry, fieldFromRow } from '../database/registry.ts';
 import type { ServerPrincipal } from '../database/service.ts';
 
 export interface EditorField {
@@ -73,18 +72,14 @@ function descriptor(field: Field): EditorField {
   return entry;
 }
 
-// Pinned SQL_BATCH_SIZE. Each query also binds the existing per-collection cap.
+// Pinned SQL_BATCH_SIZE; all fields are read in each collection batch.
 const FIELD_COLLECTION_BATCH_SIZE = 50;
 
 async function manifestFields(database: CmsDatabase, collectionIds: string[]): Promise<Map<string, FieldRow[]>> {
   const byCollection = new Map<string, FieldRow[]>();
   for (let offset = 0; offset < collectionIds.length; offset += FIELD_COLLECTION_BATCH_SIZE) {
-    // Rank before limiting: a global LIMIT would starve later collections.
-    // Keep the registry's sort_order/id order and 32-field cap inside SQL.
-    const ranked = database.db.selectFrom('_cms_fields').selectAll()
-      .select(sql<number>`row_number() over (partition by collection_id order by sort_order, id)`.as('field_rank'))
-      .where('collection_id', 'in', collectionIds.slice(offset, offset + FIELD_COLLECTION_BATCH_SIZE)).as('ranked_fields');
-    const rows = await database.db.selectFrom(ranked).selectAll().where('field_rank', '<=', MAX_FIELDS)
+    const rows = await database.db.selectFrom('_cms_fields').selectAll()
+      .where('collection_id', 'in', collectionIds.slice(offset, offset + FIELD_COLLECTION_BATCH_SIZE))
       .orderBy('collection_id').orderBy('sort_order').orderBy('id').execute();
     for (const row of rows) {
       const fields = byCollection.get(row.collection_id) ?? [];
@@ -101,7 +96,7 @@ export async function editorManifest(database: CmsDatabase, principal: ServerPri
   if (!principal.permissions.includes('content:read') || !principal.permissions.includes('content:read_drafts')) throw new CmsError('FORBIDDEN');
   const registry = new SchemaRegistry(database);
   const collections: Record<string, EditorCollection> = {};
-  // Existing registry caps apply: at most 100 collections and 32 fields each.
+  // Existing collection bound applies; fields follow the Source uncapped registry read.
   // Retain the pinned builder's inherited-name omission and the local no-read policy
   // for omitted fields; use own keys instead of unsafe prototype lookup in the UI.
   const visible = (await registry.listCollections()).filter(collection => !Object.hasOwn(Object.prototype, collection.slug));

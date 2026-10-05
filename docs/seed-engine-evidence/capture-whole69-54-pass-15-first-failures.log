@@ -1,0 +1,295 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts (26 tests | 14 failed) 926ms
+     × activates durable capture for collections created after global activation 52ms
+     × activates durable capture for seed collections created after global activation 22ms
+     × rejects seed writes until field metadata and capture publication are complete 37ms
+     × activates durable capture when registering an orphan after global activation 26ms
+     × rejects orphan writes until collection publication is active and resumes registration 36ms
+     × resumes collection capture after the content table commits before registration 26ms
+     × resumes collection publication after verified capture reaches ready 28ms
+     × resumes collection capture after registration commits before finalization 35ms
+     × resumes seed capture and restores missing field metadata before finalization 34ms
+     × rejects a conflicting seed definition while capture installation is incomplete 33ms
+     × does not resume a cursorless collection lifecycle as seed creation 40ms
+     × does not resume a fingerprinted seed lifecycle as ordinary collection creation 28ms
+     × distinguishes an omitted seed default from an explicit null default 35ms
+     × resumes orphan registration after publication commits before finalization 19ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts (11 tests | 1 failed) 633ms
+     × refreshes a columns source and replaces its current usage 143ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 15 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates durable capture for collections created after global activation
+AssertionError: expected undefined to deeply equal ObjectContaining{…}
+
+- Expected:
+ObjectContaining {
+  "capture_state": "active",
+  "collection_id": "01M46ZP5BY502W4RP1S0SV095Y",
+  "reconciliation_required": 1,
+}
+
++ Received:
+undefined
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:104:42
+    102|   const collection = await registry.createCollection({ slug: "posts", …
+    103|
+    104|   expect(await statusRow(collection.id)).toEqual(
+       |                                          ^
+    105|    expect.objectContaining({
+    106|     collection_id: collection.id,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/15]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates durable capture for seed collections created after global activation
+AssertionError: expected undefined to deeply equal ObjectContaining{…}
+
+- Expected:
+ObjectContaining {
+  "capture_state": "active",
+  "collection_id": "01M46ZP5DD8D165BWP0M4B865H",
+  "reconciliation_required": 1,
+}
+
++ Received:
+undefined
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:127:42
+    125|   if (!collection) throw new Error("Expected seed collection");
+    126|
+    127|   expect(await statusRow(collection.id)).toEqual(
+       |                                          ^
+    128|    expect.objectContaining({
+    129|     collection_id: collection.id,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/15]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects seed writes until field metadata and capture publication are complete
+AssertionError: promise resolved "{ insertId: 1n, …(2) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "insertId": 1n,
++   "numAffectedRows": 1n,
++   "rows": [],
+  }
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:170:4
+    168|     )
+    169|    `.execute(ctx.db),
+    170|   ).rejects.toThrow(/media usage capture inactive/i);
+       |    ^
+    171|   expect(await workRows()).toEqual([]);
+    172|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/15]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates durable capture when registering an orphan after global activation
+TypeError: registry.registerOrphanedTable is not a function
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:195:37
+    193|   const registry = new SchemaRegistry(ctx.db);
+    194|
+    195|   const collection = await registry.registerOrphanedTable("orphan_post…
+       |                                     ^
+    196|
+    197|   expect(await statusRow(collection.id)).toEqual(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/15]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects orphan writes until collection publication is active and resumes registration
+TypeError: registry.registerOrphanedTable is not a function
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:224:25
+    222|   const registry = new SchemaRegistry(ctx.db);
+    223|
+    224|   await expect(registry.registerOrphanedTable("orphan_posts")).rejects…
+       |                         ^
+    225|    /media usage capture inactive/i,
+    226|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/15]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes collection capture after the content table commits before registration
+CmsError: COLLECTION_TABLE_ORPHANED
+ ❯ SchemaRegistry.createCollection src/lib/server/database/registry.ts:183:13
+    181|       // Another creator may have committed between the registry and t…
+    182|       if (await this.getCollection(value.slug)) throw new CmsError('CO…
+    183|       throw new CmsError('COLLECTION_TABLE_ORPHANED');
+       |             ^
+    184|     }
+    185|     const primaryByline = await collectionPrimaryBylinePlan(this.datab…
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:278:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/15]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes collection publication after verified capture reaches ready
+CmsError: COLLECTION_TABLE_ORPHANED
+ ❯ SchemaRegistry.createCollection src/lib/server/database/registry.ts:183:13
+    181|       // Another creator may have committed between the registry and t…
+    182|       if (await this.getCollection(value.slug)) throw new CmsError('CO…
+    183|       throw new CmsError('COLLECTION_TABLE_ORPHANED');
+       |             ^
+    184|     }
+    185|     const primaryByline = await collectionPrimaryBylinePlan(this.datab…
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:297:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/15]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes collection capture after registration commits before finalization
+CmsError: COLLECTION_EXISTS
+ ❯ SchemaRegistry.createCollection src/lib/server/database/registry.ts:176:53
+    174|     const value = parse(collectionInput, input);
+    175|     if (reservedCollections.includes(value.slug)) throw new CmsError('…
+    176|     if (await this.getCollection(value.slug)) throw new CmsError('COLL…
+       |                                                     ^
+    177|     const db = this.database.db;
+    178|     const name = tableName(value.slug);
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:315:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/15]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes seed capture and restores missing field metadata before finalization
+CmsError: COLLECTION_EXISTS
+ ❯ SchemaRegistry.createSeedCollectionSchema src/lib/server/database/registry.ts:256:53
+    254|         (field.defaultValue.length < minimum || field.defaultValue.len…
+    255|     }
+    256|     if (await this.getCollection(value.slug)) throw new CmsError('COLL…
+       |                                                     ^
+    257|     const db = this.database.db, name = tableName(value.slug), id = ul…
+    258|     const exists = await sql`SELECT name FROM sqlite_master WHERE type…
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:345:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/15]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects a conflicting seed definition while capture installation is incomplete
+AssertionError: expected undefined to deeply equal ObjectContaining{…}
+
+- Expected:
+ObjectContaining {
+  "capture_state": "installing",
+}
+
++ Received:
+undefined
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:379:43
+    377|   ).rejects.toThrow();
+    378|   expect(await registry.listFields(interrupted.id)).toEqual([]);
+    379|   expect(await statusRow(interrupted.id)).toEqual(
+       |                                           ^
+    380|    expect.objectContaining({ capture_state: "installing" }),
+    381|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/15]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > does not resume a cursorless collection lifecycle as seed creation
+AssertionError: expected undefined to deeply equal ObjectContaining{…}
+
+- Expected:
+ObjectContaining {
+  "capture_state": "installing",
+  "cursor": null,
+}
+
++ Received:
+undefined
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:400:43
+    398|   ).rejects.toThrow();
+    399|   expect(await registry.listFields(interrupted.id)).toEqual([]);
+    400|   expect(await statusRow(interrupted.id)).toEqual(
+       |                                           ^
+    401|    expect.objectContaining({ capture_state: "installing", cursor: null…
+    402|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/15]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > does not resume a fingerprinted seed lifecycle as ordinary collection creation
+AssertionError: expected undefined to deeply equal ObjectContaining{…}
+
+- Expected:
+ObjectContaining {
+  "capture_state": "installing",
+  "cursor": "media-usage-seed:v1:sha256:5b50665f39dc7fddef66bf3d236ee693774a454e27ba27423790fa64d9414f4b",
+}
+
++ Received:
+undefined
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:421:43
+    419|
+    420|   await expect(registry.createCollection(input)).rejects.toThrow();
+    421|   expect(await statusRow(interrupted.id)).toEqual(
+       |                                           ^
+    422|    expect.objectContaining({ capture_state: "installing", cursor: fing…
+    423|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/15]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > distinguishes an omitted seed default from an explicit null default
+AssertionError: expected undefined to deeply equal ObjectContaining{…}
+
+- Expected:
+ObjectContaining {
+  "capture_state": "installing",
+}
+
++ Received:
+undefined
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:472:43
+    470|   ).rejects.toThrow();
+    471|   expect(await registry.listFields(interrupted.id)).toEqual([]);
+    472|   expect(await statusRow(interrupted.id)).toEqual(
+       |                                           ^
+    473|    expect.objectContaining({ capture_state: "installing" }),
+    474|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/15]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes orphan registration after publication commits before finalization
+TypeError: registry.registerOrphanedTable is not a function
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:481:38
+    479|   await sql`CREATE TABLE ${sql.ref("ec_orphan_posts")} (id text primar…
+    480|   const registry = new SchemaRegistry(ctx.db);
+    481|   const interrupted = await registry.registerOrphanedTable("orphan_pos…
+       |                                      ^
+    482|   await ctx.db
+    483|    .updateTable("_emdash_media_usage_index_status")
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/15]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > refreshes a columns source and replaces its current usage
+AssertionError: expected null to deeply equal ObjectContaining{…}
+
+- Expected:
+ObjectContaining {
+  "lastErrorCode": "CONTENT_USAGE_STALE",
+  "status": "stale",
+}
+
++ Received:
+null
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:84:5
+     82|     scopeKey: "posts",
+     83|    }),
+     84|   ).toEqual(
+       |     ^
+     85|    expect.objectContaining({
+     86|     status: "stale",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/15]⎯
+
+
+ Test Files  2 failed | 3 passed (5)
+      Tests  15 failed | 54 passed (69)
+   Start at  21:31:59
+   Duration  7.27s (transform 1.18s, setup 0ms, import 2.85s, tests 3.45s, environment 0ms)
+
