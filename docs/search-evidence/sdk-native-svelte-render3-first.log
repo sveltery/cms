@@ -1,0 +1,40 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+2:05:51 AM [vite-plugin-svelte] tests/helpers/query-sdk/SeoHandoffConsumer.svelte:5:35 This reference only captures the initial value of `collection`. Did you mean to reference it inside a closure instead?
+https://svelte.dev/e/state_referenced_locally
+2:05:51 AM [vite-plugin-svelte] tests/helpers/query-sdk/SeoHandoffConsumer.svelte:5:47 This reference only captures the initial value of `id`. Did you mean to reference it inside a closure instead?
+https://svelte.dev/e/state_referenced_locally
+2:05:51 AM [vite-plugin-svelte] tests/helpers/query-sdk/SeoHandoffConsumer.svelte:6:6 This reference only captures the initial value of `fail`. Did you mean to reference it inside a closure instead?
+https://svelte.dev/e/state_referenced_locally
+ ❯ tests/query-sdk-render/handoff.test.ts (3 tests | 1 failed) 536ms
+   × the actual async Svelte renderer consumes primed panel data in the public render boundary 237ms
+   ✓ restores the original context when an actual async Svelte render fails 113ms
+   ✓ keeps identical panel keys separate across configured database render scopes 184ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/query-sdk-render/handoff.test.ts > the actual async Svelte renderer consumes primed panel data in the public render boundary
+AssertionError: expected '<!--[--><p data-db-bound="true" data-…' to contain 'SEO &lt;bound&gt; &amp; visible'
+
+Expected: "SEO &lt;bound&gt; &amp; visible"
+Received: "<!--[--><p data-db-bound="true" data-locale="fr">SEO &lt;bound> &amp; visible</p><!--]-->"
+
+ ❯ tests/query-sdk-render/handoff.test.ts:31:25
+     29|       return await render(SeoHandoffConsumer, {props: {collection: 'po…
+     30|     });
+     31|     expect(output.body).toContain('SEO &lt;bound&gt; &amp; visible');
+       |                         ^
+     32|     expect(output.body).toContain('data-db-bound="true"');
+     33|     expect(output.body).toContain('data-locale="fr"');
+ ❯ tests/query-sdk-render/handoff.test.ts:25:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  02:05:47
+   Duration  4.10s (transform 2.32s, setup 0ms, import 3.21s, tests 536ms, environment 0ms)
+
+JSON report written to /tmp/search101-sdk-native-svelte-render3-first.json

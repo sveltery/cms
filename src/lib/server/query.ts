@@ -1909,11 +1909,17 @@ export function createQuerySdk(database: CmsDatabase) {
   bindQueryDatabase(database);
   const scoped = createQueryScope(database);
   return {
-    getEmDashCollection: (...args: Parameters<typeof getEmDashCollection>) => scoped(() => getEmDashCollection(...args)),
-    getEmDashEntry: (...args: Parameters<typeof getEmDashEntry>) => scoped(() => getEmDashEntry(...args)),
-    getEmDashReferences: (...args: Parameters<typeof getEmDashReferences>) => scoped(() => getEmDashReferences(...args)),
+    getEmDashCollection: <T extends string, D = InferCollectionData<T>>(type: T, filter?: CollectionFilter) =>
+      scoped(() => getEmDashCollection<T, D>(type, filter)),
+    getEmDashEntry: <T extends string, D = InferCollectionData<T>, S extends SelectableReferences<T> = {}>(
+      type: T, id: string, options?: {locale?: string; references?: S}
+    ) => scoped(() => getEmDashEntry<T, D, S>(type, id, options)),
+    getEmDashReferences: <D = Record<string, unknown>>(
+      type: string, id: string, field: string, options?: {limit?: number; cursor?: string; locale?: string}
+    ) => scoped(() => getEmDashReferences<D>(type, id, field, options)),
     getPublishedDates: (...args: Parameters<typeof getPublishedDates>) => scoped(() => getPublishedDates(...args)),
     getTranslations: (...args: Parameters<typeof getTranslations>) => scoped(() => getTranslations(...args)),
-    resolveEmDashPath: (...args: Parameters<typeof resolveEmDashPath>) => scoped(() => resolveEmDashPath(...args))
+    resolveEmDashPath: <T = Record<string, unknown>>(path: string) => scoped(() => resolveEmDashPath<T>(path)),
+    withContext: scoped
   };
 }

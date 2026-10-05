@@ -1,10 +1,16 @@
 import type { RequestEvent } from '@sveltejs/kit';
+import { bindQueryDatabase } from './bindings.ts';
+import { createQueryScope } from './scope.ts';
 
-// Exact existing bare-render behavior extracted before its context regression.
-// This introduces no storage, migrations, principal or cache implementation.
+// Use final trusted request storage after any D1 scope replacement. The whole
+// render shares the existing menus ALS/cache owner with query and page helpers.
+// Configuration, authorization, locale and preview remain their existing owners.
 export function withQueryRenderRequest<T>(
-  _event: Pick<RequestEvent, 'locals'>,
+  event: Pick<RequestEvent, 'locals'>,
   render: () => T
 ): T {
-  return render();
+  const configuration = event.locals.cms;
+  if (!configuration) return render();
+  bindQueryDatabase(configuration.database);
+  return createQueryScope(configuration.database, {keepAlive: configuration.keepAlive})(render);
 }
