@@ -39,8 +39,11 @@
     let timer:ReturnType<typeof setTimeout>;
     const tick=()=>{timer=setTimeout(()=>{now=Date.now();tick();},60000-(Date.now()%60000));};tick();
     const measure=()=>{compact=(container?.clientWidth??window.innerWidth)<640+(compact?24:0);};measure();
-    const observer=new ResizeObserver(measure);if(container)observer.observe(container);
-    return()=>{clearTimeout(timer);observer.disconnect();};
+    // Deliver layout changes outside ResizeObserver's delivery cycle; switching
+    // the month/agenda layout can resize the same observed container.
+    let frame=0;
+    const observer=new ResizeObserver(()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(measure);});if(container)observer.observe(container);
+    return()=>{clearTimeout(timer);cancelAnimationFrame(frame);observer.disconnect();};
   });
   const items=$derived(data?toCalendarItems(data.items,{timeZone:display.timeZone,loadedAt:updatedAt,collectionOrder}):[]);
   const visible=$derived(filterItems(items,filters)),days=$derived(groupByDay(visible)),unfilteredDays=$derived(filtered?groupByDay(items):days);
@@ -69,6 +72,6 @@
 {#if data?.truncated}<div role="status"><h3>This range has more than {new Intl.NumberFormat(locale).format(CALENDAR_MAX_ENTRIES)} entries</h3><p>The calendar shows the first {new Intl.NumberFormat(locale).format(CALENDAR_MAX_ENTRIES)}{loadedThrough?`, which end on ${display.monthDay(loadedThrough)}`:''}.</p></div>{/if}
 {#if !(error&&!data)}{#if view==='month'}<Month {month} {gridDays} {days} {unfilteredDays} {today} {now} {display} loading={!data} {loadedThrough} {compact} {selectedKey} onSelect={openEntry} onMonthChange={goToMonth} onClearFilters={filtered?clearFilters:undefined}/>
 {:else}{#key month}<Agenda {month} {days} {today} {now} {display} loading={!data} {loadedThrough} {selectedKey} onSelect={openEntry} onClearFilters={filtered?clearFilters:undefined}/>{/key}{/if}{/if}
-<Panel item={selected} {display} {now} {compact} i18n={manifest?.i18n} {user} {returnFocus} {client} {queryClient} onClose={closeEntry} onRescheduled={(item,at)=>goToMonth(dayKeyInZone(Date.parse(at),display.timeZone).slice(0,7))}/>
+<Panel item={selected} {display} {now} {compact} i18n={manifest?.i18n} urlPatterns={Object.fromEntries(Object.entries(manifest?.collections??{}).map(([slug,collection])=>[slug,collection.urlPattern]))} {user} {returnFocus} {client} {queryClient} onClose={closeEntry} onRescheduled={(item,at)=>{const target=dayKeyInZone(Date.parse(at),display.timeZone).slice(0,7);if(target!==month)goToMonth(target);}}/>
 </div>
 <style>.calendar{min-width:0;display:grid;gap:1.25rem;}header,.toolbar{display:flex;justify-content:space-between;gap:1rem;align-items:start;}h1{margin:0;font-size:2rem;}h2{margin:0;font-size:1.25rem;}header p,.toolbar p{font-size:.875rem;color:var(--muted-foreground,#666);}button{font:inherit;color:inherit;background:var(--card,#fff);border:1px solid var(--border,#ccc);border-radius:.35rem;padding:.55rem .8rem;cursor:pointer;}[role="tablist"],.month-nav{display:flex;gap:.35rem;}[aria-selected="true"]{background:var(--primary,#174bbf);color:white;}[role="alert"]{border:1px solid #c55;padding:1rem;}[role="status"]{border:1px solid #ba8a36;padding:1rem;}button:focus-visible{outline:2px solid var(--ring,#165ccc);outline-offset:2px;}@media(max-width:639px){header{flex-wrap:wrap;}[role="tablist"] button{flex:1;}}</style>
