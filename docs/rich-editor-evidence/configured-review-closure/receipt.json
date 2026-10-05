@@ -1,0 +1,215 @@
+{
+  "recordedAtUTC": "2026-10-05T01:55:42.386793+00:00",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "configuredReview": 5409290162,
+  "reviewedHead": "983167cd37d429ed16bc15c3b17eff0c270f6907",
+  "findings": [
+    {
+      "id": 4180157001,
+      "priority": "P1",
+      "repair": "Close, section card and Cancel are actual non-submit controls in the existing Native picker. Three real form submit-event regressions also verify successful section insertion and explicit draft Save."
+    },
+    {
+      "id": 4180157004,
+      "priority": "P2",
+      "repair": "Actual link controls use a non-form container and non-submit Apply; Enter is handled locally with preventDefault, preserving genuine selected-text mark updates. No nested submit propagation."
+    },
+    {
+      "id": 4180157007,
+      "priority": "P2",
+      "repair": "Actual new commands consume stale deferred positions; picker cancel/import failure and unavailable media/plugin paths clear them; successful selections still use and consume their gutter position. Three media/import cases and real cancel-then-slash section case reach correct document-order assertions."
+    }
+  ],
+  "sourceWitnesses": [
+    {
+      "path": "parity/emdash/rich-editor-source/packages/admin/src/components/SectionPickerModal.tsx",
+      "behavior": "SectionCard explicitly type=button; Source picker lives in its dialog transport. Native inline form buttons preserve editor-local behavior."
+    },
+    {
+      "path": "parity/emdash/rich-editor-source/packages/admin/src/components/editor/LinkDestinationInput.tsx",
+      "behavior": "Whole pinned Enter handler prevents default and calls onSubmit; Source editor supplies link controls without a nested form."
+    },
+    {
+      "path": "parity/emdash/rich-editor-source/packages/admin/src/components/PortableTextEditor.tsx",
+      "behavior": "Whole original section/media/plugin close handlers clear pendingBlockInsertPosRef; successful selections consume real positions."
+    }
+  ],
+  "supplementalWholeMethodWitness": {
+    "test": "tests/rich-editor-native/source-insertion-witness.test.ts",
+    "behavior": "Entire retained pinned insertTopLevelBlock declaration extracted with actual TS AST and transpiled without body edits, executed against genuine installed Source-version StarterKit/ProseMirror host; confirms trailing paragraph after end HTML block. Actual Native host supplies renderer/extensions; this is not full original Source callback/React renderer execution.",
+    "originalSourceCallbackCredit": 0,
+    "expectedCorrection": "ONLY three new Native HTML array expectations include witnessed trailing paragraph. All original Source expectations and old Native24 remain unchanged."
+  },
+  "testTransport": {
+    "actualOuterForm": "Real DOM form, actual mounted production editor and section picker, ordinary submit event observation with preventDefault solely to prevent fixture browser navigation; explicit actual Save control proves observer. No remotes/auth principals/sessions/HTTP/persistence providers introduced.",
+    "sectionRead": "Controlled Native API read result through existing actual picker api module; no fabricated producer success or actual HTTP request.",
+    "jsdomPresentation": "Missing dialog showModal/close set/remove open attribute; missing element scrollIntoView is presentation-only noop; actual existing ProseMirror scroll hook prevents unsupported Range layout. No coordinates or browser/focus/a11y parity fabricated.",
+    "importFailure": "Own isolated Native file genuinely rejects the lazy picker module import. Original Source mocks/files unchanged.",
+    "nativeConfig": "Only actual $lib path alias added so existing picker can load; whole wildcard6-files runs all34. No Source filters/clocks or package/dependency/lock/workflow change."
+  },
+  "wholeRuns": [
+    {
+      "name": "native33-first",
+      "head": "004ce957",
+      "registered": 33,
+      "reportedPass": 24,
+      "failed": 9,
+      "unhandled": 7,
+      "wholeGreen": false,
+      "raw": {
+        "path": "docs/rich-editor-evidence/configured-review-closure/native33-first.log.json",
+        "decodedBytes": 11743,
+        "decodedSha256": "7580ced7ad52b6b371395a03095807b467c0dce7ce64d186b2ae1ba698537f1b"
+      },
+      "report": {
+        "path": "docs/rich-editor-evidence/configured-review-closure/native33-first-report.json",
+        "bytes": 19207,
+        "sha256": "f8a01c537b0cfbaba50ca5171484441f5bb3969e2ddd31082bbf93bb364ef19d"
+      },
+      "classification": "Five genuine form/key assertion failures; four later insertion callbacks interrupted by unsupported jsdom menu scrolling. Seven unhandled errors mean whole run failed."
+    },
+    {
+      "name": "native33-reached-red",
+      "head": "e7c1c7f7",
+      "registered": 33,
+      "reportedPass": 24,
+      "failed": 9,
+      "unhandled": 0,
+      "wholeGreen": false,
+      "raw": {
+        "path": "docs/rich-editor-evidence/configured-review-closure/native33-reached-red.log.json",
+        "decodedBytes": 7637,
+        "decodedSha256": "f61142c4e46958387e555edd7ee6428f0d29c0b7fb2e287ded1a703f2024179e"
+      },
+      "report": {
+        "path": "docs/rich-editor-evidence/configured-review-closure/native33-reached-red-report.json",
+        "bytes": 19874,
+        "sha256": "5a3af29b4cb5e8a1f87fcbd8ac07fbdc9aec8c7fce33bbead6d1a6ad3099f96d"
+      },
+      "classification": "All nine new Native callbacks reach genuine value assertions. Old24 pass. No original Source assertion-red credit."
+    },
+    {
+      "name": "native33-first-fix",
+      "head": "534074b9",
+      "registered": 33,
+      "reportedPass": 30,
+      "failed": 3,
+      "unhandled": 0,
+      "wholeGreen": false,
+      "raw": {
+        "path": "docs/rich-editor-evidence/configured-review-closure/native33-first-fix.log.json",
+        "decodedBytes": 3651,
+        "decodedSha256": "d41138db42800bde806db6b9c1a93ea69fc6ba217ee211d420437bba03954b7c"
+      },
+      "report": {
+        "path": "docs/rich-editor-evidence/configured-review-closure/native33-first-fix-report.json",
+        "bytes": 15266,
+        "sha256": "199518cddc0a92e24511407ec9c1711b6dc7a21f3f5b062ae579bfc735afcc4e"
+      },
+      "classification": "Product position repairs succeed; three NEW Native exact-array expectations wrongly omit the actual Source-version StarterKit trailing paragraph. Whole run failed."
+    },
+    {
+      "name": "native34-source-witness",
+      "head": "96126478",
+      "registered": 34,
+      "reportedPass": 31,
+      "failed": 3,
+      "unhandled": 0,
+      "wholeGreen": false,
+      "raw": {
+        "path": "docs/rich-editor-evidence/configured-review-closure/native34-source-witness.log.json",
+        "decodedBytes": 3735,
+        "decodedSha256": "4386162ffa01e0ecc349be0ef32e13daf1d544254b3cbe6adca7a7c08f9c7a59"
+      },
+      "report": {
+        "path": "docs/rich-editor-evidence/configured-review-closure/native34-source-witness-report.json",
+        "bytes": 15833,
+        "sha256": "c937cc0e0944cd569f351e250fd000f0fec270df2cfd2bcaba37075ee4241cb1"
+      },
+      "classification": "Product position repairs succeed; three NEW Native exact-array expectations wrongly omit the actual Source-version StarterKit trailing paragraph. Whole run failed."
+    },
+    {
+      "name": "native34-corrected-red",
+      "head": "e7c1c7f7 with exact final test overlay",
+      "registered": 0,
+      "reportedPass": 0,
+      "failed": 0,
+      "unhandled": 0,
+      "wholeGreen": false,
+      "raw": {
+        "path": "docs/rich-editor-evidence/configured-review-closure/native34-corrected-red.log.json",
+        "decodedBytes": 1856,
+        "decodedSha256": "4c531e006cb6a3f87c577d63c255f14007ae3d0b8c68fae1559e71e10a748f31"
+      },
+      "classification": "Detached full pre-fix worktree had not run actual Kit sync; missing generated tsconfig caused optimizer startup failure. Zero registered callbacks/assertion credit."
+    },
+    {
+      "name": "native34-corrected-reached-red",
+      "head": "e7c1c7f7 with exact final test overlay",
+      "registered": 34,
+      "reportedPass": 25,
+      "failed": 9,
+      "unhandled": 0,
+      "wholeGreen": false,
+      "raw": {
+        "path": "docs/rich-editor-evidence/configured-review-closure/native34-corrected-reached-red.log.json",
+        "decodedBytes": 7785,
+        "decodedSha256": "0996dae4d1ec50d28daf022b81aad20089a2dcf90a01133d096b4d61b7111449"
+      },
+      "report": {
+        "path": "docs/rich-editor-evidence/configured-review-closure/native34-corrected-reached-red-report.json",
+        "bytes": 20382,
+        "sha256": "5fe142c06778ddfccc91635d7e1ce5ef06beae89bb0079abba5c53a1fcfc009c"
+      },
+      "classification": "After actual Kit sync, entire final six-file Native34 suite against unchanged pre-fix production at e7: nine genuine regressions fail, old24 and method witness1 pass. Final new expectations/data match green run; source method witness remains supplemental."
+    },
+    {
+      "name": "native34-first-green",
+      "head": "a0d0c7b4",
+      "registered": 34,
+      "reportedPass": 34,
+      "failed": 0,
+      "unhandled": 0,
+      "wholeGreen": true,
+      "raw": {
+        "path": "docs/rich-editor-evidence/configured-review-closure/native34-first-green.log.json",
+        "decodedBytes": 842,
+        "decodedSha256": "94280f9a637854922c8f152b559e423cc0689bc9b72abad175107ee7b5e444c0"
+      },
+      "report": {
+        "path": "docs/rich-editor-evidence/configured-review-closure/native34-first-green-report.json",
+        "bytes": 14695,
+        "sha256": "68ab4c13bbb9d4e63ba4d1a2158ae5bf4d21de032458aca5966355fef2d18776"
+      }
+    },
+    {
+      "name": "native34-refactor",
+      "head": "0c1f8471",
+      "registered": 34,
+      "reportedPass": 34,
+      "failed": 0,
+      "unhandled": 0,
+      "wholeGreen": true,
+      "raw": {
+        "path": "docs/rich-editor-evidence/configured-review-closure/native34-refactor.log.json",
+        "decodedBytes": 961,
+        "decodedSha256": "fc8f0634678c631f59efb0fd3d5b72c9e0e1d55871a7cf4a32988c5f153e18cf"
+      },
+      "report": {
+        "path": "docs/rich-editor-evidence/configured-review-closure/native34-refactor-report.json",
+        "bytes": 14690,
+        "sha256": "2bfde682877fce9c55c2b37fea11159fc8abd8b26a4ccde75338f8a43eecdfed"
+      }
+    }
+  ],
+  "newNativeGenuineValueReds": 9,
+  "finalNativeCallbacks": 34,
+  "fullFeatureComplete": false,
+  "originalSourceFiles": 146,
+  "originalSourceFamilies": 32,
+  "existingMandatory13Normal9BrowserAndWhole137Gate": "unchanged; whole current successor CI required",
+  "configuredSuccessorReview": "pending",
+  "independentSuccessorReview": "pending",
+  "rootExactMergeApproval": "pending",
+  "remaining": "FullCodeMirror/iframe/pointertouch/localization/accessibility/repeater6/protected4E2E/media/reference/block/plugin/public integration remains incomplete."
+}
