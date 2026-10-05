@@ -143,6 +143,10 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     const collection=await definition(item.type);
     return hydrateBoundContentReferences(database,item,collection.fields,includeDrafts);
   }
+  async function hydrateLiveWithReferences(item:ContentItem,hasSeo:boolean,includeDrafts:boolean):Promise<ContentItem> {
+    const withSeo=await hydrateContentSeo(database,item.type,item,hasSeo);
+    return hydrateReferences(await hydratedBylines(withSeo),includeDrafts);
+  }
   function prune(collection:string,id:string,revisionId:string) {
     // Pinned runtime/cleanup isolate deferred bookkeeping failures. The queue
     // remains unacknowledged when pruning fails, so later work can retry it.
@@ -514,13 +518,15 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const collection=await definition(value.type);
       if(collection.routable&&!item.slug?.trim())throw new CmsError('VALIDATION_ERROR','Cannot publish routable content without a slug');
       const scheduledAt=parse(v.pipe(v.string(),v.minLength(1),v.maxLength(128)),value.scheduledAt);
-      return hydrateReferences(await hydratedBylines(await hydrateContentSeo(database,value.type,await translate(()=>content.schedule(value.type,value.id,scheduledAt,new Date(),{version:item.version,updatedAt:item.updatedAt})),collection.hasSeo)),actor.permissions.has('content:read_drafts'));
+      const scheduled=await translate(()=>content.schedule(value.type,value.id,scheduledAt,new Date(),{version:item.version,updatedAt:item.updatedAt}));
+      return hydrateLiveWithReferences(scheduled,collection.hasSeo,actor.permissions.has('content:read_drafts'));
     },
     async unschedule(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=(await stored(value)).item;
       owner(item,actor,'content:publish_any');precondition(value.expected,item);
       const collection=await definition(value.type);
-      return hydrateReferences(await hydratedBylines(await hydrateContentSeo(database,value.type,await translate(()=>content.unschedule(value.type,value.id,{version:item.version,updatedAt:item.updatedAt})),collection.hasSeo)),actor.permissions.has('content:read_drafts'));
+      const unscheduled=await translate(()=>content.unschedule(value.type,value.id,{version:item.version,updatedAt:item.updatedAt}));
+      return hydrateLiveWithReferences(unscheduled,collection.hasSeo,actor.permissions.has('content:read_drafts'));
     },
     async unpublish(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const persisted=await stored(value);const item=persisted.item;
