@@ -92,6 +92,21 @@ test('Node hydration pages the actual 51-entry draft selection and retains its n
   assert.ok(selection?.nextCursor);
  }finally{await host.close();}
 });
+test('ordinary published reads hide draft targets and existing subscriber rights still deny comparison and draft reads',async()=>{
+ const {host,owner,a,b,published}=await setup('Node');
+ try{
+  const staged=await owner.updateContent({type:'post',id:published.id,locale:'en',references:{related:[a.id,b.id]},expected:{version:published.version,updatedAt:published.updatedAt}});
+  await owner.publish({type:'post',id:published.id,locale:'en',expected:{version:staged.item.version,updatedAt:staged.item.updatedAt}});
+  const subscriber=ordinaryContentService(host.database,servicePrincipal({id:'ordinary-original-unit-subscriber',role:Role.SUBSCRIBER}));
+  const read=(subscriber as any).getPublishedContent;
+  const item=await read?.({type:'post',id:published.id,locale:'en'});
+  assert.deepEqual(item?.references?.related?.children.map((child:any)=>child.id),[a.id]);
+  await assert.rejects(()=>subscriber.getContent({type:'post',id:published.id,locale:'en'}),error=>(error as any).code==='FORBIDDEN');
+  await assert.rejects(()=>(subscriber as any).compareContent({type:'post',id:published.id,locale:'en'}),error=>(error as any).code==='FORBIDDEN');
+  const admin=ordinaryContentService(host.database,servicePrincipal({id:'ordinary-original-unit-admin',role:Role.ADMIN}));
+  assert.equal((await (admin as any).compareContent({type:'post',id:published.id,locale:'en'})).hasChanges,false);
+ }finally{await host.close();}
+});
 
 function memoryBackend(){
  const values=new Map<string,string>();
