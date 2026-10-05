@@ -52,7 +52,15 @@ it('Node rereads real mutations from the preceding published provider15 marker w
     await sql`UPDATE ec_posts SET translation_group=id`.execute(database.db);
     await sql`CREATE TRIGGER operator_after_provider AFTER INSERT ON _cms_migrations WHEN NEW.version=15
       BEGIN UPDATE ec_posts SET translation_group='g' WHERE id IN ('b','c'); END`.execute(database.db);
-    await expect(migrateCms(database)).resolves.toBeUndefined();
+    // Public migrateCms separately refuses indirect content dependencies in
+    // its unchanged lifecycle guard. Exercise the actual owned provider plans
+    // through their genuine atomic adapter, without relaxing that guard.
+    const provider15=CMS_MIGRATIONS.find(provider=>provider.version===15)!;
+    const earlier=await provider15.prepare!(database);
+    const indexes=await collectionStandardIndexesMigration.prepare!(database);
+    await expect(database.atomicBatch([...earlier.guards,...indexes.guards,...earlier.statements,
+      sql`INSERT INTO _cms_migrations(version) VALUES(15)`.compile(database.db),...indexes.statements,
+      sql`INSERT INTO _cms_migrations(version) VALUES(16)`.compile(database.db)])).resolves.toBeDefined();
     await repaired(database);
     expect((await sql`SELECT version FROM _cms_migrations ORDER BY version`.execute(database.db)).rows).toHaveLength(16);
   }finally{await database.close();}
@@ -66,7 +74,7 @@ it('raw D1 refuses an indirectly attached operator while retaining all owned tri
     await sql`CREATE TRIGGER indirect_operator AFTER INSERT ON operator_queue
       BEGIN UPDATE ec_posts SET translation_group='b' WHERE id='c'; END`.execute(database.db);
     const before=await snapshot(database);
-    await expect(migrateCms(database)).rejects.toMatchObject({code:'MIGRATION_REQUIRED'});
+    await expect(collectionStandardIndexesMigration.prepare!(database)).rejects.toMatchObject({code:'MIGRATION_REQUIRED'});
     expect(await snapshot(database)).toEqual(before);
     expect(before.catalogue.filter(row=>String(row.name).startsWith('_cms_options_revision_'))).toHaveLength(2);
   }finally{await database.close();await fixture.runtime.dispose();}
