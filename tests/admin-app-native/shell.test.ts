@@ -114,3 +114,51 @@ it('a retained root preserves toolbar effect lifetime across page shell remounts
  state.showShell = true; await settled(); await vi.waitFor(() => expect(target.querySelector('main')).not.toBeNull());
  expect(localStorage.getItem('emdash-toolbar-dismissed')).toBe('1');
 });
+
+it('a retained root keeps the actual welcome dismissal pending across page shell remounts until success', async () => {
+ let complete!: () => void;
+ const dismissal = new Promise<void>(resolve => { complete = resolve; });
+ const dismissWelcome = vi.fn(() => dismissal);
+ const state = lifecycleState({ showShell: true, currentUserClient: { currentUser: vi.fn(async () => user), dismissWelcome } });
+ const { target, queryClient } = await renderWithRootDefaults(state);
+ try {
+  await vi.waitFor(() => expect(target.querySelector('[role=dialog]')).not.toBeNull());
+  target.querySelector<HTMLButtonElement>('button.primary')!.click();
+  await vi.waitFor(() => expect(target.querySelector<HTMLButtonElement>('button.primary')!.disabled).toBe(true));
+  state.showShell = false; await settled(); await vi.waitFor(() => expect(target.querySelector('main')).toBeNull());
+  state.showShell = true; await settled(); await vi.waitFor(() => expect(target.querySelector('[role=dialog]')).not.toBeNull());
+  expect(target.querySelector<HTMLButtonElement>('button.primary')!.disabled).toBe(true);
+  expect(target.querySelector('button.primary')!.getAttribute('aria-busy')).toBe('true');
+  target.querySelector<HTMLButtonElement>('button.primary')!.click();
+  expect(dismissWelcome).toHaveBeenCalledTimes(1);
+  complete();
+  await vi.waitFor(() => expect(target.querySelector('[role=dialog]')).toBeNull());
+  expect(queryClient.getQueryData(['currentUser'])).toEqual({ ...user, isFirstLogin: false });
+ } finally { complete(); await settled(); }
+});
+
+it('a retained pending dismissal stays isolated from another root and closes after failure without changing the user', async () => {
+ let fail!: (error: Error) => void;
+ const dismissal = new Promise<void>((_resolve, reject) => { fail = reject; });
+ const dismissWelcome = vi.fn(() => dismissal);
+ const state = lifecycleState({ showShell: true, currentUserClient: { currentUser: vi.fn(async () => user), dismissWelcome } });
+ const { target, queryClient } = await renderWithRootDefaults(state);
+ try {
+  await vi.waitFor(() => expect(target.querySelector('[role=dialog]')).not.toBeNull());
+  target.querySelector<HTMLButtonElement>('button.primary')!.click();
+  await vi.waitFor(() => expect(target.querySelector<HTMLButtonElement>('button.primary')!.disabled).toBe(true));
+  const secondDismissWelcome = vi.fn(async () => {});
+  const second = await renderWithRootDefaults({ currentUserClient: { currentUser: vi.fn(async () => ({ ...user, id: 'independent-pending-fixture' })), dismissWelcome: secondDismissWelcome } });
+  await vi.waitFor(() => expect(second.target.querySelector('[role=dialog]')).not.toBeNull());
+  expect(second.target.querySelector<HTMLButtonElement>('button.primary')!.disabled).toBe(false);
+  state.showShell = false; await settled(); await vi.waitFor(() => expect(target.querySelector('main')).toBeNull());
+  state.showShell = true; await settled(); await vi.waitFor(() => expect(target.querySelector('[role=dialog]')).not.toBeNull());
+  expect(target.querySelector<HTMLButtonElement>('button.primary')!.disabled).toBe(true);
+  fail(Error('Ordinary controlled dismissal failure'));
+  await vi.waitFor(() => expect(target.querySelector('[role=dialog]')).toBeNull());
+  expect(queryClient.getQueryData(['currentUser'])).toEqual(user);
+  expect(second.target.querySelector('[role=dialog]')).not.toBeNull();
+  expect(second.queryClient.getQueryData(['currentUser'])).toEqual({ ...user, id: 'independent-pending-fixture' });
+  expect([dismissWelcome.mock.calls.length, secondDismissWelcome.mock.calls.length]).toEqual([1, 0]);
+ } finally { fail(Error('Ordinary fixture cleanup')); await settled(); }
+});
