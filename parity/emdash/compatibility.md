@@ -2922,3 +2922,5 @@ finite-delta closure, current full normal13/secured10, explicit Root acceptance
 and author merge remain pending. Future whole Source leaves may append after the
 adjacent exactly-once user gates; that provenance integration earns0 behavioral
 or Source credit.
+
+SEED-TYPE-HOST01: actual Main116cdc5 ordinary union preserves complete histories. Checker17 errors (eight owned hosting/member errors plus nine generated-route prerequisites) becomes0/0 after erased aliases/type exports, an identical compiled-parameter array copy, exact pinned Source `getTableName`, and actual framework type generation. Whole unchanged Node apply85/capture69 stay85/85 and69/69. This repairs prerequisites with zero causal Source credit. Direct installed Vitest execution after the system pnpm11.19 engine rejection earns no frozen-install/full-bootstrap credit; D1 domain-plan and stationary gates remain pending. Paired seed documentation and literal receipts retain both failures and success.
