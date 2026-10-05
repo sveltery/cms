@@ -55,5 +55,9 @@ export default defineConfig({
     ,'parity/emdash/general-media-source/upstream/packages/core/tests/integration/astro/media-replace.test.ts'
     ,'parity/emdash/general-media-source/upstream/packages/core/tests/integration/astro/media-upload-deduplication.test.ts'
     ,'parity/emdash/general-media-source/upstream/packages/core/tests/integration/astro/media-upload-placeholder.test.ts'
+    ,'parity/emdash/general-media-source/upstream/packages/core/tests/unit/database/migrations/073_media_focal_point.test.ts'
+    ,'parity/emdash/general-media-source/upstream/packages/core/tests/unit/media/usage-extractor.test.ts'
+    ,'parity/emdash/general-media-source/upstream/packages/core/tests/unit/media/usage-projection-fingerprint.test.ts'
+    ,'parity/emdash/general-media-source/upstream/packages/core/tests/unit/media/usage-source-key.test.ts'
   ] }
 });
