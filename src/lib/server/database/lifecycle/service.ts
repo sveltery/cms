@@ -308,6 +308,10 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     async schedule(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
       owner(item,actor,'content:publish_any');precondition(value.expected,item);
+      // Pinned handleContentSchedule checks the existing routable slug before
+      // delegating to the repository, including rescheduling a cleared draft.
+      const collection=await definition(value.type);
+      if(collection.routable&&!item.slug?.trim())throw new CmsError('VALIDATION_ERROR','Cannot publish routable content without a slug');
       const scheduledAt=parse(v.pipe(v.string(),v.minLength(1),v.maxLength(128)),value.scheduledAt);
       return translate(()=>content.schedule(value.type,value.id,scheduledAt,new Date(),{version:item.version,updatedAt:item.updatedAt}));
     },

@@ -19,5 +19,5 @@ export default defineConfig({plugins:[svelte({configFile:false}),{
 }],resolve:{conditions:['browser']},oxc:{jsx:{runtime:'automatic'}},test:{fileParallelism:false,
   setupFiles:['parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/setup.ts'],
   include:['parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts','parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/components/calendar/*.test.tsx','parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/routes/calendar.test.tsx'],
-  browser:{enabled:true,headless:true,provider:playwright({launchOptions:{chromiumSandbox:true,timeout:30000}}),instances:[{browser:'chromium'}],viewport:{width:1280,height:800}}
+  browser:{enabled:true,headless:true,provider:playwright({contextOptions:{timezoneId:'America/New_York'},launchOptions:{chromiumSandbox:true,timeout:30000}}),instances:[{browser:'chromium'}],viewport:{width:1280,height:800}}
 }});
