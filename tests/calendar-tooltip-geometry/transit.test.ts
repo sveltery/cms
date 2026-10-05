@@ -4,7 +4,7 @@ import { afterEach,beforeEach,describe,expect,it,vi } from 'vitest';
 import { createCalendarTooltipTransit,type CalendarTooltipRect,type CalendarTooltipSide,type CalendarTooltipTransitEvent } from '../../src/lib/calendar/tooltip-transit.ts';
 const rect=(x:number,y:number,width:number,height:number):CalendarTooltipRect=>({x,y,width,height,left:x,top:y,right:x+width,bottom:y+height});
 const trigger=rect(100,100,40,20);
-const fixtures={top:{popup:rect(60,50,120,40),x:120,y:100,bridge:[120,95],diagonal:[95,96]},bottom:{popup:rect(60,140,120,40),x:120,y:120,bridge:[120,125],diagonal:[95,126]},left:{popup:rect(40,80,50,60),x:100,y:110,bridge:[95,110],diagonal:[93,98]},right:{popup:rect(150,80,50,60),x:140,y:110,bridge:[145,110],diagonal:[147,98]}} as const;
+const fixtures={top:{popup:rect(60,50,120,40),x:120,y:100,bridge:[120,95],diagonal:[95,96]},bottom:{popup:rect(60,140,120,40),x:120,y:120,bridge:[120,125],diagonal:[95,134]},left:{popup:rect(40,80,50,60),x:100,y:110,bridge:[95,110],diagonal:[93,98]},right:{popup:rect(150,80,50,60),x:140,y:110,bridge:[145,110],diagonal:[147,98]}} as const;
 const move=(x:number,y:number,extra:Partial<CalendarTooltipTransitEvent>={}):CalendarTooltipTransitEvent=>({type:'mousemove',clientX:x,clientY:y,...extra});
 function setup(side:CalendarTooltipSide='top'){
   const f=fixtures[side],close=vi.fn();const owner=createCalendarTooltipTransit({x:f.x,y:f.y,side,rects:()=>({trigger,popup:f.popup}),onClose:close});return{...f,owner,close};

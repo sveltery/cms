@@ -2489,3 +2489,5 @@ Decision: development scope qualified; final combined product/browser/geometry a
 ### Calendar112 tooltip geometry test-first inventory
 
 Immutable EmDash1.1.0 pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e` remains unchanged. [Paired tooltip documentation](../../docs/calendar-tooltip-geometry.md) retains five whole frozen Kumo2.6 authorities and Source default safePolygon contract separately from the original49 callbacks. Native pure immediate-close helper baseline registers14 controls,12value failures/two greens,0actual UI causality/Source browser/protected-transport credit. Hover integration, exact position/clipping/arrow/auto-update and official1243 controls remain unfinished, with final combined review/acceptance unrecorded. Proposed PR112 remains unmerged.
+
+Tooltip test-first correction retains the original wrong bottom-vector expectation separately; corrected14 stillreaches12reds/two greens with production baseline restored. Exact frozen vendor-function differential16adds16value reds, making30registered/28reached reds/two baseline greens. These are controlled computational comparisons,0original family/actual DOM or Source browser credit.
