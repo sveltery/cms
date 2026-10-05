@@ -98,6 +98,6 @@ describe('the sole Native content writer composes real byline credits',()=>{
   await sql.raw("CREATE TRIGGER reject_second_credit BEFORE INSERT ON _cms_content_bylines WHEN NEW.sort_order=1 BEGIN SELECT RAISE(ABORT,'original-byline-rollback'); END").execute(database.db);
   await expect(service.updateContent({...key(item),expected:expected(published),data:{title:'Staged'},bylines:[{bylineId:a.id},{bylineId:b.id}]})).rejects.toThrow('original-byline-rollback');
   const current=await service.getContent(key(item));expect(current.data.title).toBe('Initial');expect(current.version).toBe(published.version);expect(current.draftRevisionId).toBeNull();
-  expect((await sql`SELECT id FROM _cms_revisions WHERE entry_id=${item.id}`.execute(database.db)).rows).toHaveLength(1);
+  expect((await sql`SELECT id FROM revisions WHERE entry_id=${item.id}`.execute(database.db)).rows).toHaveLength(1);
  });
 });

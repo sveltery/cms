@@ -63,7 +63,7 @@ export class DraftRepository {
     if (!definition) throw new CmsError('NOT_FOUND');
     return definition;
   }
-  async create(input: unknown, authorId: string, postInsert?: (entry: {id:string;translationGroup:string;locale:string}) => {before: readonly CompiledQuery[];after: readonly CompiledQuery[];cleanup: readonly CompiledQuery[]}): Promise<DraftEntry> {
+  async create(input: unknown, authorId: string, postInsert?: (entry: {id:string;translationGroup:string;locale:string}) => {before: readonly CompiledQuery[];after: readonly CompiledQuery[];cleanup: readonly CompiledQuery[]} | Promise<{before: readonly CompiledQuery[];after: readonly CompiledQuery[];cleanup: readonly CompiledQuery[]}>): Promise<DraftEntry> {
     const value = parse(createDraftInput, input);
     if (!authorId || authorId.length > 128) throw new CmsError('VALIDATION_ERROR');
     const definition = await this.definition(value.type);
@@ -78,7 +78,7 @@ export class DraftRepository {
     const query = sql<EntryRow>`INSERT INTO ${sql.ref(tableName(value.type))}
       (${sql.join(columns.map(column => sql.ref(column)))})
       VALUES (${sql.join(values.map(item => sql`${item}`))}) RETURNING *`.compile(db);
-    const plan=postInsert?.({id,translationGroup:id,locale:value.locale});
+    const plan=await postInsert?.({id,translationGroup:id,locale:value.locale});
     const result = await this.withSchemaGuard(definition.id, definition.version, query, plan);
     return entry(value.type, result[1+(plan?.before.length??0)].rows[0] as EntryRow, definition.fields);
   }

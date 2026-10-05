@@ -1,3 +1,5 @@
+import {hydrateBylines,hydrateBylinesMany} from '../bylines/content-hydration.ts';
+import {bylineDatabase} from '../bylines/storage.ts';
 import {sql,type CompiledQuery} from 'kysely';
 import {ulid} from 'ulidx';
 import {deserializeValue} from './field-value.ts';
@@ -35,6 +37,7 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
   return {...repository().mapRow(type,row),data};
  }
  async function hydrate(item:ContentItem):Promise<DraftEntry>{
+  await hydrateBylines(bylineDatabase(database),item.type,item);
   const stored=entry(item);if(!item.draftRevisionId)return stored;
   try{
    const revision=await revisions().findById(item.draftRevisionId);if(!revision)return stored;
@@ -99,7 +102,7 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
    const parsed=parse(genericContentUpdate,value);return entry((await lifecycle().updateContent({...parsed,...(skipRevision===undefined?{}:{skipRevision})})).item);
   },
   async listContent(input:unknown){read();const {value,collection,options}=await listOptions(input);
-   const result=await translate(()=>repository().findMany(value.type,options));return{...result,items:result.items.map(item=>summary(item,collection.titleField??'title'))};
+   const result=await translate(()=>repository().findMany(value.type,options));await hydrateBylinesMany(bylineDatabase(database),value.type,result.items);return{...result,items:result.items.map(item=>summary(item,collection.titleField??'title'))};
   },
   async countContent(input:unknown){read();const {value,options}=await listOptions(input);return translate(()=>repository().count(value.type,options.where));},
   async getTrashedContent(input:unknown){read();const value=parse(getTrashedDraftInput,input);const item=await includingTrashed(value.type,value.id,value.locale);
