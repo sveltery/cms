@@ -436,6 +436,81 @@
       "privatePath": "/tmp/media113-6908-independent-final-semantic-review.json",
       "bytes": 12284,
       "sha256": "206f6d1d408f4cce2c443b125c114cc8b2e1793bcc88951f425d58649ad73b0c"
+    },
+    {
+      "privatePath": "/tmp/media120-cursor-native-red.log",
+      "bytes": 2529,
+      "sha256": "9b8e1316b729dc928f6b0da0769c387f7011efc5221a2f90b54380307e4fdd35"
+    },
+    {
+      "privatePath": "/tmp/general-media113-cursor-first-red.log",
+      "bytes": 2522,
+      "sha256": "1b6912a78560f98a77b1cec0e963ac539ba1887bec878807443dd9f76a70f470"
+    },
+    {
+      "privatePath": "/tmp/general-media113-cursor-first-green.log",
+      "bytes": 229,
+      "sha256": "c678a101948d54ea64ed9334be88de2a80df638cf0f8088165cc2f13d6923e9e"
+    },
+    {
+      "privatePath": "/tmp/general-media113-cursor-first-green-guard.log",
+      "bytes": 326,
+      "sha256": "384f1ef2d12e2534046a18fdb76ba00a84e285ee8e8f5e91c7dbf7fc0df55f20"
+    },
+    {
+      "privatePath": "/tmp/general-media113-cursor-refactor-one.log",
+      "bytes": 229,
+      "sha256": "734816321c7d352d3842952ee2b148276b209f074d8ef3bc60b767f73f656d14"
+    },
+    {
+      "privatePath": "/tmp/general-media113-cursor-whole-source.log",
+      "bytes": 669,
+      "sha256": "5d43c79fbefde65d750a04b7e54f3b1f5e47031819be2e393346d8dca39f4a88"
+    },
+    {
+      "privatePath": "/tmp/general-media113-cursor-r2-source.log",
+      "bytes": 663,
+      "sha256": "541c666fd6794128f1b31ad1be96c13420e517de0cc881db0a06e891c81d3cbd"
+    },
+    {
+      "privatePath": "/tmp/general-media113-cursor-whole-native.log",
+      "bytes": 292,
+      "sha256": "b8cbe0e0d11915700aca535049895dc9a8c2f82e53421e14c10b65027a0d490d"
+    },
+    {
+      "privatePath": "/tmp/general-media113-cursor-focused-outcomes.jsonl",
+      "bytes": 1310,
+      "sha256": "a9f86286aa836fbebeedaa31360307b25d7b071378d33d088db750f96910b29f"
+    },
+    {
+      "privatePath": "/tmp/general-media113-cursor-seo-main-union-proof.json",
+      "bytes": 3017,
+      "sha256": "9ea1914b72244def80fd025974378686de70de4f289e90062be8d17f2c60fd25"
+    },
+    {
+      "privatePath": "/tmp/general-media113-cursor-seo-whole-source.log",
+      "bytes": 669,
+      "sha256": "3c5ee969cc2d7fab193df6ac0107d8b58efa3d2cb8a102f1c9b3479b3dae113a"
+    },
+    {
+      "privatePath": "/tmp/general-media113-cursor-seo-r2-source.log",
+      "bytes": 663,
+      "sha256": "93f6ed25f2cbf58f69e1109b43e3dde5a0a1e0a5b7d2ff0dc673753bab33344d"
+    },
+    {
+      "privatePath": "/tmp/general-media113-cursor-seo-whole-native.log",
+      "bytes": 292,
+      "sha256": "d964d72c3d60c0c6b1bf150de13dec82a094f50df48fc336ecd43826188210d1"
+    },
+    {
+      "privatePath": "/tmp/general-media113-cursor-seo-check.log",
+      "bytes": 216,
+      "sha256": "834cdc203986df67b0e7bd3abc36ee349dc3f316e5e840067a8126accb31fb73"
+    },
+    {
+      "privatePath": "/tmp/general-media113-cursor-seo-focused-outcomes.jsonl",
+      "bytes": 1380,
+      "sha256": "0dcc0d8a49759b188e16922c630466395c8dd263170138106ba11a1b1c0c247d"
     }
   ],
   "implementationCheckpoint": {
@@ -839,5 +914,52 @@
     "currentRequiredGates": "Same complete13 normal stages through three sequential15min phase jobs and required aggregate; byte-exact currentMain browser10 and separate Calendar job. Current exact-head gates/review/Root approval/author regular merge/post-main pending.",
     "unionOwnedAddedRowsUnchangedVs6908": 318,
     "statusOnlyFollowup": "Only paired feature documentation/ledger and owned compatibility tail change after tested union; product, Source, native fixtures and all clocks stay unchanged."
+  },
+  "nativeCursorClassIdentityFidelityRepair": {
+    "contract": "MED-CURSOR-IDENTITY01",
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "sourceAuthority": "packages/core/tests/unit/api/media-usage-read-route.test.ts:288",
+    "sourceExpected": "INVALID_CURSOR from shared Source InvalidCursorError class; original source fixture also requires2queries",
+    "nativeFailure": "Actual canonical Node usage read catches wrong Byline InvalidCursorError identity while inherited sole Blocks repository throws its own class; generic MEDIA_USAGE_READ_ERROR returned",
+    "parentMedia120TestFirst": "2e4c7fdd",
+    "ownTestFirst": "efeaccc1",
+    "portedWholeNativeFile": "tests/general-media/usage-read-current.test.ts",
+    "portedBytes": 1215,
+    "portedSha256": "92fa34f5ca48ba09e48d2d4944f39cbb4a306fda9e910dd39319140d11479ba8",
+    "nativeRegistered": 1,
+    "genuineNativeValueReds": 1,
+    "fixCommit": "9ce291b5",
+    "fix": "Only usage-handler InvalidCursorError import selects actual blocks/upstream/database/repositories/types.ts owner. No global class/helper/other handler/repository/producer changes.",
+    "firstFixedPassed": 1,
+    "refactorCommit": "3d25b853b8a5ab68312e19d90d23289ef901a853",
+    "refactor": "Group corrected import with repository-owned imports and document singleton class identity; seven complete pinned bodies unchanged.",
+    "refactorPassed": 1,
+    "copiedOriginalSourceCallbacks": 0,
+    "wholeOriginalReadRouteFamilyInThisPR": false,
+    "sourceBug": "No; Native transport fidelity regression. Shared Source D1 cleanup bug issue114 preserved separately.",
+    "postSEOUnion": "05ed251a0f33340a696acf84a47f26f00141ee46",
+    "actualPublishedSEOMain": "cc1fc9044ae54ab44efba993cd71849fe2f990b0",
+    "unionParents": [
+      "3d25b853b8a5ab68312e19d90d23289ef901a853",
+      "cc1fc9044ae54ab44efba993cd71849fe2f990b0"
+    ],
+    "wholeIncomingCompatibilityBytes": 622590,
+    "wholePriorOwnedMediaTailBytes": 12652,
+    "protectedExactCurrentMain": 14,
+    "providers": "1\u201316 unchanged/soleSEO17/no18",
+    "wholeSourceFiles": 36,
+    "sourceCallbacksPassed": 321,
+    "r2OriginalMockPassed": 1,
+    "wholeNativeFiles": 8,
+    "nativeCallbacksPassed": 23,
+    "oldNative22BodiesUnchanged": true,
+    "checkerErrors": 0,
+    "checkerWarnings": 0,
+    "checkerHeapMiB": 3072,
+    "sourceAuthorities": 188,
+    "completeSourceModuleAlgorithms": 60,
+    "sevenUsageReadBodiesUnchanged": true,
+    "allEarlierRawAndNativeHistoriesPreserved": true,
+    "scope": "Fresh successor gates/current review/Root exact approval/author regular merge/post-main pending. Previous8fda review/gates/browser retry qualify only8fda; no new old-head rerun/merge/fullMedia claim."
   }
 }

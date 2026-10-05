@@ -2713,3 +2713,42 @@ merge and post-main verification remain pending. No full Media feature or
 product completion is claimed.
 
 [Paired Media feature scope and evidence](../../docs/general-media-backend.md).
+
+
+### MED-CURSOR-IDENTITY01 native class-authority transport repair
+
+A Media120 test-first canonical Node integration callback (`2e4c7fdd`) persisted
+a media row and requested usage with `cursor: not-a-cursor`. Source's complete
+read-route family requires `INVALID_CURSOR`; actual8fda returned
+`MEDIA_USAGE_READ_ERROR`. The actual inherited usage repository throws the
+Blocks repository's InvalidCursorError, while the handler imported a distinct
+Byline class through the general Media type re-export. Upstream shares one
+class identity. This is a Native import-transport defect, separate from issue114.
+
+Own test-first `efeaccc1` retains the same1215-byte Native file without changes
+and reaches the same genuine1 assertion red. Fix `9ce291b5` changes only the
+usage handler's InvalidCursorError import to its actual repository authority;
+the callback passes. Refactor `3d25b853` groups that import with the existing
+repository-owned imports and records why identity matters; the callback stays
+green. All seven complete pinned function bodies, the global type modules,
+other handlers, repositories, producers and Source datasets/clocks remain exact.
+This closes one Native fidelity regression and earns zero copied Source callback
+credit; the complete original read-route test family remains Media120's lane.
+
+Before sealing, regular union `05ed251a` adopts actual published SEO109 main
+`cc1fc904`, with ordered parents `3d25b853` and that main. Both published owners
+remain; provider1–16 are unchanged and17 remains solely SEO. The whole622,590-byte
+incoming compatibility document precedes the whole12,652-byte prior Media tail,
+and the complete incoming Source chain precedes the same three Media gates.
+Fourteen protected owners are exact current main. No new provider, writer,
+private Byline graph, global error-class replacement or D1 cleanup fix is added.
+
+Post-union whole Source36/321, R2 originalmock1, whole Native8/23 and one bounded
+checker0/0 pass with original deadlines. All old Native22 bodies and raw histories
+remain intact. Previous scoped CLEAR and8fda hosted attempts, including its one
+browser retry, are historical evidence only. Fresh successor phase/aggregate/
+secured10/Calendar checks, current review, Root exact-head approval, author
+regular merge and post-main verification remain pending. Full media parity
+continues to exclude the previously listed auth, UI and producer scope.
+
+[Paired feature and complete retained evidence](../../docs/general-media-backend.md).
