@@ -7,3 +7,7 @@ The first secured whole group at public parent `c73698dcba0f938d26e6fa1d60457dcf
 Production work remains incomplete: tabbed detail and edit modes, dirty exit and navigation guards, contextual crop actions, replacement recovery, bounded folder selection, interactive focal point and preview alignment, usage paging/access/coverage states, and actual image sizing. The child consumes the existing canonical media API; it does not add media, usage, database, provider, principal or capture owners.
 
 Validation uses official secured Chromium with the original 1280×800 viewport, America/New_York timezone and unchanged Source clocks. Full current normal and browser gates, independent final-head review, configured review, Root approval and author expected-head regular merge remain required.
+
+## First secured baseline
+
+The unchanged whole run completed with 98 registered callbacks: Panel86 gives 11 pass/75 fail, and Cropper12 gives 12 pass. Four missing-import suites register zero of their 32 intended callbacks. The actual JSON and full original log are retained alongside the [first classification](../parity/emdash/media-admin-editor/evidence/media-detail-complete-initial-classification.json). Nine direct value/call expectations were reached and failed (tabs2, update payloads4, deletion1, provider playback2). Other failed locator/element/operation prerequisites or deadlines grant no causal credit; later expectations in every failed callback remain unreached. This is a failed gate, not complete parity.

@@ -1,0 +1,619 @@
+{
+  "publicHead": "c73698dcba0f938d26e6fa1d60457dcfa2609fac",
+  "run": 37385528464,
+  "job": 112017739421,
+  "artifact": 11379440306,
+  "counts": {
+    "numTotalTestSuites": 10,
+    "numPassedTestSuites": 2,
+    "numFailedTestSuites": 8,
+    "numPendingTestSuites": 0,
+    "numTotalTests": 98,
+    "numPassedTests": 23,
+    "numFailedTests": 75,
+    "numPendingTests": 0,
+    "numTodoTests": 0
+  },
+  "rows": [
+    {
+      "title": "MediaDetailPanel does not render dialog contents when closed",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaDetailPanel displays filename and file size",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByLabel('Filename')"
+    },
+    {
+      "title": "MediaDetailPanel displays dimensions for images",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByText('JPEG')"
+    },
+    {
+      "title": "MediaDetailPanel keeps the Uploaded row in the wider column when dimensions are missing",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByText('Uploaded:')"
+    },
+    {
+      "title": "MediaDetailPanel displays dimensions for local videos that have width and height",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByText('MP4', { exact: true })"
+    },
+    {
+      "title": "MediaDetailPanel groups the preview, metadata, and actions in an accessible dialog",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByLabel('Filename')"
+    },
+    {
+      "title": "MediaDetailPanel replaces a selected image and keeps the media dialog open",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaDetailPanel ignores replacement inspection that finishes after the dialog closes",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('button', { name: 'Close', exact: true })"
+    },
+    {
+      "title": "MediaDetailPanel adapts the dialog height to each image task without clipping its actions",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Used in' })"
+    },
+    {
+      "title": "MediaDetailPanel suppresses inner scrollbars only while the dialog height expands",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByTestId('media-detail-dialog-body')"
+    },
+    {
+      "title": "MediaDetailPanel resizes without spatial motion when reduced motion is preferred",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Used in' })"
+    },
+    {
+      "title": "MediaDetailPanel shows usage only in its dedicated local-image tab",
+      "status": "failed",
+      "classification": "reached value expectation",
+      "firstMessage": "AssertionError: expected [] to deeply equal [ 'Details', 'Edit image', 'Used in' ]"
+    },
+    {
+      "title": "MediaDetailPanel gives non-image local media a dedicated usage tab",
+      "status": "failed",
+      "classification": "reached value expectation",
+      "firstMessage": "AssertionError: expected [] to deeply equal [ 'Details', 'Used in' ]"
+    },
+    {
+      "title": "MediaDetailPanel does not offer usage for provider media",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaDetailPanel shows image preview for image mimeTypes",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaDetailPanel separates image details from focal-point editing with tabs",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByRole('tab', { name: 'Details' })"
+    },
+    {
+      "title": "MediaDetailPanel keeps focal-point preview image bottoms aligned with the editor frame",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel aligns focal-point previews before painting the mode switch",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel shows crop only for ready supported local images with an allowed action",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel suppresses image-editor overflow only while the mode layout settles",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel hides crop for a pending image",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaDetailPanel hides crop for a unsupported image",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaDetailPanel hides crop for a provider image",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaDetailPanel uses a contextual crop footer with output and reset",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel offers common aspect ratios and limits replacement to the original ratio",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel blocks crop actions while metadata is dirty",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel preserves the crop draft across Media Details tabs",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel preserves crop and focal-point positions while switching edit modes",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel keeps the loaded focal-point image stable when returning to Details",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel creates a distinct cropped copy and closes the source dialog after success",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel keeps asset-management controls out of content workflows",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByRole('tab', { name: 'Details' })"
+    },
+    {
+      "title": "MediaDetailPanel confirms and replaces the original while keeping the dialog open",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel keeps a failed crop draft available for retry",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel returns replacement failures to the crop panel with the draft intact",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel reports when the image is deleted while replacing the original",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel explains that cropped WebP output is static",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel blocks repeated actions and dialog navigation while cropping",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel falls back to the ordinary preview when the crop source cannot load",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel preserves the focal-point draft while switching tabs",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel edits the focal point with the keyboard and saves only the focal pair",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel keeps the focal draft visible when saving fails",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel keeps one active pointer and clears it after cancellation or lost capture",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel resets a custom focal point to the centered fallback",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel does not create unsaved changes by opening Focal point",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('tab', { name: 'Edit image' })"
+    },
+    {
+      "title": "MediaDetailPanel does not show image preview for non-image mimeTypes",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByText('application/pdf')"
+    },
+    {
+      "title": "MediaDetailPanel alt text input is editable",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: \u001b[2mexpect(\u001b[22m\u001b[31melement\u001b[39m\u001b[2m).toHaveAttribute(\u001b[22m\u001b[32m\u001b[32m\"rows\"\u001b[32m\u001b[39m\u001b[2m, \u001b[22m\u001b[32m\u001b[32m\"2\"\u001b[32m\u001b[39m\u001b[2m) // element.getAttribute(\"rows\") === \"2\"\u001b[22m"
+    },
+    {
+      "title": "MediaDetailPanel shows caption textarea only for images",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByPlaceholder('Optional caption for display')"
+    },
+    {
+      "title": "MediaDetailPanel hides caption textarea for non-images",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: \u001b[2mexpect(\u001b[22m\u001b[31melement\u001b[39m\u001b[2m).not.toBeInTheDocument()\u001b[22m"
+    },
+    {
+      "title": "MediaDetailPanel filename input is disabled with tooltip help",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByLabel('Filename')"
+    },
+    {
+      "title": "MediaDetailPanel save button is disabled when no changes",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: \u001b[2mexpect(\u001b[22m\u001b[31melement\u001b[39m\u001b[2m).toBeDisabled()\u001b[22m"
+    },
+    {
+      "title": "MediaDetailPanel save button is enabled after changing alt text",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaDetailPanel save calls updateMedia with correct payload",
+      "status": "failed",
+      "classification": "reached value expectation",
+      "firstMessage": "AssertionError: expected \"vi.fn()\" to be called with arguments: [ 'media-1', { alt: 'New alt' } ]\u001b[90m"
+    },
+    {
+      "title": "MediaDetailPanel saves empty strings when clearing alt text and caption",
+      "status": "failed",
+      "classification": "reached value expectation",
+      "firstMessage": "AssertionError: expected \"vi.fn()\" to be called with arguments: [ 'media-1', { alt: '', caption: '' } ]\u001b[90m"
+    },
+    {
+      "title": "MediaDetailPanel disables editing and closing while a save is pending",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: \u001b[2mexpect(\u001b[22m\u001b[31melement\u001b[39m\u001b[2m).toBeDisabled()\u001b[22m"
+    },
+    {
+      "title": "MediaDetailPanel saves dirty metadata with the keyboard shortcut",
+      "status": "failed",
+      "classification": "reached value expectation",
+      "firstMessage": "AssertionError: expected \"vi.fn()\" to be called with arguments: [ 'media-1', { alt: 'Shortcut alt' } ]\u001b[90m"
+    },
+    {
+      "title": "MediaDetailPanel loads bounded Location options only after the control opens",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByRole('combobox', { name: 'Location' })"
+    },
+    {
+      "title": "MediaDetailPanel saves image metadata and Location in one update",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('combobox', { name: 'Location' })"
+    },
+    {
+      "title": "MediaDetailPanel does not overwrite Location during a metadata-only save",
+      "status": "failed",
+      "classification": "reached value expectation",
+      "firstMessage": "AssertionError: expected \"vi.fn()\" to be called with arguments: [ 'media-1', { alt: 'Metadata only' } ]\u001b[90m"
+    },
+    {
+      "title": "MediaDetailPanel searches Location independently and resets the search after selection",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByTestId('media-detail-dialog-details-column').getByRole('combobox', { name: 'Location' })"
+    },
+    {
+      "title": "MediaDetailPanel ignores duplicate Location saves while the first update is pending",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('combobox', { name: 'Location' })"
+    },
+    {
+      "title": "MediaDetailPanel moves a local video without image metadata",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('combobox', { name: 'Location' })"
+    },
+    {
+      "title": "MediaDetailPanel moves a local audio without image metadata",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('combobox', { name: 'Location' })"
+    },
+    {
+      "title": "MediaDetailPanel moves a local document without image metadata",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('combobox', { name: 'Location' })"
+    },
+    {
+      "title": "MediaDetailPanel loads one additional bounded Location page on request",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('combobox', { name: 'Location' })"
+    },
+    {
+      "title": "MediaDetailPanel shows a read-only Location when the user cannot move the item",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByRole('textbox', { name: 'Location' })"
+    },
+    {
+      "title": "MediaDetailPanel refreshes the open item when its saved folder no longer exists",
+      "status": "failed",
+      "classification": "reached value expectation",
+      "firstMessage": "AssertionError: expected \"vi.fn()\" to be called with arguments: [ 'media-1' ]\u001b[90m"
+    },
+    {
+      "title": "MediaDetailPanel refreshes the open item when a selected folder disappears during save",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('combobox', { name: 'Location' })"
+    },
+    {
+      "title": "MediaDetailPanel blocks stale save retries while missing-folder recovery is pending",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('combobox', { name: 'Location' })"
+    },
+    {
+      "title": "MediaDetailPanel reports when the media itself was deleted during a save",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('combobox', { name: 'Location' })"
+    },
+    {
+      "title": "MediaDetailPanel does not blame the folder when missing-item recovery cannot confirm the state",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByRole('combobox', { name: 'Location' })"
+    },
+    {
+      "title": "MediaDetailPanel does not consume the keyboard save shortcut when nothing can be saved",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "strict mode violation: page.getByText('Focal point') resolved to 3 elements:"
+    },
+    {
+      "title": "MediaDetailPanel delete with confirm calls deleteMedia and onClose + onDeleted",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByRole('alertdialog', { name: 'Delete media?' })"
+    },
+    {
+      "title": "MediaDetailPanel deletes provider assets through the provider API when deletion is supported",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByRole('alertdialog', { name: 'Delete media?' })"
+    },
+    {
+      "title": "MediaDetailPanel delete cancelled does not call deleteMedia",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByRole('alertdialog', { name: 'Delete media?' })"
+    },
+    {
+      "title": "MediaDetailPanel close button calls onClose when clean",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaDetailPanel places a compact Back action in the embedded footer",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByTestId('media-detail-dialog-header')"
+    },
+    {
+      "title": "MediaDetailPanel confirms dirty changes before closing an embedded workspace",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByText('Discard changes?')"
+    },
+    {
+      "title": "MediaDetailPanel close button opens discard confirmation when dirty",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByText('Discard changes?')"
+    },
+    {
+      "title": "MediaDetailPanel cancels the close fallback when reopened before the fallback timer fires",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByLabel('Filename')"
+    },
+    {
+      "title": "MediaDetailPanel form fields reset when item prop changes",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaDetailPanel file URL shows a shortened file path while copying the absolute URL",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "VitestBrowserElementError: Cannot find element with locator: page.getByText('/_emdash/api/media/file/01ABC.jpg')"
+    },
+    {
+      "title": "MediaDetailPanel file URL does not expose provider preview URLs as public URLs",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: Cannot find element with locator: page.getByText('Managed by Cloudflare Images')"
+    },
+    {
+      "title": "MediaDetailPanel file URL renders provider assets read-only",
+      "status": "failed",
+      "classification": "locator/element/operation prerequisite or deadline; no causal credit",
+      "firstMessage": "Error: \u001b[2mexpect(\u001b[22m\u001b[31melement\u001b[39m\u001b[2m).not.toBeInTheDocument()\u001b[22m"
+    },
+    {
+      "title": "MediaDetailPanel file URL video preview plays a streaming item's HLS/DASH sources rather than its poster URL",
+      "status": "failed",
+      "classification": "reached value expectation",
+      "firstMessage": "AssertionError: expected 'https://customer-abc123.cloudflarestr\u2026' to be null"
+    },
+    {
+      "title": "MediaDetailPanel file URL video preview omits the DASH source when the provider only reports HLS",
+      "status": "failed",
+      "classification": "reached value expectation",
+      "firstMessage": "AssertionError: expected [] to have a length of 1 but got +0"
+    },
+    {
+      "title": "MediaDetailPanel file URL video preview plays a locally stored video straight from its file URL",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaImageCropper does not emit crop pixels before the image loads",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaImageCropper loads the source without injecting runtime styles",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaImageCropper shows eight resize handles and a persistent rule-of-thirds grid",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaImageCropper uses only corner resize handles for a fixed aspect ratio",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaImageCropper keeps a small fixed-ratio corner drag proportional",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaImageCropper updates crop pixels while a handle is moving",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaImageCropper upscales a tiny source so all eight handles remain distinct",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaImageCropper moves the crop frame with the keyboard",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaImageCropper preserves a fixed aspect ratio while resizing a small source",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaImageCropper resizes both dimensions from a freeform corner",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaImageCropper resizes one dimension from a freeform edge",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    },
+    {
+      "title": "MediaImageCropper removes disabled crop handles from keyboard interaction",
+      "status": "passed",
+      "classification": "baseline green",
+      "firstMessage": null
+    }
+  ],
+  "unregisteredWholeFamilies": [
+    "MediaDetailPanelNavigation 6",
+    "FocalPointEditor 1",
+    "MediaUsedIn 24",
+    "useContainedMediaSize 1"
+  ],
+  "unregisteredCredit": 0,
+  "sourceFileChanges": 0,
+  "productChangesBeforeRun": 0,
+  "rawSha256": "c4a1c98c79bba6437a4d33761e20b98c797e7ad24bc536dc4a50804d6452c305",
+  "reportSha256": "396be41eee4ffdf2d7cc21fee3de753b0568483d5ec48bf77f444551222ce780",
+  "zipSha256": "76e7044015ba8db0be0f3bddbade06d0601ffa6dc42d99a2edd7acc84189d093"
+}
