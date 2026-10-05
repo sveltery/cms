@@ -133,4 +133,22 @@ describe('Actual Native table toolbar menu contract', () => {
     trigger(host).click(); await tick(); action(host, 'Add row below').click(); await tick();
     expect(editor.state.doc.firstChild!.childCount).toBe(4); expect(status.textContent).toBe('Row added below'); expect(status.firstChild).not.toBe(first);
   });
+
+  it('resets an unmatched typeahead prefix and cycles repeated first letters', async () => {
+    const { host, editor } = await render(); table(editor); await tick(); trigger(host).click(); await tick();
+    const key = (value: string) => menu(host)!.dispatchEvent(new KeyboardEvent('keydown', { key: value, bubbles: true, cancelable: true }));
+    key('q'); key('d'); await tick(); expect(document.activeElement?.textContent?.trim()).toBe('Delete row');
+    key('d'); await tick(); expect(document.activeElement?.textContent?.trim()).toBe('Delete column');
+    key('d'); await tick(); expect(document.activeElement?.textContent?.trim()).toBe('Delete table');
+  });
+
+  it('cancels Space activation while continuing an in-progress typeahead word', async () => {
+    const { host, editor } = await render(); table(editor); await tick(); trigger(host).click(); await tick();
+    for (const value of 'insert') menu(host)!.dispatchEvent(new KeyboardEvent('keydown', { key: value, bubbles: true, cancelable: true }));
+    const space = new KeyboardEvent('keydown', { key: ' ', bubbles: true, cancelable: true }); menu(host)!.dispatchEvent(space);
+    expect(space.defaultPrevented).toBe(true); expect(menu(host)).toBeTruthy();
+    menu(host)!.dispatchEvent(new KeyboardEvent('keydown', { key: 'p', bubbles: true, cancelable: true })); await tick();
+    expect(document.activeElement?.textContent?.trim()).toBe('Insert paragraph before');
+  });
+
 });
