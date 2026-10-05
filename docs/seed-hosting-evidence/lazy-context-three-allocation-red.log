@@ -1,0 +1,76 @@
+✖ emdash:request-context: importing a context-free producer does not allocate Node ALS (1.814325ms)
+✖ sveltery:menus-request-context: importing a context-free producer does not allocate Node ALS (0.199049ms)
+✖ sveltery:menus-object-cache:write-scope: importing a context-free producer does not allocate Node ALS (0.136555ms)
+✔ the real Blocks and menus async contexts keep concurrent and nested scopes isolated (0.428003ms)
+✔ real object-cache write scopes preserve callback values and unwind on errors (0.505439ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 2
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104.761205
+
+✖ failing tests:
+
+test at tests/lazy-request-context-hosting.test.ts:11:3
+✖ emdash:request-context: importing a context-free producer does not allocate Node ALS (1.814325ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/cms-seed-build-worker-hosting/tests/lazy-request-context-hosting.test.ts:12:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lazy-request-context-hosting.test.ts:11:3
+✖ sveltery:menus-request-context: importing a context-free producer does not allocate Node ALS (0.199049ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/cms-seed-build-worker-hosting/tests/lazy-request-context-hosting.test.ts:12:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lazy-request-context-hosting.test.ts:11:3
+✖ sveltery:menus-object-cache:write-scope: importing a context-free producer does not allocate Node ALS (0.136555ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/cms-seed-build-worker-hosting/tests/lazy-request-context-hosting.test.ts:12:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
