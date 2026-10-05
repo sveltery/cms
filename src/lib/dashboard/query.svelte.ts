@@ -16,8 +16,11 @@ export function createDashboardQueryClient(): QueryClient {
   return new QueryClient({ defaultOptions: { queries: { staleTime: 60_000, retry: 1 } } });
 }
 export function provideDashboardQueryClient(client: QueryClient): void { setContext(contextKey, client); }
+export function getDashboardQueryClient(): QueryClient | undefined {
+  return getContext<QueryClient | undefined>(contextKey);
+}
 export function resolveDashboardQueryClient(supplied?: QueryClient): QueryClient {
-  return supplied ?? getContext<QueryClient | undefined>(contextKey) ?? createDashboardQueryClient();
+  return supplied ?? getDashboardQueryClient() ?? createDashboardQueryClient();
 }
 
 // The QueryClient belongs to one app/provider. Components retain that stable

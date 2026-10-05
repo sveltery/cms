@@ -2,6 +2,8 @@
   // Native rendering of the complete pinned ContentPickerModal contract.
   // EmDash1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.
   // Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
+  import { untrack } from 'svelte';
+  import { getDashboardQueryClient } from '../dashboard/query.svelte';
   import MenuDialog from '../menus/MenuDialog.svelte';
   import { InfiniteQueryObserver, QueryObserver, type InfiniteData, type InfiniteQueryObserverResult, type QueryClient } from '@tanstack/react-query';
   import { contentPickerClient, getDraftStatus } from './client.ts';
@@ -14,7 +16,8 @@
       onConfirm: (rows: PickedContentEntry[]) => void; title?: string; locale?: string; client?: ContentPickerClient; queryClient?: QueryClient } = $props();
   const id = $props.id();
   const locked = $derived(!!collection);
-  const queryClient = $derived(suppliedQueryClient ?? pickerQueryClient(client));
+  const applicationQueryClient = untrack(getDashboardQueryClient);
+  const queryClient = $derived(suppliedQueryClient ?? applicationQueryClient ?? pickerQueryClient(client));
   let searchQuery = $state(''), debouncedSearch = $state(''), dropdownCollection = $state('');
   let picked = $state<Record<string, PickedContentEntry>>({});
   let collections = $state<{ slug: string; label: string }[]>([]), manifest = $state<PickerManifest | undefined>();
