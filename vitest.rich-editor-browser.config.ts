@@ -66,7 +66,8 @@ export default defineConfig({
     include: [
       'parity/emdash/rich-editor-source/packages/admin/tests/editor/PortableTextEditor.test.tsx',
       'parity/emdash/rich-editor-source/packages/admin/tests/editor/slash-menu.test.tsx',
-      'parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.footer.test.tsx'
+      'parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.footer.test.tsx',
+      'tests/rich-editor-browser/form-keyboard.test.ts'
     ],
     browser: {
       enabled: true, headless: true,
