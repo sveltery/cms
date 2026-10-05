@@ -1,0 +1,1374 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts (4 tests | 4 failed) 238ms
+     × returns booleans from collection loads without coercing integer fields 87ms
+     × filters a collection by a boolean field 54ms
+     × returns booleans from single-entry loads 50ms
+     × returns booleans from revision previews without coercing integer fields 44ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts (10 tests | 10 failed) 548ms
+     × returns entries where the byline is the primary credit 77ms
+     × returns co-authored entries where the byline is a secondary credit 46ms
+     × returns only entries credited to the requested byline 49ms
+     × matches any of multiple bylines (array = OR) 35ms
+     × does not duplicate an entry credited to multiple requested bylines 62ms
+     × combines byline filter with a field filter (AND) 46ms
+     × combines byline filter with a taxonomy filter (AND) 77ms
+     × returns no entries when the byline filter is an empty array 48ms
+     × ignores range operators on the byline key 45ms
+     × returns no entries when a taxonomy filter is an empty array 60ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts (9 tests | 8 failed) 675ms
+     × should return nextCursor when there are more results 146ms
+     × should not return nextCursor when all results fit in one page 65ms
+     × should not return nextCursor when no limit is set 100ms
+     × should paginate through all results using cursor 79ms
+     × should maintain sort order across pages 58ms
+     ✓ should return empty entries with no nextCursor for empty collection 46ms
+     × should reject invalid cursor with a clear error 65ms
+     × should work with limit of 1 51ms
+     × should include nextCursor in collection-level return alongside cacheHint 64ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts (15 tests | 15 failed) 1075ms
+     × should filter by exact field match 161ms
+     × should filter by multi-value field match (IN) 115ms
+     × should filter by date range (gte + lt) 83ms
+     × should combine field filter with cursor pagination 51ms
+     × should return all entries when where has only invalid field names 81ms
+     × should handle empty WhereRange object (no conditions added) 70ms
+     × should filter by gt (strict greater than) 43ms
+     × should combine exact match and range filter on different fields 46ms
+     × should filter by lte (less than or equal) 46ms
+     × should combine taxonomy filter with field filter 78ms
+     × should preserve backward compatibility with taxonomy-only filter 79ms
+     × should skip null/undefined values in where filter 81ms
+     × should warn and skip range operators on taxonomy keys 56ms
+     × should handle range with only one bound (lt without gte) 49ms
+     × should return empty results for non-existent column in where filter 28ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts (4 tests | 4 failed) 166ms
+     × resolves bare media ID in src to a file URL 62ms
+     × resolves bare media ID in loadEntry 43ms
+     × does not rewrite an existing local media URL 30ms
+     × resolves bare media ID in revision-backed loadEntry 29ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts (4 tests | 4 failed) 195ms
+     × skips the first `offset` rows 82ms
+     × renders disjoint numbered pages with limit + offset 44ms
+     × returns an empty page when offset is past the end 37ms
+     × ignores offset when a cursor is also supplied (cursor wins) 31ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts (7 tests | 7 failed) 484ms
+     × filters by a taxonomy attached to the queried collection 165ms
+     × treats a taxonomy name attached to another collection as an ordinary field 79ms
+     × surfaces an unexpected definition-query failure without poisoning the cache 37ms
+     × ANDs across two taxonomies — only entries tagged in BOTH match (#1479) 64ms
+     × ORs slugs within a taxonomy while ANDing across taxonomies 44ms
+     × returns no entries when any one taxonomy filter is an empty array 59ms
+     × resolves a taxonomy filter by the localized term slug in the query locale (#1480) 35ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts (21 tests | 18 failed) 1308ms
+     × selective term: returns only the one tagged entry 178ms
+     × broad term (~half the collection): returns every tagged entry 64ms
+     × OR within a taxonomy: dedups an entry tagged with two matched terms 54ms
+     × multi-term AND: only entries tagged in every requested taxonomy match 79ms
+     × sorts by published_at (indexed) descending 81ms
+     × sorts by created_at (indexed, loader default) descending 58ms
+     × sorts by updated_at (temp-sort path, not denormalized) descending 81ms
+     × filters by locale 82ms
+     × filters by status: a draft query returns drafts, published returns published 65ms
+     ✓ drops a row the pivot admits but ec_* has soft-deleted 29ms
+     ✓ drops a row the pivot says published but ec_* has as draft 28ms
+     ✓ drops a row whose ec_* locale no longer matches the filter 46ms
+     × under-fills (never returns wrong rows) when a stale row consumes a LIMIT slot 39ms
+     × publish re-stamps the pivot so the entry appears in a published listing 34ms
+     × soft-delete then restore re-stamps the pivot both ways 52ms
+     × schedule updates taxonomy-filtered status from the content row 43ms
+     × paginates by keyset cursor over the pivot sort key without overlap 52ms
+     × paginates the OR-within-taxonomy (GROUP BY + HAVING cursor) path 43ms
+     × ANDs a byline filter with the taxonomy filter on the pivot path 62ms
+     × builder serves the trash shape (deleted_at IS NOT NULL) 92ms
+     × builder serves an all-statuses live shape (status undefined) 44ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 16 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts:16:1
+     14| import { beforeEach, afterEach, expect, it } from "vitest";
+     15|
+     16| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+     17|
+     18| import { runMigrations } from "../../src/database/migrations/runner.js…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts:31:1
+     29| import { afterEach, beforeEach, expect, it } from "vitest";
+     30|
+     31| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+     32|
+     33| import { runMigrations } from "../../src/database/migrations/runner.js…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/field-defs-cache.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts:14:1
+     12| import { afterEach, beforeEach, expect, it } from "vitest";
+     13|
+     14| import { resetBylineFieldDefsCacheForTests } from "../../src/bylines/f…
+       | ^
+     15| import { BylineRepository } from "../../src/database/repositories/byli…
+     16| import { ContentRepository } from "../../src/database/repositories/con…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts:20:1
+     18| import { afterEach, beforeEach, describe, expect, it } from "vitest";
+     19|
+     20| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+     21|
+     22| import { runMigrations } from "../../src/database/migrations/runner.js…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts:19:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/repository.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts:5:1
+      3|
+      4| import { handleContentCreate } from "../../src/api/index.js";
+      5| import { BylineRepository } from "../../src/database/repositories/byli…
+       | ^
+      6| import { ContentRepository } from "../../src/database/repositories/con…
+      7| import { RevisionRepository } from "../../src/database/repositories/re…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/repository.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts:5:1
+      3|
+      4| import { handleContentCreate, handleContentPublish } from "../../src/a…
+      5| import { BylineRepository } from "../../src/database/repositories/byli…
+       | ^
+      6| import { ContentRepository } from "../../src/database/repositories/con…
+      7| import { RevisionRepository } from "../../src/database/repositories/re…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts ]
+Error: Cannot find module '../../src/database/repositories/seo.js' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts:4:1
+      2|
+      3| import { handleContentCreate } from "../../src/api/index.js";
+      4| import { SeoRepository } from "../../src/database/repositories/seo.js";
+       | ^
+      5| import { emdashLoader } from "../../src/loader.js";
+      6| import { peekSeoPanel } from "../../src/page/seo-panel.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts ]
+Error: Cannot find module '../../src/database/repositories/seo.js' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts:4:1
+      2|
+      3| import { handleContentCreate } from "../../src/api/index.js";
+      4| import { SeoRepository } from "../../src/database/repositories/seo.js";
+       | ^
+      5| import { emdashLoader } from "../../src/loader.js";
+      6| import { runWithContext } from "../../src/request-context.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts:7:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts:5:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts:21:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts:21:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/repository.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts:4:1
+      2| import { describe, it, expect, beforeEach, afterEach, vi } from "vites…
+      3|
+      4| import { BylineRepository } from "../../../src/database/repositories/b…
+       | ^
+      5| import { ContentRepository } from "../../../src/database/repositories/…
+      6| import { UserRepository } from "../../../src/database/repositories/use…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/86]⎯
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 70 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts > Loader boolean field values [sqlite] > returns booleans from collection loads without coercing integer fields
+Error: Failed to create feature
+ ❯ createFeature parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts:57:30
+     55|    status: "published",
+     56|   });
+     57|   if (!result.success) throw new Error("Failed to create feature");
+       |                              ^
+     58|   return result.data!.item;
+     59|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts:62:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts > Loader boolean field values [sqlite] > filters a collection by a boolean field
+Error: Failed to create feature
+ ❯ createFeature parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts:57:30
+     55|    status: "published",
+     56|   });
+     57|   if (!result.success) throw new Error("Failed to create feature");
+       |                              ^
+     58|   return result.data!.item;
+     59|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts:80:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts > Loader boolean field values [sqlite] > returns booleans from single-entry loads
+Error: Failed to create feature
+ ❯ createFeature parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts:57:30
+     55|    status: "published",
+     56|   });
+     57|   if (!result.success) throw new Error("Failed to create feature");
+       |                              ^
+     58|   return result.data!.item;
+     59|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts:98:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts > Loader boolean field values [sqlite] > returns booleans from revision previews without coercing integer fields
+Error: Failed to create feature
+ ❯ createFeature parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts:57:30
+     55|    status: "published",
+     56|   });
+     57|   if (!result.success) throw new Error("Failed to create feature");
+       |                              ^
+     58|   return result.data!.item;
+     59|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts:110:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > returns entries where the byline is the primary credit
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:51:30
+     49|    status: "published",
+     50|   });
+     51|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     52|   return result.data!.item;
+     53|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:81:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > returns co-authored entries where the byline is a secondary credit
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:51:30
+     49|    status: "published",
+     50|   });
+     51|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     52|   return result.data!.item;
+     53|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:93:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > returns only entries credited to the requested byline
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:51:30
+     49|    status: "published",
+     50|   });
+     51|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     52|   return result.data!.item;
+     53|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:104:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > matches any of multiple bylines (array = OR)
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:51:30
+     49|    status: "published",
+     50|   });
+     51|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     52|   return result.data!.item;
+     53|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:116:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > does not duplicate an entry credited to multiple requested bylines
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:51:30
+     49|    status: "published",
+     50|   });
+     51|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     52|   return result.data!.item;
+     53|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:132:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > combines byline filter with a field filter (AND)
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:51:30
+     49|    status: "published",
+     50|   });
+     51|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     52|   return result.data!.item;
+     53|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:144:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > combines byline filter with a taxonomy filter (AND)
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:51:30
+     49|    status: "published",
+     50|   });
+     51|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     52|   return result.data!.item;
+     53|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:169:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > returns no entries when the byline filter is an empty array
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:51:30
+     49|    status: "published",
+     50|   });
+     51|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     52|   return result.data!.item;
+     53|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:184:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > ignores range operators on the byline key
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:51:30
+     49|    status: "published",
+     50|   });
+     51|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     52|   return result.data!.item;
+     53|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:193:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > returns no entries when a taxonomy filter is an empty array
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:51:30
+     49|    status: "published",
+     50|   });
+     51|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     52|   return result.data!.item;
+     53|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:219:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts > Loader cursor pagination > should return nextCursor when there are more results
+Error: Failed to create post
+ ❯ createPublishedPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:27:30
+     25|    status: "published",
+     26|   });
+     27|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     28|   return result.data!.item;
+     29|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:33:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts > Loader cursor pagination > should not return nextCursor when all results fit in one page
+Error: Failed to create post
+ ❯ createPublishedPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:27:30
+     25|    status: "published",
+     26|   });
+     27|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     28|   return result.data!.item;
+     29|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:52:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts > Loader cursor pagination > should not return nextCursor when no limit is set
+Error: Failed to create post
+ ❯ createPublishedPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:27:30
+     25|    status: "published",
+     26|   });
+     27|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     28|   return result.data!.item;
+     29|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:66:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts > Loader cursor pagination > should paginate through all results using cursor
+Error: Failed to create post
+ ❯ createPublishedPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:27:30
+     25|    status: "published",
+     26|   });
+     27|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     28|   return result.data!.item;
+     29|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:80:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[34/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts > Loader cursor pagination > should maintain sort order across pages
+Error: Failed to create post
+ ❯ createPublishedPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:27:30
+     25|    status: "published",
+     26|   });
+     27|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     28|   return result.data!.item;
+     29|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:124:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[35/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts > Loader cursor pagination > should reject invalid cursor with a clear error
+Error: Failed to create post
+ ❯ createPublishedPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:27:30
+     25|    status: "published",
+     26|   });
+     27|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     28|   return result.data!.item;
+     29|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:166:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[36/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts > Loader cursor pagination > should work with limit of 1
+Error: Failed to create post
+ ❯ createPublishedPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:27:30
+     25|    status: "published",
+     26|   });
+     27|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     28|   return result.data!.item;
+     29|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:185:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[37/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts > Loader cursor pagination > should include nextCursor in collection-level return alongside cacheHint
+Error: Failed to create post
+ ❯ createPublishedPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:27:30
+     25|    status: "published",
+     26|   });
+     27|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     28|   return result.data!.item;
+     29|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:211:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[38/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should filter by exact field match
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:42:30
+     40|    publishedAt: opts.publishedAt,
+     41|   });
+     42|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     43|   return result.data!.item;
+     44|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:47:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[39/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should filter by multi-value field match (IN)
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:42:30
+     40|    publishedAt: opts.publishedAt,
+     41|   });
+     42|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     43|   return result.data!.item;
+     44|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:63:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[40/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should filter by date range (gte + lt)
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:42:30
+     40|    publishedAt: opts.publishedAt,
+     41|   });
+     42|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     43|   return result.data!.item;
+     44|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:81:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[41/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should combine field filter with cursor pagination
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:42:30
+     40|    publishedAt: opts.publishedAt,
+     41|   });
+     42|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     43|   return result.data!.item;
+     44|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:101:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[42/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should return all entries when where has only invalid field names
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:42:30
+     40|    publishedAt: opts.publishedAt,
+     41|   });
+     42|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     43|   return result.data!.item;
+     44|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:126:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[43/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should handle empty WhereRange object (no conditions added)
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:42:30
+     40|    publishedAt: opts.publishedAt,
+     41|   });
+     42|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     43|   return result.data!.item;
+     44|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:141:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[44/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should filter by gt (strict greater than)
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:42:30
+     40|    publishedAt: opts.publishedAt,
+     41|   });
+     42|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     43|   return result.data!.item;
+     44|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:155:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[45/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should combine exact match and range filter on different fields
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:42:30
+     40|    publishedAt: opts.publishedAt,
+     41|   });
+     42|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     43|   return result.data!.item;
+     44|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:174:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[46/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should filter by lte (less than or equal)
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:42:30
+     40|    publishedAt: opts.publishedAt,
+     41|   });
+     42|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     43|   return result.data!.item;
+     44|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:196:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[47/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should combine taxonomy filter with field filter
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:42:30
+     40|    publishedAt: opts.publishedAt,
+     41|   });
+     42|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     43|   return result.data!.item;
+     44|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:231:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[48/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should preserve backward compatibility with taxonomy-only filter
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:42:30
+     40|    publishedAt: opts.publishedAt,
+     41|   });
+     42|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     43|   return result.data!.item;
+     44|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:271:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[49/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should skip null/undefined values in where filter
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:42:30
+     40|    publishedAt: opts.publishedAt,
+     41|   });
+     42|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     43|   return result.data!.item;
+     44|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:290:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[50/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should warn and skip range operators on taxonomy keys
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:42:30
+     40|    publishedAt: opts.publishedAt,
+     41|   });
+     42|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     43|   return result.data!.item;
+     44|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:319:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[51/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should handle range with only one bound (lt without gte)
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:42:30
+     40|    publishedAt: opts.publishedAt,
+     41|   });
+     42|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     43|   return result.data!.item;
+     44|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:342:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[52/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should return empty results for non-existent column in where filter
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:42:30
+     40|    publishedAt: opts.publishedAt,
+     41|   });
+     42|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     43|   return result.data!.item;
+     44|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:361:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[53/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts > Loader media src > resolves bare media ID in src to a file URL
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts:46:36
+     44|   );
+     45|
+     46|   const hero = result.entries![0]!.data.hero as Record<string, unknown…
+       |                                    ^
+     47|   expect(hero.id).toBe(MEDIA_ID);
+     48|   expect(hero.src).toBe(MEDIA_URL);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[54/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts > Loader media src > resolves bare media ID in loadEntry
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts:64:43
+     62|    loader.loadCollection!({ filter: { type: "post" } }),
+     63|   );
+     64|   const entryId = collection.entries![0]!.data.id as string;
+       |                                           ^
+     65|
+     66|   const entry = await runWithContext({ editMode: false, db }, () =>
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[55/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts > Loader media src > does not rewrite an existing local media URL
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts:89:36
+     87|   );
+     88|
+     89|   const hero = result.entries![0]!.data.hero as Record<string, unknown…
+       |                                    ^
+     90|   expect(hero.id).toBe(MEDIA_ID);
+     91|   expect(hero.src).toBe(MEDIA_URL);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[56/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts > Loader media src > resolves bare media ID in revision-backed loadEntry
+Error: Failed to create post
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts:102:36
+    100|    status: "published",
+    101|   });
+    102|   if (!createResult.success) throw new Error("Failed to create post");
+       |                                    ^
+    103|
+    104|   const revisionRepo = new RevisionRepository(db);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[57/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts > Loader offset pagination > skips the first `offset` rows
+Error: Failed to create post
+ ❯ createPublishedPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts:26:30
+     24|    status: "published",
+     25|   });
+     26|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     27|   return result.data!.item;
+     28|  }
+ ❯ seedAlphabet parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts:34:4
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts:39:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[58/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts > Loader offset pagination > renders disjoint numbered pages with limit + offset
+Error: Failed to create post
+ ❯ createPublishedPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts:26:30
+     24|    status: "published",
+     25|   });
+     26|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     27|   return result.data!.item;
+     28|  }
+ ❯ seedAlphabet parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts:34:4
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts:52:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[59/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts > Loader offset pagination > returns an empty page when offset is past the end
+Error: Failed to create post
+ ❯ createPublishedPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts:26:30
+     24|    status: "published",
+     25|   });
+     26|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     27|   return result.data!.item;
+     28|  }
+ ❯ seedAlphabet parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts:34:4
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts:75:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[60/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts > Loader offset pagination > ignores offset when a cursor is also supplied (cursor wins)
+Error: Failed to create post
+ ❯ createPublishedPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts:26:30
+     24|    status: "published",
+     25|   });
+     26|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     27|   return result.data!.item;
+     28|  }
+ ❯ seedAlphabet parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts:34:4
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts:88:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[61/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts > Loader taxonomy term filter [sqlite] > filters by a taxonomy attached to the queried collection
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts:45:30
+     43|    ...(locale ? { locale } : {}),
+     44|   });
+     45|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     46|   return result.data!.item;
+     47|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts:104:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[62/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts > Loader taxonomy term filter [sqlite] > treats a taxonomy name attached to another collection as an ordinary field
+Error: Failed to create page
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts:125:32
+    123|    status: "published",
+    124|   });
+    125|   if (!matching.success) throw new Error("Failed to create page");
+       |                                ^
+    126|   const other = await handleContentCreate(db, "page", {
+    127|    data: { title: "Other Page", category: "other" },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[63/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts > Loader taxonomy term filter [sqlite] > surfaces an unexpected definition-query failure without poisoning the cache
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts:45:30
+     43|    ...(locale ? { locale } : {}),
+     44|   });
+     45|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     46|   return result.data!.item;
+     47|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts:145:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[64/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts > Loader taxonomy term filter [sqlite] > ANDs across two taxonomies — only entries tagged in BOTH match (#1479)
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts:45:30
+     43|    ...(locale ? { locale } : {}),
+     44|   });
+     45|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     46|   return result.data!.item;
+     47|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts:183:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[65/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts > Loader taxonomy term filter [sqlite] > ORs slugs within a taxonomy while ANDing across taxonomies
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts:45:30
+     43|    ...(locale ? { locale } : {}),
+     44|   });
+     45|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     46|   return result.data!.item;
+     47|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts:206:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[66/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts > Loader taxonomy term filter [sqlite] > returns no entries when any one taxonomy filter is an empty array
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts:45:30
+     43|    ...(locale ? { locale } : {}),
+     44|   });
+     45|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     46|   return result.data!.item;
+     47|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts:226:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[67/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts > Loader taxonomy term filter [sqlite] > resolves a taxonomy filter by the localized term slug in the query locale (#1480)
+Error: Failed to create post
+ ❯ createPost parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts:45:30
+     43|    ...(locale ? { locale } : {}),
+     44|   });
+     45|   if (!result.success) throw new Error("Failed to create post");
+       |                              ^
+     46|   return result.data!.item;
+     47|  }
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts:257:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[68/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > selective term: returns only the one tagged entry
+AssertionError: expected [] to deeply equal [ 'Hit' ]
+
+- Expected
++ Received
+
+- [
+-   "Hit",
+- ]
++ []
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:116:26
+    114|
+    115|   const result = await load({ category: "news" });
+    116|   expect(titles(result)).toEqual(["Hit"]);
+       |                          ^
+    117|  });
+    118|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[69/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > broad term (~half the collection): returns every tagged entry
+AssertionError: expected [] to deeply equal [ 'Post 0', 'Post 2', 'Post 4', …(2) ]
+
+- Expected
++ Received
+
+- [
+-   "Post 0",
+-   "Post 2",
+-   "Post 4",
+-   "Post 6",
+-   "Post 8",
+- ]
++ []
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:131:35
+    129|
+    130|   const result = await load({ category: "news" });
+    131|   expect(sortAsc(titles(result))).toEqual(sortAsc(tagged));
+       |                                   ^
+    132|  });
+    133|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[70/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > OR within a taxonomy: dedups an entry tagged with two matched terms
+AssertionError: expected [] to deeply equal [ 'Both' ]
+
+- Expected
++ Received
+
+- [
+-   "Both",
+- ]
++ []
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:143:26
+    141|   const result = await load({ category: ["news", "sports"] });
+    142|   // One row despite matching two groups (GROUP BY dedup).
+    143|   expect(titles(result)).toEqual(["Both"]);
+       |                          ^
+    144|  });
+    145|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[71/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > multi-term AND: only entries tagged in every requested taxonomy match
+AssertionError: expected [] to deeply equal [ 'Both' ]
+
+- Expected
++ Received
+
+- [
+-   "Both",
+- ]
++ []
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:156:26
+    154|
+    155|   const result = await load({ category: ["news"], tag: ["featured"] });
+    156|   expect(titles(result)).toEqual(["Both"]);
+       |                          ^
+    157|  });
+    158|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[72/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > sorts by published_at (indexed) descending
+AssertionError: expected [] to deeply equal [ 'New', 'Mid', 'Old' ]
+
+- Expected
++ Received
+
+- [
+-   "New",
+-   "Mid",
+-   "Old",
+- ]
++ []
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:167:26
+    165|
+    166|   const result = await load({ category: "news" }, { orderBy: { publish…
+    167|   expect(titles(result)).toEqual(["New", "Mid", "Old"]);
+       |                          ^
+    168|  });
+    169|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[73/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > sorts by created_at (indexed, loader default) descending
+AssertionError: expected [] to deeply equal [ 'Third', 'Second', 'First' ]
+
+- Expected
++ Received
+
+- [
+-   "Third",
+-   "Second",
+-   "First",
+- ]
++ []
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:178:26
+    176|
+    177|   const result = await load({ category: "news" });
+    178|   expect(titles(result)).toEqual(["Third", "Second", "First"]);
+       |                          ^
+    179|  });
+    180|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[74/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > sorts by updated_at (temp-sort path, not denormalized) descending
+AssertionError: expected [] to deeply equal [ 'B', 'A' ]
+
+- Expected
++ Received
+
+- [
+-   "B",
+-   "A",
+- ]
++ []
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:201:26
+    199|
+    200|   const result = await load({ category: "news" }, { orderBy: { updated…
+    201|   expect(titles(result)).toEqual(["B", "A"]);
+       |                          ^
+    202|  });
+    203|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[75/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > filters by locale
+AssertionError: expected [] to deeply equal [ 'French' ]
+
+- Expected
++ Received
+
+- [
+-   "French",
+- ]
++ []
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:238:70
+    236|   // The FR listing returns only the FR entry — the pivot's `locale` c…
+    237|   // narrows it, even though both entries share the term group.
+    238|   expect(titles(await load({ category: "news" }, { locale: "fr" }))).t…
+       |                                                                      ^
+    239|   expect(titles(await load({ category: "news" }, { locale: "en" }))).t…
+    240|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[76/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > filters by status: a draft query returns drafts, published returns published
+AssertionError: expected [] to deeply equal [ 'Published' ]
+
+- Expected
++ Received
+
+- [
+-   "Published",
+- ]
++ []
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:249:77
+    247|   await tax.attachToEntry("post", draft.id, news);
+    248|
+    249|   expect(titles(await load({ category: "news" }, { status: "published"…
+       |                                                                             ^
+    250|    "Published",
+    251|   ]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[77/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > under-fills (never returns wrong rows) when a stale row consumes a LIMIT slot
+AssertionError: expected [] to deeply equal [ 'Valid 0', 'Valid 1', 'Valid 2' ]
+
+- Expected
++ Received
+
+- [
+-   "Valid 0",
+-   "Valid 1",
+-   "Valid 2",
+- ]
++ []
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:318:35
+    316|   // The stale row is absent; every returned row is valid (may under-f…
+    317|   expect(titles(result)).not.toContain("Stale");
+    318|   expect(sortAsc(titles(result))).toEqual(sortAsc(valid));
+       |                                   ^
+    319|  });
+    320|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[78/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > publish re-stamps the pivot so the entry appears in a published listing
+AssertionError: expected [] to deeply equal [ 'Draft' ]
+
+- Expected
++ Received
+
+- [
+-   "Draft",
+- ]
++ []
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:331:77
+    329|
+    330|   await content.publish("post", post.id);
+    331|   expect(titles(await load({ category: "news" }, { status: "published"…
+       |                                                                             ^
+    332|  });
+    333|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[79/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > soft-delete then restore re-stamps the pivot both ways
+AssertionError: expected [] to deeply equal [ 'Toggle' ]
+
+- Expected
++ Received
+
+- [
+-   "Toggle",
+- ]
++ []
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:338:52
+    336|   const post = await createPost("Toggle");
+    337|   await tax.attachToEntry("post", post.id, news);
+    338|   expect(titles(await load({ category: "news" }))).toEqual(["Toggle"]);
+       |                                                    ^
+    339|
+    340|   await content.delete("post", post.id);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[80/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > schedule updates taxonomy-filtered status from the content row
+AssertionError: expected [] to deeply equal [ 'Later' ]
+
+- Expected
++ Received
+
+- [
+-   "Later",
+- ]
++ []
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:357:77
+    355|
+    356|   expect(titles(await load({ category: "news" }, { status: "published"…
+    357|   expect(titles(await load({ category: "news" }, { status: "scheduled"…
+       |                                                                             ^
+    358|  });
+    359|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[81/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > paginates by keyset cursor over the pivot sort key without overlap
+AssertionError: expected [] to deeply equal [ 'P4', 'P3', 'P2', 'P1', 'P0' ]
+
+- Expected
++ Received
+
+- [
+-   "P4",
+-   "P3",
+-   "P2",
+-   "P1",
+-   "P0",
+- ]
++ []
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:383:16
+    381|    if (!cursor) break;
+    382|   }
+    383|   expect(seen).toEqual(expectedOrder);
+       |                ^
+    384|   expect(new Set(seen).size).toBe(seen.length); // no overlap
+    385|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[82/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > paginates the OR-within-taxonomy (GROUP BY + HAVING cursor) path
+AssertionError: expected [] to deeply equal [ 'Q4', 'Q3', 'Q2', 'Q1', 'Q0' ]
+
+- Expected
++ Received
+
+- [
+-   "Q4",
+-   "Q3",
+-   "Q2",
+-   "Q1",
+-   "Q0",
+- ]
++ []
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:413:16
+    411|    if (!cursor) break;
+    412|   }
+    413|   expect(seen).toEqual(expectedOrder);
+       |                ^
+    414|   expect(new Set(seen).size).toBe(seen.length); // no dup fan-out, no …
+    415|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[83/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > ANDs a byline filter with the taxonomy filter on the pivot path
+Error: no such table: _emdash_content_bylines
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ InsertQueryBuilder.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1101:24
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:438:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[84/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > builder serves the trash shape (deleted_at IS NOT NULL)
+Error: no such table: media
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:455:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[85/86]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > builder serves an all-statuses live shape (status undefined)
+Error: no such table: media
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:481:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[86/86]⎯
+
+
+ Test Files  24 failed (24)
+      Tests  70 failed | 4 passed (74)
+   Start at  00:57:36
+   Duration  21.83s (transform 2.31s, setup 0ms, import 6.18s, tests 4.69s, environment 2ms)
+
+JSON report written to /tmp/search101-sdk-whole24-first-runtime.json

@@ -88,7 +88,7 @@ const d1SourceBoundary: KyselyPlugin = {
 export function canonicalSourceDatabase(database: CmsDatabase): Kysely<Database> {
   const db = database.db.getExecutor().adapter instanceof RawBindingD1Adapter
     ? database.db.withPlugin(d1SourceBoundary) : database.db;
-  const logical = db.withPlugin(namespace) as unknown as Kysely<Database>;
+  const logical = withCanonicalStorageNamespaces(db);
   registerTaxonomyWriteHost(logical, database, compileTaxonomyPlan);
   return logical;
 }
@@ -110,4 +110,9 @@ function compileTaxonomyPlan(database: CmsDatabase, plan: TaxonomyWritePlan): re
     if ((!target || !taxonomyTargets.has(target)) && !reorder) throw new Error('Taxonomy plan contains an unsupported statement');
     return compiled;
   });
+}
+
+/** Apply the existing identifier namespace to a trusted Kysely read view. */
+export function withCanonicalStorageNamespaces<NativeDatabase>(database: Kysely<NativeDatabase>): Kysely<Database> {
+  return database.withPlugin(namespace) as unknown as Kysely<Database>;
 }

@@ -1,0 +1,33 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts (4 tests | 1 failed) 576ms
+     × never exposes the initial slug or fields before the staged revision is promoted 105ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts > committed scheduled publication visibility [sqlite] > never exposes the initial slug or fields before the staged revision is promoted
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts:82:27
+     80|    bylines: [{ bylineId: byline.id }],
+     81|   });
+     82|   expect(created.success).toBe(true);
+       |                           ^
+     83|   if (!created.success) throw new Error(created.error.message);
+     84|   const { item } = created.data;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  18:49:03
+   Duration  5.34s (transform 3.16s, setup 0ms, import 4.33s, tests 576ms, environment 0ms)
+

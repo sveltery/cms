@@ -1,0 +1,2852 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "publicBase": "343c0ff2e69e66e03b848d258da7c288e9a67223",
+  "status": "Test-first proposal; no product tests executed, no Source causal assertion credit, no runtime implementation applied.",
+  "sourceAssertionCredit": 0,
+  "files": [
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/unit/search/match.test.ts",
+      "bytes": 1059,
+      "sha256": "3661f64ad01e642db5686b7bff730fd86d3108929f3c7867d895d78ac212eff0",
+      "gitBlob": "12e655d7d3b13044cae13ca056b2250e0a637f73",
+      "kind": "whole-test",
+      "source": "packages/core/tests/unit/search/match.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/unit/api/search-schema.test.ts",
+      "bytes": 935,
+      "sha256": "b4ce3423d62ba5da6ca113716ed92a38d28ff4678074e4ea7c7ecc3dbf30b9ca",
+      "gitBlob": "f8977c45b4c449a7eed6c302d7d82567a38576df",
+      "kind": "whole-test",
+      "source": "packages/core/tests/unit/api/search-schema.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts",
+      "bytes": 10352,
+      "sha256": "038ad8a0107f3b461681502c31b233f3b6b8be5e09142f9f8809e502af484687",
+      "gitBlob": "2d3948fdbd0990d14cfde4f193fe05e3df38ece4",
+      "kind": "whole-test",
+      "source": "packages/core/tests/integration/search/fts-corruption.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-repair.test.ts",
+      "bytes": 2580,
+      "sha256": "fa9ffe518568ed158a2a136db58d65a96541150eb34a1b94f8f68def1dfb6c94",
+      "gitBlob": "480297d8631853fe0ba655a884718de02dbfc0df",
+      "kind": "whole-test",
+      "source": "packages/core/tests/integration/search/fts-repair.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-write-amplification.test.ts",
+      "bytes": 4134,
+      "sha256": "20afb08c22af8865b86907f633351d38aab423398648a69a3a3899283e163021",
+      "gitBlob": "8127e468af5509dfad1c9ebf4a7d32b60cc6c3b4",
+      "kind": "whole-test",
+      "source": "packages/core/tests/integration/search/fts-write-amplification.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/pagination.test.ts",
+      "bytes": 4051,
+      "sha256": "5ce5b50b92f97a347004e33fa1334cfdefee86992234e9db1d8d02261dee9535",
+      "gitBlob": "2dfc09973bae9c4faf6fbd07cea9b91bc3c7b539",
+      "kind": "whole-test",
+      "source": "packages/core/tests/integration/search/pagination.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/portable-text-indexing.test.ts",
+      "bytes": 5911,
+      "sha256": "1264ac8bef6ad6cada3c15f0255f124850feab6d8e6a4e5bb97e24779de209b0",
+      "gitBlob": "8063d73434719ccba67f7d0997c8385064eb2155",
+      "kind": "whole-test",
+      "source": "packages/core/tests/integration/search/portable-text-indexing.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/snippet-sanitization.test.ts",
+      "bytes": 5528,
+      "sha256": "2acae3813cff80c51f0db5b972c48884e445dff9320698bd5de802c08052e309",
+      "gitBlob": "a034c9b1294a55f767acb358dc508aa61fd71554",
+      "kind": "whole-test",
+      "source": "packages/core/tests/integration/search/snippet-sanitization.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest-title-field.test.ts",
+      "bytes": 2111,
+      "sha256": "ef704967a34944a3e8ed35eb3b1f22920e5b07f37b0e40c11a806ce4ad1cc889",
+      "gitBlob": "96aeeebf85f5e13c20bd37c7d63042d16281074a",
+      "kind": "whole-test",
+      "source": "packages/core/tests/integration/search/suggest-title-field.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest.test.ts",
+      "bytes": 3280,
+      "sha256": "733c71ace96b6e1b7b6d947309f8949218d1ed7759cb90376857ed6ca50dd4da",
+      "gitBlob": "8d5a61d2eaefd4b4a257bf329253beea37ebb7bd",
+      "kind": "whole-test",
+      "source": "packages/core/tests/integration/search/suggest.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-field-search.test.ts",
+      "bytes": 2017,
+      "sha256": "4a03dfb795bda50cffad8da6c35e5d0f8e2f2984186e2dce5a4ef0521ad41060",
+      "gitBlob": "a97af4d2e2321640837ce5a31fde9bdd5a3a431d",
+      "kind": "whole-test",
+      "source": "packages/core/tests/integration/search/title-field-search.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-less-collection.test.ts",
+      "bytes": 3862,
+      "sha256": "7793feab22c33945c906f38cd392b65844ade7db01bc0fa95e15f080ee9f1eb9",
+      "gitBlob": "9d100728246ae6fa155db00ff2732d5971107efb",
+      "kind": "whole-test",
+      "source": "packages/core/tests/integration/search/title-less-collection.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-scope.test.ts",
+      "bytes": 4452,
+      "sha256": "bace076084c010ad063cd111638a3a33ad0548523bbe5d28dab5e81248080c9e",
+      "gitBlob": "28670e1bff44f18d819d5eeecc03d4dd0f7f3a8f",
+      "kind": "whole-test",
+      "source": "packages/core/tests/integration/search/title-scope.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/tokenizer.test.ts",
+      "bytes": 5954,
+      "sha256": "dfa0bdd6e411cc2ad458223d7407fba08a60144dc28bc5755926cbbddedf8632",
+      "gitBlob": "a502022b020d670fc6e94422edca027c7e9d6eb1",
+      "kind": "whole-test",
+      "source": "packages/core/tests/integration/search/tokenizer.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/content/content-list-search.test.ts",
+      "bytes": 4028,
+      "sha256": "8442e85acf1d2ae0b89e71e894bdb1a652f63ceb2dd56de4df060097c5016f63",
+      "gitBlob": "189ce97fc35f0d71ff96523b804f542da764980f",
+      "kind": "remaining-whole-test-inventory",
+      "source": "packages/core/tests/integration/content/content-list-search.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "bytes": 6880,
+      "sha256": "d8f7af95bb5360905fae212659c6d0346fdf3c725c21d4bf9493c0359c69af05",
+      "gitBlob": "d9941279a7e9839ec2610b583c3a971704d94018",
+      "kind": "remaining-whole-test-inventory",
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/content/content-list-search-title-field.test.ts",
+      "bytes": 2542,
+      "sha256": "c2577980a35f8efa36c059b59d7d2dc4df865e455e7ba16c1586fd6054021e29",
+      "gitBlob": "244ea7d35f9c9ed928670cad672ac5d740f94bc3",
+      "kind": "remaining-whole-test-inventory",
+      "source": "packages/core/tests/integration/content/content-list-search-title-field.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/integration/mcp/search.test.ts",
+      "bytes": 12474,
+      "sha256": "f48ad16795bc01b1e5f9c306a0e590d286a16f43699d6f7b723a3151d767087d",
+      "gitBlob": "96ac12298b3397c4ceb13198bddd5aff6177e3e4",
+      "kind": "remaining-whole-test-inventory",
+      "source": "packages/core/tests/integration/mcp/search.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/unit/middleware/search-soft-auth.test.ts",
+      "bytes": 2772,
+      "sha256": "e2c1c32f989515e79d2a6eaa143d3946f695d25961099d08c9496df1172e48c6",
+      "gitBlob": "584232530b1c1cca593dd1018cd89d05aeb3999c",
+      "kind": "remaining-whole-test-inventory",
+      "source": "packages/core/tests/unit/middleware/search-soft-auth.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/unit/components/live-search-routing.test.ts",
+      "bytes": 1764,
+      "sha256": "f081f4f178ae77d38e9aa0e76850a90ec6fb1497f8968caf3e1185f18a760add",
+      "gitBlob": "bb39d1ea6e7cd76aa5d138a0f61306169a361356",
+      "kind": "remaining-whole-test-inventory",
+      "source": "packages/core/tests/unit/components/live-search-routing.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/unit/components/webmcp-search.test.ts",
+      "bytes": 4998,
+      "sha256": "77eab36efbb40679c778ac6c3af919a44612f9e1908d214452e6c5c80d214da6",
+      "gitBlob": "02ff5d0a5abe288feb54dd8ba8c1b1ecf6188ca3",
+      "kind": "remaining-whole-test-inventory",
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/repro/live-search-locale.render.test.ts",
+      "bytes": 1363,
+      "sha256": "634bac684bf30cf2682e3f3bea5744653f96cef89e19d59ed69f8a44fa23419d",
+      "gitBlob": "9a0cfc6922b69fdb15e5bb255572b622f3b6db87",
+      "kind": "remaining-whole-test-inventory",
+      "source": "packages/core/tests/repro/live-search-locale.render.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/e2e/tests/search.spec.ts",
+      "bytes": 15233,
+      "sha256": "4bf9e4df0d3d3ad740139c21c4f879e9db99750dfe00333d1ee1153400c58016",
+      "gitBlob": "81c8770134d0307f25b19945151956949e5e2dbc",
+      "kind": "remaining-whole-test-inventory",
+      "source": "e2e/tests/search.spec.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/search/query.ts.txt",
+      "bytes": 19638,
+      "sha256": "86b8944331e7ade4fd8ecf605d6f19eff1e06d6ce9a5502bebf4320ab5e6036d",
+      "gitBlob": "c65a7375bc9a975ae23217bb8cfaf23c21ec20e2",
+      "kind": "authority",
+      "source": "packages/core/src/search/query.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/search/fts-manager.ts.txt",
+      "bytes": 23457,
+      "sha256": "6cdb53024cdf6f7d95553d659cb8c904ec733889506b64837d3f177d1aac308d",
+      "gitBlob": "1de7650597123a72b11a2ca8ae45ce367a1fe290",
+      "kind": "authority",
+      "source": "packages/core/src/search/fts-manager.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/search/types.ts.txt",
+      "bytes": 3517,
+      "sha256": "eaa93697b80b39a064cb745594241f81d1ab49b13f389ced67dc805dafe69356",
+      "gitBlob": "a96af62d057f7e516208ca68181b891317e877f9",
+      "kind": "authority",
+      "source": "packages/core/src/search/types.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/search/match.ts.txt",
+      "bytes": 1836,
+      "sha256": "b32fffddc184fd2b4c7255d3c4941d8d9ec4b81a2f70c9b59107cb024e55b26e",
+      "gitBlob": "e97c6611f3cc943857bbac75d1a3a9bc56ee26f1",
+      "kind": "authority",
+      "source": "packages/core/src/search/match.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/search/index.ts.txt",
+      "bytes": 645,
+      "sha256": "c06c5545d6bb2945d0989d2c30fc8085c2a65f1524e327df62a4df138bd9d0d0",
+      "gitBlob": "e9b6ee1fcb9f43431069612bb82ee8e073c1da4f",
+      "kind": "authority",
+      "source": "packages/core/src/search/index.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/search/text-extraction.ts.txt",
+      "bytes": 4578,
+      "sha256": "dcae34d64aa687eb6946458b0f35f92f764ba01e3995e73fdc12486b95976518",
+      "gitBlob": "e228060ff4f7c85b584c49195ea859a87d4e1fae",
+      "kind": "authority",
+      "source": "packages/core/src/search/text-extraction.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/api/schemas/search.ts.txt",
+      "bytes": 2094,
+      "sha256": "2ac430392f5fb0320b6b86314f04ceb0e47e8ab1b644ec9a311c138f617b0018",
+      "gitBlob": "83191c972e20fd242782ccdf2c84be51fe49c4c7",
+      "kind": "authority",
+      "source": "packages/core/src/api/schemas/search.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/astro/routes/api/search/index.ts.txt",
+      "bytes": 2057,
+      "sha256": "f06ce9c966c6592848b8fc513fa6077b140f60de6b7b9990aae40dc024b596cc",
+      "gitBlob": "bc961150c37f7fb0020e4b6702ea84b42e79cd64",
+      "kind": "authority",
+      "source": "packages/core/src/astro/routes/api/search/index.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/astro/routes/api/search/suggest.ts.txt",
+      "bytes": 1445,
+      "sha256": "b731738128bdc264438993651bd40b60765fbc6537194efb477f7cfde248b131",
+      "gitBlob": "dc198fd2f4923291d78ed9013a92b21b4b990fcf",
+      "kind": "authority",
+      "source": "packages/core/src/astro/routes/api/search/suggest.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/astro/routes/api/search/stats.ts.txt",
+      "bytes": 787,
+      "sha256": "8778e09cec83fa50fcedb0f855e98f3ba4b002b54a54d818af204be1e7f344e2",
+      "gitBlob": "8e834cfa2bf2a207a94e04a36e034a11e2c0e45d",
+      "kind": "authority",
+      "source": "packages/core/src/astro/routes/api/search/stats.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/astro/routes/api/search/enable.ts.txt",
+      "bytes": 1792,
+      "sha256": "1b96d234b1f2e61717cba27fe9e8c2bbbae5dc9739e536288d84609c90f1877b",
+      "gitBlob": "b58ba06c35354bd9d678b3cff5261dd5e75ac66c",
+      "kind": "authority",
+      "source": "packages/core/src/astro/routes/api/search/enable.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/astro/routes/api/search/rebuild.ts.txt",
+      "bytes": 1968,
+      "sha256": "87bcc6bdc6ce4cbcdde1c30e7670726abe4278161c9eb0966aa65fa2712446bc",
+      "gitBlob": "1b05389eb81cd52d308c18ee5f3bf44f63ff8384",
+      "kind": "authority",
+      "source": "packages/core/src/astro/routes/api/search/rebuild.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/i18n/config.ts.txt",
+      "bytes": 3209,
+      "sha256": "e354441e19a9013b520112fc1722a1e861ea0a381ceec7ff4e28218bc9c652f7",
+      "gitBlob": "fe714e5ad514485fe1737585c663e470d50519df",
+      "kind": "authority",
+      "source": "packages/core/src/i18n/config.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/tests/utils/test-db.ts.txt",
+      "bytes": 18803,
+      "sha256": "0e6a59b5d2109e4134aed1277f82089725a53fe079ee0ec0c2622169d2480dc0",
+      "gitBlob": "b75bd5b5770e44050b2d0da28e87c155c603ed66",
+      "kind": "authority",
+      "source": "packages/core/tests/utils/test-db.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/tests/utils/fixtures.ts.txt",
+      "bytes": 965,
+      "sha256": "7bca3d4ac15f3986c0cd9d1e826be6b64dda8cea8cf2a142284d912da3cfb95d",
+      "gitBlob": "70801b7bffcf977674c67f554ad289a6e4bf27b2",
+      "kind": "authority",
+      "source": "packages/core/tests/utils/fixtures.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/authority/LICENSE.txt",
+      "bytes": 1079,
+      "sha256": "d5ab82c0225b0def1fa140af22ff2f3bed9791a527545be1b04ab4337dc88675",
+      "gitBlob": "02cc4b8b0a5f883c5243927e683b00c10588bf4c",
+      "kind": "authority",
+      "source": "LICENSE"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/utils/fixtures.ts",
+      "bytes": 965,
+      "sha256": "7bca3d4ac15f3986c0cd9d1e826be6b64dda8cea8cf2a142284d912da3cfb95d",
+      "gitBlob": "70801b7bffcf977674c67f554ad289a6e4bf27b2",
+      "kind": "whole-helper",
+      "source": "packages/core/tests/utils/fixtures.ts"
+    }
+  ],
+  "selectedWholeFamilies": 14,
+  "remainingWholeFamilies": 9,
+  "selectedTestDeclarations": 58,
+  "selectedExpectExpressions": 128,
+  "inventoryTestDeclarations": 129,
+  "inventoryExpectExpressions": 255,
+  "declarations": [
+    {
+      "source": "packages/core/tests/unit/search/match.test.ts",
+      "line": 6,
+      "title": "quotes each term with prefix matching, implicit AND",
+      "sha256": "83f1e1dc9d365e6df2db52cd3f809fb8658bd2565f075b3d0c3bf6b9d1ac6727",
+      "expectations": [
+        {
+          "line": 7,
+          "expression": "expect(buildFtsPrefixMatch(\"hello wor\")).toBe('\"hello\"* \"wor\"*')",
+          "sha256": "880de3a9a997638ced1cfe5bced8d9df829e084ac8bfffb69f7c8cd9f27999d1"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/search/match.test.ts",
+      "line": 10,
+      "title": "escapes interior double quotes so no input can produce FTS5 syntax errors",
+      "sha256": "a37f2b7c5ddd3e3307a9f8a64b5c550d17b6a1236630f32ba1f69a208eb38f04",
+      "expectations": [
+        {
+          "line": 11,
+          "expression": "expect(buildFtsPrefixMatch('say \"hi\"')).toBe('\"say\"* \"\"\"hi\"\"\"*')",
+          "sha256": "9212435a7561e60b9d147968fafb4fc98770419f664d33e00add6f06249f11e4"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/search/match.test.ts",
+      "line": 14,
+      "title": "neutralizes FTS5 operators by quoting them",
+      "sha256": "13d8b3fbb37630960e9a679826f1946c257bc11fec7696d6d5fd9c0611293660",
+      "expectations": [
+        {
+          "line": 15,
+          "expression": "expect(buildFtsPrefixMatch(\"cats AND dogs\")).toBe('\"cats\"* \"AND\"* \"dogs\"*')",
+          "sha256": "7b4277e7c854db79e22c6af02cd933d6a1dd2bfe980f26b673a0d1d4629d2786"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/search/match.test.ts",
+      "line": 18,
+      "title": "returns empty string for whitespace-only input",
+      "sha256": "b12daf19bfd0984261b1cca4601672a17e60d5f25eb35f12565a73a376d44053",
+      "expectations": [
+        {
+          "line": 19,
+          "expression": "expect(buildFtsPrefixMatch(\"   \")).toBe(\"\")",
+          "sha256": "e0cf7ce65c0a6d48c960626eb4076292e2b75fc8b4578a2b3869fb3356143ae7"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/search/match.test.ts",
+      "line": 24,
+      "title": "lowercases and appends the prefix wildcard",
+      "sha256": "45d79df233df795aa9945cfcd5c7021122c13dfe5e4d29288136ccd098b0c994",
+      "expectations": [
+        {
+          "line": 25,
+          "expression": "expect(buildSlugGlobPrefix(\"My-Post\")).toBe(\"my-post*\")",
+          "sha256": "55399708fe3484b72b4b60031501e75b618dc047452f77ff7a9ebe5030482377"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/search/match.test.ts",
+      "line": 28,
+      "title": "treats GLOB metacharacters literally via character classes",
+      "sha256": "34a04629519a534967541d3f453cca428feeaaa695be154b5d7514365cf71225",
+      "expectations": [
+        {
+          "line": 29,
+          "expression": "expect(buildSlugGlobPrefix(\"a*b?c[d]\")).toBe(\"a[*]b[?]c[[]d[]]*\")",
+          "sha256": "9f1a9ec86d8e80d130fed81071a1d4aac0862cf5aafb4082a7974378c665511d"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/api/search-schema.test.ts",
+      "line": 6,
+      "title": "accepts the %s tokenizer",
+      "sha256": "2aa3d9c18fa0dd4fed73b4f0028123689604c8440e41db054d741af4a9f70a3c",
+      "expectations": [
+        {
+          "line": 9,
+          "expression": "expect(\n\t\t\t\tsearchEnableBody.parse({\n\t\t\t\t\tcollection: \"posts\",\n\t\t\t\t\tenabled: true,\n\t\t\t\t\ttokenize,\n\t\t\t\t}),\n\t\t\t).toEqual({\n\t\t\t\tcollection: \"posts\",\n\t\t\t\tenabled: true,\n\t\t\t\ttokenize,\n\t\t\t})",
+          "sha256": "2b0695fc2cf8dc1c5a7349d6b3cc554abcdd8ba0dcd6407da0fe7ae9d1046ea8"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/api/search-schema.test.ts",
+      "line": 23,
+      "title": "allows the tokenizer to be omitted",
+      "sha256": "acefaeaa17935c99c7f032f8c992206eb40eb5355964b622a7c75917f08aee57",
+      "expectations": [
+        {
+          "line": 24,
+          "expression": "expect(\n\t\t\tsearchEnableBody.parse({\n\t\t\t\tcollection: \"posts\",\n\t\t\t\tenabled: true,\n\t\t\t}),\n\t\t).toEqual({\n\t\t\tcollection: \"posts\",\n\t\t\tenabled: true,\n\t\t})",
+          "sha256": "6ade14b31e9260acfb08fc553131be99e739e3ecd36d192811b24e34ca390b9a"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/api/search-schema.test.ts",
+      "line": 35,
+      "title": "rejects unsupported tokenizer %s",
+      "sha256": "467c9f1dd3a6b3290e6d61c8690776b5d1087ef124258c26d12a6e0bf2297ace",
+      "expectations": [
+        {
+          "line": 38,
+          "expression": "expect(() =>\n\t\t\t\tsearchEnableBody.parse({\n\t\t\t\t\tcollection: \"posts\",\n\t\t\t\t\tenabled: true,\n\t\t\t\t\ttokenize,\n\t\t\t\t}),\n\t\t\t).toThrow()",
+          "sha256": "facd0ad876a39ddd89a80cd033a2c5a4da25f185c32a7538c2d2e04a26106f6e"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/fts-corruption.test.ts",
+      "line": 63,
+      "title": "does not corrupt the FTS index when a published page is edited and re-published",
+      "sha256": "a0030475c0ae91e2ba559ba4db680bdc559e5be852da6c0e2c7b9e17562eda49",
+      "expectations": [
+        {
+          "line": 116,
+          "expression": "expect(\n\t\t\tsql\n\t\t\t\t.raw(`INSERT INTO _emdash_fts_pages(_emdash_fts_pages) VALUES('integrity-check')`)\n\t\t\t\t.execute(db),\n\t\t).resolves.toBeDefined()",
+          "sha256": "bd524cf053b2b47c3d0d5693165f31529663d3156600d0558f509cc6c078926c"
+        },
+        {
+          "line": 125,
+          "expression": "expect(repo.publish(\"pages\", created.id)).resolves.toBeDefined()",
+          "sha256": "ac2040d67c2a8d17ad1e00a95a4f08894e46c0da3a870db41d951c6401d68f22"
+        },
+        {
+          "line": 128,
+          "expression": "expect(\n\t\t\tsql\n\t\t\t\t.raw(`INSERT INTO _emdash_fts_pages(_emdash_fts_pages) VALUES('integrity-check')`)\n\t\t\t\t.execute(db),\n\t\t).resolves.toBeDefined()",
+          "sha256": "bd524cf053b2b47c3d0d5693165f31529663d3156600d0558f509cc6c078926c"
+        },
+        {
+          "line": 138,
+          "expression": "expect(docsize.rows[0]?.count).toBe(1)",
+          "sha256": "d293a262912770312588e55258b0a7321a0e1e3e8c8691b4d4301ea6f700520f"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/fts-corruption.test.ts",
+      "line": 144,
+      "title": "survives the full trash lifecycle (soft-delete -> restore -> integrity-check)",
+      "sha256": "43f1cf3385cfb50639c9de05ce978ab0cfe79367b1351250a63e38a9f37975cd",
+      "expectations": [
+        {
+          "line": 171,
+          "expression": "expect(repo.delete(\"pages\", created.id)).resolves.toBe(true)",
+          "sha256": "968e9b7f2ef6ddec501a5833adb4fdc984101e86a66abf0886fad532e3ef51ee"
+        },
+        {
+          "line": 172,
+          "expression": "expect(\n\t\t\tsql\n\t\t\t\t.raw(`INSERT INTO _emdash_fts_pages(_emdash_fts_pages) VALUES('integrity-check')`)\n\t\t\t\t.execute(db),\n\t\t).resolves.toBeDefined()",
+          "sha256": "bd524cf053b2b47c3d0d5693165f31529663d3156600d0558f509cc6c078926c"
+        },
+        {
+          "line": 181,
+          "expression": "expect(repo.restore(\"pages\", created.id)).resolves.toEqual(\n\t\t\texpect.objectContaining({ id: created.id }),\n\t\t)",
+          "sha256": "3c2e3d5705cdd6ae9aed420cabf48f34d6bf00f7a3fea2567609b7cd06443d4e"
+        },
+        {
+          "line": 184,
+          "expression": "expect(\n\t\t\tsql\n\t\t\t\t.raw(`INSERT INTO _emdash_fts_pages(_emdash_fts_pages) VALUES('integrity-check')`)\n\t\t\t\t.execute(db),\n\t\t).resolves.toBeDefined()",
+          "sha256": "bd524cf053b2b47c3d0d5693165f31529663d3156600d0558f509cc6c078926c"
+        },
+        {
+          "line": 194,
+          "expression": "expect(docsizeAfterRestore.rows[0]?.count).toBe(1)",
+          "sha256": "a3bf624744d3ae816c11356f766fa5f588df05b3be41a284534780365ecbad25"
+        },
+        {
+          "line": 210,
+          "expression": "expect(\n\t\t\tsql\n\t\t\t\t.raw(`INSERT INTO _emdash_fts_pages(_emdash_fts_pages) VALUES('integrity-check')`)\n\t\t\t\t.execute(db),\n\t\t).resolves.toBeDefined()",
+          "sha256": "bd524cf053b2b47c3d0d5693165f31529663d3156600d0558f509cc6c078926c"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/fts-corruption.test.ts",
+      "line": 217,
+      "title": "survives permanent delete of a soft-deleted row without corrupting the index",
+      "sha256": "65155781d2827fc0cd73da92775b8dca269d34e074e5dde815cb31b37cf8a05c",
+      "expectations": [
+        {
+          "line": 239,
+          "expression": "expect(repo.delete(\"pages\", created.id)).resolves.toBe(true)",
+          "sha256": "968e9b7f2ef6ddec501a5833adb4fdc984101e86a66abf0886fad532e3ef51ee"
+        },
+        {
+          "line": 242,
+          "expression": "expect(repo.permanentDelete(\"pages\", created.id)).resolves.toBe(true)",
+          "sha256": "326c1e8ccd32da65e8fc8e6a89a22462d50a2ff09f6448c46056b631964a7015"
+        },
+        {
+          "line": 243,
+          "expression": "expect(\n\t\t\tsql\n\t\t\t\t.raw(`INSERT INTO _emdash_fts_pages(_emdash_fts_pages) VALUES('integrity-check')`)\n\t\t\t\t.execute(db),\n\t\t).resolves.toBeDefined()",
+          "sha256": "bd524cf053b2b47c3d0d5693165f31529663d3156600d0558f509cc6c078926c"
+        },
+        {
+          "line": 252,
+          "expression": "expect(docsize.rows[0]?.count).toBe(0)",
+          "sha256": "c97cb7905c1e3c46f23443b51511bb1348a5f6114fe3f31f74e5ce7cc7d8b462"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/fts-corruption.test.ts",
+      "line": 255,
+      "title": "survives editing a row while it's in the trash without corrupting the index",
+      "sha256": "979cdb2861d09ff9bc55b21a53dd3ed8691d5632c778d337ec7bc9d82ff6b915",
+      "expectations": [
+        {
+          "line": 270,
+          "expression": "expect(repo.delete(\"pages\", created.id)).resolves.toBe(true)",
+          "sha256": "968e9b7f2ef6ddec501a5833adb4fdc984101e86a66abf0886fad532e3ef51ee"
+        },
+        {
+          "line": 280,
+          "expression": "expect(\n\t\t\tsql\n\t\t\t\t.raw(`INSERT INTO _emdash_fts_pages(_emdash_fts_pages) VALUES('integrity-check')`)\n\t\t\t\t.execute(db),\n\t\t).resolves.toBeDefined()",
+          "sha256": "bd524cf053b2b47c3d0d5693165f31529663d3156600d0558f509cc6c078926c"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/fts-corruption.test.ts",
+      "line": 287,
+      "title": "survives many edit/publish cycles without corrupting the index",
+      "sha256": "bdf18fa52770f8dfda07db2fe30ea382e4eed604d70d45e21f28de3a1be6ddd7",
+      "expectations": [
+        {
+          "line": 323,
+          "expression": "expect(\n\t\t\tsql\n\t\t\t\t.raw(`INSERT INTO _emdash_fts_pages(_emdash_fts_pages) VALUES('integrity-check')`)\n\t\t\t\t.execute(db),\n\t\t).resolves.toBeDefined()",
+          "sha256": "bd524cf053b2b47c3d0d5693165f31529663d3156600d0558f509cc6c078926c"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/fts-repair.test.ts",
+      "line": 62,
+      "title": "recreates a missing FTS table when search remains enabled",
+      "sha256": "0f2e146008786b56366786b84e0e99ed4a2ddb714636fcad9432833dde0aa868",
+      "expectations": [
+        {
+          "line": 63,
+          "expression": "expect(await ftsManager.ftsTableExists(\"game\")).toBe(true)",
+          "sha256": "c710912fd6df0e97ed804fe3344affea0f66aa79f28f2981af267643c8c142ff"
+        },
+        {
+          "line": 67,
+          "expression": "expect(await ftsManager.ftsTableExists(\"game\")).toBe(false)",
+          "sha256": "874569df3f78e75fd32a49e0d90ec8e7635cbb915bcc2f27fcd8e141fcfb2926"
+        },
+        {
+          "line": 68,
+          "expression": "expect(\n\t\t\tawait searchWithDb(db, \"cthulhu\", {\n\t\t\t\tcollections: [\"game\"],\n\t\t\t\tstatus: \"published\",\n\t\t\t}),\n\t\t).toEqual({ items: [] })",
+          "sha256": "6f50374115220e89cafbbc97a4de2f4c039e89d9fdceeeca2f38200806f80c29"
+        },
+        {
+          "line": 75,
+          "expression": "expect(ftsManager.verifyAndRepairAll()).resolves.toBe(1)",
+          "sha256": "5d30e497166697e86aa3881cac51102e23568af90617385f9ae9f340abdc6a2b"
+        },
+        {
+          "line": 76,
+          "expression": "expect(await ftsManager.ftsTableExists(\"game\")).toBe(true)",
+          "sha256": "c710912fd6df0e97ed804fe3344affea0f66aa79f28f2981af267643c8c142ff"
+        },
+        {
+          "line": 83,
+          "expression": "expect(repaired.items).toHaveLength(1)",
+          "sha256": "f34fafee76fb59f0812e7e25baa0fb880471ef96c543539e5dbd323be15983b7"
+        },
+        {
+          "line": 84,
+          "expression": "expect(repaired.items[0]?.slug).toBe(\"trail-of-cthulhu\")",
+          "sha256": "a68c72d42e35beb7a434dcf75163fa1291cb39469a4adc65e90d8e2c638fe192"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/fts-repair.test.ts",
+      "line": 87,
+      "title": "keeps the FTS index in sync after soft delete",
+      "sha256": "d396a0d010c93b29cb961618f215260bd5e7f8849396f6033d61cb101c38f1c5",
+      "expectations": [
+        {
+          "line": 88,
+          "expression": "expect(repo.delete(\"game\", gameId)).resolves.toBe(true)",
+          "sha256": "7e17a0fb7cb49b82a28cc782888ad126bf8e5922c8ec9334bcc3d27a2be5e0e9"
+        },
+        {
+          "line": 89,
+          "expression": "expect(ftsManager.verifyAndRepairAll()).resolves.toBe(0)",
+          "sha256": "b3ae6f187b488a5b0052f134c55e12b87368f9f61dfa192ef08bc6dd15536e22"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/fts-write-amplification.test.ts",
+      "line": 85,
+      "title": "does not re-tokenize on a metadata-only update",
+      "sha256": "732682a76b233a6b0c5e669bac0e1d3b15f1c483a26b50b3b051d098abf42773",
+      "expectations": [
+        {
+          "line": 93,
+          "expression": "expect(await indexSegments()).toEqual(before)",
+          "sha256": "38ed9adb954a17465a9a8c5088ac1d4f118f6894143172327e90816f6363c6dc"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/fts-write-amplification.test.ts",
+      "line": 96,
+      "title": "does not re-tokenize when publish rewrites identical data values",
+      "sha256": "2aa3d4a3abc18e52d53ae33dec1c3638bc72b4ff2a9933a30633ae3296e14e3b",
+      "expectations": [
+        {
+          "line": 104,
+          "expression": "expect(await indexSegments()).toEqual(before)",
+          "sha256": "38ed9adb954a17465a9a8c5088ac1d4f118f6894143172327e90816f6363c6dc"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/fts-write-amplification.test.ts",
+      "line": 107,
+      "title": "still re-indexes when a searchable field changes",
+      "sha256": "edc8beb4fae0a9d89846555b8d585b1363a991dc294a4f0b337f19e247efc5a7",
+      "expectations": [
+        {
+          "line": 113,
+          "expression": "expect(items).toHaveLength(1)",
+          "sha256": "8b1b941945ce8742a5be0fbb9e88351f472a5e39e278592234eba19b4a9a7501"
+        },
+        {
+          "line": 115,
+          "expression": "expect(stale.items).toEqual([])",
+          "sha256": "670144018432611064ab682eaa55ae4abf4f25d9a786ab4b2e5193afc292efc0"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/fts-write-amplification.test.ts",
+      "line": 118,
+      "title": "still removes trashed entries from the index and restores them",
+      "sha256": "b8408a5baf396a3d020143d07315b5309eb184dc73044aec73cdbd234f86abaa",
+      "expectations": [
+        {
+          "line": 120,
+          "expression": "expect((await searchWithDb(db, \"haunted\", { collections: [\"pages\"] })).items).toEqual([])",
+          "sha256": "ebe52fb6a69cce06d20d0f74c0e8771f1f4f4ea8206a87e6432214b39b982ddb"
+        },
+        {
+          "line": 123,
+          "expression": "expect((await searchWithDb(db, \"haunted\", { collections: [\"pages\"] })).items).toHaveLength(1)",
+          "sha256": "030ecbbf4121676b9da6417690aea5ba17f968cd21858fd90840d9a087f82123"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/pagination.test.ts",
+      "line": 48,
+      "title": "returns a nextCursor when more results exist beyond the limit",
+      "sha256": "7d6aad8fa5a1856ed75ed1e272e673c4bfa9ebe554fa83bece1032e72b073617",
+      "expectations": [
+        {
+          "line": 51,
+          "expression": "expect(page.items).toHaveLength(2)",
+          "sha256": "3a7d50f97d46caf4d6f984e4520e6e0149360ab4177bee9e287df9c70f36f0eb"
+        },
+        {
+          "line": 52,
+          "expression": "expect(page.nextCursor).toBeTruthy()",
+          "sha256": "a3d9d8c40c11e64a2c1dc8912a9b5416db34728728587a835ba74892c496b6fc"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/pagination.test.ts",
+      "line": 55,
+      "title": "omits nextCursor on the final page",
+      "sha256": "234a85a7308df0c105025424fc73dbb007fb07c3098a9e1807b38f571fa6381b",
+      "expectations": [
+        {
+          "line": 58,
+          "expression": "expect(page.items).toHaveLength(5)",
+          "sha256": "a2be1ae4af33e3fbd4e1ad521b90a7f7adc9c0c2ed4f31bacf197f0191bb59f0"
+        },
+        {
+          "line": 59,
+          "expression": "expect(page.nextCursor).toBeUndefined()",
+          "sha256": "63985381a7072a527bc85b8bad75f4471b9c98c4ffcf5a98898a13f47846789d"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/pagination.test.ts",
+      "line": 62,
+      "title": "walks disjoint pages covering every match exactly once",
+      "sha256": "c11986b25b3f957607af63ab31366d2598b6ad5d7d13d6c5edba3d68e574dbf2",
+      "expectations": [
+        {
+          "line": 73,
+          "expression": "expect(page.items.length).toBeLessThanOrEqual(2)",
+          "sha256": "f670968c32bd3c16f15bf07374ef981f78efb56439303223017f1f5c44fa63e4"
+        },
+        {
+          "line": 78,
+          "expression": "expect(seen).toHaveLength(5)",
+          "sha256": "51bbb1cc7f742235d95fa34354a30d051af31858f2dc23b0dc0c2063a4f12a23"
+        },
+        {
+          "line": 79,
+          "expression": "expect(new Set(seen).size).toBe(5)",
+          "sha256": "1aabcc3aa827c563f410bef1801b429e385e431a389d10f9c0df70b4693e903b"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/pagination.test.ts",
+      "line": 82,
+      "title": "rejects a malformed cursor instead of silently restarting",
+      "sha256": "34ce2172249f2481a2a139f567fad16c63ae05eaf3ff1a830fd9fffbe65f9884",
+      "expectations": [
+        {
+          "line": 83,
+          "expression": "expect(\n\t\t\tsearchWithDb(db, \"report\", { collections: [\"post\"], limit: 2, cursor: \"not-a-cursor\" }),\n\t\t).rejects.toThrow(/Invalid pagination cursor/)",
+          "sha256": "091a8764b4039d7c8d26d7660d6be2970f7b614bd41b251eb9b029914588cb66"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/pagination.test.ts",
+      "line": 88,
+      "title": "rejects a cursor from another endpoint even if its orderValue is numeric",
+      "sha256": "5bee0f7995a23e66482a343c060491cfad7e4261de33a60c196ba593e3acb77e",
+      "expectations": [
+        {
+          "line": 91,
+          "expression": "expect(\n\t\t\tsearchWithDb(db, \"report\", { collections: [\"post\"], limit: 2, cursor: foreignCursor }),\n\t\t).rejects.toThrow(/Invalid pagination cursor/)",
+          "sha256": "57b67428c98b35a9b721ddd7b1cf789246aac122e2d5a2de7577048e0a78fbc4"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/pagination.test.ts",
+      "line": 96,
+      "title": "rejects a cursor whose offset exceeds the max search offset",
+      "sha256": "7e356226c2146d2f1aa8b799ffaea6afbedf75df73437cd61fe4614e539e9977",
+      "expectations": [
+        {
+          "line": 99,
+          "expression": "expect(\n\t\t\tsearchWithDb(db, \"report\", { collections: [\"post\"], limit: 2, cursor: hugeCursor }),\n\t\t).rejects.toThrow(/Invalid pagination cursor/)",
+          "sha256": "8b645bddc9f3e04cfa91c8ac216bb894ca3d3a7424b6a8c9a2278b372f2732a9"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/pagination.test.ts",
+      "line": 104,
+      "title": "paginates a single-collection search the same way",
+      "sha256": "97d7c011e31018ef64e051d912fea3edfb339e3c88978223ba2abf54366591ce",
+      "expectations": [
+        {
+          "line": 115,
+          "expression": "expect(new Set(seen).size).toBe(5)",
+          "sha256": "1aabcc3aa827c563f410bef1801b429e385e431a389d10f9c0df70b4693e903b"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/portable-text-indexing.test.ts",
+      "line": 85,
+      "title": "does not match Portable Text structural tokens",
+      "sha256": "1f77d8e9cf563c8411a8063b53f927993c14ec38db5eaf15d2a5bd8402648e9d",
+      "expectations": [
+        {
+          "line": 88,
+          "expression": "expect(items, `\"${structural}\" must not match`).toEqual([])",
+          "sha256": "66c9f836f3cc47adec981ec8ba5b407fb2e81bdccef053c811c128cac06dc444"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/portable-text-indexing.test.ts",
+      "line": 92,
+      "title": "matches prose inside spans",
+      "sha256": "e4b51ff59e9df73b5da7bfe7672db7fdd6b27a64d4d321a7e94a0ea0cd2c9ed2",
+      "expectations": [
+        {
+          "line": 94,
+          "expression": "expect(items).toHaveLength(1)",
+          "sha256": "8b1b941945ce8742a5be0fbb9e88351f472a5e39e278592234eba19b4a9a7501"
+        },
+        {
+          "line": 95,
+          "expression": "expect(items[0]!.slug).toBe(\"haunted-cinema\")",
+          "sha256": "c1a4f29446e96d5e4a99f6b8f441a7f65ce97f7c606272bf2335e5cfb99a8f25"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/portable-text-indexing.test.ts",
+      "line": 98,
+      "title": "matches image alt text, captions, and code content",
+      "sha256": "a565bae53f85e760bf8cfe163e87f340dc46762d1c9d113f1007e4fd0c7bc86f",
+      "expectations": [
+        {
+          "line": 101,
+          "expression": "expect(items, `\"${term}\" must match`).toHaveLength(1)",
+          "sha256": "71c0d42d0ac1799d07e4ce627d8a4d4121a9e337419563f8230cd48b1e4718b9"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/portable-text-indexing.test.ts",
+      "line": 105,
+      "title": "keeps legacy scalar values searchable",
+      "sha256": "c2df2f17e5effb0af5f125b12a82838c31891833d13cff6d970823dbaa440269",
+      "expectations": [
+        {
+          "line": 119,
+          "expression": "expect((await searchWithDb(db, \"2024\", { collections: [\"pages\"] })).items).toHaveLength(1)",
+          "sha256": "7e3f8d7757a9d645f45d716ce00bc92ce50ce8c43fd97e67750ec35000ae1dd9"
+        },
+        {
+          "line": 120,
+          "expression": "expect((await searchWithDb(db, \"velvet\", { collections: [\"pages\"] })).items).toHaveLength(1)",
+          "sha256": "df7ac83bcfbbbfd09836ce60d721311d9f9b43187e91045cabf4136c9d26d867"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/portable-text-indexing.test.ts",
+      "line": 123,
+      "title": "returns prose snippets, not JSON fragments",
+      "sha256": "3bb7add2324baa525f2af04d1b7a9e058fb700f15a78161ebd75345eea5dd8ef",
+      "expectations": [
+        {
+          "line": 125,
+          "expression": "expect(items).toHaveLength(1)",
+          "sha256": "8b1b941945ce8742a5be0fbb9e88351f472a5e39e278592234eba19b4a9a7501"
+        },
+        {
+          "line": 127,
+          "expression": "expect(snippet).toContain(\"<mark>forbidden</mark>\")",
+          "sha256": "e74d4b34420137dcccb9ae5729c8039402cbc8f56283a4ec77b99ec3ced3ae8f"
+        },
+        {
+          "line": 128,
+          "expression": "expect(snippet).not.toContain(\"_type\")",
+          "sha256": "f4d9ee7dfb4f784c3457c4bf3da0129c7b1f8a2a58191dee4c0202d50457a854"
+        },
+        {
+          "line": 129,
+          "expression": "expect(snippet).not.toContain(\"{\")",
+          "sha256": "4b9ab804f2559bfc8c046a61abd1ac8182f7f4e40b9e6bed579e820e57ea9c50"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/portable-text-indexing.test.ts",
+      "line": 144,
+      "title": "populates fields whose slug collides with a json_tree output column",
+      "sha256": "dba73a247f3c6dc5c4defcdec75e987f4c37888e5dd7610e926314bd65e2474f",
+      "expectations": [
+        {
+          "line": 182,
+          "expression": "expect(items).toHaveLength(1)",
+          "sha256": "8b1b941945ce8742a5be0fbb9e88351f472a5e39e278592234eba19b4a9a7501"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/snippet-sanitization.test.ts",
+      "line": 41,
+      "title": "escapes `<` and `>` in matched content so a `<script>` title cannot execute",
+      "sha256": "4f95252b0fef8309131ae889623f10aad30b4c7b84b41d3a77941098fac6e573",
+      "expectations": [
+        {
+          "line": 56,
+          "expression": "expect(items).toHaveLength(1)",
+          "sha256": "8b1b941945ce8742a5be0fbb9e88351f472a5e39e278592234eba19b4a9a7501"
+        },
+        {
+          "line": 63,
+          "expression": "expect(snippet).not.toContain(\"<script>\")",
+          "sha256": "78a7ff7df39c9d5a4388f1037ecff40ef15648e8b76a0529bc9fb8c707255fce"
+        },
+        {
+          "line": 64,
+          "expression": "expect(snippet).not.toContain(\"</script>\")",
+          "sha256": "b55d344b46f0e81ad2770b7f4d6910fbe351c48d7a7e966c58480bc01148b172"
+        },
+        {
+          "line": 65,
+          "expression": "expect(snippet).toContain(\"&lt;script&gt;\")",
+          "sha256": "98d8f5b9ae51f34a1c42b8cd3df430bb57f4c262fa593b656bf99ff855296b05"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/snippet-sanitization.test.ts",
+      "line": 68,
+      "title": "escapes ampersands so `<3` and `&amp;` round-trip correctly",
+      "sha256": "cc3737f7da9cefff345b32137ee13e47c34736e8c618fbedd476b652860638f3",
+      "expectations": [
+        {
+          "line": 81,
+          "expression": "expect(items).toHaveLength(1)",
+          "sha256": "8b1b941945ce8742a5be0fbb9e88351f472a5e39e278592234eba19b4a9a7501"
+        },
+        {
+          "line": 86,
+          "expression": "expect(snippet).toContain(\"&amp;\")",
+          "sha256": "88b1172c94e5925f6756b0c13e76b6411d059aa58d725c1a01036ccc4fcc5dfb"
+        },
+        {
+          "line": 87,
+          "expression": "expect(snippet).not.toMatch(/&(?!amp;|lt;|gt;|quot;|#39;)/)",
+          "sha256": "089eb35b09e8a401cbb95ac1de829cfcaf7132f7e3623b3e7d166aa646e03605"
+        },
+        {
+          "line": 91,
+          "expression": "expect(snippet).toContain(\"&lt;\")",
+          "sha256": "eac5fb99671079c95fdf19435e1a39d41153ada53ff7dc0772ac308970f47076"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/snippet-sanitization.test.ts",
+      "line": 94,
+      "title": "does not crash when the snippet column is NULL",
+      "sha256": "d3a193bf1174b2baa055deab709557db90e49f5464b09cfc51142eda2f664af9",
+      "expectations": [
+        {
+          "line": 129,
+          "expression": "expect(items).toHaveLength(1)",
+          "sha256": "8b1b941945ce8742a5be0fbb9e88351f472a5e39e278592234eba19b4a9a7501"
+        },
+        {
+          "line": 132,
+          "expression": "expect(typeof items[0]!.snippet === \"string\" || items[0]!.snippet === undefined).toBe(true)",
+          "sha256": "58dc823374294be92c756a96b926a95b9db8f2143a793c77afbec87e4694f9ad"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/snippet-sanitization.test.ts",
+      "line": 135,
+      "title": "preserves `<mark>` highlight tags as live HTML",
+      "sha256": "6865929692c45db1afa718ea6db0485d4de861e931abbc5fda77f2ae3b10fe91",
+      "expectations": [
+        {
+          "line": 150,
+          "expression": "expect(items).toHaveLength(1)",
+          "sha256": "8b1b941945ce8742a5be0fbb9e88351f472a5e39e278592234eba19b4a9a7501"
+        },
+        {
+          "line": 153,
+          "expression": "expect(snippet).toContain(\"<mark>\")",
+          "sha256": "6e4a4eb48c28946bc2a60f5cfe1190c5fc4a9ae6d9d7532d0d54320413e0a8b9"
+        },
+        {
+          "line": 154,
+          "expression": "expect(snippet).toContain(\"</mark>\")",
+          "sha256": "32b6404de8668ea8c3bbf10c0c8ceeb8d8736d49d8cf01e6e0f608967bae2c75"
+        },
+        {
+          "line": 156,
+          "expression": "expect(snippet).toMatch(/<mark>fox<\\/mark>/i)",
+          "sha256": "586a2f540be3c90cd3b898cd21868482dea93b047739ac73e992228a6e5d8a87"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/suggest-title-field.test.ts",
+      "line": 53,
+      "title": "suggests the entry and uses the titleField value as the title",
+      "sha256": "b78257a7a5bf395fc7e0d23847f9b49f9763dfcec1594a5c498d283a035cbdb2",
+      "expectations": [
+        {
+          "line": 55,
+          "expression": "expect(suggestions).toHaveLength(1)",
+          "sha256": "338f4fdbd64fd32622214ceeeac1200fded65c651cc1f0182cf5761fcaeb644b"
+        },
+        {
+          "line": 56,
+          "expression": "expect(suggestions[0]).toMatchObject({\n\t\t\tcollection: \"employees\",\n\t\t\tslug: \"jane-doe\",\n\t\t\ttitle: \"Jane Doe\",\n\t\t})",
+          "sha256": "2d5b0a8021b04397071b7bfb925274bc9ea936c25472d50e3733e3d6976ab272"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/suggest.test.ts",
+      "line": 40,
+      "title": "returns matching suggestions for a plain prefix query",
+      "sha256": "83303f4ad89e110d0fd43906ea7f8fe7814560cad20a0cfffc1abf6cc5ba9094",
+      "expectations": [
+        {
+          "line": 45,
+          "expression": "expect(suggestions).toHaveLength(1)",
+          "sha256": "338f4fdbd64fd32622214ceeeac1200fded65c651cc1f0182cf5761fcaeb644b"
+        },
+        {
+          "line": 46,
+          "expression": "expect(suggestions[0]).toMatchObject({\n\t\t\tcollection: \"post\",\n\t\t\tslug: \"designing-things\",\n\t\t\ttitle: \"Designing things\",\n\t\t})",
+          "sha256": "7bfbf16c4ae0107099787bb5a2d94b3126d61ae2ef20f0ff53ad749add013c61"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/suggest.test.ts",
+      "line": 53,
+      "title": "does not return draft content",
+      "sha256": "1894ae68fb160dc7e58b0fd7b87394b90272f9a506ecad1aed00726a420d651b",
+      "expectations": [
+        {
+          "line": 66,
+          "expression": "expect(suggestions).toHaveLength(1)",
+          "sha256": "338f4fdbd64fd32622214ceeeac1200fded65c651cc1f0182cf5761fcaeb644b"
+        },
+        {
+          "line": 67,
+          "expression": "expect(suggestions[0]?.title).toBe(\"Designing things\")",
+          "sha256": "346ca8a890f4b3fa3c162f69f35e22e71ebcd926ac64226e0f3d3d83429542a9"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/suggest.test.ts",
+      "line": 70,
+      "title": "returns empty array for a non-matching query",
+      "sha256": "ea7c5fea5790eae7e403b10d62a68c80eae7effc24117479c0071d206e6d4713",
+      "expectations": [
+        {
+          "line": 75,
+          "expression": "expect(suggestions).toEqual([])",
+          "sha256": "73205348b0f1c35d067641a1b0486ed8336a2d2276242423de0e0473685ccd4f"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/suggest.test.ts",
+      "line": 78,
+      "title": "searches using the configured locale casing",
+      "sha256": "c7e608c6fe8e4d395393d3f52b63febf0ed3aa2f504bef752e43a9fd28069d44",
+      "expectations": [
+        {
+          "line": 94,
+          "expression": "expect(results.items.map((item) => item.slug)).toEqual([\"taiwan-design\"])",
+          "sha256": "90ea96eaef4372c91d4aeb058a02aa3c1023e21d1010372f90982db505f7ad43"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/suggest.test.ts",
+      "line": 97,
+      "title": "suggests using the configured locale casing",
+      "sha256": "4ed93b6827a44f71d279d435d836f502d393a3cb6994bd25dfe68a3d57fbcc95",
+      "expectations": [
+        {
+          "line": 113,
+          "expression": "expect(suggestions.map((suggestion) => suggestion.slug)).toEqual([\"taiwan-design\"])",
+          "sha256": "491da34d5debd21e25a7a50a3cc971c5e24f9e4aab0de28e89fd71c1b4d0de3f"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/title-field-search.test.ts",
+      "line": 57,
+      "title": "returns the titleField value as the result title, not the title column",
+      "sha256": "5b57f3c6e261334cdcf8dcf6d2b91812d559edf6d986ddb2354a9f71797adae0",
+      "expectations": [
+        {
+          "line": 60,
+          "expression": "expect(hit?.title).toBe(\"Amy Morse\")",
+          "sha256": "afbd10fb4355c233a622daf3764f7c2cee237a024b559588704212f3f6ddf01f"
+        },
+        {
+          "line": 61,
+          "expression": "expect(hit?.title).not.toBe(\"Commercial Lines Agent\")",
+          "sha256": "6523c9c0628391f2efb1ad7839e342c4a9b2e553d94883681b9470b2ef3c0ea6"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/title-less-collection.test.ts",
+      "line": 77,
+      "title": "searches across all collections when one lacks a title field",
+      "sha256": "00b59026465fb6ee7e31ce0c0efedf9aac373c35d58f7c406a44c4f8dccf15be",
+      "expectations": [
+        {
+          "line": 81,
+          "expression": "expect(collections).toContain(\"post\")",
+          "sha256": "bcf21bf97df83e0040030253a065d2e562904df363a3f5db8acc42cbea88d35d"
+        },
+        {
+          "line": 82,
+          "expression": "expect(collections).toContain(\"note\")",
+          "sha256": "664938d355ccb66be9048d66af29099e258a9638b460ae85a54d6c7eae48e110"
+        },
+        {
+          "line": 87,
+          "expression": "expect(note?.title).toBeUndefined()",
+          "sha256": "488d3d267146cd26e9b8a2c725d5af6f81c31513fb833875f71848bf8934fd52"
+        },
+        {
+          "line": 88,
+          "expression": "expect(note?.slug).toBe(\"n1\")",
+          "sha256": "2a0ebf443b09c9c03490712f05be4f6216b4f4b6d703418f4d4bfa5f9f43e03b"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/title-less-collection.test.ts",
+      "line": 91,
+      "title": "returns suggestions across all collections, skipping ones without a title",
+      "sha256": "ee1185068267ae02afc342d19bf0331a505167e2743011d08f6669c4ffde3243",
+      "expectations": [
+        {
+          "line": 95,
+          "expression": "expect(suggestions.some((s) => s.collection === \"post\")).toBe(true)",
+          "sha256": "8d3cd0f5c032ba11b88b97a8bfdb4f24118aa68023a5e69fcb3b9d3ac7e6dea5"
+        },
+        {
+          "line": 98,
+          "expression": "expect(suggestions.every((s) => s.collection !== \"note\")).toBe(true)",
+          "sha256": "faab13cdda0de5a73eb5a84e8e40448c4cfde4092eccfa9fa81d37de760d6ad1"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/title-less-collection.test.ts",
+      "line": 101,
+      "title": "bulk-resolves title-column membership for a mixed set of collections in one query",
+      "sha256": "47cee3e94dc557197b33c89024124f1b0cbd7e0d325acf961caeea60c5b0c24b",
+      "expectations": [
+        {
+          "line": 105,
+          "expression": "expect(withTitle.has(\"post\")).toBe(true)",
+          "sha256": "348f227e864e472d0bc918af7c04252b61a3074e5889ef0b8841fd2f2277af22"
+        },
+        {
+          "line": 106,
+          "expression": "expect(withTitle.has(\"note\")).toBe(false)",
+          "sha256": "f5db4a5919396fc27d7b30fcc41f1be9fb927250d26a2baea4025ad1f9daee8d"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/title-scope.test.ts",
+      "line": 62,
+      "title": "default scope matches body text",
+      "sha256": "68ae4eeb9027424eee28a2bd51de3bfca0ff38ed6db70a233c5509273850ae08",
+      "expectations": [
+        {
+          "line": 65,
+          "expression": "expect(slugs).toEqual([\"contact\", \"team\"])",
+          "sha256": "602f81b779a6857166f9991e83df522056715e44ca2f0062f6accbc0f699cd5a"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/title-scope.test.ts",
+      "line": 68,
+      "title": "title scope drops body-only matches",
+      "sha256": "e0c564c0ffc14634d7c989bd54b0c17941fae39dc9acdd3e9c10e613ebcb3758",
+      "expectations": [
+        {
+          "line": 70,
+          "expression": "expect(res.items.map((i) => i.slug)).toEqual([\"team\"])",
+          "sha256": "5223e670ecb364dca3f4c65b51ab7205ef2181fda46e13186fd3921c203d269c"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/title-scope.test.ts",
+      "line": 73,
+      "title": "title scope contains FTS5 operator queries inside the column filter",
+      "sha256": "09109a755c4bc8f422400d959977f877cd20bdb58552223975deb342c3c34278",
+      "expectations": [
+        {
+          "line": 75,
+          "expression": "expect(res.items.map((i) => i.slug)).not.toContain(\"contact\")",
+          "sha256": "206a890de742f82de4d0b74cbaf8080fc9c01038c45e8ff930f55d3c27190db1"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/title-scope.test.ts",
+      "line": 78,
+      "title": "title scope applies to single-collection search",
+      "sha256": "8422904a073d0467c6ff91eddaeda331363ed1c2d8194103ff2596ebd1bf1747",
+      "expectations": [
+        {
+          "line": 80,
+          "expression": "expect(res.items.map((i) => i.slug)).toEqual([\"team\"])",
+          "sha256": "5223e670ecb364dca3f4c65b51ab7205ef2181fda46e13186fd3921c203d269c"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/title-scope.test.ts",
+      "line": 83,
+      "title": "title scope uses the configured titleField",
+      "sha256": "eea726f1185c242eacdcce8e50c26416fc4d08dce69b56eaf73278473846d921",
+      "expectations": [
+        {
+          "line": 115,
+          "expression": "expect(byName.items.map((i) => i.slug)).toEqual([\"amy\"])",
+          "sha256": "7143dc5313998bb72ad926804686dda197bfc454df9e9bd7165a87dfe0f70cac"
+        },
+        {
+          "line": 118,
+          "expression": "expect(byBio.items).toEqual([])",
+          "sha256": "a191993da44a72ca7876933c2c94c254c4c0f290df7296cd45b046b07fe4d439"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/title-scope.test.ts",
+      "line": 121,
+      "title": "title scope returns nothing when the title field is not indexed",
+      "sha256": "bd3933dc745905e4545a104c9fe4792a4a5af97edd7070bbcefc187bffb00452",
+      "expectations": [
+        {
+          "line": 146,
+          "expression": "expect(res.items).toEqual([])",
+          "sha256": "e8662880463f6dd80c16f4e5fa74e61ca8428ea95db40f65a6dd4cd5f9bfc8e2"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/tokenizer.test.ts",
+      "line": 68,
+      "title": "uses Porter stemming by default when tokenize is omitted",
+      "sha256": "c8a94ac2ac7afe797a85c980bb0046adbc5b771f4c0b13e04f0da4c4f18a7246",
+      "expectations": [
+        {
+          "line": 72,
+          "expression": "expect(await ftsManager.getSearchConfig(\"articles\")).toEqual({\n\t\t\tenabled: true,\n\t\t})",
+          "sha256": "6d2dfe0a4e5f8880bf8f0d60374a7f467a3ef00a8b070137b66e7555e4617d4a"
+        },
+        {
+          "line": 75,
+          "expression": "expect(await search(\"relational\")).toEqual([\"language\"])",
+          "sha256": "de67bc204f11890b438e05195906b15410cb068e2d154762bc7c3207b7ec6bf3"
+        },
+        {
+          "line": 76,
+          "expression": "expect(await getFtsDefinition()).toContain(\"tokenize='porter unicode61'\")",
+          "sha256": "46647303d531cfaed49e933d62d3dcd5d2ba34e97e25342025d2d4c5965a061a"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/tokenizer.test.ts",
+      "line": 79,
+      "title": "re-enables an existing collection with trigram and matches a mid-sentence Japanese term",
+      "sha256": "788e85edc08d511d6a2ef3cf881635ffbb90faba0c7d8e4f85a1963eadabdc63",
+      "expectations": [
+        {
+          "line": 83,
+          "expression": "expect(await search(\"\u6771\u4eac\u90fd\")).toEqual([])",
+          "sha256": "4d5292996dc5748b08efb679376ce97321bfc677031097f534803fcf6df8c9c4"
+        },
+        {
+          "line": 87,
+          "expression": "expect(await ftsManager.getSearchConfig(\"articles\")).toEqual({\n\t\t\tenabled: true,\n\t\t\ttokenize: \"trigram\",\n\t\t})",
+          "sha256": "4ad6a60dabb7c2558bc2eeb29d4186ca82354367f47a8c365edbe18fbce14786"
+        },
+        {
+          "line": 91,
+          "expression": "expect(await search(\"\u6771\u4eac\u90fd\")).toEqual([\"tokyo\"])",
+          "sha256": "b7ef96cfd078062d970d77ef418c3dcd81319a149d04b2eed08cff1a2534b96f"
+        },
+        {
+          "line": 92,
+          "expression": "expect(await search(\"\u6771\u4eac\")).toEqual([])",
+          "sha256": "371752cac8b5275289f12b5a50f594fd7ee231a194a2c059405779d8b387dd60"
+        },
+        {
+          "line": 93,
+          "expression": "expect(await getFtsDefinition()).toContain(\"tokenize='trigram'\")",
+          "sha256": "48cfb5a31179ff4d20220b2c405c30fb016c940ada8fd041d66fb5efbba111ec"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/tokenizer.test.ts",
+      "line": 96,
+      "title": "preserves existing weights when changing only the tokenizer",
+      "sha256": "e717246b9447dc80a99af032f9548c0516b3bb4b6541783767562504e1b2feca",
+      "expectations": [
+        {
+          "line": 101,
+          "expression": "expect(await ftsManager.getSearchConfig(\"articles\")).toEqual({\n\t\t\tenabled: true,\n\t\t\tweights: { title: 10 },\n\t\t\ttokenize: \"trigram\",\n\t\t})",
+          "sha256": "f73d58feaeab673349b7f88fc6111befb763519394406e10930eee6a57bd2f9e"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/tokenizer.test.ts",
+      "line": 108,
+      "title": "preserves trigram through disable, re-enable, schema rebuild, and missing-index repair",
+      "sha256": "69a1d39f0213787ce47a712d140df0907704df441e4c936540b2d3031d39f458",
+      "expectations": [
+        {
+          "line": 113,
+          "expression": "expect(await ftsManager.getSearchConfig(\"articles\")).toEqual({\n\t\t\tenabled: false,\n\t\t\ttokenize: \"trigram\",\n\t\t})",
+          "sha256": "c2343b72726ad9e22a32611274ee70d3609e2a34f77c1ede3ab18dcda5351e22"
+        },
+        {
+          "line": 119,
+          "expression": "expect(await search(\"\u6771\u4eac\u90fd\")).toEqual([\"tokyo\"])",
+          "sha256": "b7ef96cfd078062d970d77ef418c3dcd81319a149d04b2eed08cff1a2534b96f"
+        },
+        {
+          "line": 127,
+          "expression": "expect(await getFtsDefinition()).toContain(\"tokenize='trigram'\")",
+          "sha256": "48cfb5a31179ff4d20220b2c405c30fb016c940ada8fd041d66fb5efbba111ec"
+        },
+        {
+          "line": 128,
+          "expression": "expect(await search(\"\u6771\u4eac\u90fd\")).toEqual([\"tokyo\"])",
+          "sha256": "b7ef96cfd078062d970d77ef418c3dcd81319a149d04b2eed08cff1a2534b96f"
+        },
+        {
+          "line": 131,
+          "expression": "expect(ftsManager.verifyAndRepairIndex(\"articles\")).resolves.toBe(true)",
+          "sha256": "3b475c555d71f65268649a8afa456a632d0514666740ce7f663d365dc6fae0d0"
+        },
+        {
+          "line": 132,
+          "expression": "expect(await getFtsDefinition()).toContain(\"tokenize='trigram'\")",
+          "sha256": "48cfb5a31179ff4d20220b2c405c30fb016c940ada8fd041d66fb5efbba111ec"
+        },
+        {
+          "line": 133,
+          "expression": "expect(await search(\"\u6771\u4eac\u90fd\")).toEqual([\"tokyo\"])",
+          "sha256": "b7ef96cfd078062d970d77ef418c3dcd81319a149d04b2eed08cff1a2534b96f"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/search/tokenizer.test.ts",
+      "line": 136,
+      "title": "rejects unsupported runtime tokenizer values without replacing config or the index",
+      "sha256": "b449e68fa856160b78c1349f43c183b5f70721a528442289b783c6f7180fcf31",
+      "expectations": [
+        {
+          "line": 142,
+          "expression": "expect(\n\t\t\tftsManager.createFtsTable(\"articles\", [\"title\"], undefined, invalidTokenizer),\n\t\t).rejects.toThrow(\"Unsupported FTS5 tokenizer\")",
+          "sha256": "34f4247bc5718e10c10267508f474499f092432df172e25863355377b4e0cfce"
+        },
+        {
+          "line": 145,
+          "expression": "expect(await getFtsDefinition()).toBe(originalDefinition)",
+          "sha256": "022e8143831fb85f532bdb4888fbf816259646802f9d434e67f2bfc9bbb3b380"
+        },
+        {
+          "line": 147,
+          "expression": "expect(\n\t\t\tftsManager.rebuildIndex(\"articles\", [\"title\"], undefined, invalidTokenizer),\n\t\t).rejects.toThrow(\"Unsupported FTS5 tokenizer\")",
+          "sha256": "aad15e17c3c9403eaaabf4cc3a095d3c129999b25964fab46b6d75da912ff5d2"
+        },
+        {
+          "line": 150,
+          "expression": "expect(await getFtsDefinition()).toBe(originalDefinition)",
+          "sha256": "022e8143831fb85f532bdb4888fbf816259646802f9d434e67f2bfc9bbb3b380"
+        },
+        {
+          "line": 151,
+          "expression": "expect(await search(\"\u6771\u4eac\u90fd\")).toEqual([\"tokyo\"])",
+          "sha256": "b7ef96cfd078062d970d77ef418c3dcd81319a149d04b2eed08cff1a2534b96f"
+        },
+        {
+          "line": 153,
+          "expression": "expect(\n\t\t\tftsManager.setSearchConfig(\"articles\", {\n\t\t\t\tenabled: true,\n\t\t\t\ttokenize: invalidTokenizer,\n\t\t\t}),\n\t\t).rejects.toThrow(\"Unsupported FTS5 tokenizer\")",
+          "sha256": "bea3cfc8d13a4ce793f87648ff45cbcd662eab5f70d191886f9f305278afb6d9"
+        },
+        {
+          "line": 159,
+          "expression": "expect(await ftsManager.getSearchConfig(\"articles\")).toEqual({\n\t\t\tenabled: true,\n\t\t\ttokenize: \"trigram\",\n\t\t})",
+          "sha256": "4ad6a60dabb7c2558bc2eeb29d4186ca82354367f47a8c365edbe18fbce14786"
+        },
+        {
+          "line": 174,
+          "expression": "expect(await ftsManager.getSearchConfig(\"articles\")).toBeNull()",
+          "sha256": "1ca8a4167875f53fb21780a18be4e501b21fa7f26cbc8fb3aa11d4d6e105d5b5"
+        },
+        {
+          "line": 175,
+          "expression": "expect(await getFtsDefinition()).toBe(originalDefinition)",
+          "sha256": "022e8143831fb85f532bdb4888fbf816259646802f9d434e67f2bfc9bbb3b380"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search.test.ts",
+      "line": 64,
+      "title": "finds an entry that lives far past the first page",
+      "sha256": "8dee95ba49964294e760beb81f83fb60dd617e81678a19b1d58d07c353814080",
+      "expectations": [
+        {
+          "line": 66,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search.test.ts",
+      "line": 69,
+      "title": "matches case-insensitively",
+      "sha256": "472247fa4e849af18afeb79c97330e620ab9299c8f829a3efe54f96c6b7be524",
+      "expectations": [
+        {
+          "line": 71,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        },
+        {
+          "line": 74,
+          "expression": "expect(titlesOf(upper)).toContain(\"zzz Needle Headline\")",
+          "sha256": "8ef555418057aa408127ebbed8367bb1fbcbd119bd0d5d383b2d5c1aa149a11c"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search.test.ts",
+      "line": 77,
+      "title": "searches the slug as well as the title",
+      "sha256": "e0b5c038382001870685513c4e91b68e327e6b52599823924a46213f7f971169",
+      "expectations": [
+        {
+          "line": 79,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search.test.ts",
+      "line": 82,
+      "title": "searches custom fields marked searchable",
+      "sha256": "acc89578943f78b6d97525f39dfcfd7aaab79bcc2a4230e9ad7b4f159b396d62",
+      "expectations": [
+        {
+          "line": 84,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search.test.ts",
+      "line": 87,
+      "title": "treats LIKE wildcards in the query literally",
+      "sha256": "cafba49ada9f82b680ff60f5514fc3f45dee13f057b463502fb940b9e2b02783",
+      "expectations": [
+        {
+          "line": 92,
+          "expression": "expect(titles).toContain(\"50% off sale\")",
+          "sha256": "1d87c145d1842376180c6d2e0c318b6ccace8cf74bee4fbd2209d9ae07e33c01"
+        },
+        {
+          "line": 93,
+          "expression": "expect(titles).not.toContain(\"Ordinary Post 0\")",
+          "sha256": "37f8fac830b19bbf21bb00d65ee785d86620feb7b981646cf2a59dd5afa3a3c7"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search.test.ts",
+      "line": 96,
+      "title": "returns the full unfiltered list when no query is given",
+      "sha256": "cae793745cba82b90b2ae74ff5afae22c5009967b00f2cb27c5f53e2f37e84c0",
+      "expectations": [
+        {
+          "line": 100,
+          "expression": "expect(result.data.items).toHaveLength(20)",
+          "sha256": "16dc6eb3cf05ef4e436da733069a094f90dff1e74deda5f2e24d912fcea39743"
+        },
+        {
+          "line": 101,
+          "expression": "expect(result.data.total).toBe(62)",
+          "sha256": "da0f10ffc862296da781a4a92eeead770ce00d274113cf7db51377cb42bd1d74"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 76,
+      "title": "finds an entry by title token prefix",
+      "sha256": "7f46d93831b7e2e57e965d3adc2ef2f882865a9f0b63ca12c6755c8401e22a2f",
+      "expectations": [
+        {
+          "line": 78,
+          "expression": "expect(titlesOf(result)).toEqual([\"zzz Needle Headline\"])",
+          "sha256": "17951071613f862da3204a65effc29c8dcc2a9658f45aa6c7333b7331e4cbc0e"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 81,
+      "title": "matches case-insensitively",
+      "sha256": "5af92a0b13671a69688b59220b88eb4d2bc0dd58c83958fa793bafd209500829",
+      "expectations": [
+        {
+          "line": 83,
+          "expression": "expect(titlesOf(lower)).toContain(\"zzz Needle Headline\")",
+          "sha256": "4493c21f9dcda126f7efab7afb6e1dfddd65b7b575882031b0aa976c4547b0cc"
+        },
+        {
+          "line": 86,
+          "expression": "expect(titlesOf(upper)).toContain(\"zzz Needle Headline\")",
+          "sha256": "8ef555418057aa408127ebbed8367bb1fbcbd119bd0d5d383b2d5c1aa149a11c"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 89,
+      "title": "matches multi-word prefixes across the title",
+      "sha256": "8626329740eb1a3603e4e88464396775d44e5af995fd0b95ab1854dc77c929a3",
+      "expectations": [
+        {
+          "line": 91,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 94,
+      "title": "finds an entry by slug prefix (slug is not in the FTS index)",
+      "sha256": "26d201e6c97b004b7e3af2e5f7aea883a4a2d66b42c862c4b2acf8850d5b0388",
+      "expectations": [
+        {
+          "line": 96,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 99,
+      "title": "finds an entry by a searchable custom field",
+      "sha256": "b3a3ecf0e1a0c1965e32568a5037e44657ee30eecc22b86fa9d78f08d1eab311",
+      "expectations": [
+        {
+          "line": 101,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 104,
+      "title": "returns a total that matches the filtered set, not the whole table",
+      "sha256": "e651bba9c30278c51176ec48c48af4cd76006a8bbf5cf75d8f87d5d0cd348dcf",
+      "expectations": [
+        {
+          "line": 107,
+          "expression": "expect(result.data.total).toBe(1)",
+          "sha256": "6b155338b2fff029951fa3814d7620c39d5daa89d277da6da9e10109522c8b26"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 110,
+      "title": "treats double quotes in the query literally instead of erroring",
+      "sha256": "fd6e5fbf596025678f506e648616a2c6a3951ea0964ff90af1fb926cda95749d",
+      "expectations": [
+        {
+          "line": 113,
+          "expression": "expect(titlesOf(result)).toContain('He said \"quoted\" loudly')",
+          "sha256": "7e892c2cbf3eadff9e346a907da33f018f4e84ef457c49e142f1a2acf53ee1f5"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 116,
+      "title": "treats FTS operators as plain words",
+      "sha256": "e22b0257a432948fcdf07dd7ded950d0ed770da7f85ea874e94a511c9e3452d6",
+      "expectations": [
+        {
+          "line": 120,
+          "expression": "expect(titlesOf(result)).not.toContain(\"Ordinary Post 0\")",
+          "sha256": "f0cc0ff054f44b79b45827b3dd6407fc45ad17cf0c34754b96a7da6f7c801b90"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 123,
+      "title": "excludes soft-deleted rows (FTS triggers keep the index in sync)",
+      "sha256": "79c61ee60e5f1e9bc5f6e95f255ee0e93c406f30046dc53840f2fb820c9d87d4",
+      "expectations": [
+        {
+          "line": 137,
+          "expression": "expect(after.data.items).toHaveLength(0)",
+          "sha256": "1c718ba3ed0f0c244aa008d08a810a7441f8ff576917dda5e0f92704aa9fdbc9"
+        },
+        {
+          "line": 138,
+          "expression": "expect(after.data.total).toBe(0)",
+          "sha256": "b88bc2ca899b5dfe18d1b6fb6b4c6b125575f1e3bc2e188e9c6c6c549b92d68b"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 172,
+      "title": "still finds title matches via the LIKE fallback",
+      "sha256": "ea9ebfe743e652a6fa9ffdc01061104ebb25ac42c77843f8f6f821fec301391d",
+      "expectations": [
+        {
+          "line": 176,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-fts.test.ts",
+      "line": 179,
+      "title": "searches custom fields through the LIKE fallback",
+      "sha256": "fa0e608ed11599fbf7a66662a59916079e6b65449ba4a5752b83bdfac4fd48a0",
+      "expectations": [
+        {
+          "line": 181,
+          "expression": "expect(titlesOf(result)).toContain(\"zzz Needle Headline\")",
+          "sha256": "6426a3fba83f939fd4ca216e7a3aa6663bb2e12149c658e56a43b6061a1fe3dd"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-title-field.test.ts",
+      "line": 62,
+      "title": "finds an entry by its titleField value, past the first page",
+      "sha256": "70fb3e891ea1f052e17b67b6925628b12c4efa598b7eee26d6631a10b3029487",
+      "expectations": [
+        {
+          "line": 64,
+          "expression": "expect(namesOf(result)).toContain(\"Jane Doe\")",
+          "sha256": "d07c16dc1f68d5c74576b102f4a6c09dec1a71d8fbad7f812dd25926d6236350"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/content/content-list-search-title-field.test.ts",
+      "line": 67,
+      "title": "matches the titleField case-insensitively",
+      "sha256": "6f6241c4a2d531cbb1bf9fb5f5acd4d96b7c6194235d112a2b04920661356b8b",
+      "expectations": [
+        {
+          "line": 69,
+          "expression": "expect(namesOf(result)).toContain(\"Jane Doe\")",
+          "sha256": "d07c16dc1f68d5c74576b102f4a6c09dec1a71d8fbad7f812dd25926d6236350"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/search.test.ts",
+      "line": 72,
+      "title": "returns empty results when no collections are searchable",
+      "sha256": "82417bdd110408d48d777c9144d81c3a713d7f6ff9fd72462eb445047af9e011",
+      "expectations": [
+        {
+          "line": 81,
+          "expression": "expect(result.isError, extractText(result)).toBeFalsy()",
+          "sha256": "f9388222215b9522de1731c11b438f67b189cfd01f5c562e1547f0a10d90dcb1"
+        },
+        {
+          "line": 83,
+          "expression": "expect(data.items).toEqual([])",
+          "sha256": "c705edf4657ef2d8a2f52dd7d5636d7ad09c40751eae81d1ddb776ac3d933c33"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/search.test.ts",
+      "line": 86,
+      "title": "returns empty results for a query with no matches",
+      "sha256": "55cd200c6520d6027a211fc0807ab9567f6ee918e5fe4a6f6582174decdabffb",
+      "expectations": [
+        {
+          "line": 107,
+          "expression": "expect(result.isError, extractText(result)).toBeFalsy()",
+          "sha256": "f9388222215b9522de1731c11b438f67b189cfd01f5c562e1547f0a10d90dcb1"
+        },
+        {
+          "line": 109,
+          "expression": "expect(data.items).toEqual([])",
+          "sha256": "c705edf4657ef2d8a2f52dd7d5636d7ad09c40751eae81d1ddb776ac3d933c33"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/search.test.ts",
+      "line": 112,
+      "title": "returns matching items for a query that hits",
+      "sha256": "32bd9aaaf961eb542fde4f598807c3156a97c237a395fa1a74bbafa03818a538",
+      "expectations": [
+        {
+          "line": 133,
+          "expression": "expect(result.isError, extractText(result)).toBeFalsy()",
+          "sha256": "f9388222215b9522de1731c11b438f67b189cfd01f5c562e1547f0a10d90dcb1"
+        },
+        {
+          "line": 135,
+          "expression": "expect(data.items.length).toBeGreaterThan(0)",
+          "sha256": "2f6115be6b3ce42922d0eb5868c3162b4827404995d2e76dcaf81f2be5026cd1"
+        },
+        {
+          "line": 136,
+          "expression": "expect(data.items.find((i) => i.id === id)).toBeTruthy()",
+          "sha256": "9e00f9b6186e50ee5cbdd7f89e1d6d0303e8ea5f5e1f912b4d2002da2cdcd619"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/search.test.ts",
+      "line": 139,
+      "title": "scopes search by collections argument",
+      "sha256": "8991d9e026ffaa5a47f882cdb0ce4df992c46734372029882ed46158ae91ffdd",
+      "expectations": [
+        {
+          "line": 200,
+          "expression": "expect(data.items.length).toBeGreaterThan(0)",
+          "sha256": "2f6115be6b3ce42922d0eb5868c3162b4827404995d2e76dcaf81f2be5026cd1"
+        },
+        {
+          "line": 203,
+          "expression": "expect(c).toBe(\"post\")",
+          "sha256": "5d9b4a7fb9764f721a7abd6fa66bd563dcb8ad653b7841e3882f9ea48a63dcfa"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/search.test.ts",
+      "line": 207,
+      "title": "handles empty query string gracefully",
+      "sha256": "62310ed3faffba6ad38a0eb522b3b6a7c5246e7d491296e27b2d13063288ec51",
+      "expectations": [
+        {
+          "line": 235,
+          "expression": "expect(result.isError, extractText(result)).toBeFalsy()",
+          "sha256": "f9388222215b9522de1731c11b438f67b189cfd01f5c562e1547f0a10d90dcb1"
+        },
+        {
+          "line": 237,
+          "expression": "expect(data.items).toEqual([])",
+          "sha256": "c705edf4657ef2d8a2f52dd7d5636d7ad09c40751eae81d1ddb776ac3d933c33"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/search.test.ts",
+      "line": 240,
+      "title": "handles special characters in query without leaking FTS5 syntax errors",
+      "sha256": "e6e61e2acda933df57def80a55a5af203d9776579b333a71553bbea78722d874",
+      "expectations": [
+        {
+          "line": 269,
+          "expression": "expect(result.isError, extractText(result)).toBeFalsy()",
+          "sha256": "f9388222215b9522de1731c11b438f67b189cfd01f5c562e1547f0a10d90dcb1"
+        },
+        {
+          "line": 271,
+          "expression": "expect(data.items).toEqual([])",
+          "sha256": "c705edf4657ef2d8a2f52dd7d5636d7ad09c40751eae81d1ddb776ac3d933c33"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/search.test.ts",
+      "line": 274,
+      "title": "respects the limit parameter",
+      "sha256": "ed4da797d93eaf13045579eb688e7709e38170cda0154af1f82851fc416b50db",
+      "expectations": [
+        {
+          "line": 302,
+          "expression": "expect(data.items.length).toBeLessThanOrEqual(3)",
+          "sha256": "dc8e230f6c886711b8b7846aebdf7ba42aec6a7fda50162422f06e4f75243dd7"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/search.test.ts",
+      "line": 305,
+      "title": "only returns published items (not drafts) regardless of caller role",
+      "sha256": "0bd6cc3c4efedd366031d1ca71520e103198dfb0ed4bf0e590a0768d560d7b62",
+      "expectations": [
+        {
+          "line": 331,
+          "expression": "expect(extractJson<{ items: unknown[] }>(draftQuery).items).toEqual([])",
+          "sha256": "1e6f2194c56d2ae293db32b93689d9fea85de22b6a6b0db371e8871ba4c147de"
+        },
+        {
+          "line": 337,
+          "expression": "expect(extractJson<{ items: unknown[] }>(pubQuery).items.length).toBeGreaterThan(0)",
+          "sha256": "fbc4cb042cff121ab952bc91a2dab04cb2e1a9239c05e58370f06a0d9a5141d2"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/search.test.ts",
+      "line": 340,
+      "title": "paginates results via the cursor argument",
+      "sha256": "a4f52d3fdb75c99031590cf8f3e3b89ef8a094b5a325a0a016a731d6d3076a98",
+      "expectations": [
+        {
+          "line": 367,
+          "expression": "expect(firstData.items).toHaveLength(2)",
+          "sha256": "2cb402d97c52e73e99768a0b358901cfd3eff2d4bdc3b49b314edc7c6d8e0d03"
+        },
+        {
+          "line": 368,
+          "expression": "expect(firstData.nextCursor).toBeTruthy()",
+          "sha256": "593b1e6c5cd69676fcd49b0677cbd5767c01b14cc43896a4b2d930e97b60afb1"
+        },
+        {
+          "line": 375,
+          "expression": "expect(secondData.items).toHaveLength(2)",
+          "sha256": "56d4ee592cb8515ec2c83c108e9770dc3fdcfb5018a31e862018283a71837d2b"
+        },
+        {
+          "line": 378,
+          "expression": "expect(firstIds.has(item.id)).toBe(false)",
+          "sha256": "fc60d3eb53a82f64c87e7c38c5ac80134a3d4269c0cf8b3213e55a851aee2231"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/integration/mcp/search.test.ts",
+      "line": 382,
+      "title": "any logged-in user (SUBSCRIBER) can search",
+      "sha256": "1c9992c557a7a82946c1f313d24749813cd53852a980da37fe7e786ec2990e21",
+      "expectations": [
+        {
+          "line": 389,
+          "expression": "expect(result.isError, extractText(result)).toBeFalsy()",
+          "sha256": "f9388222215b9522de1731c11b438f67b189cfd01f5c562e1547f0a10d90dcb1"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/middleware/search-soft-auth.test.ts",
+      "line": 72,
+      "title": "resolves the session user so the route can filter drafts by permission",
+      "sha256": "fdf10e4e600deaa7cf1615fb137a13aaa776e243b1101b6e3569d6b878c02aa1",
+      "expectations": [
+        {
+          "line": 78,
+          "expression": "expect(next).toHaveBeenCalledOnce()",
+          "sha256": "dfde97644aababc1e9212e082e57693ef1722c24e337f1e327342cdd4c93ce71"
+        },
+        {
+          "line": 79,
+          "expression": "expect(response.status).toBe(200)",
+          "sha256": "351a1b7a91c22873e8744d7351f462bbaf3ab00dc3b41792efc36d57ae111d90"
+        },
+        {
+          "line": 80,
+          "expression": "expect(locals.user).toEqual(admin)",
+          "sha256": "4a17a4e42c8d774dd2ac8a7cf3f3ac455f22e41b54248aa7e8fdc0ce275e3a20"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/middleware/search-soft-auth.test.ts",
+      "line": 83,
+      "title": "passes anonymous requests through without a user lookup",
+      "sha256": "4f897c77f41feba1c6cc4ca59fa9d3f6c7ca8629a1e311b62b949ed20ab2167e",
+      "expectations": [
+        {
+          "line": 86,
+          "expression": "expect(next).toHaveBeenCalledOnce()",
+          "sha256": "dfde97644aababc1e9212e082e57693ef1722c24e337f1e327342cdd4c93ce71"
+        },
+        {
+          "line": 87,
+          "expression": "expect(response.status).toBe(200)",
+          "sha256": "351a1b7a91c22873e8744d7351f462bbaf3ab00dc3b41792efc36d57ae111d90"
+        },
+        {
+          "line": 88,
+          "expression": "expect(locals.user).toBeUndefined()",
+          "sha256": "eb31f0b074b6c63279240ab267b841b724313c31cf32f4c4501d83047366bc21"
+        },
+        {
+          "line": 89,
+          "expression": "expect(getUserById).not.toHaveBeenCalled()",
+          "sha256": "cad378e653abe7dc0c72c3eb1425507f60c849dfb0b9c00e807d181d74388774"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/components/live-search-routing.test.ts",
+      "line": 6,
+      "title": "uses the default collection URL when no route template exists",
+      "sha256": "44063d496af0f4a4d3ea055afefd2cc36639b301c7a0750d09af6237a20a9d6d",
+      "expectations": [
+        {
+          "line": 7,
+          "expression": "expect(\n\t\t\tbuildLiveSearchResultUrl({\n\t\t\t\tcollection: \"posts\",\n\t\t\t\tid: \"post-1\",\n\t\t\t\tslug: \"hello-world\",\n\t\t\t}),\n\t\t).toBe(\"/posts/hello-world\")",
+          "sha256": "8f5ce0a173fd6c8ca69d35e1702c25596d9e940dd9b14e718fefadcca759769a"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/components/live-search-routing.test.ts",
+      "line": 16,
+      "title": "falls back to the id when a result has no slug",
+      "sha256": "9618f164820e0f4ba2fd42d09adb7e7c3b03961e79f4c8a86efc61173fb13c3d",
+      "expectations": [
+        {
+          "line": 17,
+          "expression": "expect(\n\t\t\tbuildLiveSearchResultUrl({\n\t\t\t\tcollection: \"products\",\n\t\t\t\tid: \"product-1\",\n\t\t\t\tslug: null,\n\t\t\t}),\n\t\t).toBe(\"/products/product-1\")",
+          "sha256": "4d833af7722a17c65a47f38c0a99082f8907a0aa5016c746687dc0800c77c6ab"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/components/live-search-routing.test.ts",
+      "line": 26,
+      "title": "applies collection route templates",
+      "sha256": "c468f28b14201106db7e444480a43b57d8ab1256dea460eb5ef9cf66fb4a56ba",
+      "expectations": [
+        {
+          "line": 27,
+          "expression": "expect(\n\t\t\tbuildLiveSearchResultUrl(\n\t\t\t\t{\n\t\t\t\t\tcollection: \"games\",\n\t\t\t\t\tid: \"game-1\",\n\t\t\t\t\tslug: \"mausritter\",\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tgames: \"/item/:slug\",\n\t\t\t\t},\n\t\t\t),\n\t\t).toBe(\"/item/mausritter\")",
+          "sha256": "eb2d1152420703e12f8106e7e0b53bf91e6406896750fd05732fcc0e91305c95"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/components/live-search-routing.test.ts",
+      "line": 41,
+      "title": "replaces all supported route template tokens",
+      "sha256": "e58b2025f976686be8a5809597a142dae179390fad7bc47f08b543e0da25e2a9",
+      "expectations": [
+        {
+          "line": 42,
+          "expression": "expect(\n\t\t\tbuildLiveSearchResultUrl(\n\t\t\t\t{\n\t\t\t\t\tcollection: \"games\",\n\t\t\t\t\tid: \"game-1\",\n\t\t\t\t\tslug: null,\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tgames: \"/:collection/:id/:slug/:path\",\n\t\t\t\t},\n\t\t\t),\n\t\t).toBe(\"/games/game-1/game-1/game-1\")",
+          "sha256": "2ee79af975037d74aa3a771bc9f93a64cb053ff6e38d452a6cf228d5fe3cbd30"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/components/live-search-routing.test.ts",
+      "line": 56,
+      "title": "treats dollar signs in route values as literal text",
+      "sha256": "4d3719531e83c69a616dad206651f13d4aec687923838ce21a2165fc555db507",
+      "expectations": [
+        {
+          "line": 57,
+          "expression": "expect(\n\t\t\tbuildLiveSearchResultUrl(\n\t\t\t\t{\n\t\t\t\t\tcollection: \"game$collection\",\n\t\t\t\t\tid: \"id$&$1\",\n\t\t\t\t\tslug: \"slug$$\",\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tgame$collection: \"/:collection/:id/:slug/:path\",\n\t\t\t\t},\n\t\t\t),\n\t\t).toBe(\"/game$collection/id$&$1/slug$$/slug$$\")",
+          "sha256": "6162aafedd2cbd2d02a00f782c178f91ca07a53d5ca75ebb1b300a670ff516f5"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/components/live-search-routing.test.ts",
+      "line": 71,
+      "title": "treats dollar signs in fallback slug values as literal text",
+      "sha256": "1531a14224b7af8b4e7fadd86f8279f4c46234ab43485c68b64f3c8410b342a2",
+      "expectations": [
+        {
+          "line": 72,
+          "expression": "expect(\n\t\t\tbuildLiveSearchResultUrl(\n\t\t\t\t{\n\t\t\t\t\tcollection: \"games\",\n\t\t\t\t\tid: \"id$&$1\",\n\t\t\t\t\tslug: null,\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tgames: \"/:slug/:path\",\n\t\t\t\t},\n\t\t\t),\n\t\t).toBe(\"/id$&$1/id$&$1\")",
+          "sha256": "041a3901c83bd376b040e18cd124eeb99466e5d1c75e8e55746c60ba322a8bea"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 28,
+      "title": "searches the public API with the configured scope and clamps the limit",
+      "sha256": "01bd53f48edc2bcf009f74088a46db01447439fdf02ecd682dea41cc6bf8f052",
+      "expectations": [
+        {
+          "line": 35,
+          "expression": "expect(url.origin + url.pathname).toBe(\"https://example.com/_emdash/api/search\")",
+          "sha256": "cbfc681910789b63d3ae767a4855cea0f726282bfa4cfac33a8a9fdff9f44393"
+        },
+        {
+          "line": 36,
+          "expression": "expect(Object.fromEntries(url.searchParams)).toEqual({\n\t\t\tq: \"cheese\",\n\t\t\tlimit: \"5\",\n\t\t\tcollections: \"posts,pages\",\n\t\t\tlocale: \"fr\",\n\t\t})",
+          "sha256": "17c88992fea104928a2bff8f8c5b7ad686d8befb338dc9ee845ee730b86cb554"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 44,
+      "title": "returns absolute URLs and plain-text excerpts",
+      "sha256": "4a6c37fdf3a476f376b0b7de2d0ce055ff05eddce67d6a0b4ba67c4ea5330203",
+      "expectations": [
+        {
+          "line": 59,
+          "expression": "expect(result.isError).toBeUndefined()",
+          "sha256": "08cd5aba83e69e321715e4048eb6f4fae1ef66ef0f7fb10808a134ee87e832bd"
+        },
+        {
+          "line": 60,
+          "expression": "expect(JSON.parse(result.content[0]!.text)).toEqual([\n\t\t\t{\n\t\t\t\ttitle: \"Brie\",\n\t\t\t\turl: \"https://example.com/blog/brie\",\n\t\t\t\tcollection: \"posts\",\n\t\t\t\texcerpt: \"Soft cheese & <b>bread</b>\",\n\t\t\t},\n\t\t\t{ title: \"about\", url: \"https://example.com/pages/about\", collection: \"pages\" },\n\t\t])",
+          "sha256": "4cf755bd3c4909c11f7619ed63b9cd17540adf207772f442e18682bd1d7cc71d"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 71,
+      "title": "reports an empty query or failed request as a tool error without throwing",
+      "sha256": "8ec019bac70bbf6c01fe4a2b28207610557269018ec3ea594756d85be901df0f",
+      "expectations": [
+        {
+          "line": 75,
+          "expression": "expect((await tool.execute({ query: \" \" })).isError).toBe(true)",
+          "sha256": "bf03e939fa5d436ade4af722fffd2fe2b2fb105afe5e1e3074d6c270a3912cd6"
+        },
+        {
+          "line": 76,
+          "expression": "expect(fetchImpl).not.toHaveBeenCalled()",
+          "sha256": "ef82ff18198944dcd198130db00b2b08fe314b2962b9664e33678c619a2ccd5c"
+        },
+        {
+          "line": 77,
+          "expression": "expect((await tool.execute({ query: \"cheese\" })).isError).toBe(true)",
+          "sha256": "d8e81e5c39ca03b593c1665a306b4bdd5fbbdda09d196e45b31640003a4dcf33"
+        },
+        {
+          "line": 82,
+          "expression": "expect((await offline.execute({ query: \"cheese\" })).isError).toBe(true)",
+          "sha256": "e9067b6b883f7c81d00200b94c47260a96a290e2accece56462930b833766751"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 85,
+      "title": "keeps the configured limit within what the search API accepts",
+      "sha256": "ada6e9f6af5645a3016eb57d394b589e5f7ea6d96a91c3c255e2b250bee1b29a",
+      "expectations": [
+        {
+          "line": 91,
+          "expression": "expect(requestedUrl(fetchImpl).searchParams.get(\"limit\")).toBe(\"100\")",
+          "sha256": "09c85d1c45e6b299c4aa29dc38aece992dee25be2e37c80230a57b1b243eb40d"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 94,
+      "title": "prefers document.modelContext over the deprecated navigator location",
+      "sha256": "8a7cb8f3e6f20e35917f442f70d05db35c07fbe6f7546fff447216d6e15dece6",
+      "expectations": [
+        {
+          "line": 98,
+          "expression": "expect(resolveModelContext({ modelContext: onDocument }, { modelContext: onNavigator })).toBe(\n\t\t\tonDocument,\n\t\t)",
+          "sha256": "433b8789dfd755bf3edacc708f12f67c84300bfb2391bee6442772015c2f5cba"
+        },
+        {
+          "line": 101,
+          "expression": "expect(resolveModelContext({}, { modelContext: onNavigator })).toBe(onNavigator)",
+          "sha256": "7aff2e60e74c2e637fd4437f90138aa22eb3bf0e68fb5a90f31299c88234aaa6"
+        },
+        {
+          "line": 102,
+          "expression": "expect(resolveModelContext({}, {})).toBeUndefined()",
+          "sha256": "f1ac15ea0bce25638bb3e61ec8c44db60ee1898cdf0cc6eada6c9f6a7a7474e2"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 105,
+      "title": "unregisters the tool when the signal aborts",
+      "sha256": "f21d4d8a00043a6bc8991e7208e0f494ab7998ff16ab4941efbc9b0f286b6057",
+      "expectations": [
+        {
+          "line": 115,
+          "expression": "expect(registerSiteSearchTool(undefined, config, \"https://example.com\")).toBe(false)",
+          "sha256": "427ff3a700d353e785698aa7e1d544e8ccef89263d8be205d363009ed8ae1bc2"
+        },
+        {
+          "line": 116,
+          "expression": "expect(\n\t\t\tregisterSiteSearchTool(modelContext, config, \"https://example.com\", controller.signal),\n\t\t).toBe(true)",
+          "sha256": "156776f124e8040aa31aa8b8c5936a88f830393377a4827afe90c5bc6a908984"
+        },
+        {
+          "line": 119,
+          "expression": "expect(tools.has(\"search_site\")).toBe(true)",
+          "sha256": "ac12842245176bf07059c13cb59d3b204edfabf9ca43323fe93415195f6e2ee4"
+        },
+        {
+          "line": 122,
+          "expression": "expect(tools.has(\"search_site\")).toBe(false)",
+          "sha256": "5d66606055dff091fe6f2307f10c128235af41366603bbabc23b2955fef73a86"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 125,
+      "title": "does not throw when the browser rejects the registration",
+      "sha256": "e591cc4dc98cb69ff21068914ff84aabf7c1ac1415eca8ee77bac1257e1697df",
+      "expectations": [
+        {
+          "line": 131,
+          "expression": "expect(registerSiteSearchTool({ registerTool }, config, \"https://example.com\")).toBe(false)",
+          "sha256": "0b0b93218694c6213d74951544b46354d96cf2261254c408f3e22166a6f95535"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 135,
+      "title": "reports a rejected registration instead of leaving the promise unhandled",
+      "sha256": "51d28fe12c6ecfcce349effed36b40268b4b4f8b410f30defaa4157e1d2ef82a",
+      "expectations": [
+        {
+          "line": 143,
+          "expression": "expect(warn).toHaveBeenCalled()",
+          "sha256": "ef620c1233ea6015ee8d854256f141695baf193befa10674852873036357f163"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/repro/live-search-locale.render.test.ts",
+      "line": 20,
+      "title": "sends no locale when the site has no i18n configuration",
+      "sha256": "1524d577b2d31646816bf8a73514f055530cb3a7aa7ceea36e9a72e10691aceb",
+      "expectations": [
+        {
+          "line": 23,
+          "expression": "expect((await renderConfig({})).locale).toBe(\"\")",
+          "sha256": "e9bed14467ec63b940d6ed71e2d410091ecc2663464068cce2a744507b7cc364"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/repro/live-search-locale.render.test.ts",
+      "line": 26,
+      "title": "forwards an explicit locale",
+      "sha256": "c42c23b3a3e2843ed8e7f6c5a7c60220c49035f0174df51b4a28e0075555e643",
+      "expectations": [
+        {
+          "line": 27,
+          "expression": "expect((await renderConfig({ locale: \"fr\" })).locale).toBe(\"fr\")",
+          "sha256": "73a13ec0de36b5fd8a01a5d0bd4e55c6d8e89e933e79bf28b134db7d2dc3c6bd"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "packages/core/tests/repro/live-search-locale.render.test.ts",
+      "line": 30,
+      "title": "sends no locale when passed null, so results span every locale",
+      "sha256": "f494a867cb0809ab4c8b0ee236396b23275442d9bfa98284ae163bdd7e118fb3",
+      "expectations": [
+        {
+          "line": 31,
+          "expression": "expect((await renderConfig({ locale: null })).locale).toBe(\"\")",
+          "sha256": "3cc297c90a6b05ec67d2991cb138572413c2594a5c669b9de780878815b4d550"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 103,
+      "title": "opens with Cmd+K keyboard shortcut",
+      "sha256": "ca799f5dba675811552aaa92fab651763b449857abe81c20f0409cd14450cd40",
+      "expectations": [
+        {
+          "line": 111,
+          "expression": "expect(input).toBeVisible({ timeout: 5000 })",
+          "sha256": "ac2cc9fedcec89c02bd25764c7f8492c26ef64a7abc0e54f9e42f2e1b9233822"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 114,
+      "title": "closes with Escape",
+      "sha256": "1587f617879a8cbaa1a0b7e4242b04cabe101471514a637a0999c702cd4c77fb",
+      "expectations": [
+        {
+          "line": 120,
+          "expression": "expect(input).toBeVisible({ timeout: 5000 })",
+          "sha256": "ac2cc9fedcec89c02bd25764c7f8492c26ef64a7abc0e54f9e42f2e1b9233822"
+        },
+        {
+          "line": 124,
+          "expression": "expect(input).not.toBeVisible({ timeout: 3000 })",
+          "sha256": "f5010800dc68dc6603e4dbc447a027dfda6739e4b987a49f900794812fc4698c"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 127,
+      "title": "shows navigation items by default",
+      "sha256": "50738e16d1e630336bb291d42621b8760143b5f4b91ea3d8de0e494329d9acb4",
+      "expectations": [
+        {
+          "line": 132,
+          "expression": "expect(input).toBeVisible({ timeout: 5000 })",
+          "sha256": "ac2cc9fedcec89c02bd25764c7f8492c26ef64a7abc0e54f9e42f2e1b9233822"
+        },
+        {
+          "line": 136,
+          "expression": "expect(dialog.getByText(\"Dashboard\")).toBeVisible({ timeout: 5000 })",
+          "sha256": "f5a07942991a20f1ad32ff80fd84a50fe6d6a7ac2a3005390ba1443291a22be9"
+        },
+        {
+          "line": 137,
+          "expression": "expect(dialog.getByText(\"Media\")).toBeVisible()",
+          "sha256": "af79abe761058b5c74f39861eb56a4117fcf157f2c84d9896d79df20eeeea7b7"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 140,
+      "title": "filters navigation items when typing",
+      "sha256": "6a45cd670d62673971a660c6e04fa9422655abf8b3fa94035983bdef9e3e0a87",
+      "expectations": [
+        {
+          "line": 145,
+          "expression": "expect(input).toBeVisible({ timeout: 5000 })",
+          "sha256": "ac2cc9fedcec89c02bd25764c7f8492c26ef64a7abc0e54f9e42f2e1b9233822"
+        },
+        {
+          "line": 151,
+          "expression": "expect(page.getByText(\"Settings\")).toBeVisible({ timeout: 5000 })",
+          "sha256": "ed0c12175ae00dca3b25c1d2fd840d811d7ca60118f1e064e7c48f30cd1a9566"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 154,
+      "title": "shows empty state for no matches",
+      "sha256": "cb46192a63a8fa6a485c7513bd0e07d959e04fdc03ed8a9b2a2e3c244f204a55",
+      "expectations": [
+        {
+          "line": 159,
+          "expression": "expect(input).toBeVisible({ timeout: 5000 })",
+          "sha256": "ac2cc9fedcec89c02bd25764c7f8492c26ef64a7abc0e54f9e42f2e1b9233822"
+        },
+        {
+          "line": 165,
+          "expression": "expect(page.getByText(\"No results found\")).toBeVisible({ timeout: 10000 })",
+          "sha256": "3ac9e97214baaa82aee7e5c7452ca8338bc6a1c1ff52790db610c49332cca24d"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 168,
+      "title": "navigates to a page when selecting a nav item",
+      "sha256": "c4630a2de43c547e577a9ffa49db115e08df7dcd60765c6f2fb66d6cad49f7f9",
+      "expectations": [
+        {
+          "line": 173,
+          "expression": "expect(input).toBeVisible({ timeout: 5000 })",
+          "sha256": "ac2cc9fedcec89c02bd25764c7f8492c26ef64a7abc0e54f9e42f2e1b9233822"
+        },
+        {
+          "line": 180,
+          "expression": "expect(mediaItem).toBeVisible({ timeout: 5000 })",
+          "sha256": "b3a5d2abc16d00dea896050b71eb530be27e41dc0d6938f0db3c615895abb1d8"
+        },
+        {
+          "line": 184,
+          "expression": "expect(page).toHaveURL(MEDIA_URL_PATTERN, { timeout: 10000 })",
+          "sha256": "cd265c6877b30468106646ce0adee8054cd7eaf9392b30083fb29720910342f5"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 189,
+      "title": "search endpoint is publicly accessible",
+      "sha256": "d6da333e2bea22f37b296f0b5b52157df87efeb2380f80602f7b5c76a2463bcb",
+      "expectations": [
+        {
+          "line": 194,
+          "expression": "expect(res.status).toBe(200)",
+          "sha256": "b818a86bdea17715dfe998c06e540c0dfd021bca5612ef108fd9e5960bbf7954"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 197,
+      "title": "search admin endpoints still require authentication",
+      "sha256": "4cbf5514a11c7899fd8f561825c517f880a873b2c01c8aaf04d14f3208b2861a",
+      "expectations": [
+        {
+          "line": 201,
+          "expression": "expect([401, 403]).toContain(stats.status)",
+          "sha256": "ea5441a7f2fc0e1571b140d04b34554afa5da80640e9ca645b09d45128aca824"
+        },
+        {
+          "line": 208,
+          "expression": "expect([401, 403]).toContain(enable.status)",
+          "sha256": "f1acbe2aec7ba439052707ea33f37d8a725b7da79d0435a91c9d4256a2bb197b"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 211,
+      "title": "search endpoint requires a query parameter",
+      "sha256": "2167ef07a5110e18f599808cb85ee7d60d3552ba88a3dc9c8f91e5ca13d977b3",
+      "expectations": [
+        {
+          "line": 214,
+          "expression": "expect(res.status).toBe(400)",
+          "sha256": "52546faabfc4d7438e62e8b4eabdece354789868c2d729ebd5a961504bf8cb91"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 217,
+      "title": "search returns results after enabling search",
+      "sha256": "ba50ae03983d17f7f97acf8b4d7caf6b64fb8e91c40ece5fd140ea75d343eb19",
+      "expectations": [
+        {
+          "line": 228,
+          "expression": "expect(res.status).toBe(200)",
+          "sha256": "b818a86bdea17715dfe998c06e540c0dfd021bca5612ef108fd9e5960bbf7954"
+        },
+        {
+          "line": 231,
+          "expression": "expect(body.data).toBeDefined()",
+          "sha256": "4d7efbd3db6265a36c8800210a40e751ea82c231aa7131c49526bc31f88caf22"
+        },
+        {
+          "line": 232,
+          "expression": "expect(body.data.items).toBeInstanceOf(Array)",
+          "sha256": "e36f695cc331cad76f52af465b4051da9fadeb239e39df25401a784d241212cb"
+        },
+        {
+          "line": 236,
+          "expression": "expect(titles).toContain(\"First Post\")",
+          "sha256": "ada555dd88865d61f6e6d4a8ae3d647f9d85a589c409d566292ca99329f8d731"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 239,
+      "title": "search filters by collection",
+      "sha256": "36de89d625f77b9ce42be2b4fa509fca02b97014675dee60942093c144515e74",
+      "expectations": [
+        {
+          "line": 249,
+          "expression": "expect(res.status).toBe(200)",
+          "sha256": "b818a86bdea17715dfe998c06e540c0dfd021bca5612ef108fd9e5960bbf7954"
+        },
+        {
+          "line": 256,
+          "expression": "expect(item.collection).toBe(\"posts\")",
+          "sha256": "855d7c938c0ea3387c2495020f8621e441c5db005807fa95eeb80c5975e9de69"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 260,
+      "title": "search returns empty for non-matching query",
+      "sha256": "3d4a6f6d9595b27aa20a1524c4a4ee9232594b06383f5d7e3f38a3884ba598e2",
+      "expectations": [
+        {
+          "line": 268,
+          "expression": "expect(res.status).toBe(200)",
+          "sha256": "b818a86bdea17715dfe998c06e540c0dfd021bca5612ef108fd9e5960bbf7954"
+        },
+        {
+          "line": 271,
+          "expression": "expect(body.data.items).toHaveLength(0)",
+          "sha256": "44d7be180ddc007805145b196b564f389ef60ffc5b27ba3b34d18dbc26b73b58"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 274,
+      "title": "search respects limit parameter",
+      "sha256": "63e483e840618547f86b15d3c026f56b9022983333e8ac429feefdf246fef40c",
+      "expectations": [
+        {
+          "line": 278,
+          "expression": "expect(res.status).toBe(200)",
+          "sha256": "b818a86bdea17715dfe998c06e540c0dfd021bca5612ef108fd9e5960bbf7954"
+        },
+        {
+          "line": 281,
+          "expression": "expect(body.data.items.length).toBeLessThanOrEqual(2)",
+          "sha256": "cd7e12e1bb6648dff703e5940e63e571327ac823403449a121ce7973e55d7377"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 286,
+      "title": "returns suggestions for partial queries",
+      "sha256": "f563bab444b7b2c2d97895097c0767ccafab957dd3b4ef5a56cd074cd464ed54",
+      "expectations": [
+        {
+          "line": 291,
+          "expression": "expect(res.status).toBe(200)",
+          "sha256": "b818a86bdea17715dfe998c06e540c0dfd021bca5612ef108fd9e5960bbf7954"
+        },
+        {
+          "line": 294,
+          "expression": "expect(body.data).toBeDefined()",
+          "sha256": "4d7efbd3db6265a36c8800210a40e751ea82c231aa7131c49526bc31f88caf22"
+        },
+        {
+          "line": 295,
+          "expression": "expect(body.data.items).toBeInstanceOf(Array)",
+          "sha256": "e36f695cc331cad76f52af465b4051da9fadeb239e39df25401a784d241212cb"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 298,
+      "title": "suggestions require a query parameter",
+      "sha256": "8a97f32ad18a18714b61e36772311757747b4c28e0dead1baa9d9222719c8723",
+      "expectations": [
+        {
+          "line": 300,
+          "expression": "expect(res.status).toBe(400)",
+          "sha256": "52546faabfc4d7438e62e8b4eabdece354789868c2d729ebd5a961504bf8cb91"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 305,
+      "title": "returns search index statistics",
+      "sha256": "004db6be92a2a121f89e1d8ffb3ace26bdcc9cca8da8fe00cf8c2061dbc0e4ab",
+      "expectations": [
+        {
+          "line": 309,
+          "expression": "expect(res.status).toBe(200)",
+          "sha256": "b818a86bdea17715dfe998c06e540c0dfd021bca5612ef108fd9e5960bbf7954"
+        },
+        {
+          "line": 312,
+          "expression": "expect(body.data).toBeDefined()",
+          "sha256": "4d7efbd3db6265a36c8800210a40e751ea82c231aa7131c49526bc31f88caf22"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 317,
+      "title": "enables search for a collection",
+      "sha256": "c9b86fa97945e46dde9f9281e709d6b92ae40f9913c3db97f809f98d73250090",
+      "expectations": [
+        {
+          "line": 324,
+          "expression": "expect(res.status).toBeLessThan(500)",
+          "sha256": "b9665ed51a03043b9ddc751f46c58e74347342161129fd9da027bc014ed6fb30"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 327,
+      "title": "disables search for a collection",
+      "sha256": "bec750982743b3af6d894f8b9be34b068b0d21155eb225c1c673c5502795b2b6",
+      "expectations": [
+        {
+          "line": 335,
+          "expression": "expect(res.status).toBe(200)",
+          "sha256": "b818a86bdea17715dfe998c06e540c0dfd021bca5612ef108fd9e5960bbf7954"
+        },
+        {
+          "line": 338,
+          "expression": "expect(body.data.enabled).toBe(false)",
+          "sha256": "29c4cbc8743d84e68dc3dc870894f2aed5289f9db198e93dd7515bc0a698e7ec"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 341,
+      "title": "enable requires collection name",
+      "sha256": "3eb58fcc8f3dc9bf4f8b80e61ae6c199eb2585485771acec1f1926af710d907b",
+      "expectations": [
+        {
+          "line": 345,
+          "expression": "expect(res.status).toBe(400)",
+          "sha256": "52546faabfc4d7438e62e8b4eabdece354789868c2d729ebd5a961504bf8cb91"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 350,
+      "title": "rebuilds the index for a collection",
+      "sha256": "ba0545361b3d60bdb346bc819471a98616411b52ad6cfd9684b9f80be664fa9c",
+      "expectations": [
+        {
+          "line": 356,
+          "expression": "expect(res.status).toBe(200)",
+          "sha256": "b818a86bdea17715dfe998c06e540c0dfd021bca5612ef108fd9e5960bbf7954"
+        },
+        {
+          "line": 359,
+          "expression": "expect(typeof body.data.indexed).toBe(\"number\")",
+          "sha256": "25643cf2b020bbe931e9b9da2fc73b51defbcf42d01c70bd75d35ff24b30f95b"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 362,
+      "title": "rebuild fails for collection without search enabled",
+      "sha256": "10a7ce1d09e55ec3d080f89fd34b8de53115038301ed5e989339a5e5dc050dcd",
+      "expectations": [
+        {
+          "line": 372,
+          "expression": "expect(res.status).toBe(400)",
+          "sha256": "52546faabfc4d7438e62e8b4eabdece354789868c2d729ebd5a961504bf8cb91"
+        },
+        {
+          "line": 375,
+          "expression": "expect(body.error).toBeDefined()",
+          "sha256": "b56e7a80095f375c41da165249a72b23ffa62919f4ee5f0da943decc4000010b"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 380,
+      "title": "shows content results when searching with enabled collections",
+      "sha256": "758ac308f5578ea21b9424fd82c0cedde308148e333cb12a8978b2dcfb132739",
+      "expectations": [
+        {
+          "line": 397,
+          "expression": "expect(input).toBeVisible({ timeout: 5000 })",
+          "sha256": "ac2cc9fedcec89c02bd25764c7f8492c26ef64a7abc0e54f9e42f2e1b9233822"
+        },
+        {
+          "line": 403,
+          "expression": "expect(page.getByText(\"Content\")).toBeVisible({ timeout: 10000 })",
+          "sha256": "9efb5d7840f7abc1e809080ad729bdeead3de3a9418f393abca44b566b50c2ee"
+        },
+        {
+          "line": 409,
+          "expression": "expect(contentResult).toBeVisible({ timeout: 5000 })",
+          "sha256": "2cd65b576fc7648956e94ceb7ff65eb9aa5f61502aa330847636156a17f6a6e3"
+        }
+      ],
+      "execution": "inventory-only"
+    },
+    {
+      "source": "e2e/tests/search.spec.ts",
+      "line": 412,
+      "title": "navigates to content editor when selecting a content result",
+      "sha256": "18dd33cc0d0404674accc6dc2588b17ff49d3e2d237e428ad5fca3a224f19b0d",
+      "expectations": [
+        {
+          "line": 429,
+          "expression": "expect(input).toBeVisible({ timeout: 5000 })",
+          "sha256": "ac2cc9fedcec89c02bd25764c7f8492c26ef64a7abc0e54f9e42f2e1b9233822"
+        },
+        {
+          "line": 435,
+          "expression": "expect(page.getByText(\"Content\")).toBeVisible({ timeout: 10000 })",
+          "sha256": "9efb5d7840f7abc1e809080ad729bdeead3de3a9418f393abca44b566b50c2ee"
+        },
+        {
+          "line": 445,
+          "expression": "expect(secondPost).toBeVisible({ timeout: 5000 })",
+          "sha256": "92cf5a3a5e606a85fca93ad527d8a81c39687e44434a17bc98dfbc0e8a9b8427"
+        },
+        {
+          "line": 449,
+          "expression": "expect(page).toHaveURL(CONTENT_POSTS_URL_PATTERN, { timeout: 10000 })",
+          "sha256": "0c994728ee58065fe908b8fe239c0d073e5029a4b05ee18a20407f947931b9a6"
+        }
+      ],
+      "execution": "inventory-only"
+    }
+  ],
+  "transport": {
+    "runtime": "Actual canonical Node SQLite; existing Native SchemaRegistry, ContentRepository, single FTSManager producer.",
+    "frameworkSubstitution": "Whole tests imported unchanged via explicit Native module resolver; schema constructor and updateCollection CAS supplied by fixture transport.",
+    "namespace": "Three whole Source raw-name families remain physically blocked on default Native FTS names. No raw SQL/literal/catalogue/result rewrite. A separately qualified explicit owner injection with real Source-name objects and builder-only metadata names is planned.",
+    "registry": "Production schema-to-FTS add/update/delete/rebuild integration missing; test transport does not synthesize it.",
+    "missingProductImports": "Query engine and schemas absent at public baseline; collection/pre-expect errors will earn zero Source behavioral red credit.",
+    "native": "Nine real-SQL Native tests; one existing-owner/storage control, eight query requirements. Missing module is asserted as Native promise rejection, later values remain unreached until implementation.",
+    "remaining": "Public/admin command palette, LiveSearch/WebMcpSearch, MCP and original protected e2e hosts remain inventory-only. Source e2e fixmes retained."
+  },
+  "acceptance": {
+    "pairedDecisionStatus": "Pending exact Root development qualification, runtime red/green/refactor, final independent/configured review and actual public gates.",
+    "completeSearch": false
+  },
+  "implementationProposal": {
+    "status": "Applied selected core R5 and meaningful same-owner refactor; actualSource61+Native27=88 fixed/refactored green. Remaining9/publicSDK/API/UI/MCP/D1/currentgates/reviews/merge unfinished.",
+    "authorPR": "https://github.com/sveltery/cms/pull/101",
+    "testFirstHead": "02f4b863020f8f9f62aa97770193608bf37ad14e",
+    "schemaTestFirstHead": "7f1aff83dc2f8c93fd5288c2f650409b306067d6",
+    "wholeBaseline": "search-evidence/whole70-baseline-receipt.json",
+    "schemaBaseline": "search-evidence/native6-baseline-receipt.json",
+    "sourceCausalRedCredit": 0,
+    "nativeReadinessAssertionReds": 8,
+    "nativeSubstantiveSchemaValueReds": 5,
+    "nativeSchemaPromiseAssertionReds": 1,
+    "sourceRawNamespacePreexpectStops": 5,
+    "sourceUnregisteredCallbacks": 50,
+    "nativeLaterQueryValueAssertionsUnreached": 15,
+    "plannedConfiguredCallbacks": 88,
+    "sourcePhysicalNames": "Same existing Native FTSManager class subclass creates real Source-named virtual tables/shadows/triggers; only builder metadata TableNodes are mapped, no raw SQL/literal/result rewrite.",
+    "atomicPlanning": "Real one-statement metadata/config snapshot and before-write SQL guard; entire schema mutation and FTS DDL/triggers/population remain in same CmsDatabase.atomicBatch.",
+    "creator0": "Behavior-preserving explicit API insertion; actual pinned Source012 and Native SQL0 remain0. Earlier SQL1 premise disproved; no bug-repair or Source causal credit.",
+    "acceptanceDecision": "Root exact finite R5 development qualification; no final fullfeature/framework/API acceptance or landing decision yet.",
+    "reviewTestFirstHead": "1b6a630127f584b00eae8e6db993cf927b9a1e4d",
+    "reviewBaseline": "search-evidence/review8-baseline-receipt.json",
+    "reviewCallbacks": 8,
+    "sourceOriginal40Unchanged": true,
+    "sourceHealthWholeAuthorityAdded": true,
+    "corrections": [
+      "SEARCHREV01 post-edit field IDs/order including combined sortOrder.",
+      "SEARCHREV02 Source single-flight void cache, inner/outer catches,30000 owner bound and actual existing after/keepAlive anchor.",
+      "SEARCHREV03 retains real snapshot guard/cleanup for inactive/null/invalid config.",
+      "SEARCHREV04 snapshot every fieldID and exact earlier target identity/state guard before write; field map byID.",
+      "SEARCHREV05 unchanged supports parsed from captured row; requested supports reserved for CAS collection update."
+    ],
+    "pairedConcurrencyDifference": "Any FTS-relevant schema plan (including inactive config) guards actual captured collection/config/order/IDs and earlier field identity before batch, may yield Native CONFLICT on stale state. Ordinary metadata-only edits retain established behavior.",
+    "unknownTypeTestFirstHead": "9a90a5f8327e89a2e8386699b06f7c9e65c39814",
+    "unknownTypeBaseline": "search-evidence/unknown-delete-baseline-receipt.json",
+    "unknownTypeCallbacks": 1,
+    "unknownTypeCorrection": "For actual top-level unsupportedType.path=type only, expected deletion target restores stored unsupportedType.type; nested repeater child marker leaves actualtoprepeater. Source query/schema/guard/health mechanisms otherwise R3-exact.",
+    "r3FiveFindingClosure": "All originalSEARCHREV01\u201305 mechanisms closed; R4 independently clears06 too. R5 current public union reviewer closure/Root qualification pending.",
+    "publicUnionHead": "c78d82161f1aa40f17055bf77c12b9b7ef46259a",
+    "actualIncomingPublic": "c3d135a6f20e4319ee07eebb0f9009b57f2985f9",
+    "creatorTestFirstHead": "ec143e46d3ff2f500a164efa462d1ce8731b43b2",
+    "creatorBaseline": "search-evidence/creator-public41-baseline-receipt.json",
+    "creatorCallbacks": 3,
+    "creatorReachedAssertions": 6,
+    "creatorExistingControlsPassed": 3,
+    "creatorInfraOnlyAttempts": 2,
+    "creatorNativeCausalRed": 0,
+    "r4SixFindingReview": "search-evidence/r4-independent-six-finding-review.json",
+    "publicRegistryUtcCas": "Whole actual published UTC parsing/+1ms metadata-CAS helper retained exact in Registry candidate; provider/migration/gates unchanged.",
+    "publicPackagePreserved": "All c3 Doctor/block/source/build/package dependency leaves retained, only search terminal leaf added. Physical lock and installed public dependencies unchanged.",
+    "allRawEvidencePreserved": "Initial70, Native6, Native8, Native1 and both creator infra attempts/actual3controls raw logs/JSON/receipts kept byteexact.",
+    "fixedHead": "285b98695cde3b0206ae3f226634c263a8629a30",
+    "refactoredHead": "bca48a91d29d430ceea702a9e66edd0ce8f43f0e",
+    "firstWhole88Receipt": "search-evidence/first88-fixed-refactored-receipt.json",
+    "actualFixedSourceCallbacksPassed": 61,
+    "actualFixedNativeCallbacksPassed": 27,
+    "actualRefactoredSourceCallbacksPassed": 61,
+    "actualRefactoredNativeCallbacksPassed": 27
+  },
+  "runtimeAuthorities": [
+    {
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/emdash-runtime.ts.txt",
+      "source": "packages/core/src/emdash-runtime.ts",
+      "kind": "source-authority",
+      "bytes": 216950,
+      "sha256": "7954be3d12857ff307e9d2b15846662814f092e49807bcfb3b188a8f2ae847fc"
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+$ node scripts/check-query-sdk-source.mjs && node scripts/check-query-sdk-astro-authority.mjs && vitest run --config vitest.query-sdk.config.ts
+{"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","wholeFamilies":27,"selectedWholeFamilies":25,"deferredWholeFamilies":2,"testDeclarations":192,"expectExpressions":463,"productTestsRun":0}
+{"genuinePackage":"astro@7.3.2","wholeAuthorities":5,"errorLeafRuntimeDependencies":0,"requestedOriginalExports":["LiveEntryNotFoundError"],"productTestsRun":0,"fullAstroRuntimeOrRendererCredit":0}
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts (4 tests | 2 failed) 2000ms
+     × returns booleans from single-entry loads 227ms
+     × returns booleans from revision previews without coercing integer fields 264ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts (4 tests | 2 failed) 807ms
+     × resolves bare media ID in loadEntry 179ms
+     × resolves bare media ID in revision-backed loadEntry 229ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts (5 tests | 4 failed) 694ms
+     × should return Date objects for system date fields in revision preview 255ms
+     × should return null for unpopulated date fields in revision preview 99ms
+     × should use revision content fields while preserving system date types 100ms
+     × should expose explicit bylines on revision previews 98ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts:16:1
+     14| import { beforeEach, afterEach, expect, it } from "vitest";
+     15|
+     16| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+     17|
+     18| import { runMigrations } from "../../src/database/migrations/runner.js…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/16]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts:31:1
+     29| import { afterEach, beforeEach, expect, it } from "vitest";
+     30|
+     31| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+     32|
+     33| import { runMigrations } from "../../src/database/migrations/runner.js…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/16]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/registry.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts:22:1
+     20| import { emdashLoader, FOLDED_BYLINES, FOLDED_TERMS } from "../../src/…
+     21| import { runWithContext } from "../../src/request-context.js";
+     22| import { BylineSchemaRegistry } from "../../src/schema/byline-registry…
+       | ^
+     23| import {
+     24|  type DialectTestContext,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/16]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts:20:1
+     18| import { afterEach, beforeEach, describe, expect, it } from "vitest";
+     19|
+     20| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+     21|
+     22| import { runMigrations } from "../../src/database/migrations/runner.js…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/16]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts ]
+Error: Cannot find module '../../src/scheduled-publish.js' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts:11:1
+      9| import { emdashLoader } from "../../src/loader.js";
+     10| import { runWithContext } from "../../src/request-context.js";
+     11| import { publishDueContent } from "../../src/scheduled-publish.js";
+       | ^
+     12| import {
+     13|  describeEachDialect,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/16]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts ]
+Error: Cannot find module '../../src/database/repositories/seo.js' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts:4:1
+      2|
+      3| import { handleContentCreate } from "../../src/api/index.js";
+      4| import { SeoRepository } from "../../src/database/repositories/seo.js";
+       | ^
+      5| import { emdashLoader } from "../../src/loader.js";
+      6| import { peekSeoPanel } from "../../src/page/seo-panel.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/16]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts ]
+Error: Cannot find module '../../src/database/repositories/seo.js' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts:4:1
+      2|
+      3| import { handleContentCreate } from "../../src/api/index.js";
+      4| import { SeoRepository } from "../../src/database/repositories/seo.js";
+       | ^
+      5| import { emdashLoader } from "../../src/loader.js";
+      6| import { runWithContext } from "../../src/request-context.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/16]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts ]
+Error: Cannot find module '/parity/emdash/query-sdk-source/upstream/packages/core/src/database/repositories/user.js' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts:6:1
+      4| import { BylineRepository } from "../../../src/database/repositories/b…
+      5| import { ContentRepository } from "../../../src/database/repositories/…
+      6| import { UserRepository } from "../../../src/database/repositories/use…
+       | ^
+      7| import type { Database } from "../../../src/database/types.js";
+      8| import { setI18nConfig } from "../../../src/i18n/config.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/16]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts > Loader boolean field values [sqlite] > returns booleans from single-entry loads
+AssertionError: expected undefined to be defined
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts:105:18
+    103|   );
+    104|
+    105|   expect(result).toBeDefined();
+       |                  ^
+    106|   expect((result as { data: Record<string, unknown> }).data.enabled).t…
+    107|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/16]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts > Loader boolean field values [sqlite] > returns booleans from revision previews without coercing integer fields
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts:127:62
+    125|    }),
+    126|   );
+    127|   const data = (result as { data: Record<string, unknown> }).data;
+       |                                                              ^
+    128|
+    129|   expect(data.title).toBe("Draft title");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/16]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts > Loader media src > resolves bare media ID in loadEntry
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts:70:23
+     68|   );
+     69|
+     70|   const hero = entry!.data.hero as Record<string, unknown>;
+       |                       ^
+     71|   expect(hero.id).toBe(MEDIA_ID);
+     72|   expect(hero.src).toBe(MEDIA_URL);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/16]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts > Loader media src > resolves bare media ID in revision-backed loadEntry
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts:125:23
+    123|   );
+    124|
+    125|   const hero = entry!.data.hero as Record<string, unknown>;
+       |                       ^
+    126|   expect(hero.id).toBe(MEDIA_ID);
+    127|   expect(hero.src).toBe(MEDIA_URL);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/16]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts > Loader revision preview > should return Date objects for system date fields in revision preview
+AssertionError: expected undefined to be defined
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts:55:18
+     53|   );
+     54|
+     55|   expect(result).toBeDefined();
+       |                  ^
+     56|   expect(result).not.toHaveProperty("error");
+     57|   const data = (result as { data: Record<string, unknown> }).data;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/16]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts > Loader revision preview > should return null for unpopulated date fields in revision preview
+AssertionError: expected undefined to be defined
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts:86:17
+     84|   );
+     85|
+     86|   expect(entry).toBeDefined();
+       |                 ^
+     87|   expect(entry).not.toHaveProperty("error");
+     88|   const data = (entry as { data: Record<string, unknown> }).data;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/16]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts > Loader revision preview > should use revision content fields while preserving system date types
+AssertionError: expected undefined to be defined
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts:134:17
+    132|   );
+    133|
+    134|   expect(entry).toBeDefined();
+       |                 ^
+    135|   expect(entry).not.toHaveProperty("error");
+    136|   const data = (entry as { data: Record<string, unknown> }).data;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/16]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts > Loader revision preview > should expose explicit bylines on revision previews
+Error: Byline writes require the actual registered CMS database owner
+ ❯ bylineDatabaseOwner src/lib/server/bylines/storage.ts:59:21
+     57| export function bylineDatabaseOwner(db: Kysely<Database>): CmsDatabase…
+     58|   const owner = registeredBylineDatabaseOwner(db);
+     59|   if (!owner) throw new Error('Byline writes require the actual regist…
+       |                     ^
+     60|   return owner;
+     61| }
+ ❯ BylineRepository.create src/lib/server/bylines/repository.ts:755:3
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts:148:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/16]⎯
+
+
+ Test Files  11 failed | 14 passed (25)
+      Tests  8 failed | 120 passed (128)
+   Start at  18:38:51
+   Duration  46.69s (transform 3.63s, setup 0ms, import 15.37s, tests 17.84s, environment 4ms)
+
+[ELIFECYCLE] Command failed with exit code 1.

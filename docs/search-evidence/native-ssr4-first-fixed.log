@@ -1,0 +1,15 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+5:29:17 PM [vite-plugin-svelte] src/lib/search/LiveSearch.svelte:35:4 Buttons and links should either contain text or have an `aria-label`, `aria-labelledby` or `title` attribute
+https://svelte.dev/e/a11y_consider_explicit_label
+5:29:17 PM [vite-plugin-svelte] src/lib/search/LiveSearch.svelte:35:83 '' is not a valid href attribute
+https://svelte.dev/e/a11y_invalid_attribute
+ ✓ tests/search-native-ui/live-search-locale.test.ts (4 tests) 5ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  17:29:16
+   Duration  526ms (transform 309ms, setup 0ms, import 386ms, tests 5ms, environment 0ms)
+
+JSON report written to /tmp/full-search-native-ssr4-first-fixed.json

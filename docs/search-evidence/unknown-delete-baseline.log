@@ -1,0 +1,34 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+ ❯ tests/search-native-review/unknown-field-delete.test.ts (1 test | 1 failed) 47ms
+     × deletes the searchable unknown top-level type while search is inactive 45ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/search-native-review/unknown-field-delete.test.ts > Native deletion of a persisted future field type > deletes the searchable unknown top-level type while search is inactive
+AssertionError: promise rejected "CmsError: CONFLICT { …(2) }" instead of resolving
+ ❯ tests/search-native-review/unknown-field-delete.test.ts:26:66
+     24|   it('deletes the searchable unknown top-level type while search is in…
+     25|     expect(await registry.getField('articles', 'future_text')).toMatch…
+     26|     await expect(registry.deleteField('articles', 'future_text')).reso…
+       |                                                                  ^
+     27|     expect(await registry.getField('articles', 'future_text')).toBeNul…
+     28|     const result = await sql<{ name: string }>`PRAGMA table_info(ec_ar…
+
+Caused by: CmsError: CONFLICT
+ ❯ SchemaRegistry.batch ../../tmp/full-search-query-runtime-proposal-r3/candidates/src/lib/server/database/registry.ts:357:100
+ ❯ SchemaRegistry.deleteField ../../tmp/full-search-query-runtime-proposal-r3/candidates/src/lib/server/database/registry.ts:332:5
+ ❯ tests/search-native-review/unknown-field-delete.test.ts:26:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'CONFLICT', details: undefined }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  14:49:00
+   Duration  533ms (transform 215ms, setup 0ms, import 366ms, tests 47ms, environment 0ms)
+
+JSON report written to /tmp/full-search-unknown-delete-r3-baseline.json

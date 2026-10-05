@@ -1,0 +1,47 @@
+{
+  "head": "e24d3c4738446ff5e584fa36151990028b3f614b",
+  "productChanges": "Lazy FTS owner and actual historical search_config readiness; six prior snapshot/target/ordering/health mechanisms retained",
+  "callbackResults": {
+    "Source": 61,
+    "Native": 27,
+    "total": 88,
+    "pass": 88,
+    "fail": 0,
+    "skip": 0
+  },
+  "nativeStaticAuthMaintenance": {
+    "prior": 23,
+    "current": 24,
+    "source": "EmDash pin packages/auth/src/rbac.ts search:manage ADMIN",
+    "newAssert": "Same existing pure servicePrincipal ADMIN includes search:manage",
+    "qualification": "Root finite ordinary static maintenance authorized; no guard/threshold/session/credential/HTTP/race changes"
+  },
+  "raw": [
+    {
+      "path": "docs/search-evidence/lazy-readiness-fix-core76.log",
+      "bytes": 2618,
+      "sha256": "abaceab24f0e0ba093dbe507c37f466af0ae5ffc49893f88384c2478b6f4ba78"
+    },
+    {
+      "path": "docs/search-evidence/lazy-readiness-fix-core76.json",
+      "bytes": 27930,
+      "sha256": "f8f329867e18074aa9ff9bb0285419a1d9d27d584d28ac18f6539f6b9a1b0c15"
+    },
+    {
+      "path": "docs/search-evidence/lazy-readiness-fix-review12.log",
+      "bytes": 504,
+      "sha256": "40a3a76ef796d822cad8d441de4c2aa7de245f3ca760a54f6006bad3a70e062e"
+    },
+    {
+      "path": "docs/search-evidence/lazy-readiness-fix-review12.json",
+      "bytes": 6021,
+      "sha256": "b3d2eadf605631f0ea6c5943950feb366c2fa6d566ea127671a7e0da6be28eff"
+    }
+  ],
+  "limits": [
+    "Source initial causal red0",
+    "Full default repaired group115 passed; complete default rerun with static count maintenance pending",
+    "Full SDK and nine remaining original integrations remain incomplete",
+    "Publication approval pending for unchanged held evidence blob"
+  ]
+}

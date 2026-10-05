@@ -1,0 +1,155 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+ ❯ tests/search-native/schema-fts.test.ts (6 tests | 6 failed) 157ms
+     × adds a searchable field to the real index while preserving tokenizer and weights 48ms
+     × indexes existing values after a field becomes searchable 21ms
+     × removes dependent triggers before dropping a searchable content column 27ms
+     × disables an active index after the final searchable field is disabled 22ms
+     × disables after search support is removed and does not implicitly re-enable it 19ms
+     × drops the real FTS virtual table before force-deleting its content collection 18ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/search-native/schema-fts.test.ts > Native schema mutation maintains the same real FTS owner > adds a searchable field to the real index while preserving tokenizer and weights
+AssertionError: expected 'CREATE VIRTUAL TABLE "_cms_fts_articl…' to contain 'notes'
+
+- Expected
++ Received
+
+- notes
++ CREATE VIRTUAL TABLE "_cms_fts_articles" USING fts5(
++ 				id UNINDEXED, locale UNINDEXED, title,
++ 				tokenize='trigram'
++ 			)
+
+ ❯ tests/search-native/schema-fts.test.ts:32:32
+     30|   it('adds a searchable field to the real index while preserving token…
+     31|     await registry.createField('articles', { slug: 'notes', label: 'No…
+     32|     expect(await definition()).toContain('notes');
+       |                                ^
+     33|     expect(await definition()).toContain("tokenize='trigram'");
+     34|     expect(await owner.getSearchConfig('articles')).toEqual({ enabled:…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/search-native/schema-fts.test.ts > Native schema mutation maintains the same real FTS owner > indexes existing values after a field becomes searchable
+AssertionError: expected 'CREATE VIRTUAL TABLE "_cms_fts_articl…' to contain 'summary'
+
+- Expected
++ Received
+
+- summary
++ CREATE VIRTUAL TABLE "_cms_fts_articles" USING fts5(
++ 				id UNINDEXED, locale UNINDEXED, title,
++ 				tokenize='trigram'
++ 			)
+
+ ❯ tests/search-native/schema-fts.test.ts:38:32
+     36|   it('indexes existing values after a field becomes searchable', async…
+     37|     await registry.updateField('articles', 'summary', { searchable: tr…
+     38|     expect(await definition()).toContain('summary');
+       |                                ^
+     39|     const result = await sql<{ id: string }>`SELECT id FROM _cms_fts_a…
+     40|     expect(result.rows.map(row => row.id)).toEqual(['ordinary-row']);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/search-native/schema-fts.test.ts > Native schema mutation maintains the same real FTS owner > removes dependent triggers before dropping a searchable content column
+AssertionError: promise rejected "Error: error in trigger _cms_fts_articles… { …(3) }" instead of resolving
+ ❯ tests/search-native/schema-fts.test.ts:43:60
+     41|   });
+     42|   it('removes dependent triggers before dropping a searchable content …
+     43|     await expect(registry.deleteField('articles', 'title')).resolves.t…
+       |                                                            ^
+     44|     expect(await owner.ftsTableExists('articles')).toBe(false);
+     45|     expect(await owner.getSearchConfig('articles')).toEqual({ enabled:…
+
+Caused by: Error: error in trigger _cms_fts_articles_insert after drop column: no such column: NEW.title
+ ❯ Object.run src/lib/server/database/node-sqlite-compat.ts:87:38
+ ❯ src/lib/server/database/sqlite.ts:21:40
+ ❯ #props.executor.provideConnection.freeze.signal node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:647:26
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ SchemaRegistry.deleteField src/lib/server/database/registry.ts:306:5
+ ❯ tests/search-native/schema-fts.test.ts:43:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_SQLITE_ERROR', errcode: 1, errstr: 'SQL logic error' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/search-native/schema-fts.test.ts > Native schema mutation maintains the same real FTS owner > disables an active index after the final searchable field is disabled
+AssertionError: expected { enabled: true, …(2) } to deeply equal { enabled: false, …(2) }
+
+- Expected
++ Received
+
+  {
+-   "enabled": false,
++   "enabled": true,
+    "tokenize": "trigram",
+    "weights": {
+      "title": 10,
+    },
+  }
+
+ ❯ tests/search-native/schema-fts.test.ts:49:53
+     47|   it('disables an active index after the final searchable field is dis…
+     48|     await registry.updateField('articles', 'title', { searchable: fals…
+     49|     expect(await owner.getSearchConfig('articles')).toEqual({ enabled:…
+       |                                                     ^
+     50|     expect(await owner.ftsTableExists('articles')).toBe(false);
+     51|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/search-native/schema-fts.test.ts > Native schema mutation maintains the same real FTS owner > disables after search support is removed and does not implicitly re-enable it
+AssertionError: expected { enabled: true, …(2) } to deeply equal { enabled: false, …(2) }
+
+- Expected
++ Received
+
+  {
+-   "enabled": false,
++   "enabled": true,
+    "tokenize": "trigram",
+    "weights": {
+      "title": 10,
+    },
+  }
+
+ ❯ tests/search-native/schema-fts.test.ts:54:53
+     52|   it('disables after search support is removed and does not implicitly…
+     53|     await registry.updateCollection('articles', { supports: [] });
+     54|     expect(await owner.getSearchConfig('articles')).toEqual({ enabled:…
+       |                                                     ^
+     55|     expect(await owner.ftsTableExists('articles')).toBe(false);
+     56|     await registry.updateCollection('articles', { supports: ['search']…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/search-native/schema-fts.test.ts > Native schema mutation maintains the same real FTS owner > drops the real FTS virtual table before force-deleting its content collection
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/search-native/schema-fts.test.ts:62:52
+     60|   it('drops the real FTS virtual table before force-deleting its conte…
+     61|     await registry.deleteCollection('articles', { force: true });
+     62|     expect(await owner.ftsTableExists('articles')).toBe(false);
+       |                                                    ^
+     63|     expect(await registry.getCollection('articles')).toBeNull();
+     64|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed (6)
+   Start at  12:18:55
+   Duration  631ms (transform 216ms, setup 0ms, import 363ms, tests 157ms, environment 0ms)
+
+JSON report written to /tmp/full-search-native6-schema-baseline.json

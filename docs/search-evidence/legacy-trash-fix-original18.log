@@ -1,0 +1,26 @@
+✔ Node: concurrent v1 trash index installers preserve rows and reach complete v2 (132.92809ms)
+✔ Node: v1 wrong same-name objects reject migration without mutation (48.799281ms)
+✔ Node: v1 incompatible index appearing after preflight rejects and rolls back installer changes (24.793351ms)
+✔ Node: concurrent v2 trash index installers preserve rows and reach complete v2 (82.086663ms)
+✔ Node: v2 wrong same-name objects reject migration without mutation (229.890265ms)
+✔ Node: v2 incompatible index appearing after preflight rejects and rolls back installer changes (119.654678ms)
+✔ Node: v1 trash index batch failure rolls back auth DDL, marker upgrade and index together (43.111469ms)
+✔ Node: invalid known auth states reject before any trash index installer batch (82.991842ms)
+✔ Node: backfilled existing index and retained trash survive storage restart with unchanged schema metadata (51.077919ms)
+✔ D1: concurrent v1 trash index installers preserve rows and reach complete v2 (442.034652ms)
+✔ D1: v1 wrong same-name objects reject migration without mutation (734.566549ms)
+✔ D1: v1 incompatible index appearing after preflight rejects and rolls back installer changes (257.271865ms)
+✔ D1: concurrent v2 trash index installers preserve rows and reach complete v2 (296.448426ms)
+✔ D1: v2 wrong same-name objects reject migration without mutation (2130.366918ms)
+✔ D1: v2 incompatible index appearing after preflight rejects and rolls back installer changes (590.258289ms)
+✔ D1: v1 trash index batch failure rolls back auth DDL, marker upgrade and index together (331.363811ms)
+✔ D1: invalid known auth states reject before any trash index installer batch (1298.387098ms)
+✔ D1: backfilled existing index and retained trash survive storage restart with unchanged schema metadata (645.984758ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8198.358014

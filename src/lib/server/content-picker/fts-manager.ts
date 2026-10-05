@@ -6,8 +6,10 @@
  * Manages FTS5 virtual tables and triggers for search indexing.
  */
 
-import type { Kysely } from "kysely";
+import type { CompiledQuery, Kysely } from "kysely";
 import { sql } from "kysely";
+import { ulid } from "ulidx";
+import type { CollectionSupport } from "../schema/types.ts";
 
 import { isSqlite, tableExists as dialectTableExists } from "../database/lifecycle/upstream/database/dialect-helpers.ts";
 import type { Database } from "../database/lifecycle/upstream/database/types.ts";
@@ -35,9 +37,165 @@ function resolveSearchTokenizer(tokenize?: SearchTokenizer): SearchTokenizer {
  * Handles creation, deletion, and management of FTS5 virtual tables
  * for full-text search on content collections.
  */
+// Pinned Source registry.ts supports parser/predicate/allowed-set closure.
+const VALID_COLLECTION_SUPPORTS: ReadonlySet<string> = new Set<CollectionSupport>([
+	"drafts",
+	"revisions",
+	"preview",
+	"scheduling",
+	"search",
+	"seo",
+]);
+
+function isCollectionSupport(value: unknown): value is CollectionSupport {
+	return typeof value === "string" && VALID_COLLECTION_SUPPORTS.has(value);
+}
+
+function parseSchemaSupports(raw: string | null | undefined): CollectionSupport[] {
+	if (!raw) return [];
+	const parsed: unknown = JSON.parse(raw);
+	if (!Array.isArray(parsed)) return [];
+	return parsed.filter(isCollectionSupport);
+}
+
+export interface SearchSchemaField { id: string; slug: string; type: string; searchable: boolean; sortOrder: number }
+/** Earlier resolved identity/state must still name the exact field in this batch. */
+export interface SearchSchemaTarget extends SearchSchemaField { collectionId: string }
+export interface SearchSchemaPlan { before: CompiledQuery[]; after: CompiledQuery[] }
+interface SearchSchemaSnapshot {
+  id: string; slug: string; supports: string; search_config: string | null;
+  title_field: string | null; version: number; updated_at: string; fields_json: string;
+}
+
 export class FTSManager {
 	private readonly db: Kysely<Database>;
 	constructor(db: Kysely<Database>) { this.db = db; }
+
+	/**
+	 * Compile the same producer's FTS DDL/sync SQL for a Native schema batch.
+	 * Proposed fields come from the caller's persisted snapshot plus its exact
+	 * validated mutation. Nothing executes here and no query result is fabricated.
+	 * The registry commits these statements with its ordinary schema DDL/metadata.
+	 * Active-index rebuild/disable follows Source registry.ts syncSearchState;
+	 * an inactive configuration is never enabled implicitly.
+	 */
+	async schemaSyncStatements(
+		collectionSlug: string,
+		supports: readonly string[],
+		fields: readonly SearchSchemaField[],
+		config: SearchConfig | null,
+	): Promise<CompiledQuery[]> {
+		if (!isSqlite(this.db)) return [];
+		if (config?.enabled !== true) return [];
+		const searchableFields = fields.filter(field => field.searchable).map(field => field.slug);
+		this.validateInputs(collectionSlug, searchableFields);
+		const drop = this.dropStatements(collectionSlug);
+		if (!supports.includes("search") || searchableFields.length === 0) {
+			return [...drop, this.db.updateTable("_cms_collections")
+				.set({ search_config: JSON.stringify({ enabled: false, weights: config.weights, tokenize: config.tokenize }) })
+				.where("slug", "=", collectionSlug).compile()];
+		}
+		const tokenizer = resolveSearchTokenizer(config.tokenize);
+		const ftsTable = this.getFtsTableName(collectionSlug);
+		const contentTable = this.getContentTableName(collectionSlug);
+		const fieldTypes = new Map(fields.map(field => [field.slug, field.type]));
+		const columns = ["id UNINDEXED", "locale UNINDEXED", ...searchableFields].join(", ");
+		const fieldList = searchableFields.join(", ");
+		const newValueList = searchableFields.map(field => this.searchValueExpr(`NEW.${field}`, fieldTypes.get(field))).join(", ");
+		const valueList = searchableFields.map(field => this.searchValueExpr(`"${contentTable}"."${field}"`, fieldTypes.get(field))).join(", ");
+		const changedCondition = ["deleted_at", "locale", ...searchableFields].map(field => `OLD.${field} IS NOT NEW.${field}`).join(" OR ");
+		return [...drop,
+			sql.raw(`CREATE VIRTUAL TABLE IF NOT EXISTS "${ftsTable}" USING fts5(${columns}, tokenize='${tokenizer}')`).compile(this.db),
+			sql.raw(`CREATE TRIGGER IF NOT EXISTS "${ftsTable}_insert" AFTER INSERT ON "${contentTable}"
+				WHEN NEW.deleted_at IS NULL BEGIN
+				INSERT OR REPLACE INTO "${ftsTable}"(rowid, id, locale, ${fieldList})
+				VALUES (NEW.rowid, NEW.id, NEW.locale, ${newValueList}); END`).compile(this.db),
+			sql.raw(`CREATE TRIGGER IF NOT EXISTS "${ftsTable}_update" AFTER UPDATE ON "${contentTable}"
+				WHEN ${changedCondition} BEGIN
+				DELETE FROM "${ftsTable}" WHERE rowid = OLD.rowid;
+				INSERT INTO "${ftsTable}"(rowid, id, locale, ${fieldList})
+				SELECT NEW.rowid, NEW.id, NEW.locale, ${newValueList} WHERE NEW.deleted_at IS NULL; END`).compile(this.db),
+			sql.raw(`CREATE TRIGGER IF NOT EXISTS "${ftsTable}_delete" AFTER DELETE ON "${contentTable}"
+				BEGIN DELETE FROM "${ftsTable}" WHERE rowid = OLD.rowid; END`).compile(this.db),
+			sql.raw(`INSERT OR REPLACE INTO "${ftsTable}"(rowid, id, locale, ${fieldList})
+				SELECT rowid, id, locale, ${valueList} FROM "${contentTable}" WHERE deleted_at IS NULL`).compile(this.db)
+		];
+	}
+
+	/**
+	 * Read all FTS-relevant metadata in one actual SQLite statement. The guard
+	 * rejects a stale plan before schema writes; all plan SQL stays in the host's
+	 * original atomic batch. No callback transaction or non-atomic fallback.
+	 */
+	async schemaMutationPlan(
+		collectionSlug: string,
+		supports: readonly string[] | undefined,
+		change: (fields: readonly SearchSchemaField[]) => readonly SearchSchemaField[],
+		expectedField?: SearchSchemaTarget,
+	): Promise<SearchSchemaPlan> {
+		if (!isSqlite(this.db)) return { before: [], after: [] };
+		this.validateInputs(collectionSlug);
+		// Historical metadata may precede the search provider. Its ordinary
+		// schema mutations remain usable while that provider is absent; once
+		// installed, every inactive or active configuration uses the full guard.
+		const columns = await sql<{ name: string }>`PRAGMA table_info(_cms_collections)`.execute(this.db);
+		if (!columns.rows.some(column => column.name === "search_config")) return { before: [], after: [] };
+		const result = await sql<SearchSchemaSnapshot>`SELECT c.id, c.slug, c.supports,
+			c.search_config, c.title_field, c.version, c.updated_at,
+			(SELECT json_group_array(json_object('id', f.id, 'slug', f.slug, 'type', f.type,
+				'searchable', f.searchable, 'sortOrder', f.sort_order))
+			 FROM _cms_fields AS f WHERE f.collection_id = c.id) AS fields_json
+			FROM _cms_collections AS c WHERE c.slug = ${collectionSlug}`.execute(this.db);
+		const row = result.rows[0];
+		if (!row) return { before: [], after: [] };
+		const config = this.parseSearchConfig(row);
+		const stored = JSON.parse(row.fields_json) as { id: string; slug: string; type: string; searchable: number; sortOrder: number }[];
+		const fields = stored.map(field => ({ ...field, searchable: field.searchable === 1 }));
+		// Field operations leave supports unchanged. Derive them from this same
+		// snapshot rather than an earlier caller read. Collection updates alone
+		// supply requested supports, protected by the registry's original CAS.
+		const nextSupports = expectedField || supports === undefined ? parseSchemaSupports(row.supports) : supports;
+		const statements = await this.schemaSyncStatements(collectionSlug, nextSupports, change(fields), config);
+		const targetMatches = expectedField ? sql`EXISTS (SELECT 1 FROM _cms_fields
+			WHERE id = ${expectedField.id} AND collection_id = ${expectedField.collectionId}
+			AND collection_id = ${row.id} AND slug = ${expectedField.slug} AND type = ${expectedField.type}
+			AND searchable = ${Number(expectedField.searchable)} AND sort_order = ${expectedField.sortOrder})` : sql`1`;
+		const token = ulid();
+		// A no-op inactive/invalid configuration still needs its snapshot guard:
+		// enabling after the read must reject, not commit an obsolete empty plan.
+		const before = sql`INSERT INTO _cms_guards(token, pass) SELECT ${token}, CASE WHEN
+			${targetMatches} AND EXISTS (SELECT 1 FROM _cms_collections WHERE id = ${row.id} AND slug = ${row.slug}
+				AND supports IS ${row.supports} AND search_config IS ${row.search_config}
+				AND title_field IS ${row.title_field} AND version = ${row.version} AND updated_at = ${row.updated_at})
+			AND (SELECT COUNT(*) FROM _cms_fields WHERE collection_id = ${row.id}) = ${stored.length}
+			AND NOT EXISTS (SELECT 1 FROM json_each(${row.fields_json}) AS declared WHERE
+				NOT EXISTS (SELECT 1 FROM _cms_fields WHERE collection_id = ${row.id}
+					AND id = json_extract(declared.value, '$.id')
+					AND slug = json_extract(declared.value, '$.slug') AND type = json_extract(declared.value, '$.type')
+					AND searchable = json_extract(declared.value, '$.searchable') AND sort_order = json_extract(declared.value, '$.sortOrder')))
+			THEN 1 ELSE 0 END`.compile(this.db);
+		return { before: [before], after: [...statements,
+			sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(this.db)] };
+	}
+
+	/** Same-owner drop plan for a Native collection-delete batch. */
+	dropStatements(collectionSlug: string): CompiledQuery[] {
+		if (!isSqlite(this.db)) return [];
+		this.validateInputs(collectionSlug);
+		const ftsTable = this.getFtsTableName(collectionSlug);
+		return [
+			...this.dropTriggerStatements(collectionSlug),
+			sql.raw(`DROP TABLE IF EXISTS "${ftsTable}"`).compile(this.db)
+		];
+	}
+
+	/** Shared trigger order for direct rebuilds and atomic schema batches. */
+	private dropTriggerStatements(collectionSlug: string): CompiledQuery[] {
+		this.validateInputs(collectionSlug);
+		const ftsTable = this.getFtsTableName(collectionSlug);
+		return ["insert", "update", "delete"].map(suffix =>
+			sql.raw(`DROP TRIGGER IF EXISTS "${ftsTable}_${suffix}"`).compile(this.db));
+	}
 
 	/**
 	 * Validate a collection slug and its searchable field names.
@@ -267,12 +425,9 @@ export class FTSManager {
 	 * Drop triggers for a collection
 	 */
 	private async dropTriggers(collectionSlug: string): Promise<void> {
-		this.validateInputs(collectionSlug);
-		const ftsTable = this.getFtsTableName(collectionSlug);
-
-		await sql.raw(`DROP TRIGGER IF EXISTS "${ftsTable}_insert"`).execute(this.db);
-		await sql.raw(`DROP TRIGGER IF EXISTS "${ftsTable}_update"`).execute(this.db);
-		await sql.raw(`DROP TRIGGER IF EXISTS "${ftsTable}_delete"`).execute(this.db);
+		for (const statement of this.dropTriggerStatements(collectionSlug)) {
+			await this.db.executeQuery(statement);
+		}
 	}
 
 	/**
@@ -393,6 +548,11 @@ export class FTSManager {
 			.where("slug", "=", collectionSlug)
 			.executeTakeFirst();
 
+		return this.parseSearchConfig(result);
+	}
+
+	/** Shared pinned parser; schema planning parses the actual one-statement snapshot. */
+	private parseSearchConfig(result: { search_config: string | null; title_field: string | null } | undefined): SearchConfig | null {
 		if (!result?.search_config) {
 			return null;
 		}

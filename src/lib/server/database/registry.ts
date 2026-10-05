@@ -9,6 +9,7 @@ import { collectionStandardIndexPlan, collectionIndexPrerequisiteChanged } from 
 import { bylineIndexPrerequisiteChanged, collectionPrimaryBylinePlan } from './canonical-features/byline-index-plan.ts';
 import { FIELD_TYPE_TO_COLUMN, FIELD_TYPES, REPEATER_SUB_FIELD_TYPES, isIndexableFieldType, isStoragelessField, type CollectionSource } from '../schema/types.ts';
 import { fieldEditInput } from './field-edit-validation.ts';
+import { FTSManager } from '../content-picker/fts-manager.ts';
 
 export const MAX_COLLECTIONS = 100;
 export const MAX_FIELDS = 32;
@@ -41,7 +42,14 @@ function field(row: FieldRow): Field {
 export { field as fieldFromRow };
 export class SchemaRegistry {
   private readonly database: CmsDatabase;
-  constructor(database: CmsDatabase) { this.database = database; }
+  private configuredSearchOwner?: FTSManager;
+  constructor(database: CmsDatabase, searchOwner?: FTSManager) {
+    this.database = database;
+    this.configuredSearchOwner = searchOwner;
+  }
+  private get searchOwner(): FTSManager {
+    return this.configuredSearchOwner ??= new FTSManager(this.database.db as any);
+  }
 
   async getCollection(input: unknown): Promise<Collection | null> {
     const slug = parse(identifier, input);
@@ -89,16 +97,20 @@ export class SchemaRegistry {
       const field = await this.getField(definition.slug,value.dateField);
       if(!field || field.type !== 'datetime') throw new CmsError('INVALID_DATE_FIELD');
     }
+    const searchPlan = value.supports !== undefined && definition.supports.includes('search') !== value.supports.includes('search')
+      ? await this.searchOwner.schemaMutationPlan(definition.slug, value.supports, fields => fields) : { before: [], after: [] };
     const results = await this.batch([
+      ...searchPlan.before,
       sql`INSERT INTO _cms_guards(token, pass) SELECT ${token},
         CASE WHEN EXISTS (SELECT 1 FROM _cms_collections WHERE id = ${definition.id}
           AND version = ${definition.version} AND updated_at = ${definition.updatedAt})
         THEN 1 ELSE 0 END`.compile(db),
       db.updateTable('_cms_collections').set(updates).where('id', '=', definition.id).returningAll().compile(),
+      ...searchPlan.after,
       sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
     ], 'CONFLICT');
     // Read the operation's own RETURNING row, rather than a later concurrent writer.
-    return collection(results[1].rows[0] as CollectionRow);
+    return collection(results[searchPlan.before.length + 1].rows[0] as CollectionRow);
   }
   async listFields(collectionId: string): Promise<Field[]> {
     const rows = await this.database.db.selectFrom('_cms_fields').selectAll().where('collection_id', '=', collectionId)
@@ -150,17 +162,26 @@ export class SchemaRegistry {
     if (Object.keys(updates).length === 0) return target;
     const db = this.database.db;
     // Preserve the resolved identity, and return this write's row even if a later writer wins.
-    // No schema/metadata precondition or collection touch: fields are last-writer-wins.
+    // Ordinary metadata remains last-writer-wins. Active search rebuilds guard their
+    // one-statement schema/config snapshot before this same atomic batch.
     const indexStatements = value.indexed === undefined ? [] : value.indexed ? this.fieldIndexStatements(parse(identifier,collectionSlug),target.id,target.slug) : this.dropFieldIndexStatements(target.id);
-    const results = await this.database.atomicBatch([
+    const definition = await this.getCollection(collectionSlug); if (!definition) throw new CmsError('NOT_FOUND');
+    const searchPlan = value.searchable !== undefined && value.searchable !== target.searchable
+      ? await this.searchOwner.schemaMutationPlan(definition.slug, undefined, fields =>
+        fields.map(item => item.id === target.id ? { ...item, searchable: value.searchable!, type: nextType,
+          sortOrder: value.sortOrder ?? item.sortOrder } : item)
+          .sort((left, right) => left.sortOrder - right.sortOrder), target)
+      : { before: [], after: [] };
+    const results = await this.batch([
+      ...searchPlan.before,
       db.updateTable('_cms_fields').set(updates)
         .where('id', '=', target.id).where('collection_id', '=', target.collectionId)
         .where('slug', '=', target.slug)
         .where('collection_id', 'in', db.selectFrom('_cms_collections').select('id')
           .where('id', '=', target.collectionId).where('slug', '=', parse(identifier, collectionSlug)))
-        .returningAll().compile(), ...indexStatements
-    ]);
-    const row = results[0].rows[0] as FieldRow | undefined;
+        .returningAll().compile(), ...indexStatements, ...searchPlan.after
+    ], 'CONFLICT');
+    const row = results[searchPlan.before.length].rows[0] as FieldRow | undefined;
     if (!row) throw new CmsError('NOT_FOUND');
     return field(row);
   }
@@ -254,7 +275,12 @@ export class SchemaRegistry {
     const column = sql`ALTER TABLE ${sql.ref(name)} ADD COLUMN ${sql.ref(value.slug)} ${sql.raw(columnType)}
       ${value.type === 'blocks' ? sql`NOT NULL DEFAULT '[]'` : value.required ?
         sql`NOT NULL DEFAULT ${sql.raw(formatFieldDefault(value.defaultValue, value.type))}` : sql``}`;
+    const searchPlan = value.searchable ? await this.searchOwner.schemaMutationPlan(definition.slug, undefined, current =>
+      [...current, { id, slug: value.slug, type: value.type, searchable: true,
+        sortOrder: value.sortOrder ?? (fields.length ? Math.max(...fields.map(field => field.sortOrder)) + 1 : 0) }]
+        .sort((left, right) => left.sortOrder - right.sortOrder)) : { before: [], after: [] };
     const statements: CompiledQuery[] = [
+      ...searchPlan.before,
       sql`INSERT INTO _cms_guards(token, pass) SELECT ${token},
         CASE WHEN EXISTS (SELECT 1 FROM _cms_collections WHERE id = ${definition.id} AND version = ${definition.version})
         AND (SELECT COUNT(*) FROM _cms_fields WHERE collection_id = ${definition.id}) < ${MAX_FIELDS}
@@ -274,6 +300,7 @@ export class SchemaRegistry {
       db.updateTable('_cms_collections').set({ version: definition.version + 1, updated_at: new Date().toISOString() }).where('id', '=', definition.id).compile()
     ];
     if(value.indexed) statements.push(...this.fieldIndexStatements(definition.slug,id,value.slug));
+    statements.push(...searchPlan.after);
     statements.push(sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db));
     await this.batch(statements, 'CONFLICT');
     return (await this.getField(definition.slug, value.slug))!;
@@ -308,11 +335,22 @@ export class SchemaRegistry {
     const target = await this.getField(collectionSlug,fieldSlug); if(!target) throw new CmsError('NOT_FOUND');
     const definition = await this.getCollection(collectionSlug); if(!definition) throw new CmsError('NOT_FOUND');
     const db = this.database.db;
-    await this.database.atomicBatch([...this.dropFieldIndexStatements(target.id),
-      ...(isStoragelessField({type:target.type,validation:target.validation??undefined}) ? [] : [sql`ALTER TABLE ${sql.ref(tableName(collectionSlug))} DROP COLUMN ${sql.ref(target.slug)}`.compile(db)]),
+    const searchPlan = target.searchable ? await this.searchOwner.schemaMutationPlan(definition.slug, undefined,
+      fields => fields.filter(item => item.id !== target.id), {
+        ...target,
+        // The display projection falls back to string for an unknown stored
+        // top-level type. Guard the real stored type; a nested unsupported
+        // repeater child still has the actual top-level type repeater.
+        type: target.unsupportedType?.path === 'type' ? target.unsupportedType.type : target.type
+      }) : { before: [], after: [] };
+    await this.batch([
+      ...searchPlan.before,
       db.deleteFrom('_cms_fields').where('id','=',target.id).compile(),
       db.updateTable('_cms_collections').set({title_field:sql`CASE WHEN title_field = ${target.slug} THEN NULL ELSE title_field END`, date_field:sql`CASE WHEN date_field = ${target.slug} THEN NULL ELSE date_field END`, updated_at:nextMetadataTimestamp([definition])})
-        .where('id','=',target.collectionId).where(eb => eb.or([eb('title_field','=',target.slug),eb('date_field','=',target.slug)])).compile()]);
+        .where('id','=',target.collectionId).where(eb => eb.or([eb('title_field','=',target.slug),eb('date_field','=',target.slug)])).compile(),
+      ...searchPlan.after, ...this.dropFieldIndexStatements(target.id),
+      ...(isStoragelessField({type:target.type,validation:target.validation??undefined}) ? [] : [sql`ALTER TABLE ${sql.ref(tableName(collectionSlug))} DROP COLUMN ${sql.ref(target.slug)}`.compile(db)])
+    ], 'CONFLICT');
   }
   async deleteCollection(slug: unknown, options?: {force?:boolean}): Promise<void> {
     const target = await this.getCollection(slug); if(!target) throw new CmsError('NOT_FOUND');
@@ -320,6 +358,7 @@ export class SchemaRegistry {
     const token = ulid();
     await this.batch([
       ...(options?.force ? [] : [sql`INSERT INTO _cms_guards(token,pass) SELECT ${token}, CASE WHEN NOT EXISTS (SELECT 1 FROM ${sql.ref(tableName(slug))} WHERE deleted_at IS NULL) THEN 1 ELSE 0 END`.compile(db)]),
+      ...this.searchOwner.dropStatements(target.slug),
       sql`DROP TABLE ${sql.ref(tableName(slug))}`.compile(db),db.deleteFrom('_cms_fields').where('collection_id','=',target.id).compile(),
       db.deleteFrom('_cms_collections').where('id','=',target.id).compile(), sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
     ],'COLLECTION_NOT_EMPTY');

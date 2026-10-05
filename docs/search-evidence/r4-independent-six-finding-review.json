@@ -1,0 +1,203 @@
+{
+  "review": "NEW independent readonly Search101 sealed R4 semantic review, complete six-finding closure",
+  "status": "CLEAR FOR ROOT EXACT DEVELOPMENT QUALIFICATION, subject to explicit standing holds; no final product/merge acceptance",
+  "reviewedHead": "9a90a5f8327e89a2e8386699b06f7c9e65c39814",
+  "worktree": "/workspace/cms-full-search-query-api",
+  "publicBase": "343c0ff2e69e66e03b848d258da7c288e9a67223",
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "manifest": {
+    "path": "/tmp/full-search-query-runtime-proposal-r4/manifest.json",
+    "bytes": 20797,
+    "sha256": "db87916e581a5500b5f85ac208eaa610f9ceb0be8c22b018e4826cf4a0e42336"
+  },
+  "completeIndependentFiniteProvenanceChecks": {
+    "path": "/tmp/search101-runtime-r4-independent-static-vector-checks.json",
+    "bytes": 39156,
+    "sha256": "f7f17cf25fbe3ec7504ec389488f46c3972d5fb138acb99fdf2da6cbe4d9d082"
+  },
+  "completeIndependentWholeSourceAndNativeAst": {
+    "path": "/tmp/search101-runtime-r4-independent-whole-test-ast.json",
+    "bytes": 22447,
+    "sha256": "3f56f18334fb151491c5bb2f24ea67fb626a762fc34a3a55ca2f1f5bdafd0dee"
+  },
+  "priorEvidenceIndependentlyReadAndRehashed": [
+    {
+      "path": "/tmp/search101-runtime-r1-independent-semantic-review.json",
+      "bytes": 41165,
+      "sha256": "0c80d3e2cd897de21b90a135214aafb4103c933482056a5c1d5c698530c22db9"
+    },
+    {
+      "path": "/tmp/search101-runtime-r3-independent-five-finding-closure.json",
+      "bytes": 9882,
+      "sha256": "5d03f6669cfcb706aa1e0022ee7e5a88470b7aafbb25c92582665080592489a7"
+    },
+    {
+      "path": "/tmp/full-search-review-eight-r1-baseline-receipt.json",
+      "bytes": 11715,
+      "sha256": "1d1b3212eed3f66ecf51030984b35918c9acf675cb55ffe6c232150d6e45a209"
+    },
+    {
+      "path": "/tmp/full-search-unknown-delete-r3-baseline-receipt.json",
+      "bytes": 2815,
+      "sha256": "3247cc56434517d006031d9d089bef584d8475bede415c5b22ddaf48a8e84547"
+    }
+  ],
+  "closures": [
+    {
+      "id": "SEARCHREV01",
+      "status": "STATIC CLOSED",
+      "evidence": "Captured field-ID callback incorporates the requested sortOrder and actual next type/searchable state, then stably sorts the post-edit field vector before FTS statements are compiled. The same metadata UPDATE persists those values. The FTS producer, whole query weighting/snippet algorithm and Source expectations remain unchanged. R4 is byte-exact to R3 for this mechanism.",
+      "references": [
+        "candidate registry.ts164-168",
+        "candidate fts-manager.ts82-122",
+        "candidate query.ts333-344",
+        "whole Native8 first callback SQL columns/snippet baseline"
+      ]
+    },
+    {
+      "id": "SEARCHREV02",
+      "status": "STATIC CLOSED",
+      "evidence": "Per-Native-Kysely-binding WeakMap stores the existing Source SingleFlightCache<void>. Inner verification catch publishes a checked void state; outer ownership/waiter catch keeps repair failure non-fatal. The original 30000ms owner deadline is retained. The actual fetch is anchored through existing after plus trusted configured.keepAlive. No second producer or copied alternative cache implementation. Whole pinned EmDashRuntime authority is exact216950 bytes. This is a proposed Native ownership substitution, not proof of Source singleton/raw-D1 primary-routing parity.",
+      "references": [
+        "candidate search/http.ts12-38",
+        "pin emdash-runtime.ts3172-3200",
+        "actual redirects/single-flight-cache.ts",
+        "actual menus/after.ts",
+        "Native8 supplied rejection/deadline/anchor failures"
+      ]
+    },
+    {
+      "id": "SEARCHREV03",
+      "status": "STATIC CLOSED",
+      "evidence": "Null, disabled and invalid parsed configs no longer bypass the schema snapshot guard. The first before-write CHECK includes captured config/supports/title/version/timestamp and all field IDs/state. An inactive no-op plan still removes its token in the same atomic batch. A separately changed config cannot commit metadata against the stale plan. No non-atomic repair fallback is introduced.",
+      "references": [
+        "candidate fts-manager.ts138-173",
+        "actual Native8 null and disabled configuration promise reds"
+      ]
+    },
+    {
+      "id": "SEARCHREV04",
+      "status": "STATIC CLOSED",
+      "evidence": "The actual snapshot JSON contains every field ID; the guard binds earlier expected ID/collectionId/slug/type/searchable/order and verifies all captured membership/state before any field write or FTS after-plan. Production changes match by ID. RETURNING row offsets account for before statements. Missing or replaced identities therefore reject inside the real original atomic batch. R4 preserves all this guard SQL byte-exact; its projection correction closes SEARCHREV06 separately.",
+      "references": [
+        "candidate fts-manager.ts140-171",
+        "candidate registry.ts164-180,330-344",
+        "actual Native8 earlier target-ID batch promise red",
+        "actual sqlite.ts10-32 and d1.ts86-91 atomic hosts"
+      ]
+    },
+    {
+      "id": "SEARCHREV05",
+      "status": "STATIC CLOSED",
+      "evidence": "Ordinary field operations derive supports from the same captured SQL collection row. Only collection support edits supply requested supports, with the existing version/updatedAt guard in that same batch. The Source allowed-set, predicate and parser are whole exact except the local parseSupports identifier rename, including malformed-JSON throw behavior. R4 planner and all field/collection callers remain R3-exact.",
+      "references": [
+        "candidate fts-manager.ts40-58,149-153",
+        "candidate registry.ts95-106,164-168,270-273,330-339",
+        "pin schema/registry.ts134-141,186-203",
+        "actual Native8 stale-support SQL value red"
+      ]
+    },
+    {
+      "id": "SEARCHREV06",
+      "status": "STATIC CLOSED",
+      "evidence": "The only R4 production difference is the deleteField expected-target argument. It restores unsupportedType.type only when the actual marker path is exactly type; otherwise it retains target.type. The public field projection is untouched. Thus raw futureText matches persisted metadata while the projected Field remains string. A nested validation.subFields[n].type marker leaves the actual top-level repeater expected type intact. Snapshot identity/state/config guards, SQL statement placement and raw storage are unchanged. The real Native1 R3 baseline proves the projection control already passed and unchanged-state deletion rejected CONFLICT; later metadata/column checks were genuinely unreached. No R4 fixed execution or Source unknown-type causal proof is claimed.",
+      "references": [
+        "candidate registry.ts28-37,330-339",
+        "candidate fts-manager.ts154-157",
+        "pin schema/registry.ts1685-1750,2475-2504",
+        "tests/search-native-review/unknown-field-delete.test.ts24-29",
+        "whole unknown-delete log/report/receipt exact"
+      ]
+    }
+  ],
+  "newActionableFindings": [],
+  "fullPacketProof": {
+    "all37ActualBeforeAndCandidateVectorsExact": true,
+    "all7ProtectedVectorsExact": true,
+    "all41WholeAuthoritiesEqualActualImmutableGitBlobs": true,
+    "original40CopiesAndWholeHealth216950Authority": true,
+    "whole14SelectedSourceFamilies": {
+      "declarations": 58,
+      "expandedCallbacksFromLiteralDatasets": 61,
+      "staticExpectCalls": 128
+    },
+    "whole9RetainedUnexecutedSourceFamilies": {
+      "declarations": 71,
+      "staticExpectCalls": 127,
+      "runtimeExecutionCredit": 0
+    },
+    "all23WholeSourceFamilies": {
+      "declarations": 129,
+      "staticExpectCalls": 255,
+      "parseErrors": 0
+    },
+    "whole4NativeFiles": {
+      "declarations": 23,
+      "expandedCallbacksFromLiteralDatasets": 24,
+      "staticExpectCalls": 55,
+      "parseErrors": 0
+    },
+    "futureTwoConfigAggregateDeclaredCallbacks": 85,
+    "all23PreviousNativeBodiesAndNew1QualifiedTestFirstBodyExact": true,
+    "all14CurrentLedgerPropertiesRetainedExact": true,
+    "wholeCurrentFeature6245AndCompat412984AndAttrs133PrefixesExact": true,
+    "all13WholeRawEvidenceObjectsExact": true,
+    "allExistingPackageDependenciesAndScriptsPreservedExceptTerminalFullSearchAddition": true,
+    "lockBootstrapRequestSessionPermissionsMigrationsOwnershipUnchanged": true,
+    "onlyR3RuntimeDeltaIsExactTopMarkerConditional": true,
+    "other29R3CandidateBodiesByteExact": true,
+    "supportsWholeSourceDeclarationsExact": true,
+    "noWildcardWhitespaceSuppression": true
+  },
+  "sourceAlgorithmAndHostingReview": [
+    "The full19866-byte query and2301-byte schema candidates remain R1/R3-exact. Independently compared to actual pinned Source: query differences are attribution/imports, Native collection TableNode name, explicit same-owner parameters/call arguments and moving convenience request resolution into the separate SvelteKit wrapper. Ranking, merge window, cursor checks, status/locale/title scope, first-indexed-column snippets, HTML escaping and all schema expectations are retained.",
+    "Source fixture subclass overrides only validated physical FTS table name and uses the same Native producer to create real Source virtual/shadow/trigger objects. The helper plugin transforms only two ordinary metadata TableNodes; transformResult returns the actual result unchanged. No RawNode SQL, literals, sqlite_master/shadow names, catalogue data or rows are rewritten.",
+    "FTS planning compiles real SQL and passes before/write/after statements into actual CmsDatabase.atomicBatch. Node begins one native transaction and rolls back on failure; raw-D1 delegates to existing executeAtomicBatch. This static construction preserves the host boundary but establishes no new runtime D1 pass.",
+    "Five route candidates and trusted composition/service changes remain R1/R3-exact. Search/suggest use trusted current principal status filtering and preserve parse/health/query order; stats/manage permissions and admin POST ordering are preserved with existing Native opt-in/origin gates. Only one additive search:manage literal enters the existing principal allowlist and its type. Roles/request/session guards are unchanged.",
+    "No taxonomy/cache/globals private branch is imported and no duplicate taxonomy slug-cache owner is created. Actual current published shared ownership and primary-binding/lifetime integration remain future concrete qualification."
+  ],
+  "baselineClassifications": {
+    "earlierNative8": {
+      "registered": 8,
+      "failed": 8,
+      "realSqlValueReds": 2,
+      "actualBatchUnexpectedResolutionReds": 3,
+      "suppliedHealthAssertionReds": 3,
+      "readinessPreexpectInfraControls": 0,
+      "reachedCalls": 8,
+      "laterUnreachedCalls": 11,
+      "sourceCredit": 0
+    },
+    "newNative1": {
+      "registered": 1,
+      "failed": 1,
+      "existingProjectionControlPassed": 1,
+      "deletionPromiseAssertionRed": 1,
+      "laterMetadataAndColumnAssertionsUnreached": 2,
+      "readinessPreexpectInfra": 0,
+      "sourceCredit": 0
+    },
+    "R4Executions": 0,
+    "sourceBehavioralCausalRedCredit": 0,
+    "note": "All author raw logs/reports and receipts were read and byte-checked. This reviewer ran no tests, product imports, SQL, build or compiler. Static AST counts are inventory, not runtime results."
+  },
+  "standingHolds": [
+    "Creator searchable0 is PHYSICALLY PRESENT in candidate registry.ts insertion despite its explicit held status. Do not apply that hunk until Root separately qualifies and observes an ordinary omitted-vs-false first baseline on actual public15, then qualifies the finite insertion correction. This static six-finding closure does not authorize the held creator hunk.",
+    "R4 exact Root development qualification remains required before any application. This review grants no product mutation, fixed/refactored green evidence, final acceptance or merge approval.",
+    "Actual published41/provider15/UTC/CAS/full main and shared taxonomy slug-cache composition must be qualified separately; private payload adoption or a duplicate cache owner is not permitted.",
+    "Full Source61 plus Native24 fixed/refactored execution, real raw-D1/HTTP/global public search and nine remaining Source host families remain incomplete. Source health singleton/primary-routing and deployed behavior are not established by this per-binding static review.",
+    "The author static compiler overlay is not the configured typecheck: five new route-generated $types dependencies and nine resulting route parameter errors still require normal SvelteKit generation/check. No configured check pass is inferred.",
+    "Current whole13+secured9 hosted gates, final fresh independent/configured review, Root specific final acceptance, author expected-head regular merge and post-Main qualification remain required. Full search roadmap stays open."
+  ],
+  "restrictionsObserved": {
+    "tests": 0,
+    "builds": 0,
+    "compiler": 0,
+    "productSqlOrDatabaseExecutions": 0,
+    "httpAuthCredentialSessionOrRaceProbes": 0,
+    "productOrRepoEdits": 0,
+    "externalWrites": 0,
+    "helperAgents": 0
+  },
+  "result": "All six specified findings are statically closed in sealed R4; no additional actionable defect found in this bounded finite review. Preserve all explicit holds and proceed only through Root exact development qualification and genuine fixed execution."
+}

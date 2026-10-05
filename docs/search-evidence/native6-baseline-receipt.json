@@ -1,0 +1,75 @@
+{
+  "head": "7f1aff83dc2f8c93fd5288c2f650409b306067d6",
+  "parent": "02f4b863020f8f9f62aa97770193608bf37ad14e",
+  "exitCode": 1,
+  "execution": "whole Native6 once; no Source61 repeat",
+  "physicalTestFiles": 1,
+  "registeredCallbacks": 6,
+  "passed": 0,
+  "failed": 6,
+  "nativeBehaviorValueReds": 5,
+  "nativeDoesNotRejectRed": 1,
+  "sourceCausalCredit": 0,
+  "preexpectFailures": 0,
+  "infrastructureFailures": 0,
+  "tests": [
+    {
+      "name": "Native schema mutation maintains the same real FTS owner adds a searchable field to the real index while preserving tokenizer and weights",
+      "status": "failed",
+      "classification": "Native actual SQL/catalogue value assertion",
+      "failures": [
+        "AssertionError: expected 'CREATE VIRTUAL TABLE \"_cms_fts_articl\u2026' to contain 'notes'\n    at /workspace/cms-full-search-query-api/tests/search-native/schema-fts.test.ts:32:32\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+      ]
+    },
+    {
+      "name": "Native schema mutation maintains the same real FTS owner indexes existing values after a field becomes searchable",
+      "status": "failed",
+      "classification": "Native actual SQL/catalogue value assertion",
+      "failures": [
+        "AssertionError: expected 'CREATE VIRTUAL TABLE \"_cms_fts_articl\u2026' to contain 'summary'\n    at /workspace/cms-full-search-query-api/tests/search-native/schema-fts.test.ts:38:32\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+      ]
+    },
+    {
+      "name": "Native schema mutation maintains the same real FTS owner removes dependent triggers before dropping a searchable content column",
+      "status": "failed",
+      "classification": "Native actual promise rejection assertion",
+      "failures": [
+        "Error: promise rejected \"Error: error in trigger _cms_fts_articles\u2026 { \u2026(3) }\" instead of resolving\n    at _Assertion.__VITEST_RESOLVES__ (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js:1710:17)\n    at _Assertion.propertyGetter (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1607:27)\n    at Reflect.get (<anonymous>)\n    at Object.proxyGetter [as get] (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/chai@6.3.0/node_modules/chai/index.js:1696:22)\n    at /workspace/cms-full-search-query-api/tests/search-native/schema-fts.test.ts:43:60\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:2323:10)"
+      ]
+    },
+    {
+      "name": "Native schema mutation maintains the same real FTS owner disables an active index after the final searchable field is disabled",
+      "status": "failed",
+      "classification": "Native actual SQL/catalogue value assertion",
+      "failures": [
+        "AssertionError: expected { enabled: true, \u2026(2) } to deeply equal { enabled: false, \u2026(2) }\n    at /workspace/cms-full-search-query-api/tests/search-native/schema-fts.test.ts:49:53\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+      ]
+    },
+    {
+      "name": "Native schema mutation maintains the same real FTS owner disables after search support is removed and does not implicitly re-enable it",
+      "status": "failed",
+      "classification": "Native actual SQL/catalogue value assertion",
+      "failures": [
+        "AssertionError: expected { enabled: true, \u2026(2) } to deeply equal { enabled: false, \u2026(2) }\n    at /workspace/cms-full-search-query-api/tests/search-native/schema-fts.test.ts:54:53\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+      ]
+    },
+    {
+      "name": "Native schema mutation maintains the same real FTS owner drops the real FTS virtual table before force-deleting its content collection",
+      "status": "failed",
+      "classification": "Native actual SQL/catalogue value assertion",
+      "failures": [
+        "AssertionError: expected true to be false // Object.is equality\n    at /workspace/cms-full-search-query-api/tests/search-native/schema-fts.test.ts:62:52\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-search-query-api/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+      ]
+    }
+  ],
+  "artifacts": {
+    "/tmp/full-search-native6-schema-baseline.log": {
+      "bytes": 7318,
+      "sha256": "d669b75dc6d1813a80435f6e38ea72795411691fc670e61b5b18cd495a392f2a"
+    },
+    "/tmp/full-search-native6-schema-baseline.json": {
+      "bytes": 6409,
+      "sha256": "de22d3bad2ec5d7105c5e091dbc2bc712432a5ed2dbf5f9653a7b07481eababf"
+    }
+  }
+}

@@ -1,0 +1,294 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "status": "Native pure search UI transport test-first; actual baseline pending",
+  "files": [
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/unit/components/live-search-routing.test.ts",
+      "bytes": 1764,
+      "sha256": "f081f4f178ae77d38e9aa0e76850a90ec6fb1497f8968caf3e1185f18a760add",
+      "gitBlob": "bb39d1ea6e7cd76aa5d138a0f61306169a361356",
+      "kind": "whole-test",
+      "source": "packages/core/tests/unit/components/live-search-routing.test.ts"
+    },
+    {
+      "path": "parity/emdash/full-search-source/upstream/packages/core/tests/unit/components/webmcp-search.test.ts",
+      "bytes": 4998,
+      "sha256": "77eab36efbb40679c778ac6c3af919a44612f9e1908d214452e6c5c80d214da6",
+      "gitBlob": "02ff5d0a5abe288feb54dd8ba8c1b1ecf6188ca3",
+      "kind": "whole-test",
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts"
+    },
+    {
+      "source": "packages/core/src/components/live-search-routing.ts",
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/components/live-search-routing.ts.txt",
+      "kind": "whole-runtime-authority",
+      "bytes": 784,
+      "sha256": "25d3cdf74cf680bf352cf294db4271fc50c1f13cd01a79848349c759f9b7e464"
+    },
+    {
+      "source": "packages/core/src/components/webmcp-search.ts",
+      "path": "parity/emdash/full-search-source/authority/packages/core/src/components/webmcp-search.ts.txt",
+      "kind": "whole-runtime-authority",
+      "bytes": 4499,
+      "sha256": "0cf479652e378599bea067f90fceccdf77d6fefffc0ba27f89bc3b2f1c8ff9aa"
+    }
+  ],
+  "declarations": [
+    {
+      "source": "packages/core/tests/unit/components/live-search-routing.test.ts",
+      "line": 6,
+      "title": "uses the default collection URL when no route template exists",
+      "sha256": "44063d496af0f4a4d3ea055afefd2cc36639b301c7a0750d09af6237a20a9d6d",
+      "expectations": [
+        {
+          "line": 7,
+          "expression": "expect(\n\t\t\tbuildLiveSearchResultUrl({\n\t\t\t\tcollection: \"posts\",\n\t\t\t\tid: \"post-1\",\n\t\t\t\tslug: \"hello-world\",\n\t\t\t}),\n\t\t).toBe(\"/posts/hello-world\")",
+          "sha256": "8f5ce0a173fd6c8ca69d35e1702c25596d9e940dd9b14e718fefadcca759769a"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/components/live-search-routing.test.ts",
+      "line": 16,
+      "title": "falls back to the id when a result has no slug",
+      "sha256": "9618f164820e0f4ba2fd42d09adb7e7c3b03961e79f4c8a86efc61173fb13c3d",
+      "expectations": [
+        {
+          "line": 17,
+          "expression": "expect(\n\t\t\tbuildLiveSearchResultUrl({\n\t\t\t\tcollection: \"products\",\n\t\t\t\tid: \"product-1\",\n\t\t\t\tslug: null,\n\t\t\t}),\n\t\t).toBe(\"/products/product-1\")",
+          "sha256": "4d833af7722a17c65a47f38c0a99082f8907a0aa5016c746687dc0800c77c6ab"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/components/live-search-routing.test.ts",
+      "line": 26,
+      "title": "applies collection route templates",
+      "sha256": "c468f28b14201106db7e444480a43b57d8ab1256dea460eb5ef9cf66fb4a56ba",
+      "expectations": [
+        {
+          "line": 27,
+          "expression": "expect(\n\t\t\tbuildLiveSearchResultUrl(\n\t\t\t\t{\n\t\t\t\t\tcollection: \"games\",\n\t\t\t\t\tid: \"game-1\",\n\t\t\t\t\tslug: \"mausritter\",\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tgames: \"/item/:slug\",\n\t\t\t\t},\n\t\t\t),\n\t\t).toBe(\"/item/mausritter\")",
+          "sha256": "eb2d1152420703e12f8106e7e0b53bf91e6406896750fd05732fcc0e91305c95"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/components/live-search-routing.test.ts",
+      "line": 41,
+      "title": "replaces all supported route template tokens",
+      "sha256": "e58b2025f976686be8a5809597a142dae179390fad7bc47f08b543e0da25e2a9",
+      "expectations": [
+        {
+          "line": 42,
+          "expression": "expect(\n\t\t\tbuildLiveSearchResultUrl(\n\t\t\t\t{\n\t\t\t\t\tcollection: \"games\",\n\t\t\t\t\tid: \"game-1\",\n\t\t\t\t\tslug: null,\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tgames: \"/:collection/:id/:slug/:path\",\n\t\t\t\t},\n\t\t\t),\n\t\t).toBe(\"/games/game-1/game-1/game-1\")",
+          "sha256": "2ee79af975037d74aa3a771bc9f93a64cb053ff6e38d452a6cf228d5fe3cbd30"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/components/live-search-routing.test.ts",
+      "line": 56,
+      "title": "treats dollar signs in route values as literal text",
+      "sha256": "4d3719531e83c69a616dad206651f13d4aec687923838ce21a2165fc555db507",
+      "expectations": [
+        {
+          "line": 57,
+          "expression": "expect(\n\t\t\tbuildLiveSearchResultUrl(\n\t\t\t\t{\n\t\t\t\t\tcollection: \"game$collection\",\n\t\t\t\t\tid: \"id$&$1\",\n\t\t\t\t\tslug: \"slug$$\",\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tgame$collection: \"/:collection/:id/:slug/:path\",\n\t\t\t\t},\n\t\t\t),\n\t\t).toBe(\"/game$collection/id$&$1/slug$$/slug$$\")",
+          "sha256": "6162aafedd2cbd2d02a00f782c178f91ca07a53d5ca75ebb1b300a670ff516f5"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/components/live-search-routing.test.ts",
+      "line": 71,
+      "title": "treats dollar signs in fallback slug values as literal text",
+      "sha256": "1531a14224b7af8b4e7fadd86f8279f4c46234ab43485c68b64f3c8410b342a2",
+      "expectations": [
+        {
+          "line": 72,
+          "expression": "expect(\n\t\t\tbuildLiveSearchResultUrl(\n\t\t\t\t{\n\t\t\t\t\tcollection: \"games\",\n\t\t\t\t\tid: \"id$&$1\",\n\t\t\t\t\tslug: null,\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tgames: \"/:slug/:path\",\n\t\t\t\t},\n\t\t\t),\n\t\t).toBe(\"/id$&$1/id$&$1\")",
+          "sha256": "041a3901c83bd376b040e18cd124eeb99466e5d1c75e8e55746c60ba322a8bea"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 28,
+      "title": "searches the public API with the configured scope and clamps the limit",
+      "sha256": "01bd53f48edc2bcf009f74088a46db01447439fdf02ecd682dea41cc6bf8f052",
+      "expectations": [
+        {
+          "line": 35,
+          "expression": "expect(url.origin + url.pathname).toBe(\"https://example.com/_emdash/api/search\")",
+          "sha256": "cbfc681910789b63d3ae767a4855cea0f726282bfa4cfac33a8a9fdff9f44393"
+        },
+        {
+          "line": 36,
+          "expression": "expect(Object.fromEntries(url.searchParams)).toEqual({\n\t\t\tq: \"cheese\",\n\t\t\tlimit: \"5\",\n\t\t\tcollections: \"posts,pages\",\n\t\t\tlocale: \"fr\",\n\t\t})",
+          "sha256": "17c88992fea104928a2bff8f8c5b7ad686d8befb338dc9ee845ee730b86cb554"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 44,
+      "title": "returns absolute URLs and plain-text excerpts",
+      "sha256": "4a6c37fdf3a476f376b0b7de2d0ce055ff05eddce67d6a0b4ba67c4ea5330203",
+      "expectations": [
+        {
+          "line": 59,
+          "expression": "expect(result.isError).toBeUndefined()",
+          "sha256": "08cd5aba83e69e321715e4048eb6f4fae1ef66ef0f7fb10808a134ee87e832bd"
+        },
+        {
+          "line": 60,
+          "expression": "expect(JSON.parse(result.content[0]!.text)).toEqual([\n\t\t\t{\n\t\t\t\ttitle: \"Brie\",\n\t\t\t\turl: \"https://example.com/blog/brie\",\n\t\t\t\tcollection: \"posts\",\n\t\t\t\texcerpt: \"Soft cheese & <b>bread</b>\",\n\t\t\t},\n\t\t\t{ title: \"about\", url: \"https://example.com/pages/about\", collection: \"pages\" },\n\t\t])",
+          "sha256": "4cf755bd3c4909c11f7619ed63b9cd17540adf207772f442e18682bd1d7cc71d"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 71,
+      "title": "reports an empty query or failed request as a tool error without throwing",
+      "sha256": "8ec019bac70bbf6c01fe4a2b28207610557269018ec3ea594756d85be901df0f",
+      "expectations": [
+        {
+          "line": 75,
+          "expression": "expect((await tool.execute({ query: \" \" })).isError).toBe(true)",
+          "sha256": "bf03e939fa5d436ade4af722fffd2fe2b2fb105afe5e1e3074d6c270a3912cd6"
+        },
+        {
+          "line": 76,
+          "expression": "expect(fetchImpl).not.toHaveBeenCalled()",
+          "sha256": "ef82ff18198944dcd198130db00b2b08fe314b2962b9664e33678c619a2ccd5c"
+        },
+        {
+          "line": 77,
+          "expression": "expect((await tool.execute({ query: \"cheese\" })).isError).toBe(true)",
+          "sha256": "d8e81e5c39ca03b593c1665a306b4bdd5fbbdda09d196e45b31640003a4dcf33"
+        },
+        {
+          "line": 82,
+          "expression": "expect((await offline.execute({ query: \"cheese\" })).isError).toBe(true)",
+          "sha256": "e9067b6b883f7c81d00200b94c47260a96a290e2accece56462930b833766751"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 85,
+      "title": "keeps the configured limit within what the search API accepts",
+      "sha256": "ada6e9f6af5645a3016eb57d394b589e5f7ea6d96a91c3c255e2b250bee1b29a",
+      "expectations": [
+        {
+          "line": 91,
+          "expression": "expect(requestedUrl(fetchImpl).searchParams.get(\"limit\")).toBe(\"100\")",
+          "sha256": "09c85d1c45e6b299c4aa29dc38aece992dee25be2e37c80230a57b1b243eb40d"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 94,
+      "title": "prefers document.modelContext over the deprecated navigator location",
+      "sha256": "8a7cb8f3e6f20e35917f442f70d05db35c07fbe6f7546fff447216d6e15dece6",
+      "expectations": [
+        {
+          "line": 98,
+          "expression": "expect(resolveModelContext({ modelContext: onDocument }, { modelContext: onNavigator })).toBe(\n\t\t\tonDocument,\n\t\t)",
+          "sha256": "433b8789dfd755bf3edacc708f12f67c84300bfb2391bee6442772015c2f5cba"
+        },
+        {
+          "line": 101,
+          "expression": "expect(resolveModelContext({}, { modelContext: onNavigator })).toBe(onNavigator)",
+          "sha256": "7aff2e60e74c2e637fd4437f90138aa22eb3bf0e68fb5a90f31299c88234aaa6"
+        },
+        {
+          "line": 102,
+          "expression": "expect(resolveModelContext({}, {})).toBeUndefined()",
+          "sha256": "f1ac15ea0bce25638bb3e61ec8c44db60ee1898cdf0cc6eada6c9f6a7a7474e2"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 105,
+      "title": "unregisters the tool when the signal aborts",
+      "sha256": "f21d4d8a00043a6bc8991e7208e0f494ab7998ff16ab4941efbc9b0f286b6057",
+      "expectations": [
+        {
+          "line": 115,
+          "expression": "expect(registerSiteSearchTool(undefined, config, \"https://example.com\")).toBe(false)",
+          "sha256": "427ff3a700d353e785698aa7e1d544e8ccef89263d8be205d363009ed8ae1bc2"
+        },
+        {
+          "line": 116,
+          "expression": "expect(\n\t\t\tregisterSiteSearchTool(modelContext, config, \"https://example.com\", controller.signal),\n\t\t).toBe(true)",
+          "sha256": "156776f124e8040aa31aa8b8c5936a88f830393377a4827afe90c5bc6a908984"
+        },
+        {
+          "line": 119,
+          "expression": "expect(tools.has(\"search_site\")).toBe(true)",
+          "sha256": "ac12842245176bf07059c13cb59d3b204edfabf9ca43323fe93415195f6e2ee4"
+        },
+        {
+          "line": 122,
+          "expression": "expect(tools.has(\"search_site\")).toBe(false)",
+          "sha256": "5d66606055dff091fe6f2307f10c128235af41366603bbabc23b2955fef73a86"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 125,
+      "title": "does not throw when the browser rejects the registration",
+      "sha256": "e591cc4dc98cb69ff21068914ff84aabf7c1ac1415eca8ee77bac1257e1697df",
+      "expectations": [
+        {
+          "line": 131,
+          "expression": "expect(registerSiteSearchTool({ registerTool }, config, \"https://example.com\")).toBe(false)",
+          "sha256": "0b0b93218694c6213d74951544b46354d96cf2261254c408f3e22166a6f95535"
+        }
+      ],
+      "execution": "selected-whole-family"
+    },
+    {
+      "source": "packages/core/tests/unit/components/webmcp-search.test.ts",
+      "line": 135,
+      "title": "reports a rejected registration instead of leaving the promise unhandled",
+      "sha256": "51d28fe12c6ecfcce349effed36b40268b4b4f8b410f30defaa4157e1d2ef82a",
+      "expectations": [
+        {
+          "line": 143,
+          "expression": "expect(warn).toHaveBeenCalled()",
+          "sha256": "ef620c1233ea6015ee8d854256f141695baf193befa10674852873036357f163"
+        }
+      ],
+      "execution": "selected-whole-family"
+    }
+  ],
+  "selectedTestDeclarations": 14,
+  "selectedExpectExpressions": 24,
+  "sourceCausalCredit": 0,
+  "endpoint": "/_emdash/api/search literal and all original mocks/assertions preserved",
+  "limits": [
+    "Initial target modules absent; honest import-readiness failure anticipated",
+    "Pure supplied fetch/browser mocks establish helper contracts only",
+    "Actual public routes/components/SSR/SDK/MCP/hosted gates remain unfinished",
+    "No new HTTP/auth/credential/session/race probe"
+  ]
+}

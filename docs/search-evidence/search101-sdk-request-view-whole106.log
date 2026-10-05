@@ -1,0 +1,40 @@
+$ node scripts/check-search-source.mjs && vitest run --config vitest.full-search.config.ts && vitest run --config vitest.search-review.config.ts && pnpm test:search-ui-source && vitest run --config vitest.search-native-ui.config.ts
+{"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","wholeSelectedFamilies":14,"wholeRemainingFamilies":9,"testDeclarations":58,"expectExpressions":128,"productTestsRun":0}
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+
+ Test Files  16 passed (16)
+      Tests  76 passed (76)
+   Start at  01:17:06
+   Duration  8.11s (transform 510ms, setup 0ms, import 3.69s, tests 2.43s, environment 1ms)
+
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+
+ Test Files  3 passed (3)
+      Tests  12 passed (12)
+   Start at  01:17:14
+   Duration  1.49s (transform 368ms, setup 0ms, import 809ms, tests 311ms, environment 0ms)
+
+$ node scripts/check-search-ui-source.mjs && vitest run --config vitest.search-ui-source.config.ts
+{"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","wholeSelectedFamilies":2,"wholeRemainingFamilies":0,"testDeclarations":14,"expectExpressions":24,"productTestsRun":0}
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+
+ Test Files  2 passed (2)
+      Tests  14 passed (14)
+   Start at  01:17:16
+   Duration  388ms (transform 49ms, setup 0ms, import 73ms, tests 83ms, environment 0ms)
+
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  01:17:17
+   Duration  516ms (transform 315ms, setup 0ms, import 394ms, tests 5ms, environment 0ms)
+

@@ -1,0 +1,32 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+ ✓ tests/search-native/query.test.ts (9 tests) 300ms
+ ✓ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/pagination.test.ts (7 tests) 291ms
+ ✓ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/portable-text-indexing.test.ts (6 tests) 192ms
+ ✓ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-corruption.test.ts (5 tests) 206ms
+ ✓ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-scope.test.ts (6 tests) 207ms
+ ✓ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/snippet-sanitization.test.ts (4 tests) 159ms
+ ✓ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest.test.ts (5 tests) 218ms
+ ✓ tests/search-native/schema-fts.test.ts (6 tests) 210ms
+ ✓ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-write-amplification.test.ts (4 tests) 145ms
+stderr | parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/tokenizer.test.ts > FTS tokenizers > preserves trigram through disable, re-enable, schema rebuild, and missing-index repair
+FTS index for "articles" is missing. Rebuilding.
+
+ ✓ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/tokenizer.test.ts (5 tests) 191ms
+ ✓ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-less-collection.test.ts (3 tests) 140ms
+stderr | parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-repair.test.ts > FTS repair > recreates a missing FTS table when search remains enabled
+FTS index for "game" is missing. Rebuilding.
+
+ ✓ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/fts-repair.test.ts (2 tests) 88ms
+ ✓ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/suggest-title-field.test.ts (1 test) 55ms
+ ✓ parity/emdash/full-search-source/upstream/packages/core/tests/integration/search/title-field-search.test.ts (1 test) 54ms
+ ✓ parity/emdash/full-search-source/upstream/packages/core/tests/unit/api/search-schema.test.ts (6 tests) 6ms
+ ✓ parity/emdash/full-search-source/upstream/packages/core/tests/unit/search/match.test.ts (6 tests) 4ms
+
+ Test Files  16 passed (16)
+      Tests  76 passed (76)
+   Start at  17:09:52
+   Duration  7.97s (transform 583ms, setup 0ms, import 3.63s, tests 2.47s, environment 1ms)
+
+JSON report written to /tmp/full-search-e24-core76.json

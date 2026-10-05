@@ -1,0 +1,195 @@
+$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+Loading svelte-check in workspace: /workspace/cms-full-search-query-api
+Getting Svelte diagnostics...
+
+/workspace/cms-full-search-query-api/src/lib/server/query-sdk/loader.ts:386:41
+Error: Argument of type 'import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely").Kysely<import("/workspace/cms-full-search-query-api/src/lib/server/database/lifecycle/upstream/database/types").Database>' is not assignable to parameter of type 'import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely").Kysely<import("/workspace/cms-full-search-query-api/src/lib/server/canonical-storage/types").Database>'.
+  The types of 'fn.agg(...).over' are incompatible between these types.
+    Type '(over?: import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/aggregate-function-builder").OverBuilderCallback<import("/workspace/cms-full-search-query-api/src/lib/server/database/lifecycle/upstream/database/types").Database, keyof import("/workspace/cms...' is not assignable to type '(over?: import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/aggregate-function-builder").OverBuilderCallback<import("/workspace/cms-full-search-query-api/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-search-query-...'.
+      Types of parameters 'over' and 'over' are incompatible.
+        Types of parameters 'builder' and 'builder' are incompatible.
+          Type 'import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/over-builder").OverBuilder<import("/workspace/cms-full-search-query-api/src/lib/server/database/lifecycle/upstream/database/types").Database, keyof import("/workspace/cms-full-search-query-api/src/lib...' is not assignable to type 'import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/over-builder").OverBuilder<import("/workspace/cms-full-search-query-api/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-search-query-api/src/lib/server/canonical-s...'.
+            Types of property 'partitionBy' are incompatible.
+              Type '{ (partitionBy: readonly import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-search-query-api/src/lib/server/database/lifecycle/upstream/database/types").Database, keyof import("/workspac...' is not assignable to type '{ (partitionBy: readonly import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-search-query-api/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-search-q...'.
+                Types of parameters 'partitionBy' and 'partitionBy' are incompatible.
+                  Type 'readonly import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-search-query-api/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-search-query-api/src/lib...' is not assignable to type 'readonly import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-search-query-api/src/lib/server/database/lifecycle/upstream/database/types").Database, keyof import("/workspace/cms-full-searc...'.
+                    Type 'import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-search-query-api/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-search-query-api/src/lib/server/c...' is not assignable to type 'import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-search-query-api/src/lib/server/database/lifecycle/upstream/database/types").Database, keyof import("/workspace/cms-full-search-query-a...'.
+                      Type '"_emdash_taxonomy_def_groups.id"' is not assignable to type 'PartitionByExpression<Database, keyof Database>'. Did you mean '"_cms_taxonomy_def_groups.id"'? 
+	try {
+		const defs = await selectTaxonomyDefs(db).execute();
+		const namesByCollection = new Map<string, Set<string>>();
+
+/workspace/cms-full-search-query-api/src/lib/server/query-sdk/loader.ts:950:48
+Error: Cannot find module './references/field-map.js' or its corresponding type declarations. 
+	if (candidates.length === 0) return undefined;
+	const { getReferenceFieldMap } = await import("./references/field-map.js");
+	const bound = await getReferenceFieldMap(collection);
+
+/workspace/cms-full-search-query-api/src/lib/server/query-sdk/loader.ts:1441:10
+Error: Conversion of type 'import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely").Kysely<import("/workspace/cms-full-search-query-api/src/lib/server/menus/database-types").Database>' to type 'import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely").Kysely<import("/workspace/cms-full-search-query-api/src/lib/server/database/lifecycle/upstream/database/types").Database>' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  The types of 'transaction().execute' are incompatible between these types.
+    Type '<T>(callback: (trx: import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely").Transaction<import("/workspace/cms-full-search-query-api/src/lib/server/menus/database-types").Database>) => Promise<...>) => Promise<...>' is not comparable to type '<T>(callback: (trx: import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely").Transaction<import("/workspace/cms-full-search-query-api/src/lib/server/database/lifecycle/upstream/database/types").Database>) => Promise<...>) => Promise<...>'.
+      Types of parameters 'callback' and 'callback' are incompatible.
+        Types of parameters 'trx' and 'trx' are incompatible.
+          Type 'import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely").Transaction<import("/workspace/cms-full-search-query-api/src/lib/server/menus/database-types").Database>' is not comparable to type 'import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely").Transaction<import("/workspace/cms-full-search-query-api/src/lib/server/database/lifecycle/upstream/database/types").Database>'.
+            The types returned by 'with(...)' are incompatible between these types.
+              Type 'import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/with-parser").QueryCreatorWithCommonTableExpression<import("/workspace/cms-full-search-query-api/src/lib/server/menus/database-types").Database, any, any>' is not comparable to type 'import("/workspace/cms-full-search-query-api/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/with-parser").QueryCreatorWithCommonTableExpression<import("/workspace/cms-full-search-query-api/src/lib/server/database/lifecycle/upstream/database/types").Database, any, any>'.
+                Type 'import("/workspace/cms-full-search-query-api/src/lib/server/menus/database-types").Database & { [x: string]: unknown; }' is not comparable to type 'import("/workspace/cms-full-search-query-api/src/lib/server/database/lifecycle/upstream/database/types").Database & { [x: string]: unknown; }'.
+                  Type 'Database & { [x: string]: unknown; }' is missing the following properties from type 'Database': _cms_revisions, _cms_revision_prune_queue, content_taxonomies, _cms_taxonomy_defs, and 62 more. 
+	if (ctx?.db) {
+		return ctx.db as Kysely<Database>; // eslint-disable-line typescript/no-unsafe-type-assertion -- db is typed as unknown in RequestContext to avoid circular deps
+	}
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:55:49
+Error: Cannot find module './schema/collection-slugs-cache.ts' or its corresponding type declarations. 
+import { getRequestContext } from "./menus/context.ts";
+import { resetRegisteredCollectionsCache } from "./schema/collection-slugs-cache.ts";
+import { compileUrlPattern } from "./schema/url-pattern.ts";
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:57:35
+Error: Cannot find module './taxonomies/types.ts' or its corresponding type declarations. 
+import { compileUrlPattern } from "./schema/url-pattern.ts";
+import type { TaxonomyTerm } from "./taxonomies/types.ts";
+import { isMissingColumnError, isMissingTableError } from "./schema/db-errors.ts";
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:933:49
+Error: Argument of type 'LiveEntry<EntryData> | undefined' is not assignable to parameter of type 'ContentEntry<EntryData, ReferencePages>'.
+  Type 'undefined' is not assignable to type 'ContentEntry<EntryData, ReferencePages>'. 
+	const pageEntries = hasMore ? entries.slice(0, requestedLimit) : entries;
+	const nextCursor = hasMore ? encodeEntryCursor(pageEntries.at(-1), filter?.orderBy) : undefined;
+	// `hasMore` is only meaningful when a limit bounds the page; otherwise the
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:939:42
+Error: Argument of type '(entry: ContentEntry<D>) => { edit: EditProxy; id: string; data: D; references?: ReferencePages | undefined; }' is not assignable to parameter of type '(value: LiveEntry<EntryData>, index: number, array: LiveEntry<EntryData>[]) => { edit: EditProxy; id: string; data: D; references?: ReferencePages | undefined; }'.
+  Types of parameters 'entry' and 'value' are incompatible.
+    Property 'edit' is missing in type 'LiveEntry<EntryData>' but required in type 'ContentEntry<D, ReferencePages>'. 
+	const isEditMode = ctx?.editMode ?? false;
+	const entriesWithEdit = pageEntries.map((entry: ContentEntry<D>) => {
+		const dbId = entryDatabaseId(entry);
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1043:49
+Error: Cannot find module './query-sdk/references/resolve.ts' or its corresponding type declarations. 
+
+	const { resolveReferencePages } = await import("./query-sdk/references/resolve.ts");
+	const pages = await resolveReferencePages({
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1057:23
+Error: 'page' is of type 'unknown'. 
+	for (const [field, page] of Object.entries(pages)) {
+		for (const child of page.entries) {
+			tags.push(...child.cacheHint.tags);
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1063:13
+Error: 'page' is of type 'unknown'. 
+		references[field] = {
+			entries: page.entries.map((child) => wrapReferencedEntry(page.collection, child)),
+			...(page.nextCursor === undefined ? {} : { nextCursor: page.nextCursor }),
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1063:31
+Error: Parameter 'child' implicitly has an 'any' type. 
+		references[field] = {
+			entries: page.entries.map((child) => wrapReferencedEntry(page.collection, child)),
+			...(page.nextCursor === undefined ? {} : { nextCursor: page.nextCursor }),
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1063:61
+Error: 'page' is of type 'unknown'. 
+		references[field] = {
+			entries: page.entries.map((child) => wrapReferencedEntry(page.collection, child)),
+			...(page.nextCursor === undefined ? {} : { nextCursor: page.nextCursor }),
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1064:8
+Error: 'page' is of type 'unknown'. 
+			entries: page.entries.map((child) => wrapReferencedEntry(page.collection, child)),
+			...(page.nextCursor === undefined ? {} : { nextCursor: page.nextCursor }),
+		};
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1064:59
+Error: 'page' is of type 'unknown'. 
+			entries: page.entries.map((child) => wrapReferencedEntry(page.collection, child)),
+			...(page.nextCursor === undefined ? {} : { nextCursor: page.nextCursor }),
+		};
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1106:48
+Error: Cannot find module './query-sdk/references/field-map.ts' or its corresponding type declarations. 
+): Promise<string[]> {
+	const { getReferenceFieldMap } = await import("./query-sdk/references/field-map.ts");
+	const fieldMap = await getReferenceFieldMap(collection);
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1248:20
+Error: Argument of type 'LiveEntry<Record<string, unknown>>' is not assignable to parameter of type 'ContentEntry<D, ReferencePages>'.
+  Property 'edit' is missing in type 'LiveEntry<Record<string, unknown>>' but required in type 'ContentEntry<D, ReferencePages>'. 
+					// Token doesn't match — serve only if publicly visible, without draft access
+					if (isVisible(baseEntry)) {
+						return successResult(wrapEntry(baseEntry), {
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1249:38
+Error: Argument of type 'LiveEntry<Record<string, unknown>>' is not assignable to parameter of type 'ContentEntry<D, ReferencePages>'.
+  Property 'edit' is missing in type 'LiveEntry<Record<string, unknown>>' but required in type 'ContentEntry<D, ReferencePages>'. 
+					if (isVisible(baseEntry)) {
+						return successResult(wrapEntry(baseEntry), {
+							isPreview: false,
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1273:37
+Error: Argument of type 'LiveEntry<Record<string, unknown>>' is not assignable to parameter of type 'ContentEntry<D, ReferencePages>'.
+  Property 'edit' is missing in type 'LiveEntry<Record<string, unknown>>' but required in type 'ContentEntry<D, ReferencePages>'. 
+				if (!draftError && draftEntry) {
+					return successResult(wrapEntry(draftEntry), {
+						isPreview: serveDrafts,
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1281:35
+Error: Argument of type 'LiveEntry<Record<string, unknown>>' is not assignable to parameter of type 'ContentEntry<D, ReferencePages>'.
+  Property 'edit' is missing in type 'LiveEntry<Record<string, unknown>>' but required in type 'ContentEntry<D, ReferencePages>'. 
+
+			return successResult(wrapEntry(baseEntry), {
+				isPreview: serveDrafts,
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1310:27
+Error: Argument of type 'LiveEntry<Record<string, unknown>>' is not assignable to parameter of type 'ContentEntry<D, ReferencePages>'.
+  Property 'edit' is missing in type 'LiveEntry<Record<string, unknown>>' but required in type 'ContentEntry<D, ReferencePages>'. 
+
+			if (entry && isVisible(entry)) {
+				return successResult(wrapEntry(entry), {
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1311:36
+Error: Argument of type 'LiveEntry<Record<string, unknown>>' is not assignable to parameter of type 'ContentEntry<D, ReferencePages>'.
+  Property 'edit' is missing in type 'LiveEntry<Record<string, unknown>>' but required in type 'ContentEntry<D, ReferencePages>'. 
+			if (entry && isVisible(entry)) {
+				return successResult(wrapEntry(entry), {
+					isPreview: false,
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1410:50
+Error: Cannot find module './query-sdk/references/resolve.ts' or its corresponding type declarations. 
+		const { ContentRepository } = await import("./database/lifecycle/upstream/database/repositories/content.ts");
+		const { resolveReferencePages } = await import("./query-sdk/references/resolve.ts");
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1456:31
+Error: Parameter 'child' implicitly has an 'any' type. 
+		return {
+			entries: page.entries.map((child) => wrapReferencedEntry<D>(page.collection, child)),
+			...(page.nextCursor === undefined ? {} : { nextCursor: page.nextCursor }),
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1546:49
+Error: Cannot find module './bylines/field-defs-cache.ts' or its corresponding type declarations. 
+				const db = await getDb();
+				const { getBylineFieldDefs } = await import("./bylines/field-defs-cache.ts");
+				hasCustomFields = (await getBylineFieldDefs(db)).length > 0;
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1569:49
+Error: Cannot find module './bylines/index.ts' or its corresponding type declarations. 
+	try {
+		const { getBylinesForEntries } = await import("./bylines/index.ts");
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1676:50
+Error: Cannot find module './taxonomies/index.ts' or its corresponding type declarations. 
+		// of issuing an N+1 query. No DB lookup — purely from the folded data.
+		const { primeFoldedEntryTerms } = await import("./taxonomies/index.ts");
+		primeFoldedEntryTerms(type, perEntry, { locale });
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1682:50
+Error: Cannot find module './taxonomies/index.ts' or its corresponding type declarations. 
+	try {
+		const { getAllTermsForEntries } = await import("./taxonomies/index.ts");
+
+====================================
+svelte-check found 27 errors and 0 warnings in 2 files
+[ELIFECYCLE] Command failed with exit code 1.

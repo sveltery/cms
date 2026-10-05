@@ -1,0 +1,47 @@
+$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+Loading svelte-check in workspace: /workspace/cms-full-search-query-api
+Getting Svelte diagnostics...
+
+/workspace/cms-full-search-query-api/src/lib/server/query-sdk/references/resolve.ts:15:36
+Error: Cannot find module '../../relations/repository.ts' or its corresponding type declarations. 
+
+import { RelationRepository } from "../../relations/repository.ts";
+import { RevisionRepository } from "../../database/lifecycle/upstream/database/repositories/revision.ts";
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:55:49
+Error: Cannot find module './schema/collection-slugs-cache.ts' or its corresponding type declarations. 
+import { getRequestContext } from "./menus/context.ts";
+import { resetRegisteredCollectionsCache } from "./schema/collection-slugs-cache.ts";
+import { compileUrlPattern } from "./schema/url-pattern.ts";
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:57:35
+Error: Cannot find module './taxonomies/types.ts' or its corresponding type declarations. 
+import { compileUrlPattern } from "./schema/url-pattern.ts";
+import type { TaxonomyTerm } from "./taxonomies/types.ts";
+import { isMissingColumnError, isMissingTableError } from "./schema/db-errors.ts";
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1548:49
+Error: Cannot find module './bylines/field-defs-cache.ts' or its corresponding type declarations. 
+				const db = await getDb();
+				const { getBylineFieldDefs } = await import("./bylines/field-defs-cache.ts");
+				hasCustomFields = (await getBylineFieldDefs(db)).length > 0;
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1571:49
+Error: Cannot find module './bylines/index.ts' or its corresponding type declarations. 
+	try {
+		const { getBylinesForEntries } = await import("./bylines/index.ts");
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1678:50
+Error: Cannot find module './taxonomies/index.ts' or its corresponding type declarations. 
+		// of issuing an N+1 query. No DB lookup — purely from the folded data.
+		const { primeFoldedEntryTerms } = await import("./taxonomies/index.ts");
+		primeFoldedEntryTerms(type, perEntry, { locale });
+
+/workspace/cms-full-search-query-api/src/lib/server/query.ts:1684:50
+Error: Cannot find module './taxonomies/index.ts' or its corresponding type declarations. 
+	try {
+		const { getAllTermsForEntries } = await import("./taxonomies/index.ts");
+
+====================================
+svelte-check found 7 errors and 0 warnings in 2 files
+[ELIFECYCLE] Command failed with exit code 1.

@@ -1,0 +1,25 @@
+
+[validate] start: frozen dependency install
+? Verifying lockfile against supply-chain policies (534 entries)...
+Update available! 12.6.0 → 12.9.1.
+Changelog: https://pnpm.io/v/12.9.1
+To update, run: curl -fsSL https://get.pnpm.io/install.sh | sh -
+✓ Lockfile passes supply-chain policies (534 entries in 5.3s)
+Lockfile is up to date, resolution step is skipped
+Done in 5.4s using pnpm v12.6.0
+[validate] finished: frozen dependency install
+
+[validate] start: type and Svelte checks
+$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+Loading svelte-check in workspace: /workspace/cms-full-search-query-api
+Getting Svelte diagnostics...
+
+/workspace/cms-full-search-query-api/src/lib/server/query-sdk/references/resolve.ts:15:36
+Error: Cannot find module '../../relations/repository.ts' or its corresponding type declarations. 
+
+import { RelationRepository } from "../../relations/repository.ts";
+import { RevisionRepository } from "../../database/lifecycle/upstream/database/repositories/revision.ts";
+
+====================================
+svelte-check found 1 error and 0 warnings in 1 file
+[ELIFECYCLE] Command failed with exit code 1.

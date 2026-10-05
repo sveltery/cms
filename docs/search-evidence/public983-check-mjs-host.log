@@ -1,0 +1,93 @@
+$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+Loading svelte-check in workspace: /workspace/cms-full-search-query-api
+Getting Svelte diagnostics...
+
+/workspace/cms-full-search-query-api/src/lib/server/query-sdk/references/resolve.ts:15:36
+Error: Cannot find module '../../relations/repository.ts' or its corresponding type declarations. 
+
+import { RelationRepository } from "../../relations/repository.ts";
+import { RevisionRepository } from "../../database/lifecycle/upstream/database/repositories/revision.ts";
+
+/workspace/cms-full-search-query-api/parity/emdash/taxonomies/source/packages/core/src/media/usage/collection-deletion.ts:9:8
+Error: Cannot find module '../../database/repositories/types.js' or its corresponding type declarations. 
+	type FindManyResult,
+} from "../../database/repositories/types.js";
+import { withTransaction } from "../../database/transaction.js";
+
+/workspace/cms-full-search-query-api/parity/emdash/taxonomies/source/packages/core/src/media/usage/collection-deletion.ts:627:44
+Error: Cannot find module 'virtual:emdash/config' or its corresponding type declarations. 
+	if (executeAdapterGuard) {
+		const { default: config } = await import("virtual:emdash/config");
+		return executeAdapterGuard(config.database?.config, input);
+
+/workspace/cms-full-search-query-api/parity/emdash/taxonomies/source/packages/core/src/media/usage/collection-deletion.ts:637:32
+Error: Cannot find module 'virtual:emdash/dialect' or its corresponding type declarations. 
+	try {
+		const dialect = await import("virtual:emdash/dialect");
+		return dialect.executeCollectionDeletionGuard;
+
+/workspace/cms-full-search-query-api/parity/emdash/taxonomies/source/packages/core/src/request-context.ts:22:36
+Error: Cannot find module './database/instrumentation.js' or its corresponding type declarations. 
+
+import type { QueryRecorder } from "./database/instrumentation.js";
+import type { DeferredTaskTracker } from "./deferred-tasks.js";
+
+/workspace/cms-full-search-query-api/parity/emdash/taxonomies/source/packages/core/src/database/repositories/media-usage.ts:35:85
+Error: Cannot find module './types.js' or its corresponding type declarations. 
+import { validateIdentifier } from "../validate.js";
+import { decodeCursor, encodeCursor, InvalidCursorError, type FindManyResult } from "./types.js";
+
+/workspace/cms-full-search-query-api/parity/emdash/taxonomies/source/packages/core/src/media/normalize.ts:13:67
+Error: Cannot find module './types.js' or its corresponding type declarations. 
+import { normalizeFocalPoint } from "./focal-point.js";
+import type { MediaProvider, MediaProviderItem, MediaValue } from "./types.js";
+
+/workspace/cms-full-search-query-api/parity/emdash/taxonomies/source/packages/core/src/database/repositories/media-usage-work.ts:6:65
+Error: Cannot find module './types.js' or its corresponding type declarations. 
+import type { Database, MediaUsageWorkTable } from "../types.js";
+import { decodeCursor, encodeCursor, type FindManyResult } from "./types.js";
+
+/workspace/cms-full-search-query-api/parity/emdash/taxonomies/source/packages/core/src/transfer/format/columns.ts:29:33
+Error: Cannot find module './kinds.js' or its corresponding type declarations. 
+import { TransferError } from "../errors.js";
+import type { RecordKind } from "./kinds.js";
+
+/workspace/cms-full-search-query-api/parity/emdash/taxonomies/source/packages/core/src/schema/registry.ts:44:52
+Error: Cannot find module '../transfer/format/kinds.js' or its corresponding type declarations. 
+import { canonicalDigest } from "../transfer/format/digest.js";
+import type { CollectionRecord, FieldRecord } from "../transfer/format/kinds.js";
+import { encodeRecord, firstDifference, recordCodecs } from "../transfer/import/rows.js";
+
+/workspace/cms-full-search-query-api/parity/emdash/taxonomies/source/packages/core/src/schema/registry.ts:50:8
+Error: Cannot find module '../transfer/schema-importer.js' or its corresponding type declarations. 
+	ImportCollectionResult,
+} from "../transfer/schema-importer.js";
+import { chunks, SQL_BATCH_SIZE } from "../utils/chunks.js";
+
+/workspace/cms-full-search-query-api/parity/emdash/taxonomies/source/packages/core/src/schema/registry.ts:874:46
+Error: 'lifecycle' is possibly 'undefined'. 
+		const captureFinalized =
+			lifecycle?.collection_id === record.id && lifecycle.capture_state === "active";
+		let captureRequired = captureFinalized;
+
+/workspace/cms-full-search-query-api/parity/emdash/taxonomies/source/packages/core/src/schema/registry.ts:1012:36
+Error: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'Record<FieldType, ColumnType>'. 
+			slugs.add(field.slug);
+			if (!isFieldType(field.type) || FIELD_TYPE_TO_COLUMN[field.type] !== field.columnType) {
+				throw new SchemaError(
+
+/workspace/cms-full-search-query-api/tests/helpers/query-sdk/source-read-fixture.mjs:8:15
+Error: Parameter 'database' implicitly has an 'any' type. 
+export class SchemaRegistry extends SourceRegistry {
+  constructor(database) {
+    bindSourceQueryReadHost(database);
+
+/workspace/cms-full-search-query-api/tests/helpers/query-sdk/source-read-fixture.mjs:14:37
+Error: Parameter 'database' implicitly has an 'any' type. 
+
+export async function runMigrations(database) {
+  bindSourceQueryReadHost(database);
+
+====================================
+svelte-check found 15 errors and 0 warnings in 9 files
+[ELIFECYCLE] Command failed with exit code 1.

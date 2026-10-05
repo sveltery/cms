@@ -1,0 +1,519 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+stderr | parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts > Loader field filters > should return all entries when where has only invalid field names
+[emdash] where filter: invalid field name "invalid-field!" ignored
+
+ ✓ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts (15 tests) 1144ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts (21 tests | 1 failed) 1004ms
+     ✓ selective term: returns only the one tagged entry 109ms
+     ✓ broad term (~half the collection): returns every tagged entry 49ms
+     ✓ OR within a taxonomy: dedups an entry tagged with two matched terms 73ms
+     ✓ multi-term AND: only entries tagged in every requested taxonomy match 66ms
+     ✓ sorts by published_at (indexed) descending 39ms
+     ✓ sorts by created_at (indexed, loader default) descending 36ms
+     ✓ sorts by updated_at (temp-sort path, not denormalized) descending 52ms
+     ✓ filters by locale 43ms
+     ✓ filters by status: a draft query returns drafts, published returns published 48ms
+     ✓ drops a row the pivot admits but ec_* has soft-deleted 32ms
+     ✓ drops a row the pivot says published but ec_* has as draft 31ms
+     ✓ drops a row whose ec_* locale no longer matches the filter 38ms
+     ✓ under-fills (never returns wrong rows) when a stale row consumes a LIMIT slot 34ms
+     ✓ publish re-stamps the pivot so the entry appears in a published listing 48ms
+     ✓ soft-delete then restore re-stamps the pivot both ways 33ms
+     ✓ schedule updates taxonomy-filtered status from the content row 28ms
+     ✓ paginates by keyset cursor over the pivot sort key without overlap 46ms
+     ✓ paginates the OR-within-taxonomy (GROUP BY + HAVING cursor) path 39ms
+     × ANDs a byline filter with the taxonomy filter on the pivot path 50ms
+     ✓ builder serves the trash shape (deleted_at IS NOT NULL) 66ms
+     ✓ builder serves an all-statuses live shape (status undefined) 41ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts (10 tests | 9 failed) 564ms
+     × returns entries where the byline is the primary credit 92ms
+     × returns co-authored entries where the byline is a secondary credit 68ms
+     × returns only entries credited to the requested byline 40ms
+     × matches any of multiple bylines (array = OR) 60ms
+     × does not duplicate an entry credited to multiple requested bylines 42ms
+     × combines byline filter with a field filter (AND) 65ms
+     × combines byline filter with a taxonomy filter (AND) 46ms
+     × returns no entries when the byline filter is an empty array 62ms
+     × ignores range operators on the byline key 43ms
+     ✓ returns no entries when a taxonomy filter is an empty array 45ms
+ ✓ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts (7 tests) 397ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts (4 tests | 2 failed) 265ms
+     ✓ returns booleans from collection loads without coercing integer fields 95ms
+     ✓ filters a collection by a boolean field 71ms
+     × returns booleans from single-entry loads 42ms
+     × returns booleans from revision previews without coercing integer fields 56ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts (4 tests | 2 failed) 285ms
+     ✓ resolves bare media ID in src to a file URL 117ms
+     × resolves bare media ID in loadEntry 69ms
+     ✓ does not rewrite an existing local media URL 62ms
+     × resolves bare media ID in revision-backed loadEntry 36ms
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts (0 test)
+ ✓ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts (9 tests) 766ms
+ ✓ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts (4 tests) 762ms
+     ✓ skips the first `offset` rows  328ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 16 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts:16:1
+     14| import { beforeEach, afterEach, expect, it } from "vitest";
+     15|
+     16| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+     17|
+     18| import { runMigrations } from "../../src/database/migrations/runner.js…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts:31:1
+     29| import { afterEach, beforeEach, expect, it } from "vitest";
+     30|
+     31| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+     32|
+     33| import { runMigrations } from "../../src/database/migrations/runner.js…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/field-defs-cache.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts:14:1
+     12| import { afterEach, beforeEach, expect, it } from "vitest";
+     13|
+     14| import { resetBylineFieldDefsCacheForTests } from "../../src/bylines/f…
+       | ^
+     15| import { BylineRepository } from "../../src/database/repositories/byli…
+     16| import { ContentRepository } from "../../src/database/repositories/con…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts:20:1
+     18| import { afterEach, beforeEach, describe, expect, it } from "vitest";
+     19|
+     20| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+     21|
+     22| import { runMigrations } from "../../src/database/migrations/runner.js…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts:19:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/repository.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts:5:1
+      3|
+      4| import { handleContentCreate } from "../../src/api/index.js";
+      5| import { BylineRepository } from "../../src/database/repositories/byli…
+       | ^
+      6| import { ContentRepository } from "../../src/database/repositories/con…
+      7| import { RevisionRepository } from "../../src/database/repositories/re…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/repository.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts:5:1
+      3|
+      4| import { handleContentCreate, handleContentPublish } from "../../src/a…
+      5| import { BylineRepository } from "../../src/database/repositories/byli…
+       | ^
+      6| import { ContentRepository } from "../../src/database/repositories/con…
+      7| import { RevisionRepository } from "../../src/database/repositories/re…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts ]
+Error: Cannot find module '../../src/database/repositories/seo.js' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts:4:1
+      2|
+      3| import { handleContentCreate } from "../../src/api/index.js";
+      4| import { SeoRepository } from "../../src/database/repositories/seo.js";
+       | ^
+      5| import { emdashLoader } from "../../src/loader.js";
+      6| import { peekSeoPanel } from "../../src/page/seo-panel.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts ]
+Error: Cannot find module '../../src/database/repositories/seo.js' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts:4:1
+      2|
+      3| import { handleContentCreate } from "../../src/api/index.js";
+      4| import { SeoRepository } from "../../src/database/repositories/seo.js";
+       | ^
+      5| import { emdashLoader } from "../../src/loader.js";
+      6| import { runWithContext } from "../../src/request-context.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts:7:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts:5:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts:21:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts ]
+Error: Cannot find module './schema/collection-slugs-cache.ts' imported from /workspace/cms-full-search-query-api/src/lib/server/query.ts
+ ❯ src/lib/server/query.ts:55:1
+     53| import { requestCached } from "./menus/request-cache.ts";
+     54| import { getRequestContext } from "./menus/context.ts";
+     55| import { resetRegisteredCollectionsCache } from "./schema/collection-s…
+       | ^
+     56| import { compileUrlPattern } from "./schema/url-pattern.ts";
+     57| import type { TaxonomyTerm } from "./taxonomies/types.ts";
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts:21:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/repository.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts:4:1
+      2| import { describe, it, expect, beforeEach, afterEach, vi } from "vites…
+      3|
+      4| import { BylineRepository } from "../../../src/database/repositories/b…
+       | ^
+      5| import { ContentRepository } from "../../../src/database/repositories/…
+      6| import { UserRepository } from "../../../src/database/repositories/use…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/30]⎯
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 14 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts > Loader boolean field values [sqlite] > returns booleans from single-entry loads
+AssertionError: expected undefined to be defined
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts:105:18
+    103|   );
+    104|
+    105|   expect(result).toBeDefined();
+       |                  ^
+    106|   expect((result as { data: Record<string, unknown> }).data.enabled).t…
+    107|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts > Loader boolean field values [sqlite] > returns booleans from revision previews without coercing integer fields
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts:127:62
+    125|    }),
+    126|   );
+    127|   const data = (result as { data: Record<string, unknown> }).data;
+       |                                                              ^
+    128|
+    129|   expect(data.title).toBe("Draft title");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > returns entries where the byline is the primary credit
+Error: no such table: _emdash_content_bylines
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ InsertQueryBuilder.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1101:24
+ ❯ credit parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:61:3
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:82:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > returns co-authored entries where the byline is a secondary credit
+Error: no such table: _emdash_content_bylines
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ InsertQueryBuilder.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1101:24
+ ❯ credit parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:61:3
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:94:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > returns only entries credited to the requested byline
+Error: no such table: _emdash_content_bylines
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ InsertQueryBuilder.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1101:24
+ ❯ credit parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:61:3
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:106:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > matches any of multiple bylines (array = OR)
+Error: no such table: _emdash_content_bylines
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ InsertQueryBuilder.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1101:24
+ ❯ credit parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:61:3
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:119:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > does not duplicate an entry credited to multiple requested bylines
+Error: no such table: _emdash_content_bylines
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ InsertQueryBuilder.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1101:24
+ ❯ credit parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:61:3
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:133:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > combines byline filter with a field filter (AND)
+Error: no such table: _emdash_content_bylines
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ InsertQueryBuilder.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1101:24
+ ❯ credit parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:61:3
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:146:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > combines byline filter with a taxonomy filter (AND)
+Error: no such table: _emdash_content_bylines
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ InsertQueryBuilder.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1101:24
+ ❯ credit parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:61:3
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:171:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > returns no entries when the byline filter is an empty array
+Error: no such table: _emdash_content_bylines
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ InsertQueryBuilder.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1101:24
+ ❯ credit parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:61:3
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:185:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts > Loader byline credit filter [sqlite] > ignores range operators on the byline key
+Error: no such table: _emdash_content_bylines
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ InsertQueryBuilder.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1101:24
+ ❯ credit parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:61:3
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:194:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts > Loader media src > resolves bare media ID in loadEntry
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts:70:23
+     68|   );
+     69|
+     70|   const hero = entry!.data.hero as Record<string, unknown>;
+       |                       ^
+     71|   expect(hero.id).toBe(MEDIA_ID);
+     72|   expect(hero.src).toBe(MEDIA_URL);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts > Loader media src > resolves bare media ID in revision-backed loadEntry
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts:125:23
+    123|   );
+    124|
+    125|   const hero = entry!.data.hero as Record<string, unknown>;
+       |                       ^
+    126|   expect(hero.id).toBe(MEDIA_ID);
+    127|   expect(hero.src).toBe(MEDIA_URL);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/30]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts > Loader taxonomy pivot-drive [sqlite] > ANDs a byline filter with the taxonomy filter on the pivot path
+Error: no such table: _emdash_content_bylines
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ InsertQueryBuilder.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1101:24
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:438:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/30]⎯
+
+
+ Test Files  20 failed | 4 passed (24)
+      Tests  14 failed | 60 passed (74)
+   Start at  01:07:54
+   Duration  23.80s (transform 2.22s, setup 0ms, import 6.23s, tests 5.19s, environment 2ms)
+
+JSON report written to /tmp/search101-sdk-whole24-context-date-fixed.json
