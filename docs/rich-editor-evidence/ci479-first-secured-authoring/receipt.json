@@ -1,0 +1,55 @@
+{
+  "recordedAtUTC": "2026-10-05T00:41:36.940381+00:00",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "actualPrHead": "c55949c789bd6f1d9a23a126b544aba90056561b",
+  "runId": 37221750018,
+  "runNumber": 479,
+  "validate": {
+    "jobId": 111493312060,
+    "conclusion": "success"
+  },
+  "originalBrowser9": {
+    "jobId": 111493311944,
+    "conclusion": "success"
+  },
+  "wholeAuthoring": {
+    "jobId": 111494674836,
+    "conclusion": "failure",
+    "officialChromiumRevision": 1243,
+    "chromiumSandbox": true,
+    "launches": 1,
+    "exitCode": 0,
+    "wholeFamilies": 3,
+    "staticDeclarations": 136,
+    "actualRegisteredCallbacks": 0,
+    "actualReachedAssertions": 0,
+    "sourceValueReds": 0,
+    "sourceGreens": 0,
+    "sourceCausalCredit": 0,
+    "preCollectionFailures": 3,
+    "cause": "Vite dependency discovery traversed original mock-only modules with uninstalled dependencies; later dependency optimization reloaded test setup and modules before collection. Whole raw failures include Vitest runner unavailable and dynamic module fetch failures; no Source assertion ran."
+  },
+  "artifact": {
+    "id": 11311175432,
+    "zipBytes": 574,
+    "zipSha256": "dc4fa97f7748724ffeb2764eb6b3274b624bd85382ec63ec7d03713f2df10877"
+  },
+  "rawOriginalDecoded": {
+    "bytes": 62778,
+    "sha256": "d4d3cf10783ee2ae2645a2eb60a65e46ebf3f5f7b28dff7414c6206bf9da9872"
+  },
+  "files": [
+    {
+      "path": "docs/rich-editor-evidence/ci479-first-secured-authoring/job.log.json",
+      "bytes": 69320,
+      "sha256": "3ed6c8cd1716b818374de18754bc2c2b9a9af8fd120fd84ff7d829cd132249af"
+    },
+    {
+      "path": "docs/rich-editor-evidence/ci479-first-secured-authoring/report.json",
+      "bytes": 1572,
+      "sha256": "c944716cf2a760d024917913518c2612c8579267977a19898de2d8d5567437ab"
+    }
+  ],
+  "sourceCallbacksMocksDataClocksUnchanged": true,
+  "fullParity": false
+}
