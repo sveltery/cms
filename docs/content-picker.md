@@ -122,3 +122,38 @@ Historical Main311 author03c59d1 has secured run37164760918 browser111325306293 
 Actual canonical PR83 is now on public Main d9668aa63c80bf2a9372d9fc7bfacb9a1eb9445c. Owned author4dc6cca07ff4427c019635400f497f679122594a ordinarily adopts it with an entire tree identical to executed4c1; Root accepts those unchanged-tree receipts without duplicate commands. Current4c hosted run37166879152 passes both jobs: complete Source Bulk14/Date30/Menu25/Redirect3/Sections35/Comments4/Picker3 and default62/Node62 with nine official1243 sandboxed launches/original180s/30s limits, plus all13 unchanged normal stages (1357 services/278 production/15 Node/7 Worker and every Source stage, owned22/UI24). Whole browser/validate SHA256: bdb85753b621ecd630f31651ef3a2b15116e4a69447a2e358dd1eeb65c34ea5f /99375f29dc0468b6e73434557f399137398efeaccfb58e221ad6f72502cdb0f0. Earlier pending-Main/hosted and failed Git attempts remain dated history; successful ordinary native4c publication uses the same PR82.
 
 On2026-10-04 Root grants bounded CP-01/CP-02 acceptance for the reviewed reusable picker/query, actual menu consumer, whole SourceQueryClient/Lingui English test host and native query transport. The actual imports wire MenuEditor to this shared modal and the menu page to createContentPickerClient. Section/reference-widget wiring, full picker-family scope, global palette, relation writes, multilingual product/Section i18n and PostgreSQL remain unfinished. Source19/browser3 passes retain0causal credit for earlier setup failures. Independent/configured review, final exact-head approval, PR82 merge and post-Main checks remain pending; this documentation and tree-exact Main adoption introduce no new product execution.
+
+## Standalone client cache isolation
+
+The proposed standalone repair starts from actual public Main
+`90fa2410625e5b497f1547093e4a832c1440690f`. Two client class instances can
+share their `fetchContentList` prototype method while reading different content
+through `this`. The former method-keyed cache then displays the first client's
+entry, collection label and manifest in the second client's standalone modal.
+The single existing standalone cache now keys by the actual client object.
+The modal continues to call methods through that object, and an explicitly
+supplied `QueryClient` continues to own its observers.
+
+Five supplemental native controls mount the actual modal without a dashboard
+provider. They cover shared-prototype class isolation, content and metadata,
+fresh cached reopening with the same object, explicit query-client ownership,
+and the unchanged Source defaults of one-minute freshness and one retry.
+The test-first run registered all 29 native cases: all 24 previous cases passed,
+two new isolation assertions failed with Alice data in Bob's modal, and one
+new empty-standalone-cache assertion failed from the same shared class cache.
+The explicit query-client results themselves already passed. No import or
+fixture failure earns assertion-red credit. The implementation repair and
+subsequent cache-owner naming refactor each pass all 29 native cases. The whole
+core Source19 and existing backend Native3 also pass; their first pass in this
+task earns zero causal-red credit.
+
+All 31 complete pinned authorities, four whole original tests, 22 original
+declarations, fixtures, clocks and expectations remain unchanged. Source's
+React App has one query provider with a fixed API client; standalone supplied
+clients are the native framework extension recorded as proposed CP-03 in the
+[compatibility register](../parity/emdash/compatibility.md). This work grants
+zero additional Source callback or full dashboard-provider credit. The
+proposed branch is `fix/content-picker-standalone-client`; specific Root
+acceptance, current full normal/secured hosted checks, independent/configured
+review and author-owned regular merge remain pending. The private TDD receipts
+retain exact raw hashes and are not published by this change.
