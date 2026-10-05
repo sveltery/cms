@@ -111,3 +111,9 @@ function compileTaxonomyPlan(database: CmsDatabase, plan: TaxonomyWritePlan): re
     return compiled;
   });
 }
+
+/** Trusted composition for an existing logical handle on the same real owner.
+ * Reuses the sole qualified taxonomy compiler without installing plugins. */
+export function registerCanonicalTaxonomyDatabaseHandle(database:CmsDatabase,db:Kysely<Database>):void {
+  registerTaxonomyWriteHost(db,database,compileTaxonomyPlan);
+}

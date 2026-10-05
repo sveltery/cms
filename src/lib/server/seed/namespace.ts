@@ -1,4 +1,5 @@
 // Native seed namespace proposal; no production import or provider activation.
+import { registerCanonicalTaxonomyDatabaseHandle } from '../canonical-storage/namespace.ts';
 import { OperationNodeTransformer, type AliasNode, type Kysely, type KyselyPlugin,
   type TableNode, type RawNode, type RootOperationNode, type OperationNode,
   type IdentifierNode, type ReferenceNode, type ValueNode, type Compilable, type RawBuilder, type QueryResult } from 'kysely';
@@ -461,6 +462,7 @@ export function seedSourceDatabase(database: CmsDatabase): Kysely<Database> {
     views.set(proxy, { owner, logical, atomicLogical });
     registerLifecycleDatabase({ ...owner, db: proxy as unknown as CmsDatabase['db'] });
     registerRelationDatabase(owner, proxy);
+    registerCanonicalTaxonomyDatabaseHandle(owner,proxy as unknown as Parameters<typeof registerCanonicalTaxonomyDatabaseHandle>[1]);
     registerBlockDatabaseHost({ ...owner, db: proxy as unknown as CmsDatabase['db'] });
     registerBylineDatabaseHandle(owner, proxy as unknown as Parameters<typeof registerBylineDatabaseHandle>[1]);
     return proxy;
