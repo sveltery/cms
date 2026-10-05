@@ -346,7 +346,8 @@ all prior raw histories remain exact. The Byline owner prerequisite, complete
 child-import green, fresh current-head gates/review, Root exact-head approval,
 author regular merge and post-main verification remain pending. This does not
 establish complete Node import hosting or full Media parity.
-# Constructor-only Node error hosting successor
+
+## Constructor-only Node error hosting successor
 
 The proposed child [PR125](https://github.com/sveltery/cms/pull/125) targets the
 stationary Media113 `c78460e7` prerequisite and converts only the shared Byline
