@@ -2,6 +2,7 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { mount, tick, unmount } from 'svelte';
 import FieldEditor from '../../src/lib/schema-admin/FieldEditor.svelte';
 import List from '../../src/lib/schema-admin/ContentTypeList.svelte';
+import Editor from '../../src/lib/schema-admin/ContentTypeEditor.svelte';
 const mounted: ReturnType<typeof mount>[] = [];
 afterEach(async () => { for (const instance of mounted.splice(0)) await unmount(instance); document.body.replaceChildren(); });
 const collection = {id:'posts',slug:'posts',label:'Posts',source:'manual',supports:['drafts'],hasSeo:false};
@@ -21,4 +22,14 @@ it('keeps the deletion confirmation and displays the actual mutation failure', a
 });
 it('disables collection deletion when the trusted page capability denies schema mutations', async () => {
   const target=await list({disabled:true});expect(target.querySelector<HTMLButtonElement>('button[aria-label="Delete Posts"]')?.disabled).toBe(true);
+});
+it('saves chosen title/date fields and list columns through the actual editor callback without dropping retained admin settings', async () => {
+  const onSave=vi.fn(), target=document.createElement('section');document.body.append(target);
+  const definition={...collection,labelSingular:'Post',description:'',routable:true,editLocking:true,hidden:false,hasSeo:false,commentsEnabled:false,commentsModeration:'first_time',commentsClosedAfterDays:90,commentsAutoApproveUsers:true,admin:{quickCreate:false},fields:[{id:'title',slug:'title',label:'Title',type:'string'},{id:'event',slug:'event',label:'Event',type:'datetime'}]};
+  mounted.push(mount(Editor,{target,props:{collection:definition,onSave,client}}));await tick();
+  const title=target.querySelector<HTMLSelectElement>('select[name="titleField"]'), date=target.querySelector<HTMLSelectElement>('select[name="dateField"]'), columns=target.querySelector<HTMLInputElement>('input[name="listColumns"]');
+  expect(title).not.toBeNull();expect(date).not.toBeNull();expect(columns).not.toBeNull();
+  title!.value='title';title!.dispatchEvent(new Event('change',{bubbles:true}));date!.value='event';date!.dispatchEvent(new Event('change',{bubbles:true}));columns!.value='title,event';columns!.dispatchEvent(new Event('input',{bubbles:true}));await tick();
+  target.querySelector<HTMLFormElement>('form')!.requestSubmit();
+  expect(onSave).toHaveBeenCalledWith(expect.objectContaining({titleField:'title',dateField:'event',admin:{quickCreate:false,listColumns:['title','event']}}));
 });
