@@ -3,6 +3,7 @@ import { flushSync, mount, settled, unmount } from 'svelte';
 import Host from '../helpers/admin-app/ClientOverridesHost.svelte';
 import NativeAppHost from '../helpers/admin-app/NativeAppHost.svelte';
 import type { QueryClient } from '@tanstack/query-core';
+import type { ContentItem, FindManyResult } from '../../src/lib/content-picker/types';
 import { lifecycleState } from '../helpers/dashboard-welcome/lifecycle-state.svelte';
 const instances: ReturnType<typeof mount>[] = [];
 afterEach(async () => { for (const instance of instances.splice(0)) await unmount(instance); document.body.replaceChildren(); localStorage.clear(); });
@@ -52,7 +53,7 @@ it('concurrent explicit account clients keep their pending reads and welcome dis
 function picker(label: string) {
  return { fetchCollections: vi.fn(async () => [{ slug: 'posts', label: `${label} collection` }]),
   fetchManifest: vi.fn(async () => ({ collections: { posts: { titleField: label === 'Alice' ? 'aliceTitle' : 'bobTitle' } } })),
-  fetchContentList: vi.fn(async () => ({ items: [{ id: label, type: 'posts', data: { aliceTitle: 'Alice content', bobTitle: 'Bob content' }, locale: 'en', translationGroup: null, slug: label, liveRevisionId: null, draftRevisionId: null }] })) };
+  fetchContentList: vi.fn(async (): Promise<FindManyResult<ContentItem>> => ({ items: [{ id: label, type: 'posts', data: { aliceTitle: 'Alice content', bobTitle: 'Bob content' }, locale: 'en', translationGroup: null, slug: label, liveRevisionId: null, draftRevisionId: null }] })) };
 }
 it('sequential explicit picker clients under one root render their own metadata and rows', async () => {
  const first = picker('Alice'), second = picker('Bob'), state = lifecycleState({ pickers: [first] });
