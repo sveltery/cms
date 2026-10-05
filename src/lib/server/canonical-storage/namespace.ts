@@ -85,5 +85,10 @@ const d1SourceBoundary: KyselyPlugin = {
 export function canonicalSourceDatabase(database: CmsDatabase): Kysely<Database> {
   const db = database.db.getExecutor().adapter instanceof RawBindingD1Adapter
     ? database.db.withPlugin(d1SourceBoundary) : database.db;
-  return db.withPlugin(namespace) as unknown as Kysely<Database>;
+  return withCanonicalStorageNamespaces(db);
+}
+
+/** Apply the existing identifier namespace to a trusted Kysely view. */
+export function withCanonicalStorageNamespaces<NativeDatabase>(database: Kysely<NativeDatabase>): Kysely<Database> {
+  return database.withPlugin(namespace) as unknown as Kysely<Database>;
 }

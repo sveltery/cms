@@ -12,7 +12,7 @@ import type { CmsDatabase } from '../../../src/lib/server/database/contract.ts';
 export async function setupTestDatabase() {
   const original = await setupExistingDatabase();
   const database = queryDatabaseOwner(original);
-  const db = queryReadDatabase(original) as unknown as CmsDatabase['db'];
+  const db = queryReadDatabase(original as unknown as import('kysely').Kysely<unknown>) as unknown as CmsDatabase['db'];
   registerLifecycleDatabase({...database, db}, {after: task => {void task();}});
   return db;
 }
@@ -73,8 +73,18 @@ export async function handleContentCreate(
   try {
     const database = lifecycleDatabase(db);
     if (!database) throw new Error('No Native lifecycle database fixture binding');
-    const item = await lifecycleService(database, principal, {after: () => {}})
-      .createContent({...input, type: collection});
+    const service = lifecycleService(database, principal, {after: () => {}});
+    if (input.status !== undefined && input.status !== 'draft' && input.status !== 'published') {
+      throw new Error('This Native fixture has no published scheduler/status producer');
+    }
+    // The Native public service creates a draft and publishes through its real
+    // persisted CAS contract. The old Source fixture accepts published create;
+    // this real two-operation transport earns no single-write API parity credit.
+    let item = await service.createContent({...input, status: undefined, type: collection});
+    if (input.status === 'published') {
+      item = await service.publish({type: collection, id: item.id, locale: item.locale, publishedAt: input.publishedAt,
+        expected: {version: item.version, updatedAt: item.updatedAt}});
+    }
     return {success: true as const, data: {item}};
   } catch (error) {
     return {success: false as const, error: error instanceof Error ? error : new Error(String(error))};

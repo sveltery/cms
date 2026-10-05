@@ -165,7 +165,7 @@ function foldedHydrationSelects(db: Kysely<any>, type: string, outer: string) {
 			)
 		: sql.raw("json_object('roleLabel', cb.role_label, 'sortOrder', cb.sort_order, 'byline', ");
 	const credit = sql`${creditObj}${bylineInner})`;
-	const bylines = sql`(SELECT ${agg(credit)} FROM ${sql.ref("_cms_content_bylines")} AS cb ${foldJoin} ${sql.ref("_cms_bylines")} AS b ON b.translation_group = cb.byline_id LEFT JOIN ${sql.ref("media")} AS m ON m.id = b.avatar_media_id WHERE cb.collection_slug = ${type} AND cb.content_id = ${o}.id AND b.locale = ${o}.locale) AS ${sql.ref("_emdash_bylines")}`;
+	const bylines = sql`(SELECT ${agg(credit)} FROM ${sql.ref("_cms_content_bylines")} AS cb ${foldJoin} ${sql.ref("_cms_bylines")} AS b ON b.translation_group = cb.byline_id LEFT JOIN ${sql.ref("_cms_media")} AS m ON m.id = b.avatar_media_id WHERE cb.collection_slug = ${type} AND cb.content_id = ${o}.id AND b.locale = ${o}.locale) AS ${sql.ref("_emdash_bylines")}`;
 	// Uncorrelated existence probe (evaluated once per statement, not per row):
 	// 1 when `_emdash_bylines` has any row, NULL when empty. An empty table
 	// means an empty fold is authoritative — no credit in any locale, no
@@ -1440,7 +1440,7 @@ export async function getDb(): Promise<Kysely<Database>> {
 	// Per-request DB override via ALS (normal mode)
 	const ctx = getRequestContext();
 	if (ctx?.db) {
-		return queryReadDatabase(ctx.db) as unknown as Kysely<Database>;
+		return queryReadDatabase(ctx.db as unknown as Kysely<unknown>) as unknown as Kysely<Database>;
 	}
 
 	throw new Error("Sveltery query database not configured. Bind an already-migrated CmsDatabase with createQuerySdk() or the trusted request context.");
