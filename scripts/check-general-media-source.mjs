@@ -11,10 +11,11 @@ console.log('Verified ' + manifest.authorities.length + ' whole EmDash general-m
 const readJson = path => JSON.parse(readFileSync(new URL('../' + path, import.meta.url), 'utf8'));
 const parse = path => ts.createSourceFile(path,readFileSync(new URL('../'+path,import.meta.url),'utf8'),ts.ScriptTarget.Latest,true);
 const transformations=readJson('parity/emdash/general-media-source/runtime-transformations.json');
-// Only these two parameter properties have an approved, equivalent Node strip-mode transport.
+// Only these finite parameter properties have an equivalent Node strip-mode transport.
 const constructorTransports=new Map([
   ['packages/core/src/database/repositories/media.ts','MediaRepository'],
-  ['packages/core/src/database/repositories/media-folders.ts','MediaFolderRepository']
+  ['packages/core/src/database/repositories/media-folders.ts','MediaFolderRepository'],
+  ['packages/core/src/storage/types.ts','EmDashStorageError']
 ]);
 const originalConstructor='constructor(private db: Kysely<Database>) {}';
 const nativeField='private db: Kysely<Database>;';
@@ -38,7 +39,13 @@ for(const row of transformations.runtimeModules) {
       const end=original.moduleSpecifier.end-original.getStart(source);
       expected=expected.slice(0,start)+actual.moduleSpecifier.getText(native)+expected.slice(end);
     }
-    if(constructorClass&&ts.isClassDeclaration(original)&&original.name?.text===constructorClass) {
+    if(constructorClass==='EmDashStorageError'&&ts.isClassDeclaration(original)&&original.name?.text===constructorClass) {
+      const originalText='export class EmDashStorageError extends Error {\n\tconstructor(\n\t\tmessage: string,\n\t\tpublic code: string,\n\t\tpublic override cause?: unknown,\n\t) {\n\t\tsuper(message);\n\t\tthis.name = "EmDashStorageError";\n\t}\n}';
+      const nativeText='export class EmDashStorageError extends Error {\n\tpublic code: string;\n\tpublic override cause?: unknown;\n\tconstructor(\n\t\tmessage: string,\n\t\tcode: string,\n\t\tcause?: unknown,\n\t) {\n\t\tsuper(message);\n\t\tthis.code = code;\n\t\tthis.cause = cause;\n\t\tthis.name = "EmDashStorageError";\n\t}\n}';
+      if(expected!==originalText||actual.getText(native)!==nativeText)throw new Error('Finite storage error constructor transport changed: '+row.runtime);
+      expected=nativeText;
+      constructorTransportCount++;
+    } else if(constructorClass&&ts.isClassDeclaration(original)&&original.name?.text===constructorClass) {
       const sourceConstructor=original.members[0];
       if(!ts.isConstructorDeclaration(sourceConstructor)||sourceConstructor.getText(source)!==originalConstructor||
         !ts.isClassDeclaration(actual)||actual.name?.text!==constructorClass||
@@ -51,7 +58,7 @@ for(const row of transformations.runtimeModules) {
     if(expected!==actual.getText(native))throw new Error('Pinned whole algorithm changed: '+row.runtime+':'+index);
   }
 }
-if(constructorTransportCount!==2)throw new Error('Expected exactly two approved constructor transports');
+if(constructorTransportCount!==3)throw new Error('Expected exactly three finite constructor transports');
 function checkCompleteNodes(authorityPath,runtimePath,rows,select) {
   const source=parse(authorityPath),native=parse(runtimePath);
   for(const row of rows){

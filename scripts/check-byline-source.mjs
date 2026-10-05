@@ -12,6 +12,18 @@ for(const row of ledger.authorities){
  assert.equal(createHash('sha256').update(bytes).digest('hex'),row.sha256,`Whole Source SHA256: ${row.source}`);
  assert.equal(createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex'),row.gitBlob,`Whole Source blob: ${row.source}`);
 }
+// Finite Native Node strip-mode substitution; immutable authority is never rewritten.
+const errorAuthority=ledger.authorities.find(row=>row.source==='packages/core/src/database/repositories/types.ts');
+assert.ok(errorAuthority,'Byline error authority exists');
+const originalErrors=ts.createSourceFile(errorAuthority.copy,read(errorAuthority.copy).toString(),ts.ScriptTarget.Latest,true);
+const nativeErrors=ts.createSourceFile('src/lib/server/bylines/repository-types.ts',read('src/lib/server/bylines/repository-types.ts').toString(),ts.ScriptTarget.Latest,true);
+const errorClass=file=>file.statements.find(node=>ts.isClassDeclaration(node)&&node.name?.text==='EmDashValidationError');
+const originalError=errorClass(originalErrors),nativeError=errorClass(nativeErrors);
+assert.ok(originalError&&nativeError,'Source and Native validation error classes exist');
+const originalErrorText='export class EmDashValidationError extends Error {\n\tconstructor(\n\t\tmessage: string,\n\t\tpublic details?: unknown,\n\t) {\n\t\tsuper(message);\n\t\tthis.name = "EmDashValidationError";\n\t}\n}';
+const nativeErrorText='export class EmDashValidationError extends Error {\n\tdetails?: unknown;\n\tconstructor(\n\t\tmessage: string,\n\t\tdetails?: unknown,\n\t) {\n\t\tsuper(message);\n\t\tthis.details = details;\n\t\tthis.name = "EmDashValidationError";\n\t}\n}';
+assert.equal(originalError.getText(originalErrors),originalErrorText,'Complete immutable Source validation error class');
+assert.equal(nativeError.getText(nativeErrors),nativeErrorText,'Finite validation error constructor transport');
 const counts=[];
 for(const path of ledger.selectedWholeTests){
  const authority=ledger.authorities.find(row=>row.source===path);assert.ok(authority,`Source authority: ${path}`);
