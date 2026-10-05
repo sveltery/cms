@@ -51,6 +51,8 @@ export interface ContentUpdate extends ContentMutation {
 export interface ContentReceipt {item:ContentItem;liveContentChanged:boolean}
 /** Trusted importer/API attribution metadata; never read from mutation input. */
 export interface ContentCreationAttribution {readonly authorId?:string|null;readonly status?:'draft'|'published';readonly validateData?:boolean}
+/** Trusted Source handler metadata, separate from ordinary mutation input. */
+export interface ContentUpdateAttribution {readonly authorId?:string|null}
 
 /** Compose only with trusted authentication; input never supplies identity. */
 export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal|null, dependencies:LifecycleDependencies={},creationAttribution?:ContentCreationAttribution) {
@@ -173,7 +175,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       throw cause;
     }
   }
-  async function prepareAtomicUpdate(value:ReturnType<typeof key>,item:ContentItem,input:Record<string,any>,data:Record<string,unknown>|undefined,anyPermission:string,selections:readonly ResolvedTaxonomySelection[]=[],references?:ContentReferencePlan) {
+  async function prepareAtomicUpdate(value:ReturnType<typeof key>,item:ContentItem,input:Record<string,any>,data:Record<string,unknown>|undefined,anyPermission:string,selections:readonly ResolvedTaxonomySelection[]=[],references?:ContentReferencePlan,attribution?:ContentUpdateAttribution) {
     const actor=authenticated();const assignments=[];
     const collection=await definition(value.type);
     if((input.status??item.status)==='published'&&collection.routable&&!(input.slug!==undefined?input.slug:item.slug)?.trim())
@@ -182,6 +184,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     if(data!==undefined)for(const[field,contentValue]of Object.entries(data))assignments.push(sql`${sql.ref(field)}=${serializeValue(contentValue)}`);
     if(input.slug!==undefined)assignments.push(sql`slug=${input.slug}`);
     if(input.status!==undefined)assignments.push(sql`status=${input.status}`);
+    if(attribution?.authorId!==undefined)assignments.push(sql`author_id=${attribution.authorId}`);
     if(input.publishedAt!==undefined){newPublishedAt=input.publishedAt===null?null:await translate(()=>datetimes.normalizeValue(value.type,input.publishedAt));assignments.push(sql`published_at=${newPublishedAt}`);}
     if(assignments.length)assignments.push(sql`updated_at=${new Date().toISOString()}`);
     assignments.push(sql`version=version+1`);
@@ -209,7 +212,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         ${redirects?sql``:sql`changes()=1 AND`} EXISTS(
           SELECT 1 FROM ${sql.ref(tableName(value.type))} WHERE id=${value.id} AND locale=${value.locale}
           AND deleted_at IS NULL AND version=${item.version+1}
-          ${actor.permissions.has(anyPermission)?sql``:sql`AND author_id=${actor.id}`}
+          ${actor.permissions.has(anyPermission)?sql``:attribution?.authorId===null?sql`AND author_id IS NULL`:sql`AND author_id=${attribution?.authorId??actor.id}`}
         )THEN 1 ELSE 0 END`.compile(database.db)]:[]),
       ...taxonomy.after,...seo,...bylineStatements,...(references?.after??[]),...taxonomy.cleanup,...(references?.cleanup??[]),
       ...(hasSideWrites?[sql`DELETE FROM _cms_guards WHERE token=${updatedToken}`.compile(database.db)]:[]),
@@ -217,8 +220,8 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     ];
     return {prefix,suffix,redirects,updateResultIndex,selections,bylineInput:input.bylines as ContentBylineInput[]|undefined,seoWrites:seo.length>0};
   }
-  async function atomicUpdate(value:ReturnType<typeof key>,item:ContentItem,input:Record<string,any>,data:Record<string,unknown>|undefined,anyPermission:string,selections:readonly ResolvedTaxonomySelection[]=[],references?:ContentReferencePlan) {
-    const plan=await prepareAtomicUpdate(value,item,input,data,anyPermission,selections,references);
+  async function atomicUpdate(value:ReturnType<typeof key>,item:ContentItem,input:Record<string,any>,data:Record<string,unknown>|undefined,anyPermission:string,selections:readonly ResolvedTaxonomySelection[]=[],references?:ContentReferencePlan,attribution?:ContentUpdateAttribution) {
+    const plan=await prepareAtomicUpdate(value,item,input,data,anyPermission,selections,references,attribution);
     const {prefix,suffix,redirects,updateResultIndex}=plan;
     const statements=[...prefix,...(redirects?.statements??[]),...suffix];
     let results;
@@ -252,7 +255,8 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         translation={id:source.id,translationGroup:source.translationGroup??source.id,version:source.version,updatedAt:source.updatedAt,inheritFields};
       }
       const slugSource=typeof data.title==='string'&&data.title.length>0?data.title:typeof data.name==='string'&&data.name.length>0?data.name:null;
-      const slug=value.slug===undefined?(slugSource?await content.generateUniqueSlug(type,slugSource,locale):null):value.slug;
+      const generateSlug=value.slug===undefined||(creationMetadata!==undefined&&!value.slug);
+      const slug=generateSlug?(slugSource?await content.generateUniqueSlug(type,slugSource,locale):null):value.slug;
       if(creationMetadata?.status==='published'){
         const publisher=mutationPermission('content:publish_own','content:publish_any');
         if(!publisher.permissions.has('content:publish_any')&&creationMetadata.authorId!==publisher.id)throw new CmsError('FORBIDDEN');
@@ -384,7 +388,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         where:{...(filterLocale===undefined?{}:{locale:filterLocale}),...(value.status===undefined?{}:{status:value.status}),...(bylineFilter?{bylineFilter}:{})}});
       await hydrateBylinesMany(bylineDatabase(database),type,result.items);return {...result,items:await hydrateContentSeoMany(database,type,result.items,collection?.hasSeo??false)};
     },
-    async updateContent(input:unknown,options:{drafts?:boolean;validateData?:boolean}={}):Promise<ContentReceipt> {
+    async updateContent(input:unknown,options:{drafts?:boolean;validateData?:boolean;attribution?:ContentUpdateAttribution}={}):Promise<ContentReceipt> {
       const actor=mutationPermission('content:edit_own','content:edit_any');const value=key(input);
       let existing=(await stored(value)).item;owner(existing,actor,'content:edit_any');precondition(value.expected,existing);
       publicationDatePermission(value);
@@ -402,7 +406,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const referenceDraft=usesDraftRevisions&&value.references!==undefined?await (await import('../../relations/content-input.ts')).prepareContentReferenceDraft(database,value.type,value.id,value.references):undefined;
       const references=usesDraftRevisions||value.references===undefined?undefined:await (await import('../../relations/content-input.ts')).prepareContentReferencesUpdate(database,value.type,value.id,value.references);
       const taxonomySelections=value.taxonomies===undefined?[]:await translate(()=>resolveTaxonomySlugMap(canonicalSourceDatabase(database),value.taxonomies,value.locale));
-      const liveMetaTouched=Object.entries(value).some(([field,fieldValue])=>fieldValue!==undefined&&!['type','id','expected','_rev'].includes(field)&&!DRAFT_ONLY_UPDATE_KEYS.has(field));
+      const liveMetaTouched=options.attribution?.authorId!==undefined||Object.entries(value).some(([field,fieldValue])=>fieldValue!==undefined&&!['type','id','expected','_rev'].includes(field)&&!DRAFT_ONLY_UPDATE_KEYS.has(field));
       if(usesDraftRevisions){
         for(let attempt=0;attempt<32;attempt++){
           owner(existing,actor,'content:edit_any');precondition(value.expected,existing);
@@ -416,7 +420,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
           const revision=prepared?{id:prepared.id}:await revisions.create(revisionInput);
           const metadata=prepared&&liveMetaTouched?await prepareAtomicUpdate(value,
             {...existing,version:existing.version+1,draftRevisionId:prepared.id},
-            {...value,slug:undefined,bylines:undefined},undefined,'content:edit_any'):undefined;
+            {...value,slug:undefined,bylines:undefined},undefined,'content:edit_any',[],undefined,options.attribution):undefined;
           let staged;
           try{staged=await content.replaceDraftRevision(value.type,value.id,revision.id,existing,prepared?async statement=>{
             const schemaToken=ulid();const entryToken=ulid();const stageToken=ulid();const metadataToken=ulid();
@@ -462,12 +466,12 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
           if(value.skipRevision&&existing.draftRevisionId)await revisions.deleteIfUnreferenced(value.type,value.id,existing.draftRevisionId);
           else prune(value.type,value.id,revision.id);
           const persisted=await stored(value);let item=persisted.item;
-          if(liveMetaTouched&&!prepared)item=await atomicUpdate(value,item,{...value,slug:undefined},undefined,'content:edit_any');
+          if(liveMetaTouched&&!prepared)item=await atomicUpdate(value,item,{...value,slug:undefined},undefined,'content:edit_any',[],undefined,options.attribution);
           return {item:await hydrate(item,persisted.hasSeo),liveContentChanged:liveMetaTouched||taxonomySelections.length>0};
         }
         throw new CmsError('CONFLICT');
       }
-      const item=await atomicUpdate(value,existing,value,data,'content:edit_any',taxonomySelections,references);
+      const item=await atomicUpdate(value,existing,value,data,'content:edit_any',taxonomySelections,references,options.attribution);
       return {item:await hydrate(item,collection.hasSeo),liveContentChanged:Boolean(data||value.slug!==undefined||liveMetaTouched||taxonomySelections.length||references?.after.length)};
     },
     /**
@@ -499,15 +503,17 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     },
     async scheduleContent(input:unknown,currentTime:Date=new Date()):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const raw=object(input);const value=key(raw);
-      const item=(await stored(value,raw.locale===undefined,true)).item;owner(item,actor,'content:publish_any');precondition(value.expected,item);
+      const persisted=await stored(value,raw.locale===undefined,true);const item=persisted.item;owner(item,actor,'content:publish_any');precondition(value.expected,item);
       const collection=await definition(value.type);
       if(collection.routable&&!item.slug?.trim())throw new CmsError('VALIDATION_ERROR','Cannot publish routable content without a slug');
-      return hydratedBylines(await translate(()=>content.schedule(value.type,item.id,value.scheduledAt,currentTime,{version:item.version,updatedAt:item.updatedAt})));
+      const scheduled=await translate(()=>content.schedule(value.type,item.id,value.scheduledAt,currentTime,{version:item.version,updatedAt:item.updatedAt}));
+      return hydratedBylines(await hydrateContentSeo(database,value.type,scheduled,persisted.hasSeo));
     },
     async unscheduleContent(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const raw=object(input);const value=key(raw);
-      const item=(await stored(value,raw.locale===undefined,true)).item;owner(item,actor,'content:publish_any');precondition(value.expected,item);
-      return hydratedBylines(await translate(()=>content.unschedule(value.type,item.id,{version:item.version,updatedAt:item.updatedAt})));
+      const persisted=await stored(value,raw.locale===undefined,true);const item=persisted.item;owner(item,actor,'content:publish_any');precondition(value.expected,item);
+      const unscheduled=await translate(()=>content.unschedule(value.type,item.id,{version:item.version,updatedAt:item.updatedAt}));
+      return hydratedBylines(await hydrateContentSeo(database,value.type,unscheduled,persisted.hasSeo));
     },
     /** Calendar administration delegates to the existing published repository. */
     async schedule(input:unknown):Promise<ContentItem> {
