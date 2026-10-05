@@ -1,6 +1,5 @@
-import {hydrateBylines,hydrateBylinesMany} from '../bylines/content-hydration.ts';
+import {hydrateCanonicalBylines,hydrateCanonicalBylinesMany} from '../bylines/canonical-hydration.ts';
 import {resolveBylineFilter} from '../bylines/content-list.ts';
-import {bylineDatabase} from '../bylines/storage.ts';
 import {sql,type CompiledQuery} from 'kysely';
 import {hydrateContentSeo,hydrateContentSeoMany} from '../seo/content-read.ts';
 import {ulid} from 'ulidx';
@@ -41,7 +40,7 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
  }
  async function hydrate(item:ContentItem,hasSeo:boolean):Promise<ContentItem&DraftEntry>{
   item=await hydrateContentSeo(database,item.type,item,hasSeo);
-  await hydrateBylines(bylineDatabase(database),item.type,item);
+  await hydrateCanonicalBylines(database,item.type,item);
   const stored=entry(item);if(!item.draftRevisionId)return stored;
   try{
    const revision=await revisions().findById(item.draftRevisionId);if(!revision)return stored;
@@ -115,7 +114,7 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
    const parsed=parse(genericContentUpdate,value);return entry((await lifecycle().updateContent({...parsed,...(skipRevision===undefined?{}:{skipRevision})})).item);
   },
   async listContent(input:unknown){read();const {value,collection,options}=await listOptions(input);
-   const result=await translate(()=>repository().findMany(value.type,options));await hydrateBylinesMany(bylineDatabase(database),value.type,result.items);return{...result,items:(await hydrateContentSeoMany(database,value.type,result.items,collection.hasSeo)).map(item=>summary(item,collection.titleField??'title'))};
+   const result=await translate(()=>repository().findMany(value.type,options));await hydrateCanonicalBylinesMany(database,value.type,result.items);return{...result,items:(await hydrateContentSeoMany(database,value.type,result.items,collection.hasSeo)).map(item=>summary(item,collection.titleField??'title'))};
   },
   async countContent(input:unknown){read();const {value,options}=await listOptions(input);return translate(()=>repository().count(value.type,options.where));},
   async getTrashedContent(input:unknown){read();const value=parse(getTrashedDraftInput,input);const persisted=await includingTrashed(value.type,value.id,value.locale);const item=persisted.item;
