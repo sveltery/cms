@@ -18,6 +18,7 @@ const include=(group?groups[group as keyof typeof groups]:Object.values(groups).
 export default defineConfig({plugins:[{name:'whole-media-native-framework-transport',enforce:'pre',resolveId(id,importer){
  if(id==='$app/paths')return resolve(root,'tests/helpers/media-panel-client-paths.ts');
  if(importer===resolve(root,'src/lib/media/MediaDetails.svelte')&&id==='./client')return resolve(root,'tests/helpers/media-panel-client-host.ts');
+ if(importer?.startsWith(resolve(root,'src/lib/media/'))&&id==='./detail-api')return resolve(root,'tests/helpers/media-panel-api-host.ts');
  if(!importer?.startsWith(source)||!id.startsWith('.'))return;
  const target=resolve(dirname(importer.split('?')[0]!),id).replace(/\.(tsx?|js)$/,'');
  const named={
@@ -28,6 +29,7 @@ export default defineConfig({plugins:[{name:'whole-media-native-framework-transp
   'src/lib/api/media':'src/lib/media/source/api/media.ts',
   'src/lib/api/client':'src/lib/media/source/api/client.ts',
   'src/lib/api/current-user':'tests/helpers/media-picker-current-user.ts',
+  'src/lib/api/media-usage-activation':'src/lib/media/source/api/media-usage-activation.ts',
   'src/lib/crop-image':'src/lib/media/source/crop-image.ts',
   'src/lib/media-utils':'src/lib/media/source/media-utils.ts',
   'src/components/MediaImageCropper':'tests/helpers/media-panel-cropper-reference.ts',
