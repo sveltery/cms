@@ -11,6 +11,7 @@
   import TableSizePicker from './TableSizePicker.svelte';
   import TableSelectionAnnouncer from './TableSelectionAnnouncer.svelte';
   import TableMenu from './TableMenu.svelte';
+  import TableBubbleMenu from './TableBubbleMenu.svelte';
   import { tableMessage } from './table-menu';
   import { createPortableTextEditor } from './create-editor';
   import { defaultSlashCommands, insertHtmlBlock, insertIframeBlock, type SlashCommandItem, type SlashMenuState } from './slash-commands';
@@ -23,6 +24,7 @@
   import './editor.css';
   let props: PortableTextEditorProps = $props();
   let editor = $state.raw<Editor | null>(null), revision = $state(0);
+  let floatingRoot = $state<HTMLDivElement>(null!), formattingToolbar = $state<HTMLDivElement>(null!);
   let element = $state<HTMLDivElement>(null!), menu = $state<HTMLDivElement>(null!);
   let headings = $state(false), linkOpen = $state(false), href = $state('');
   let sectionOpen = $state(false), sectionError = $state(''), providerMessage = $state('');
@@ -189,13 +191,13 @@
   function applyLink() { if (!editor) return; const url = href.trim(); if (url) setSelectedTextLink(editor, url); else editor.chain().focus().unsetLink().run(); linkOpen = false; }
 </script>
 
-<div class={`rich-editor min-w-0 ${props.className ?? ''}`} data-emdash-editor-floating-root>
+<div bind:this={floatingRoot} class={`rich-editor min-w-0 ${props.className ?? ''}`} data-emdash-editor-floating-root>
   {#if tableError}<div role="alert" class="rich-error"><p>This table cannot be edited safely</p><p>This field contains table content that the editor cannot preserve. Update it through the API before editing or saving this content.</p></div>
   {:else if unsupported.length}<div role="alert" class="rich-error"><p>This content cannot be edited safely</p><p>This field contains unsupported Portable Text marks: <code dir="auto">{unsupported.join(', ')}</code>. Remove them through the API before editing or saving this content.</p></div>
   {:else}
     <div class:bg-kumo-base={!props.minimal} class="editor-surface" data-emdash-editor-surface>
       {#if editor && !props.minimal}
-        <div role="toolbar" aria-label="Text formatting" class="formatting-toolbar">
+        <div bind:this={formattingToolbar} role="toolbar" aria-label="Text formatting" class="formatting-toolbar">
           {#each [['Bold', 'bold', 'B'], ['Italic', 'italic', 'I'], ['Underline', 'underline', 'U'], ['Strikethrough', 'strike', 'S'], ['Inline Code', 'code', '</>']] as [label, name, symbol]}
             <button type="button" aria-label={label} aria-pressed={active(name)} disabled={!editable} onmousedown={event => event.preventDefault()} onclick={() => mark(name)}>{symbol}</button>
           {/each}
@@ -219,6 +221,7 @@
       {#if editor && editable && !props.onGutterReady}<button type="button" class="gutter-insert" aria-label="Insert block" onclick={() => { const selection = editor!.state.selection.$from; const at = selection.depth ? selection.after(1) : selection.pos; openGutter(at); }}>+</button>{/if}
     </div>
     {#if editor && editable && selection && !selection.empty}<div data-emdash-inline-bubble-menu class="inline-bubble"><button type="button" aria-label="Subscript" onmousedown={event => event.preventDefault()} onclick={() => mark('subscript')}>x₂</button><button type="button" aria-label="Superscript" onmousedown={event => event.preventDefault()} onclick={() => mark('superscript')}>x²</button></div>{/if}
+    {#if editor && !props.minimal}<TableBubbleMenu {editor} {editable} {floatingRoot} {formattingToolbar} translate={t} onRun={announceTable} />{/if}
     {#if pasteReason}<div role="alert"><p>{pasteMessage}</p><button type="button" aria-label="Dismiss table paste error" onclick={() => { pasteReason = undefined; }}>×</button></div>{/if}
     {#if sectionError}<div role="alert"><p>Could not insert section</p><p>{sectionError}</p><button type="button" aria-label="Dismiss section error" onclick={() => { sectionError = ''; }}>×</button></div>{/if}
     {#if providerMessage}<p role="status">{providerMessage}</p>{/if}
