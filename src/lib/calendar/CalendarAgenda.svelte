@@ -1,6 +1,6 @@
 <script lang="ts">
   // EmDash1.1.0 CalendarAgenda whole placement/collapse behavior, pin913cb1bb; MIT.
-  import { isMonthCutOff, type CalendarDisplay, type CalendarItem } from './calendar.ts';
+  import { isMonthCutOff, shiftDay, type CalendarDisplay, type CalendarItem } from './calendar.ts';
   import DayList from './CalendarDayList.svelte';
   import type { CalendarSelectHandler } from './ui-types.ts';
   let { month, days, today, now, display, loading, loadedThrough, onClearFilters, selectedKey, onSelect }: {
@@ -8,6 +8,7 @@
     loading?:boolean; loadedThrough?:string; onClearFilters?:()=>void; selectedKey?:string; onSelect?:CalendarSelectHandler;
   } = $props();
   let showEarlier = $state<boolean>();
+  const headingPrefix=$props.id(),tomorrow=$derived(shiftDay(today,1));
   const cutOff = $derived(isMonthCutOff(month, loadedThrough));
   const keys = $derived([...days.keys()].filter(day=>day.startsWith(month)).toSorted());
   const current = $derived(today.startsWith(month));
@@ -30,7 +31,7 @@
   {#if earlierCount > 0}<button class="earlier" type="button" aria-expanded={expanded} onclick={()=>showEarlier=!expanded}>{expanded ? 'Hide earlier entries' : `Show ${earlierCount} earlier ${earlierCount===1?'entry':'entries'}`}</button>{/if}
   {#each shown as day (day)}
     {#if day === nextDay}<p class="now">Now · {display.formatTime(now)}</p>{/if}
-    <section><h3>{display.fullDate(day)}</h3><DayList items={days.get(day)??[]} {display} {now} label={display.fullDate(day)} nowAt={day===today?nowAt:undefined} {selectedKey} {onSelect}/></section>
+    <section aria-labelledby={`${headingPrefix}-${day}`}><h3 id={`${headingPrefix}-${day}`}>{display.weekday(day)} <span>{display.monthDay(day)}</span>{#if day===today} <strong>Today</strong>{:else if day===tomorrow} <strong>Tomorrow</strong>{/if}</h3><DayList items={days.get(day)??[]} {display} {now} label={display.fullDate(day)} nowAt={day===today?nowAt:undefined} {selectedKey} {onSelect}/></section>
   {/each}
   {#if current && !todayItems && !nextDay}<p class="now">Now · {display.formatTime(now)}</p>{/if}
   {#if nothingAfter}<p>Nothing else is scheduled this month.</p>{/if}

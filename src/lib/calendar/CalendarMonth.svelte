@@ -13,6 +13,7 @@
     onSelect?:CalendarSelectHandler;onMonthChange:(month:string)=>void;onClearFilters?:()=>void;
   }=$props();
   const weeks=$derived(Array.from({length:Math.ceil(gridDays.length/7)},(_,week)=>gridDays.slice(week*7,week*7+7)));
+  const headingId=$props.id();
   let picked=$state<string>(), pickedMonth=$state<string>(), focusDay=$state<string>(), popover=$state<string>(), moreTrigger=$state<HTMLButtonElement>(),popup=$state<HTMLDivElement>();
   $effect(()=>{if(pickedMonth!==month){pickedMonth=month;picked=undefined;if(focusDay&&!focusDay.startsWith(month))focusDay=undefined;}});
   $effect(()=>{if(focusDay?.startsWith(month)){const day=focusDay;void tick().then(()=>document.querySelector<HTMLButtonElement>(`[data-calendar-day="${day}"]`)?.focus());}});
@@ -55,7 +56,7 @@
     </div></div>
   {/if}</td>{/each}</tr>{/each}</tbody></table>
 {#if !compact&&filteredEmpty}{@render notice()}{/if}</div>
-{#if compact}<section><h3>{display.weekday(selected)} <span>{display.monthDay(selected)}</span></h3>
+{#if compact}<section aria-labelledby={headingId}><h3 id={headingId}>{display.weekday(selected)} <span>{display.monthDay(selected)}</span>{#if selected===today} <strong>Today</strong>{/if}</h3>
   {#if loading}<p role="status">Loading calendar…</p>{:else if filteredEmpty}{@render notice()}
   {:else if currentItems.length}<DayList items={currentItems} {display} {now} label={display.fullDate(selected)} nowAt={selected===today?nowIndex(currentItems):undefined} {selectedKey} {onSelect}/>
   {:else}<p>{loadedThrough&&selected>=loadedThrough?"This day wasn't loaded. The range has more entries than the calendar can show.":'Nothing on this day.'}</p>{/if}
