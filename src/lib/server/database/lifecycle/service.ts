@@ -40,12 +40,12 @@ export interface ContentUpdate extends ContentMutation {
 }
 export interface ContentReceipt {item:ContentItem;liveContentChanged:boolean}
 /** Trusted importer/API attribution metadata; never read from mutation input. */
-export interface ContentCreationAttribution {readonly authorId:string}
+export interface ContentCreationAttribution {readonly authorId?:string|null}
 
 /** Compose only with trusted authentication; input never supplies identity. */
 export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal|null, dependencies:LifecycleDependencies={},creationAttribution?:ContentCreationAttribution) {
   registerLifecycleDatabase(database,dependencies);
-  const creationAuthorId=creationAttribution?.authorId;
+  const creationMetadata=creationAttribution===undefined?undefined:{authorId:creationAttribution.authorId||null};
   const identity=principal&&typeof principal.id==='string'&&principal.id.length>0&&principal.id.length<=128&&Array.isArray(principal.permissions)
     ? {id:principal.id,permissions:new Set<string>(principal.permissions)} : null;
   const registry=new SchemaRegistry(database);
@@ -209,7 +209,6 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
   return {
     async createContent(input:unknown):Promise<ContentItem> {
       const actor=requirePermission('content:create');const value=object(input);
-      const authorId=creationAuthorId===undefined?actor.id:parse(entryId,creationAuthorId);
       publicationDatePermission(value);
       const type=parse(identifier,value.type);const locale=parse(localeInput,value.locale===undefined?getI18nConfig()?.defaultLocale??'en':resolveConfiguredLocale(parse(localeInput,value.locale)));
       if(value.status!==undefined&&value.status!=='draft')throw new CmsError('VALIDATION_ERROR','Create a draft, then publish it');
@@ -228,9 +227,10 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const hasSideWrites=selections.length>0||value.bylines!==undefined||translation!==undefined;
       const dates={
         createdAt:value.createdAt?await translate(()=>datetimes.normalizeValue(type,value.createdAt)):undefined,
-        publishedAt:value.publishedAt?await translate(()=>datetimes.normalizeValue(type,value.publishedAt)):null
+        publishedAt:value.publishedAt?await translate(()=>datetimes.normalizeValue(type,value.publishedAt)):null,
+        ...creationMetadata
       };
-      const item=await drafts.create({type,locale,data,slug},authorId,hasSideWrites?async entry=>{
+      const item=await drafts.create({type,locale,data,slug},actor.id,hasSideWrites?async entry=>{
         const taxonomy=newContentTaxonomyStatements(database,type,entry,selections);
         const statements=value.bylines!==undefined?await bylines.planContentBylineReplacement(type,entry.id,value.bylines)
           :translation?await bylines.planContentBylineCopy(type,translation.id,entry.id):[];
