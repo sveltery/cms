@@ -1,0 +1,74 @@
+<script lang="ts">
+  // EmDash1.1.0 Calendar page behavior, pin913cb1bb; MIT notices/emdash-MIT.txt.
+  // Framework host supplies one real QueryClient and URL/history operations.
+  import { onMount,untrack } from 'svelte';
+  import { QueryObserver,type QueryClient } from '@tanstack/react-query';
+  import { calendarQueryOptions,CALENDAR_MAX_ENTRIES,type CalendarRange } from './api.ts';
+  import { ApiResponseError } from '../sections-widgets/client.ts';
+  import { createCalendarDisplay,dayKeyInZone,dayKeyToUTC,fetchRange,filterItems,groupByDay,isCalendarState,isMonthKey,monthGridDays,readList,shiftMonth,toCalendarItems,toListParam,type CalendarSearch,type CalendarFilterValues,type CalendarItem } from './calendar.ts';
+  import { getDayPickerLocale } from '../ui/date-time-locales.ts';
+  import Agenda from './CalendarAgenda.svelte';
+  import Month from './CalendarMonth.svelte';
+  import Filters from './CalendarFilters.svelte';
+  import Panel from './CalendarEntryPanel.svelte';
+  import type { CalendarClient,CalendarManifest,CalendarUser } from './ui-types.ts';
+  let { manifest,user,client,queryClient,locale='en',search={},updateSearch,back }: {
+    manifest?:CalendarManifest;user?:CalendarUser;client:CalendarClient;queryClient:QueryClient;locale?:string;search?:CalendarSearch;
+    updateSearch:(patch:Partial<CalendarSearch>,push?:boolean)=>void;back:()=>void;
+  }=$props();
+  let now=$state(untrack(()=>Date.now())),compact=$state(false),container=$state<HTMLDivElement>();
+  let data=$state<CalendarRange>(),updatedAt=$state(0),fetching=$state(false),error=$state<unknown>();
+  let refetch=()=>{};
+  const collections=$derived(Object.entries(manifest?.collections??{}).filter(([,c])=>!c.hidden).map(([slug,c])=>({slug,label:c.label,icon:c.icon})));
+  const collectionOrder=$derived(collections.map(c=>c.slug)),locales=$derived(manifest?.i18n?.locales??[]);
+  const display=$derived(createCalendarDisplay({locale,timeZone:manifest?.timezone,collections,showLocale:locales.length>1}));
+  const today=$derived(dayKeyInZone(now,display.timeZone)),month=$derived(search.month??today.slice(0,7)),view=$derived(search.view??(compact?'agenda':'month'));
+  const weekStartsOn=$derived(getDayPickerLocale(locale).options?.weekStartsOn??0);
+  const gridDays=$derived(monthGridDays(month,weekStartsOn)),range=$derived(fetchRange(gridDays));
+  const filters=$derived<CalendarFilterValues>({collections:readList(search.collections).filter(slug=>collectionOrder.includes(slug)),locales:readList(search.locales).filter(value=>locales.includes(value)),states:readList(search.states).filter(isCalendarState)});
+  const filtered=$derived(filters.collections.length+filters.locales.length+filters.states.length>0);
+  $effect(()=>{
+    if(!manifest)return;
+    const rangeHasNow=now>=Date.parse(range.from)&&now<Date.parse(range.to);
+    const observer=new QueryObserver(queryClient,{...calendarQueryOptions(range.from,range.to),staleTime:0,refetchInterval:query=>rangeHasNow&&query.state.status!=='error'?60000:false});
+    const apply=(result:ReturnType<typeof observer.getCurrentResult>)=>{data=result.data;updatedAt=result.dataUpdatedAt;fetching=result.isFetching;error=result.error;};
+    const unsubscribe=observer.subscribe(apply);apply(observer.getCurrentResult());refetch=()=>{void observer.refetch();};
+    return()=>{unsubscribe();observer.destroy();};
+  });
+  onMount(()=>{
+    let timer:ReturnType<typeof setTimeout>;
+    const tick=()=>{timer=setTimeout(()=>{now=Date.now();tick();},60000-(Date.now()%60000));};tick();
+    const measure=()=>{compact=(container?.clientWidth??window.innerWidth)<640+(compact?24:0);};measure();
+    const observer=new ResizeObserver(measure);if(container)observer.observe(container);
+    return()=>{clearTimeout(timer);observer.disconnect();};
+  });
+  const items=$derived(data?toCalendarItems(data.items,{timeZone:display.timeZone,loadedAt:updatedAt,collectionOrder}):[]);
+  const visible=$derived(filterItems(items,filters)),days=$derived(groupByDay(visible)),unfilteredDays=$derived(filtered?groupByDay(items):days);
+  const loadedThrough=$derived(data?.truncated?items.at(-1)?.day:undefined);
+  const selectedKey=$derived(search.entry),withoutEntry=$derived(JSON.stringify({...search,entry:undefined}));
+  let pushedFrom:string|null=null,returnFocus={current:null as HTMLElement|null},lastSelected=$state<CalendarItem>();
+  const found=$derived(selectedKey?items.find(item=>item.key===selectedKey):undefined);
+  $effect(()=>{if(found)lastSelected=found;if(selectedKey===undefined)pushedFrom=null;});
+  const selected=$derived(found??(lastSelected?.key===selectedKey?lastSelected:undefined));
+  $effect(()=>{if(selectedKey&&!found&&data&&!fetching)updateSearch({entry:undefined});});
+  function openEntry(item:CalendarItem,element:HTMLElement){returnFocus.current=element;if(selectedKey===undefined)pushedFrom=withoutEntry;updateSearch({entry:item.key},selectedKey===undefined);}
+  function closeEntry(){const from=pushedFrom;pushedFrom=null;if(from===withoutEntry)back();else updateSearch({entry:undefined});}
+  function goToMonth(next:string|undefined){if(next===undefined||isMonthKey(next))updateSearch({month:next});}
+  function setFilters(patch:Partial<CalendarFilterValues>){updateSearch({...('collections'in patch?{collections:toListParam(patch.collections??[])}:{}),...('locales'in patch?{locales:toListParam(patch.locales??[])}:{}),...('states'in patch?{states:toListParam(patch.states??[])}:{})});}
+  const filterTrigger={current:null as HTMLButtonElement|null};
+  function clearFilters(){setFilters({collections:[],locales:[],states:[]});filterTrigger.current?.focus();}
+  function prefetch(target:string){if(!isMonthKey(target))return;const next=fetchRange(monthGridDays(target,weekStartsOn));void queryClient.prefetchQuery({...calendarQueryOptions(next.from,next.to),staleTime:60000});}
+  const errorMessage=$derived(error instanceof ApiResponseError?error.code==='FORBIDDEN'?"You don't have permission to view the calendar.":error.message:'Check your connection and try again.');
+  const zoneTime=$derived(dayKeyToUTC(`${month}-15`)+12*3600000);
+</script>
+<div bind:this={container} class="calendar">
+<header><div><h1>Calendar</h1><p>Published and scheduled entries across collections, in the site's time zone.</p></div><Filters {display} {collections} {locales} value={filters} onChange={setFilters} triggerRef={filterTrigger}/></header>
+<div role="tablist" aria-label="Calendar view"><button type="button" role="tab" aria-selected={view==='month'} onclick={()=>updateSearch({view:'month'})}>Month</button><button type="button" role="tab" aria-selected={view==='agenda'} onclick={()=>updateSearch({view:'agenda'})}>Agenda</button></div>
+<div class="toolbar"><div><h2>{display.monthTitle(month)}</h2><p title={`Times are in ${display.zoneName}.`}>{display.zoneShortName(zoneTime)}{#if display.viewerZoneDiffers} · Your time: {display.viewerZoneShortName(zoneTime)}{/if}</p></div><div class="month-nav"><button type="button" aria-label="Previous month" onclick={()=>goToMonth(shiftMonth(month,-1))} onpointerenter={()=>prefetch(shiftMonth(month,-1))} onfocus={()=>prefetch(shiftMonth(month,-1))}>‹</button><button type="button" onclick={()=>goToMonth(undefined)}>Today</button><button type="button" aria-label="Next month" onclick={()=>goToMonth(shiftMonth(month,1))} onpointerenter={()=>prefetch(shiftMonth(month,1))} onfocus={()=>prefetch(shiftMonth(month,1))}>›</button></div></div>
+{#if error}<div role="alert"><h3>Could not load the calendar</h3><p>{errorMessage}</p><button type="button" onclick={()=>refetch()}>Retry</button></div>{/if}
+{#if data?.truncated}<div role="status"><h3>This range has more than {new Intl.NumberFormat(locale).format(CALENDAR_MAX_ENTRIES)} entries</h3><p>The calendar shows the first {new Intl.NumberFormat(locale).format(CALENDAR_MAX_ENTRIES)}{loadedThrough?`, which end on ${display.monthDay(loadedThrough)}`:''}.</p></div>{/if}
+{#if !(error&&!data)}{#if view==='month'}<Month {month} {gridDays} {days} {unfilteredDays} {today} {now} {display} loading={!data} {loadedThrough} {compact} {selectedKey} onSelect={openEntry} onMonthChange={goToMonth} onClearFilters={filtered?clearFilters:undefined}/>
+{:else}{#key month}<Agenda {month} {days} {today} {now} {display} loading={!data} {loadedThrough} {selectedKey} onSelect={openEntry} onClearFilters={filtered?clearFilters:undefined}/>{/key}{/if}{/if}
+<Panel item={selected} {display} {now} {compact} i18n={manifest?.i18n} {user} {returnFocus} {client} {queryClient} onClose={closeEntry} onRescheduled={(item,at)=>goToMonth(dayKeyInZone(Date.parse(at),display.timeZone).slice(0,7))}/>
+</div>
+<style>.calendar{min-width:0;display:grid;gap:1.25rem;}header,.toolbar{display:flex;justify-content:space-between;gap:1rem;align-items:start;}h1{margin:0;font-size:2rem;}h2{margin:0;font-size:1.25rem;}header p,.toolbar p{font-size:.875rem;color:var(--muted-foreground,#666);}button{font:inherit;color:inherit;background:var(--card,#fff);border:1px solid var(--border,#ccc);border-radius:.35rem;padding:.55rem .8rem;cursor:pointer;}[role="tablist"],.month-nav{display:flex;gap:.35rem;}[aria-selected="true"]{background:var(--primary,#174bbf);color:white;}[role="alert"]{border:1px solid #c55;padding:1rem;}[role="status"]{border:1px solid #ba8a36;padding:1rem;}button:focus-visible{outline:2px solid var(--ring,#165ccc);outline-offset:2px;}@media(max-width:639px){header{flex-wrap:wrap;}[role="tablist"] button{flex:1;}}</style>

@@ -7,6 +7,7 @@
  * MIT upstream attribution: notices/emdash-MIT.txt; docs/common-navigation.md.
  */
 const MANAGEMENT_ITEMS = [
+  { route: 'calendar', label: 'Calendar', permission: 'content:read_drafts' },
   { route: 'comments', label: 'Comments', permission: 'comments:moderate' },
   { route: 'menus', label: 'Menus', permission: 'menus:manage' },
   { route: 'redirects', label: 'Redirects', permission: 'redirects:manage' },

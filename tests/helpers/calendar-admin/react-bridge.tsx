@@ -24,7 +24,6 @@ export function CalendarEntryPanel(props:Record<string,unknown>){return transpor
 export function CalendarPage(){
   const queryClient=useQueryClient(),navigate=useNavigate(),search=useSearch({strict:false}),router=useRouter();
   const manifest=useQuery({queryKey:['manifest'],queryFn:client.fetchManifest}),user=useCurrentUser();
-  if(!manifest.data)return null;
   return transport('Page',{manifest:manifest.data,user:user.data,client,queryClient,locale:i18n.locale,search,
     updateSearch:(patch:object,push=false)=>navigate({to:'/calendar',search:(previous:object)=>({...previous,...patch}),replace:!push}),back:()=>router.history.back()});
 }
