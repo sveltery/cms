@@ -14,15 +14,16 @@ const contextKey = Symbol('sveltery-admin-client-scopes');
 function createScopeResolver(root: AccountScope, resolveClientCache?: (identity: object) => QueryClient) {
  const clients = new WeakMap<CurrentUserClient['currentUser'], AccountScope>();
  const caches = new WeakMap<QueryClient, AccountScope>([[root.queryClient, root]]);
+ function forCache(queryClient: QueryClient): AccountScope {
+  let scope = caches.get(queryClient);
+  if (!scope) { scope = createAccountScope(queryClient); caches.set(queryClient, scope); }
+  return scope;
+ }
  function resolve(client?: CurrentUserClient, supplied?: QueryClient): AccountScope {
-  if (supplied) {
-   let scope = caches.get(supplied);
-   if (!scope) { scope = createAccountScope(supplied); caches.set(supplied, scope); }
-   return scope;
-  }
+  if (supplied) return forCache(supplied);
   if (!client) return root;
   let scope = clients.get(client.currentUser);
-  if (!scope) { scope = createAccountScope(resolveClientCache?.(client.currentUser)); clients.set(client.currentUser, scope); }
+  if (!scope) { scope = forCache(resolveClientCache?.(client.currentUser) ?? createDashboardQueryClient()); clients.set(client.currentUser, scope); }
   return scope;
  }
  return resolve;
