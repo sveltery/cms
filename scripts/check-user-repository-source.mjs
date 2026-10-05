@@ -24,8 +24,18 @@ assert.equal(digest(read('notices/emdash-MIT.txt')), 'd5ab82c0225b0def1fa140af22
 assert.equal(digest(JSON.stringify(inventory.nativeFamilies)), 'd1c59940e219e7643931e1d3495875163edfef521817ca5935ad1a6883139236', 'nativeFamilies immutable inventory');
 for (const family of inventory.nativeFamilies) {
   const bytes = read(family.path);
-  assert.equal(bytes.length, family.bytes, family.path + ' complete Native length');
-  assert.equal(digest(bytes), family.sha256, family.path + ' unchanged Native assertions');
+  if (family.path === 'tests/users-native/repository.test.ts' && digest(bytes) !== family.sha256) {
+    const correction = JSON.parse(read('docs/evidence/user-admin-native/inherited-repository-type-correction.json'));
+    const before = read('docs/evidence/user-admin-native/inherited-repository-test-before-type-correction.txt');
+    assert.equal(before.length, family.bytes);
+    assert.equal(digest(before), family.sha256);
+    assert.equal(digest(bytes), correction.afterSha256);
+    const emit = source => ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText;
+    assert.equal(emit(bytes.toString()), emit(before.toString()), 'Root-authorized type-only correction has identical whole runtime');
+  } else {
+    assert.equal(bytes.length, family.bytes, family.path + ' complete Native length');
+    assert.equal(digest(bytes), family.sha256, family.path + ' unchanged Native assertions');
+  }
 }
 
 const sourcePath = 'parity/emdash/users/source/packages/auth/src/rbac.test.ts';

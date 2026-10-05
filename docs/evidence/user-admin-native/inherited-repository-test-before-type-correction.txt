@@ -197,7 +197,7 @@ for (const target of ['Node SQLite', 'raw workerd D1'] as const) {
       let existing: Awaited<ReturnType<UserRepository['findById']>> | undefined;
       await assert.doesNotReject(async () => { existing = await f.repository.findById('operator-profile'); });
       assert.ok(existing);
-      await assert.rejects(() => f.repository.update(existing!.id, { role: 'admin', name: 'Rejected' }), /operator profile rejection/);
+      await assert.rejects(() => f.repository.update(existing.id, { role: 'admin', name: 'Rejected' }), /operator profile rejection/);
       assert.deepEqual(await readRows(f.database), before);
     } finally { await f.dispose(); }
   });
