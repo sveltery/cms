@@ -145,6 +145,26 @@ RFE104-HOST-PRELOAD01 adds a bounded beforeAll awaiting the genuine editor-react
 Root explicitly authorizes this finite framework setup transport after the initial209 raw/report is preserved. It earns zero Source/product causal credit and cannot turn the first mount stop into a product red. Local config loading and immutable148-file guard pass; actual new hosted whole-family outcome and absence/presence of original eager pretransform errors remain pending and will be retained without relabeling. All old job steps, limits, includes, browser security and official1243 requirements remain unchanged.
 
 
+### Live interface-locale ownership test first
+
+RFE104-LIVELOCALE01 observes a real Native iframe gap beyond the initial catalog tests. The same actual Lingui provider activates es-ES and the real owning Host locale prop changes, yet the Native Code/Preview tabs retain English. Whole57 registers56 passes (all old55 plus one separate Source runtime witness) and one reached actual Native label-value red. [Complete original raw/report/exit](rich-editor-evidence/iframe-live-locale/receipt.json) preserve the failing run.
+
+The separate witness executes the entire immutable Source CodeEditor.tsx under real React/I18nProvider/CodeMirror with Source-exact macro compilation. Its hint rerenders for the new locale while its same created-once EditorView retains the initial ARIA label even when the label prop changes. This records the pinned observable contract, earns zero original Source callback credit and changes no Source body, mock, fixture or clock. Native jsdom Range stderr and React environment warnings remain literal; no layout/browser credit or fake geometry exists. The planned fidelity repair reads the same current host locale in its existing translator wrapper and supplies the optional shared-card locale getter; original HTML28's first stationary baseline remains independent, and no HTML/card implementation is included here.
+
+
+The first live-locale fix reads the same owning locale before the existing translator resolves each descriptor, and exposes that exact getter as optional NodeViewState.locale for the independently owned shared card. The test bridge keeps explicit Native locale or the same current Lingui provider locale; no second provider/global state or HTML/card markup is introduced. Whole57 and original206 pass. The first diagnostic check's single new supplemental union-overload error remains literal; only its new helper parameter narrowing changes, retaining every assertion/data/clock, and corrected checking reports0 errors/0 warnings. The fresh HTML author separately retains whole28's3pass/25fail initial baseline, including reached RTL expectedrtl/receivedltr, before consuming this interface.
+
+
+The meaningful refactor shares one Html/Iframe node-view factory for the same actual authoring provider. Each node still owns its own node/getPos/state. Whole57 passes again and diagnostics report0 errors/0 warnings; complete separate refactor raw/report/exit remain in the same receipt. The immutable Source witness, initial genuine red, mount-only ARIA contract and original whole Source bodies remain unchanged. Current hosted browser/final-head gates and independent/configured review are still pending.
+
+
+### Actual Picker110 Main union with live-locale history
+
+The ordinary union adopts actual published Main `fa86186aa2bd83b7678f59c26026b7fc6c9d57cf` after owned live-locale test/fix/refactor head `25de96c507462a3d91ffd97fb1601f8f1e689bb4`. Incoming Picker cache repair, all five supplemental controls and full picker documentation remain exact. The sole compatibility conflict retains the entire incoming Main prefix and both complete unchanged owned additions in their original order. All Rich product/Source148, package/lock/bootstrap/workflow and actual-browser configuration stay exact. [Complete union checks and resolution](rich-editor-evidence/picker-main-live-locale-union/receipt.json) record Native57PASS, original Source206PASS/148guard, diagnostics0errors0warnings/process0.
+
+This union adds zero Source or browser causal credit. Original CI560209 raw remains unchanged; the finite preload first hosted outcome and current whole13/secured10/editor acceptance remain pending. Own HTML115 and Table117 need current public unions, actual whole-family checks, independent/configured review, Root exact approval and author regular merge before adoption. Full media/reference/repeater/plugin/public renderer and global interface locale remain unfinished.
+
+
 ### Complete table controls candidate
 
 The isolated table-controls developer now implements the actual Source picker switch/coarse focus, reusable grouped toolbar/More menu, Alt+F10/bookmark and outside-focus close intents, focusable unavailable actions with guarded commands, exact500ms typeahead sessions, regular-header checkbox persistence, saved-selection insertion and repeated keyed live announcements. Real compiled Source Lingui descriptors drive the picker/menu/structural announcements. The genuine pinned Tiptap3.20 bubble plugin owns contextual controls, Source focus/selection conditions, toolbar/visual-viewport collision bounds and quick row/column actions; minimal mode excludes it. The already-resolved Bubble package is promoted directly without changing any old package/lock value or record.
