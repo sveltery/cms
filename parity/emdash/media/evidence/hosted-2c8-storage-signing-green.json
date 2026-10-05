@@ -1,0 +1,85 @@
+{
+  "head": "2c8e9c262c4fce986851657acf0ba870affeaaae",
+  "tree": "30b5de77ca5e180805ff35850c57c073b72a1178",
+  "run": 37116900612,
+  "jobs": [
+    {
+      "id": 111185348586,
+      "name": "browser",
+      "conclusion": "failure"
+    },
+    {
+      "id": 111185348704,
+      "name": "validate",
+      "conclusion": "success"
+    },
+    {
+      "id": 111185348747,
+      "name": "media-source-evidence (default)",
+      "conclusion": "success"
+    },
+    {
+      "id": 111185348818,
+      "name": "setup-source-evidence (default)",
+      "conclusion": "success"
+    },
+    {
+      "id": 111185348829,
+      "name": "media-source-evidence (node)",
+      "conclusion": "success"
+    },
+    {
+      "id": 111185348849,
+      "name": "setup-source-evidence (node)",
+      "conclusion": "success"
+    }
+  ],
+  "normal": {
+    "job": 111185348704,
+    "allBootstrapPhasesPassed": true,
+    "services": 1152,
+    "source": 79,
+    "media": 349,
+    "nativeClient": 7,
+    "detailsSsr": 5,
+    "nativeStorageSelectionSigning": 7,
+    "production": 357,
+    "frozenIsolatedNode": 13,
+    "cloudflarePure": 23,
+    "officialWorkers": 5
+  },
+  "secured": {
+    "default": {
+      "job": 111185348747,
+      "ordinary": 7,
+      "durationSeconds": 31.2,
+      "nativeStorageSelectionSigning": 7,
+      "wholeCanvasCropper": 27,
+      "wholeAdminApi": 45
+    },
+    "node": {
+      "job": 111185348829,
+      "ordinary": 7,
+      "durationSeconds": 30.9,
+      "nativeStorageSelectionSigning": 7,
+      "wholeCanvasCropper": 27,
+      "wholeAdminApi": 45
+    }
+  },
+  "fullBrowser": {
+    "job": 111185348586,
+    "exitCode": 124,
+    "missingEditorTaxonomySidebarExpectations": 1,
+    "missingSearchExpectations": 2,
+    "node": "skipped"
+  },
+  "limits": [
+    "Source callback/fixture bodies unchanged",
+    "7 storage callbacks are ORIGINAL native selection/offline signing, zero live S3/network/real credential credit",
+    "Pure17 overlaps wholeAdmin45; two targets repeat same callbacks",
+    "Whole Source detail/navigation92 awaits fresh developer actual hosted baseline",
+    "Full Source middleware seven callbacks/public-image E2E/usage remain unexecuted or incomplete",
+    "Configured review account quota blocked; fresh review pending",
+    "Final approved prerequisite replay and PM exact-head approval required"
+  ]
+}

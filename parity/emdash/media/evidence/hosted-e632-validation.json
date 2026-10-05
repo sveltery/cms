@@ -1,0 +1,190 @@
+{
+  "head": "e6323cf21a74ff8f859c0e97baf507d0b6b66c0a",
+  "tree": "81bb9aa83cf92e2e05a9a040987d43ec06d7fd4f",
+  "run": 37095881561,
+  "job": 111125589179,
+  "rawLogSha256": "90eeb6e4149470b295f0e52318760a97f090d8ddd52b48554fc4a6a759df2596",
+  "totalTests": 1106,
+  "pass": 936,
+  "fail": 170,
+  "cancelled": 0,
+  "runtimeSeconds": 569.3,
+  "classification": "Observed failure messages only; root cause qualification requires narrow repair and unchanged focused reruns. Native provider9 CREATE prefix case mismatch is reproduced separately; remaining failures are not blanket fixture obsolescence.",
+  "families": {
+    "tests/collection-update.test.ts": {
+      "failures": 2,
+      "migrationRequired": 2,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/collection-update.test.ts:154:3\n\u2716 Node: metadata survives storage/runtime restart and prior timestamp stays stale (130.04856ms)\n  Error [CmsError]: MIGRATION_REQUIRED\n      at validateObjects (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:107:139)\n      at migrationState (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:201:3)\n      at async migrateCms (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:241:21)"
+    },
+    "tests/database-d1.test.ts": {
+      "failures": 6,
+      "migrationRequired": 4,
+      "assertionFailures": 2,
+      "other": 0,
+      "firstFailure": "tests/database-d1.test.ts:41:3\n\u2716 Node: equivalent schema, scalar, CAS, soft-delete and persisted session contract (30.288298ms)\n  Error [CmsError]: MIGRATION_REQUIRED\n      at validateObjects (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:107:139)\n      at migrationState (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:201:3)\n      at async migrateCms (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:241:21)"
+    },
+    "tests/database.test.ts": {
+      "failures": 2,
+      "migrationRequired": 1,
+      "assertionFailures": 1,
+      "other": 0,
+      "firstFailure": "tests/database.test.ts:45:1\n\u2716 system migration, additive field and drafts survive close/reopen (62.060919ms)\n  Error [CmsError]: MIGRATION_REQUIRED\n      at validateObjects (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:107:139)\n      at migrationState (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:201:3)\n      at async migrateCms (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:241:21)"
+    },
+    "tests/draft-trash-index-migration.test.ts": {
+      "failures": 8,
+      "migrationRequired": 4,
+      "assertionFailures": 4,
+      "other": 0,
+      "firstFailure": "tests/draft-trash-index-migration.test.ts:49:5\n\u2716 Node: concurrent v1 trash index installers preserve rows and reach complete v2 (97.415015ms)\n  AssertionError [ERR_ASSERTION]: [{\"status\":\"fulfilled\"},{\"status\":\"rejected\",\"reason\":{\"code\":\"MIGRATION_REQUIRED\",\"name\":\"CmsError\"}}]\n  + actual - expected\n  \n    ["
+    },
+    "tests/draft-trash-index.test.ts": {
+      "failures": 6,
+      "migrationRequired": 4,
+      "assertionFailures": 2,
+      "other": 0,
+      "firstFailure": "tests/draft-trash-index.test.ts:24:3\n\u2716 Node: all-locale trash order uses the pinned deleted-leading index while retaining upstream tie sorting (46.545797ms)\n  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /USING INDEX idx_ec_posts_deleted_status/. Input:\n  \n  'SCAN ec_posts\\nUSE TEMP B-TREE FOR ORDER BY'\n  "
+    },
+    "tests/draft-trash.test.ts": {
+      "failures": 1,
+      "migrationRequired": 1,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/draft-trash.test.ts:268:1\n\u2716 Node draft trash: trashed data and restored revision survive real storage restart; prior token remains stale (26.577945ms)\n  Error [CmsError]: MIGRATION_REQUIRED\n      at validateObjects (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:107:139)\n      at migrationState (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:201:3)\n      at async migrateCms (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:241:21)"
+    },
+    "tests/full-schema-upgrade.test.ts": {
+      "failures": 2,
+      "migrationRequired": 2,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/full-schema-upgrade.test.ts:28:38\n\u2716 version 1 metadata upgrade retains physical columns, rows, and divergent legacy defaults (47.410333ms)\n  Error [CmsError]: MIGRATION_REQUIRED\n      at validateObjects (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:107:139)\n      at migrationState (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:201:3)\n      at async migrateCms (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:241:21)"
+    },
+    "tests/lifecycle-canonical-storage.test.ts": {
+      "failures": 4,
+      "migrationRequired": 0,
+      "assertionFailures": 4,
+      "other": 0,
+      "firstFailure": "tests/lifecycle-canonical-storage.test.ts:20:3\n\u2716 Node: fresh canonical startup publishes, stages, rolls back and retains history on reopen (103.858939ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n    ["
+    },
+    "tests/lifecycle-startup-cross-triggers.test.ts": {
+      "failures": 6,
+      "migrationRequired": 6,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/lifecycle-startup-cross-triggers.test.ts:12:5\n\u2716 Node: forward cross-collection and self-reference triggers survive the complete rebuild (80.349623ms)\n  AssertionError [ERR_ASSERTION]: Got unwanted rejection.\n  Actual message: \"MIGRATION_REQUIRED\"\n      at async TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/lifecycle-startup-cross-triggers.test.ts:55:9)\n      at async Test.run (node:internal/test_runner/test:1409:7)"
+    },
+    "tests/lifecycle-startup-dependencies.test.ts": {
+      "failures": 2,
+      "migrationRequired": 2,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/lifecycle-startup-dependencies.test.ts:71:3\n\u2716 Node: unrelated operator views, triggers, CTE names, literals and comments remain unchanged (29.743188ms)\n  AssertionError [ERR_ASSERTION]: Got unwanted rejection.\n  Actual message: \"MIGRATION_REQUIRED\"\n      at async TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/lifecycle-startup-dependencies.test.ts:85:7)\n      at async Test.run (node:internal/test_runner/test:1409:7)"
+    },
+    "tests/lifecycle-startup-invariants.test.ts": {
+      "failures": 22,
+      "migrationRequired": 14,
+      "assertionFailures": 8,
+      "other": 0,
+      "firstFailure": "tests/lifecycle-startup-invariants.test.ts:77:5\n\u2716 Node: fresh content-like operator trigger names occupy a separate namespace (16.235918ms)\n  AssertionError [ERR_ASSERTION]: Got unwanted rejection.\n  Actual message: \"MIGRATION_REQUIRED\"\n      at async TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/lifecycle-startup-invariants.test.ts:93:11)\n      at async Test.run (node:internal/test_runner/test:1409:7)"
+    },
+    "tests/lifecycle-startup-literal-prefix.test.ts": {
+      "failures": 8,
+      "migrationRequired": 8,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/lifecycle-startup-literal-prefix.test.ts:10:3\n\u2716 Node: literal reserved prefix allows acms_tool already present (22.308782ms)\n  Error [CmsError]: MIGRATION_REQUIRED\n      at validateObjects (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:107:139)\n      at migrationState (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:201:3)\n      at async migrateCms (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:241:21)"
+    },
+    "tests/lifecycle-startup-namespace.test.ts": {
+      "failures": 6,
+      "migrationRequired": 6,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/lifecycle-startup-namespace.test.ts:42:5\n\u2716 Node: fresh preserves an unrelated operator FK with an ec_note column (20.143438ms)\n  Error [CmsError]: MIGRATION_REQUIRED\n      at validateObjects (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:107:139)\n      at migrationState (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:201:3)\n      at async migrateCms (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:241:21)"
+    },
+    "tests/lifecycle-startup-prerequisites.test.ts": {
+      "failures": 26,
+      "migrationRequired": 20,
+      "assertionFailures": 6,
+      "other": 0,
+      "firstFailure": "tests/lifecycle-startup-prerequisites.test.ts:149:5\n\u2716 Node: v0 ordinary operator writes remain outside the prerequisite snapshot (12.539719ms)\n  AssertionError [ERR_ASSERTION]: Got unwanted rejection.\n  Actual message: \"MIGRATION_REQUIRED\"\n      at async TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/lifecycle-startup-prerequisites.test.ts:161:9)\n      at async Test.run (node:internal/test_runner/test:1409:7)"
+    },
+    "tests/lifecycle-startup-quoted-columns.test.ts": {
+      "failures": 6,
+      "migrationRequired": 6,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/lifecycle-startup-quoted-columns.test.ts:10:3\n\u2716 Node: quoted legacy systems without field literal upgrade without rewriting field literals (47.703202ms)\n  AssertionError [ERR_ASSERTION]: Got unwanted rejection.\n  Actual message: \"MIGRATION_REQUIRED\"\n      at async TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/lifecycle-startup-quoted-columns.test.ts:29:7)\n      at async Test.run (node:internal/test_runner/test:1409:7)"
+    },
+    "tests/lifecycle-startup-upgrade.test.ts": {
+      "failures": 8,
+      "migrationRequired": 8,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/lifecycle-startup-upgrade.test.ts:15:3\n\u2716 Node: fresh canonical startup creates all lifecycle system columns and atomically stores revision pointers (43.473131ms)\n  Error [CmsError]: MIGRATION_REQUIRED\n      at validateObjects (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:107:139)\n      at migrationState (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:201:3)\n      at async migrateCms (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:241:21)"
+    },
+    "tests/metadata-fidelity-upgrade.test.ts": {
+      "failures": 2,
+      "migrationRequired": 2,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/metadata-fidelity-upgrade.test.ts:35:3\n\u2716 Node: actual prefix7 upgrades preserve every existing row and content physical defaults (32.862632ms)\n  Error [CmsError]: MIGRATION_REQUIRED\n      at validateObjects (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:107:139)\n      at migrationState (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:201:3)\n      at async migrateCms (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:241:21)"
+    },
+    "tests/metadata-installed-startup.test.ts": {
+      "failures": 2,
+      "migrationRequired": 2,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/metadata-installed-startup.test.ts:11:3\n\u2716 Node: valid installed provider8 metadata is accepted on ordinary restart (26.071591ms)\n  AssertionError [ERR_ASSERTION]: Got unwanted rejection.\n  Actual message: \"MIGRATION_REQUIRED\"\n      at async TestContext.<anonymous> (file:///home/runner/work/cms/cms/tests/metadata-installed-startup.test.ts:15:7)\n      at async Test.run (node:internal/test_runner/test:1409:7)"
+    },
+    "tests/metadata-upgrade-atomic.test.ts": {
+      "failures": 38,
+      "migrationRequired": 38,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/metadata-upgrade-atomic.test.ts:11:41\n\u2716 Node: actual provider prefix1 retains legacy field IDs/defaults/content through final metadata upgrade (44.004739ms)\n  Error [CmsError]: MIGRATION_REQUIRED\n      at validateObjects (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:107:139)\n      at migrationState (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:201:3)\n      at async migrateCms (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:241:21)"
+    },
+    "tests/runtime-composition.test.ts": {
+      "failures": 1,
+      "migrationRequired": 1,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/runtime-composition.test.ts:49:1\n\u2716 configured storage persists content and resolves current trusted roles across runtime restart (56.115276ms)\n  Error [CmsError]: MIGRATION_REQUIRED\n      at validateObjects (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:107:139)\n      at migrationState (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:201:3)\n      at async migrateCms (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:241:21)"
+    },
+    "tests/runtime-d1.test.ts": {
+      "failures": 1,
+      "migrationRequired": 1,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/runtime-d1.test.ts:14:1\n\u2716 trusted D1 platform configuration migrates local storage, resolves fresh roles and forwards request waitUntil (1171.59736ms)\n  Error [CmsError]: MIGRATION_REQUIRED\n      at validateObjects (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:107:139)\n      at migrationState (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:201:3)\n      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"
+    },
+    "tests/search-startup-owned-fts.test.ts": {
+      "failures": 4,
+      "migrationRequired": 4,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/search-startup-owned-fts.test.ts:14:3\n\u2716 Node: managed search notes survives canonical restart (46.759855ms)\n  AssertionError [ERR_ASSERTION]: {\"status\":\"rejected\",\"reason\":{\"message\":\"MIGRATION_REQUIRED\",\"code\":\"MIGRATION_REQUIRED\"}}\n  + actual - expected\n  \n  + 'rejected'"
+    },
+    "tests/session-composition.test.ts": {
+      "failures": 2,
+      "migrationRequired": 0,
+      "assertionFailures": 2,
+      "other": 0,
+      "firstFailure": "tests/session-composition.test.ts:12:1\n\u2716 server bridge derives supported settings, schema, content and publication permissions from a current role (11.210386ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  ... Skipped lines\n  "
+    },
+    "tests/session-migrations.test.ts": {
+      "failures": 4,
+      "migrationRequired": 3,
+      "assertionFailures": 1,
+      "other": 0,
+      "firstFailure": "tests/session-migrations.test.ts:20:1\n\u2716 clean migration registers empty auth tables and version two, and is idempotent (27.549035ms)\n  Error [CmsError]: MIGRATION_REQUIRED\n      at validateObjects (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:107:139)\n      at migrationState (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:201:3)\n      at async migrateCms (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:241:21)"
+    },
+    "tests/setup-settings-migration.test.ts": {
+      "failures": 1,
+      "migrationRequired": 1,
+      "assertionFailures": 0,
+      "other": 0,
+      "firstFailure": "tests/setup-settings-migration.test.ts:7:1\n\u2716 canonical migration installs persistent versioned options without provisioning settings (32.888984ms)\n  Error [CmsError]: MIGRATION_REQUIRED\n      at validateObjects (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:107:139)\n      at migrationState (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:201:3)\n      at async migrateCms (file:///home/runner/work/cms/cms/src/lib/server/database/migrations.ts:241:21)"
+    }
+  }
+}

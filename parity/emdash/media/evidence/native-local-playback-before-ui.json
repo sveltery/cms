@@ -1,0 +1,17 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "baselineHead": "546fdb26a6cf7530c8d56d3a844a2b2a58d785dd",
+  "baselineTree": "a2c1bc0a241e1abd927fbe3d8480e9944fd4defd",
+  "kind": "original native SSR requirements, not copied Source callbacks",
+  "command": "node node_modules/vitest/vitest.mjs run --config vitest.media-details.config.ts",
+  "result": { "callbacks": 5, "passed": 3, "failed": 2, "completedValueAssertionReds": 2 },
+  "actual": "local audio/video details omit audio/video controls",
+  "sourceInspected": "complete pinned packages/admin/src/components/MediaDetailPanel.tsx and complete packages/admin/tests/components/MediaDetailPanel.test.tsx; frozen whole test inventory is preserved",
+  "selectedSourceHelperControl": "complete media-playback.test.ts already baseline-green within overlapping 17 pure / 45 browser admin callbacks",
+  "log": "/tmp/media-local-playback-before-ui.log",
+  "ordinaryBrowserRequirement": "real uploaded PCM WAV, browser metadata decode and exact stored bytes; committed before native UI; not executed yet",
+  "sourceCallbackCredit": 0,
+  "browserCredit": 0,
+  "externalStreamingProviderCredit": 0,
+  "limits": "Full Source detail panel execution, real browser playback, external provider/usage and fresh/configured review remain incomplete. SSR is not browser or actual IO evidence."
+}

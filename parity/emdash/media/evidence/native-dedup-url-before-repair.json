@@ -1,0 +1,22 @@
+{
+  "kind": "original native deduplication transport assertion before repair",
+  "baseHead": "b21a916",
+  "test": "tests/media-client/upload.test.ts",
+  "result": {
+    "tests": 7,
+    "pass": 6,
+    "fail": 1,
+    "completedAssertionReds": 1,
+    "copiedSourceCallbacks": 0
+  },
+  "actual": "undefined",
+  "expected": "/_emdash/api/media/file/ready.png",
+  "log": {
+    "path": "/tmp/media-native-dedup-url-before-repair.log",
+    "sha256": "49829cc9b02ba4486fa51f1bb88349fd5ec5fb866266c00d1a4540b856b53a6e"
+  },
+  "limits": [
+    "Fetch spy is algorithm/native UI transport only, zero actual HTTP/SQL/storage/browser credit.",
+    "Complete pinned single-item GET returns actual media row without URL. Native UI URL projection is a native transport seam, no Source API behavior alteration."
+  ]
+}
