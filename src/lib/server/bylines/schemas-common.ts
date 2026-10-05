@@ -19,4 +19,3 @@ const HTTP_SCHEME_RE = /^https?:\/\//i;
 export const httpUrl = z
 	.url()
 	.refine((url) => HTTP_SCHEME_RE.test(url), "URL must use http or https");
-
