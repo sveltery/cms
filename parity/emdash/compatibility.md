@@ -3075,3 +3075,19 @@ Byline118 canonical lifecycle now executes all original Byline lifecycle72 and r
 Byline118 adds bounded trusted Source repository storage transport for genuine original Seed D1 fixture calls. Public `b35999fb` executes real direct create without Seed revision promotion and exact Source deleted-at-only soft trash; ordinary Native authorization, version/date advancement and CAS remain their separate contract. Supplemental36 runs unchanged on Node/rawD1, oldBylineSource216 passes and check0/0. Native schema/current-row fences and fixed batching are documented stronger platform guarantees. The original pure-Node lifecycle30 currently stops before callbacks on incoming Seed TypeScript parameter-property syntax; raw import failure is retained, earns zero credit and is owned by Seed119. Proposed PR118 remains awaiting full normal/secured gates and fresh independent/configured review/manager exact-head approval.
 
 Byline118 ordinary actual Main99 Calendar union retains its three distinct Calendar methods and authoritative `{item,hasSeo}` read contract. Whole Calendar56 initially38pass/18fail becomes46pass/10fail after snapshot integration, then56/56 after actual Byline/SEO/bound-reference return hydration and genuine dependency installation. Six newly reached Native payload assertion failures are recorded separately from lifecycle exceptions and component-import prerequisites. Explicit Source reference opt-in retains the complete original hydrator; ordinary Native omitted-reference reads retain their bound-field projection. Live Calendar data and existing actor/CAS/publication/reference-draft guards remain. The exact incoming Main pins/lock additions for floating-ui1.8.0 and react-day-picker9.14.0 are adopted by normal frozen install, preserving all old versions/SRI; prerequisite repairs earn zero Source behavioral credit. Full stationary gates and acceptance remain pending.
+
+## USER99-SOURCE-GATE-EXACT-01 infrastructure repair
+
+The successor independent review closes the preceding atomic rollback issue and
+identifies substring matching in the user provenance guard. The full unchanged
+checker incorrectly accepted a substituted `test:user-admin-other` and rejected
+a legitimate appended `test:user-admin-ui`. Controlled package copies preserve
+all whole Source/Native files and checker bytes. Eleven test-first controls have
+eight passes and three actual command-acceptance failures, including the same
+future-prefix defect for a repository leaf. Complete trimmed `&&` tokens now
+require the actual Core/admin commands exactly once and adjacent in that order.
+All eleven pass; the separate refactor plus an initially green whitespace
+control passes twelve. The complete fixture gate appends after the entire actual
+public Calendar Main chain and adjacent owned gates. No workload is dropped or
+reordered. Product and Source causal credit remains zero; full final-head CI,
+browser jobs, reviewer qualification, exact Root approval and merge are pending.
