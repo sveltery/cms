@@ -356,3 +356,13 @@ issues, but its hosted normal job was cancelled and its local whole bootstrap
 stopped at existing Node package-install deadlines. Those are incomplete gates,
 not whole-check passes; all checks and final reviews are required again at the
 successor head before Root approval and author merge.
+
+The successor adds six further literal raw-evidence attribute rules from the
+configured cumulative review. Each preserves its original bytes and disables
+only the observed whitespace category; no global rule or evidence trimming is
+introduced. The ordinary merge `a63a5bde` incorporates the published taxonomy
+backend `d76016cb`. The whole incoming Source aggregate precedes the four
+unchanged dashboard/app terminals. Both compatibility histories and all literal
+attributes are retained. The lockfile keeps the incoming graph and the existing
+query-core runtime importer. This merge adds no new behavior or Source credit;
+full successor checks, reviews and Root approval remain required.

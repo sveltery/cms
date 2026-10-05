@@ -2309,3 +2309,23 @@ and framework substitutions remain proposed pending current-head full normal13,
 secured9, independent/configured review and specific Root approval before the
 author's expected-head regular merge. Full UI, QueryCore, App/Seed, PostgreSQL
 and deployed Worker integration remain incomplete.
+
+### Admin application PR100 taxonomy union and cumulative evidence attributes
+
+PR100's ordinary merge `a63a5bde` incorporates actual published taxonomy Main
+`d76016cb` and retains both complete compatibility histories. The incoming whole
+Source terminal chain precedes the four unchanged dashboard/app terminals; all
+scripts, dependencies and frozen resolutions remain, with only the already
+existing query-core5.90.20 runtime importer differing from incoming Main. The
+six further exact raw-evidence attribute rules preserve every original byte and
+disable only their configured review's observed whitespace categories.
+
+This transport union changes no Source assertion or behavior, supplies no new
+Source parity credit and grants no PR acceptance. Source Dashboard33 remains
+32 passes plus the preserved literal doctor-command failure, qualified separately
+as the explicitly proposed Native command substitution. The shared query and
+persistent welcome observer remain bounded Native framework substitutions.
+[The paired feature record](../../docs/dashboard-welcome-ui.md) retains all
+earlier failures and incomplete backend/UI scope. Current successor normal13,
+secured9, configured and fresh independent reviews, explicit Root approval and
+the author's expected-head regular merge remain required.
