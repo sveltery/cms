@@ -31,7 +31,7 @@ it('closes an open table action menu on actual read-only props and restores edit
   trigger().click(); await tick(); expect(action().disabled).toBe(false);
   const before = current.getJSON(); onChange.mockClear();
   props.editable = false; await tick();
-  expect(current.isEditable).toBe(false); expect(menu()).toBeNull(); expect(trigger()).toBeNull();
+  expect(current.isEditable).toBe(false); expect(menu()).toBeNull(); expect(trigger().disabled).toBe(true);
   expect(current.getJSON()).toEqual(before); expect(onChange).not.toHaveBeenCalled();
   props.editable = true; await tick(); expect(current.isEditable).toBe(true); expect(menu()).toBeNull();
   trigger().click(); await tick(); expect(action().disabled).toBe(false); action().click(); await tick();

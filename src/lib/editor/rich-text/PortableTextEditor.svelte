@@ -204,8 +204,7 @@
           <button type="button" aria-label="Code Block" aria-pressed={active('codeBlock')} disabled={!editable || inTable} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().toggleCodeBlock().run()}>[ ]</button>
           <button type="button" aria-label="Insert Link" disabled={!editable} onmousedown={event => event.preventDefault()} onclick={link}>↗</button>
           {#each [['Left', 'left'], ['Center', 'center'], ['Right', 'right']] as [label, align]}<button type="button" aria-label={`Align ${label}`} disabled={!editable || alignmentUnavailable} onmousedown={event => event.preventDefault()} onclick={() => editor && setSelectionTextAlignment(editor, align as TextAlignment)}>{label}</button>{/each}
-          {#if editable}<TableMenu {editor} {editable} translate={t} onRun={message => { announcement = message; }} />
-          {:else}<button type="button" aria-label="Table" data-emdash-table-trigger aria-expanded="false" disabled>▦</button>{/if}
+          <TableMenu {editor} {editable} translate={t} onRun={message => { announcement = message; }} />
           <button type="button" aria-label="Undo" disabled={!editable || !canUndo} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().undo().run()}>↶</button>
           <button type="button" aria-label="Redo" disabled={!editable || !canRedo} onmousedown={event => event.preventDefault()} onclick={() => editor?.chain().focus().redo().run()}>↷</button>
         </div>

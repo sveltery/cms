@@ -119,10 +119,7 @@
                   {@const checked = id === 'header-row' ? controls.headerRow : controls.headerColumn}
                   <button type="button" role={header ? 'menuitemcheckbox' : 'menuitem'} aria-checked={header ? checked : undefined}
                     data-emdash-header-checkbox={header && checked !== 'mixed' ? '' : undefined}
-                    class:danger={id === 'delete-table'} disabled={!controls.can[id]} onclick={() => run(action)}>
-                    {tableActionLabel(action, controls, translate)}
-                    {#if header && checked === 'mixed'}<span class="mixed">{translate(tableMessage('Mixed'))}</span>{/if}
-                  </button>
+                    class:danger={id === 'delete-table'} disabled={!controls.can[id]} onclick={() => run(action)}>{tableActionLabel(action, controls, translate)}{#if header && checked === 'mixed'}<span class="mixed">{translate(tableMessage('Mixed'))}</span>{/if}</button>
                 {/each}
               </div>
             {/each}
