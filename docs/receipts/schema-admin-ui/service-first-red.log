@@ -1,0 +1,51 @@
+✖ Node schema administration orders and deletes through the existing service and atomic registry (47.613038ms)
+✖ D1 schema administration orders and deletes through the existing service and atomic registry (966.806552ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2020.243497
+
+✖ failing tests:
+
+test at tests/schema-admin-ui-service.test.ts:10:46
+✖ Node schema administration orders and deletes through the existing service and atomic registry (47.613038ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-schema-admin-ui/tests/schema-admin-ui-service.test.ts:20:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/schema-admin-ui-service.test.ts:10:46
+✖ D1 schema administration orders and deletes through the existing service and atomic registry (966.806552ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-schema-admin-ui/tests/schema-admin-ui-service.test.ts:20:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

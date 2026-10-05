@@ -1,0 +1,21 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+ ❯ tests/schema-admin-ui/native.test.ts (4 tests | 1 failed) 480ms
+   × saves chosen title/date fields and list columns through the actual editor callback without dropping retained admin settings 126ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > saves chosen title/date fields and list columns through the actual editor callback without dropping retained admin settings
+AssertionError: expected null not to be null
+ ❯ tests/schema-admin-ui/native.test.ts:31:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  05:12:57
+   Duration  7.80s (transform 3.68s, setup 0ms, import 4.30s, tests 480ms, environment 2.45s)
+

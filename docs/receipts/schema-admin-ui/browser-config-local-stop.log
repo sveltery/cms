@@ -1,0 +1,168 @@
+$ node scripts/check-schema-admin-ui-source.mjs && vitest run --config vitest.schema-admin-ui-browser.config.ts
+Four whole immutable Source schema UI files are byte-exact; 138 declarations retained.
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: browserType.launch: Executable doesn't exist at /home/agent/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     pnpm exec playwright install                           ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+ ❯ node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js:941:55
+ ❯ PlaywrightBrowserProvider.createContext node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js:1077:19
+ ❯ PlaywrightBrowserProvider.openBrowserPage node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js:1147:19
+ ❯ PlaywrightBrowserProvider.openPage node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js:1161:23
+ ❯ TestProject._openBrowserPage node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:10973:3
+ ❯ BrowserPool.openPage node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:2578:3
+ ❯ BrowserPool.runTests node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:2573:3
+ ❯ runWorkspaceTests node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:2473:3
+ ❯ executeTests node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:3712:25
+ ❯ node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:13590:7
+ ❯ node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:13617:11
+ ❯ node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:13479:19
+ ❯ startVitest node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:14554:8
+ ❯ start node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cac.DdICfEr1.js:2340:15
+ ❯ CAC.run node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cac.DdICfEr1.js:2318:2
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { log: [] }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files   (5)
+      Tests  no tests
+     Errors  1 error
+   Start at  05:36:30
+   Duration  797ms (transform 0ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+
+error during close browserType.launch: Executable doesn't exist at /home/agent/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     pnpm exec playwright install                           ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+    at /workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js:941:55
+    at PlaywrightBrowserProvider.createContext (/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js:1077:19)
+    at PlaywrightBrowserProvider.openBrowserPage (/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js:1147:19)
+    at PlaywrightBrowserProvider.openPage (/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js:1161:23)
+    at TestProject._openBrowserPage (/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:10973:3)
+    at BrowserPool.openPage (/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:2578:3)
+    at BrowserPool.runTests (/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:2573:3)
+    at runWorkspaceTests (/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:2473:3)
+    at executeTests (/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:3712:25)
+    at /workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:13590:7
+    at /workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:13617:11
+    at /workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:13479:19
+    at startVitest (/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js:14554:8)
+    at start (/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cac.DdICfEr1.js:2340:15)
+    at CAC.run (/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cac.DdICfEr1.js:2318:2) {
+  log: [],
+  name: 'Error',
+  type: 'Unhandled Error',
+  stacks: [
+    {
+      method: '',
+      file: '/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js',
+      line: 941,
+      column: 55
+    },
+    {
+      method: 'PlaywrightBrowserProvider.createContext',
+      file: '/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js',
+      line: 1077,
+      column: 19
+    },
+    {
+      method: 'PlaywrightBrowserProvider.openBrowserPage',
+      file: '/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js',
+      line: 1147,
+      column: 19
+    },
+    {
+      method: 'PlaywrightBrowserProvider.openPage',
+      file: '/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/@vitest+browser-playwright@4.1.10_playwright@1.63.0_vite@8.3.2_@types+node@24.19.0_esbu_b414ef90e9a19338a25757a23406d451/node_modules/@vitest/browser-playwright/dist/index.js',
+      line: 1161,
+      column: 23
+    },
+    {
+      method: 'TestProject._openBrowserPage',
+      file: '/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js',
+      line: 10973,
+      column: 3
+    },
+    {
+      method: 'BrowserPool.openPage',
+      file: '/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js',
+      line: 2578,
+      column: 3
+    },
+    {
+      method: 'BrowserPool.runTests',
+      file: '/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js',
+      line: 2573,
+      column: 3
+    },
+    {
+      method: 'runWorkspaceTests',
+      file: '/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js',
+      line: 2473,
+      column: 3
+    },
+    {
+      method: 'executeTests',
+      file: '/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js',
+      line: 3712,
+      column: 25
+    },
+    {
+      method: '',
+      file: '/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js',
+      line: 13590,
+      column: 7
+    },
+    {
+      method: '',
+      file: '/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js',
+      line: 13617,
+      column: 11
+    },
+    {
+      method: '',
+      file: '/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js',
+      line: 13479,
+      column: 19
+    },
+    {
+      method: 'startVitest',
+      file: '/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cli-api.BK8pd4xc.js',
+      line: 14554,
+      column: 8
+    },
+    {
+      method: 'start',
+      file: '/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cac.DdICfEr1.js',
+      line: 2340,
+      column: 15
+    },
+    {
+      method: 'CAC.run',
+      file: '/workspace/cms-complete-schema-admin-ui/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/cac.DdICfEr1.js',
+      line: 2318,
+      column: 2
+    }
+  ]
+}
+[ELIFECYCLE] Command failed with exit code 1.
