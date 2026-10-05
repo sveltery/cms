@@ -19,7 +19,6 @@ import {
 import type { BylineFieldDefinition, CustomFieldValue } from "./types.ts";
 import { chunks, SQL_BATCH_SIZE } from "../menus/chunks.ts";
 import { listTablesLike } from "./dialect-helpers.ts";
-import { withTransaction } from "./transaction.ts";
 import type { BylineTable, Database } from "./database-types.ts";
 import { validateIdentifier } from "../menus/validate.ts";
 import {
@@ -879,54 +878,30 @@ export class BylineRepository {
 
 		const group = existing.translationGroup ?? existing.id;
 
-		await withTransaction(this.db, async (trx) => {
-			// Per-row translatable custom-field values. Done BEFORE the
-			// byline row delete so the application-level cleanup is
-			// observable in the transaction log even if FK enforcement is
-			// off; migration 041's FK ON DELETE CASCADE would catch any
-			// row we miss, but the explicit DELETE is what the rest of
-			// the byline domain expects to see.
-			await trx.deleteFrom("_emdash_byline_field_values").where("byline_id", "=", id).execute();
-
-			await trx.deleteFrom("_emdash_bylines").where("id", "=", id).execute();
-
-			// Count remaining siblings in the translation group. If none
-			// remain, purge dependent rows; otherwise leave them intact so
-			// the credit still resolves at other locales.
-			const remaining = await trx
-				.selectFrom("_emdash_bylines")
-				.select(({ fn }) => [fn.count<number>("id").as("count")])
-				.where("translation_group", "=", group)
-				.executeTakeFirst();
-			const remainingCount = Number(remaining?.count ?? 0);
-			if (remainingCount > 0) return;
-
-			// Last sibling gone: cascade in application code.
-			await trx.deleteFrom("_emdash_content_bylines").where("byline_id", "=", group).execute();
-
-			// Group-shared custom-field values are keyed by translation_group
-			// (no FK to bylines), so they don't cascade with the byline row.
-			// Clean them up explicitly so deleting the last sibling of an
-			// identity doesn't leave orphan group values pointing at a
-			// vanished translation group. Per-row translatable values
-			// (`_emdash_byline_field_values` keyed by byline_id) already
-			// cascaded when each sibling row was deleted, so no extra
-			// cleanup is needed for that table.
-			await trx
-				.deleteFrom("_emdash_byline_field_group_values")
-				.where("translation_group", "=", group)
-				.execute();
-
-			const tableNames = await listTablesLike(trx, "ec_%");
-			for (const tableName of tableNames) {
-				validateIdentifier(tableName, "content table");
-				await sql`
-					UPDATE ${sql.ref(tableName)}
-					SET primary_byline_id = NULL
-					WHERE primary_byline_id = ${group}
-				`.execute(trx);
-			}
-		});
+		// Fixed SQL statements run on the real owner's atomic batch, so D1
+		// requires no unsupported interactive transaction. Each group cleanup
+		// condition is evaluated AFTER deleting the requested sibling in that
+		// same batch, rather than inferring the last sibling outside the write.
+		const tableNames = await listTablesLike(this.db, "ec_%");
+		const lastSiblingGone = () => this.db
+			.selectFrom("_emdash_bylines").select("id").where("translation_group", "=", group);
+		const statements: CompiledQuery[] = [
+			this.db.deleteFrom("_emdash_byline_field_values").where("byline_id", "=", id).compile(),
+			this.db.deleteFrom("_emdash_bylines").where("id", "=", id).compile(),
+			this.db.deleteFrom("_emdash_content_bylines").where("byline_id", "=", group)
+				.where(({not,exists}) => not(exists(lastSiblingGone()))).compile(),
+			this.db.deleteFrom("_emdash_byline_field_group_values").where("translation_group", "=", group)
+				.where(({not,exists}) => not(exists(lastSiblingGone()))).compile(),
+		];
+		for (const tableName of tableNames) {
+			validateIdentifier(tableName, "content table");
+			statements.push(sql`
+				UPDATE ${sql.ref(tableName)} SET primary_byline_id = NULL
+				WHERE primary_byline_id = ${group}
+				AND NOT EXISTS (SELECT id FROM ${sql.table("_emdash_bylines")} WHERE translation_group = ${group})
+			`.compile(this.db));
+		}
+		await executeBylineWrites(this.db, statements);
 
 		invalidateBylineObjectCache();
 		return true;
@@ -1258,10 +1233,9 @@ export class BylineRepository {
 		const tableName = `ec_${collection}`;
 		validateIdentifier(tableName, "content table");
 
-		// Like `setContentBylines`, this method is expected to be called
-		// within a transaction context (content handlers wrap in
-		// withTransaction). All operations use `this.db` directly so an
-		// outer transaction can serialise the copy alongside the create.
+		// Reads select the existing Source-defined no-op/copy behavior.
+		// The actual credit INSERT and cached pointer UPDATE commit together
+		// through the registered owner (or an existing registered transaction).
 		const existing = await this.db
 			.selectFrom("_emdash_content_bylines")
 			.select("id")
@@ -1280,7 +1254,7 @@ export class BylineRepository {
 		if (sourceRows.length === 0) return;
 
 		const now = new Date().toISOString();
-		await this.db
+		const insert = this.db
 			.insertInto("_emdash_content_bylines")
 			.values(
 				sourceRows.map((row) => ({
@@ -1293,16 +1267,18 @@ export class BylineRepository {
 					created_at: now,
 				})),
 			)
-			.execute();
+			.compile();
 
 		// Mirror primary_byline_id from source so the cached pointer on the
 		// target row matches the junction state we just wrote.
 		const firstByline = sourceRows[0]?.byline_id ?? null;
-		await sql`
+		const pointer = sql`
 			UPDATE ${sql.ref(tableName)}
 			SET primary_byline_id = ${firstByline}
 			WHERE id = ${targetContentId}
-		`.execute(this.db);
+		`.compile(this.db);
+
+		await executeBylineWrites(this.db, [insert, pointer]);
 
 		// Byline credits are folded into the target entry's cached payload.
 		invalidateCollectionCache(collection);

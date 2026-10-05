@@ -3675,6 +3675,20 @@
       "bytes": 18803,
       "sha256": "0e6a59b5d2109e4134aed1277f82089725a53fe079ee0ec0c2622169d2480dc0",
       "gitBlob": "b75bd5b5770e44050b2d0da28e87c155c603ed66"
+    },
+    {
+      "source": "packages/auth/src/types.ts",
+      "copy": "parity/emdash/byline-source/upstream/packages/auth/src/types.ts",
+      "bytes": 10246,
+      "sha256": "2764667f5a2552eda6f401ea63bfdccda5ef30508b71adaa049257fe733de7f5",
+      "gitBlob": "e5fc2ec92b399079aca96f08621b3d042a41fb15"
+    },
+    {
+      "source": "packages/auth/src/rbac.ts",
+      "copy": "parity/emdash/byline-source/upstream/packages/auth/src/rbac.ts",
+      "bytes": 7361,
+      "sha256": "1d5663c430cb02e934eafeca27c512007112dcc0c975d6a84ad3c73c9343d85e",
+      "gitBlob": "55eda9bdfd9aa92b3d40ba45ebda6daa00d20dbb"
     }
   ],
   "selectedWholeTests": [
@@ -3833,7 +3847,7 @@
       }
     ]
   },
-  "scope": "Full repository/custom-field registry/query hydration/API backend; Source protected/race families ported, execution pending finite review; Source hydration-empty-table awaits actual published Query SDK; UI/MCP/plugin integrations incomplete.",
+  "scope": "Real canonical repository/custom fields, translated credits and admin routes; Source9 whole families216 pass; held original userlink5/hooks2/SDK hydration2/registration5/permanent-delete4 unconfigured. Full UI/MCP/plugin/Seed/general users/PostgreSQL/deployed hosting incomplete.",
   "firstRuntimeEvidence": {
     "sourceWholeFamilies": 4,
     "sourceExpandedCallbacks": 148,
@@ -3947,9 +3961,11 @@
       "registered": 15,
       "passed": 8,
       "failed": 7,
-      "genuineValueReds": 7,
-      "details": "Two unsupported D1 delete failures captured then compared to null; three copy rollback physical-row assertions; one Node delete row-id assertion exposed existing namespace ambiguity; one actual installed route availability assertion. Inspect individual raw failures before final causal classification.",
-      "report": "docs/byline-evidence/byline-native-delete-copy-initial.json"
+      "genuineValueReds": 6,
+      "details": "Two captured unsupported D1 delete failures; three physical-row copy rollback assertion reds; one actual installed route availability assertion red. Node deletion reached genuine sibling assertions then Native fixture selected nonexistent group-value id before its final expectation (zero causal credit); successor fixture selects actual field_id; Original Source bodies unchanged.",
+      "report": "docs/byline-evidence/byline-native-delete-copy-initial.json",
+      "preExpectationErrors": 1,
+      "correctedFixtureReport": "docs/byline-evidence/byline-native-delete-copy-initial-r2.json"
     },
     "source": {
       "registered": 159,
@@ -3959,5 +3975,18 @@
       "report": "docs/byline-evidence/byline-source-all-route-import-initial.json"
     },
     "existingPermissionControls": "Only expected supported arrays/admin length maintained from immutable Source RBAC, no new auth flow. Existing whole controls expose missing byline permission projection; raw docs/byline-evidence/byline-permission-projection-initial.log"
+  },
+  "routeAndAtomicRuntimeCheckpoint": {
+    "sourceWholeFamilies": 9,
+    "sourceRegistered": 216,
+    "sourcePassed": 216,
+    "sourceCausalReds": 0,
+    "nativePassed": 15,
+    "report": "docs/byline-evidence/byline-source-route-atomic-runtime.json",
+    "nativeReport": "docs/byline-evidence/byline-native-delete-copy-runtime.json",
+    "typecheck": "docs/byline-evidence/byline-check-http-first.log: 0 errors / 0 warnings",
+    "apiLimits": "Original controlled direct-route Role/APIContext transport only: no actual middleware/session/signature/protected HTTP or PostgreSQL credit",
+    "permissionProjection": "Only two existing Source bylines:read Subscriber/manage Editor literals appended to actual existing composition/type owners; whole old permission arrays/admin25 updated, old controls3 pass; no new authentication flow",
+    "stagedPlanTestFirst": "Native18 registered,15 pass,3 actual missing public replacement-plan function values fail; Source234 static declarations14 whole files/598 expects (AST corrected earlier route-registration regex6 to actual5). No static count implies runtime."
   }
 }

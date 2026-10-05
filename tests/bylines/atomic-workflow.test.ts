@@ -81,7 +81,7 @@ for(const runtime of ['Node','raw D1','serialized D1 dialect'] as const) describ
    expect((await repo.findById(fr.id))?.customFields).toEqual({website:'https://example.com'});
    expect(await repo.delete(fr.id)).toBe(true);
    expect((await sql`SELECT id FROM _cms_content_bylines`.execute(f.database.db)).rows).toEqual([]);
-   expect((await sql`SELECT id FROM _cms_byline_field_group_values`.execute(f.database.db)).rows).toEqual([]);
+   expect((await sql`SELECT field_id FROM _cms_byline_field_group_values`.execute(f.database.db)).rows).toEqual([]);
    expect((await sql<{primary_byline_id:string|null}>`SELECT primary_byline_id FROM ec_post WHERE id='entry'`.execute(f.database.db)).rows[0]?.primary_byline_id).toBeNull();
   }finally{await f.close();}
  },90000);
@@ -96,6 +96,27 @@ for(const runtime of ['Node','raw D1','serialized D1 dialect'] as const) describ
    await expect(repo.copyContentBylines('post','source','target')).rejects.toThrow('original-copy-rollback');
    expect((await sql`SELECT id FROM _cms_content_bylines WHERE content_id='target'`.execute(f.database.db)).rows).toEqual([]);
    expect((await sql<{primary_byline_id:string|null}>`SELECT primary_byline_id FROM ec_post WHERE id='target'`.execute(f.database.db)).rows[0]?.primary_byline_id).toBeNull();
+  }finally{await f.close();}
+ },90000);
+
+ it('stages credit replacement inside the owning content batch without a separate commit',async()=>{
+  const f=await fixture(runtime);
+  try{
+   await migrateCms(f.database);const repo=new BylineRepository(f.database);
+   const old=await repo.create({slug:'old',displayName:'Old'});const next=await repo.create({slug:'next',displayName:'Next'});
+   const registry=new SchemaRegistry(f.database);await registry.createCollection({slug:'post',label:'Posts'});
+   await sql`INSERT INTO ec_post(id,locale,translation_group,status) VALUES ('entry','en','entry','draft')`.execute(f.database.db);
+   await repo.setContentBylines('post','entry',[{bylineId:old.id}]);
+   const producer=repo as BylineRepository&{planContentBylineReplacement?:Function};
+   expect(typeof producer.planContentBylineReplacement,'actual staged byline producer').toBe('function');
+   const plan=await producer.planContentBylineReplacement!('post','entry',[{bylineId:next.id,roleLabel:'Editor'}]);
+   expect((await repo.getContentBylines('post','entry')).map(row=>row.byline.id)).toEqual([old.id]);
+   await expect(f.database.atomicBatch([sql`UPDATE ec_post SET status='published' WHERE id='entry'`.compile(f.database.db),...plan,sql`INSERT INTO ec_post(original_missing_column) VALUES ('abort')`.compile(f.database.db)])).rejects.toThrow('original_missing_column');
+   expect((await repo.getContentBylines('post','entry')).map(row=>row.byline.id)).toEqual([old.id]);
+   expect((await sql<{status:string}>`SELECT status FROM ec_post WHERE id='entry'`.execute(f.database.db)).rows[0]?.status).toBe('draft');
+   await f.database.atomicBatch([sql`UPDATE ec_post SET status='published' WHERE id='entry'`.compile(f.database.db),...plan]);
+   expect((await repo.getContentBylines('post','entry')).map(row=>[row.byline.id,row.roleLabel])).toEqual([[next.id,'Editor']]);
+   expect((await sql<{primary_byline_id:string}>`SELECT primary_byline_id FROM ec_post WHERE id='entry'`.execute(f.database.db)).rows[0]?.primary_byline_id).toBe(next.id);
   }finally{await f.close();}
  },90000);
 
