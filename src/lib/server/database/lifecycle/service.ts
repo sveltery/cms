@@ -347,6 +347,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const persisted=await stored(key(input),inferLocale,options.resolveIdentifier===true);
       const item=options.draftData===false?await hydratedBylines(await hydrateContentSeo(database,persisted.item.type,persisted.item,persisted.hasSeo)):await hydrate(persisted.item,persisted.hasSeo);
       if(options.references===false)return item;
+      if(options.references===undefined)return hydrateReferences(item,options.referenceDrafts!==false);
       return (await import('../../relations/content-read.ts')).hydrateContentReferences(database,item,options.referenceDrafts!==false);
     },
     async getPublishedContent(input:unknown):Promise<ContentItem> {
@@ -473,7 +474,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     async resolvePublicationKey(input:unknown):Promise<ContentKey&{locale:string}> {
       const actor=mutationPermission('content:publish_own','content:publish_any');
       const value=key(input);value.locale=resolveConfiguredLocale(value.locale);
-      const item=await stored(value,object(input).locale===undefined,true);
+      const item=(await stored(value,object(input).locale===undefined,true)).item;
       owner(item,actor,'content:publish_any');
       return {type:value.type,id:item.id,locale:parse(localeInput,item.locale)};
     },
@@ -506,19 +507,20 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     },
     /** Calendar administration delegates to the existing published repository. */
     async schedule(input:unknown):Promise<ContentItem> {
-      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
+      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=(await stored(value)).item;
       owner(item,actor,'content:publish_any');precondition(value.expected,item);
       // Pinned handleContentSchedule checks the existing routable slug before
       // delegating to the repository, including rescheduling a cleared draft.
       const collection=await definition(value.type);
       if(collection.routable&&!item.slug?.trim())throw new CmsError('VALIDATION_ERROR','Cannot publish routable content without a slug');
       const scheduledAt=parse(v.pipe(v.string(),v.minLength(1),v.maxLength(128)),value.scheduledAt);
-      return translate(()=>content.schedule(value.type,value.id,scheduledAt,new Date(),{version:item.version,updatedAt:item.updatedAt}));
+      return hydrateReferences(await hydratedBylines(await hydrateContentSeo(database,value.type,await translate(()=>content.schedule(value.type,value.id,scheduledAt,new Date(),{version:item.version,updatedAt:item.updatedAt})),collection.hasSeo)),actor.permissions.has('content:read_drafts'));
     },
     async unschedule(input:unknown):Promise<ContentItem> {
-      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
+      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=(await stored(value)).item;
       owner(item,actor,'content:publish_any');precondition(value.expected,item);
-      return translate(()=>content.unschedule(value.type,value.id,{version:item.version,updatedAt:item.updatedAt}));
+      const collection=await definition(value.type);
+      return hydrateReferences(await hydratedBylines(await hydrateContentSeo(database,value.type,await translate(()=>content.unschedule(value.type,value.id,{version:item.version,updatedAt:item.updatedAt})),collection.hasSeo)),actor.permissions.has('content:read_drafts'));
     },
     async unpublish(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const persisted=await stored(value);const item=persisted.item;

@@ -1,0 +1,10 @@
+? Verifying lockfile against supply-chain policies (534 entries)...
+✗ Lockfile failed supply-chain policy check (534 entries in 162ms)
+Lockfile is up to date, resolution step is skipped
+Error: ERR_PNPM_META_FETCH_FAIL
+
+  × installing dependencies
+  ╰─▶ ERR_PNPM_NO_OFFLINE_META: Failed to resolve @babel/helper-compilation-
+      targets in package mirror /home/agent/.cache/pnpm/v11/metadata-full/
+      https%3A+registry.npmjs.org/@babel/helper-compilation-targets.jsonl
+
