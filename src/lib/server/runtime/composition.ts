@@ -7,9 +7,12 @@ import type { D1Binding } from '../database/d1.ts';
 import { openD1 } from '../database/d1.ts';
 import { migrateCms } from '../database/migrations.ts';
 import type { CmsDatabase } from '../database/contract.ts';
+import type { Storage } from '../general-media/upstream/storage/types.ts';
 import { resolveCmsRedirects } from '../redirects/middleware.ts';
 
 export interface RuntimePresentation {
+  /** Trusted injected provider; no default bucket or filesystem creation. */
+  storage?: Storage;
   publicOrigin: string;
   basePath?: string;
   rpName?: string;
@@ -103,7 +106,7 @@ export function createCmsRuntime(
     assertOpen();
     event.locals.cmsRuntime = Object.freeze({ publicOrigin, basePath, rpName });
     configurations.set(event, config);
-    return { database, mutationsEnabled: config.mutationsEnabled !== false, keepAlive: config.keepAlive };
+    return { database, mutationsEnabled: config.mutationsEnabled !== false, keepAlive: config.keepAlive, storage: config.storage };
   });
 
   return {
