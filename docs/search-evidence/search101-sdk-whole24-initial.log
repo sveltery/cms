@@ -1,0 +1,325 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts (0 test)
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 24 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-cursor-plan.test.ts:16:1
+     14| import { beforeEach, afterEach, expect, it } from "vitest";
+     15|
+     16| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+     17|
+     18| import { runMigrations } from "../../src/database/migrations/runner.js…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold-plan.test.ts:31:1
+     29| import { afterEach, beforeEach, expect, it } from "vitest";
+     30|
+     31| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+     32|
+     33| import { runMigrations } from "../../src/database/migrations/runner.js…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/field-defs-cache.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts:14:1
+     12| import { afterEach, beforeEach, expect, it } from "vitest";
+     13|
+     14| import { resetBylineFieldDefsCacheForTests } from "../../src/bylines/f…
+       | ^
+     15| import { BylineRepository } from "../../src/database/repositories/byli…
+     16| import { ContentRepository } from "../../src/database/repositories/con…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts ]
+Error: Cannot find module '#node-sqlite' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-taxonomy-pivot-plan.test.ts:20:1
+     18| import { afterEach, beforeEach, describe, expect, it } from "vitest";
+     19|
+     20| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+       | ^
+     21|
+     22| import { runMigrations } from "../../src/database/migrations/runner.js…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts ]
+Error: Cannot find module '/src/lib/server/query-sdk/loader.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-boolean-fields.test.ts:5:1
+      3| import { handleContentCreate } from "../../src/api/index.js";
+      4| import { ContentRepository } from "../../src/database/repositories/con…
+      5| import { emdashLoader } from "../../src/loader.js";
+       | ^
+      6| import { runWithContext } from "../../src/request-context.js";
+      7| import { SchemaRegistry } from "../../src/schema/registry.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts ]
+Error: Cannot find module '/src/lib/server/query-sdk/loader.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-byline-filter.test.ts:7:1
+      5| import { TaxonomyRepository } from "../../src/database/repositories/ta…
+      6| import type { Database } from "../../src/database/types.js";
+      7| import { emdashLoader, resetTaxonomyNamesCache } from "../../src/loade…
+       | ^
+      8| import { runWithContext } from "../../src/request-context.js";
+      9| import { SchemaRegistry } from "../../src/schema/registry.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts ]
+Error: Cannot find module '/src/lib/server/query-sdk/loader.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-cursor-pagination.test.ts:7:1
+      5| import { decodeCursor } from "../../src/database/repositories/types.js…
+      6| import type { Database } from "../../src/database/types.js";
+      7| import { emdashLoader } from "../../src/loader.js";
+       | ^
+      8| import { runWithContext } from "../../src/request-context.js";
+      9| import { setupTestDatabaseWithCollections, teardownTestDatabase } from…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts ]
+Error: Cannot find module '/src/lib/server/query-sdk/loader.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-field-filters.test.ts:7:1
+      5| import { TaxonomyRepository } from "../../src/database/repositories/ta…
+      6| import type { Database } from "../../src/database/types.js";
+      7| import { emdashLoader, resetTaxonomyNamesCache } from "../../src/loade…
+       | ^
+      8| import { runWithContext } from "../../src/request-context.js";
+      9| import { SchemaRegistry } from "../../src/schema/registry.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts ]
+Error: Cannot find module '../../src/database/repositories/revision.js' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-media-src.test.ts:5:1
+      3|
+      4| import { handleContentCreate } from "../../src/api/index.js";
+      5| import { RevisionRepository } from "../../src/database/repositories/re…
+       | ^
+      6| import type { Database } from "../../src/database/types.js";
+      7| import { emdashLoader } from "../../src/loader.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts ]
+Error: Cannot find module '/src/lib/server/query-sdk/loader.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-nullable-order-pagination.test.ts:18:1
+     16| import { TaxonomyRepository } from "../../src/database/repositories/ta…
+     17| import { encodeCursor } from "../../src/database/repositories/types.js…
+     18| import { emdashLoader, resetTaxonomyNamesCache, type SortDirection } f…
+       | ^
+     19| import { getEmDashCollection } from "../../src/query.js";
+     20| import { runWithContext } from "../../src/request-context.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts ]
+Error: Cannot find module '/src/lib/server/query-sdk/loader.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-offset-pagination.test.ts:6:1
+      4| import { handleContentCreate } from "../../src/api/index.js";
+      5| import type { Database } from "../../src/database/types.js";
+      6| import { emdashLoader } from "../../src/loader.js";
+       | ^
+      7| import { runWithContext } from "../../src/request-context.js";
+      8| import { setupTestDatabaseWithCollections, teardownTestDatabase } from…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/repository.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-revision-preview.test.ts:5:1
+      3|
+      4| import { handleContentCreate } from "../../src/api/index.js";
+      5| import { BylineRepository } from "../../src/database/repositories/byli…
+       | ^
+      6| import { ContentRepository } from "../../src/database/repositories/con…
+      7| import { RevisionRepository } from "../../src/database/repositories/re…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/repository.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-scheduled-publishing.test.ts:5:1
+      3|
+      4| import { handleContentCreate, handleContentPublish } from "../../src/a…
+      5| import { BylineRepository } from "../../src/database/repositories/byli…
+       | ^
+      6| import { ContentRepository } from "../../src/database/repositories/con…
+      7| import { RevisionRepository } from "../../src/database/repositories/re…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts ]
+Error: Cannot find module '../../src/database/repositories/seo.js' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-seo.test.ts:4:1
+      2|
+      3| import { handleContentCreate } from "../../src/api/index.js";
+      4| import { SeoRepository } from "../../src/database/repositories/seo.js";
+       | ^
+      5| import { emdashLoader } from "../../src/loader.js";
+      6| import { peekSeoPanel } from "../../src/page/seo-panel.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts ]
+Error: Cannot find module '/src/lib/server/query-sdk/loader.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-filter.test.ts:7:1
+      5| import { TaxonomyRepository } from "../../src/database/repositories/ta…
+      6| import type { Database } from "../../src/database/types.js";
+      7| import { emdashLoader, resetTaxonomyNamesCache } from "../../src/loade…
+       | ^
+      8| import { runWithContext } from "../../src/request-context.js";
+      9| import { SchemaRegistry } from "../../src/schema/registry.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts ]
+Error: Cannot find module '/src/lib/server/query-sdk/loader.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-taxonomy-pivot.test.ts:19:1
+     17| import { TaxonomyRepository } from "../../src/database/repositories/ta…
+     18| import type { Database } from "../../src/database/types.js";
+     19| import {
+       | ^
+     20|  buildTaxonomyPivotQuery,
+     21|  emdashLoader,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts ]
+Error: Cannot find module '../../src/database/repositories/seo.js' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/loader-wide-collection.test.ts:4:1
+      2|
+      3| import { handleContentCreate } from "../../src/api/index.js";
+      4| import { SeoRepository } from "../../src/database/repositories/seo.js";
+       | ^
+      5| import { emdashLoader } from "../../src/loader.js";
+      6| import { runWithContext } from "../../src/request-context.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts ]
+Error: Cannot find module '/src/lib/server/query-sdk/loader.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-bucketing.test.ts:6:1
+      4| import { handleContentCreate } from "../../src/api/index.js";
+      5| import type { Database } from "../../src/database/types.js";
+      6| import { emdashLoader } from "../../src/loader.js";
+       | ^
+      7| import { bucketFilter, getEmDashEntry, sliceCollectionResult } from ".…
+      8| import { runWithContext } from "../../src/request-context.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts ]
+Error: Cannot find module '/src/lib/server/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-edit-proxy.test.ts:6:1
+      4| import { handleContentCreate } from "../../src/api/index.js";
+      5| import type { Database } from "../../src/database/types.js";
+      6| import { getEmDashCollection, getEmDashEntry } from "../../src/query.j…
+       | ^
+      7| import { runWithContext } from "../../src/request-context.js";
+      8| import { setupTestDatabaseWithCollections, teardownTestDatabase } from…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts ]
+Error: Cannot find module '/src/lib/server/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-nextcursor.test.ts:5:1
+      3|
+      4| import type { Database } from "../../src/database/types.js";
+      5| import { getEmDashCollection } from "../../src/query.js";
+       | ^
+      6| import { runWithContext } from "../../src/request-context.js";
+      7| import { setupTestDatabaseWithCollections, teardownTestDatabase } from…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts ]
+Error: Cannot find module '/src/lib/server/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-collection-offset.test.ts:6:1
+      4| import type { Database } from "../../src/database/types.js";
+      5| import type { CollectionFilter } from "../../src/query.js";
+      6| import { getEmDashCollection } from "../../src/query.js";
+       | ^
+      7| import { runWithContext } from "../../src/request-context.js";
+      8| import { setupTestDatabaseWithCollections, teardownTestDatabase } from…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts ]
+Error: Cannot find module '/src/lib/server/query-sdk/loader.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fold-public-shape.test.ts:20:1
+     18|
+     19| import type { Database } from "../../src/database/types.js";
+     20| import { FOLDED_BYLINES, FOLDED_TERMS } from "../../src/loader.js";
+       | ^
+     21| import { getEmDashEntry } from "../../src/query.js";
+     22| import { runWithContext } from "../../src/request-context.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts ]
+Error: Cannot find module '/src/lib/server/query.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-term-hydration-locale.test.ts:21:1
+     19| import type { Database } from "../../src/database/types.js";
+     20| import { setI18nConfig } from "../../src/i18n/config.js";
+     21| import { getEmDashCollection, getEmDashEntry } from "../../src/query.j…
+       | ^
+     22| import { runWithContext } from "../../src/request-context.js";
+     23| import { setupTestDatabaseWithCollections, teardownTestDatabase } from…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/24]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts [ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts ]
+Error: Cannot find module '/src/lib/server/bylines/repository.ts' imported from /workspace/cms-full-search-query-api/parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/bylines/bylines-query.test.ts:4:1
+      2| import { describe, it, expect, beforeEach, afterEach, vi } from "vites…
+      3|
+      4| import { BylineRepository } from "../../../src/database/repositories/b…
+       | ^
+      5| import { ContentRepository } from "../../../src/database/repositories/…
+      6| import { UserRepository } from "../../../src/database/repositories/use…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/24]⎯
+
+
+ Test Files  24 failed (24)
+      Tests  no tests
+   Start at  00:44:07
+   Duration  7.67s (transform 761ms, setup 0ms, import 0ms, tests 0ms, environment 2ms)
+
+JSON report written to /tmp/search101-sdk-whole24-initial.json
