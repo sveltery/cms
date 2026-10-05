@@ -53,11 +53,14 @@
     else if (intent === 'restore') restore();
   }
   function items() { return surface ? [...surface.querySelectorAll<HTMLButtonElement>('button[role^="menuitem"]')] : []; }
-  function focusItem(item?: HTMLButtonElement, reveal = true) {
+  function focusItem(item?: HTMLButtonElement, modality: 'keyboard' | 'pointer' = 'keyboard') {
     if (!item) return;
     for (const button of items()) button.tabIndex = button === item ? 0 : -1;
     item.focus({ preventScroll: true });
-    if (reveal) item.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
+    // Pinned list navigation prevents the browser's implicit focus scroll.
+    // Keyboard movement reveals its destination; mouse movement preserves the
+    // current scroll position so focus cannot move the pointer's target.
+    if (modality === 'keyboard') item.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
   }
   function hoverItem(event: MouseEvent) {
     const item = event.currentTarget as HTMLButtonElement;
@@ -65,7 +68,7 @@
     // admits unavailable actions, requires an open menu and a registered item,
     // and avoids refocusing the current item. Activation keeps its own guards.
     if (!menuOpen || !editable || !surface?.contains(item) || document.activeElement === item) return;
-    focusItem(item, false);
+    focusItem(item, 'pointer');
   }
   function positionMenu() {
     if (!menuOpen || !trigger || !surface) return;
