@@ -4,9 +4,7 @@ import {sql,type CompiledQuery,type Kysely} from 'kysely';
 import {ulid} from 'ulidx';
 import type {CmsDatabase} from '../database/contract.ts';
 import {EmDashValidationError} from '../database/lifecycle/upstream/database/repositories/types.ts';
-import {TaxonomyRepository} from './repository.ts';
 import type {Database} from './database-types.ts';
-import {invalidateTermCache} from './index.ts';
 
 export interface ResolvedTaxonomySelection {
  readonly name:string;
@@ -14,6 +12,7 @@ export interface ResolvedTaxonomySelection {
 }
 /** Reads/validation only; every Native write remains in its actual content batch. */
 export async function resolveTaxonomySlugMap(db:Kysely<Database>,taxonomies:Record<string,unknown>,locale:string|undefined):Promise<ResolvedTaxonomySelection[]> {
+ const {TaxonomyRepository}=await import('./repository.ts');
  const repository=new TaxonomyRepository(db);const selections:ResolvedTaxonomySelection[]=[];
  for(const [name,slugs] of Object.entries(taxonomies)) {
   if(!Array.isArray(slugs))throw new EmDashValidationError(`taxonomies.${name} must be an array of term slugs`);
@@ -30,6 +29,7 @@ export async function resolveTaxonomySlugMap(db:Kysely<Database>,taxonomies:Reco
 }
 /** Source-only genuine transaction hosts use the same real Native taxonomy repository. */
 export async function applyResolvedTaxonomySelections(db:Kysely<Database>,collection:string,id:string,selections:readonly ResolvedTaxonomySelection[]):Promise<void> {
+ const {TaxonomyRepository}=await import('./repository.ts');
  const repository=new TaxonomyRepository(db);
  for(const selection of selections)await repository.setTermsForEntry(collection,id,selection.name,selection.terms.map(term=>term.id));
 }
@@ -71,6 +71,6 @@ export function newContentTaxonomyStatements(database:CmsDatabase,collection:str
  plan.cleanup.push(sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(database.db));
  return plan;
 }
-export function completeContentTaxonomies(selections:readonly ResolvedTaxonomySelection[]):void {
- if(selections.length)invalidateTermCache();
+export async function completeContentTaxonomies(selections:readonly ResolvedTaxonomySelection[]):Promise<void> {
+ if(selections.length){const {invalidateTermCache}=await import('./index.ts');invalidateTermCache();}
 }

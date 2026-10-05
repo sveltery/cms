@@ -26,7 +26,7 @@ function sourceHost(db){return{database:db,
     await applyResolvedTaxonomySelections(transaction,collection,created.id,selections);}
    return created;
   });
-  completeContentTaxonomies(selections);return item;
+  await completeContentTaxonomies(selections);return item;
  },
  async update(collection,id,body){
   let selections=[];
@@ -39,7 +39,7 @@ function sourceHost(db){return{database:db,
     await applyResolvedTaxonomySelections(transaction,collection,id,selections);}
    return updated;
   });
-  completeContentTaxonomies(selections);return item;
+  await completeContentTaxonomies(selections);return item;
  }
 };}
 export function handleContentCreate(db,collection,body){return create(db,collection,body,sourceHost(db));}

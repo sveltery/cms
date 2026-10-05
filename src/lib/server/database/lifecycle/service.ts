@@ -184,7 +184,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     const row=results[updateResultIndex]?.rows[0] as Record<string,unknown>|undefined;
     if(!row)throw new CmsError('CONFLICT');
     if(redirects&&redirects.redirectResultIndices.some(index=>results[prefix.length+index]?.rows.length))completeContentSlugRedirect(database,dependencies.after);
-    completeContentTaxonomies(selections);
+    await completeContentTaxonomies(selections);
     return content.mapRow(value.type,row);
   }
 
@@ -198,7 +198,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const slug=value.slug===undefined?await content.generateUniqueSlug(type,typeof data.title==='string'?data.title:'',locale):value.slug;
       const selections=value.taxonomies===undefined?[]:await translate(()=>resolveTaxonomySlugMap(canonicalSourceDatabase(database),value.taxonomies,locale));
       const item=await drafts.create({type,locale,data,slug},actor.id,selections.length?entry=>newContentTaxonomyStatements(database,type,entry,selections):undefined);
-      completeContentTaxonomies(selections);
+      await completeContentTaxonomies(selections);
       return stored({type,id:item.id,locale});
     },
     async getContent(input:unknown,options:{inferLocale?:boolean;resolveIdentifier?:boolean}={}):Promise<ContentItem> {
@@ -281,7 +281,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
             await revisions.deleteIfUnreferenced(value.type,value.id,revision.id);
             if(value.expected!==undefined||attempt===31)throw new CmsError('CONFLICT');existing=await stored(value);continue;
           }
-          if(prepared){await revisions.queuePruning(value.type,value.id,prepared.id);completeContentTaxonomies(taxonomySelections);}
+          if(prepared){await revisions.queuePruning(value.type,value.id,prepared.id);await completeContentTaxonomies(taxonomySelections);}
           if(value.skipRevision&&existing.draftRevisionId)await revisions.deleteIfUnreferenced(value.type,value.id,existing.draftRevisionId);
           else prune(value.type,value.id,revision.id);
           let item=await stored(value);
