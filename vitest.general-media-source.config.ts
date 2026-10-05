@@ -60,5 +60,6 @@ export default defineConfig({
     ,'parity/emdash/general-media-source/upstream/packages/core/tests/unit/media/usage-extractor.test.ts'
     ,'parity/emdash/general-media-source/upstream/packages/core/tests/unit/media/usage-projection-fingerprint.test.ts'
     ,'parity/emdash/general-media-source/upstream/packages/core/tests/unit/media/usage-source-key.test.ts'
+    ,'parity/emdash/general-media-source/upstream/packages/core/tests/unit/storage/s3.test.ts'
   ] }
 });
