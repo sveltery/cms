@@ -72,20 +72,22 @@ export function accountsRepository(database:CmsDatabase){
  async function setDisabled(id:string,actorId:string,disabled:boolean){
   if(disabled&&id===actorId)throw new AccountError('VALIDATION_ERROR','Cannot disable your own account',400);
   const target=await requireProfile(id);
-  if(disabled&&target.role===50&&await countAdmins()<=1)throw new AccountError('VALIDATION_ERROR','Cannot disable the last admin. Promote another user first.',400);
+  const needsAdminGuard=disabled&&target.role===50;
+  const lastAdminError=()=>new AccountError('VALIDATION_ERROR','Cannot disable the last admin. Promote another user first.',400);
+  if(needsAdminGuard&&await countAdmins()<=1)throw lastAdminError();
   // Both physical writes own the Source single-row update's rollback boundary.
   // Retain the existing last-admin SQL predicate inside the same canonical batch.
   const query=db.updateTable('_cms_auth_users').set({disabled:disabled?1:0}).where('id','=',id);
-  const identity=disabled&&target.role===50?query.where(sql<boolean>`(SELECT count(*) FROM _cms_auth_users WHERE role=50 AND disabled=0)>1`):query;
+  const identity=needsAdminGuard?query.where(sql<boolean>`(SELECT count(*) FROM _cms_auth_users WHERE role=50 AND disabled=0)>1`):query;
   const token=ulid();
-  const guard=disabled&&target.role===50?sql`INSERT INTO _cms_guards(token,pass) VALUES(${token},CASE WHEN (SELECT count(*) FROM _cms_auth_users WHERE role=50 AND disabled=0)>1 THEN 1 ELSE 0 END)`.compile(db):undefined;
+  const guard=needsAdminGuard?sql`INSERT INTO _cms_guards(token,pass) VALUES(${token},CASE WHEN (SELECT count(*) FROM _cms_auth_users WHERE role=50 AND disabled=0)>1 THEN 1 ELSE 0 END)`.compile(db):undefined;
   try{
    const results=await database.atomicBatch([...(guard?[guard]:[]),identity.compile(),
     db.updateTable('_cms_auth_profiles').set({updated_at:new Date().toISOString()}).where('user_id','=',id).compile(),
     ...(guard?[sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)]:[])]);
-   if(disabled&&target.role===50&&(results[guard?1:0].numAffectedRows??0n)===0n)throw new AccountError('VALIDATION_ERROR','Cannot disable the last admin. Promote another user first.',400);
+   if(needsAdminGuard&&(results[guard?1:0].numAffectedRows??0n)===0n)throw lastAdminError();
   }catch(cause){
-   if(guard&&await countAdmins()<=1)throw new AccountError('VALIDATION_ERROR','Cannot disable the last admin. Promote another user first.',400);
+   if(guard&&await countAdmins()<=1)throw lastAdminError();
    throw cause;
   }
  }
