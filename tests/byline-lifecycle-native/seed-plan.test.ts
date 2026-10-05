@@ -34,3 +34,10 @@ it('refuses slugless publication before the single content batch can persist a r
  await expect(applySeedContentCreate(database,{input:{id:'seed-refused',type:'post',status:'published',data:{}},taxonomyTermIds:[],references:{},routable:true})).rejects.toThrow('Cannot publish routable content without a slug');
  expect((await sql`SELECT id FROM ec_post`.execute(database.db)).rows).toEqual([]);expect((await sql`SELECT id FROM _cms_revisions`.execute(database.db)).rows).toEqual([]);
 });
+it('snapshots Source non-null fields and nested serialized values from the actual inserted row',async()=>{
+ const registry=new SchemaRegistry(database);await registry.createField('post',{slug:'subtitle',label:'Subtitle',type:'string'});await registry.createField('post',{slug:'body',label:'Body',type:'portableText'});
+ const body=[{_type:'block',children:[{_type:'span',text:'Seed body'}]}];
+ await applySeedContentCreate(database,{input:{id:'seed-json',type:'post',slug:'json',status:'published',data:{title:'JSON',body}},taxonomyTermIds:[],references:{},routable:true});
+ const current=await new ContentRepository(database.db as any).findById('post','seed-json');
+ expect((await sql<{data:string}>`SELECT data FROM _cms_revisions WHERE id=${current?.liveRevisionId}`.execute(database.db)).rows.map(row=>JSON.parse(row.data))).toEqual([{title:'JSON',body}]);
+});
