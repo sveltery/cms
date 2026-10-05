@@ -56,7 +56,7 @@ function cursorDecode(input: unknown, type: string, locale: string): { createdAt
 
 /** Internal storage API. Request callers must use cmsService for authorization. */
 export interface DraftTranslationSource {id:string;translationGroup:string;version:number;updatedAt:string;inheritFields:readonly string[]}
-export interface DraftCreationMetadata {id?:string;createdAt?:string;updatedAt?:string;publishedAt?:string|null;authorId?:string|null;status?:'draft'|'published';validateData?:boolean}
+export interface DraftCreationMetadata {id?:string;createdAt?:string;updatedAt?:string;publishedAt?:string|null;authorId?:string|null;primaryBylineId?:string|null;status?:string;validateData?:boolean}
 export interface DraftCreationSidePlan {before:readonly CompiledQuery[];after:readonly CompiledQuery[];cleanup:readonly CompiledQuery[]}
 type DraftCreationSides=(entry:{id:string;translationGroup:string;locale:string})=>DraftCreationSidePlan|Promise<DraftCreationSidePlan>;
 export class DraftRepository {
@@ -92,6 +92,7 @@ export class DraftRepository {
     const columns = ['id', 'slug', 'status', 'author_id', 'created_at', 'updated_at', 'version', 'locale', 'translation_group', ...Object.keys(value.data)];
     const values = [id, value.slug || null, dates?.status??'draft', dates?.authorId===undefined?authorId:dates.authorId, dates?.createdAt??now, dates?.updatedAt??now, 1, value.locale, translation?.translationGroup??id, ...Object.values(value.data).map(serializeValue)];
     if(dates?.publishedAt!==undefined){columns.push('published_at');values.push(dates.publishedAt);}
+    if(dates?.primaryBylineId!==undefined){columns.push('primary_byline_id');values.push(dates.primaryBylineId);}
     const db = this.database.db;
     const inherited=new Set(translation?.inheritFields??[]);
     for(const field of inherited)if(!columns.includes(field)){columns.push(field);values.push(null);}

@@ -1,0 +1,22 @@
+$ node scripts/check-byline-lifecycle-source.mjs && vitest run --config vitest.byline-lifecycle-source.config.mts && node scripts/check-relations-source.mjs && vitest run --config vitest.relations-content-source.config.ts
+{"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","wholeTests":3,"declarations":72,"expects":225,"wholeProductFunctions":6,"mentionInventory":66,"executed":0}
+
+ RUN  v4.1.10 /workspace/cms-byline-content-lifecycle
+
+
+ Test Files  3 passed (3)
+      Tests  72 passed (72)
+   Start at  22:42:21
+   Duration  6.55s (transform 1.65s, setup 0ms, import 2.74s, tests 3.36s, environment 0ms)
+
+Pinned relation authorities 37; byte-exact executable files 13; source pin 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e
+Complete pinned content read/compare functions 3
+
+ RUN  v4.1.10 /workspace/cms-byline-content-lifecycle
+
+
+ Test Files  3 passed (3)
+      Tests  57 passed (57)
+   Start at  22:42:28
+   Duration  5.19s (transform 1.09s, setup 0ms, import 1.97s, tests 2.85s, environment 0ms)
+

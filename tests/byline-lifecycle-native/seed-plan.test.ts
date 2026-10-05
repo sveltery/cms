@@ -41,3 +41,18 @@ it('snapshots Source non-null fields and nested serialized values from the actua
  const current=await new ContentRepository(database.db as any).findById('post','seed-json');
  expect((await sql<{data:string}>`SELECT data FROM _cms_revisions WHERE id=${current?.liveRevisionId}`.execute(database.db)).rows.map(row=>JSON.parse(row.data))).toEqual([{title:'JSON',body}]);
 });
+it('creates the Source direct repository published snapshot without Seed promotion',async()=>{
+ const {createSourceContent}=await import('../../src/lib/server/database/lifecycle/seed-plan.ts');
+ const item=await createSourceContent(database,{id:'direct-published',type:'post',slug:'direct',status:'published',data:{title:'Direct'}});
+ expect(item.version).toBe(1);expect(item.liveRevisionId).toBeNull();expect(item.publishedAt).toBeNull();expect(item.authorId).toBeNull();
+ expect((await sql`SELECT id FROM _cms_revisions`.execute(database.db)).rows).toEqual([]);
+});
+it('soft-trashes Source repository content without moving the original version or updated date',async()=>{
+ const {createSourceContent,deleteSourceContent}=await import('../../src/lib/server/database/lifecycle/seed-plan.ts');
+ const item=await createSourceContent(database,{id:'direct-trash',type:'post',slug:'trash',status:'draft',data:{title:'Trash'}});
+ expect(await deleteSourceContent(database,'post',item.id)).toBe(true);
+ expect(await deleteSourceContent(database,'post',item.id)).toBe(false);
+ expect(await new ContentRepository(database.db as any).findById('post',item.id)).toBeNull();
+ const row=(await sql<{version:number;updated_at:string;deleted_at:string}>`SELECT version,updated_at,deleted_at FROM ec_post WHERE id=${item.id}`.execute(database.db)).rows[0];
+ expect(row.version).toBe(item.version);expect(row.updated_at).toBe(item.updatedAt);expect(row.deleted_at).toEqual(expect.any(String));
+});

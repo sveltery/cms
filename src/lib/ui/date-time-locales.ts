@@ -28,8 +28,8 @@ import {
 	uk,
 	zhCN,
 	zhTW,
-} from "date-fns/locale";
-import type { Locale as DayPickerLocale } from "date-fns";
+} from "react-day-picker/locale";
+import type { DayPickerLocale } from "react-day-picker/locale";
 
 const DAY_PICKER_LOCALES: Readonly<Record<string, DayPickerLocale>> = {
 	en: enUS,

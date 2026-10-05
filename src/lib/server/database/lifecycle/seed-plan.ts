@@ -31,7 +31,9 @@ interface SeedContentSides {
  readonly routable:boolean;
 }
 export interface SeedContentCreate extends SeedContentSides {
- readonly input:Pick<CreateContentInput,'id'|'type'|'slug'|'data'|'status'|'locale'|'translationOf'|'publishedAt'|'createdAt'>;
+ readonly input:CreateContentInput;
+ /** Trusted repository construction; omitted means Seed's create+publish. */
+ readonly promote?:boolean;
 }
 export interface SeedContentUpdate extends SeedContentSides {
  readonly type:string;readonly id:string;readonly status:string;readonly data:Record<string,unknown>;
@@ -86,17 +88,17 @@ function completion(type:string,plan:Awaited<ReturnType<typeof sides>>) {
 export async function applySeedContentCreate(database:CmsDatabase,input:SeedContentCreate):Promise<ContentItem> {
  const raw=input.input,type=parse(identifier,raw.type),locale=parse(localeInput,raw.locale||'en');
  const {collection,content,datetimes}=await context(database,type);
- const status=raw.status??'draft';if(status!=='draft'&&status!=='published')throw new CmsError('VALIDATION_ERROR');
- checkPublication(status,input.routable,raw.slug);
+ const status=raw.status??'draft',promote=input.promote!==false;
+ if(promote)checkPublication(status,input.routable,raw.slug);
  const data=writableContentData(await datetimes.normalizeInput(type,raw.data));
  const now=new Date().toISOString();
  let translation:DraftTranslationSource|undefined;
- if(raw.translationOf){const source=await content.findById(type,raw.translationOf);if(!source)throw new Error('Translation source not found');translation={id:source.id,translationGroup:source.translationGroup??source.id,version:source.version,updatedAt:source.updatedAt,inheritFields:[]};}
+ if(raw.translationOf){const source=await content.findById(type,raw.translationOf);if(!source)throw new Error('Translation source not found');translation={id:source.id,translationGroup:source.translationGroup??source.id,version:source.version,updatedAt:source.updatedAt,inheritFields:raw.inheritFields??[]};}
  let prepared:Awaited<ReturnType<typeof sides>>|undefined;
  const row=await new DraftRepository(database).createSeed({type,locale,slug:raw.slug,data},async entry=>{
   prepared=await sides(database,type,entry.id,entry.translationGroup,input,false);
   const insertedToken=ulid();prepared.after.unshift(guard(database,insertedToken,sql`changes()=1 AND EXISTS(SELECT 1 FROM ${sql.ref(tableName(type))} WHERE id=${entry.id} AND locale=${locale} AND translation_group=${entry.translationGroup} AND version=1 AND deleted_at IS NULL)`));prepared.cleanup.push(sql`DELETE FROM _cms_guards WHERE token=${insertedToken}`.compile(database.db));
-  if(status==='published'){
+  if(status==='published'&&promote){
    const revisionId=createRevisionId();
    // Source first publication snapshots actual column defaults and serialized
    // field values. SQL reads the newly inserted row within this genuine batch.
@@ -108,9 +110,24 @@ export async function applySeedContentCreate(database:CmsDatabase,input:SeedCont
    const publishedToken=ulid();prepared.after.push(guard(database,publishedToken,sql`changes()=1`));prepared.cleanup.push(sql`DELETE FROM _cms_guards WHERE token=${publishedToken}`.compile(database.db));
   }
   return prepared;
- },translation,{id:raw.id,authorId:null,status,createdAt:raw.createdAt?await datetimes.normalizeValue(type,raw.createdAt):now,updatedAt:now,publishedAt:raw.publishedAt?await datetimes.normalizeValue(type,raw.publishedAt):null});
+ },translation,{id:raw.id,authorId:raw.authorId||null,primaryBylineId:raw.primaryBylineId??null,status,createdAt:raw.createdAt?await datetimes.normalizeValue(type,raw.createdAt):now,updatedAt:now,publishedAt:raw.publishedAt?await datetimes.normalizeValue(type,raw.publishedAt):null});
  if(!prepared)throw new Error('Seed creation plan was not prepared');completion(type,prepared);
  return content.mapRow(type,row);
+}
+/** Exact Source direct repository create, with no automatic Seed promotion. */
+export function createSourceContent(database:CmsDatabase,input:CreateContentInput):Promise<ContentItem> {
+ return applySeedContentCreate(database,{input,promote:false,bylines:undefined,taxonomyTermIds:[],references:{},routable:false});
+}
+/** Source repository delete moves only deleted_at. The Native schema/row fence
+ * remains, while ordinary authorized Native delete retains its existing policy. */
+export async function deleteSourceContent(database:CmsDatabase,typeInput:string,idInput:string):Promise<boolean> {
+ const type=parse(identifier,typeInput),id=parse(entryId,idInput);
+ const {collection,content}=await context(database,type);const existing=await content.findById(type,id);if(!existing)return false;
+ const token=ulid(),now=new Date().toISOString();
+ const results=await database.atomicBatch([guard(database,token,sql`EXISTS(SELECT 1 FROM _cms_collections WHERE id=${collection.id} AND version=${collection.version})`),
+  sql`UPDATE ${sql.ref(tableName(type))} SET deleted_at=${now} WHERE id=${id} AND deleted_at IS NULL AND version=${existing.version} AND updated_at=${existing.updatedAt} RETURNING id`.compile(database.db),
+  sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(database.db)]);
+ const changed=results[1].rows.length>0;if(changed)invalidateCollectionCache(type);return changed;
 }
 /** The exact resolved declarative update, side writes, Source revision staging
  * and promotion share one schema/current-row fenced Native batch. */
