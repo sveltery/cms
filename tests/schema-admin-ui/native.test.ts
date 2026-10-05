@@ -5,8 +5,9 @@ import List from '../../src/lib/schema-admin/ContentTypeList.svelte';
 import Editor from '../../src/lib/schema-admin/ContentTypeEditor.svelte';
 import { nativeProps } from '../helpers/schema-ui/state.svelte';
 import { queryAllByRole } from '@testing-library/react';
+import { setBase } from '../helpers/schema-ui/kit-paths';
 const mounted: ReturnType<typeof mount>[] = [];
-afterEach(async () => { for (const instance of mounted.splice(0)) await unmount(instance); document.body.replaceChildren(); });
+afterEach(async () => { for (const instance of mounted.splice(0)) await unmount(instance); document.body.replaceChildren();setBase(''); });
 const collection = {id:'posts',slug:'posts',label:'Posts',source:'manual',supports:['drafts'],hasSeo:false};
 const client = {fetchCollections:async()=>[collection],fetchRelations:async()=>[]};
 async function list(props: object = {}) { const target=document.createElement('section');document.body.append(target);mounted.push(mount(List,{target,props:{collections:[collection],client,...props}}));await tick();return target; }
@@ -91,4 +92,16 @@ it('retains field order and displays a rejected field reorder', async () => {
   target.querySelector('[aria-label="Field Body"]')!.dispatchEvent(new Event('drop',{bubbles:true,cancelable:true}));
   await vi.waitFor(()=>expect(target.textContent).toContain('Field order could not be saved'));
   expect(target.querySelector('[role="group"]')?.getAttribute('aria-label')).toBe('Field Title');
+});
+it('prefixes the actual Native relation link with the configured Kit base',async()=>{
+  setBase('/cms');const target=document.createElement('section');document.body.append(target);
+  mounted.push(mount(FieldEditor,{target,props:{open:true,onOpenChange:()=>{},onSave:()=>{},field:{slug:'related',label:'Related',type:'reference',validation:{targetCollection:'posts'}},client}}));await tick();
+  expect(target.querySelector('a')?.getAttribute('href')).toBe('/cms/schema/relations');
+});
+it('disables reference creation when the real route reports its relationship dependency unavailable',async()=>{
+  const target=document.createElement('section');document.body.append(target);
+  mounted.push(mount(FieldEditor,{target,props:{open:true,onOpenChange:()=>{},onSave:()=>{},relationsAvailable:false,client}}));await tick();
+  const reference=[...target.querySelectorAll<HTMLButtonElement>('button')].find(button=>button.textContent?.includes('Reference'));
+  expect(reference?.disabled).toBe(true);
+  expect(target.textContent).toContain('Reference fields require available relationship management');
 });
