@@ -1,4 +1,4 @@
-import { AsyncLocalStorage } from 'node:async_hooks';
+import { AsyncLocalStorage } from '../runtime/lazy-async-local-storage.ts';
 import type { Kysely } from 'kysely';
 import type { Database } from './database-types.ts';
 import type { DeferredTaskTracker } from '../redirects/deferred-tasks.ts';

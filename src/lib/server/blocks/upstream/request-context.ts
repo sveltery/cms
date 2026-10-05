@@ -20,7 +20,7 @@
  * ALS instance — breaking request-scoped state propagation.
  */
 
-import { AsyncLocalStorage } from "node:async_hooks";
+import { AsyncLocalStorage } from "../../runtime/lazy-async-local-storage.ts";
 
 import type { QueryRecorder } from "./database/instrumentation.ts";
 import type { DeferredTaskTracker } from "./deferred-tasks.ts";

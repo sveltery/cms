@@ -26,7 +26,7 @@
  * fork them (same pattern as `request-context.ts`).
  */
 
-import { AsyncLocalStorage } from "node:async_hooks";
+import { AsyncLocalStorage } from "../runtime/lazy-async-local-storage.ts";
 
 import { after } from "./after.ts";
 import { getRequestContext } from "./context.ts";
