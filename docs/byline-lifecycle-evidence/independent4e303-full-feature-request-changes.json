@@ -1,0 +1,458 @@
+{
+  "reviewer": "fresh independent byline118_full_content_lifecycle_independent_reviewer",
+  "verdict": "REQUEST_CHANGES",
+  "head": "4e303c25dc46304db6a7f8c9ca3a9c40f901aca7",
+  "tree": "f735e5f93989043f29fd478ebd192d96c8988736",
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "reviewWorktree": "/workspace/cms-review-byline118-full-4e303",
+  "fullFeatureReviewNotLatestDiffOnly": true,
+  "reviewAreas": [
+    {
+      "area": "Sole canonical writer and product composition",
+      "result": "AUDITED",
+      "details": "ordinaryContentService/nativeContentApi/nativeContentRuntime delegate to existing lifecycleService/DraftRepository; actual schema and entry guards, real atomic batches, result indices and post-commit invalidations reviewed; no parallel DB/provider/result/actor owner."
+    },
+    {
+      "area": "Attribution metadata distinct from actor/CAS",
+      "result": "REQUEST_CHANGES",
+      "finding": "BYLINE118-AUTHOR-UPDATE-01"
+    },
+    {
+      "area": "Source direct create, published initial state and slug generation",
+      "result": "REQUEST_CHANGES",
+      "finding": "BYLINE118-FALSY-SLUG-01"
+    },
+    {
+      "area": "Direct/live vs runtime/draft policies",
+      "result": "AUDITED",
+      "details": "Trusted constructor fixes drafts/validation policy, body cannot select it; real revisions, reserved reference data, Source live writes vs runtime staged fields reviewed. Ordinary strict forms preserve actor identity and required CAS."
+    },
+    {
+      "area": "Optional Source locale inference and all-locale list",
+      "result": "AUDITED",
+      "details": "Source constructor unscoped policy and ID/slug inference distinguished from Native public defaulten. Strict per-row Byline hydration and actual resolveBylineFilter whole bodies exact."
+    },
+    {
+      "area": "Sorted Byline/reference/term planning",
+      "result": "AUDITED",
+      "details": "Existing canonical planners supply bounded actual statements; explicit-empty/omitted, translation-group and strict-locale/sentinel behavior reviewed. Source72 plus Native36/rawD136 pass."
+    },
+    {
+      "area": "Reference cardinality/copy/child backlinks",
+      "result": "AUDITED",
+      "details": "Whole original57 callbacks/data/mock/clocks read and compared to pin; actual relation snapshots, add/remove/move plans, strict counts, outgoing sort preservation and field-bound child backlinks reviewed."
+    },
+    {
+      "area": "Publication/draft references/discard and revision restore",
+      "result": "AUDITED",
+      "details": "Actual staged selection/baseline merge, published reference snapshot, direct restore historical revision preservation and runtime draft restore validated by whole57 original cases."
+    },
+    {
+      "area": "Soft trash/permanent cleanup",
+      "result": "AUDITED",
+      "details": "Trusted direct storage bridge only sets deleted_at with Native schema/current-row fence. Ordinary policy keeps version/date/CAS; permanent cleanup bylines/comments/revisions/queue/SEO/final-group taxonomy and both reference ends share one fenced batch."
+    },
+    {
+      "area": "SEO side writes and authoritative read flag",
+      "result": "PARTIAL",
+      "details": "Existing readonly upsert/copy/delete plans, canonical clearing and same-batch side writes reviewed. Required internal boolean helper retained; direct schedule/unschedule omits hydration (finding03). Duplicate drops initial stored.hasSeo then re-reads definition: explicit snapshot threading concern; no new flag/race consequence probe run."
+    },
+    {
+      "area": "Direct and Calendar scheduling",
+      "result": "REQUEST_CHANGES",
+      "finding": "BYLINE118-SCHEDULE-SEO-01",
+      "details": "Calendar separate methods correctly read stored.item and hydrate live Byline/SEO/bound references; whole56 passes. Direct Source scheduling omits enabled SEO."
+    },
+    {
+      "area": "Trusted Seed canonical create/update",
+      "result": "AUDITED",
+      "details": "Stable IDs, actual INSERT RETURNING after complete batch, directcreateversion1/no promotion, Seedcreateversion2/prepublicationreturnversion1, update/stage/publish+3 realversions, nullable metadata/JSON/null snapshot and term/reference/byline side plans reviewed. Supplemental6 Seedplan bodies plus stableID case run as part36 on both real hosts."
+    },
+    {
+      "area": "C07 Source bug/atomic platform distinctions",
+      "result": "AUDITED_WITH_LIMITS",
+      "details": "Immutable Node Source apply body guarded. Fixed Native D1 batching is documented stronger than pinned Source unsupported-transaction fallback, zero Source D1 body/atomicity credit. Existing whole originalNode30 includes pinned mixed-date partialcommit and prune failure behavior; all30 pass. Seed capture55/14 is separate unfinished owner scope."
+    },
+    {
+      "area": "Actual owner and namespace associations",
+      "result": "AUDITED_WITH_LIMITS",
+      "details": "Finite TableNode redirect map, real canonical query namespaces, owner WeakMaps and transaction-derived fixture registrations reviewed; unknown handles refuse owner lookups. No adapterkind/result/sideDB/principal/provider fabrication. No additional protected transaction or race probes executed."
+    },
+    {
+      "area": "Source User constructor and principal policies",
+      "result": "AUDITED",
+      "details": "Actual registered split canonical UsersRepository; no legacy parallel users table. Source metadata not user-existence/actordefault. Exact existing Source fixture ADMIN permanentdelete permission is separate from request identity."
+    },
+    {
+      "area": "Old supported storage/genuine historical fixtures",
+      "result": "HOSTED_REGRESSIONS_REQUIRE_FIXES",
+      "details": "Current whole services sees59 old real content/redirect fixtures fail before their expected assertions at missing _cms_content_bylines; unconditional new hydration introduces a prerequisite. Twelve legacy-reference recognition failures originate in incoming Seed content-recognition165. Retain and repair actual capability/recognition, no fixture weakening or protected probe additions."
+    },
+    {
+      "area": "Frozen schema/provider/lock/security graph",
+      "result": "AUDITED",
+      "details": "ActualMain3506 paths allpresent,3457exact,49explicit owner/incoming modified paths recorded. Eleven protected files exact including bootstrap1465B, normal helpers, workflow, lock, Node/D1/atomic loop and MIT; allformer direct dependency/pnpm values retained. Six actual incoming histories ancestors; Source provider1\u201316 retained and sole publicSEO17, no18."
+    },
+    {
+      "area": "Full public/native vectors and Native history",
+      "result": "AUDITED",
+      "details": "Actual GitHub recursive tree6192untruncated entries/4676blobs matches complete native path/mode/type/SHA/size vector. Native publiccommit4e303 treef735 explicitunsigned truthful. Complete53first-parent own/union commit bytes rehash actualGitSHAs, orderedparents recorded; final production/script/test tree has0 unresolved markers."
+    },
+    {
+      "area": "Original immutable Source and TDD evidence",
+      "result": "AUDITED",
+      "details": "ThreeByline plus37Relations authorities directly byte-equal immutable913cb pin; guards additionally qualify13whole executableRelations,6wholeByline/storage functions,3wholeReference read/compare functions and20incomingSeed authorities. All105ownrawreceipts hashed; old Native/source failures retained, original Source body/data/clock/mocks read; chronological test-first/fix/refactor histories retained. No green reviewer run adds causal credit."
+    },
+    {
+      "area": "Infrastructure command chains and current tool transport",
+      "result": "AUDITED",
+      "details": "Entire former ordered leaves preserved with Calendar/Main/User inserts and own72/57/36/D136 appended; exactrequiredCore/adminadjacency whole12 controlsPASS. Node24.19/Vitest4.1.10/pnpm12.6qualify; initialpnpm symlink and missingKitconfig stops retained0credit; actualKit sync then directactualVitest unchangedconfigs used."
+    },
+    {
+      "area": "Compatibility/history documentation",
+      "result": "QUALIFICATION_CONCERN",
+      "details": "Allincomingownedtails retained except3oldMain C05/MB01/MB02 rowbytes replaced by publicSeed a007 widened-schema/manifest documentation. Earlier rows remain in Git history; Root should qualify replacement or restore under historical note. WiderUI/plugin/scheduler/PG/deployed/SourceD1 scopes remain expressly incomplete."
+    },
+    {
+      "area": "Full current mandatory and configured gates",
+      "result": "NOT_READY",
+      "details": "ActualCI59337384922086 current4e calendarPASS, servicesFAIL1560/1480/80, browserFAIL basepath virtualSeed import, Source/hostingSKIPPED, requiredaggregateFAIL. Authorlocal900s fullbootstrap not independentlygreen qualified. Current configured request/quota association not qualified by this reviewer; Root must qualify exact successor all mandatorygates/secured10/configured association."
+    }
+  ],
+  "findings": [
+    {
+      "id": "BYLINE118-AUTHOR-UPDATE-01",
+      "priority": "P2",
+      "path": "src/lib/server/database/lifecycle/service.ts",
+      "line": 178,
+      "problem": "Source-shaped APIupdate reports success but drops literal authorId string/null metadata. It retains imported-author instead of copy-author or null.",
+      "pinProof": [
+        "packages/core/src/api/handlers/content.ts:1586",
+        "packages/core/src/database/repositories/content.ts:1041",
+        "packages/core/src/database/repositories/content.ts:1409"
+      ],
+      "reachedControls": {
+        "nativeFailed": 2,
+        "unchangedSourceRepositoryPassed": 2
+      },
+      "repair": "Add a trusted Source metadata update path within the same canonical batch while preserving ordinary Native input/principal/CAS/ownership policy. Literalmetadata never becomes actor or requires a user row."
+    },
+    {
+      "id": "BYLINE118-FALSY-SLUG-01",
+      "priority": "P2",
+      "path": "src/lib/server/database/lifecycle/service.ts",
+      "line": 258,
+      "problem": "Trusted Sourcecreate treats null/empty slug as explicit finalNULL instead of generating title/name slug. Imported data with slugnull/empty returnsNULL vs pinnedimported.",
+      "pinProof": [
+        "packages/core/src/api/handlers/content.ts:1268"
+      ],
+      "reachedControls": {
+        "nativeFailed": 2,
+        "SourceRepositoryGeneratorPassed": 2,
+        "originalSourceHandlerExecutedInNewControls": false
+      },
+      "repair": "Preserve pinned !slug fallback in the trusted Sourcecreation policy and keep ordinaryNative explicitnull/empty behavior unchanged."
+    },
+    {
+      "id": "BYLINE118-SCHEDULE-SEO-01",
+      "priority": "P2",
+      "path": "src/lib/server/database/lifecycle/service.ts",
+      "line": 498,
+      "problem": "Direct Source schedule/unschedule returns item without persisted enabled SEO; successfulactions yieldundefined vs Storedtitle. Separate Calendar methods hydratecorrectly.",
+      "pinProof": [
+        "packages/core/src/api/handlers/content.ts:2136",
+        "packages/core/src/api/handlers/content.ts:2187"
+      ],
+      "reachedControls": {
+        "nativeFailed": 2,
+        "createStoredSEOExpectationPassed": 2
+      },
+      "repair": "Carry actual stored{item,hasSeo} snapshot into direct Source schedule/unschedule hydration; retain actual returned live content, Byline and Native auth/CAS semantics."
+    }
+  ],
+  "staticPacket": {
+    "path": "/tmp/byline118-review-full-static-preservation.json",
+    "bytes": 77735,
+    "sha256": "1f99b74e2be3cf7c84f454461e1b7dce70d6194c6ee3796c0d0a0e3899c0c145"
+  },
+  "fullPublicVector": {
+    "path": "/tmp/byline118-review-complete-vector.json",
+    "bytes": 957380,
+    "sha256": "5c646b001d139aa1b1bcc2beb83e0ce4cf78f4a53bcb1f6742c0f6a2babcedc4"
+  },
+  "independentFocusedRunsAndPrerequisites": [
+    {
+      "name": "Initial pnpm12.6 isolated-wrapper prerequisite",
+      "path": "/tmp/byline118-review-whole-source72-relations57.log",
+      "bytes": 535,
+      "sha256": "b0242d2a5d4808d32f4b71deb970ecbd31a5ece1dbc8da641a97d8a10c117654",
+      "category": "prerequisite",
+      "expandedRegistered": 0,
+      "passed": 0,
+      "failed": 0,
+      "exitCode": 1,
+      "SourceCausalCredit": 0
+    },
+    {
+      "name": "Initial isolated missing Kit tsconfig prerequisite",
+      "path": "/tmp/byline118-review-source72.log",
+      "bytes": 2554,
+      "sha256": "f032d239b1447ecac727f1e8de550ba31a0a2364c113f888053bbcce7846f114",
+      "category": "prerequisite",
+      "expandedRegistered": 0,
+      "passed": 0,
+      "failed": 0,
+      "exitCode": 1,
+      "SourceCausalCredit": 0
+    },
+    {
+      "name": "Actual Kit generation",
+      "path": "/tmp/byline118-review-kit-sync.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "fixture/tool transport",
+      "expandedRegistered": 0,
+      "passed": 0,
+      "failed": 0,
+      "exitCode": 0,
+      "SourceCausalCredit": 0
+    },
+    {
+      "name": "Own immutable provenance",
+      "path": "/tmp/byline118-review-owned-provenance.log",
+      "bytes": 159,
+      "sha256": "5e72aec52616ee6cdcad740dcf44ed6e692505e9d2404d19a8c46428fe275dc2",
+      "category": "static",
+      "expandedRegistered": 0,
+      "passed": 0,
+      "failed": 0,
+      "exitCode": 0,
+      "SourceCausalCredit": 0
+    },
+    {
+      "name": "Relations immutable provenance",
+      "path": "/tmp/byline118-review-relations-provenance.log",
+      "bytes": 165,
+      "sha256": "ef491db504e93960ad5b9f85bf48a743ff9ebb1fa7e4fb014c956aa82ba6f42a",
+      "category": "static",
+      "expandedRegistered": 0,
+      "passed": 0,
+      "failed": 0,
+      "exitCode": 0,
+      "SourceCausalCredit": 0
+    },
+    {
+      "name": "Incoming whole Seed provenance",
+      "path": "/tmp/byline118-review-incoming-seed-provenance.log",
+      "bytes": 105,
+      "sha256": "1d0ec623f4455c4fc0e07e4398388d065a312e58724d9884ae3f32a6f5e7b211",
+      "category": "static",
+      "expandedRegistered": 0,
+      "passed": 0,
+      "failed": 0,
+      "exitCode": 0,
+      "SourceCausalCredit": 0
+    },
+    {
+      "name": "Whole Source Byline lifecycle",
+      "path": "/tmp/byline118-review-source72-after-sync.log",
+      "bytes": 229,
+      "sha256": "9931f3e0d1b21264cee3f4174c631c3994bf2bdf6a08e2c0d4ab15592c9538c4",
+      "category": "Original Source",
+      "expandedRegistered": 72,
+      "passed": 72,
+      "failed": 0,
+      "exitCode": 0,
+      "SourceCausalCredit": "No additional causal claim from green reviewer run"
+    },
+    {
+      "name": "Whole Source Relations lifecycle",
+      "path": "/tmp/byline118-review-relations57.log",
+      "bytes": 229,
+      "sha256": "7abfc4543fc5af75ac99dea975d17ffa652fe98ac12e3ace28bc12509ba05dbe",
+      "category": "Original Source",
+      "expandedRegistered": 57,
+      "passed": 57,
+      "failed": 0,
+      "exitCode": 0,
+      "SourceCausalCredit": "No additional causal claim from green reviewer run"
+    },
+    {
+      "name": "Whole supplemental Native Node",
+      "path": "/tmp/byline118-review-native36.log",
+      "bytes": 229,
+      "sha256": "587e24cab61c4146509d94cadcf78520444420fb029a8beb07b9313396645b9e",
+      "category": "supplemental Native",
+      "expandedRegistered": 36,
+      "passed": 36,
+      "failed": 0,
+      "exitCode": 0,
+      "SourceCausalCredit": 0
+    },
+    {
+      "name": "Same whole supplemental real rawD1",
+      "path": "/tmp/byline118-review-d136.log",
+      "bytes": 231,
+      "sha256": "065eaf5ab74cd48aa989feeac7703106da05c5fcda89ea64f0326efa7c4befc7",
+      "category": "supplemental Native rawD1",
+      "expandedRegistered": 36,
+      "passed": 36,
+      "failed": 0,
+      "exitCode": 0,
+      "SourceCausalCredit": 0
+    },
+    {
+      "name": "Whole incoming Calendar config",
+      "path": "/tmp/byline118-review-calendar56.log",
+      "bytes": 230,
+      "sha256": "bea823ab426dcec8d3a3b1fe24d240d0d6be866d551139650cb706274a696edf",
+      "category": "mixed Original Source plus Native",
+      "expandedRegistered": 56,
+      "passed": 56,
+      "failed": 0,
+      "exitCode": 0,
+      "SourceCausalCredit": 0
+    },
+    {
+      "name": "Whole incoming exact-command guard",
+      "path": "/tmp/byline118-review-infrastructure12.log",
+      "bytes": 996,
+      "sha256": "531c40222b46e0960a22c3eca6943aac3bb826460a56d5e8b5f7f31aba0be628",
+      "category": "infrastructure Native",
+      "expandedRegistered": 12,
+      "passed": 12,
+      "failed": 0,
+      "exitCode": 0,
+      "SourceCausalCredit": 0
+    },
+    {
+      "name": "Whole unchanged original Native lifecycle files",
+      "path": "/tmp/byline118-review-original-node30.log",
+      "bytes": 20945,
+      "sha256": "3c7f5bccfa898c65453f3c163fddf40ec195ceab9dd93b01d0377952bc2abf72",
+      "category": "Native Node/rawD1 expansion",
+      "expandedRegistered": 30,
+      "passed": 30,
+      "failed": 0,
+      "exitCode": 0,
+      "SourceCausalCredit": 0
+    },
+    {
+      "name": "First attribution control",
+      "path": "/tmp/byline118-review-metadata-control.log",
+      "bytes": 1888,
+      "sha256": "c6e58cb09f1f70a96b9277d0d263015fde4516e63e64468726d6af3e5e2bd33a",
+      "category": "reviewer supplementary",
+      "expandedRegistered": 4,
+      "passed": 2,
+      "failed": 2,
+      "exitCode": 1,
+      "SourceCausalCredit": 0
+    },
+    {
+      "name": "Attribution and falsy slug controls",
+      "path": "/tmp/byline118-review-metadata-and-slug-controls.log",
+      "bytes": 2771,
+      "sha256": "be91d0ef4ffc976d3bfcca15f1fdadd03c503e7f76b952a7a16e9b05558f447b",
+      "category": "reviewer supplementary",
+      "expandedRegistered": 8,
+      "passed": 4,
+      "failed": 4,
+      "exitCode": 1,
+      "SourceCausalCredit": 0
+    },
+    {
+      "name": "Complete new semantic controls",
+      "path": "/tmp/byline118-review-ten-semantic-controls.log",
+      "bytes": 4413,
+      "sha256": "e99d62e02bdeb3ae4c98e13987e6c473b14b76ba42b0804db15675ede5879ad4",
+      "category": "reviewer supplementary",
+      "expandedRegistered": 10,
+      "passed": 4,
+      "failed": 6,
+      "exitCode": 1,
+      "SourceCausalCredit": 0
+    },
+    {
+      "name": "Actual CI593 services original decoded raw",
+      "path": "/tmp/byline118-review-ci593-services-original.log",
+      "bytes": 4533923,
+      "sha256": "4b01da61ae0fc767224a6208b06bb0c5965d4ec4271dd7bfc6bc1c7aeec3c099",
+      "category": "hosted mandatory gate",
+      "expandedRegistered": 1560,
+      "passed": 1480,
+      "failed": 80,
+      "exitCode": 1,
+      "SourceCausalCredit": 0
+    }
+  ],
+  "firstWholeSourceReceipts": [
+    {
+      "path": "/workspace/cms-review-byline118-full-4e303/docs/byline-lifecycle-evidence/source54-first.json",
+      "bytes": 43854,
+      "sha256": "292906f75814093a0dddffe309256e0577eb6b2a2ef91afb9a24179674966ca9",
+      "registered": 54,
+      "passed": 18,
+      "failed": 36,
+      "literalFailedClassification": {
+        "reachedAssertionError": 30,
+        "exceptionBeforeExpectedAssertion": 6
+      },
+      "SourceCausalCredit": "No blanket count: import/owner/setup/API-refusal prerequisites earn zero; original individual records retained."
+    },
+    {
+      "path": "/workspace/cms-review-byline118-full-4e303/docs/byline-lifecycle-evidence/source68-public-user-filter-real-first.json",
+      "bytes": 35436,
+      "sha256": "7d7b297e6c6173fd6fea667c430f4c37d0424d6a6b9390b57c84b5a7e9320935",
+      "registered": 68,
+      "passed": 54,
+      "failed": 14,
+      "literalFailedClassification": {
+        "reachedAssertionError": 3,
+        "exceptionBeforeExpectedAssertion": 11
+      },
+      "SourceCausalCredit": "No blanket count: import/owner/setup/API-refusal prerequisites earn zero; original individual records retained."
+    },
+    {
+      "path": "/workspace/cms-review-byline118-full-4e303/docs/byline-lifecycle-evidence/relations57-real-initial.json",
+      "bytes": 39190,
+      "sha256": "268287c7d5a56db905d50ba373c384f041af009f475d9101abbc964432378c33",
+      "registered": 57,
+      "passed": 27,
+      "failed": 30,
+      "literalFailedClassification": {
+        "reachedAssertionError": 21,
+        "exceptionBeforeExpectedAssertion": 9
+      },
+      "SourceCausalCredit": "No blanket count: import/owner/setup/API-refusal prerequisites earn zero; original individual records retained."
+    }
+  ],
+  "currentCI": {
+    "run": 37384922086,
+    "servicesJob": 112015729293,
+    "services": {
+      "registered": 1560,
+      "passed": 1480,
+      "failed": 80,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "calendar": "success",
+    "browser": "failure",
+    "Source": "skipped",
+    "hosting": "skipped",
+    "aggregate": "failure"
+  },
+  "newSupplementalReviewControls": {
+    "path": "/workspace/cms-review-byline118-full-4e303/tests/byline118-review-metadata.test.ts",
+    "expanded": 10,
+    "passed": 4,
+    "failed": 6,
+    "SourceCausalCredit": 0,
+    "protectedProbesAdded": 0
+  },
+  "productEditsCommitsPublicationsMerges": 0,
+  "additionalHeavyBuildCheckBootstrap": 0,
+  "mergeApproval": false,
+  "authorMergeRequiresRootExactHeadApproval": true
+}

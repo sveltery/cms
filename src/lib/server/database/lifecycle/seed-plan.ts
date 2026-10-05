@@ -14,7 +14,7 @@ import {isStoragelessField} from '../../schema/types.ts';
 import {ContentRepository,writableContentData} from './upstream/database/repositories/content.ts';
 import type {ContentItem,CreateContentInput} from './upstream/database/repositories/types.ts';
 import {RevisionRepository,createRevisionId} from './upstream/database/repositories/revision.ts';
-import {ContentDatetimeNormalizer} from './upstream/database/content-datetime.ts';
+import {ContentDatetimeNormalizer,type DatetimeContextCache} from './upstream/database/content-datetime.ts';
 import {registerLifecycleDatabase} from './upstream/host.ts';
 import {BylineRepository,type ContentBylineInput} from '../../bylines/repository.ts';
 import {registerRelationDatabase} from '../../relations/storage.ts';
@@ -24,6 +24,8 @@ import {completeContentReferences} from '../../relations/content-input.ts';
 import {invalidateCollectionCache,invalidateTaxonomyObjectCache} from '../../menus/object-cache.ts';
 
 interface SeedContentSides {
+ /** Original importer call's cache; share only while timezone/fields are immutable. */
+ readonly datetimeContexts?:DatetimeContextCache;
  /** Exact Source resolution, before writing: missing references were warned/skipped. */
  readonly bylines?:ContentBylineInput[];
  readonly taxonomyTermIds:readonly string[];
@@ -38,7 +40,7 @@ export interface SeedContentCreate extends SeedContentSides {
 export interface SeedContentUpdate extends SeedContentSides {
  readonly type:string;readonly id:string;readonly status:string;readonly data:Record<string,unknown>;
 }
-async function context(database:CmsDatabase,type:string) {
+async function context(database:CmsDatabase,type:string,datetimeContexts?:DatetimeContextCache) {
  // The importer reads the actual stored Source timezone option. This is trusted
  // constructor hosting, independent of request principals and mutation bodies.
  registerLifecycleDatabase(database,{timezone:async()=>{
@@ -48,7 +50,7 @@ async function context(database:CmsDatabase,type:string) {
  registerRelationDatabase(database);
  const collection=await new SchemaRegistry(database).getCollectionWithFields(type);
  if(!collection)throw new CmsError('NOT_FOUND');
- return{collection,content:new ContentRepository(database.db as any),datetimes:new ContentDatetimeNormalizer(database.db as any)};
+ return{collection,content:new ContentRepository(database.db as any,datetimeContexts),datetimes:new ContentDatetimeNormalizer(database.db as any,datetimeContexts)};
 }
 function guard(database:CmsDatabase,token:string,predicate:ReturnType<typeof sql>):CompiledQuery {
  return sql`INSERT INTO _cms_guards(token,pass) SELECT ${token},CASE WHEN ${predicate} THEN 1 ELSE 0 END`.compile(database.db);
@@ -87,7 +89,7 @@ function completion(type:string,plan:Awaited<ReturnType<typeof sides>>) {
  * Source apply returns this pre-publication snapshot; actual persisted version is2. */
 export async function applySeedContentCreate(database:CmsDatabase,input:SeedContentCreate):Promise<ContentItem> {
  const raw=input.input,type=parse(identifier,raw.type),locale=parse(localeInput,raw.locale||'en');
- const {collection,content,datetimes}=await context(database,type);
+ const {collection,content,datetimes}=await context(database,type,input.datetimeContexts);
  const status=raw.status??'draft',promote=input.promote!==false;
  if(promote)checkPublication(status,input.routable,raw.slug);
  const data=writableContentData(await datetimes.normalizeInput(type,raw.data));
@@ -133,7 +135,7 @@ export async function deleteSourceContent(database:CmsDatabase,typeInput:string,
  * and promotion share one schema/current-row fenced Native batch. */
 export async function applySeedContentUpdate(database:CmsDatabase,input:SeedContentUpdate):Promise<ContentItem> {
  const type=parse(identifier,input.type),id=parse(entryId,input.id);
- const {collection,content,datetimes}=await context(database,type);
+ const {collection,content,datetimes}=await context(database,type,input.datetimeContexts);
  const existing=await content.findById(type,id);if(!existing)throw new Error('Content not found');
  checkPublication(input.status,input.routable,existing.slug);
  const data=writableContentData(await datetimes.normalizeInput(type,input.data)),now=new Date().toISOString();
@@ -143,7 +145,7 @@ export async function applySeedContentUpdate(database:CmsDatabase,input:SeedCont
   sql`UPDATE ${sql.ref(tableName(type))} SET ${sql.join([sql`status=${input.status}`,...Object.entries(data).map(([key,value])=>sql`${sql.ref(key)}=${serializeValue(value)}`),sql`updated_at=${now}`,sql`version=version+1`])} WHERE id=${id} AND deleted_at IS NULL AND version=${existing.version} AND updated_at=${existing.updatedAt}`.compile(database.db),
   guard(database,updatedToken,sql`changes()=1`),...prepared.after];
  if(input.status==='published'){
-  const revision=await new RevisionRepository(database.db as any).prepareCreate({collection:type,entryId:id,data:input.data});
+  const revision=await new RevisionRepository(database.db as any,input.datetimeContexts).prepareCreate({collection:type,entryId:id,data:input.data});
   statements.push(revision.statement,
    sql`UPDATE ${sql.ref(tableName(type))} SET draft_revision_id=${revision.id},version=version+1 WHERE id=${id} AND deleted_at IS NULL AND version=${existing.version+1} AND EXISTS(SELECT 1 FROM _cms_revisions WHERE id=${revision.id} AND collection=${type} AND entry_id=${id})`.compile(database.db));
   const stagedToken=ulid();statements.push(guard(database,stagedToken,sql`changes()=1`));prepared.cleanup.push(sql`DELETE FROM _cms_guards WHERE token=${stagedToken}`.compile(database.db));

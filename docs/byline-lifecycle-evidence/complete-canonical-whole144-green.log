@@ -1,0 +1,854 @@
+(node:3166724) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ raw D1: structured insert uses only its actual atomic capability (2699.325614ms)
+✔ raw D1: structured update uses only its actual atomic capability (2767.795967ms)
+✔ raw D1: structured delete uses only its actual atomic capability (2500.641128ms)
+✔ raw D1: whole Source delete uses only its actual atomic capability (2979.350522ms)
+✔ raw D1: whole Source reorder uses only its actual atomic capability (3039.715886ms)
+✔ raw D1: whole Source pivot replacement uses only its actual atomic capability (2994.198063ms)
+✔ raw D1: whole Source structure save uses only its actual atomic capability (2716.070418ms)
+✔ raw D1: ordinary option storage and whole taxonomy reads remain available (1386.966124ms)
+✔ scoped D1: structured insert uses only its actual atomic capability (3473.12349ms)
+✔ scoped D1: structured update uses only its actual atomic capability (3308.443112ms)
+✔ scoped D1: structured delete uses only its actual atomic capability (3834.468445ms)
+✔ scoped D1: whole Source delete uses only its actual atomic capability (3818.635962ms)
+✔ scoped D1: whole Source reorder uses only its actual atomic capability (3533.363326ms)
+✔ scoped D1: whole Source pivot replacement uses only its actual atomic capability (3704.37941ms)
+✔ scoped D1: whole Source structure save uses only its actual atomic capability (3604.635303ms)
+✔ scoped D1: ordinary option storage and whole taxonomy reads remain available (2196.692313ms)
+[media-usage] Failed to mark posts stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+✔ Node: genuine v5 upgrade and persisted v17 reopen preserve content and operator objects (115.255171ms)
+✔ Node: a future Source-named trigger collision is refused before any startup write (14.717185ms)
+✔ Node: a real late-batch SQLite failure rolls back the complete v0→17 installation (38.826229ms)
+✔ Node: a real late-batch SQLite failure rolls back the complete v4→17 installation (46.864009ms)
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+✔ raw D1: genuine v5 upgrade and persisted v17 reopen preserve content and operator objects (2167.576147ms)
+✔ raw D1: a future Source-named trigger collision is refused before any startup write (913.994255ms)
+✔ raw D1: a real late-batch SQLite failure rolls back the complete v0→17 installation (2574.059327ms)
+✔ raw D1: a real late-batch SQLite failure rolls back the complete v4→17 installation (2858.139872ms)
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+✔ scoped D1: genuine v5 upgrade and persisted v17 reopen preserve content and operator objects (2824.161945ms)
+✔ scoped D1: a future Source-named trigger collision is refused before any startup write (1113.981943ms)
+✔ scoped D1: a real late-batch SQLite failure rolls back the complete v0→17 installation (2772.285977ms)
+✔ scoped D1: a real late-batch SQLite failure rolls back the complete v4→17 installation (3481.572666ms)
+✔ Node: actual existing and newly created content tables receive Source031 byline indexes (100.792889ms)
+[media-usage] Failed to mark posts stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+[media-usage] Failed to mark authors stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+[media-usage] Failed to mark posts stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+✔ Node: a converted legacy reference remains usable after actual persisted reopen and startup (78.374381ms)
+✔ raw D1: actual existing and newly created content tables receive Source031 byline indexes (2241.393788ms)
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark authors stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+✔ raw D1: a converted legacy reference remains usable after actual persisted reopen and startup (2849.053035ms)
+✔ scoped D1: actual existing and newly created content tables receive Source031 byline indexes (2217.250466ms)
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark authors stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+✔ scoped D1: a converted legacy reference remains usable after actual persisted reopen and startup (3462.523281ms)
+✔ Node: actual redirect host persists its Source loop cache in canonical options (53.979261ms)
+✔ Node: actual menu loader resolves a real canonical taxonomy term (26.987142ms)
+✔ raw D1: actual redirect host persists its Source loop cache in canonical options (1316.282831ms)
+✔ raw D1: actual menu loader resolves a real canonical taxonomy term (1222.360471ms)
+✔ scoped D1: actual redirect host persists its Source loop cache in canonical options (1077.078256ms)
+✔ scoped D1: actual menu loader resolves a real canonical taxonomy term (1162.127624ms)
+✔ Node: complete declared startup census fits D1's100-bind budget and preserves real namespace values (40.498483ms)
+✔ raw D1: complete declared startup census fits D1's100-bind budget and preserves real namespace values (469.300657ms)
+✔ scoped D1: complete declared startup census fits D1's100-bind budget and preserves real namespace values (352.352312ms)
+✔ Node: ordinary startup satisfies actual Menu storage readiness (65.386726ms)
+✔ Node: ordinary startup satisfies actual sections storage readiness (39.234272ms)
+✔ Node: ordinary startup satisfies actual widgets storage readiness (27.50317ms)
+✔ Node: ordinary startup satisfies actual Comments and runtime-dependency readiness (22.898445ms)
+✔ Node: ordinary startup satisfies actual Redirect publication storage readiness (20.743485ms)
+✔ raw D1: ordinary startup satisfies actual Menu storage readiness (1508.523268ms)
+✔ raw D1: ordinary startup satisfies actual sections storage readiness (1339.090621ms)
+✔ raw D1: ordinary startup satisfies actual widgets storage readiness (1589.340828ms)
+✔ raw D1: ordinary startup satisfies actual Comments and runtime-dependency readiness (2040.763493ms)
+✔ raw D1: ordinary startup satisfies actual Redirect publication storage readiness (1906.540598ms)
+✔ scoped D1: ordinary startup satisfies actual Menu storage readiness (1940.54129ms)
+✔ scoped D1: ordinary startup satisfies actual sections storage readiness (1841.911881ms)
+✔ scoped D1: ordinary startup satisfies actual widgets storage readiness (2185.468804ms)
+✔ scoped D1: ordinary startup satisfies actual Comments and runtime-dependency readiness (1904.256117ms)
+✔ scoped D1: ordinary startup satisfies actual Redirect publication storage readiness (1871.837711ms)
+✔ Node: actual public Sections/Widgets factory SQL recognizes its genuine persisted SQLite objects (39.613112ms)
+✔ Node: a real quoted timestamp default remains distinct from the public Menu expression (4.736914ms)
+✔ Node: an actual Redirect trigger retains its observable literal whitespace (11.565468ms)
+✔ raw D1: actual public Sections/Widgets factory SQL recognizes its genuine persisted SQLite objects (389.346762ms)
+✔ raw D1: a real quoted timestamp default remains distinct from the public Menu expression (309.123283ms)
+✔ raw D1: an actual Redirect trigger retains its observable literal whitespace (673.714547ms)
+✔ scoped D1: actual public Sections/Widgets factory SQL recognizes its genuine persisted SQLite objects (357.153369ms)
+✔ scoped D1: a real quoted timestamp default remains distinct from the public Menu expression (322.635221ms)
+✔ scoped D1: an actual Redirect trigger retains its observable literal whitespace (840.711562ms)
+✔ Node: ordinary canonical startup installs actual contiguous providers through 17 (43.610666ms)
+✔ Node: fresh ordinary startup makes media and byline prerequisites storage available (64.621571ms)
+✔ Node: fresh ordinary startup makes directed content links storage available (57.25315ms)
+✔ Node: fresh ordinary startup makes menus storage available (36.525231ms)
+✔ Node: fresh ordinary startup makes sections and site widgets storage available (37.037332ms)
+✔ Node: fresh ordinary startup makes comments and moderation storage available (40.218105ms)
+✔ Node: fresh ordinary startup makes redirects storage available (28.723536ms)
+✔ raw D1: ordinary canonical startup installs actual contiguous providers through 17 (2477.493481ms)
+✔ raw D1: fresh ordinary startup makes media and byline prerequisites storage available (1809.905624ms)
+✔ raw D1: fresh ordinary startup makes directed content links storage available (2067.119899ms)
+✔ raw D1: fresh ordinary startup makes menus storage available (2273.401516ms)
+✔ raw D1: fresh ordinary startup makes sections and site widgets storage available (1888.316257ms)
+✔ raw D1: fresh ordinary startup makes comments and moderation storage available (2209.40325ms)
+✔ raw D1: fresh ordinary startup makes redirects storage available (1939.359054ms)
+✔ scoped D1: ordinary canonical startup installs actual contiguous providers through 17 (1988.59711ms)
+✔ scoped D1: fresh ordinary startup makes media and byline prerequisites storage available (1899.330651ms)
+✔ scoped D1: fresh ordinary startup makes directed content links storage available (1973.122902ms)
+✔ scoped D1: fresh ordinary startup makes menus storage available (1889.750628ms)
+✔ scoped D1: fresh ordinary startup makes sections and site widgets storage available (2603.677825ms)
+✔ scoped D1: fresh ordinary startup makes comments and moderation storage available (2148.778115ms)
+✔ scoped D1: fresh ordinary startup makes redirects storage available (2040.428326ms)
+✔ Node SQLite: a lowercase declared future trigger refuses startup before any write (60.340671ms)
+✔ Node SQLite: a uppercase declared future trigger refuses startup before any write (34.505206ms)
+✔ raw D1: a lowercase declared future trigger refuses startup before any write (2721.616526ms)
+✔ raw D1: a uppercase declared future trigger refuses startup before any write (2337.040148ms)
+✔ scoped D1: a lowercase declared future trigger refuses startup before any write (2781.687209ms)
+✔ scoped D1: a uppercase declared future trigger refuses startup before any write (2047.161747ms)
+(node:3168038) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Node SQLite: ordinary options persist across normal installation and reopen (111.17034ms)
+✔ Node SQLite: real taxonomy seeds defaults indexes and group pivot semantics (23.385921ms)
+[media-usage] Failed to mark preserved stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+✔ Node SQLite: normal v5 upgrade preserves every field and exact operator SQL (70.397074ms)
+[media-usage] Failed to mark preserved stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+✔ Node SQLite: failed normal metadata upgrade rolls back all providers and preserves v5 values (28.574648ms)
+[media-usage] Failed to mark preserved stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+✔ Node SQLite: external metadata foreign keys refuse the normal upgrade before writes (10.962214ms)
+✔ Node SQLite: missing or changed owned trigger refuses normal readiness without writes (48.785966ms)
+✔ raw D1: ordinary options persist across normal installation and reopen (2065.72222ms)
+✔ raw D1: real taxonomy seeds defaults indexes and group pivot semantics (1651.298437ms)
+[media-usage] Failed to mark preserved stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+✔ raw D1: normal v5 upgrade preserves every field and exact operator SQL (2778.121433ms)
+[media-usage] Failed to mark preserved stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+✔ raw D1: failed normal metadata upgrade rolls back all providers and preserves v5 values (2496.095148ms)
+[media-usage] Failed to mark preserved stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+✔ raw D1: external metadata foreign keys refuse the normal upgrade before writes (869.425412ms)
+✔ raw D1: missing or changed owned trigger refuses normal readiness without writes (1671.383044ms)
+✔ scoped D1: ordinary options persist across normal installation and reopen (2091.973627ms)
+✔ scoped D1: real taxonomy seeds defaults indexes and group pivot semantics (2199.774923ms)
+[media-usage] Failed to mark preserved stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+✔ scoped D1: normal v5 upgrade preserves every field and exact operator SQL (3472.209339ms)
+[media-usage] Failed to mark preserved stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+✔ scoped D1: failed normal metadata upgrade rolls back all providers and preserves v5 values (2210.978025ms)
+[media-usage] Failed to mark preserved stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+✔ scoped D1: external metadata foreign keys refuse the normal upgrade before writes (801.859773ms)
+✔ scoped D1: missing or changed owned trigger refuses normal readiness without writes (2188.515476ms)
+✔ Node SQLite: normal installer applies real contiguous providers through eight (66.121252ms)
+✔ Node SQLite: normal installation enables actual settings and taxonomy storage (20.813656ms)
+✔ Node SQLite: normal metadata upgrade enables the Source collection field cascade (19.464894ms)
+✔ raw D1: normal installer applies real contiguous providers through eight (1893.31352ms)
+✔ raw D1: normal installation enables actual settings and taxonomy storage (1629.402144ms)
+✔ raw D1: normal metadata upgrade enables the Source collection field cascade (1876.050012ms)
+✔ scoped D1: normal installer applies real contiguous providers through eight (1735.67427ms)
+✔ scoped D1: normal installation enables actual settings and taxonomy storage (1932.007742ms)
+✔ scoped D1: normal metadata upgrade enables the Source collection field cascade (1778.42131ms)
+[media-usage] Failed to mark posts stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+[media-usage] Failed to mark authors stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+[media-usage] Failed to mark posts stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+✔ Node: canonical upgrade carries an existing legacy reference into directed group edges (140.230795ms)
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark authors stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+✔ raw D1: canonical upgrade carries an existing legacy reference into directed group edges (3607.163049ms)
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark authors stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+✔ scoped D1: canonical upgrade carries an existing legacy reference into directed group edges (3540.047157ms)
+✔ Node SQLite: normal option and plugin storage revision triggers retain actual Source values (109.538729ms)
+✔ raw D1: normal option and plugin storage revision triggers retain actual Source values (2691.782951ms)
+✔ scoped D1: normal option and plugin storage revision triggers retain actual Source values (2324.843845ms)
+✔ arbitrary generated field identifiers retain historical quote equivalence (1.260588ms)
+✔ arbitrary generated fields retain quote equivalence in a complete table (0.369306ms)
+✔ a default matching a known column name retains double-quoted literal bytes (0.19241ms)
+✔ a known schema name in a quoted SELECT expression retains literal bytes (0.168914ms)
+✔ canonical schema comparison retains embedded double quotes in single-quoted defaults (1.505667ms)
+✔ canonical schema comparison distinguishes a double-quoted timestamp literal from the expression (0.136135ms)
+✔ canonical schema comparison preserves whitespace inside single-quoted defaults (0.142074ms)
+✔ canonical schema comparison preserves doubled single quotes and enclosed whitespace (0.138669ms)
+✔ canonical schema comparison preserves Unicode nonbreaking whitespace outside literals (0.119821ms)
+✔ canonical schema comparison preserves vertical-tab token boundaries outside literals (0.114702ms)
+✔ canonical schema comparison still accepts known quoted native identifiers and SQLite ASCII whitespace (0.25945ms)
+[media-usage] Failed to mark posts stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+[media-usage] Failed to mark authors stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+[media-usage] Failed to mark posts stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+✔ Node deleting a converted relation removes its retained column and allows field slug reuse (178.222558ms)
+[media-usage] Failed to mark posts stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+[media-usage] Failed to mark authors stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+[media-usage] Failed to mark posts stale: Error: no such table: _cms_media_usage_index_status
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+Relation delete error: Error: actual legacy cascade fixture failure
+    at Object.all (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/node-sqlite-compat.ts:85:38)
+    at execute (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/sqlite.ts:21:60)
+    at executeAtomicQueryLoop (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/atomic-query-loop.ts:32:19)
+    at file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/sqlite.ts:27:56
+    at #props.executor.provideConnection.freeze.signal (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:647:26)
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async deleteRelationWithFields (file:///workspace/cms-byline-content-lifecycle/src/lib/server/relations/deletion.ts:56:18)
+    at async handleRelationDelete (file:///workspace/cms-byline-content-lifecycle/src/lib/server/relations/handlers.ts:274:12)
+    at async TestContext.<anonymous> (file:///workspace/cms-byline-content-lifecycle/tests/relations-legacy-cascade-native.test.ts:74:23)
+    at async Test.run (node:internal/test_runner/test:1389:7) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1811,
+  errstr: 'constraint failed'
+}
+✔ Node failed converted relation cascade rolls back retained columns and the persisted graph (78.140578ms)
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark authors stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+✔ raw D1 deleting a converted relation removes its retained column and allows field slug reuse (4809.157596ms)
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark authors stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async D1Connection.executeQuery (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async MediaUsageRepository.findIndexStatus (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2645:15)
+    at async markContentMediaUsageCollectionStale (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:27:19)
+    at async markContentMediaUsageCollectionStaleSafely (file:///workspace/cms-byline-content-lifecycle/src/lib/server/blocks/upstream/media/usage/schema-invalidation.ts:69:3) {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+Relation delete error: Error: D1_ERROR: actual legacy cascade fixture failure: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async RawBindingD1Adapter.executeAtomicBatch (file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/d1.ts:45:13)
+    at async #props.executor.provideConnection.freeze.signal (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:647:20)
+    at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+    at async deleteRelationWithFields (file:///workspace/cms-byline-content-lifecycle/src/lib/server/relations/deletion.ts:56:18)
+    at async handleRelationDelete (file:///workspace/cms-byline-content-lifecycle/src/lib/server/relations/handlers.ts:274:12)
+    at async TestContext.<anonymous> (file:///workspace/cms-byline-content-lifecycle/tests/relations-legacy-cascade-native.test.ts:74:23)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+  [cause]: Error: actual legacy cascade fixture failure: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:90:27
+      at async #fetch (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/workers/core/entry.worker.js:4373:18)
+      at async ProxyServer.fetch (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/workers/core/entry.worker.js:4277:14) {
+    [cause]: undefined
+  }
+}
+✔ raw D1 failed converted relation cascade rolls back retained columns and the persisted graph (3672.554575ms)
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark authors stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+✔ scoped D1 deleting a converted relation removes its retained column and allows field slug reuse (4127.953013ms)
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark authors stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+[media-usage] Failed to mark posts stale: Error: D1_ERROR: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:208:32 {
+  [cause]: Error: no such table: _cms_media_usage_index_status: SQLITE_ERROR
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:366:41 {
+    [cause]: undefined
+  }
+}
+Relation delete error: Error: D1_ERROR: actual legacy cascade fixture failure: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///workspace/cms-byline-content-lifecycle/src/lib/server/database/coalescing-d1.ts:150:37 {
+  [cause]: Error: actual legacy cascade fixture failure: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+      at D1DatabaseSession._sendOrThrow (cloudflare-internal:d1-api:140:24)
+      at async cloudflare-internal:d1-api:90:27 {
+    [cause]: undefined
+  }
+}
+✔ scoped D1 failed converted relation cascade rolls back retained columns and the persisted graph (2683.201101ms)
+ℹ tests 144
+ℹ suites 0
+ℹ pass 144
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 77677.227171

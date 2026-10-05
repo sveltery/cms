@@ -162,7 +162,12 @@ function validateTable(object:SchemaObject, fields:RegisteredField[], installed:
     if (!identifier.test(field.slug) || system.has(field.slug) || field.slug==='primary_byline_id' || registered.has(field.slug)) throw new CmsError('MIGRATION_REQUIRED');
     registered.add(field.slug);
     const actual=columns.get(field.slug);
-    if (isStoragelessFieldRow(field)) { if (actual!==undefined) throw new CmsError('MIGRATION_REQUIRED'); continue; }
+    if (isStoragelessFieldRow(field)) {
+      if (actual===undefined) continue;
+      // Pinned087 binds a legacy reference while deliberately retaining its
+      // TEXT column. It still passes the same strict column/clause checks below.
+      if (field.type!=='reference' || field.column_type!=='TEXT') throw new CmsError('MIGRATION_REQUIRED');
+    }
     if (!['TEXT','REAL','INTEGER','JSON'].includes(field.column_type) || !actual || !actual.startsWith(field.slug+' '+field.column_type) || !new RegExp('^'+field.slug+' '+field.column_type+'(?:$| )').test(actual)) throw new CmsError('MIGRATION_REQUIRED');
     // Preserve supported historical NULL/default/unique column clauses; reject
     // an unrecognized generated/FK/constraint layout rather than repairing it.
