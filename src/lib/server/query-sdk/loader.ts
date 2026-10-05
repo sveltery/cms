@@ -15,6 +15,8 @@
  */
 
 import type { LiveLoader } from "./types.ts";
+import { queryReadDatabase } from "./bindings.ts";
+import type { Database as TaxonomyDatabase } from "../canonical-storage/types.ts";
 import { type Kysely, type RawBuilder, sql } from "kysely";
 
 import { buildStatusCondition, isPostgres } from "../database/lifecycle/upstream/database/dialect-helpers.ts";
@@ -383,7 +385,7 @@ async function getTaxonomyNames(db: Kysely<Database>, collection: string): Promi
 	}
 
 	try {
-		const defs = await selectTaxonomyDefs(db).execute();
+		const defs = await selectTaxonomyDefs(db as unknown as Kysely<TaxonomyDatabase>).execute();
 		const namesByCollection = new Map<string, Set<string>>();
 		for (const def of defs) {
 			let collections: unknown;
@@ -947,7 +949,7 @@ async function findStoragelessQueryKey(
 ): Promise<string | undefined> {
 	const candidates = keys.filter((key) => !SYSTEM_QUERY_KEYS.has(key));
 	if (candidates.length === 0) return undefined;
-	const { getReferenceFieldMap } = await import("./references/field-map.js");
+	const { getReferenceFieldMap } = await import("./references/field-map.ts");
 	const bound = await getReferenceFieldMap(collection);
 	return candidates.find((key) => bound.has(key));
 }
@@ -1438,7 +1440,7 @@ export async function getDb(): Promise<Kysely<Database>> {
 	// Per-request DB override via ALS (normal mode)
 	const ctx = getRequestContext();
 	if (ctx?.db) {
-		return ctx.db as Kysely<Database>; // eslint-disable-line typescript/no-unsafe-type-assertion -- db is typed as unknown in RequestContext to avoid circular deps
+		return queryReadDatabase(ctx.db) as unknown as Kysely<Database>;
 	}
 
 	throw new Error("Sveltery query database not configured. Bind an already-migrated CmsDatabase with createQuerySdk() or the trusted request context.");

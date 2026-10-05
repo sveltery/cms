@@ -106,7 +106,7 @@ export async function resolveReferencePages(
 				return [
 					slug,
 					{
-						groups: links.items.map((link) =>
+						groups: links.items.map((link: {parentGroup: string; childGroup: string}) =>
 							binding.side === "child" ? link.parentGroup : link.childGroup,
 						),
 						nextCursor: links.nextCursor,

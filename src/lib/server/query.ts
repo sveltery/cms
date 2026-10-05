@@ -703,7 +703,7 @@ const FIELD_NAME_PATTERN = /^[a-zA-Z_][a-zA-Z0-9_]*$/;
  * CURSOR_RAW_VALUES, since `entry.data` can't reproduce it for every column.
  */
 function encodeEntryCursor<D>(
-	entry: ContentEntry<D>,
+	entry: Pick<ContentEntry<D>, 'id' | 'data'>,
 	orderBy: OrderBySpec | undefined,
 ): string | undefined {
 	const data = entryData(entry);
@@ -930,13 +930,13 @@ async function getEmDashCollectionUncached<T extends string, D = InferCollection
 
 	const hasMore = requestedLimit != null && requestedLimit > 0 && entries.length > requestedLimit;
 	const pageEntries = hasMore ? entries.slice(0, requestedLimit) : entries;
-	const nextCursor = hasMore ? encodeEntryCursor(pageEntries.at(-1), filter?.orderBy) : undefined;
+	const nextCursor = hasMore ? encodeEntryCursor(pageEntries.at(-1)!, filter?.orderBy) : undefined;
 	// `hasMore` is only meaningful when a limit bounds the page; otherwise the
 	// query returned everything and there is no "next page" to report.
 	const hasMoreResult = requestedLimit != null && requestedLimit > 0 ? hasMore : undefined;
 
 	const isEditMode = ctx?.editMode ?? false;
-	const entriesWithEdit = pageEntries.map((entry: ContentEntry<D>) => {
+	const entriesWithEdit = pageEntries.map((entry) => {
 		const dbId = entryDatabaseId(entry);
 		if (isEditMode) {
 			tagEditableFields(entryData(entry), type, dbId);
@@ -946,6 +946,7 @@ async function getEmDashCollectionUncached<T extends string, D = InferCollection
 		}
 		return {
 			...entry,
+			data: entry.data as D,
 			edit: isEditMode ? createEditable(type, dbId, entryEditOptions(entry)) : createNoop(),
 		};
 	});
@@ -1158,19 +1159,20 @@ async function resolveEmDashEntry<T extends string, D = InferCollectionData<T>>(
 	const references = options?.references;
 
 	/** Wrap a raw Astro entry with edit proxy, tagging editable fields if needed */
-	function wrapEntry(raw: ContentEntry<D>): ContentEntry<D> {
+	function wrapEntry(raw: {id: string; data: Record<string, unknown>}): ContentEntry<D> {
 		const dbId = entryDatabaseId(raw);
 		if (isEditMode) {
 			tagEditableFields(entryData(raw), type, dbId);
 		}
 		return {
 			...raw,
+			data: raw.data as D,
 			edit: isEditMode ? createEditable(type, dbId, entryEditOptions(raw)) : createNoop(),
 		};
 	}
 
 	/** Check if an entry has completed publication. */
-	function isVisible(entry: ContentEntry<D>): boolean {
+	function isVisible(entry: {id: string; data: Record<string, unknown>}): boolean {
 		return dataStr(entryData(entry), "status") === "published";
 	}
 
