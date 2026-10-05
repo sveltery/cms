@@ -11,7 +11,7 @@
   import Month from './CalendarMonth.svelte';
   import Filters from './CalendarFilters.svelte';
   import Panel from './CalendarEntryPanel.svelte';
-  import type { CalendarClient,CalendarManifest,CalendarUser } from './ui-types.ts';
+  import type { CalendarClient,CalendarManifest,CalendarUser,CalendarNotice } from './ui-types.ts';
   let { manifest,user,client,queryClient,locale='en',search={},updateSearch,back }: {
     manifest?:CalendarManifest;user?:CalendarUser;client:CalendarClient;queryClient:QueryClient;locale?:string;search?:CalendarSearch;
     updateSearch:(patch:Partial<CalendarSearch>,push?:boolean)=>void;back:()=>void;
@@ -19,6 +19,7 @@
   let now=$state(untrack(()=>Date.now())),compact=$state(false),container=$state<HTMLDivElement>();
   let data=$state<CalendarRange>(),updatedAt=$state(0),fetching=$state(false),error=$state<unknown>();
   let refetch=()=>{};
+  let notice=$state<CalendarNotice>();
   const collections=$derived(Object.entries(manifest?.collections??{}).filter(([,c])=>!c.hidden).map(([slug,c])=>({slug,label:c.label,icon:c.icon})));
   const collectionOrder=$derived(collections.map(c=>c.slug)),locales=$derived(manifest?.i18n?.locales??[]);
   const display=$derived(createCalendarDisplay({locale,timeZone:manifest?.timezone,collections,showLocale:locales.length>1}));
@@ -66,12 +67,13 @@
 </script>
 <div bind:this={container} class="calendar">
 <header><div><h1>Calendar</h1><p>Published and scheduled entries across collections, in the site's time zone.</p></div><Filters {display} {collections} {locales} value={filters} onChange={setFilters} triggerRef={filterTrigger}/></header>
+{#if notice}<div role={notice.type==='error'?'alert':'status'} class="notice"><strong>{notice.title}</strong><p>{notice.description}</p><button type="button" aria-label="Dismiss notification" onclick={()=>notice=undefined}>×</button></div>{/if}
 <div role="tablist" aria-label="Calendar view"><button type="button" role="tab" aria-selected={view==='month'} onclick={()=>updateSearch({view:'month'})}>Month</button><button type="button" role="tab" aria-selected={view==='agenda'} onclick={()=>updateSearch({view:'agenda'})}>Agenda</button></div>
 <div class="toolbar"><div><h2>{display.monthTitle(month)}</h2><p title={`Times are in ${display.zoneName}.`}>{display.zoneShortName(zoneTime)}{#if display.viewerZoneDiffers} · Your time: {display.viewerZoneShortName(zoneTime)}{/if}</p></div><div class="month-nav"><button type="button" aria-label="Previous month" onclick={()=>goToMonth(shiftMonth(month,-1))} onpointerenter={()=>prefetch(shiftMonth(month,-1))} onfocus={()=>prefetch(shiftMonth(month,-1))}>‹</button><button type="button" onclick={()=>goToMonth(undefined)}>Today</button><button type="button" aria-label="Next month" onclick={()=>goToMonth(shiftMonth(month,1))} onpointerenter={()=>prefetch(shiftMonth(month,1))} onfocus={()=>prefetch(shiftMonth(month,1))}>›</button></div></div>
 {#if error}<div role="alert"><h3>Could not load the calendar</h3><p>{errorMessage}</p><button type="button" onclick={()=>refetch()}>Retry</button></div>{/if}
 {#if data?.truncated}<div role="status"><h3>This range has more than {new Intl.NumberFormat(locale).format(CALENDAR_MAX_ENTRIES)} entries</h3><p>The calendar shows the first {new Intl.NumberFormat(locale).format(CALENDAR_MAX_ENTRIES)}{loadedThrough?`, which end on ${display.monthDay(loadedThrough)}`:''}.</p></div>{/if}
 {#if !(error&&!data)}{#if view==='month'}<Month {month} {gridDays} {days} {unfilteredDays} {today} {now} {display} loading={!data} {loadedThrough} {compact} {selectedKey} onSelect={openEntry} onMonthChange={goToMonth} onClearFilters={filtered?clearFilters:undefined}/>
 {:else}{#key month}<Agenda {month} {days} {today} {now} {display} loading={!data} {loadedThrough} {selectedKey} onSelect={openEntry} onClearFilters={filtered?clearFilters:undefined}/>{/key}{/if}{/if}
-<Panel item={selected} {display} {now} {compact} i18n={manifest?.i18n} urlPatterns={Object.fromEntries(Object.entries(manifest?.collections??{}).map(([slug,collection])=>[slug,collection.urlPattern]))} {user} {returnFocus} {client} {queryClient} onClose={closeEntry} onRescheduled={(item,at)=>{const target=dayKeyInZone(Date.parse(at),display.timeZone).slice(0,7);if(target!==month)goToMonth(target);}}/>
+<Panel item={selected} {display} {now} {compact} i18n={manifest?.i18n} urlPatterns={Object.fromEntries(Object.entries(manifest?.collections??{}).map(([slug,collection])=>[slug,collection.urlPattern]))} {user} {returnFocus} {client} {queryClient} onNotice={value=>notice=value} onClose={closeEntry} onRescheduled={(item,at)=>{const target=dayKeyInZone(Date.parse(at),display.timeZone).slice(0,7);if(target!==month)goToMonth(target);}}/>
 </div>
 <style>.calendar{min-width:0;display:grid;gap:1.25rem;}header,.toolbar{display:flex;justify-content:space-between;gap:1rem;align-items:start;}h1{margin:0;font-size:2rem;}h2{margin:0;font-size:1.25rem;}header p,.toolbar p{font-size:.875rem;color:var(--muted-foreground,#666);}button{font:inherit;color:inherit;background:var(--card,#fff);border:1px solid var(--border,#ccc);border-radius:.35rem;padding:.55rem .8rem;cursor:pointer;}[role="tablist"],.month-nav{display:flex;gap:.35rem;}[aria-selected="true"]{background:var(--primary,#174bbf);color:white;}[role="alert"]{border:1px solid #c55;padding:1rem;}[role="status"]{border:1px solid #ba8a36;padding:1rem;}button:focus-visible{outline:2px solid var(--ring,#165ccc);outline-offset:2px;}@media(max-width:639px){header{flex-wrap:wrap;}[role="tablist"] button{flex:1;}}</style>

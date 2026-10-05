@@ -50,7 +50,13 @@ export async function calendarContentGet(event:Event):Promise<Response>{
     const cms=context(event);if(cms instanceof Response)return cms;
     const locale=event.url.searchParams.get('locale')??undefined;
     const service=lifecycleService(cms.database,cms.principal);
-    const item=await service.getContent({type:event.params.collection,id:event.params.id,...(locale?{locale}:{})});
+    const translations=event.url.searchParams.get('view')==='translations';
+    const item=await service.getContent({type:event.params.collection,id:event.params.id,...(locale?{locale}:{})},{inferLocale:translations});
+    if(translations){
+      const {ContentRepository}=await import('../database/lifecycle/upstream/database/repositories/content.ts');
+      const siblings=item.translationGroup?await new ContentRepository(cms.database.db as any).findTranslations(item.type,item.translationGroup):[];
+      return apiSuccess({translationGroup:item.translationGroup,translations:siblings.map(({id,locale,status})=>({id,locale,status}))});
+    }
     // Consume only the published byline read producer, never synthesize credits.
     const {BylineRepository}=await import('../bylines/repository.ts');
     const bylines=await new BylineRepository(cms.database).getContentBylines(item.type,item.id,{locale:item.locale??undefined});

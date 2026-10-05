@@ -19,3 +19,42 @@ async function action(collection:string,id:string,body:Record<string,unknown>,lo
 export function publishContent(collection:string,id:string,options:{locale:string;_rev?:string}){return action(collection,id,{action:'publish',...(options._rev===undefined?{}:{_rev:options._rev})},options.locale);}
 export function scheduleContent(collection:string,id:string,scheduledAt:string,options:{locale:string}){return action(collection,id,{action:'schedule',scheduledAt},options.locale);}
 export function unscheduleContent(collection:string,id:string,options:{locale:string}){return action(collection,id,{action:'unschedule'},options.locale);}
+export async function fetchTranslations(collection:string,id:string):Promise<{translationGroup:string|null;translations:{id:string;locale:string;status:string}[]}>{return parseApiResponse(await apiFetch(`${contentUrl(collection,id)}?view=translations`),'Failed to load translations');}
+export interface PreviewUrlResponse {url:string;expiresAt?:string}
+/** Whole pinned frontend preview fallback; the preview producer is separate. */
+export async function getPreviewUrl(
+	collection: string,
+	id: string,
+	options?: {
+		expiresIn?: string;
+		pathPattern?: string;
+	},
+): Promise<PreviewUrlResponse | null> {
+	try {
+		const response = await apiFetch(`${API_BASE}/content/${collection}/${id}/preview-url`, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(options || {}),
+		});
+
+		if (response.status === 500) {
+			const body: unknown = await response.json().catch(() => ({}));
+			if (
+				typeof body === "object" &&
+				body !== null &&
+				"error" in body &&
+				typeof body.error === "object" &&
+				body.error !== null &&
+				"code" in body.error &&
+				body.error.code === "NOT_CONFIGURED"
+			) {
+				return null;
+			}
+			throw new Error("Failed to get preview URL");
+		}
+
+		return parseApiResponse<PreviewUrlResponse>(response, "Failed to get preview URL");
+	} catch {
+		return null;
+	}
+}
