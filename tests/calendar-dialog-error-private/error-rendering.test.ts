@@ -41,7 +41,7 @@ describe('actual Calendar dialog error SSR rendering', () => {
     expect(tags(alert[0])).not.toContain('script');
   });
 
-  it.each([
+  it.each<[string, string, string[]]>([
     ['single line', 'Conflict', ['Conflict']],
     ['two lines', 'First\nSecond', ['First', 'Second']],
     ['empty middle line', 'First\n\nThird', ['First', '', 'Third']],
