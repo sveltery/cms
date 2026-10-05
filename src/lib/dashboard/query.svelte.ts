@@ -10,6 +10,7 @@ import {
 } from '@tanstack/query-core';
 
 const contextKey = Symbol('sveltery-dashboard-query-client');
+const clientCachesKey = Symbol('sveltery-dashboard-client-caches');
 const focusedClients = new WeakMap<QueryClient, { count: number; remove: () => void }>();
 
 export function createDashboardQueryClient(): QueryClient {
@@ -18,6 +19,17 @@ export function createDashboardQueryClient(): QueryClient {
 export function provideDashboardQueryClient(client: QueryClient): void { setContext(contextKey, client); }
 export function getDashboardQueryClient(): QueryClient | undefined {
   return getContext<QueryClient | undefined>(contextKey);
+}
+export function provideDashboardClientQueryClients(): void {
+  const clients = new WeakMap<object, QueryClient>();
+  setContext(clientCachesKey, (identity: object) => {
+    let client = clients.get(identity);
+    if (!client) { client = createDashboardQueryClient(); clients.set(identity, client); }
+    return client;
+  });
+}
+export function getDashboardClientQueryClientResolver(): ((identity: object) => QueryClient) | undefined {
+  return getContext<((identity: object) => QueryClient) | undefined>(clientCachesKey);
 }
 export function resolveDashboardQueryClient(supplied?: QueryClient): QueryClient {
   return supplied ?? getDashboardQueryClient() ?? createDashboardQueryClient();

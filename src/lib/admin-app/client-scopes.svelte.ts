@@ -2,7 +2,7 @@
 // Default consumers retain the root cache and pinned Source query keys/policy.
 import { getContext, setContext } from 'svelte';
 import type { QueryClient } from '@tanstack/query-core';
-import { createDashboardQueryClient, resolveDashboardQueryClient } from '../dashboard/query.svelte';
+import { createDashboardQueryClient, resolveDashboardQueryClient, getDashboardClientQueryClientResolver } from '../dashboard/query.svelte';
 import { createWelcomeDismissal } from '../dashboard/welcome-dismissal.svelte';
 import { createAdminShellState, resolveAdminShellState } from './state.svelte';
 import type { CurrentUserClient } from './current-user.svelte';
@@ -11,7 +11,7 @@ export function createAccountScope(queryClient = createDashboardQueryClient(), s
 }
 export type AccountScope = ReturnType<typeof createAccountScope>;
 const contextKey = Symbol('sveltery-admin-client-scopes');
-function createScopeResolver(root: AccountScope) {
+function createScopeResolver(root: AccountScope, resolveClientCache?: (identity: object) => QueryClient) {
  const clients = new WeakMap<CurrentUserClient['currentUser'], AccountScope>();
  const caches = new WeakMap<QueryClient, AccountScope>([[root.queryClient, root]]);
  function resolve(client?: CurrentUserClient, supplied?: QueryClient): AccountScope {
@@ -22,13 +22,13 @@ function createScopeResolver(root: AccountScope) {
   }
   if (!client) return root;
   let scope = clients.get(client.currentUser);
-  if (!scope) { scope = createAccountScope(); clients.set(client.currentUser, scope); }
+  if (!scope) { scope = createAccountScope(resolveClientCache?.(client.currentUser)); clients.set(client.currentUser, scope); }
   return scope;
  }
  return resolve;
 }
 export function provideAccountScopes(root: AccountScope) {
- setContext(contextKey, createScopeResolver(root));
+ setContext(contextKey, createScopeResolver(root, getDashboardClientQueryClientResolver()));
 }
 export function getAccountScopeResolver() {
  const resolver = getContext<((client?: CurrentUserClient, supplied?: QueryClient) => AccountScope) | undefined>(contextKey);
