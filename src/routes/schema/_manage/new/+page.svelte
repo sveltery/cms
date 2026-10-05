@@ -9,4 +9,4 @@
 </script>
 <svelte:head><title>New Content Type · Sveltery CMS</title></svelte:head>
 <a href={resolve('/schema/_manage')}>Content Types</a>{#if error}<p role="alert">{error}</p>{/if}
-<ContentTypeEditor isNew isSaving={pending} disabled={!data.canMutateSchema} onSave={save} />
+<ContentTypeEditor isNew isSaving={pending} disabled={!data.canMutateSchema} relationsAvailable={false} onSave={save} />

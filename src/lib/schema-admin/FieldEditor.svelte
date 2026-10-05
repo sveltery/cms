@@ -1,5 +1,6 @@
 <script lang="ts">
   import { untrack } from 'svelte';
+  import { base } from '$app/paths';
   // EmDash 1.1.0 FieldEditor behavior; Copyright 2026 Cloudflare Inc. MIT.
   import Choice from './Choice.svelte';
   import RelationForm from './RelationForm.svelte';
@@ -7,7 +8,7 @@
   import * as defaultClient from './client';
   import { modal } from './modal';
   let { open = false, onOpenChange, onSave, field, isSaving = false, collectionSlug, onCreateRelation,
-    client = defaultClient, relationsHref = '/schema/relations' }: any = $props();
+    client = defaultClient, relationsHref = `${base}/schema/relations`, relationsAvailable = true }: any = $props();
   const types = [
     ['string','Short Text','Single line text input'],['text','Long Text','Multi-line plain text'],
     ['number','Number','Decimal number'],['integer','Integer','Whole number'],['boolean','Boolean','True/false toggle'],
@@ -83,8 +84,9 @@
     }} />
   {:else}
     <h2>{step === 'type' ? 'Add Field' : field ? 'Edit Field' : 'Configure Field'}</h2>
+    {#if !relationsAvailable && (step === 'type' || selectedType === 'reference')}<p role="status">Reference fields require available relationship management</p>{/if}
     {#if step === 'type'}
-      <div class="types">{#each types as type}<button type="button" onclick={() => { selectedType = type[0]; step = 'config'; }}>{type[1]} {type[2]}</button>{/each}</div>
+      <div class="types">{#each types as type}<button type="button" disabled={type[0] === 'reference' && !relationsAvailable} onclick={() => { selectedType = type[0]; step = 'config'; }}>{type[1]} {type[2]}</button>{/each}</div>
     {:else}
       <div data-testid="field-editor-config-content" class="max-h-[60vh] overflow-y-auto">
         <p>{typeInfo?.[1]}</p><p>{typeInfo?.[2]}</p>{#if !field}<button type="button" onclick={() => step = 'type'}>Change</button>{/if}
@@ -134,7 +136,7 @@
     {#if error}<p role="alert">{error}</p>{/if}
     <footer><button type="button" disabled={isSaving} onclick={() => onOpenChange(false)}>Cancel</button>
       {#if relation === 'create:relation' && selectedType === 'reference'}<button type="button" onclick={() => step = 'relation'}>Next</button>
-      {:else if step === 'config'}<button type="button" disabled={isSaving || !label || !slug} onclick={save}>{isSaving ? 'Saving...' : field ? 'Update Field' : 'Add Field'}</button>{/if}
+      {:else if step === 'config'}<button type="button" disabled={isSaving || !label || !slug || (selectedType === 'reference' && !relationsAvailable)} onclick={save}>{isSaving ? 'Saving...' : field ? 'Update Field' : 'Add Field'}</button>{/if}
     </footer>
   {/if}
 </dialog>
