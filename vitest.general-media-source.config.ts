@@ -37,5 +37,8 @@ export default defineConfig({
     'parity/emdash/general-media-source/upstream/packages/core/tests/unit/api/handlers/media-upload.test.ts',
     'parity/emdash/general-media-source/upstream/packages/core/tests/unit/api/media-folders-handlers.test.ts',
     'parity/emdash/general-media-source/upstream/packages/core/tests/unit/api/media-focal-point.test.ts'
+    ,'parity/emdash/general-media-source/upstream/packages/core/tests/unit/api/media-list-route.test.ts'
+    ,'parity/emdash/general-media-source/upstream/packages/core/tests/unit/api/media-file-private-keys.test.ts'
+    ,'parity/emdash/general-media-source/upstream/packages/core/tests/unit/api/media-folders-routes.test.ts'
   ] }
 });
