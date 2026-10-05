@@ -73,7 +73,7 @@ it('reports a rejected collection save while retaining unsaved settings for retr
 it('excludes background actions from accessibility queries while its actual deletion dialog is open', async () => {
   const target=await list({onDelete:vi.fn()});
   target.querySelector<HTMLButtonElement>('button[aria-label="Delete Posts"]')!.click();await tick();
-  expect(queryAllByRole(target,'button',{name:'Delete',exact:false})).toHaveLength(1);
+  expect(queryAllByRole(target,'button',{name:/Delete/})).toHaveLength(1);
 });
 it('rolls a rejected collection reorder back to the persisted read model and reports its error', async () => {
   const onReorder=vi.fn(async()=>{throw new Error('Collection order could not be saved');});

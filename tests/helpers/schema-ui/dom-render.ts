@@ -11,7 +11,7 @@ afterEach(() => { for (const root of roots.splice(0)) reactFlushSync(() => root.
 export class Locator {
   constructor(readonly find: () => Element[]) {}
   elements() { flushSync(); return this.find(); }
-  query() { return this.elements()[0] ?? null; }
+  query() { const elements = this.elements(); if (elements.length > 1) throw new Error(`Actual DOM locator is ambiguous: ${elements.length} matching controls`); return elements[0] ?? null; }
   element() { const element = this.query(); if (!element) throw new Error('Control absent from actual native DOM'); return element; }
   last() { return new Locator(() => this.elements().slice(-1)); }
   first() { return this.nth(0); }
@@ -36,7 +36,10 @@ export async function render(ui: React.ReactNode) {
     container,
     getByText(text: string | RegExp, options?: { exact?: boolean }) { return new Locator(() => queryAllByText(container, text, options)); },
     getByLabelText(text: string | RegExp, options?: { exact?: boolean }) { return new Locator(() => queryAllByLabelText(container, text, options)); },
-    getByRole(role: Parameters<typeof queryAllByRole>[1], options?: Parameters<typeof queryAllByRole>[2]) { return new Locator(() => queryAllByRole(container, role, options)); },
+    getByRole(role: Parameters<typeof queryAllByRole>[1], options?: Parameters<typeof queryAllByRole>[2] & { exact?: boolean }) {
+      const name = typeof options?.name === 'string' && !options.exact ? new RegExp(options.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i') : options?.name;
+      return new Locator(() => queryAllByRole(container, role, { ...options, name }));
+    },
     getByTestId(id: string) { return new Locator(() => queryAllByTestId(container, id)); }
     , getByPlaceholder(text: string) { return new Locator(() => queryAllByPlaceholderText(container, text)); }
   };

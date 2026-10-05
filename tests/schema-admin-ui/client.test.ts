@@ -4,7 +4,7 @@ import { adminClient } from '../../src/lib/schema-admin/runtime-client';
 import { fetchRelations } from '../../src/lib/schema-admin/client';
 afterEach(()=>{setBase('');vi.restoreAllMocks();});
 it('uses the configured Kit base for actual schema and relation client requests',async()=>{
-  setBase('/cms');const fetcher=vi.spyOn(globalThis,'fetch').mockResolvedValue(new Response(JSON.stringify({success:true,data:{items:[]}}),{headers:{'Content-Type':'application/json'}}));
+  setBase('/cms');const fetcher=vi.spyOn(globalThis,'fetch').mockImplementation(async()=>new Response(JSON.stringify({success:true,data:{items:[]}}),{headers:{'Content-Type':'application/json'}}));
   await adminClient.listCollections();await fetchRelations();
   expect(fetcher.mock.calls.map(call=>call[0])).toEqual(['/cms/api/schema/collections','/cms/api/relations']);
 });
