@@ -50,8 +50,12 @@ export function bylineDatabase(input: BylineDatabaseInput): Kysely<Database> {
   const db = input.withPlugin(namespace); hosted.set(input,db); hosted.set(db,db);
   return db;
 }
+/** Read-only cache identity lookup; unknown derived handles do not acquire an owner. */
+export function registeredBylineDatabaseOwner(db: Kysely<Database>): CmsDatabase | undefined {
+  return owners.get(db);
+}
 export function bylineDatabaseOwner(db: Kysely<Database>): CmsDatabase {
-  const owner = owners.get(db);
+  const owner = registeredBylineDatabaseOwner(db);
   if (!owner) throw new Error('Byline writes require the actual registered CMS database owner');
   return owner;
 }

@@ -7,7 +7,11 @@
  * Discussion #1174 / Phase 3. Two-tier cache for the byline custom-field
  * registry, mirroring the `settings/index.ts` pattern.
  *
- * **Tier 1 — per-isolate (globalThis).** Field definitions change rarely
+ * **Tier 1 — per-isolate, per actual configured database owner (globalThis).**
+ * Native runtime configuration can use multiple Node databases or D1 bindings
+ * in one isolate. Each owner gets its own value/version/single-flight holder.
+ * Unknown read-only views bypass both tiers rather than inventing an owner.
+ * Field definitions change rarely
  * but are read on every byline hydration (admin pages, content rendering,
  * API responses). Caching at the isolate level drops the SELECT-from-
  * `_emdash_byline_fields` from once-per-hydration to once-per-isolate-
@@ -19,14 +23,15 @@
  * isolate (the workerd never-settling-promise hazard that produced 524s).
  *
  * Stored on globalThis under `Symbol.for("sveltery:byline-field-defs")` so
- * Vite SSR chunk duplication can't produce two independent caches (same
+ * Vite SSR chunk duplication can't produce two independent owner maps (same
  * pattern as `request-cache.ts` and `request-context.ts`).
  *
  * **Tier 2 — per-request.** Wraps both the version read and the defs
  * fetch in `requestCached` so a single page render that hits byline
  * hydration multiple times (e.g. list view + individual byline lookups
  * in a sidebar) pays at most one version read and one defs fetch in
- * total. The defs cache key includes the version, so a (highly
+ * total. Both request keys include the owner namespace. The defs cache key also
+ * includes the version, so a (highly
  * unlikely) mid-request bump still produces a self-consistent view —
  * the second call sees a different key and refetches.
  *
@@ -62,7 +67,7 @@ import type { Database } from "./database-types.ts";
 import { requestCached } from "../menus/request-cache.ts";
 import { getRequestContext } from "../menus/context.ts";
 import { BylineSchemaRegistry } from "./schema.ts";
-import { bylineDatabaseOwner } from "./storage.ts";
+import { registeredBylineDatabaseOwner } from "./storage.ts";
 import type { CmsDatabase } from "../database/contract.ts";
 import type { BylineFieldDefinition } from "./types.ts";
 import { createInitLock, type InitLock, initWithLock } from "../redirects/init-lock.ts";
@@ -98,9 +103,8 @@ const state: FieldDefsCacheState =
 
 /** Never infer database identity from a version, namespace or SQL text. */
 function fieldDefsHolder(db: Kysely<Database>): DatabaseFieldDefsHolder | undefined {
-	let owner: CmsDatabase;
-	try { owner = bylineDatabaseOwner(db); }
-	catch { return undefined; }
+	const owner = registeredBylineDatabaseOwner(db);
+	if (!owner) return undefined;
 	let holder = state.holders.get(owner);
 	if (!holder) {
 		holder = { value: null, hasValue: false, cachedVersion: -1,
