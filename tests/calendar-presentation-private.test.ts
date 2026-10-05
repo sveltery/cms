@@ -2,7 +2,7 @@
 // Pure controlled clients/timers only: zero original Source callbacks or HTTP credit.
 import {afterEach,beforeEach,describe,expect,it,vi} from 'vitest';
 import {QueryClient,type QueryObserverOptions} from '@tanstack/react-query';
-import {calendarEditedState,calendarInitialLoading,calendarMenuOpenTarget,calendarTabTarget,createCalendarHoverTiming,createCalendarTooltipGroup,createCalendarTypeahead} from '../src/lib/calendar/presentation.ts';
+import {calendarEditedState,calendarInitialLoading,calendarMenuOpenTarget,calendarTabTarget,calendarTabFocus,createCalendarHoverTiming,createCalendarTooltipGroup,createCalendarTypeahead} from '../src/lib/calendar/presentation.ts';
 import {runCalendarPanelAction,runCalendarReschedule} from '../src/lib/calendar/panel-actions.ts';
 import {createCalendarRangeOwner,type CalendarRangeOptions} from '../src/lib/calendar/range-owner.ts';
 import {observeCalendarMetadata} from '../src/lib/calendar/metadata-owner.ts';
@@ -16,6 +16,7 @@ describe('Source pending presentation',()=>{
 });
 describe('Source view tabs and filter menu focus',()=>{
   it.each([['ArrowRight',0,2,'ltr',1],['ArrowRight',1,2,'ltr',0],['ArrowLeft',0,2,'ltr',1],['ArrowRight',0,2,'rtl',1],['Home',1,2,'ltr',0],['End',0,2,'ltr',1]] as const)('moves %s from%s', (key,current,count,dir,target)=>{expect(calendarTabTarget(key,current,count,dir)).toBe(target);});
+  it.each([[1,0,true,0],[0,1,true,1],[1,0,false,1]])('external selected%s current%s focusedInside%s retains roving%s',(selected,current,focusedInside,expected)=>{expect(calendarTabFocus(Number(selected),Number(current),Boolean(focusedInside))).toBe(expected);});
   it('reserves Enter/Space activation and vertical arrows for their native owner',()=>{for(const key of ['Enter',' ','ArrowUp','ArrowDown'])expect(calendarTabTarget(key,0,2)).toBeUndefined();});
   it('opens ArrowUp at the last option including clear filters',()=>{expect(calendarMenuOpenTarget('ArrowUp',8)).toBe(7);});
   it('opens pointer/ArrowDown/Enter at the first option',()=>{for(const key of ['','ArrowDown','Enter'])expect(calendarMenuOpenTarget(key,8)).toBe(0);});
