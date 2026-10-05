@@ -1983,3 +1983,26 @@ The immutable913cb1 Source remains unchanged. [The paired feature record](../../
 Four genuine Worker failures came from eager taxonomy imports into the bounded scalar graph and an obsolete single-bundle fixture assumption. The same collection-slug globalSymbol holder/reset is split without duplicating cache state. Real taxonomy repository and object-cache invalidation load only for actual taxonomy work; all lifecycle/reference callers await actual invalidation. Real Vite ESModule transport preserves every chunk and original Worker flags, security, SQL, data and clocks, checking every chunk for node:sqlite. Whole four Worker families pass31; no-nodejscompat scalar execution does not imply complete taxonomy Worker support. This Native module/fixture transport substitution is proposed for finite PR102 backend acceptance; final specific acceptance is unrecorded.
 
 SourceCore222/matcher15, supplemental reference2, NativeAPI10/Source-on-Native7/regressions5/D1eight/compound8, Nativeboundary16 and existingRole4 pass before finalcommonconstructor refactor; checker0/0. Complete final-head normal13/secured9 and fresh independent/configured reviews, Root exact approval and author expected-head regular merge remain pending. Full taxonomy UI, actualQueryCore/App/Seed and full provider/deployed integration remain incomplete.
+
+### Taxonomy canonical provenance gate closure — PR102
+
+CI486 at46b reached the old canonical provenance assertion after its service
+suite passed and rejected the obsolete import-only description of the real
+atomic-adapted taxonomy repository. Definitions had the same obsolete contract.
+This static guard failure earns zero new original Source or causal product-red
+credit. Its full normal validation did not complete; its secured browser job
+passed on46b only and does not qualify a successor.
+
+[The paired feature record](../../docs/taxonomies.md) and
+[canonical prerequisite record](../../docs/canonical-installation.md) now
+distinguish three complete import-only runtime bodies from two complete finite
+Native adaptations. The hash-guarded32 explicit Source/native edits in the
+[adaptation inventory](../../docs/taxonomy-canonical-repository-adaptations.json)
+reconstruct both entire taxonomy bodies without ignored spans or arbitrary
+normalization. Immutable38 canonical/255 taxonomy authorities and all original
+test bodies/data/SQL/clocks remain unchanged. This is provenance evidence with
+zero new callback or behavioral parity credit. Native atomicity, affected-row
+and framework substitutions remain proposed pending current-head full normal13,
+secured9, independent/configured review and specific Root approval before the
+author's expected-head regular merge. Full UI, QueryCore, App/Seed, PostgreSQL
+and deployed Worker integration remain incomplete.
