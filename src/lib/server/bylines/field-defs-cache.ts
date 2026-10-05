@@ -62,6 +62,8 @@ import type { Database } from "./database-types.ts";
 import { requestCached } from "../menus/request-cache.ts";
 import { getRequestContext } from "../menus/context.ts";
 import { BylineSchemaRegistry } from "./schema.ts";
+import { bylineDatabaseOwner } from "./storage.ts";
+import type { CmsDatabase } from "../database/contract.ts";
 import type { BylineFieldDefinition } from "./types.ts";
 import { createInitLock, type InitLock, initWithLock } from "../redirects/init-lock.ts";
 
@@ -76,21 +78,37 @@ interface FieldDefsHolder {
 	lock: InitLock;
 }
 
+interface DatabaseFieldDefsHolder extends FieldDefsHolder {
+	/** A stable request-key namespace for this actual configured owner. */
+	requestKey: number;
+}
+interface FieldDefsCacheState {
+	holders: WeakMap<CmsDatabase, DatabaseFieldDefsHolder>;
+	nextRequestKey: number;
+}
 const HOLDER_KEY = Symbol.for("sveltery:byline-field-defs");
 const g = globalThis as Record<symbol, unknown>;
-const holder: FieldDefsHolder =
-	// eslint-disable-next-line typescript/no-unsafe-type-assertion -- globalThis singleton pattern (see request-cache.ts)
-	(g[HOLDER_KEY] as FieldDefsHolder | undefined) ??
+const state: FieldDefsCacheState =
+	(g[HOLDER_KEY] as FieldDefsCacheState | undefined) ??
 	(() => {
-		const h: FieldDefsHolder = {
-			value: null,
-			hasValue: false,
-			cachedVersion: -1,
-			lock: createInitLock(),
-		};
-		g[HOLDER_KEY] = h;
-		return h;
+		const value: FieldDefsCacheState = { holders: new WeakMap(), nextRequestKey: 0 };
+		g[HOLDER_KEY] = value;
+		return value;
 	})();
+
+/** Never infer database identity from a version, namespace or SQL text. */
+function fieldDefsHolder(db: Kysely<Database>): DatabaseFieldDefsHolder | undefined {
+	let owner: CmsDatabase;
+	try { owner = bylineDatabaseOwner(db); }
+	catch { return undefined; }
+	let holder = state.holders.get(owner);
+	if (!holder) {
+		holder = { value: null, hasValue: false, cachedVersion: -1,
+			lock: createInitLock(), requestKey: state.nextRequestKey++ };
+		state.holders.set(owner, holder);
+	}
+	return holder;
+}
 
 const REQUEST_CACHE_KEY_VERSION = "byline-fields-version";
 const REQUEST_CACHE_KEY_DEFS_PREFIX = "byline-field-defs:";
@@ -110,8 +128,8 @@ let reclaimDeadlineMs = 10_000;
  * the duration of the current request via `requestCached`. Returns `0`
  * when the row is missing (matches `BylineSchemaRegistry.getVersion`).
  */
-async function getBylineFieldsVersion(db: Kysely<Database>): Promise<number> {
-	return requestCached(REQUEST_CACHE_KEY_VERSION, () => new BylineSchemaRegistry(db).getVersion());
+async function getBylineFieldsVersion(db: Kysely<Database>, holder: DatabaseFieldDefsHolder): Promise<number> {
+	return requestCached(`${REQUEST_CACHE_KEY_VERSION}:${holder.requestKey}`, () => new BylineSchemaRegistry(db).getVersion());
 }
 
 /**
@@ -128,10 +146,14 @@ async function getBylineFieldsVersion(db: Kysely<Database>): Promise<number> {
  * Always returns an array. Empty = no custom fields registered.
  */
 export async function getBylineFieldDefs(db: Kysely<Database>): Promise<BylineFieldDefinition[]> {
+	const holder = fieldDefsHolder(db);
+	// Unregistered read-only handles cannot establish trusted owner identity.
+	// Bypass both tiers instead of assigning them another database's cache.
+	if (!holder) return new BylineSchemaRegistry(db).listFields();
 	const isolated = getRequestContext()?.dbIsIsolated === true;
-	const version = await getBylineFieldsVersion(db);
+	const version = await getBylineFieldsVersion(db, holder);
 	const dirty = version % 2 !== 0;
-	return requestCached(`${REQUEST_CACHE_KEY_DEFS_PREFIX}${version}`, async () => {
+	return requestCached(`${REQUEST_CACHE_KEY_DEFS_PREFIX}${holder.requestKey}:${version}`, async () => {
 		if (isolated || dirty) {
 			return new BylineSchemaRegistry(db).listFields();
 		}
@@ -171,11 +193,7 @@ export async function getBylineFieldDefs(db: Kysely<Database>): Promise<BylineFi
  * coordination that lets other isolates see the change.
  */
 export function resetBylineFieldDefsCacheForTests(): void {
-	holder.value = null;
-	holder.hasValue = false;
-	holder.cachedVersion = -1;
-	holder.lock.ownerStartedAt = null;
-	holder.lock.generation = 0;
+	state.holders = new WeakMap();
 	reclaimDeadlineMs = 10_000;
 }
 
