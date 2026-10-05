@@ -31,7 +31,7 @@ it('sequential explicit account clients under one root render their own identity
  const second = { currentUser: vi.fn(async () => bob), dismissWelcome: vi.fn(async () => {}) };
  const state = lifecycleState({ accounts: [first] }); const target = await render(state);
  await vi.waitFor(() => expect(target.querySelector('[data-account="0"] [role=dialog]')?.textContent).toContain('Alice'));
- state.accounts = [first, second]; await settled();
+ state.accounts = [state.accounts[0], second]; await settled();
  await vi.waitFor(() => expect(target.querySelector('[data-account="1"] [role=dialog]')?.textContent).toContain('Bob'));
  expect([first.currentUser.mock.calls.length, second.currentUser.mock.calls.length]).toEqual([1, 1]);
 });
