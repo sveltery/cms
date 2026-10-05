@@ -304,6 +304,18 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       if(redirectCreated)completeContentSlugRedirect(database,dependencies.after);
       return published;
     },
+    /** Calendar administration delegates to the existing published repository. */
+    async schedule(input:unknown):Promise<ContentItem> {
+      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
+      owner(item,actor,'content:publish_any');precondition(value.expected,item);
+      const scheduledAt=parse(v.pipe(v.string(),v.minLength(1),v.maxLength(128)),value.scheduledAt);
+      return translate(()=>content.schedule(value.type,value.id,scheduledAt,new Date(),{version:item.version,updatedAt:item.updatedAt}));
+    },
+    async unschedule(input:unknown):Promise<ContentItem> {
+      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
+      owner(item,actor,'content:publish_any');precondition(value.expected,item);
+      return translate(()=>content.unschedule(value.type,value.id,{version:item.version,updatedAt:item.updatedAt}));
+    },
     async unpublish(input:unknown):Promise<ContentItem> {
       const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
       owner(item,actor,'content:publish_any');precondition(value.expected,item);
