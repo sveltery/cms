@@ -457,3 +457,5 @@ qualification. All Source34 authorities and failed Source33 doctor assertion
 remain unchanged. Current normal13/secured9, configured/fresh review, Root approval
 and author regular merge remain required; full dashboard/admin/product parity
 remains incomplete.
+
+The ordinary merge `d245a0fa` includes actual public Byline main `90fa2410625e5b497f1547093e4a832c1440690f` as its second parent after native class-client closure `70edb3b1`. The complete public-main Source command chain, including Byline Source and Native gates, precedes the same four App/Dashboard gates. All prior literal evidence attributes and both compatibility histories are retained. App/Dashboard product files, all34 pinned Source authorities, original datasets/clocks and the failed original Source33 doctor assertion are unchanged by this integration. Qualification of this new union, public-head configured review, fresh semantic closure and Root approval remain pending; the earlier local70 run supplies only evidence for its own stationary tree. Full admin/dashboard/product parity remains incomplete.
