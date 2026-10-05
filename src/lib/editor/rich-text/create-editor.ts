@@ -43,6 +43,9 @@ interface Host {
 // bounds, marks and history. The Svelte host owns rendering and actual props.
 export function createPortableTextEditor(host: Host): Editor {
   const initial = host.props(), blockTypes = new Set((initial.pluginBlocks ?? []).map(block => block.type));
+  // Both embed types share one actual authoring provider owner. Each node view
+  // still receives its own node/getPos/state when this renderer is invoked.
+  const embedNodeView = createEmbedBlockNodeView(() => host.props().translate ?? sourceMessage, () => host.props().locale ?? 'en');
   let lastValue = initial.value ?? [];
   const editor = new Editor({
     element: host.element,
@@ -55,8 +58,8 @@ export function createPortableTextEditor(host: Host): Editor {
         link: { shouldAutoLink: url => URL_SCHEME_REGEX.test(url) || WWW_PREFIX_REGEX.test(url), openOnClick: false, enableClickSelection: true, HTMLAttributes: { class: 'text-kumo-link underline' } }, underline: {} }),
       TopBlockDocument, EmDashOrderedList, CodeMarkExtension,
       CodeBlockExtension.configure({ translate: descriptor => (host.props().translate ?? sourceMessage)(descriptor) }),
-      HtmlBlockExtension.extend({ addNodeView: () => createEmbedBlockNodeView(() => host.props().translate ?? sourceMessage) }),
-      IframeBlockExtension.extend({ addNodeView: () => createEmbedBlockNodeView(() => host.props().translate ?? sourceMessage) }),
+      HtmlBlockExtension.extend({ addNodeView: () => embedNodeView }),
+      IframeBlockExtension.extend({ addNodeView: () => embedNodeView }),
       ImageExtension, GalleryExtension, PluginBlockExtension, MarkdownLinkExtension,
       Subscript, Superscript,
       EmDashTable.configure({ allowTableNodeSelection: true, cellMinWidth: TABLE_CELL_MIN_WIDTH, resizable: false }),

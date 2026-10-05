@@ -5,7 +5,7 @@ import { nodeViewState } from './node-view-state.svelte';
 import { sourceMessage, type Translate } from './types';
 import { stopEvent } from './top-block';
 
-export function createEmbedBlockNodeView(getTranslate: () => Translate): NodeViewRenderer {
+export function createEmbedBlockNodeView(getTranslate: () => Translate, getLocale: () => string = () => 'en'): NodeViewRenderer {
 return ({ node, editor, getPos }) => {
   let current = node;
   const dom = document.createElement('div'); dom.dataset.type = node.type.name;
@@ -18,12 +18,17 @@ return ({ node, editor, getPos }) => {
   }
   const state = nodeViewState(node, editor, attributes => {
     atEditablePosition(position => editor.view.dispatch(editor.state.tr.setNodeMarkup(position, undefined, { ...current.attrs, ...attributes })));
-  }, descriptor => getTranslate()(descriptor), () => {
+  }, descriptor => {
+    // A provider may keep the same translator function when its locale changes.
+    // Reading the owning locale tracks that actual host update in Svelte labels.
+    getLocale();
+    return getTranslate()(descriptor);
+  }, () => {
     atEditablePosition(position => {
       editor.view.focus();
       editor.chain().setNodeSelection(position).deleteSelection().run();
     });
-  }, getPos);
+  }, getPos, getLocale);
   const instance = flushSync(() => mount(EmbedBlockEditor, { target: dom, props: { state } }));
   const editableChanged = () => { state.editable = editor.isEditable; };
   editor.on('update', editableChanged);
