@@ -4,6 +4,7 @@ import { migrateCms } from '../../src/lib/server/database/migrations.ts';
 import { SchemaRegistry } from '../../src/lib/server/database/registry.ts';
 import { lifecycleService } from '../../src/lib/server/database/lifecycle/service.ts';
 import { principal } from '../helpers/lifecycle-fixture.ts';
+import { readCalendarContent } from '../../src/lib/server/calendar/content-read.ts';
 const closers:Array<()=>Promise<void>>=[];
 afterEach(async()=>{for(const close of closers.splice(0))await close();});
 async function fixture(target:'Node'|'D1') {
@@ -59,5 +60,23 @@ for(const target of ['Node','D1'] as const)describe(`${target} actual calendar l
     const scheduled=await service.schedule({type:'posts',id:item.id,locale:'en',scheduledAt:'2030-10-20T09:00:00.000Z'});
     expect(scheduled.slug).toBeNull();expect(scheduled.status).toBe('scheduled');
     expect(scheduled.scheduledAt).toBe('2030-10-20T09:00:00.000Z');
+  });
+  it('reads a non-English calendar ID when detail locale is omitted',async()=>{
+    const {service}=await fixture(target);
+    const item=await service.createContent({type:'posts',locale:'fr',slug:'lancement',data:{title:'Lancement'}});
+    const detail=await readCalendarContent(service,'posts',item.id);
+    expect(detail.id).toBe(item.id);expect(detail.locale).toBe('fr');expect(detail.data.title).toBe('Lancement');
+  });
+  it('resolves the existing content slug using the supplied locale',async()=>{
+    const {service}=await fixture(target);
+    const item=await service.createContent({type:'posts',locale:'fr',slug:'lancement',data:{title:'Lancement'}});
+    const detail=await readCalendarContent(service,'posts','lancement','fr');
+    expect(detail.id).toBe(item.id);expect(detail.locale).toBe('fr');
+  });
+  it('retains Source ID lookup independence from the supplied detail locale',async()=>{
+    const {service}=await fixture(target);
+    const item=await service.createContent({type:'posts',locale:'fr',slug:'lancement',data:{title:'Lancement'}});
+    const detail=await readCalendarContent(service,'posts',item.id,'en');
+    expect(detail.id).toBe(item.id);expect(detail.locale).toBe('fr');
   });
 });
