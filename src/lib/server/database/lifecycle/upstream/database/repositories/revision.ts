@@ -1,7 +1,7 @@
 // EmDash 1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; source blob e1fa0f08bf3affdb97367bea2261ef2fc6feb45f.
 // Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
 // Host adaptations: .ts module specifiers, CMS table namespace, erasable parameter properties.
-import { sql, type Kysely, type Selectable } from "kysely";
+import { sql, type Kysely, type Selectable, type CompiledQuery } from "kysely";
 import { monotonicFactory } from "ulidx";
 
 import { ContentDatetimeNormalizer, type DatetimeContextCache } from "../content-datetime.ts";
@@ -59,27 +59,19 @@ this.db = db;
 	/**
 	 * Create a new revision
 	 */
+	async prepareCreate(input:CreateRevisionInput):Promise<{id:string;statement:CompiledQuery}> {
+		const id=createRevisionId();
+		const data=await this.datetimes.normalizeData(input.collection,input.data);
+		const row:Omit<RevisionTable,"created_at">={id,collection:input.collection,entry_id:input.entryId,data:JSON.stringify(data),author_id:input.authorId??null};
+		return {id,statement:this.db.insertInto("_cms_revisions").values(row).compile()};
+	}
+
 	async create(input: CreateRevisionInput): Promise<Revision> {
-		const id = createRevisionId();
-		const data = await this.datetimes.normalizeData(input.collection, input.data);
-
-		const row: Omit<RevisionTable, "created_at"> = {
-			id,
-			collection: input.collection,
-			entry_id: input.entryId,
-			data: JSON.stringify(data),
-			author_id: input.authorId ?? null,
-		};
-
-		await this.db.insertInto("_cms_revisions").values(row).execute();
-
-		const revision = await this.findById(id);
-		if (!revision) {
-			throw new Error("Failed to create revision");
-		}
-
-		await this.queuePruning(input.collection, input.entryId, id);
-
+		const prepared=await this.prepareCreate(input);
+		await this.db.executeQuery(prepared.statement);
+		const revision=await this.findById(prepared.id);
+		if(!revision)throw new Error("Failed to create revision");
+		await this.queuePruning(input.collection,input.entryId,prepared.id);
 		return revision;
 	}
 

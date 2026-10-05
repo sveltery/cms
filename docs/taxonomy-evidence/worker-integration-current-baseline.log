@@ -1,0 +1,113 @@
+✖ workerd: collection metadata service runs on the actual D1 binding without nodejs_compat (283.673995ms)
+✔ Node: equivalent schema, scalar, CAS, soft-delete and persisted session contract (117.555861ms)
+✔ Node: failed batch rolls back DML and CREATE/ALTER/DROP DDL (2.297656ms)
+✔ Node: fresh/v1 auth failures roll back all DDL and migration markers (116.214815ms)
+✔ Node: incomplete/future migration state fails without repair (83.627411ms)
+✔ D1: equivalent schema, scalar, CAS, soft-delete and persisted session contract (623.347257ms)
+✔ D1: failed batch rolls back DML and CREATE/ALTER/DROP DDL (87.789132ms)
+✔ D1: fresh/v1 auth failures roll back all DDL and migration markers (932.169197ms)
+✔ D1: incomplete/future migration state fails without repair (866.698655ms)
+✔ D1: deterministic stale fresh/v1 callers recover the actual binding error envelope (437.645699ms)
+✔ D1: concurrent same-slug creators map the real UNIQUE envelope to COLLECTION_EXISTS (190.593651ms)
+✔ D1: startup accepts a complete upgrade between actual preflight reads (210.786067ms)
+✔ D1: one actual batch forwards parameters/order, RETURNING rows, zero/positive changes and insert IDs (70.983043ms)
+✔ D1: unrelated envelopes do not turn into successful migration race recovery (169.011125ms)
+✔ local: envelope classifier keeps Node messages and ignores lookalike/unknown D1 formats (0.431028ms)
+✔ D1: callback transactions, streaming and general introspection reject explicitly (73.987803ms)
+✔ D1: raw parameter variants retain binding support/rejections without Node normalization (116.258665ms)
+✔ D1 and Node: v1 content and hashed sessions persist across close/reopen and revocation (552.274139ms)
+service core:user:: Uncaught TypeError: import___vite_browser_external.AsyncLocalStorage is not a constructor
+  at application.js:18844:18
+  at application.js:18847:3
+✖ local workerd: real D1-backed CMS/session core runs without nodejs_compat (204.361281ms)
+✖ workerd: draft restore uses actual D1 without nodejs_compat, with one concurrent CAS winner (261.816921ms)
+✔ Node source: five collection output, manifest-build.test.ts:537 (55.77511ms)
+✔ Node supplemental: 0/1/50/51/100 boundaries preserve ordered projection with bounded reads (184.11402ms)
+✔ Node supplemental: each collection retains its 32-field cap, including ignored malformed rows (30.313283ms)
+✔ Node supplemental: authorization precedes SQL; constructor fields remain unparsed; errors propagate (32.792532ms)
+✔ Node supplemental: uncached collection and field changes appear on the next read (21.729263ms)
+✔ D1 source: five collection output, manifest-build.test.ts:537 (1899.912261ms)
+✔ D1 supplemental: 0/1/50/51/100 boundaries preserve ordered projection with bounded reads (6916.920331ms)
+✔ D1 supplemental: each collection retains its 32-field cap, including ignored malformed rows (1388.532677ms)
+✔ D1 supplemental: authorization precedes SQL; constructor fields remain unparsed; errors propagate (1061.192404ms)
+✔ D1 supplemental: uncached collection and field changes appear on the next read (984.897861ms)
+service core:user:: Uncaught TypeError: import___vite_browser_external.AsyncLocalStorage is not a constructor
+  at script-0:18776:18
+  at script-0:18779:3
+✖ workerd supplemental: manifest executes on the actual local D1 binding without nodejs_compat (241.565786ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 27
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14089.927497
+
+✖ failing tests:
+
+test at tests/collection-update-workerd.test.ts:7:1
+✖ workerd: collection metadata service runs on the actual D1 binding without nodejs_compat (283.673995ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  3 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/cms-full-taxonomy-api-admin/tests/collection-update-workerd.test.ts:12:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/database-d1.test.ts:251:1
+✖ local workerd: real D1-backed CMS/session core runs without nodejs_compat (204.361281ms)
+  MiniflareCoreError [ERR_RUNTIME_FAILURE]: The Workers runtime failed to start. There is likely additional logging output above.
+      at #assembleAndUpdateConfig (/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/index.js:89153:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Mutex.runWith (/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/index.js:58144:48)
+      at async #waitForReady (/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/index.js:89266:5)
+      at async newRuntime (file:///workspace/cms-full-taxonomy-api-admin/tests/helpers/async-d1-storage.ts:104:9)
+      at async asyncD1StorageFor (file:///workspace/cms-full-taxonomy-api-admin/tests/helpers/async-d1-storage.ts:187:19)
+      at async localD1 (file:///workspace/cms-full-taxonomy-api-admin/tests/helpers/local-d1-fixture.ts:6:32)
+      at async TestContext.<anonymous> (file:///workspace/cms-full-taxonomy-api-admin/tests/database-d1.test.ts:257:33)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'ERR_RUNTIME_FAILURE',
+    cause: undefined
+  }
+
+test at tests/draft-trash-workerd.test.ts:7:1
+✖ workerd: draft restore uses actual D1 without nodejs_compat, with one concurrent CAS winner (261.816921ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  3 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/cms-full-taxonomy-api-admin/tests/draft-trash-workerd.test.ts:12:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/editor-manifest-batching.test.ts:186:1
+✖ workerd supplemental: manifest executes on the actual local D1 binding without nodejs_compat (241.565786ms)
+  MiniflareCoreError [ERR_RUNTIME_FAILURE]: The Workers runtime failed to start. There is likely additional logging output above.
+      at #assembleAndUpdateConfig (/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/index.js:89153:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Mutex.runWith (/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/index.js:58144:48)
+      at async #waitForReady (/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/index.js:89266:5)
+      at async _Miniflare.dispatchFetch (/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/index.js:89396:5)
+      at async TestContext.<anonymous> (file:///workspace/cms-full-taxonomy-api-admin/tests/editor-manifest-batching.test.ts:195:22)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'ERR_RUNTIME_FAILURE',
+    cause: undefined
+  }

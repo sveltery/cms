@@ -3,11 +3,14 @@ import { OperationNodeTransformer, type Kysely, type KyselyPlugin,
 import type { CmsDatabase } from '../database/contract.ts';
 import { RawBindingD1Adapter } from '../database/d1.ts';
 import type { Database } from './types.ts';
+import { registerTaxonomyWriteHost, type TaxonomyWritePlan } from '../taxonomies/write-plan.ts';
+import type { CompiledQuery } from 'kysely';
 
 const names: Readonly<Record<string, string>> = {
   options: '_cms_options', taxonomies: '_cms_taxonomies', content_taxonomies: '_cms_content_taxonomies',
   _emdash_taxonomy_defs: '_cms_taxonomy_defs', _emdash_taxonomy_def_groups: '_cms_taxonomy_def_groups'
 };
+const schemaNames: Readonly<Record<string, string>> = { _emdash_collections: '_cms_collections', _emdash_fields: '_cms_fields' };
 // Retain literal bytes; map only whole SQL identifier tokens in Source raw SQL.
 function nativeSql(value: string): string {
   return value.replace(/'(?:''|[^'])*'|"(?:""|[^"])*"|[A-Za-z_][A-Za-z_0-9]*/g, token => {
@@ -22,7 +25,7 @@ class NativeNamespace extends OperationNodeTransformer {
   protected override transformTable(node: TableNode): TableNode {
     const transformed = super.transformTable(node);
     const name = transformed.table.identifier.name;
-    const mapped = names[name];
+    const mapped = names[name] ?? schemaNames[name];
     return mapped ? { ...transformed, table: { ...transformed.table,
       identifier: { ...transformed.table.identifier, name: mapped } } } : transformed;
   }
@@ -85,5 +88,26 @@ const d1SourceBoundary: KyselyPlugin = {
 export function canonicalSourceDatabase(database: CmsDatabase): Kysely<Database> {
   const db = database.db.getExecutor().adapter instanceof RawBindingD1Adapter
     ? database.db.withPlugin(d1SourceBoundary) : database.db;
-  return db.withPlugin(namespace) as unknown as Kysely<Database>;
+  const logical = db.withPlugin(namespace) as unknown as Kysely<Database>;
+  registerTaxonomyWriteHost(logical, database, compileTaxonomyPlan);
+  return logical;
+}
+
+// Private compiler for the finite taxonomy writer. The public D1 query boundary
+// above stays active. Only qualified synchronous query-list producers receive this compiler.
+const taxonomyTargets = new Set(['_cms_taxonomies', '_cms_content_taxonomies', '_cms_taxonomy_defs', '_cms_taxonomy_def_groups']);
+function compileTaxonomyPlan(database: CmsDatabase, plan: TaxonomyWritePlan): readonly CompiledQuery[] {
+  const compiler = database.db.withPlugin(namespace) as unknown as Kysely<Database>;
+  const queries = plan(compiler);
+  return queries.map(query => {
+    const compiled = 'isRawBuilder' in query ? query.compile(compiler) : query.compile();
+    const node = compiled.query;
+    let target: string | undefined;
+    if (node.kind === 'InsertQueryNode' && !node.with) target = tableName(node.into);
+    if (node.kind === 'UpdateQueryNode' && !node.with && !node.from && !node.joins) target = tableName(node.table);
+    if (node.kind === 'DeleteQueryNode' && !node.with && !node.using && node.from.froms.length === 1) target = tableName(node.from.froms[0]);
+    const reorder = node.kind === 'RawNode' && /^\s*UPDATE _cms_taxonomies\s+SET sort_order = CASE translation_group\b/.test(compiled.sql) && !/;|--|\/\*/.test(compiled.sql);
+    if ((!target || !taxonomyTargets.has(target)) && !reorder) throw new Error('Taxonomy plan contains an unsupported statement');
+    return compiled;
+  });
 }

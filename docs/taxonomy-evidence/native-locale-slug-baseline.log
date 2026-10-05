@@ -1,0 +1,57 @@
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+ ❯ tests/taxonomy-native/runtime-regressions.test.ts (5 tests | 2 failed) 220ms
+   ✓ TAXRUNREV01: reorder ignores malformed locale query and persists the requested positions 90ms
+   ✓ TAXRUNREV02: configured locale casing resolves the real French term and persists fr content 36ms
+   ✓ TAXRUNREV03: omitted-locale update resolves the existing French entry and replaces actual terms 34ms
+   × TAXRUNREV04: explicit FR get by slug resolves the real French entry 33ms
+   × TAXRUNREV04: explicit FR update by slug replaces real French assignments under current CAS 27ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/taxonomy-native/runtime-regressions.test.ts > TAXRUNREV04: explicit FR get by slug resolves the real French entry
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/taxonomy-native/runtime-regressions.test.ts:77:25
+     75|  expect(created.data.item.id).not.toBe('bonjour');
+     76|  const result=await handleContentGet(controlled.db!,'post','bonjour','…
+     77|  expect(result.success).toBe(true);if(!result.success)throw new Error(…
+       |                         ^
+     78|  expect(result.data.item.id).toBe(created.data.item.id);
+     79|  expect(result.data.item.locale).toBe('fr');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/taxonomy-native/runtime-regressions.test.ts > TAXRUNREV04: explicit FR update by slug replaces real French assignments under current CAS
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/taxonomy-native/runtime-regressions.test.ts:92:25
+     90|  expect(created.data.item.id).not.toBe('bonjour');
+     91|  const result=await handleContentUpdate(controlled.db!,'post','bonjour…
+     92|  expect(result.success).toBe(true);if(!result.success)throw new Error(…
+       |                         ^
+     93|  expect(result.data.item.id).toBe(created.data.item.id);
+     94|  expect(result.data.item.locale).toBe('fr');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 3 passed (5)
+   Start at  00:46:37
+   Duration  1.78s (transform 947ms, setup 0ms, import 1.40s, tests 220ms, environment 0ms)
+
+JSON report written to /tmp/taxonomy102-rev04-native-baseline.json

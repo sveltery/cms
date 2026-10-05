@@ -23,4 +23,9 @@ export const contentListOptions={
 export const genericContentList=v.strictObject({type:identifier,...contentListOptions});
 // Ordinary lifecycle saves distinguish absent data from an explicit {}. The
 // legacy draft-only schema retains its required data contract and caller CAS.
-export const genericContentUpdate=v.strictObject({...updateDraftInput.entries,data:v.optional(schemaData)});
+// Keep own taxonomy names, including legitimate "constructor"/"prototype"
+// keys; the shared slug resolver validates every explicit taxonomy selection.
+export const taxonomySlugMap=v.custom<Record<string,string[]>>(value=>
+ value!==null&&typeof value==='object'&&!Array.isArray(value)&&
+ Object.values(value).every(slugs=>Array.isArray(slugs)&&slugs.every(slug=>typeof slug==='string'&&slug.length>0)));
+export const genericContentUpdate=v.strictObject({...updateDraftInput.entries,data:v.optional(schemaData),taxonomies:v.optional(taxonomySlugMap)});
