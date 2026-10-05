@@ -1,0 +1,53 @@
+
+ RUN  v4.1.10 /workspace/cms-full-scheduling-calendar
+
+ ✓ tests/scheduling-native/calendar.test.ts (11 tests) 263ms
+ ✓ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/api/calendar-handlers.test.ts (5 tests) 162ms
+ ✓ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/unit/astro/calendar-route.test.ts (4 tests) 141ms
+ ✓ parity/emdash/scheduled-publishing-source/upstream/packages/admin/tests/lib/calendar.test.ts (18 tests) 59ms
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/integration/database/scheduled-publish-plan.test.ts (3 tests | 2 failed) 105ms
+   × seeks due content through the scheduled index instead of scanning live rows 46ms
+   ✓ still returns due content oldest-first, skipping soft-deleted rows 28ms
+   × migrates a pre-074 table off the deleted_at-leading plan 30ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/integration/database/scheduled-publish-plan.test.ts > seeks due content through the scheduled index instead of scanning live rows
+AssertionError: expected 'SEARCH ec_post USING INDEX idx_ec_pos…' to match /SEARCH ec_post USING (?:COVERING )?IN…/
+
+- Expected:
+/SEARCH ec_post USING (?:COVERING )?INDEX idx_ec_post_del_sched \(deleted_at=\? AND scheduled_at/
+
++ Received:
+"SEARCH ec_post USING INDEX idx_ec_post_deleted_status (deleted_at=?)"
+
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/integration/database/scheduled-publish-plan.test.ts:60:30
+     58|
+     59|  const plan = explain(scheduledQuery());
+     60|  expect(contentAccess(plan)).toMatch(
+       |                              ^
+     61|   /SEARCH ec_post USING (?:COVERING )?INDEX idx_ec_post_del_sched \(de…
+     62|  );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/integration/database/scheduled-publish-plan.test.ts > migrates a pre-074 table off the deleted_at-leading plan
+Error: no such index: idx_ec_post_del_sched
+ ❯ NodeSqliteCompatDatabase.exec src/lib/server/database/node-sqlite-compat.ts:78:18
+     76|
+     77|  exec(sql: string): void {
+     78|   this.#database.exec(sql);
+       |                  ^
+     79|  }
+     80|
+ ❯ parity/emdash/scheduled-publishing-source/upstream/packages/core/tests/integration/database/scheduled-publish-plan.test.ts:82:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  2 failed | 39 passed (41)
+   Start at  16:18:42
+   Duration  2.60s (transform 440ms, setup 67ms, import 1.26s, tests 730ms, environment 0ms)
+
+JSON report written to /tmp/scheduling-calendar-queryplan-first-whole41.json
