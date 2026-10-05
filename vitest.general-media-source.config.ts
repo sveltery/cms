@@ -48,5 +48,9 @@ export default defineConfig({
     ,'parity/emdash/general-media-source/upstream/packages/core/tests/unit/api/media-list-route.test.ts'
     ,'parity/emdash/general-media-source/upstream/packages/core/tests/unit/api/media-file-private-keys.test.ts'
     ,'parity/emdash/general-media-source/upstream/packages/core/tests/unit/api/media-folders-routes.test.ts'
+    ,'parity/emdash/general-media-source/upstream/packages/core/tests/integration/astro/media-confirm-placeholder.test.ts'
+    ,'parity/emdash/general-media-source/upstream/packages/core/tests/integration/astro/media-replace.test.ts'
+    ,'parity/emdash/general-media-source/upstream/packages/core/tests/integration/astro/media-upload-deduplication.test.ts'
+    ,'parity/emdash/general-media-source/upstream/packages/core/tests/integration/astro/media-upload-placeholder.test.ts'
   ] }
 });

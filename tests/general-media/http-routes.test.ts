@@ -8,6 +8,7 @@ import { servicePrincipal } from '../../src/lib/server/auth/composition.ts';
 import { Role } from '../../src/lib/server/auth/roles.ts';
 import { LocalStorage, MediaRepository } from '../../src/lib/server/general-media/index.ts';
 import type { RequestEvent } from '@sveltejs/kit';
+import { JPEG_4x4 } from '../../parity/emdash/general-media-source/upstream/packages/core/tests/utils/image-fixtures.ts';
 const modules=import.meta.glob('../../src/routes/**/+server.ts');
 async function route(path:string):Promise<Record<string,(event:RequestEvent)=>Promise<Response>>|null> {
   const load=modules['../../src/routes/'+path+'/+server.ts'];
@@ -24,6 +25,29 @@ async function fixture() {
   return {database,storage,event,async close(){await database.close();await rm(directory,{recursive:true,force:true});}};
 }
 describe('Original native media route module calls using controlled principals',()=>{
+  it('streams a pending local upload, confirms its bytes, and replaces the same canonical media key',async()=>{
+    const owned=await fixture();
+    try{
+      const uploadUrl=await route('api/media/upload-url');expect(uploadUrl,'native upload URL endpoint').not.toBeNull();
+      const response=await uploadUrl!.POST(owned.event(new Request('http://localhost/api/media/upload-url',{method:'POST',headers:{Origin:'http://localhost','Content-Type':'application/json'},body:JSON.stringify({filename:'stream.jpg',contentType:'image/jpeg',size:JPEG_4x4.length})}),Role.CONTRIBUTOR));
+      expect(response.status).toBe(200);const {data}=await response.json();
+      expect(data.uploadUrl).toBe('/_emdash/api/media/'+data.mediaId+'/upload');
+      const upload=await route('_emdash/api/media/[id]/upload');expect(upload,'unchanged Source fallback upload URL').not.toBeNull();
+      const uploadResponse=await upload!.PUT(owned.event(new Request('http://localhost'+data.uploadUrl,{method:'PUT',headers:{Origin:'http://localhost','Content-Type':'image/jpeg'},body:new Uint8Array(JPEG_4x4)}),Role.CONTRIBUTOR,{id:data.mediaId}));
+      expect(uploadResponse.status).toBe(200);
+      const confirm=await route('api/media/[id]/confirm');expect(confirm,'native upload confirmation endpoint').not.toBeNull();
+      expect((await confirm!.POST(owned.event(new Request('http://localhost/api/media/'+data.mediaId+'/confirm',{method:'POST',headers:{Origin:'http://localhost'}}),Role.CONTRIBUTOR,{id:data.mediaId}))).status).toBe(200);
+      const repository=new MediaRepository(owned.database);const item=await repository.findById(data.mediaId);expect(item?.status).toBe('ready');
+      const key=item!.storageKey;
+      const replace=await route('api/media/[id]/replace');expect(replace,'native same-key replacement endpoint').not.toBeNull();
+      const replacement=new Uint8Array([...JPEG_4x4,0]);
+      const body=new FormData();body.set('file',new File([replacement],'stream.jpg',{type:'image/jpeg'}));
+      expect((await replace!.PUT(owned.event(new Request('http://localhost/api/media/'+data.mediaId+'/replace',{method:'PUT',headers:{Origin:'http://localhost'},body}),Role.AUTHOR,{id:data.mediaId}))).status).toBe(200);
+      expect((await repository.findById(data.mediaId))?.storageKey).toBe(key);
+      expect(new Uint8Array(await new Response((await owned.storage.download(key)).body).arrayBuffer())).toEqual(replacement);
+      expect((await repository.findById(data.mediaId))?.size).toBe(replacement.length);
+    }finally{await owned.close();}
+  });
   it('enforces existing mutation opt-in and origin before a real canonical folder write',async()=>{
     const owned=await fixture();
     try{
