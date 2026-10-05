@@ -1,0 +1,115 @@
+✖ copied build tests/helpers/basepath-server.mjs resolves its genuine Seed virtual module (6.72375ms)
+✖ copied build tests/helpers/pattern-base-build.ts resolves its genuine Seed virtual module (2.59108ms)
+✖ copied build tests/helpers/trash-count.ts resolves its genuine Seed virtual module (4.38542ms)
+✖ copied build tests/helpers/collection-trash.ts resolves its genuine Seed virtual module (1.231824ms)
+✖ copied build tests/helpers/required-scalar-fields-server.mjs resolves its genuine Seed virtual module (0.802979ms)
+✖ copied build tests/helpers/trash-restore-fields-server.mjs resolves its genuine Seed virtual module (0.887295ms)
+✖ copied build tests/browser/collection-cursor.spec.ts resolves its genuine Seed virtual module (1.201829ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 0
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 228.920371
+
+✖ failing tests:
+
+test at tests/seed-build-fixture-hosting.test.ts:24:3
+✖ copied build tests/helpers/basepath-server.mjs resolves its genuine Seed virtual module (6.72375ms)
+  AssertionError [ERR_ASSERTION]: copied app must load the actual Seed plugin
+      at TestContext.<anonymous> (file:///workspace/cms-seed-build-worker-hosting/tests/seed-build-fixture-hosting.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: "`\nimport adapter from '@sveltejs/adapter-auto';\nimport { sveltekit } from '@sveltejs/kit/vite';\nimport { vitePreprocess } from '@sveltejs/vite-plugin-svelte';\nexport default { plugins: [sveltekit({\n  preprocess: vitePreprocess(), adapter: adapter(), paths: { base: '/cms' },\n  experimental: { remoteFunctions: true }, compilerOptions: { experimental: { async: true } }\n})] };\n`",
+    expected: /import \{ sourceSeedPlugin \} from '\.\/scripts\/source-seed-vite\.ts'/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/seed-build-fixture-hosting.test.ts:24:3
+✖ copied build tests/helpers/pattern-base-build.ts resolves its genuine Seed virtual module (2.59108ms)
+  AssertionError [ERR_ASSERTION]: copied app must load the actual Seed plugin
+      at TestContext.<anonymous> (file:///workspace/cms-seed-build-worker-hosting/tests/seed-build-fixture-hosting.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: "`\nimport adapter from '@sveltejs/adapter-auto';\nimport { sveltekit } from '@sveltejs/kit/vite';\nimport { vitePreprocess } from '@sveltejs/vite-plugin-svelte';\nexport default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: adapter(), paths: { base: '/cms' },\n  experimental: { remoteFunctions: true }, compilerOptions: { experimental: { async: true } } })] };\n`",
+    expected: /import \{ sourceSeedPlugin \} from '\.\/scripts\/source-seed-vite\.ts'/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/seed-build-fixture-hosting.test.ts:24:3
+✖ copied build tests/helpers/trash-count.ts resolves its genuine Seed virtual module (4.38542ms)
+  AssertionError [ERR_ASSERTION]: copied app must load the actual Seed plugin
+      at TestContext.<anonymous> (file:///workspace/cms-seed-build-worker-hosting/tests/seed-build-fixture-hosting.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: "`\nimport adapter from '@sveltejs/adapter-${nodeTarget ? 'node' : 'auto'}';\nimport { sveltekit } from '@sveltejs/kit/vite';\nimport { vitePreprocess } from '@sveltejs/vite-plugin-svelte';\nexport default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: adapter(),\n  paths: { base: ${JSON.stringify(base)} }, experimental: { remoteFunctions: true },\n  compilerOptions: { experimental: { async: true } }\n})] };\n`",
+    expected: /import \{ sourceSeedPlugin \} from '\.\/scripts\/source-seed-vite\.ts'/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/seed-build-fixture-hosting.test.ts:24:3
+✖ copied build tests/helpers/collection-trash.ts resolves its genuine Seed virtual module (1.231824ms)
+  AssertionError [ERR_ASSERTION]: copied app must load the actual Seed plugin
+      at TestContext.<anonymous> (file:///workspace/cms-seed-build-worker-hosting/tests/seed-build-fixture-hosting.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: "`\nimport adapter from '@sveltejs/adapter-${nodeTarget ? 'node' : 'auto'}';\nimport { sveltekit } from '@sveltejs/kit/vite';\nimport { vitePreprocess } from '@sveltejs/vite-plugin-svelte';\nexport default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: adapter(),\n  paths: { base: '/cms' }, experimental: { remoteFunctions: true },\n  compilerOptions: { experimental: { async: true } }\n})] };\n`",
+    expected: /import \{ sourceSeedPlugin \} from '\.\/scripts\/source-seed-vite\.ts'/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/seed-build-fixture-hosting.test.ts:24:3
+✖ copied build tests/helpers/required-scalar-fields-server.mjs resolves its genuine Seed virtual module (0.802979ms)
+  AssertionError [ERR_ASSERTION]: copied app must load the actual Seed plugin
+      at TestContext.<anonymous> (file:///workspace/cms-seed-build-worker-hosting/tests/seed-build-fixture-hosting.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '`\nimport adapter from \'@sveltejs/adapter-auto\';\nimport node from \'@sveltejs/adapter-node\';\nimport { sveltekit } from \'@sveltejs/kit/vite\';\nimport { vitePreprocess } from \'@sveltejs/vite-plugin-svelte\';\nexport default { plugins: [sveltekit({\n  preprocess: vitePreprocess(), adapter: ${nodeTarget ? "node({ out: \'build/node\' })" : \'adapter()\'}, experimental: { remoteFunctions: true },\n  compilerOptions: { experimental: { async: true } }\n})] };\n`',
+    expected: /import \{ sourceSeedPlugin \} from '\.\/scripts\/source-seed-vite\.ts'/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/seed-build-fixture-hosting.test.ts:24:3
+✖ copied build tests/helpers/trash-restore-fields-server.mjs resolves its genuine Seed virtual module (0.887295ms)
+  AssertionError [ERR_ASSERTION]: copied app must load the actual Seed plugin
+      at TestContext.<anonymous> (file:///workspace/cms-seed-build-worker-hosting/tests/seed-build-fixture-hosting.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '`\nimport adapter from \'@sveltejs/adapter-auto\';\nimport node from \'@sveltejs/adapter-node\';\nimport { sveltekit } from \'@sveltejs/kit/vite\';\nimport { vitePreprocess } from \'@sveltejs/vite-plugin-svelte\';\nexport default { plugins: [sveltekit({\n  preprocess: vitePreprocess(), adapter: ${nodeTarget ? "node({ out: \'build/node\' })" : \'adapter()\'}, experimental: { remoteFunctions: true },\n  compilerOptions: { experimental: { async: true } }\n})] };\n`',
+    expected: /import \{ sourceSeedPlugin \} from '\.\/scripts\/source-seed-vite\.ts'/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/seed-build-fixture-hosting.test.ts:24:3
+✖ copied build tests/browser/collection-cursor.spec.ts resolves its genuine Seed virtual module (1.201829ms)
+  AssertionError [ERR_ASSERTION]: copied app must load the actual Seed plugin
+      at TestContext.<anonymous> (file:///workspace/cms-seed-build-worker-hosting/tests/seed-build-fixture-hosting.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: "`\nimport adapter from '@sveltejs/adapter-${nodeTarget ? 'node' : 'auto'}';\nimport { sveltekit } from '@sveltejs/kit/vite';\nimport { vitePreprocess } from '@sveltejs/vite-plugin-svelte';\nexport default { plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: adapter(),\n  paths: { base: '/cms' }, experimental: { remoteFunctions: true },\n  compilerOptions: { experimental: { async: true } }\n})] };\n`",
+    expected: /import \{ sourceSeedPlugin \} from '\.\/scripts\/source-seed-vite\.ts'/,
+    operator: 'match',
+    diff: 'simple'
+  }
