@@ -3,6 +3,7 @@ import { mount, tick, unmount } from 'svelte';
 import FieldEditor from '../../src/lib/schema-admin/FieldEditor.svelte';
 import List from '../../src/lib/schema-admin/ContentTypeList.svelte';
 import Editor from '../../src/lib/schema-admin/ContentTypeEditor.svelte';
+import { nativeProps } from '../helpers/schema-ui/state.svelte';
 const mounted: ReturnType<typeof mount>[] = [];
 afterEach(async () => { for (const instance of mounted.splice(0)) await unmount(instance); document.body.replaceChildren(); });
 const collection = {id:'posts',slug:'posts',label:'Posts',source:'manual',supports:['drafts'],hasSeo:false};
@@ -39,4 +40,13 @@ it('retains a field dialog and reports the actual asynchronous save failure', as
   [...target.querySelectorAll<HTMLButtonElement>('button')].find(button=>button.textContent==='Update Field')!.click();
   await vi.waitFor(()=>expect(target.querySelector('[role="alert"]')?.textContent).toBe('Field metadata needs a migration'));
   expect(target.querySelector('dialog')).not.toBeNull();
+});
+it('keeps the collection read model unchanged when repeater configuration is edited and cancelled', async () => {
+  const definition=nativeProps({type:'repeater',slug:'items',label:'Items',validation:{subFields:[{slug:'title',label:'Original label',type:'string',required:false}]}}) as any;
+  const target=document.createElement('section');document.body.append(target);
+  mounted.push(mount(FieldEditor,{target,props:{open:true,onOpenChange:()=>{},onSave:()=>{},field:definition,client}}));await tick();
+  const input=[...target.querySelectorAll<HTMLLabelElement>('label')].find(label=>label.textContent?.startsWith('Sub-field label'))!.querySelector('input')!;
+  input.value='Unsaved label';input.dispatchEvent(new Event('input',{bubbles:true}));await tick();
+  [...target.querySelectorAll<HTMLButtonElement>('button')].find(button=>button.textContent==='Cancel')!.click();
+  expect(definition.validation.subFields[0].label).toBe('Original label');
 });
