@@ -4,7 +4,7 @@
   import { format } from 'date-fns';
   import { getDayPickerLocale } from '../ui/date-time-locales.ts';
   import { isMonthCutOff, dayKeyToUTC, type CalendarDisplay, type CalendarItem } from './calendar.ts';
-  import { moveCalendarFocus, type CalendarPickerDirection } from './picker-keyboard.ts';
+  import { calendarFocusTarget, moveCalendarFocus, type CalendarPickerDirection } from './picker-keyboard.ts';
   import Entry from './CalendarEntry.svelte';
   import DayList from './CalendarDayList.svelte';
   import type { CalendarSelectHandler } from './ui-types.ts';
@@ -23,6 +23,7 @@
   function closePopover(restore=true){popover=undefined;if(restore&&moreTrigger?.isConnected)moreTrigger.focus();}
   const firstWithEntries=(map:ReadonlyMap<string,CalendarItem[]>)=>[...map.keys()].filter(day=>day.startsWith(month)).toSorted()[0];
   const selected=$derived(picked??(today.startsWith(month)?today:firstWithEntries(unfilteredDays??days)??`${month}-01`));
+  const focusTarget=$derived(calendarFocusTarget(month,focusDay,undefined,selected));
   const filteredEmpty=$derived(Boolean(onClearFilters)&&!loading&&!(compact?firstWithEntries(days):gridDays.some(day=>days.has(day))));
   const cutOff=$derived(isMonthCutOff(month,loadedThrough));
   const currentItems=$derived(days.get(selected)??[]);
@@ -50,7 +51,7 @@
 <tbody>{#each weeks as week(week[0])}<tr>{#each week as day(day)}{@const reserved=unfilteredDays?.get(day)}
   <td class:outside={!day.startsWith(month)} class:weekend={display.isWeekend(day)} aria-current={day===today?'date':undefined}>
   {#if compact}
-    {#if day.startsWith(month)}<button type="button" data-calendar-day={day} aria-label={dayLabel(day)} aria-pressed={selected===day} tabindex={(focusDay??selected)===day?0:-1} onclick={event=>pick(event,day)} onfocus={()=>{focusDay=day;}} onkeydown={event=>keydown(event,day)}>{display.dayNumber(day)}<span aria-hidden="true" class="dots">{#each (days.get(day)??[]).slice(0,3) as item}<i class={item.state}></i>{/each}{#if (days.get(day)?.length??0)>3}+{/if}</span></button>{/if}
+    {#if day.startsWith(month)}<button type="button" data-calendar-day={day} aria-label={dayLabel(day)} aria-pressed={selected===day} tabindex={focusTarget===day?0:-1} onclick={event=>pick(event,day)} onfocus={()=>{focusDay=day;}} onkeydown={event=>keydown(event,day)}>{display.dayNumber(day)}<span aria-hidden="true" class="dots">{#each (days.get(day)??[]).slice(0,3) as item}<i class={item.state}></i>{/each}{#if (days.get(day)?.length??0)>3}+{/if}</span></button>{/if}
   {:else}<div class="cell"><div class="date">{day.endsWith('-01')?display.monthDayShort(day):display.dayNumber(day)}</div>
     <div class="entries">
       {#if reserved&&(reserved.length>4||(days.get(day)?.length??0)<reserved.length)}<div class="reservation" aria-hidden="true" inert>{@render cellEntries(day,roomiestEntries(reserved))}</div>{/if}
