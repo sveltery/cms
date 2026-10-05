@@ -28,6 +28,6 @@
 </script>
 <svelte:head><title>Calendar · Sveltery CMS</title></svelte:head>
 <WorkspaceShell homeHref={`${base}/`}>
-  {#if data.available}<Calendar manifest={manifest} user={user} locale={i18n.locale||'en'} {client} {queryClient} {search} {updateSearch} back={()=>history.back()}/>
+  {#if data.available&&manifest}<Calendar manifest={manifest} user={user} locale={i18n.locale||'en'} {client} {queryClient} {search} {updateSearch} back={()=>history.back()}/>
   {:else}<h1>Calendar</h1><p role="status">{data.error}</p>{/if}
 </WorkspaceShell>

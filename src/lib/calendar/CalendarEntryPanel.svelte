@@ -16,15 +16,15 @@
     onClose:()=>void;onRescheduled:(item:CalendarItem,scheduledAt:string)=>void;onNotice?:(notice:CalendarNotice)=>void;returnFocus?:{current:HTMLElement|null};
     client:CalendarClient;queryClient?:QueryClient;
   }=$props();
-  let entry=$state<CalendarContent>(),error=$state<string>(),pending=$state(false),scheduleOpen=$state(false),previewing=$state(false),translations=$state<{id:string;locale:string;status:string}[]>([]),dialog=$state<HTMLDialogElement>();
+  let entry=$state<CalendarContent>(),error=$state<string>(),pending=$state(false),reschedulePending=$state(false),detailsPending=$state(false),scheduleOpen=$state(false),previewing=$state(false),translations=$state<{id:string;locale:string;status:string}[]>([]),dialog=$state<HTMLDialogElement>();
   const selectedKey=$derived(item?.key);
-  $effect(()=>{selectedKey;scheduleOpen=false;pending=false;previewing=false;});
+  $effect(()=>{selectedKey;scheduleOpen=false;pending=false;reschedulePending=false;previewing=false;});
   $effect(()=>{
     selectedKey;const selected=untrack(()=>item);if(!selected){entry=undefined;return;}
-    entry=undefined;error=undefined;let active=true;
+    entry=undefined;error=undefined;detailsPending=true;let active=true;
     const options={queryKey:['content',selected.collection,selected.id,{locale:i18n?selected.locale:undefined}],queryFn:()=>client.fetchContent(selected.collection,selected.id,{locale:i18n?selected.locale:undefined}),staleTime:0};
-    if(queryClient){const observer=new QueryObserver(queryClient,options);const unsubscribe=observer.subscribe(result=>{entry=result.data;error=result.isError?"Could not load this entry's details.":undefined;});return()=>{active=false;unsubscribe();observer.destroy();};}
-    void options.queryFn().then(value=>{if(active)entry=value;},()=>{if(active)error="Could not load this entry's details.";});return()=>{active=false;};
+    if(queryClient){const observer=new QueryObserver(queryClient,options);const unsubscribe=observer.subscribe(result=>{entry=result.data;detailsPending=result.isPending;error=result.isError?"Could not load this entry's details.":undefined;});return()=>{active=false;unsubscribe();observer.destroy();};}
+    void options.queryFn().then(value=>{if(active){entry=value;detailsPending=false;}},()=>{if(active){detailsPending=false;error="Could not load this entry's details.";}});return()=>{active=false;};
   });
   $effect(()=>{
     selectedKey;const selected=untrack(()=>item),fetch=client.fetchTranslations;translations=[];
@@ -65,7 +65,7 @@
   }
   async function reschedule(at:string){
     if(!item)return;const selected=item;
-    await runCalendarReschedule(selected,at,{client,pending:()=>{},current:()=>item?.key===selected.key,refresh:()=>refresh(selected),
+    await runCalendarReschedule(selected,at,{client,pending:value=>{if(item?.key===selected.key)reschedulePending=value;},current:()=>item?.key===selected.key,refresh:()=>refresh(selected),
       success:()=>onNotice?.({title:'Rescheduled',description:`${selected.title} now goes live ${display.formatDateTime(Date.parse(at))}.`}),rescheduled:()=>onRescheduled(selected,at)});
   }
   async function openPreview(){
@@ -81,7 +81,7 @@
 {#if item}<div class="top"><span>{display.collection(item.collection).label}</span><button type="button" aria-label="Close" onclick={onClose}>×</button></div>
 <h2 dir="auto">{item.title}</h2><dl><dt>State</dt><dd>{stateLabels[item.state]}</dd><dt>{item.kind==='scheduled'?item.state==='overdue'?'Was due':'Goes live':'Published'}</dt><dd>{display.formatDateTime(item.time)}{#if display.viewerZoneDiffers}<small>Your time: {display.formatViewerTime(item.time)}</small>{/if}</dd>
 {#if display.showLocale}<dt>Locale</dt><dd>{new Intl.DisplayNames([display.locale],{type:'language'}).of(item.locale)} <small>{item.locale.toUpperCase()}</small>{#if others.length}<span class="translations">Translations: {#each others as translation(translation.id)}<span title={new Intl.DisplayNames([display.locale],{type:'language'}).of(translation.locale)}>{translation.locale.toUpperCase()}</span>{/each}</span>{/if}</dd>{/if}
-{#if bylines}<dt>Bylines</dt><dd>{bylines}</dd>{/if}<dt>Last edited</dt><dd>{edited}</dd></dl>
+{#if bylines}<dt>Bylines</dt><dd>{bylines}</dd>{/if}<dt>Last edited</dt><dd>{#if calendarEditedState(detailsPending,Boolean(entry))==='pending'}<span class="details-loading" aria-hidden="true"></span>{:else}{edited}{/if}</dd></dl>
 {#if item.kind==='scheduled'}<h3>Publishing</h3>
   {#if item.state==='overdue'}<p class="overdue">This entry was due {formatTimeAgo(now-item.time,display.locale)} but hasn't published. Scheduled publishing may not be running.</p>
   {:else if item.state==='scheduled'}<ol class="timeline"><li>Draft</li><li><strong>Scheduled</strong><p>Goes live {formatTimeUntil(item.time-now,display.locale)}</p></li></ol>{:else if item.state==='update'}<ol class="timeline"><li><strong>Live version</strong>{#if liveSince}<p>Published {liveSince}</p>{/if}</li><li><strong>Scheduled changes</strong><p>Go live {formatTimeUntil(item.time-now,display.locale)}</p></li></ol>{/if}
@@ -89,6 +89,6 @@
 {/if}
 {#if error}<p role="alert">{error}</p>{/if}
 <footer><a href={`${base}/content/${encodeURIComponent(item.collection)}/${encodeURIComponent(item.id)}?locale=${encodeURIComponent(item.locale)}`}>Open in editor</a>{#if item.kind==='scheduled'}<button type="button" disabled={previewing} onclick={()=>void openPreview()}>{item.state==='update'?'Preview changes':'Preview'}</button>{/if}{#if liveUrl}<a href={liveUrl} target="_blank" rel="noopener noreferrer">View live</a>{/if}</footer>
-{#if item.kind==='scheduled'&&canPublish}<ScheduleDialog open={scheduleOpen} entryKey={item.key} scheduledAt={item.at} isLive={item.status==='published'} locale={display.locale} onOpenChange={value=>scheduleOpen=value} onSchedule={reschedule}/>{/if}
+{#if item.kind==='scheduled'&&canPublish}<ScheduleDialog open={scheduleOpen} entryKey={item.key} scheduledAt={item.at} isLive={item.status==='published'} isPending={reschedulePending} locale={display.locale} onOpenChange={value=>scheduleOpen=value} onSchedule={reschedule}/>{/if}
 {/if}</dialog>
-<style>dialog{box-sizing:border-box;position:fixed;inset-block:0;inset-inline:auto 0;margin:0;border:0;border-left:1px solid var(--border,#ddd);width:27rem;max-width:100vw;height:100dvh;max-height:100dvh;background:var(--card,#fff);color:inherit;padding:1.5rem;box-shadow:-8px 0 24px #0002;z-index:50;}dialog:not([open]){display:none;}.compact{inset:auto 0 0;width:100%;height:auto;max-height:85dvh;border-radius:1rem 1rem 0 0;}dialog::backdrop{background:#0006;}.top{display:flex;justify-content:space-between;align-items:center;}h2{font-size:1.6rem;}dl{display:grid;grid-template-columns:8rem 1fr;gap:.9rem;}dt{color:var(--muted-foreground,#666);}dd{margin:0;}small{display:block;}button{font:inherit;padding:.5rem;border:1px solid var(--border,#ccc);border-radius:.35rem;background:var(--background,#fff);color:inherit;}button{cursor:pointer;}.actions{display:flex;flex-wrap:wrap;gap:.5rem;}.overdue{padding:.75rem;background:#fff0d6;}footer{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border,#ddd);}[role="alert"]{color:#b32929;}.timeline{padding-left:1.5rem;display:grid;gap:1rem;}.timeline p{margin:.35rem 0 0;}.translations{display:flex;gap:.5rem;flex-wrap:wrap;font-size:.75rem;margin-top:.25rem;}button:focus-visible,a:focus-visible{outline:2px solid var(--ring,#165ccc);outline-offset:2px;}</style>
+<style>.details-loading{display:block;width:5rem;height:1em;border-radius:.25rem;background:var(--muted,#eee);}dialog{box-sizing:border-box;position:fixed;inset-block:0;inset-inline:auto 0;margin:0;border:0;border-left:1px solid var(--border,#ddd);width:27rem;max-width:100vw;height:100dvh;max-height:100dvh;background:var(--card,#fff);color:inherit;padding:1.5rem;box-shadow:-8px 0 24px #0002;z-index:50;}dialog:not([open]){display:none;}.compact{inset:auto 0 0;width:100%;height:auto;max-height:85dvh;border-radius:1rem 1rem 0 0;}dialog::backdrop{background:#0006;}.top{display:flex;justify-content:space-between;align-items:center;}h2{font-size:1.6rem;}dl{display:grid;grid-template-columns:8rem 1fr;gap:.9rem;}dt{color:var(--muted-foreground,#666);}dd{margin:0;}small{display:block;}button{font:inherit;padding:.5rem;border:1px solid var(--border,#ccc);border-radius:.35rem;background:var(--background,#fff);color:inherit;}button{cursor:pointer;}.actions{display:flex;flex-wrap:wrap;gap:.5rem;}.overdue{padding:.75rem;background:#fff0d6;}footer{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border,#ddd);}[role="alert"]{color:#b32929;}.timeline{padding-left:1.5rem;display:grid;gap:1rem;}.timeline p{margin:.35rem 0 0;}.translations{display:flex;gap:.5rem;flex-wrap:wrap;font-size:.75rem;margin-top:.25rem;}button:focus-visible,a:focus-visible{outline:2px solid var(--ring,#165ccc);outline-offset:2px;}</style>

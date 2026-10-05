@@ -1,6 +1,7 @@
 <script lang="ts">
   // EmDash1.1.0 CalendarMonth placement/folding/reservation/picker behavior, pin913cb1bb; MIT.
-  import { tick } from 'svelte';
+  import { onDestroy,setContext,tick,untrack } from 'svelte';
+  import {createCalendarTooltipGroup} from './presentation.ts';
   import { format } from 'date-fns';
   import { getDayPickerLocale } from '../ui/date-time-locales.ts';
   import { isMonthCutOff, shiftDay, dayKeyToUTC, type CalendarDisplay, type CalendarItem } from './calendar.ts';
@@ -12,6 +13,9 @@
     today:string;now:number;display:CalendarDisplay;loading?:boolean;loadedThrough?:string;compact?:boolean;selectedKey?:string;
     onSelect?:CalendarSelectHandler;onMonthChange:(month:string)=>void;onClearFilters?:()=>void;
   }=$props();
+  const tooltipGroup=createCalendarTooltipGroup(400);setContext('calendar-tooltip-group',tooltipGroup);onDestroy(()=>tooltipGroup.destroy());
+  // Source switches provider instances when compact/grid modes change.
+  $effect(()=>{compact;untrack(()=>tooltipGroup.destroy());});
   const weeks=$derived(Array.from({length:Math.ceil(gridDays.length/7)},(_,week)=>gridDays.slice(week*7,week*7+7)));
   const headingId=$props.id();
   let picked=$state<string>(), pickedMonth=$state<string>(), focusDay=$state<string>(), popover=$state<string>(), moreTrigger=$state<HTMLButtonElement>(),popup=$state<HTMLDivElement>();

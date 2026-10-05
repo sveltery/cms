@@ -21,11 +21,13 @@
   let now=$state(untrack(()=>Date.now())),compact=$state(false),container=$state<HTMLDivElement>();
   let data=$state<CalendarRange>(),updatedAt=$state(0),fetching=$state(false),initialPending=$state(true),error=$state<unknown>();
   let refetch=()=>{};
-  let notice=$state<CalendarNotice>();
+  let notice=$state<CalendarNotice>(),tabFocus=$state(0),monthTab=$state<HTMLButtonElement>(),agendaTab=$state<HTMLButtonElement>();
   const collections=$derived(Object.entries(manifest?.collections??{}).filter(([,c])=>!c.hidden).map(([slug,c])=>({slug,label:c.label,icon:c.icon})));
   const collectionOrder=$derived(collections.map(c=>c.slug)),locales=$derived(manifest?.i18n?.locales??[]);
   const display=$derived(createCalendarDisplay({locale,timeZone:manifest?.timezone,collections,showLocale:locales.length>1}));
   const today=$derived(dayKeyInZone(now,display.timeZone)),month=$derived(search.month??today.slice(0,7)),view=$derived(search.view??(compact?'agenda':'month'));
+  $effect(()=>{tabFocus=view==='month'?0:1;});
+  function viewTabKey(event:KeyboardEvent,index:number){const target=calendarTabTarget(event.key,index,2,getComputedStyle(event.currentTarget as HTMLElement).direction==='rtl'?'rtl':'ltr');if(target!==undefined){event.preventDefault();event.stopPropagation();tabFocus=target;(target===0?monthTab:agendaTab)?.focus();}}
   const weekStartsOn=$derived(getDayPickerLocale(locale).options?.weekStartsOn??0);
   const gridDays=$derived(monthGridDays(month,weekStartsOn)),range=$derived(fetchRange(gridDays));
   const filters=$derived<CalendarFilterValues>({collections:readList(search.collections).filter(slug=>collectionOrder.includes(slug)),locales:readList(search.locales).filter(value=>locales.includes(value)),states:readList(search.states).filter(isCalendarState)});
@@ -75,7 +77,7 @@
 <div bind:this={container} class="calendar">
 <header><div><h1>Calendar</h1><p>Published and scheduled entries across collections, in the site's time zone.</p></div><Filters {display} {collections} {locales} value={filters} onChange={setFilters} triggerRef={filterTrigger}/></header>
 {#if notice}<div role={notice.type==='error'?'alert':'status'} class="notice"><strong>{notice.title}</strong><p>{notice.description}</p><button type="button" aria-label="Dismiss notification" onclick={()=>notice=undefined}>×</button></div>{/if}
-<div role="tablist" aria-label="Calendar view"><button type="button" role="tab" aria-selected={view==='month'} onclick={()=>updateSearch({view:'month'})}>Month</button><button type="button" role="tab" aria-selected={view==='agenda'} onclick={()=>updateSearch({view:'agenda'})}>Agenda</button></div>
+<div role="tablist" aria-label="Calendar view"><button type="button" role="tab" bind:this={monthTab} tabindex={tabFocus===0?0:-1} onfocus={()=>tabFocus=0} onkeydown={event=>viewTabKey(event,0)} aria-selected={view==='month'} onclick={()=>updateSearch({view:'month'})}>Month</button><button type="button" role="tab" bind:this={agendaTab} tabindex={tabFocus===1?0:-1} onfocus={()=>tabFocus=1} onkeydown={event=>viewTabKey(event,1)} aria-selected={view==='agenda'} onclick={()=>updateSearch({view:'agenda'})}>Agenda</button></div>
 <Toolbar title={display.monthTitle(month)} {display} {zoneTime} loading={calendarInitialLoading(initialPending,fetching)} onPrevious={()=>goToMonth(shiftMonth(month,-1))} onNext={()=>goToMonth(shiftMonth(month,1))} onToday={()=>goToMonth(undefined)} onPreviewPrevious={()=>prefetch(shiftMonth(month,-1))} onPreviewNext={()=>prefetch(shiftMonth(month,1))}/>
 {#if error}<div role="alert"><h3>Could not load the calendar</h3><p>{errorMessage}</p><button type="button" onclick={()=>refetch()}>Retry</button></div>{/if}
 {#if data?.truncated}<div role="status"><h3>This range has more than {new Intl.NumberFormat(locale).format(CALENDAR_MAX_ENTRIES)} entries</h3><p>The calendar shows the first {new Intl.NumberFormat(locale).format(CALENDAR_MAX_ENTRIES)}{loadedThrough?`, which end on ${display.monthDay(loadedThrough)}`:''}.</p></div>{/if}
