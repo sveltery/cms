@@ -30,7 +30,7 @@ async function repaired(database:CmsDatabase) {
 async function snapshot(database:CmsDatabase) {
   return {rows:(await sql`SELECT * FROM ec_posts ORDER BY id`.execute(database.db)).rows,
     markers:(await sql`SELECT version FROM _cms_migrations ORDER BY version`.execute(database.db)).rows,
-    catalogue:(await sql`SELECT name,type,sql FROM sqlite_master ORDER BY name,type`.execute(database.db)).rows};
+    catalogue:(await sql<{name:string;type:string;sql:string|null}>`SELECT name,type,sql FROM sqlite_master ORDER BY name,type`.execute(database.db)).rows};
 }
 
 it('Node preserves real operator rereads through an ordinary shallow compiled-query wrapper',async()=>{

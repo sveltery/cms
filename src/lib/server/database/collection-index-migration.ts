@@ -5,7 +5,7 @@
 import { sql, type CompiledQuery } from 'kysely';
 import { CmsError, type CmsDatabase } from './contract.ts';
 import { identifier, parse, tableName } from './validation.ts';
-import { migrationObjects, type CmsMigrationProvider } from './migration-provider.ts';
+import { migrationObjects, normalizeMigrationSql, type CmsMigrationProvider } from './migration-provider.ts';
 import { collectionStandardIndexStatements, collectionIndexPrerequisiteChanged } from './collection-indexes.ts';
 import { normalizeFeatureStorageSql } from './canonical-features/sql-recognition.ts';
 import { atomicQueryLoop } from './atomic-query-loop.ts';
@@ -171,7 +171,8 @@ async function prepare(database:CmsDatabase) {
       // A future-owned operator/partial installation is refused, never adopted
       // or overwritten. Legacy replacements must have the Source exact shape.
       if (!expected || object.type!=='index' || object.tbl_name!==table ||
-        normalizeFeatureStorageSql(object.sql??'')!==normalizeFeatureStorageSql(expected.sql)) throw new CmsError('MIGRATION_REQUIRED');
+        normalizeFeatureStorageSql(normalizeMigrationSql(object.sql??''))!==
+          normalizeFeatureStorageSql(normalizeMigrationSql(expected.sql))) throw new CmsError('MIGRATION_REQUIRED');
     }
     const duplicates=await planDuplicateLocales(database,slug);
     guards.push(duplicates.guard,...(duplicates.additionalGuards??[]));
