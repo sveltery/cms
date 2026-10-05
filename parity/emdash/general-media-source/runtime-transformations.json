@@ -5,313 +5,1375 @@
       "source": "packages/core/src/media/url.ts",
       "runtime": "src/lib/server/general-media/upstream/media/url.ts",
       "sourceSha256": "d02b82842c2808a6c061fe8b6eadbe6f4b8a9eec0f027665d5d7ed9127664275",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "../storage/types.js",
+          "native": "../storage/types.ts"
+        },
+        {
+          "statement": 1,
+          "source": "./normalize.js",
+          "native": "./normalize.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/media/upload-attempts.ts",
       "runtime": "src/lib/server/general-media/upstream/media/upload-attempts.ts",
       "sourceSha256": "38a2c4e7f47e2091c61253445f8935ab5f837afa399ef21a24d4e4f586b547f6",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite native import strings only, Astro/Storage/main MediaItem types to existing native context/storage/repository types",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "../database/repositories/media.js",
+          "native": "../database/repositories/media.ts"
+        },
+        {
+          "statement": 1,
+          "source": "../storage/types.js",
+          "native": "../storage/types.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/media/types.ts",
       "runtime": "src/lib/server/general-media/upstream/media/types.ts",
       "sourceSha256": "3482d45e65d67dde0c5bb6e617b8d5c51eb775fb289be9cd7a678991c05d94a3",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "./focal-point.js",
+          "native": "./focal-point.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/media/thumbnail.ts",
       "runtime": "src/lib/server/general-media/upstream/media/thumbnail.ts",
       "sourceSha256": "e680830b8bf582e59706201611120840ef9d3eca8b93c16cd674f5214e991007",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": []
     },
     {
       "source": "packages/core/src/media/responsive.ts",
       "runtime": "src/lib/server/general-media/upstream/media/responsive.ts",
       "sourceSha256": "5336c9ff604b3801ce5b130e09c0b830bffbb1fd177a7adfc20dcb3fee0afe1a",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": []
     },
     {
       "source": "packages/core/src/media/provider-loader.ts",
       "runtime": "src/lib/server/general-media/upstream/media/provider-loader.ts",
       "sourceSha256": "c6fdda08cbf135da84b28beab53618627cdaee0fac7c34ffa016fb4a323899c7",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "./types.js",
+          "native": "./types.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/media/placeholder.ts",
       "runtime": "src/lib/server/general-media/upstream/media/placeholder.ts",
       "sourceSha256": "32c6af3e613095a9025a3b068a65286dfff238bd225f124b02afc5dbe73c8275",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "blurhash",
+          "native": "blurhash"
+        },
+        {
+          "statement": 1,
+          "source": "image-size",
+          "native": "image-size"
+        },
+        {
+          "statement": 2,
+          "source": "./mime.js",
+          "native": "./mime.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/media/normalize.ts",
       "runtime": "src/lib/server/general-media/upstream/media/normalize.ts",
       "sourceSha256": "b77395a2ef839891652bf8711f4d15cad4aecbcf9bac19fa30c5de4ffc14191b",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "./focal-point.js",
+          "native": "./focal-point.ts"
+        },
+        {
+          "statement": 1,
+          "source": "./types.js",
+          "native": "./types.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/media/mime.ts",
       "runtime": "src/lib/server/general-media/upstream/media/mime.ts",
       "sourceSha256": "3e50552e92594e3fec39ef49d3b7c8c90917360efd9d9ba0b135ff6490c90c38",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "node:path",
+          "native": "node:path"
+        }
+      ]
     },
     {
       "source": "packages/core/src/media/local.ts",
       "runtime": "src/lib/server/general-media/upstream/media/local.ts",
       "sourceSha256": "4b66fd2016436e01b2bb8f4a7171d578c89642d895e23843e9858c3d247a76e8",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "./types.js",
+          "native": "./types.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/media/image-endpoint.ts",
       "runtime": "src/lib/server/general-media/upstream/media/image-endpoint.ts",
       "sourceSha256": "76e5a0dacfafaaa2035e716d5d2b4baaaaec457be436f9f35cd18568548ea185",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "./normalize.js",
+          "native": "./normalize.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/media/focal-point.ts",
       "runtime": "src/lib/server/general-media/upstream/media/focal-point.ts",
       "sourceSha256": "43fafbabba063e924071232263de32bffdc054446134f297655e3466cf79004b",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": []
     },
     {
       "source": "packages/core/src/media/enrich.ts",
       "runtime": "src/lib/server/general-media/upstream/media/enrich.ts",
       "sourceSha256": "2e1fd18ae29be9598c2c59fd4e304d8a2c1c2ef29e4e4bb1d91c7163f6f8c31f",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "./mime.js",
+          "native": "./mime.ts"
+        },
+        {
+          "statement": 1,
+          "source": "./placeholder.js",
+          "native": "./placeholder.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/storage/types.ts",
       "runtime": "src/lib/server/general-media/upstream/storage/types.ts",
       "sourceSha256": "65acd62c4dd6dfd863282ca50ac5aacee594f3a421ea7148823d555e9eef2970",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": []
     },
     {
       "source": "packages/core/src/storage/local.ts",
       "runtime": "src/lib/server/general-media/upstream/storage/local.ts",
       "sourceSha256": "c1cdab8a965d1b9e15c0e1b19fddb3167d43294f8f42321c75e4085eb3dc9755",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "node:fs",
+          "native": "node:fs"
+        },
+        {
+          "statement": 1,
+          "source": "node:fs/promises",
+          "native": "node:fs/promises"
+        },
+        {
+          "statement": 2,
+          "source": "node:path",
+          "native": "node:path"
+        },
+        {
+          "statement": 3,
+          "source": "node:stream",
+          "native": "node:stream"
+        },
+        {
+          "statement": 4,
+          "source": "mime/lite",
+          "native": "mime/lite"
+        },
+        {
+          "statement": 6,
+          "source": "./types.js",
+          "native": "./types.ts"
+        },
+        {
+          "statement": 7,
+          "source": "./types.js",
+          "native": "./types.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/database/repositories/media.ts",
       "runtime": "src/lib/server/general-media/upstream/database/repositories/media.ts",
       "sourceSha256": "89adf9e33736c4fd5d415faadbe564b3811bc752aeb21ea5d6206339d90ee0f9",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "kysely",
+          "native": "kysely"
+        },
+        {
+          "statement": 1,
+          "source": "ulidx",
+          "native": "ulidx"
+        },
+        {
+          "statement": 2,
+          "source": "../../media/focal-point.js",
+          "native": "../../media/focal-point.ts"
+        },
+        {
+          "statement": 3,
+          "source": "../../utils/chunks.js",
+          "native": "../../utils/chunks.ts"
+        },
+        {
+          "statement": 4,
+          "source": "../types.js",
+          "native": "../types.ts"
+        },
+        {
+          "statement": 5,
+          "source": "./types.js",
+          "native": "./types.ts"
+        },
+        {
+          "statement": 6,
+          "source": "./types.js",
+          "native": "./types.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/database/repositories/media-folders.ts",
       "runtime": "src/lib/server/general-media/upstream/database/repositories/media-folders.ts",
       "sourceSha256": "7b655d11d592eee048efff1e6ad2aa3caf19bafa8d6f1f8dc6366dbb0f088c13",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "kysely",
+          "native": "kysely"
+        },
+        {
+          "statement": 1,
+          "source": "ulidx",
+          "native": "ulidx"
+        },
+        {
+          "statement": 2,
+          "source": "../types.js",
+          "native": "../types.ts"
+        },
+        {
+          "statement": 3,
+          "source": "./types.js",
+          "native": "./types.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/database/types.ts",
       "runtime": "src/lib/server/general-media/upstream/database/types.ts",
       "sourceSha256": "ebd3a2d8aded68ada1731adb4838d7eda5b85778d373b248211e0f8fe75c2b1d",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "kysely",
+          "native": "kysely"
+        }
+      ]
     },
     {
       "source": "packages/core/src/utils/chunks.ts",
       "runtime": "src/lib/server/general-media/upstream/utils/chunks.ts",
       "sourceSha256": "d5c454b134d9727d0af1fa5befb786a781e65cdac964a668af6a8fab74b81877",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": []
     },
     {
       "source": "packages/core/src/utils/base64.ts",
       "runtime": "src/lib/server/general-media/upstream/utils/base64.ts",
       "sourceSha256": "79a94b895668f729574cc25e50ad5e1f6db5998dc3f6e3e12e5c1fa661969a90",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": []
     },
     {
       "source": "packages/core/src/utils/hash.ts",
       "runtime": "src/lib/server/general-media/upstream/utils/hash.ts",
       "sourceSha256": "7245086a4e29bb0a82852cb63f477ba3ced6d89ab6bee8cbe9f716561e5eced3",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": []
     },
     {
       "source": "packages/core/src/api/types.ts",
       "runtime": "src/lib/server/general-media/upstream/api/types.ts",
       "sourceSha256": "8ee06f5fee0b47ab8891eb4b2980d06d3ad5317464db33d637f7c1b33aa28974",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "../database/repositories/types.js",
+          "native": "../database/repositories/types.ts"
+        },
+        {
+          "statement": 11,
+          "source": "../schema/block-types.js",
+          "native": "../schema/block-types.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/api/handlers/media.ts",
       "runtime": "src/lib/server/general-media/upstream/api/handlers/media.ts",
       "sourceSha256": "2c13bb6af8486f84ae8d556b5d0ec753e84bab1b40b185b59a218038116efaf7",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "kysely",
+          "native": "kysely"
+        },
+        {
+          "statement": 1,
+          "source": "../../database/repositories/media.js",
+          "native": "../../database/repositories/media.ts"
+        },
+        {
+          "statement": 2,
+          "source": "../../database/repositories/types.js",
+          "native": "../../database/repositories/types.ts"
+        },
+        {
+          "statement": 3,
+          "source": "../../database/types.js",
+          "native": "../../database/types.ts"
+        },
+        {
+          "statement": 4,
+          "source": "../../media/focal-point.js",
+          "native": "../../media/focal-point.ts"
+        },
+        {
+          "statement": 5,
+          "source": "../../media/upload-attempts.js",
+          "native": "../../media/upload-attempts.ts"
+        },
+        {
+          "statement": 6,
+          "source": "../../storage/types.js",
+          "native": "../../storage/types.ts"
+        },
+        {
+          "statement": 7,
+          "source": "../types.js",
+          "native": "../types.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/api/handlers/media-folders.ts",
       "runtime": "src/lib/server/general-media/upstream/api/handlers/media-folders.ts",
       "sourceSha256": "3fa1b4a6eef2373f11a78296e80dafce96d34acee2598ea27c42ba11b8dc5504",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "kysely",
+          "native": "kysely"
+        },
+        {
+          "statement": 1,
+          "source": "../../database/repositories/media-folders.js",
+          "native": "../../database/repositories/media-folders.ts"
+        },
+        {
+          "statement": 2,
+          "source": "../../database/repositories/types.js",
+          "native": "../../database/repositories/types.ts"
+        },
+        {
+          "statement": 3,
+          "source": "../../database/types.js",
+          "native": "../../database/types.ts"
+        },
+        {
+          "statement": 4,
+          "source": "../types.js",
+          "native": "../types.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/api/handlers/media-upload.ts",
       "runtime": "src/lib/server/general-media/upstream/api/handlers/media-upload.ts",
       "sourceSha256": "1dbc84b009c7a642dbac786936b7f7c3ddcbd8308c03fe495e0233a548025d6d",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "node:path",
+          "native": "node:path"
+        },
+        {
+          "statement": 1,
+          "source": "kysely",
+          "native": "kysely"
+        },
+        {
+          "statement": 2,
+          "source": "ulidx",
+          "native": "ulidx"
+        },
+        {
+          "statement": 3,
+          "source": "../../database/repositories/media.js",
+          "native": "../../database/repositories/media.ts"
+        },
+        {
+          "statement": 4,
+          "source": "../../database/types.js",
+          "native": "../../database/types.ts"
+        },
+        {
+          "statement": 5,
+          "source": "../../media/enrich.js",
+          "native": "../../media/enrich.ts"
+        },
+        {
+          "statement": 6,
+          "source": "../../media/mime.js",
+          "native": "../../media/mime.ts"
+        },
+        {
+          "statement": 7,
+          "source": "../../storage/types.js",
+          "native": "../../storage/types.ts"
+        },
+        {
+          "statement": 8,
+          "source": "../../utils/base64.js",
+          "native": "../../utils/base64.ts"
+        },
+        {
+          "statement": 9,
+          "source": "../../utils/hash.js",
+          "native": "../../utils/hash.ts"
+        },
+        {
+          "statement": 10,
+          "source": "../schemas/media.js",
+          "native": "../schemas/media.ts"
+        },
+        {
+          "statement": 11,
+          "source": "../types.js",
+          "native": "../types.ts"
+        },
+        {
+          "statement": 12,
+          "source": "./media-allowlist.js",
+          "native": "./media-allowlist.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/api/handlers/media-allowlist.ts",
       "runtime": "src/lib/server/general-media/upstream/api/handlers/media-allowlist.ts",
       "sourceSha256": "927200b1dd1f838f6057af00e9f01b114ebc2fee83cab0c448ccaa2da455e113",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "kysely",
+          "native": "kysely"
+        },
+        {
+          "statement": 1,
+          "source": "../../database/types.js",
+          "native": "../../database/types.ts"
+        },
+        {
+          "statement": 2,
+          "source": "../../media/mime.js",
+          "native": "../../media/mime.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/api/schemas/media.ts",
       "runtime": "src/lib/server/general-media/upstream/api/schemas/media.ts",
       "sourceSha256": "294db4b80aefe5885fb591dda63411197f975593373a9b5011fcca2feda3cd7f",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "zod",
+          "native": "zod"
+        },
+        {
+          "statement": 1,
+          "source": "#media/focal-point.js",
+          "native": "../../media/focal-point.ts"
+        },
+        {
+          "statement": 2,
+          "source": "./common.js",
+          "native": "./common.ts"
+        },
+        {
+          "statement": 3,
+          "source": "./media-usage.js",
+          "native": "./media-usage.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/api/schemas/common.ts",
       "runtime": "src/lib/server/general-media/upstream/api/schemas/common.ts",
       "sourceSha256": "9df0fc5f1d40a33f87c131b151278ba639f35013b387c7b7bef15523c11c3e08",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "zod",
+          "native": "zod"
+        },
+        {
+          "statement": 1,
+          "source": "../../i18n/config.js",
+          "native": "../../i18n/config.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/api/schemas/media-usage.ts",
       "runtime": "src/lib/server/general-media/upstream/api/schemas/media-usage.ts",
       "sourceSha256": "76178ba4148f164b5ac8bf80ac8a391e9b6e9a866f76751f96c630a51a695808",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "zod",
+          "native": "zod"
+        },
+        {
+          "statement": 1,
+          "source": "../../media/usage/site-settings.js",
+          "native": "../../media/usage/site-settings.ts"
+        },
+        {
+          "statement": 2,
+          "source": "./common.js",
+          "native": "./common.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/media/usage/site-settings.ts",
       "runtime": "src/lib/server/general-media/upstream/media/usage/site-settings.ts",
       "sourceSha256": "d7c45bf37f94331ea764fda9551b8875a8fd79c6de18cfff70c4c13aae5b25a2",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "../../transfer/format/settings.js",
+          "native": "../../transfer/format/settings.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/transfer/format/settings.ts",
       "runtime": "src/lib/server/general-media/upstream/transfer/format/settings.ts",
       "sourceSha256": "301873d39780d0ee118c81d5500df2c4fd707f168767ce0bc43d7185edc05a7e",
-      "transformation": "Attribution prefix; finite import .js\u2192.ts and #media focal-point alias only"
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "imports": []
     },
     {
       "source": "packages/core/src/database/migrations/001_initial.ts",
       "runtime": "src/lib/server/general-media/upstream/database/migrations/001_initial.ts",
       "sourceSha256": "3c91298a957d40f5b576dfd5012e3ce66480db95516add28d45a5669e651fee9",
-      "transformation": "Attribution and fixture-only prefix; finite import .js\u2192.ts only"
+      "transformation": "Attribution and fixture-only prefix; finite import .js→.ts only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "kysely",
+          "native": "kysely"
+        },
+        {
+          "statement": 1,
+          "source": "../dialect-helpers.js",
+          "native": "../dialect-helpers.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/database/migrations/002_media_status.ts",
       "runtime": "src/lib/server/general-media/upstream/database/migrations/002_media_status.ts",
       "sourceSha256": "b856cea671c3c9889edd3de2b4003027481bb8a0417a69165f609be3c1089159",
-      "transformation": "Attribution and fixture-only prefix; finite import .js\u2192.ts only"
+      "transformation": "Attribution and fixture-only prefix; finite import .js→.ts only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "kysely",
+          "native": "kysely"
+        }
+      ]
     },
     {
       "source": "packages/core/src/database/migrations/024_media_placeholders.ts",
       "runtime": "src/lib/server/general-media/upstream/database/migrations/024_media_placeholders.ts",
       "sourceSha256": "ade643eced9dc608c2fab67136819eda2d97884b1f470285ee73ca96099913b4",
-      "transformation": "Attribution and fixture-only prefix; finite import .js\u2192.ts only"
+      "transformation": "Attribution and fixture-only prefix; finite import .js→.ts only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "kysely",
+          "native": "kysely"
+        },
+        {
+          "statement": 1,
+          "source": "kysely",
+          "native": "kysely"
+        }
+      ]
     },
     {
       "source": "packages/core/src/database/migrations/054_media_upload_attempts.ts",
       "runtime": "src/lib/server/general-media/upstream/database/migrations/054_media_upload_attempts.ts",
       "sourceSha256": "32be099488912f0c0f27948705e5ffb277b5105075a4d1ac3c6dc372c1249007",
-      "transformation": "Attribution and fixture-only prefix; finite import .js\u2192.ts only"
+      "transformation": "Attribution and fixture-only prefix; finite import .js→.ts only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "kysely",
+          "native": "kysely"
+        },
+        {
+          "statement": 1,
+          "source": "../dialect-helpers.js",
+          "native": "../dialect-helpers.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/database/migrations/072_media_folders.ts",
       "runtime": "src/lib/server/general-media/upstream/database/migrations/072_media_folders.ts",
       "sourceSha256": "2452ed2096aa697ee9a56b018d027f9aaab8f8a647450c7d5eaeffae2bda07bf",
-      "transformation": "Attribution and fixture-only prefix; finite import .js\u2192.ts only"
+      "transformation": "Attribution and fixture-only prefix; finite import .js→.ts only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "kysely",
+          "native": "kysely"
+        },
+        {
+          "statement": 1,
+          "source": "../dialect-helpers.js",
+          "native": "../dialect-helpers.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/database/migrations/073_media_focal_point.ts",
       "runtime": "src/lib/server/general-media/upstream/database/migrations/073_media_focal_point.ts",
       "sourceSha256": "e157b0418c92f4203083840e619742e7d0dc51cbe7bc5e8af1a03ee40684e71e",
-      "transformation": "Attribution and fixture-only prefix; finite import .js\u2192.ts only"
+      "transformation": "Attribution and fixture-only prefix; finite import .js→.ts only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "kysely",
+          "native": "kysely"
+        },
+        {
+          "statement": 1,
+          "source": "../dialect-helpers.js",
+          "native": "../dialect-helpers.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/media/local-runtime.ts",
       "runtime": "src/lib/server/general-media/upstream/media/local-runtime.ts",
       "sourceSha256": "655d15e1c0bc875c63b88bd041adc71f23932a268762c5aaac4727e3a45b27bc",
-      "transformation": "Attribution prefix; finite .js\u2192.ts imports; settings import delegates only public settings object-cache invalidation under MED-CACHE01"
+      "transformation": "Attribution prefix; finite .js→.ts imports; settings import delegates only public settings object-cache invalidation under MED-CACHE01",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "kysely",
+          "native": "kysely"
+        },
+        {
+          "statement": 1,
+          "source": "../api/handlers/media.js",
+          "native": "../api/handlers/media.ts"
+        },
+        {
+          "statement": 2,
+          "source": "../database/repositories/media.js",
+          "native": "../database/repositories/media.ts"
+        },
+        {
+          "statement": 3,
+          "source": "../database/types.js",
+          "native": "../database/types.ts"
+        },
+        {
+          "statement": 4,
+          "source": "../index.js",
+          "native": "../index.ts"
+        },
+        {
+          "statement": 5,
+          "source": "../settings/index.js",
+          "native": "../settings/index.ts"
+        },
+        {
+          "statement": 6,
+          "source": "./types.js",
+          "native": "./types.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/api/error.ts",
       "runtime": "src/lib/server/general-media/upstream/api/error.ts",
       "sourceSha256": "e191417b83c8314a6a7623f7e35dad793760a66ae8edc2f817042901587ca868",
-      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+      "transformation": "Attribution prefix; finite .js→.ts/#api/#db/#media/#utils native imports; Astro APIRoute type→owned native context only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "../database/repositories/types.js",
+          "native": "../database/repositories/types.ts"
+        },
+        {
+          "statement": 1,
+          "source": "./errors.js",
+          "native": "./errors.ts"
+        },
+        {
+          "statement": 2,
+          "source": "./types.js",
+          "native": "./types.ts"
+        },
+        {
+          "statement": 3,
+          "source": "./errors.js",
+          "native": "./errors.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/astro/routes/api/media.ts",
       "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media.ts",
       "sourceSha256": "1662963ba0d2a1a690f72428ab9c652f698ae76b60d46a667849ccbfb683efe8",
-      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+      "transformation": "Attribution prefix; finite .js→.ts/#api/#db/#media/#utils native imports; Astro APIRoute type→owned native context only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "node:path",
+          "native": "node:path"
+        },
+        {
+          "statement": 1,
+          "source": "astro",
+          "native": "../../../api/context.ts"
+        },
+        {
+          "statement": 2,
+          "source": "ulidx",
+          "native": "ulidx"
+        },
+        {
+          "statement": 3,
+          "source": "#api/authorize.js",
+          "native": "../../../api/authorize.ts"
+        },
+        {
+          "statement": 4,
+          "source": "#api/error.js",
+          "native": "../../../api/error.ts"
+        },
+        {
+          "statement": 5,
+          "source": "#api/handlers/media-allowlist.js",
+          "native": "../../../api/handlers/media-allowlist.ts"
+        },
+        {
+          "statement": 6,
+          "source": "#api/handlers/media-usage.js",
+          "native": "../../../api/handlers/media-usage-read.ts"
+        },
+        {
+          "statement": 7,
+          "source": "#api/parse.js",
+          "native": "../../../api/parse.ts"
+        },
+        {
+          "statement": 8,
+          "source": "#api/schemas.js",
+          "native": "../../../api/schemas/media.ts"
+        },
+        {
+          "statement": 9,
+          "source": "#db/repositories/media.js",
+          "native": "../../../database/repositories/media.ts"
+        },
+        {
+          "statement": 10,
+          "source": "#media/enrich.js",
+          "native": "../../../media/enrich.ts"
+        },
+        {
+          "statement": 11,
+          "source": "#media/mime.js",
+          "native": "../../../media/mime.ts"
+        },
+        {
+          "statement": 12,
+          "source": "#utils/hash.js",
+          "native": "../../../utils/hash.ts"
+        },
+        {
+          "statement": 13,
+          "source": "../../types.js",
+          "native": "../../../database/repositories/media.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/astro/routes/api/media/[id].ts",
       "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media/[id].ts",
       "sourceSha256": "4ce8a3348ba23c2a2d1990ed916d6c15db914f08d6fe3788eac288786927c2d5",
-      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+      "transformation": "Attribution prefix; finite .js→.ts/#api/#db/#media/#utils native imports; Astro APIRoute type→owned native context only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "astro",
+          "native": "../../../../api/context.ts"
+        },
+        {
+          "statement": 1,
+          "source": "#api/authorize.js",
+          "native": "../../../../api/authorize.ts"
+        },
+        {
+          "statement": 2,
+          "source": "#api/error.js",
+          "native": "../../../../api/error.ts"
+        },
+        {
+          "statement": 3,
+          "source": "#api/handlers/media-usage.js",
+          "native": "../../../../api/handlers/media-usage-read.ts"
+        },
+        {
+          "statement": 4,
+          "source": "#api/parse.js",
+          "native": "../../../../api/parse.ts"
+        },
+        {
+          "statement": 5,
+          "source": "#api/schemas.js",
+          "native": "../../../../api/schemas/media.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/astro/routes/api/media/folders/index.ts",
       "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media/folders/index.ts",
       "sourceSha256": "3c8107bb3cc48e125ca80ca470a1bd2079ab072ba9b698a36e096dc4654d83d5",
-      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+      "transformation": "Attribution prefix; finite .js→.ts/#api/#db/#media/#utils native imports; Astro APIRoute type→owned native context only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "astro",
+          "native": "../../../../../api/context.ts"
+        },
+        {
+          "statement": 1,
+          "source": "#api/authorize.js",
+          "native": "../../../../../api/authorize.ts"
+        },
+        {
+          "statement": 2,
+          "source": "#api/error.js",
+          "native": "../../../../../api/error.ts"
+        },
+        {
+          "statement": 3,
+          "source": "#api/handlers/media-folders.js",
+          "native": "../../../../../api/handlers/media-folders.ts"
+        },
+        {
+          "statement": 4,
+          "source": "#api/parse.js",
+          "native": "../../../../../api/parse.ts"
+        },
+        {
+          "statement": 5,
+          "source": "#api/schemas.js",
+          "native": "../../../../../api/schemas/media.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/astro/routes/api/media/folders/[id].ts",
       "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media/folders/[id].ts",
       "sourceSha256": "e7e50d2d1620dc6b5c8553e430ba19100ff402ef21d6f9904f7eb59e691ef7ff",
-      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+      "transformation": "Attribution prefix; finite .js→.ts/#api/#db/#media/#utils native imports; Astro APIRoute type→owned native context only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "astro",
+          "native": "../../../../../api/context.ts"
+        },
+        {
+          "statement": 1,
+          "source": "#api/authorize.js",
+          "native": "../../../../../api/authorize.ts"
+        },
+        {
+          "statement": 2,
+          "source": "#api/error.js",
+          "native": "../../../../../api/error.ts"
+        },
+        {
+          "statement": 3,
+          "source": "#api/handlers/media-folders.js",
+          "native": "../../../../../api/handlers/media-folders.ts"
+        },
+        {
+          "statement": 4,
+          "source": "#api/parse.js",
+          "native": "../../../../../api/parse.ts"
+        },
+        {
+          "statement": 5,
+          "source": "#api/schemas.js",
+          "native": "../../../../../api/schemas/media.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/astro/routes/api/media/file/[...key].ts",
       "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media/file/[...key].ts",
       "sourceSha256": "d5d6ae0aee0d6445d64780ad01fc602e02d22b2e8582214e36074407fa7cd5dc",
-      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+      "transformation": "Attribution prefix; finite .js→.ts/#api/#db/#media/#utils native imports; Astro APIRoute type→owned native context only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "astro",
+          "native": "../../../../../api/context.ts"
+        },
+        {
+          "statement": 1,
+          "source": "#api/error.js",
+          "native": "../../../../../api/error.ts"
+        },
+        {
+          "statement": 2,
+          "source": "#media/image-endpoint.js",
+          "native": "../../../../../media/image-endpoint.ts"
+        },
+        {
+          "statement": 3,
+          "source": "../../../../../transfer/staging/keys.js",
+          "native": "../../../../../transfer/staging/keys.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/astro/routes/api/media/asset/[id]/[filename].ts",
       "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media/asset/[id]/[filename].ts",
       "sourceSha256": "ca041b7aaa0fb9cf71dfe456b1c01ff7a250b5eb060f9a3d452e0e1c7683f2c2",
-      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+      "transformation": "Attribution prefix; finite .js→.ts/#api/#db/#media/#utils native imports; Astro APIRoute type→owned native context only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "astro",
+          "native": "../../../../../../api/context.ts"
+        },
+        {
+          "statement": 1,
+          "source": "#api/authorize.js",
+          "native": "../../../../../../api/authorize.ts"
+        },
+        {
+          "statement": 2,
+          "source": "#api/error.js",
+          "native": "../../../../../../api/error.ts"
+        },
+        {
+          "statement": 3,
+          "source": "#db/repositories/media.js",
+          "native": "../../../../../../database/repositories/media.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/transfer/staging/keys.ts",
       "runtime": "src/lib/server/general-media/upstream/transfer/staging/keys.ts",
       "sourceSha256": "940bda771953f375d56ff525bb64e71bc0fc48f893f8483d599de19b42cb4cf6",
-      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+      "transformation": "Attribution prefix; finite .js→.ts/#api/#db/#media/#utils native imports; Astro APIRoute type→owned native context only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "../errors.js",
+          "native": "../errors.ts"
+        },
+        {
+          "statement": 1,
+          "source": "../format/paths.js",
+          "native": "../format/paths.ts"
+        },
+        {
+          "statement": 2,
+          "source": "../ops/states.js",
+          "native": "../ops/states.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/transfer/format/paths.ts",
       "runtime": "src/lib/server/general-media/upstream/transfer/format/paths.ts",
       "sourceSha256": "14ce777e467ca6691d669e23e1159ea250b7b414810c2753a9d73211df9cedc2",
-      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+      "transformation": "Attribution prefix; finite .js→.ts/#api/#db/#media/#utils native imports; Astro APIRoute type→owned native context only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "./kinds.js",
+          "native": "./kinds.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/transfer/format/kinds.ts",
       "runtime": "src/lib/server/general-media/upstream/transfer/format/kinds.ts",
       "sourceSha256": "a2bda6c1b44d4577567e4c0769a53e2262cae41afeab8e43e9b5b910492a4c8f",
-      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+      "transformation": "Attribution prefix; finite .js→.ts/#api/#db/#media/#utils native imports; Astro APIRoute type→owned native context only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "zod",
+          "native": "zod"
+        },
+        {
+          "statement": 1,
+          "source": "./canonical.js",
+          "native": "./canonical.ts"
+        },
+        {
+          "statement": 2,
+          "source": "./issues.js",
+          "native": "./issues.ts"
+        },
+        {
+          "statement": 3,
+          "source": "./limits.js",
+          "native": "./limits.ts"
+        },
+        {
+          "statement": 4,
+          "source": "./settings.js",
+          "native": "./settings.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/transfer/ops/states.ts",
       "runtime": "src/lib/server/general-media/upstream/transfer/ops/states.ts",
       "sourceSha256": "685bc726a056b4a5759c630bd5d0651af86e3e568ced5879fd317f5be7f1397f",
-      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+      "transformation": "Attribution prefix; finite .js→.ts/#api/#db/#media/#utils native imports; Astro APIRoute type→owned native context only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "zod",
+          "native": "zod"
+        },
+        {
+          "statement": 1,
+          "source": "../format/kinds.js",
+          "native": "../format/kinds.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/transfer/format/canonical.ts",
       "runtime": "src/lib/server/general-media/upstream/transfer/format/canonical.ts",
       "sourceSha256": "a22d9e6bcad233eeddf0b70daf44e9ce1f3b4417cde8246bede38e2fc7d3e759",
-      "transformation": "Attribution prefix; finite .js\u2192.ts imports only"
+      "transformation": "Attribution prefix; finite .js→.ts imports only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "./limits.js",
+          "native": "./limits.ts"
+        }
+      ]
     },
     {
       "source": "packages/core/src/transfer/format/issues.ts",
       "runtime": "src/lib/server/general-media/upstream/transfer/format/issues.ts",
       "sourceSha256": "2c07fa19ffa38936068a2e2bab92599d50eebe5f9e2ee3ba024630ecbd38f8ca",
-      "transformation": "Attribution prefix; finite .js\u2192.ts imports only"
+      "transformation": "Attribution prefix; finite .js→.ts imports only",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "zod",
+          "native": "zod"
+        }
+      ]
     },
     {
       "source": "packages/core/src/transfer/format/limits.ts",
       "runtime": "src/lib/server/general-media/upstream/transfer/format/limits.ts",
       "sourceSha256": "c00d09fbb594dcd400dc459dcce57ae85020d467c4881d931ca4ea9de6ec8385",
-      "transformation": "Attribution prefix; finite .js\u2192.ts imports only"
+      "transformation": "Attribution prefix; finite .js→.ts imports only",
+      "imports": []
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/media/upload-url.ts",
+      "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media/upload-url.ts",
+      "sourceSha256": "f76b61d26b20ec6cb308b0210046ea811ceb7fff874cdf33cb60f4b09bb48f6f",
+      "transformation": "Attribution prefix; finite native import strings only, Astro/Storage/main MediaItem types to existing native context/storage/repository types",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "node:path",
+          "native": "node:path"
+        },
+        {
+          "statement": 1,
+          "source": "astro",
+          "native": "../../../../api/context.ts"
+        },
+        {
+          "statement": 2,
+          "source": "ulidx",
+          "native": "ulidx"
+        },
+        {
+          "statement": 3,
+          "source": "#api/authorize.js",
+          "native": "../../../../api/authorize.ts"
+        },
+        {
+          "statement": 4,
+          "source": "#api/error.js",
+          "native": "../../../../api/error.ts"
+        },
+        {
+          "statement": 5,
+          "source": "#api/handlers/media-allowlist.js",
+          "native": "../../../../api/handlers/media-allowlist.ts"
+        },
+        {
+          "statement": 6,
+          "source": "#api/parse.js",
+          "native": "../../../../api/parse.ts"
+        },
+        {
+          "statement": 7,
+          "source": "#api/schemas.js",
+          "native": "../../../../api/schemas/media.ts"
+        },
+        {
+          "statement": 8,
+          "source": "#db/repositories/media.js",
+          "native": "../../../../database/repositories/media.ts"
+        },
+        {
+          "statement": 9,
+          "source": "#media/mime.js",
+          "native": "../../../../media/mime.ts"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/media/[id]/upload.ts",
+      "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media/[id]/upload.ts",
+      "sourceSha256": "dd0217446bcd312d00ef4d758bc7382e8ea205f191506212e0da26e3ed6e3def",
+      "transformation": "Attribution prefix; finite native import strings only, Astro/Storage/main MediaItem types to existing native context/storage/repository types",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "astro",
+          "native": "../../../../../api/context.ts"
+        },
+        {
+          "statement": 1,
+          "source": "emdash",
+          "native": "../../../../../storage/types.ts"
+        },
+        {
+          "statement": 2,
+          "source": "ulidx",
+          "native": "ulidx"
+        },
+        {
+          "statement": 3,
+          "source": "#api/authorize.js",
+          "native": "../../../../../api/authorize.ts"
+        },
+        {
+          "statement": 4,
+          "source": "#api/error.js",
+          "native": "../../../../../api/error.ts"
+        },
+        {
+          "statement": 5,
+          "source": "#db/repositories/media.js",
+          "native": "../../../../../database/repositories/media.ts"
+        },
+        {
+          "statement": 6,
+          "source": "#media/mime.js",
+          "native": "../../../../../media/mime.ts"
+        },
+        {
+          "statement": 7,
+          "source": "#media/upload-attempts.js",
+          "native": "../../../../../media/upload-attempts.ts"
+        },
+        {
+          "statement": 8,
+          "source": "#utils/hash.js",
+          "native": "../../../../../utils/hash.ts"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/media/[id]/confirm.ts",
+      "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media/[id]/confirm.ts",
+      "sourceSha256": "6ba25eab9ccbf96734a56bafa7565a369b46f32c0f468d0f70c04127e06cbca5",
+      "transformation": "Attribution prefix; finite native import strings only, Astro/Storage/main MediaItem types to existing native context/storage/repository types",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "astro",
+          "native": "../../../../../api/context.ts"
+        },
+        {
+          "statement": 1,
+          "source": "emdash",
+          "native": "../../../../../storage/types.ts"
+        },
+        {
+          "statement": 2,
+          "source": "#api/authorize.js",
+          "native": "../../../../../api/authorize.ts"
+        },
+        {
+          "statement": 3,
+          "source": "#api/error.js",
+          "native": "../../../../../api/error.ts"
+        },
+        {
+          "statement": 4,
+          "source": "#api/parse.js",
+          "native": "../../../../../api/parse.ts"
+        },
+        {
+          "statement": 5,
+          "source": "#api/schemas.js",
+          "native": "../../../../../api/schemas/media.ts"
+        },
+        {
+          "statement": 6,
+          "source": "#db/repositories/media.js",
+          "native": "../../../../../database/repositories/media.ts"
+        },
+        {
+          "statement": 7,
+          "source": "#media/enrich.js",
+          "native": "../../../../../media/enrich.ts"
+        },
+        {
+          "statement": 8,
+          "source": "#types",
+          "native": "../../../../../database/repositories/media.ts"
+        },
+        {
+          "statement": 9,
+          "source": "#utils/hash.js",
+          "native": "../../../../../utils/hash.ts"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/media/[id]/replace.ts",
+      "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media/[id]/replace.ts",
+      "sourceSha256": "7c80b3662ebca1ee9faaff30aa7b279ee6fd2b888f6ddafbab5681a19c675c78",
+      "transformation": "Attribution prefix; finite native import strings only, Astro/Storage/main MediaItem types to existing native context/storage/repository types",
+      "imports": [
+        {
+          "statement": 0,
+          "source": "astro",
+          "native": "../../../../../api/context.ts"
+        },
+        {
+          "statement": 1,
+          "source": "#api/authorize.js",
+          "native": "../../../../../api/authorize.ts"
+        },
+        {
+          "statement": 2,
+          "source": "#api/error.js",
+          "native": "../../../../../api/error.ts"
+        },
+        {
+          "statement": 3,
+          "source": "#api/schemas.js",
+          "native": "../../../../../api/schemas/media.ts"
+        },
+        {
+          "statement": 4,
+          "source": "#media/image-endpoint.js",
+          "native": "../../../../../media/image-endpoint.ts"
+        },
+        {
+          "statement": 5,
+          "source": "#media/mime.js",
+          "native": "../../../../../media/mime.ts"
+        },
+        {
+          "statement": 6,
+          "source": "#utils/hash.js",
+          "native": "../../../../../utils/hash.ts"
+        }
+      ]
     }
   ]
 }

@@ -151,6 +151,26 @@
       "privatePath": "/tmp/general-media-source-stream-first-module-stops.log",
       "bytes": 3956,
       "sha256": "e62fe5e866a96138d05f73939dadc6f73ffe7c87aa7a94b22b36fa7e2ede3144"
+    },
+    {
+      "privatePath": "/tmp/general-media-native-stream-first-implementation.log",
+      "bytes": 943,
+      "sha256": "86cae38e744cb28fb3030222a7f372f334c0dc91c4e33ea75ab28c1ddcbbb893"
+    },
+    {
+      "privatePath": "/tmp/general-media-native-stream-source-input-green.log",
+      "bytes": 232,
+      "sha256": "f820df863d814bd23f4db395e99fe97075eda10010de89979b5e86c921aafc11"
+    },
+    {
+      "privatePath": "/tmp/general-media-source-stream-first-implementation.log",
+      "bytes": 236,
+      "sha256": "fec22571efc6d01201fab86b44d8ee5eec5aafa67ac1761f3f8490f5f7117b8c"
+    },
+    {
+      "privatePath": "/tmp/general-media-check-stream-first.log",
+      "bytes": 216,
+      "sha256": "834cdc203986df67b0e7bd3abc36ee349dc3f316e5e840067a8126accb31fb73"
     }
   ],
   "implementationCheckpoint": {
@@ -202,5 +222,20 @@
     "nativeWorkflowsPassed": 12,
     "nativeUploadValueReds": 1,
     "scope": "Complete controlled Original confirm/replace/dedup/placeholder test families. No stream race/cleanup family launched. Supplemental native expectation was grounded to exact Source ready status and replaceable image MIME before implementation; both missing-route reds retained."
+  },
+  "uploadCheckpoint": {
+    "wholeSourceFiles": 31,
+    "wholeSourceCallbacksPassed": 273,
+    "genuineSourceValueReds": 0,
+    "nativeWorkflowsPassed": 13,
+    "nativeMissingUploadRouteValueRedFixed": 1,
+    "supplementalInputCorrection": "First implementation response400 from Native replacement fixture omitted Source mandatory dimensions. Supplied width/height4 without runtime/Source test change; no Source causal value-red credit. Prior raw receipt retained.",
+    "checkerErrors": 0,
+    "checkerWarnings": 0,
+    "limits": [
+      "Original stream33 race/clock/cleanup family remains unlaunched pending concrete scope/actual full cleanup closure",
+      "Original field-aware widening9 remains unlaunched pending genuine Source SchemaRegistry fixture closure",
+      "Full PAT/asset-auth pipeline absent; direct controlled principals do not prove actual protected HTTP authentication"
+    ]
   }
 }

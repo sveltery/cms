@@ -42,6 +42,7 @@ describe('Original native media route module calls using controlled principals',
       const replace=await route('api/media/[id]/replace');expect(replace,'native same-key replacement endpoint').not.toBeNull();
       const replacement=new Uint8Array([...JPEG_4x4,0]);
       const body=new FormData();body.set('file',new File([replacement],'stream.jpg',{type:'image/jpeg'}));
+      body.set('width','4');body.set('height','4');
       expect((await replace!.PUT(owned.event(new Request('http://localhost/api/media/'+data.mediaId+'/replace',{method:'PUT',headers:{Origin:'http://localhost'},body}),Role.AUTHOR,{id:data.mediaId}))).status).toBe(200);
       expect((await repository.findById(data.mediaId))?.storageKey).toBe(key);
       expect(new Uint8Array(await new Response((await owned.storage.download(key)).body).arrayBuffer())).toEqual(replacement);

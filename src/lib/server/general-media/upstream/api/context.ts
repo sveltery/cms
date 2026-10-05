@@ -10,6 +10,7 @@ export interface MediaRuntime {
   handleMediaCreate:(input:Parameters<typeof media.handleMediaCreate>[1])=>ReturnType<typeof media.handleMediaCreate>;
   handleMediaUpdate:(id:string,input:Parameters<typeof media.handleMediaUpdate>[2])=>ReturnType<typeof media.handleMediaUpdate>;
   handleMediaDelete:(id:string)=>ReturnType<typeof media.handleMediaDelete>;
+  handleMediaReplaceMetadata:(id:string,key:string,input:Parameters<typeof media.handleMediaReplaceMetadata>[3])=>ReturnType<typeof media.handleMediaReplaceMetadata>;
 }
 export interface MediaApiContext {
   request:Request;url:URL;params:Record<string,string|undefined>;

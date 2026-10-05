@@ -14,6 +14,9 @@ export default defineConfig({
       'src/astro/routes/api/media/[id].js':'reference-one.ts',
       'src/astro/routes/api/media/folders/index.js':'reference-folders.ts',
       'src/astro/routes/api/media/folders/[id].js':'reference-folder.ts'
+      ,'src/astro/routes/api/media/upload-url.js':'reference-upload-url.ts'
+      ,'src/astro/routes/api/media/[id]/confirm.js':'reference-confirm.ts'
+      ,'src/astro/routes/api/media/[id]/replace.js':'reference-replace.ts'
     };
     if(routes[relative])return path.join(root,'tests/helpers/general-media',routes[relative]);
     if (relative === 'tests/utils/test-db.js') return path.join(root, 'tests/helpers/general-media/reference-db.ts');

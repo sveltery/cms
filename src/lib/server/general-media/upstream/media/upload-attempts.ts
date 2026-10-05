@@ -1,5 +1,5 @@
-// EmDash 1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
-// Whole pinned body; native import paths only.
+// EmDash immutable 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; MIT notices/emdash-MIT.txt.
+// Complete pinned body; finite native imports and context types only.
 import type { MediaRepository } from "../database/repositories/media.ts";
 import type { Storage } from "../storage/types.ts";
 
