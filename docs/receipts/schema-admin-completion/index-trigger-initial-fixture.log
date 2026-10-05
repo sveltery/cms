@@ -1,0 +1,47 @@
+
+ RUN  v4.1.10 /workspace/cms-full-schema-admin
+
+ ❯ tests/schema-admin-completion/native/collection-index-operator-trigger.test.ts (2 tests | 2 failed) 75ms
+   × whole pinned Source080 rereads actual operator mutations and repairs the group 8ms
+   × actual Native forward migration preserves admitted operator-trigger mutation semantics 66ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-operator-trigger.test.ts > whole pinned Source080 rereads actual operator mutations and repairs the group
+TypeError: database.db.$castTo is not a function
+ ❯ sourceStorage tests/schema-admin-completion/native/collection-index-operator-trigger.test.ts:15:34
+     13|
+     14| async function sourceStorage(database:ReturnType<typeof openSqlite>) {
+     15|   await source001.up(database.db.$castTo<unknown>());
+       |                                  ^
+     16|   // Ordinary fixture reproduces the actual Source Registry:1868–1909 …
+     17|   // content-table physical shape; this is SQL setup, not a registry s…
+ ❯ tests/schema-admin-completion/native/collection-index-operator-trigger.test.ts:62:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-operator-trigger.test.ts > actual Native forward migration preserves admitted operator-trigger mutation semantics
+AssertionError: promise rejected "CmsError: MIGRATION_REQUIRED { …(2) }" instead of resolving
+ ❯ tests/schema-admin-completion/native/collection-index-operator-trigger.test.ts:72:39
+     70|   try {
+     71|     await nativeStorage(database);await seed(database,'_cms_content_ta…
+     72|     await expect(migrateCms(database)).resolves.toBeUndefined();
+       |                                       ^
+     73|     await assertRepaired(database,'_cms_content_taxonomies');
+     74|   } finally {await database.close();}
+
+Caused by: CmsError: MIGRATION_REQUIRED
+ ❯ migrationState src/lib/server/database/migrations.ts:223:48
+ ❯ migrateCms src/lib/server/database/migrations.ts:278:21
+ ❯ tests/schema-admin-completion/native/collection-index-operator-trigger.test.ts:72:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'MIGRATION_REQUIRED', details: undefined }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  17:17:26
+   Duration  1.17s (transform 547ms, setup 0ms, import 902ms, tests 75ms, environment 0ms)
+

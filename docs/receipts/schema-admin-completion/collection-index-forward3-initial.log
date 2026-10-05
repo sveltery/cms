@@ -1,0 +1,124 @@
+
+ RUN  v4.1.10 /workspace/cms-full-schema-admin
+
+ ❯ tests/schema-admin-completion/native/collection-index-forward.test.ts (3 tests | 3 failed) 171ms
+   × splits duplicates with Source anchor/order rules and preserves canonical term links across retry 92ms
+   × replaces legacy translation/scheduling indexes while retaining real scheduled content 40ms
+   × refuses an incompatible future-owned index without changing stored content or markers 38ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-forward.test.ts > splits duplicates with Source anchor/order rules and preserves canonical term links across retry
+AssertionError: expected [ [ 'chain', 'collision' ], …(9) ] to deeply equal [ [ 'chain', 'chain' ], …(9) ]
+
+- Expected
++ Received
+
+@@ -1,13 +1,13 @@
+  [
+    [
+      "chain",
+-     "chain",
++     "collision",
+    ],
+    [
+-     "chain-other",
+      "chain-other",
++     "chain",
+    ],
+    [
+      "collision",
+      "collision",
+    ],
+@@ -18,12 +18,12 @@
+    [
+      "group-a",
+      "group-a",
+    ],
+    [
+-     "later",
+      "later",
++     "group-b",
+    ],
+    [
+      "null-one",
+      null,
+    ],
+@@ -31,11 +31,11 @@
+      "null-two",
+      null,
+    ],
+    [
+      "older",
+-     "older",
++     "group-a",
+    ],
+    [
+      "trash",
+      "group-a",
+    ],
+
+ ❯ tests/schema-admin-completion/native/collection-index-forward.test.ts:49:60
+     47|   await migrateCms(database);
+     48|   const after = await contentRows();
+     49|   expect(after.map(row => [row.id,row.translation_group])).toEqual([
+       |                                                            ^
+     50|     ['chain','chain'],['chain-other','chain-other'],['collision','coll…
+     51|     ['group-a','group-a'],['later','later'],['null-one',null],['null-t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-forward.test.ts > replaces legacy translation/scheduling indexes while retaining real scheduled content
+AssertionError: expected [ false, false, false, false ] to deeply equal [ true, true, true, true ]
+
+- Expected
++ Received
+
+  [
+-   true,
+-   true,
+-   true,
+-   true,
++   false,
++   false,
++   false,
++   false,
+  ]
+
+ ❯ tests/schema-admin-completion/native/collection-index-forward.test.ts:80:159
+     78|   await migrateCms(database);
+     79|   const names = (await sql<{name:string}>`SELECT name FROM sqlite_mast…
+     80|   expect(['idx_ec_posts_tg_locale','idx_ec_posts_del_tg_locale','idx_e…
+       |                                                                                                                                                               ^
+     81|   expect(names.filter(name => ['idx_ec_posts_translation_group','idx_e…
+     82|   expect(await contentRows()).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-forward.test.ts > refuses an incompatible future-owned index without changing stored content or markers
+AssertionError: promise resolved "undefined" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+undefined
+
+ ❯ tests/schema-admin-completion/native/collection-index-forward.test.ts:90:37
+     88|   const before = { content:await contentRows(), markers:(await sql`SEL…
+     89|     catalogue:(await sql`SELECT name,type,sql FROM sqlite_master ORDER…
+     90|   await expect(migrateCms(database)).rejects.toMatchObject({code:'MIGR…
+       |                                     ^
+     91|   expect({ content:await contentRows(), markers:(await sql`SELECT vers…
+     92|     catalogue:(await sql`SELECT name,type,sql FROM sqlite_master ORDER…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  16:45:13
+   Duration  818ms (transform 336ms, setup 0ms, import 510ms, tests 171ms, environment 0ms)
+

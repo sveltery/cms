@@ -1,0 +1,49 @@
+{
+  "artifact": "Actual supplementary Native3 collection-index initial baseline",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "testfirstHead": "5736da555acf14cba043e3ef54ec4c925b5526c9",
+  "testfirstTree": "c9b20f703791de55d099461e175686e4f1064e0d",
+  "execution": {
+    "head": "5736da555acf14cba043e3ef54ec4c925b5526c9",
+    "command": [
+      "node",
+      "/workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs",
+      "exec",
+      "vitest",
+      "run",
+      "--config",
+      "vitest.schema-admin-collection-indexes.config.ts"
+    ],
+    "startedAt": "2026-10-04T16:27:21.312467+00:00",
+    "endedAt": "2026-10-04T16:27:28.206065+00:00",
+    "runs": 1,
+    "exitCode": 1,
+    "bytes": 4283,
+    "sha256": "28b317f229fd9386c927a3a76cb6da200e4271b864058cce02083878b3deb32b"
+  },
+  "rawRepositoryPath": "docs/receipts/schema-admin-completion/collection-index-native3-initial.log",
+  "rawUnmodified": true,
+  "environment": "Actual public c3 provider15 ordinary union; pnpm reconciled public520 lock adding cached jsonc-parser3.3.1 and smol-toml1.6.0 without package/lock edits or downloads; Node24.19.0/pnpm12.6.0/Vitest4.1.10/real NodeSQLite",
+  "classification": {
+    "registeredCallbacks": 3,
+    "completedAssertionValueFailures": 3,
+    "wholeCallbackControls": 0,
+    "directExpectsReached": 3,
+    "directExpectsUnreached": 2,
+    "partialAssertionsPassed": 0,
+    "preExpectationFailures": 0,
+    "infrastructureFailures": 0,
+    "originalSourceCallbackCredit": 0,
+    "causalSourceRepairCredit": 0
+  },
+  "received": {
+    "catalogueVector": "Fourteen missing names; existing primary_byline and deleted_status are true.",
+    "activeDuplicateInsert": "Resolved actual INSERT result insertId5/numAffectedRows1 instead of rejection.",
+    "translationLookupPlan": "SEARCH e USING INDEX idx_ec_posts_draft_list (locale=? AND deleted_at=?)"
+  },
+  "limits": [
+    "Supplementary Native contracts, not original Source execution or provider16 implementation.",
+    "Existing-data080 split/copy, canonical ownership, full UI138/Native8 and final13+9 remain incomplete.",
+    "All historical raw evidence and original Source11 bodies/data/clocks are unchanged."
+  ]
+}
