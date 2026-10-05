@@ -21,11 +21,13 @@ async function fixture(target: 'Node' | 'D1') {
   return { ...storage, registry, entries, row };
 }
 for (const target of ['Node', 'D1'] as const) {
-  test(`${target}: all-locale trash order uses the pinned deleted-leading index while retaining upstream tie sorting`, { timeout: 30000 }, async () => {
+  test(`${target}: one-row all-locale trash plan matches the complete pinned Source index set`, { timeout: 30000 }, async () => {
     const f = await fixture(target);
     try {
       const plan = await explain(f.database);
-      assert.match(plan, /USING INDEX idx_ec_posts_deleted_status/); assert.match(plan, /TEMP B-TREE FOR (?:LAST|RIGHT) (?:TERM|PART) OF ORDER BY/);
+      // Actual immutable Source createContentTable with all16 indexes selects
+      // this scan/sort on the unchanged one-row fixture; see the reproducer.
+      assert.match(plan, /SCAN ec_posts/); assert.match(plan, /USE TEMP B-TREE FOR ORDER BY/);
     } finally { await f.close(); }
   });
   test(`${target}: explicit migration adds missing trash indexes idempotently without changing retained data or schema metadata`, { timeout: 30000 }, async () => {

@@ -68,7 +68,7 @@ async function seedExisting(database: CmsDatabase) {
   return registry;
 }
 for(const runtime of ['node','d1'] as const) {
-  test(runtime+' fresh15 persists exact tables/defaults and recognizes a reopened store without startup writes',async()=>{
+  test(runtime+' fresh16 persists exact tables/defaults and recognizes a reopened store without startup writes',async()=>{
     const directory=await mkdtemp(join(tmpdir(),'cms-block-reopen-'));
     let database:CmsDatabase|undefined;let storage:Awaited<ReturnType<typeof asyncD1Storage>>|undefined;
     try {
@@ -82,16 +82,16 @@ for(const runtime of ['node','d1'] as const) {
       database=storage?openD1(storage.binding):openSqlite(join(directory,'cms.sqlite'));
       const live=database;let writes=0;const observed:CmsDatabase={...live,async atomicBatch(statements){writes++;return live.atomicBatch(statements);}};
       await migrateCms(observed);
-      assert.equal(CMS_MIGRATION_VERSION,15);assert.equal(writes,0);
+      assert.equal(CMS_MIGRATION_VERSION,16);assert.equal(writes,0);
       assert.deepEqual(await snapshot(live),before);
       assert.equal((await new SchemaRegistry(live).getCollection('reopened'))?.commentsAutoApproveUsers,true);
     } finally {await database?.close();await storage?.runtime.dispose();await rm(directory,{recursive:true,force:true});}
   });
-  test(runtime+' installed15 near-miss block or metadata defaults are refused without repair',async()=>{
+  test(runtime+' installed16 near-miss block or metadata defaults are refused without repair',async()=>{
     for(const mode of ['missing-version-index','wrong-version-index','changed-metadata-layout'] as const) {
       const ctx=await fixture(runtime);
       try {
-        await migrateCms(ctx.database);assert.equal(CMS_MIGRATION_VERSION,15);
+        await migrateCms(ctx.database);assert.equal(CMS_MIGRATION_VERSION,16);
         if(mode==='missing-version-index') await sql`DROP INDEX idx_block_type_versions_type_version`.execute(ctx.database.db);
         if(mode==='wrong-version-index') {
           await sql`DROP INDEX idx_block_type_versions_type_version`.execute(ctx.database.db);
@@ -105,7 +105,7 @@ for(const runtime of ['node','d1'] as const) {
     }
   });
 
-  for(const version of [8,14] as const) test(runtime+' forward15 preserves all metadata/content values and operator objects from '+version,async()=>{
+  for(const version of [8,14] as const) test(runtime+' forward16 preserves all metadata/content values and operator objects from '+version,async()=>{
     const ctx=await fixture(runtime);
     try {
       await installThrough(ctx.database,version);const registry=await seedExisting(ctx.database);
@@ -119,7 +119,7 @@ for(const runtime of ['node','d1'] as const) {
         for(const trigger of await provider.expectedTriggers?.(ctx.database) ?? []) if(!currentTriggers.includes(trigger.name)) futureTriggers.push(trigger.name);
       }
       await migrateCms(ctx.database);await migrateCms(ctx.database);
-      assert.equal(CMS_MIGRATION_VERSION,15);
+      assert.equal(CMS_MIGRATION_VERSION,16);
       const afterTriggers=(await sql<{name:string}>`SELECT name FROM sqlite_master WHERE type='trigger' ORDER BY rowid`.execute(ctx.database.db)).rows.map(row=>row.name);
       assert.deepEqual(afterTriggers,[...currentTriggers,...futureTriggers],'captured historical operators keep relative order before newly installed provider triggers');
       assert.deepEqual(await metadataRows(ctx.database),beforeRows);
@@ -212,7 +212,7 @@ for(const runtime of ['node','d1'] as const) {
         await assert.rejects(()=>migrateCms(failing),/block_rebuild_failure_probe/);
         assert.deepEqual(await snapshot(ctx.database),before);
         await migrateCms(ctx.database);
-        assert.equal((await ctx.database.db.selectFrom('_cms_migrations').selectAll().execute()).length,15);
+        assert.equal((await ctx.database.db.selectFrom('_cms_migrations').selectAll().execute()).length,16);
       } finally {await ctx.dispose();}
     }
   });

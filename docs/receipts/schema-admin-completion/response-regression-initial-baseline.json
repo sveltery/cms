@@ -1,0 +1,120 @@
+{
+  "artifact": "Supplementary Native response candidate actual initial baseline",
+  "testFirstHead": "8ac91af7511f38a0e1c5e215526d35da7520a464",
+  "testFirstTree": "1d28914ffe9a4d571f0e8dd9ac0189ac8b67c2c0",
+  "authorDraftPR": "https://github.com/sveltery/cms/pull/103",
+  "runtime": "Node24.19.0/pnpm12.6.0/Vitest4.1.10/Valibot1.5.0; existing frozen518 install",
+  "target": "Exact whole R1 candidate authority snapshot, NOT applied product runtime",
+  "retainedCandidate": {
+    "path": "tests/schema-admin-completion/candidate-authorities/response-contracts-r1.ts",
+    "bytes": 5632,
+    "sha256": "810bcacacde705d13d8baff97786cacd3602e795900fa1b0755e2aee6ad36c19",
+    "gitBlob": "ad53856954382c8a90274b1aeb9e27935258f7fc"
+  },
+  "commands": [
+    {
+      "label": "guard",
+      "command": [
+        "node",
+        "scripts/check-schema-admin-response-regression.mjs"
+      ],
+      "cwd": "/workspace/cms-full-schema-admin",
+      "startedAt": "2026-10-04T15:40:04.471330+00:00",
+      "endedAt": "2026-10-04T15:40:04.521212+00:00",
+      "exitCode": 0,
+      "raw": "/tmp/schema-admin-response-regression-r2-initial-execution/guard.log",
+      "bytes": 102,
+      "sha256": "de74b4996a83fd362238239b62e15e489bf0c92970074c1dc4426e9efda69eae"
+    },
+    {
+      "label": "baseline",
+      "command": [
+        "node",
+        "/workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.schema-admin-response-regression.config.ts"
+      ],
+      "cwd": "/workspace/cms-full-schema-admin",
+      "startedAt": "2026-10-04T15:40:04.521446+00:00",
+      "endedAt": "2026-10-04T15:40:05.096772+00:00",
+      "exitCode": 1,
+      "raw": "/tmp/schema-admin-response-regression-r2-initial-execution/baseline.log",
+      "bytes": 1353,
+      "sha256": "0628507968d357a747125b69095a7a3abed5908f802b400d27ab63787f2f0b50"
+    }
+  ],
+  "runsPerCommand": 1,
+  "totals": {
+    "callbacksRegistered": 1,
+    "callbacksExecuted": 1,
+    "completedAssertionValueFailures": 1,
+    "wholeCallbackControls": 0,
+    "preExpectationFailures": 0,
+    "infrastructureFailures": 0,
+    "directExpectsRetained": 4,
+    "directExpectsReached": 4,
+    "partialAssertionsPassed": 3,
+    "assertionsFailed": 1,
+    "invalidAcceptanceResultsObserved": 9,
+    "originalSourceCallbackCredit": 0,
+    "productionRuntimeExecutionCredit": 0,
+    "sourceCausalRepairCredit": 0
+  },
+  "actualExpected": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "actualReceived": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "caseOrder": [
+    "min +Infinity",
+    "min -Infinity",
+    "max +Infinity",
+    "max -Infinity",
+    "collection admin[]",
+    "block validation[]",
+    "block options[]",
+    "field validation[]",
+    "field options[]"
+  ],
+  "partialControls": "Finite non-array Bounds class, reversed min12.5/max-4.25 output, collection admin{} and field records{} passed the first three expects; the whole callback fails its fourth vector assertion.",
+  "rawArtifacts": [
+    {
+      "path": "docs/receipts/schema-admin-completion/response-regression-initial-guard.log",
+      "bytes": 102,
+      "sha256": "de74b4996a83fd362238239b62e15e489bf0c92970074c1dc4426e9efda69eae",
+      "gitBlob": "f292346ee43fd5dd29c9214ddd051ae0357c1dbe",
+      "rawUnmodified": true
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/response-regression-initial-baseline.log",
+      "bytes": 1353,
+      "sha256": "0628507968d357a747125b69095a7a3abed5908f802b400d27ab63787f2f0b50",
+      "gitBlob": "97a4d0bacd7dd793d25c6f756c2e5354b8d8c2d2",
+      "rawUnmodified": true
+    }
+  ],
+  "priorBaselinesRepeated": 0,
+  "sourceBodiesDataClocksChanged": 0,
+  "productRuntimeChangesBeforeExecution": 0,
+  "status": "Meaningful supplementary candidate value red recorded; real runtime R2 correction and actual production transport still require same-feature fresh closure plus Root exact qualification. Full schema project remains incomplete."
+}

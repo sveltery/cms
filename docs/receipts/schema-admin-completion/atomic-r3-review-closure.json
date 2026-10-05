@@ -1,0 +1,122 @@
+{
+  "artifact": "Schema103 R3 fresh review closure",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "freshReview": "/tmp/schema103-atomic-source080-runtime-r3-independent-review.json",
+  "findings": [
+    "SCATOMR3REV01",
+    "SCATOMR3REV02"
+  ],
+  "testFirst": "97ce35eb",
+  "realCoalescingInitial": {
+    "registered": 3,
+    "completedValueFailures": 2,
+    "passingOrdinaryBatchControls": 1,
+    "preExpectationFailures": 0,
+    "unreachedAfterFirstFailure": "Both batch binding/pre-flush/row preservation assertions were not reached until refusal was repaired."
+  },
+  "refusalFix": "44518625",
+  "guardPosition": "Existing CoalescingD1Connection Native executeAtomicBatch extension, before its Source flush/prepare/enqueue; facade and direct connection both covered. Original Source coalescing, queue ordering, mapping, context, cookies/security and clocks unchanged.",
+  "firstFixed": {
+    "newCoalescingCallbacks": 3,
+    "unchangedExistingAtomicOrderingCallbacks": 6,
+    "all9Pass": true,
+    "realStorage": "local workerd D1 through the original transport; provided DB-session facade, not proof of deployed Sessions API"
+  },
+  "qualifiedPackageApplication": "90bb6db9",
+  "terminalResults": {
+    "wholeSourceResponse": 22,
+    "nativeResponse": 1,
+    "NativeIndexAndModuleWitness": 13,
+    "whole36Passed": true,
+    "unchangedWholeCloudflareSource": 23
+  },
+  "arithmeticCorrection": {
+    "originalMistakenCheckpoint": "docs/receipts/schema-admin-completion/r3-original-mistaken-focused-count-checkpoint.json",
+    "originalBytes": 3117,
+    "originalSha256": "036181be53126d0d4b3c2e4c1bdf193754e6f6e8093813dc14b38e1938904e9a",
+    "oldClaim": 45,
+    "correct": 40,
+    "equation": "5 atomic +18 canonical installation +17 legacy/namespace =40; typecheck/static guard add zero callbacks",
+    "earlierDistinctWholeAffected36": "valid distinct evidence; not another five callbacks in current focused checkpoint"
+  },
+  "full13R3": {
+    "head": "22790a63c9e844167ae8ea6eed6564097822b0bb",
+    "serviceRegistered": 1492,
+    "passed": 1490,
+    "failed": 2,
+    "failure": "Two supplemental Native one-row trash EXPLAIN expectations assume the old bounded index set. Rest unchanged; later13 phases did not run after service failure.",
+    "finalEligibility": false
+  },
+  "trashPlanSourceWitness": {
+    "script": "scripts/reproduce-schema-admin-trash-plan.mjs",
+    "method": "Whole byte-exact immutable createContentTable plus original whole identifier/default methods/constants; whole types/001/dialect/validation modules execute through uniform import binding on actual Source physical SQL",
+    "originalSourceCallbacks": 0,
+    "completeRegistryModuleExecuted": false,
+    "NodeAndRawD1Indexes": 16,
+    "actualPlans": [
+      "SCAN ec_posts",
+      "USE TEMP B-TREE FOR ORDER BY"
+    ],
+    "initialPortableImportFailure": "Unmapped original ../dialect-helpers.js name; raw retained; corrected uniform import mapping and authority target/destination names without changing any Source body.",
+    "maintenance": "Only two old supplemental Native expected plan assertions and their label maintained; original Native rows/query/default clocks and all Source bodies/expectations unchanged. No index hint, SQL result/catalogue fake, optimizer setting or product SQL change.",
+    "NativeAfterMaintenance": "All Native trash6 +newcoalescing3 +existingatomic6=15 pass"
+  },
+  "raw": [
+    {
+      "path": "docs/receipts/schema-admin-completion/schema103-coalescing-d1-initial.log",
+      "bytes": 2012,
+      "sha256": "5cc6a66ed46d61e01f079c73b444e7087576b9d0e9445b9a565da108f2920015"
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/schema103-coalescing-d1-first-fixed.log",
+      "bytes": 1030,
+      "sha256": "bcdda0d886242d8b2b19f5ab7eb3921cff92390b83630a09a5f680620d108c06"
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/schema103-terminal-source22.log",
+      "bytes": 646,
+      "sha256": "e824da9550cac1cc28e35382324b56f96e09e5b1b25f93863222bf394b04dcd9"
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/schema103-terminal-response1.log",
+      "bytes": 446,
+      "sha256": "9abb8868bfba266efc5fc82c766e8483adb9e4094339470608cc1286e9e3ca14"
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/schema103-terminal-index13.log",
+      "bytes": 656,
+      "sha256": "0f76977d4ba295c21a5c6d4b6060ebceae72c10246debd2e66d28fa2d12c3070"
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/schema103-whole-cloudflare-source-refusal-followup.log",
+      "bytes": 219,
+      "sha256": "fd987c0d43215dec74226ce6d676a5e321d5e61bc2ba17a984fc361be6098320"
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/schema103-full13-r3-stationary.log",
+      "bytes": 169761,
+      "sha256": "db7229dc4651a4acb8d070d3c42ab867124ea01a5bb914f3705ab44e1afde322"
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/schema103-refusal-trash-native15.log",
+      "bytes": 1724,
+      "sha256": "a16f697d46156d1d2216285e1570a313dee04a0eb9cb363b32389ffcb78a81e3"
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/schema103-pinned-trash-plan-portable-initial.log",
+      "bytes": 957,
+      "sha256": "c600ca822c22b38a49de3a2d3a3633a5af63a60a73bb91dc6edde15d802aa33a"
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/schema103-pinned-trash-plan-portable-corrected.log",
+      "bytes": 5704,
+      "sha256": "07bad62d4eec4cae048dbfe6861bb0af12d18700719cd63af1b7dd5567410e0a"
+    }
+  ],
+  "fullSchemaDone": false,
+  "limits": [
+    "NodeSource080 loop plus bounded static D1 remain as R3; general mutation-dependent D1 repair not implemented.",
+    "Current whole13/secured9/configured/final-head review/Root acceptance and author regular merge still pending.",
+    "Field cap32, complete SchemaUI/API/orphan/relation/delete integration unfinished."
+  ]
+}

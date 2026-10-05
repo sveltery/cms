@@ -5,6 +5,7 @@ import { ulid } from 'ulidx';
 import { CmsError, type CmsDatabase, type Collection, type CollectionRow, type Field, type FieldRow, type RevisionPrecondition } from './contract.ts';
 import { collectionInput, collectionMetadataInput, fieldInput, fieldLabelInput, identifier, parse, reservedCollections, reservedFields, revisionInput, tableName } from './validation.ts';
 import { trashIndexStatement } from './trash-index.ts';
+import { collectionStandardIndexPlan, collectionIndexPrerequisiteChanged } from './collection-indexes.ts';
 import { bylineIndexPrerequisiteChanged, collectionPrimaryBylinePlan } from './canonical-features/byline-index-plan.ts';
 import { FIELD_TYPE_TO_COLUMN, FIELD_TYPES, REPEATER_SUB_FIELD_TYPES, isIndexableFieldType, isStoragelessField, type CollectionSource } from '../schema/types.ts';
 import { fieldEditInput } from './field-edit-validation.ts';
@@ -202,10 +203,11 @@ export class SchemaRegistry {
       throw new CmsError('COLLECTION_TABLE_ORPHANED');
     }
     const primaryByline = await collectionPrimaryBylinePlan(this.database,value.slug);
+    const standardIndexes = await collectionStandardIndexPlan(this.database,value.slug);
     const token = ulid();
     const now = new Date().toISOString();
     const statements: CompiledQuery[] = [
-      primaryByline.guard,
+      primaryByline.guard, standardIndexes.guard,
       sql`INSERT INTO _cms_guards(token, pass)
         SELECT ${token}, CASE WHEN (SELECT COUNT(*) FROM _cms_collections) < ${MAX_COLLECTIONS} THEN 1 ELSE 0 END`.compile(db),
       db.insertInto('_cms_collections').values({
@@ -232,6 +234,7 @@ export class SchemaRegistry {
       db.schema.createIndex('idx_' + name + '_draft_list').on(name).columns(['locale', 'deleted_at', 'created_at', 'id']).compile(),
       trashIndexStatement(this.database, value.slug),
       ...(primaryByline.index ? [primaryByline.index] : []),
+      ...standardIndexes.indexes,
       sql`DELETE FROM _cms_guards WHERE token = ${token}`.compile(db)
     ];
     try { await this.batch(statements, 'LIMIT_EXCEEDED'); }
@@ -364,7 +367,7 @@ export class SchemaRegistry {
   private async batch(statements: CompiledQuery[], guardCode: 'LIMIT_EXCEEDED' | 'CONFLICT' | 'COLLECTION_NOT_EMPTY') {
     try { return await this.database.atomicBatch(statements); }
     catch (cause) {
-      if (sqliteErrorMessage(cause)?.includes(bylineIndexPrerequisiteChanged)) throw new CmsError('MIGRATION_REQUIRED');
+      if ([bylineIndexPrerequisiteChanged,collectionIndexPrerequisiteChanged].some(reason=>sqliteErrorMessage(cause)?.includes(reason))) throw new CmsError('MIGRATION_REQUIRED');
       // Only the deliberate SQL guard's CHECK failure becomes a domain conflict.
       if (cause instanceof Error && /CHECK constraint failed: pass = 1/.test(cause.message)) throw new CmsError(guardCode);
       throw cause;

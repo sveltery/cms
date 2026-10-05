@@ -1,0 +1,199 @@
+
+ RUN  v4.1.10 /workspace/cms-full-schema-admin
+
+ ❯ tests/schema-admin-completion/native/forms.test.ts (8 tests | 8 failed) 159ms
+     × offers every stored Source field type rather than only string and text 68ms
+     × exposes the pinned support toggles and separate SEO control 19ms
+     × exposes presentation metadata and display fields over the real collection form 8ms
+     × keeps a code-defined collection visibly read only 10ms
+     × renders collection labels and slugs in the administration table 10ms
+     × shows all six original system fields independently of custom fields 9ms
+     × exposes field reorder and deletion controls 19ms
+     × displays an unsupported stored field type without erasing its identity 14ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > offers every stored Source field type rather than only string and text
+AssertionError: expected [ 'string', 'text' ] to include 'url'
+ ❯ tests/schema-admin-completion/native/forms.test.ts:31:53
+     29|     expect(select).not.toBeNull();
+     30|     const offered = Array.from(select!.options, option => option.value…
+     31|     for (const type of FIELD_TYPES) expect(offered).toContain(type);
+       |                                                     ^
+     32|   });
+     33|   it('exposes the pinned support toggles and separate SEO control', as…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > exposes the pinned support toggles and separate SEO control
+AssertionError: expected [ true, true, false, false, false ] to deeply equal [ true, true, true, true, true ]
+
+- Expected
++ Received
+
+  [
+    true,
+    true,
+-   true,
+-   true,
+-   true,
++   false,
++   false,
++   false,
+  ]
+
+ ❯ tests/schema-admin-completion/native/forms.test.ts:39:8
+     37|     const flags = ['Drafts', 'Revisions', 'Preview', 'Search', 'SEO'];
+     38|     expect(flags.map(flag => labels(target).some(text => text?.startsW…
+     39|       .toEqual([true, true, true, true, true]);
+       |        ^
+     40|   });
+     41|   it('exposes presentation metadata and display fields over the real c…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > exposes presentation metadata and display fields over the real collection form
+AssertionError: expected [ false, false, false, false, …(3) ] to deeply equal [ true, true, true, true, true, …(2) ]
+
+- Expected
++ Received
+
+  [
+-   true,
+-   true,
+-   true,
+-   true,
+-   true,
+-   true,
+-   true,
++   false,
++   false,
++   false,
++   false,
++   false,
++   false,
++   false,
+  ]
+
+ ❯ tests/schema-admin-completion/native/forms.test.ts:44:76
+     42|     const target = await detail();
+     43|     expect(['Icon', 'Group', 'Title field', 'Date field', 'URL pattern…
+     44|       .map(label => labels(target).some(text => text?.startsWith(label…
+       |                                                                            ^
+     45|   });
+     46|   it('keeps a code-defined collection visibly read only', async () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > keeps a code-defined collection visibly read only
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/schema-admin-completion/native/forms.test.ts:49:97
+     47|     const target = await detail({ source: 'code' });
+     48|     const submit = target.querySelector<HTMLButtonElement>('button[typ…
+     49|     expect(submit === null || submit.disabled || submit.closest('field…
+       |                                                                                                 ^
+     50|     expect(target.textContent).toContain('This collection is defined i…
+     51|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > renders collection labels and slugs in the administration table
+AssertionError: expected [] to deeply equal [ 'posts', 'pages' ]
+
+- Expected
++ Received
+
+- [
+-   "posts",
+-   "pages",
+- ]
++ []
+
+ ❯ tests/schema-admin-completion/native/forms.test.ts:57:89
+     55|       { ...collection(), href: '/schema/posts' }, { ...collection({ sl…
+     56|     ] as never, disabled: false } })); await tick();
+     57|     expect(Array.from(target.querySelectorAll('tbody code'), node => n…
+       |                                                                                         ^
+     58|   });
+     59|   it('shows all six original system fields independently of custom fie…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > shows all six original system fields independently of custom fields
+AssertionError: expected [] to deeply equal [ 'id', 'slug', 'status', …(3) ]
+
+- Expected
++ Received
+
+- [
+-   "id",
+-   "slug",
+-   "status",
+-   "created_at",
+-   "updated_at",
+-   "published_at",
+- ]
++ []
+
+ ❯ tests/schema-admin-completion/native/forms.test.ts:63:8
+     61|     expect(Array.from(target.querySelectorAll('code'), node => node.te…
+     62|       ['id', 'slug', 'status', 'created_at', 'updated_at', 'published_…
+     63|       .toEqual(['id', 'slug', 'status', 'created_at', 'updated_at', 'p…
+       |        ^
+     64|   });
+     65|   it('exposes field reorder and deletion controls', async () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > exposes field reorder and deletion controls
+AssertionError: expected [ false, false ] to deeply equal [ true, true ]
+
+- Expected
++ Received
+
+  [
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ tests/schema-admin-completion/native/forms.test.ts:71:8
+     69|     expect(['Reorder Title field', 'Delete Title field'].map(name =>
+     70|       Array.from(target.querySelectorAll('button')).some(button => but…
+     71|       .toEqual([true, true]);
+       |        ^
+     72|   });
+     73|   it('displays an unsupported stored field type without erasing its id…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  tests/schema-admin-completion/native/forms.test.ts > complete schema administration native forms > displays an unsupported stored field type without erasing its identity
+AssertionError: expected 'Schema collections Posts posts · Sche…' to contain 'future_blocks'
+
+Expected: "future_blocks"
+Received: "Schema collections Posts posts · Schema version 1 Collection metadata    Collection label   Set singular label Singular label   Set description Description Blog posts Supports Keep existing supportsSet supports Current supports: drafts, revisions.  Save metadata   Fields Layout layout · string Edit layout label   Field slug  Label  Save label   Edit layout options   Label update Keep labelSet label Metadata label  Sort order update Keep sort orderSet sort order Sort order  Default metadata update Keep default metadataSet default metadata Metadata default value  Setting an empty default saves an empty string. Changing this default leaves existing content unchanged. Validation update Keep validationReplace validationClear validation Validation minimum length  Validation maximum length  Replacement pattern metadata Omit patternSave pattern Validation pattern   Replace saves the displayed bounds and the selected pattern source. An unchanged source preserves its original line endings; new text uses the browser's submitted line endings. Omit pattern removes its key; Save pattern preserves an empty string. Clear removes validation. Existing content remains readable. The server uses JavaScript regular expressions without flags; matching is case sensitive and unanchored unless you include anchors. Save field options   Add field   Field slug  Field label  Field type StringText  Required  Unique  Set default value Default value  Minimum length  Maximum length  Pattern metadata Omit patternSave pattern Validation pattern  Save pattern stores the exact source, including an empty string. The server uses JavaScript regular expressions without flags; matching is case sensitive and unanchored unless you include anchors. Add field   "
+
+ ❯ tests/schema-admin-completion/native/forms.test.ts:78:32
+     76|       required: false, unique: false, searchable: false, indexed: fals…
+     77|       validation: null, sortOrder: 0, createdAt: '2026-01-01T00:00:00.…
+     78|     expect(target.textContent).toContain('future_blocks');
+       |                                ^
+     79|     expect(target.textContent).toContain('Unsupported');
+     80|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed (8)
+   Start at  13:32:04
+   Duration  1.68s (transform 673ms, setup 0ms, import 849ms, tests 159ms, environment 534ms)
+

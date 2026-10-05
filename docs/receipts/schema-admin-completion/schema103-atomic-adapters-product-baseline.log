@@ -1,0 +1,1427 @@
+
+ RUN  v4.1.10 /workspace/cms-full-schema-admin
+
+ ❯ tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts (5 tests | 5 failed) 1072ms
+   × Node preserves real operator rereads through an ordinary shallow compiled-query wrapper 77ms
+   × Node rereads real mutations from the preceding published provider15 marker write 27ms
+   × raw D1 refuses an indirectly attached operator while retaining all owned triggers and storage 530ms
+   × raw D1 checks projected rows at the actual provider position and rolls back earlier batch writes 412ms
+   × Node refuses a serialized dynamic operation instead of silently running its SELECT once 25ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts > Node preserves real operator rereads through an ordinary shallow compiled-query wrapper
+AssertionError: promise rejected "Error: UNIQUE constraint failed: index 'u… { …(3) }" instead of resolving
+ ❯ tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts:43:38
+     41|       BEGIN UPDATE ec_posts SET translation_group='b' WHERE id='c'; EN…
+     42|     const wrapped:CmsDatabase={...native,atomicBatch:queries=>native.a…
+     43|     await expect(migrateCms(wrapped)).resolves.toBeUndefined();
+       |                                      ^
+     44|     await repaired(native);
+     45|   }finally{await native.close();}
+
+Caused by: Error: UNIQUE constraint failed: index 'uidx_ec_posts_active_tg_locale'
+ ❯ Object.run src/lib/server/database/node-sqlite-compat.ts:87:38
+ ❯ src/lib/server/database/sqlite.ts:21:40
+ ❯ #props.executor.provideConnection.freeze.signal node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:647:26
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ migrateCms src/lib/server/database/migrations.ts:313:9
+ ❯ tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts:43:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_SQLITE_ERROR', errcode: 2067, errstr: 'constraint failed' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts > Node rereads real mutations from the preceding published provider15 marker write
+AssertionError: promise rejected "Error: UNIQUE constraint failed: index 'u… { …(3) }" instead of resolving
+ ❯ tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts:63:83
+     61|     await expect(database.atomicBatch([...earlier.guards,...indexes.gu…
+     62|       sql`INSERT INTO _cms_migrations(version) VALUES(15)`.compile(dat…
+     63|       sql`INSERT INTO _cms_migrations(version) VALUES(16)`.compile(dat…
+       |                                                                                   ^
+     64|     await repaired(database);
+     65|     expect((await sql`SELECT version FROM _cms_migrations ORDER BY ver…
+
+Caused by: Error: UNIQUE constraint failed: index 'uidx_ec_posts_active_tg_locale'
+ ❯ Object.run src/lib/server/database/node-sqlite-compat.ts:87:38
+ ❯ src/lib/server/database/sqlite.ts:21:40
+ ❯ #props.executor.provideConnection.freeze.signal node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:647:26
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts:61:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_SQLITE_ERROR', errcode: 2067, errstr: 'constraint failed' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts > raw D1 refuses an indirectly attached operator while retaining all owned triggers and storage
+AssertionError: promise resolved "{ guards: [ { …(4) }, …(3) ], …(1) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "guards": [
++     {
++       "parameters": [
++         "[{\"name\":\"_cms_collections\",\"type\":\"table\",\"sql\":\"CREATE TABLE \\\"_cms_collections\\\" (\\n    id TEXT PRIMARY KEY NOT NULL, slug TEXT NOT NULL UNIQUE, label TEXT NOT NULL,\\n    label_singular TEXT, description TEXT, supports TEXT NOT NULL, source TEXT NOT NULL DEFAULT 'manual',\\n    version INTEGER NOT NULL DEFAULT 1 CHECK(version > 0), created_at TEXT NOT NULL DEFAULT (datetime('now')), updated_at TEXT NOT NULL DEFAULT (datetime('now')),\\n    icon TEXT, admin_config TEXT, has_seo INTEGER NOT NULL DEFAULT 0 CHECK(has_seo IN (0,1)),\\n    title_field TEXT, date_field TEXT, url_pattern TEXT,\\n    routable INTEGER NOT NULL DEFAULT 1 CHECK(routable IN (0,1)),\\n    hidden INTEGER NOT NULL DEFAULT 0 CHECK(hidden IN (0,1)), sort_order INTEGER, nav_group TEXT,\\n    comments_enabled INTEGER NOT NULL DEFAULT 0 CHECK(comments_enabled IN (0,1)),\\n    comments_moderation TEXT NOT NULL DEFAULT 'first_time' CHECK(comments_moderation IN ('all','first_time','none')),\\n    comments_closed_after_days INTEGER NOT NULL DEFAULT 90,\\n    comments_auto_approve_users INTEGER NOT NULL DEFAULT 1 CHECK(comments_auto_approve_users IN (0,1)),\\n    edit_locking INTEGER NOT NULL DEFAULT 1 CHECK(edit_locking IN (0,1))\\n  , search_config TEXT)\"}]",
++         "sveltery-cms-collection-index-prerequisite-changed",
++       ],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [],
++             "sqlFragments": [
++               "SELECT json_group_array(json_object('name',name,'type',type,'sql',sql)) AS snapshot
++     FROM (SELECT name,type,sql FROM sqlite_master WHERE name='_cms_collections' COLLATE NOCASE AND type<>'trigger' ORDER BY name,type)",
++             ],
++           },
++           {
++             "kind": "ValueNode",
++             "value": "[{\"name\":\"_cms_collections\",\"type\":\"table\",\"sql\":\"CREATE TABLE \\\"_cms_collections\\\" (\\n    id TEXT PRIMARY KEY NOT NULL, slug TEXT NOT NULL UNIQUE, label TEXT NOT NULL,\\n    label_singular TEXT, description TEXT, supports TEXT NOT NULL, source TEXT NOT NULL DEFAULT 'manual',\\n    version INTEGER NOT NULL DEFAULT 1 CHECK(version > 0), created_at TEXT NOT NULL DEFAULT (datetime('now')), updated_at TEXT NOT NULL DEFAULT (datetime('now')),\\n    icon TEXT, admin_config TEXT, has_seo INTEGER NOT NULL DEFAULT 0 CHECK(has_seo IN (0,1)),\\n    title_field TEXT, date_field TEXT, url_pattern TEXT,\\n    routable INTEGER NOT NULL DEFAULT 1 CHECK(routable IN (0,1)),\\n    hidden INTEGER NOT NULL DEFAULT 0 CHECK(hidden IN (0,1)), sort_order INTEGER, nav_group TEXT,\\n    comments_enabled INTEGER NOT NULL DEFAULT 0 CHECK(comments_enabled IN (0,1)),\\n    comments_moderation TEXT NOT NULL DEFAULT 'first_time' CHECK(comments_moderation IN ('all','first_time','none')),\\n    comments_closed_after_days INTEGER NOT NULL DEFAULT 90,\\n    comments_auto_approve_users INTEGER NOT NULL DEFAULT 1 CHECK(comments_auto_approve_users IN (0,1)),\\n    edit_locking INTEGER NOT NULL DEFAULT 1 CHECK(edit_locking IN (0,1))\\n  , search_config TEXT)\"}]",
++           },
++           {
++             "kind": "ValueNode",
++             "value": "sveltery-cms-collection-index-prerequisite-changed",
++           },
++         ],
++         "sqlFragments": [
++           "SELECT json_extract('[]', CASE WHEN (",
++           ")=",
++           "
++     THEN '$' ELSE ",
++           " END)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "SELECT json_extract('[]', CASE WHEN (SELECT json_group_array(json_object('name',name,'type',type,'sql',sql)) AS snapshot
++     FROM (SELECT name,type,sql FROM sqlite_master WHERE name='_cms_collections' COLLATE NOCASE AND type<>'trigger' ORDER BY name,type))=?
++     THEN '$' ELSE ? END)",
++     },
++     {
++       "parameters": [
++         "[{\"id\":\"01M44R86VZRVZBBG5Z4HMDQ8JM\",\"slug\":\"posts\",\"version\":1}]",
++         "sveltery-cms-collection-index-prerequisite-changed",
++       ],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [],
++             "sqlFragments": [
++               "SELECT json_group_array(json_object('id',id,'slug',slug,'version',version)) AS snapshot
++   FROM (SELECT id,slug,version FROM _cms_collections ORDER BY slug)",
++             ],
++           },
++           {
++             "kind": "ValueNode",
++             "value": "[{\"id\":\"01M44R86VZRVZBBG5Z4HMDQ8JM\",\"slug\":\"posts\",\"version\":1}]",
++           },
++           {
++             "kind": "ValueNode",
++             "value": "sveltery-cms-collection-index-prerequisite-changed",
++           },
++         ],
++         "sqlFragments": [
++           "SELECT json_extract('[]', CASE WHEN (",
++           ")=",
++           "
++     THEN '$' ELSE ",
++           " END)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "SELECT json_extract('[]', CASE WHEN (SELECT json_group_array(json_object('id',id,'slug',slug,'version',version)) AS snapshot
++   FROM (SELECT id,slug,version FROM _cms_collections ORDER BY slug))=?
++     THEN '$' ELSE ? END)",
++     },
++     {
++       "parameters": [
++         "[\"ec_posts\",\"idx_ec_posts_slug\",\"idx_ec_posts_del_sched\",\"idx_ec_posts_live_revision\",\"idx_ec_posts_draft_revision\",\"idx_ec_posts_author\",\"idx_ec_posts_locale\",\"idx_ec_posts_tg_locale\",\"idx_ec_posts_del_tg_locale\",\"uidx_ec_posts_active_tg_locale\",\"idx_ec_posts_deleted_updated_id\",\"idx_ec_posts_deleted_created_id\",\"idx_ec_posts_deleted_published_id\",\"idx_ec_posts_loc_upd\",\"idx_ec_posts_loc_crt\",\"idx_ec_posts_translation_group\",\"idx_ec_posts_scheduled\"]",
++         "[{\"name\":\"ec_posts\",\"type\":\"table\",\"tbl_name\":\"ec_posts\",\"sql\":\"CREATE TABLE \\\"ec_posts\\\" (\\n        id TEXT PRIMARY KEY NOT NULL, slug TEXT, status TEXT NOT NULL DEFAULT 'draft',\\n        author_id TEXT, primary_byline_id TEXT, created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),\\n        updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),\\n        published_at TEXT, scheduled_at TEXT, deleted_at TEXT,\\n        version INTEGER NOT NULL DEFAULT 1 CHECK(version > 0),\\n        live_revision_id TEXT, draft_revision_id TEXT,\\n        locale TEXT NOT NULL DEFAULT 'en', translation_group TEXT,\\n        UNIQUE(slug, locale)\\n      )\"}]",
++         "sveltery-cms-collection-index-prerequisite-changed",
++       ],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "kind": "ValueNode",
++                 "value": "[\"ec_posts\",\"idx_ec_posts_slug\",\"idx_ec_posts_del_sched\",\"idx_ec_posts_live_revision\",\"idx_ec_posts_draft_revision\",\"idx_ec_posts_author\",\"idx_ec_posts_locale\",\"idx_ec_posts_tg_locale\",\"idx_ec_posts_del_tg_locale\",\"uidx_ec_posts_active_tg_locale\",\"idx_ec_posts_deleted_updated_id\",\"idx_ec_posts_deleted_created_id\",\"idx_ec_posts_deleted_published_id\",\"idx_ec_posts_loc_upd\",\"idx_ec_posts_loc_crt\",\"idx_ec_posts_translation_group\",\"idx_ec_posts_scheduled\"]",
++               },
++             ],
++             "sqlFragments": [
++               "SELECT json_group_array(json_object('name',name,'type',type,'tbl_name',tbl_name,'sql',sql)) AS snapshot
++       FROM (SELECT name,type,tbl_name,sql FROM sqlite_master WHERE type<>'trigger'
++         AND lower(name) IN (SELECT lower(value) FROM json_each(",
++               ")) ORDER BY name,type)",
++             ],
++           },
++           {
++             "kind": "ValueNode",
++             "value": "[{\"name\":\"ec_posts\",\"type\":\"table\",\"tbl_name\":\"ec_posts\",\"sql\":\"CREATE TABLE \\\"ec_posts\\\" (\\n        id TEXT PRIMARY KEY NOT NULL, slug TEXT, status TEXT NOT NULL DEFAULT 'draft',\\n        author_id TEXT, primary_byline_id TEXT, created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),\\n        updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),\\n        published_at TEXT, scheduled_at TEXT, deleted_at TEXT,\\n        version INTEGER NOT NULL DEFAULT 1 CHECK(version > 0),\\n        live_revision_id TEXT, draft_revision_id TEXT,\\n        locale TEXT NOT NULL DEFAULT 'en', translation_group TEXT,\\n        UNIQUE(slug, locale)\\n      )\"}]",
++           },
++           {
++             "kind": "ValueNode",
++             "value": "sveltery-cms-collection-index-prerequisite-changed",
++           },
++         ],
++         "sqlFragments": [
++           "SELECT json_extract('[]', CASE WHEN (",
++           ")=",
++           "
++     THEN '$' ELSE ",
++           " END)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "SELECT json_extract('[]', CASE WHEN (SELECT json_group_array(json_object('name',name,'type',type,'tbl_name',tbl_name,'sql',sql)) AS snapshot
++       FROM (SELECT name,type,tbl_name,sql FROM sqlite_master WHERE type<>'trigger'
++         AND lower(name) IN (SELECT lower(value) FROM json_each(?)) ORDER BY name,type))=?
++     THEN '$' ELSE ? END)",
++     },
++     {
++       "parameters": [
++         "[{\"id\":\"b\",\"translation_group\":\"g\",\"locale\":\"en\",\"created_at\":\"2000-01-01\",\"deleted_at\":null},{\"id\":\"c\",\"translation_group\":\"g\",\"locale\":\"en\",\"created_at\":\"2000-01-01\",\"deleted_at\":null},{\"id\":\"g\",\"translation_group\":\"g\",\"locale\":\"en\",\"created_at\":\"2000-01-01\",\"deleted_at\":null}]",
++         "sveltery-cms-collection-index-prerequisite-changed",
++       ],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "kind": "RawNode",
++                 "parameters": [
++                   {
++                     "column": {
++                       "column": {
++                         "kind": "IdentifierNode",
++                         "name": "ec_posts",
++                       },
++                       "kind": "ColumnNode",
++                     },
++                     "kind": "ReferenceNode",
++                     "table": undefined,
++                   },
++                 ],
++                 "sqlFragments": [
++                   "",
++                   "",
++                 ],
++               },
++             ],
++             "sqlFragments": [
++               "SELECT json_group_array(json_object('id',id,'translation_group',translation_group,
++     'locale',locale,'created_at',created_at,'deleted_at',deleted_at)) AS snapshot
++     FROM (SELECT id,translation_group,locale,created_at,deleted_at FROM ",
++               " ORDER BY id)",
++             ],
++           },
++           {
++             "kind": "ValueNode",
++             "value": "[{\"id\":\"b\",\"translation_group\":\"g\",\"locale\":\"en\",\"created_at\":\"2000-01-01\",\"deleted_at\":null},{\"id\":\"c\",\"translation_group\":\"g\",\"locale\":\"en\",\"created_at\":\"2000-01-01\",\"deleted_at\":null},{\"id\":\"g\",\"translation_group\":\"g\",\"locale\":\"en\",\"created_at\":\"2000-01-01\",\"deleted_at\":null}]",
++           },
++           {
++             "kind": "ValueNode",
++             "value": "sveltery-cms-collection-index-prerequisite-changed",
++           },
++         ],
++         "sqlFragments": [
++           "SELECT json_extract('[]', CASE WHEN (",
++           ")=",
++           "
++     THEN '$' ELSE ",
++           " END)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "SELECT json_extract('[]', CASE WHEN (SELECT json_group_array(json_object('id',id,'translation_group',translation_group,
++     'locale',locale,'created_at',created_at,'deleted_at',deleted_at)) AS snapshot
++     FROM (SELECT id,translation_group,locale,created_at,deleted_at FROM \"ec_posts\" ORDER BY id))=?
++     THEN '$' ELSE ? END)",
++     },
++   ],
++   "statements": [
++     {
++       "parameters": [
++         "b",
++         "posts",
++         "g",
++       ],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "ValueNode",
++             "value": "b",
++           },
++           {
++             "kind": "ValueNode",
++             "value": "posts",
++           },
++           {
++             "kind": "ValueNode",
++             "value": "g",
++           },
++         ],
++         "sqlFragments": [
++           "INSERT INTO _cms_content_taxonomies(collection,entry_id,taxonomy_id)
++         SELECT collection,",
++           ",taxonomy_id FROM _cms_content_taxonomies
++         WHERE collection=",
++           " AND entry_id=",
++           "
++         ON CONFLICT(collection,entry_id,taxonomy_id) DO NOTHING",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "INSERT INTO _cms_content_taxonomies(collection,entry_id,taxonomy_id)
++         SELECT collection,?,taxonomy_id FROM _cms_content_taxonomies
++         WHERE collection=? AND entry_id=?
++         ON CONFLICT(collection,entry_id,taxonomy_id) DO NOTHING",
++     },
++     {
++       "parameters": [
++         "b",
++         "b",
++         "g",
++         "en",
++       ],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "ValueNode",
++             "value": "b",
++           },
++           {
++             "kind": "ValueNode",
++             "value": "b",
++           },
++           {
++             "kind": "ValueNode",
++             "value": "g",
++           },
++           {
++             "kind": "ValueNode",
++             "value": "en",
++           },
++         ],
++         "sqlFragments": [
++           "UPDATE ",
++           " SET translation_group=",
++           "
++           WHERE id=",
++           " AND deleted_at IS NULL AND translation_group=",
++           "
++             AND lower(locale)=",
++           "",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "UPDATE \"ec_posts\" SET translation_group=?
++           WHERE id=? AND deleted_at IS NULL AND translation_group=?
++             AND lower(locale)=?",
++     },
++     {
++       "parameters": [
++         "c",
++         "posts",
++         "g",
++       ],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "ValueNode",
++             "value": "c",
++           },
++           {
++             "kind": "ValueNode",
++             "value": "posts",
++           },
++           {
++             "kind": "ValueNode",
++             "value": "g",
++           },
++         ],
++         "sqlFragments": [
++           "INSERT INTO _cms_content_taxonomies(collection,entry_id,taxonomy_id)
++         SELECT collection,",
++           ",taxonomy_id FROM _cms_content_taxonomies
++         WHERE collection=",
++           " AND entry_id=",
++           "
++         ON CONFLICT(collection,entry_id,taxonomy_id) DO NOTHING",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "INSERT INTO _cms_content_taxonomies(collection,entry_id,taxonomy_id)
++         SELECT collection,?,taxonomy_id FROM _cms_content_taxonomies
++         WHERE collection=? AND entry_id=?
++         ON CONFLICT(collection,entry_id,taxonomy_id) DO NOTHING",
++     },
++     {
++       "parameters": [
++         "c",
++         "c",
++         "g",
++         "en",
++       ],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "ValueNode",
++             "value": "c",
++           },
++           {
++             "kind": "ValueNode",
++             "value": "c",
++           },
++           {
++             "kind": "ValueNode",
++             "value": "g",
++           },
++           {
++             "kind": "ValueNode",
++             "value": "en",
++           },
++         ],
++         "sqlFragments": [
++           "UPDATE ",
++           " SET translation_group=",
++           "
++           WHERE id=",
++           " AND deleted_at IS NULL AND translation_group=",
++           "
++             AND lower(locale)=",
++           "",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "UPDATE \"ec_posts\" SET translation_group=?
++           WHERE id=? AND deleted_at IS NULL AND translation_group=?
++             AND lower(locale)=?",
++     },
++     {
++       "parameters": [],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "idx_ec_posts_slug",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++         ],
++         "sqlFragments": [
++           "CREATE INDEX ",
++           " ON ",
++           " (slug)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "CREATE INDEX \"idx_ec_posts_slug\" ON \"ec_posts\" (slug)",
++     },
++     {
++       "parameters": [],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "idx_ec_posts_del_sched",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++         ],
++         "sqlFragments": [
++           "CREATE INDEX ",
++           " ON ",
++           "
++       (deleted_at, scheduled_at) WHERE scheduled_at IS NOT NULL",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "CREATE INDEX \"idx_ec_posts_del_sched\" ON \"ec_posts\"
++       (deleted_at, scheduled_at) WHERE scheduled_at IS NOT NULL",
++     },
++     {
++       "parameters": [],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "idx_ec_posts_live_revision",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++         ],
++         "sqlFragments": [
++           "CREATE INDEX ",
++           " ON ",
++           " (live_revision_id)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "CREATE INDEX \"idx_ec_posts_live_revision\" ON \"ec_posts\" (live_revision_id)",
++     },
++     {
++       "parameters": [],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "idx_ec_posts_draft_revision",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++         ],
++         "sqlFragments": [
++           "CREATE INDEX ",
++           " ON ",
++           " (draft_revision_id)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "CREATE INDEX \"idx_ec_posts_draft_revision\" ON \"ec_posts\" (draft_revision_id)",
++     },
++     {
++       "parameters": [],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "idx_ec_posts_author",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++         ],
++         "sqlFragments": [
++           "CREATE INDEX ",
++           " ON ",
++           " (author_id)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "CREATE INDEX \"idx_ec_posts_author\" ON \"ec_posts\" (author_id)",
++     },
++     {
++       "parameters": [],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "idx_ec_posts_locale",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++         ],
++         "sqlFragments": [
++           "CREATE INDEX ",
++           " ON ",
++           " (locale)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "CREATE INDEX \"idx_ec_posts_locale\" ON \"ec_posts\" (locale)",
++     },
++     {
++       "parameters": [],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "idx_ec_posts_tg_locale",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++         ],
++         "sqlFragments": [
++           "CREATE INDEX ",
++           " ON ",
++           "
++       (translation_group, locale)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "CREATE INDEX \"idx_ec_posts_tg_locale\" ON \"ec_posts\"
++       (translation_group, locale)",
++     },
++     {
++       "parameters": [],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "idx_ec_posts_del_tg_locale",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++         ],
++         "sqlFragments": [
++           "CREATE INDEX ",
++           " ON ",
++           "
++       (deleted_at, translation_group, locale)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "CREATE INDEX \"idx_ec_posts_del_tg_locale\" ON \"ec_posts\"
++       (deleted_at, translation_group, locale)",
++     },
++     {
++       "parameters": [],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "uidx_ec_posts_active_tg_locale",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++         ],
++         "sqlFragments": [
++           "CREATE UNIQUE INDEX ",
++           " ON ",
++           "
++       (translation_group, lower(locale)) WHERE deleted_at IS NULL AND translation_group IS NOT NULL",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "CREATE UNIQUE INDEX \"uidx_ec_posts_active_tg_locale\" ON \"ec_posts\"
++       (translation_group, lower(locale)) WHERE deleted_at IS NULL AND translation_group IS NOT NULL",
++     },
++     {
++       "parameters": [],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "idx_ec_posts_deleted_updated_id",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++         ],
++         "sqlFragments": [
++           "CREATE INDEX ",
++           " ON ",
++           "
++       (deleted_at, updated_at DESC, id DESC)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "CREATE INDEX \"idx_ec_posts_deleted_updated_id\" ON \"ec_posts\"
++       (deleted_at, updated_at DESC, id DESC)",
++     },
++     {
++       "parameters": [],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "idx_ec_posts_deleted_created_id",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++         ],
++         "sqlFragments": [
++           "CREATE INDEX ",
++           " ON ",
++           "
++       (deleted_at, created_at DESC, id DESC)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "CREATE INDEX \"idx_ec_posts_deleted_created_id\" ON \"ec_posts\"
++       (deleted_at, created_at DESC, id DESC)",
++     },
++     {
++       "parameters": [],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "idx_ec_posts_deleted_published_id",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++         ],
++         "sqlFragments": [
++           "CREATE INDEX ",
++           " ON ",
++           "
++       (deleted_at, published_at DESC, id DESC)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "CREATE INDEX \"idx_ec_posts_deleted_published_id\" ON \"ec_posts\"
++       (deleted_at, published_at DESC, id DESC)",
++     },
++     {
++       "parameters": [],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "idx_ec_posts_loc_upd",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++         ],
++         "sqlFragments": [
++           "CREATE INDEX ",
++           " ON ",
++           "
++       (deleted_at, locale, updated_at DESC, id DESC)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "CREATE INDEX \"idx_ec_posts_loc_upd\" ON \"ec_posts\"
++       (deleted_at, locale, updated_at DESC, id DESC)",
++     },
++     {
++       "parameters": [],
++       "query": {
++         "kind": "RawNode",
++         "parameters": [
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "idx_ec_posts_loc_crt",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++           {
++             "kind": "RawNode",
++             "parameters": [
++               {
++                 "column": {
++                   "column": {
++                     "kind": "IdentifierNode",
++                     "name": "ec_posts",
++                   },
++                   "kind": "ColumnNode",
++                 },
++                 "kind": "ReferenceNode",
++                 "table": undefined,
++               },
++             ],
++             "sqlFragments": [
++               "",
++               "",
++             ],
++           },
++         ],
++         "sqlFragments": [
++           "CREATE INDEX ",
++           " ON ",
++           "
++       (deleted_at, locale, created_at DESC, id DESC)",
++         ],
++       },
++       "queryId": LazyQueryId {},
++       "sql": "CREATE INDEX \"idx_ec_posts_loc_crt\" ON \"ec_posts\"
++       (deleted_at, locale, created_at DESC, id DESC)",
++     },
++   ],
+  }
+
+ ❯ tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts:77:72
+     75|       BEGIN UPDATE ec_posts SET translation_group='b' WHERE id='c'; EN…
+     76|     const before=await snapshot(database);
+     77|     await expect(collectionStandardIndexesMigration.prepare!(database)…
+       |                                                                        ^
+     78|     expect(await snapshot(database)).toEqual(before);
+     79|     expect(before.catalogue.filter(row=>String(row.name).startsWith('_…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts > raw D1 checks projected rows at the actual provider position and rolls back earlier batch writes
+AssertionError: expected [Function] to throw error including 'sveltery-cms-collection-index-prerequ…' but got 'D1_ERROR: UNIQUE constraint failed: i…'
+
+Expected: "sveltery-cms-collection-index-prerequisite-changed"
+Received: "D1_ERROR: UNIQUE constraint failed: index 'uidx_ec_posts_active_tg_locale': SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)"
+
+ ❯ tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts:91:48
+     89|     const queries:CompiledQuery[]=[...plan.guards,
+     90|       sql`UPDATE ec_posts SET translation_group='b' WHERE id='c'`.comp…
+     91|     await expect(database.atomicBatch(queries)).rejects.toThrow('svelt…
+       |                                                ^
+     92|     expect(await snapshot(database)).toEqual(before);
+     93|   }finally{await database.close();await fixture.runtime.dispose();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts > Node refuses a serialized dynamic operation instead of silently running its SELECT once
+AssertionError: promise resolved "[ { rows: [ { …(1) } ] }, …(21) ]" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+[
+  {
+    "rows": [
+      {
+        "json_extract('[]', CASE WHEN (SELECT json_group_array(json_object('name',name,'type',type,'sql',sql)) AS snapshot
+    FROM (SELECT name,type,sql FROM sqlite_master WHERE name='_cms_collections' COLLATE NOCASE AND type<>'trigger' ORDER BY name,type))=?
+    THEN '$' ELSE ? END)": "[]",
+      },
+    ],
+  },
+  {
+    "rows": [
+      {
+        "json_extract('[]', CASE WHEN (SELECT json_group_array(json_object('id',id,'slug',slug,'version',version)) AS snapshot
+  FROM (SELECT id,slug,version FROM _cms_collections ORDER BY slug))=?
+    THEN '$' ELSE ? END)": "[]",
+      },
+    ],
+  },
+  {
+    "rows": [
+      {
+        "json_extract('[]', CASE WHEN (SELECT json_group_array(json_object('name',name,'type',type,'tbl_name',tbl_name,'sql',sql)) AS snapshot
+      FROM (SELECT name,type,tbl_name,sql FROM sqlite_master WHERE type<>'trigger'
+        AND lower(name) IN (SELECT lower(value) FROM json_each(?)) ORDER BY name,type))=?
+    THEN '$' ELSE ? END)": "[]",
+      },
+    ],
+  },
+  {
+    "rows": [
+      {
+        "json_extract('[]', CASE WHEN (SELECT json_group_array(json_object('id',id,'translation_group',translation_group,
+    'locale',locale,'created_at',created_at,'deleted_at',deleted_at)) AS snapshot
+    FROM (SELECT id,translation_group,locale,created_at,deleted_at FROM \"ec_posts\" ORDER BY id))=?
+    THEN '$' ELSE ? END)": "[]",
+      },
+    ],
+  },
+  {
+    "insertId": 2n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 2n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+  {
+    "insertId": 3n,
+    "numAffectedRows": 1n,
+    "rows": [],
+  },
+]
+
+ ❯ tests/schema-admin-completion/native/collection-index-atomic-adapters.test.ts:103:47
+    101|     const plan=await collectionStandardIndexesMigration.prepare!(datab…
+    102|     const copied=JSON.parse(JSON.stringify([...plan.guards,...plan.sta…
+    103|     await expect(database.atomicBatch(copied)).rejects.toMatchObject({…
+       |                                               ^
+    104|     expect(await snapshot(database)).toEqual(before);
+    105|   }finally{await database.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed (5)
+   Start at  00:43:33
+   Duration  1.78s (transform 249ms, setup 0ms, import 595ms, tests 1.07s, environment 0ms)
+
