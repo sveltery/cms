@@ -2498,3 +2498,27 @@ is byte-identical, with all assertions/data/clocks retained. Check succeeds with
 zero errors/warnings. The paired r11 record preserves complete actual CI/local
 failure logs; this type-only correction earns zero original Source or causal
 product-red credit. Full current-head checks and approval remain pending.
+
+### PR100 DWA-CLIENT-FINAL01 actual receiver identity closure
+
+Fresh review at `e861386d` identifies distinct supported API class receivers that
+share prototype methods. Test-first `bc42ab77` executes whole Native22 old18pass
+plus four genuine identity/dismissal/content/metadata value reds. Provider keys
+now use actual client objects, and welcome dismissal preserves method receiver.
+The sole later Native setup expression retains the existing reactive receiver
+while appending another client; assertions/data/clocks stay unchanged. Corrected
+whole22 replay against genuine immutable `e861386d` preserves all four reds.
+Whole22+actualSSR2 pass, then pass again after the true ownership refactor.
+
+The actual object cache resolver owns each provider's QueryClient and one account
+state/persistent mutation owner per cache. Previous function-key wording describes
+historical r9 evidence, not the current supported receiver identity. Default root
+keys/policy, per-root isolation, caller-supplied QueryClient control and standalone
+fallback remain; no private Svelte symbol, client mutation, semantic fingerprint
+or new global state is used. SourceApp12/check pass. The paired feature record
+and complete r12 envelope retain every raw result, including the first old
+proxy-setup value failure and an early uncommitted non-green refactor attempt.
+All Source34 authorities/assertions/data/clocks remain unchanged; Source33's
+literal doctor failure earns zero fidelity credit. Final current normal13,
+secured9, configured/fresh review, Root approval and author regular merge remain
+required; full admin/backend/runtime product parity remains open.

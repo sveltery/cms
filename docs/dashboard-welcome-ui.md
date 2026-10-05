@@ -425,3 +425,35 @@ reports zero errors/warnings. [The complete r11 evidence](../parity/emdash/admin
 retains the whole CI failure, local failure and successful check. Those type-check
 stops supply zero Source or causal product-red credit. Full current-head normal13,
 secured9 and final reviews remain required.
+
+The fresh `e861386d` review finds a remaining method-key collision: different
+supported API class instances share prototype read methods while returning their
+own receiver data. New Native host rows now key actual objects, and four tests
+were committed first at `bc42ab77`. Whole22 runs old18 passes plus four genuine
+identity, receiver-dismissal, content and metadata value failures. Later pending,
+selection and cache assertions remain unreached in those red callbacks.
+
+Fix `31f7b2b7` uses the explicit client receiver object as the provider cache key
+and invokes welcome dismissal through that receiver. All four class cases pass;
+one older Native read-count case exposes a newly wrapped reactive receiver after
+its array reconstruction. The one setup expression at `85c2d20d` retains the
+existing `state.accounts[0]` when appending Bob. Its data, assertions, expected
+values and clocks stay unchanged. The actual client object remains stable;
+private Svelte symbols, semantic fingerprints and client mutation are not used.
+The complete corrected22 replay against genuine immutable `e861386d` again
+returns old18 passes/four genuine reds. Whole22 and actualSSR2 then pass.
+
+After green, one provider-owned object-keyed cache resolver supplies the canonical
+QueryClient; account state and persistent mutation ownership stay unique per
+cache. The earlier function-identity continuation remains historical evidence;
+current scopes share the same actual API receiver, with distinct class instances
+isolated even when methods are identical. Default root keys,300000ms/retryfalse,
+per-root isolation, supplied QueryClient control and standalone fallback remain.
+Whole22+actualSSR2 pass after refactor, SourceApp12 passes and check reports zero
+errors/warnings. [Complete r12 evidence](../parity/emdash/admin-app-source/evidence/r12-client-object-receiver-whole.json)
+retains all baseline/fix/setup failures and the true post-green refactor; the
+early uncommitted refactor with the unresolved setup failure receives no green
+qualification. All Source34 authorities and failed Source33 doctor assertion
+remain unchanged. Current normal13/secured9, configured/fresh review, Root approval
+and author regular merge remain required; full dashboard/admin/product parity
+remains incomplete.
