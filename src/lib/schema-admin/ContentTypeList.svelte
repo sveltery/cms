@@ -1,5 +1,34 @@
 <script lang="ts">
-  let { collections = [], isLoading = false, client }: any = $props();
+  import * as defaultClient from './client';
+  import RelationImpact from './RelationImpact.svelte';
+  import { moveCollection } from './order';
+  let { collections = [], orphanedTables = [], isLoading = false, onDelete, onRegisterOrphan, onReorder, client = defaultClient, basePath = '/schema' }: any = $props();
+  let target = $state<any>(null), relations = $state<any[]>([]), order = $state<string[] | null>(null), dragging = $state('');
+  const ordered = $derived(order ? order.map(slug => collections.find((value: any) => value.slug === slug)).filter(Boolean) : collections);
+  const canReorder = $derived(Boolean(onReorder) && collections.length > 1);
+  $effect(() => { const current = collections; order = null; });
+  $effect(() => { let active = true; void client.fetchRelations().then((value: any[]) => { if (active) relations = value; }).catch(() => {}); return () => { active = false; }; });
+  function move(active: string, over: string) { const slugs = order ?? collections.map((value: any) => value.slug); const next = moveCollection(slugs,active,over); if (next === slugs) return; order = next; onReorder?.(next); }
 </script>
-<h1>Content Types</h1><a href="/schema/new">New Content Type</a>
-{#if isLoading}<p>Loading collections...</p>{:else if collections.length === 0}<p>No content types yet.</p>{/if}
+<header><div><h1>Content Types</h1><p>Define the structure of your content</p></div><a href={`${basePath}/relations`}>Relations</a><a href={`${basePath}/new`}>New Content Type</a></header>
+{#if orphanedTables.length}<aside><h2>Unregistered Content Tables Found</h2><p>The following tables contain content but aren't registered as collections. Register them to manage this content in the admin.</p>
+  {#each orphanedTables as orphan}<div><code>{orphan.slug}</code><span>({orphan.rowCount} {orphan.rowCount === 1 ? 'item' : 'items'})</span><button type="button" onclick={() => onRegisterOrphan?.(orphan.slug)}>Register</button></div>{/each}
+</aside>{/if}
+<table><thead><tr>{#if canReorder}<th>Reorder</th>{/if}<th>Name</th><th>Slug</th><th>Source</th><th>Features</th><th>Actions</th></tr></thead><tbody>
+{#if isLoading}<tr><td colspan={canReorder ? 6 : 5}>Loading collections...</td></tr>
+{:else if !collections.length && !orphanedTables.length}<tr><td colspan={canReorder ? 6 : 5}>No content types yet. <a href={`${basePath}/new`}>Create your first content type</a></td></tr>
+{:else}{#each ordered as collection (collection.id)}
+<tr ondragover={event => event.preventDefault()} ondrop={event => { event.preventDefault(); move(dragging,collection.slug); dragging = ''; }}>
+  {#if canReorder}<td><button draggable="true" type="button" aria-label={`Reorder ${collection.label}`} ondragstart={() => dragging = collection.slug}
+    onkeydown={event => { const index = ordered.findIndex((value: any) => value.slug === collection.slug); if (event.key === 'ArrowUp' && index > 0) { event.preventDefault(); move(collection.slug,ordered[index - 1].slug); } if (event.key === 'ArrowDown' && index < ordered.length - 1) { event.preventDefault(); move(collection.slug,ordered[index + 1].slug); } }}>↕</button></td>{/if}
+  <td><div class="name"><div class="shrink-0" aria-hidden="true">▣</div><div class="min-w-0"><a href={`${basePath}/${collection.slug}`}>{collection.label}</a>{#if collection.description}<p>{collection.description}</p>{/if}</div></div></td>
+  <td><code>{collection.slug}</code></td><td>{collection.source === 'code' ? 'Code' : collection.source === 'dashboard' || collection.source === 'manual' ? 'Dashboard' : collection.source}</td>
+  <td>{#each [...collection.supports.filter((value: string) => value !== 'seo'),...(collection.hasSeo ? ['seo'] : [])] as feature}<span>{feature}</span>{/each}</td>
+  <td><a href={`${basePath}/${collection.slug}`} aria-label={`Edit ${collection.label}`}>Edit</a>{#if collection.source !== 'code'}<button type="button" aria-label={`Delete ${collection.label}`} onclick={() => target = collection}>Delete</button>{/if}</td>
+</tr>{/each}{/if}
+</tbody></table>
+{#if target}<dialog open aria-label="Delete Content Type?"><h2>Delete Content Type?</h2><p>Are you sure you want to delete "{target.label}"? This will also delete all content in this collection.</p>
+  {#if relations.some(value => value.parentCollection === target.slug || value.childCollection === target.slug)}<p>Every relationship this content type takes part in goes too:</p><RelationImpact relations={relations.filter(value => value.parentCollection === target.slug || value.childCollection === target.slug)} />{/if}
+  <button type="button" onclick={() => target = null}>Cancel</button><button type="button" onclick={() => { onDelete?.(target.slug); target = null; }}>Delete</button>
+</dialog>{/if}
+<style>header { display:flex;gap:20px;align-items:center; } table {inline-size:100%;border-collapse:collapse; } th,td {padding:12px;text-align:start;border-bottom:1px solid #ddd; } .name { display:flex;gap:12px;align-items:center; } .shrink-0 { flex-shrink:0;inline-size:32px;block-size:32px; } .min-w-0 { min-inline-size:0; } td span { margin-inline-end:8px; } dialog { border:1px solid #aaa;border-radius:12px;padding:24px; }</style>
