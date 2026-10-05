@@ -7,7 +7,7 @@
   import { calendarMutationError, type CalendarInlineError } from './mutation-error.ts';
   import DialogError from './CalendarDialogError.svelte';
   import Fields from '../ui/PublishingDateTimeFields.svelte';
-  import { publishingInstantToLocalFields,publishingFieldsMatchInstant,serializeFuturePublishingDateTime } from '../ui/publishing-datetime.ts';
+  import { publishingInstantToLocalFields,publishingFieldsMatchInstant,serializeFuturePublishingDateTime,type PublishingDateTimeError } from '../ui/publishing-datetime.ts';
   let { open,entryKey,scheduledAt=null,isLive=false,isPending=false,locale='en',onOpenChange,onSchedule }: {
     open:boolean;entryKey:string;scheduledAt?:string|null;isLive?:boolean;isPending?:boolean;locale?:string;
     onOpenChange:(open:boolean)=>void;onSchedule:(at:string)=>void|Promise<void>;
@@ -26,10 +26,20 @@
   $effect(()=>{resetContext;generation++;activeSubmission=null;submitting=false;untrack(reset);});
   $effect(()=>{const node=dialog;if(open&&node&&!node.open){returnFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;node.showModal();}else if(!open&&node?.open){node.close();if(returnFocus?.isConnected)returnFocus.focus();}});
   function changeOpen(next:boolean){if(!next&&!pending)reset();onOpenChange(next);}
+  // Source translates once at submission; the rendered error retains its result.
+  function validationMessage(error:PublishingDateTimeError){
+    switch(error){
+      case 'missing-date':return t('Choose a date');
+      case 'missing-time':return t('Choose a time');
+      case 'past':return t('Choose a time in the future');
+      case 'nonexistent-time':return t('That time does not exist in your time zone');
+      case 'invalid-date':case 'invalid-time':return t('Choose a valid date and time');
+    }
+  }
   async function submit(){
     if(pending||activeSubmission?.entryKey===entryKey)return;
     const result=serializeFuturePublishingDateTime(date,time);
-    if(!result.success){validationError=t(result.error==='missing-date'?'Choose a date':result.error==='missing-time'?'Choose a time':result.error==='past'?'Choose a time in the future':result.error==='nonexistent-time'?'That time does not exist in your time zone':'Choose a valid date and time');return;}
+    if(!result.success){validationError=validationMessage(result.error);return;}
     if(isEditing&&publishingFieldsMatchInstant(scheduledAt,date,time))return;
     clearError();const submission={entryKey,generation:++generation};activeSubmission=submission;submitting=true;
     try{await onSchedule(result.value);if(entryKey===submission.entryKey&&generation===submission.generation){reset();onOpenChange(false);}}
