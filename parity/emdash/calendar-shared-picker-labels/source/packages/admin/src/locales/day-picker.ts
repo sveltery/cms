@@ -1,4 +1,3 @@
-// EmDash 1.1.0 MIT, Copyright 2026 Cloudflare Inc. See notices/emdash-MIT.txt.
 import {
 	ar,
 	bn,
