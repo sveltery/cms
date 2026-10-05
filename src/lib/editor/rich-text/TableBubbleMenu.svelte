@@ -1,7 +1,7 @@
 <script lang="ts">
   // Svelte lifecycle/presentation of pinned PortableTextEditor.tsx4369–4448.
   // The genuine3.20.0 plugin owns standard-browser positioning and visibility.
-  import { onMount } from 'svelte';
+  import { onMount, untrack } from 'svelte';
   import type { Editor } from '@tiptap/core';
   import { BubbleMenuPlugin } from '@tiptap/extension-bubble-menu';
   import { PluginKey } from '@tiptap/pm/state';
@@ -55,7 +55,10 @@
           activeEditor.isActive('table') && (state.selection.empty || state.selection instanceof CellSelection);
       }
     });
-    editor.registerPlugin(plugin);
+    // Registration updates every ProseMirror plugin view synchronously. Its
+    // suggestion callbacks may close the shared slash picker; that emitted
+    // state must not become a dependency of this plugin lifecycle effect.
+    untrack(() => editor.registerPlugin(plugin));
     return () => { if (!editor.isDestroyed) editor.unregisterPlugin(pluginKey); };
   });
   function run(id: 'add-row-after' | 'add-column-after', message: string) {

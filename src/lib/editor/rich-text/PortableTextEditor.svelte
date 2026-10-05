@@ -1,7 +1,7 @@
 <script lang="ts">
   // Native Svelte rendering/lifecycle port of the pinned Source editor. Real
   // TipTap/ProseMirror extensions own authoring, identity, history and tables.
-  import { onMount, tick } from 'svelte';
+  import { onMount, tick, untrack } from 'svelte';
   import type { Editor, JSONContent } from '@tiptap/core';
   import { exitSuggestion } from '@tiptap/suggestion';
   import { UnsafePortableTextTableError } from '../portable-text/portable-text-table';
@@ -108,9 +108,15 @@
     return () => { current.view.dom.removeEventListener('keydown', gutterKeys, true); props.onEditorReady?.(null); current.destroy(); editor = null; };
   });
   $effect(() => {
-    if (!editor) return;
-    if (editor.isEditable !== (editable && !blocked)) editor.setEditable(editable && !blocked);
-    if (!editable) closeTableControls();
+    const current = editor, isEditable = editable, canEdit = isEditable && !blocked;
+    if (!current) return;
+    // These imperative ProseMirror calls synchronously read/write slash state.
+    // The effect owns only actual editor/editability props, not transaction
+    // state emitted while a read-only transition closes the shared picker.
+    untrack(() => {
+      if (current.isEditable !== canEdit) current.setEditable(canEdit);
+      if (!isEditable) closeTableControls();
+    });
   });
   $effect(() => {
     if (!slash.isOpen || !menu) { movedPointer = false; return; }

@@ -1,0 +1,39 @@
+
+ RUN  v4.1.10 /workspace/cms-rich104-table-controls-ui
+
+ ✓ tests/rich-editor-native/table-bubble-owner.test.ts (3 tests) 562ms
+   ✓ avoids unsupported Native Range geometry while retaining the real contextual plugin  364ms
+ ✓ tests/rich-editor-native/table-readonly-transition.test.ts (1 test) 488ms
+   ✓ closes an open table action menu on actual read-only props and restores editing without hidden mutations  486ms
+ ✓ tests/rich-editor-native/table-picker-readonly.test.ts (1 test) 399ms
+   ✓ closes the actual shared slash table picker on read-only props without an update loop or query mutation  398ms
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: get(...).querySelector(...)?.scrollIntoView is not a function
+
+	in $effect
+	in PortableTextEditor.svelte
+	in EditorHost.svelte
+	in undefined
+
+ ❯ $effect src/lib/editor/rich-text/PortableTextEditor.svelte:125:79
+
+
+This error originated in "tests/rich-editor-native/table-picker-readonly.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "closes the actual shared slash table picker on read-only props without an update loop or query mutation". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  3 passed (3)
+      Tests  5 passed (5)
+     Errors  1 error
+   Start at  21:31:01
+   Duration  9.70s (transform 2.55s, setup 0ms, import 4.51s, tests 1.45s, environment 3.02s)
+
+JSON report written to /tmp/rich104-table-picker-readonly-source-contract-diagnostic-report.json
