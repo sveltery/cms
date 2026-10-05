@@ -211,5 +211,43 @@
   "configuredSuccessorReview": "pending",
   "independentSuccessorReview": "pending",
   "rootExactMergeApproval": "pending",
-  "remaining": "FullCodeMirror/iframe/pointertouch/localization/accessibility/repeater6/protected4E2E/media/reference/block/plugin/public integration remains incomplete."
+  "remaining": "FullCodeMirror/iframe/pointertouch/localization/accessibility/repeater6/protected4E2E/media/reference/block/plugin/public integration remains incomplete.",
+  "currentTypeWitnessClosure": {
+    "before": "6ca03d320d5b675416babbeb990dab823a72986a",
+    "typeRepairCommit": "7957eecf",
+    "repair": "New helper narrows actual text-node union before reading text; no callback body, dataset, assertion expected result, Source original or production behavior changes.",
+    "wholeResults": [
+      {
+        "name": "current-check",
+        "raw": "docs/rich-editor-evidence/configured-review-closure/current-check.log.json",
+        "decodedBytes": 737,
+        "decodedSha256": "60cdcd0bcdfdae57c84407a28a4f6d75d71511649289a6d8518128e2f0538ec2",
+        "exit": 1,
+        "errors": 1,
+        "warnings": 0,
+        "classification": "Only new helper read a text-only property on the real node union; all actual earlier test results preserved."
+      },
+      {
+        "name": "current-check-type-fixed",
+        "raw": "docs/rich-editor-evidence/configured-review-closure/current-check-type-fixed.log.json",
+        "decodedBytes": 209,
+        "decodedSha256": "1a9036a92c43a9ae37b653e6a082bef1dde2ef18b3cf7fc080799dc787472e95",
+        "exit": 0,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "native34-type-fixed",
+        "raw": "docs/rich-editor-evidence/configured-review-closure/native34-type-fixed.log.json",
+        "decodedBytes": 841,
+        "decodedSha256": "341320a860fdf1882e54bbfb37e98e1f818947386075938d8b86bf885724acb0",
+        "registered": 34,
+        "passed": 34,
+        "failed": 0,
+        "unhandled": 0,
+        "report": "docs/rich-editor-evidence/configured-review-closure/native34-type-fixed-report.json"
+      }
+    ],
+    "entire34CurrentGreen": true
+  }
 }

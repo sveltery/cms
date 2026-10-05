@@ -1,0 +1,5 @@
+{
+  "decodedUtf8Bytes": 737,
+  "sha256": "60cdcd0bcdfdae57c84407a28a4f6d75d71511649289a6d8518128e2f0538ec2",
+  "rawDecodedText": "$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json\nLoading svelte-check in workspace: /workspace/cms-full-rich-fields-editor\nGetting Svelte diagnostics...\n\n/workspace/cms-full-rich-fields-editor/tests/helpers/rich-editor/native-authoring-dom.ts:44:117\nError: Property 'text' does not exist on type 'NodeType<any, any, any, any> | TextType<MarkType<any, any>>'.\n  Property 'text' does not exist on type 'NodeType<any, any, any, any>'. \n}\nexport function texts(editor: Editor) { return editor.getJSON().content?.map(node => node.content?.map(span => span.text ?? '').join('') ?? node.type); }\n\n====================================\nsvelte-check found 1 error and 0 warnings in 1 file\n[ELIFECYCLE] Command failed with exit code 1.\n"
+}
