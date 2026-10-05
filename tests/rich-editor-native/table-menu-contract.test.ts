@@ -120,4 +120,13 @@ describe('Actual Native table toolbar menu contract', () => {
     unavailable.focus(); expect(document.activeElement).toBe(unavailable); unavailable.click(); await tick();
     expect(editor.getJSON()).toEqual(before); expect(menu(host)).toBeTruthy();
   });
+
+  it('updates the actual live region for repeated identical table action results', async () => {
+    const { host, editor } = await render(); table(editor); await tick();
+    trigger(host).click(); await tick(); action(host, 'Add row below').click(); await tick();
+    const status = host.querySelector<HTMLElement>('[aria-live="polite"][aria-atomic="true"]')!;
+    expect(status.textContent).toBe('Row added below'); const first = status.firstChild;
+    trigger(host).click(); await tick(); action(host, 'Add row below').click(); await tick();
+    expect(editor.state.doc.firstChild!.childCount).toBe(4); expect(status.textContent).toBe('Row added below'); expect(status.firstChild).not.toBe(first);
+  });
 });
