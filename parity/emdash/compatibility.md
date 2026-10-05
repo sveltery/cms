@@ -2461,7 +2461,7 @@ evidence does not establish product integration or qualify a raw users facade.
 The shared package change appends the whole new 65-case guard/family after the
 entire actual public Main14 Source chain, including its canonical storage guard.
 Versions, dependency locks, media patch/notices, frozen providers, existing normal
-thirteen-stage and secured nine-launch gates/deadlines remain unchanged. Those
+thirteen-stage and secured ten-launch gates/deadlines remain unchanged. Those
 gates and final independent/configured review must qualify the eventual head.
 Full admin APIs/DTO/UI, broader byline/plugin/content consumers, legacy enrollment,
 invites/recovery/OAuth/API tokens, complete logical facade/raw UPSERT routing and
@@ -2517,3 +2517,31 @@ and configured final review, exact final decisions, author expected-head merge
 and actual post-Main verification remain pending. Full admin/DTO/UI, historical
 profile enrollment, broader consumers, invites/recovery/OAuth/API token issuance,
 logical/raw users facade and deployed-hosting parity remain unfinished.
+
+
+## Stored user administration backend — proposed continuation of PR #99
+
+The [owning record](../../docs/user-administration-backend.md) and
+[whole Source consumer inventory](../../docs/user-admin-inputs-source-inventory.json)
+record immutable EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`,
+Source authorities, actual Native test-first failures/repairs/refactor and
+remaining prerequisites. Whole Core65, Native stored-administration42, original
+parser2 and original Source-only reference qualifiers9 pass in finite installed
+dependency runs. No full Users API/UI/OAuth, normal/browser, or deployed parity
+claim follows from those results. Specific final-head acceptance is pending.
+
+| Record | Source and local behavior | Constraint, evidence and decision status |
+| --- | --- | --- |
+| USR-04: administration storage/HTTP adapter | Source public `astro/routes/api/admin/users` uses one `users` table and Astro locals; Native routes use genuine `_cms_auth_users`/`_cms_auth_profiles`, RequestEvent and the existing principal. List/search/exact-role/creation cursor, stored profile fields, original update DTO, validation envelope and missing-ID/fallback errors preserve Source. Detail safely projects existing credential metadata, excluding stored keys/custom JSON. | Existing canonical storage and SvelteKit transport. Node/raw-D1 Native42 and Source-only9 qualification receipts are linked above; no new provider or credential/session algorithm. Proposed PR #99; final explicit acceptance not recorded. |
+| USR-05: retained Native administrator/write guards | Source route authorization checks `locals.user.role >= Role.ADMIN`; Native rereads the real actor's current stored role/disabled flag before decoding. Native also retains its existing Origin, trusted-runtime and operator mutation opt-in gates. Original self-role, duplicate-email and last-admin restrictions remain; Native atomic split writes use existing guard/batch storage instead of Source's one-row transaction helper. | Preserve already established current-role/write safeguards and actual atomic canonical storage. Original Native assertions exercise these finite stored-role/RequestEvent and rollback boundaries; no new signed-session, replay or concurrent-auth proof. Proposed continuation, development boundary authorized by Root; final acceptance pending. |
+| USR-06: historical profileless administration | Source has a complete profile in each `users` row. Native list/detail omit historical identities lacking `_cms_auth_profiles`, list reports actual `legacyCount`, and auth-level admin counts still include actual identities under existing policy. Native initialization messages refer to its database/runtime rather than EmDash initialization. | Preserve old identity bytes and auth safeguards instead of inventing profiles. Real Node/raw-D1 legacy preservation and actual count assertions pass. Proposed continuation of USR-02; explicit enrollment remains unfinished; final acceptance pending. |
+
+OAuth `oauthProviders`/`oauthAccounts` fields and their storage are unimplemented,
+not synthesized as empty successful parity values. Full UserDetail/Invite UI,
+recovery/invitations/PAT/allowed-domain flows, Transfer/OpenAPI consumers and
+legacy enrollment remain separately owned prerequisites. Their complete original
+Source files are retained and unexecuted, with zero selection-only full-family
+credit. The previous foundation's broader consumer inventory remains historical;
+Byline PR #118 separately owns its whole content54/filter14 and real user bridge.
+The two original shared-parser tests run unchanged against an existing public
+Native parser and initially passed; Source causal assertion-red credit remains0.

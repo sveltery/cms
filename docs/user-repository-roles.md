@@ -1,12 +1,14 @@
 # Core user profiles and role policy
 
-The locally implemented foundation gives the server a real Core `UserRepository`
-over the existing identity/profile tables and supplies the pinned pure role scope
-policy. The current draft is [PR #99](https://github.com/sveltery/cms/pull/99).
-The fix and refactor each pass the complete 65-case family. Product publication,
-combined normal/browser gates, final exact-head acceptance, author merge and
-post-Main verification remain pending. A passing repository family alone will
-not complete the user administration product.
+[PR #99](https://github.com/sveltery/cms/pull/99) implements Core `UserRepository`
+over the existing identity/profile tables, the pinned pure role scope policy, and
+real stored-user list/detail/update/disable/enable JSON endpoints. Complete Core65
+and stored-administration42 families pass on genuine SQLite/raw-D1 fixtures;
+the two original shared-parser cases and nine Source-only reference qualifiers
+also pass. Final combined normal/browser validation, independent/configured
+review, exact-head acceptance, author merge and post-Main verification remain
+pending. [Stored administration](user-administration-backend.md) records the
+complete scope, Source inventories and remaining dependencies.
 
 The authority is EmDash 1.1.0 at
 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. The
@@ -103,9 +105,11 @@ callbacks. The public `test:source-ports` graph gains this whole family after it
 entire existing chain, including the canonical-storage authority guard. Package
 versions, locks, patches, notices, the frozen providers and original normal and
 secured browser gates/deadlines remain unchanged. The full normal thirteen-stage
-and secured nine-launch gates must validate the eventual final combined head.
+and secured ten-launch gates must validate the eventual final combined head.
 
-Full user admin APIs/DTO/UI, explicit historical profile enrollment, broader
-byline/plugin/content consumers, invites/recovery/OAuth/API tokens, complete
-logical read facade, raw users write/UPSERT routing and deployed hosting parity
-remain unfinished.
+The stored profile/role endpoints now have a working backend. Full OAuth-bearing
+user DTOs, user administration UI, historical profile enrollment, other broader
+consumer families, invites/recovery/API tokens, complete logical read facade, raw
+users write/UPSERT routing and deployed hosting parity remain unfinished. Byline
+PR #118 separately owns its real Core-user constructor bridge and entire content
+lifecycle/filter consumers; its evidence does not add callbacks to this PR.

@@ -8,6 +8,8 @@ const source=resolve(root,'parity/emdash/user-admin-reference/source');
 const runtime=resolve(root,'parity/emdash/user-admin-reference/runtime');
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const read=path=>readFileSync(resolve(root,path));
+const locked=new Map([['docs/evidence/user-admin-native/accounts-source-fixtures-historical.json','b85e3bea87df2de604e90018b8a8e1ee5e6335b4c438a213677a28ca90ceeed6'],['docs/evidence/user-admin-native/accounts-admin-source-contracts-historical.json','a0cd450229cc8b25f6359c7426a3a952c48fa4a13d2e4cb95489fafc2a87a2e7'],['docs/user-admin-inputs-source-inventory.json','820fc484d703abbe59861b0de2c4df4819d9878ff63257e7fbb09703d5d85829'],['tests/user-admin-native/repository.test.ts','24ee9a4a6119f11a1391c5bd7d4340867b9089abcf58eceedbcf4603b04ada2b'],['tests/user-admin-native/api.test.ts','f6ef59d9f7a539c8f057529435a329bc20b81518207bd27538a161c0cfeff67e']]);
+for(const [path,digest] of locked)assert.equal(sha(read(path)),digest,'whole immutable inventory/Native requirements '+path);
 const noticePaths=['docs/evidence/user-admin-native/accounts-source-fixtures-historical.json','docs/evidence/user-admin-native/accounts-admin-source-contracts-historical.json'];
 const authorities=new Map();
 for(const path of noticePaths){const notice=JSON.parse(read(path));assert.equal(notice.pin,'913cb1bb9b7f08c3ff0d258b4420e53835b6a58e');
@@ -31,4 +33,6 @@ assert.equal(inputs.pin,'913cb1bb9b7f08c3ff0d258b4420e53835b6a58e');
 assert.equal(inputs.wholeSourceParserCallbacks,2);
 assert.equal(inputs.dedicatedAdminUsersOrCoreUserRepositoryTestFile,null);
 for(const entry of inputs.files){const bytes=read(entry.destination);assert.equal(bytes.length,entry.bytes);assert.equal(sha(bytes),entry.sha256);assert.equal(createHash('sha1').update(Buffer.from(`blob ${bytes.length}\0`)).update(bytes).digest('hex'),entry.blob);}
-console.log('User administration provenance: 33 whole immutable Source authorities and complete nine-case original reference qualifier; exact TypeScript runtime emission, Native fixture host only. Zero additional Native copied-Source/Source causal/whole Runner credit.');
+const parser=ts.createSourceFile(inputs.files[0].source,read(inputs.files[0].destination).toString(),ts.ScriptTarget.Latest,true);let declarations=0,expectations=0;
+function visit(node){if(ts.isCallExpression(node)){const name=node.expression.getText(parser);if(name==='it')declarations++;if(name==='expect')expectations++;}ts.forEachChild(node,visit);}visit(parser);assert.deepEqual({declarations,expectations},{declarations:2,expectations:7});
+console.log('User administration provenance: 33 whole immutable Source authorities, complete original parser2/7 expectations, Native42 and complete nine-case original reference qualifier; exact TypeScript runtime emission, Native fixture host only. Zero additional Native copied-Source/Source causal/whole Runner credit.');

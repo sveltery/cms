@@ -30,6 +30,7 @@ for (const family of inventory.nativeFamilies) {
     assert.equal(before.length, family.bytes);
     assert.equal(digest(before), family.sha256);
     assert.equal(digest(bytes), correction.afterSha256);
+    assert.equal(bytes.toString(),before.toString().replace('() => f.repository.update(existing.id,', '() => f.repository.update(existing!.id,'), 'exact authorized one-character erased transport');
     const emit = source => ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText;
     assert.equal(emit(bytes.toString()), emit(before.toString()), 'Root-authorized type-only correction has identical whole runtime');
   } else {
