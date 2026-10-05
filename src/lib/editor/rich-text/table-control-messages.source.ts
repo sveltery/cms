@@ -2,6 +2,8 @@
 // Source-exact Lingui macro compiler. EmDash1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.
 // Original source MIT: notices/emdash-MIT.txt; no runtime Reference UI is used.
 export const TABLE_CONTROL_MESSAGE_IDS: Readonly<Record<string, string>> = {
+  // Whole pinned PortableTextEditor.tsx macro compilation supplies this ID.
+  "Table controls": "q+bMmy",
   "Selection": "p7/fS2",
   "Select row": "9c44h0",
   "Select column": "K3GOZ1",

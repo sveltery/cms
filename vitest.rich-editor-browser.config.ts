@@ -58,7 +58,7 @@ export default defineConfig({
       '@tiptap/extension-focus', '@tiptap/extension-link', '@tiptap/extension-list', '@tiptap/extension-placeholder',
       '@tiptap/extension-subscript', '@tiptap/extension-superscript', '@tiptap/extension-text-align',
       '@tiptap/extension-typography', '@tiptap/extension-table', '@tiptap/extension-table-cell',
-      '@tiptap/extension-table-header', '@tiptap/extension-table-row',
+      '@tiptap/extension-table-header', '@tiptap/extension-table-row', '@tiptap/extension-bubble-menu',
       'lowlight', 'highlight.js/lib/languages/dockerfile',
       '@codemirror/autocomplete', '@codemirror/commands', '@codemirror/lang-css', '@codemirror/lang-html',
       '@codemirror/lang-javascript', '@codemirror/language', '@codemirror/state', '@codemirror/view', '@lezer/highlight'

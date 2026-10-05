@@ -5,7 +5,7 @@
   import { CellSelection } from '@tiptap/pm/tables';
   import { getTableControlState } from './TableActions';
   import { sourceMessage, type Translate } from './types';
-  import { tableMessage } from './table-menu';
+  import { tableMessage } from './table-control-messages';
   let { editor, onChange, translate = sourceMessage }: {
     editor: Editor; onChange: (label: string) => void; translate?: Translate;
   } = $props();

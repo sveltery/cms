@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount, tick } from 'svelte';
   import { sourceMessage, type Translate } from './types';
-  import { tableMessage } from './table-menu';
+  import { tableMessage } from './table-control-messages';
   let { onInsert, onCancel, translate = sourceMessage }: { onInsert: (rows: number, columns: number, header: boolean) => void; onCancel: () => void; translate?: Translate } = $props();
   let rows = $state(1), columns = $state(1), header = $state(true);
   let hovered = $state<readonly [number, number] | null>(null), coarse = $state(false);

@@ -12,7 +12,7 @@
   import TableSelectionAnnouncer from './TableSelectionAnnouncer.svelte';
   import TableMenu from './TableMenu.svelte';
   import TableBubbleMenu from './TableBubbleMenu.svelte';
-  import { tableMessage } from './table-menu';
+  import { tableMessage } from './table-control-messages';
   import { createPortableTextEditor } from './create-editor';
   import { defaultSlashCommands, insertHtmlBlock, insertIframeBlock, type SlashCommandItem, type SlashMenuState } from './slash-commands';
   import { insertTable } from './insert-table';

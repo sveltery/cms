@@ -2,10 +2,10 @@
 // EmDash1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e, MIT.
 import type { Editor } from '@tiptap/core';
 import { CellSelection } from '@tiptap/pm/tables';
-import type { MessageDescriptor } from '@lingui/core';
 import type { TableActionId, getTableControlState } from './TableActions';
 import type { Translate } from './types';
-import { TABLE_CONTROL_MESSAGE_IDS } from './table-control-messages.source';
+import { tableMessage } from './table-control-messages';
+export { tableMessage } from './table-control-messages';
 
 export type TableControlState = NonNullable<ReturnType<typeof getTableControlState>>;
 export type TableMenuAction = readonly [TableActionId, string, string | null];
@@ -19,9 +19,6 @@ export const TABLE_ACTION_GROUPS: ReadonlyArray<readonly [string, readonly Table
   ['Document', [['paragraph-before', 'Insert paragraph before', 'Paragraph inserted before table'], ['paragraph-after', 'Insert paragraph after', 'Paragraph inserted after table']]],
   ['Table', [['delete-table', 'Delete table', 'Table deleted']]]
 ];
-export function tableMessage(message: string, values?: MessageDescriptor['values']): MessageDescriptor {
-  return { id: TABLE_CONTROL_MESSAGE_IDS[message] ?? message, message, ...(values ? { values } : {}) };
-}
 export function selectedTableLabel(editor: Editor, state: TableControlState, translate: Translate) {
   return translate(tableMessage(editor.state.selection instanceof CellSelection
     ? '{0, plural, one {# row} other {# rows}} × {1, plural, one {# column} other {# columns}} selected' : 'Current cell',

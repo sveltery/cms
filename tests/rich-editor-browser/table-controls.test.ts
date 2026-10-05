@@ -50,8 +50,8 @@ it('uses real trigger keyboard navigation and leaves outside focus undisturbed',
   const { host, editor } = await render();
   const trigger = host.querySelector<HTMLButtonElement>('[data-emdash-table-trigger]')!;
   editor.view.focus(); await userEvent.keyboard('{Alt>}{F10}{/Alt}'); expect(document.activeElement).toBe(trigger);
-  await userEvent.keyboard('{ArrowDown}'); const menu = host.querySelector<HTMLElement>('[role="menu"]');
-  await vi.waitFor(() => expect(menu).toBeTruthy()); expect(document.activeElement?.textContent?.trim()).toBe('Select row');
+  await userEvent.keyboard('{ArrowDown}');
+  await vi.waitFor(() => expect(host.querySelector<HTMLElement>('[role="menu"]')).toBeTruthy()); expect(document.activeElement?.textContent?.trim()).toBe('Select row');
   await userEvent.keyboard('d'); expect(document.activeElement?.textContent?.trim()).toBe('Delete row');
   const outside = document.createElement('input'); document.body.append(outside); cleanups.push(async () => outside.remove());
   await userEvent.click(outside); expect(document.activeElement).toBe(outside); await vi.waitFor(() => expect(host.querySelector('[role="menu"]')).toBeNull());

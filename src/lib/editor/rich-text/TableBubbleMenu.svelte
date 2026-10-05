@@ -8,7 +8,8 @@
   import { CellSelection } from '@tiptap/pm/tables';
   import { getTableControlState, runTableAction } from './TableActions';
   import TableMenu from './TableMenu.svelte';
-  import { tableMessage, selectedTableLabel } from './table-menu';
+  import { selectedTableLabel } from './table-menu';
+  import { tableMessage } from './table-control-messages';
   import { sourceMessage, type Translate } from './types';
 
   let { editor, editable, floatingRoot, formattingToolbar, onRun, translate = sourceMessage }: {
@@ -62,7 +63,7 @@
   }
 </script>
 
-<div bind:this={element} data-emdash-table-bubble-menu role="group" aria-label={translate({ id: 'q+bMmy', message: 'Table controls' })} class="table-bubble-menu" style:visibility="hidden">
+<div bind:this={element} data-emdash-table-bubble-menu role="group" aria-label={translate(tableMessage('Table controls'))} class="table-bubble-menu" style:visibility="hidden">
   {#if controls && (controls.rows > 1 || controls.columns > 1)}<span class="summary">{selectedTableLabel(editor, controls, translate)}</span>{/if}
   <button type="button" aria-label={translate(tableMessage('Add row below'))} title={translate(tableMessage('Add row below'))} disabled={!controls?.can['add-row-after']} onclick={() => run('add-row-after', 'Row added below')}>＋↧</button>
   <button type="button" aria-label={translate(tableMessage('Add column after'))} title={translate(tableMessage('Add column after'))} disabled={!controls?.can['add-column-after']} onclick={() => run('add-column-after', 'Column added after')}>＋→</button>
