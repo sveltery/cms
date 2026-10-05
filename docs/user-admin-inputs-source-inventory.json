@@ -1,0 +1,72 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "dedicatedAdminUsersOrCoreUserRepositoryTestFile": null,
+  "wholeSourceParserCallbacks": 2,
+  "qualificationOnlyCallbacks": 9,
+  "adminUserDetailCallbacksRetainedUnexecuted": 15,
+  "files": [
+    {
+      "source": "packages/core/tests/unit/api/parse-envelope.test.ts",
+      "destination": "parity/emdash/user-admin-inputs/source/packages/core/tests/unit/api/parse-envelope.test.ts",
+      "bytes": 1635,
+      "sha256": "3408b15997b6e468ea7053960823888fbbb7ad073d34b914389817a81282c007",
+      "blob": "500bb69291bfd9600d16fc7cc79f9a36bf361b8d",
+      "execution": "whole parser2 against existing public Native parser"
+    },
+    {
+      "source": "packages/core/tests/unit/api/openapi.test.ts",
+      "destination": "parity/emdash/user-admin-inputs/retained-unexecuted/packages/core/tests/unit/api/openapi.test.ts.txt",
+      "bytes": 24720,
+      "sha256": "a9a9d45c960b56ae90961c735ee597c3f68a7a278319b09afeb995598acb7d75",
+      "blob": "bd2046b68b28ec011cd0600fd6ff3fb57892db7f",
+      "execution": "whole file retained unexecuted; dependencies outside finite stored-user backend ownership"
+    },
+    {
+      "source": "packages/core/tests/integration/transfer/cli-site.test.ts",
+      "destination": "parity/emdash/user-admin-inputs/retained-unexecuted/packages/core/tests/integration/transfer/cli-site.test.ts.txt",
+      "bytes": 34356,
+      "sha256": "a0950e724a44a2fca971e4c5dd15fa9157031b9827764bf50ad186288bcbbec3",
+      "blob": "214d5a7e7fe3ba8ee1f857b36349ee485308c418",
+      "execution": "whole file retained unexecuted; dependencies outside finite stored-user backend ownership"
+    },
+    {
+      "source": "packages/core/tests/unit/middleware/transfer-scope.test.ts",
+      "destination": "parity/emdash/user-admin-inputs/retained-unexecuted/packages/core/tests/unit/middleware/transfer-scope.test.ts.txt",
+      "bytes": 3700,
+      "sha256": "c1d5edc6cb10e991f20815958321c3ab0138a12c627ab051d399e59cae551faa",
+      "blob": "5114d753e8a6792a38507256083f5a0c4dab0b4a",
+      "execution": "whole file retained unexecuted; dependencies outside finite stored-user backend ownership"
+    },
+    {
+      "source": "packages/core/tests/integration/transfer/write-fence-middleware.test.ts",
+      "destination": "parity/emdash/user-admin-inputs/retained-unexecuted/packages/core/tests/integration/transfer/write-fence-middleware.test.ts.txt",
+      "bytes": 12506,
+      "sha256": "863674d70aa1acb0e2f40ae0e3c28b26069fd2db36863b41eb7a2216cea25656",
+      "blob": "a21408486f7d9ba262d182de1dfb1d621d45b45d",
+      "execution": "whole file retained unexecuted; dependencies outside finite stored-user backend ownership"
+    },
+    {
+      "source": "packages/admin/tests/components/users/UserDetail.test.tsx",
+      "destination": "parity/emdash/user-admin-inputs/retained-unexecuted/packages/admin/tests/components/users/UserDetail.test.tsx.txt",
+      "bytes": 8155,
+      "sha256": "4bbf9dfcea863d8ee42a68669255d34a84d609cdc77282bd5c558f3dab7dce58",
+      "blob": "cc441708ce15dabae4a46592eec235a1511280f5",
+      "execution": "whole file retained unexecuted; dependencies outside finite stored-user backend ownership"
+    },
+    {
+      "source": "e2e/tests/auth.spec.ts",
+      "destination": "parity/emdash/user-admin-inputs/retained-unexecuted/e2e/tests/auth.spec.ts.txt",
+      "bytes": 7985,
+      "sha256": "0732d4d209e87a021e1b84f92cbaff6ddb8768696a4c7ea6f70ef4f5f15fd9e0",
+      "blob": "773affad3dfd5a09eac74126d2d2f2ce3c940c45",
+      "execution": "whole file retained unexecuted; dependencies outside finite stored-user backend ownership"
+    }
+  ],
+  "unimplementedPrerequisites": [
+    "Transfer CLI, token middleware and write fences",
+    "Whole OpenAPI graph",
+    "Authentication/browser sessions and UserDetail/Invite UI",
+    "OAuth account/provider storage and administration response fields",
+    "Invitation/recovery/PAT workflows and legacy profile enrollment"
+  ]
+}

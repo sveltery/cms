@@ -1,0 +1,923 @@
+Loading svelte-check in workspace: /workspace/cms-complete-user99-backend
+Getting Svelte diagnostics...
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/validate.mjs:8:19
+Error: Invalid character. 
+ *
+ * @see AGENTS.md § Database: Never Interpolate Into SQL
+ */
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/validate.mjs:41:17
+Error: Parameter 'message' implicitly has an 'any' type. 
+    identifier;
+    constructor(message, identifier) {
+        super(message);
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/validate.mjs:41:26
+Error: Parameter 'identifier' implicitly has an 'any' type. 
+    identifier;
+    constructor(message, identifier) {
+        super(message);
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/validate.mjs:64:36
+Error: Parameter 'value' implicitly has an 'any' type. 
+ */
+export function validateIdentifier(value, label = "identifier") {
+    if (!value || typeof value !== "string") {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/validate.mjs:86:39
+Error: Parameter 'value' implicitly has an 'any' type. 
+ */
+export function validateJsonFieldName(value, label = "JSON field name") {
+    if (!value || typeof value !== "string") {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/validate.mjs:107:42
+Error: Parameter 'value' implicitly has an 'any' type. 
+ */
+export function validatePluginIdentifier(value, label = "plugin identifier") {
+    if (!value || typeof value !== "string") {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/validate.mjs:130:47
+Error: Parameter 'value' implicitly has an 'any' type. 
+ */
+export function validateStorageCollectionName(value, label = "collection name") {
+    if (!value || typeof value !== "string") {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:18:31
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function detectDialect(db) {
+    if (db.getExecutor().adapter instanceof PostgresAdapter)
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:24:26
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function isSqlite(db) {
+    return detectDialect(db) === "sqlite";
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:28:28
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function isPostgres(db) {
+    return detectDialect(db) === "postgres";
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:35:53
+Error: Parameter 'db' implicitly has an 'any' type. 
+ */
+export async function executeAtomicBatchIfSupported(db, queries) {
+    const adapter = db.getExecutor().adapter;
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:35:57
+Error: Parameter 'queries' implicitly has an 'any' type. 
+ */
+export async function executeAtomicBatchIfSupported(db, queries) {
+    const adapter = db.getExecutor().adapter;
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:40:52
+Error: Parameter 'query' implicitly has an 'any' type. 
+    }
+    return adapter.executeAtomicBatch(queries.map((query) => ("isRawBuilder" in query ? query.compile(db) : query.compile())));
+}
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:55:37
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function compoundSelectLimit(db) {
+    const adapter = db.getExecutor().adapter;
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:73:34
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function currentTimestamp(db) {
+    if (isPostgres(db)) {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:87:39
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function currentTimestampValue(db) {
+    if (isPostgres(db)) {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:99:38
+Error: Parameter '_db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function buildStatusCondition(_db, status, tablePrefix) {
+    const statusField = tablePrefix ? `${tablePrefix}.status` : "status";
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:99:43
+Error: Parameter 'status' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function buildStatusCondition(_db, status, tablePrefix) {
+    const statusField = tablePrefix ? `${tablePrefix}.status` : "status";
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:99:51
+Error: Parameter 'tablePrefix' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function buildStatusCondition(_db, status, tablePrefix) {
+    const statusField = tablePrefix ? `${tablePrefix}.status` : "status";
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:107:35
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export async function tableExists(db, tableName) {
+    if (isPostgres(db)) {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:107:39
+Error: Parameter 'tableName' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export async function tableExists(db, tableName) {
+    if (isPostgres(db)) {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:117:32
+Error: Property 'exists' does not exist on type '{}'. 
+		`.execute(db);
+        return result.rows[0]?.exists === true;
+    }
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:129:35
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export async function indexExists(db, indexName) {
+    if (isPostgres(db)) {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:129:39
+Error: Parameter 'indexName' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export async function indexExists(db, indexName) {
+    if (isPostgres(db)) {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:137:32
+Error: Property 'exists' does not exist on type '{}'. 
+		`.execute(db);
+        return result.rows[0]?.exists === true;
+    }
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:149:36
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export async function columnExists(db, tableName, columnName) {
+    if (isPostgres(db)) {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:149:40
+Error: Parameter 'tableName' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export async function columnExists(db, tableName, columnName) {
+    if (isPostgres(db)) {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:149:51
+Error: Parameter 'columnName' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export async function columnExists(db, tableName, columnName) {
+    if (isPostgres(db)) {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:159:32
+Error: Property 'exists' does not exist on type '{}'. 
+		`.execute(db);
+        return result.rows[0]?.exists === true;
+    }
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:171:38
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export async function listTablesLike(db, pattern) {
+    if (isPostgres(db)) {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:171:42
+Error: Parameter 'pattern' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export async function listTablesLike(db, pattern) {
+    if (isPostgres(db)) {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:182:39
+Error: 'r' is of type 'unknown'. 
+		`.execute(db);
+        return result.rows.map((r) => r.table_name);
+    }
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:189:35
+Error: 'r' is of type 'unknown'. 
+	`.execute(db);
+    return result.rows.map((r) => r.name);
+}
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:195:40
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export async function listTableColumns(db, tableName) {
+    if (isPostgres(db)) {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:195:44
+Error: Parameter 'tableName' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export async function listTableColumns(db, tableName) {
+    if (isPostgres(db)) {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:204:19
+Error: 'column' is of type 'unknown'. 
+        return result.rows.map((column) => ({
+            name: column.column_name,
+            type: column.data_type,
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:205:19
+Error: 'column' is of type 'unknown'. 
+            name: column.column_name,
+            type: column.data_type,
+        }));
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:222:28
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function binaryType(db) {
+    if (isPostgres(db)) {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:241:33
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function jsonExtractExpr(db, column, path) {
+    validateIdentifier(column, "JSON column name");
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:241:37
+Error: Parameter 'column' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function jsonExtractExpr(db, column, path) {
+    validateIdentifier(column, "JSON column name");
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:241:45
+Error: Parameter 'path' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function jsonExtractExpr(db, column, path) {
+    validateIdentifier(column, "JSON column name");
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:278:39
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function pluginDataExtractExpr(db, field, options) {
+    validateJsonFieldName(field, "plugin storage field name");
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:278:43
+Error: Parameter 'field' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function pluginDataExtractExpr(db, field, options) {
+    validateJsonFieldName(field, "plugin storage field name");
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:278:50
+Error: Parameter 'options' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function pluginDataExtractExpr(db, field, options) {
+    validateJsonFieldName(field, "plugin storage field name");
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:320:37
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function pluginDataWriteExpr(db, setEntries, deltaEntries) {
+    const pg = isPostgres(db);
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:320:41
+Error: Parameter 'setEntries' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function pluginDataWriteExpr(db, setEntries, deltaEntries) {
+    const pg = isPostgres(db);
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:320:53
+Error: Parameter 'deltaEntries' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function pluginDataWriteExpr(db, setEntries, deltaEntries) {
+    const pg = isPostgres(db);
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:347:39
+Error: Parameter 'db' implicitly has an 'any' type. 
+}
+export function pluginDataUpdateGuard(db, deltaEntries) {
+    const pg = isPostgres(db);
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:347:43
+Error: Parameter 'deltaEntries' implicitly has an 'any' type. 
+}
+export function pluginDataUpdateGuard(db, deltaEntries) {
+    const pg = isPostgres(db);
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:381:37
+Error: Parameter 'db' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function pluginDataOrderExpr(db, field) {
+    validateJsonFieldName(field, "plugin storage order field name");
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/dialect-helpers.mjs:381:41
+Error: Parameter 'field' implicitly has an 'any' type. 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- accepts any Kysely instance
+export function pluginDataOrderExpr(db, field) {
+    validateJsonFieldName(field, "plugin storage order field name");
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:9:26
+Error: Parameter 'db' implicitly has an 'any' type. 
+ */
+export async function up(db) {
+    // Revisions - stores snapshots of content entries
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:15:35
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .ifNotExists()
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("collection", "text", (col) => col.notNull()) // e.g., 'posts'
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:16:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("collection", "text", (col) => col.notNull()) // e.g., 'posts'
+        .addColumn("entry_id", "text", (col) => col.notNull()) // ID in the ec_* table
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:17:41
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("collection", "text", (col) => col.notNull()) // e.g., 'posts'
+        .addColumn("entry_id", "text", (col) => col.notNull()) // ID in the ec_* table
+        .addColumn("data", "text", (col) => col.notNull()) // JSON snapshot of all fields
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:18:37
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("entry_id", "text", (col) => col.notNull()) // ID in the ec_* table
+        .addColumn("data", "text", (col) => col.notNull()) // JSON snapshot of all fields
+        .addColumn("author_id", "text")
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:20:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("author_id", "text")
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:32:35
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .ifNotExists()
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("name", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:33:37
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("name", "text", (col) => col.notNull())
+        .addColumn("slug", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:34:37
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("name", "text", (col) => col.notNull())
+        .addColumn("slug", "text", (col) => col.notNull())
+        .addColumn("label", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:35:38
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("slug", "text", (col) => col.notNull())
+        .addColumn("label", "text", (col) => col.notNull())
+        .addColumn("parent_id", "text")
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:39:96
+Error: Parameter 'cb' implicitly has an 'any' type. 
+        .addUniqueConstraint("taxonomies_name_slug_unique", ["name", "slug"])
+        .addForeignKeyConstraint("taxonomies_parent_fk", ["parent_id"], "taxonomies", ["id"], (cb) => cb.onDelete("set null"))
+        .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:51:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .ifNotExists()
+        .addColumn("collection", "text", (col) => col.notNull()) // e.g., 'posts'
+        .addColumn("entry_id", "text", (col) => col.notNull()) // ID in the ec_* table
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:52:41
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("collection", "text", (col) => col.notNull()) // e.g., 'posts'
+        .addColumn("entry_id", "text", (col) => col.notNull()) // ID in the ec_* table
+        .addColumn("taxonomy_id", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:53:44
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("entry_id", "text", (col) => col.notNull()) // ID in the ec_* table
+        .addColumn("taxonomy_id", "text", (col) => col.notNull())
+        .addPrimaryKeyConstraint("content_taxonomies_pk", ["collection", "entry_id", "taxonomy_id"])
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:55:108
+Error: Parameter 'cb' implicitly has an 'any' type. 
+        .addPrimaryKeyConstraint("content_taxonomies_pk", ["collection", "entry_id", "taxonomy_id"])
+        .addForeignKeyConstraint("content_taxonomies_taxonomy_fk", ["taxonomy_id"], "taxonomies", ["id"], (cb) => cb.onDelete("cascade"))
+        .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:61:35
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .ifNotExists()
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("filename", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:62:41
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("filename", "text", (col) => col.notNull())
+        .addColumn("mime_type", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:63:42
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("filename", "text", (col) => col.notNull())
+        .addColumn("mime_type", "text", (col) => col.notNull())
+        .addColumn("size", "integer")
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:69:44
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("caption", "text")
+        .addColumn("storage_key", "text", (col) => col.notNull())
+        .addColumn("content_hash", "text") // xxHash64 for deduplication
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:71:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("content_hash", "text") // xxHash64 for deduplication
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .addColumn("author_id", "text")
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:84:35
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .ifNotExists()
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("email", "text", (col) => col.notNull().unique())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:85:38
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("email", "text", (col) => col.notNull().unique())
+        .addColumn("password_hash", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:86:46
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("email", "text", (col) => col.notNull().unique())
+        .addColumn("password_hash", "text", (col) => col.notNull())
+        .addColumn("name", "text")
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:88:37
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("name", "text")
+        .addColumn("role", "text", (col) => col.defaultTo("subscriber"))
+        .addColumn("avatar_id", "text")
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:91:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("data", "text")
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:103:37
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .ifNotExists()
+        .addColumn("name", "text", (col) => col.primaryKey())
+        .addColumn("value", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:104:38
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("name", "text", (col) => col.primaryKey())
+        .addColumn("value", "text", (col) => col.notNull())
+        .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:110:35
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .ifNotExists()
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("timestamp", "text", (col) => col.defaultTo(currentTimestamp(db)))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:111:42
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("timestamp", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .addColumn("actor_id", "text")
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:114:39
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("actor_ip", "text")
+        .addColumn("action", "text", (col) => col.notNull())
+        .addColumn("resource_type", "text")
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/001_initial.mjs:139:28
+Error: Parameter 'db' implicitly has an 'any' type. 
+}
+export async function down(db) {
+    await db.schema.dropTable("audit_logs").execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:15:26
+Error: Parameter 'db' implicitly has an 'any' type. 
+ */
+export async function up(db) {
+    // SQLite doesn't support DROP COLUMN directly, so we need to recreate the table
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:20:35
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .createTable("users_new")
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("email", "text", (col) => col.notNull().unique())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:21:38
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("email", "text", (col) => col.notNull().unique())
+        .addColumn("name", "text")
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:24:40
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("avatar_url", "text")
+        .addColumn("role", "integer", (col) => col.notNull().defaultTo(10)) // SUBSCRIBER
+        .addColumn("email_verified", "integer", (col) => col.notNull().defaultTo(0))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:25:50
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("role", "integer", (col) => col.notNull().defaultTo(10)) // SUBSCRIBER
+        .addColumn("email_verified", "integer", (col) => col.notNull().defaultTo(0))
+        .addColumn("data", "text")
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:27:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("data", "text")
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .addColumn("updated_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:28:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .addColumn("updated_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:57:35
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .createTable("credentials")
+        .addColumn("id", "text", (col) => col.primaryKey()) // Base64url credential ID
+        .addColumn("user_id", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:58:40
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("id", "text", (col) => col.primaryKey()) // Base64url credential ID
+        .addColumn("user_id", "text", (col) => col.notNull())
+        .addColumn("public_key", binaryType(db), (col) => col.notNull()) // COSE public key
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:59:51
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("user_id", "text", (col) => col.notNull())
+        .addColumn("public_key", binaryType(db), (col) => col.notNull()) // COSE public key
+        .addColumn("counter", "integer", (col) => col.notNull().defaultTo(0))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:60:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("public_key", binaryType(db), (col) => col.notNull()) // COSE public key
+        .addColumn("counter", "integer", (col) => col.notNull().defaultTo(0))
+        .addColumn("device_type", "text", (col) => col.notNull()) // 'singleDevice' | 'multiDevice'
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:61:44
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("counter", "integer", (col) => col.notNull().defaultTo(0))
+        .addColumn("device_type", "text", (col) => col.notNull()) // 'singleDevice' | 'multiDevice'
+        .addColumn("backed_up", "integer", (col) => col.notNull().defaultTo(0))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:62:45
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("device_type", "text", (col) => col.notNull()) // 'singleDevice' | 'multiDevice'
+        .addColumn("backed_up", "integer", (col) => col.notNull().defaultTo(0))
+        .addColumn("transports", "text") // JSON array
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:65:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("name", "text") // User-friendly name
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .addColumn("last_used_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:66:45
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .addColumn("last_used_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .addForeignKeyConstraint("credentials_user_fk", ["user_id"], "users", ["id"], (cb) => cb.onDelete("cascade"))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:67:88
+Error: Parameter 'cb' implicitly has an 'any' type. 
+        .addColumn("last_used_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .addForeignKeyConstraint("credentials_user_fk", ["user_id"], "users", ["id"], (cb) => cb.onDelete("cascade"))
+        .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:73:37
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .createTable("auth_tokens")
+        .addColumn("hash", "text", (col) => col.primaryKey()) // SHA-256 hash of token
+        .addColumn("user_id", "text")
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:76:37
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("email", "text") // For pre-user tokens
+        .addColumn("type", "text", (col) => col.notNull()) // 'magic_link' | 'email_verify' | 'invite' | 'recovery'
+        .addColumn("role", "integer") // For invites
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:79:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("invited_by", "text")
+        .addColumn("expires_at", "text", (col) => col.notNull())
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:80:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("expires_at", "text", (col) => col.notNull())
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .addForeignKeyConstraint("auth_tokens_user_fk", ["user_id"], "users", ["id"], (cb) => cb.onDelete("cascade"))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:81:88
+Error: Parameter 'cb' implicitly has an 'any' type. 
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .addForeignKeyConstraint("auth_tokens_user_fk", ["user_id"], "users", ["id"], (cb) => cb.onDelete("cascade"))
+        .addForeignKeyConstraint("auth_tokens_invited_by_fk", ["invited_by"], "users", ["id"], (cb) => cb.onDelete("set null"))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:82:97
+Error: Parameter 'cb' implicitly has an 'any' type. 
+        .addForeignKeyConstraint("auth_tokens_user_fk", ["user_id"], "users", ["id"], (cb) => cb.onDelete("cascade"))
+        .addForeignKeyConstraint("auth_tokens_invited_by_fk", ["invited_by"], "users", ["id"], (cb) => cb.onDelete("set null"))
+        .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:88:41
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .createTable("oauth_accounts")
+        .addColumn("provider", "text", (col) => col.notNull())
+        .addColumn("provider_account_id", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:89:52
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("provider", "text", (col) => col.notNull())
+        .addColumn("provider_account_id", "text", (col) => col.notNull())
+        .addColumn("user_id", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:90:40
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("provider_account_id", "text", (col) => col.notNull())
+        .addColumn("user_id", "text", (col) => col.notNull())
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:91:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("user_id", "text", (col) => col.notNull())
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .addPrimaryKeyConstraint("oauth_accounts_pk", ["provider", "provider_account_id"])
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:93:91
+Error: Parameter 'cb' implicitly has an 'any' type. 
+        .addPrimaryKeyConstraint("oauth_accounts_pk", ["provider", "provider_account_id"])
+        .addForeignKeyConstraint("oauth_accounts_user_fk", ["user_id"], "users", ["id"], (cb) => cb.onDelete("cascade"))
+        .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:103:39
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .createTable("allowed_domains")
+        .addColumn("domain", "text", (col) => col.primaryKey())
+        .addColumn("default_role", "integer", (col) => col.notNull().defaultTo(20)) // CONTRIBUTOR
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:104:48
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("domain", "text", (col) => col.primaryKey())
+        .addColumn("default_role", "integer", (col) => col.notNull().defaultTo(20)) // CONTRIBUTOR
+        .addColumn("enabled", "integer", (col) => col.notNull().defaultTo(1))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:105:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("default_role", "integer", (col) => col.notNull().defaultTo(20)) // CONTRIBUTOR
+        .addColumn("enabled", "integer", (col) => col.notNull().defaultTo(1))
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:106:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("enabled", "integer", (col) => col.notNull().defaultTo(1))
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:111:42
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .createTable("auth_challenges")
+        .addColumn("challenge", "text", (col) => col.primaryKey()) // Base64url challenge
+        .addColumn("type", "text", (col) => col.notNull()) // 'registration' | 'authentication'
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:112:37
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("challenge", "text", (col) => col.primaryKey()) // Base64url challenge
+        .addColumn("type", "text", (col) => col.notNull()) // 'registration' | 'authentication'
+        .addColumn("user_id", "text") // For registration, the user being registered
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:115:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("data", "text") // JSON for additional context
+        .addColumn("expires_at", "text", (col) => col.notNull())
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:116:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("expires_at", "text", (col) => col.notNull())
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:125:28
+Error: Parameter 'db' implicitly has an 'any' type. 
+}
+export async function down(db) {
+    // Drop new tables
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:135:35
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .createTable("users_old")
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("email", "text", (col) => col.notNull().unique())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:136:38
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("email", "text", (col) => col.notNull().unique())
+        .addColumn("password_hash", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:137:46
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("email", "text", (col) => col.notNull().unique())
+        .addColumn("password_hash", "text", (col) => col.notNull())
+        .addColumn("name", "text")
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:139:37
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("name", "text")
+        .addColumn("role", "text", (col) => col.defaultTo("subscriber"))
+        .addColumn("avatar_id", "text")
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/008_auth.mjs:142:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("data", "text")
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/009_user_disabled.mjs:9:26
+Error: Parameter 'db' implicitly has an 'any' type. 
+ */
+export async function up(db) {
+    // SQLite supports ADD COLUMN
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/009_user_disabled.mjs:15:28
+Error: Parameter 'db' implicitly has an 'any' type. 
+}
+export async function down(db) {
+    // SQLite doesn't support DROP COLUMN directly, but we can drop the index
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:18:26
+Error: Parameter 'db' implicitly has an 'any' type. 
+ */
+export async function up(db) {
+    // ── Personal Access Tokens ───────────────────────────────────────
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:23:35
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .ifNotExists()
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("name", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:24:37
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("id", "text", (col) => col.primaryKey())
+        .addColumn("name", "text", (col) => col.notNull())
+        .addColumn("token_hash", "text", (col) => col.notNull().unique())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:25:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("name", "text", (col) => col.notNull())
+        .addColumn("token_hash", "text", (col) => col.notNull().unique())
+        .addColumn("prefix", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:26:39
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("token_hash", "text", (col) => col.notNull().unique())
+        .addColumn("prefix", "text", (col) => col.notNull())
+        .addColumn("user_id", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:27:40
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("prefix", "text", (col) => col.notNull())
+        .addColumn("user_id", "text", (col) => col.notNull())
+        .addColumn("scopes", "text", (col) => col.notNull()) // JSON array
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:28:39
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("user_id", "text", (col) => col.notNull())
+        .addColumn("scopes", "text", (col) => col.notNull()) // JSON array
+        .addColumn("expires_at", "text") // null = no expiry
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:31:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("last_used_at", "text")
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .addForeignKeyConstraint("api_tokens_user_fk", ["user_id"], "users", ["id"], (cb) => cb.onDelete("cascade"))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:32:87
+Error: Parameter 'cb' implicitly has an 'any' type. 
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .addForeignKeyConstraint("api_tokens_user_fk", ["user_id"], "users", ["id"], (cb) => cb.onDelete("cascade"))
+        .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:50:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .ifNotExists()
+        .addColumn("token_hash", "text", (col) => col.primaryKey())
+        .addColumn("token_type", "text", (col) => col.notNull()) // 'access' | 'refresh'
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:51:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("token_hash", "text", (col) => col.primaryKey())
+        .addColumn("token_type", "text", (col) => col.notNull()) // 'access' | 'refresh'
+        .addColumn("user_id", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:52:40
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("token_type", "text", (col) => col.notNull()) // 'access' | 'refresh'
+        .addColumn("user_id", "text", (col) => col.notNull())
+        .addColumn("scopes", "text", (col) => col.notNull()) // JSON array
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:53:39
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("user_id", "text", (col) => col.notNull())
+        .addColumn("scopes", "text", (col) => col.notNull()) // JSON array
+        .addColumn("client_type", "text", (col) => col.notNull().defaultTo("cli"))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:54:44
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("scopes", "text", (col) => col.notNull()) // JSON array
+        .addColumn("client_type", "text", (col) => col.notNull().defaultTo("cli"))
+        .addColumn("expires_at", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:55:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("client_type", "text", (col) => col.notNull().defaultTo("cli"))
+        .addColumn("expires_at", "text", (col) => col.notNull())
+        .addColumn("refresh_token_hash", "text") // links access → refresh
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:57:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("refresh_token_hash", "text") // links access → refresh
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .addForeignKeyConstraint("oauth_tokens_user_fk", ["user_id"], "users", ["id"], (cb) => cb.onDelete("cascade"))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:58:89
+Error: Parameter 'cb' implicitly has an 'any' type. 
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .addForeignKeyConstraint("oauth_tokens_user_fk", ["user_id"], "users", ["id"], (cb) => cb.onDelete("cascade"))
+        .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:76:44
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .ifNotExists()
+        .addColumn("device_code", "text", (col) => col.primaryKey())
+        .addColumn("user_code", "text", (col) => col.notNull().unique())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:77:42
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("device_code", "text", (col) => col.primaryKey())
+        .addColumn("user_code", "text", (col) => col.notNull().unique())
+        .addColumn("scopes", "text", (col) => col.notNull()) // JSON array
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:78:39
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("user_code", "text", (col) => col.notNull().unique())
+        .addColumn("scopes", "text", (col) => col.notNull()) // JSON array
+        .addColumn("user_id", "text") // set when user authorizes
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:80:39
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("user_id", "text") // set when user authorizes
+        .addColumn("status", "text", (col) => col.notNull().defaultTo("pending"))
+        .addColumn("expires_at", "text", (col) => col.notNull())
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:81:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("status", "text", (col) => col.notNull().defaultTo("pending"))
+        .addColumn("expires_at", "text", (col) => col.notNull())
+        .addColumn("interval", "integer", (col) => col.notNull().defaultTo(5))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:82:44
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("expires_at", "text", (col) => col.notNull())
+        .addColumn("interval", "integer", (col) => col.notNull().defaultTo(5))
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:83:43
+Error: Parameter 'col' implicitly has an 'any' type. 
+        .addColumn("interval", "integer", (col) => col.notNull().defaultTo(5))
+        .addColumn("created_at", "text", (col) => col.defaultTo(currentTimestamp(db)))
+        .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/016_api_tokens.mjs:86:28
+Error: Parameter 'db' implicitly has an 'any' type. 
+}
+export async function down(db) {
+    await db.schema.dropTable("_emdash_device_codes").ifExists().execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/037_credential_algorithm.mjs:2:26
+Error: Parameter 'db' implicitly has an 'any' type. 
+import { columnExists } from "../dialect-helpers.mjs";
+export async function up(db) {
+    if (!(await columnExists(db, "credentials", "algorithm"))) {
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/037_credential_algorithm.mjs:6:49
+Error: Parameter 'col' implicitly has an 'any' type. 
+            .alterTable("credentials")
+            .addColumn("algorithm", "integer", (col) => col.notNull().defaultTo(-7))
+            .execute();
+
+/workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/database/migrations/037_credential_algorithm.mjs:10:28
+Error: Parameter 'db' implicitly has an 'any' type. 
+}
+export async function down(db) {
+    if (await columnExists(db, "credentials", "algorithm")) {
+
+====================================
+svelte-check found 153 errors and 0 warnings in 7 files

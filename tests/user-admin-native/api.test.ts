@@ -58,6 +58,18 @@ for(const target of ['Node SQLite','raw workerd D1'] as const){
    assert.equal(response.status,400);assert.equal((await response.json()).error.code,code);
   }}finally{await f.close();}
  });
+ test(`${target}: shared request validation exposes the original structured issue details`,async()=>{
+  const f=await fixture();try{
+   const query=f.context();query.url.searchParams.set('limit','0');
+   const listResponse=await list(query);assert.equal(listResponse.status,400);
+   const listBody=await listResponse.json();assert.equal(listBody.error.message,'Invalid request data');
+   assert.equal(listBody.error.details.issues[0].path,'limit');
+   const before=await f.users.findById(f.author.id);
+   const response=await update(f.context(f.author.id,{role:41}));assert.equal(response.status,400);
+   assert.deepEqual((await response.json()).error,{code:'VALIDATION_ERROR',message:'Invalid request data',details:{issues:[{path:'role',message:'Invalid role level. Must be 10, 20, 30, 40, or 50'}]}});
+   assert.deepEqual(await f.users.findById(f.author.id),before);
+  }finally{await f.close();}
+ });
  test(`${target}: invalid role and conflicting email return unchanged stored profile`,async()=>{
   const f=await fixture();try{const before=await f.users.findById(f.author.id);
    for(const [body,status,code] of [[{role:41},400,'VALIDATION_ERROR'],[{email:f.admin.email},409,'EMAIL_IN_USE']] as const){

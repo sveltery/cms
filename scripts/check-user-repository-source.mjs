@@ -110,6 +110,6 @@ assert.equal(graph.seed.UserRepositoryImportChain, null);
 const scripts = JSON.parse(read('package.json')).scripts;
 assert.equal(scripts['test:user-repository-roles'], 'node scripts/check-user-repository-source.mjs && vitest run --config vitest.users.config.ts');
 assert.ok(scripts['test:source-ports'].startsWith(inventory.sharedPublicSourceChainBefore), 'entire historical public Source chain preserved');
-assert.ok(scripts['test:source-ports'].endsWith(' && pnpm test:user-repository-roles'), 'whole user family follows complete current public Source chain');
+assert.ok(scripts['test:source-ports'].endsWith(' && pnpm test:user-repository-roles && pnpm test:user-admin'), 'whole user family follows complete current public Source chain');
 assert.equal(scripts['test:source-ports'].split('pnpm test:user-repository-roles').length, 2, 'whole user gate occurs once');
 console.log('User source guard: 23 whole pinned authorities/MIT, unchanged Native assertions, whole Source RBAC 30 declarations/35 expectation expressions/33 callbacks, pure Source scope policy exact. Nine broader consumer families remain unexecuted; byte/inventory checks earn zero product parity credit.');

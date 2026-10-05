@@ -1,0 +1,97 @@
+/**
+ * Standardized API error responses.
+ *
+ * All API routes should use these utilities instead of inline
+ * `new Response(JSON.stringify({ error: ... }), ...)` patterns.
+ */
+import { InvalidCursorError } from "../database/repositories/types.mjs";
+import { mapErrorStatus } from "./errors.mjs";
+// Re-export everything from errors.ts so existing `import { mapErrorStatus } from "./error.mjs"` still works
+export * from "./errors.mjs";
+/**
+ * Standard cache headers for all API responses.
+ *
+ * Cache-Control: private, no-store -- prevents CDN/proxy caching of authenticated data.
+ * no-store already tells caches not to store the response, so Vary is unnecessary.
+ */
+const API_CACHE_HEADERS = {
+    "Cache-Control": "private, no-store",
+};
+/**
+ * Create a standardized error response.
+ *
+ * Always returns `{ success: false, error: { code, message } }` with correct
+ * Content-Type. Use this for all error responses in API routes.
+ */
+export function apiError(code, message, status, details) {
+    const error = {
+        code,
+        message,
+    };
+    if (details !== undefined)
+        error.details = details;
+    return Response.json({ success: false, error }, { status, headers: API_CACHE_HEADERS });
+}
+/**
+ * Create a standardized success response.
+ *
+ * Always returns `{ success: true, data: T }` with correct status code.
+ * Use this for all success responses in API routes.
+ */
+export function apiSuccess(data, status = 200) {
+    return Response.json({ success: true, data }, { status, headers: API_CACHE_HEADERS });
+}
+/**
+ * Handle an unknown error in a catch block.
+ *
+ * - Logs the full error server-side
+ * - Returns a generic message to the client (never leaks error.message)
+ * - Use `fallbackMessage` for the public-facing message
+ * - Use `fallbackCode` for the error code
+ */
+export function handleError(error, fallbackMessage, fallbackCode) {
+    // Bubble malformed-cursor errors as a structured 400 instead of a
+    // generic 500.
+    if (error instanceof InvalidCursorError) {
+        return apiError("INVALID_CURSOR", error.message, 400);
+    }
+    console.error(`[${fallbackCode}]`, error);
+    return apiError(fallbackCode, fallbackMessage, 500);
+}
+/**
+ * Standard initialization check.
+ *
+ * Returns an error response if EmDash is not initialized, or null if OK.
+ * Usage: `const err = requireInit(emdash); if (err) return err;`
+ */
+export function requireInit(emdash) {
+    if (!emdash || typeof emdash !== "object") {
+        return apiError("NOT_CONFIGURED", "EmDash is not initialized", 500);
+    }
+    return null;
+}
+/**
+ * Standard database check.
+ *
+ * Returns an error response if the database is not available, or null if OK.
+ * Usage: `const err = requireDb(emdash?.db); if (err) return err;`
+ */
+export function requireDb(db) {
+    if (!db) {
+        return apiError("NOT_CONFIGURED", "EmDash is not initialized", 500);
+    }
+    return null;
+}
+/**
+ * Convert an ApiResult into an HTTP Response.
+ *
+ * Collapses the handler-to-response boilerplate:
+ * - Success: returns `apiSuccess(result.data, successStatus)`
+ * - Error: returns `apiError(code, message, mapErrorStatus(code))`
+ */
+export function unwrapResult(result, successStatus = 200) {
+    if (!result.success) {
+        return apiError(result.error.code, result.error.message, mapErrorStatus(result.error.code), result.error.details);
+    }
+    return apiSuccess(result.data, successStatus);
+}
