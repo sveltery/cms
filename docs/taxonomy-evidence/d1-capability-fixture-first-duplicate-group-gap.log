@@ -1,0 +1,144 @@
+(node:2386890) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ raw D1: structured insert uses only its actual atomic capability (2067.694759ms)
+✔ raw D1: structured update uses only its actual atomic capability (2358.449156ms)
+✔ raw D1: structured delete uses only its actual atomic capability (2229.128124ms)
+✖ raw D1: whole Source delete uses only its actual atomic capability (1439.737838ms)
+✖ raw D1: whole Source reorder uses only its actual atomic capability (1163.281199ms)
+✖ raw D1: whole Source pivot replacement uses only its actual atomic capability (1350.167137ms)
+✖ raw D1: whole Source structure save uses only its actual atomic capability (1537.724814ms)
+✔ raw D1: ordinary option storage and whole taxonomy reads remain available (1397.027258ms)
+✔ scoped D1: structured insert uses only its actual atomic capability (2179.490134ms)
+✔ scoped D1: structured update uses only its actual atomic capability (2835.077713ms)
+✔ scoped D1: structured delete uses only its actual atomic capability (2682.676351ms)
+✖ scoped D1: whole Source delete uses only its actual atomic capability (1400.141285ms)
+✖ scoped D1: whole Source reorder uses only its actual atomic capability (1302.810712ms)
+✖ scoped D1: whole Source pivot replacement uses only its actual atomic capability (1263.142943ms)
+✖ scoped D1: whole Source structure save uses only its actual atomic capability (1306.2509ms)
+✔ scoped D1: ordinary option storage and whole taxonomy reads remain available (1148.220354ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 8
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 28182.376663
+
+✖ failing tests:
+
+test at tests/canonical-d1-write-boundary.test.ts:19:5
+✖ raw D1: whole Source delete uses only its actual atomic capability (1439.737838ms)
+  Error: D1_ERROR: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async D1Connection.executeQuery (file:///workspace/cms-full-taxonomy-api-admin/src/lib/server/database/d1.ts:53:29)
+      at async file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+      at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+      at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+      at async TestContext.<anonymous> (file:///workspace/cms-full-taxonomy-api-admin/tests/canonical-d1-write-boundary.test.ts:47:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    [cause]: Error: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+        at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+        at async cloudflare-internal:d1-api:366:41 {
+      [cause]: undefined
+    }
+  }
+
+test at tests/canonical-d1-write-boundary.test.ts:19:5
+✖ raw D1: whole Source reorder uses only its actual atomic capability (1163.281199ms)
+  Error: D1_ERROR: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async D1Connection.executeQuery (file:///workspace/cms-full-taxonomy-api-admin/src/lib/server/database/d1.ts:53:29)
+      at async file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+      at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+      at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+      at async TestContext.<anonymous> (file:///workspace/cms-full-taxonomy-api-admin/tests/canonical-d1-write-boundary.test.ts:47:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    [cause]: Error: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+        at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+        at async cloudflare-internal:d1-api:366:41 {
+      [cause]: undefined
+    }
+  }
+
+test at tests/canonical-d1-write-boundary.test.ts:19:5
+✖ raw D1: whole Source pivot replacement uses only its actual atomic capability (1350.167137ms)
+  Error: D1_ERROR: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async D1Connection.executeQuery (file:///workspace/cms-full-taxonomy-api-admin/src/lib/server/database/d1.ts:53:29)
+      at async file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+      at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+      at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+      at async TestContext.<anonymous> (file:///workspace/cms-full-taxonomy-api-admin/tests/canonical-d1-write-boundary.test.ts:47:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    [cause]: Error: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+        at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+        at async cloudflare-internal:d1-api:366:41 {
+      [cause]: undefined
+    }
+  }
+
+test at tests/canonical-d1-write-boundary.test.ts:19:5
+✖ raw D1: whole Source structure save uses only its actual atomic capability (1537.724814ms)
+  Error: D1_ERROR: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async D1Connection.executeQuery (file:///workspace/cms-full-taxonomy-api-admin/src/lib/server/database/d1.ts:53:29)
+      at async file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+      at async DefaultConnectionProvider.provideConnection (file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20)
+      at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+      at async TestContext.<anonymous> (file:///workspace/cms-full-taxonomy-api-admin/tests/canonical-d1-write-boundary.test.ts:47:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    [cause]: Error: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+        at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+        at async cloudflare-internal:d1-api:366:41 {
+      [cause]: undefined
+    }
+  }
+
+test at tests/canonical-d1-write-boundary.test.ts:19:5
+✖ scoped D1: whole Source delete uses only its actual atomic capability (1400.141285ms)
+  Error: D1_ERROR: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    [cause]: Error: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+        at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+        at async cloudflare-internal:d1-api:366:41 {
+      [cause]: undefined
+    }
+  }
+
+test at tests/canonical-d1-write-boundary.test.ts:19:5
+✖ scoped D1: whole Source reorder uses only its actual atomic capability (1302.810712ms)
+  Error: D1_ERROR: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    [cause]: Error: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+        at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+        at async cloudflare-internal:d1-api:366:41 {
+      [cause]: undefined
+    }
+  }
+
+test at tests/canonical-d1-write-boundary.test.ts:19:5
+✖ scoped D1: whole Source pivot replacement uses only its actual atomic capability (1263.142943ms)
+  Error: D1_ERROR: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    [cause]: Error: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+        at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+        at async cloudflare-internal:d1-api:366:41 {
+      [cause]: undefined
+    }
+  }
+
+test at tests/canonical-d1-write-boundary.test.ts:19:5
+✖ scoped D1: whole Source structure save uses only its actual atomic capability (1306.2509ms)
+  Error: D1_ERROR: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    [cause]: Error: UNIQUE constraint failed: _cms_taxonomy_def_groups.name: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_UNIQUE)
+        at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:140:24)
+        at async cloudflare-internal:d1-api:366:41 {
+      [cause]: undefined
+    }
+  }

@@ -1,5 +1,5 @@
 import * as v from 'valibot';
-import {contentListOptions} from '../database/content-validation.ts';
+import {contentListOptions,taxonomySlugMap} from '../database/content-validation.ts';
 import { CmsError, type DraftEntry, type DraftSummary } from '../database/contract.ts';
 import { identifier, entryId, localeInput, revisionInput, schemaData, parse } from '../database/validation.ts';
 
@@ -41,7 +41,14 @@ const jsonValue = v.pipe(v.string(), v.maxLength(200_000), v.check(value => {
 // This transport-only map never reaches storage or the domain service.
 const jsonData = v.optional(v.record(identifier, jsonValue), {});
 const slug = v.optional(v.pipe(v.string(), v.maxLength(200)));
-const contentEntries = { data, jsonData, slug };
+// Enhanced forms may encode the complete taxonomy selection as JSON. This
+// parser feeds the same slug-map domain input as ordinary content services.
+const taxonomySelections=v.pipe(v.custom<string|Record<string,string[]>>(value=>{
+ if(typeof value!=='string')return v.safeParse(taxonomySlugMap,value).success;
+ if(value.length>200_000)return false;
+ try{return v.safeParse(taxonomySlugMap,JSON.parse(value)).success;}catch{return false;}
+}),v.transform(value=>typeof value==='string'?parse(taxonomySlugMap,JSON.parse(value)):value));
+const contentEntries = { data, jsonData, slug, taxonomies:v.optional(taxonomySelections) };
 export const createInput = v.pipe(v.strictObject({ ...qualified, ...contentEntries }),
   v.forward(v.check(input => Object.keys(input.jsonData).every(key => !Object.hasOwn(input.data, key)),
     'Supply each field once'), ['jsonData']),
