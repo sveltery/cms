@@ -122,3 +122,100 @@ Historical Main311 author03c59d1 has secured run37164760918 browser111325306293 
 Actual canonical PR83 is now on public Main d9668aa63c80bf2a9372d9fc7bfacb9a1eb9445c. Owned author4dc6cca07ff4427c019635400f497f679122594a ordinarily adopts it with an entire tree identical to executed4c1; Root accepts those unchanged-tree receipts without duplicate commands. Current4c hosted run37166879152 passes both jobs: complete Source Bulk14/Date30/Menu25/Redirect3/Sections35/Comments4/Picker3 and default62/Node62 with nine official1243 sandboxed launches/original180s/30s limits, plus all13 unchanged normal stages (1357 services/278 production/15 Node/7 Worker and every Source stage, owned22/UI24). Whole browser/validate SHA256: bdb85753b621ecd630f31651ef3a2b15116e4a69447a2e358dd1eeb65c34ea5f /99375f29dc0468b6e73434557f399137398efeaccfb58e221ad6f72502cdb0f0. Earlier pending-Main/hosted and failed Git attempts remain dated history; successful ordinary native4c publication uses the same PR82.
 
 On2026-10-04 Root grants bounded CP-01/CP-02 acceptance for the reviewed reusable picker/query, actual menu consumer, whole SourceQueryClient/Lingui English test host and native query transport. The actual imports wire MenuEditor to this shared modal and the menu page to createContentPickerClient. Section/reference-widget wiring, full picker-family scope, global palette, relation writes, multilingual product/Section i18n and PostgreSQL remain unfinished. Source19/browser3 passes retain0causal credit for earlier setup failures. Independent/configured review, final exact-head approval, PR82 merge and post-Main checks remain pending; this documentation and tree-exact Main adoption introduce no new product execution.
+
+## Standalone client cache isolation
+
+The proposed standalone repair starts from actual public Main
+`90fa2410625e5b497f1547093e4a832c1440690f`. Two client class instances can
+share their `fetchContentList` prototype method while reading different content
+through `this`. The former method-keyed cache then displays the first client's
+entry, collection label and manifest in the second client's standalone modal.
+The single existing standalone cache now keys by the actual client object.
+The modal continues to call methods through that object, and an explicitly
+supplied `QueryClient` continues to own its observers.
+
+Five supplemental native controls mount the actual modal without a dashboard
+provider. They cover shared-prototype class isolation, content and metadata,
+fresh cached reopening with the same object, explicit query-client ownership,
+and the unchanged Source defaults of one-minute freshness and one retry.
+The test-first run registered all 29 native cases: all 24 previous cases passed,
+two new isolation assertions failed with Alice data in Bob's modal, and one
+new empty-standalone-cache assertion failed from the same shared class cache.
+The explicit query-client results themselves already passed. No import or
+fixture failure earns assertion-red credit. The implementation repair and
+subsequent cache-owner naming refactor each pass all 29 native cases. The whole
+core Source19 and existing backend Native3 also pass; their first pass in this
+task earns zero causal-red credit.
+
+All 31 complete pinned authorities, four whole original tests, 22 original
+declarations, fixtures, clocks and expectations remain unchanged. Source's
+React App has one query provider with a fixed API client; standalone supplied
+clients are the native framework extension recorded as proposed CP-03 in the
+[compatibility register](../parity/emdash/compatibility.md). This work grants
+zero additional Source callback or full dashboard-provider credit. The
+proposed branch is `fix/content-picker-standalone-client`; specific Root
+acceptance, current full normal/secured hosted checks, independent/configured
+review and author-owned regular merge remain pending. The private TDD receipts
+retain exact raw hashes and are not published by this change.
+
+### PR110 initial validation checkpoint
+
+The proposed repair is [PR #110](https://github.com/sveltery/cms/pull/110),
+initial head `bf49f10da26fa74e534b4529792bb04098b681ee`, tree
+`518a370162745e6b4312180a5c84b429b9d4e15d`. Hosted CI run `37266025995`
+passes secured browser job `111622929008`; normal job `111622929121` is
+cancelled at its unchanged fifteen-minute deadline after ten completed stages,
+while the Node hosting stage is running. It earns zero complete normal-gate
+credit. Configured review completes against this head with no inline findings.
+The independent initial-head review clears this bounded cache repair.
+
+The retained local bootstrap log has all thirteen paired start/finish markers,
+all six Node aggregates passing with zero failures/cancellations, and all
+thirty-five Vitest aggregates passing. Its SHA256 is
+`e507880642e803ace5b60e25b50081cf2906e8e0ff7e42d4a648a71ac9ecf89e`.
+The original wrapper session is unavailable and its terminal exit was not
+retained, so the log establishes completed commands rather than a retained
+wrapper exit. These are historical initial-head observations; actual current
+Main integration, current full checks, fresh review, CP-03 acceptance and
+author-owned regular merge remain pending.
+
+### PR110 actual scheduling-main integration
+
+Regular merge `86ac7146eabd1e3f017dc1e49ecd8604443b50d9` has parents
+`3220ada14c63b029cad171530e6a3662a902f50e` and actual public Main
+`98332aaa81bf857b3e8214a7e572cb086390d703`. It preserves every incoming
+calendar/scheduled-publication path and compatibility record. The entire
+published package/dependency/lock/bootstrap/CI/security graph is byte-identical
+to that main tree. The repair still owns only its cache implementation, five
+supplemental tests and paired documentation; all pinned Source and previous
+native tests remain unchanged. This integration grants zero new execution or
+parity credit. Current complete normal13/secured9 and fresh reviews will
+qualify the stationary successor before CP-03 acceptance or author merge.
+
+### PR110 schema-administration main integration
+
+Regular merge `4773c7343a065afedf6aac11b68e2837d95eab1d` has parents
+`e414d6bbb3ba541b183b9618f7bf74126b7d4614` and actual public Main
+`f2b2e560f6ea54f53e941db76fac732601772ce9`. It retains the complete schema
+administration implementation and its secured browser gate. The entire
+incoming compatibility record remains an exact byte prefix, followed by the
+unchanged CP-03 history. All main package, lock, bootstrap, CI, dependency,
+security and provider records are exact. Only the two existing picker-owned
+implementation/test paths and their paired documentation differ from main.
+
+At the previous `e414d6b` head, CI551 normal job `111910188554` stopped at the
+unchanged fifteen-minute deadline after ten completed stages. Root's one
+failed-job retry, normal job `111918625392`, stopped after eleven completed
+stages during the Cloudflare build; all reached Node aggregates passed with
+zero failures or cancellations. Neither cancellation establishes the complete
+normal gate, and the earlier nine-family browser pass does not qualify the
+new schema-main successor. No third retry of that previous head is requested.
+
+This ordinary union changes no picker product behavior, Source authority,
+assertion, fixture or clock. The complete current normal13, secured10,
+fresh exact-head independent review, configured review or recorded quota
+exception, specific Root CP-03 acceptance and author-owned expected-head
+regular merge remain required. The nineteen original Source core callbacks,
+three existing native backend controls, twenty-nine supplemental native UI
+controls and three original browser callbacks retain their separate scopes.
+This checkpoint grants zero new execution or Source causal credit.
