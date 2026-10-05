@@ -1,17 +1,14 @@
-// Adapted from EmDash 1.1.0, MIT, Copyright 2026 Cloudflare Inc.
-// 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/auth/src/rbac.ts
-// See notices/emdash-MIT.txt. Pure scope policy is supplied; token issuance remains unfinished.
 /**
  * Role-Based Access Control
  */
 
-import { Role, isRoleLevel, type RoleLevel } from "./roles.ts";
-import type { ApiTokenScope } from "./role-scopes.ts";
+import type { ApiTokenScope } from "./tokens.js";
+import { Role, type RoleLevel } from "./types.js";
 
 /**
  * Permission definitions with minimum role required
  */
-export const Permissions = Object.freeze({
+export const Permissions = {
 	// Content
 	"content:read": Role.SUBSCRIBER,
 	// content:read_drafts gates non-published content (drafts, scheduled, trash)
@@ -106,7 +103,7 @@ export const Permissions = Object.freeze({
 	// Auth
 	"auth:manage_own_credentials": Role.SUBSCRIBER,
 	"auth:manage_connections": Role.ADMIN,
-} as const);
+} as const;
 
 export type Permission = keyof typeof Permissions;
 
@@ -117,7 +114,7 @@ export function hasPermission(
 	user: { role: RoleLevel } | null | undefined,
 	permission: Permission,
 ): boolean {
-	if (!user || !isRoleLevel(user.role) || !Object.hasOwn(Permissions, permission)) return false;
+	if (!user) return false;
 	return user.role >= Permissions[permission];
 }
 
@@ -175,14 +172,12 @@ export function requirePermissionOnResource(
 }
 
 export class PermissionError extends Error {
-	readonly code: "unauthorized" | "forbidden";
 	constructor(
-		code: "unauthorized" | "forbidden",
+		public code: "unauthorized" | "forbidden",
 		message: string,
 	) {
 		super(message);
 		this.name = "PermissionError";
-		this.code = code;
 	}
 }
 
