@@ -20,10 +20,10 @@ for(const target of ['Node SQLite','raw workerd D1'] as const){
   const database=d1?openD1(d1.binding):openSqlite(':memory:');await migrateCms(database);
   const users=new UserRepository(database),admin=await users.create({email:'admin@example.test',role:'admin'}),author=await users.create({email:'author@example.test',role:'author',data:{private:'keep'}});
   const origin='https://example.test';
-  function context(id?:string,body?:unknown,actor=admin,overrides:Partial<App.Locals['cms']>={},requestOrigin=origin):RequestEvent{
+  function context(id?:string,body?:unknown,actor=admin,overrides:Partial<App.Locals['cms']>={},requestOrigin=origin):RequestEvent<{id:string},never>{
    const url=new URL(origin+'/api/admin/users'+(id?'/'+id:''));
    return{url,params:{id},request:new Request(url,{method:body===undefined?'GET':'PUT',...(body===undefined?{}:{headers:{'content-type':'application/json',origin:requestOrigin},body:JSON.stringify(body)})}),
-    locals:{cms:{database,principal:servicePrincipal(actor),mutationsEnabled:true,...overrides},cmsRuntime:{publicOrigin:origin,basePath:'',rpName:'Sveltery CMS'}}} as unknown as RequestEvent;
+    locals:{cms:{database,principal:servicePrincipal(actor),mutationsEnabled:true,...overrides},cmsRuntime:{publicOrigin:origin,basePath:'',rpName:'Sveltery CMS'}}} as unknown as RequestEvent<{id:string},never>;
   }
   return{database,users,admin,author,context,close:async()=>{await database.close();await d1?.runtime.dispose();}};
  }
@@ -44,6 +44,12 @@ for(const target of ['Node SQLite','raw workerd D1'] as const){
  test(`${target}: stored current role denial precedes malformed input`,async()=>{
   const f=await fixture();try{await f.users.update(f.admin.id,{role:'author'});
    const response=await update(f.context(f.author.id,{role:999}));assert.equal(response.status,403);assert.equal((await response.json()).error.code,'FORBIDDEN');
+  }finally{await f.close();}
+ });
+ test(`${target}: unknown stored roles retain the pinned subscriber fallback for administrator checks`,async()=>{
+  const f=await fixture();try{await f.database.db.updateTable('_cms_auth_users').set({role:55}).where('id','=',f.admin.id).execute();
+   assert.equal((await f.users.findById(f.admin.id))?.role,10);
+   const response=await list(f.context());assert.equal(response.status,403);assert.equal((await response.json()).error.code,'FORBIDDEN');
   }finally{await f.close();}
  });
  test(`${target}: existing Origin and mutation opt-in guards deny changes`,async()=>{
