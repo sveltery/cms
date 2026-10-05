@@ -1116,5 +1116,147 @@
         "exit": 0
       }
     ]
+  },
+  "relLif03IdentifierAndPublicUnion": {
+    "runtimeBasis": "21fde52ab70acdc3072c6720fa88856f54bbb19f",
+    "testFirstBasis": "51f58dc3a8a27e964957356d20af5e469b511be7",
+    "NativeControls": 56,
+    "SourceAuthorityCount": 37,
+    "completeSourceFunctionBodies": 3,
+    "sourceAssertionRedCredit": 0,
+    "typecheck": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "wholeNormalHistoricalBasis": {
+      "head": "2b3ed98b4dbbd9a9ff954523c7ecff321e7e1e27",
+      "tree": "388a92aaec5cf9e9d063326e12f41848ab736661",
+      "command": "pinned pnpm12.6 PATH; timeout --signal=TERM --kill-after=30s 15m sh scripts/bootstrap.sh",
+      "exit": 124,
+      "raw": {
+        "path": "/tmp/relations107-rel3-worker-closure-current-whole-normal.log",
+        "bytes": 477695,
+        "sha256": "79d95488dc162447d171a2367f747b1ab78d79907363f9ef60c7518236406248"
+      },
+      "completedNormalPhases": [
+        "frozen dependency install",
+        "type and Svelte checks",
+        "service tests",
+        "auth source assertions",
+        "auth source type assertions",
+        "pinned UI component source assertions",
+        "pinned datetime widget assertions",
+        "default production build",
+        "production remote tests",
+        "Node package and build"
+      ],
+      "enteredNormalPhases": [
+        "frozen dependency install",
+        "type and Svelte checks",
+        "service tests",
+        "auth source assertions",
+        "auth source type assertions",
+        "pinned UI component source assertions",
+        "pinned datetime widget assertions",
+        "default production build",
+        "production remote tests",
+        "Node package and build",
+        "Node hosting tests"
+      ],
+      "nodeSummaries": [
+        "\u2139 tests 1550\n\u2139 suites 44\n\u2139 pass 1550\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 476966.454416\n",
+        "\u2139 tests 30\n\u2139 suites 0\n\u2139 pass 30\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 21556.319501\n",
+        "\u2139 tests 8\n\u2139 suites 0\n\u2139 pass 8\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 2542.321692\n",
+        "\u2139 tests 280\n\u2139 suites 7\n\u2139 pass 280\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 131957.531493\n",
+        "\u2139 tests 3\n\u2139 suites 0\n\u2139 pass 0\n\u2139 fail 0\n\u2139 cancelled 3\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 12446.28288\n"
+      ],
+      "vitestGroupResults": [
+        "115 passed (115)",
+        "203 passed (203)",
+        "14 passed (14)",
+        "128 passed (128)",
+        "6 passed (6)",
+        "12 passed (12)",
+        "4 passed (4)",
+        "38 passed (38)",
+        "140 passed (140)",
+        "3 passed (3)",
+        "38 passed (38)",
+        "105 passed (105)",
+        "14 passed (14)",
+        "2 passed (2)",
+        "22 passed (22)",
+        "24 passed (24)",
+        "7 passed (7)",
+        "23 passed (23)",
+        "30 passed (30)",
+        "15 passed (15)",
+        "222 passed (222)",
+        "15 passed (15)",
+        "2 passed (2)",
+        "10 passed (10)",
+        "7 passed (7)",
+        "5 passed (5)",
+        "8 passed (8)",
+        "22 passed (22)",
+        "1 passed (1)",
+        "13 passed (13)",
+        "216 passed (216)",
+        "23 passed (23)",
+        "51 passed (51)",
+        "33 passed (33)",
+        "43 passed (43)",
+        "23 passed (23)",
+        "30 passed (30)"
+      ],
+      "interruptedPhase": "Node hosting tests",
+      "interruptedFiles": [
+        "tests/node-hosting/doctor.test.ts",
+        "tests/node-hosting/package.test.ts",
+        "tests/node-hosting/revision-maintenance.test.ts"
+      ],
+      "completedAssertionFailures": 0,
+      "SourceAssertionRedCredit": 0,
+      "whole13Credit": 0,
+      "finalStationaryOutcome": true,
+      "limitation": "Original15-minute deadline interrupts unchanged whole Node-hosting files; Cloudflare phases unentered. No final-current successor inference."
+    },
+    "actualPublicMain": "98332aaa81bf857b3e8214a7e572cb086390d703",
+    "actualPublicMerge": "f81bc84d86f7fc0d8c9ca1623a210692a5a2453d",
+    "fullOriginalContentLifecycleCallbacks": 0,
+    "finalCurrentWholeNormalAndSecured": "pending",
+    "publicDiagnosticAuthorization": "exact22 remains unresolved",
+    "privateSlugEvidence": [
+      {
+        "label": "first native value assertion failure",
+        "bytes": 971,
+        "sha256": "266d0dde4a3a636f26a1812b32eab17f8573aad51d2f8b820c8bb68a1ce50f69",
+        "exit": 1
+      },
+      {
+        "label": "single fix",
+        "bytes": 219,
+        "sha256": "306552565c444bb066566cc547d5abc377a3722432e9c3ad6e8b39ceb8ae0421",
+        "exit": 0
+      },
+      {
+        "label": "whole Native56",
+        "bytes": 14720,
+        "sha256": "65e059403ba6cae159882db5d107a2228404e525c5fa59d794d7ff6aa07aaea0",
+        "exit": 0
+      },
+      {
+        "label": "Source body guards",
+        "bytes": 165,
+        "sha256": "ef491db504e93960ad5b9f85bf48a743ff9ebb1fa7e4fb014c956aa82ba6f42a",
+        "exit": 0
+      },
+      {
+        "label": "typecheck",
+        "bytes": 154,
+        "sha256": "f337be6d176001dbd22cfeb64ce9a7a77881be8a88a4d70e1afe51b2ea519258",
+        "exit": 0
+      }
+    ]
   }
 }
