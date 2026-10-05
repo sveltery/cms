@@ -1,7 +1,7 @@
 name: Complete media detail Source callbacks
 on:
   pull_request:
-    branches: [feat/complete-media-admin-editor]
+    branches: [main, feat/complete-media-admin-editor]
   workflow_dispatch:
 jobs:
   media-detail-source:
