@@ -1,0 +1,48 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-byline-backend
+
+ ❯ tests/bylines/atomic-workflow.test.ts (15 tests | 3 failed) 2348ms
+     ✓ persists translated profiles, canonical custom fields and strict locale credits 49ms
+     ✓ rolls back a failing replacement of ordered credits including the primary pointer 29ms
+     ✓ deletes translations while retaining sibling credits, then clears the last group and pointer 28ms
+     ✓ rolls back copied credits if writing the target primary pointer fails 23ms
+     × stages credit replacement inside the owning content batch without a separate commit 26ms
+     ✓ persists translated profiles, canonical custom fields and strict locale credits  856ms
+     ✓ rolls back a failing replacement of ordered credits including the primary pointer 140ms
+     ✓ deletes translations while retaining sibling credits, then clears the last group and pointer 206ms
+     ✓ rolls back copied credits if writing the target primary pointer fails 118ms
+     × stages credit replacement inside the owning content batch without a separate commit 115ms
+     ✓ persists translated profiles, canonical custom fields and strict locale credits 203ms
+     ✓ rolls back a failing replacement of ordered credits including the primary pointer 114ms
+     ✓ deletes translations while retaining sibling credits, then clears the last group and pointer 243ms
+     ✓ rolls back copied credits if writing the target primary pointer fails 97ms
+     × stages credit replacement inside the owning content batch without a separate commit 100ms
+ ✓ tests/bylines/canonical-storage.test.ts (3 tests) 231ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/bylines/atomic-workflow.test.ts > Node > stages credit replacement inside the owning content batch without a separate commit
+ FAIL  tests/bylines/atomic-workflow.test.ts > raw D1 > stages credit replacement inside the owning content batch without a separate commit
+ FAIL  tests/bylines/atomic-workflow.test.ts > serialized D1 dialect > stages credit replacement inside the owning content batch without a separate commit
+AssertionError: actual staged byline producer: expected 'undefined' to be 'function' // Object.is equality
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ tests/bylines/atomic-workflow.test.ts:111:89
+    109|    await repo.setContentBylines('post','entry',[{bylineId:old.id}]);
+    110|    const producer=repo as BylineRepository&{planContentBylineReplaceme…
+    111|    expect(typeof producer.planContentBylineReplacement,'actual staged …
+       |                                                                                         ^
+    112|    const plan=await producer.planContentBylineReplacement!('post','ent…
+    113|    expect((await repo.getContentBylines('post','entry')).map(row=>row.…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  3 failed | 15 passed (18)
+   Start at  01:58:23
+   Duration  3.73s (transform 428ms, setup 0ms, import 903ms, tests 2.58s, environment 0ms)
+
+JSON report written to /tmp/byline-native-stage-initial.json
