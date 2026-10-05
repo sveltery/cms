@@ -6,8 +6,16 @@ const source = path.join(root, 'parity/emdash/general-media-source/upstream/pack
 const native = path.join(root, 'src/lib/server/general-media/upstream');
 export default defineConfig({
   plugins: [{ name: 'whole-original-media-native-host', enforce: 'pre', resolveId(id, importer) {
+    if(id==='@emdash-cms/auth')return path.join(root,'src/lib/server/auth/roles.ts');
     if (!importer?.startsWith(source) || !id.startsWith('.')) return;
     const relative = path.relative(source, path.resolve(path.dirname(importer), id)).replaceAll(path.sep, '/');
+    const routes:Record<string,string>={
+      'src/astro/routes/api/media.js':'reference-media.ts',
+      'src/astro/routes/api/media/[id].js':'reference-one.ts',
+      'src/astro/routes/api/media/folders/index.js':'reference-folders.ts',
+      'src/astro/routes/api/media/folders/[id].js':'reference-folder.ts'
+    };
+    if(routes[relative])return path.join(root,'tests/helpers/general-media',routes[relative]);
     if (relative === 'tests/utils/test-db.js') return path.join(root, 'tests/helpers/general-media/reference-db.ts');
     if (relative === 'tests/utils/image-fixtures.js') return path.join(source,'tests/utils/image-fixtures.ts');
     if (relative.startsWith('src/')) return path.join(native, relative.slice(4).replace(/\.js$/, '.ts'));

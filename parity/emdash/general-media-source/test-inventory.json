@@ -2,13 +2,48 @@
   "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
   "kind": "Whole immutable source declaration expressions, including full each-datasets, assertions, mocks and original clock calls; static counts are not execution credit",
   "totals": {
-    "families": 80,
-    "declarations": 799,
-    "expectRoots": 2314,
-    "mocks": 130,
+    "families": 81,
+    "declarations": 800,
+    "expectRoots": 2316,
+    "mocks": 131,
     "clocks": 24
   },
   "families": [
+    {
+      "source": "packages/cloudflare/tests/storage/r2.test.ts",
+      "sha256": "aa45245851a8ec241ebbbacbe05b24e7c1650320187f8e7845da75fbbb64677d",
+      "declarations": [
+        {
+          "line": 8,
+          "callee": "it",
+          "expression": "it(\"replaces the object bytes without changing the key\", async () => {\n\t\tconst objects = new Map<string, Uint8Array>();\n\t\tconst cacheControls: string[] = [];\n\t\tconst bucket = {\n\t\t\tasync put(key: string, body: Uint8Array, options: R2PutOptions) {\n\t\t\t\tobjects.set(key, body);\n\t\t\t\tconst metadata = options.httpMetadata;\n\t\t\t\tcacheControls.push(\n\t\t\t\t\tmetadata instanceof Headers\n\t\t\t\t\t\t? (metadata.get(\"Cache-Control\") ?? \"\")\n\t\t\t\t\t\t: (metadata?.cacheControl ?? \"\"),\n\t\t\t\t);\n\t\t\t\treturn { size: body.byteLength };\n\t\t\t},\n\t\t} as unknown as R2Bucket;\n\t\tconst storage = new R2Storage(bucket);\n\n\t\tawait storage.upload({\n\t\t\tkey: \"hero.png\",\n\t\t\tbody: new Uint8Array([1, 2, 3]),\n\t\t\tcontentType: \"image/png\",\n\t\t\tcacheControl: \"public, max-age=0, must-revalidate\",\n\t\t});\n\t\tawait storage.upload({\n\t\t\tkey: \"hero.png\",\n\t\t\tbody: new Uint8Array([9, 8]),\n\t\t\tcontentType: \"image/png\",\n\t\t\tcacheControl: \"public, max-age=0, must-revalidate\",\n\t\t});\n\n\t\texpect(objects.get(\"hero.png\")).toEqual(new Uint8Array([9, 8]));\n\t\texpect(cacheControls).toEqual([\n\t\t\t\"public, max-age=0, must-revalidate\",\n\t\t\t\"public, max-age=0, must-revalidate\",\n\t\t]);\n\t})",
+          "sha256": "3a828ac05049b0ffc423e869dbbc96fc8b7744a16df7d907ff8f47081c924ac1"
+        }
+      ],
+      "expects": [
+        {
+          "line": 38,
+          "callee": "expect",
+          "expression": "expect(objects.get(\"hero.png\"))",
+          "sha256": "5baa63ae0d6697d93acbd9929c9d7d85a6580358358e67f346f71d35b935044a"
+        },
+        {
+          "line": 39,
+          "callee": "expect",
+          "expression": "expect(cacheControls)",
+          "sha256": "c0b6d62b69bf5ed25fca617d5376226f5f9d4f51a79070b6d1e6d2f7ddf622ba"
+        }
+      ],
+      "mocks": [
+        {
+          "line": 3,
+          "callee": "vi.mock",
+          "expression": "vi.mock(\"cloudflare:workers\", () => ({ env: {} }))",
+          "sha256": "1cc3cb0a1394d3606e597fda459d438062329c6330fd972c3fa24f1263df94f5"
+        }
+      ],
+      "clocks": []
+    },
     {
       "source": "packages/core/tests/integration/astro/media-asset-auth.test.ts",
       "sha256": "76f649e59b2e72581836efbb96de11c5753a4645b30497a6d04c6bd0f4bc4488",

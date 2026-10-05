@@ -228,6 +228,90 @@
       "runtime": "src/lib/server/general-media/upstream/media/local-runtime.ts",
       "sourceSha256": "655d15e1c0bc875c63b88bd041adc71f23932a268762c5aaac4727e3a45b27bc",
       "transformation": "Attribution prefix; finite .js\u2192.ts imports; settings import delegates only public settings object-cache invalidation under MED-CACHE01"
+    },
+    {
+      "source": "packages/core/src/api/error.ts",
+      "runtime": "src/lib/server/general-media/upstream/api/error.ts",
+      "sourceSha256": "e191417b83c8314a6a7623f7e35dad793760a66ae8edc2f817042901587ca868",
+      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/media.ts",
+      "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media.ts",
+      "sourceSha256": "1662963ba0d2a1a690f72428ab9c652f698ae76b60d46a667849ccbfb683efe8",
+      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/media/[id].ts",
+      "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media/[id].ts",
+      "sourceSha256": "4ce8a3348ba23c2a2d1990ed916d6c15db914f08d6fe3788eac288786927c2d5",
+      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/media/folders/index.ts",
+      "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media/folders/index.ts",
+      "sourceSha256": "3c8107bb3cc48e125ca80ca470a1bd2079ab072ba9b698a36e096dc4654d83d5",
+      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/media/folders/[id].ts",
+      "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media/folders/[id].ts",
+      "sourceSha256": "e7e50d2d1620dc6b5c8553e430ba19100ff402ef21d6f9904f7eb59e691ef7ff",
+      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/media/file/[...key].ts",
+      "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media/file/[...key].ts",
+      "sourceSha256": "d5d6ae0aee0d6445d64780ad01fc602e02d22b2e8582214e36074407fa7cd5dc",
+      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+    },
+    {
+      "source": "packages/core/src/astro/routes/api/media/asset/[id]/[filename].ts",
+      "runtime": "src/lib/server/general-media/upstream/astro/routes/api/media/asset/[id]/[filename].ts",
+      "sourceSha256": "ca041b7aaa0fb9cf71dfe456b1c01ff7a250b5eb060f9a3d452e0e1c7683f2c2",
+      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+    },
+    {
+      "source": "packages/core/src/transfer/staging/keys.ts",
+      "runtime": "src/lib/server/general-media/upstream/transfer/staging/keys.ts",
+      "sourceSha256": "940bda771953f375d56ff525bb64e71bc0fc48f893f8483d599de19b42cb4cf6",
+      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+    },
+    {
+      "source": "packages/core/src/transfer/format/paths.ts",
+      "runtime": "src/lib/server/general-media/upstream/transfer/format/paths.ts",
+      "sourceSha256": "14ce777e467ca6691d669e23e1159ea250b7b414810c2753a9d73211df9cedc2",
+      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+    },
+    {
+      "source": "packages/core/src/transfer/format/kinds.ts",
+      "runtime": "src/lib/server/general-media/upstream/transfer/format/kinds.ts",
+      "sourceSha256": "a2bda6c1b44d4577567e4c0769a53e2262cae41afeab8e43e9b5b910492a4c8f",
+      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+    },
+    {
+      "source": "packages/core/src/transfer/ops/states.ts",
+      "runtime": "src/lib/server/general-media/upstream/transfer/ops/states.ts",
+      "sourceSha256": "685bc726a056b4a5759c630bd5d0651af86e3e568ced5879fd317f5be7f1397f",
+      "transformation": "Attribution prefix; finite .js\u2192.ts/#api/#db/#media/#utils native imports; Astro APIRoute type\u2192owned native context only"
+    },
+    {
+      "source": "packages/core/src/transfer/format/canonical.ts",
+      "runtime": "src/lib/server/general-media/upstream/transfer/format/canonical.ts",
+      "sourceSha256": "a22d9e6bcad233eeddf0b70daf44e9ce1f3b4417cde8246bede38e2fc7d3e759",
+      "transformation": "Attribution prefix; finite .js\u2192.ts imports only"
+    },
+    {
+      "source": "packages/core/src/transfer/format/issues.ts",
+      "runtime": "src/lib/server/general-media/upstream/transfer/format/issues.ts",
+      "sourceSha256": "2c07fa19ffa38936068a2e2bab92599d50eebe5f9e2ee3ba024630ecbd38f8ca",
+      "transformation": "Attribution prefix; finite .js\u2192.ts imports only"
+    },
+    {
+      "source": "packages/core/src/transfer/format/limits.ts",
+      "runtime": "src/lib/server/general-media/upstream/transfer/format/limits.ts",
+      "sourceSha256": "c00d09fbb594dcd400dc459dcce57ae85020d467c4881d931ca4ea9de6ec8385",
+      "transformation": "Attribution prefix; finite .js\u2192.ts imports only"
     }
   ]
 }

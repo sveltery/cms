@@ -4,6 +4,27 @@
   "base": "98332aaa81bf857b3e8214a7e572cb086390d703",
   "authorities": [
     {
+      "source": "packages/cloudflare/src/storage/r2.ts",
+      "retained": "parity/emdash/general-media-source/upstream/packages/cloudflare/src/storage/r2.ts",
+      "bytes": 5680,
+      "sha256": "9c15578880da00a199e0bb588754b62bf850653576ca23defd08ff30a052d29c",
+      "gitBlob": "149dfa1699693339bd2b9bf6825f4495a18447d7"
+    },
+    {
+      "source": "packages/cloudflare/tests/storage/r2.test.ts",
+      "retained": "parity/emdash/general-media-source/upstream/packages/cloudflare/tests/storage/r2.test.ts",
+      "bytes": 1325,
+      "sha256": "aa45245851a8ec241ebbbacbe05b24e7c1650320187f8e7845da75fbbb64677d",
+      "gitBlob": "669c1cf39b14bfde67f84cdff834a5f5d40b46ec"
+    },
+    {
+      "source": "packages/core/src/api/error.ts",
+      "retained": "parity/emdash/general-media-source/upstream/packages/core/src/api/error.ts",
+      "bytes": 3644,
+      "sha256": "e191417b83c8314a6a7623f7e35dad793760a66ae8edc2f817042901587ca868",
+      "gitBlob": "cac556e93bb76d42e7a36353cd045ce22638f3ef"
+    },
+    {
       "source": "packages/core/src/api/handlers/media-allowlist.ts",
       "retained": "parity/emdash/general-media-source/upstream/packages/core/src/api/handlers/media-allowlist.ts",
       "bytes": 1792,
@@ -23,6 +44,13 @@
       "bytes": 6487,
       "sha256": "1dbc84b009c7a642dbac786936b7f7c3ddcbd8308c03fe495e0233a548025d6d",
       "gitBlob": "38136157bf4d73b983cbf9d57d8fb0d9a2bfe557"
+    },
+    {
+      "source": "packages/core/src/api/handlers/media-usage.ts",
+      "retained": "parity/emdash/general-media-source/upstream/packages/core/src/api/handlers/media-usage.ts",
+      "bytes": 12257,
+      "sha256": "476f6fe4197347e67c610f945a6c98bbe4fb2f04632d04eee1206fee5a01bc4e",
+      "gitBlob": "8112192b597b532c51277a69aa3fa1668ce089e7"
     },
     {
       "source": "packages/core/src/api/handlers/media.ts",
@@ -620,11 +648,60 @@
       "gitBlob": "d8ffcd99f9c4c544306d986be7534345442e41be"
     },
     {
+      "source": "packages/core/src/transfer/format/canonical.ts",
+      "retained": "parity/emdash/general-media-source/upstream/packages/core/src/transfer/format/canonical.ts",
+      "bytes": 4821,
+      "sha256": "a22d9e6bcad233eeddf0b70daf44e9ce1f3b4417cde8246bede38e2fc7d3e759",
+      "gitBlob": "96a6f1e91af0d0083fbcdaeb25fccfc8ad74ac7e"
+    },
+    {
+      "source": "packages/core/src/transfer/format/issues.ts",
+      "retained": "parity/emdash/general-media-source/upstream/packages/core/src/transfer/format/issues.ts",
+      "bytes": 1240,
+      "sha256": "2c07fa19ffa38936068a2e2bab92599d50eebe5f9e2ee3ba024630ecbd38f8ca",
+      "gitBlob": "c7bbb9eaf4d8adeac20bc6fcf378b1d3074e45d7"
+    },
+    {
+      "source": "packages/core/src/transfer/format/kinds.ts",
+      "retained": "parity/emdash/general-media-source/upstream/packages/core/src/transfer/format/kinds.ts",
+      "bytes": 31452,
+      "sha256": "a2bda6c1b44d4577567e4c0769a53e2262cae41afeab8e43e9b5b910492a4c8f",
+      "gitBlob": "ae9b2de130f65f9f4beaca7fd216ceb8629ba23a"
+    },
+    {
+      "source": "packages/core/src/transfer/format/limits.ts",
+      "retained": "parity/emdash/general-media-source/upstream/packages/core/src/transfer/format/limits.ts",
+      "bytes": 3442,
+      "sha256": "c00d09fbb594dcd400dc459dcce57ae85020d467c4881d931ca4ea9de6ec8385",
+      "gitBlob": "d25096ed0fe035f26695c03eb5a361b5485be678"
+    },
+    {
+      "source": "packages/core/src/transfer/format/paths.ts",
+      "retained": "parity/emdash/general-media-source/upstream/packages/core/src/transfer/format/paths.ts",
+      "bytes": 2520,
+      "sha256": "14ce777e467ca6691d669e23e1159ea250b7b414810c2753a9d73211df9cedc2",
+      "gitBlob": "821e1abbdcf4022c781941e9c227072fd90c1573"
+    },
+    {
       "source": "packages/core/src/transfer/format/settings.ts",
       "retained": "parity/emdash/general-media-source/upstream/packages/core/src/transfer/format/settings.ts",
       "bytes": 2980,
       "sha256": "301873d39780d0ee118c81d5500df2c4fd707f168767ce0bc43d7185edc05a7e",
       "gitBlob": "2f4bebb27e8de9b9ec8265ca5c9e560a8154c2bb"
+    },
+    {
+      "source": "packages/core/src/transfer/ops/states.ts",
+      "retained": "parity/emdash/general-media-source/upstream/packages/core/src/transfer/ops/states.ts",
+      "bytes": 9141,
+      "sha256": "685bc726a056b4a5759c630bd5d0651af86e3e568ced5879fd317f5be7f1397f",
+      "gitBlob": "5032592f9e3d3da51dab4a61b58f6613a79f5ef4"
+    },
+    {
+      "source": "packages/core/src/transfer/staging/keys.ts",
+      "retained": "parity/emdash/general-media-source/upstream/packages/core/src/transfer/staging/keys.ts",
+      "bytes": 3269,
+      "sha256": "940bda771953f375d56ff525bb64e71bc0fc48f893f8483d599de19b42cb4cf6",
+      "gitBlob": "5ce8d440486b68eaa5ad3e2d8fb04dd150ecd397"
     },
     {
       "source": "packages/core/src/utils/base64.ts",
