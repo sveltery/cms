@@ -8,7 +8,7 @@ import {ContentRepository} from '../../parity/emdash/taxonomies/source/packages/
 import {setI18nConfig,resolveConfiguredLocale} from '../../src/lib/server/menus/i18n-config.ts';
 import {TaxonomyRepository} from '../../src/lib/server/taxonomies/repository.ts';
 import {handleContentCreate,handleContentGet,handleContentUpdate} from '../helpers/taxonomies/source-content-reference.mjs';
-let db:Awaited<ReturnType<typeof setupTestDatabaseWithCollections>>;
+let db;
 beforeEach(async()=>{db=await setupTestDatabaseWithCollections();setI18nConfig({defaultLocale:'en',locales:['en','fr']});});
 afterEach(async()=>{setI18nConfig(null);await db?.destroy();});
 
