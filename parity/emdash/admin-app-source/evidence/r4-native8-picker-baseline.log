@@ -1,0 +1,89 @@
+
+ RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui
+
+stderr | tests/admin-app-native/shell.test.ts > the application shell loads one shared current-user query with Source key and freshness
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > the application shell loads one shared current-user query with Source key and freshness
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > first-login opens the actual welcome modal and dismissal updates the shared user
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > editor toolbar flags and labels follow shared user role changes
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > closing a failed welcome dismissal stays closed until first-login changes again
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > separate application providers do not share current-user data
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > separate application providers do not share current-user data
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > the real root layout shares a default current-user cache across mounted consumers
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > two actual root layouts create isolated default current-user caches
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > two actual root layouts create isolated default current-user caches
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > the actual content picker uses the root layout cache when no client is supplied
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+ ❯ tests/admin-app-native/shell.test.ts (8 tests | 1 failed) 1962ms
+   ✓ the application shell loads one shared current-user query with Source key and freshness 154ms
+   ✓ first-login opens the actual welcome modal and dismissal updates the shared user 117ms
+   ✓ editor toolbar flags and labels follow shared user role changes 120ms
+   ✓ closing a failed welcome dismissal stays closed until first-login changes again 187ms
+   ✓ separate application providers do not share current-user data 120ms
+   ✓ the real root layout shares a default current-user cache across mounted consumers 69ms
+   ✓ two actual root layouts create isolated default current-user caches 116ms
+   × the actual content picker uses the root layout cache when no client is supplied 1072ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/admin-app-native/shell.test.ts > the actual content picker uses the root layout cache when no client is supplied
+AssertionError: expected undefined to be defined
+ ❯ tests/admin-app-native/shell.test.ts:92:94
+     90|  const pickerClient = { fetchCollections: vi.fn(async () => []), fetch…
+     91|  const { queryClient } = await renderWithRootDefaults({ currentUserCli…
+     92|  await vi.waitFor(() => expect(queryClient.getQueryCache().find({ quer…
+       |                                                                                              ^
+     93|  expect(queryClient.getQueryCache().find({ queryKey: ['collections'] }…
+     94|  expect([pickerClient.fetchCollections.mock.calls.length, pickerClient…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  01:00:00
+   Duration  4.83s (transform 1.66s, setup 0ms, import 1.98s, tests 1.96s, environment 709ms)
+
+JSON report written to /workspace/cms-dashboard-welcome-ui/parity/emdash/admin-app-source/evidence/r4-native8-picker-baseline.json

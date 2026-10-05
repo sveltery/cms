@@ -1,0 +1,208 @@
+
+ RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui
+
+stderr | tests/admin-app-native/shell.test.ts > the application shell loads one shared current-user query with Source key and freshness
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > the application shell loads one shared current-user query with Source key and freshness
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > first-login opens the actual welcome modal and dismissal updates the shared user
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > editor toolbar flags and labels follow shared user role changes
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > closing a failed welcome dismissal stays closed until first-login changes again
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > separate application providers do not share current-user data
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > separate application providers do not share current-user data
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > the real root layout shares a default current-user cache across mounted consumers
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > two actual root layouts create isolated default current-user caches
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > two actual root layouts create isolated default current-user caches
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > the actual content picker uses the root layout cache when no client is supplied
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > a retained root keeps failed welcome dismissal closed across page shell remounts
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > a retained root preserves toolbar effect lifetime across page shell remounts
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+ ❯ tests/admin-app-native/shell.test.ts (10 tests | 2 failed) 1171ms
+   ✓ the application shell loads one shared current-user query with Source key and freshness 202ms
+   ✓ first-login opens the actual welcome modal and dismissal updates the shared user 119ms
+   ✓ editor toolbar flags and labels follow shared user role changes 106ms
+   ✓ closing a failed welcome dismissal stays closed until first-login changes again 167ms
+   ✓ separate application providers do not share current-user data 113ms
+   ✓ the real root layout shares a default current-user cache across mounted consumers 83ms
+   ✓ two actual root layouts create isolated default current-user caches 118ms
+   ✓ the actual content picker uses the root layout cache when no client is supplied 62ms
+   × a retained root keeps failed welcome dismissal closed across page shell remounts 135ms
+   × a retained root preserves toolbar effect lifetime across page shell remounts 64ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/admin-app-native/shell.test.ts > a retained root keeps failed welcome dismissal closed across page shell remounts
+AssertionError: expected <div …(6)>…(5)</div> to be null
+
+- Expected:
+null
+
++ Received:
+<div
+  aria-describedby="welcome-description"
+  aria-labelledby="welcome-title"
+  aria-modal="true"
+  class="welcome-dialog svelte-hhi27n"
+  role="dialog"
+  tabindex="-1"
+>
+  <header
+    class="svelte-hhi27n"
+  >
+    <span
+      aria-hidden="true"
+      class="brand-mark svelte-hhi27n"
+    >
+      S
+    </span>
+    <button
+      aria-label="Close"
+      class="close svelte-hhi27n"
+      type="button"
+    >
+      ×
+    </button>
+  </header>
+   
+  <h2
+    class="svelte-hhi27n"
+    id="welcome-title"
+  >
+    Welcome to Sveltery CMS, Alice!
+  </h2>
+   
+  <p
+    class="svelte-hhi27n"
+    id="welcome-description"
+  >
+    Your account has been created successfully.
+  </p>
+   
+  <section
+    aria-label="Your Role"
+    class="svelte-hhi27n"
+  >
+    <p
+      class="svelte-hhi27n"
+    >
+      <span
+        class="muted svelte-hhi27n"
+      >
+        Your Role
+      </span>
+       
+      <span
+        class="role-badge svelte-hhi27n"
+        data-variant="secondary"
+      >
+        Author
+      </span>
+    </p>
+     
+    <p
+      class="svelte-hhi27n"
+    >
+      You can create and edit your own content.
+    </p>
+     
+    <!---->
+  </section>
+   
+  <footer
+    class="svelte-hhi27n"
+  >
+    <button
+      aria-busy="false"
+      class="primary svelte-hhi27n"
+      type="button"
+    >
+      Get Started
+    </button>
+  </footer>
+</div>
+
+ ❯ tests/admin-app-native/shell.test.ts:105:48
+    103|  state.showShell = false; await settled(); await vi.waitFor(() => expe…
+    104|  state.showShell = true; await settled(); await vi.waitFor(() => expec…
+    105|  expect(target.querySelector('[role=dialog]')).toBeNull();
+       |                                                ^
+    106|  expect(queryClient.getQueryData(['currentUser'])).toEqual(user);
+    107| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/admin-app-native/shell.test.ts > a retained root preserves toolbar effect lifetime across page shell remounts
+AssertionError: expected null to be '1' // Object.is equality
+
+- Expected:
+"1"
+
++ Received:
+null
+
+ ❯ tests/admin-app-native/shell.test.ts:115:59
+    113|  state.showShell = false; await settled(); await vi.waitFor(() => expe…
+    114|  state.showShell = true; await settled(); await vi.waitFor(() => expec…
+    115|  expect(localStorage.getItem('emdash-toolbar-dismissed')).toBe('1');
+       |                                                           ^
+    116| });
+    117|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 8 passed (10)
+   Start at  01:08:49
+   Duration  4.39s (transform 1.66s, setup 0ms, import 2.05s, tests 1.17s, environment 977ms)
+
+JSON report written to /workspace/cms-dashboard-welcome-ui/parity/emdash/admin-app-source/evidence/r5-native10-navigation-baseline.json

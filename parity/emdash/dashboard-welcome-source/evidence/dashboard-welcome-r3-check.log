@@ -1,0 +1,19 @@
+$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+Loading svelte-check in workspace: /workspace/cms-dashboard-welcome-ui
+Getting Svelte diagnostics...
+
+/workspace/cms-dashboard-welcome-ui/tests/dashboard-welcome-native/lifecycle.test.ts:14:92
+Error: Property 'manifest' is missing in type '{}' but required in type '{ manifest: { collections: Record<string, { label: string; }>; }; user?: { role: number; } | undefined; client?: { fetchDashboardStats(): Promise<any>; fetchTransferCapabilities(): Promise<...>; dismissScheduledPolicyRejection(collection: string, id: string, revision: string): Promise<...>; } | undefined; basePath?:...'. 
+  const target = document.createElement('div'); document.body.append(target);
+  mounted.push(flushSync(() => mount(component as typeof DashboardHost, { target, props: { state } })));
+  await tick(); return target;
+
+/workspace/cms-dashboard-welcome-ui/tests/dashboard-welcome-native/ui.test.ts:10:79
+Error: Property 'manifest' is missing in type '{}' but required in type '$$ComponentProps'. 
+  const target = document.createElement('div'); document.body.append(target);
+  mounted.push(flushSync(() => mount(component as typeof Dashboard, { target, props })));
+  await tick(); return target;
+
+====================================
+svelte-check found 2 errors and 0 warnings in 2 files
+[ELIFECYCLE] Command failed with exit code 1.

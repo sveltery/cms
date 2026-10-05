@@ -1,0 +1,470 @@
+{
+  "testFirstHead": "ecd9ab5c9082a4172cc7a6850deb9a3a9f4719fa",
+  "unchangedProductHead": "c345d5905ab9ce13a86ca1d2e834d7c2d357ff9b",
+  "wholeNative": {
+    "executed": 22,
+    "pass": 10,
+    "fail": 12,
+    "original9AllGreen": true,
+    "new13ReachedValueReds": 12,
+    "new13Controls": 1,
+    "importOrMountInfrastructureFailures": 0,
+    "callbackTimeouts": 0,
+    "default1000msPollingExhaustions": 2,
+    "skipped": 0,
+    "todo": 0,
+    "rows": [
+      {
+        "title": "fresh shared dashboard data renders immediately without another request",
+        "status": "failed",
+        "category": "reached-native-value-red",
+        "actualFailureFirstLine": "AssertionError: expected [ 1, [ '0', '7', '2' ] ] to deeply equal [ +0, [ '0', '5', '2' ] ]",
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "two dashboards share one pending stats request and both receive its data",
+        "status": "failed",
+        "category": "reached-native-value-red",
+        "actualFailureFirstLine": "AssertionError: expected [ 2, [ '0', '8', '2' ], \u2026(1) ] to deeply equal [ 1, [ '0', '8', '2' ], \u2026(1) ]",
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "a remounted dashboard uses fresh data from the same application cache",
+        "status": "failed",
+        "category": "reached-native-value-red",
+        "actualFailureFirstLine": "AssertionError: expected [ 2, [ '0', '7', '2' ] ] to deeply equal [ 1, [ '0', '7', '2' ] ]",
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "an unobserved request that does not consume AbortSignal completes into the shared cache",
+        "status": "failed",
+        "category": "reached-native-value-red",
+        "actualFailureFirstLine": "AssertionError: expected undefined to deeply equal { Object (collections, mediaCount, ...) }",
+        "defaultPollingExhausted": true,
+        "notes": "Actual request resolved after actual component unmount; polled actual shared cache stayedundefined versusstats8. Default1000ms waitFor exhausted; no5s callback timeout or import/mount failure."
+      },
+      {
+        "title": "retained role changes reuse fresh capability data when the import hint becomes eligible again",
+        "status": "failed",
+        "category": "reached-native-value-red",
+        "actualFailureFirstLine": "AssertionError: expected [ 1, 2 ] to deeply equal [ 1, 1 ]",
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "successful policy dismissal refreshes every active dashboard observer",
+        "status": "failed",
+        "category": "reached-native-value-red",
+        "actualFailureFirstLine": "AssertionError: expected [ [ '0', '1', '2' ], \u2026(1) ] to deeply equal [ [ '0', '9', '2' ], \u2026(1) ]",
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "failed policy dismissal still refreshes every active dashboard observer",
+        "status": "failed",
+        "category": "reached-native-value-red",
+        "actualFailureFirstLine": "AssertionError: expected [ [ '0', '1', '2' ], \u2026(1) ] to deeply equal [ [ '0', '9', '2' ], \u2026(1) ]",
+        "defaultPollingExhausted": false,
+        "notes": "Reached stale second-dashboard UI count1 versus9; later policy error-copy expectation NOT reached."
+      },
+      {
+        "title": "repeated ordinary native focus events deduplicate a pending background refresh",
+        "status": "failed",
+        "category": "reached-native-value-red",
+        "actualFailureFirstLine": "AssertionError: expected 3 to be 2 // Object.is equality",
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "shared invalidation keeps the newer response after an older background response arrives late",
+        "status": "failed",
+        "category": "reached-native-value-red",
+        "actualFailureFirstLine": "AssertionError: expected \"vi.fn()\" to be called 3 times, but got 2 times",
+        "defaultPollingExhausted": true,
+        "notes": "Reached actual request-count mismatch 2 versus3 inside default waitFor; response resolution and late-data/cache comparisons NOT reached."
+      },
+      {
+        "title": "successful welcome dismissal clears first-login only in the existing shared user profile",
+        "status": "failed",
+        "category": "reached-native-value-red",
+        "actualFailureFirstLine": "AssertionError: expected { id: 'fixture-user', \u2026(5) } to deeply equal { id: 'fixture-user', \u2026(5) }",
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "failed welcome dismissal closes while preserving the existing shared user profile",
+        "status": "passed",
+        "category": "new-error-preservation-control",
+        "actualFailureFirstLine": null,
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "Source visibility changes refetch stale stats but leave fresh stats in the cache",
+        "status": "failed",
+        "category": "reached-native-value-red",
+        "actualFailureFirstLine": "AssertionError: expected [ 1, [ '0', '7', '2' ] ] to deeply equal [ +0, [ '0', '5', '2' ] ]",
+        "defaultPollingExhausted": false,
+        "notes": "Reached first fresh-data/count vector mismatch; subsequent stale update/refetch assertions NOT reached."
+      },
+      {
+        "title": "an offline pending stats query waits for connectivity before making its first request",
+        "status": "failed",
+        "category": "reached-native-value-red",
+        "actualFailureFirstLine": "AssertionError: expected \"vi.fn()\" to not be called at all, but actually been called 1 times",
+        "defaultPollingExhausted": false,
+        "notes": "Reached initial request-count mismatch1 versus0; subsequent online resume/UI vector NOT reached. afterEach restores ordinary global onlineManager."
+      },
+      {
+        "title": "native import suggestion retries eligibility after a transient failure on ordinary focus refresh",
+        "status": "passed",
+        "category": "original-Native9-control",
+        "actualFailureFirstLine": null,
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "native import eligibility reacts to an administrator arriving after stats on the same mounted component",
+        "status": "passed",
+        "category": "original-Native9-control",
+        "actualFailureFirstLine": null,
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "native retained welcome captures focus on opening and restores it on closing",
+        "status": "passed",
+        "category": "original-Native9-control",
+        "actualFailureFirstLine": null,
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "native default dashboard and welcome clients use the configured API base without client overrides",
+        "status": "passed",
+        "category": "original-Native9-control",
+        "actualFailureFirstLine": null,
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "native welcome uses the supplied configured site name and a labelled modal",
+        "status": "passed",
+        "category": "original-Native9-control",
+        "actualFailureFirstLine": null,
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "native welcome keeps a pending dismissal disabled and closes after a server error",
+        "status": "passed",
+        "category": "original-Native9-control",
+        "actualFailureFirstLine": null,
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "native welcome handles Escape dismissal and restores the previous focus",
+        "status": "passed",
+        "category": "original-Native9-control",
+        "actualFailureFirstLine": null,
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "native dashboard exposes an unavailable response without inventing zero counts",
+        "status": "passed",
+        "category": "original-Native9-control",
+        "actualFailureFirstLine": null,
+        "defaultPollingExhausted": false,
+        "notes": ""
+      },
+      {
+        "title": "native dashboard retains loaded counts while a focus refresh fails",
+        "status": "passed",
+        "category": "original-Native9-control",
+        "actualFailureFirstLine": null,
+        "defaultPollingExhausted": false,
+        "notes": ""
+      }
+    ]
+  },
+  "wholeSource": {
+    "executed": 33,
+    "reportedPass": 11,
+    "reportedFail": 22,
+    "unhandledNoQueryClientExceptions": 24,
+    "Dashboard24MountedOrProductCausalCredit": 0,
+    "Dashboard22FailedInfrastructure": 22,
+    "Dashboard2FalsePositiveAbsentControls": 2,
+    "Welcome9GreenOrdinaryControls": 9,
+    "SourceDoctorLiteralRed": "UNCHANGED original expectation; UNREACHED this infrastructure-failed Source run, historical reached literal-red receipts retained",
+    "fixtureCause": "New Dashboard useQueryClient hook has no provider because existing dom-render replacement omits whole Source ProvidersWrapper. No product failure or Source causal evidence may be credited from these24 callbacks.",
+    "rows": [
+      {
+        "title": "shows marketplace migration guidance to admins",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "hides marketplace migration guidance from non-admins",
+        "reportedStatus": "passed",
+        "category": "false-positive-absent-element-control-after-React-mount-failure",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "shows scheduled summary when collection stats include pending schedules",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "does not link the scheduled summary for subscribers, who cannot open the calendar",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "omits scheduled summary when only residual non-scheduled statuses exist",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "warns when scheduled content is overdue and the scheduler has never completed",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": true
+      },
+      {
+        "title": "warns when scheduled content is overdue and the heartbeat is stale",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "does not warn when the scheduler heartbeat is healthy",
+        "reportedStatus": "passed",
+        "category": "false-positive-absent-element-control-after-React-mount-failure",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "warns when a publication policy blocks scheduled content",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "refreshes a stale policy rejection after dismissal conflicts",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "does not offer dismissal to authors",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "shows policy rejections and scheduler outages independently",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "renders dashboard data from an older API without scheduler health",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "labels the published count for screen readers with the state, not the action",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "links collection quick actions to new content forms",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "omits quick actions for hidden collections and those opting out",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "uses the same heading level for every dashboard card title",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "gives recent activity status icons normalized accessible labels",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "renders unknown status names without treating object properties as lifecycle states",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "links an admin of an importable site to the Transfer import",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "stays hidden when the site can't receive an import",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "doesn't check import eligibility for non-admins",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "doesn't check import eligibility once the site has content",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "stays dismissed",
+        "reportedStatus": "failed",
+        "category": "fixture-provider-infrastructure-caused-assertion-or-action-exhaustion",
+        "productCausalSourceCredit": false,
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "shows 'Administrator' for role >= 50",
+        "reportedStatus": "passed",
+        "category": "original-Welcome9-ordinary-control",
+        "productCausalSourceCredit": "Prior narrow native DOM fixture scope only; no new cache repair credit",
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "shows 'Editor' for role >= 40",
+        "reportedStatus": "passed",
+        "category": "original-Welcome9-ordinary-control",
+        "productCausalSourceCredit": "Prior narrow native DOM fixture scope only; no new cache repair credit",
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "shows 'Author' for role >= 30",
+        "reportedStatus": "passed",
+        "category": "original-Welcome9-ordinary-control",
+        "productCausalSourceCredit": "Prior narrow native DOM fixture scope only; no new cache repair credit",
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "shows 'Contributor' for role >= 20",
+        "reportedStatus": "passed",
+        "category": "original-Welcome9-ordinary-control",
+        "productCausalSourceCredit": "Prior narrow native DOM fixture scope only; no new cache repair credit",
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "shows 'Subscriber' for role < 20",
+        "reportedStatus": "passed",
+        "category": "original-Welcome9-ordinary-control",
+        "productCausalSourceCredit": "Prior narrow native DOM fixture scope only; no new cache repair credit",
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "shows first name from userName",
+        "reportedStatus": "passed",
+        "category": "original-Welcome9-ordinary-control",
+        "productCausalSourceCredit": "Prior narrow native DOM fixture scope only; no new cache repair credit",
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "'Get Started' button triggers dismiss mutation and calls onClose",
+        "reportedStatus": "passed",
+        "category": "original-Welcome9-ordinary-control",
+        "productCausalSourceCredit": "Prior narrow native DOM fixture scope only; no new cache repair credit",
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "admin text shown only for role >= 50",
+        "reportedStatus": "passed",
+        "category": "original-Welcome9-ordinary-control",
+        "productCausalSourceCredit": "Prior narrow native DOM fixture scope only; no new cache repair credit",
+        "doctorLiteralUnchangedButUnreachable": false
+      },
+      {
+        "title": "admin text not shown for role < 50",
+        "reportedStatus": "passed",
+        "category": "original-Welcome9-ordinary-control",
+        "productCausalSourceCredit": "Prior narrow native DOM fixture scope only; no new cache repair credit",
+        "doctorLiteralUnchangedButUnreachable": false
+      }
+    ]
+  },
+  "raw": [
+    {
+      "path": "parity/emdash/dashboard-welcome-source/evidence/dashboard-welcome-r8-native22-whole.log",
+      "bytes": 12006,
+      "sha256": "1f928901e447c7ee32282c8036823c8dec2d88962cf3801158fcb0a8e042b1c3"
+    },
+    {
+      "path": "parity/emdash/dashboard-welcome-source/evidence/dashboard-welcome-r8-native22-report.json",
+      "bytes": 12944,
+      "sha256": "d6a8008ba6bf0f4b166ad531dc03ba4fd6e8ceeff5fa014035a37656f168cb79"
+    },
+    {
+      "path": "parity/emdash/dashboard-welcome-source/evidence/dashboard-welcome-r8-source33-whole.log",
+      "bytes": 75907,
+      "sha256": "8a0829aca6af60632cffb34b710481320100bd135343a223ee28679fe042cbc3"
+    },
+    {
+      "path": "parity/emdash/dashboard-welcome-source/evidence/dashboard-welcome-r8-source33-report.json",
+      "bytes": 21917,
+      "sha256": "d9c2032c8946fc39baee14ee45433fc1e0fc6be63fcab137d5575494f5e1d608"
+    }
+  ],
+  "unchangedOriginalSourceAuthorities": 24,
+  "unchangedOriginalSourceCallbacks": 33,
+  "unchangedOriginalSourceStaticExpressions": 43,
+  "originalNative9CallbackSuffixesByteExact": true,
+  "actualProductDependencyGlobalAuthBackendCliGateWrites": 0,
+  "suiteExecutionsEach": 1,
+  "publicPush": "HELD",
+  "R9Status": "UNCHANGED UNAPPLIED pending fresh independent runtime review and Root qualification after genuine R8 reds; Source provider fixture correction proposed separately without applying or rerunning"
+}

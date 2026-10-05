@@ -1,0 +1,13 @@
+$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+Loading svelte-check in workspace: /workspace/cms-dashboard-welcome-ui
+Getting Svelte diagnostics...
+
+/workspace/cms-dashboard-welcome-ui/tests/admin-app-native/shell.test.ts:20:42
+Error: Property 'staleTime' does not exist on type 'QueryOptions<unknown, Error, unknown, readonly unknown[], never>'. 
+ const query = queryClient.getQueryCache().find({ queryKey: ['currentUser'] })!;
+ expect([query.state.data, query.options.staleTime, query.options.retry]).toEqual([{ ...user, isFirstLogin: false }, 300_000, false]);
+ await render({ currentUserClient: { currentUser } }, queryClient);
+
+====================================
+svelte-check found 1 error and 0 warnings in 1 file
+[ELIFECYCLE] Command failed with exit code 1.

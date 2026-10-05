@@ -1,0 +1,60 @@
+{
+  "fixCommit": "114b8066",
+  "postRefactorWorktree": "114b8066 plus two-line actual-observer exposure refactor",
+  "results": {
+    "firstFixNative14": {
+      "rawBytes": 617,
+      "rawSha256": "4da646447a1c9ec4eda5afcbb538c891bf14bddb4981067daba5367c2e6341b9",
+      "exitCode": 0,
+      "rawOutputUtf8": "$ vitest run --config vitest.admin-app-native.config.ts && node --test tests/admin-app-ssr/*.test.ts\n\n RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui\n\n\n Test Files  1 passed (1)\n      Tests  12 passed (12)\n   Start at  01:55:54\n   Duration  2.92s (transform 724ms, setup 0ms, import 884ms, tests 1.40s, environment 518ms)\n\n✔ actual SSR root layouts isolate per-render current-user data (199.727087ms)\n✔ actual SSR root client retains the Source default query policy without fetching (0.373891ms)\nℹ tests 2\nℹ suites 0\nℹ pass 2\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 685.028678\n"
+    },
+    "postRefactorSource12": {
+      "rawBytes": 422,
+      "rawSha256": "ec96d9304d5376114b353f69736af7ab89bc88a7628e23bf12b155057bc76dea",
+      "exitCode": 0,
+      "rawOutputUtf8": "$ node scripts/check-admin-app-source.mjs && vitest run --config vitest.admin-app-source.config.ts\n{\"wholeAuthorities\":10,\"totalBytes\":26594,\"callbacks\":12,\"staticExpects\":13,\"productTestsRun\":0}\n\n RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui\n\n\n Test Files  2 passed (2)\n      Tests  12 passed (12)\n   Start at  01:56:50\n   Duration  3.70s (transform 1.37s, setup 1.57s, import 465ms, tests 241ms, environment 1.16s)\n\n"
+    },
+    "postRefactorNative14": {
+      "rawBytes": 616,
+      "rawSha256": "c9af1c184bb6cf9eff743fe4fa9323c82ebca4839776e91cc05ef41d98fb5870",
+      "exitCode": 0,
+      "rawOutputUtf8": "$ vitest run --config vitest.admin-app-native.config.ts && node --test tests/admin-app-ssr/*.test.ts\n\n RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui\n\n\n Test Files  1 passed (1)\n      Tests  12 passed (12)\n   Start at  01:56:51\n   Duration  3.76s (transform 1.20s, setup 0ms, import 1.48s, tests 1.44s, environment 669ms)\n\n✔ actual SSR root layouts isolate per-render current-user data (329.45656ms)\n✔ actual SSR root client retains the Source default query policy without fetching (0.454341ms)\nℹ tests 2\nℹ suites 0\nℹ pass 2\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 870.857426\n"
+    },
+    "postRefactorTypeCheck": {
+      "rawBytes": 206,
+      "rawSha256": "1d180329843d78a90008aeccee4822d38df84b7fd6a0a9dc35bd3c9746701e6c",
+      "exitCode": 0,
+      "rawOutputUtf8": "$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json\nLoading svelte-check in workspace: /workspace/cms-dashboard-welcome-ui\nGetting Svelte diagnostics...\n\nsvelte-check found 0 errors and 0 warnings\n"
+    },
+    "postRefactorOldNative24": {
+      "rawBytes": 288,
+      "rawSha256": "697942148bd6890b596227fa6d6af0cb68cecbfdc45e523819efb4c3f1a2bf12",
+      "exitCode": 0,
+      "rawOutputUtf8": "$ vitest run --config vitest.dashboard-welcome-native.config.ts\n\n RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui\n\n\n Test Files  3 passed (3)\n      Tests  24 passed (24)\n   Start at  01:58:30\n   Duration  5.56s (transform 1.02s, setup 0ms, import 1.55s, tests 1.95s, environment 1.68s)\n\n"
+    },
+    "partialOldShell7Only": {
+      "rawBytes": 754,
+      "rawSha256": "0236cde92d39577721d0ecf0ba70b992900a61c3c754e9f693e3970d21bebc45",
+      "exitCode": 0,
+      "rawOutputUtf8": "✔ shell provides a keyboard skip link to its actual main landmark (301.345698ms)\n✔ shell renders persisted collection descriptors while omitting hidden collections (1.127779ms)\n✔ authenticated principals without schema permission have no administration link (0.621892ms)\n✔ grouped collection navigation is a real accessible disclosure (0.868431ms)\n✔ collection navigation resolves the application base and actual active descendant path (0.873729ms)\n✔ shell has an accessible navigation toggle and controlled sidebar landmark (0.630204ms)\n✔ unavailable feature families are not advertised as working destinations (0.573299ms)\nℹ tests 7\nℹ suites 0\nℹ pass 7\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 921.142536\n"
+    },
+    "actualWholeOldSsr19": {
+      "command": "node --test tests/workspace-shell-ui.test.ts tests/common-navigation-ui.test.ts",
+      "exitCode": 0,
+      "rawBytes": 1888,
+      "rawSha256": "0c4b15a0fda89e3662d7e0ef1ee7bd9d4812e722e2e4550a62ba29e7e8394e88",
+      "rawOutputUtf8": "✔ ordinary content workspace exposes the real Comments inbox (308.693399ms)\n✔ ordinary content workspace exposes both installed Sections and Widgets (1.134672ms)\n✔ common management links retain the pinned Comments Menus Redirects Widgets Sections order (1.324997ms)\n✔ Comments remains selected while editing actual collection comment settings (0.790084ms)\n✔ Sections remains selected on its actual section editor route (0.88015ms)\n✔ all installed management links resolve the application base with the current descendant selected (0.74704ms)\n✔ the pinned editor-level navigation hides administrator Redirects even when read capability is present (0.643024ms)\n✔ read capabilities below the pinned editor display floor expose no management links (0.689494ms)\n✔ Redirects selection follows the current real route without requiring an activePage override (0.72712ms)\n✔ missing feature routes remain absent even for an administrator (1.084546ms)\n✔ schema administration and visible collections remain reachable alongside common navigation (0.53353ms)\n✔ anonymous presentation has no management links (0.552509ms)\n✔ shell provides a keyboard skip link to its actual main landmark (301.696586ms)\n✔ shell renders persisted collection descriptors while omitting hidden collections (1.290966ms)\n✔ authenticated principals without schema permission have no administration link (0.96694ms)\n✔ grouped collection navigation is a real accessible disclosure (0.916134ms)\n✔ collection navigation resolves the application base and actual active descendant path (0.854711ms)\n✔ shell has an accessible navigation toggle and controlled sidebar landmark (0.668533ms)\n✔ unavailable feature families are not advertised as working destinations (0.659108ms)\nℹ tests 19\nℹ suites 0\nℹ pass 19\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 896.115471\n"
+    }
+  },
+  "partialOldShell7OnlyQualification": "The second supplied path workspace-ui.test.ts did not select the missing twelve callbacks. This run is seven controls only; whole19 is run separately with the actual common-navigation-ui.test.ts.",
+  "previousHeadFullBootstrap": {
+    "head": "aaf25359ba58eff477aaa60f2ac9a02a887415cd",
+    "exitCode": 1,
+    "rawPath": "/tmp/dashboard100-app-current-whole13-bootstrap.log",
+    "rawBytes": 420417,
+    "rawSha256": "ef127dff65a57b401297ba24aa5f4e69fcb46de31ebff53d6253dae8680c5b63",
+    "lastPhase": "Node hosting tests",
+    "result": "four unchanged installed-package fixture process deadlines expired while pnpm output reported supply-chain policy verification; Cloudflare final phases not reached",
+    "wholeSuccess": false
+  }
+}

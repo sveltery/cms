@@ -1,0 +1,888 @@
+{
+  "sourceRepository": "https://github.com/emdash-cms/emdash",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "license": "MIT, Copyright (c) 2026 Cloudflare Inc.",
+  "scope": {
+    "Dashboard": {
+      "callbacks": 24,
+      "expects": 34
+    },
+    "WelcomeModal": {
+      "callbacks": 9,
+      "expects": 9
+    }
+  },
+  "authorities": [
+    {
+      "sourcePath": "LICENSE",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/LICENSE",
+      "bytes": 1079,
+      "sha256": "d5ab82c0225b0def1fa140af22ff2f3bed9791a527545be1b04ab4337dc88675",
+      "gitBlob": "02cc4b8b0a5f883c5243927e683b00c10588bf4c"
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/Dashboard.test.tsx",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx",
+      "bytes": 18343,
+      "sha256": "cc349a4c6a7d51231e0b6150dd57fc1262dc5f60ad38505ff3502b5fb43228c1",
+      "gitBlob": "780e1975cb4c02a21c8f88ca34dd515e0e1dce5a"
+    },
+    {
+      "sourcePath": "packages/admin/tests/components/WelcomeModal.test.tsx",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/WelcomeModal.test.tsx",
+      "bytes": 3957,
+      "sha256": "9a19493d2a33e0365ecc290ae9af121713547de4bfb3930c4ff59d3b57d565d1",
+      "gitBlob": "c69b911d2b85ab28967b506bc566cf2700f6cbaa"
+    },
+    {
+      "sourcePath": "packages/admin/tests/utils/render.tsx",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/utils/render.tsx",
+      "bytes": 962,
+      "sha256": "71f7fc13dbc057eda13240e0df0fe0cd71797a5996c56bafd231bb75e91e3b3a",
+      "gitBlob": "bd876f25e9510d5e49c31c701f8b3edb7ff20dec"
+    },
+    {
+      "sourcePath": "packages/admin/tests/setup.ts",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/setup.ts",
+      "bytes": 188,
+      "sha256": "53fefd55be2b5d20695242be9d8cdcae43d0234eac7820f051d71f6874f2a891",
+      "gitBlob": "60b705283b9d3788858a2589eaad21dbb5def59a"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/Dashboard.tsx",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/components/Dashboard.tsx",
+      "bytes": 19580,
+      "sha256": "ddde43c3914247a44804c9ed5f3b2522a37cb5b1ef2292134a9462eafd6dbec3",
+      "gitBlob": "4a3a7635b108e8e79c2ea6eb8c45a65996b64ec5"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/WelcomeModal.tsx",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/components/WelcomeModal.tsx",
+      "bytes": 5226,
+      "sha256": "5d6feedf3d1bed4e020b75cf36765aea0a3a5f65c5ccb04310b0b49747f36829",
+      "gitBlob": "38df5af8b8a041e3d149bb37d2f70f2cf5744d2a"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/MarketplaceMigrationBanner.tsx",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/components/MarketplaceMigrationBanner.tsx",
+      "bytes": 719,
+      "sha256": "3d4df844e63c61fa544b2947997130e89a0c954c9b34c8ba6885da8b7b3db2b5",
+      "gitBlob": "561446a4759fd37817df7a424fce67fd2954d8ca"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/CoreUpdateBanner.tsx",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/components/CoreUpdateBanner.tsx",
+      "bytes": 2600,
+      "sha256": "d0b5a0173d05c4fe396699f9758dbe44d2e57f49370b8572cb7dcf5fe82213b4",
+      "gitBlob": "d2d761e65be02733dcb62c31b6612378da1800e6"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/ContentStatusBadge.tsx",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/components/ContentStatusBadge.tsx",
+      "bytes": 3017,
+      "sha256": "105ce09abd1362885e6a41286e94f697f96c2046aac57acd720f6c7853c845b6",
+      "gitBlob": "91be946099f142c485235ea986a2c3191068e690"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/Logo.tsx",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/components/Logo.tsx",
+      "bytes": 7800,
+      "sha256": "4588cb6456083c750518dd4e16b7b54feca44ac37382e903203759a6f58985dd",
+      "gitBlob": "6154016e7230c321bd8047ed76f4046dba9c0d6f"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/ArrowIcons.tsx",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/components/ArrowIcons.tsx",
+      "bytes": 1068,
+      "sha256": "c43005b42452c3c0c287f056c8a2ad3b3243ed5ade7515368c4f99b33c055813",
+      "gitBlob": "1d59c9c9ea863d96b763d0e283c9673e29450326"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/RouterLinkButton.tsx",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/components/RouterLinkButton.tsx",
+      "bytes": 2053,
+      "sha256": "d19ed7394ca0b4ab570ef52136be59d9828a9c3a511f9469cf46b632ecf6a731",
+      "gitBlob": "3f75abb8c1553445d68db5a3821ace31e3a60465"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/DialogError.tsx",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/components/DialogError.tsx",
+      "bytes": 879,
+      "sha256": "6a61cbfc182205e93d369b78039c61c1e5c9089650834baba52d8f0589062701",
+      "gitBlob": "a5c0f711b47269d11216c01176001d72cdd10f6c"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/SandboxedPluginWidget.tsx",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/components/SandboxedPluginWidget.tsx",
+      "bytes": 3056,
+      "sha256": "f81f4d5752b5684f6005b6c714e94a86d799aec1f37c91c054d1ec2b1b261f50",
+      "gitBlob": "2eb64e86d10aa3999fba7374a32711175ffc6bc7"
+    },
+    {
+      "sourcePath": "packages/admin/src/components/Sidebar.tsx",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/components/Sidebar.tsx",
+      "bytes": 20190,
+      "sha256": "b7eeb8e26d55bdd659002ada6ef515c1ad4e79e8f0019c63a5ddb70e237fd5dd",
+      "gitBlob": "b891d252b386316df9be68d7164d601a070a825b"
+    },
+    {
+      "sourcePath": "packages/admin/src/lib/api/client.ts",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/lib/api/client.ts",
+      "bytes": 11565,
+      "sha256": "2836ccbff42d891af6c789e01259c6912d7ba73c4799620499f3913081997e18",
+      "gitBlob": "e9c26bde8b401e202b9046bed5ac78c2c26c44b2"
+    },
+    {
+      "sourcePath": "packages/admin/src/lib/api/dashboard.ts",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/lib/api/dashboard.ts",
+      "bytes": 1729,
+      "sha256": "27507169b47f1271421f2dd64b4ba4430f957051a211bbaa585704e8ed4c21bf",
+      "gitBlob": "9ef9d365ab3c2e9b7543840497bec321d0a1f0df"
+    },
+    {
+      "sourcePath": "packages/admin/src/lib/api/current-user.ts",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/lib/api/current-user.ts",
+      "bytes": 788,
+      "sha256": "e8296763d86b4c6648ead9a7420d0f79d4234f77ca306620ce6793331120c726",
+      "gitBlob": "5d0940e21455ee71320b6ae6abf33efda943eb4f"
+    },
+    {
+      "sourcePath": "packages/admin/src/lib/api/transfer.ts",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/lib/api/transfer.ts",
+      "bytes": 16710,
+      "sha256": "750280942f204f89ddf68d1f7e1b5d0f7fdefc0bfc1c5ed1ddaded3b14a22fc8",
+      "gitBlob": "45a5bc445117b7d165ff8e27501fb96cf32cf654"
+    },
+    {
+      "sourcePath": "packages/admin/src/lib/api/core-update.ts",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/lib/api/core-update.ts",
+      "bytes": 950,
+      "sha256": "a1b56a525836bd3d202a2236c01cab756abf94954e65b8545136220dd7ffdc6f",
+      "gitBlob": "caf8d66ce5488d2e2d120679bb8c40d158a80310"
+    },
+    {
+      "sourcePath": "packages/admin/src/lib/utils.ts",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/lib/utils.ts",
+      "bytes": 1907,
+      "sha256": "367bba30aa1027ab640b5a2105e5ca8bfd99aa3a6ed27c4467e4da5ce98d2c32",
+      "gitBlob": "29e47ab274546ebe1304d36f1e7949debd6ce797"
+    },
+    {
+      "sourcePath": "packages/admin/src/lib/plugin-context.tsx",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/lib/plugin-context.tsx",
+      "bytes": 3826,
+      "sha256": "eb9bfc2edb21bee7c3ace729c627500a52d1dadd97cf2cb817b3eee613649669",
+      "gitBlob": "39a290fd2768cc9c0075469a94c6d59564a97a09"
+    },
+    {
+      "sourcePath": "packages/admin/src/lib/plugin-links.ts",
+      "nativeAuthority": "parity/emdash/dashboard-welcome-source/upstream/packages/admin/src/lib/plugin-links.ts",
+      "bytes": 1052,
+      "sha256": "9869b5691aa399a63535069a4676d6601b4704baaf96414bbf4a54fca48d3c27",
+      "gitBlob": "0b627db9f738d7cf5634e7dbe39ae91e021834c6"
+    }
+  ],
+  "declarations": [
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "shows marketplace migration guidance to admins",
+      "line": 137,
+      "sha256": "e8d673eb6d88ce02d13d1a278e914d8376d6836a6acaa62c269c53a16f17c9a0",
+      "expectations": []
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "hides marketplace migration guidance from non-admins",
+      "line": 147,
+      "sha256": "d72f0c49b33f977755ebc4ee0da065165f85530908e3d9a4c49f7ad3e22b9785",
+      "expectations": []
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "shows scheduled summary when collection stats include pending schedules",
+      "line": 158,
+      "sha256": "94f7194a45c0f0bd5263ffab8431517b99275ac85e5b0005af47751ea41f92f7",
+      "expectations": [
+        {
+          "line": 167,
+          "expression": "expect.element(screen.getByText(\"Scheduled\")).toBeInTheDocument()",
+          "sha256": "5815126972dea7cedfb05fd89e5fa1031fa144112cc730ef4d23bc6bbd18192c"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "does not link the scheduled summary for subscribers, who cannot open the calendar",
+      "line": 173,
+      "sha256": "935ad752c507af452c78572105b9fb4ffcfcc51eff0c2bc975955c4f2c92a549",
+      "expectations": [
+        {
+          "line": 183,
+          "expression": "expect.element(screen.getByText(\"Scheduled\")).toBeInTheDocument()",
+          "sha256": "5815126972dea7cedfb05fd89e5fa1031fa144112cc730ef4d23bc6bbd18192c"
+        },
+        {
+          "line": 184,
+          "expression": "expect.element(screen.getByRole(\"link\", { name: \"Scheduled\" })).not.toBeInTheDocument()",
+          "sha256": "a0bee7f3790a1fba30225b94399d5182199eab1d44db70b0944124c3e8ead74f"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "omits scheduled summary when only residual non-scheduled statuses exist",
+      "line": 187,
+      "sha256": "122b5a177277b039ca610d3b267563a4ff006cdda54e185d350a0f526fe940de",
+      "expectations": [
+        {
+          "line": 196,
+          "expression": "expect.element(screen.getByText(\"Media files\")).toBeInTheDocument()",
+          "sha256": "eddf69ecadab7a751fb1faefa442cc0f746c3f8646b224167f76361bffa035c9"
+        },
+        {
+          "line": 197,
+          "expression": "expect.element(screen.getByText(\"Scheduled\")).not.toBeInTheDocument()",
+          "sha256": "da569cb5f442a3ed4c839b348ea2da4623172d425a8b34f3250ef599428196a0"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "warns when scheduled content is overdue and the scheduler has never completed",
+      "line": 200,
+      "sha256": "ccb63e7af54f541c31a5d33cc6ada61f0475779189c201ed5538b85f47bdb67a",
+      "expectations": [
+        {
+          "line": 220,
+          "expression": "expect.element(screen.getByText(/no scheduler run has completed/i)).toBeInTheDocument()",
+          "sha256": "68a281d65d4c43e15101c94d8b3c19d8bae23e94baed451da422192916e7a8ab"
+        },
+        {
+          "line": 221,
+          "expression": "expect.element(screen.getByText(/npx emdash doctor/i)).toBeInTheDocument()",
+          "sha256": "a7988810a852430af77f280816a2d4e4963af98929b7a842ae3663b3d21e90e9"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "warns when scheduled content is overdue and the heartbeat is stale",
+      "line": 224,
+      "sha256": "9e72c18189435496c26219cc40217ce773faf657497a39530d69db5be667b614",
+      "expectations": [
+        {
+          "line": 247,
+          "expression": "expect.element(screen.getByText(/scheduler heartbeat is stale/i)).toBeInTheDocument()",
+          "sha256": "c4303eec711d943e66f48fcfca45225da60a9b9202092ea7986bb62a6db12485"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "does not warn when the scheduler heartbeat is healthy",
+      "line": 250,
+      "sha256": "98504d25bcde597e64fd045f51c157850d6b487783e32b897222fc4491131a3f",
+      "expectations": []
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "warns when a publication policy blocks scheduled content",
+      "line": 272,
+      "sha256": "281390451a6db59ecd2b19b704f491871db820b113348103dd9d44625d42914a",
+      "expectations": [
+        {
+          "line": 282,
+          "expression": "expect.element(screen.getByText(\"Approval is required.\")).toBeInTheDocument()",
+          "sha256": "896a3f8ba9503d79253a9dc04505c9f31339d3f8893c9e2afaa11e58f7b08fa4"
+        },
+        {
+          "line": 283,
+          "expression": "expect.element(screen.getByText(\"posts/post-1\")).toBeInTheDocument()",
+          "sha256": "e39da76b1de6e5b16e58a61a56193c8465efb11224330ff9c47bcaaab576f993"
+        },
+        {
+          "line": 288,
+          "expression": "expect(mockDismissScheduledPolicyRejection).toHaveBeenCalledWith(\n\t\t\t\"posts\",\n\t\t\t\"post-1\",\n\t\t\t\"rejection-revision\",\n\t\t)",
+          "sha256": "1aeb4d9bdf7f86afece446cac70b5ab4028a3c6d199d7ce04cd4d19e8f8f15f7"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "refreshes a stale policy rejection after dismissal conflicts",
+      "line": 295,
+      "sha256": "e19ce52f1838e6c72746a51ecfd78ed93cc6d5cc11d65c4268bf3cf214ed16bf",
+      "expectations": [
+        {
+          "line": 306,
+          "expression": "expect.element(screen.getByText(\"Current reason.\")).toBeInTheDocument()",
+          "sha256": "ce35a66c947bb894c93a90a2841109169ae8e8f14014d62c9b4dc99f6e56d436"
+        },
+        {
+          "line": 310,
+          "expression": "expect(mockFetchDashboardStats).toHaveBeenCalledTimes(2)",
+          "sha256": "80b8c9afd2e8731d9bedd75e8d425e8110a713214f2b7521054d380557a784a3"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "does not offer dismissal to authors",
+      "line": 313,
+      "sha256": "2fe7416060ef25f49a987eca02d39e39906a46145a81133c44a94f252189b74e",
+      "expectations": [
+        {
+          "line": 320,
+          "expression": "expect.element(screen.getByText(\"Approval is required.\")).toBeInTheDocument()",
+          "sha256": "896a3f8ba9503d79253a9dc04505c9f31339d3f8893c9e2afaa11e58f7b08fa4"
+        },
+        {
+          "line": 321,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Dismiss\" })).not.toBeInTheDocument()",
+          "sha256": "ab2b913d04d1bbe33116e21ee083eb6857db23dac9775310642b8bff58235cad"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "shows policy rejections and scheduler outages independently",
+      "line": 324,
+      "sha256": "922ac34c4dac71c783260b88841fc2bac3820db5cc06994240d9af4826c5b12a",
+      "expectations": [
+        {
+          "line": 349,
+          "expression": "expect.element(screen.getByText(/scheduler heartbeat is stale/i)).toBeInTheDocument()",
+          "sha256": "c4303eec711d943e66f48fcfca45225da60a9b9202092ea7986bb62a6db12485"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "renders dashboard data from an older API without scheduler health",
+      "line": 352,
+      "sha256": "90df1274b6fd6e405aaf0bb1db241cb7477311a6fe49168bad598c0177fe0c30",
+      "expectations": [
+        {
+          "line": 368,
+          "expression": "expect.element(screen.getByText(\"Content\")).toBeInTheDocument()",
+          "sha256": "16d6cebe3d35b72ff30cd5c47d2fa24237c1ee23c97b612c5d1d022e52fc67b2"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "labels the published count for screen readers with the state, not the action",
+      "line": 374,
+      "sha256": "a9ec8c3819028b6c2f488b27a2ce4ed332f53751abb31847e94c56500abf769b",
+      "expectations": [
+        {
+          "line": 383,
+          "expression": "expect.element(screen.getByText(\"Published\", { exact: true })).toBeInTheDocument()",
+          "sha256": "457a5b76a81b0615bed91d3c0dc67033ab729f4b6207b82c12704156cc17c880"
+        },
+        {
+          "line": 384,
+          "expression": "expect.element(screen.getByText(\"Publish\", { exact: true })).not.toBeInTheDocument()",
+          "sha256": "0bea511f08238c1bbab23f278ab132039841ae62e9984cddb96e5e1f14df5bcf"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "links collection quick actions to new content forms",
+      "line": 387,
+      "sha256": "c8591674ae6db846394e0cb3b8895f9af8a21f9010f44a1a6b1657d2823a51a5",
+      "expectations": []
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "omits quick actions for hidden collections and those opting out",
+      "line": 397,
+      "sha256": "1b0dee5925fd91b5947c1ba340a0e2d9d4a56beadead6994c6ce1b2dd9e5eab6",
+      "expectations": [
+        {
+          "line": 410,
+          "expression": "expect.element(screen.getByRole(\"link\", { name: \"Page\" })).toBeInTheDocument()",
+          "sha256": "579e9dc02613bf855993826f836f4cec594caff8ccf00ad0a0383a786da2b430"
+        },
+        {
+          "line": 411,
+          "expression": "expect.element(screen.getByRole(\"link\", { name: \"Sync run\" })).not.toBeInTheDocument()",
+          "sha256": "59f93e732e503ce9eefe9fbee0c9557526a247e94d44f4b49209d816bb6d5192"
+        },
+        {
+          "line": 412,
+          "expression": "expect.element(screen.getByRole(\"link\", { name: \"Setting\" })).not.toBeInTheDocument()",
+          "sha256": "9389b688863a0b6511d94de1cf9afea5b645245420809a1dfbab20c2f3edcf4b"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "uses the same heading level for every dashboard card title",
+      "line": 415,
+      "sha256": "d7ba36ab425cb51dc549c8ded7c9765a301bfff9751f06b3e537241174593e91",
+      "expectations": [
+        {
+          "line": 421,
+          "expression": "expect.element(screen.getByRole(\"heading\", { level: 2, name })).toBeInTheDocument()",
+          "sha256": "01a0c3845c208f356460c5dced2d75b69716d649aa6f1475c9fdfe30414f59bc"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "gives recent activity status icons normalized accessible labels",
+      "line": 425,
+      "sha256": "21273bb38e742f6df09ed96859f90bb74ebd356da76abf9f18d510f12a11e6a9",
+      "expectations": [
+        {
+          "line": 444,
+          "expression": "expect.element(statusIcon).toBeInTheDocument()",
+          "sha256": "72c51359af3a962ab50c6fe564a4627ae641f8c65803b26809418b4814c104c6"
+        },
+        {
+          "line": 445,
+          "expression": "expect(screen.container.textContent).not.toContain(\"Modified\")",
+          "sha256": "4c114c149b3ca80a15cdf1d315cbe3a6977829978cb2e4827a4badfefa5faad7"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "renders unknown status names without treating object properties as lifecycle states",
+      "line": 448,
+      "sha256": "65eb266d3308fa5c7bcdea6ff2f7657cc22221a81566cd5097cfb1cb715dcc78",
+      "expectations": [
+        {
+          "line": 466,
+          "expression": "expect.element(screen.getByRole(\"img\", { name: \"Status: toString\" })).toBeInTheDocument()",
+          "sha256": "cf759317e94c39fc6747131dee720c457288e15201b6d2d84d5fec0af6500aab"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "links an admin of an importable site to the Transfer import",
+      "line": 475,
+      "sha256": "075dc7d0f78961eb851ba5b849eb961507bd21f453ace6568d3a5cf3507c4afb",
+      "expectations": []
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "stays hidden when the site can't receive an import",
+      "line": 486,
+      "sha256": "b22bc555e5d525a72e4873e61b0a5f18b09501855e6f46d1f9f9a1cc0af55c10",
+      "expectations": [
+        {
+          "line": 492,
+          "expression": "expect.element(screen.getByText(\"Media files\")).toBeInTheDocument()",
+          "sha256": "eddf69ecadab7a751fb1faefa442cc0f746c3f8646b224167f76361bffa035c9"
+        },
+        {
+          "line": 493,
+          "expression": "expect(mockFetchTransferCapabilities).toHaveBeenCalled()",
+          "sha256": "99d4604e31830b069ca7d553670d42fcaecdb8007c082946e3f25f0f637af4a7"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "doesn't check import eligibility for non-admins",
+      "line": 499,
+      "sha256": "5952fe1aa8c71eeb61d28691c388e61f5aaddecd91b1fdcca240ad4117b731ac",
+      "expectations": [
+        {
+          "line": 506,
+          "expression": "expect.element(screen.getByText(\"Media files\")).toBeInTheDocument()",
+          "sha256": "eddf69ecadab7a751fb1faefa442cc0f746c3f8646b224167f76361bffa035c9"
+        },
+        {
+          "line": 510,
+          "expression": "expect(mockFetchTransferCapabilities).not.toHaveBeenCalled()",
+          "sha256": "f26c8ccc4c5849bbb9aec3406768883f42c4bc64a8c93a57de2c7194877e4730"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "doesn't check import eligibility once the site has content",
+      "line": 513,
+      "sha256": "d28be27c2fb0dc65fa1982674c5799f1f8ceb67cb64737fac69afa22cddfef4a",
+      "expectations": [
+        {
+          "line": 523,
+          "expression": "expect.element(screen.getByText(\"Media files\")).toBeInTheDocument()",
+          "sha256": "eddf69ecadab7a751fb1faefa442cc0f746c3f8646b224167f76361bffa035c9"
+        },
+        {
+          "line": 527,
+          "expression": "expect(mockFetchTransferCapabilities).not.toHaveBeenCalled()",
+          "sha256": "f26c8ccc4c5849bbb9aec3406768883f42c4bc64a8c93a57de2c7194877e4730"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "title": "stays dismissed",
+      "line": 530,
+      "sha256": "b849124916ad5b1af4d8cf2330afb29abdc968a56a5ac11c31bd4186972fd226",
+      "expectations": [
+        {
+          "line": 542,
+          "expression": "expect.element(second.getByText(\"Media files\")).toBeInTheDocument()",
+          "sha256": "3b04c7ff726d95f300cce1c61f12ae0f2c1b805d0cf19013b04644d3f5416300"
+        },
+        {
+          "line": 546,
+          "expression": "expect(mockFetchTransferCapabilities).toHaveBeenCalledTimes(1)",
+          "sha256": "5d65b62879b3444f3f96dd468e739344bb8592775f90ae57e88b75dd61842887"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/WelcomeModal.test.tsx",
+      "title": "shows 'Administrator' for role >= 50",
+      "line": 38,
+      "sha256": "db2500f309c01122ffa93ece8f0a1789624f88ef1c939bd4a856c4fbc72c42d0",
+      "expectations": [
+        {
+          "line": 44,
+          "expression": "expect.element(screen.getByText(\"Administrator\", { exact: true })).toBeInTheDocument()",
+          "sha256": "41a78d885f24f5198c368701045a7b602720ec61eae6246fac203da16c9f9043"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/WelcomeModal.test.tsx",
+      "title": "shows 'Editor' for role >= 40",
+      "line": 47,
+      "sha256": "f4601e5451bd03dee59407c2f5c11e5d800bf303227c28ecf0bc3957d0860fb4",
+      "expectations": [
+        {
+          "line": 53,
+          "expression": "expect.element(screen.getByText(\"Editor\")).toBeInTheDocument()",
+          "sha256": "ae890ea6de8252d1f376b1af284c6493fab5d8dabff19b298489f7c66ee108d3"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/WelcomeModal.test.tsx",
+      "title": "shows 'Author' for role >= 30",
+      "line": 56,
+      "sha256": "995086742ef63f49d2cb7d06e798c52e9110cdf9215946a211251fc5142fa772",
+      "expectations": [
+        {
+          "line": 62,
+          "expression": "expect.element(screen.getByText(\"Author\")).toBeInTheDocument()",
+          "sha256": "13c68ba5c2555bcccacb4bd795eaca4dcd3be5d3173c563c9fd7a349afca8403"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/WelcomeModal.test.tsx",
+      "title": "shows 'Contributor' for role >= 20",
+      "line": 65,
+      "sha256": "0b3ec66e9357a2a956aee0dd4cc8c10b9aaaafaecc240820fbe00d70f916c074",
+      "expectations": [
+        {
+          "line": 71,
+          "expression": "expect.element(screen.getByText(\"Contributor\")).toBeInTheDocument()",
+          "sha256": "8b9df3e99ba2cf5a2c4d94f0099b8b8aa8adb2c8b92f117b8e6c7fb851bc1c17"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/WelcomeModal.test.tsx",
+      "title": "shows 'Subscriber' for role < 20",
+      "line": 74,
+      "sha256": "0395bd0c4f0e4702375c434df5701b232b899752d205d3b0dfa43a80a581028e",
+      "expectations": [
+        {
+          "line": 80,
+          "expression": "expect.element(screen.getByText(\"Subscriber\")).toBeInTheDocument()",
+          "sha256": "d3b243e62201e3c2817ff75fe6399979dbbc055a376c2e78bc221cb37700eda5"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/WelcomeModal.test.tsx",
+      "title": "shows first name from userName",
+      "line": 83,
+      "sha256": "38d5b68f13b68973c2040de6e1b68b7cabd8678545a6a2ba41a4718476027e62",
+      "expectations": [
+        {
+          "line": 89,
+          "expression": "expect.element(screen.getByText(WELCOME_MESSAGE_REGEX)).toBeInTheDocument()",
+          "sha256": "47eec1bf4ef0738933df7a8451d52fc0f41e09e115bdc5a4c88c24ac6093de7f"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/WelcomeModal.test.tsx",
+      "title": "'Get Started' button triggers dismiss mutation and calls onClose",
+      "line": 92,
+      "sha256": "806e6fa7ea18d8ce834ea1e3eb105ef97725b5b38194089db34f6338e70e73ac",
+      "expectations": [
+        {
+          "line": 103,
+          "expression": "expect(onClose).toHaveBeenCalled()",
+          "sha256": "513980fd0c93fa18c95ead0b1d3855ad4a5f8da1657cba0d1f786de05c530156"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/WelcomeModal.test.tsx",
+      "title": "admin text shown only for role >= 50",
+      "line": 107,
+      "sha256": "7e010b73b62ba68b973b9909df81e8f77239b0606972d4f39efb33c044bc1411",
+      "expectations": [
+        {
+          "line": 113,
+          "expression": "expect.element(screen.getByText(ADMIN_TEXT_REGEX)).toBeInTheDocument()",
+          "sha256": "d1e0c615d72fe3721f5add20cd0e66f9fd56768a44dffe8a8842c42447ad4e3a"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/WelcomeModal.test.tsx",
+      "title": "admin text not shown for role < 50",
+      "line": 116,
+      "sha256": "31f416cfbbefc8a6042ece2a696b89bf96ef798c4cceaa8724aa5db5678766c2",
+      "expectations": [
+        {
+          "line": 123,
+          "expression": "expect(screen.container.textContent).not.toContain(\n\t\t\t\"As an administrator, you can invite other users\",\n\t\t)",
+          "sha256": "8cb102ac94a5c2ba3a17d08fd70532bbb4bc7e1a603c9e6f1d56ca95e398a7b5"
+        }
+      ]
+    }
+  ],
+  "assertionFiles": [
+    {
+      "source": "packages/admin/tests/components/Dashboard.test.tsx",
+      "wholeFileExpectations": [
+        {
+          "line": 167,
+          "expression": "expect.element(screen.getByText(\"Scheduled\")).toBeInTheDocument()",
+          "sha256": "5815126972dea7cedfb05fd89e5fa1031fa144112cc730ef4d23bc6bbd18192c"
+        },
+        {
+          "line": 183,
+          "expression": "expect.element(screen.getByText(\"Scheduled\")).toBeInTheDocument()",
+          "sha256": "5815126972dea7cedfb05fd89e5fa1031fa144112cc730ef4d23bc6bbd18192c"
+        },
+        {
+          "line": 184,
+          "expression": "expect.element(screen.getByRole(\"link\", { name: \"Scheduled\" })).not.toBeInTheDocument()",
+          "sha256": "a0bee7f3790a1fba30225b94399d5182199eab1d44db70b0944124c3e8ead74f"
+        },
+        {
+          "line": 196,
+          "expression": "expect.element(screen.getByText(\"Media files\")).toBeInTheDocument()",
+          "sha256": "eddf69ecadab7a751fb1faefa442cc0f746c3f8646b224167f76361bffa035c9"
+        },
+        {
+          "line": 197,
+          "expression": "expect.element(screen.getByText(\"Scheduled\")).not.toBeInTheDocument()",
+          "sha256": "da569cb5f442a3ed4c839b348ea2da4623172d425a8b34f3250ef599428196a0"
+        },
+        {
+          "line": 220,
+          "expression": "expect.element(screen.getByText(/no scheduler run has completed/i)).toBeInTheDocument()",
+          "sha256": "68a281d65d4c43e15101c94d8b3c19d8bae23e94baed451da422192916e7a8ab"
+        },
+        {
+          "line": 221,
+          "expression": "expect.element(screen.getByText(/npx emdash doctor/i)).toBeInTheDocument()",
+          "sha256": "a7988810a852430af77f280816a2d4e4963af98929b7a842ae3663b3d21e90e9"
+        },
+        {
+          "line": 247,
+          "expression": "expect.element(screen.getByText(/scheduler heartbeat is stale/i)).toBeInTheDocument()",
+          "sha256": "c4303eec711d943e66f48fcfca45225da60a9b9202092ea7986bb62a6db12485"
+        },
+        {
+          "line": 282,
+          "expression": "expect.element(screen.getByText(\"Approval is required.\")).toBeInTheDocument()",
+          "sha256": "896a3f8ba9503d79253a9dc04505c9f31339d3f8893c9e2afaa11e58f7b08fa4"
+        },
+        {
+          "line": 283,
+          "expression": "expect.element(screen.getByText(\"posts/post-1\")).toBeInTheDocument()",
+          "sha256": "e39da76b1de6e5b16e58a61a56193c8465efb11224330ff9c47bcaaab576f993"
+        },
+        {
+          "line": 288,
+          "expression": "expect(mockDismissScheduledPolicyRejection).toHaveBeenCalledWith(\n\t\t\t\"posts\",\n\t\t\t\"post-1\",\n\t\t\t\"rejection-revision\",\n\t\t)",
+          "sha256": "1aeb4d9bdf7f86afece446cac70b5ab4028a3c6d199d7ce04cd4d19e8f8f15f7"
+        },
+        {
+          "line": 306,
+          "expression": "expect.element(screen.getByText(\"Current reason.\")).toBeInTheDocument()",
+          "sha256": "ce35a66c947bb894c93a90a2841109169ae8e8f14014d62c9b4dc99f6e56d436"
+        },
+        {
+          "line": 310,
+          "expression": "expect(mockFetchDashboardStats).toHaveBeenCalledTimes(2)",
+          "sha256": "80b8c9afd2e8731d9bedd75e8d425e8110a713214f2b7521054d380557a784a3"
+        },
+        {
+          "line": 320,
+          "expression": "expect.element(screen.getByText(\"Approval is required.\")).toBeInTheDocument()",
+          "sha256": "896a3f8ba9503d79253a9dc04505c9f31339d3f8893c9e2afaa11e58f7b08fa4"
+        },
+        {
+          "line": 321,
+          "expression": "expect.element(screen.getByRole(\"button\", { name: \"Dismiss\" })).not.toBeInTheDocument()",
+          "sha256": "ab2b913d04d1bbe33116e21ee083eb6857db23dac9775310642b8bff58235cad"
+        },
+        {
+          "line": 349,
+          "expression": "expect.element(screen.getByText(/scheduler heartbeat is stale/i)).toBeInTheDocument()",
+          "sha256": "c4303eec711d943e66f48fcfca45225da60a9b9202092ea7986bb62a6db12485"
+        },
+        {
+          "line": 368,
+          "expression": "expect.element(screen.getByText(\"Content\")).toBeInTheDocument()",
+          "sha256": "16d6cebe3d35b72ff30cd5c47d2fa24237c1ee23c97b612c5d1d022e52fc67b2"
+        },
+        {
+          "line": 383,
+          "expression": "expect.element(screen.getByText(\"Published\", { exact: true })).toBeInTheDocument()",
+          "sha256": "457a5b76a81b0615bed91d3c0dc67033ab729f4b6207b82c12704156cc17c880"
+        },
+        {
+          "line": 384,
+          "expression": "expect.element(screen.getByText(\"Publish\", { exact: true })).not.toBeInTheDocument()",
+          "sha256": "0bea511f08238c1bbab23f278ab132039841ae62e9984cddb96e5e1f14df5bcf"
+        },
+        {
+          "line": 410,
+          "expression": "expect.element(screen.getByRole(\"link\", { name: \"Page\" })).toBeInTheDocument()",
+          "sha256": "579e9dc02613bf855993826f836f4cec594caff8ccf00ad0a0383a786da2b430"
+        },
+        {
+          "line": 411,
+          "expression": "expect.element(screen.getByRole(\"link\", { name: \"Sync run\" })).not.toBeInTheDocument()",
+          "sha256": "59f93e732e503ce9eefe9fbee0c9557526a247e94d44f4b49209d816bb6d5192"
+        },
+        {
+          "line": 412,
+          "expression": "expect.element(screen.getByRole(\"link\", { name: \"Setting\" })).not.toBeInTheDocument()",
+          "sha256": "9389b688863a0b6511d94de1cf9afea5b645245420809a1dfbab20c2f3edcf4b"
+        },
+        {
+          "line": 421,
+          "expression": "expect.element(screen.getByRole(\"heading\", { level: 2, name })).toBeInTheDocument()",
+          "sha256": "01a0c3845c208f356460c5dced2d75b69716d649aa6f1475c9fdfe30414f59bc"
+        },
+        {
+          "line": 444,
+          "expression": "expect.element(statusIcon).toBeInTheDocument()",
+          "sha256": "72c51359af3a962ab50c6fe564a4627ae641f8c65803b26809418b4814c104c6"
+        },
+        {
+          "line": 445,
+          "expression": "expect(screen.container.textContent).not.toContain(\"Modified\")",
+          "sha256": "4c114c149b3ca80a15cdf1d315cbe3a6977829978cb2e4827a4badfefa5faad7"
+        },
+        {
+          "line": 466,
+          "expression": "expect.element(screen.getByRole(\"img\", { name: \"Status: toString\" })).toBeInTheDocument()",
+          "sha256": "cf759317e94c39fc6747131dee720c457288e15201b6d2d84d5fec0af6500aab"
+        },
+        {
+          "line": 492,
+          "expression": "expect.element(screen.getByText(\"Media files\")).toBeInTheDocument()",
+          "sha256": "eddf69ecadab7a751fb1faefa442cc0f746c3f8646b224167f76361bffa035c9"
+        },
+        {
+          "line": 493,
+          "expression": "expect(mockFetchTransferCapabilities).toHaveBeenCalled()",
+          "sha256": "99d4604e31830b069ca7d553670d42fcaecdb8007c082946e3f25f0f637af4a7"
+        },
+        {
+          "line": 506,
+          "expression": "expect.element(screen.getByText(\"Media files\")).toBeInTheDocument()",
+          "sha256": "eddf69ecadab7a751fb1faefa442cc0f746c3f8646b224167f76361bffa035c9"
+        },
+        {
+          "line": 510,
+          "expression": "expect(mockFetchTransferCapabilities).not.toHaveBeenCalled()",
+          "sha256": "f26c8ccc4c5849bbb9aec3406768883f42c4bc64a8c93a57de2c7194877e4730"
+        },
+        {
+          "line": 523,
+          "expression": "expect.element(screen.getByText(\"Media files\")).toBeInTheDocument()",
+          "sha256": "eddf69ecadab7a751fb1faefa442cc0f746c3f8646b224167f76361bffa035c9"
+        },
+        {
+          "line": 527,
+          "expression": "expect(mockFetchTransferCapabilities).not.toHaveBeenCalled()",
+          "sha256": "f26c8ccc4c5849bbb9aec3406768883f42c4bc64a8c93a57de2c7194877e4730"
+        },
+        {
+          "line": 542,
+          "expression": "expect.element(second.getByText(\"Media files\")).toBeInTheDocument()",
+          "sha256": "3b04c7ff726d95f300cce1c61f12ae0f2c1b805d0cf19013b04644d3f5416300"
+        },
+        {
+          "line": 546,
+          "expression": "expect(mockFetchTransferCapabilities).toHaveBeenCalledTimes(1)",
+          "sha256": "5d65b62879b3444f3f96dd468e739344bb8592775f90ae57e88b75dd61842887"
+        }
+      ]
+    },
+    {
+      "source": "packages/admin/tests/components/WelcomeModal.test.tsx",
+      "wholeFileExpectations": [
+        {
+          "line": 44,
+          "expression": "expect.element(screen.getByText(\"Administrator\", { exact: true })).toBeInTheDocument()",
+          "sha256": "41a78d885f24f5198c368701045a7b602720ec61eae6246fac203da16c9f9043"
+        },
+        {
+          "line": 53,
+          "expression": "expect.element(screen.getByText(\"Editor\")).toBeInTheDocument()",
+          "sha256": "ae890ea6de8252d1f376b1af284c6493fab5d8dabff19b298489f7c66ee108d3"
+        },
+        {
+          "line": 62,
+          "expression": "expect.element(screen.getByText(\"Author\")).toBeInTheDocument()",
+          "sha256": "13c68ba5c2555bcccacb4bd795eaca4dcd3be5d3173c563c9fd7a349afca8403"
+        },
+        {
+          "line": 71,
+          "expression": "expect.element(screen.getByText(\"Contributor\")).toBeInTheDocument()",
+          "sha256": "8b9df3e99ba2cf5a2c4d94f0099b8b8aa8adb2c8b92f117b8e6c7fb851bc1c17"
+        },
+        {
+          "line": 80,
+          "expression": "expect.element(screen.getByText(\"Subscriber\")).toBeInTheDocument()",
+          "sha256": "d3b243e62201e3c2817ff75fe6399979dbbc055a376c2e78bc221cb37700eda5"
+        },
+        {
+          "line": 89,
+          "expression": "expect.element(screen.getByText(WELCOME_MESSAGE_REGEX)).toBeInTheDocument()",
+          "sha256": "47eec1bf4ef0738933df7a8451d52fc0f41e09e115bdc5a4c88c24ac6093de7f"
+        },
+        {
+          "line": 103,
+          "expression": "expect(onClose).toHaveBeenCalled()",
+          "sha256": "513980fd0c93fa18c95ead0b1d3855ad4a5f8da1657cba0d1f786de05c530156"
+        },
+        {
+          "line": 113,
+          "expression": "expect.element(screen.getByText(ADMIN_TEXT_REGEX)).toBeInTheDocument()",
+          "sha256": "d1e0c615d72fe3721f5add20cd0e66f9fd56768a44dffe8a8842c42447ad4e3a"
+        },
+        {
+          "line": 123,
+          "expression": "expect(screen.container.textContent).not.toContain(\n\t\t\t\"As an administrator, you can invite other users\",\n\t\t)",
+          "sha256": "8cb102ac94a5c2ba3a17d08fd70532bbb4bc7e1a603c9e6f1d56ca95e398a7b5"
+        }
+      ]
+    }
+  ]
+}

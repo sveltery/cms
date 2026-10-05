@@ -1,0 +1,318 @@
+
+ RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui
+
+ ❯ tests/dashboard-welcome-native/cache.test.ts (13 tests | 12 failed) 2603ms
+   × fresh shared dashboard data renders immediately without another request 64ms
+   × two dashboards share one pending stats request and both receive its data 66ms
+   × a remounted dashboard uses fresh data from the same application cache 16ms
+   × an unobserved request that does not consume AbortSignal completes into the shared cache 1006ms
+   × retained role changes reuse fresh capability data when the import hint becomes eligible again 111ms
+   × successful policy dismissal refreshes every active dashboard observer 72ms
+   × failed policy dismissal still refreshes every active dashboard observer 74ms
+   × repeated ordinary native focus events deduplicate a pending background refresh 60ms
+   × shared invalidation keeps the newer response after an older background response arrives late 1007ms
+   × successful welcome dismissal clears first-login only in the existing shared user profile 58ms
+   ✓ failed welcome dismissal closes while preserving the existing shared user profile 54ms
+   × Source visibility changes refetch stale stats but leave fresh stats in the cache 6ms
+   × an offline pending stats query waits for connectivity before making its first request 6ms
+ ✓ tests/dashboard-welcome-native/lifecycle.test.ts (4 tests) 287ms
+ ✓ tests/dashboard-welcome-native/ui.test.ts (5 tests) 234ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 12 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dashboard-welcome-native/cache.test.ts > fresh shared dashboard data renders immediately without another request
+AssertionError: expected [ 1, [ '0', '7', '2' ] ] to deeply equal [ +0, [ '0', '5', '2' ] ]
+
+- Expected
++ Received
+
+  [
+-   0,
++   1,
+    [
+      "0",
+-     "5",
++     "7",
+      "2",
+    ],
+  ]
+
+ ❯ tests/dashboard-welcome-native/cache.test.ts:47:75
+     45|   const { target } = await render(Dashboard, { manifest, user: { role:…
+     46|   await loaded(target);
+     47|   expect([client.fetchDashboardStats.mock.calls.length, metrics(target…
+       |                                                                           ^
+     48| });
+     49|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  tests/dashboard-welcome-native/cache.test.ts > two dashboards share one pending stats request and both receive its data
+AssertionError: expected [ 2, [ '0', '8', '2' ], …(1) ] to deeply equal [ 1, [ '0', '8', '2' ], …(1) ]
+
+- Expected
++ Received
+
+@@ -1,7 +1,7 @@
+  [
+-   1,
++   2,
+    [
+      "0",
+      "8",
+      "2",
+    ],
+
+ ❯ tests/dashboard-welcome-native/cache.test.ts:57:81
+     55|   const requestsWhilePending = client.fetchDashboardStats.mock.calls.l…
+     56|   request.resolve(stats(8)); await loaded(first.target); await loaded(…
+     57|   expect([requestsWhilePending, metrics(first.target), metrics(second.…
+       |                                                                                 ^
+     58| });
+     59|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+ FAIL  tests/dashboard-welcome-native/cache.test.ts > a remounted dashboard uses fresh data from the same application cache
+AssertionError: expected [ 2, [ '0', '7', '2' ] ] to deeply equal [ 1, [ '0', '7', '2' ] ]
+
+- Expected
++ Received
+
+@@ -1,7 +1,7 @@
+  [
+-   1,
++   2,
+    [
+      "0",
+      "7",
+      "2",
+    ],
+
+ ❯ tests/dashboard-welcome-native/cache.test.ts:65:82
+     63|   await loaded(first.target); await remove(first.instance);
+     64|   const second = await render(Dashboard, { manifest, client, ...{ quer…
+     65|   expect([client.fetchDashboardStats.mock.calls.length, metrics(second…
+       |                                                                                  ^
+     66| });
+     67|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/12]⎯
+
+ FAIL  tests/dashboard-welcome-native/cache.test.ts > an unobserved request that does not consume AbortSignal completes into the shared cache
+AssertionError: expected undefined to deeply equal { Object (collections, mediaCount, ...) }
+
+- Expected:
+{
+  "collections": [],
+  "mediaCount": 8,
+  "recentItems": [],
+  "userCount": 2,
+}
+
++ Received:
+undefined
+
+ ❯ tests/dashboard-welcome-native/cache.test.ts:73:80
+     71|   const first = await render(Dashboard, { manifest, client, ...{ query…
+     72|   await remove(first.instance); request.resolve(stats(8)); await reque…
+     73|   await vi.waitFor(() => expect(queryClient.getQueryData(['dashboard-s…
+       |                                                                                ^
+     74| });
+     75|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/12]⎯
+
+ FAIL  tests/dashboard-welcome-native/cache.test.ts > retained role changes reuse fresh capability data when the import hint becomes eligible again
+AssertionError: expected [ 1, 2 ] to deeply equal [ 1, 1 ]
+
+- Expected
++ Received
+
+  [
+    1,
+-   1,
++   2,
+  ]
+
+ ❯ tests/dashboard-welcome-native/cache.test.ts:85:110
+     83|   state.user = { role: 50 }; await tick();
+     84|   await vi.waitFor(() => expect(target.textContent).toContain('Moving …
+     85|   expect([client.fetchDashboardStats.mock.calls.length, client.fetchTr…
+       |                                                                                                              ^
+     86| });
+     87|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/12]⎯
+
+ FAIL  tests/dashboard-welcome-native/cache.test.ts > successful policy dismissal refreshes every active dashboard observer
+AssertionError: expected [ [ '0', '1', '2' ], …(1) ] to deeply equal [ [ '0', '9', '2' ], …(1) ]
+
+- Expected
++ Received
+
+@@ -1,9 +1,9 @@
+  [
+    [
+      "0",
+-     "9",
++     "1",
+      "2",
+    ],
+    [
+      [
+        "posts",
+
+ ❯ dismissAndRefreshBoth tests/dashboard-welcome-native/cache.test.ts:99:87
+     97|   [...first.target.querySelectorAll<HTMLButtonElement>('button')].find…
+     98|   await vi.waitFor(() => expect(metrics(first.target)).toEqual(['0', '…
+     99|   expect([metrics(second.target), client.dismissScheduledPolicyRejecti…
+       |                                                                                       ^
+    100|   if (fails) expect(first.target.textContent).toContain('Policy unavai…
+    101| }
+ ❯ tests/dashboard-welcome-native/cache.test.ts:102:91
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/12]⎯
+
+ FAIL  tests/dashboard-welcome-native/cache.test.ts > failed policy dismissal still refreshes every active dashboard observer
+AssertionError: expected [ [ '0', '1', '2' ], …(1) ] to deeply equal [ [ '0', '9', '2' ], …(1) ]
+
+- Expected
++ Received
+
+@@ -1,9 +1,9 @@
+  [
+    [
+      "0",
+-     "9",
++     "1",
+      "2",
+    ],
+    [
+      [
+        "posts",
+
+ ❯ dismissAndRefreshBoth tests/dashboard-welcome-native/cache.test.ts:99:87
+     97|   [...first.target.querySelectorAll<HTMLButtonElement>('button')].find…
+     98|   await vi.waitFor(() => expect(metrics(first.target)).toEqual(['0', '…
+     99|   expect([metrics(second.target), client.dismissScheduledPolicyRejecti…
+       |                                                                                       ^
+    100|   if (fails) expect(first.target.textContent).toContain('Policy unavai…
+    101| }
+ ❯ tests/dashboard-welcome-native/cache.test.ts:103:93
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/12]⎯
+
+ FAIL  tests/dashboard-welcome-native/cache.test.ts > repeated ordinary native focus events deduplicate a pending background refresh
+AssertionError: expected 3 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 3
+
+ ❯ tests/dashboard-welcome-native/cache.test.ts:113:32
+    111|   const requestsWhilePending = client.fetchDashboardStats.mock.calls.l…
+    112|   request.resolve(stats(8)); await vi.waitFor(() => expect(metrics(tar…
+    113|   expect(requestsWhilePending).toBe(2);
+       |                                ^
+    114| });
+    115|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/12]⎯
+
+ FAIL  tests/dashboard-welcome-native/cache.test.ts > shared invalidation keeps the newer response after an older background response arrives late
+AssertionError: expected "vi.fn()" to be called 3 times, but got 2 times
+ ❯ tests/dashboard-welcome-native/cache.test.ts:123:61
+    121|   window.dispatchEvent(new Event('focus')); await tick();
+    122|   const invalidation = queryClient.invalidateQueries({ queryKey: ['das…
+    123|   await vi.waitFor(() => expect(client.fetchDashboardStats).toHaveBeen…
+       |                                                             ^
+    124|   newer.resolve(stats(9)); await invalidation;
+    125|   await vi.waitFor(() => expect(metrics(target)).toEqual(['0', '9', '2…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/12]⎯
+
+ FAIL  tests/dashboard-welcome-native/cache.test.ts > successful welcome dismissal clears first-login only in the existing shared user profile
+AssertionError: expected { id: 'fixture-user', …(5) } to deeply equal { id: 'fixture-user', …(5) }
+
+- Expected
++ Received
+
+  {
+    "avatarUrl": null,
+    "email": "reader@example.test",
+    "id": "fixture-user",
+-   "isFirstLogin": false,
++   "isFirstLogin": true,
+    "name": "Alice",
+    "role": 30,
+  }
+
+ ❯ tests/dashboard-welcome-native/cache.test.ts:137:53
+    135|   target.querySelector<HTMLButtonElement>('button.primary')!.click();
+    136|   await vi.waitFor(() => expect(onClose).toHaveBeenCalledTimes(1));
+    137|   expect(queryClient.getQueryData(['currentUser'])).toEqual({ ...user,…
+       |                                                     ^
+    138| });
+    139|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/12]⎯
+
+ FAIL  tests/dashboard-welcome-native/cache.test.ts > Source visibility changes refetch stale stats but leave fresh stats in the cache
+AssertionError: expected [ 1, [ '0', '7', '2' ] ] to deeply equal [ +0, [ '0', '5', '2' ] ]
+
+- Expected
++ Received
+
+  [
+-   0,
++   1,
+    [
+      "0",
+-     "5",
++     "7",
+      "2",
+    ],
+  ]
+
+ ❯ tests/dashboard-welcome-native/cache.test.ts:154:75
+    152|   const { target } = await render(Dashboard, { manifest, client, ...{ …
+    153|   window.dispatchEvent(new Event('visibilitychange')); await tick();
+    154|   expect([client.fetchDashboardStats.mock.calls.length, metrics(target…
+       |                                                                           ^
+    155|   queryClient.setQueryData(['dashboard-stats'], stats(5), { updatedAt:…
+    156|   window.dispatchEvent(new Event('visibilitychange'));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/12]⎯
+
+ FAIL  tests/dashboard-welcome-native/cache.test.ts > an offline pending stats query waits for connectivity before making its first request
+AssertionError: expected "vi.fn()" to not be called at all, but actually been called 1 times
+
+Received:
+
+  1st vi.fn() call:
+
+    Array []
+
+
+Number of calls: 1
+
+ ❯ tests/dashboard-welcome-native/cache.test.ts:164:42
+    162|   const queryClient = fixtureQueryClient(60_000), client = api(); onli…
+    163|   const { target } = await render(Dashboard, { manifest, client, ...{ …
+    164|   expect(client.fetchDashboardStats).not.toHaveBeenCalled();
+       |                                          ^
+    165|   onlineManager.setOnline(true); await loaded(target);
+    166|   expect([client.fetchDashboardStats.mock.calls.length, metrics(target…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/12]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  12 failed | 10 passed (22)
+   Start at  11:55:47
+   Duration  6.39s (transform 843ms, setup 0ms, import 1.30s, tests 3.12s, environment 1.59s)
+
+JSON report written to /tmp/dashboard-welcome-r8-native22-report.json

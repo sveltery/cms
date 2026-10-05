@@ -1,0 +1,76 @@
+
+ RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui
+
+stderr | parity/emdash/admin-app-source/upstream/packages/admin/tests/components/Shell.test.tsx > Shell > sets the admin page canvas to the elevated surface
+ADMIN_APP_NATIVE_MOUNT_DOM=<div></div>
+
+stderr | parity/emdash/admin-app-source/upstream/packages/admin/tests/components/Shell.test.tsx > Shell > does not show marketplace migration guidance outside the dashboard
+ADMIN_APP_NATIVE_MOUNT_DOM=<div></div>
+
+stderr | parity/emdash/admin-app-source/upstream/packages/admin/tests/components/Shell.test.tsx > Shell > stores localized labels for the cache-safe client toolbar bootstrap
+ADMIN_APP_NATIVE_MOUNT_DOM=<div></div>
+
+ ❯ parity/emdash/admin-app-source/upstream/packages/admin/tests/components/Shell.test.tsx (3 tests | 2 failed) 87ms
+     × sets the admin page canvas to the elevated surface 63ms
+     ✓ does not show marketplace migration guidance outside the dashboard 13ms
+     × stores localized labels for the cache-safe client toolbar bootstrap 9ms
+ ❯ parity/emdash/admin-app-source/upstream/packages/admin/tests/lib/plugin-context.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/admin-app-source/upstream/packages/admin/tests/lib/plugin-context.test.ts [ parity/emdash/admin-app-source/upstream/packages/admin/tests/lib/plugin-context.test.ts ]
+Error: Cannot find module '/src/lib/admin-app/plugin-pages.ts' imported from /workspace/cms-dashboard-welcome-ui/parity/emdash/admin-app-source/upstream/packages/admin/tests/lib/plugin-context.test.ts
+ ❯ parity/emdash/admin-app-source/upstream/packages/admin/tests/lib/plugin-context.test.ts:4:1
+      2| import { describe, it, expect } from "vitest";
+      3|
+      4| import { resolvePluginPagePath } from "../../src/lib/plugin-context";
+       | ^
+      5|
+      6| const SettingsPage: React.ComponentType = () => null;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/admin-app-source/upstream/packages/admin/tests/components/Shell.test.tsx > Shell > sets the admin page canvas to the elevated surface
+Error: Expected actual classList (missing element) to contain bg-kumo-elevated
+ ❯ parity/emdash/admin-app-source/upstream/packages/admin/tests/components/Shell.test.tsx:52:42
+     50|   );
+     51|
+     52|   expect(document.querySelector("main")).toHaveClass("bg-kumo-elevated…
+       |                                          ^
+     53|  });
+     54|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  parity/emdash/admin-app-source/upstream/packages/admin/tests/components/Shell.test.tsx > Shell > stores localized labels for the cache-safe client toolbar bootstrap
+AssertionError: expected null to deeply equal { editMode: 'Edit', …(1) }
+
+- Expected:
+{
+  "editMode": "Edit",
+  "hideToolbar": "Hide toolbar",
+}
+
++ Received:
+null
+
+ ❯ parity/emdash/admin-app-source/upstream/packages/admin/tests/components/Shell.test.tsx:75:79
+     73|   );
+     74|
+     75|   expect(JSON.parse(localStorage.getItem("emdash-toolbar-labels") ?? "…
+       |                                                                               ^
+     76|    editMode: "Edit",
+     77|    hideToolbar: "Hide toolbar",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  2 failed | 1 passed (3)
+   Start at  00:45:59
+   Duration  2.97s (transform 928ms, setup 1.10s, import 369ms, tests 87ms, environment 1.09s)
+
+JSON report written to /workspace/cms-dashboard-welcome-ui/parity/emdash/admin-app-source/evidence/r1-source12-mount-diagnostic.json

@@ -1,0 +1,59 @@
+{
+  "scope": "Root-authorized exact R2 pure UI/library subject only; no routes/backend/global shell/pkg/compat/CI changes",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "isolatedWorktree": "/workspace/cms-dashboard-welcome-r2-library-probe",
+  "nativeTestFirstHead": "3d857e7129b3911a3eed3a8a218063958a5d52c2",
+  "immutableR2ManifestSha256": "d0c49c5693100d67d6ddd744bdf90fac50a2d2340bc62ea669032fc6d3719eca",
+  "exactR2LibraryFiles": [
+    {
+      "path": "src/lib/dashboard/Dashboard.svelte",
+      "candidatePath": "/tmp/dashboard-welcome-ui-proposal-r2/src/lib/dashboard/Dashboard.svelte",
+      "bytes": 12990,
+      "sha256": "3c2be486713d8b132031d76ca7f4c23fd37645b3763bfe166c1c5779514f40c2",
+      "gitBlob": "4e18734b0abdf836ee1dc38f5398883bc5ccd344",
+      "before": null
+    },
+    {
+      "path": "src/lib/dashboard/WelcomeModal.svelte",
+      "candidatePath": "/tmp/dashboard-welcome-ui-proposal-r2/src/lib/dashboard/WelcomeModal.svelte",
+      "bytes": 5404,
+      "sha256": "233f90dc2b3c531797b6c135d6a06c26d70de354af8313daed692a8fdcb38d59",
+      "gitBlob": "ecfc1370d99d9f50c3f58d6fc864874aa1574117",
+      "before": null
+    },
+    {
+      "path": "src/lib/dashboard/client.ts",
+      "candidatePath": "/tmp/dashboard-welcome-ui-proposal-r2/src/lib/dashboard/client.ts",
+      "bytes": 1734,
+      "sha256": "43924e93f3d2deb592a711584bb3d9106933c60babcfe15a52a6fa4e0ae9490e",
+      "gitBlob": "bb460a14196727f13beb83c1a8ef6ca5a1af1f4a",
+      "before": null
+    },
+    {
+      "path": "src/lib/dashboard/response.ts",
+      "candidatePath": "/tmp/dashboard-welcome-ui-proposal-r2/src/lib/dashboard/response.ts",
+      "bytes": 2282,
+      "sha256": "2037e6149c4aea416bf13f719ad667c6de3c9a242d668cabb12634a538a5acf8",
+      "gitBlob": "ac2e97d0a3ff0ee3b21becd1fe8bb4f52673848f",
+      "before": null
+    },
+    {
+      "path": "src/lib/dashboard/time.ts",
+      "candidatePath": "/tmp/dashboard-welcome-ui-proposal-r2/src/lib/dashboard/time.ts",
+      "bytes": 1820,
+      "sha256": "25b4ba1d10738f15dacbc9e35248687f82dc97600bba85dd13910179904b947b",
+      "gitBlob": "3c030859e04949ffbdd668cc436c4850ae6d9e96",
+      "before": null
+    },
+    {
+      "path": "src/lib/dashboard/types.ts",
+      "candidatePath": "/tmp/dashboard-welcome-ui-proposal-r2/src/lib/dashboard/types.ts",
+      "bytes": 1661,
+      "sha256": "ae7320889614a98d82d1c3247c36a279ab23f576e0b675aa9dd074289c0fae70",
+      "gitBlob": "95fc2e74c2298ca6f047f55493da83d7cb6432f4",
+      "before": null
+    }
+  ],
+  "mainProductBranchR2Application": false,
+  "expectedExecution": "Whole Native9 ordinary DOM family; original Native5 unchanged, four new test-first cases; zero real protected transport/new principal/session/signature probes"
+}

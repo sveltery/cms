@@ -1,0 +1,156 @@
+
+ RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui
+
+ ❯ parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx (24 tests | 22 failed) 22254ms
+     × shows marketplace migration guidance to admins 1043ms
+     ✓ hides marketplace migration guidance from non-admins 5ms
+     × shows scheduled summary when collection stats include pending schedules 1004ms
+     × does not link the scheduled summary for subscribers, who cannot open the calendar 1006ms
+     × omits scheduled summary when only residual non-scheduled statuses exist 1005ms
+     × warns when scheduled content is overdue and the scheduler has never completed 1006ms
+     × warns when scheduled content is overdue and the heartbeat is stale 1006ms
+     ✓ does not warn when the scheduler heartbeat is healthy 4ms
+     × warns when a publication policy blocks scheduled content 1004ms
+     × refreshes a stale policy rejection after dismissal conflicts 1100ms
+     × does not offer dismissal to authors 1005ms
+     × shows policy rejections and scheduler outages independently 1004ms
+     × renders dashboard data from an older API without scheduler health 1004ms
+     × labels the published count for screen readers with the state, not the action 1004ms
+     × links collection quick actions to new content forms 1003ms
+     × omits quick actions for hidden collections and those opting out 1004ms
+     × uses the same heading level for every dashboard card title 1005ms
+     × gives recent activity status icons normalized accessible labels 1005ms
+     × renders unknown status names without treating object properties as lifecycle states 1004ms
+       × links an admin of an importable site to the Transfer import 1005ms
+       × stays hidden when the site can't receive an import 1008ms
+       × doesn't check import eligibility for non-admins 1005ms
+       × doesn't check import eligibility once the site has content 1003ms
+       × stays dismissed 1010ms
+ ❯ parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/WelcomeModal.test.tsx (9 tests | 8 failed) 7078ms
+     × shows 'Administrator' for role >= 50 1041ms
+     × shows 'Editor' for role >= 40 1006ms
+     × shows 'Author' for role >= 30 1005ms
+     × shows 'Contributor' for role >= 20 1005ms
+     × shows 'Subscriber' for role < 20 1005ms
+     × shows first name from userName 1005ms
+     × 'Get Started' button triggers dismiss mutation and calls onClose 4ms
+     × admin text shown only for role >= 50 1003ms
+     ✓ admin text not shown for role < 50 3ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 30 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > shows marketplace migration guidance to admins
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > shows scheduled summary when collection stats include pending schedules
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > does not link the scheduled summary for subscribers, who cannot open the calendar
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > omits scheduled summary when only residual non-scheduled statuses exist
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > warns when scheduled content is overdue and the scheduler has never completed
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > warns when scheduled content is overdue and the heartbeat is stale
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > warns when a publication policy blocks scheduled content
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > does not offer dismissal to authors
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > shows policy rejections and scheduler outages independently
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > renders dashboard data from an older API without scheduler health
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > labels the published count for screen readers with the state, not the action
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > omits quick actions for hidden collections and those opting out
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > uses the same heading level for every dashboard card title
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > gives recent activity status icons normalized accessible labels
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > renders unknown status names without treating object properties as lifecycle states
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > site import suggestion > stays hidden when the site can't receive an import
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > site import suggestion > doesn't check import eligibility for non-admins
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > site import suggestion > doesn't check import eligibility once the site has content
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/WelcomeModal.test.tsx > WelcomeModal > shows 'Administrator' for role >= 50
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/WelcomeModal.test.tsx > WelcomeModal > shows 'Editor' for role >= 40
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/WelcomeModal.test.tsx > WelcomeModal > shows 'Author' for role >= 30
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/WelcomeModal.test.tsx > WelcomeModal > shows 'Contributor' for role >= 20
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/WelcomeModal.test.tsx > WelcomeModal > shows 'Subscriber' for role < 20
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/WelcomeModal.test.tsx > WelcomeModal > shows first name from userName
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/WelcomeModal.test.tsx > WelcomeModal > admin text shown only for role >= 50
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/helpers/dashboard-welcome/dom-setup.ts:9:84
+      7|   const read = () => value instanceof Locator ? value.read() : value;
+      8|   const assertion = (negate: boolean) => ({
+      9|     toBeInTheDocument: () => vi.waitFor(() => expect(Boolean(read()?.i…
+       |                                                                                    ^
+     10|     toHaveAttribute: (name: string, expected: string) => vi.waitFor(()…
+     11|       const result = expect(read()?.getAttribute(name));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/30]⎯
+
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > refreshes a stale policy rejection after dismissal conflicts
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > site import suggestion > stays dismissed
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/dashboard-welcome/dom-render.tsx:17:64
+     15| export class Locator {
+     16|   constructor(readonly read: () => HTMLElement | null) {}
+     17|   element() { const element = this.read(); if (!element) throw new Err…
+       |                                                                ^
+     18|   async click() { const element = await vi.waitFor(() => this.element(…
+     19| }
+ ❯ tests/helpers/dashboard-welcome/dom-render.tsx:18:63
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/30]⎯
+
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > links collection quick actions to new content forms
+AssertionError: expected undefined to be '/content/pages/new' // Object.is equality
+
+- Expected:
+"/content/pages/new"
+
++ Received:
+undefined
+
+ ❯ tests/helpers/dashboard-welcome/dom-setup.ts:12:58
+     10|     toHaveAttribute: (name: string, expected: string) => vi.waitFor(()…
+     11|       const result = expect(read()?.getAttribute(name));
+     12|       if (negate) result.not.toBe(expected); else result.toBe(expected…
+       |                                                          ^
+     13|     })
+     14|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/30]⎯
+
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/Dashboard.test.tsx > Dashboard > site import suggestion > links an admin of an importable site to the Transfer import
+AssertionError: expected undefined to be '/settings/transfer?start=import' // Object.is equality
+
+- Expected:
+"/settings/transfer?start=import"
+
++ Received:
+undefined
+
+ ❯ tests/helpers/dashboard-welcome/dom-setup.ts:12:58
+     10|     toHaveAttribute: (name: string, expected: string) => vi.waitFor(()…
+     11|       const result = expect(read()?.getAttribute(name));
+     12|       if (negate) result.not.toBe(expected); else result.toBe(expected…
+       |                                                          ^
+     13|     })
+     14|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/30]⎯
+
+ FAIL  parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/WelcomeModal.test.tsx > WelcomeModal > 'Get Started' button triggers dismiss mutation and calls onClose
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/dashboard-welcome/dom-render.tsx:17:64
+     15| export class Locator {
+     16|   constructor(readonly read: () => HTMLElement | null) {}
+     17|   element() { const element = this.read(); if (!element) throw new Err…
+       |                                                                ^
+     18|   async click() { const element = await vi.waitFor(() => this.element(…
+     19| }
+ ❯ parity/emdash/dashboard-welcome-source/upstream/packages/admin/tests/components/WelcomeModal.test.tsx:99:50
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/30]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  30 failed | 3 passed (33)
+   Start at  09:09:23
+   Duration  31.51s (transform 548ms, setup 776ms, import 164ms, tests 29.33s, environment 1.01s)
+
+JSON report written to /tmp/dashboard-welcome-corrected-baseline-report.json

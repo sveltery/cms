@@ -1,0 +1,27 @@
+
+ RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui
+
+stderr | parity/emdash/admin-app-source/upstream/packages/admin/tests/components/Shell.test.tsx > Shell > sets the admin page canvas to the elevated surface
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | parity/emdash/admin-app-source/upstream/packages/admin/tests/components/Shell.test.tsx > Shell > does not show marketplace migration guidance outside the dashboard
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | parity/emdash/admin-app-source/upstream/packages/admin/tests/components/Shell.test.tsx > Shell > stores localized labels for the cache-safe client toolbar bootstrap
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:24:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+ ✓ parity/emdash/admin-app-source/upstream/packages/admin/tests/components/Shell.test.tsx (3 tests) 469ms
+ ✓ parity/emdash/admin-app-source/upstream/packages/admin/tests/lib/plugin-context.test.ts (9 tests) 47ms
+
+ Test Files  2 passed (2)
+      Tests  12 passed (12)
+   Start at  01:02:18
+   Duration  12.93s (transform 4.62s, setup 5.21s, import 1.75s, tests 517ms, environment 4.32s)
+
+JSON report written to /workspace/cms-dashboard-welcome-ui/parity/emdash/admin-app-source/evidence/r4-source12-current.json

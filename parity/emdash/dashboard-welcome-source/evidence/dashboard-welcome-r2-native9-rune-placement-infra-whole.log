@@ -1,0 +1,26 @@
+
+ RUN  v4.1.10 /workspace/cms-dashboard-welcome-r2-library-probe
+
+ ❯ tests/dashboard-welcome-native/lifecycle.test.ts (0 test)
+ ✓ tests/dashboard-welcome-native/ui.test.ts (5 tests) 287ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dashboard-welcome-native/lifecycle.test.ts [ tests/dashboard-welcome-native/lifecycle.test.ts ]
+CompileError: tests/helpers/dashboard-welcome/lifecycle-state.svelte.ts:4:8 `$state(...)` can only be used as a variable declaration initializer, a class field declaration, or the first assignment to a class field at the top level of the constructor.
+https://svelte.dev/e/state_invalid_placement
+ 2 |  // instance. It supplies no principal, real HTTP transport or backend behavior.
+ 3 |  export function lifecycleState(value) {
+ 4 |    return $state(value);
+                            ^
+ 5 |  }
+ 6 |  
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  5 passed (5)
+   Start at  09:44:21
+   Duration  2.41s (transform 622ms, setup 0ms, import 125ms, tests 287ms, environment 1.03s)
+
+JSON report written to /tmp/dashboard-welcome-r2-native9-red-report.json

@@ -1,0 +1,46 @@
+
+ RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui
+
+stderr | tests/admin-app-native/shell.test.ts > the application shell loads one shared current-user query with Source key and freshness
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:23:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > the application shell loads one shared current-user query with Source key and freshness
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:23:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > first-login opens the actual welcome modal and dismissal updates the shared user
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:23:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > editor toolbar flags and labels follow shared user role changes
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:23:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > closing a failed welcome dismissal stays closed until first-login changes again
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:23:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > separate application providers do not share current-user data
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:23:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+stderr | tests/admin-app-native/shell.test.ts > separate application providers do not share current-user data
+[svelte] await_waterfall
+An async derived, `loadedNavigation` (src/​lib/​ui/​WorkspaceShell.svelte:23:27) was not read immediately after it resolved. This often indicates an unnecessary waterfall, which can slow down your app
+https://svelte.dev/e/await_waterfall
+
+ ✓ tests/admin-app-native/shell.test.ts (5 tests) 919ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  00:51:11
+   Duration  7.80s (transform 3.95s, setup 0ms, import 4.62s, tests 919ms, environment 1.65s)
+
+JSON report written to /workspace/cms-dashboard-welcome-ui/parity/emdash/admin-app-source/evidence/r2-native5-first-fix.json

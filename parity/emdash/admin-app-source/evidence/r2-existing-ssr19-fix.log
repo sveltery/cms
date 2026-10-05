@@ -1,0 +1,352 @@
+✖ ordinary content workspace exposes the real Comments inbox (508.419779ms)
+✖ ordinary content workspace exposes both installed Sections and Widgets (0.839058ms)
+✖ common management links retain the pinned Comments Menus Redirects Widgets Sections order (0.109215ms)
+✖ Comments remains selected while editing actual collection comment settings (0.03939ms)
+✖ Sections remains selected on its actual section editor route (5.090346ms)
+✖ all installed management links resolve the application base with the current descendant selected (0.075444ms)
+✖ the pinned editor-level navigation hides administrator Redirects even when read capability is present (0.051708ms)
+✖ read capabilities below the pinned editor display floor expose no management links (0.043115ms)
+✖ Redirects selection follows the current real route without requiring an activePage override (0.058158ms)
+✖ missing feature routes remain absent even for an administrator (0.072369ms)
+✖ schema administration and visible collections remain reachable alongside common navigation (0.02642ms)
+✖ anonymous presentation has no management links (0.060872ms)
+✖ shell provides a keyboard skip link to its actual main landmark (711.023395ms)
+✖ shell renders persisted collection descriptors while omitting hidden collections (0.868263ms)
+✖ authenticated principals without schema permission have no administration link (0.146732ms)
+✖ grouped collection navigation is a real accessible disclosure (0.038948ms)
+✖ collection navigation resolves the application base and actual active descendant path (0.046981ms)
+✖ shell has an accessible navigation toggle and controlled sidebar landmark (0.030155ms)
+✖ unavailable feature families are not advertised as working destinations (0.037556ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 0
+ℹ fail 19
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2320.24334
+
+✖ failing tests:
+
+test at tests/common-navigation-ui.test.ts:55:1
+✖ ordinary content workspace exposes the real Comments inbox (508.419779ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/common-navigation-ui.test.ts:58:1
+✖ ordinary content workspace exposes both installed Sections and Widgets (0.839058ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/common-navigation-ui.test.ts:63:1
+✖ common management links retain the pinned Comments Menus Redirects Widgets Sections order (0.109215ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/common-navigation-ui.test.ts:69:1
+✖ Comments remains selected while editing actual collection comment settings (0.03939ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/common-navigation-ui.test.ts:72:1
+✖ Sections remains selected on its actual section editor route (5.090346ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/common-navigation-ui.test.ts:75:1
+✖ all installed management links resolve the application base with the current descendant selected (0.075444ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/common-navigation-ui.test.ts:83:1
+✖ the pinned editor-level navigation hides administrator Redirects even when read capability is present (0.051708ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/common-navigation-ui.test.ts:89:1
+✖ read capabilities below the pinned editor display floor expose no management links (0.043115ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/common-navigation-ui.test.ts:94:1
+✖ Redirects selection follows the current real route without requiring an activePage override (0.058158ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/common-navigation-ui.test.ts:97:1
+✖ missing feature routes remain absent even for an administrator (0.072369ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/common-navigation-ui.test.ts:100:1
+✖ schema administration and visible collections remain reachable alongside common navigation (0.02642ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/common-navigation-ui.test.ts:106:1
+✖ anonymous presentation has no management links (0.060872ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/workspace-shell-ui.test.ts:52:1
+✖ shell provides a keyboard skip link to its actual main landmark (711.023395ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/workspace-shell-ui.test.ts:57:1
+✖ shell renders persisted collection descriptors while omitting hidden collections (0.868263ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/workspace-shell-ui.test.ts:62:1
+✖ authenticated principals without schema permission have no administration link (0.146732ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/workspace-shell-ui.test.ts:65:1
+✖ grouped collection navigation is a real accessible disclosure (0.038948ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/workspace-shell-ui.test.ts:71:1
+✖ collection navigation resolves the application base and actual active descendant path (0.046981ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/workspace-shell-ui.test.ts:76:1
+✖ shell has an accessible navigation toggle and controlled sidebar landmark (0.030155ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }
+
+test at tests/workspace-shell-ui.test.ts:81:1
+✖ unavailable feature families are not advertised as working destinations (0.037556ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response' imported from /workspace/cms-dashboard-welcome-ui/src/lib/dashboard/client.ts
+      at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+      at moduleResolve (node:internal/modules/esm/resolve:865:10)
+      at defaultResolve (node:internal/modules/esm/resolve:992:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///workspace/cms-dashboard-welcome-ui/src/lib/dashboard/response'
+  }

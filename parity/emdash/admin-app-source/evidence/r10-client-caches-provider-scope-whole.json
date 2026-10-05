@@ -1,0 +1,29 @@
+{
+  "testFirstCommit": "ec27b452e61de999d045e007bc114b64ae48a7ad",
+  "fixCommit": "8f0d849015378422769e4c9bf56815aaccf30f69",
+  "classification": {
+    "baseline": "Whole Native18:old17pass,new1genuine Second root content versus First root content value red; later call-count assertion unreached.",
+    "fix": "Whole Native18 and realSSR2 pass. Explicit APIs now resolve caches within actual provider; module-scoped existing picker fallback is only used without a provider.",
+    "refactor": "Default/supplied/API cache mappings reuse one actual account scope per QueryClient, preserving a single state/mutation owner. Whole Native18+realSSR2 pass; no Source bodies, data, clocks, dependencies, lock, gates or protected boundaries change."
+  },
+  "logs": [
+    {
+      "name": "picker-two-roots-first-red.log",
+      "bytes": 1468,
+      "sha256": "d7fe224b1b2572f7ce6f67778d0d957de471e2c4fc25ed85caad430266294f97",
+      "rawUtf8": "$ vitest run --config vitest.admin-app-native.config.ts && node --test tests/admin-app-ssr/*.test.ts\n\n RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui\n\n ❯ tests/admin-app-native/client-overrides.test.ts (6 tests | 1 failed) 1774ms\n   × separate actual roots do not reuse an explicit picker client warm cache 1086ms\n\n⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/admin-app-native/client-overrides.test.ts > separate actual roots do not reuse an explicit picker client warm cache\nAssertionError: expected 'First root content' to be 'Second root content' // Object.is equality\n\nExpected: \"Second root content\"\nReceived: \"First root content\"\n\n ❯ tests/admin-app-native/client-overrides.test.ts:79:85\n     77|  await vi.waitFor(() => expect(first.querySelector('.single strong')?.…\n     78|  const second = await render({ pickers: [api] });\n     79|  await vi.waitFor(() => expect(second.querySelector('.single strong')?…\n       |                                                                                     ^\n     80|  expect([api.fetchCollections.mock.calls.length, api.fetchManifest.moc…\n     81| });\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed | 1 passed (2)\n      Tests  1 failed | 17 passed (18)\n   Start at  03:52:31\n   Duration  7.92s (transform 1.98s, setup 0ms, import 2.65s, tests 3.32s, environment 1.49s)\n\n[ELIFECYCLE] Command failed with exit code 1.\n"
+    },
+    {
+      "name": "picker-two-roots-fix-native18-ssr2.log",
+      "bytes": 619,
+      "sha256": "cbca53fdd486c0752420145f04546c233998406bc2aa9f746bef383ea0d7e90b",
+      "rawUtf8": "$ vitest run --config vitest.admin-app-native.config.ts && node --test tests/admin-app-ssr/*.test.ts\n\n RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui\n\n\n Test Files  2 passed (2)\n      Tests  18 passed (18)\n   Start at  03:53:37\n   Duration  12.33s (transform 3.12s, setup 0ms, import 4.49s, tests 3.44s, environment 3.69s)\n\n✔ actual SSR root layouts isolate per-render current-user data (988.461338ms)\n✔ actual SSR root client retains the Source default query policy without fetching (1.933141ms)\nℹ tests 2\nℹ suites 0\nℹ pass 2\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 3097.605588\n"
+    },
+    {
+      "name": "picker-two-roots-refactor-native18-ssr2.log",
+      "bytes": 620,
+      "sha256": "fda991c0cace1d5f547764859b1b813139f25c46ba1c59adaf0ee3dcda30324d",
+      "rawUtf8": "$ vitest run --config vitest.admin-app-native.config.ts && node --test tests/admin-app-ssr/*.test.ts\n\n RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui\n\n\n Test Files  2 passed (2)\n      Tests  18 passed (18)\n   Start at  03:54:30\n   Duration  14.20s (transform 5.01s, setup 0ms, import 6.83s, tests 2.99s, environment 3.57s)\n\n✔ actual SSR root layouts isolate per-render current-user data (1000.327194ms)\n✔ actual SSR root client retains the Source default query policy without fetching (2.850344ms)\nℹ tests 2\nℹ suites 0\nℹ pass 2\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2490.043959\n"
+    }
+  ]
+}

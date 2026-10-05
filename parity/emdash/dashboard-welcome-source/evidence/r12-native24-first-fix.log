@@ -1,0 +1,47 @@
+
+ RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui
+
+ ✓ tests/dashboard-welcome-native/ui.test.ts (6 tests) 430ms
+ ❯ tests/dashboard-welcome-native/cache.test.ts (14 tests | 1 failed) 1190ms
+   ✓ fresh shared dashboard data renders immediately without another request 71ms
+   ✓ two dashboards share one pending stats request and both receive its data 74ms
+   ✓ a remounted dashboard uses fresh data from the same application cache 63ms
+   ✓ an unobserved request that does not consume AbortSignal completes into the shared cache 56ms
+   ✓ retained role changes reuse fresh capability data when the import hint becomes eligible again 59ms
+   ✓ successful policy dismissal refreshes every active dashboard observer 122ms
+   × failed policy dismissal still refreshes every active dashboard observer 132ms
+   ✓ repeated ordinary native focus events deduplicate a pending background refresh 111ms
+   ✓ shared invalidation keeps the newer response after an older background response arrives late 110ms
+   ✓ successful welcome dismissal clears first-login only in the existing shared user profile 61ms
+   ✓ failed welcome dismissal closes while preserving the existing shared user profile 55ms
+   ✓ Source visibility changes refetch stale stats but leave fresh stats in the cache 57ms
+   ✓ an offline pending stats query waits for connectivity before making its first request 56ms
+   ✓ native policy dismissal retains generic non-Error feedback while awaiting the stats refresh 160ms
+ ✓ tests/dashboard-welcome-native/lifecycle.test.ts (4 tests) 382ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dashboard-welcome-native/cache.test.ts > failed policy dismissal still refreshes every active dashboard observer
+AssertionError: expected ' Dashboard Upload Media     Drafts0  …' to contain 'Policy unavailable'
+
+Expected: "Policy unavailable"
+Received: " Dashboard Upload Media     Drafts0  Media files9 Users2 ContentNo collections configured Recent ActivityNo recent activity"
+
+ ❯ dismissAndRefreshBoth tests/dashboard-welcome-native/cache.test.ts:100:47
+     98|   await vi.waitFor(() => expect(metrics(first.target)).toEqual(['0', '…
+     99|   expect([metrics(second.target), client.dismissScheduledPolicyRejecti…
+    100|   if (fails) expect(first.target.textContent).toContain('Policy unavai…
+       |                                               ^
+    101| }
+    102| it('successful policy dismissal refreshes every active dashboard obser…
+ ❯ tests/dashboard-welcome-native/cache.test.ts:103:93
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 23 passed (24)
+   Start at  17:27:53
+   Duration  6.46s (transform 1.18s, setup 0ms, import 1.89s, tests 2.00s, environment 2.08s)
+
+JSON report written to /tmp/dashboard-welcome-r12-native24-fix.json

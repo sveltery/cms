@@ -2003,6 +2003,309 @@ self-referential future-head claim in this snapshot. Full scheduler/heartbeat,
 full Source users/CLI/PAT, remote D1 and general migration-runner parity remain
 unfinished. No new CLI/auth/HTTP probe or private provider is introduced.
 
+## Proposed dashboard and first-login welcome UI
+
+The [feature record](../../docs/dashboard-welcome-ui.md) and [whole Source inventory](../../parity/emdash/dashboard-welcome-source/sources.json) retain EmDash 1.1.0 pin `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, 24 complete authorities/129,244 bytes and both complete original UI suites: Dashboard 24 callbacks/34 expects; WelcomeModal 9/9. Their APIs remain original mocks and earn no real backend, auth, protected HTTP, compiled Kit, secured-browser, Cloudflare or deployed evidence.
+
+DW-01 proposes Svelte and existing Sveltery Card/native HTML with explicit typed client/current-user inputs for the upstream React/Kumo/query/router components. The React test mount forwards the exact original mock fixtures and complete unchanged assertion bodies. DW-03 proposes base-qualified `/api` paths, preserving the X-EmDash-Request header, JSON welcome action, response envelope, exact endpoint fallback messages, validation/save-rejection error details/status and policy revision encoding; Native current-user nullable profile fields follow actual Main. DW-04 proposes a supplied native site name, currently defaulting to Sveltery CMS, while the Source fixture preserves EmDash identity. Exact implementation development and specific acceptance remain pending. Neither copied Source tests nor a later component landing completes runtime composition, branding, localization, RTL, plugin widgets, updates, marketplace lifecycle, calendar/media/import or policy workflows.
+
+DW-02 is an explicitly unfinished substitution: native overdue/unknown scheduler copy says `Check the scheduled publishing configuration.` instead of advertising the absent `npx emdash doctor` command. PM on 2026-10-04 accepted only this actionable copy boundary and required an equivalent **real** diagnostic workflow. The original Source doctor-command assertion remains unchanged and must remain honestly reported if it fails. There is no fixture-only expected-text branch, no all-33-green claim, and zero native Source fidelity credit for that callback. [The follow-on inventory](../../docs/dashboard-doctor-follow-on.json) identifies complete pinned CLI/tests/runtime authority; no doctor implementation or test execution is claimed.
+
+Test-first `adb338eb`/`bb13a577` mount exact Main `f351d214` DraftPreview, with no synthetic feature or API success. The first Source run's 27 callback timeouts, three missing-control action failures and three initial controls are retained and earn zero reached-assertion credit. After a native polling-host correction, whole unchanged Source33 at `ea581b05` has 27 reached assertion reds, three action/locator failures and three controls, with no timeout/skip/todo; five separate Native cases all reach real value assertions and fail. Whole logs/JSON and exact hashes are in the paired feature record. Product implementation, green/refactor evidence, actual Main PR #90/schema prerequisite composition, current complete normal13/secured9 gates, independent/configured review, own PR, acceptance and merge remain pending.
+
+### R3 retained-state continuation: proposed, not applied
+
+The paired [feature record](../../docs/dashboard-welcome-ui.md) now records full independent R2 review (`97933b0f…`), four new native test-first callbacks at `3d857e71`, fixture-only import/rune repairs at `ad9178b2`/`639135d0`, and exact whole R2 Native9 receipts committed at `7db273f8`. PM authorized the six byte-exact R2 library files only in an isolated ordinary DOM subject. Product branch/global routes/auth/HTTP remained unchanged. Initial tsconfig/import/rune infrastructure receipts earn zero causal credit. The final complete run executes all nine: four reached value-assertion reds, five original native controls pass, and no timeout/skip/todo/infra. Its whole log SHA is `a392cf5c9a084f9d3a4ddf799b6406aec80e459442edcd9ea3ea9e88770ef592`, JSON SHA `16c325874b1fb1e3e1310beb3ab1a07c569e040d47153ed532e160ea430a64d5`; all four tests and their unchanged expected values remain separate native transport/lifecycle requirements, not additional Source callbacks.
+
+R3 proposes reactive import eligibility and ordinary focus retry, retained-modal open/close focus restoration, and configured-base propagation to both default native API clients. DW-01 remains an intentional React/query-to-Svelte substitution: locally retained eligibility and pending-request deduplication do not prove complete shared query-cache, cross-component, race/cancellation or query-lifecycle equivalence. DW-03 still requires actual accepted native backend transport; ordinary fetch fixtures establish only exact component request values. Every whole Source33 assertion/mocked API body, original Native5 callback, clock, complete copied error parser/timestamp helper and MIT notice remains preserved. DW-02's unchanged doctor-command assertion and zero native fidelity credit remain explicitly unfinished, pending a real separately owned diagnostic workflow.
+
+Unapplied R3 static compilation reports zero warnings, not runtime success. Exact PM development application/review, whole expanded Native9 and unchanged Source33 execution, green/refactor evidence, latest public Main adoption, real backend/schema and first-login composition, full current normal/secured gates, configured final-head review, own PR/approval/author merge/post-Main and full dashboard integrations remain pending. No all-33, whole-product, browser, real backend/auth/HTTP, Cloudflare or hosting acceptance is recorded. The complete previous compatibility prefix and R2 append remain unchanged; this paired continuation supersedes only current progress status with narrower factual evidence.
+
+### Qualified local dashboard core: whole test-first/fix/refactor evidence
+
+The paired [feature record](../../docs/dashboard-welcome-ui.md) now preserves exact R3 application `926933e4`, Source33 32 green plus unchanged doctor literal red, four earlier R2 causal native values green, and two later async-render text assertion reds. The PM qualified R4's two SAME hint assertions inside default/no-options `vi.waitFor` (`f3d828e7`), without changing expected values, mock values, clocks, Source assertions or product scheduling. Whole Native9 then passes. After green, `99dcb430` removes duplicated import eligibility by sharing the existing derived predicate between request and display. Separately qualified R5 `91445b6e` corrects only native mount-helper types; all nine complete callback suffixes and original Native5 bodies remain exact.
+
+Whole post-refactor Native9 is 9/9 green (log SHA `27bced0149f028168041d029eb313ce954e14b24f9bfc313df83ee1a6760b3c9`, JSON `07399c935c1ac21701a291384b377e3d3667b24cfda954fced8b8887f736d898`); whole unchanged Source33 remains 32 green/1 original doctor-command assertion red (log `07380f78c8ae32310c99025f4cea10c9c969b3098d721c35253b35c0e3eb5a43`, JSON `1a0a7e30ce8c90118f095859c196cd68e31c5d4e5863b8aa8c40efb2d94b59eb`). No callback timeout/infra/skip/todo. pnpm check is zero errors/warnings; the earlier two native helper typing errors and every prior raw failure remain retained. All receipts are committed at `786a3af5` and linked with exact byte counts/hashes in the feature record.
+
+PM qualification authorizes finite local development, not specific final parity acceptance, a PR landing or product completion. DW-01/03 remain narrow framework/API substitutions with no full query cache/race/cancellation, original React, browser or real backend/auth/HTTP proof. DW-02 remains explicitly unfinished with zero native fidelity credit for its unchanged diagnostic callback. Real doctor workflow, latest public Main/schema/backend composition, actual route/first-login/branding and full dashboard integrations, current complete normal/secured gates, independent/configured final-head review, own PR/approval/author merge and post-Main remain required. No global route/auth/shared package/CI/bootstrap/provider or protected probe was introduced by this local core work. Every previous compatibility byte remains the prefix; this continuation updates evidence truthfully without relabeling earlier infra/unreached observations.
+
+
+### Dashboard query-core continuation R12 on actual public doctor/provider Main — proposed, unapplied
+
+This finite candidate replaces manual dashboard request state with the actual
+TanStack query-core 5.90.20 used by pinned EmDash 1.1.0. A mounted application
+provider owns one QueryClient with Source staleTime 60,000ms and retry 1. Native
+components accept the same stable client from their provider or an explicit
+ordinary fixture prop; unconnected library instances use their own client. The
+provider is library code here. Actual global Shell/route/currentUser composition
+remains unfinished, and this candidate does not establish a working app provider.
+
+Source keys remain `["dashboard-stats"]`, `["transfer", "capabilities"]`, and
+`["currentUser"]`. Actual QueryObserver and MutationObserver own cache state,
+pending deduplication, retry, offline pause/resume, stale refetch, structural
+sharing, logical cancellation and mutation lifetime. Source fetchers consume no
+AbortSignal; this candidate consumes none. An unobserved first request can finish
+into the cache, while an invalidated cached background retryer logically ignores
+its older late result. Policy onSettled awaits shared stats invalidation for both
+success and error. Welcome success updates an existing cached user object only;
+error closes and preserves it. The previous test-only React onDismissed cache
+mutation is removed from this candidate because native production takes ownership.
+
+A nested import hint preserves Source lifetime and denied-storage fallback. Core
+5.90.20 visibilitychange focus semantics remain in use. Native window focus is an
+explicit additional event adapter through the same freshness/deduplication rules;
+it is not claimed to be identical Source focus-event behavior. Native mutation
+pending becomes immediately observable through Svelte tick, while subsequent
+observer notifications retain the core default scheduler. No Source test body,
+assertion, callback clock, expected text, or product environment branch changes.
+
+Only the exact runtime dependency/importer `@tanstack/query-core: 5.90.20` is
+proposed; complete existing package scripts, incoming Source-chain gates, engines,
+lock package/integrity/snapshot entries and the package-manager lock document stay
+preserved. The actual complete Tanner Linsley MIT license is supplied separately
+from the unchanged EmDash Cloudflare MIT notice. Existing lock package resolutions, shared workflows and validation deadlines
+remain unchanged. This packet adds the two documented dashboard Source and Native
+terminal gates to the end of the preserved aggregate Source chain.
+
+Actual test-first status: Root-qualified R8 five ordinary fixture/test candidates
+were committed at ecd9ab5c before product changes. One whole Native22 run against
+unchanged native product reached twelve real new value-assertion reds; the nine
+original native callbacks and failed-welcome preservation control passed. Two
+reds exhausted the existing default 1,000ms polling; no callback timeout, import
+or mount error occurred. The late-response callback reached request count 2
+instead of 3, while its newer/older response comparisons were still unreached.
+The visibility callback's later stale refetch branch, offline callback's later
+resume branch, and failed-policy callback's later error-copy assertion were also
+unreached. Full original failure logs/reports and classification are committed.
+
+The first R8 whole Source33 run exposed a real fixture failure: the new Dashboard
+QueryClient hook had no provider because the prior DOM render replacement omitted
+the Source ProvidersWrapper. All 24 Dashboard callbacks failed to mount; 22 failed
+and 2 absent-element controls misleadingly passed. They provide zero Dashboard
+product credit. Welcome9 passed with their original nested QueryWrapper. Full 24
+exceptions/two false positives remain retained. Root then qualified the exact two
+provider helpers: complete 505-byte Source provider declarations and original
+empty-English fixture setup. Commit 3bd0e103 applied only those helpers. ONE whole
+corrected unchanged-product Source33 run returned 32 green plus the genuinely
+reached unchanged doctor-literal assertion red, with no provider exception or
+callback timeout. Native22 was not repeated. Corrected complete receipts were
+committed at 3b189603. No product/cache repair is credited from these fixture-only
+runs, and the complete Source 24 authorities/33 callbacks/43 static expressions and
+all 22 native callback bodies and clocks remain unchanged.
+
+The independent R9 review identified a real proposed regression: accessing
+`error?.message` suppressed feedback for truthy non-Error policy rejections.
+R10 restores Source unknown-error extraction: falsy values have no message,
+Error values expose their message, and truthy non-Error values show the current
+native English fallback "An error occurred". Actual multilingual copy remains
+unfinished. A separately phased meaningful native regression callback is proposed
+before this product application: object-valued policy rejection must preserve
+visible generic feedback, maintain pending through a controlled stats refresh,
+and render the refreshed counts. Existing native product already preserves that
+feedback, so any baseline pass is a regression control, not a manufactured red
+or new repair credit. The extra callback is UNAPPLIED and has not run. It extends
+Native22 to 23 while preserving the entire old file prefix. Root owns exact test
+phase qualification; every actual result must be recorded before product fixes.
+
+The historical R10 packet was based on fixture-corrected head 3b189603 and
+refreshes all current before vectors, including Source adapter 2695 bytes. R9 stays
+immutable and unapplied. Actual QueryObserver/MutationObserver product and direct
+runtime dependency application remain UNAPPLIED, with zero runtime green, browser,
+backend, public-main or app integration acceptance. The prior R9 static component
+compilation remains narrow evidence; no R10 execution is inferred from it. Root
+must qualify the exact product candidates after independent same-feature review
+and the test-first phase. Complete unchanged Native23 and Source33 follow, then
+check/build/frozen direct install and meaningful refactoring. No all-33 pass claim.
+
+The unchanged Source doctor literal still expects `npx emdash doctor`. The proposed native guidance now names actual working `pnpm doctor` in the project
+and `sveltery-doctor` in standalone installations, both present on public Main c3d.
+No doctor command prop, Source-specific expected-text flag, private CLI98 import,
+or invented diagnostic command is present. Accepted actual real diagnostics and
+explicit honest installation-context adaptation remain required. Actual backend90
+and transfer/policy routes, Shell first-login/current-user/toolbar locale behavior,
+CoreUpdate/runtime version behavior, trusted and sandboxed widget runtime/provider
+and complete Source Unit UI coverage are unfinished. Own PR100 final current gates,
+independent review, Root approval, author CAS merge and post-Main checks remain.
+
+Current complete receipts: `dashboard-welcome-r8-causal-receipt.json` SHA256
+6587cad13f8fe10c9c4eab0fcdf1086a7a65f979b59acdfbfb5319f967e41800;
+`dashboard-welcome-r8-provider-corrected-causal-receipt.json` SHA256
+4b1254ef4ebc25977fee11c99ad04243c70b3e22b3737ac287769d6351d6d77e.
+These ordinary mocked UI receipts establish no actual protected transport or
+backend functionality. Final shared push/gates wait for actual public provider15
+and previous required public prerequisites, each through its qualified ordinary
+union; no private backend90 or CLI98 integration is included.
+
+
+Actual ordinary public adoption: merge b25b62bc owns exact tree
+f447f86d283da493fb63b6c0c1a7ab80ca46b425 and actual public parent
+c3d135a6f20e4319ee07eebb0f9009b57f2985f9. Full 1909-path mode/type/blob matrix
+preserves all incoming files and the entire 454960-byte incoming compatibility
+body plus the entire 8165-byte owned tail. Public provider15 and real doctor98
+are present. Frozen incoming-lock install succeeds and check reports 0 errors/
+0warnings; complete actual logs/receipt were committed at 020a576d. No UI family
+was rerun as part of that ordinary union. Whole incoming package 7694/lock 183240
+and every incoming Source gate remain preserved before the proposed additions.
+
+R11 changes ONLY the extra policy-regression refresh fixture to retain the same
+blocked rejection while mediaCount becomes 9. The error and Dismiss control then
+remain visible following actual Source/current Native lifetime. All old Native22
+callback bodies, expectations and clocks remain untouched. R10 and R11 stay
+immutable/unapplied. This R12 refreshes current before vectors after actual Main
+adoption and preserves the whole public package scripts/source-chain prefix;
+it adds only the pinned runtime dependency/importer plus explicit dashboard
+source/native gates after the entire existing aggregate chain.
+
+Root accepts truthful Native doctor-command substitution now that real public
+commands work. The ORIGINAL `/npx emdash doctor/i` assertion remains byte-exact.
+Its actual failure remains visible with zero Source callback fidelity credit.
+A new ordinary Native overdue-warning callback asserts the actual project and
+standalone commands and is proposed before product application. Current native
+copy lacks them, so that case may provide a genuine reached Native value red;
+no such result is claimed until the test-first phase runs. Alongside the
+supplemental non-Error policy regression control, the preserved Native22 family
+becomes 24. No product-expected-text flag or test-specific behavior is added.
+
+The complete Source33 gate invokes the unchanged full Source family once and
+retains its entire raw log, JSON report and actual Vitest exit1. Uniform locator
+diagnostics add only selector/expected-presence/actual-presence/full mounted DOM
+context to a thrown failure; original assertions, values, default polling clocks
+and Source callback bodies remain unchanged. Qualification requires exactly 32
+passed callbacks and the one pinned declaration/expression hash failing on the
+actual absent `/npx emdash doctor/i` locator while the mounted page displays
+actual Native doctor commands. Every other callback, skipped/duplicate/filtered
+execution, same-callback scheduler-availability failure, missing context or
+unhandled infrastructure error is rejected. Gate success explicitly reports
+Source32 pass+1accepted command divergence and raw runner exit1, never Source33
+all-green. Complete underlying JSON/report is printed for audit. Final Root DW
+acceptance and current-head independent review remain required.
+
+Six pure qualification-parser controls were run in the isolated candidate;
+all passed. They use the full committed corrected report as parser input plus
+explicit synthetic diagnostic fixtures; they establish zero Source callback,
+native component, doctor-runtime, backend or product green credit. These controls
+exercise rejection of wrong callbacks/values, absent context, unhandled errors,
+filtered/skipped/duplicate results, modified pin and invented underlying all-green.
+Product/source diagnostic gate execution remains pending exact qualification.
+
+Actual public backend90 dashboard GET and welcome POST remain absent in this
+union. Current native defaults fail closed; ordinary fixture responses establish
+no compiled actual backend functionality. Transfer capabilities/policy DELETE,
+currentUser/Shell first-login/toolbar locale/app provider integration, CoreUpdate,
+trusted/sandbox widget/provider and whole Source UI families remain required.
+Actual full native scheduler/heartbeat remains unfinished despite accepted
+read-only diagnostic commands. No private payload, principal/session/protected
+HTTP probe, global cache, root route or shared CI deadline/browser change is
+included. Normal13/secured9/current final review/OWN PR100 approval/author CAS
+merge/post-Main verification still follow the completed real feature.
+
+
+### Dashboard query-core R12–R14 actual local continuation — library core verified, app integration open
+
+Root qualified the exact eighteen-file R12 packet before application. Commit
+d4174f70 added the two Native regression callbacks first. Against unchanged
+product, generic non-Error policy feedback was a meaningful passing control and
+the actual `pnpm doctor` guidance assertion reached a value red; the later
+standalone-command assertion was unreached. The old twenty-two callbacks were
+intentionally excluded from this supplemental two-case run, with their complete
+earlier baseline retained. Runtime/gate candidates then landed locally at
+368d8864. Frozen install, check (zero errors/warnings), and default build passed.
+
+The first complete Native24 fix run returned twenty-three passes and one newly
+reached late fixture failure. Both observer refresh/count assertions and mutation
+arguments now passed, but the old failed-dismissal fixture removed all blocked
+policy data before expecting error text inside the removed notice. Source hides
+that notice when no blocked items remain. Root qualified the sole forty-byte R13
+fixture-expression correction: failed refresh retains the blocked rejection with
+mediaCount9; successful refresh still clears it. No Source bodies or any Native
+assertion, expected value, callback name or clock changed. Original native fixture
+bytes and every original failure remain in raw history; the historical claim of
+whole old file prefixes predates this explicitly recorded Native fixture repair.
+Commit3180d361 applied it, and the complete Native24 family passed without skips.
+
+After that green run, commit470d6a0f extracted the common observer batched
+subscription/current-result/cleanup lifecycle while preserving the query-only
+optimistic-result refresh and immediately visible native mutation pending state.
+The complete Native24 family passed again; check reports zero errors/warnings.
+The unchanged whole Source33 family again executed all callbacks: thirty-two
+passed and the exact original `/npx emdash doctor/i` value assertion failed with
+actual Vitest exit1. Its mounted DOM displays the real public project and
+standalone Native commands. The separate strict qualification gate passes, its
+six parser controls pass, and the divergent Source callback earns zero fidelity
+credit. This is not Source33 all-green. Raw log, JSON, diagnostic and qualification
+are committed alongside all earlier failures. Receipt: `r14-refactor-causal-receipt.json`
+under `parity/emdash/dashboard-welcome-source/evidence/`.
+
+The paired wording now distinguishes unchanged shared workflows and deadlines
+from the two additive terminal dashboard gates. No private backend payload or new
+protected authentication/session/HTTP probe was introduced. Actual global app
+provider, shared current-user/Shell first-login/toolbar behavior, configured
+locale/branding, real dashboard/welcome/transfer/policy endpoints, CoreUpdate,
+trusted and sandboxed plugin widget/runtime/provider composition and their whole
+Source/UI coverage remain required. Own PR100 is still draft; local library
+results establish no accepted public app, final CI/review/merge or whole product
+parity. Final current normal13/secured9, configured review, new independent final
+head review, Root approval, author regular expected-head merge and post-Main
+verification remain pending.
+
+### Dashboard app/Shell context continuation in proposed PR100
+
+DWA-01 proposes the actual SvelteKit provider-only root layout and shared Shell
+lifetime described in [the paired feature record](../../docs/dashboard-welcome-ui.md).
+Pinned Source App.tsx owns a browser React Query singleton under client-only
+Astro mounting; Native owns one actual client and effect-state object per root
+provider and per actual server render. Source defaults60000/retry1 and shared
+currentUser300000/retryfalse remain exact. Native page-level shells preserve
+first-login/modal and toolbar effect lifetime through provider context, rather
+than introducing another global cache or duplicating Shell markup. Actual Node
+SSR controls prove user-data isolation between renders. This is a proposed native
+framework substitution; no specific final DWA acceptance is inferred.
+
+The ten new whole authorities/26594 bytes retain twelve immutable declaration
+IDs/thirteen static matcher expressions. The original Source Shell3 and plugin
+path9 callback bodies/mocks/values/clocks remain byte-exact. Corrected mount
+readiness exposes two genuine Source Shell value reds; earlier empty-host failures
+and the nine initially missing-module callbacks earn zero causal credit. Whole
+Source12 then passes. Native app controls separately establish actual shared
+current-user queries, first-login modal/cache effects and toolbar behavior;
+genuine content-picker and retained-navigation value reds precede their fixes.
+The existing Source33 doctor's original literal still fails honestly with zero
+credit and the independently qualified bounded CLI exception. No all-33 or full
+admin parity claim is made.
+
+The real public current-user GET is consumed directly. Persisted welcome POST,
+dashboard/transfer/policy endpoints and the broader pending backend are neither
+privately imported nor manufactured. Page-path9 proves only the actual generic
+component-identity/path algorithm; full trusted React/Svelte plugin mounting,
+context providers, widgets and sandbox interaction/BlockRenderer still require
+real implementations. English fixture toolbar copy can receive real locale
+labels/code, but full configured localization/branding/themes and full Source
+Header/Sidebar/palette/CoreUpdate remain unfinished. Shared dependencies/lock,
+CI/deadlines/security and every old Source command/authority remain preserved;
+only full new terminal app Source/native commands are additive. Current full
+gates, configured and fresh final-head review, Root approval, author regular
+expected-head PR100 merge and actual post-Main qualification remain pending.
+
+Final-review follow-up DWA-FINAL-01 retains one actual welcome MutationObserver
+at the per-application provider lifetime. Matching-client modal remounts consume
+that observer; independent roots and explicit standalone clients remain separate.
+Two test-first controlled-promise navigation callbacks report real pending-button
+value reds, then pass along with the existing ten DOM controls and two actual
+Node SSR controls. Success-only current-user updates and close-on-error remain
+unchanged. The meaningful post-green refactor exposes that actual observer
+directly; whole original Source12 passes again with all bodies/values/clocks
+unchanged. This proves ordinary pending-navigation behavior, with no live
+HTTP/session/principal/new race probe or persisted backend dismissal credit.
+
+The initial five native app baseline failures are four direct value comparisons
+plus one literal `toContain(undefined, string)` operand-type assertion failure;
+the latter earns no completed string-contains value-comparison credit. DWA-FINAL-02
+adds only three exact per-file whitespace attributes for the observed diagnostic
+categories, preserving each complete raw log byte-for-byte and all old rules.
+Raw follow-up outputs use reversible UTF-8 JSON envelopes to preserve whitespace
+without further exemptions. Current final whole/configured/fresh gates and Root
+approval remain necessary; the full backend/global admin/plugin scope above is
+still incomplete.
 ### Standard collection-index test-first contracts
 
 Three supplementary Native callbacks now exercise the actual public15 migrations, Native SchemaRegistry and real Node SQLite: the complete Source sixteen-index catalogue, active case-folded translation-group uniqueness with nullable/trash controls, and an actual group/locale EXPLAIN lookup without ANALYZE. These are behavioral requirements against real created tables, not helper implementation tests or fabricated query/catalogue rows. They have not run at this test-first checkpoint. Original Source11/242/442 bodies/data/clocks remain unchanged; no copied Source-family credit is claimed. Four additional original Source index integration families remain audited and unexecuted.
@@ -2136,6 +2439,89 @@ and framework substitutions remain proposed pending current-head full normal13,
 secured9, independent/configured review and specific Root approval before the
 author's expected-head regular merge. Full UI, QueryCore, App/Seed, PostgreSQL
 and deployed Worker integration remain incomplete.
+
+### Admin application PR100 taxonomy union and cumulative evidence attributes
+
+PR100's ordinary merge `a63a5bde` incorporates actual published taxonomy Main
+`d76016cb` and retains both complete compatibility histories. The incoming whole
+Source terminal chain precedes the four unchanged dashboard/app terminals; all
+scripts, dependencies and frozen resolutions remain, with only the already
+existing query-core5.90.20 runtime importer differing from incoming Main. The
+six further exact raw-evidence attribute rules preserve every original byte and
+disable only their configured review's observed whitespace categories.
+
+This transport union changes no Source assertion or behavior, supplies no new
+Source parity credit and grants no PR acceptance. Source Dashboard33 remains
+32 passes plus the preserved literal doctor-command failure, qualified separately
+as the explicitly proposed Native command substitution. The shared query and
+persistent welcome observer remain bounded Native framework substitutions.
+[The paired feature record](../../docs/dashboard-welcome-ui.md) retains all
+earlier failures and incomplete backend/UI scope. Current successor normal13,
+secured9, configured and fresh independent reviews, explicit Root approval and
+the author's expected-head regular merge remain required.
+
+### PR100 explicit client identity and persistent owner closure
+
+Configured review at `4994a4c0` exposes actual account and picker cache collisions
+under one root with different explicit API clients. Whole Native16 first-red at
+`261ca427` is old12 pass plus four genuine new value failures; corrected whole
+baseline retains all four reds. Fix `fa3a07d5` isolates explicit account caches,
+shell state and real persistent welcome observers per provider, and explicit
+picker APIs reuse their existing client caches. Default account/picker consumers
+retain the root cache and pinned Source keys/freshness; supplied QueryClient
+control is preserved. The framework substitution remains proposed until Root
+acceptance and final checks; divergent doctor-command assertions still earn zero
+fidelity credit. No Source body, dataset, clock, protected boundary or global user
+state changes. [Paired feature documentation](../../docs/dashboard-welcome-ui.md)
+and the complete r9 evidence envelope classify every raw failure, fixture cache
+adaptation and focused green result. Incoming published schema Main `f6d10ddf`
+and its whole Source terminal commands are retained. Full current-union normal13,
+secured9, configured and fresh independent reviews, explicit Root approval and
+the author's expected-head regular merge remain pending. Full dashboard/admin
+UI and real backend90/CoreUpdate/plugin/widget/runtime integration remain open.
+
+PR100's same client-identity closure subsequently proves and fixes explicit picker
+warm-cache sharing across two actual roots. Test-first `ec27b452` reaches one new
+genuine content value red with old17 controls passing. Fix `8f0d8490` uses a
+provider-owned API cache resolver shared by account/picker consumers; existing
+standalone fallback remains, with no new module-global cache. The refactor keeps
+one account state/persistent mutation owner per QueryClient. Whole Native18 and
+actualSSR2 pass after both phases. Complete r10 raw evidence is linked from the
+paired feature documentation above. This is bounded framework/cache evidence,
+zero new original Source callback or full-product parity credit; final exact-head
+checks, reviews, Root approval and author regular merge remain pending.
+
+CI505's new Native picker fixture return-type inference rejects two arbitrary
+data records before any Source callback. The successor annotates only the helper
+with the actual public `FindManyResult<ContentItem>` type; runtime transpilation
+is byte-identical, with all assertions/data/clocks retained. Check succeeds with
+zero errors/warnings. The paired r11 record preserves complete actual CI/local
+failure logs; this type-only correction earns zero original Source or causal
+product-red credit. Full current-head checks and approval remain pending.
+
+### PR100 DWA-CLIENT-FINAL01 actual receiver identity closure
+
+Fresh review at `e861386d` identifies distinct supported API class receivers that
+share prototype methods. Test-first `bc42ab77` executes whole Native22 old18pass
+plus four genuine identity/dismissal/content/metadata value reds. Provider keys
+now use actual client objects, and welcome dismissal preserves method receiver.
+The sole later Native setup expression retains the existing reactive receiver
+while appending another client; assertions/data/clocks stay unchanged. Corrected
+whole22 replay against genuine immutable `e861386d` preserves all four reds.
+Whole22+actualSSR2 pass, then pass again after the true ownership refactor.
+
+The actual object cache resolver owns each provider's QueryClient and one account
+state/persistent mutation owner per cache. Previous function-key wording describes
+historical r9 evidence, not the current supported receiver identity. Default root
+keys/policy, per-root isolation, caller-supplied QueryClient control and standalone
+fallback remain; no private Svelte symbol, client mutation, semantic fingerprint
+or new global state is used. SourceApp12/check pass. The paired feature record
+and complete r12 envelope retain every raw result, including the first old
+proxy-setup value failure and an early uncommitted non-green refactor attempt.
+All Source34 authorities/assertions/data/clocks remain unchanged; Source33's
+literal doctor failure earns zero fidelity credit. Final current normal13,
+secured9, configured/fresh review, Root approval and author regular merge remain
+required; full admin/backend/runtime product parity remains open.
 ### Byline backend: canonical storage and native administrative transport (proposed PR108)
 
 This preparation snapshot covers [PR108](https://github.com/sveltery/cms/pull/108)
@@ -2242,6 +2628,7 @@ CI500 current f2 reported1491 service passes plus one Native Subscriber-array mi
 
 Regular union `4d136d94c3be011503d427452551df22c8615282` adopts actual public Schema Main `f6d10ddfe66c81b4a6203f6cccdcf9d70d8c953b`. Its sole provider16, all frozen1–15, complete Source22/Native response1/index13 terminal commands, every prior script/dependency/lock/bootstrap/CI byte and complete Schema compatibility records are retained. Only the package command conflict is resolved by preserving the complete new public chain and appending the exact original BylineSource/Native tail. Whole selected Source216 passes at this actual combined tree. This ordinary integration adds no migration, Source parity credit or new scope; current-head whole hosted normal13/secured9 and fresh closure/configured review precede exact Root approval and author regular merge. BYL-01 through BYL-04 and full unfinished feature scope remain open until their actual decisions/integrations.
 
+PR100 ordinary actual-public-main integration after class receiver closure: `d245a0fa` has ordered parents native `70edb3b170854cdfe4534ea56d614a5f9a33abb7` and actual public Byline108 main `90fa2410625e5b497f1547093e4a832c1440690f`. The whole public-main Source chain, including both Byline tails, remains the exact prefix, followed by the existing four App/Dashboard tails. Every prior script, dependency, exact Source authority and literal evidence rule remains; both full compatibility histories remain exact line subsequences. This integration changes no App/Dashboard product behavior or original Source assertion/data/clock and earns no additional fidelity credit. Current union normal13/secured9, configured and fresh semantic review, manager approval and author regular merge remain required. [Paired feature status](../../docs/dashboard-welcome-ui.md) retains the Source33 doctor failure and incomplete full-product limits.
 
 ## SC-01/SC-02 scheduled publishing and calendar test-first proposal
 
@@ -2376,3 +2763,21 @@ Schema UI receipt closure is metadata-only: exact scoped whitespace attributes p
 ### Schema repeater label fidelity after exact7c14 review
 
 SCUI-7C14-REPEATER-SLUG01 restores immutable EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, FieldEditor.tsx1208–1219: every repeater sub-field label edit derives the slug with lowercase, `/[^a-z0-9]+/g` and `/^_|_$/g`. Native previously saved an empty new slug or retained an older/manual slug after label edits. Test-first1b32a775 reaches two genuine save-payload value reds with31 controls passing and zero setup stops. Fix48789bb5/refactor9ae7f88b preserve copied draft ownership and manual slug edits when the label is unchanged; whole Native33 and unchanged Source138 pass. This is a fidelity repair, adds zero original Source callback/causal credit, and changes no backend/security/clock/fixture contract. [Paired feature documentation and literal receipts](../../docs/schema-admin-completion.md) retain prior history. Proposed PR111 still requires current successor gates/fresh review/exact manager approval and regular author merge; no full schema parity or canonical relationship cleanup is claimed.
+
+
+### PR100 current public calendar-main integration and exact diagnostic approval
+
+The regular union `23f6876807eaa6c0c8e9b221b50a52dd019dbd6b` retains ordered parents dashboard `b646bdb35254062fe45a12a2dd022164212d529a` and actual public calendar main `98332aaa81bf857b3e8214a7e572cb086390d703`. Its first resolution script stopped at an overly strict dependency-equality guard while the shell continued; that intermediate merge retained package conflict markers and receives no executable validation credit. Regular successor `9319b192a2f6c13c1733c5941c1d0e590f2aa7a2` resolves them, retaining every old dependency version and the exact public-main Source chain followed by the same four App/Dashboard commands. Both compatibility histories and all literal evidence rules remain intact. No source assertion, callback, data, clock, product file or test deadline changes.
+
+The prior `b646bdb3` whole-normal raw run remains an incomplete observation: eight stages finish, production remote tests report233pass/0fail/10cancel, and no wrapper terminal exit was retained. It grants zero whole13 credit. The complete unchanged raw389638 bytes/SHA256 `1c273b5374432a6325f5703bc20f9211fc12cc1f173a89ef1348515696a15c7f` remains private; no new public diagnostic is added by this continuation. Historical native70 whole13 success applies only to its own pre-Byline tree.
+
+On2026-10-05 the user explicitly approved publishing the reviewed r12 diagnostic file,24378 bytes/SHA256 `a4b6cc4719a6a4ec0e470c22662afe1afed6820dfa86592e5aba9289192891d3`, in response to the consolidated four-bundle disclosure question. The file stays byte-exact. That publication authorization grants no Source callback, whole-gate or final feature acceptance. Current13-stage normal and9 secured browser gates, configured final-head review, fresh independent semantic review, manager approval and the author's expected-head regular merge remain required. Native object-identity provider isolation is bounded; SourceApp12 and Native22+actualSSR2 evidence remain historical qualified observations. The unchanged SourceDashboard33 doctor literal remains32pass/1fail with zero credit for that callback. Full dashboard endpoints/setup/backend90/widgets/localization/accessibility and whole-product parity remain incomplete.
+
+[Paired feature status](../../docs/dashboard-welcome-ui.md) preserves full evidence and unfinished scope.
+
+
+### PR100 actual Schema administration main union
+
+The ordinary integration `d6cd3a35565386d842a02fc34a997c9185a10f56` preserves ordered parents dashboard `926e1c8e0d7a770f5cff2e6e668fe76b72606b65` and actual public Schema main `f2b2e560f6ea54f53e941db76fac732601772ce9`. Its local resolution omitted the previous nine-line dashboard publication appendix; the preservation assertion failed while the shell continued to commit. That intermediate commit remains history with zero executable or preservation credit. This regular successor restores the complete appendix before publication. Both compatibility histories and literal evidence rules are ordered line subsequences, all prior dependency versions and scripts remain, and the actual Main Source chain is the exact prefix followed by the four unchanged App/Dashboard commands. The entire current Main CI, including Schema139 and both sandboxed65 browser runs, stays byte-exact. No dashboard product, Source test/data/clock, provider, lock, bootstrap or deadline changes.
+
+SourceApp12 and Native22 plus actual SSR2 receiver-isolation behavior remain the bounded scope. Unchanged SourceDashboard33 remains32pass/1literal doctor failure, with zero fidelity credit for that callback. Full dashboard/setup/endpoints/widgets/localization/accessibility and product parity stay incomplete. Current13-stage normal and10 secured browser checks, fresh independent final-head review, configured review or its standing quota exception, exact Root approval and expected-head regular author merge remain pending. [Paired dashboard feature status](../../docs/dashboard-welcome-ui.md) preserves the same limits.
