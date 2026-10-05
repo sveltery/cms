@@ -1,0 +1,80 @@
+{
+  "testFirstCommit": "e3a7bb01",
+  "first": {
+    "total": 61,
+    "passed": 60,
+    "failed": 1,
+    "reachedValue": "Expected Insertar HTML / Received Insert HTML"
+  },
+  "fix": {
+    "total": 61,
+    "passed": 61,
+    "failed": 0,
+    "processExit": 0
+  },
+  "typecheckInitial": {
+    "errors": 1,
+    "warnings": 0,
+    "reason": "New test translator union overload; no product error"
+  },
+  "typecheckCorrected": {
+    "errors": 0,
+    "warnings": 0,
+    "processExit": 0
+  },
+  "fixtureCorrection": "Type-only translator narrowing; assertions, data, clocks and runtime behavior unchanged",
+  "provider": "Existing owning authoring props.locale and existing translator identity; no new provider",
+  "originalSourceAdditionalCausalCredit": 0,
+  "files": [
+    {
+      "path": "check-corrected.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "check-corrected.log",
+      "bytes": 209,
+      "sha256": "eae6b6064795073812fe74b466316f3a46f7aac09c5e0db03653032fc8287485"
+    },
+    {
+      "path": "check.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "check.log",
+      "bytes": 1358,
+      "sha256": "228e99042768bd0fe8c07ff511a00b558994af8d972e5b6cc444ee848ef07924"
+    },
+    {
+      "path": "first.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "first.log",
+      "bytes": 24670,
+      "sha256": "9bbeaa6301a263ba9f21b6844d902bacdc763e61b4a6a297ed9be4a23498e48b"
+    },
+    {
+      "path": "first.report.json",
+      "bytes": 26270,
+      "sha256": "4cd41953f8cfa4f5816b67fbf89532d18f7a0ada11cca43ad107a7d98f4a32ee"
+    },
+    {
+      "path": "fix.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "fix.log",
+      "bytes": 25455,
+      "sha256": "2d5f20baac09d24c676e361a7840066e39c19bab02d8714e438ce9d434655309"
+    },
+    {
+      "path": "fix.report.json",
+      "bytes": 25841,
+      "sha256": "6caba7d43ef3d9926edf9d3bbf0fd229c22c824e1092c52fc7c6baa1d1e399db"
+    }
+  ]
+}
