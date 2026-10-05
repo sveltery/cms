@@ -54,7 +54,7 @@
     "test:block-registry-source": "node scripts/check-block-registry-source.mjs && vitest run --config vitest.block-registry-source.config.ts",
     "doctor": "node scripts/doctor.mjs",
     "test:doctor-source": "node scripts/check-doctor-source.mjs && vitest run --config vitest.doctor-source.config.ts",
-    "test:taxonomy-source": "node scripts/check-taxonomy-source.mjs && node scripts/check-taxonomy-fixture-source.mjs && node scripts/check-taxonomy-reference-source.mjs && vitest run --config vitest.taxonomy-core-source.config.mts && vitest run --config vitest.taxonomy-match-source.config.ts",
+    "test:taxonomy-source": "node scripts/check-taxonomy-source.mjs && node scripts/check-taxonomy-fixture-source.mjs && node scripts/check-taxonomy-reference-source.mjs && vitest run --config vitest.taxonomy-core-source.config.mts && vitest run --config vitest.taxonomy-match-source.config.ts && vitest run --config vitest.taxonomy-locale-reference.config.mts",
     "test:taxonomy-native": "vitest run --config vitest.taxonomy-native.config.ts && vitest run --config vitest.taxonomy-native-content-source.config.mts && vitest run --config vitest.taxonomy-runtime-regressions.config.mts && vitest run --config vitest.taxonomy-d1.config.ts && node --test tests/taxonomy-native/content-atomic.test.ts",
     "test:taxonomy": "pnpm test:taxonomy-source && pnpm test:taxonomy-native"
   },

@@ -194,3 +194,27 @@ The new runtime is local development, with same-reviewer finding closure and fin
 
 
 The entire existing lifecycle test-file glob also passes324/324 after the equivalent Native Node import repair, on actual canonical15 Node/D1 fixtures. [Its exact raw log and receipt](taxonomy-evidence/public15-existing-lifecycle-receipt.json) preserve every original callback without new Source matcher credit or authored protected probes. This is regression evidence, with final entire normal/secured/configured gates and integration acceptance still pending.
+
+## Configured locale reads and updates by slug
+
+The PR102 backend restores configured-locale reads and updates by slug. With
+configured `fr`, requesting `bonjour` using `FR` finds the real French entry
+before taxonomy updates. Two supplemental Native tests reached actual `false`
+versus `true` assertion failures before the fix; both pass after the existing
+locale resolver is reused and the genuine content read is shared. Snapshot
+revision checks and the sole content/taxonomy owners remain unchanged. The
+[complete follow-on receipt](taxonomy-evidence/resume-locale-slug-receipt.json)
+preserves baseline, reference, fix, refactor and infrastructure outcomes.
+
+Original Core22 callbacks222 and pure matcher15 pass. Separate canonical
+Native API10, whole original Source-on-Native7, supplemental regressions5,
+D1eight and compound Node/D1eight pass. Two additional original-physical
+reference-host controls pass; these earn zero new original Source callback
+credit and do not execute the full generic Source content handlers. Original
+bodies, mocks, datasets, SQL, clocks and frozen1–15 installation remain exact.
+The complete existing source gate ends with the whole taxonomy commands;
+its original prefix, dependencies, workflow, deadlines and secured browser
+settings are retained. Final current-head normal13/secured9, fresh independent
+and configured reviews, Root approval and author merge remain pending. Full
+taxonomy UI, published QueryCore/Search hydration, App/Seed composition,
+PostgreSQL and deployed Worker support remain unfinished.

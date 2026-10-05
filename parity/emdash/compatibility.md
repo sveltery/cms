@@ -1943,3 +1943,34 @@ The finite synchronous query-list/actual atomicBatch adaptation and native `/api
 
 
 The entire existing lifecycle test-file glob also passes324/324 after the equivalent Native Node import repair, on actual canonical15 Node/D1 fixtures. [Its exact raw log and receipt](../../docs/taxonomy-evidence/public15-existing-lifecycle-receipt.json) preserve every original callback without new Source matcher credit or authored protected probes. This is regression evidence, with final entire normal/secured/configured gates and integration acceptance still pending.
+
+### Taxonomy configured-locale by-slug fidelity repair — PR102
+
+The immutable EmDash1.1.0 pin remains
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. Source content handler lines587–590,
+1075–1078 and1496 canonicalize the supplied locale before genuine slug lookup.
+The trusted Native taxonomy constructor forwarded `FR` directly when the
+stored locale was `fr`, returning NOT_FOUND for get/update of `bonjour`.
+Two supplemental Native callbacks reached success assertion failures at
+test-first630341ae. Fix84f72210 reuses the existing configured-locale resolver;
+refactor37bf7885 shares this read without changing omitted-locale inference,
+actual canonical entry identity, snapshot CAS or existing permission owners.
+This is a fidelity repair, not a newly accepted behavioral difference.
+
+[The paired feature record](../../docs/taxonomies.md) and
+[whole retained receipt](../../docs/taxonomy-evidence/resume-locale-slug-receipt.json)
+record Native5 passing and original Core222/matcher15, Native API10, whole
+Source-on-Native7, D1eight and compound Node/D1eight passing. Two separate
+genuine Source-physical reference-host controls pass; their update follows
+the original resolveId dataflow through the actual repository then existing
+reference-host update. They are supplemental controls with zero original
+Source callback credit, not full generic Source handler execution or Native
+provider acceptance. Original Source bodies/data/mocks/SQL/clocks stay exact.
+
+Existing mandatory Native snapshot CAS, finite atomicBatch/D1 plan and `/api`
+SvelteKit substitutions remain proposed PR102 differences with final specific
+acceptance unrecorded. Corrected erased row types retain actual compound SQL
+and assertions; historical CI478 failed typecheck and receives no whole normal
+credit. Final current-head normal13/secured9, fresh/configured review and Root
+approval remain required before author expected-head regular merge. Full UI,
+public QueryCore, App/Seed, PostgreSQL and deployed Worker remain incomplete.
