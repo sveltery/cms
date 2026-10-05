@@ -1,0 +1,130 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-byline-backend
+
+ ❯ tests/bylines/atomic-workflow.test.ts (12 tests | 6 failed) 2609ms
+     ✓ persists translated profiles, canonical custom fields and strict locale credits 57ms
+     ✓ rolls back a failing replacement of ordered credits including the primary pointer 28ms
+     × deletes translations while retaining sibling credits, then clears the last group and pointer 42ms
+     × rolls back copied credits if writing the target primary pointer fails 32ms
+     ✓ persists translated profiles, canonical custom fields and strict locale credits  1161ms
+     ✓ rolls back a failing replacement of ordered credits including the primary pointer 187ms
+     × deletes translations while retaining sibling credits, then clears the last group and pointer 240ms
+     × rolls back copied credits if writing the target primary pointer fails 143ms
+     ✓ persists translated profiles, canonical custom fields and strict locale credits 248ms
+     ✓ rolls back a failing replacement of ordered credits including the primary pointer 139ms
+     × deletes translations while retaining sibling credits, then clears the last group and pointer 165ms
+     × rolls back copied credits if writing the target primary pointer fails 164ms
+ ❯ tests/bylines/canonical-storage.test.ts (3 tests | 1 failed) 119ms
+     ✓ provides a working profile repository without installing Source tables 66ms
+     ✓ provides working custom-field registration on the canonical options counter 28ms
+     × exposes real custom-field routes backed by the actual canonical registry 23ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/bylines/atomic-workflow.test.ts > Node > deletes translations while retaining sibling credits, then clears the last group and pointer
+Error: no such column: id
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ tests/bylines/atomic-workflow.test.ts:84:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  tests/bylines/atomic-workflow.test.ts > Node > rolls back copied credits if writing the target primary pointer fails
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "id": "01M44VZ0E8ACEX90GCQN0G7VRV",
++   },
++ ]
+
+ ❯ tests/bylines/atomic-workflow.test.ts:97:115
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  tests/bylines/atomic-workflow.test.ts > raw D1 > deletes translations while retaining sibling credits, then clears the last group and pointer
+ FAIL  tests/bylines/atomic-workflow.test.ts > serialized D1 dialect > deletes translations while retaining sibling credits, then clears the last group and pointer
+AssertionError: canonical byline deletion must be available: expected Error: D1 callback transactions are unsup… to be null
+
+- Expected:
+null
+
++ Received:
+Error {
+  "message": "D1 callback transactions are unsupported; use atomicBatch",
+}
+
+ ❯ tests/bylines/atomic-workflow.test.ts:79:66
+     77|    await repo.setContentBylines('post','entry',[{bylineId:en.id}]);
+     78|    let failure:unknown=null;try{await repo.delete(en.id);}catch(error)…
+     79|    expect(failure,'canonical byline deletion must be available').toBeN…
+       |                                                                  ^
+     80|    expect((await repo.getContentBylines('post','entry',{locale:'fr'}))…
+     81|    expect((await repo.findById(fr.id))?.customFields).toEqual({website…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  tests/bylines/atomic-workflow.test.ts > raw D1 > rolls back copied credits if writing the target primary pointer fails
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "id": "01M44VZ243TTJRRDNWH7KE8J8P",
++   },
++ ]
+
+ ❯ tests/bylines/atomic-workflow.test.ts:97:115
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  tests/bylines/atomic-workflow.test.ts > serialized D1 dialect > rolls back copied credits if writing the target primary pointer fails
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "id": "01M44VZ2T2Z8Y4ZDQBZJRVA9Z8",
++   },
++ ]
+
+ ❯ tests/bylines/atomic-workflow.test.ts:97:115
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  tests/bylines/canonical-storage.test.ts > Original byline producer on ordinary canonical installation > exposes real custom-field routes backed by the actual canonical registry
+AssertionError: installed byline field routes: expected null not to be null
+ ❯ tests/bylines/canonical-storage.test.ts:49:59
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  7 failed | 8 passed (15)
+   Start at  01:48:26
+   Duration  4.09s (transform 539ms, setup 0ms, import 1.10s, tests 2.73s, environment 0ms)
+
+JSON report written to /tmp/byline-native-delete-copy-initial.json

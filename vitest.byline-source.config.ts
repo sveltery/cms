@@ -7,12 +7,16 @@ const native = path.join(root, 'src/lib/server/bylines');
 const helpers = path.join(root, 'tests/helpers/bylines');
 export default defineConfig({
   plugins: [{ name: 'whole-byline-test-native-import-host', enforce: 'pre', resolveId(id, importer) {
+    if (id === '@emdash-cms/auth') return path.join(root, 'src/lib/server/auth/roles.ts');
     if (id === '@emdash-cms/admin/slugify') return path.join(root, 'src/lib/server/database/lifecycle/upstream/admin-slugify.ts');
     if (id === '#node-sqlite') return path.join(root, 'src/lib/server/database/node-sqlite-compat.ts');
     if (!importer?.startsWith(source) || !id.startsWith('.')) return;
     const target = path.resolve(path.dirname(importer), id).replaceAll(path.sep, '/');
     const key = path.relative(source, target).replaceAll(path.sep, '/');
     const imports: Record<string, string> = {
+      'src/astro/routes/api/admin/bylines/index.js': path.join(helpers, 'reference-profile-routes.ts'),
+      'src/astro/routes/api/admin/bylines/[id]/index.js': path.join(helpers, 'reference-profile-one.ts'),
+      'src/astro/routes/api/admin/bylines/[id]/translations.js': path.join(helpers, 'reference-profile-translations.ts'),
       'src/astro/routes/api/admin/byline-fields/index.js': path.join(helpers, 'reference-field-routes.ts'),
       'src/astro/routes/api/admin/byline-fields/[slug].js': path.join(helpers, 'reference-field-routes.ts'),
       'src/astro/routes/api/admin/byline-fields/[slug]/usage.js': path.join(helpers, 'reference-field-usage.ts'),
@@ -43,6 +47,8 @@ export default defineConfig({
     'parity/emdash/byline-source/upstream/packages/core/tests/unit/api/handlers/bylines.test.ts',
     'parity/emdash/byline-source/upstream/packages/core/tests/unit/bylines/field-defs-cache.test.ts',
     'parity/emdash/byline-source/upstream/packages/core/tests/integration/database/byline-fields-races.test.ts',
-    'parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts'
+    'parity/emdash/byline-source/upstream/packages/core/tests/integration/api/byline-fields-auth.test.ts',
+    'parity/emdash/byline-source/upstream/packages/core/tests/integration/api/bylines-customfields-create.test.ts',
+    'parity/emdash/byline-source/upstream/packages/core/tests/integration/api/bylines-customfields-write.test.ts'
   ] }
 });

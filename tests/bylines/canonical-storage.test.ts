@@ -1,6 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { sql } from 'kysely';
 import { openSqlite } from '../../src/lib/server/database/sqlite.ts';
+import { servicePrincipal } from '../../src/lib/server/auth/composition.ts';
+import { Role } from '../../src/lib/server/auth/roles.ts';
+import { registerBylineDatabase } from '../../src/lib/server/bylines/storage.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
 
 const availableModules = import.meta.glob('../../src/lib/server/bylines/*.ts');
@@ -38,4 +41,18 @@ describe('Original byline producer on ordinary canonical installation', () => {
       expect(Number(persisted.rows[0]?.value)).toBe(2);
     } finally { await database.close(); }
   });
+  it('exposes real custom-field routes backed by the actual canonical registry', async () => {
+    const database = openSqlite(':memory:');
+    try {
+      await migrateCms(database);
+      const module = await ownedModule('routes-fields');
+      expect(module, 'installed byline field routes').not.toBeNull();
+      const request = new Request('http://localhost/api/admin/byline-fields', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:'job_title',label:'Job title',type:'string'})});
+      const context = {request,url:new URL(request.url),params:{},locals:{emdash:{db:registerBylineDatabase(database)},user:servicePrincipal({id:'original-controlled-admin',role:Role.ADMIN})}};
+      const response = await module!.POST(context);
+      expect(response.status).toBe(201);
+      expect((await sql<{slug:string}>`SELECT slug FROM _cms_byline_fields`.execute(database.db)).rows.map(row=>row.slug)).toEqual(['job_title']);
+    } finally { await database.close(); }
+  });
+
 });

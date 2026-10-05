@@ -65,4 +65,38 @@ for(const runtime of ['Node','raw D1','serialized D1 dialect'] as const) describ
    expect(pointer).toBe(old.translationGroup);
   }finally{await f.close();}
  },90000);
+ it('deletes translations while retaining sibling credits, then clears the last group and pointer',async()=>{
+  const f=await fixture(runtime);
+  try{
+   await migrateCms(f.database);const repo=new BylineRepository(f.database);const schema=new BylineSchemaRegistry(f.database);
+   await schema.createField({slug:'website',label:'Website',type:'url',translatable:false});
+   const en=await repo.create({slug:'writer',displayName:'Writer',locale:'en',customFields:{website:'https://example.com'}});
+   const fr=await repo.create({slug:'writer',displayName:'Auteur',locale:'fr',translationOf:en.id});
+   const registry=new SchemaRegistry(f.database);await registry.createCollection({slug:'post',label:'Posts'});
+   await sql`INSERT INTO ec_post(id,locale,translation_group) VALUES ('entry','fr','entry')`.execute(f.database.db);
+   await repo.setContentBylines('post','entry',[{bylineId:en.id}]);
+   let failure:unknown=null;try{await repo.delete(en.id);}catch(error){failure=error;}
+   expect(failure,'canonical byline deletion must be available').toBeNull();
+   expect((await repo.getContentBylines('post','entry',{locale:'fr'})).map(row=>row.byline.id)).toEqual([fr.id]);
+   expect((await repo.findById(fr.id))?.customFields).toEqual({website:'https://example.com'});
+   expect(await repo.delete(fr.id)).toBe(true);
+   expect((await sql`SELECT id FROM _cms_content_bylines`.execute(f.database.db)).rows).toEqual([]);
+   expect((await sql`SELECT id FROM _cms_byline_field_group_values`.execute(f.database.db)).rows).toEqual([]);
+   expect((await sql<{primary_byline_id:string|null}>`SELECT primary_byline_id FROM ec_post WHERE id='entry'`.execute(f.database.db)).rows[0]?.primary_byline_id).toBeNull();
+  }finally{await f.close();}
+ },90000);
+ it('rolls back copied credits if writing the target primary pointer fails',async()=>{
+  const f=await fixture(runtime);
+  try{
+   await migrateCms(f.database);const repo=new BylineRepository(f.database);const profile=await repo.create({slug:'writer',displayName:'Writer'});
+   const registry=new SchemaRegistry(f.database);await registry.createCollection({slug:'post',label:'Posts'});
+   await sql`INSERT INTO ec_post(id,locale,translation_group) VALUES ('source','en','source'),('target','en','target')`.execute(f.database.db);
+   await repo.setContentBylines('post','source',[{bylineId:profile.id}]);
+   await sql`CREATE TRIGGER original_byline_copy_failure BEFORE UPDATE OF primary_byline_id ON ec_post WHEN NEW.id='target' BEGIN SELECT RAISE(ABORT,'original-copy-rollback'); END`.execute(f.database.db);
+   await expect(repo.copyContentBylines('post','source','target')).rejects.toThrow('original-copy-rollback');
+   expect((await sql`SELECT id FROM _cms_content_bylines WHERE content_id='target'`.execute(f.database.db)).rows).toEqual([]);
+   expect((await sql<{primary_byline_id:string|null}>`SELECT primary_byline_id FROM ec_post WHERE id='target'`.execute(f.database.db)).rows[0]?.primary_byline_id).toBeNull();
+  }finally{await f.close();}
+ },90000);
+
 });

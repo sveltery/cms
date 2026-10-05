@@ -3941,5 +3941,23 @@
       "report": "docs/byline-evidence/byline-source-auth-import-r3.json"
     },
     "typecheck": "0 errors / 0 warnings; docs/byline-evidence/byline-check-atomic.log"
+  },
+  "deleteCopyAndRoutesTestFirst": {
+    "native": {
+      "registered": 15,
+      "passed": 8,
+      "failed": 7,
+      "genuineValueReds": 7,
+      "details": "Two unsupported D1 delete failures captured then compared to null; three copy rollback physical-row assertions; one Node delete row-id assertion exposed existing namespace ambiguity; one actual installed route availability assertion. Inspect individual raw failures before final causal classification.",
+      "report": "docs/byline-evidence/byline-native-delete-copy-initial.json"
+    },
+    "source": {
+      "registered": 159,
+      "passed": 159,
+      "unregisteredRouteDeclarations": 57,
+      "causalReds": 0,
+      "report": "docs/byline-evidence/byline-source-all-route-import-initial.json"
+    },
+    "existingPermissionControls": "Only expected supported arrays/admin length maintained from immutable Source RBAC, no new auth flow. Existing whole controls expose missing byline permission projection; raw docs/byline-evidence/byline-permission-projection-initial.log"
   }
 }
