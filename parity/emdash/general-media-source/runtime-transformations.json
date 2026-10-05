@@ -236,7 +236,7 @@
       "source": "packages/core/src/database/repositories/media.ts",
       "runtime": "src/lib/server/general-media/upstream/database/repositories/media.ts",
       "sourceSha256": "89adf9e33736c4fd5d415faadbe564b3811bc752aeb21ea5d6206339d90ee0f9",
-      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only; exact private db parameter-property to explicit typed private field and constructor assignment for unchanged Node strip-only host; every other statement/method exact, no whole-module identity credit",
       "imports": [
         {
           "statement": 0,
@@ -273,13 +273,14 @@
           "source": "./types.js",
           "native": "./types.ts"
         }
-      ]
+      ],
+      "constructorTransport": "MediaRepository"
     },
     {
       "source": "packages/core/src/database/repositories/media-folders.ts",
       "runtime": "src/lib/server/general-media/upstream/database/repositories/media-folders.ts",
       "sourceSha256": "7b655d11d592eee048efff1e6ad2aa3caf19bafa8d6f1f8dc6366dbb0f088c13",
-      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only",
+      "transformation": "Attribution prefix; finite import .js→.ts and #media focal-point alias only; exact private db parameter-property to explicit typed private field and constructor assignment for unchanged Node strip-only host; every other statement/method exact, no whole-module identity credit",
       "imports": [
         {
           "statement": 0,
@@ -301,7 +302,8 @@
           "source": "./types.js",
           "native": "./types.ts"
         }
-      ]
+      ],
+      "constructorTransport": "MediaFolderRepository"
     },
     {
       "source": "packages/core/src/database/types.ts",
