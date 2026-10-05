@@ -44,22 +44,8 @@ import type { Database } from "../taxonomies/database-types.ts";
 import { requestCached } from "../menus/request-cache.ts";
 import { getRequestContext } from "../menus/context.ts";
 
-interface SlugsHolder {
-	promise: Promise<Set<string>> | null;
-	/** When the cached promise was created; gates bounded revalidation. */
-	fetchedAt: number;
-}
-
-const HOLDER_KEY = Symbol.for("emdash:collection-slugs");
-const g = globalThis as Record<symbol, unknown>;
-const holder: SlugsHolder =
-	// eslint-disable-next-line typescript/no-unsafe-type-assertion -- globalThis singleton pattern (see request-cache.ts)
-	(g[HOLDER_KEY] as SlugsHolder | undefined) ??
-	(() => {
-		const h: SlugsHolder = { promise: null, fetchedAt: 0 };
-		g[HOLDER_KEY] = h;
-		return h;
-	})();
+import {collectionSlugsHolder as holder,resetRegisteredCollectionsCache} from './collection-slugs-state.ts';
+export {resetRegisteredCollectionsCache} from './collection-slugs-state.ts';
 
 const REVALIDATE_WINDOW_MS = 60_000;
 let revalidateWindowMs = REVALIDATE_WINDOW_MS;
@@ -121,10 +107,7 @@ export function primeRegisteredCollections(slugs: readonly string[]): void {
  * schema-mutation path (`invalidateUrlPatternCache`, `SchemaRegistry`
  * create/delete). Other isolates converge through bounded revalidation.
  */
-export function resetRegisteredCollectionsCache(): void {
-	holder.promise = null;
-	holder.fetchedAt = 0;
-}
+
 
 /**
  * Note that a query hit a missing `ec_*` table despite the slug filter: the

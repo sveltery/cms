@@ -1,5 +1,5 @@
 import { sql, type CompiledQuery } from 'kysely';
-import { resetRegisteredCollectionsCache } from '../schema/collection-slugs-cache.ts';
+import { resetRegisteredCollectionsCache } from '../schema/collection-slugs-state.ts';
 import { sqliteErrorMessage } from './errors.ts';
 import { ulid } from 'ulidx';
 import { CmsError, type CmsDatabase, type Collection, type CollectionRow, type Field, type FieldRow, type RevisionPrecondition } from './contract.ts';
