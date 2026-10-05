@@ -92,6 +92,15 @@ test('Node hydration pages the actual 51-entry draft selection and retains its n
   assert.ok(selection?.nextCursor);
  }finally{await host.close();}
 });
+test('comparison accepts the real entry slug through the existing pinned identifier lookup',async()=>{
+ const {host,owner,published}=await setup('Node');
+ try{
+  assert.ok(published.slug);
+  let comparison;try{comparison=await owner.compareContent({type:'post',id:published.slug,locale:'en'});}catch{}
+  assert.equal(comparison?.live?.title,'Original');
+  assert.equal(comparison?.hasChanges,false);
+ }finally{await host.close();}
+});
 test('ordinary published reads hide draft targets and existing subscriber rights still deny comparison and draft reads',async()=>{
  const {host,owner,a,b,published}=await setup('Node');
  try{
