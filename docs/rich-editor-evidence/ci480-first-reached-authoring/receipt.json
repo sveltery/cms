@@ -1,0 +1,80 @@
+{
+  "recordedAtUTC": "2026-10-05T01:02:07.207203+00:00",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "actualPrHead": "d87e0bad1d0850baed52db32f80b1bbe9eddba66",
+  "run": 37248533151,
+  "runNumber": 480,
+  "job": 111572386188,
+  "conclusion": "failure",
+  "families": 3,
+  "staticDeclarations": 136,
+  "expandedRegisteredCallbacks": 137,
+  "familyExpansion": [
+    {
+      "path": "components/PortableTextEditor.footer.test.tsx",
+      "registered": 2
+    },
+    {
+      "path": "editor/PortableTextEditor.test.tsx",
+      "registered": 91
+    },
+    {
+      "path": "editor/slash-menu.test.tsx",
+      "registered": 44
+    }
+  ],
+  "reportedPassed": 133,
+  "reportedFailed": 4,
+  "unhandledErrors": 10,
+  "wholeGreenQualification": false,
+  "causeOfUnhandled": "CodeBlockControls.svelte cleanup reads the reactive bind:this popup after it became null; 8 uncaught errors and2 unhandled rejections, all full raw retained",
+  "sourceFailures": [
+    {
+      "sourceCallback": "Portable Text \u2194 ProseMirror conversion keeps a no-op editor update lossless",
+      "status": "failed",
+      "firstFailure": "AssertionError: expected null to be truthy\n    at vi.waitFor.timeout (http://localhost:63315/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/tests/editor/PortableTextEditor.test.tsx?import&browserv=1791161494091:104:14)\n    at checkCallback (http://localhost:63315/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/test.DNmyFkvJ.js?v=023575ab:3383:20)",
+      "reach": "no-op stops in editor-availability helper before lossless conversion/onChange assertions; other three reach actual language or focus/DOM expectations"
+    },
+    {
+      "sourceCallback": "Code block copy action preserves alias, free-form, and cancel behavior",
+      "status": "failed",
+      "firstFailure": "AssertionError: expected 'custom-language' to be 'astro' // Object.is equality\n    at http://localhost:63315/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/tests/editor/PortableTextEditor.test.tsx?import&browserv=1791161494091:1727:51\n    at checkCallback (http://localhost:63315/node_modules/.pnpm/vitest@4.1.10_@types+node@24.19.0_@vitest+browser-playwright@4.1.10_jsdom@30.1.1_vite@8_ee38918407c9c444cc73696c320249df/node_modules/vitest/dist/chunks/test.DNmyFkvJ.js?v=023575ab:3383:20)",
+      "reach": "no-op stops in editor-availability helper before lossless conversion/onChange assertions; other three reach actual language or focus/DOM expectations"
+    },
+    {
+      "sourceCallback": "Slash Command Menu keeps focus in the editor when the menu opens",
+      "status": "failed",
+      "firstFailure": "AssertionError: expected  to have a length of 2 but got +0\n    at Proxy.<anonymous> (http://localhost:63315/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js?v=023575ab:1389:20)\n    at Proxy.<anonymous> (http://localhost:63315/node_modules/.pnpm/@vitest+expect@4.1.10/node_modules/@vitest/expect/dist/index.js?v=023575ab:1156:15)\n    at Proxy.methodWrapper (http://localhost:63315/node_modules/.vite/vitest/da39a3ee5e6b4b0d3255bfef95601890afd80709/deps/vitest_n_@vitest_expect_n_chai.js?v=023575ab:1341:23)\n    at http://localhost:63315/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/tests/editor/slash-menu.test.tsx?import&browserv=1791161503547:208:23\n    at async http://localhost:63315/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js?v=023575ab:1903:20",
+      "reach": "no-op stops in editor-availability helper before lossless conversion/onChange assertions; other three reach actual language or focus/DOM expectations"
+    },
+    {
+      "sourceCallback": "Slash Command Menu closes on Tab and lets focus leave the editor",
+      "status": "failed",
+      "firstFailure": "AssertionError: expected <button type=\"button\" \u2026(2)></button> to be <button type=\"button\"></button> // Object.is equality\n    at http://localhost:63315/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/tests/editor/slash-menu.test.tsx?import&browserv=1791161503547:230:34\n    at async http://localhost:63315/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js?v=023575ab:1903:20",
+      "reach": "no-op stops in editor-availability helper before lossless conversion/onChange assertions; other three reach actual language or focus/DOM expectations"
+    }
+  ],
+  "sourceClockMockBodySkipExpectedValues": "unchanged",
+  "previousFirstSecured479SourceCausalCredit": 0,
+  "sourceCurrentCredit": "137 actual callbacks registered; report133 passes is preserved but no blanket whole-green credit while10 unhandled errors can affect results. Initial no-op availability failure reaches no lossless product assertion. Three original language/focus contract failures reach concrete values; final actual fixes/whole recheck required.",
+  "officialChromium": {
+    "revision": 1243,
+    "sandbox": true,
+    "launches": 1,
+    "exitCode": 0
+  },
+  "artifact": {
+    "id": 11320046644,
+    "zipBytes": 5677,
+    "zipSha256": "22e3022bfd750ecfb6b2e7e75af910285988e64e5e58fb96cb26f7c40a201f84"
+  },
+  "originalLog": {
+    "bytes": 129177,
+    "sha256": "7a0ef4a4e7e54bafd667790c66733d00c6567d641c50874d0676693466249d92"
+  },
+  "originalReport": {
+    "bytes": 42485,
+    "sha256": "ab770fbb90b6323757d3094e20f19bd934bb4602f7224e7a57a6fa2995ecbc3f"
+  },
+  "normalAndOldBrowser": "Root independently monitors current old13 normal and secured9 browser; this authoring receipt establishes neither unrelated job evidence nor completed full feature"
+}

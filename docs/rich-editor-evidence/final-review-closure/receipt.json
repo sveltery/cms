@@ -1,0 +1,133 @@
+{
+  "recordedAtUTC": "2026-10-05T01:11:10.103487+00:00",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "reviewedInitialHead": "d87e0bad1d0850baed52db32f80b1bbe9eddba66",
+  "currentRuntimeAndRefactorHead": "85d3b3ba2e687169419ffb1731e42b663720f556",
+  "findingIds": [
+    "RFEFINAL01",
+    "RFEFINAL02"
+  ],
+  "firstMeaningfulNativeTdd": {
+    "testFirst": "f18cfd1a",
+    "whole22": {
+      "oldPass": 17,
+      "newReachedValueReds": 5,
+      "newPass": 0,
+      "preCollectionStops": 0,
+      "unhandledErrors": 0
+    },
+    "receipt": "../final-review-native-first/receipt.json"
+  },
+  "firstFix": {
+    "head": "5e4bf0c0",
+    "whole22": {
+      "pass": 20,
+      "fail": 2,
+      "unhandled": 2
+    },
+    "limit": "Correct owning deletion is reached, but later onChange checks stop on unsupported jsdom Range layout. Complete raw remains ../final-review-native-first-fix."
+  },
+  "jsdomTransport": {
+    "head": "c04da640",
+    "scope": "Actual ProseMirror handleScrollToSelection returns true only in supplemental Native harness; no fake geometry or product/Source change, no browser-layout credit",
+    "whole22": {
+      "pass": 22,
+      "fail": 0,
+      "unhandled": 0
+    }
+  },
+  "additionalActualDiagnostics": {
+    "testFirst": "ebbcc473",
+    "whole24ReportedPass": 24,
+    "unhandledErrors": 4,
+    "commandExit": 1,
+    "rawReceipt": "../ci480-native-diagnostic-first/receipt.json",
+    "noOp": "Real direct Native mounted payload-less plugin fixture/lossless no-op passes. Source cold lazy host waits before lossless data assertions; no fabricated lossless assertion-red credit."
+  },
+  "genuineFixes": [
+    "Alreadyported exactSource setSelectionTextAlignment writes actual cells/CellSelection and refuses mixed selection; toolbar availability now matches same Source rule.",
+    "Embed delete resolves its own actual getPos at activation, focuses/selects/deletes that node; shared guarded dispatch refactor preserves actual moved position and read-only/destroyed state.",
+    "Code popup owns captured DOM/input instances through teardown and suppresses stale focus after closure; ten first secured Source null.remove errors retained.",
+    "Native nonmodal slash positioner/focus boundaries use whole Source CSS to stay outside Tab order; an actual external onGutterReady owner suppresses duplicate Native gutter.",
+    "Official Vite warmup transforms the actual Native graph before first lazy mount; all Source callbacks/mocks/fixtures/clocks remain exact."
+  ],
+  "wholeNative24AfterFix": {
+    "pass": 24,
+    "fail": 0,
+    "unhandled": 0
+  },
+  "meaningfulRefactor": "85d3b3ba shares current owning-node position/editability guard for attribute and delete controls",
+  "wholeNative24AfterRefactor": {
+    "pass": 24,
+    "fail": 0,
+    "unhandled": 0
+  },
+  "actualCheck": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "terminalPackageGates": {
+    "proposalManifest": {
+      "bytes": 7981,
+      "sha256": "482ed5a88ccec13581ff6afa1e8fa8cf59dbceaae2b90d8a47b4ad63fb38d0f0"
+    },
+    "before": {
+      "bytes": 8590,
+      "sha256": "d91306d4a6b23025d4c6cf3fd844a9cace3d4629fd8f6b26c41ee564b207708a",
+      "gitBlob": "278686a83231c1c00af852a28bdd0f6152d09870"
+    },
+    "after": {
+      "bytes": 8879,
+      "sha256": "3aef7f9150de5e28d742ce7c1234be60f48cb31a03ec2d92385771e5cad7e528",
+      "gitBlob": "6d47aba7abc1fc78649f57604a87dc227f73a116",
+      "path": "/tmp/rich104-whole-pure-native-normal-gates-proposal-r1/package.json"
+    },
+    "authorized": "Root standing PM development authorization: own additive terminal FULL Source-family/Native commands may be applied/committed with all oldchain/scripts/deps/lock/CI/deadlines/security preserved; Root specifically confirmed exact1proposal scope.",
+    "oldWholeChainPrefixAndAllScriptsExceptAppendPreserved": true,
+    "packageDataOutsideScriptsIdentical": true,
+    "newEntireWholeGates": "Pure24/206 and actualNative3 files24 callbacks; original13 normal/9 secured and addedSource137 remain whole."
+  },
+  "files": [
+    {
+      "path": "docs/rich-editor-evidence/final-review-closure/check.log",
+      "originalBytes": 209,
+      "originalSha256": "1a9036a92c43a9ae37b653e6a082bef1dde2ef18b3cf7fc080799dc787472e95",
+      "storedBytes": 209,
+      "storedSha256": "1a9036a92c43a9ae37b653e6a082bef1dde2ef18b3cf7fc080799dc787472e95"
+    },
+    {
+      "path": "docs/rich-editor-evidence/final-review-closure/native24-first-fix.log.json",
+      "originalBytes": 702,
+      "originalSha256": "1b2a2f73e1c44834ffa5e93eb34aebdcf86e5c29da4c5de926b8314b1e6bb545",
+      "storedBytes": 816,
+      "storedSha256": "9a5eb79a778fe4d6147f442787fb0bc1e57e9d46003b1aaaaf80215718e2c0af"
+    },
+    {
+      "path": "docs/rich-editor-evidence/final-review-closure/native24-first-fix-report.json",
+      "originalBytes": 9969,
+      "originalSha256": "d725943b7f49db336261227009b567fcee0b78e609a00682266e3b766a0bb311",
+      "storedBytes": 9969,
+      "storedSha256": "d725943b7f49db336261227009b567fcee0b78e609a00682266e3b766a0bb311"
+    },
+    {
+      "path": "docs/rich-editor-evidence/final-review-closure/native24-refactor.log.json",
+      "originalBytes": 716,
+      "originalSha256": "215ad9d031323e07ad95f677d93c41145ec1741620a0a9e6713b7474c827cb98",
+      "storedBytes": 830,
+      "storedSha256": "c3f6ab0e4795bad824dadfcc0994d00610c745d03b509fdccaaa9231eafcb13f"
+    },
+    {
+      "path": "docs/rich-editor-evidence/final-review-closure/native24-refactor-report.json",
+      "originalBytes": 9970,
+      "originalSha256": "4382085c73086a30c9a5e50425b7ca77b8065c39663671b80a97b5d5a2868d4b",
+      "storedBytes": 9970,
+      "storedSha256": "4382085c73086a30c9a5e50425b7ca77b8065c39663671b80a97b5d5a2868d4b"
+    }
+  ],
+  "wholeSource137FirstActual": "137registered133reportedpass4failed+10unhandled/errors/exit1; entire ../ci480-first-reached-authoring retained; current originalwhole137 hosted recheck pending.",
+  "SourceRuntimeCredit": "No blanket whole-green credit while firstSource137 has unhandled errors; current fixed original Source results still pending. New Native value-red/green/refactor evidence does not rewrite original Source causal history.",
+  "allPinnedSource145PlusAdditionalType146": "unchanged, guard required before push",
+  "newDependenciesProvidersSecurityClocksAuthProtectedProbe": "none",
+  "fullFeatureCompleted": false,
+  "next": "Currentfulloriginal13+secured9+Source137+newpure206/Native24 gates, SAMEfresh review closure/configured review/Rootexacthead approval before author expected-head regularmerge."
+}

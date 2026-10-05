@@ -1,0 +1,53 @@
+{
+  "proofs": [
+    {
+      "file": "PortableTextEditor.test.tsx",
+      "originalBytes": 66610,
+      "originalSha256": "87e6c80ec3a6e1e56707bae67728399d35183b422530848873481029c55ff8f9",
+      "bodyExactSuffix": true,
+      "setupPrefixBytes": 250,
+      "barrier": {
+        "actualModule": "tests/helpers/rich-editor/editor-react-bridge.tsx",
+        "timeoutMs": 30000
+      }
+    },
+    {
+      "file": "slash-menu.test.tsx",
+      "originalBytes": 32110,
+      "originalSha256": "40f4e4823087f489c8ad5a4c62179d762d8860cdb08800b211cbc880e10f9b60",
+      "bodyExactSuffix": true,
+      "setupPrefixBytes": 250,
+      "barrier": {
+        "actualModule": "tests/helpers/rich-editor/editor-react-bridge.tsx",
+        "timeoutMs": 30000
+      }
+    },
+    {
+      "file": "iframe-block-editor.test.tsx",
+      "originalBytes": 9734,
+      "originalSha256": "65c1f7d090cb9e47d10e231205492e64c846422d7c8a3f6813363f990a5a6c5e",
+      "bodyExactSuffix": true,
+      "setupPrefixBytes": 0,
+      "barrier": null
+    },
+    {
+      "file": "table-controls.test.tsx",
+      "originalBytes": 26756,
+      "originalSha256": "edc7d404029b8b6d4b7a5517b235a5be4e9bf8652cfd1143f505c36400400525",
+      "bodyExactSuffix": true,
+      "setupPrefixBytes": 0,
+      "barrier": null
+    }
+  ],
+  "originalSourceBytesEdited": false,
+  "actualNativeWarmup": [
+    "tests/helpers/rich-editor/EditorHost.svelte",
+    "src/lib/editor/rich-text/PortableTextEditor.svelte",
+    "src/lib/ui/sections-widgets/SectionPickerModal.svelte",
+    "src/lib/editor/rich-text/CodeEditor.svelte",
+    "tests/helpers/rich-editor/TableControlsHost.svelte"
+  ],
+  "preTransformRequests": false,
+  "sourceOrProductCausalCredit": 0,
+  "hostedResult": "pending"
+}

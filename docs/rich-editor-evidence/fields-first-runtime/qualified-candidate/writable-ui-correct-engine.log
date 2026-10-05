@@ -1,0 +1,29 @@
+$ pnpm build && vitest run --config vitest.writable-editor-native.config.ts --reporter=default --reporter=json --outputFile=/tmp/rich-editor-fields-first-runtime-a11ed580/writable-ui-correct-engine-report.json
+$ vite build
+vite v8.3.2 building ssr environment for production...
+transforming...
+✓ 530 modules transformed.
+✗ Build failed in 685ms
+error during build:
+Build failed with 1 error:
+
+[plugin vite-plugin-svelte:compile] /workspace/cms-full-rich-fields-editor/src/lib/editor/fields/FieldHost.svelte:94:59
+RolldownError: /workspace/cms-full-rich-fields-editor/src/lib/editor/fields/FieldHost.svelte:94:59 Unexpected token
+https://svelte.dev/e/js_parse_error
+ 92 |    {:else if kind === 'json'}
+ 93 |      <label for={id}>{field.label}{required ? ' *' : ''}</label>
+ 94 |      <textarea {id} value={jsonText} rows="8" placeholder="{}" required={required} disabled={readOnly} class="json"
+                                                                  ^
+ 95 |        oninput={event => { jsonText = event.currentTarget.value; jsonError = undefined; }} onblur={jsonBlur}
+ 96 |        aria-invalid={Boolean(jsonError) || undefined} aria-describedby={jsonError ? `${id}-error` : undefined}></textarea>
+    at aggregateBindingErrorsIntoJsError (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/rolldown@1.2.12/node_modules/rolldown/dist/shared/error-Bj1xBdEY.mjs:49:18)
+    at unwrapBindingResult (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/rolldown@1.2.12/node_modules/rolldown/dist/shared/error-Bj1xBdEY.mjs:19:128)
+    at #build (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/rolldown@1.2.12/node_modules/rolldown/dist/shared/rolldown-jmAeXo_f.mjs:133:34)
+    at async buildEnvironment (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:34490:66)
+    at async Object.build (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:34911:19)
+    at async Object.buildApp (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:34908:153)
+    at async CAC.<anonymous> (file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/vite@8.3.2_@types+node@24.19.0_esbuild@0.28.1_jiti@2.7.0/node_modules/vite/dist/node/cli.js:780:3) {
+  errors: [Getter/Setter]
+}
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Command failed with exit code 1.

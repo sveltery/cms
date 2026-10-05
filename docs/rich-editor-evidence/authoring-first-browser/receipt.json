@@ -1,0 +1,47 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "actualTestFirstTransportCommit": "17680715",
+  "actualWholeConfiguredCommand": "node node_modules/vitest/vitest.mjs run --config vitest.rich-editor-browser.config.ts --reporter=default --reporter=json --outputFile=docs/rich-editor-evidence/authoring-first-browser/report.json",
+  "exit": 1,
+  "wholeStaticSourceScope": {
+    "editor": 90,
+    "slash": 44,
+    "footer": 2,
+    "total": 136
+  },
+  "registeredCallbacks": 0,
+  "reachedReadinessMatchers": 0,
+  "reachedValueMatchers": 0,
+  "sourceCausalRedCredit": 0,
+  "sourceGreenCredit": 0,
+  "infraError": "official Playwright Chromium1243 absent at configured /home/agent/.cache/ms-playwright",
+  "preexpectImportScanStops": [
+    "actual Native EditorFooter.svelte absent",
+    "actual Native PortableTextEditor.svelte absent"
+  ],
+  "misleadingEmptyRawJsonStatus": {
+    "success": true,
+    "numPassedTestSuites": 3,
+    "numTotalTests": 0,
+    "interpretation": "raw reporter empty suites are NOT callback/assertion passes; process exit1 and unhandled official browser launch error"
+  },
+  "sourceOriginalBodiesFixturesCallbacksMocksClocksUnchanged": true,
+  "actualRemainingRepeater6AndProtected4E2E": "whole preserved, unexecuted0 pending real provider qualification",
+  "files": {
+    "report.json": {
+      "bytes": 1210,
+      "sha256": "8c20e5b033f634a4c0c057410bc57b325a4bcba5e2d0bf88656d1e33f5bbae27",
+      "gitBlob": "17bf1f6f69bc659f9f2cfc7851aeddec838c738b"
+    },
+    "run.log.json": {
+      "bytes": 21702,
+      "sha256": "7876740ce399ce7ccbf4fbae8e4a75f665f4f4a94961882aae967e68e0072801",
+      "gitBlob": "fb3bea6d22dc152d3a7baba0874bf7bd1665e3d7"
+    },
+    "run.exit": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "gitBlob": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d"
+    }
+  }
+}

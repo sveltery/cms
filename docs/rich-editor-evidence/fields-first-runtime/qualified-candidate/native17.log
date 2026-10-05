@@ -1,0 +1,204 @@
+
+ RUN  v4.1.10 /workspace/cms-full-rich-fields-editor
+
+ ❯ tests/rich-editor-native/fields.test.ts (9 tests | 9 failed) 99ms
+     × emits real numeric values and preserves the Source empty-number coercion to zero 36ms
+     × emits a boolean from a real checked control 13ms
+     × emits selected option values and keeps their visible labels 11ms
+     × emits an ordered multi-select list without deleting existing selections 8ms
+     × retains invalid JSON locally and emits typed JSON only after successful blur parsing 6ms
+     × trims URL values on blur and reports invalid values without changing their data 6ms
+     × reuses the real landed datetime control with full ISO storage values 5ms
+     × keeps a malformed list value unchanged until an explicit replacement 6ms
+     × disables value edits for the existing read-only editor contract 6ms
+ ✓ tests/rich-editor-native/converters.test.ts (8 tests) 142ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > emits real numeric values and preserves the Source empty-number coercion to zero
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:29:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > emits a boolean from a real checked control
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:35:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > emits selected option values and keeps their visible labels
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:40:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > emits an ordered multi-select list without deleting existing selections
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:47:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > retains invalid JSON locally and emits typed JSON only after successful blur parsing
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:53:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > trims URL values on blur and reports invalid values without changing their data
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:63:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > reuses the real landed datetime control with full ISO storage values
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:71:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > keeps a malformed list value unchanged until an explicit replacement
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:78:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > disables value edits for the existing read-only editor contract
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:84:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  9 failed | 8 passed (17)
+   Start at  15:53:12
+   Duration  2.29s (transform 793ms, setup 0ms, import 825ms, tests 241ms, environment 995ms)
+
+JSON report written to /tmp/rich-editor-fields-first-runtime-a11ed580/native17-report.json

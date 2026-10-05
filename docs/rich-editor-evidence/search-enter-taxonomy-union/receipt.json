@@ -1,0 +1,83 @@
+{
+  "recordedAtUTC": "2026-10-05T02:18:07.475440+00:00",
+  "reviewFinding": "RFEFORMFINAL01",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "reviewReceipt": {
+    "path": "/tmp/rich104-4d37-configured-independent-semantic-closure-review.json",
+    "bytes": 8966,
+    "sha256": "3ce037d61d256f31b3e39a6d97425a500989e2bb77167fa02762d8c9425d5765"
+  },
+  "SourceWitness": "Whole unchanged SectionPickerModal.tsx delegates Kumo Dialog, whose actual installed Source-version dialog implementation renders BaseUI Portal outside enclosing Native form. Native showModal retains form ownership; local Enter default prevention restores picker-local search behavior.",
+  "actualTdd": {
+    "firstCommit": "a33dfaf4",
+    "fixCommit": "343d0fa4",
+    "refactorCommit": "ab9ad84d",
+    "newGenuineNativeValueReds": 1,
+    "originalSourceAssertionRedCredit": 0,
+    "wholeRuns": [
+      {
+        "name": "native35-search-enter-first-red",
+        "registered": 35,
+        "passed": 34,
+        "failed": 1,
+        "unhandled": 0,
+        "raw": "docs/rich-editor-evidence/search-enter-taxonomy-union/native35-search-enter-first-red.log.json",
+        "decodedBytes": 3000,
+        "decodedSha256": "7e26f49d41fa3c025038bab72006724053e7f6f44b5799280c59d0edbf6be815",
+        "report": "docs/rich-editor-evidence/search-enter-taxonomy-union/native35-search-enter-first-red-report.json",
+        "reportBytes": 15476,
+        "reportSha256": "e28e7c7f931a81df5100209ff9dca10f1f45a117725103957ea76a7011f26528"
+      },
+      {
+        "name": "native35-search-enter-first-fix",
+        "registered": 35,
+        "passed": 35,
+        "failed": 0,
+        "unhandled": 0,
+        "raw": "docs/rich-editor-evidence/search-enter-taxonomy-union/native35-search-enter-first-fix.log.json",
+        "decodedBytes": 1288,
+        "decodedSha256": "b405f93685dd6e2e019b280841e5cf7edadf5939261d15166c9c612c3000b94b",
+        "report": "docs/rich-editor-evidence/search-enter-taxonomy-union/native35-search-enter-first-fix-report.json",
+        "reportBytes": 15143,
+        "reportSha256": "21484dc8451412e9b5ef205756bc5592b7d44febc5eb026296272d7c0817f8a2"
+      },
+      {
+        "name": "native35-search-enter-refactor",
+        "registered": 35,
+        "passed": 35,
+        "failed": 0,
+        "unhandled": 0,
+        "raw": "docs/rich-editor-evidence/search-enter-taxonomy-union/native35-search-enter-refactor.log.json",
+        "decodedBytes": 1502,
+        "decodedSha256": "485c5e567cd6150c15a1290a9cde644a36dd5177cd5b174b4344370a3d9ffd7b",
+        "report": "docs/rich-editor-evidence/search-enter-taxonomy-union/native35-search-enter-refactor-report.json",
+        "reportBytes": 15152,
+        "reportSha256": "05f28e82201b3b50bf5f18accbfc6cc35aa25eec96a4a655f3161bfbfb6a011a"
+      }
+    ]
+  },
+  "nativeMeaningfulControl": "Actual mounted production picker search is genuinely owned by the same enclosing DOM form as its explicit Save control. A real cancelable Enter keyboard event first reports defaultPreventedfalse, then true after the repair. The unchanged real300ms debounce reaches the existing Native read API callback with Reusable; the dialog remains open and explicit real Save still emits submit.",
+  "creditLimits": "@testing-library user-event/dom are unavailable; jsdom does not execute browser implicit-submit default. No synthetic submit is fabricated as evidence of pressing Enter. This records actual keyboard default cancellation, real form ownership/search/Save integration, not a newly run browser implicit-submit or original Source callback. Existing dialog/scroll jsdom presentation adaptations remain disclosed.",
+  "union": {
+    "actualPublishedMain": "d76016cb022269aa4a9127f139728e6213f7c785",
+    "regularMerge": "d21f14d352ea9c177efe2e0cf66980552dc16b02",
+    "tree": "dbc272d492bddf09ebcc514d71be648864ab788e",
+    "parents": [
+      "ab9ad84d1149eec38e915b61fb500234f1f51a2a",
+      "d76016cb022269aa4a9127f139728e6213f7c785"
+    ],
+    "conflicts": [
+      "package.json",
+      "pnpm-lock.yaml",
+      "parity/emdash/compatibility.md"
+    ],
+    "preservation": "Every incoming/owned script/dependency/application importer/package/snapshot record retained; wholeSourcechain oldprefix +actualpublishedTaxonomywholegate +ownedfullpure206/Native35. Entire actual incoming compatibilityprefix and entire ownedRich post-C3suffix; every original C3line retained. All frozen15/15 manager records byte-exact4556byte document.617applicationpackages632snapshots.",
+    "frozenInstall": "pending",
+    "currentFullGates": "pending",
+    "freshAndConfiguredCurrentClosure": "pending",
+    "rootExactMergeApproval": "pending"
+  },
+  "all146SourceAuthoritiesAndOriginalClocks": "unchanged",
+  "old34NativeCallbacksAndExpectations": "unchanged",
+  "fullEditorFeature": "incomplete"
+}

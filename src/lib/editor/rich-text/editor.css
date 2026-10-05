@@ -1,0 +1,47 @@
+/* Production Native editor CSS. Existing real Kumo standalone output supplies
+ * the actual token/utility framework; whole pinned ordinary editor rules follow.
+ * This is an explicit Native stylesheet adaptation, not Source dist generation. */
+@import '@cloudflare/kumo/styles/standalone';
+@import './source-editor.css';
+
+.rich-editor { position: relative; min-width: 0; color: var(--text-color-kumo-default); font-family: var(--font-sans, system-ui, sans-serif); }
+.rich-editor .editor-surface { position: relative; min-width: 0; overflow-wrap: anywhere; border-radius: .5rem; }
+.rich-editor .bg-kumo-base { background: var(--color-kumo-base); }
+.rich-editor .ProseMirror { box-sizing: border-box; min-height: 200px; width: 100%; max-width: calc(75ch + 8rem); margin-inline: auto; padding-block: 1rem; padding-inline: 3.5rem; display: flow-root; outline: none; white-space: pre-wrap; overflow-wrap: break-word; }
+@media (min-width: 640px) { .rich-editor .ProseMirror { padding-inline: 4rem; } }
+@container (max-width: 30rem) { .rich-editor .ProseMirror { padding-inline: 1rem; } }
+.rich-editor .ProseMirror p { line-height: 1.5; }
+.rich-editor .ProseMirror h1 { font-size: 2em; font-weight: 700; }
+.rich-editor .ProseMirror h2 { font-size: 1.5em; font-weight: 700; }
+.rich-editor .ProseMirror h3 { font-size: 1.25em; font-weight: 600; }
+.rich-editor .ProseMirror :is(h4, h5, h6) { font-size: 1em; font-weight: 600; }
+.rich-editor .ProseMirror ul { list-style: disc; padding-inline-start: 1.5rem; }
+.rich-editor .ProseMirror ol { list-style: decimal; padding-inline-start: 1.5rem; }
+.rich-editor .ProseMirror blockquote { border-inline-start: .25rem solid var(--color-kumo-line); margin-inline: 0; padding-inline-start: 1rem; }
+.rich-editor .ProseMirror :not(pre) > code { padding: .125rem .25rem; border-radius: .25rem; background: var(--color-kumo-tint); font-family: var(--font-mono, monospace); }
+.rich-editor .ProseMirror pre { border-radius: .5rem; padding: .875rem 1rem; overflow-x: auto; font-size: .875rem; line-height: 1.6; }
+.rich-editor .ProseMirror img { max-inline-size: 100%; block-size: auto; }
+.rich-editor .formatting-toolbar { display: flex; flex-wrap: wrap; gap: .25rem; padding: .5rem; border-block-end: 1px solid var(--color-kumo-line); }
+.rich-editor button { cursor: pointer; font: inherit; }
+.rich-editor .formatting-toolbar > button { min-height: 2rem; padding-inline: .5rem; border: 0; border-radius: .375rem; background: transparent; }
+.rich-editor button:disabled { cursor: default; opacity: .45; }
+.rich-editor :is(.formatting-toolbar > button:hover:not(:disabled), .formatting-toolbar > button[aria-pressed='true']) { background: var(--color-kumo-tint); }
+.rich-editor :is(button, input):focus-visible, .slash-command-menu button:focus-visible { outline: 2px solid var(--color-kumo-brand); outline-offset: 2px; }
+.rich-editor :is(.heading-menu, .table-menu, .link-form) { padding: .5rem; border: 1px solid var(--color-kumo-line); border-radius: .5rem; background: var(--color-kumo-base); }
+.rich-editor :is(.heading-menu, .table-menu) button { display: block; width: 100%; text-align: start; padding: .375rem .5rem; }
+.rich-editor .link-form { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.rich-editor .link-form input { padding: .375rem; border: 1px solid var(--color-kumo-line); border-radius: .375rem; }
+.rich-editor .editor-footer { display: flex; flex-wrap: wrap; gap: 1rem; padding: .5rem 1rem; border-block-start: 1px solid var(--color-kumo-line); font-size: .75rem; color: var(--text-color-kumo-subtle); }
+.rich-editor .gutter-insert { position: absolute; inset-inline-start: .5rem; inset-block-start: 4.5rem; width: 2rem; height: 2rem; border-radius: .375rem; background: var(--color-kumo-base); border: 1px solid var(--color-kumo-line); }
+.rich-editor .inline-bubble { display: flex; gap: .25rem; width: max-content; padding: .25rem; border: 1px solid var(--color-kumo-line); border-radius: .375rem; background: var(--color-kumo-base); }
+.rich-editor .rich-error { padding: 1rem; border: 1px solid var(--color-kumo-danger); border-radius: .5rem; }
+.slash-command-menu { position: fixed; z-index: 100; min-width: 18rem; max-width: min(24rem, calc(100vw - 1rem)); padding: .375rem; border: 1px solid var(--color-kumo-line); border-radius: .5rem; background: var(--color-kumo-base); color: var(--text-color-kumo-default); box-shadow: 0 .5rem 1.5rem #0002; }
+.slash-command-menu .slash-scroll { max-height: 320px; overflow-y: auto; overscroll-behavior: contain; }
+.slash-command-menu .slash-scroll > button { display: flex; width: 100%; gap: .75rem; align-items: center; padding: .5rem .625rem; border: 0; border-radius: .375rem; background: transparent; text-align: start; cursor: pointer; }
+.slash-command-menu .slash-scroll > button.bg-kumo-interact { background: var(--color-kumo-interact); }
+.slash-command-menu .command-text { display: flex; flex-direction: column; }
+.slash-command-menu .font-medium { font-weight: 500; }
+.slash-command-menu .text-xs { font-size: .75rem; color: var(--text-color-kumo-subtle); }
+.rich-editor .emdash-code-block-node { position: relative; margin-block: 1rem; }
+.rich-editor .sr-only, .slash-command-menu .sr-only { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (forced-colors: active) { .slash-command-menu .slash-scroll > button[aria-current='true'] { outline: 2px solid Highlight; outline-offset: -2px; } }

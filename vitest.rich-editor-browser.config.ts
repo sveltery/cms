@@ -1,0 +1,100 @@
+import { defineConfig } from 'vitest/config';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
+import { playwright } from '@vitest/browser-playwright';
+import { transformAsync } from '@babel/core';
+import { makeConfig } from '@lingui/conf';
+import { dirname, resolve } from 'node:path';
+const root = import.meta.dirname;
+const source = resolve(root, 'parity/emdash/rich-editor-source/packages/admin');
+const helper = resolve(root, 'tests/helpers/rich-editor');
+const native = resolve(root, 'src/lib/editor/rich-text');
+const linguiConfig = makeConfig({ locales: ['en'], sourceLocale: 'en', catalogs: [] });
+export default defineConfig({
+  plugins: [{
+    name: 'whole-rich-editor-source-native-transport', enforce: 'pre',
+    resolveId(id, importer) {
+      // The actual SvelteKit config has its default empty base; only this
+      // framework value is adapted. Original mocked Source providers stay intact.
+      if (id === '$app/paths') return '\0rich-editor-native-default-base';
+      if (!importer || !id.startsWith('.')) return;
+      const target = resolve(dirname(importer.split('?')[0]), id).replace(/\.(tsx?|jsx?)$/, '');
+      if (target === resolve(source, 'src/components/PortableTextEditor')) return resolve(helper, 'react-bridge.tsx');
+      if (target === resolve(source, 'src/components/editor/ImageNode')) return resolve(native, 'image-node.ts');
+      if (target === resolve(source, 'src/components/editor/PluginBlockNode')) return resolve(native, 'plugin-node.ts');
+      if (target === resolve(source, 'src/components/editor/TableActions')) return resolve(native, 'TableActions.ts');
+      if (target === resolve(source, 'src/components/editor/TableExtensions')) return resolve(native, 'TableExtensions.ts');
+      if (target === resolve(source, 'src/components/editor/TableControls')) return resolve(helper, 'table-react-bridge.tsx');
+      if (target === resolve(source, 'dist/styles.css') || target === resolve(source, 'src/styles.css')) return resolve(native, 'editor.css');
+    },
+    load(id) { if (id === '\0rich-editor-native-default-base') return "export const base = '';"; },
+    async transform(code, id) {
+      if (!id.startsWith(source) || !/\.[jt]sx?(?:\?|$)/.test(id)) return;
+      const filename = id.split('?')[0];
+      const original = code;
+      // Vitest still hoists every original Source mock before import. Only
+      // these two families mock the heavy provider graph; the footer and all
+      // other complete families retain their original lazy graph/lifetimes.
+      if (['PortableTextEditor.test.tsx', 'slash-menu.test.tsx'].some(name => filename === resolve(source, 'tests/editor', name))) {
+        code = `import { beforeAll as richEditorBeforeAll } from 'vitest';\nimport { preloadNativeEditorBridge } from ${JSON.stringify(resolve(helper, 'react-bridge.tsx'))};\nrichEditorBeforeAll(() => preloadNativeEditorBridge(), 30_000);\n${code}`;
+      }
+      if (!code.includes('@lingui/')) return code === original ? undefined : { code, map: null };
+      const result = await transformAsync(code, {
+        filename: id.split('?')[0], babelrc: false, configFile: false,
+        parserOpts: { plugins: ['typescript', 'jsx'] },
+        plugins: [['@lingui/babel-plugin-lingui-macro', { stripMessageField: false, linguiConfig }]],
+        sourceMaps: true, inputSourceMap: false,
+        caller: { name: 'whole-rich-editor-native-test-transport', supportsStaticESM: true },
+      });
+      return result?.code ? { code: result.code, map: result.map } : undefined;
+    }
+  }, svelte({ configFile: false })],
+  resolve: { alias: { $lib: resolve(root, 'src/lib') }, conditions: ['browser'] },
+  // Transform the real Native Svelte graph before the first lazy React mount;
+  // original Source readiness clocks and every callback remain unchanged.
+  server: {
+    // Original Source factories own these mock-only provider modules. Avoid
+    // eager requests for their unused graphs; actual imports still transform
+    // and execute normally, and the explicit genuine Native warmup is retained.
+    preTransformRequests: false,
+    warmup: { clientFiles: ['tests/helpers/rich-editor/EditorHost.svelte', 'src/lib/editor/rich-text/PortableTextEditor.svelte', 'src/lib/ui/sections-widgets/SectionPickerModal.svelte', 'src/lib/editor/rich-text/CodeEditor.svelte', 'tests/helpers/rich-editor/TableControlsHost.svelte'] }
+  },
+  // The whole Source families retain original provider mocks. Do not scan those
+  // mocked module bodies: their unmounted React providers are not prerequisites
+  // of the Native editor. Prebundle the actual harness/authoring graph before
+  // setup so lazy editor loading cannot reload an active Vitest runner.
+  optimizeDeps: {
+    noDiscovery: true,
+    include: [
+      'react', 'react-dom', 'react-dom/client', 'react/jsx-runtime', 'react/jsx-dev-runtime',
+      'vitest-browser-react', '@testing-library/react', '@lingui/core', '@lingui/react', '@tanstack/react-query',
+      '@tiptap/core', '@tiptap/react', '@tiptap/starter-kit', '@tiptap/suggestion',
+      '@tiptap/pm/model', '@tiptap/pm/state', '@tiptap/pm/view', '@tiptap/pm/tables', '@tiptap/pm/history', '@tiptap/pm/transform',
+      '@tiptap/extension-character-count', '@tiptap/extension-code', '@tiptap/extension-code-block-lowlight',
+      '@tiptap/extension-focus', '@tiptap/extension-link', '@tiptap/extension-list', '@tiptap/extension-placeholder',
+      '@tiptap/extension-subscript', '@tiptap/extension-superscript', '@tiptap/extension-text-align',
+      '@tiptap/extension-typography', '@tiptap/extension-table', '@tiptap/extension-table-cell',
+      '@tiptap/extension-table-header', '@tiptap/extension-table-row',
+      'lowlight', 'highlight.js/lib/languages/dockerfile',
+      '@codemirror/autocomplete', '@codemirror/commands', '@codemirror/lang-css', '@codemirror/lang-html',
+      '@codemirror/lang-javascript', '@codemirror/language', '@codemirror/state', '@codemirror/view', '@lezer/highlight'
+    ]
+  },
+  oxc: { jsx: { runtime: 'automatic' } },
+  test: {
+    fileParallelism: false,
+    setupFiles: [resolve(source, 'tests/setup.ts')],
+    include: [
+      'parity/emdash/rich-editor-source/packages/admin/tests/editor/PortableTextEditor.test.tsx',
+      'parity/emdash/rich-editor-source/packages/admin/tests/editor/slash-menu.test.tsx',
+      'parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.footer.test.tsx',
+      'parity/emdash/rich-editor-source/packages/admin/tests/editor/iframe-block-editor.test.tsx',
+      'parity/emdash/rich-editor-source/packages/admin/tests/editor/table-controls.test.tsx',
+      'tests/rich-editor-browser/form-keyboard.test.ts'
+    ],
+    browser: {
+      enabled: true, headless: true,
+      provider: playwright({ launchOptions: { chromiumSandbox: true, timeout: 30_000 }, contextOptions: { timezoneId: 'America/New_York' } }),
+      instances: [{ browser: 'chromium' }], viewport: { width: 1280, height: 800 }
+    }
+  }
+});

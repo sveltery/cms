@@ -1,0 +1,323 @@
+
+ RUN  v4.1.10 /workspace/cms-full-rich-fields-editor
+
+ ❯ parity/emdash/rich-editor-source/packages/admin/tests/lib/portable-text-table.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/client/portable-text.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.list.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.table.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/gallery-round-trip.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/table-round-trip.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/list-nesting.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/numbered-list-continuity.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/custom-block-round-trip.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-link.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/content/portable-text-lists.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/admin/tests/pt-gallery-converters.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/html-block-round-trip.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-dimensions.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/text-align-round-trip.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/unsupported-portable-text-marks.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/blockquote-grouping.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-missing-asset.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/linked-code-round-trip.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-alignment.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/iframe-round-trip.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-seeded-media.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/admin/tests/pt-image-converters.test.ts (0 test)
+ ❯ parity/emdash/rich-editor-source/packages/admin/tests/editor/PortableTextEditor.code-block.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 24 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/admin/tests/pt-gallery-converters.test.ts [ parity/emdash/rich-editor-source/packages/admin/tests/pt-gallery-converters.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/admin-converters.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/admin/tests/pt-gallery-converters.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/admin/tests/pt-gallery-converters.test.ts:10:1
+      8| import { describe, it, expect } from "vitest";
+      9|
+     10| import {
+       | ^
+     11|  _portableTextToProsemirror,
+     12|  _prosemirrorToPortableText,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/admin/tests/pt-image-converters.test.ts [ parity/emdash/rich-editor-source/packages/admin/tests/pt-image-converters.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/admin-converters.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/admin/tests/pt-image-converters.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/admin/tests/pt-image-converters.test.ts:3:1
+      1| import { describe, it, expect } from "vitest";
+      2|
+      3| import {
+       | ^
+      4|  _portableTextToProsemirror,
+      5|  _prosemirrorToPortableText,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.list.test.ts [ parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.list.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/admin-converters.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.list.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.list.test.ts:3:1
+      1| import { describe, it, expect } from "vitest";
+      2|
+      3| import {
+       | ^
+      4|  _portableTextToProsemirror,
+      5|  _prosemirrorToPortableText,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.table.test.ts [ parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.table.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/admin-converters.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.table.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.table.test.ts:3:1
+      1| import { describe, it, expect } from "vitest";
+      2|
+      3| import {
+       | ^
+      4|  _portableTextToProsemirror,
+      5|  _prosemirrorToPortableText,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/admin/tests/editor/PortableTextEditor.code-block.test.ts [ parity/emdash/rich-editor-source/packages/admin/tests/editor/PortableTextEditor.code-block.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/admin-converters.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/admin/tests/editor/PortableTextEditor.code-block.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/admin/tests/editor/PortableTextEditor.code-block.test.ts:3:1
+      1| import { describe, expect, it } from "vitest";
+      2|
+      3| import {
+       | ^
+      4|  _portableTextToProsemirror as portableTextToProsemirror,
+      5|  _prosemirrorToPortableText as prosemirrorToPortableText,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/admin/tests/lib/portable-text-table.test.ts [ parity/emdash/rich-editor-source/packages/admin/tests/lib/portable-text-table.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/portable-text-table.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/admin/tests/lib/portable-text-table.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/admin/tests/lib/portable-text-table.test.ts:3:1
+      1| import { describe, expect, it, vi } from "vitest";
+      2|
+      3| import {
+       | ^
+      4|  MAX_TABLE_REPAIRED_SLOTS,
+      5|  UnsafePortableTextTableError,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/client/portable-text.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/client/portable-text.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/client.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/client/portable-text.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/client/portable-text.test.ts:4:1
+      2|
+      3| import type { PortableTextBlock, FieldSchema } from "../../../src/clie…
+      4| import {
+       | ^
+      5|  portableTextToMarkdown,
+      6|  markdownToPortableText,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/content/portable-text-lists.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/content/portable-text-lists.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/portable-text-lists.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/content/portable-text-lists.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/content/portable-text-lists.test.ts:3:1
+      1| import { describe, expect, it } from "vitest";
+      2|
+      3| import {
+       | ^
+      4|  buildPortableTextListTree,
+      5|  clonePortableTextValue,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/blockquote-grouping.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/blockquote-grouping.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/blockquote-grouping.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/blockquote-grouping.test.ts:14:1
+     12| import { describe, it, expect } from "vitest";
+     13|
+     14| import { portableTextToProsemirror } from "../../../src/content/conver…
+       | ^
+     15| import { prosemirrorToPortableText } from "../../../src/content/conver…
+     16| import type {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/custom-block-round-trip.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/custom-block-round-trip.test.ts ]
+Error: Cannot find package '@tiptap/core' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/custom-block-round-trip.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/custom-block-round-trip.test.ts:1:1
+      1| import { getSchema } from "@tiptap/core";
+       | ^
+      2| import StarterKit from "@tiptap/starter-kit";
+      3| import { describe, expect, it } from "vitest";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/gallery-round-trip.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/gallery-round-trip.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/gallery-round-trip.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/gallery-round-trip.test.ts:3:1
+      1| import { describe, it, expect } from "vitest";
+      2|
+      3| import { portableTextToProsemirror } from "../../../src/content/conver…
+       | ^
+      4| import { prosemirrorToPortableText } from "../../../src/content/conver…
+      5| import type { PortableTextGalleryBlock } from "../../../src/content/co…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/html-block-round-trip.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/html-block-round-trip.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/html-block-round-trip.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/html-block-round-trip.test.ts:3:1
+      1| import { describe, it, expect } from "vitest";
+      2|
+      3| import { portableTextToProsemirror } from "../../../src/content/conver…
+       | ^
+      4| import { prosemirrorToPortableText } from "../../../src/content/conver…
+      5| import type { PortableTextHtmlBlock } from "../../../src/content/conve…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/iframe-round-trip.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/iframe-round-trip.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/iframe-round-trip.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/iframe-round-trip.test.ts:3:1
+      1| import { describe, expect, it } from "vitest";
+      2|
+      3| import { portableTextToProsemirror } from "../../../src/content/conver…
+       | ^
+      4| import { prosemirrorToPortableText } from "../../../src/content/conver…
+      5| import type { PortableTextIframeBlock } from "../../../src/content/con…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-alignment.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-alignment.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-alignment.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-alignment.test.ts:3:1
+      1| import { describe, expect, it } from "vitest";
+      2|
+      3| import { portableTextToProsemirror } from "../../../src/content/conver…
+       | ^
+      4| import { prosemirrorToPortableText } from "../../../src/content/conver…
+      5|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-dimensions.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-dimensions.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-dimensions.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-dimensions.test.ts:3:1
+      1| import { describe, it, expect } from "vitest";
+      2|
+      3| import { portableTextToProsemirror } from "../../../src/content/conver…
+       | ^
+      4| import { prosemirrorToPortableText } from "../../../src/content/conver…
+      5| import type { PortableTextImageBlock } from "../../../src/content/conv…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-link.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-link.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/converters/image-link.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-link.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-link.test.ts:3:1
+      1| import { describe, it, expect } from "vitest";
+      2|
+      3| import { normalizeImageLink } from "../../../src/content/converters/im…
+       | ^
+      4| import { portableTextToProsemirror } from "../../../src/content/conver…
+      5| import { prosemirrorToPortableText } from "../../../src/content/conver…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-missing-asset.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-missing-asset.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-missing-asset.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-missing-asset.test.ts:3:1
+      1| import { describe, it, expect } from "vitest";
+      2|
+      3| import { portableTextToProsemirror } from "../../../src/content/conver…
+       | ^
+      4| import type { PortableTextBlock } from "../../../src/content/converter…
+      5|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-seeded-media.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-seeded-media.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-seeded-media.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/image-seeded-media.test.ts:3:1
+      1| import { describe, it, expect } from "vitest";
+      2|
+      3| import { portableTextToProsemirror } from "../../../src/content/conver…
+       | ^
+      4| import { prosemirrorToPortableText } from "../../../src/content/conver…
+      5| import type { PortableTextBlock } from "../../../src/content/converter…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/linked-code-round-trip.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/linked-code-round-trip.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/linked-code-round-trip.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/linked-code-round-trip.test.ts:3:1
+      1| import { describe, it, expect } from "vitest";
+      2|
+      3| import { portableTextToProsemirror } from "../../../src/content/conver…
+       | ^
+      4| import { prosemirrorToPortableText } from "../../../src/content/conver…
+      5| import type {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/list-nesting.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/list-nesting.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/list-nesting.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/list-nesting.test.ts:3:1
+      1| import { describe, it, expect } from "vitest";
+      2|
+      3| import { portableTextToProsemirror } from "../../../src/content/conver…
+       | ^
+      4| import { prosemirrorToPortableText } from "../../../src/content/conver…
+      5| import type { PortableTextTextBlock } from "../../../src/content/conve…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/numbered-list-continuity.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/numbered-list-continuity.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/inline-converters.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/numbered-list-continuity.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/numbered-list-continuity.test.ts:3:1
+      1| import { describe, expect, it } from "vitest";
+      2|
+      3| import { _portableTextToPM as inlinePortableTextToPM } from "../../../…
+       | ^
+      4| import {
+      5|  MAX_ORDERED_LIST_START,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/table-round-trip.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/table-round-trip.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/table-round-trip.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/table-round-trip.test.ts:3:1
+      1| import { describe, expect, it } from "vitest";
+      2|
+      3| import { portableTextToProsemirror } from "../../../src/content/conver…
+       | ^
+      4| import { prosemirrorToPortableText } from "../../../src/content/conver…
+      5| import type {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/text-align-round-trip.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/text-align-round-trip.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/text-align-round-trip.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/text-align-round-trip.test.ts:3:1
+      1| import { describe, it, expect } from "vitest";
+      2|
+      3| import { portableTextToProsemirror } from "../../../src/content/conver…
+       | ^
+      4| import { prosemirrorToPortableText } from "../../../src/content/conver…
+      5| import type { PortableTextTextBlock } from "../../../src/content/conve…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/24]⎯
+
+ FAIL  parity/emdash/rich-editor-source/packages/core/tests/unit/converters/unsupported-portable-text-marks.test.ts [ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/unsupported-portable-text-marks.test.ts ]
+Error: Cannot find module '/src/lib/editor/portable-text/converters/portable-text-to-prosemirror.ts' imported from /workspace/cms-full-rich-fields-editor/parity/emdash/rich-editor-source/packages/core/tests/unit/converters/unsupported-portable-text-marks.test.ts
+ ❯ parity/emdash/rich-editor-source/packages/core/tests/unit/converters/unsupported-portable-text-marks.test.ts:3:1
+      1| import { describe, expect, it } from "vitest";
+      2|
+      3| import { portableTextToProsemirror } from "../../../src/content/conver…
+       | ^
+      4| import { prosemirrorToPortableText } from "../../../src/content/conver…
+      5| import type {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/24]⎯
+
+
+ Test Files  24 failed (24)
+      Tests  no tests
+   Start at  13:29:08
+   Duration  3.62s (transform 242ms, setup 0ms, import 0ms, tests 0ms, environment 2ms)
+
+JSON report written to /tmp/rich-editor-first-baseline-70152ee0/source24-report.json

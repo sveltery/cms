@@ -1,0 +1,90 @@
+{
+  "recordedAtUTC": "2026-10-05T02:12:54.628152+00:00",
+  "base": "c3d135a6f20e4319ee07eebb0f9009b57f2985f9",
+  "actualIncoming": "d76016cb022269aa4a9127f139728e6213f7c785",
+  "ownedBefore": "ab9ad84d1149eec38e915b61fb500234f1f51a2a",
+  "vectors": {
+    "c3d135a6f20e4319ee07eebb0f9009b57f2985f9": {
+      "package.json": {
+        "bytes": 7694,
+        "sha256": "00c7ab6987c9fa0e0b6a38eea351d886387c4d8792a20d11c4123cee114ad523"
+      },
+      "pnpm-lock.yaml": {
+        "bytes": 183240,
+        "sha256": "21b3237771a620dd0c0d81a7eafbb86c18d02e5f50c2e214550782e54d80d7e9"
+      },
+      "parity/emdash/compatibility.md": {
+        "bytes": 454960,
+        "sha256": "89b249a11bc02034eab3bedfb4ae4b3067f73b958f246ecb68026815001d6498"
+      },
+      ".github/workflows/ci.yml": {
+        "bytes": 2854,
+        "sha256": "d8fccd1e4f657de0121544eb7ed87dc75be1468620db6bf2bcbf85c3aee8603a"
+      },
+      "scripts/bootstrap.sh": {
+        "bytes": 1465,
+        "sha256": "2ee61e1f3c84c6dfbbf69aeb732e3615781e4e2cfb312011d23fb240a75592a8"
+      }
+    },
+    "d76016cb022269aa4a9127f139728e6213f7c785": {
+      "package.json": {
+        "bytes": 8516,
+        "sha256": "31e8758c16a6ac270d275df0c901a1078396e2cdc87d364750a831dba99a5e6d"
+      },
+      "pnpm-lock.yaml": {
+        "bytes": 186606,
+        "sha256": "ac4f4b6068d7c9308d42d6d94d1a8a653838b7b75ab988029da14003ab0f756a"
+      },
+      "parity/emdash/compatibility.md": {
+        "bytes": 482363,
+        "sha256": "f27fa2a9a751fc872445b4208a7a398ba7b98f2463f51bf328b3a2259453494f"
+      },
+      ".github/workflows/ci.yml": {
+        "bytes": 2854,
+        "sha256": "d8fccd1e4f657de0121544eb7ed87dc75be1468620db6bf2bcbf85c3aee8603a"
+      },
+      "scripts/bootstrap.sh": {
+        "bytes": 1465,
+        "sha256": "2ee61e1f3c84c6dfbbf69aeb732e3615781e4e2cfb312011d23fb240a75592a8"
+      }
+    },
+    "ab9ad84d1149eec38e915b61fb500234f1f51a2a": {
+      "package.json": {
+        "bytes": 8879,
+        "sha256": "3aef7f9150de5e28d742ce7c1234be60f48cb31a03ec2d92385771e5cad7e528"
+      },
+      "pnpm-lock.yaml": {
+        "bytes": 218209,
+        "sha256": "7aee73b712356221132857ac41ecec365634e4e66f6092947c5fbb9db3da23db"
+      },
+      "parity/emdash/compatibility.md": {
+        "bytes": 483637,
+        "sha256": "152817d61608d1ac3e4757d36471ac1b09c051153650bbd7644b47e27f966b1c"
+      },
+      "docs/rich-editor.md": {
+        "bytes": 26373,
+        "sha256": "82a844c5b4e20db80df452bd826f3017f738e17f6ad0cb60efd7dfdb4e77ef76"
+      },
+      "docs/rich-editor-source.json": {
+        "bytes": 218255,
+        "sha256": "7bbe0d124acc3e183c4761edb975ba204acac4d16419e5057c303031350e6007"
+      },
+      ".github/workflows/ci.yml": {
+        "bytes": 4040,
+        "sha256": "d1a100b3005f094ca7e2c8a6c62a99240c411a652595defdad440581a1f00c6e"
+      },
+      "scripts/bootstrap.sh": {
+        "bytes": 1465,
+        "sha256": "2ee61e1f3c84c6dfbbf69aeb732e3615781e4e2cfb312011d23fb240a75592a8"
+      }
+    }
+  },
+  "sourceChains": {
+    "c3d135a6f20e4319ee07eebb0f9009b57f2985f9": "node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && node scripts/check-redirect-source-ports.mjs && vitest run --config vitest.redirect-source.config.ts && pnpm test:bulk-taxonomy-native && pnpm test:menu-source && pnpm test:menu-native-ui && node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-source.config.ts && vitest run --config vitest.redirect-ui-native.config.ts && pnpm test:sections-widgets-core && pnpm test:sections-widgets-converter && pnpm test:sections-widgets-transport && pnpm test:sections-widgets-core-d1 && pnpm test:comments-source && pnpm test:comments-native && pnpm test:canonical-installation-source && pnpm test:content-picker-source && pnpm test:content-picker-native-ui && pnpm test:writable-editor-source && pnpm test:writable-editor-ui && node scripts/check-canonical-feature-storage-source.mjs && pnpm test:block-registry-native && pnpm test:block-registry-source && pnpm test:doctor-source",
+    "d76016cb022269aa4a9127f139728e6213f7c785": "node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && node scripts/check-redirect-source-ports.mjs && vitest run --config vitest.redirect-source.config.ts && pnpm test:bulk-taxonomy-native && pnpm test:menu-source && pnpm test:menu-native-ui && node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-source.config.ts && vitest run --config vitest.redirect-ui-native.config.ts && pnpm test:sections-widgets-core && pnpm test:sections-widgets-converter && pnpm test:sections-widgets-transport && pnpm test:sections-widgets-core-d1 && pnpm test:comments-source && pnpm test:comments-native && pnpm test:canonical-installation-source && pnpm test:content-picker-source && pnpm test:content-picker-native-ui && pnpm test:writable-editor-source && pnpm test:writable-editor-ui && node scripts/check-canonical-feature-storage-source.mjs && pnpm test:block-registry-native && pnpm test:block-registry-source && pnpm test:doctor-source && pnpm test:taxonomy",
+    "ab9ad84d1149eec38e915b61fb500234f1f51a2a": "node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && node scripts/check-redirect-source-ports.mjs && vitest run --config vitest.redirect-source.config.ts && pnpm test:bulk-taxonomy-native && pnpm test:menu-source && pnpm test:menu-native-ui && node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-source.config.ts && vitest run --config vitest.redirect-ui-native.config.ts && pnpm test:sections-widgets-core && pnpm test:sections-widgets-converter && pnpm test:sections-widgets-transport && pnpm test:sections-widgets-core-d1 && pnpm test:comments-source && pnpm test:comments-native && pnpm test:canonical-installation-source && pnpm test:content-picker-source && pnpm test:content-picker-native-ui && pnpm test:writable-editor-source && pnpm test:writable-editor-ui && node scripts/check-canonical-feature-storage-source.mjs && pnpm test:block-registry-native && pnpm test:block-registry-source && pnpm test:doctor-source && pnpm test:rich-editor-source && pnpm test:rich-editor-native"
+  },
+  "expectedCombinedSourceChain": "node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && node scripts/check-redirect-source-ports.mjs && vitest run --config vitest.redirect-source.config.ts && pnpm test:bulk-taxonomy-native && pnpm test:menu-source && pnpm test:menu-native-ui && node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-source.config.ts && vitest run --config vitest.redirect-ui-native.config.ts && pnpm test:sections-widgets-core && pnpm test:sections-widgets-converter && pnpm test:sections-widgets-transport && pnpm test:sections-widgets-core-d1 && pnpm test:comments-source && pnpm test:comments-native && pnpm test:canonical-installation-source && pnpm test:content-picker-source && pnpm test:content-picker-native-ui && pnpm test:writable-editor-source && pnpm test:writable-editor-ui && node scripts/check-canonical-feature-storage-source.mjs && pnpm test:block-registry-native && pnpm test:block-registry-source && pnpm test:doctor-source && pnpm test:taxonomy && pnpm test:rich-editor-source && pnpm test:rich-editor-native",
+  "regularMergeOnly": true,
+  "noPrivateProducerGraphs": true
+}

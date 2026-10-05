@@ -1,0 +1,82 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "beforeHead": "a6c6e39a3e7e9e7fe09a5c9419c5488d2cf801c3",
+  "testOnlyTransport": [
+    {
+      "path": "tests/helpers/rich-editor/editor-react-bridge.tsx",
+      "before": null,
+      "after": {
+        "bytes": 2922,
+        "sha256": "d0b6b10bf9518d2c84bab72077623f8fdf3a339dc281d430d9efeb3c203e84c7",
+        "gitBlob": "e01fc2dff74a0146f778d001ea174b19a2d10312"
+      }
+    },
+    {
+      "path": "tests/helpers/rich-editor/react-bridge.tsx",
+      "before": null,
+      "after": {
+        "bytes": 1816,
+        "sha256": "e70f5303ad256b1af7bfa242a2932364f7b378f2677e3c0e8a89c293ca1bd0da",
+        "gitBlob": "deb1f3e036bbc924155864ff748e05cc96eadb47"
+      }
+    },
+    {
+      "path": "tests/helpers/rich-editor/EditorHost.svelte",
+      "before": null,
+      "after": {
+        "bytes": 495,
+        "sha256": "716a6feaf58e5c8ff126b202ea3f668ebf9e7f41de055ca29f0adafabdb808a4",
+        "gitBlob": "e7cc3dc69ef4b4aa7a806e963372de1795492146"
+      }
+    },
+    {
+      "path": "tests/helpers/rich-editor/FooterHost.svelte",
+      "before": null,
+      "after": {
+        "bytes": 371,
+        "sha256": "10f55ec6588b15a16e0237b16cee682dbd602d24ea613aaf9ad3ca4ac5a5a246",
+        "gitBlob": "9a688802e5b0fa4b34074ff4836d3bcb97477666"
+      }
+    },
+    {
+      "path": "tests/helpers/rich-editor/state.svelte.ts",
+      "before": null,
+      "after": {
+        "bytes": 165,
+        "sha256": "3958daaf62b28b9f36382a4d6813d96b93d50b5e48207ea7e2424ebd8aafe402",
+        "gitBlob": "dd8002d58893229e17560f623d7cb7f717478f44"
+      }
+    },
+    {
+      "path": "vitest.rich-editor-browser.config.ts",
+      "before": null,
+      "after": {
+        "bytes": 2929,
+        "sha256": "12f5964715f2749713aeb91d627e8b65d7c960317760e00ede7a68b2b30bb130",
+        "gitBlob": "b94cae884ee80d6ee1366bbf0b82f92b769938ae"
+      }
+    }
+  ],
+  "wholeSourceFamilies": [
+    {
+      "path": "packages/admin/tests/editor/PortableTextEditor.test.tsx",
+      "staticCallbacks": 90
+    },
+    {
+      "path": "packages/admin/tests/editor/slash-menu.test.tsx",
+      "staticCallbacks": 44
+    },
+    {
+      "path": "packages/admin/tests/components/PortableTextEditor.footer.test.tsx",
+      "staticCallbacks": 2
+    }
+  ],
+  "originalRenderAndSetupByteExact": true,
+  "wholeOriginalMockFactoriesAndDataRetained": true,
+  "noCallbackOrClockFiltering": true,
+  "productionRuntimeApplied": false,
+  "execution": null,
+  "sourceGeneratedDistStyles": "unavailable; planned actual Native production stylesheet adaptation retains whole selected ordinary Source rules and actual existing Kumo standalone output, exact Source dist generation uncredited",
+  "browserHost": "original configured Playwright1.63 chromium1243, chromiumSandbox true, default clocks, 30s browser launch, America/New_York,1280x800",
+  "providerScope": "only original mocked unit contexts; Repeater6 and original4 protected E2E remain held"
+}

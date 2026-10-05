@@ -1,9 +1,11 @@
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import type { PreviewField } from '../ui/preview-fields';
-  let { fields = [], values = $bindable({}), canWrite = false, pending = false, issues = [], dirty = true, onValuesChange }: {
+  let { fields = [], values = $bindable({}), canWrite = false, pending = false, issues = [], dirty = true, onValuesChange, children }: {
     fields?: PreviewField[]; values?: Record<string, unknown>; canWrite?: boolean;
     pending?: boolean; issues?: string[]; dirty?: boolean;
     onValuesChange?: (values: Record<string, unknown>) => void;
+    children?: Snippet;
   } = $props();
   function change(slug: string, value: string) {
     values = { ...values, [slug]: value };
@@ -46,6 +48,7 @@
     {/if}
     {#if hint}<span id={`field-${field.slug}-hint`} dir="auto">{hint}</span>{/if}
   {/each}
+  {@render children?.()}
   <button type="submit" disabled={pending || !dirty} aria-busy={pending}>{pending ? 'Saving...' : dirty ? 'Save' : 'Saved'}</button>
 </fieldset>
 {#if issues.length}<ul role="alert" aria-label="Save errors">{#each issues as issue}<li>{issue}</li>{/each}</ul>{/if}

@@ -85,3 +85,31 @@ jobs:
             playwright-report/
             test-results/
           retention-days: 7
+  rich-editor-source:
+    # Terminal whole Source authoring assertions retain the official browser host.
+    needs: browser
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Verify all whole rich editor Source families and immutable files
+        run: node scripts/check-rich-editor-source.mjs
+      - name: Run all whole rich editor, slash and footer Source assertions in sandboxed Chromium
+        run: timeout --kill-after=30s 600s node node_modules/vitest/vitest.mjs run --config vitest.rich-editor-browser.config.ts --reporter=default --reporter=json --outputFile=rich-editor-browser-report.json
+        env:
+          DEBUG: pw:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rich-editor-source-browser-evidence
+          path: rich-editor-browser-report.json
+          retention-days: 7

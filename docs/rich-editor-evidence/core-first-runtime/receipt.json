@@ -1,0 +1,3224 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "nativeHead": "76b340bc92e4e375c1fd00dc959a62af57212070",
+  "nativeTree": "ad825afd86662de9bb9c82e71c7dd8f8be11ab49",
+  "status": "actual first qualified converter/core execution; initial baseline historical and unchanged; no full editor completion",
+  "rootExactQualification": {
+    "path": "/tmp/root-rich-core-runtime-r1-exact29-development-qualification.json",
+    "bytes": 1405,
+    "sha256": "b7e8c3962a8244f9ad57901b40b9179afc2e96d4d9a3e07934be94762cae8bb8",
+    "gitBlob": "a21ec91ae298846337a2e01f04da3ef3d801f194"
+  },
+  "freshRuntimeReview": {
+    "path": "/tmp/rich-core-runtime-r1-independent-review.json",
+    "bytes": 206169,
+    "sha256": "99a4dffed22359bdec963827d2d9168d55c34bd095b8dedf6466718d1e50f986",
+    "gitBlob": "67edacd9ff15123220540f1814bc98ce83b37828"
+  },
+  "appliedExactRuntimeManifest": {
+    "path": "/tmp/rich-editor-core-runtime-proposal-r1/manifest.json",
+    "bytes": 21100,
+    "sha256": "7a141999cb10119702aebf3fb129f39f64a63cf3cc5767febc4ea6935f424cc9",
+    "gitBlob": "5fbbf60f347dffef48efafae7b5214fc7200f443"
+  },
+  "appliedRuntimeCandidateCount": 29,
+  "actualProductTreeMatchesSealedReconstruction": true,
+  "install": {
+    "command": "node /workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs install --frozen-lockfile --ignore-scripts",
+    "exit": 0,
+    "pnpmVersion": "12.6.0",
+    "nodeVersion": "24.19.0",
+    "actualPolicyEntries": 578,
+    "supplyChainPoliciesPassed": true,
+    "resolver": "skipped: lockfile up to date",
+    "packagesAdded": 60,
+    "packagesReused": 52,
+    "packagesDownloaded": 8,
+    "postinstallScripts": "ignored",
+    "packageAndLockAfterInstallByteExact": true,
+    "registryProxyCAPoliciesUnchanged": true
+  },
+  "sourceIntegrity": {
+    "command": "node scripts/check-rich-editor-source.mjs",
+    "exit": 0,
+    "wholeFamilies": 32,
+    "originalImmutableFiles": 145,
+    "additionalQualifiedTypeFileSeparatelyVerified": true,
+    "runtimeCredit": 0
+  },
+  "source24": {
+    "command": "node node_modules/vitest/vitest.mjs run --config vitest.rich-editor-source.config.ts --reporter=default --reporter=json --outputFile=/tmp/rich-editor-core-first-runtime-76b340bc/source24-report.json",
+    "exit": 0,
+    "fileResults": 24,
+    "filePassed": 24,
+    "staticWholeOriginalDeclarations": 183,
+    "staticWholeOriginalMatchers": 586,
+    "actualExpandedRegisteredCallbacks": 206,
+    "actualPassedCallbacks": 206,
+    "actualFailedCallbacks": 0,
+    "actualPending": 0,
+    "actualTodo": 0,
+    "preCollectionOrImportStops": 0,
+    "actualRuntimeMatcherCount": null,
+    "runtimeMatcherCountLimit": "Vitest JSON reports do not provide actual matcher invocation counts. Static586 is retained Source census and is not asserted to be dynamic586.",
+    "initialSourceCausalValueRedCredit": 0,
+    "initialRedLimit": "Original first whole Source24 stopped before callback registration; these real current Source greens do not retroactively establish Source assertion-red TDD.",
+    "families": [
+      {
+        "sourcePath": "packages/admin/tests/pt-gallery-converters.test.ts",
+        "sourceAuthority": {
+          "path": "packages/admin/tests/pt-gallery-converters.test.ts",
+          "bytes": 4233,
+          "sha256": "f3dea56c684bbef5d3b2751b628d668d78100600db18141b4b9f888592c62ccf",
+          "gitBlob": "13a62aaa359e96d7fa11b1f6661e436d1f751f5f",
+          "testDeclarations": 3,
+          "expectInvocations": 10,
+          "assertionMatchers": 10,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 3,
+        "actualPassedCallbacks": 3,
+        "callbacks": [
+          {
+            "fullName": "Gallery conversion (admin converters): PortableText \u2194 ProseMirror round-trips a WordPress-shaped gallery block without loss",
+            "title": "round-trips a WordPress-shaped gallery block without loss",
+            "ancestorTitles": [
+              "Gallery conversion (admin converters): PortableText \u2194 ProseMirror"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 4.4193520000000035,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Gallery conversion (admin converters): PortableText \u2194 ProseMirror encodes a seeded storage key into the file route like core does",
+            "title": "encodes a seeded storage key into the file route like core does",
+            "ancestorTitles": [
+              "Gallery conversion (admin converters): PortableText \u2194 ProseMirror"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.3974149999999952,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Gallery conversion (admin converters): PortableText \u2194 ProseMirror keeps the media reference of a seeded $media asset",
+            "title": "keeps the media reference of a seeded $media asset",
+            "ancestorTitles": [
+              "Gallery conversion (admin converters): PortableText \u2194 ProseMirror"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.4970440000000167,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/admin/tests/pt-image-converters.test.ts",
+        "sourceAuthority": {
+          "path": "packages/admin/tests/pt-image-converters.test.ts",
+          "bytes": 1314,
+          "sha256": "51dc9a4e1d719cffaf08fa78afcd3128ee3a99245524fa0f0cf8b8ad30529fe8",
+          "gitBlob": "37d66ecef80d205ba8be1d7234b10a761cdd5b15",
+          "testDeclarations": 1,
+          "expectInvocations": 1,
+          "assertionMatchers": 1,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 1,
+        "actualPassedCallbacks": 1,
+        "callbacks": [
+          {
+            "fullName": "Image conversion (admin converters): PortableText \u2194 ProseMirror keeps the media reference of a seeded $media asset",
+            "title": "keeps the media reference of a seeded $media asset",
+            "ancestorTitles": [
+              "Image conversion (admin converters): PortableText \u2194 ProseMirror"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.9724469999999883,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/admin/tests/components/PortableTextEditor.list.test.ts",
+        "sourceAuthority": {
+          "path": "packages/admin/tests/components/PortableTextEditor.list.test.ts",
+          "bytes": 16532,
+          "sha256": "c89bf43b6dcebb0d3ae020ae11b22f281ba459d888a0541a0716466feac1b14b",
+          "gitBlob": "9051e637085cc74832a9b43e957a92501334ba25",
+          "testDeclarations": 16,
+          "expectInvocations": 56,
+          "assertionMatchers": 56,
+          "suiteDeclarations": 4,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 19,
+        "actualPassedCallbacks": 19,
+        "callbacks": [
+          {
+            "fullName": "ProseMirror \u2192 PortableText: nested list level emits level=1 for a single-level bullet list",
+            "title": "emits level=1 for a single-level bullet list",
+            "ancestorTitles": [
+              "ProseMirror \u2192 PortableText: nested list level"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.3116080000000068,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "ProseMirror \u2192 PortableText: nested list level emits level=2 for bullets nested inside a parent bullet",
+            "title": "emits level=2 for bullets nested inside a parent bullet",
+            "ancestorTitles": [
+              "ProseMirror \u2192 PortableText: nested list level"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.3220919999999978,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "ProseMirror \u2192 PortableText: nested list level preserves listItem type when an ordered list nests inside a bullet",
+            "title": "preserves listItem type when an ordered list nests inside a bullet",
+            "ancestorTitles": [
+              "ProseMirror \u2192 PortableText: nested list level"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.7259659999999997,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "ProseMirror \u2192 PortableText: nested list level handles three-level nesting",
+            "title": "handles three-level nesting",
+            "ancestorTitles": [
+              "ProseMirror \u2192 PortableText: nested list level"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.24753099999998085,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "PortableText \u2192 ProseMirror: nested list level nests level=2 bullets inside their parent listItem",
+            "title": "nests level=2 bullets inside their parent listItem",
+            "ancestorTitles": [
+              "PortableText \u2192 ProseMirror: nested list level"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.7587410000000148,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "PortableText \u2192 ProseMirror: nested list level preserves listType when an ordered list nests inside a bullet",
+            "title": "preserves listType when an ordered list nests inside a bullet",
+            "ancestorTitles": [
+              "PortableText \u2192 ProseMirror: nested list level"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.7058860000000209,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "PortableText \u2192 ProseMirror: nested list level does not flatten level=2 siblings into a top-level number list",
+            "title": "does not flatten level=2 siblings into a top-level number list",
+            "ancestorTitles": [
+              "PortableText \u2192 ProseMirror: nested list level"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.5603380000000016,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "PortableText \u2192 ProseMirror: nested list level handles three-level nesting",
+            "title": "handles three-level nesting",
+            "ancestorTitles": [
+              "PortableText \u2192 ProseMirror: nested list level"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.42819000000000074,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "PortableText \u2192 ProseMirror: nested list level keeps deeper nesting under its true parent for mixed-type 3-level trees",
+            "title": "keeps deeper nesting under its true parent for mixed-type 3-level trees",
+            "ancestorTitles": [
+              "PortableText \u2192 ProseMirror: nested list level"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.7741880000000094,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Round-trip: PT \u2192 PM \u2192 PT preserves nested list level keeps level and listItem for a 2-level bullet \u2192 number tree",
+            "title": "keeps level and listItem for a 2-level bullet \u2192 number tree",
+            "ancestorTitles": [
+              "Round-trip: PT \u2192 PM \u2192 PT preserves nested list level"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.37829600000000596,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list continuity metadata preserves an explicit ordered-list start",
+            "title": "preserves an explicit ordered-list start",
+            "ancestorTitles": [
+              "numbered-list continuity metadata"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.7547889999999882,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list continuity metadata normalizes numbered-list metadata 0",
+            "title": "normalizes numbered-list metadata 0",
+            "ancestorTitles": [
+              "numbered-list continuity metadata"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.22069000000001893,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list continuity metadata normalizes numbered-list metadata 1",
+            "title": "normalizes numbered-list metadata 1",
+            "ancestorTitles": [
+              "numbered-list continuity metadata"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.3131180000000029,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list continuity metadata normalizes numbered-list metadata 2",
+            "title": "normalizes numbered-list metadata 2",
+            "ancestorTitles": [
+              "numbered-list continuity metadata"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.13349999999999795,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list continuity metadata normalizes numbered-list metadata 3",
+            "title": "normalizes numbered-list metadata 3",
+            "ancestorTitles": [
+              "numbered-list continuity metadata"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.13311899999999355,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list continuity metadata derives a continuation start across an intervening block",
+            "title": "derives a continuation start across an intervening block",
+            "ancestorTitles": [
+              "numbered-list continuity metadata"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.41922800000000393,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list continuity metadata uses a later valid base when an earlier segment has no base",
+            "title": "uses a later valid base when an earlier segment has no base",
+            "ancestorTitles": [
+              "numbered-list continuity metadata"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.3181060000000002,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list continuity metadata keeps a reused root and nested identity in separate numbering scopes",
+            "title": "keeps a reused root and nested identity in separate numbering scopes",
+            "ancestorTitles": [
+              "numbered-list continuity metadata"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.304475999999994,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list continuity metadata survives save and reload across every supported top-level separator",
+            "title": "survives save and reload across every supported top-level separator",
+            "ancestorTitles": [
+              "numbered-list continuity metadata"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.9359600000000228,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/admin/tests/components/PortableTextEditor.table.test.ts",
+        "sourceAuthority": {
+          "path": "packages/admin/tests/components/PortableTextEditor.table.test.ts",
+          "bytes": 14644,
+          "sha256": "0e004b5ae48dcdf5df18dd87935ed436fdd80f3d1ead2fbecf5a4d16732555a5",
+          "gitBlob": "ecbd20f6221284bf499842edf3c8f7c42c63f0f4",
+          "testDeclarations": 10,
+          "expectInvocations": 57,
+          "assertionMatchers": 57,
+          "suiteDeclarations": 4,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 10,
+        "actualPassedCallbacks": 10,
+        "callbacks": [
+          {
+            "fullName": "Table conversion: PortableText \u2194 ProseMirror PortableText \u2192 ProseMirror converts simple table with text",
+            "title": "converts simple table with text",
+            "ancestorTitles": [
+              "Table conversion: PortableText \u2194 ProseMirror",
+              "PortableText \u2192 ProseMirror"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 3.8087580000000116,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Table conversion: PortableText \u2194 ProseMirror PortableText \u2192 ProseMirror converts table with text formatting marks",
+            "title": "converts table with text formatting marks",
+            "ancestorTitles": [
+              "Table conversion: PortableText \u2194 ProseMirror",
+              "PortableText \u2192 ProseMirror"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.9405069999999967,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Table conversion: PortableText \u2194 ProseMirror PortableText \u2192 ProseMirror converts table with links (markDefs)",
+            "title": "converts table with links (markDefs)",
+            "ancestorTitles": [
+              "Table conversion: PortableText \u2194 ProseMirror",
+              "PortableText \u2192 ProseMirror"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.624935000000022,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Table conversion: PortableText \u2194 ProseMirror ProseMirror \u2192 PortableText converts simple table to PT",
+            "title": "converts simple table to PT",
+            "ancestorTitles": [
+              "Table conversion: PortableText \u2194 ProseMirror",
+              "ProseMirror \u2192 PortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.454326000000009,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Table conversion: PortableText \u2194 ProseMirror ProseMirror \u2192 PortableText preserves line breaks between paragraphs in a table cell",
+            "title": "preserves line breaks between paragraphs in a table cell",
+            "ancestorTitles": [
+              "Table conversion: PortableText \u2194 ProseMirror",
+              "ProseMirror \u2192 PortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.8953649999999982,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Table conversion: PortableText \u2194 ProseMirror ProseMirror \u2192 PortableText converts table with text marks to PT",
+            "title": "converts table with text marks to PT",
+            "ancestorTitles": [
+              "Table conversion: PortableText \u2194 ProseMirror",
+              "ProseMirror \u2192 PortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.44277200000001926,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Table conversion: PortableText \u2194 ProseMirror ProseMirror \u2192 PortableText converts table links without collapsing different targets for one URL",
+            "title": "converts table links without collapsing different targets for one URL",
+            "ancestorTitles": [
+              "Table conversion: PortableText \u2194 ProseMirror",
+              "ProseMirror \u2192 PortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.6276089999999783,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Table conversion: PortableText \u2194 ProseMirror Round-trip conversion PT \u2192 PM \u2192 PT preserves table structure",
+            "title": "PT \u2192 PM \u2192 PT preserves table structure",
+            "ancestorTitles": [
+              "Table conversion: PortableText \u2194 ProseMirror",
+              "Round-trip conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.555470999999983,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Table conversion: PortableText \u2194 ProseMirror Round-trip conversion preserves table identity, geometry, widths, alignment, and partial headers",
+            "title": "preserves table identity, geometry, widths, alignment, and partial headers",
+            "ancestorTitles": [
+              "Table conversion: PortableText \u2194 ProseMirror",
+              "Round-trip conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.2755089999999996,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Table conversion: PortableText \u2194 ProseMirror Round-trip conversion accepts legacy string cells without changing Contentful output",
+            "title": "accepts legacy string cells without changing Contentful output",
+            "ancestorTitles": [
+              "Table conversion: PortableText \u2194 ProseMirror",
+              "Round-trip conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.4882400000000189,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/admin/tests/editor/PortableTextEditor.code-block.test.ts",
+        "sourceAuthority": {
+          "path": "packages/admin/tests/editor/PortableTextEditor.code-block.test.ts",
+          "bytes": 1242,
+          "sha256": "d3416fc87bc67fc05caa8b3401c20f919f8d151d6c323aad33b8d6b305ddf253",
+          "gitBlob": "4d2bd35725194c0b2ff2938a6043b4c988cec1a8",
+          "testDeclarations": 2,
+          "expectInvocations": 4,
+          "assertionMatchers": 4,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 2,
+        "actualPassedCallbacks": 2,
+        "callbacks": [
+          {
+            "fullName": "Portable Text code block conversion preserves supported and unsupported string languages",
+            "title": "preserves supported and unsupported string languages",
+            "ancestorTitles": [
+              "Portable Text code block conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.836234000000019,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text code block conversion treats an invalid non-string language as missing",
+            "title": "treats an invalid non-string language as missing",
+            "ancestorTitles": [
+              "Portable Text code block conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.3520059999999887,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/admin/tests/lib/portable-text-table.test.ts",
+        "sourceAuthority": {
+          "path": "packages/admin/tests/lib/portable-text-table.test.ts",
+          "bytes": 18786,
+          "sha256": "a78c0b7e4d07b3b22d8b5126bdf2f2c23bd75e925d7bd4df6f6784cf8a6ded25",
+          "gitBlob": "bbeb78866d5cbe819e0157f5e64333bb99cdba34",
+          "testDeclarations": 18,
+          "expectInvocations": 74,
+          "assertionMatchers": 74,
+          "suiteDeclarations": 2,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 20,
+        "actualPassedCallbacks": 20,
+        "callbacks": [
+          {
+            "fullName": "Portable Text table normalization indexes shared annotations linearly for 16 cells",
+            "title": "indexes shared annotations linearly for 16 cells",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 7.166046000000023,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization indexes shared annotations linearly for 64 cells",
+            "title": "indexes shared annotations linearly for 64 cells",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.2576170000000104,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization recognizes only table-shaped inputs",
+            "title": "recognizes only table-shaped inputs",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.2684419999999932,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization preserves canonical content, structural keys, marks, and safe opaque metadata",
+            "title": "preserves canonical content, structural keys, marks, and safe opaque metadata",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.198738999999989,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization normalizes legacy string cells deterministically and preserves legacy header intent",
+            "title": "normalizes legacy string cells deterministically and preserves legacy header intent",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.7924559999999872,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization repairs duplicate keys and invalid attributes without inventing header state",
+            "title": "repairs duplicate keys and invalid attributes without inventing header state",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.43759500000001594,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization omits automatic-only widths and resolves automatic segments beside explicit widths",
+            "title": "omits automatic-only widths and resolves automatic segments beside explicit widths",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.34818099999998253,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization clamps rendered column widths without changing valid stored preferences",
+            "title": "clamps rendered column widths without changing valid stored preferences",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.26743999999999346,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization repairs overlapping spans into a rectangular grid without dropping source content",
+            "title": "repairs overlapping spans into a rectangular grid without dropping source content",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.0280579999999873,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization returns the untouched raw value and an unspanned fallback before repair exceeds its bound",
+            "title": "returns the untouched raw value and an unspanned fallback before repair exceeds its bound",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 7.421933999999993,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization bounds ordinary oversized grids before normalizing every source cell",
+            "title": "bounds ordinary oversized grids before normalizing every source cell",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 8.252886999999987,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization keeps raw input when the fallback would omit its final cell",
+            "title": "keeps raw input when the fallback would omit its final cell",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.5653119999999774,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization keeps raw input when the fallback would omit its final row",
+            "title": "keeps raw input when the fallback would omit its final row",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 23.431734000000006,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization bounds oversized cell content before normalizing every span",
+            "title": "bounds oversized cell content before normalizing every span",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 13.026207,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization accepts a 100 by 100 table without treating inline nodes as geometry slots",
+            "title": "accepts a 100 by 100 table without treating inline nodes as geometry slots",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 136.86021500000004,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization refuses unsafe cell content and unsupported annotations instead of dropping them",
+            "title": "refuses unsafe cell content and unsupported annotations instead of dropping them",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.7470280000000002,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table normalization exposes a stable unsafe-table error without discarding the raw value",
+            "title": "exposes a stable unsafe-table error without discarding the raw value",
+            "ancestorTitles": [
+              "Portable Text table normalization"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.4351609999999937,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table plain-JSON adapters bounds oversized ProseMirror tables before converting every cell",
+            "title": "bounds oversized ProseMirror tables before converting every cell",
+            "ancestorTitles": [
+              "Portable Text table plain-JSON adapters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 11.989856999999972,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table plain-JSON adapters converts normalized Portable Text into keyed ProseMirror table JSON",
+            "title": "converts normalized Portable Text into keyed ProseMirror table JSON",
+            "ancestorTitles": [
+              "Portable Text table plain-JSON adapters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.0419689999999946,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table plain-JSON adapters converts ProseMirror tables back without losing multiple paragraph contents",
+            "title": "converts ProseMirror tables back without losing multiple paragraph contents",
+            "ancestorTitles": [
+              "Portable Text table plain-JSON adapters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.4035740000000487,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/client/portable-text.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/client/portable-text.test.ts",
+          "bytes": 18106,
+          "sha256": "1247102d655ec6001e27d1b1ca2b1307ddf79929dc3156c21caa31ede07b7cfd",
+          "gitBlob": "5c1288ae725ddf12d019c63bd13b269fe329a7c5",
+          "testDeclarations": 37,
+          "expectInvocations": 97,
+          "assertionMatchers": 97,
+          "suiteDeclarations": 6,
+          "hookDeclarations": 1
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 37,
+        "actualPassedCallbacks": 37,
+        "callbacks": [
+          {
+            "fullName": "portableTextToMarkdown converts a simple paragraph",
+            "title": "converts a simple paragraph",
+            "ancestorTitles": [
+              "portableTextToMarkdown"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.5363990000000172,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToMarkdown converts headings h1-h6",
+            "title": "converts headings h1-h6",
+            "ancestorTitles": [
+              "portableTextToMarkdown"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.22930299999998738,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToMarkdown converts bold, italic, code, and strikethrough marks",
+            "title": "converts bold, italic, code, and strikethrough marks",
+            "ancestorTitles": [
+              "portableTextToMarkdown"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.19165700000002062,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToMarkdown converts links via markDefs",
+            "title": "converts links via markDefs",
+            "ancestorTitles": [
+              "portableTextToMarkdown"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.22257300000001123,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToMarkdown converts blockquotes",
+            "title": "converts blockquotes",
+            "ancestorTitles": [
+              "portableTextToMarkdown"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.16341399999998885,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToMarkdown converts unordered lists",
+            "title": "converts unordered lists",
+            "ancestorTitles": [
+              "portableTextToMarkdown"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.201170999999988,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToMarkdown converts ordered lists",
+            "title": "converts ordered lists",
+            "ancestorTitles": [
+              "portableTextToMarkdown"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.1218629999999905,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToMarkdown does not synthesize continuity metadata across a lossy Markdown boundary",
+            "title": "does not synthesize continuity metadata across a lossy Markdown boundary",
+            "ancestorTitles": [
+              "portableTextToMarkdown"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.2073460000000011,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToMarkdown converts code blocks",
+            "title": "converts code blocks",
+            "ancestorTitles": [
+              "portableTextToMarkdown"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.16991400000000567,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToMarkdown converts images",
+            "title": "converts images",
+            "ancestorTitles": [
+              "portableTextToMarkdown"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.17736500000000888,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToMarkdown serializes unknown blocks as opaque fences",
+            "title": "serializes unknown blocks as opaque fences",
+            "ancestorTitles": [
+              "portableTextToMarkdown"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.3569439999999986,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToMarkdown handles mixed content with paragraphs, headings, and lists",
+            "title": "handles mixed content with paragraphs, headings, and lists",
+            "ancestorTitles": [
+              "portableTextToMarkdown"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.16351499999998964,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "markdownToPortableText converts a simple paragraph",
+            "title": "converts a simple paragraph",
+            "ancestorTitles": [
+              "markdownToPortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.8509740000000079,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "markdownToPortableText converts headings",
+            "title": "converts headings",
+            "ancestorTitles": [
+              "markdownToPortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.3287820000000181,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "markdownToPortableText converts bold and italic",
+            "title": "converts bold and italic",
+            "ancestorTitles": [
+              "markdownToPortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.45578199999999924,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "markdownToPortableText converts inline code",
+            "title": "converts inline code",
+            "ancestorTitles": [
+              "markdownToPortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.17203799999998637,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "markdownToPortableText converts links with markDefs",
+            "title": "converts links with markDefs",
+            "ancestorTitles": [
+              "markdownToPortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.2809310000000096,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "markdownToPortableText converts blockquotes",
+            "title": "converts blockquotes",
+            "ancestorTitles": [
+              "markdownToPortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.1341199999999958,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "markdownToPortableText converts unordered lists",
+            "title": "converts unordered lists",
+            "ancestorTitles": [
+              "markdownToPortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.20822100000000887,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "markdownToPortableText converts ordered lists",
+            "title": "converts ordered lists",
+            "ancestorTitles": [
+              "markdownToPortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.18885199999999713,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "markdownToPortableText converts code fences",
+            "title": "converts code fences",
+            "ancestorTitles": [
+              "markdownToPortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.1674600000000055,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "markdownToPortableText converts images",
+            "title": "converts images",
+            "ancestorTitles": [
+              "markdownToPortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.14424600000000964,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "markdownToPortableText deserializes opaque fences back to original blocks",
+            "title": "deserializes opaque fences back to original blocks",
+            "ancestorTitles": [
+              "markdownToPortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.23757599999999002,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "markdownToPortableText skips blank lines",
+            "title": "skips blank lines",
+            "ancestorTitles": [
+              "markdownToPortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.17957899999998972,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "markdownToPortableText converts strikethrough",
+            "title": "converts strikethrough",
+            "ancestorTitles": [
+              "markdownToPortableText"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.17037500000000705,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "PT <-> Markdown round-trip preserves simple text through round-trip",
+            "title": "preserves simple text through round-trip",
+            "ancestorTitles": [
+              "PT <-> Markdown round-trip"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.16523800000001643,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "PT <-> Markdown round-trip preserves headings through round-trip",
+            "title": "preserves headings through round-trip",
+            "ancestorTitles": [
+              "PT <-> Markdown round-trip"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.13803699999999708,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "PT <-> Markdown round-trip preserves opaque fences through round-trip",
+            "title": "preserves opaque fences through round-trip",
+            "ancestorTitles": [
+              "PT <-> Markdown round-trip"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.17158699999998817,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "PT <-> Markdown round-trip preserves code blocks through round-trip",
+            "title": "preserves code blocks through round-trip",
+            "ancestorTitles": [
+              "PT <-> Markdown round-trip"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.14326499999998532,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "PT <-> Markdown round-trip preserves bold text through round-trip",
+            "title": "preserves bold text through round-trip",
+            "ancestorTitles": [
+              "PT <-> Markdown round-trip"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.1802590000000066,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "convertDataForRead converts PT arrays to markdown for portableText fields",
+            "title": "converts PT arrays to markdown for portableText fields",
+            "ancestorTitles": [
+              "convertDataForRead"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.19706500000000915,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "convertDataForRead skips conversion when raw is true",
+            "title": "skips conversion when raw is true",
+            "ancestorTitles": [
+              "convertDataForRead"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.1157840000000192,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "convertDataForRead does not touch non-portableText fields",
+            "title": "does not touch non-portableText fields",
+            "ancestorTitles": [
+              "convertDataForRead"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.08704000000000178,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "convertDataForWrite converts markdown strings to PT for portableText fields",
+            "title": "converts markdown strings to PT for portableText fields",
+            "ancestorTitles": [
+              "convertDataForWrite"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.18555799999998612,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "convertDataForWrite passes through raw PT arrays unchanged",
+            "title": "passes through raw PT arrays unchanged",
+            "ancestorTitles": [
+              "convertDataForWrite"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.08253400000000966,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "blocks Portable Text conversion uses the active version for a new keyless block write",
+            "title": "uses the active version for a new keyless block write",
+            "ancestorTitles": [
+              "blocks Portable Text conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.24767099999999687,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "blocks Portable Text conversion uses each retained stored version on read",
+            "title": "uses each retained stored version on read",
+            "ancestorTitles": [
+              "blocks Portable Text conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.15459099999998216,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/content/portable-text-lists.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/content/portable-text-lists.test.ts",
+          "bytes": 4663,
+          "sha256": "3350ff1f5c18f9c2a4b9e9a5da72d527e66de6683fe7e83270fb3b8f7ecf3aa7",
+          "gitBlob": "6513403f52478f8b17bfb674ddc5eed4f2a047b3",
+          "testDeclarations": 7,
+          "expectInvocations": 9,
+          "assertionMatchers": 9,
+          "suiteDeclarations": 2,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 9,
+        "actualPassedCallbacks": 9,
+        "callbacks": [
+          {
+            "fullName": "buildPortableTextListTree continues a numbered identity across a non-list block in html mode",
+            "title": "continues a numbered identity across a non-list block in html mode",
+            "ancestorTitles": [
+              "buildPortableTextListTree"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.4735609999999895,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "buildPortableTextListTree continues a numbered identity across a non-list block in direct mode",
+            "title": "continues a numbered identity across a non-list block in direct mode",
+            "ancestorTitles": [
+              "buildPortableTextListTree"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.5124759999999924,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "buildPortableTextListTree keeps adjacent independent identities separate at root and nested levels in html mode",
+            "title": "keeps adjacent independent identities separate at root and nested levels in html mode",
+            "ancestorTitles": [
+              "buildPortableTextListTree"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.42002800000000207,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "buildPortableTextListTree keeps adjacent independent identities separate at root and nested levels in direct mode",
+            "title": "keeps adjacent independent identities separate at root and nested levels in direct mode",
+            "ancestorTitles": [
+              "buildPortableTextListTree"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.2500839999999869,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "buildPortableTextListTree uses separate counters when a malformed identity is reused across contexts",
+            "title": "uses separate counters when a malformed identity is reused across contexts",
+            "ancestorTitles": [
+              "buildPortableTextListTree"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.23544200000000615,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "buildPortableTextListTree uses the first valid base and falls back to one on overflow",
+            "title": "uses the first valid base and falls back to one on overflow",
+            "ancestorTitles": [
+              "buildPortableTextListTree"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.1706360000000018,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "buildPortableTextListTree uses a later segment's base when the first segment has no listStart",
+            "title": "uses a later segment's base when the first segment has no listStart",
+            "ancestorTitles": [
+              "buildPortableTextListTree"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.25002400000002467,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "buildPortableTextListTree handles sparse untrusted nesting levels in bounded work",
+            "title": "handles sparse untrusted nesting levels in bounded work",
+            "ancestorTitles": [
+              "buildPortableTextListTree"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.29314899999999966,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered list preprocessing deep-clones nested Portable Text data",
+            "title": "deep-clones nested Portable Text data",
+            "ancestorTitles": [
+              "numbered list preprocessing"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.33107599999999593,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/blockquote-grouping.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/blockquote-grouping.test.ts",
+          "bytes": 3542,
+          "sha256": "41fc1cd9c7254838bcfea9a5f248837bb0923c50ad6d2ab78bda94dae3bc9f9d",
+          "gitBlob": "5ef2f4e7591f92802c2dbe1c41ebf52a25858039",
+          "testDeclarations": 4,
+          "expectInvocations": 14,
+          "assertionMatchers": 14,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 4,
+        "actualPassedCallbacks": 4,
+        "callbacks": [
+          {
+            "fullName": "blockquote grouping (#1884) merges consecutive blockquote blocks into one blockquote node",
+            "title": "merges consecutive blockquote blocks into one blockquote node",
+            "ancestorTitles": [
+              "blockquote grouping (#1884)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.8391980000000103,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "blockquote grouping (#1884) does not merge blockquote blocks separated by another block",
+            "title": "does not merge blockquote blocks separated by another block",
+            "ancestorTitles": [
+              "blockquote grouping (#1884)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.677533000000011,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "blockquote grouping (#1884) keeps a multi-paragraph quote stable through PT \u2192 PM \u2192 PT",
+            "title": "keeps a multi-paragraph quote stable through PT \u2192 PM \u2192 PT",
+            "ancestorTitles": [
+              "blockquote grouping (#1884)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.1914319999999918,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "blockquote grouping (#1884) does not group quote-styled list items into the quote run",
+            "title": "does not group quote-styled list items into the quote run",
+            "ancestorTitles": [
+              "blockquote grouping (#1884)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.4237939999999867,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/custom-block-round-trip.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/custom-block-round-trip.test.ts",
+          "bytes": 4995,
+          "sha256": "1936480469d936d637e1e5d5c54ba6943556aaae30330b0bba18c82aa85f6193",
+          "gitBlob": "5f059e2a9cf030051225f533286f9a20095e1471",
+          "testDeclarations": 9,
+          "expectInvocations": 10,
+          "assertionMatchers": 10,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 9,
+        "actualPassedCallbacks": 9,
+        "callbacks": [
+          {
+            "fullName": "Portable Text converter identity preservation emits text JSON that survives a standard ProseMirror schema",
+            "title": "emits text JSON that survives a standard ProseMirror schema",
+            "ancestorTitles": [
+              "Portable Text converter identity preservation"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 8.496611000000001,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text converter identity preservation uses standard-schema nodes for custom blocks by default",
+            "title": "uses standard-schema nodes for custom blocks by default",
+            "ancestorTitles": [
+              "Portable Text converter identity preservation"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.4233350000000087,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text converter identity preservation preserves identities through the matching ProseMirror extensions",
+            "title": "preserves identities through the matching ProseMirror extensions",
+            "ancestorTitles": [
+              "Portable Text converter identity preservation"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.6723879999999838,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text converter identity preservation preserves a payload-less custom block unchanged",
+            "title": "preserves a payload-less custom block unchanged",
+            "ancestorTitles": [
+              "Portable Text converter identity preservation"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.247099999999989,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text converter identity preservation preserves a gallery block that has no images array in identity mode",
+            "title": "preserves a gallery block that has no images array in identity mode",
+            "ancestorTitles": [
+              "Portable Text converter identity preservation"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.2711460000000159,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text converter identity preservation preserves existing keys and supported link mark definitions",
+            "title": "preserves existing keys and supported link mark definitions",
+            "ancestorTitles": [
+              "Portable Text converter identity preservation"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.2762340000000165,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text converter identity preservation keeps one span identity across hard breaks",
+            "title": "keeps one span identity across hard breaks",
+            "ancestorTitles": [
+              "Portable Text converter identity preservation"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.4401290000000131,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text converter identity preservation reads a block key from a blockquote wrapper",
+            "title": "reads a block key from a blockquote wrapper",
+            "ancestorTitles": [
+              "Portable Text converter identity preservation"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.7982240000000047,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text converter identity preservation assigns a new key when ProseMirror splits a keyed block",
+            "title": "assigns a new key when ProseMirror splits a keyed block",
+            "ancestorTitles": [
+              "Portable Text converter identity preservation"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.9562099999999987,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/gallery-round-trip.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/gallery-round-trip.test.ts",
+          "bytes": 8197,
+          "sha256": "4a730fe6883eb4de48d3581218eb8ca227bd54c919ea47945c448944a6b647ff",
+          "gitBlob": "dd42167683cb92fd097ddf4d5a999fa84617093a",
+          "testDeclarations": 10,
+          "expectInvocations": 31,
+          "assertionMatchers": 31,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 10,
+        "actualPassedCallbacks": 10,
+        "callbacks": [
+          {
+            "fullName": "gallery block round-trip (core converters) converts a gallery block to a gallery ProseMirror node",
+            "title": "converts a gallery block to a gallery ProseMirror node",
+            "ancestorTitles": [
+              "gallery block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.329234999999983,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "gallery block round-trip (core converters) preserves images, captions, dimensions, and columns through PT \u2192 PM \u2192 PT",
+            "title": "preserves images, captions, dimensions, and columns through PT \u2192 PM \u2192 PT",
+            "ancestorTitles": [
+              "gallery block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.7336329999999975,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "gallery block round-trip (core converters) omits columns when not set and survives an empty images list",
+            "title": "omits columns when not set and survives an empty images list",
+            "ancestorTitles": [
+              "gallery block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.3985460000000103,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "gallery block round-trip (core converters) drops non-object entries in images instead of crashing",
+            "title": "drops non-object entries in images instead of crashing",
+            "ancestorTitles": [
+              "gallery block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.44647799999998483,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "gallery block round-trip (core converters) still falls back to the unknown-block placeholder for a gallery without an images array",
+            "title": "still falls back to the unknown-block placeholder for a gallery without an images array",
+            "ancestorTitles": [
+              "gallery block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.28137100000000714,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "gallery block round-trip (core converters) round-trips a WordPress-imported gallery without loss",
+            "title": "round-trips a WordPress-imported gallery without loss",
+            "ancestorTitles": [
+              "gallery block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.5659659999999747,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "gallery block round-trip (core converters) preserves provider, blurhash, and dominantColor through PT \u2192 PM \u2192 PT",
+            "title": "preserves provider, blurhash, and dominantColor through PT \u2192 PM \u2192 PT",
+            "ancestorTitles": [
+              "gallery block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.42852099999998927,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "gallery block round-trip (core converters) keeps the media reference of a seeded $media asset",
+            "title": "keeps the media reference of a seeded $media asset",
+            "ancestorTitles": [
+              "gallery block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.43790500000000065,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "gallery block round-trip (core converters) encodes a seeded storage key into the file route like the admin does",
+            "title": "encodes a seeded storage key into the file route like the admin does",
+            "ancestorTitles": [
+              "gallery block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.37577300000000946,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "gallery block round-trip (core converters) preserves galleries among other block types",
+            "title": "preserves galleries among other block types",
+            "ancestorTitles": [
+              "gallery block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.9778920000000255,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/html-block-round-trip.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/html-block-round-trip.test.ts",
+          "bytes": 3839,
+          "sha256": "faec33e577cfe6c5c944fa25ff686a18fa311aa02aa9a280ef5a31e7855bf857",
+          "gitBlob": "9f390edbbcf9c1a9a406a735b0dbdb288b63ad39",
+          "testDeclarations": 6,
+          "expectInvocations": 23,
+          "assertionMatchers": 23,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 6,
+        "actualPassedCallbacks": 6,
+        "callbacks": [
+          {
+            "fullName": "HTML block round-trip (core converters) preserves html content through PT \u2192 PM \u2192 PT",
+            "title": "preserves html content through PT \u2192 PM \u2192 PT",
+            "ancestorTitles": [
+              "HTML block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.328513000000015,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "HTML block round-trip (core converters) handles empty html content",
+            "title": "handles empty html content",
+            "ancestorTitles": [
+              "HTML block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.3287719999999865,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "HTML block round-trip (core converters) preserves html blocks among other block types",
+            "title": "preserves html blocks among other block types",
+            "ancestorTitles": [
+              "HTML block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.568016,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "HTML block round-trip (core converters) preserves css, js and isolated through PT \u2192 PM \u2192 PT",
+            "title": "preserves css, js and isolated through PT \u2192 PM \u2192 PT",
+            "ancestorTitles": [
+              "HTML block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.8291710000000023,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "HTML block round-trip (core converters) round-trips a legacy block to identical JSON",
+            "title": "round-trips a legacy block to identical JSON",
+            "ancestorTitles": [
+              "HTML block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.3165140000000122,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "HTML block round-trip (core converters) omits empty css and js and a false isolated flag",
+            "title": "omits empty css and js and a false isolated flag",
+            "ancestorTitles": [
+              "HTML block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.3481710000000078,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/iframe-round-trip.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/iframe-round-trip.test.ts",
+          "bytes": 1956,
+          "sha256": "2339e9c21fd8550b059159bf8f27a4522e2944742d5f4955f89768c6aded8140",
+          "gitBlob": "cd51d1a16f9e0ff968d45abc9aa2079e3f6cf68e",
+          "testDeclarations": 3,
+          "expectInvocations": 5,
+          "assertionMatchers": 5,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 5,
+        "actualPassedCallbacks": 5,
+        "callbacks": [
+          {
+            "fullName": "iframe block round-trip (core converters) preserves every field through PT \u2192 PM \u2192 PT",
+            "title": "preserves every field through PT \u2192 PM \u2192 PT",
+            "ancestorTitles": [
+              "iframe block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 3.1699120000000107,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "iframe block round-trip (core converters) writes only the fields that are set",
+            "title": "writes only the fields that are set",
+            "ancestorTitles": [
+              "iframe block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.4321369999999831,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "iframe block round-trip (core converters) leaves an iframe block with other fields to its plugin",
+            "title": "leaves an iframe block with other fields to its plugin",
+            "ancestorTitles": [
+              "iframe block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.43414999999998827,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "iframe block round-trip (core converters) leaves an iframe block with a size that isn't a whole number to its plugin",
+            "title": "leaves an iframe block with a size that isn't a whole number to its plugin",
+            "ancestorTitles": [
+              "iframe block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.2656069999999886,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "iframe block round-trip (core converters) leaves an iframe block with a title that isn't text to its plugin",
+            "title": "leaves an iframe block with a title that isn't text to its plugin",
+            "ancestorTitles": [
+              "iframe block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.28058999999998946,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/image-alignment.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/image-alignment.test.ts",
+          "bytes": 2645,
+          "sha256": "0494c269d0a6e3c370ea2796d1815bdcd45a79e09ec253ca7c623c8770db4264",
+          "gitBlob": "a3035c9590db15011021f4b7241dcc19ee1933f1",
+          "testDeclarations": 3,
+          "expectInvocations": 8,
+          "assertionMatchers": 8,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 17,
+        "actualPassedCallbacks": 17,
+        "callbacks": [
+          {
+            "fullName": "Exported image alignment converters preserves left alignment in both directions",
+            "title": "preserves left alignment in both directions",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 3.7125139999999988,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters preserves center alignment in both directions",
+            "title": "preserves center alignment in both directions",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.3798280000000034,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters preserves right alignment in both directions",
+            "title": "preserves right alignment in both directions",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.44434499999999844,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters preserves wide alignment in both directions",
+            "title": "preserves wide alignment in both directions",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.4342900000000043,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters preserves full alignment in both directions",
+            "title": "preserves full alignment in both directions",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.424034000000006,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters retains left alignment when recovering a missing asset wrapper",
+            "title": "retains left alignment when recovering a missing asset wrapper",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.34933300000000145,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters retains center alignment when recovering a missing asset wrapper",
+            "title": "retains center alignment when recovering a missing asset wrapper",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.19098600000000943,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters retains right alignment when recovering a missing asset wrapper",
+            "title": "retains right alignment when recovering a missing asset wrapper",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.16064000000000078,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters retains wide alignment when recovering a missing asset wrapper",
+            "title": "retains wide alignment when recovering a missing asset wrapper",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.14966300000000388,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters retains full alignment when recovering a missing asset wrapper",
+            "title": "retains full alignment when recovering a missing asset wrapper",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.16907299999999736,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters omits invalid runtime alignment undefined",
+            "title": "omits invalid runtime alignment undefined",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.4215109999999811,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters omits invalid runtime alignment null",
+            "title": "omits invalid runtime alignment null",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.13621299999999792,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters omits invalid runtime alignment \"none\"",
+            "title": "omits invalid runtime alignment \"none\"",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.10551799999998934,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters omits invalid runtime alignment \"unknown\"",
+            "title": "omits invalid runtime alignment \"unknown\"",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.19139599999999746,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters omits invalid runtime alignment \"LEFT\"",
+            "title": "omits invalid runtime alignment \"LEFT\"",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.1282420000000002,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters omits invalid runtime alignment 123",
+            "title": "omits invalid runtime alignment 123",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.12042999999999893,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Exported image alignment converters omits invalid runtime alignment \"left\"",
+            "title": "omits invalid runtime alignment \"left\"",
+            "ancestorTitles": [
+              "Exported image alignment converters"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.08952400000001148,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/image-dimensions.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/image-dimensions.test.ts",
+          "bytes": 3734,
+          "sha256": "50c212a924814012aea628a27c98c943fd06e7707f5d989b7982680ef35f4cb4",
+          "gitBlob": "c90fc9a63eaaa807f366dafcefec208fe2c6a295",
+          "testDeclarations": 5,
+          "expectInvocations": 23,
+          "assertionMatchers": 23,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 5,
+        "actualPassedCallbacks": 5,
+        "callbacks": [
+          {
+            "fullName": "Image dimension round-trip preserves displayWidth and displayHeight through PT \u2192 PM \u2192 PT",
+            "title": "preserves displayWidth and displayHeight through PT \u2192 PM \u2192 PT",
+            "ancestorTitles": [
+              "Image dimension round-trip"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.492309000000006,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Image dimension round-trip drops non-finite dimensions instead of serializing them",
+            "title": "drops non-finite dimensions instead of serializing them",
+            "ancestorTitles": [
+              "Image dimension round-trip"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.2464080000000024,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Image dimension round-trip handles images without display dimensions",
+            "title": "handles images without display dimensions",
+            "ancestorTitles": [
+              "Image dimension round-trip"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.2715260000000228,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Image dimension round-trip reads captions from title-only legacy Portable Text blocks",
+            "title": "reads captions from title-only legacy Portable Text blocks",
+            "ancestorTitles": [
+              "Image dimension round-trip"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.1541509999999846,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Image dimension round-trip keeps an explicitly cleared caption separate from the title across reloads",
+            "title": "keeps an explicitly cleared caption separate from the title across reloads",
+            "ancestorTitles": [
+              "Image dimension round-trip"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.28286299999999187,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/image-link.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/image-link.test.ts",
+          "bytes": 4859,
+          "sha256": "649e8899c48ff8950b204ddf801cfcdde7ae1a337246699f9f90f504bbcb02d8",
+          "gitBlob": "6855e38b4d3acfded798c82b57e7af4112911be0",
+          "testDeclarations": 10,
+          "expectInvocations": 24,
+          "assertionMatchers": 24,
+          "suiteDeclarations": 3,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 10,
+        "actualPassedCallbacks": 10,
+        "callbacks": [
+          {
+            "fullName": "Image link round-trip propagates a relative link through PT \u2192 PM \u2192 PT",
+            "title": "propagates a relative link through PT \u2192 PM \u2192 PT",
+            "ancestorTitles": [
+              "Image link round-trip"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.6608909999999923,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Image link round-trip preserves blank=true on external links",
+            "title": "preserves blank=true on external links",
+            "ancestorTitles": [
+              "Image link round-trip"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.38717900000000327,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Image link round-trip omits link when absent",
+            "title": "omits link when absent",
+            "ancestorTitles": [
+              "Image link round-trip"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.23603399999998942,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Image link round-trip drops half-populated links with empty href",
+            "title": "drops half-populated links with empty href",
+            "ancestorTitles": [
+              "Image link round-trip"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.13221699999999714,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Image link round-trip drops link when href is whitespace only",
+            "title": "drops link when href is whitespace only",
+            "ancestorTitles": [
+              "Image link round-trip"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.24139099999999303,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Legacy string image links (WordPress / Gutenberg imports) upgrades a bare string link to the object shape through PT \u2192 PM \u2192 PT",
+            "title": "upgrades a bare string link to the object shape through PT \u2192 PM \u2192 PT",
+            "ancestorTitles": [
+              "Legacy string image links (WordPress / Gutenberg imports)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.27094500000001176,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Legacy string image links (WordPress / Gutenberg imports) drops an empty or whitespace-only string link",
+            "title": "drops an empty or whitespace-only string link",
+            "ancestorTitles": [
+              "Legacy string image links (WordPress / Gutenberg imports)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.20834200000001601,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "normalizeImageLink accepts the canonical object shape and keeps blank only when true",
+            "title": "accepts the canonical object shape and keeps blank only when true",
+            "ancestorTitles": [
+              "normalizeImageLink"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.2514759999999967,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "normalizeImageLink accepts the legacy string shape",
+            "title": "accepts the legacy string shape",
+            "ancestorTitles": [
+              "normalizeImageLink"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.3426520000000153,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "normalizeImageLink returns null for anything without a usable href",
+            "title": "returns null for anything without a usable href",
+            "ancestorTitles": [
+              "normalizeImageLink"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.6333180000000027,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/image-missing-asset.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/image-missing-asset.test.ts",
+          "bytes": 3207,
+          "sha256": "be333f219d273bfc433608d5c04db5eb87de64be344852d1096d13d09f947729",
+          "gitBlob": "aed04a6276fbddf9d8d97f0979a92b81baee7ebd",
+          "testDeclarations": 5,
+          "expectInvocations": 13,
+          "assertionMatchers": 13,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 5,
+        "actualPassedCallbacks": 5,
+        "callbacks": [
+          {
+            "fullName": "Image blocks without asset wrapper does not crash when an image block has url at the top level instead of inside asset",
+            "title": "does not crash when an image block has url at the top level instead of inside asset",
+            "ancestorTitles": [
+              "Image blocks without asset wrapper"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.6673800000000085,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Image blocks without asset wrapper extracts src and alt from top-level url when asset is missing",
+            "title": "extracts src and alt from top-level url when asset is missing",
+            "ancestorTitles": [
+              "Image blocks without asset wrapper"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.23410999999998694,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Image blocks without asset wrapper handles image block with neither asset nor url gracefully",
+            "title": "handles image block with neither asset nor url gracefully",
+            "ancestorTitles": [
+              "Image blocks without asset wrapper"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.21643399999999247,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Image blocks without asset wrapper still converts well-formed image blocks with asset wrapper correctly",
+            "title": "still converts well-formed image blocks with asset wrapper correctly",
+            "ancestorTitles": [
+              "Image blocks without asset wrapper"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.41523200000000315,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Image blocks without asset wrapper reads the caption from title-only legacy image blocks",
+            "title": "reads the caption from title-only legacy image blocks",
+            "ancestorTitles": [
+              "Image blocks without asset wrapper"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.16307400000002303,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/image-seeded-media.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/image-seeded-media.test.ts",
+          "bytes": 1519,
+          "sha256": "1f8387a049b90285f05065cc220b63c98191efc4ab3980c2f5a2d3132cd78b0c",
+          "gitBlob": "77984f01585717496ee0d30344bf4c9532ee333e",
+          "testDeclarations": 1,
+          "expectInvocations": 1,
+          "assertionMatchers": 1,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 1,
+        "actualPassedCallbacks": 1,
+        "callbacks": [
+          {
+            "fullName": "image block round-trip (core converters) keeps the media reference of a seeded $media asset",
+            "title": "keeps the media reference of a seeded $media asset",
+            "ancestorTitles": [
+              "image block round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.6961629999999843,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/linked-code-round-trip.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/linked-code-round-trip.test.ts",
+          "bytes": 3029,
+          "sha256": "446ebc050e084bcf45d6005e73821bcfa94aab50675b1cee115cf22b4559a2c8",
+          "gitBlob": "16d17dae22cbc2f280a63fdc9f7ca8b827fdb6c6",
+          "testDeclarations": 2,
+          "expectInvocations": 17,
+          "assertionMatchers": 17,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 2,
+        "actualPassedCallbacks": 2,
+        "callbacks": [
+          {
+            "fullName": "linked inline code round-trip (core converters) preserves code + link marks on body text through PT \u2192 PM \u2192 PT",
+            "title": "preserves code + link marks on body text through PT \u2192 PM \u2192 PT",
+            "ancestorTitles": [
+              "linked inline code round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 3.7998549999999796,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "linked inline code round-trip (core converters) preserves code + link marks on headings through PT \u2192 PM \u2192 PT",
+            "title": "preserves code + link marks on headings through PT \u2192 PM \u2192 PT",
+            "ancestorTitles": [
+              "linked inline code round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.6163220000000251,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/list-nesting.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/list-nesting.test.ts",
+          "bytes": 7006,
+          "sha256": "d082dbb2307a6b997b96c2c6b82e87e5044999c48665a0dab2042cbdf7a3343e",
+          "gitBlob": "34a6a93402c41b428e9ed206e538212bc378e034",
+          "testDeclarations": 6,
+          "expectInvocations": 34,
+          "assertionMatchers": 34,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 6,
+        "actualPassedCallbacks": 6,
+        "callbacks": [
+          {
+            "fullName": "portableTextToProsemirror: list run grouping nests level=2 bullets inside their parent listItem",
+            "title": "nests level=2 bullets inside their parent listItem",
+            "ancestorTitles": [
+              "portableTextToProsemirror: list run grouping"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.841431,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToProsemirror: list run grouping keeps a numbered child nested under its bullet parent (mixed type run)",
+            "title": "keeps a numbered child nested under its bullet parent (mixed type run)",
+            "ancestorTitles": [
+              "portableTextToProsemirror: list run grouping"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.7658260000000041,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToProsemirror: list run grouping still ends the run on a different-type level=1 sibling",
+            "title": "still ends the run on a different-type level=1 sibling",
+            "ancestorTitles": [
+              "portableTextToProsemirror: list run grouping"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.9011279999999999,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToProsemirror: list run grouping handles three-level nesting with type switches",
+            "title": "handles three-level nesting with type switches",
+            "ancestorTitles": [
+              "portableTextToProsemirror: list run grouping"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.38247200000000703,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToProsemirror: list run grouping keeps deeper nesting under its true parent for mixed-type 3-level trees",
+            "title": "keeps deeper nesting under its true parent for mixed-type 3-level trees",
+            "ancestorTitles": [
+              "portableTextToProsemirror: list run grouping"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.4285069999999962,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "portableTextToProsemirror: list run grouping round-trips PT \u2192 PM \u2192 PT preserving level and listItem in a mixed-type tree",
+            "title": "round-trips PT \u2192 PM \u2192 PT preserving level and listItem in a mixed-type tree",
+            "ancestorTitles": [
+              "portableTextToProsemirror: list run grouping"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.370303999999976,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/numbered-list-continuity.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/numbered-list-continuity.test.ts",
+          "bytes": 6779,
+          "sha256": "9c450af2008b3c0811dc2429bca0e573e8c5fa06bb96e47df97ad97a8103790e",
+          "gitBlob": "69cb17d064b0d6b0216e51279ff3af15497a6a92",
+          "testDeclarations": 9,
+          "expectInvocations": 32,
+          "assertionMatchers": 32,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 9,
+        "actualPassedCallbacks": 9,
+        "callbacks": [
+          {
+            "fullName": "numbered-list Portable Text conversion keeps the inline and reusable legacy identities equivalent",
+            "title": "keeps the inline and reusable legacy identities equivalent",
+            "ancestorTitles": [
+              "numbered-list Portable Text conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.671627000000001,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list Portable Text conversion preserves an explicitly started ProseMirror list through PT",
+            "title": "preserves an explicitly started ProseMirror list through PT",
+            "ancestorTitles": [
+              "numbered-list Portable Text conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.2681429999999807,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list Portable Text conversion derives the later start for separated segments with one identity",
+            "title": "derives the later start for separated segments with one identity",
+            "ancestorTitles": [
+              "numbered-list Portable Text conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.7149600000000191,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list Portable Text conversion does not merge adjacent numbered runs with different identities",
+            "title": "does not merge adjacent numbered runs with different identities",
+            "ancestorTitles": [
+              "numbered-list Portable Text conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.61908600000001,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list Portable Text conversion keeps legacy separated runs independent",
+            "title": "keeps legacy separated runs independent",
+            "ancestorTitles": [
+              "numbered-list Portable Text conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.5254660000000229,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list Portable Text conversion uses the first valid base for conflicting metadata",
+            "title": "uses the first valid base for conflicting metadata",
+            "ancestorTitles": [
+              "numbered-list Portable Text conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.32019900000000234,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list Portable Text conversion uses a later valid base when an earlier segment has no base",
+            "title": "uses a later valid base when an earlier segment has no base",
+            "ancestorTitles": [
+              "numbered-list Portable Text conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.35720499999999333,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list Portable Text conversion keeps a reused root and nested identity in separate numbering scopes",
+            "title": "keeps a reused root and nested identity in separate numbering scopes",
+            "ancestorTitles": [
+              "numbered-list Portable Text conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.4576749999999947,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "numbered-list Portable Text conversion bounds and canonicalizes untrusted metadata",
+            "title": "bounds and canonicalizes untrusted metadata",
+            "ancestorTitles": [
+              "numbered-list Portable Text conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.4033330000000035,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/table-round-trip.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/table-round-trip.test.ts",
+          "bytes": 7936,
+          "sha256": "98cd8cbdfcde4ed5ef02759373649b727991f55f97a39514908c60bb20980de2",
+          "gitBlob": "613be3126f12365731e891f108017c56d5b331e4",
+          "testDeclarations": 7,
+          "expectInvocations": 15,
+          "assertionMatchers": 15,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 7,
+        "actualPassedCallbacks": 7,
+        "callbacks": [
+          {
+            "fullName": "Portable Text table conversion keeps different targets for links sharing the same URL",
+            "title": "keeps different targets for links sharing the same URL",
+            "ancestorTitles": [
+              "Portable Text table conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 4.408725000000004,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table conversion converts a canonical table to a real ProseMirror table without losing identity",
+            "title": "converts a canonical table to a real ProseMirror table without losing identity",
+            "ancestorTitles": [
+              "Portable Text table conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.6560869999999852,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table conversion converts a ProseMirror table to canonical Portable Text without losing attributes",
+            "title": "converts a ProseMirror table to canonical Portable Text without losing attributes",
+            "ancestorTitles": [
+              "Portable Text table conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.889489999999995,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table conversion accepts legacy string cells and emits canonical cell content",
+            "title": "accepts legacy string cells and emits canonical cell content",
+            "ancestorTitles": [
+              "Portable Text table conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.6504930000000115,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table conversion keeps a hard break outside the link mark that precedes it",
+            "title": "keeps a hard break outside the link mark that precedes it",
+            "ancestorTitles": [
+              "Portable Text table conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.5832530000000133,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table conversion rejects unsupported inline table atoms instead of replacing them with empty text",
+            "title": "rejects unsupported inline table atoms instead of replacing them with empty text",
+            "ancestorTitles": [
+              "Portable Text table conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.505326000000025,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "Portable Text table conversion rejects malformed tables instead of returning an editable partial document",
+            "title": "rejects malformed tables instead of returning an editable partial document",
+            "ancestorTitles": [
+              "Portable Text table conversion"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.23309899999998152,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/text-align-round-trip.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/text-align-round-trip.test.ts",
+          "bytes": 3655,
+          "sha256": "696b5a93131d82ed68bf595a9ff5fbaaa0654f3ace6b408e8027392db3be172f",
+          "gitBlob": "a93b45438dc83c3d82286d750323cd00a99a648a",
+          "testDeclarations": 5,
+          "expectInvocations": 21,
+          "assertionMatchers": 21,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 5,
+        "actualPassedCallbacks": 5,
+        "callbacks": [
+          {
+            "fullName": "text-align round-trip (core converters) preserves center alignment on paragraphs through PM \u2192 PT \u2192 PM",
+            "title": "preserves center alignment on paragraphs through PM \u2192 PT \u2192 PM",
+            "ancestorTitles": [
+              "text-align round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 3.2352300000000014,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "text-align round-trip (core converters) preserves right alignment on headings through PM \u2192 PT \u2192 PM",
+            "title": "preserves right alignment on headings through PM \u2192 PT \u2192 PM",
+            "ancestorTitles": [
+              "text-align round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.2051130000000114,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "text-align round-trip (core converters) does not persist 'left' alignment (TipTap default)",
+            "title": "does not persist 'left' alignment (TipTap default)",
+            "ancestorTitles": [
+              "text-align round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.19891699999999446,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "text-align round-trip (core converters) preserves justify alignment",
+            "title": "preserves justify alignment",
+            "ancestorTitles": [
+              "text-align round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.2842559999999992,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "text-align round-trip (core converters) round-trips mixed alignment blocks",
+            "title": "round-trips mixed alignment blocks",
+            "ancestorTitles": [
+              "text-align round-trip (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.47649300000000494,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      },
+      {
+        "sourcePath": "packages/core/tests/unit/converters/unsupported-portable-text-marks.test.ts",
+        "sourceAuthority": {
+          "path": "packages/core/tests/unit/converters/unsupported-portable-text-marks.test.ts",
+          "bytes": 3650,
+          "sha256": "1606580cb9147a8e7614daaf3c865d35e9f890b95ca045489fce148f86e76fd5",
+          "gitBlob": "b5cc68b764e4f2f43aeb63f5ff5e7fd97fa9a629",
+          "testDeclarations": 4,
+          "expectInvocations": 7,
+          "assertionMatchers": 7,
+          "suiteDeclarations": 1,
+          "hookDeclarations": 0
+        },
+        "fileStatus": "passed",
+        "actualExpandedCallbacks": 4,
+        "actualPassedCallbacks": 4,
+        "callbacks": [
+          {
+            "fullName": "unsupported Portable Text marks (core converters) rejects every unsupported decorator spanning nested blocks without dropping supported marks",
+            "title": "rejects every unsupported decorator spanning nested blocks without dropping supported marks",
+            "ancestorTitles": [
+              "unsupported Portable Text marks (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.4938510000000065,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "unsupported Portable Text marks (core converters) rejects unsupported markDefs annotations by type instead of their opaque keys",
+            "title": "rejects unsupported markDefs annotations by type instead of their opaque keys",
+            "ancestorTitles": [
+              "unsupported Portable Text marks (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.3336590000000115,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "unsupported Portable Text marks (core converters) rejects unsupported ProseMirror marks anywhere in the outbound document",
+            "title": "rejects unsupported ProseMirror marks anywhere in the outbound document",
+            "ancestorTitles": [
+              "unsupported Portable Text marks (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.43923699999999144,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          },
+          {
+            "fullName": "unsupported Portable Text marks (core converters) round-trips every supported decorator and link annotation",
+            "title": "round-trips every supported decorator and link annotation",
+            "ancestorTitles": [
+              "unsupported Portable Text marks (core converters)"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 2.546970000000016,
+            "classification": "actual whole pinned Source callback passed against real Native converter/client/list modules and real TipTap schema library; runtime matcher count not reported"
+          }
+        ],
+        "preexpectStops": 0
+      }
+    ],
+    "originalReporterTotals": {
+      "numTotalTestSuites": 63,
+      "numPassedTestSuites": 63,
+      "numFailedTestSuites": 0,
+      "numTotalTests": 206,
+      "numPassedTests": 206,
+      "numFailedTests": 0,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "success": true
+    }
+  },
+  "native17": {
+    "command": "node node_modules/vitest/vitest.mjs run --config vitest.rich-editor-native.config.ts --reporter=default --reporter=json --outputFile=/tmp/rich-editor-core-first-runtime-76b340bc/native17-report.json",
+    "exit": 1,
+    "fileResults": 2,
+    "actualRegisteredCallbacks": 17,
+    "actualPassedCallbacks": 8,
+    "actualFailedCallbacks": 9,
+    "converterPassed": 8,
+    "typedReadinessValueReds": 9,
+    "typedLaterDomValueAssertions": "all unreached because missing real FieldHost module",
+    "recognizedHtml": "actual htmlBlock inbound-type assertion and original outbound-field assertion passed in full original Native converter callback",
+    "newSourceCallbackCredit": 0,
+    "callbackTimeouts": 0,
+    "pending": 0,
+    "todo": 0,
+    "actualRuntimeMatcherCount": null,
+    "files": [
+      {
+        "path": "tests/rich-editor-native/converters.test.ts",
+        "fileStatus": "passed",
+        "callbacks": [
+          {
+            "fullName": "Native Portable Text ordinary value contracts keeps stored block, span, annotation and custom identities in an editing round trip",
+            "title": "keeps stored block, span, annotation and custom identities in an editing round trip",
+            "ancestorTitles": [
+              "Native Portable Text ordinary value contracts"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 138.58477500000004,
+            "classification": "actual readiness true and original later semantic converter assertions passed; recognized htmlBlock inbound type checked in HTML callback",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "original callback passed; no runtime matcher count in report"
+          },
+          {
+            "fullName": "Native Portable Text ordinary value contracts continues a numbered identity across a paragraph without flattening nested list levels",
+            "title": "continues a numbered identity across a paragraph without flattening nested list levels",
+            "ancestorTitles": [
+              "Native Portable Text ordinary value contracts"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 1.9663420000000542,
+            "classification": "actual readiness true and original later semantic converter assertions passed; recognized htmlBlock inbound type checked in HTML callback",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "original callback passed; no runtime matcher count in report"
+          },
+          {
+            "fullName": "Native Portable Text ordinary value contracts retains table keys, merged-cell dimensions, column widths and linked cell text",
+            "title": "retains table keys, merged-cell dimensions, column widths and linked cell text",
+            "ancestorTitles": [
+              "Native Portable Text ordinary value contracts"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.7368820000000369,
+            "classification": "actual readiness true and original later semantic converter assertions passed; recognized htmlBlock inbound type checked in HTML callback",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "original callback passed; no runtime matcher count in report"
+          },
+          {
+            "fullName": "Native Portable Text ordinary value contracts preserves author HTML fields and iframe attributes through conversion",
+            "title": "preserves author HTML fields and iframe attributes through conversion",
+            "ancestorTitles": [
+              "Native Portable Text ordinary value contracts"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.5799570000000358,
+            "classification": "actual readiness true and original later semantic converter assertions passed; recognized htmlBlock inbound type checked in HTML callback",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "original callback passed; no runtime matcher count in report"
+          },
+          {
+            "fullName": "Native Portable Text ordinary value contracts keeps unsupported stored string code languages and linked inline code",
+            "title": "keeps unsupported stored string code languages and linked inline code",
+            "ancestorTitles": [
+              "Native Portable Text ordinary value contracts"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.6368229999999357,
+            "classification": "actual readiness true and original later semantic converter assertions passed; recognized htmlBlock inbound type checked in HTML callback",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "original callback passed; no runtime matcher count in report"
+          },
+          {
+            "fullName": "Native Portable Text ordinary value contracts rejects unsupported marks before losing stored content",
+            "title": "rejects unsupported marks before losing stored content",
+            "ancestorTitles": [
+              "Native Portable Text ordinary value contracts"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.8590260000000853,
+            "classification": "actual readiness true and original later semantic converter assertions passed; recognized htmlBlock inbound type checked in HTML callback",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "original callback passed; no runtime matcher count in report"
+          },
+          {
+            "fullName": "Native Portable Text ordinary value contracts keeps unknown blocks opaque through a Markdown client round trip",
+            "title": "keeps unknown blocks opaque through a Markdown client round trip",
+            "ancestorTitles": [
+              "Native Portable Text ordinary value contracts"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.6330469999999195,
+            "classification": "actual readiness true and original later semantic converter assertions passed; recognized htmlBlock inbound type checked in HTML callback",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "original callback passed; no runtime matcher count in report"
+          },
+          {
+            "fullName": "Native Portable Text ordinary value contracts preserves stored image/gallery values without claiming media-provider execution",
+            "title": "preserves stored image/gallery values without claiming media-provider execution",
+            "ancestorTitles": [
+              "Native Portable Text ordinary value contracts"
+            ],
+            "status": "passed",
+            "failureMessages": [],
+            "durationMs": 0.7796859999999697,
+            "classification": "actual readiness true and original later semantic converter assertions passed; recognized htmlBlock inbound type checked in HTML callback",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "original callback passed; no runtime matcher count in report"
+          }
+        ],
+        "scope": "supplemental Native contracts; zero copied Source callback credit"
+      },
+      {
+        "path": "tests/rich-editor-native/fields.test.ts",
+        "fileStatus": "failed",
+        "callbacks": [
+          {
+            "fullName": "Native typed content fields emits real numeric values and preserves the Source empty-number coercion to zero",
+            "title": "emits real numeric values and preserves the Source empty-number coercion to zero",
+            "ancestorTitles": [
+              "Native typed content fields"
+            ],
+            "status": "failed",
+            "failureMessages": [
+              "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:29:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+            ],
+            "durationMs": 15.657194000000118,
+            "classification": "reached genuine Native module-readiness false!==true value assertion; all later DOM/value assertions unreached",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "unreached"
+          },
+          {
+            "fullName": "Native typed content fields emits a boolean from a real checked control",
+            "title": "emits a boolean from a real checked control",
+            "ancestorTitles": [
+              "Native typed content fields"
+            ],
+            "status": "failed",
+            "failureMessages": [
+              "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:35:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+            ],
+            "durationMs": 3.1797570000001087,
+            "classification": "reached genuine Native module-readiness false!==true value assertion; all later DOM/value assertions unreached",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "unreached"
+          },
+          {
+            "fullName": "Native typed content fields emits selected option values and keeps their visible labels",
+            "title": "emits selected option values and keeps their visible labels",
+            "ancestorTitles": [
+              "Native typed content fields"
+            ],
+            "status": "failed",
+            "failureMessages": [
+              "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:40:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+            ],
+            "durationMs": 1.9341130000000248,
+            "classification": "reached genuine Native module-readiness false!==true value assertion; all later DOM/value assertions unreached",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "unreached"
+          },
+          {
+            "fullName": "Native typed content fields emits an ordered multi-select list without deleting existing selections",
+            "title": "emits an ordered multi-select list without deleting existing selections",
+            "ancestorTitles": [
+              "Native typed content fields"
+            ],
+            "status": "failed",
+            "failureMessages": [
+              "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:47:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+            ],
+            "durationMs": 1.3874849999999697,
+            "classification": "reached genuine Native module-readiness false!==true value assertion; all later DOM/value assertions unreached",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "unreached"
+          },
+          {
+            "fullName": "Native typed content fields retains invalid JSON locally and emits typed JSON only after successful blur parsing",
+            "title": "retains invalid JSON locally and emits typed JSON only after successful blur parsing",
+            "ancestorTitles": [
+              "Native typed content fields"
+            ],
+            "status": "failed",
+            "failureMessages": [
+              "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:53:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+            ],
+            "durationMs": 1.5033289999998942,
+            "classification": "reached genuine Native module-readiness false!==true value assertion; all later DOM/value assertions unreached",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "unreached"
+          },
+          {
+            "fullName": "Native typed content fields trims URL values on blur and reports invalid values without changing their data",
+            "title": "trims URL values on blur and reports invalid values without changing their data",
+            "ancestorTitles": [
+              "Native typed content fields"
+            ],
+            "status": "failed",
+            "failureMessages": [
+              "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:63:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+            ],
+            "durationMs": 1.3762389999999414,
+            "classification": "reached genuine Native module-readiness false!==true value assertion; all later DOM/value assertions unreached",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "unreached"
+          },
+          {
+            "fullName": "Native typed content fields reuses the real landed datetime control with full ISO storage values",
+            "title": "reuses the real landed datetime control with full ISO storage values",
+            "ancestorTitles": [
+              "Native typed content fields"
+            ],
+            "status": "failed",
+            "failureMessages": [
+              "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:71:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+            ],
+            "durationMs": 1.2376919999999245,
+            "classification": "reached genuine Native module-readiness false!==true value assertion; all later DOM/value assertions unreached",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "unreached"
+          },
+          {
+            "fullName": "Native typed content fields keeps a malformed list value unchanged until an explicit replacement",
+            "title": "keeps a malformed list value unchanged until an explicit replacement",
+            "ancestorTitles": [
+              "Native typed content fields"
+            ],
+            "status": "failed",
+            "failureMessages": [
+              "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:78:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+            ],
+            "durationMs": 1.0997150000000602,
+            "classification": "reached genuine Native module-readiness false!==true value assertion; all later DOM/value assertions unreached",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "unreached"
+          },
+          {
+            "fullName": "Native typed content fields disables value edits for the existing read-only editor contract",
+            "title": "disables value edits for the existing read-only editor contract",
+            "ancestorTitles": [
+              "Native typed content fields"
+            ],
+            "status": "failed",
+            "failureMessages": [
+              "AssertionError: expected false to be true // Object.is equality\n    at render (/workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:14:24)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at /workspace/cms-full-rich-fields-editor/tests/rich-editor-native/fields.test.ts:84:32\n    at file:///workspace/cms-full-rich-fields-editor/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+            ],
+            "durationMs": 1.3094790000000103,
+            "classification": "reached genuine Native module-readiness false!==true value assertion; all later DOM/value assertions unreached",
+            "readinessExpectationReached": true,
+            "laterBehaviorAssertions": "unreached"
+          }
+        ],
+        "scope": "supplemental Native contracts; zero copied Source callback credit"
+      }
+    ],
+    "originalReporterTotals": {
+      "numTotalTestSuites": 4,
+      "numPassedTestSuites": 2,
+      "numFailedTestSuites": 2,
+      "numTotalTests": 17,
+      "numPassedTests": 8,
+      "numFailedTests": 9,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "success": false
+    }
+  },
+  "unhandledErrors": {
+    "sourceLogContainsUnhandledErrorsHeading": false,
+    "nativeLogContainsUnhandledErrorsHeading": false
+  },
+  "wholeRawArtifacts": [
+    {
+      "path": "docs/rich-editor-evidence/core-first-runtime/install.log",
+      "bytes": 578,
+      "sha256": "928d2df484b88644e9006e5dd1e0519774d82e5476fa8039507c0d90816a9e7b",
+      "gitBlob": "959313054ec1a40d24cc28036a53f959266019c2",
+      "preservation": "whole original actual UTF-8 bytes; no trimming/normalization/compression/encoding"
+    },
+    {
+      "path": "docs/rich-editor-evidence/core-first-runtime/source-integrity.log",
+      "bytes": 125,
+      "sha256": "78e0e8f3f301b806c7f6929edf81ddd3f1b7e592ea3e98fd43485a0a681c4aab",
+      "gitBlob": "c6abd00cadba9e9139988da351a5d2731995980e",
+      "preservation": "whole original actual UTF-8 bytes; no trimming/normalization/compression/encoding"
+    },
+    {
+      "path": "docs/rich-editor-evidence/core-first-runtime/source24.log",
+      "bytes": 3064,
+      "sha256": "918b8f869eaa598e2d1d2332b323ac4611ae3cf945aab0db7fb14fd50af9094a",
+      "gitBlob": "549c39409d52bace91786fc12613f5e6f4f3c3f8",
+      "preservation": "whole original actual UTF-8 bytes; no trimming/normalization/compression/encoding"
+    },
+    {
+      "path": "docs/rich-editor-evidence/core-first-runtime/source24-report.json",
+      "bytes": 71630,
+      "sha256": "6321a9709cafde02c2d27cb5b2a1e302b108f38034feeceaa01c8fe1bd957ba6",
+      "gitBlob": "be38096125272148b41985aa673aa6ec44914d3c",
+      "preservation": "whole original actual UTF-8 bytes; no trimming/normalization/compression/encoding"
+    },
+    {
+      "path": "docs/rich-editor-evidence/core-first-runtime/native17.log",
+      "bytes": 8326,
+      "sha256": "2016c19ff752914b8e806383a6057cc9beb98d9f437a4174b5ae1fef3d5213f0",
+      "gitBlob": "270951fc007425d73b1588e6b844f0d1c98d143b",
+      "preservation": "whole original actual UTF-8 bytes; no trimming/normalization/compression/encoding"
+    },
+    {
+      "path": "docs/rich-editor-evidence/core-first-runtime/native17-report.json",
+      "bytes": 11254,
+      "sha256": "2719547ffe6bae2bc597e911dad94909bf42263701931d10c74b8ca233795904",
+      "gitBlob": "20eda12e588593ca0d30aa6f751c7378dc294cd6",
+      "preservation": "whole original actual UTF-8 bytes; no trimming/normalization/compression/encoding"
+    }
+  ],
+  "meaningfulRefactor": "No gratuitous change to exact copied Source bodies; full UI will reuse actual converter API. Any later meaningful product refactor requires preserved behavior and whole affected runs after qualification.",
+  "wholeSource32Preservation": "All original callbacks/assertions/fixtures/clocks/skips and prior145 Source bytes unchanged; additional whole converter type authority remains byte exact",
+  "heldSourceWholeUIE2E8": {
+    "families": [
+      {
+        "path": "packages/admin/tests/components/RepeaterField.test.tsx",
+        "runtime": "unexecuted",
+        "causalSourceCredit": 0,
+        "reason": "Real browser/editor mount, generated stylesheet, actual public media/block/reference/plugin and Native end-to-end fixture composition require later finite qualification. Original Source credential/session callbacks remain retained and are not newly executed."
+      },
+      {
+        "path": "packages/admin/tests/components/PortableTextEditor.footer.test.tsx",
+        "runtime": "unexecuted",
+        "causalSourceCredit": 0,
+        "reason": "Real browser/editor mount, generated stylesheet, actual public media/block/reference/plugin and Native end-to-end fixture composition require later finite qualification. Original Source credential/session callbacks remain retained and are not newly executed."
+      },
+      {
+        "path": "packages/admin/tests/editor/PortableTextEditor.test.tsx",
+        "runtime": "unexecuted",
+        "causalSourceCredit": 0,
+        "reason": "Real browser/editor mount, generated stylesheet, actual public media/block/reference/plugin and Native end-to-end fixture composition require later finite qualification. Original Source credential/session callbacks remain retained and are not newly executed."
+      },
+      {
+        "path": "packages/admin/tests/editor/slash-menu.test.tsx",
+        "runtime": "unexecuted",
+        "causalSourceCredit": 0,
+        "reason": "Real browser/editor mount, generated stylesheet, actual public media/block/reference/plugin and Native end-to-end fixture composition require later finite qualification. Original Source credential/session callbacks remain retained and are not newly executed."
+      },
+      {
+        "path": "e2e/tests/field-widgets.spec.ts",
+        "runtime": "unexecuted",
+        "causalSourceCredit": 0,
+        "reason": "Real browser/editor mount, generated stylesheet, actual public media/block/reference/plugin and Native end-to-end fixture composition require later finite qualification. Original Source credential/session callbacks remain retained and are not newly executed."
+      },
+      {
+        "path": "e2e/tests/portable-text-alignment.spec.ts",
+        "runtime": "unexecuted",
+        "causalSourceCredit": 0,
+        "reason": "Real browser/editor mount, generated stylesheet, actual public media/block/reference/plugin and Native end-to-end fixture composition require later finite qualification. Original Source credential/session callbacks remain retained and are not newly executed."
+      },
+      {
+        "path": "e2e/tests/portable-text-table.spec.ts",
+        "runtime": "unexecuted",
+        "causalSourceCredit": 0,
+        "reason": "Real browser/editor mount, generated stylesheet, actual public media/block/reference/plugin and Native end-to-end fixture composition require later finite qualification. Original Source credential/session callbacks remain retained and are not newly executed."
+      },
+      {
+        "path": "e2e/tests/editor-html-block.spec.ts",
+        "runtime": "unexecuted",
+        "causalSourceCredit": 0,
+        "reason": "Real browser/editor mount, generated stylesheet, actual public media/block/reference/plugin and Native end-to-end fixture composition require later finite qualification. Original Source credential/session callbacks remain retained and are not newly executed."
+      }
+    ],
+    "executed": 0,
+    "credit": 0
+  },
+  "remainingFullFeature": "Real writable TipTap authoring/history/footer/marks/links/lists/table/code/slash, typed fields/repeater, actual public media/refs/blocks/sections/plugin providers, shared EditorForm autosave/dirty/conflict and all8 original UI/E2E families remain unfinished; full public union and unchanged13+9 final checks/reviews/approval/author merge pending."
+}

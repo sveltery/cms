@@ -1,0 +1,372 @@
+
+ RUN  v4.1.10 /workspace/cms-full-rich-fields-editor
+
+ ❯ tests/rich-editor-native/fields.test.ts (9 tests | 9 failed) 31ms
+     × emits real numeric values and preserves the Source empty-number coercion to zero 12ms
+     × emits a boolean from a real checked control 3ms
+     × emits selected option values and keeps their visible labels 2ms
+     × emits an ordered multi-select list without deleting existing selections 1ms
+     × retains invalid JSON locally and emits typed JSON only after successful blur parsing 5ms
+     × trims URL values on blur and reports invalid values without changing their data 2ms
+     × reuses the real landed datetime control with full ISO storage values 3ms
+     × keeps a malformed list value unchanged until an explicit replacement 1ms
+     × disables value edits for the existing read-only editor contract 2ms
+ ❯ tests/rich-editor-native/converters.test.ts (8 tests | 8 failed) 22ms
+     × keeps stored block, span, annotation and custom identities in an editing round trip 9ms
+     × continues a numbered identity across a paragraph without flattening nested list levels 2ms
+     × retains table keys, merged-cell dimensions, column widths and linked cell text 2ms
+     × preserves author HTML fields and iframe attributes through conversion 1ms
+     × keeps unsupported stored string code languages and linked inline code 2ms
+     × rejects unsupported marks before losing stored content 1ms
+     × keeps unknown blocks opaque through a Markdown client round trip 1ms
+     × preserves stored image/gallery values without claiming media-provider execution 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 17 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/rich-editor-native/converters.test.ts > Native Portable Text ordinary value contracts > keeps stored block, span, annotation and custom identities in an editing round trip
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ converters tests/rich-editor-native/converters.test.ts:18:24
+     16|   // A missing product module is an observed readiness value failure. …
+     17|   // subsequent value assertion remains unreached until the real modul…
+     18|   expect(result.ready).toBe(true);
+       |                        ^
+     19|   return result.module as Converters;
+     20| }
+ ❯ tests/rich-editor-native/converters.test.ts:25:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/17]⎯
+
+ FAIL  tests/rich-editor-native/converters.test.ts > Native Portable Text ordinary value contracts > continues a numbered identity across a paragraph without flattening nested list levels
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ converters tests/rich-editor-native/converters.test.ts:18:24
+     16|   // A missing product module is an observed readiness value failure. …
+     17|   // subsequent value assertion remains unreached until the real modul…
+     18|   expect(result.ready).toBe(true);
+       |                        ^
+     19|   return result.module as Converters;
+     20| }
+ ❯ tests/rich-editor-native/converters.test.ts:32:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/17]⎯
+
+ FAIL  tests/rich-editor-native/converters.test.ts > Native Portable Text ordinary value contracts > retains table keys, merged-cell dimensions, column widths and linked cell text
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ converters tests/rich-editor-native/converters.test.ts:18:24
+     16|   // A missing product module is an observed readiness value failure. …
+     17|   // subsequent value assertion remains unreached until the real modul…
+     18|   expect(result.ready).toBe(true);
+       |                        ^
+     19|   return result.module as Converters;
+     20| }
+ ❯ tests/rich-editor-native/converters.test.ts:47:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/17]⎯
+
+ FAIL  tests/rich-editor-native/converters.test.ts > Native Portable Text ordinary value contracts > preserves author HTML fields and iframe attributes through conversion
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ converters tests/rich-editor-native/converters.test.ts:18:24
+     16|   // A missing product module is an observed readiness value failure. …
+     17|   // subsequent value assertion remains unreached until the real modul…
+     18|   expect(result.ready).toBe(true);
+       |                        ^
+     19|   return result.module as Converters;
+     20| }
+ ❯ tests/rich-editor-native/converters.test.ts:57:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/17]⎯
+
+ FAIL  tests/rich-editor-native/converters.test.ts > Native Portable Text ordinary value contracts > keeps unsupported stored string code languages and linked inline code
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ converters tests/rich-editor-native/converters.test.ts:18:24
+     16|   // A missing product module is an observed readiness value failure. …
+     17|   // subsequent value assertion remains unreached until the real modul…
+     18|   expect(result.ready).toBe(true);
+       |                        ^
+     19|   return result.module as Converters;
+     20| }
+ ❯ tests/rich-editor-native/converters.test.ts:66:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/17]⎯
+
+ FAIL  tests/rich-editor-native/converters.test.ts > Native Portable Text ordinary value contracts > rejects unsupported marks before losing stored content
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ converters tests/rich-editor-native/converters.test.ts:18:24
+     16|   // A missing product module is an observed readiness value failure. …
+     17|   // subsequent value assertion remains unreached until the real modul…
+     18|   expect(result.ready).toBe(true);
+       |                        ^
+     19|   return result.module as Converters;
+     20| }
+ ❯ tests/rich-editor-native/converters.test.ts:74:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/17]⎯
+
+ FAIL  tests/rich-editor-native/converters.test.ts > Native Portable Text ordinary value contracts > keeps unknown blocks opaque through a Markdown client round trip
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ converters tests/rich-editor-native/converters.test.ts:18:24
+     16|   // A missing product module is an observed readiness value failure. …
+     17|   // subsequent value assertion remains unreached until the real modul…
+     18|   expect(result.ready).toBe(true);
+       |                        ^
+     19|   return result.module as Converters;
+     20| }
+ ❯ tests/rich-editor-native/converters.test.ts:81:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/17]⎯
+
+ FAIL  tests/rich-editor-native/converters.test.ts > Native Portable Text ordinary value contracts > preserves stored image/gallery values without claiming media-provider execution
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ converters tests/rich-editor-native/converters.test.ts:18:24
+     16|   // A missing product module is an observed readiness value failure. …
+     17|   // subsequent value assertion remains unreached until the real modul…
+     18|   expect(result.ready).toBe(true);
+       |                        ^
+     19|   return result.module as Converters;
+     20| }
+ ❯ tests/rich-editor-native/converters.test.ts:86:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/17]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > emits real numeric values and preserves the Source empty-number coercion to zero
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:29:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/17]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > emits a boolean from a real checked control
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:35:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/17]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > emits selected option values and keeps their visible labels
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:40:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/17]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > emits an ordered multi-select list without deleting existing selections
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:47:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/17]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > retains invalid JSON locally and emits typed JSON only after successful blur parsing
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:53:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/17]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > trims URL values on blur and reports invalid values without changing their data
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:63:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/17]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > reuses the real landed datetime control with full ISO storage values
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:71:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/17]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > keeps a malformed list value unchanged until an explicit replacement
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:78:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/17]⎯
+
+ FAIL  tests/rich-editor-native/fields.test.ts > Native typed content fields > disables value edits for the existing read-only editor contract
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ render tests/rich-editor-native/fields.test.ts:14:24
+     12|   const result = await import(modulePath).then(module => ({ ready: tru…
+     13|     () => ({ ready: false, module: undefined }));
+     14|   expect(result.ready).toBe(true);
+       |                        ^
+     15|   const host = document.createElement('div'); document.body.append(hos…
+     16|   const onChange = vi.fn();
+ ❯ tests/rich-editor-native/fields.test.ts:84:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/17]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  17 failed (17)
+   Start at  13:29:08
+   Duration  2.23s (transform 559ms, setup 0ms, import 704ms, tests 53ms, environment 1.19s)
+
+JSON report written to /tmp/rich-editor-first-baseline-70152ee0/native17-report.json

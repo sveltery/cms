@@ -1,0 +1,24 @@
+{
+  "actualCommand": "PLAYWRIGHT_BROWSERS_PATH=/workspace/.cache/ms-playwright PATH=/workspace/.tools/pnpm/node_modules/.bin:$PATH node /workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs exec playwright install chromium",
+  "ordinaryCommandAttempts": 1,
+  "toolInternalOfficialRetryCount": 5,
+  "exit": 1,
+  "officialRevision": "chromium1243 Chrome for Testing153.0.8010.12",
+  "officialEndpoint": "https://cdn.playwright.dev/builds/cft/153.0.8010.12/linux64/chrome-linux64.zip",
+  "result": "403 Domain forbidden, binary not installed",
+  "inheritedProxyCAAndTLSAndSandboxUnchanged": true,
+  "alternateHostFallbackOrExecutableOverride": false,
+  "testsExecuted": 0,
+  "files": {
+    "install.log": {
+      "bytes": 3906,
+      "sha256": "188915e1ef47901be5db6d24218e37a24240539511684b5589e0e0f52c0f0e46",
+      "gitBlob": "297880d9eb0fcae70272cc6ae54efb59b679af85"
+    },
+    "install.exit": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "gitBlob": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d"
+    }
+  }
+}

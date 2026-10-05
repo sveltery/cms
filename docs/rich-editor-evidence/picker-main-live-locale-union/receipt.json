@@ -1,0 +1,58 @@
+{
+  "incomingMain": "fa86186aa2bd83b7678f59c26026b7fc6c9d57cf",
+  "ownedParent": "25de96c507462a3d91ffd97fb1601f8f1e689bb4",
+  "sharedBase": "f2b2e560f6ea54f53e941db76fac732601772ce9",
+  "oneConflict": "parity/emdash/compatibility.md",
+  "resolution": "entire actual incoming compatibility prefix followed by both complete unchanged owned insertions beyond the shared publicMain base, in original owned order",
+  "firstAttempt": "strict one-tail prefix precondition failed before writing; actual two additive owned insertions verified, no deleted/replaced historical lines",
+  "baseBytes": 560792,
+  "incomingBytes": 566594,
+  "ownedBytes": 609103,
+  "ownedInsertionBytes": [
+    40528,
+    7783
+  ],
+  "combinedBytes": 614905,
+  "sha256": "38070dc72507ec12e0fca6ac3a44925b3d98f34b160f9610fc9ca0458ca548a5",
+  "raw": {
+    "native.log": {
+      "bytes": 25380,
+      "sha256": "45df718466fc7679de937b6bff5cf416ad9f4cc6aede0d95421842e4c4a22575"
+    },
+    "native.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "native-report.json": {
+      "bytes": 24205,
+      "sha256": "1e272dac14c0fc3d164a1675bc912d1ed3168eac705087a82b5e9cb424fce8ff"
+    },
+    "source.log": {
+      "bytes": 457,
+      "sha256": "947e909753f3cad7d5c20b954016698fc502fce14e886f4ec45ac664df31829c"
+    },
+    "source.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "check.log": {
+      "bytes": 148,
+      "sha256": "59aa5dce6d511082ca6edcdf662772b6d4e90f7b288dadd9ee0145b8cf1ff451"
+    },
+    "check.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    }
+  },
+  "results": {
+    "nativeRegistered": 57,
+    "nativePassed": 57,
+    "nativeFailed": 0,
+    "sourceOriginal206": "PASS, whole24 purefamilies and immutable148filesguard",
+    "diagnostics": "0errors0warnings/process0",
+    "newSourceOrBrowserCredit": 0,
+    "currentNormal13Secured10WholeEditor": "pending, current public gates required",
+    "originalCI560209": "unchanged literal retained original baseline"
+  },
+  "preservation": "Exact incoming Picker product/test/docs; all previous Rich product, original Source148, package/lock/bootstrap/workflow/browser config unchanged. Entire incoming compatibility prefix plus both owned exact insertion chunks retained once."
+}
