@@ -1,0 +1,46 @@
+{
+  "recordedAtUTC": "2026-10-05T00:57:04.265601+00:00",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "testFirstHead": "f18cfd1a",
+  "findingIds": [
+    "RFEFINAL01",
+    "RFEFINAL02"
+  ],
+  "actualRuntime": "jsdom mounted actual Native Svelte/Tiptap editor/controls; no production mocks",
+  "wholeNativeCallbacks": 22,
+  "oldCallbacksPassed": 17,
+  "newRegressions": 5,
+  "newRegressionsReachedValueAssertions": 5,
+  "newRegressionsFailed": 5,
+  "preCollectionStops": 0,
+  "unhandledErrors": 0,
+  "SourceCallbacksExecuted": 0,
+  "SourceCausalCredit": 0,
+  "command": "node node_modules/vitest/vitest.mjs run --config vitest.rich-editor-native.config.ts --reporter=default --reporter=json --outputFile=/tmp/rich104-final-review-native-first-report.json",
+  "nativeCases": [
+    "Text-cell persisted alignment remains null",
+    "Multi-cell persisted alignment remains null in both cells",
+    "Mixed table/outside alignment control remains enabled",
+    "Clicked HTML remains while unrelated selected text is deleted",
+    "Clicked moved iframe remains while a different selected HTML node is deleted"
+  ],
+  "files": [
+    {
+      "path": "docs/rich-editor-evidence/final-review-native-first/whole-native22.log.json",
+      "originalBytes": 5845,
+      "originalSha256": "64fa5458d0788bc4c5666414fddf583fb7dc1cfc2ef266c0cca80454980eb327",
+      "storedBytes": 6614,
+      "storedSha256": "92e3663d3a188c6a37a47357e841b69734e3348ef74ab7b846ae4be4c280ac22"
+    },
+    {
+      "path": "docs/rich-editor-evidence/final-review-native-first/whole-native22-report.json",
+      "originalBytes": 11138,
+      "originalSha256": "6706f16effd2aa2327b16d1121beb17bb4e8475230933c19fc8eac458ff7a8a2",
+      "storedBytes": 11138,
+      "storedSha256": "6706f16effd2aa2327b16d1121beb17bb4e8475230933c19fc8eac458ff7a8a2"
+    }
+  ],
+  "laterAssertionsAfterEachFirstFailure": "unreached; no extra assertion-red credit",
+  "originalSourceBodiesDataClocksMocks": "unchanged",
+  "fullParity": false
+}
