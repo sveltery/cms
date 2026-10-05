@@ -324,7 +324,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     async resolvePublicationKey(input:unknown):Promise<ContentKey&{locale:string}> {
       const actor=mutationPermission('content:publish_own','content:publish_any');
       const value=key(input);value.locale=resolveConfiguredLocale(value.locale);
-      const item=await stored(value,object(input).locale===undefined,true);
+      const persisted=await stored(value,object(input).locale===undefined,true);const item=persisted.item;
       owner(item,actor,'content:publish_any');
       return {type:value.type,id:item.id,locale:parse(localeInput,item.locale)};
     },
@@ -341,7 +341,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
     },
     /** Calendar administration delegates to the existing published repository. */
     async schedule(input:unknown):Promise<ContentItem> {
-      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
+      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const persisted=await stored(value);const item=persisted.item;
       owner(item,actor,'content:publish_any');precondition(value.expected,item);
       // Pinned handleContentSchedule checks the existing routable slug before
       // delegating to the repository, including rescheduling a cleared draft.
@@ -351,7 +351,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       return translate(()=>content.schedule(value.type,value.id,scheduledAt,new Date(),{version:item.version,updatedAt:item.updatedAt}));
     },
     async unschedule(input:unknown):Promise<ContentItem> {
-      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const item=await stored(value);
+      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);const persisted=await stored(value);const item=persisted.item;
       owner(item,actor,'content:publish_any');precondition(value.expected,item);
       return translate(()=>content.unschedule(value.type,value.id,{version:item.version,updatedAt:item.updatedAt}));
     },
