@@ -2,7 +2,9 @@
   import { onMount } from 'svelte';
   import { iframeAllow, type IframeEmbed } from '../portable-text/iframe-embed';
   import { documentDragging } from './document-dragging.svelte';
-  let { embed, url }: { embed: IframeEmbed; url: URL } = $props();
+  import { sourceMessage, type Translate } from './types';
+  import { embedMessage } from './embed-messages.source';
+  let { embed, url, translate = sourceMessage }: { embed: IframeEmbed; url: URL; translate?: Translate } = $props();
   const SANDBOX = ['allow-scripts', 'allow-same-origin', 'allow-forms', 'allow-popups', 'allow-popups-to-escape-sandbox', 'allow-presentation'];
   let container: HTMLDivElement;
   let visible = $state(false);
@@ -20,7 +22,7 @@
   });
 </script>
 <div bind:this={container} style={size}>
-  {#if visible}<iframe src={url.href} title={embed.title || 'Embedded content'} {sandbox} allow={iframeAllow(embed.allow) || undefined}
+  {#if visible}<iframe src={url.href} title={embed.title || embedMessage(translate, 'Embedded content')} {sandbox} allow={iframeAllow(embed.allow) || undefined}
     allowfullscreen={embed.allowFullscreen === true} referrerpolicy="strict-origin-when-cross-origin" class:dragging={dragging.active}></iframe>{/if}
 </div>
 <style>iframe { display: block; width: 100%; height: 100%; border: 0; } .dragging { pointer-events: none; }</style>

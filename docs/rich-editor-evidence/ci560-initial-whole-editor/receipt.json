@@ -1,0 +1,93 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "runId": 37366707175,
+  "publicHead": "2e8747bef91b9b61975832b86d097b5e82c2a9b1",
+  "publicTree": "3596d7c5e7dae32f6d62139b7d5c2f8b6d3a3fe6",
+  "sourceOriginalsEdited": false,
+  "productFixesAdoptedBeforeRun": false,
+  "officialSandboxedChromiumRevision": 1243,
+  "editorJobId": 111957283960,
+  "editorProcessExit": 1,
+  "total": 209,
+  "passed": 206,
+  "failed": 3,
+  "pending": 0,
+  "families": {
+    "PortableTextEditor": {
+      "registered": 91,
+      "passed": 90,
+      "failed": 1
+    },
+    "slash": {
+      "registered": 44,
+      "passed": 44,
+      "failed": 0
+    },
+    "footer": {
+      "registered": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "iframe": {
+      "registered": 11,
+      "passed": 11,
+      "failed": 0
+    },
+    "table": {
+      "registered": 60,
+      "staticDeclarations": 35,
+      "passed": 58,
+      "failed": 2
+    },
+    "supplementalNativeEnter": {
+      "registered": 1,
+      "passed": 1,
+      "failed": 0
+    }
+  },
+  "failures": [
+    {
+      "case": "keeps a no-op editor update lossless",
+      "classification": "actual host readiness prerequisite failure before conversion assertions",
+      "actual": ".ProseMirror null at Source waitForEditor line119; original3000ms unchanged",
+      "valueParityCredit": 0
+    },
+    {
+      "case": "uses the shared header-row choice for pointer insertion",
+      "classification": "actual DOM role/availability failure",
+      "actual": "Header row switch missing before checked/pointer insertion expectations"
+    },
+    {
+      "case": "keeps the header choice before confirmation in the coarse keyboard flow",
+      "classification": "actual DOM role/availability failure before focus assertions",
+      "actual": "Header row switch missing; Rows focus has no Source execution credit yet"
+    }
+  ],
+  "securedBrowserJob": {
+    "id": 111953534757,
+    "status": "completed",
+    "conclusion": "success",
+    "stages": 10
+  },
+  "normalValidation": "queued at first editor terminal observation; zero complete13 credit",
+  "firstRunRaw": {
+    "editor-original.log": {
+      "bytes": 112610,
+      "sha256": "3b157a3f240114526bdaac9bd57f81a0a52499ab56c5fc80adc7bb6051f07ed0"
+    },
+    "editor-original-report.json": {
+      "bytes": 70133,
+      "sha256": "88d1a2dd93f4057955e652cd93c3bf59b982913414470e7bf293b95c59519127"
+    },
+    "secured10-original.log": {
+      "bytes": 475057,
+      "sha256": "1aea6e0846740c4f2a3bfd1c94f01d10df76b7b9b00e7cc0f68949b9578352b3"
+    }
+  },
+  "limits": [
+    "No Table fixes or l10n fixes adopted before this initial run.",
+    "Zero Source causal-red credit for iframe repairs from this run: original11 are alreadygreen.",
+    "No backend protected TableE2E/public HTML/media/reference/repeater/plugin/full-renderer acceptance.",
+    "Final current-head gates, independent/configured review, Root exact approval and author regular merge remain pending."
+  ]
+}

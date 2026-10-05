@@ -7,6 +7,7 @@
   import EmbedTabs from './EmbedTabs.svelte';
   import IframePreview from './IframePreview.svelte';
   import { buildHtmlBlockFrame, HTML_BLOCK_FRAME_SANDBOX } from '../portable-text/html-block';
+  import { embedMessage } from './embed-messages.source';
   let { state: viewState }: { state: NodeViewState } = $props();
   function initialTab() { return viewState.node.type.name === 'iframeBlock' ? viewState.node.attrs.src ? 'preview' : 'code' : 'html'; }
   let tab = $state(initialTab());
@@ -21,18 +22,19 @@
   const url = $derived(httpsUrl(embed.src));
   const previewKey = $derived(`${url?.href} ${iframeAllow(embed.allow)} ${embed.allowFullscreen === true}`);
   const current = $derived(typeof viewState.node.attrs[tab] === 'string' ? viewState.node.attrs[tab] : '');
+  const t = $derived(viewState.translate);
   $effect(() => { if (iframe) draft.synchronize(code); });
   $effect(() => { if (card && panel) focus.setElements(card, panel); });
   function change(text: string) { if (viewState.editable) { if (iframe) draft.change(text); else viewState.updateAttributes({ [tab]: text }); } }
   function focusChanged(focused: boolean) { focus.onFocusChange(focused); if (!focused) draft.canonicalizeAfterBlur(); }
   function changeTab(value: string) { if (iframe) draft.changeTab(); tab = value; }
-  function label(value: string) { return value === 'preview' ? 'Preview' : value === 'code' ? 'Code' : value.toUpperCase(); }
+  function label(value: string) { return value === 'preview' ? embedMessage(t, 'Preview') : value === 'code' ? embedMessage(t, 'Code') : value.toUpperCase(); }
 </script>
 
 <section bind:this={card} class="embed-card" contenteditable="false" aria-label={iframe ? 'Iframe' : 'HTML'}>
   <div class="embed-controls">
     <EmbedTabs {tabs} active={tab} {label} onChange={changeTab} ariaLabel={iframe ? 'Iframe block' : 'HTML block'} />
-    <button type="button" aria-label="Delete block" disabled={!viewState.editable} onclick={() => { if (iframe) draft.flush(); viewState.deleteBlock?.(); }}>Delete</button>
+    <button type="button" aria-label={embedMessage(t, 'Delete block')} disabled={!viewState.editable} onclick={() => { if (iframe) draft.flush(); viewState.deleteBlock?.(); }}>{embedMessage(t, 'Delete block')}</button>
   </div>
   <div bind:this={panel} role="tabpanel" aria-label={label(tab)} tabindex="-1" onblur={focus.onPanelBlur}>
     {#if tab === 'preview'}
@@ -40,15 +42,15 @@
         {#if viewState.node.attrs.isolated === true}<iframe title="HTML preview" sandbox={HTML_BLOCK_FRAME_SANDBOX} srcdoc={buildHtmlBlockFrame({ html: viewState.node.attrs.html ?? '', css: viewState.node.attrs.css, js: viewState.node.attrs.js })}></iframe>
         {:else}<pre>{viewState.node.attrs.html}</pre>{/if}
       {:else if url && draft.state.loadable === embed.src}
-        {#key previewKey}<IframePreview {embed} {url} />{/key}
+        {#key previewKey}<IframePreview {embed} {url} translate={t} />{/key}
       {:else if url}
-        <div class="preview-consent"><p>This block embeds a page from {url.host}.</p><button type="button" onclick={() => { draft.state.loadable = embed.src; panel.focus(); }}>Load preview</button></div>
-      {:else}<p>Nothing to preview yet.</p>{/if}
+        <div class="preview-consent"><p>{embedMessage(t, 'This block embeds a page from {0}.', { 0: url.host })}</p><button type="button" onclick={() => { draft.state.loadable = embed.src; panel.focus(); }}>{embedMessage(t, 'Load preview')}</button></div>
+      {:else}<p>{embedMessage(t, 'Nothing to preview yet.')}</p>{/if}
     {:else if iframe}
       {#key draft.state.revision}<EmbedCodeEditor language="html" value={code} onChange={change} onFocusChange={focusChanged}
-        onEscape={focus.onEscape} editable={viewState.editable} autoFocus={focus.state.autoFocus} ariaLabel="Embed code"
-        placeholder="Paste an embed code or an https link…" describedBy={errorId} />{/key}
-      <div id={errorId} aria-live="polite">{#if draft.state.error}<p role="alert">{draft.state.error}</p>{/if}</div>
+        onEscape={focus.onEscape} editable={viewState.editable} autoFocus={focus.state.autoFocus} ariaLabel={embedMessage(t, 'Embed code')}
+        placeholder={embedMessage(t, 'Paste an embed code or an https link…')} describedBy={errorId} translate={t} />{/key}
+      <div id={errorId} aria-live="polite">{#if draft.state.error}<p role="alert">{embedMessage(t, draft.state.error)}</p>{/if}</div>
     {:else}
       <textarea value={current} rows="8" spellcheck="false" aria-label={tab.toUpperCase()} disabled={!viewState.editable}
         placeholder={`Enter ${tab.toUpperCase()}…`} oninput={event => change(event.currentTarget.value)}></textarea>
