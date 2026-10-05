@@ -5,11 +5,12 @@
   import { bracketMatching, indentOnInput, syntaxHighlighting } from '@codemirror/language';
   import { Compartment, Prec } from '@codemirror/state';
   import { EditorView, drawSelection, keymap, lineNumbers, placeholder } from '@codemirror/view';
-  import { LANGUAGES, highlightStyle, theme, editability, type CodeEditorProps } from './code-editor-config.source';
-  import { sourceMessage, type Translate } from './types';
+  import { LANGUAGES, highlightStyle, theme, editability } from './code-editor-config.source';
+  import { sourceMessage } from './types';
+  import type { NativeCodeEditorProps } from './code-editor-types';
   import { embedMessage } from './embed-messages.source';
   let { language, value, onChange, onFocusChange, onEscape, editable, autoFocus, ariaLabel,
-    placeholder: placeholderText, describedBy, translate = sourceMessage }: CodeEditorProps & { translate?: Translate } = $props();
+    placeholder: placeholderText, describedBy, translate = sourceMessage }: NativeCodeEditorProps = $props();
   const hintId = $props.id();
   let host: HTMLDivElement;
   let view = $state.raw<EditorView | null>(null);

@@ -1,9 +1,8 @@
 <script module lang="ts">
   import type { Component } from 'svelte';
-  import type { CodeEditorProps } from './code-editor-config.source';
-  import { sourceMessage, type Translate } from './types';
+  import type { NativeCodeEditorProps } from './code-editor-types';
+  import { sourceMessage } from './types';
   import { embedMessage } from './embed-messages.source';
-  type NativeCodeEditorProps = CodeEditorProps & { translate?: Translate };
   // React.lazy retains a fulfilled module across the Source's keyed remounts.
   // Keep the same lifetime here while leaving the first browser load lazy.
   let loadedEditor: Component<NativeCodeEditorProps> | null = null;
