@@ -12,18 +12,23 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   let props: CodeEditorProps = $props();
-  let Editor = $state(loadedEditor), failed = $state(false);
+  let Editor = $state(loadedEditor), loadFailed = $state(false);
   onMount(() => {
     let live = true;
     void loadEditor().then(component => { if (live) Editor = component; })
-      .catch(() => { if (live) failed = true; });
+      .catch(() => { if (live) loadFailed = true; });
     return () => { live = false; };
   });
 </script>
-{#if failed}
+{#snippet loadError()}
   <div class="code-load-error">The code editor couldn't load. Save your work, then reload the page.
     <button type="button" onclick={() => window.location.reload()}>Reload page</button>
   </div>
-{:else if Editor}<Editor {...props} />
-{:else}<div class="code-loading"></div>{/if}
+{/snippet}
+<svelte:boundary>
+  {#if loadFailed}{@render loadError()}
+  {:else if Editor}<Editor {...props} />
+  {:else}<div class="code-loading"></div>{/if}
+  {#snippet failed()}{@render loadError()}{/snippet}
+</svelte:boundary>
 <style>.code-loading { min-height: 10rem; } .code-load-error { padding: .75rem; }</style>

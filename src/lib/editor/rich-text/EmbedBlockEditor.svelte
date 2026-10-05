@@ -25,12 +25,26 @@
   function change(text: string) { if (viewState.editable) { if (iframe) draft.change(text); else viewState.updateAttributes({ [tab]: text }); } }
   function focusChanged(focused: boolean) { focus.onFocusChange(focused); if (!focused) draft.canonicalizeAfterBlur(); }
   function changeTab(value: string) { if (iframe) draft.changeTab(); tab = value; }
+  function tabKey(event: KeyboardEvent) {
+    const button = event.currentTarget as HTMLButtonElement;
+    const list = button.closest('[role="tablist"]')!;
+    const items = [...list.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const current = items.indexOf(button), rtl = getComputedStyle(list).direction === 'rtl';
+    let next: number;
+    if (event.key === 'Home') next = 0;
+    else if (event.key === 'End') next = items.length - 1;
+    else if (event.key === 'ArrowLeft') next = (current + (rtl ? 1 : -1) + items.length) % items.length;
+    else if (event.key === 'ArrowRight') next = (current + (rtl ? -1 : 1) + items.length) % items.length;
+    else return;
+    event.preventDefault(); event.stopPropagation(); items[next]?.focus();
+  }
   function label(value: string) { return value === 'preview' ? 'Preview' : value === 'code' ? 'Code' : value.toUpperCase(); }
 </script>
 
 <section bind:this={card} class="embed-card" contenteditable="false" aria-label={iframe ? 'Iframe' : 'HTML'}>
   <div role="tablist" aria-label={iframe ? 'Iframe block' : 'HTML block'}>
-    {#each tabs as value}<button type="button" role="tab" aria-selected={tab === value} onclick={() => changeTab(value)}>{label(value)}</button>{/each}
+    {#each tabs as value}<button type="button" role="tab" aria-selected={tab === value} tabindex={tab === value ? 0 : -1}
+      onfocus={() => { if (tab !== value) changeTab(value); }} onkeydown={tabKey} onclick={() => { if (tab !== value) changeTab(value); }}>{label(value)}</button>{/each}
     <button type="button" aria-label="Delete block" disabled={!viewState.editable} onclick={() => { if (iframe) draft.flush(); viewState.deleteBlock?.(); }}>Delete</button>
   </div>
   <div bind:this={panel} role="tabpanel" aria-label={label(tab)} tabindex="-1" onblur={focus.onPanelBlur}>
