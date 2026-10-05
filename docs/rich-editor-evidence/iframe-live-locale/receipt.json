@@ -72,6 +72,26 @@
     "first-fix-check-corrected.exit": {
       "bytes": 2,
       "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "refactor.log": {
+      "bytes": 23192,
+      "sha256": "a74a59edb24744cc56fdb1d5d2c6fe9b9927a66000cc20b1c6e4709fe446f654"
+    },
+    "refactor.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "refactor-report.json": {
+      "bytes": 24189,
+      "sha256": "7a55ab93a1318ecda509c2a9a829abd65486a9fb259b526cb975a7038cb79086"
+    },
+    "refactor-check.log": {
+      "bytes": 148,
+      "sha256": "59aa5dce6d511082ca6edcdf662772b6d4e90f7b288dadd9ee0145b8cf1ff451"
+    },
+    "refactor-check.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
     }
   },
   "limits": [
@@ -109,5 +129,20 @@
   "htmlOwnerPrerequisite": {
     "initialOriginalHTML28": "Separate PR115 original baseline completes3PASS25FAIL0pending; actualRTL Expectedrtl/Receivedltr reached before sharedcard implementation.",
     "owner": "fresh HTML/shared-card developer; parent adds getter only."
+  },
+  "meaningfulRefactor": {
+    "nativeWhole": {
+      "registered": 57,
+      "passed": 57,
+      "failed": 0,
+      "pending": 0,
+      "processExit": 0
+    },
+    "diagnostics": {
+      "errors": 0,
+      "warnings": 0,
+      "processExit": 0
+    },
+    "scope": "One shared Html/Iframe node-view factory resolves the same actual authoring provider owner; each invocation retains its own node/getPos/state. No additional provider or HTML/card implementation."
   }
 }
