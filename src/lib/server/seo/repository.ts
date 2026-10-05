@@ -1,12 +1,13 @@
 // Derived from EmDash 1.1.0, pin 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.
 // Copyright 2026 Cloudflare Inc.; MIT. See notices/emdash-MIT.txt.
-import { sql, type Kysely } from "kysely";
+import { type Kysely } from "kysely";
 
 import { invalidateCollectionCache } from "../menus/object-cache.ts";
 import { chunks, SQL_BATCH_SIZE } from "../menus/chunks.ts";
 import type { Database } from "./types.ts";
 import { NATIVE_SEO_STORAGE, seoStorage, type SeoStorage } from "./storage.ts";
 import type { ContentSeo, ContentSeoInput } from "../../seo/types.ts";
+import { seoUpsertStatements, seoDeleteStatements, seoCopyStatements } from "./content-write.ts";
 
 /** Default SEO values for content without an explicit SEO row */
 const SEO_DEFAULTS: ContentSeo = {
@@ -16,20 +17,6 @@ const SEO_DEFAULTS: ContentSeo = {
 	canonical: null,
 	noIndex: false,
 };
-
-/**
- * Returns true if the input has at least one explicitly-set SEO field.
- * Used to skip no-op upserts when callers pass `{ seo: {} }`.
- */
-function hasAnyField(input: ContentSeoInput): boolean {
-	return (
-		input.title !== undefined ||
-		input.description !== undefined ||
-		input.image !== undefined ||
-		input.canonical !== undefined ||
-		input.noIndex !== undefined
-	);
-}
 
 /**
  * Repository for SEO metadata stored in `_cms_seo`.
@@ -128,38 +115,9 @@ export class SeoRepository {
 	 * for atomicity. Skips no-op writes when input has no fields set.
 	 */
 	async upsert(collection: string, contentId: string, input: ContentSeoInput): Promise<ContentSeo> {
-		// Skip no-op: empty input (e.g., `{ seo: {} }` from form libs)
-		if (!hasAnyField(input)) {
-			return this.get(collection, contentId);
-		}
-
-		const now = new Date().toISOString();
-
-		// Use INSERT ON CONFLICT for atomic upsert — avoids TOCTOU race
-		// where two concurrent requests both see "no row" and both try INSERT.
-		//
-		// On conflict, we use COALESCE(excluded.col, current.col) so that
-		// only explicitly-provided fields overwrite existing values.
-		await sql`
-			INSERT INTO ${sql.table(this.storage.seo)} (
-				collection, content_id,
-				seo_title, seo_description, seo_image, seo_canonical, seo_no_index,
-				created_at, updated_at
-			) VALUES (
-				${collection}, ${contentId},
-				${input.title ?? null}, ${input.description ?? null},
-				${input.image ?? null}, ${input.canonical ?? null},
-				${input.noIndex ? 1 : 0},
-				${now}, ${now}
-			)
-			ON CONFLICT (collection, content_id) DO UPDATE SET
-				seo_title = ${input.title !== undefined ? sql`${input.title}` : sql.ref(this.storage.seo + ".seo_title")},
-				seo_description = ${input.description !== undefined ? sql`${input.description}` : sql.ref(this.storage.seo + ".seo_description")},
-				seo_image = ${input.image !== undefined ? sql`${input.image}` : sql.ref(this.storage.seo + ".seo_image")},
-				seo_canonical = ${input.canonical !== undefined ? sql`${input.canonical}` : sql.ref(this.storage.seo + ".seo_canonical")},
-				seo_no_index = ${input.noIndex !== undefined ? sql`${input.noIndex ? 1 : 0}` : sql.ref(this.storage.seo + ".seo_no_index")},
-				updated_at = ${now}
-		`.execute(this.db);
+		const statements = seoUpsertStatements(this.db, collection, contentId, input, this.storage);
+		if (!statements.length) return this.get(collection, contentId);
+		await this.db.executeQuery(statements[0]);
 
 		invalidateCollectionCache(collection);
 		return this.get(collection, contentId);
@@ -169,11 +127,7 @@ export class SeoRepository {
 	 * Delete SEO data for a content item.
 	 */
 	async delete(collection: string, contentId: string): Promise<void> {
-		await this.db
-			.deleteFrom(this.storage.seo)
-			.where("collection", "=", collection)
-			.where("content_id", "=", contentId)
-			.execute();
+		await this.db.executeQuery(seoDeleteStatements(this.db, collection, contentId, this.storage)[0]);
 		invalidateCollectionCache(collection);
 	}
 
@@ -184,20 +138,10 @@ export class SeoRepository {
 	async copyForDuplicate(collection: string, sourceId: string, targetId: string): Promise<void> {
 		const source = await this.get(collection, sourceId);
 
-		// Only write if there's actual SEO data worth copying
-		if (
-			source.title !== null ||
-			source.description !== null ||
-			source.image !== null ||
-			source.noIndex
-		) {
-			await this.upsert(collection, targetId, {
-				title: source.title,
-				description: source.description,
-				image: source.image,
-				canonical: null, // Don't copy canonical — it pointed to the original
-				noIndex: source.noIndex,
-			});
+		const statements = seoCopyStatements(this.db, collection, targetId, source, this.storage);
+		if (statements.length) {
+			await this.db.executeQuery(statements[0]);
+			invalidateCollectionCache(collection);
 		}
 	}
 }

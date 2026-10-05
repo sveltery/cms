@@ -1,4 +1,5 @@
 import {sql,type CompiledQuery} from 'kysely';
+import {hydrateContentSeo,hydrateContentSeoMany} from '../seo/content-read.ts';
 import {ulid} from 'ulidx';
 import {deserializeValue} from './field-value.ts';
 import {CmsError,type CmsDatabase,type DraftEntry,type DraftSummary} from './contract.ts';
@@ -35,6 +36,7 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
   return {...repository().mapRow(type,row),data};
  }
  async function hydrate(item:ContentItem):Promise<DraftEntry>{
+  item=await hydrateContentSeo(database,item.type,item);
   const stored=entry(item);if(!item.draftRevisionId)return stored;
   try{
    const revision=await revisions().findById(item.draftRevisionId);if(!revision)return stored;
@@ -99,14 +101,14 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
    const parsed=parse(genericContentUpdate,value);return entry((await lifecycle().updateContent({...parsed,...(skipRevision===undefined?{}:{skipRevision})})).item);
   },
   async listContent(input:unknown){read();const {value,collection,options}=await listOptions(input);
-   const result=await translate(()=>repository().findMany(value.type,options));return{...result,items:result.items.map(item=>summary(item,collection.titleField??'title'))};
+   const result=await translate(()=>repository().findMany(value.type,options));return{...result,items:(await hydrateContentSeoMany(database,value.type,result.items)).map(item=>summary(item,collection.titleField??'title'))};
   },
   async countContent(input:unknown){read();const {value,options}=await listOptions(input);return translate(()=>repository().count(value.type,options.where));},
   async getTrashedContent(input:unknown){read();const value=parse(getTrashedDraftInput,input);const item=await includingTrashed(value.type,value.id,value.locale);
    if(!item.deletedAt)throw new CmsError('NOT_FOUND');return{...await hydrate(item),deletedAt:item.deletedAt};
   },
   async listTrashedContent(input:unknown){read();const {type,locale,...options}=parse(listTrashedDraftInput,input);const collection=await definition(type);
-   const result=await translate(()=>repository().findTrashed(type,{...options,where:{locale}}));return{...result,items:result.items.map(item=>({...summary(item,collection.titleField??'title'),deletedAt:item.deletedAt}))};
+   const result=await translate(()=>repository().findTrashed(type,{...options,where:{locale}}));return{...result,items:(await hydrateContentSeoMany(database,type,result.items)).map(item=>({...summary(item,collection.titleField??'title'),deletedAt:item.deletedAt}))};
   },
   async countTrashedContent(input:unknown){read();const {type,locale}=parse(countTrashedDraftInput,input);await definition(type);return repository().countTrashed(type,{locale});},
   async deleteContent(input:unknown){

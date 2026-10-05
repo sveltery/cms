@@ -65,4 +65,30 @@ for(const mode of ['Node','raw D1','scoped D1'] as const){
       assert.deepEqual(await databaseSnapshot(fixture.database),before);
     }finally{await fixture.close();}
   },90000);
+  test(mode+': staged metadata fault preserves the actual SEO row and retained revision history',async()=>{
+    const fixture=await historicalFeatureStorage(mode);
+    try{
+      await migrateCms(fixture.database);
+      const registry=new SchemaRegistry(fixture.database);
+      await registry.createCollection({slug:'post',label:'Posts',supports:['seo','drafts','revisions']});
+      await registry.createField('post',{slug:'title',label:'Title',type:'string'});
+      const service=lifecycleService(fixture.database,principal,{after:()=>{}});
+      const created=await service.createContent({type:'post',data:{title:'Live'},seo:{title:'Initial metadata'}});
+      const first=await service.updateContent({type:'post',id:created.id,data:{title:'Retained draft'},seo:{description:'Retained description'}});
+      const before=await databaseSnapshot(fixture.database);
+      let stagedSeo=false;
+      const subject={...fixture.database,async atomicBatch(statements:any){
+        stagedSeo=statements.some((statement:any)=>statement.sql.includes('_cms_seo'))&&statements.some((statement:any)=>statement.sql.includes('_cms_revisions'));
+        return fixture.database.atomicBatch([...statements,sql`SELECT json_extract('[]','seo-draft-rollback')`.compile(fixture.database.db)]);
+      }};
+      await assert.rejects(()=>lifecycleService(subject,principal,{after:()=>{}}).updateContent({type:'post',id:created.id,expected:{version:first.item.version,updatedAt:first.item.updatedAt},data:{title:'Must roll back'},seo:{title:'Must roll back'}}));
+      assert.equal(stagedSeo,true);
+      assert.deepEqual(await databaseSnapshot(fixture.database),before);
+      const retained=await service.getContent({type:'post',id:created.id});
+      assert.equal(retained.data.title,'Retained draft');
+      assert.equal(retained.seo?.title,'Initial metadata');
+      assert.equal(retained.seo?.description,'Retained description');
+    }finally{await fixture.close();}
+  },90000);
+
 }

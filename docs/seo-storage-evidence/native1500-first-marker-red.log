@@ -1,0 +1,2239 @@
+$ node --test tests/*.test.ts
+✔ local: cookie flags preserve Astro production defaults and deletion scope (1.628165ms)
+✔ local SvelteKit substitution: same-origin session mutations need no custom header (24.199245ms)
+✔ local SvelteKit substitution: custom headers never override a missing or foreign origin (4.1686ms)
+✔ local: safe methods pass origin guard; bad server origin configuration cannot admit mutations (1.309216ms)
+✔ local: invalid runtime role and prototype permission keys fail closed (0.286851ms)
+✔ local: missing and insufficient principals throw the exact permission error codes (0.242454ms)
+✔ returns the session user when the read resolves [session-user.test.ts:11] (3.111192ms)
+✔ returns undefined when there is no session [session-user.test.ts:17] (0.136024ms)
+✔ falls back to undefined instead of hanging when the read never settles [session-user.test.ts:23] (20.734817ms)
+✔ fails closed to undefined when the read rejects [session-user.test.ts:30] (0.356876ms)
+✔ local: resolver catches synchronous throws and anchors pending reads (0.429274ms)
+✔ local: SHA-256 hashes decoded token bytes with the upstream encoding (4.89481ms)
+✔ local: session resolution returns only a frozen current database identity and role (1.347113ms)
+✔ local: no cookie/store and malformed cookies incur zero storage calls (0.275524ms)
+✔ local: expiry denies at and beyond the exact boundary without renewal (2.118782ms)
+✔ local: missing, disabled and invalid records all deny (2.020654ms)
+✔ local: current role changes are observed on every resolution (2.072222ms)
+✔ local: revocation invalidates the same credential and is idempotent (0.819711ms)
+✔ local: failed revocation propagates, while failed/stalled resolution denies (20.851022ms)
+✔ local: a session that expires while its store read is pending cannot authenticate (1.155746ms)
+✔ local: public hashing and resolution reject noncanonical trailing bits before storage (0.504107ms)
+✔ local: stalled digest remains inside the resolver timeout and request lifetime (20.644873ms)
+✔ local Node SQLite: empty auth schema creates no account, credential or default admin (12.224689ms)
+✔ local Node SQLite: current role, disabled/deleted users, expiry and revocation across reopen (17.121241ms)
+▶ rbac
+  ▶ hasPermission
+    ✔ returns false for null user [rbac.ts:15] (2.674616ms)
+    ✔ returns false for undefined user [rbac.ts:19] (0.169995ms)
+    ✔ allows subscriber to read content [rbac.ts:23] (0.239329ms)
+    ✔ denies subscriber from creating content [rbac.ts:27] (0.351478ms)
+    ✔ allows contributor to create content [rbac.ts:31] (0.161452ms)
+    ✔ allows admin to do anything [rbac.ts:35] (0.178237ms)
+    ✔ denies editor from managing users [rbac.ts:43] (0.829927ms)
+    ✔ allows author to edit own media [rbac.ts:47] (0.191327ms)
+    ✔ denies contributor from editing media [rbac.ts:51] (0.173741ms)
+    ✔ allows editor to edit any media [rbac.ts:55] (3.727918ms)
+    ✔ denies author from editing any media [rbac.ts:59] (0.156855ms)
+    ✔ denies subscriber from reading drafts [rbac.ts:65] (0.145398ms)
+    ✔ allows contributor to read drafts [rbac.ts:69] (0.511057ms)
+    ✔ allows editor to read drafts [rbac.ts:73] (0.110536ms)
+  ✔ hasPermission (11.195763ms)
+  ▶ requirePermission
+    ✔ throws for null user [rbac.ts:79] (0.591869ms)
+    ✔ throws unauthorized for missing user [rbac.ts:83] (0.184177ms)
+    ✔ throws forbidden for insufficient permissions [rbac.ts:92] (0.164016ms)
+    ✔ does not throw for sufficient permissions [rbac.ts:101] (0.15994ms)
+  ✔ requirePermission (1.330699ms)
+  ▶ canActOnOwn
+    ✔ allows action on own resource with own permission [rbac.ts:109] (0.169234ms)
+    ✔ denies action on others resource without any permission [rbac.ts:113] (0.071828ms)
+    ✔ allows editor to edit any resource [rbac.ts:117] (0.076916ms)
+    ✔ allows author to edit own media [rbac.ts:122] (0.067692ms)
+    ✔ denies author from editing others media [rbac.ts:126] (0.061623ms)
+    ✔ denies contributor from editing any media (including own) [rbac.ts:130] (0.112419ms)
+    ✔ allows editor to edit any media [rbac.ts:135] (0.244457ms)
+    ✔ F17: empty-string ownerId is not treated as 'owned by user with id '' [rbac.ts:140] (0.097747ms)
+  ✔ canActOnOwn (1.154404ms)
+  ▶ requirePermissionOnResource
+    ✔ allows author to edit own content [rbac.ts:169] (0.143085ms)
+    ✔ throws for author editing others content [rbac.ts:176] (0.144037ms)
+  ✔ requirePermissionOnResource (0.418108ms)
+✔ rbac (14.967026ms)
+✔ local workerd: portable auth core runs without nodejs_compat or a persistence adapter (239.692727ms)
+(node:2547749) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ raw D1: structured insert uses only its actual atomic capability (2700.440428ms)
+✔ raw D1: structured update uses only its actual atomic capability (2415.433585ms)
+✔ raw D1: structured delete uses only its actual atomic capability (2467.202562ms)
+✔ raw D1: whole Source delete uses only its actual atomic capability (2481.96039ms)
+✔ raw D1: whole Source reorder uses only its actual atomic capability (2545.176763ms)
+✔ raw D1: whole Source pivot replacement uses only its actual atomic capability (2544.812763ms)
+✔ raw D1: whole Source structure save uses only its actual atomic capability (2411.240746ms)
+✔ raw D1: ordinary option storage and whole taxonomy reads remain available (1733.910559ms)
+✔ scoped D1: structured insert uses only its actual atomic capability (2858.279518ms)
+✔ scoped D1: structured update uses only its actual atomic capability (2603.618454ms)
+✔ scoped D1: structured delete uses only its actual atomic capability (2635.662641ms)
+✔ scoped D1: whole Source delete uses only its actual atomic capability (2974.050003ms)
+✔ scoped D1: whole Source reorder uses only its actual atomic capability (2688.236427ms)
+✔ scoped D1: whole Source pivot replacement uses only its actual atomic capability (2716.914724ms)
+✔ scoped D1: whole Source structure save uses only its actual atomic capability (2594.72834ms)
+✔ scoped D1: ordinary option storage and whole taxonomy reads remain available (1370.67517ms)
+✔ Node: genuine v5 upgrade and persisted v17 reopen preserve content and operator objects (101.792452ms)
+✔ Node: a future Source-named trigger collision is refused before any startup write (24.106691ms)
+✔ Node: a real late-batch SQLite failure rolls back the complete v0→17 installation (39.369872ms)
+✔ Node: a real late-batch SQLite failure rolls back the complete v4→17 installation (53.198949ms)
+✔ raw D1: genuine v5 upgrade and persisted v17 reopen preserve content and operator objects (2478.074162ms)
+✔ raw D1: a future Source-named trigger collision is refused before any startup write (947.260005ms)
+✔ raw D1: a real late-batch SQLite failure rolls back the complete v0→17 installation (2416.611256ms)
+✔ raw D1: a real late-batch SQLite failure rolls back the complete v4→17 installation (2856.890495ms)
+✔ scoped D1: genuine v5 upgrade and persisted v17 reopen preserve content and operator objects (2329.098374ms)
+✔ scoped D1: a future Source-named trigger collision is refused before any startup write (972.711773ms)
+✔ scoped D1: a real late-batch SQLite failure rolls back the complete v0→17 installation (2502.208632ms)
+✔ scoped D1: a real late-batch SQLite failure rolls back the complete v4→17 installation (3210.546614ms)
+✔ Node: actual existing and newly created content tables receive Source031 byline indexes (94.476976ms)
+✔ Node: a converted legacy reference remains usable after actual persisted reopen and startup (74.10911ms)
+✔ raw D1: actual existing and newly created content tables receive Source031 byline indexes (2195.023016ms)
+✔ raw D1: a converted legacy reference remains usable after actual persisted reopen and startup (2614.630591ms)
+✔ scoped D1: actual existing and newly created content tables receive Source031 byline indexes (2154.631846ms)
+✔ scoped D1: a converted legacy reference remains usable after actual persisted reopen and startup (2717.483485ms)
+✔ Node: actual redirect host persists its Source loop cache in canonical options (37.42199ms)
+✔ Node: actual menu loader resolves a real canonical taxonomy term (18.275831ms)
+✔ raw D1: actual redirect host persists its Source loop cache in canonical options (1054.434941ms)
+✔ raw D1: actual menu loader resolves a real canonical taxonomy term (1006.389581ms)
+✔ scoped D1: actual redirect host persists its Source loop cache in canonical options (1066.424165ms)
+✔ scoped D1: actual menu loader resolves a real canonical taxonomy term (985.348261ms)
+✔ Node: complete declared startup census fits D1's100-bind budget and preserves real namespace values (28.380113ms)
+✔ raw D1: complete declared startup census fits D1's100-bind budget and preserves real namespace values (445.121707ms)
+✔ scoped D1: complete declared startup census fits D1's100-bind budget and preserves real namespace values (352.803891ms)
+✔ Node: ordinary startup satisfies actual Menu storage readiness (41.450212ms)
+✔ Node: ordinary startup satisfies actual sections storage readiness (35.262026ms)
+✔ Node: ordinary startup satisfies actual widgets storage readiness (23.359694ms)
+✔ Node: ordinary startup satisfies actual Comments and runtime-dependency readiness (20.988372ms)
+✔ Node: ordinary startup satisfies actual Redirect publication storage readiness (23.229569ms)
+✔ raw D1: ordinary startup satisfies actual Menu storage readiness (1692.745548ms)
+✔ raw D1: ordinary startup satisfies actual sections storage readiness (1559.997301ms)
+✔ raw D1: ordinary startup satisfies actual widgets storage readiness (1384.149405ms)
+✔ raw D1: ordinary startup satisfies actual Comments and runtime-dependency readiness (1326.863991ms)
+✔ raw D1: ordinary startup satisfies actual Redirect publication storage readiness (1300.005946ms)
+✔ scoped D1: ordinary startup satisfies actual Menu storage readiness (1305.400869ms)
+✔ scoped D1: ordinary startup satisfies actual sections storage readiness (1305.737741ms)
+✔ scoped D1: ordinary startup satisfies actual widgets storage readiness (1366.943632ms)
+✔ scoped D1: ordinary startup satisfies actual Comments and runtime-dependency readiness (1500.206454ms)
+✔ scoped D1: ordinary startup satisfies actual Redirect publication storage readiness (1618.51485ms)
+✔ Node: actual public Sections/Widgets factory SQL recognizes its genuine persisted SQLite objects (24.21512ms)
+✔ Node: a real quoted timestamp default remains distinct from the public Menu expression (5.016386ms)
+✔ Node: an actual Redirect trigger retains its observable literal whitespace (12.396965ms)
+✔ raw D1: actual public Sections/Widgets factory SQL recognizes its genuine persisted SQLite objects (433.505107ms)
+✔ raw D1: a real quoted timestamp default remains distinct from the public Menu expression (289.456953ms)
+✔ raw D1: an actual Redirect trigger retains its observable literal whitespace (756.435543ms)
+✔ scoped D1: actual public Sections/Widgets factory SQL recognizes its genuine persisted SQLite objects (347.447748ms)
+✔ scoped D1: a real quoted timestamp default remains distinct from the public Menu expression (288.64793ms)
+✔ scoped D1: an actual Redirect trigger retains its observable literal whitespace (700.526683ms)
+✔ Node: ordinary canonical startup installs actual contiguous providers through 17 (42.170511ms)
+✔ Node: fresh ordinary startup makes media and byline prerequisites storage available (64.847481ms)
+✔ Node: fresh ordinary startup makes directed content links storage available (35.710684ms)
+✔ Node: fresh ordinary startup makes menus storage available (29.653372ms)
+✔ Node: fresh ordinary startup makes sections and site widgets storage available (29.967424ms)
+✔ Node: fresh ordinary startup makes comments and moderation storage available (29.72551ms)
+✔ Node: fresh ordinary startup makes redirects storage available (27.519359ms)
+✔ raw D1: ordinary canonical startup installs actual contiguous providers through 17 (1471.815808ms)
+✔ raw D1: fresh ordinary startup makes media and byline prerequisites storage available (1499.419649ms)
+✔ raw D1: fresh ordinary startup makes directed content links storage available (1333.971467ms)
+✔ raw D1: fresh ordinary startup makes menus storage available (1447.886611ms)
+✔ raw D1: fresh ordinary startup makes sections and site widgets storage available (1390.115933ms)
+✔ raw D1: fresh ordinary startup makes comments and moderation storage available (1710.404509ms)
+✔ raw D1: fresh ordinary startup makes redirects storage available (1529.429248ms)
+✔ scoped D1: ordinary canonical startup installs actual contiguous providers through 17 (1469.458285ms)
+✔ scoped D1: fresh ordinary startup makes media and byline prerequisites storage available (1475.605822ms)
+✔ scoped D1: fresh ordinary startup makes directed content links storage available (1442.094468ms)
+✔ scoped D1: fresh ordinary startup makes menus storage available (1387.478221ms)
+✔ scoped D1: fresh ordinary startup makes sections and site widgets storage available (1495.724926ms)
+✔ scoped D1: fresh ordinary startup makes comments and moderation storage available (1417.921767ms)
+✔ scoped D1: fresh ordinary startup makes redirects storage available (1441.305478ms)
+✔ Node SQLite: a lowercase declared future trigger refuses startup before any write (47.979093ms)
+✔ Node SQLite: a uppercase declared future trigger refuses startup before any write (32.130923ms)
+✔ raw D1: a lowercase declared future trigger refuses startup before any write (2032.514632ms)
+✔ raw D1: a uppercase declared future trigger refuses startup before any write (1825.761605ms)
+✔ scoped D1: a lowercase declared future trigger refuses startup before any write (1695.874448ms)
+✔ scoped D1: a uppercase declared future trigger refuses startup before any write (1890.096611ms)
+(node:2548749) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Node SQLite: ordinary options persist across normal installation and reopen (92.158897ms)
+✔ Node SQLite: real taxonomy seeds defaults indexes and group pivot semantics (32.161237ms)
+✔ Node SQLite: normal v5 upgrade preserves every field and exact operator SQL (53.779583ms)
+✔ Node SQLite: failed normal metadata upgrade rolls back all providers and preserves v5 values (19.46404ms)
+✔ Node SQLite: external metadata foreign keys refuse the normal upgrade before writes (10.518887ms)
+✔ Node SQLite: missing or changed owned trigger refuses normal readiness without writes (37.079593ms)
+✔ raw D1: ordinary options persist across normal installation and reopen (1586.66952ms)
+✔ raw D1: real taxonomy seeds defaults indexes and group pivot semantics (1476.768017ms)
+✔ raw D1: normal v5 upgrade preserves every field and exact operator SQL (2053.13776ms)
+✔ raw D1: failed normal metadata upgrade rolls back all providers and preserves v5 values (1918.957748ms)
+✔ raw D1: external metadata foreign keys refuse the normal upgrade before writes (632.419724ms)
+✔ raw D1: missing or changed owned trigger refuses normal readiness without writes (1490.218406ms)
+✔ scoped D1: ordinary options persist across normal installation and reopen (1485.345814ms)
+✔ scoped D1: real taxonomy seeds defaults indexes and group pivot semantics (1438.628745ms)
+✔ scoped D1: normal v5 upgrade preserves every field and exact operator SQL (2091.614146ms)
+✔ scoped D1: failed normal metadata upgrade rolls back all providers and preserves v5 values (1965.889092ms)
+✔ scoped D1: external metadata foreign keys refuse the normal upgrade before writes (653.450962ms)
+✔ scoped D1: missing or changed owned trigger refuses normal readiness without writes (1540.789127ms)
+✔ Node SQLite: normal installer applies real contiguous providers through eight (65.915392ms)
+✔ Node SQLite: normal installation enables actual settings and taxonomy storage (19.356678ms)
+✔ Node SQLite: normal metadata upgrade enables the Source collection field cascade (22.699389ms)
+✔ raw D1: normal installer applies real contiguous providers through eight (1606.228002ms)
+✔ raw D1: normal installation enables actual settings and taxonomy storage (1394.945277ms)
+✔ raw D1: normal metadata upgrade enables the Source collection field cascade (1312.591588ms)
+✔ scoped D1: normal installer applies real contiguous providers through eight (1390.418573ms)
+✔ scoped D1: normal installation enables actual settings and taxonomy storage (1335.130804ms)
+✔ scoped D1: normal metadata upgrade enables the Source collection field cascade (1408.046248ms)
+✔ Node: canonical upgrade carries an existing legacy reference into directed group edges (116.960253ms)
+✔ raw D1: canonical upgrade carries an existing legacy reference into directed group edges (2593.622265ms)
+✔ scoped D1: canonical upgrade carries an existing legacy reference into directed group edges (2708.757377ms)
+✔ Node SQLite: normal option and plugin storage revision triggers retain actual Source values (78.447015ms)
+✔ raw D1: normal option and plugin storage revision triggers retain actual Source values (1546.734105ms)
+✔ scoped D1: normal option and plugin storage revision triggers retain actual Source values (1427.340637ms)
+✔ arbitrary generated field identifiers retain historical quote equivalence (1.149536ms)
+✔ arbitrary generated fields retain quote equivalence in a complete table (0.406651ms)
+✔ a default matching a known column name retains double-quoted literal bytes (0.230706ms)
+✔ a known schema name in a quoted SELECT expression retains literal bytes (0.194072ms)
+✔ canonical schema comparison retains embedded double quotes in single-quoted defaults (1.277668ms)
+✔ canonical schema comparison distinguishes a double-quoted timestamp literal from the expression (0.144057ms)
+✔ canonical schema comparison preserves whitespace inside single-quoted defaults (0.112489ms)
+✔ canonical schema comparison preserves doubled single quotes and enclosed whitespace (0.149034ms)
+✔ canonical schema comparison preserves Unicode nonbreaking whitespace outside literals (0.122513ms)
+✔ canonical schema comparison preserves vertical-tab token boundaries outside literals (0.153371ms)
+✔ canonical schema comparison still accepts known quoted native identifiers and SQLite ASCII whitespace (0.270496ms)
+✔ native atomic batch follows queued reads and commits the completed write bookmark (false) (64.282259ms)
+✔ native atomic batch issued before reads remains first (false) (62.982573ms)
+✔ failed native atomic batch rejects its caller and leaves later reads ordered (false) (65.257282ms)
+✔ native atomic batch follows queued reads and commits the completed write bookmark (true) (41.800896ms)
+✔ native atomic batch issued before reads remains first (true) (41.169078ms)
+✔ failed native atomic batch rejects its caller and leaves later reads ordered (true) (41.932004ms)
+✔ throwing native resolve preserves its completed D1 write bookmark in Kit's outer error response (false) (1587.716547ms)
+✔ throwing native resolve preserves its completed D1 write bookmark in Kit's outer error response (true) (1413.126696ms)
+✔ native D1 runtime scopes each request and commits its authenticated bookmark (1548.532249ms)
+✔ Cloudflare host settings use the trusted binding configuration for D1 Sessions (1.351834ms)
+✔ real D1 authenticates on raw storage before scoping and applies write/bookmark constraints (1539.281875ms)
+✔ Node: 103 persisted drafts paginate without duplicates after storage reopens (203.729217ms)
+✔ D1: 103 persisted drafts paginate without duplicates after storage reopens (7287.4271ms)
+✔ Node: registry.test.ts:234: should update a collection (46.941657ms)
+✔ Node: registry.test.ts:248: touches updatedAt for an empty update (23.558194ms)
+✔ Node: registry.test.ts:336: should throw when updating non-existent collection (20.182225ms)
+✔ D1: registry.test.ts:234: should update a collection (306.643158ms)
+✔ D1: registry.test.ts:248: touches updatedAt for an empty update (268.229407ms)
+✔ D1: registry.test.ts:336: should throw when updating non-existent collection (179.291137ms)
+✔ workerd: collection metadata service runs on the actual D1 binding without nodejs_compat (686.71136ms)
+✔ collection update: permission precedes hostile input and every storage access (7.503888ms)
+✔ Node: metadata partial updates preserve omissions, undefined and explicit [] without schema DDL/version changes (44.762615ms)
+✔ Node: strict bounded metadata/preconditions reject before storage and preserve every row (23.208009ms)
+✔ Node: empty updates strictly advance timestamp even with a frozen clock and stale CAS never writes (22.935029ms)
+✔ Node: changed schema version conflicts and missing collections report NOT_FOUND without writes (22.359434ms)
+✔ Node: race between preflight and actual SQL cannot overwrite another metadata update (26.444328ms)
+✔ Node: unexpected storage failures retain their error and roll back metadata (20.713894ms)
+✔ Node: update returns its own committed row when another writer commits before the adapter returns (19.616255ms)
+✔ Node: metadata survives storage/runtime restart and prior timestamp stays stale (57.018027ms)
+✔ D1: metadata partial updates preserve omissions, undefined and explicit [] without schema DDL/version changes (388.002021ms)
+✔ D1: strict bounded metadata/preconditions reject before storage and preserve every row (271.499647ms)
+✔ D1: empty updates strictly advance timestamp even with a frozen clock and stale CAS never writes (228.947793ms)
+✔ D1: changed schema version conflicts and missing collections report NOT_FOUND without writes (238.272044ms)
+✔ D1: race between preflight and actual SQL cannot overwrite another metadata update (208.718357ms)
+✔ D1: unexpected storage failures retain their error and roll back metadata (295.455038ms)
+✔ D1: update returns its own committed row when another writer commits before the adapter returns (183.658463ms)
+✔ D1: metadata survives storage/runtime restart and prior timestamp stays stale (475.704871ms)
+✔ comments Node SQLite readiness preserves SQL literals: correct (16.708951ms)
+✔ comments Node SQLite readiness preserves SQL literals: default case (6.793701ms)
+✔ comments Node SQLite readiness preserves SQL literals: default whitespace (7.426882ms)
+✔ comments Node SQLite readiness preserves SQL literals: partial index case (10.649431ms)
+✔ comments Node SQLite readiness preserves SQL literals: collection default case (5.450774ms)
+✔ comments Node SQLite readiness preserves SQL literals: source auto approval default (5.351897ms)
+✔ comments Node SQLite readiness preserves SQL literals: comments quoted timestamp (5.243073ms)
+✔ comments Node SQLite readiness preserves SQL literals: reactions quoted timestamp (5.743784ms)
+✔ comments Node SQLite readiness preserves SQL literals: multiword type (5.270664ms)
+✔ comments Node SQLite readiness preserves SQL literals: non-ASCII type whitespace (5.908402ms)
+✔ comments Node SQLite readiness preserves SQL literals: collection Unicode type (5.562423ms)
+✔ comments raw D1 readiness preserves SQL literals: correct (753.284074ms)
+✔ comments raw D1 readiness preserves SQL literals: default case (52.319406ms)
+✔ comments raw D1 readiness preserves SQL literals: default whitespace (68.221089ms)
+✔ comments raw D1 readiness preserves SQL literals: partial index case (54.004623ms)
+✔ comments raw D1 readiness preserves SQL literals: collection default case (43.256147ms)
+✔ comments raw D1 readiness preserves SQL literals: source auto approval default (57.3173ms)
+✔ comments raw D1 readiness preserves SQL literals: comments quoted timestamp (53.991854ms)
+✔ comments raw D1 readiness preserves SQL literals: reactions quoted timestamp (50.328902ms)
+✔ comments raw D1 readiness preserves SQL literals: multiword type (54.845283ms)
+✔ comments raw D1 readiness preserves SQL literals: non-ASCII type whitespace (57.535608ms)
+✔ comments raw D1 readiness preserves SQL literals: collection Unicode type (59.704278ms)
+✔ comments Node SQLite readiness refuses missing options before requests (10.99797ms)
+✔ comments Node SQLite readiness refuses missing rate limits before requests (5.211174ms)
+✔ comments raw D1 readiness refuses missing options before requests (740.056687ms)
+✔ comments raw D1 readiness refuses missing rate limits before requests (59.734269ms)
+✔ ordinary content workspace exposes the real Comments inbox (140.128995ms)
+✔ ordinary content workspace exposes both installed Sections and Widgets (0.93366ms)
+✔ common management links retain the pinned Comments Menus Redirects Widgets Sections order (1.405988ms)
+✔ Comments remains selected while editing actual collection comment settings (0.707531ms)
+✔ Sections remains selected on its actual section editor route (0.69348ms)
+✔ all installed management links resolve the application base with the current descendant selected (0.699279ms)
+✔ the pinned editor-level navigation hides administrator Redirects even when read capability is present (0.607511ms)
+✔ read capabilities below the pinned editor display floor expose no management links (0.560951ms)
+✔ Redirects selection follows the current real route without requiring an activePage override (0.956174ms)
+✔ missing feature routes remain absent even for an administrator (0.727701ms)
+✔ schema administration and visible collections remain reachable alongside common navigation (0.680641ms)
+✔ anonymous presentation has no management links (0.52001ms)
+✔ content_update response data reflects the new title (85.592285ms)
+✔ content_get returns the latest draft data after update (51.472276ms)
+✔ multiple sequential updates all reflect on read (53.703807ms)
+✔ publishing a draft makes its data the new live data on read (52.595219ms)
+✔ partial updates merge with current draft (only title changes, body preserved) (52.475651ms)
+✔ content_update on collection without revisions support reflects on read (39.225113ms)
+✔ liveData is undefined when there is no draft revision (38.613496ms)
+✔ liveData carries the published values when a draft revision exists (46.409605ms)
+✔ Node: domain null slug remains distinct with omitted data (74.480815ms)
+✔ Node: domain empty string slug remains distinct with omitted data (39.760366ms)
+✔ Node: domain null slug remains distinct with explicit empty data (32.368898ms)
+✔ Node: domain empty string slug remains distinct with explicit empty data (32.930615ms)
+✔ D1: domain null slug remains distinct with omitted data (906.652397ms)
+✔ D1: domain empty string slug remains distinct with omitted data (282.01911ms)
+✔ D1: domain null slug remains distinct with explicit empty data (374.745883ms)
+✔ D1: domain empty string slug remains distinct with explicit empty data (333.288262ms)
+✔ Node: ordinary list and count retain indexed constructor own-key filters (66.608579ms)
+✔ Node: ordinary list and count retain indexed prototype own-key filters (36.489055ms)
+✔ D1: ordinary list and count retain indexed constructor own-key filters (982.428622ms)
+✔ D1: ordinary list and count retain indexed prototype own-key filters (267.507051ms)
+✔ filters by author (83.249284ms)
+✔ passes indexed custom-field filters through the list handler (54.308951ms)
+✔ reports a missing collection the same way with and without field filters (42.451599ms)
+✔ reports a missing collection ahead of an invalid field filter name (45.476109ms)
+✔ reports a missing collection ahead of an oversized filter set (54.54044ms)
+✔ rejects an oversized filter set on a collection that exists (42.288033ms)
+✔ rejects an invalid field filter name on a collection that exists (43.901746ms)
+✔ filters by an inclusive createdAt date range (46.031514ms)
+✔ normalizes offset-bearing date bounds before comparing canonical storage (46.220748ms)
+✔ includes a boundary timestamp when the upper bound is end-of-day (41.270064ms)
+✔ treats a date-only upper bound as inclusive of the whole day (42.238038ms)
+✔ supports an open-ended (from-only) range (39.573948ms)
+✔ combines author and date range filters (47.133108ms)
+✔ ignores a date range with no field (38.040997ms)
+✔ a publishedAt range excludes never-published rows (37.661527ms)
+✔ content_get on a trashed item returns NOT_FOUND (not the item) (109.898126ms)
+✔ content_list does NOT include trashed items by default (59.022824ms)
+✔ content_list_trashed returns only trashed items (60.792546ms)
+✔ content_update on a trashed item is rejected (item not visible) (41.997546ms)
+✔ content_publish on a trashed item is rejected (62.582614ms)
+[emdash] draft hydration failed: Error: no such table: _cms_revisions
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async RevisionRepository.findById (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts:103:15)
+    at async hydrate (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/content-service.ts:42:19)
+    at async file:///workspace/cms-complete-seo-storage-backend/tests/content-composition-read-fault.test.ts:31:50 {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+[emdash] draft hydration failed: Error: no such table: _cms_revisions
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async RevisionRepository.findById (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts:103:15)
+    at async hydrate (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/content-service.ts:42:19)
+    at async Object.getTrashedContent (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/content-service.ts:108:65) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+✔ Node: ordinary active read falls back to stored live values when only revision hydration fails (114.814287ms)
+✔ Node: ordinary trash read falls back to stored live values when only revision hydration fails (55.738968ms)
+[emdash] draft hydration failed: Error: D1_ERROR: no such table: _cms_revisions: SQLITE_ERROR
+    at Error (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:41:19)
+    at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+    at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+    at unflatten (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+    ... 3 lines matching cause stack trace ...
+    at async execute (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:56:18)
+    at async D1Connection.executeQuery (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24 {
+  [cause]: Error: no such table: _cms_revisions: SQLITE_ERROR
+      at Error (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:41:19)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:32)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at unflatten (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+      at parse (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:21:9)
+      at file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:51:21
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async execute (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:56:18) {
+    [cause]: undefined
+  }
+}
+✔ D1: ordinary active read falls back to stored live values when only revision hydration fails (1097.483354ms)
+[emdash] draft hydration failed: Error: D1_ERROR: no such table: _cms_revisions: SQLITE_ERROR
+    at Error (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:41:19)
+    at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+    at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+    at unflatten (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+    ... 3 lines matching cause stack trace ...
+    at async execute (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:56:18)
+    at async D1Connection.executeQuery (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24 {
+  [cause]: Error: no such table: _cms_revisions: SQLITE_ERROR
+      at Error (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:41:19)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:32)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at unflatten (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+      at parse (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:21:9)
+      at file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:51:21
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async execute (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:56:18) {
+    [cause]: undefined
+  }
+}
+✔ D1: ordinary trash read falls back to stored live values when only revision hydration fails (330.757483ms)
+✔ generic draft save updates revisions and rejects stale mutations (122.687047ms)
+✔ generic published save updates revisions and rejects stale mutations (57.563529ms)
+✔ generic draft trash restore retains draft revision and clears live publication (52.120435ms)
+✔ generic published trash restore retains draft revision and clears live publication (57.37182ms)
+✔ generic ownership, null ownership and read-draft capability remain trusted gates (62.122193ms)
+✔ generic lists remain bounded summaries and skipRevision retains only the newest pending autosave (51.862178ms)
+✔ generic create denies anonymous before storage initialization (0.488944ms)
+✔ generic create denies reader before storage initialization (0.119439ms)
+▶ findMany complete basic/total declarations
+  ✔ should return all content by default (104.524708ms)
+  ✔ should filter by status (61.027564ms)
+  ✔ should filter by authorId (59.480266ms)
+  ✔ should filter by both status and authorId (70.261643ms)
+  ✔ should apply limit (52.084642ms)
+  ✔ should support cursor pagination (64.845151ms)
+  ✔ should not include nextCursor when no more items (62.484607ms)
+  ✔ should order by createdAt desc by default (69.57307ms)
+  ✔ should support custom ordering (62.252609ms)
+  ✔ should default limit to 50 (175.749607ms)
+  ✔ should cap limit at 100 (48.882644ms)
+  ✔ should not include soft-deleted content (67.127337ms)
+  ✔ should return empty array when no items match (62.195533ms)
+  ✔ reports total rows regardless of limit (81.653247ms)
+  ✔ total respects the where clause (70.538425ms)
+  ✔ total stays stable across cursor pages (66.90912ms)
+✔ findMany complete basic/total declarations (1181.980743ms)
+▶ count complete declarations
+  ✔ should count all content of a type (71.249541ms)
+  ✔ should count by status (55.169153ms)
+  ✔ should count by authorId (77.075244ms)
+  ✔ should count by both status and authorId (58.644982ms)
+  ✔ should return 0 when no items match (63.496105ms)
+  ✔ should not count soft-deleted content (58.96365ms)
+✔ count complete declarations (385.133209ms)
+✔ Node: ordinary slug-only save changes live metadata without a draft (67.173868ms)
+✔ Node: ordinary explicit empty-data save stages a slug (40.338876ms)
+[emdash:redirects] publishing redirect artifacts failed: Error: driver has already been destroyed
+    at RuntimeDriver.acquireConnection (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:44:19)
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:8:47)
+    at DefaultQueryExecutor.provideConnection (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/default-query-executor.js:20:41)
+    at TransactionBuilder.execute (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:672:37)
+    at withTransaction (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/lifecycle/upstream/database/transaction.ts:63:41)
+    at publishRedirectArtifacts (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/redirects/artifacts.ts:185:8)
+    at async publishRedirectChanges (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/redirects/artifacts.ts:277:3)
+✔ D1: ordinary slug-only save changes live metadata without a draft (1067.23637ms)
+✔ D1: ordinary explicit empty-data save stages a slug (354.858173ms)
+✔ lists only the trashed entries in the requested locale (110.153068ms)
+✔ lists every locale when no locale is given (79.779594ms)
+✔ returns each item's locale so the trash list can display it (57.898941ms)
+✔ counts only the trashed entries in the requested locale (77.890137ms)
+✔ revision tokens bind collection, entry and locale without using updatedAt as a wire precondition (3.31666ms)
+✔ wire inputs carry schema data and reject caller identity, system columns and raw revisions (0.987243ms)
+✔ local database: actual D1 values and atomic rollback use zero synchronous waits (260.875219ms)
+✔ collection update: actual D1 values and atomic rollback use zero synchronous waits (200.130568ms)
+✔ local database: custom Worker dispatch retains request data and the same actual DB (86.849714ms)
+✔ direct fixtures: original persistent DB identifiers remain separate across restart (829.969588ms)
+✔ fresh D1 fixtures keep separate real databases while sharing their runtime (775.231513ms)
+✔ closing one D1 fixture rejects stale queries and leaves its peer intact (51.423736ms)
+✔ D1 runtime groups rotate after 256 distinct databases without recycling a closed database (3634.362542ms)
+✔ persistent D1 fixtures retain their dedicated runtime and actual data across restart (185.093646ms)
+✔ control: installed Miniflare proxy exposes the delayed prior-notification race (283.476481ms)
+✔ D1 fixture matches each response when a prior synchronous notification arrives late (640.822768ms)
+✔ D1 fixture executes queries and atomic batches without synchronously blocking Node (20.042883ms)
+✔ D1 fixture preserves actual D1 parameters, result metadata and malformed-batch rollback (139.888123ms)
+✔ D1 fixture owns disposal and preserves isolated real D1 storage across restart (187.535962ms)
+✔ source: raw binding reports supportsMultipleConnections: true (0.823136ms)
+✔ source: lets concurrent queries overlap instead of serializing behind a mutex (6.218855ms)
+✔ source: raw adapter declares the compound SELECT ceiling (0.238989ms)
+✔ source: raw adapter exposes atomic batches (0.116115ms)
+✔ source: forwards compiled statements to one binding batch and maps results (12.037398ms)
+✔ source: preserves DELETE RETURNING rows through the raw binding dialect (6.137823ms)
+✔ local: an unsettled first binding read does not block the next query (11.867403ms)
+✔ Node: equivalent schema, scalar, CAS, soft-delete and persisted session contract (105.347374ms)
+✔ Node: failed batch rolls back DML and CREATE/ALTER/DROP DDL (1.817588ms)
+✔ Node: fresh/v1 auth failures roll back all DDL and migration markers (124.706381ms)
+✔ Node: incomplete/future migration state fails without repair (140.986988ms)
+✔ D1: equivalent schema, scalar, CAS, soft-delete and persisted session contract (662.89946ms)
+✔ D1: failed batch rolls back DML and CREATE/ALTER/DROP DDL (91.005366ms)
+✔ D1: fresh/v1 auth failures roll back all DDL and migration markers (1101.588651ms)
+✔ D1: incomplete/future migration state fails without repair (953.807832ms)
+✔ D1: deterministic stale fresh/v1 callers recover the actual binding error envelope (550.75414ms)
+✔ D1: concurrent same-slug creators map the real UNIQUE envelope to COLLECTION_EXISTS (214.107424ms)
+✔ D1: startup accepts a complete upgrade between actual preflight reads (280.210027ms)
+✔ D1: one actual batch forwards parameters/order, RETURNING rows, zero/positive changes and insert IDs (86.902485ms)
+✔ D1: unrelated envelopes do not turn into successful migration race recovery (217.482976ms)
+✔ local: envelope classifier keeps Node messages and ignores lookalike/unknown D1 formats (0.421393ms)
+✔ D1: callback transactions, streaming and general introspection reject explicitly (70.905864ms)
+✔ D1: raw parameter variants retain binding support/rejections without Node normalization (130.324592ms)
+✔ D1 and Node: v1 content and hashed sessions persist across close/reopen and revocation (711.556646ms)
+✔ local workerd: real D1-backed CMS/session core runs without nodejs_compat (459.201034ms)
+▶ ported openNodeSqliteDatabase
+  ✔ implements the statement contract Kysely uses (5.533415ms)
+  ✔ supports direct statement calls (0.602504ms)
+  ✔ can be closed more than once (0.720872ms)
+  ✔ normalizes supported positional values without shifting parameters (0.65264ms)
+  ✔ rejects an unsupported plain object before executing the statement (0.865309ms)
+  ✔ rejects an unsupported array before executing the statement (0.681283ms)
+  ✔ rejects an unsupported date before executing the statement (0.337487ms)
+  ✔ rejects an unsupported boxed number before executing the statement (0.277657ms)
+  ✔ applies connection defaults without changing the journal mode (0.74577ms)
+  ✔ switches to WAL with NORMAL synchronization when requested (0.498609ms)
+  ✔ keeps NORMAL synchronization when reopening an existing WAL database without the option (0.642334ms)
+✔ ported openNodeSqliteDatabase (15.918103ms)
+▶ ported EmDash SchemaRegistry assertions
+  ✔ should create a collection (44.186132ms)
+  ✔ F14: defaults supports to ['drafts', 'revisions'] when undefined (24.8107ms)
+  ✔ F14: preserves explicit empty supports array (opt-out) (25.441367ms)
+  ✔ should create the content table when creating a collection (19.432227ms)
+  ✔ rejects an unregistered content table with a structured conflict (18.622291ms)
+  ✔ should list collections (30.138934ms)
+  ✔ should get a collection by slug (24.270139ms)
+  ✔ should return null for non-existent collection (23.716317ms)
+  ✔ should throw when creating duplicate collection (27.677193ms)
+  ✔ should add column to content table when creating field (30.862063ms)
+  ✔ should get a field by slug (29.693399ms)
+  ✔ should reject reserved field slugs (28.873719ms)
+✔ ported EmDash SchemaRegistry assertions (329.696001ms)
+▶ ported EmDash ContentRepository draft assertions
+  ✔ should create content with minimal data (37.096451ms)
+  ✔ should throw error for duplicate type+slug (28.55459ms)
+  ✔ should allow same slug for different types (28.228039ms)
+  ✔ should allow null slug (32.848755ms)
+  ✔ should generate unique ID (27.336306ms)
+  ✔ should find content by ID (32.718059ms)
+  ✔ should return null for non-existent ID (31.367872ms)
+  ✔ should return null when type doesn't match (40.334962ms)
+✔ ported EmDash ContentRepository draft assertions (259.186065ms)
+✔ mutation authorization precedes hostile input access and storage; permitted callers still validate (3.436569ms)
+✔ system migration, additive field and drafts survive close/reopen (102.671006ms)
+✔ independent additive DDL failure rolls back metadata and schema guard (33.553493ms)
+✔ batch failures roll back both DDL and DML (20.650225ms)
+✔ SQL identifiers, unknown/system fields and client ownership claims are rejected; quoted values remain inert (33.984039ms)
+✔ database constraints enforce required NULL, locale slug uniqueness and foreign keys; unique is metadata and service validates lengths (41.033751ms)
+✔ anonymous/empty principals and missing permissions fail closed before any query (1.249005ms)
+✔ owner permissions use persisted author; any permission permits another author (32.468705ms)
+✔ two independent connections competing from the same revision yield exactly one successful update (34.259772ms)
+✔ schema version conflicts and field bounds preserve existing definitions (94.477498ms)
+✔ summary query excludes large bodies, clamps pages, orders ties, scopes locales and validates cursors (175.920663ms)
+✔ unique flags remain metadata across collection/field underscore boundaries (28.999803ms)
+✔ field length semantics preserve pinned Unicode codepoints and embedded NUL (29.483745ms)
+✔ migrations reject unknown versions and unmanaged system tables without mutation (2.688185ms)
+✔ schema defaults reject NUL before DDL while escaped quotes remain inert (30.73316ms)
+✔ cursor OR branches keep locale and trash filters when titles and slugs are null (42.125434ms)
+✔ concurrent same-slug collection creation reports a sanitized conflict and preserves unrelated failures (34.478962ms)
+✔ version-one migration markers reject missing system tables without repair or mutation (64.842377ms)
+✔ same-slug creation at the collection cap still reports duplicate while new slugs report the bound (301.39827ms)
+✔ doctor returns actionable JSON failure without creating a missing database (302.528299ms)
+✔ doctor reads the real installed migrations, collection and empty identity tables without writes (350.889305ms)
+✔ doctor reports pending migrations from the actual registered provider universe (319.897757ms)
+✔ doctor does not accept unknown or gapped native migration records as fully applied (368.245514ms)
+✔ doctor reports actual orphaned content tables without including ordinary operator tables (330.625637ms)
+✔ doctor detects noncanonical persisted content and nested/revision datetimes without repairing them (324.929145ms)
+✔ doctor reports invalid datetime data as an inspection failure (384.534589ms)
+✔ doctor combines actual Native Worker wiring diagnostics with a missing local database (333.206742ms)
+✔ doctor provides Native TOML trigger guidance for a real maintenance handler (343.104222ms)
+✔ doctor reports JSONC locations and does not print configuration values (324.939379ms)
+✔ doctor reports TOML locations without including configuration source excerpts (281.15348ms)
+✔ doctor accepts explicit database paths and prints native human-readable summaries (270.325242ms)
+✔ doctor rejects invalid flags with a useful usage error (573.747431ms)
+▶ draft preview applies defaults only to absent persisted keys
+  ✔ string, schema default: absent key (2.227475ms)
+  ✔ string, schema default: explicit null (0.303756ms)
+  ✔ string, schema default: empty string (0.244387ms)
+  ✔ string, schema default: false (0.165128ms)
+  ✔ string, schema default: zero (0.188033ms)
+  ✔ string, schema default: stored string (0.16637ms)
+  ✔ string, schema default: inherited key (0.16649ms)
+  ✔ string, absent default: absent key (0.18712ms)
+  ✔ string, absent default: explicit null (0.323401ms)
+  ✔ string, absent default: empty string (0.23294ms)
+  ✔ string, absent default: false (0.102815ms)
+  ✔ string, absent default: zero (0.107621ms)
+  ✔ string, absent default: stored string (0.096124ms)
+  ✔ string, absent default: inherited key (0.108853ms)
+  ✔ string, null default: absent key (0.141783ms)
+  ✔ string, null default: explicit null (0.079569ms)
+  ✔ string, null default: empty string (0.058287ms)
+  ✔ string, null default: false (0.113991ms)
+  ✔ string, null default: zero (0.110926ms)
+  ✔ string, null default: stored string (0.057186ms)
+  ✔ string, null default: inherited key (0.051908ms)
+  ✔ text, schema default: absent key (0.109525ms)
+  ✔ text, schema default: explicit null (0.098197ms)
+  ✔ text, schema default: empty string (0.054822ms)
+  ✔ text, schema default: false (0.048142ms)
+  ✔ text, schema default: zero (0.047962ms)
+  ✔ text, schema default: stored string (0.047261ms)
+  ✔ text, schema default: inherited key (0.050896ms)
+  ✔ text, absent default: absent key (0.054953ms)
+  ✔ text, absent default: explicit null (0.049604ms)
+  ✔ text, absent default: empty string (0.051047ms)
+  ✔ text, absent default: false (0.047882ms)
+  ✔ text, absent default: zero (0.057866ms)
+  ✔ text, absent default: stored string (0.048332ms)
+  ✔ text, absent default: inherited key (0.067671ms)
+  ✔ text, null default: absent key (0.058228ms)
+  ✔ text, null default: explicit null (0.050876ms)
+  ✔ text, null default: empty string (0.045529ms)
+  ✔ text, null default: false (0.084116ms)
+  ✔ text, null default: zero (0.058899ms)
+  ✔ text, null default: stored string (0.107391ms)
+  ✔ text, null default: inherited key (0.053531ms)
+  ✔ string, constructor: absent (0.1926ms)
+  ✔ string, constructor: inherited (0.128502ms)
+  ✔ string, constructor: own (0.067802ms)
+  ✔ string, constructor: null (0.057757ms)
+  ✔ string, prototype: absent (0.115033ms)
+  ✔ string, prototype: inherited (0.109844ms)
+  ✔ string, prototype: own (0.062284ms)
+  ✔ string, prototype: null (0.055754ms)
+  ✔ text, constructor: absent (0.088533ms)
+  ✔ text, constructor: inherited (0.073089ms)
+  ✔ text, constructor: own (0.083145ms)
+  ✔ text, constructor: null (0.049534ms)
+  ✔ text, prototype: absent (0.054702ms)
+  ✔ text, prototype: inherited (0.138578ms)
+  ✔ text, prototype: own (0.060901ms)
+  ✔ text, prototype: null (0.048082ms)
+✔ draft preview applies defaults only to absent persisted keys (91.944836ms)
+✔ local D1: locales, concurrent restore, retained data and persisted restart (713.499628ms)
+✔ local D1: SQL ownership predicate and batch rollback protect retained trash (498.261356ms)
+✔ Node: schema changed after restore preflight rolls back the guard and leaves trash intact (67.838609ms)
+✔ D1: schema changed after restore preflight rolls back the guard and leaves trash intact (473.392445ms)
+✔ Node: concurrent v1 trash index installers preserve rows and reach complete v2 (102.021921ms)
+✔ Node: v1 wrong same-name objects reject migration without mutation (67.312664ms)
+✔ Node: v1 incompatible index appearing after preflight rejects and rolls back installer changes (16.528464ms)
+✔ Node: concurrent v2 trash index installers preserve rows and reach complete v2 (79.863591ms)
+✔ Node: v2 wrong same-name objects reject migration without mutation (185.650829ms)
+✔ Node: v2 incompatible index appearing after preflight rejects and rolls back installer changes (64.577721ms)
+✔ Node: v1 trash index batch failure rolls back auth DDL, marker upgrade and index together (64.162563ms)
+✔ Node: invalid known auth states reject before any trash index installer batch (112.592106ms)
+✔ Node: backfilled existing index and retained trash survive storage restart with unchanged schema metadata (51.51441ms)
+✔ D1: concurrent v1 trash index installers preserve rows and reach complete v2 (501.563616ms)
+✔ D1: v1 wrong same-name objects reject migration without mutation (984.651517ms)
+✔ D1: v1 incompatible index appearing after preflight rejects and rolls back installer changes (381.379716ms)
+✔ D1: concurrent v2 trash index installers preserve rows and reach complete v2 (422.1806ms)
+✔ D1: v2 wrong same-name objects reject migration without mutation (2825.203535ms)
+✔ D1: v2 incompatible index appearing after preflight rejects and rolls back installer changes (716.077778ms)
+✔ D1: v1 trash index batch failure rolls back auth DDL, marker upgrade and index together (478.738936ms)
+✔ D1: invalid known auth states reject before any trash index installer batch (1476.705439ms)
+✔ D1: backfilled existing index and retained trash survive storage restart with unchanged schema metadata (728.658629ms)
+✔ Node: one-row all-locale trash plan matches the complete pinned Source index set (63.712043ms)
+✔ Node: explicit migration adds missing trash indexes idempotently without changing retained data or schema metadata (96.752646ms)
+✔ Node: index batch failure rolls back every newly added index and leaves marker/data unchanged (61.693174ms)
+✔ D1: one-row all-locale trash plan matches the complete pinned Source index set (329.676763ms)
+✔ D1: explicit migration adds missing trash indexes idempotently without changing retained data or schema metadata (434.485423ms)
+✔ D1: index batch failure rolls back every newly added index and leaves marker/data unchanged (444.313196ms)
+✔ Node: synthetic mixed-status fixture excludes active and published rows before pagination (37.863047ms)
+▶ Node: 103 retained drafts paginate through repository/service and survive reopen
+  ✔ default 50, cap 100 and last returned row produce honest continuation (2.944547ms)
+  ✔ full default, custom and repository walks have no duplicates or missing tied rows (21.667232ms)
+  ✔ omitted locale includes all locales and each exact-locale walk remains complete (9.808885ms)
+  ✔ empty cursor is first page; exact terminal and beyond-terminal pages omit continuation (2.351097ms)
+  ✔ malformed cursors report INVALID_CURSOR at both repository and service boundaries (0.989914ms)
+  ✔ saved later page resumes after a storage reopen (4.651337ms)
+  ✔ restoring a later-page row retains data, rejects stale tokens and survives reopen (11.074843ms)
+✔ Node: 103 retained drafts paginate through repository/service and survive reopen (298.017988ms)
+✔ D1: synthetic mixed-status fixture excludes active and published rows before pagination (317.087258ms)
+▶ D1: 103 retained drafts paginate through repository/service and survive reopen
+  ✔ default 50, cap 100 and last returned row produce honest continuation (29.292255ms)
+  ✔ full default, custom and repository walks have no duplicates or missing tied rows (106.329187ms)
+  ✔ omitted locale includes all locales and each exact-locale walk remains complete (167.597282ms)
+  ✔ empty cursor is first page; exact terminal and beyond-terminal pages omit continuation (30.692292ms)
+  ✔ malformed cursors report INVALID_CURSOR at both repository and service boundaries (0.670257ms)
+  ✔ saved later page resumes after a storage reopen (132.175299ms)
+  ✔ restoring a later-page row retains data, rejects stale tokens and survives reopen (283.784739ms)
+✔ D1: 103 retained drafts paginate through repository/service and survive reopen (4386.946631ms)
+✔ supplemental cursor wire uses UTF-8 standard base64 and preserves upstream string-only validation (0.570807ms)
+✔ supplemental direct cursor decode rejects empty/malformed/oversized input with a short domain error (1.105629ms)
+✔ Node: adapted trash-locale-filter.test.ts:57/65/75 value assertions (54.132323ms)
+✔ D1: adapted trash-locale-filter.test.ts:57/65/75 value assertions (459.470598ms)
+✔ workerd: draft restore uses actual D1 without nodejs_compat, with one concurrent CAS winner (594.709858ms)
+✔ draft trash: authorization precedes hostile input and every storage access (2.127184ms)
+✔ draft trash: permitted malformed bounded inputs reject before storage (2.83116ms)
+✔ Node draft trash: explicit locale scopes, omitted locale includes every locale and item locale is retained (65.912852ms)
+✔ Node draft trash: default 50 and cap 100, deletedAt/id descending, bounded body-free summaries (288.392827ms)
+✔ Node draft trash: restore retains stored columns and returns refreshed CAS even with frozen time (42.383468ms)
+✔ Node draft trash: restore uses edit-own/any, persisted nonempty owner and no delete requirement (27.801618ms)
+✔ Node draft trash: stale tokens conflict without writes, active restore conflicts and missing restores are NOT_FOUND (35.309909ms)
+✔ Node draft trash: two real SQLite connections restoring the same token yield one success and one conflict (62.621291ms)
+✔ Node draft trash: SQL owner predicate rejects ownership changed after authorized preflight on another connection (36.350877ms)
+✔ Node draft trash: SQL CAS rejects restore won by another connection after preflight (43.81678ms)
+✔ Node draft trash: restore returns its committed row when another connection writes before batch returns (40.850853ms)
+✔ Node draft trash: unexpected storage errors roll back restore and guard rows (26.282797ms)
+✔ Node draft trash: trashed data and restored revision survive real storage restart; prior token remains stale (74.586915ms)
+✔ Node source: five collection output, manifest-build.test.ts:537 (64.211578ms)
+✔ Node supplemental: 0/1/50/51/100 boundaries preserve ordered projection with bounded reads (151.015203ms)
+✔ Node supplemental: each collection retains its 32-field cap, including ignored malformed rows (37.546878ms)
+✔ Node supplemental: authorization precedes SQL; constructor fields remain unparsed; errors propagate (25.451719ms)
+✔ Node supplemental: uncached collection and field changes appear on the next read (27.223089ms)
+✔ D1 source: five collection output, manifest-build.test.ts:537 (2323.731727ms)
+✔ D1 supplemental: 0/1/50/51/100 boundaries preserve ordered projection with bounded reads (9096.299973ms)
+✔ D1 supplemental: each collection retains its 32-field cap, including ignored malformed rows (1854.416523ms)
+✔ D1 supplemental: authorization precedes SQL; constructor fields remain unparsed; errors propagate (1347.397866ms)
+✔ D1 supplemental: uncached collection and field changes appear on the next read (1372.481768ms)
+✔ workerd supplemental: manifest executes on the actual local D1 binding without nodejs_compat (341.2271ms)
+✔ source: includes manual collections that have no fields (45.943934ms)
+✔ source subset: forwards declared validation on scalar fields and omits absent validation (40.829445ms)
+✔ source: reflects schema mutations immediately with no cross-runtime cache (27.202869ms)
+✔ manifest requires draft-read before querying; administrative schema policy is unchanged (1.732932ms)
+✔ least-disclosure projection excludes storage/admin/default/content values and respects registry bounds (581.592871ms)
+✔ pinned manifest limitation: a manual constructor collection is omitted pending a separate upstream-behavior fix (19.798292ms)
+✔ Node: partial registry.test.ts:668 existing-field label/order expectations (61.229278ms)
+✔ Node: adapted MCP schema.test.ts:1003 preserves concurrent partial field updates (34.730203ms)
+✔ Node: supplemental paired 12-layout metadata-default change preserves raw/content omitted inserts (170.852548ms)
+✔ Node: supplemental field-update validation observation applies to future writes and leaves old content readable (31.306777ms)
+✔ D1: partial registry.test.ts:668 existing-field label/order expectations (849.4274ms)
+✔ D1: adapted MCP schema.test.ts:1003 preserves concurrent partial field updates (209.123629ms)
+✔ D1: supplemental paired 12-layout metadata-default change preserves raw/content omitted inserts (2076.273194ms)
+✔ D1: supplemental field-update validation observation applies to future writes and leaves old content readable (293.130994ms)
+✔ field edit: schema permission precedes hostile input and storage (1.773391ms)
+✔ Node: field metadata persists across reopen without DDL, content, token or collection changes (74.836953ms)
+✔ Node: supplied-key edits preserve omissions; validation replaces and null/empty remain distinct (39.248131ms)
+✔ Node: invalid and out-of-scope metadata fails without writes (102.434935ms)
+✔ Node: independent concurrent partial edits preserve both writes and each operation's own receipt (47.390447ms)
+✔ Node: independent storage handles make concurrent supplied-key edits without a shared mutex (39.175112ms)
+✔ Node: legacy metadata edits preserve divergent SQL defaults, required layout, unique indexes and stored NULL across reopen (47.811778ms)
+✔ Node: validation tightening affects future supplied writes while old content remains readable (40.989423ms)
+✔ Node: edited defaults stay metadata; omitted raw/content inserts retain physical required defaults and optional NULL (35.090183ms)
+✔ Node: failures during/after metadata UPDATE roll back every change and retain storage errors (31.557774ms)
+✔ Node: field replacement between preflight and commit preserves the replacement identity (38.646048ms)
+✔ D1: field metadata persists across reopen without DDL, content, token or collection changes (588.309368ms)
+✔ D1: supplied-key edits preserve omissions; validation replaces and null/empty remain distinct (1022.36157ms)
+✔ D1: invalid and out-of-scope metadata fails without writes (1006.937185ms)
+✔ D1: independent concurrent partial edits preserve both writes and each operation's own receipt (194.120019ms)
+✔ D1: independent storage handles make concurrent supplied-key edits without a shared mutex (1899.867904ms)
+✔ D1: legacy metadata edits preserve divergent SQL defaults, required layout, unique indexes and stored NULL across reopen (541.592196ms)
+✔ D1: validation tightening affects future supplied writes while old content remains readable (1027.797277ms)
+✔ D1: edited defaults stay metadata; omitted raw/content inserts retain physical required defaults and optional NULL (312.341937ms)
+✔ D1: failures during/after metadata UPDATE roll back every change and retain storage errors (341.27703ms)
+✔ D1: field replacement between preflight and commit preserves the replacement identity (257.802547ms)
+✔ field label conversion accepts absent/matching Kit instance ids and removes them before the service (2.434024ms)
+✔ field label form requires exact pair identity, a nonempty string and rejects broader field properties (0.617537ms)
+✔ field label: permission precedes hostile input and all storage access (2.722838ms)
+✔ Node: selected partial registry.test.ts:668 label assertion (52.265397ms)
+✔ Node: string/text labels persist across restart while all other metadata, DDL, indexes, content and tokens remain unchanged (61.328852ms)
+✔ Node: strict label-only validation rejects extra properties and invalid targets before storage without writes (29.272772ms)
+✔ Node: whitespace and labels longer than 200 characters retain the pinned nonempty-only contract (33.191795ms)
+✔ Node: schema:manage alone can relabel and schema/content readers cannot mutate any row (31.493205ms)
+✔ Node: identical labels are successful no-op values and same-field concurrent edits are last-writer-wins (30.001135ms)
+✔ Node: independent fields keep separate results and do not change each other's attributes (25.921181ms)
+✔ Node: a pre-label collection metadata token remains valid and metadata forms cannot overwrite field labels (30.662288ms)
+✔ Node: metadata writes between label preflight and commit neither conflict nor lose either update (26.205317ms)
+✔ Node: label writes during metadata preflight leave metadata CAS valid and preserve both updates (33.407409ms)
+✔ Node: additive fields coexist with label edits even when schema version changes after preflight (29.023428ms)
+✔ Node: collection/field target pairs isolate same-slug fields and missing targets write nothing (31.616901ms)
+✔ Node: deletion of a field after preflight cannot relabel a different identity or report success (24.928111ms)
+✔ Node: replacement of a field after preflight cannot relabel a different identity or report success (25.343795ms)
+✔ Node: replacement of a collection and its same-slug fields after preflight preserves the replacement identities (30.186383ms)
+✔ Node: failures during and after the label UPDATE roll back every row and retain unexpected storage errors (27.457768ms)
+✔ Node: the returned field belongs to this atomic write even when another label commits before the adapter returns (24.222241ms)
+✔ Node: relabeling legacy columns retains divergent defaults, required layout, unique indexes and stored NULL values (39.734246ms)
+✔ D1: selected partial registry.test.ts:668 label assertion (847.403092ms)
+✔ D1: string/text labels persist across restart while all other metadata, DDL, indexes, content and tokens remain unchanged (502.79103ms)
+✔ D1: strict label-only validation rejects extra properties and invalid targets before storage without writes (778.792329ms)
+✔ D1: whitespace and labels longer than 200 characters retain the pinned nonempty-only contract (203.920888ms)
+✔ D1: schema:manage alone can relabel and schema/content readers cannot mutate any row (337.767087ms)
+✔ D1: identical labels are successful no-op values and same-field concurrent edits are last-writer-wins (267.351711ms)
+✔ D1: independent fields keep separate results and do not change each other's attributes (208.118421ms)
+✔ D1: a pre-label collection metadata token remains valid and metadata forms cannot overwrite field labels (271.782587ms)
+✔ D1: metadata writes between label preflight and commit neither conflict nor lose either update (164.156789ms)
+✔ D1: label writes during metadata preflight leave metadata CAS valid and preserve both updates (206.263186ms)
+✔ D1: additive fields coexist with label edits even when schema version changes after preflight (230.671583ms)
+✔ D1: collection/field target pairs isolate same-slug fields and missing targets write nothing (375.81346ms)
+✔ D1: deletion of a field after preflight cannot relabel a different identity or report success (215.32924ms)
+✔ D1: replacement of a field after preflight cannot relabel a different identity or report success (222.062246ms)
+✔ D1: replacement of a collection and its same-slug fields after preflight preserves the replacement identities (310.852947ms)
+✔ D1: failures during and after the label UPDATE roll back every row and retain unexpected storage errors (314.395384ms)
+✔ D1: the returned field belongs to this atomic write even when another label commits before the adapter returns (169.764691ms)
+✔ D1: relabeling legacy columns retains divergent defaults, required layout, unique indexes and stored NULL values (469.389109ms)
+✔ options keep modes omit every domain metadata key, including submitted displayed values (2.028434ms)
+✔ options set keys independently; label/default strings retain whitespace, empty default and unrestricted length (0.756966ms)
+✔ validation native modes distinguish omission, null and empty replacement; one-sided bounds are independent (0.349034ms)
+✔ native instance and selected values validate without introducing omitted metadata or unsupported edits (0.645669ms)
+✔ options component owns a distinct registered instance with direct native spreads and explicit hidden values (3.456288ms)
+✔ actual content service preserves arrays/media/numeric/boolean values through create/read/update (71.753474ms)
+✔ actual content service reports every enum and numeric validation issue (41.987133ms)
+✔ pinned constructor omission bug is preserved at the actual content service (42.647134ms)
+▶ Zod Generator
+  ▶ generateFieldSchema
+    ✔ should generate string schema (3.394976ms)
+    ✔ should generate number schema (0.713641ms)
+    ✔ should generate integer schema (1.14569ms)
+    ✔ should generate boolean schema (1.198629ms)
+    ✔ should coerce stored 0/1 booleans to real booleans (0.622524ms)
+    ✔ should preserve `.default(false)` chaining through the boolean preprocess (1.010276ms)
+    ✔ should accept stored 0/1 booleans in partial-mode validation (2.594565ms)
+    ✔ should generate url schema (0.778048ms)
+    ✔ rejects url field value %j [dataset 0] (0.418909ms)
+    ✔ rejects url field value %j [dataset 1] (0.347472ms)
+    ✔ rejects url field value %j [dataset 2] (0.313861ms)
+    ✔ rejects url field value %j [dataset 3] (0.245869ms)
+    ✔ rejects url field value %j [dataset 4] (0.199219ms)
+    ✔ rejects url field value %j [dataset 5] (0.164517ms)
+    ✔ applies custom string validation to url fields (0.922134ms)
+    ✔ should generate select schema with options (0.886921ms)
+    ✔ should generate multiSelect schema (0.833951ms)
+    ✔ should generate portableText schema (1.323952ms)
+    ✔ should generate image schema (1.822937ms)
+    ✔ accepts a dark variant on an image field and rejects a malformed one (1.901354ms)
+    ✔ should make field optional when required is false (0.211928ms)
+    ✔ should apply default value (0.201884ms)
+    ✔ should apply string validation rules (0.481032ms)
+    ✔ should apply number validation rules (0.576476ms)
+  ✔ generateFieldSchema (24.063054ms)
+  ▶ generateZodSchema
+    ✔ should generate schema for collection with multiple fields (0.997567ms)
+  ✔ generateZodSchema (1.104919ms)
+  ▶ validateContent
+    ✔ should return success for valid data (0.565429ms)
+    ✔ should return errors for invalid data (0.497436ms)
+  ✔ validateContent (1.177938ms)
+  ▶ generateTypeScript
+    ✔ should generate TypeScript interface (0.575954ms)
+  ✔ generateTypeScript (0.669555ms)
+  ▶ interface names derive from the singularized slug
+    ✔ uses the slug, ignoring an arbitrary human label (0.331458ms)
+    ✔ keeps names unique when singularization collapses two slugs (0.403105ms)
+    ✔ keeps names unique when a suffixed name collides with another slug (0.244196ms)
+    ✔ singularizes and PascalCases multi-word slugs (0.142904ms)
+    ✔ singularizes a plural slug to describe a single entry (0.12703ms)
+    ✔ leaves an already-singular slug unchanged (0.108733ms)
+    ✔ references the same interface names in the EmDashCollections map (0.167291ms)
+    ✔ includes BylineSummary in generated interface imports and byline property (0.130466ms)
+  ✔ interface names derive from the singularized slug (1.946682ms)
+  ▶ blocks fields in generated types
+    ✔ emits retained version, per-type, and field unions (7.003903ms)
+  ✔ blocks fields in generated types (7.115601ms)
+  ▶ repeater fields in generated types
+    ✔ builds a row object array from subFields (0.574903ms)
+    ✔ types a sub-field that is not required as nullable (0.127101ms)
+    ✔ enumerates the options of a select sub-field (0.178538ms)
+    ✔ emits the media literal for an image sub-field (0.148082ms)
+    ✔ maps a %s sub-field [dataset 0] (0.11954ms)
+    ✔ maps a %s sub-field [dataset 1] (0.091167ms)
+    ✔ maps a %s sub-field [dataset 2] (0.148944ms)
+    ✔ maps a %s sub-field [dataset 3] (0.068553ms)
+    ✔ maps a %s sub-field [dataset 4] (0.067642ms)
+    ✔ maps a %s sub-field [dataset 5] (0.070365ms)
+    ✔ maps a %s sub-field [dataset 6] (0.104347ms)
+    ✔ maps a %s sub-field [dataset 7] (0.069715ms)
+    ✔ maps a %s sub-field [dataset 8] (0.063866ms)
+    ✔ falls back to unknown when subFields is absent (0.088803ms)
+    ✔ falls back to unknown when subFields is empty (0.082434ms)
+    ✔ falls back to unknown when subFields is %j [dataset 0] (0.084948ms)
+    ✔ falls back to unknown when subFields is %j [dataset 1] (0.058228ms)
+    ✔ falls back to unknown when subFields is %j [dataset 2] (0.056806ms)
+    ✔ falls back to unknown when subFields is %j [dataset 3] (0.052609ms)
+    ✔ falls back to unknown when subFields is %j [dataset 4] (0.051827ms)
+    ▶ sub-field slugs that are not bare identifiers
+      ✔ emits a parseable declaration file for %j [dataset 0] (1.026721ms)
+      ✔ emits a parseable declaration file for %j [dataset 1] (0.6928ms)
+      ✔ emits a parseable declaration file for %j [dataset 2] (0.565038ms)
+      ✔ emits a parseable declaration file for %j [dataset 3] (3.621826ms)
+      ✔ does not let a slug restructure the emitted type (1.621444ms)
+    ✔ sub-field slugs that are not bare identifiers (7.758886ms)
+    ▶ duplicate sub-field slugs
+      ✔ declares a duplicated slug once (0.845329ms)
+      ✔ keeps the last declaration of a duplicated slug (0.683516ms)
+      ✔ declares the members the row schema accepts (1.342515ms)
+    ✔ duplicate sub-field slugs (3.089838ms)
+    ✔ keeps a required repeater non-optional (0.127011ms)
+  ✔ repeater fields in generated types (13.851191ms)
+  ▶ reference fields
+    ✔ validates a field with no relation as the entry id string it stores (0.538018ms)
+    ✔ leaves a field bound to a relation out of the data schema (0.28672ms)
+    ✔ types a field with no relation as a string and omits a bound one (0.171818ms)
+  ✔ reference fields (1.143466ms)
+  ▶ reference interfaces in the generated file
+    ✔ emits a page per bound field, typed to the target collection (0.281122ms)
+    ✔ registers the references interface under EmDashCollectionReferences (0.214843ms)
+    ✔ imports ReferencePage only when a bound reference field exists (0.158338ms)
+    ✔ emits nothing for a collection whose reference fields are all unbound (0.173961ms)
+    ✔ leaves the page un-narrowed when the target is not in the file (0.114552ms)
+  ✔ reference interfaces in the generated file (1.089516ms)
+✔ Zod Generator (52.959168ms)
+▶ SchemaRegistry
+  ▶ Collection Operations
+    ✔ should create a collection (68.373385ms)
+    ✔ F14: defaults supports to ['drafts', 'revisions'] when undefined (21.617468ms)
+    ✔ F14: preserves explicit empty supports array (opt-out) (20.585369ms)
+    ✔ defaults collections to routable and preserves explicit opt-out (23.613084ms)
+    ✔ should create the content table when creating a collection (20.560222ms)
+    ✔ rejects an unregistered content table with a structured conflict (22.542397ms)
+    ✔ should list collections (28.288547ms)
+    ▶ sidebar sort order
+      ✔ has no explicit order by default (23.826234ms)
+      ✔ lists explicitly ordered collections first, then the rest alphabetically (34.022398ms)
+      ✔ applies the same order to listCollectionsWithFields (the manifest path) (35.677122ms)
+      ✔ reorderCollections assigns positions in the given order (25.392044ms)
+      ✔ reorderCollections clears the position of collections left out (21.48529ms)
+      ✔ reorderCollections rejects unknown slugs without touching the order (20.728063ms)
+      ✔ reorderCollections rejects duplicate slugs (23.255266ms)
+      ✔ update preserves the position when sortOrder is omitted, and clears it on null (28.069262ms)
+      ✔ rejects `reorder` as a collection slug (shadowed by the reorder route) (25.132375ms)
+    ✔ sidebar sort order (238.647034ms)
+    ✔ should get a collection by slug (28.105877ms)
+    ✔ should return null for non-existent collection (23.073985ms)
+    ✔ should update a collection (23.086613ms)
+    ✔ touches updatedAt for an empty update (25.324903ms)
+    ✔ collections are visible in the sidebar by default (29.120471ms)
+    ✔ creates a collection hidden from the sidebar (27.756483ms)
+    ✔ toggles hidden on an existing collection (19.94601ms)
+    ✔ preserves hidden when an update omits it (18.703094ms)
+    ✔ groups a collection into a sidebar folder and moves it back inline (21.517398ms)
+    ✔ clears a collection icon with an empty string (19.637105ms)
+    ✔ persists collection admin list columns (27.373148ms)
+    ✔ should throw when updating non-existent collection (19.253675ms)
+    ✔ should delete a collection (29.163435ms)
+    ✔ should throw when creating duplicate collection (37.244104ms)
+    ✔ should reject reserved collection slugs (29.41307ms)
+    ✔ should validate collection slug format (28.8734ms)
+  ✔ Collection Operations (854.742504ms)
+  ▶ Field Operations
+    ✔ preserves unsupported stored field types instead of treating them as strings (32.956334ms)
+    ✔ preserves unsupported stored repeater sub-field types (20.31959ms)
+    ✔ should create a field (21.362476ms)
+    ✔ keeps an indexed field's physical index in sync (25.967037ms)
+    ✔ keeps metadata and its physical index aligned when indexed changes from %s to %s during concurrent updates [dataset 0] (27.780629ms)
+    ✔ keeps metadata and its physical index aligned when indexed changes from %s to %s during concurrent updates [dataset 1] (56.958887ms)
+    ✔ drops the index when an indexed field moves to a type that cannot carry one (47.668867ms)
+    ✔ reuses an existing generated index when enabling indexed metadata (26.718415ms)
+    ✔ uses the generated index for indexed custom field ordering (23.792223ms)
+    ✔ rejects indexes for non-scalar fields (18.58719ms)
+    ✔ should add column to content table when creating field (21.585039ms)
+    ✔ should list fields for a collection (21.310598ms)
+    ✔ should get a field by slug (22.800323ms)
+    ✔ should update a field (20.938139ms)
+    ✔ updates a field type when the column affinity is unchanged (#1397) (22.453513ms)
+    ✔ rejects a field type change that would alter the column type (#1397) (25.323441ms)
+    ✔ should delete a field (25.672004ms)
+    ✔ should reject reserved field slugs (21.02545ms)
+    ✔ should map field types to correct column types (56.955878ms)
+    ✔ should reorder fields (33.780566ms)
+  ✔ Field Operations (575.326884ms)
+  ▶ Collection with Fields
+    ✔ should get collection with all fields (31.03847ms)
+    ✔ should cascade delete fields when deleting collection (21.321704ms)
+  ✔ Collection with Fields (52.581726ms)
+✔ SchemaRegistry (1483.139617ms)
+✔ Node: create derives SEO support unless explicitly overridden (49.572239ms)
+✔ Node: update derives supplied SEO support while preserving explicit and omitted values (27.070454ms)
+✔ Node: collection reorder touches listed and cleared timestamps without a version bump and rejects stale CAS (33.347606ms)
+✔ Node: deleting titleField clears its pointer and touches only that collection timestamp without a version bump (37.530995ms)
+✔ Node: deleting dateField clears its pointer and touches only that collection timestamp without a version bump (40.938665ms)
+✔ Node: deleting an unreferenced field leaves collection metadata timestamps intact (28.469192ms)
+✔ Node: actual create and partial update reject nested lossy JSON with zero persisted changes (28.323915ms)
+✔ D1: create derives SEO support unless explicitly overridden (850.151042ms)
+✔ D1: update derives supplied SEO support while preserving explicit and omitted values (159.199808ms)
+✔ D1: collection reorder touches listed and cleared timestamps without a version bump and rejects stale CAS (244.839801ms)
+✔ D1: deleting titleField clears its pointer and touches only that collection timestamp without a version bump (224.688828ms)
+✔ D1: deleting dateField clears its pointer and touches only that collection timestamp without a version bump (292.527651ms)
+✔ D1: deleting an unreferenced field leaves collection metadata timestamps intact (171.246475ms)
+✔ D1: actual create and partial update reject nested lossy JSON with zero persisted changes (246.430022ms)
+✔ the persisted registry creates every pinned EmDash 1.1.0 field type (82.176739ms)
+✔ defaults collections to routable and preserves explicit opt-out (23.862468ms)
+✔ version 1 metadata upgrade retains physical columns, rows, and divergent legacy defaults (87.8263ms)
+✔ version 2 metadata upgrade retains physical columns, rows, and divergent legacy defaults (46.643152ms)
+✔ failure during each new metadata/identity DDL restores the exact legacy schema and rows (255.580819ms)
+✔ incomplete identity layouts and temporary metadata objects reject without repair (122.054431ms)
+✔ own JSON keys round-trip with normal prototypes and no global mutation (2.557269ms)
+✔ custom transport cannot disguise lossy JSON, cycles, getters or custom objects (0.391517ms)
+✔ malformed custom decoder data fails without exposing the supplied value (0.494302ms)
+[emdash:redirects] publishing redirect artifacts failed: Error: database is not open
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async SelectQueryBuilderImpl.execute (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24)
+    at async SelectQueryBuilderImpl.executeTakeFirst (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26)
+    at async publishRedirectArtifacts (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/redirects/artifacts.ts:156:16)
+    at async publishRedirectChanges (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/redirects/artifacts.ts:277:3) {
+  code: 'ERR_INVALID_STATE'
+}
+✔ Node: live metadata saves keep staged data and slug unpublished (83.258733ms)
+✔ Node: revision restore cannot replace a save before-refetch (47.587309ms)
+✔ Node: revision restore cannot replace a save after-refetch (37.005277ms)
+✔ Node: plain restore cannot replace a save before-refetch (41.372551ms)
+✔ Node: plain restore cannot replace a save after-refetch (39.857467ms)
+[emdash:redirects] publishing redirect artifacts failed: Error: driver has already been destroyed
+    at RuntimeDriver.acquireConnection (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:44:19)
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:8:47)
+    at DefaultQueryExecutor.provideConnection (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/default-query-executor.js:20:41)
+    at DefaultQueryExecutor.executeQuery (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:39)
+    at SelectQueryBuilderImpl.execute (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:51)
+    at publishRedirectArtifacts (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/redirects/artifacts.ts:170:4)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async publishRedirectChanges (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/redirects/artifacts.ts:277:3)
+✔ D1: live metadata saves keep staged data and slug unpublished (1322.513786ms)
+✔ D1: revision restore cannot replace a save before-refetch (333.963945ms)
+✔ D1: revision restore cannot replace a save after-refetch (345.927574ms)
+✔ D1: plain restore cannot replace a save before-refetch (264.890579ms)
+✔ D1: plain restore cannot replace a save after-refetch (326.686527ms)
+✖ Node: fresh canonical startup publishes, stages, rolls back and retains history on reopen (91.943459ms)
+✖ Node: v4 canonical startup publishes, stages, rolls back and retains history on reopen (79.103656ms)
+✖ D1: fresh canonical startup publishes, stages, rolls back and retains history on reopen (1066.188535ms)
+✖ D1: v4 canonical startup publishes, stages, rolls back and retains history on reopen (925.5034ms)
+(node:2551059) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Node: real later metadata replacement is accepted on canonical restart (23.125672ms)
+✔ Node: malformed latest static metadata rejects before dynamic descriptors (9.519008ms)
+✔ D1: real later metadata replacement is accepted on canonical restart (840.368437ms)
+✔ D1: malformed latest static metadata rejects before dynamic descriptors (49.743653ms)
+▶ packages/core/tests/integration/content/blank-array-field.test.ts
+  ✔ saves blank strings as null on create (83.518355ms)
+  ✔ saves an entry read back with a stored blank body (58.534363ms)
+  ✔ still rejects a blank body on a required field (45.191935ms)
+✔ packages/core/tests/integration/content/blank-array-field.test.ts (188.404835ms)
+▶ packages/core/tests/integration/content/deleted-field-stranded-entry.test.ts
+  ✔ publishes the existing draft without another save (63.429922ms)
+✔ packages/core/tests/integration/content/deleted-field-stranded-entry.test.ts (63.699957ms)
+(node:2551096) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Node: exact managed version-suffix FTS survives restart, index repair and live effects (43.580497ms)
+✔ Node: complete source group may precede config or remain disabled (27.150154ms)
+✔ Node: incomplete, spoofed and malformed managed ownership rejects without startup writes (103.347329ms)
+✔ Node: managed group, trigger and metadata races abort before index backfill (145.502567ms)
+✔ Node: unrelated operator and live search row writes remain allowed during backfill (18.610374ms)
+✔ Node: maximum declared fields fit the native D1 binding budget during backfill (57.413971ms)
+✔ Node: every orphan version-suffix companion rejects preflight (165.436649ms)
+✔ Node: every orphan version-suffix companion rejects batch races (226.391034ms)
+✔ Node: separate namespace companion lookalikes remain ordinary operators (10.95892ms)
+✔ D1: exact managed version-suffix FTS survives restart, index repair and live effects (1176.426483ms)
+✔ D1: complete source group may precede config or remain disabled (327.223738ms)
+✔ D1: incomplete, spoofed and malformed managed ownership rejects without startup writes (2485.359961ms)
+✔ D1: managed group, trigger and metadata races abort before index backfill (2171.288779ms)
+✔ D1: unrelated operator and live search row writes remain allowed during backfill (212.37493ms)
+✔ D1: maximum declared fields fit the native D1 binding budget during backfill (1049.713419ms)
+✔ D1: every orphan version-suffix companion rejects preflight (3525.270311ms)
+✔ D1: every orphan version-suffix companion rejects batch races (4703.805841ms)
+✔ D1: separate namespace companion lookalikes remain ordinary operators (417.392367ms)
+✔ Node: invalid mixed publication date preserves the pinned partial draft commit (72.152564ms)
+[revisions] Failed to prune revisions for post/01M4543BT7XHDAJFQ14XG84EFP: Error: review prune fault
+    at Object.run (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/node-sqlite-compat.ts:87:38)
+    at SqliteConnection.executeQuery (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:64:51)
+    at file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async RevisionRepository.pruneOldRevisions (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts:305:18)
+    at async RevisionRepository.pruneQueuedEntry (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts:327:18)
+    at async task (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/lifecycle/service.ts:127:12)
+    at async Object.flush (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-review-regressions.test.ts:27:61)
+    at async TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-review-regressions.test.ts:125:12) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1811,
+  errstr: 'constraint failed'
+}
+[revisions] Failed to schedule pruning for post/01M4543BVWMGCBPBC0M2A5DS59: Error: no such column: missing_capture_column
+    at NodeSqliteCompatDatabase.prepare (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/node-sqlite-compat.ts:82:36)
+    at SqliteConnection.executeQuery (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31)
+    at file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at async DefaultQueryExecutor.executeQuery (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28)
+    at async Object.unpublish (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/lifecycle/service.ts:337:23)
+    at async TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-review-regressions.test.ts:158:19)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1,
+  errstr: 'SQL logic error'
+}
+✔ Node: slug-only update preserves the pinned public runtime live write (43.352704ms)
+✔ Node: unpublish cycles drain actual queued history at the source retention cap (214.859595ms)
+✔ Node: accepted ISO metadata SQL fault preserves the pinned mixed draft commit (38.435453ms)
+✔ Node: unpublish pruning preserves a newer queued boundary and the current draft (47.684397ms)
+✔ Node: accepted unpublish isolates a real prune fault and retains queued work for retry (53.386837ms)
+✔ Node: a real queue-capture SELECT fault cannot reject an accepted unpublish (29.347582ms)
+✔ D1: invalid mixed publication date preserves the pinned partial draft commit (1106.517786ms)
+✔ D1: slug-only update preserves the pinned public runtime live write (330.46508ms)
+✔ D1: unpublish cycles drain actual queued history at the source retention cap (6040.222824ms)
+✔ D1: accepted ISO metadata SQL fault preserves the pinned mixed draft commit (330.035775ms)
+✔ D1: unpublish pruning preserves a newer queued boundary and the current draft (1419.935633ms)
+[revisions] Failed to prune revisions for post/01M4543N3PY8BC9R82HE9T7MBV: Error: D1_ERROR: review prune fault: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+    at Error (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:41:19)
+    at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+    at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+    at unflatten (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+    ... 3 lines matching cause stack trace ...
+    at async execute (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:56:18)
+    at async D1Connection.executeQuery (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24 {
+  [cause]: Error: review prune fault: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)
+      at Error (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:41:19)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:32)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at unflatten (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+      at parse (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:21:9)
+      at file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:51:21
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async execute (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:56:18) {
+    [cause]: undefined
+  }
+}
+✔ D1: accepted unpublish isolates a real prune fault and retains queued work for retry (1319.617621ms)
+[revisions] Failed to schedule pruning for post/01M4543PAD1SHNMT3B1RGPVWKQ: Error: D1_ERROR: no such column: missing_capture_column at offset 7: SQLITE_ERROR
+    at Error (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:41:19)
+    at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+    at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+    at unflatten (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+    ... 3 lines matching cause stack trace ...
+    at async execute (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:56:18)
+    at async D1Connection.executeQuery (file:///workspace/cms-complete-seo-storage-backend/src/lib/server/database/d1.ts:55:29)
+    at async file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24 {
+  [cause]: Error: no such column: missing_capture_column at offset 7: SQLITE_ERROR
+      at Error (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:41:19)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:32)
+      at hydrate (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26)
+      at unflatten (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9)
+      at parse (file:///workspace/cms-complete-seo-storage-backend/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:21:9)
+      at file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:51:21
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async execute (file:///workspace/cms-complete-seo-storage-backend/tests/helpers/async-d1-storage.ts:56:18) {
+    [cause]: undefined
+  }
+}
+✔ D1: a real queue-capture SELECT fault cannot reject an accepted unpublish (305.895907ms)
+[revisions] Failed to schedule pruning for post/01M4543BSJA6PCC5W8A5FJNMAP: Error: native synchronous scheduler fault
+    at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-scheduling-regressions.test.ts:35:30)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+[revisions] Failed to schedule pruning for post/01M4543BWJAB0TVKCAAX455FM4: Error: native synchronous scheduler fault
+    at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-scheduling-regressions.test.ts:35:30)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+[revisions] Failed to schedule pruning for post/01M4543BYYT7W3NEVCSZ2ERWND: Error: native synchronous scheduler fault
+    at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-scheduling-regressions.test.ts:35:30)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+[revisions] Failed to schedule pruning for post/01M4543C1GW222JF5RJ9E6T0VM: Error: native synchronous scheduler fault
+    at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-scheduling-regressions.test.ts:35:30)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+✔ Node: save survives scheduler failure and queued work retries (115.090617ms)
+✔ Node: restore-draft survives scheduler failure and queued work retries (75.627511ms)
+✔ Node: restore-plain survives scheduler failure and queued work retries (65.704746ms)
+✔ Node: unpublish survives scheduler failure and queued work retries (82.906506ms)
+[revisions] Failed to schedule pruning for post/01M4543CX35GNK6BTW3NF5DHC9: Error: native synchronous scheduler fault
+    at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-scheduling-regressions.test.ts:35:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+✔ D1: save survives scheduler failure and queued work retries (2010.93492ms)
+[revisions] Failed to schedule pruning for post/01M4543E8349HR3SQCWQ3Y1RMK: Error: native synchronous scheduler fault
+    at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-scheduling-regressions.test.ts:35:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+✔ D1: restore-draft survives scheduler failure and queued work retries (1323.476481ms)
+[revisions] Failed to schedule pruning for post/01M4543FGNNKMK2WXFXNFCF5PR: Error: native synchronous scheduler fault
+    at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-scheduling-regressions.test.ts:35:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+✔ D1: restore-plain survives scheduler failure and queued work retries (1090.540869ms)
+[revisions] Failed to schedule pruning for post/01M4543GHDJ85QY6FX07Y5525M: Error: native synchronous scheduler fault
+    at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-scheduling-regressions.test.ts:35:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+✔ D1: unpublish survives scheduler failure and queued work retries (1101.398978ms)
+✔ Node: staged slug collision preserves its public code and both complete entries (91.395877ms)
+✔ D1: staged slug collision preserves its public code and both complete entries (1324.881694ms)
+✔ Node: forward cross-collection and self-reference triggers survive the complete rebuild (102.079157ms)
+✔ Node: reverse cross-collection and self-reference triggers survive the complete rebuild (60.818721ms)
+✔ Node: unchanged-owner cross-collection and self-reference triggers survive the complete rebuild (65.941601ms)
+✔ D1: forward cross-collection and self-reference triggers survive the complete rebuild (2221.420614ms)
+✔ D1: reverse cross-collection and self-reference triggers survive the complete rebuild (1454.308702ms)
+✔ D1: unchanged-owner cross-collection and self-reference triggers survive the complete rebuild (1152.540249ms)
+✔ Node: preinstalled view content dependency rejects without writes (41.703932ms)
+✔ Node: race view content dependency rejects without writes (47.199213ms)
+✔ Node: preinstalled external-trigger content dependency rejects without writes (13.70084ms)
+✔ Node: race external-trigger content dependency rejects without writes (36.308241ms)
+✔ Node: qualified, joined, grouped and mutating content dependencies reject unchanged (121.30373ms)
+✔ Node: unrelated operator views, triggers, CTE names, literals and comments remain unchanged (64.907338ms)
+✔ D1: preinstalled view content dependency rejects without writes (1111.582568ms)
+✔ D1: race view content dependency rejects without writes (537.999619ms)
+✔ D1: preinstalled external-trigger content dependency rejects without writes (245.819662ms)
+✔ D1: race external-trigger content dependency rejects without writes (437.626254ms)
+✔ D1: qualified, joined, grouped and mutating content dependencies reject unchanged (1981.129131ms)
+✔ D1: unrelated operator views, triggers, CTE names, literals and comments remain unchanged (783.849609ms)
+✔ Node: existing-table rejects fresh orphan content without migration writes (17.727093ms)
+✔ Node: existing-view rejects fresh orphan content without migration writes (8.189885ms)
+✔ Node: race-table rejects fresh orphan content without migration writes (25.368345ms)
+✔ D1: existing-table rejects fresh orphan content without migration writes (839.758152ms)
+✔ D1: existing-view rejects fresh orphan content without migration writes (60.839707ms)
+✔ D1: race-table rejects fresh orphan content without migration writes (137.55357ms)
+✔ Node: fresh preinstalled reserved table names reject in both cases (34.115276ms)
+✔ Node: fresh preinstalled reserved view names reject in both cases (10.845672ms)
+✔ Node: fresh preinstalled reserved index names reject in both cases (6.913279ms)
+✔ Node: fresh racing reserved table names reject in both cases (17.527334ms)
+✔ Node: fresh racing reserved view names reject in both cases (19.848949ms)
+✔ Node: fresh racing reserved index names reject in both cases (11.667687ms)
+✔ Node: fresh content-like operator trigger names occupy a separate namespace (97.14484ms)
+✔ Node: v4 preinstalled reserved table names reject in both cases (27.998824ms)
+✔ Node: v4 preinstalled reserved view names reject in both cases (30.023398ms)
+✔ Node: v4 preinstalled reserved index names reject in both cases (19.680566ms)
+✔ Node: v4 racing reserved table names reject in both cases (37.472325ms)
+✔ Node: v4 racing reserved view names reject in both cases (57.239372ms)
+✔ Node: v4 racing reserved index names reject in both cases (33.580573ms)
+✔ Node: v4 content-like operator trigger names occupy a separate namespace (191.36519ms)
+✔ Node: v5 preinstalled reserved table names reject in both cases (21.404684ms)
+✔ Node: v5 preinstalled reserved view names reject in both cases (18.5712ms)
+✔ Node: v5 preinstalled reserved index names reject in both cases (17.265921ms)
+✔ Node: v5 racing reserved table names reject in both cases (32.425479ms)
+✔ Node: v5 racing reserved view names reject in both cases (44.081027ms)
+✔ Node: v5 racing reserved index names reject in both cases (30.531777ms)
+✔ Node: v5 content-like operator trigger names occupy a separate namespace (188.183364ms)
+✔ Node: v8 preinstalled reserved table names reject in both cases (34.156327ms)
+✔ Node: v8 preinstalled reserved view names reject in both cases (33.552421ms)
+✔ Node: v8 preinstalled reserved index names reject in both cases (51.998493ms)
+✔ Node: v8 racing reserved table names reject in both cases (76.660348ms)
+✔ Node: v8 racing reserved view names reject in both cases (52.177733ms)
+✔ Node: v8 racing reserved index names reject in both cases (65.336323ms)
+✔ Node: v8 content-like operator trigger names occupy a separate namespace (243.645036ms)
+✔ Node: v4 attached mixed-case trigger owners retain original SQL and effects (44.16256ms)
+✔ Node: v4 preinstalled orphan field metadata rejects without writes (10.207614ms)
+✔ Node: v4 racing orphan field metadata rejects without writes (15.980411ms)
+✔ Node: v4 unmanaged operator FK violations do not reject valid CMS metadata (40.437077ms)
+✔ Node: v5 attached mixed-case trigger owners retain original SQL and effects (52.214287ms)
+✔ Node: v5 preinstalled orphan field metadata rejects without writes (7.741442ms)
+✔ Node: v5 racing orphan field metadata rejects without writes (13.696662ms)
+✔ Node: v5 unmanaged operator FK violations do not reject valid CMS metadata (35.301187ms)
+✔ Node: v8 attached mixed-case trigger owners retain original SQL and effects (45.064303ms)
+✔ Node: v8 preinstalled orphan field metadata rejects without writes (14.063723ms)
+✔ Node: v8 racing orphan field metadata rejects without writes (21.109702ms)
+✔ Node: v8 unmanaged operator FK violations do not reject valid CMS metadata (41.239983ms)
+✔ D1: fresh preinstalled reserved table names reject in both cases (982.974949ms)
+✔ D1: fresh preinstalled reserved view names reject in both cases (158.5725ms)
+✔ D1: fresh preinstalled reserved index names reject in both cases (168.835107ms)
+✔ D1: fresh racing reserved table names reject in both cases (305.01954ms)
+✔ D1: fresh racing reserved view names reject in both cases (204.708667ms)
+✔ D1: fresh racing reserved index names reject in both cases (159.328605ms)
+✔ D1: fresh content-like operator trigger names occupy a separate namespace (717.508473ms)
+✔ D1: v4 preinstalled reserved table names reject in both cases (504.061893ms)
+✔ D1: v4 preinstalled reserved view names reject in both cases (372.612215ms)
+✔ D1: v4 preinstalled reserved index names reject in both cases (381.12972ms)
+✔ D1: v4 racing reserved table names reject in both cases (613.506219ms)
+✔ D1: v4 racing reserved view names reject in both cases (699.221129ms)
+✔ D1: v4 racing reserved index names reject in both cases (650.082881ms)
+✔ D1: v4 content-like operator trigger names occupy a separate namespace (2155.969453ms)
+✔ D1: v5 preinstalled reserved table names reject in both cases (419.620435ms)
+✔ D1: v5 preinstalled reserved view names reject in both cases (385.256644ms)
+✔ D1: v5 preinstalled reserved index names reject in both cases (501.909446ms)
+✔ D1: v5 racing reserved table names reject in both cases (720.85791ms)
+✔ D1: v5 racing reserved view names reject in both cases (741.60068ms)
+✔ D1: v5 racing reserved index names reject in both cases (686.103929ms)
+✔ D1: v5 content-like operator trigger names occupy a separate namespace (1825.896496ms)
+✔ D1: v8 preinstalled reserved table names reject in both cases (656.350786ms)
+✔ D1: v8 preinstalled reserved view names reject in both cases (533.116153ms)
+✔ D1: v8 preinstalled reserved index names reject in both cases (583.683493ms)
+✔ D1: v8 racing reserved table names reject in both cases (969.083744ms)
+✔ D1: v8 racing reserved view names reject in both cases (1140.98223ms)
+✔ D1: v8 racing reserved index names reject in both cases (1095.232752ms)
+✔ D1: v8 content-like operator trigger names occupy a separate namespace (2258.766157ms)
+✔ D1: v4 attached mixed-case trigger owners retain original SQL and effects (471.10242ms)
+✔ D1: v4 preinstalled orphan field metadata rejects without writes (173.569899ms)
+✔ D1: v4 racing orphan field metadata rejects without writes (349.70492ms)
+✔ D1: v4 unmanaged operator FK violations do not reject valid CMS metadata (398.929509ms)
+✔ D1: v5 attached mixed-case trigger owners retain original SQL and effects (462.303936ms)
+✔ D1: v5 preinstalled orphan field metadata rejects without writes (197.390664ms)
+✔ D1: v5 racing orphan field metadata rejects without writes (372.966927ms)
+✔ D1: v5 unmanaged operator FK violations do not reject valid CMS metadata (584.766247ms)
+✔ D1: v8 attached mixed-case trigger owners retain original SQL and effects (640.852007ms)
+✔ D1: v8 preinstalled orphan field metadata rejects without writes (347.972779ms)
+✔ D1: v8 racing orphan field metadata rejects without writes (580.000561ms)
+✔ D1: v8 unmanaged operator FK violations do not reject valid CMS metadata (632.040545ms)
+✔ Node: literal reserved prefix allows acms_tool already present (97.848277ms)
+✔ Node: literal reserved prefix allows acms_tool arriving before fresh batch (72.999492ms)
+✔ Node: literal reserved prefix allows xcmsZoperator already present (44.072314ms)
+✔ Node: literal reserved prefix allows xcmsZoperator arriving before fresh batch (31.55943ms)
+✔ D1: literal reserved prefix allows acms_tool already present (909.9846ms)
+✔ D1: literal reserved prefix allows acms_tool arriving before fresh batch (209.56326ms)
+✔ D1: literal reserved prefix allows xcmsZoperator already present (246.650979ms)
+✔ D1: literal reserved prefix allows xcmsZoperator arriving before fresh batch (180.804496ms)
+✔ Node: literal reserved prefix still rejects _cms_partial without startup writes (3.130479ms)
+✔ Node: literal reserved prefix still rejects _CMS_PARTIAL without startup writes (1.148554ms)
+✔ D1: literal reserved prefix still rejects _cms_partial without startup writes (12.808609ms)
+✔ D1: literal reserved prefix still rejects _CMS_PARTIAL without startup writes (18.808586ms)
+✔ Node: uppercase orphan table rejects without migration writes (14.915923ms)
+✔ Node: uppercase orphan view rejects without migration writes (5.922121ms)
+✔ Node: uppercase orphan race-table rejects without migration writes (25.872722ms)
+✔ Node: fresh preserves an unrelated operator FK with an ec_note column (60.997644ms)
+✔ Node: v4 preserves an unrelated operator FK with an ec_note column (75.677251ms)
+✔ Node: actual quoted/comment-separated inbound content FKs and their races preserve every row (83.294057ms)
+✔ Node: operator FK comments and escaped literals mentioning content remain unmanaged (68.084864ms)
+✔ D1: uppercase orphan table rejects without migration writes (761.715314ms)
+✔ D1: uppercase orphan view rejects without migration writes (43.695298ms)
+✔ D1: uppercase orphan race-table rejects without migration writes (136.162656ms)
+✔ D1: fresh preserves an unrelated operator FK with an ec_note column (534.753713ms)
+✔ D1: v4 preserves an unrelated operator FK with an ec_note column (685.727336ms)
+✔ D1: actual quoted/comment-separated inbound content FKs and their races preserve every row (1371.934962ms)
+✔ D1: operator FK comments and escaped literals mentioning content remain unmanaged (582.699789ms)
+✔ Node: v0 every validated static prerequisite DDL is guarded before startup writes (152.841952ms)
+✔ Node: v0 every not-yet-installed static name remains absent until the guarded upgrade (656.874019ms)
+✔ Node: v0 future static names use SQLite case-insensitive shared namespace (775.208316ms)
+✔ Node: v0 intermediate metadata/lifecycle names cannot appear before startup writes (26.479598ms)
+✔ Node: v0 ordinary operator writes remain outside the prerequisite snapshot (33.439892ms)
+✔ Node: v1 every validated static prerequisite DDL is guarded before startup writes (25.406842ms)
+✔ Node: v1 every not-yet-installed static name remains absent until the guarded upgrade (864.288634ms)
+✔ Node: v1 future static names use SQLite case-insensitive shared namespace (1236.583865ms)
+✔ Node: v1 intermediate metadata/lifecycle names cannot appear before startup writes (34.786475ms)
+✔ Node: v1 raced marker rows and missing marker table reject unchanged (26.584664ms)
+✔ Node: v1 ordinary operator writes remain outside the prerequisite snapshot (29.726129ms)
+✔ Node: v2 every validated static prerequisite DDL is guarded before startup writes (52.128205ms)
+✔ Node: v2 every not-yet-installed static name remains absent until the guarded upgrade (953.702487ms)
+✔ Node: v2 future static names use SQLite case-insensitive shared namespace (1414.335908ms)
+✔ Node: v2 intermediate metadata/lifecycle names cannot appear before startup writes (51.741124ms)
+✔ Node: v2 raced marker rows and missing marker table reject unchanged (23.277099ms)
+✔ Node: v2 ordinary operator writes remain outside the prerequisite snapshot (35.719666ms)
+✔ Node: v2 mutable auth roles, sessions and profiles are not DDL prerequisites (38.24431ms)
+✔ Node: v3 every validated static prerequisite DDL is guarded before startup writes (59.371318ms)
+✔ Node: v3 every not-yet-installed static name remains absent until the guarded upgrade (1038.484936ms)
+✔ Node: v3 future static names use SQLite case-insensitive shared namespace (1575.161839ms)
+✔ Node: v3 intermediate metadata/lifecycle names cannot appear before startup writes (35.260907ms)
+✔ Node: v3 raced marker rows and missing marker table reject unchanged (10.989535ms)
+✔ Node: v3 ordinary operator writes remain outside the prerequisite snapshot (32.367624ms)
+✔ Node: v3 mutable auth roles, sessions and profiles are not DDL prerequisites (25.975489ms)
+✔ Node: v4 every validated static prerequisite DDL is guarded before startup writes (188.103756ms)
+✔ Node: v4 every not-yet-installed static name remains absent until the guarded upgrade (1667.157758ms)
+✔ Node: v4 future static names use SQLite case-insensitive shared namespace (2954.867926ms)
+✔ Node: v4 intermediate metadata/lifecycle names cannot appear before startup writes (58.895558ms)
+✔ Node: v4 raced marker rows and missing marker table reject unchanged (25.836189ms)
+✔ Node: v4 ordinary operator writes remain outside the prerequisite snapshot (31.905988ms)
+✔ Node: v4 mutable auth roles, sessions and profiles are not DDL prerequisites (35.935113ms)
+✔ Node: v5 every validated static prerequisite DDL is guarded before startup writes (182.583509ms)
+✔ Node: v5 intermediate metadata/lifecycle names cannot appear before startup writes (90.528725ms)
+✔ Node: v5 raced marker rows and missing marker table reject unchanged (31.469682ms)
+✔ Node: v5 ordinary operator writes remain outside the prerequisite snapshot (70.311738ms)
+✔ Node: v5 mutable auth roles, sessions and profiles are not DDL prerequisites (68.506259ms)
+✔ D1: v0 every validated static prerequisite DDL is guarded before startup writes (2007.610203ms)
+✔ D1: v0 every not-yet-installed static name remains absent until the guarded upgrade (8448.679993ms)
+✔ D1: v0 future static names use SQLite case-insensitive shared namespace (14997.00352ms)
+✔ D1: v0 intermediate metadata/lifecycle names cannot appear before startup writes (278.243055ms)
+✔ D1: v0 ordinary operator writes remain outside the prerequisite snapshot (172.799862ms)
+✔ D1: v1 every validated static prerequisite DDL is guarded before startup writes (1481.065164ms)
+✔ D1: v1 every not-yet-installed static name remains absent until the guarded upgrade (21602.566171ms)
+✔ D1: v1 future static names use SQLite case-insensitive shared namespace (27346.003949ms)
+✔ D1: v1 intermediate metadata/lifecycle names cannot appear before startup writes (791.337341ms)
+✔ D1: v1 raced marker rows and missing marker table reject unchanged (165.098592ms)
+✔ D1: v1 ordinary operator writes remain outside the prerequisite snapshot (139.961865ms)
+✔ D1: v2 every validated static prerequisite DDL is guarded before startup writes (1007.372312ms)
+✔ D1: v2 every not-yet-installed static name remains absent until the guarded upgrade (21783.261975ms)
+✔ D1: v2 future static names use SQLite case-insensitive shared namespace (30878.884269ms)
+✔ D1: v2 intermediate metadata/lifecycle names cannot appear before startup writes (717.707343ms)
+✔ D1: v2 raced marker rows and missing marker table reject unchanged (248.805153ms)
+✔ D1: v2 ordinary operator writes remain outside the prerequisite snapshot (170.260598ms)
+✔ D1: v2 mutable auth roles, sessions and profiles are not DDL prerequisites (189.974585ms)
+✔ D1: v3 every validated static prerequisite DDL is guarded before startup writes (1026.79324ms)
+✔ D1: v3 every not-yet-installed static name remains absent until the guarded upgrade (17778.78681ms)
+✔ D1: v3 future static names use SQLite case-insensitive shared namespace (26800.798166ms)
+✔ D1: v3 intermediate metadata/lifecycle names cannot appear before startup writes (670.164191ms)
+✔ D1: v3 raced marker rows and missing marker table reject unchanged (192.03853ms)
+✔ D1: v3 ordinary operator writes remain outside the prerequisite snapshot (157.599569ms)
+✔ D1: v3 mutable auth roles, sessions and profiles are not DDL prerequisites (130.889995ms)
+✔ D1: v4 every validated static prerequisite DDL is guarded before startup writes (3026.910958ms)
+✔ D1: v4 every not-yet-installed static name remains absent until the guarded upgrade (31707.943409ms)
+✔ D1: v4 future static names use SQLite case-insensitive shared namespace (48824.309567ms)
+✔ D1: v4 intermediate metadata/lifecycle names cannot appear before startup writes (1202.598402ms)
+✔ D1: v4 raced marker rows and missing marker table reject unchanged (397.007515ms)
+✔ D1: v4 ordinary operator writes remain outside the prerequisite snapshot (204.359618ms)
+✔ D1: v4 mutable auth roles, sessions and profiles are not DDL prerequisites (211.3363ms)
+✔ D1: v5 every validated static prerequisite DDL is guarded before startup writes (3558.940845ms)
+✔ D1: v5 intermediate metadata/lifecycle names cannot appear before startup writes (1228.562063ms)
+✔ D1: v5 raced marker rows and missing marker table reject unchanged (421.323924ms)
+✔ D1: v5 ordinary operator writes remain outside the prerequisite snapshot (197.355141ms)
+✔ D1: v5 mutable auth roles, sessions and profiles are not DDL prerequisites (177.009468ms)
+✔ Node: quoted legacy systems without field literal upgrade without rewriting field literals (105.882842ms)
+✔ Node: quoted legacy systems with leading literal upgrade without rewriting field literals (60.942265ms)
+✔ Node: unquoted legacy systems with leading literal upgrade without rewriting field literals (59.211687ms)
+✔ D1: quoted legacy systems without field literal upgrade without rewriting field literals (1389.175523ms)
+✔ D1: quoted legacy systems with leading literal upgrade without rewriting field literals (853.064905ms)
+✔ D1: unquoted legacy systems with leading literal upgrade without rewriting field literals (812.051728ms)
+✔ Node: fresh canonical startup creates all lifecycle system columns and atomically stores revision pointers (74.752445ms)
+✖ Node: immutable v1/v2 layouts reach canonical v8 after frozen v5 with legacy data, metadata and foreign keys intact (47.049912ms)
+✖ Node: v4 upgrade preserves rows, tokens, physical defaults, indexes, triggers and auth metadata on reopen (65.997833ms)
+✔ Node: unsupported legacy and partially installed layouts reject with no writes (132.22816ms)
+✔ Node: latest layouts validate required content columns and every static lifecycle object without repair (214.115389ms)
+✔ Node: failure after each lifecycle rebuild stage rolls back DDL, markers and rows (310.563589ms)
+✖ Node: fresh and legacy concurrent startup share one complete migration winner (49.279599ms)
+✔ Node: a content schema write between preflight and batch cannot be overwritten (35.59533ms)
+✔ D1: fresh canonical startup creates all lifecycle system columns and atomically stores revision pointers (891.275819ms)
+✖ D1: immutable v1/v2 layouts reach canonical v8 after frozen v5 with legacy data, metadata and foreign keys intact (309.073397ms)
+✖ D1: v4 upgrade preserves rows, tokens, physical defaults, indexes, triggers and auth metadata on reopen (684.742129ms)
+✔ D1: unsupported legacy and partially installed layouts reject with no writes (2648.836826ms)
+✔ D1: latest layouts validate required content columns and every static lifecycle object without repair (2762.867654ms)
+✔ D1: failure after each lifecycle rebuild stage rolls back DDL, markers and rows (3226.424886ms)
+✖ D1: fresh and legacy concurrent startup share one complete migration winner (294.023643ms)
+✔ D1: a content schema write between preflight and batch cannot be overwritten (1069.570819ms)
+✔ Node fresh: should create all tables from migrations [revisions-only scope] (57.265192ms)
+✔ Node fresh: should create content with all fields [status/author storage scope] (38.38205ms)
+✔ Node fresh: should persist primaryBylineId on create [column storage scope] (24.876113ms)
+✔ Node v4: should create all tables from migrations [revisions-only scope] (31.769348ms)
+✔ Node v4: should create content with all fields [status/author storage scope] (30.424303ms)
+✔ Node v4: should persist primaryBylineId on create [column storage scope] (34.321897ms)
+✔ D1 fresh: should create all tables from migrations [revisions-only scope] (763.480449ms)
+✔ D1 fresh: should create content with all fields [status/author storage scope] (199.684413ms)
+✔ D1 fresh: should persist primaryBylineId on create [column storage scope] (135.396339ms)
+✔ D1 v4: should create all tables from migrations [revisions-only scope] (261.997813ms)
+✔ D1 v4: should create content with all fields [status/author storage scope] (289.699498ms)
+✔ D1 v4: should persist primaryBylineId on create [column storage scope] (278.083604ms)
+▶ packages/core/tests/integration/content/draft-save-live-content-changed.test.ts
+  ✔ is false for draft-only data save on revision collections (77.611708ms)
+  ✔ is false when data+slug are staged as a draft revision (46.150233ms)
+  ✔ is true when live metadata changes on a revision collection (35.350522ms)
+  ✔ defaults unclassified update fields to live-changing (34.977422ms)
+  ✔ is true for data updates on collections without revisions (33.286293ms)
+✔ packages/core/tests/integration/content/draft-save-live-content-changed.test.ts (228.565835ms)
+▶ packages/core/tests/integration/content/draft-save-updated-at.test.ts
+  ✔ Save (draft staging) on a published entry does not bump updated_at (35.579447ms)
+  ✔ Autosave (skipRevision) on an existing draft does not bump updated_at (45.396012ms)
+  ✔ Discard Draft restores updated_at from before the draft saves (35.893367ms)
+  ✔ a subsequent Publish advances updated_at exactly once (35.581268ms)
+  ✔ draft-only saves still bump version so _rev concurrency detection keeps working (36.271374ms)
+  ✔ Restore Revision (to draft) on a published entry does not bump updated_at (38.214321ms)
+  ✔ collections without revision support keep the bump-on-write behavior (28.55996ms)
+✔ packages/core/tests/integration/content/draft-save-updated-at.test.ts (256.234568ms)
+▶ packages/core/tests/unit/api/publish-revision-cas.test.ts
+  ✔ publishes only the expected revision and returns the next _rev (32.957751ms)
+  ✔ rejects an approved revision after a newer draft save without mutating live or draft (33.918202ms)
+  ✔ allows only one of two concurrent publishes for the same _rev (41.584189ms)
+  ✔ supports conditional publish for a collection without revisions (29.354291ms)
+  ✔ applies the same revision condition to unpublish and discard-draft (31.402226ms)
+  ✔ keeps revisionless publish calls backward compatible (30.617288ms)
+  ✔ rejects malformed revision conditions as conflicts (31.715075ms)
+✔ packages/core/tests/unit/api/publish-revision-cas.test.ts (232.086359ms)
+▶ packages/core/tests/integration/content/atomic-publication.test.ts
+  ✔ rolls back every promoted column when the staged slug constraint rejects (40.637869ms)
+  ✔ never leaves a dangling pointer when staging races guarded revision deletion (29.328643ms)
+✔ packages/core/tests/integration/content/atomic-publication.test.ts (70.20501ms)
+▶ packages/core/tests/integration/content/revision-retention.test.ts
+  ✔ bounds history through request-lifetime work without a scheduled tick (48.763266ms)
+✔ packages/core/tests/integration/content/revision-retention.test.ts (48.863697ms)
+✔ node: replacing items rolls back deletion and partial insertion on SQL failure (19.565619ms)
+✔ node: an absent menu cannot receive orphan items (4.832194ms)
+✔ node: reordering ignores foreign menu items and retains the requested menu scope (8.344786ms)
+✔ node: a failed reorder rolls back earlier updates in the same operation (8.413619ms)
+✔ node: cloning failure leaves neither a partial translation nor cloned items (25.649ms)
+✔ node: replacing one locale leaves the other translation intact (6.47612ms)
+✔ raw-d1: replacing items rolls back deletion and partial insertion on SQL failure (822.137347ms)
+✔ raw-d1: an absent menu cannot receive orphan items (597.936786ms)
+✔ raw-d1: reordering ignores foreign menu items and retains the requested menu scope (612.027567ms)
+✔ raw-d1: a failed reorder rolls back earlier updates in the same operation (605.296443ms)
+✔ raw-d1: cloning failure leaves neither a partial translation nor cloned items (696.512984ms)
+✔ raw-d1: replacing one locale leaves the other translation intact (804.08912ms)
+✔ scoped-d1: replacing items rolls back deletion and partial insertion on SQL failure (644.108911ms)
+✔ scoped-d1: an absent menu cannot receive orphan items (545.278842ms)
+✔ scoped-d1: reordering ignores foreign menu items and retains the requested menu scope (763.606535ms)
+✔ scoped-d1: a failed reorder rolls back earlier updates in the same operation (695.263467ms)
+✔ scoped-d1: cloning failure leaves neither a partial translation nor cloned items (722.879933ms)
+✔ scoped-d1: replacing one locale leaves the other translation intact (700.828794ms)
+✔ raw-d1: cloning refuses a source edited item during its batch (737.527876ms)
+✔ raw-d1: cloning refuses a source moved item during its batch (771.491184ms)
+✔ raw-d1: cloning refuses a source reordered item during its batch (734.869861ms)
+✔ raw-d1: cloning refuses a source deleted source during its batch (677.902373ms)
+✔ scoped-d1: cloning refuses a source edited item during its batch (689.821245ms)
+✔ scoped-d1: cloning refuses a source moved item during its batch (731.866334ms)
+✔ scoped-d1: cloning refuses a source reordered item during its batch (573.53122ms)
+✔ scoped-d1: cloning refuses a source deleted source during its batch (651.472372ms)
+✔ native menu cache hints preserve the pinned Source tag value (0.64651ms)
+✔ real D1 menu create succeeds and persists (844.65522ms)
+✔ real D1 atomic replacement preserves hierarchy and removes old rows (664.071442ms)
+✔ real D1 translation cloning retains logical item groups and parent links (700.790213ms)
+✔ real D1 reorder and explicit menu deletion persist without cascade FKs (627.265669ms)
+✔ node: native menu routes persist CRUD, hierarchy, locale and error envelopes (64.380582ms)
+✔ d1: native menu routes persist CRUD, hierarchy, locale and error envelopes (1659.13722ms)
+✔ node: menu readiness accepts only the complete owned schema and never installs it (20.809581ms)
+✔ d1: menu readiness accepts only the complete owned schema and never installs it (977.833438ms)
+✔ node: menu readiness preserves embedded double quotes in locale defaults (12.475182ms)
+✔ node: menu readiness preserves repeated literal whitespace in locale defaults (12.602314ms)
+✔ node: menu readiness preserves escaped single quote followed by double quotes in locale defaults (12.162823ms)
+✔ d1: menu readiness preserves embedded double quotes in locale defaults (897.687411ms)
+✔ d1: menu readiness preserves repeated literal whitespace in locale defaults (1067.142238ms)
+✔ d1: menu readiness preserves escaped single quote followed by double quotes in locale defaults (813.126954ms)
+✔ node: menu readiness distinguishes a quoted timestamp default from the SQL expression (16.335464ms)
+✔ d1: menu readiness distinguishes a quoted timestamp default from the SQL expression (966.175656ms)
+✔ actual native menu handler lists empty persisted storage successfully (16.331688ms)
+✔ actual native menu handler persists a menu and its translation identity (9.433817ms)
+✔ compiled login retains signed-in workspace controls alongside the legacy warning (63.782921ms)
+✔ compiled login retains the native sign-out form alongside the legacy warning (0.390296ms)
+✔ compiled signed-out legacy login keeps the warning and blocks all unavailable controls (0.283666ms)
+✔ compiled healthy signed-in login keeps the existing workspace and sign-out controls (0.259299ms)
+✔ auth JSON parser rejects declared oversized body before reading (optional=false) (18.804649ms)
+✔ auth JSON parser rejects declared oversized body before reading (optional=true) (0.40672ms)
+✔ optional auth JSON parser retains pinned unreadable-body default (1.125549ms)
+✔ auth JSON parser retains pinned invalid JSON error code (0.898298ms)
+✔ Node: passkey options probabilistically delete expired counters and preserve current counters (37.501687ms)
+✔ D1: passkey options probabilistically delete expired counters and preserve current counters (893.731312ms)
+✔ base-prefixed production routes resolve SSR navigation targets and retain denial boundaries (6701.558981ms)
+✔ creation distinguishes omitted pattern from selected literal empty and untrimmed regex sources (2.738279ms)
+✔ validation keep/set/clear preserve replacement, explicit empty and absent-pattern semantics (0.594392ms)
+✔ malformed or missing selected pattern reports the native pattern field before the callback (0.835264ms)
+✔ replacement preserves unchanged textarea-normalized sources using untrusted JSON snapshots (0.675053ms)
+✔ compiled scalar preview displays values without an HTML regex constraint (58.359928ms)
+✔ pattern metadata syntax is a string source, including empty, with a localized malformed-pattern issue (2.452921ms)
+✔ Node/string: adapted all-fields.test.ts:58 should enforce pattern (55.921388ms)
+✔ Node/text: adapted all-fields.test.ts:58 should enforce pattern (33.052ms)
+✔ Node: pattern metadata persists, projects unchanged and replaces without changing content, defaults, DDL or tokens (111.917219ms)
+✔ Node: full/partial supplied string patterns preserve null, omission, metadata defaults and legacy other-field writes (2152.49741ms)
+✔ Node: pattern sources use JavaScript search semantics without trimming, implicit anchors or flags (48.915313ms)
+✔ Node: invalid schema requests write nothing; malformed legacy regex eagerly throws while read/projection/trash remain available (133.663836ms)
+✔ D1/string: adapted all-fields.test.ts:58 should enforce pattern (1026.151696ms)
+✔ D1/text: adapted all-fields.test.ts:58 should enforce pattern (170.857441ms)
+✔ D1: pattern metadata persists, projects unchanged and replaces without changing content, defaults, DDL or tokens (1268.194326ms)
+✔ D1: full/partial supplied string patterns preserve null, omission, metadata defaults and legacy other-field writes (31981.504115ms)
+✔ D1: pattern sources use JavaScript search semantics without trimming, implicit anchors or flags (329.88553ms)
+✔ D1: invalid schema requests write nothing; malformed legacy regex eagerly throws while read/projection/trash remain available (1814.477399ms)
+✔ preview fields preserve descriptor metadata and own entry order while mapping scalar kinds (1.51993ms)
+✔ preview fields preserve supplied defaults, null validation and future metadata without mutating inputs (0.25299ms)
+✔ ordinary node equal public URLs still acquire and release Source lease without redirect writes (52.081322ms)
+✔ ordinary node equal public URLs preserve Source occupied lease refusal (675.601972ms)
+✔ ordinary raw equal public URLs still acquire and release Source lease without redirect writes (2111.666463ms)
+✔ ordinary raw equal public URLs preserve Source occupied lease refusal (2531.380977ms)
+✔ ordinary scoped equal public URLs still acquire and release Source lease without redirect writes (1631.166988ms)
+✔ ordinary scoped equal public URLs preserve Source occupied lease refusal (2678.069957ms)
+✔ ordinary node held redirect lease preserves Source busy error and full rollback (372.803504ms)
+✔ ordinary node changed lease generation rolls shadow removal and content back (33.620515ms)
+✔ ordinary node partial redirect schema refuses the content save before writing (20.781157ms)
+✔ ordinary node stale content CAS does not write a redirect or change the externally updated version (36.880417ms)
+✔ ordinary node existing redirect timestamp follows Source JS Date for Tue, 01 Jan 2030 00:00:00 GMT (29.521221ms)
+✔ ordinary node existing redirect timestamp follows Source JS Date for 2030-01-01T00:00:00.1235Z (22.63527ms)
+✔ ordinary node existing redirect timestamp follows Source JS Date for not-a-date (20.868278ms)
+✔ ordinary raw held redirect lease preserves Source busy error and full rollback (2539.339552ms)
+✔ ordinary raw changed lease generation rolls shadow removal and content back (1518.381552ms)
+✔ ordinary raw partial redirect schema refuses the content save before writing (1624.790747ms)
+✔ ordinary raw stale content CAS does not write a redirect or change the externally updated version (1802.282776ms)
+✔ ordinary raw existing redirect timestamp follows Source JS Date for Tue, 01 Jan 2030 00:00:00 GMT (1870.2452ms)
+✔ ordinary raw existing redirect timestamp follows Source JS Date for 2030-01-01T00:00:00.1235Z (1802.407143ms)
+✔ ordinary raw existing redirect timestamp follows Source JS Date for not-a-date (1403.300172ms)
+✔ ordinary scoped held redirect lease preserves Source busy error and full rollback (2112.68491ms)
+✔ ordinary scoped changed lease generation rolls shadow removal and content back (1349.10979ms)
+✔ ordinary scoped partial redirect schema refuses the content save before writing (1237.726881ms)
+✔ ordinary scoped stale content CAS does not write a redirect or change the externally updated version (1194.061133ms)
+✔ ordinary scoped existing redirect timestamp follows Source JS Date for Tue, 01 Jan 2030 00:00:00 GMT (1422.539559ms)
+✔ ordinary scoped existing redirect timestamp follows Source JS Date for 2030-01-01T00:00:00.1235Z (1369.330619ms)
+✔ ordinary scoped existing redirect timestamp follows Source JS Date for not-a-date (1234.823906ms)
+✔ actual raw D1 content save commits redirects and collapses/reverts its chain (1715.135651ms)
+✔ actual raw D1 redirect failure rolls content back in the same physical batch (1374.788667ms)
+✔ actual raw D1 occupied redirect lease refuses the whole content save (1980.409312ms)
+✔ actual scoped D1 content save commits redirects and collapses/reverts its chain (1724.270662ms)
+✔ actual scoped D1 redirect failure rolls content back in the same physical batch (1437.140902ms)
+✔ actual scoped D1 occupied redirect lease refuses the whole content save (2202.855708ms)
+✔ actual content service slug save persists and publishes its automatic redirect (56.500353ms)
+✔ actual successive content saves collapse chains and a reverted slug stays reachable (33.251026ms)
+✔ redirect write failure rolls the actual content save back (16.601582ms)
+✔ a surviving locale holder keeps the old public path available (16.184495ms)
+✔ staging a draft revision leaves live slug and redirects untouched (17.281052ms)
+✔ content updates on current canonical storage preserve zero-redirect-table behavior (14.777365ms)
+✔ ordinary occupied lease precedes invalid stored timestamp as in Source repository (689.394519ms)
+✔ ordinary selected-row snapshot change rolls back then prepares the real replacement state (42.391812ms)
+✔ ordinary changing selected-row snapshot exhausts exactly five complete attempts with native conflict (39.377124ms)
+✔ ordinary legacy null redirect timestamp follows Source JS acceptance with an exact null snapshot (20.407243ms)
+✔ ordinary interrupted Source guard migration preserves nullable raw configuration revision (17.539ms)
+✔ native deferred task host handoff cannot synchronously reject its caller (110.957662ms)
+✔ public redirect caches keep independent databases separate (52.93905ms)
+✔ published writes invalidate the cache through a real database wrapper (11.670288ms)
+✔ ordinary node publishing an already-live changed staged slug commits and publishes its redirect (88.019039ms)
+✔ ordinary node redirect write refusal rolls back publication and retains the actual draft (30.398385ms)
+✔ ordinary node reconciled post-commit transport failure still publishes the actual redirect (31.223422ms)
+✔ ordinary node unconfirmed pre-commit transport failure cannot publish content or artifacts (39.076964ms)
+✔ ordinary node first publish promotes its draft without creating or publishing a redirect (18.556279ms)
+✔ ordinary raw publishing an already-live changed staged slug commits and publishes its redirect (1939.961966ms)
+✔ ordinary raw redirect write refusal rolls back publication and retains the actual draft (1697.155131ms)
+✔ ordinary raw reconciled post-commit transport failure still publishes the actual redirect (1814.663237ms)
+✔ ordinary raw unconfirmed pre-commit transport failure cannot publish content or artifacts (1892.642653ms)
+✔ ordinary raw first publish promotes its draft without creating or publishing a redirect (1484.388561ms)
+✔ ordinary scoped publishing an already-live changed staged slug commits and publishes its redirect (2404.254642ms)
+✔ ordinary scoped redirect write refusal rolls back publication and retains the actual draft (1583.549525ms)
+✔ ordinary scoped reconciled post-commit transport failure still publishes the actual redirect (1618.481935ms)
+✔ ordinary scoped unconfirmed pre-commit transport failure cannot publish content or artifacts (1518.122568ms)
+✔ ordinary scoped first publish promotes its draft without creating or publishing a redirect (1415.242911ms)
+✔ actual trusted redirect HTTP transport creates, lists, edits and deletes through Source handlers (63.899595ms)
+✔ actual redirect HTTP parsing preserves Source JSON, path and pagination diagnostics (18.140292ms)
+✔ actual redirect HTTP 404 summary, pruning and clearing mutate real stored paths (12.432449ms)
+✔ actual historical5 redirect HTTP storage returns 503 without creating redirect tables (3.568923ms)
+✔ actual raw D1 trusted redirect HTTP CRUD and 404 transport reaches persisted rows (1569.398774ms)
+✔ actual scoped D1 trusted redirect HTTP CRUD and 404 transport reaches persisted rows (1766.658006ms)
+✔ anonymous scoped D1 redirects retain deferred hits and deduplicated misses (1807.97692ms)
+✔ real D1 publishes large sharded rules and preserves pattern order (2553.707259ms)
+✔ real D1 repairs and serves a published redirect generation (722.001489ms)
+✔ public exact redirect precedes the page resolver (100.767608ms)
+✔ public pattern redirects preserve captured paths (31.563997ms)
+✔ terminal rules return Gone without a Location header (29.494313ms)
+✔ public misses create a persisted deduplicated 404 log without changing the response (25.019713ms)
+4:12:40 AM [vite] (client) Forced re-optimization of dependencies
+▶ development HTTP remote boundaries fail closed
+  ✔ the route handles unavailable content and owns a disabled collection-qualified form (1076.453418ms)
+  ✔ valid anonymous schema/content reads return 401 envelopes (58.032141ms)
+  ✔ valid anonymous mutations deny access and client claims are rejected (64.334948ms)
+Remote function schema validation failed: [
+  {
+    kind: 'schema',
+    type: 'string',
+    input: 1,
+    expected: 'string',
+    received: '1',
+    message: 'Invalid type: Expected string but received 1',
+    requirement: undefined,
+    path: [ [Object] ],
+    issues: undefined,
+    lang: undefined,
+    abortEarly: undefined,
+    abortPipeEarly: undefined
+  }
+]
+Remote function schema validation failed: [
+  {
+    kind: 'validation',
+    type: 'min_length',
+    input: '',
+    expected: '>=1',
+    received: '0',
+    message: 'Invalid length: Expected >=1 but received 0',
+    requirement: 1,
+    path: [ [Object] ],
+    issues: undefined,
+    lang: undefined,
+    abortEarly: undefined,
+    abortPipeEarly: undefined
+  }
+]
+Remote function schema validation failed: [
+  {
+    kind: 'validation',
+    type: 'max_length',
+    input: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+    expected: '<=128',
+    received: '129',
+    message: 'Invalid length: Expected <=128 but received 129',
+    requirement: 128,
+    path: [ [Object] ],
+    issues: undefined,
+    lang: undefined,
+    abortEarly: undefined,
+    abortPipeEarly: undefined
+  }
+]
+  ✔ query schemas reject invalid collection-qualified arguments before authorization (17.177293ms)
+  ✔ decoded form validation identifies the rejected collection, data or revision field (23.052107ms)
+✔ development HTTP remote boundaries fail closed (3553.093013ms)
+✔ Node: required/optional string/text defaults and cleared bounds preserve exact submitted/omitted validation (3082.401453ms)
+✔ Node: legacy required empty/null values remain readable and untouched by omitted patches, trash, restore and reopen (114.36462ms)
+✔ D1: required/optional string/text defaults and cleared bounds preserve exact submitted/omitted validation (39971.830634ms)
+✔ D1: legacy required empty/null values remain readable and untouched by omitted patches, trash, restore and reopen (1318.815457ms)
+✔ Node: global maintenance consumes the oldest ten snapshots across collections (79.020649ms)
+✔ Node: an actual prune SQL failure leaves that entry queued and continues the batch (119.891466ms)
+✔ Node: a later queue write survives global snapshot acknowledgement (56.137618ms)
+✔ Node: an empty global queue never reads or deletes revision history (29.277568ms)
+✔ Node: global pruning keeps older protected live and draft pointers (60.892935ms)
+✔ D1: global maintenance consumes the oldest ten snapshots across collections (1341.718063ms)
+✔ D1: an actual prune SQL failure leaves that entry queued and continues the batch (2029.700105ms)
+✔ D1: a later queue write survives global snapshot acknowledgement (918.221239ms)
+✔ D1: an empty global queue never reads or deletes revision history (175.915672ms)
+✔ D1: global pruning keeps older protected live and draft pointers (1034.006269ms)
+✔ Node: the trusted maintenance entry opens real persistent storage and can run again after restart (140.876559ms)
+✔ D1: the trusted maintenance entry uses the actual Worker D1 binding and persists across runtime reopen (1314.459982ms)
+✔ Worker: a trusted scheduled handler must expose actual revision maintenance without a public route (0.378457ms)
+✔ RV1: whole Source callbacks and namespace-only coordinator retain their recorded hashes (339.183213ms)
+▶ RV1 reference Node complete repository pruning callbacks
+  ✔ does not delete a revision inserted after the queued prune snapshot (107.365822ms)
+  ✔ prunes through the queued revision while preserving referenced live and draft revisions (65.45341ms)
+✔ RV1 reference Node complete repository pruning callbacks (173.938761ms)
+▶ RV1 reference D1 complete repository pruning callbacks
+  ✔ does not delete a revision inserted after the queued prune snapshot (1798.958684ms)
+  ✔ prunes through the queued revision while preserving referenced live and draft revisions (1165.858432ms)
+✔ RV1 reference D1 complete repository pruning callbacks (2965.264366ms)
+▶ RV1 product Node complete repository pruning callbacks
+  ✔ does not delete a revision inserted after the queued prune snapshot (79.066808ms)
+  ✔ prunes through the queued revision while preserving referenced live and draft revisions (98.276415ms)
+✔ RV1 product Node complete repository pruning callbacks (177.883695ms)
+▶ RV1 product D1 complete repository pruning callbacks
+  ✔ does not delete a revision inserted after the queued prune snapshot (1083.89326ms)
+  ✔ prunes through the queued revision while preserving referenced live and draft revisions (930.732673ms)
+✔ RV1 product D1 complete repository pruning callbacks (2015.043601ms)
+▶ RV1 reference complete cleanup callbacks
+  ▶ Revision Pruning
+    ✔ prunes old revisions keeping the most recent N (178.950574ms)
+    ✔ is a no-op when revision count is at or below keepCount (38.458432ms)
+    ✔ prunes eligible history while preserving old live and current draft revisions (51.101727ms)
+  ✔ Revision Pruning (269.506387ms)
+  ▶ Scheduled cleanup revision projection
+    ✔ prunes revision entries queued by revision writes (53.500626ms)
+    ✔ processes the oldest queued revision entries first (34.869438ms)
+    ✔ does not query the full revision history (18.207824ms)
+  ✔ Scheduled cleanup revision projection (106.868154ms)
+✔ RV1 reference complete cleanup callbacks (376.855372ms)
+▶ RV1 product complete cleanup callbacks
+  ▶ Revision Pruning
+    ✔ prunes old revisions keeping the most recent N (122.593263ms)
+    ✔ is a no-op when revision count is at or below keepCount (29.075577ms)
+    ✔ prunes eligible history while preserving old live and current draft revisions (52.757602ms)
+  ✔ Revision Pruning (204.833191ms)
+  ▶ Scheduled cleanup revision projection
+    ✔ prunes revision entries queued by revision writes (56.164272ms)
+    ✔ processes the oldest queued revision entries first (32.602998ms)
+    ✔ does not query the full revision history (21.346132ms)
+  ✔ Scheduled cleanup revision projection (110.329685ms)
+✔ RV1 product complete cleanup callbacks (315.370297ms)
+
+ WARN  inlineDynamicImports option is deprecated, please use codeSplitting: false instead.
+
+
+(!) outDir /tmp/cms-revision-scheduled-o9MGMG/build is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+✔ workerd: a real scheduled event anchors global pruning and keeps persistent D1 state across restart (759.475689ms)
+✔ sqlite.test.ts:25 — configured runtime opens a fresh database file in WAL mode (74.534331ms)
+✔ configured storage persists content and resolves current trusted roles across runtime restart (80.955775ms)
+✔ unconfigured runtime clears foreign locals and creates no trusted presentation or identity (0.583686ms)
+✔ concurrent first requests share a migrated adapter while sessions remain request-specific (22.228158ms)
+✔ runtime rejects untrusted or malformed origins before opening configured storage (1.632048ms)
+✔ runtime host configuration opts into one persistent adapter and trusted public origin (0.567902ms)
+✔ configured runtime migrates the persistent database before resolving an anonymous session (19.924853ms)
+✔ trusted D1 platform configuration migrates local storage, resolves fresh roles and forwards request waitUntil (2446.841497ms)
+✔ runtime close prevents an in-flight configuration from opening a new database afterward (5.00876ms)
+✔ all close callers await an already-started migration and its request cannot use the closing adapter (2052.960606ms)
+✔ the actual fixture listener obtains its first port without a released reservation (143.648582ms)
+✔ independent ordinary fixtures keep distinct directly bound listeners (173.012235ms)
+✔ a genuine process restart retains the reported trusted origin and releases its listener (181.952391ms)
+✔ Node: 24 paired scalar DDL/metadata/omission/NULL/duplicate cases survive restart (763.237068ms)
+✔ Node: opening a legacy table preserves divergent defaults/indexes and stored values (48.276575ms)
+✔ Node: authorized future fields retain stale/racing schema CAS and independent DDL rollback (45.12728ms)
+✔ Node: metadata defaults and unenforced uniqueness round-trip through content; required empty strings are rejected (40.271957ms)
+✔ D1: 24 paired scalar DDL/metadata/omission/NULL/duplicate cases survive restart (8761.208976ms)
+✔ D1: opening a legacy table preserves divergent defaults/indexes and stored values (313.774743ms)
+✔ D1: authorized future fields retain stale/racing schema CAS and independent DDL rollback (898.861089ms)
+✔ D1: metadata defaults and unenforced uniqueness round-trip through content; required empty strings are rejected (283.87078ms)
+✔ native form instance keys match the collection and never enter service inputs (2.869629ms)
+✔ native supports preserve omission, explicit empty arrays and supported flags (0.570805ms)
+✔ decimal strings convert safely while blank optional bounds stay omitted (0.771826ms)
+✔ native field validation gives bound/default issue paths that block the handler (0.414431ms)
+✔ client claims and content revision tokens remain invalid schema form inputs (0.237806ms)
+✔ schema controls need a trusted valid manager, explicit mutation opt-in and storage (2.058273ms)
+✔ UI capability denies invalid or unauthorized principals before configuration and storage inspection (0.430535ms)
+✔ Node: registry.test.ts:37: should create a collection (6 assertions) (52.443722ms)
+✔ Node: registry.test.ts:53: defaults supports when undefined (1 assertions) (23.171602ms)
+✔ Node: registry.test.ts:63: preserves explicit empty supports opt-out (1 assertions) (19.696776ms)
+✔ Node: registry.test.ts:86: creates the content table (1 assertions) (18.780464ms)
+✔ Node: registry.test.ts:113: lists collections sorted by slug (2 assertions) (25.314993ms)
+✔ Node: registry.test.ts:351: rejects duplicate collections (1 assertions) (19.156407ms)
+✔ Node: registry.test.ts:359: rejects reserved collection slugs (2 assertions) (16.584043ms)
+✔ Node: registry.test.ts:369: validates collection slug format (3 assertions) (17.125234ms)
+✔ Node: registry.test.ts:439: creates a required string field (5 assertions) (23.297701ms)
+✔ Node: registry.test.ts:610: adds the physical content column (1 assertions) (21.836392ms)
+✔ Node: registry.test.ts:654: gets a field by slug with validation (2 assertions) (21.786738ms)
+✔ D1: registry.test.ts:37: should create a collection (6 assertions) (772.115662ms)
+✔ D1: registry.test.ts:53: defaults supports when undefined (1 assertions) (97.664705ms)
+✔ D1: registry.test.ts:63: preserves explicit empty supports opt-out (1 assertions) (109.806418ms)
+✔ D1: registry.test.ts:86: creates the content table (1 assertions) (93.473127ms)
+✔ D1: registry.test.ts:113: lists collections sorted by slug (2 assertions) (105.60744ms)
+✔ D1: registry.test.ts:351: rejects duplicate collections (1 assertions) (98.796523ms)
+✔ D1: registry.test.ts:359: rejects reserved collection slugs (2 assertions) (64.421828ms)
+✔ D1: registry.test.ts:369: validates collection slug format (3 assertions) (77.178654ms)
+✔ D1: registry.test.ts:439: creates a required string field (5 assertions) (120.986209ms)
+✔ D1: registry.test.ts:610: adds the physical content column (1 assertions) (104.927885ms)
+✔ D1: registry.test.ts:654: gets a field by slug with validation (2 assertions) (98.451155ms)
+✔ schema service checks permission before touching storage or parsing inputs (2.537667ms)
+✔ coalescing actual D1 refuses registered dynamic operations before flushing, preparing or enqueuing (193.809355ms)
+✔ coalescing actual D1 refuses serialized dynamic operations before flushing, preparing or enqueuing (130.660091ms)
+✔ coalescing actual D1 ordinary atomic writes and real result positions remain intact (131.884913ms)
+✔ node: recognizes exactly the complete source-managed group (9.406951ms)
+✔ d1: recognizes exactly the complete source-managed group (2.843285ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=zero, y=zero (1.250046ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=zero, y=one-byte (1.847897ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=zero, y=31-byte (0.210986ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=zero, y=32-byte (0.142173ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=one-byte, y=zero (0.142744ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=one-byte, y=one-byte (0.131517ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=one-byte, y=31-byte (0.186379ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=one-byte, y=32-byte (0.247892ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=31-byte, y=zero (0.275674ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=31-byte, y=one-byte (0.392159ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=31-byte, y=31-byte (0.201081ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=31-byte, y=32-byte (0.182795ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=32-byte, y=zero (0.168633ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=32-byte, y=one-byte (0.154112ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=32-byte, y=31-byte (0.109084ms)
+✔ SEC1 uncompressed public-coordinate bytes: x=32-byte, y=32-byte (0.18687ms)
+✔ SEC1 uncompressed public-coordinate bytes: public NIST P-256 generator (0.185668ms)
+✔ Node: final pinned Source021 sections are ready without obsolete category objects (10.257196ms)
+✔ D1: final pinned Source021 sections are ready without obsolete category objects (822.362965ms)
+✔ content palette insertion carries the pinned default title (1.521209ms)
+✔ menu palette insertion carries the pinned default title (0.231788ms)
+✔ component palette insertion leaves prop defaults to the renderer until actually edited (0.377085ms)
+✔ Node: sections readiness rejects a quoted timestamp literal in place of the Source expression (8.46303ms)
+✔ Node: widgets readiness rejects a quoted timestamp literal in place of the Source expression (3.152804ms)
+✔ D1: sections readiness rejects a quoted timestamp literal in place of the Source expression (747.912192ms)
+✔ D1: widgets readiness rejects a quoted timestamp literal in place of the Source expression (32.756368ms)
+✔ Node: sections readiness rejects non-SQLite NBSP that swallows a timestamp default into the column type (1.772235ms)
+✔ Node: widgets readiness rejects non-SQLite NBSP that swallows a timestamp default into the column type (1.149011ms)
+✔ D1: sections readiness rejects non-SQLite NBSP that swallows a timestamp default into the column type (13.178886ms)
+✔ D1: widgets readiness rejects non-SQLite NBSP that swallows a timestamp default into the column type (16.969585ms)
+✔ Node: sections readiness rejects when double quotes remain inside a different SQL default literal (6.623223ms)
+✔ Node: sections readiness rejects when literal case remains significant (1.640298ms)
+✔ Node: sections readiness rejects when literal whitespace remains significant (1.125637ms)
+✔ Node: sections readiness rejects when doubled single-quote escaping remains inside the literal (1.026068ms)
+✔ Node: sections readiness accepts CREATE keyword case, identifier quoting and outside-literal whitespace (1.838895ms)
+✔ D1: sections readiness rejects when double quotes remain inside a different SQL default literal (642.984867ms)
+✔ D1: sections readiness rejects when literal case remains significant (23.953509ms)
+✔ D1: sections readiness rejects when literal whitespace remains significant (18.853779ms)
+✔ D1: sections readiness rejects when doubled single-quote escaping remains inside the literal (20.518383ms)
+✔ D1: sections readiness accepts CREATE keyword case, identifier quoting and outside-literal whitespace (15.101907ms)
+✔ Node: actual complete Source DDL is ready and absent/partial storage is never silently installed (14.281117ms)
+✔ D1: actual complete Source DDL is ready and absent/partial storage is never silently installed (793.055565ms)
+✔ native SEO API exists: ../src/lib/seo/meta.ts (5.764887ms)
+✔ native SEO API exists: ../src/lib/seo/contributions.ts (2.558313ms)
+✔ native SEO API exists: ../src/lib/seo/metadata.ts (1.951734ms)
+✔ native SEO API exists: ../src/lib/server/seo/panel.ts (4.269728ms)
+✔ native head renders the supplied document title and description safely (127.441663ms)
+✔ native head renders the canonical, noindex and Open Graph URL (11.134493ms)
+✔ native head keeps page title distinct from the suffixed document title (5.572249ms)
+✔ native head renders configured verification and the default social image (6.24062ms)
+✔ native head applies supplied contribution precedence before base metadata (6.404595ms)
+✔ native head embeds one safe JSON-LD script with the original structured values (4.965755ms)
+✔ persisted SEO API is available: SeoRepository (107.622739ms)
+✔ persisted SEO API is available: handleSitemapData (4.372542ms)
+✔ persisted SEO API is available: getHreflangAlternatesWithDb (97.680713ms)
+✔ ordinary node installation provides persisted SEO storage (41.983197ms)
+✔ ordinary d1 installation provides persisted SEO storage (846.990123ms)
+✔ server bridge derives the supported content and publication permissions from a current role (1.492709ms)
+✔ request-scoped cookie resolution observes role changes, revocation and expiry, with writes disabled by default (74.315402ms)
+✔ unconfigured handle clears stale locals and does not open or migrate storage (0.350866ms)
+✔ clean migration registers empty auth tables and version two, and is idempotent (67.999268ms)
+✔ version-one upgrade preserves definitions/drafts across migration and restart (68.660059ms)
+✔ incomplete, untracked and future migration states reject without repair (138.656053ms)
+✔ failed auth DDL or marker commits roll back the entire clean/upgrade batch (90.762288ms)
+✔ two independent clean and upgrade callers reach a fully migrated database (96.604722ms)
+✔ startup accepts a complete concurrent upgrade between its preflight reads (46.706282ms)
+✔ Node: empty trash counts zero; adapted upstream locale count values are 1 scoped/3 all (55.449956ms)
+✔ Node: counts exceed page caps, change after trash/restore and persist across reopen (231.137079ms)
+✔ Node: count predicate retains the draft-only bound on synthetic mixed statuses (22.836922ms)
+✔ Node: count input is scoped and strict, and reads require both existing permissions (40.099063ms)
+✔ D1: empty trash counts zero; adapted upstream locale count values are 1 scoped/3 all (484.597231ms)
+✔ D1: counts exceed page caps, change after trash/restore and persist across reopen (3564.175934ms)
+✔ D1: count predicate retains the draft-only bound on synthetic mixed statuses (230.512068ms)
+✔ D1: count input is scoped and strict, and reads require both existing permissions (183.452047ms)
+✔ 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:10 — round-trips a valid cursor (1.651457ms)
+✔ 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:16 — throws InvalidCursorError on empty string (0.358899ms)
+✔ 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:20 — throws InvalidCursorError on non-base64 input (0.155202ms)
+✔ 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:24 — throws InvalidCursorError on base64 of malformed JSON (0.197766ms)
+✔ 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:29 — throws InvalidCursorError on base64 JSON missing required fields (0.16027ms)
+✔ 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:34 — throws InvalidCursorError when id is not a string (0.150055ms)
+✔ 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:39 — rejects oversized cursors before attempting to decode (DoS guard) (0.107271ms)
+✔ 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/unit/database/repositories/cursor.test.ts:49 — error message truncates very long cursors (0.245618ms)
+✔ supplemental: UTF-8 standard-base64 round trip retains Unicode values (1.204877ms)
+✔ supplemental: empty fields, arbitrary timestamp/ID and extra context remain accepted (0.285218ms)
+✔ supplemental: decoder bound accepts 4096 characters and rejects 4100 (0.934672ms)
+✔ supplemental: non-object JSON and non-string orderValue remain invalid (0.303826ms)
+✔ supplemental: message truncation retains the exact first 47 characters (0.193089ms)
+✔ Node: navigation reads actual persisted descriptors and refreshed metadata (42.689638ms)
+✔ D1: navigation reads actual persisted descriptors and refreshed metadata (783.776908ms)
+✔ anonymous and denied navigation avoids all storage inspection (0.376615ms)
+✔ authenticated unconfigured navigation preserves the principal and explicit storage availability (0.169414ms)
+✔ non-GET page rendering preserves principal display state without inspecting storage (1.15314ms)
+✔ shell provides a keyboard skip link to its actual main landmark (122.705919ms)
+✔ shell renders persisted collection descriptors while omitting hidden collections (0.869244ms)
+✔ authenticated principals without schema permission have no administration link (0.646479ms)
+✔ grouped collection navigation is a real accessible disclosure (0.724256ms)
+✔ collection navigation resolves the application base and actual active descendant path (0.736244ms)
+✔ shell has an accessible navigation toggle and controlled sidebar landmark (0.556746ms)
+✔ unavailable feature families are not advertised as working destinations (0.557556ms)
+✔ Node editor saves an actual scalar draft, publishes separately and recovers trash after restart (115.277008ms)
+✔ D1 editor saves an actual scalar draft, publishes separately and recovers trash after restart (965.2261ms)
+✔ an accepted in-flight snapshot advances only its own baseline and preserves later keystrokes (0.512389ms)
+✔ a background refresh preserves a dirty writer copy and its stale comparison token (0.141943ms)
+✔ a conflict keeps the writer copy and stops autosave until an explicit save-anyway choice (0.459359ms)
+✔ terminal validation rejection stays dirty and is not autosaved again until content changes (0.459509ms)
+✔ pending submissions and read-only permissions cannot call a mutation twice (0.202503ms)
+ℹ tests 1500
+ℹ suites 44
+ℹ pass 1490
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 407921.874495
+
+✖ failing tests:
+
+test at tests/lifecycle-canonical-storage.test.ts:20:3
+✖ Node: fresh canonical startup publishes, stages, rolls back and retains history on reopen (91.943459ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-canonical-storage.test.ts:61:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-canonical-storage.test.ts:20:3
+✖ Node: v4 canonical startup publishes, stages, rolls back and retains history on reopen (79.103656ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-canonical-storage.test.ts:61:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-canonical-storage.test.ts:20:3
+✖ D1: fresh canonical startup publishes, stages, rolls back and retains history on reopen (1066.188535ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-canonical-storage.test.ts:61:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-canonical-storage.test.ts:20:3
+✖ D1: v4 canonical startup publishes, stages, rolls back and retains history on reopen (925.5034ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-canonical-storage.test.ts:61:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:37:3
+✖ Node: immutable v1/v2 layouts reach canonical v8 after frozen v5 with legacy data, metadata and foreign keys intact (47.049912ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-startup-upgrade.test.ts:51:16)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:59:3
+✖ Node: v4 upgrade preserves rows, tokens, physical defaults, indexes, triggers and auth metadata on reopen (65.997833ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-startup-upgrade.test.ts:97:16)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:179:3
+✖ Node: fresh and legacy concurrent startup share one complete migration winner (49.279599ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-startup-upgrade.test.ts:191:16)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:37:3
+✖ D1: immutable v1/v2 layouts reach canonical v8 after frozen v5 with legacy data, metadata and foreign keys intact (309.073397ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-startup-upgrade.test.ts:51:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:59:3
+✖ D1: v4 upgrade preserves rows, tokens, physical defaults, indexes, triggers and auth metadata on reopen (684.742129ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-startup-upgrade.test.ts:97:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/lifecycle-startup-upgrade.test.ts:179:3
+✖ D1: fresh and legacy concurrent startup share one complete migration winner (294.023643ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/lifecycle-startup-upgrade.test.ts:191:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+[ELIFECYCLE] Test failed. See above for more details.
