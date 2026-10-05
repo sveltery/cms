@@ -30,12 +30,15 @@ export interface TaxonomyContentHost {
 export function nativeTaxonomyContentHost(db:Kysely<Database>,storage:CmsDatabase,principal:ServerPrincipal|null,dependencies:LifecycleDependencies={}):TaxonomyContentHost {
  if(taxonomyStorage(db)!==storage)throw new Error('Content and taxonomy physical owners differ');
  const service=lifecycleService(storage,principal,dependencies);
+ const get=(collection:string,id:string,locale?:string)=>service.getContent(
+  {type:collection,id,...(locale===undefined?{}:{locale:resolveConfiguredLocale(locale)})},
+  {inferLocale:locale===undefined,resolveIdentifier:true});
  return {database:db,
-  get:(collection,id,locale)=>service.getContent({type:collection,id,...(locale===undefined?{}:{locale:resolveConfiguredLocale(locale)})},{inferLocale:locale===undefined,resolveIdentifier:true}),
+  get,
   create:(collection,body)=>service.createContent({...body,type:collection}),
   async update(collection,id,body){
    const {_rev,...values}=body;
-   const existing=await service.getContent({type:collection,id,...(body.locale===undefined?{}:{locale:resolveConfiguredLocale(body.locale)})},{inferLocale:body.locale===undefined,resolveIdentifier:true});
+   const existing=await get(collection,id,body.locale);
    const check=validateRev(_rev,existing);if(!check.valid)throw new CmsError('CONFLICT',check.message);
    return (await service.updateContent({...values,type:collection,id:existing.id,locale:existing.locale,
     expected:{version:existing.version,updatedAt:existing.updatedAt}})).item;
