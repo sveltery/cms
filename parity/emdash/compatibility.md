@@ -2365,6 +2365,35 @@ Historical exact bfc3/tree dbbc on owned draft [PR113](https://github.com/svelte
 
 Source: EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, complete `packages/core/src/media/usage/cleanup.ts`, complete original MediaUsageRepository, original migrations 046/061/062 and Source-lock `kysely-d1@0.4.0`.
 
-The same Source D1 fixture reports two deletions after removing one orphan because affected rows include its cleanup-fence trigger. Stale and abandoned occurrences remain; the SQLite case removes all three obsolete occurrences. The native port preserves this shared pin bug. Correcting only the new supplemental D1 expectation to actual Source behavior establishes fidelity, not a product repair or full D1 cleanup correctness. Original Source bodies, datasets, assertions and clocks remain unchanged. Root approved this bounded qualification; issue publication requires specific permission after automatic approval review rejected the separate public issue.
+The same Source D1 fixture reports two deletions after removing one orphan because affected rows include its cleanup-fence trigger. Stale and abandoned occurrences remain; the SQLite case removes all three obsolete occurrences. The native port preserves this shared pin bug. Correcting only the new supplemental D1 expectation to actual Source behavior establishes fidelity, not a product repair or full D1 cleanup correctness. Original Source bodies, datasets, assertions and clocks remain unchanged. Root approved this bounded qualification. After the initial automatic approval review rejection, the user explicitly authorized repository publication; the exact issue payload is now [issue #114](https://github.com/sveltery/cms/issues/114), and the related write-up has no remaining publication hold.
 
 Native operational initialization adds only the existing `projection_gc` metadata row with Source migration061's initial eligible time and `ON CONFLICT DO NOTHING`. Source performs this initialization during migration; canonical schema installation retains empty metadata. Actual Node cleanup and existing-row lease/cursor/backoff controls are separate Native evidence. No DDL, provider, occurrence writer, new fence or full system-cleanup pipeline is added. Exact-head review, current normal13/secured9, Root merge approval and author regular merge remain pending.
+
+
+### MED-ENV01 Native Node entry integration
+
+The shared Node entry initially eagerly imported the exact LocalStorage module.
+Original local full bootstrap at `16b6cc31` stops nine existing Native runtime
+callbacks on unsupported Source StorageError parameter-property syntax in Node
+strip-only mode: 1,495 registered, 1,486 pass, nine import failures, zero cancelled;
+frozen install/type checks finish and ten later stages are unreached. These
+module stops give zero value-red or Source repair credit.
+
+Regular successor `8b1acb04` makes only the selected LocalStorage factory async
+and imports its Source module there. Ordinary Node database entry startup keeps
+its original graph. Three complete existing Native files pass 24 callbacks,
+and the four environment controls pass; Source 188 authorities/60 complete
+algorithms remain exact. No Source body, fixture, assertion, clock, driver,
+provider or dependency changes. Earlier role literals remain Root-approved
+Native expectation maintenance with zero product repair credit.
+
+[Predecessor CI](https://github.com/sveltery/cms/actions/runs/37358343871) completed
+all nine secured launches using official headless-shell v1243 without
+--no-sandbox (Source 14/30/25/3/35/4/3, Native default65/Node65). Its normal job
+failed the same nine Native imports (1,495 registered, 1,486 pass, nine fail, zero
+cancelled), with only frozen install/type checks completed. Current final-head
+normal/browser checks, fresh
+independent/configured review, exact Root approval, author regular merge and
+post-main remain pending. The [paired feature record](../../docs/general-media-backend.md)
+and [ledger](../../docs/general-media-tdd.json) retain all previous outcomes.
+No full media feature or D1 correctness completion is claimed.

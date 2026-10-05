@@ -161,7 +161,7 @@ media roadmap checkbox or upstream parity is claimed.
 
 The complete pinned EmDash cleanup algorithm and MediaUsageRepository reproduce a D1 counting bug with original migrations 046/061/062 and Source-locked `kysely-d1@0.4.0`. For one current, one stale, one abandoned and one orphan occurrence, D1 reports two orphan deletions after removing one orphan: the fence-trigger write is included in affected rows. Stale and abandoned rows remain in that tick. SQLite removes all three obsolete occurrences.
 
-The native port preserves the pinned algorithms, mapper, SQL, providers and clocks. Only the new supplemental D1 expectation is grounded to the observed Source result; this correction earns zero Source or product repair credit. Full D1 cleanup correctness remains unfinished. The shared bug is tracked in the repository issue once publication is approved.
+The native port preserves the pinned algorithms, mapper, SQL, providers and clocks. Only the new supplemental D1 expectation is grounded to the observed Source result; this correction earns zero Source or product repair credit. Full D1 cleanup correctness remains unfinished. The shared bug is tracked in [issue #114](https://github.com/sveltery/cms/issues/114).
 
 ## Local closure checkpoint
 
@@ -181,6 +181,35 @@ CI535 on fa5048d0 passed secured9 but failed normal service tests1495/1492pass/
 The sealed literal proposal is now approved and applied. These historical gates
 do not qualify this successor. Current normal13/secured9, fresh independent
 and configured review, exact Root approval, author regular merge and post-main
-verification remain pending. Public issue and related diagnostic write-up have
-a specific publication hold after automatic approval review rejected the issue;
-all local preparation remains reviewable without a public retry.
+verification remain pending. After an initial automatic approval review rejection,
+the user explicitly authorized repository publication. The exact reviewed issue
+payload was then published as [issue #114](https://github.com/sveltery/cms/issues/114),
+and its related write-up has no remaining publication hold.
+
+
+### Native Node import integration
+
+The complete local bootstrap on `16b6cc31` finished frozen install and type
+checks, then stopped in service tests: 1,495 registered, 1,486 passed, nine failed,
+zero cancelled. Those nine existing Native runtime callbacks stopped while
+loading exact Source StorageError parameter-property syntax through the shared
+Node entry; they reached no value assertion failure. Ten later phases were
+unreached. The raw result remains retained without clock or command changes.
+
+Successor `8b1acb04` loads LocalStorage only inside the selected async factory,
+so ordinary Node database startup keeps its existing import graph. All three
+complete affected Native test files pass 24 callbacks, and all four environment
+storage controls pass. The 188-authority/60-module Source guard remains exact.
+This restores the Native entry graph without changing any Source algorithm,
+fixture, assertion, dependency, provider or deadline; it earns no Source repair
+credit.
+
+Hosted [CI on 16b6cc31](https://github.com/sveltery/cms/actions/runs/37358343871)
+completed all nine secured browser launches: seven Source suites
+(14/30/25/3/35/4/3 callbacks), default Native 65 and Node Native 65. Every
+launch used official Chromium headless shell v1243 with its sandbox enabled.
+That is predecessor evidence only. Its normal job also failed the same nine
+Native runtime imports: 1,495 registered, 1,486 passed, nine failed and zero
+cancelled; only frozen install/type checks finished. Fresh normal and browser
+gates, independent/configured review and exact Root technical approval remain
+required for the successor.
