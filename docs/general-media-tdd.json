@@ -511,6 +511,56 @@
       "privatePath": "/tmp/general-media113-cursor-seo-focused-outcomes.jsonl",
       "bytes": 1380,
       "sha256": "0dcc0d8a49759b188e16922c630466395c8dd263170138106ba11a1b1c0c247d"
+    },
+    {
+      "privatePath": "/tmp/general-media113-be4-owned-push.log",
+      "bytes": 106,
+      "sha256": "5573a41c1b2d11e361cc777ca552163f35c719c2e55a1acce531e3977be735c0"
+    },
+    {
+      "privatePath": "/tmp/general-media113-node-strip-first-red.log",
+      "bytes": 2484,
+      "sha256": "e6a5d5d580617070c62df9759f3a5ac9e76c2bd5c7425704ed2e356255da36bd"
+    },
+    {
+      "privatePath": "/tmp/general-media113-node-strip-first-green.log",
+      "bytes": 2433,
+      "sha256": "5e93c760f3fbac6813bd4b540a9e2d4767512d80e0cbb7721aace06d62277eab"
+    },
+    {
+      "privatePath": "/tmp/general-media113-node-strip-first-green-guard.log",
+      "bytes": 411,
+      "sha256": "14dc0fcb42a8062dcb6db2e6efae852976b128ecd6b6f19eb9ccbaac86604a50"
+    },
+    {
+      "privatePath": "/tmp/general-media113-node-strip-whole-source.log",
+      "bytes": 755,
+      "sha256": "3d1330284cf3d724d9e64b96ec4232ada34550e460b6b9ad4d2bafb120ee0faa"
+    },
+    {
+      "privatePath": "/tmp/general-media113-node-strip-r2-source.log",
+      "bytes": 748,
+      "sha256": "d08de0c253b06b022232f175b16dc988a09a2fa0d63c39ad531e709429a98c94"
+    },
+    {
+      "privatePath": "/tmp/general-media113-node-strip-whole-native.log",
+      "bytes": 2565,
+      "sha256": "ff34640f618becb2afb5ee0d08c82faa1d3c6c29978c7716c3fe2262ecac7922"
+    },
+    {
+      "privatePath": "/tmp/general-media113-node-strip-focused-outcomes.jsonl",
+      "bytes": 529,
+      "sha256": "b9a0a43e7cc5976c0cd750f64ac3eef814ac49b4488a33f11abfe6bf7faf6d56"
+    },
+    {
+      "privatePath": "/tmp/general-media113-node-strip-guard-controls.json",
+      "bytes": 2708,
+      "sha256": "4b2d60d19290b2e6d930d48398478070ebed4dfddca266475f7180ce1ef6d4c6"
+    },
+    {
+      "privatePath": "/tmp/full-seed-current-old-native30-namespace-import.log",
+      "bytes": 6304,
+      "sha256": "7cc00c7921a16b4bd5e2d4417677d75c8def6e89510560bff7de0d9051c412fc"
     }
   ],
   "implementationCheckpoint": {
@@ -946,7 +996,7 @@
     "wholeIncomingCompatibilityBytes": 622590,
     "wholePriorOwnedMediaTailBytes": 12652,
     "protectedExactCurrentMain": 14,
-    "providers": "1\u201316 unchanged/soleSEO17/no18",
+    "providers": "1–16 unchanged/soleSEO17/no18",
     "wholeSourceFiles": 36,
     "sourceCallbacksPassed": 321,
     "r2OriginalMockPassed": 1,
@@ -961,5 +1011,55 @@
     "sevenUsageReadBodiesUnchanged": true,
     "allEarlierRawAndNativeHistoriesPreserved": true,
     "scope": "Fresh successor gates/current review/Root exact approval/author regular merge/post-main pending. Previous8fda review/gates/browser retry qualify only8fda; no new old-head rerun/merge/fullMedia claim."
+  },
+  "nativeRepositoryConstructorTransport": {
+    "contract": "MED-NODE-CTOR01",
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "sourceClasses": [
+      "packages/core/src/database/repositories/media.ts:MediaRepository",
+      "packages/core/src/database/repositories/media-folders.ts:MediaFolderRepository"
+    ],
+    "testFirstCommit": "30fb2e38",
+    "testFile": "tests/general-media/node-strip-repositories.test.ts",
+    "supplementalNativeCallbacks": 1,
+    "genuineNativeInfrastructureValueReds": 1,
+    "copiedOriginalSourceCallbacks": 0,
+    "initialNativeConstructorOwnerAssertionsReached": false,
+    "initialError": "Node24 unchanged strip-only child import exit1 ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX at MediaRepository private db parameter property; expect exit0 fails",
+    "implementationCommit": "bcd7a435d591c4237d7698e7918f38713b09f844",
+    "implementation": "Only two repository constructors use explicit private typed db field and constructor assignment; every other member, statement, method, SQL, DTO and guard remains exact.",
+    "frameworkSubstitution": true,
+    "sourceAuthoritiesUnchanged": 188,
+    "completeWholeModules": 58,
+    "finiteConstructorOnlyModuleTransports": 2,
+    "sevenUsageReadBodiesUnchanged": true,
+    "completeR2ClassUnchanged": true,
+    "twoUploadCleanupBlocksUnchanged": true,
+    "isolatedGuardControlExits": {
+      "exact": 0,
+      "changedDbAssignment": 1,
+      "changedMethodSql": 1
+    },
+    "liveRepositoryMutatedByGuardControls": false,
+    "secondRunOutcome": "Still1failed: both owned constructor syntaxes accepted, shared Byline EmDashValidationError public-details parameter property stops actual child import. Historical first-green filename is not a green outcome.",
+    "currentNativeConstructorOwnerAssertionsReached": false,
+    "oldNative23BodiesUnchanged": true,
+    "wholeSourceFiles": 36,
+    "sourceCallbacksPassed": 321,
+    "r2OriginalMockPassed": 1,
+    "wholeNativeFiles": 9,
+    "nativeRegistered": 24,
+    "nativePassed": 23,
+    "nativeFailed": 1,
+    "sharedBylineFileChanged": false,
+    "sourceStorageErrorChanged": false,
+    "loaderFlagsChanged": false,
+    "dependenciesChanged": false,
+    "testExpectationChanged": false,
+    "sourceOrOld30CallbacksReached": 0,
+    "publishedParentHead": "be4becaf388637de59ffad95e133137e168f3841",
+    "actualMain": "cc1fc9044ae54ab44efba993cd71849fe2f990b0",
+    "decision": "Root authorized finite owned two-constructor transport; proposed PR113 implementation only. No merged/complete-hosting acceptance recorded.",
+    "remaining": "Sole Byline prerequisite, actual child import/result green, fresh current full hosted gates and review, Root exact approval, author regular merge, post-main verification; broader Media scope remains incomplete."
   }
 }
