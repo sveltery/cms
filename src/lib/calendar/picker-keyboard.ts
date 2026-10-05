@@ -7,7 +7,7 @@ import { getDayPickerLocale } from '../ui/date-time-locales.ts';
 export type CalendarPickerDirection = 'ltr' | 'rtl';
 export type CalendarPickerKey = Readonly<{ key: string; shiftKey?: boolean }>;
 
-/** DayPicker prioritizes an available active focus, then last focus, then selection. */
+/** Native active/last-focus target; exact vendor tab-target equivalence remains open. */
 export function calendarFocusTarget(month: string, focused: string | undefined, lastFocused: string | undefined, selected: string): string {
   if (focused?.startsWith(month)) return focused;
   if (lastFocused?.startsWith(month)) return lastFocused;

@@ -52,6 +52,8 @@ describe('Native compact Calendar date movement', () => {
     expect(moveCalendarFocus('2030-10-15', { key }, 'en')).toBeUndefined();
   });
   it('restores an available last-focused day after leaving and returning to its month', () => {
+    // Active-over-last priority is an unaccepted Native adaptation. The Source
+    // applies internal active focus after its custom-modifier tab-target pass.
     expect(calendarFocusTarget('2030-10', '2030-10-17', '2030-10-16', '2030-10-15')).toBe('2030-10-17');
     expect(calendarFocusTarget('2030-11', undefined, '2030-10-16', '2030-11-01')).toBe('2030-11-01');
     expect(calendarFocusTarget('2030-10', undefined, '2030-10-16', '2030-10-15')).toBe('2030-10-16');

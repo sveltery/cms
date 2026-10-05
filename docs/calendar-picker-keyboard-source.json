@@ -1,0 +1,532 @@
+{
+  "schemaVersion": 1,
+  "status": "private preparation; no qualification/publication/acceptance",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "privateBase": "89340738750c688842f5716352f8d47f0189f03c",
+  "candidateCode": "a7a0871a5c8da93227e70b3f9147a3a50334b77e",
+  "branch": "feat/calendar-picker-keyboard-private",
+  "originalAuthorityLedger": "docs/scheduled-publishing-source.json",
+  "originalAuthoritiesUnchanged": 86,
+  "originalCalendarSelectionUnchanged": {
+    "families": 6,
+    "declarations": 49,
+    "staticMatcherRoots": 145
+  },
+  "sourceWholeFiles": [
+    {
+      "path": "LICENSE",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "bytes": 1079,
+      "sha256": "d5ab82c0225b0def1fa140af22ff2f3bed9791a527545be1b04ab4337dc88675",
+      "gitBlob": "02cc4b8b0a5f883c5243927e683b00c10588bf4c"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "bytes": 869156,
+      "sha256": "385a0995c565c14ccccf822424398987df233967f4a1d8e3a3a18c01703395ea",
+      "gitBlob": "61f97a2c9442af5a0c84e329a67ef4b9fca74698"
+    },
+    {
+      "path": "packages/admin/package.json",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "bytes": 5548,
+      "sha256": "53c3c767d931dc05d0315a50a01d57a3bfb507c4aa5bf1263d9db789ee8bc91f",
+      "gitBlob": "034d280abb48665d25cc195816f1b85d079adb6e"
+    },
+    {
+      "path": "packages/admin/src/components/calendar/CalendarMonth.tsx",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "bytes": 17302,
+      "sha256": "fc6b2e3a52b9fabbab23c26d8c27bbc4a1b9d8aa18465603e075a373e089a699",
+      "gitBlob": "9a8390ebab64021a1d4d86a91fe5926c9e0c19ac"
+    },
+    {
+      "path": "packages/admin/src/locales/day-picker.ts",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "bytes": 691,
+      "sha256": "cd214e13b7783e0a0dbf5d9551599ba667d253663dedc1d425628cf0fe499f57",
+      "gitBlob": "c43dacdb902396c31b7e3520c67cf246483ace58"
+    },
+    {
+      "path": "packages/admin/tests/components/calendar/CalendarMonth.test.tsx",
+      "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+      "bytes": 8925,
+      "sha256": "7dadf8c51640eaee581b6bfd12985dc3b5b62d8773eaa6f7c804c664c4c41865",
+      "gitBlob": "f17dbd30fb072319c3e05f34275fcdad05b7479b"
+    }
+  ],
+  "actualVendor": {
+    "package": "@cloudflare/kumo",
+    "version": "2.6.0",
+    "integritySameAtSourceAndNative": "sha512-rcUUvhrtxI0veNJZLgKVSnxH/L0M48jtc4UoNhvu0l0RiRmjHORFTBYq/phFQyt7JGG3s98QPZc5w1eW+UQIOg==",
+    "bundledDayPickerVersion": "9.13.2",
+    "bundledReactVersion": "19.2.0",
+    "sourceMapWholeModules": [
+      {
+        "sourceMapPath": "../../../../node_modules/.pnpm/react-day-picker@9.13.2_react@19.2.0/node_modules/react-day-picker/dist/esm/classes/DateLib.js",
+        "bytes": 20842,
+        "sha256": "eed7d3f01f1743c8d2633abaeac9661c87aac7622425885508146978a2d6674c",
+        "gitBlob": "19ebe1830352260f2e371801d2ba34fcfa142320"
+      },
+      {
+        "sourceMapPath": "../../../../node_modules/.pnpm/react-day-picker@9.13.2_react@19.2.0/node_modules/react-day-picker/dist/esm/useCalendar.js",
+        "bytes": 4397,
+        "sha256": "53da6237c8971f38e30baa301b0b3b4c34ca40dec92ac29e66a8423c4770db3d",
+        "gitBlob": "579b1bd5824d997787e489343711d047b3fd8c82"
+      },
+      {
+        "sourceMapPath": "../../../../node_modules/.pnpm/react-day-picker@9.13.2_react@19.2.0/node_modules/react-day-picker/dist/esm/helpers/calculateFocusTarget.js",
+        "bytes": 2975,
+        "sha256": "c666be9183b997e8dc2498109f224a66b114d57d0a5e21618e5d1970b8edb760",
+        "gitBlob": "82cf6e3778986a4d03fba401a6bda8d61334d83c"
+      },
+      {
+        "sourceMapPath": "../../../../node_modules/.pnpm/react-day-picker@9.13.2_react@19.2.0/node_modules/react-day-picker/dist/esm/helpers/getFocusableDate.js",
+        "bytes": 1871,
+        "sha256": "ca9db2325d7e7fd100942b5f773584f5971d6774ab862b258a87c5a6a90b8704",
+        "gitBlob": "a88052e4d559f24d4110ac79e3d720d0223db594"
+      },
+      {
+        "sourceMapPath": "../../../../node_modules/.pnpm/react-day-picker@9.13.2_react@19.2.0/node_modules/react-day-picker/dist/esm/helpers/getNextFocus.js",
+        "bytes": 1949,
+        "sha256": "332ace93043e9da40348e75ffdc3d8a93387016f43f272390c1d9e901dee19fd",
+        "gitBlob": "048bb4722acddf2c2220c964e7c6875dfbc521f2"
+      },
+      {
+        "sourceMapPath": "../../../../node_modules/.pnpm/react-day-picker@9.13.2_react@19.2.0/node_modules/react-day-picker/dist/esm/useFocus.js",
+        "bytes": 2026,
+        "sha256": "b225513d2b5d4f9328366697af57ebda970d24f72a3554219ebc0cd8b552901c",
+        "gitBlob": "09e6c10fc24a59eaa890e398d72e4ffc5e5124f8"
+      },
+      {
+        "sourceMapPath": "../../../../node_modules/.pnpm/react-day-picker@9.13.2_react@19.2.0/node_modules/react-day-picker/dist/esm/selection/useSingle.js",
+        "bytes": 1522,
+        "sha256": "3b59fa2a7deec4989616acad453b156f2d85faf2e2dc2059fef23ba9ec6ad805",
+        "gitBlob": "09950cc345e930c317e90809dc99896a3e6faebe"
+      },
+      {
+        "sourceMapPath": "../../../../node_modules/.pnpm/react-day-picker@9.13.2_react@19.2.0/node_modules/react-day-picker/dist/esm/DayPicker.js",
+        "bytes": 22644,
+        "sha256": "52fa2f4cf3454cd1564503b0883a28b414f3a6b7861f89376e148e699c7c07c0",
+        "gitBlob": "6bbb96092defe9d80f374f5d4a3abe70cbf49a5d"
+      }
+    ],
+    "bundledIndependentPackageLicenseBodyVerified": false
+  },
+  "externalCrossCheck": {
+    "package": "react-day-picker",
+    "version": "9.14.0",
+    "integritySameAtSourceAndNative": "sha512-tBaoDWjPwe0M5pGrum4H0SR6Lyk+BO9oHnp9JbKpGKW2mlraNPgP9BMfsg5pWpwrssARmeqk7YBl2oXutZTaHA==",
+    "role": "matching static keyboard/focus/date cross-check and frozen types; not the actual Source DatePicker runtime"
+  },
+  "vendorWholeFiles": [
+    {
+      "path": "node_modules/.pnpm/@cloudflare+kumo@2.6.0_@date-fns+tz@1.5.0_@phosphor-icons+react@2.1.10_react-dom@19.3.0_f2f40a45bc45c4ec472e7026320e7aa0/node_modules/@cloudflare/kumo/package.json",
+      "bytes": 17612,
+      "sha256": "ce83487bc8cc6aeacc0d2e74e2ac3405990576f456ba244ee6e8cc1dadf9ab41",
+      "gitBlob": "7290740f8d5660f73fa82782637563d8690e1116"
+    },
+    {
+      "path": "node_modules/.pnpm/@cloudflare+kumo@2.6.0_@date-fns+tz@1.5.0_@phosphor-icons+react@2.1.10_react-dom@19.3.0_f2f40a45bc45c4ec472e7026320e7aa0/node_modules/@cloudflare/kumo/LICENSE",
+      "bytes": 1103,
+      "sha256": "df3e141c129d1804bea95fe087b157b156241b3bb1a4664808630aa85f2cd8fc",
+      "gitBlob": "631c4d3e0ae173bb364ceafd3d8f8e9fef869e8b"
+    },
+    {
+      "path": "node_modules/.pnpm/@cloudflare+kumo@2.6.0_@date-fns+tz@1.5.0_@phosphor-icons+react@2.1.10_react-dom@19.3.0_f2f40a45bc45c4ec472e7026320e7aa0/node_modules/@cloudflare/kumo/dist/chunks/date-picker-mjocqqbggb76n8rt.js",
+      "bytes": 97321,
+      "sha256": "aaa90f51baac6bb3bf557f0fa603b720853ef2c393e1926a70707fd6ba20e564",
+      "gitBlob": "a9c0d1bbc154e6a5737e65963e41158cadba331f"
+    },
+    {
+      "path": "node_modules/.pnpm/@cloudflare+kumo@2.6.0_@date-fns+tz@1.5.0_@phosphor-icons+react@2.1.10_react-dom@19.3.0_f2f40a45bc45c4ec472e7026320e7aa0/node_modules/@cloudflare/kumo/dist/chunks/date-picker-mjocqqbggb76n8rt.js.map",
+      "bytes": 450492,
+      "sha256": "66d4943ffd96219b1e852336f1dbee6477b93f1dccf7ba1f2ac2991f47e1d371",
+      "gitBlob": "7bba5622d89f374a1c5554f60353cf755e9eed78"
+    },
+    {
+      "path": "node_modules/.pnpm/react-day-picker@9.14.0_react@19.3.0/node_modules/react-day-picker/package.json",
+      "bytes": 7696,
+      "sha256": "d8b4fe77fb030eb6a68f88bf569a4411396251089cf0751a1ea60f55bebb3d34",
+      "gitBlob": "e1cc76db0f1fd87212035095aeb45ffcc7edec4a"
+    },
+    {
+      "path": "node_modules/.pnpm/react-day-picker@9.14.0_react@19.3.0/node_modules/react-day-picker/LICENSE",
+      "bytes": 1122,
+      "sha256": "45d115f88e2b50de2113bafbc5e877f8e85dc9236d5d304a855ed4756f7e4439",
+      "gitBlob": "24132c3390de4bd0e965b4ebe8a5300cab7fe3d9"
+    },
+    {
+      "path": "node_modules/.pnpm/react-day-picker@9.14.0_react@19.3.0/node_modules/react-day-picker/dist/esm/DayPicker.js",
+      "bytes": 22659,
+      "sha256": "5311630ae2e5df70a5cf9f1c833c5ab41422d6e4a91661ec31589818a33ec7c4",
+      "gitBlob": "e43e753929ccb95b74aa7f59ac1b1801e1c47b21"
+    },
+    {
+      "path": "node_modules/.pnpm/react-day-picker@9.14.0_react@19.3.0/node_modules/react-day-picker/dist/esm/useFocus.js",
+      "bytes": 2026,
+      "sha256": "b225513d2b5d4f9328366697af57ebda970d24f72a3554219ebc0cd8b552901c",
+      "gitBlob": "09e6c10fc24a59eaa890e398d72e4ffc5e5124f8"
+    },
+    {
+      "path": "node_modules/.pnpm/react-day-picker@9.14.0_react@19.3.0/node_modules/react-day-picker/dist/esm/useCalendar.js",
+      "bytes": 4397,
+      "sha256": "53da6237c8971f38e30baa301b0b3b4c34ca40dec92ac29e66a8423c4770db3d",
+      "gitBlob": "579b1bd5824d997787e489343711d047b3fd8c82"
+    },
+    {
+      "path": "node_modules/.pnpm/react-day-picker@9.14.0_react@19.3.0/node_modules/react-day-picker/dist/esm/helpers/calculateFocusTarget.js",
+      "bytes": 2975,
+      "sha256": "c666be9183b997e8dc2498109f224a66b114d57d0a5e21618e5d1970b8edb760",
+      "gitBlob": "82cf6e3778986a4d03fba401a6bda8d61334d83c"
+    },
+    {
+      "path": "node_modules/.pnpm/react-day-picker@9.14.0_react@19.3.0/node_modules/react-day-picker/dist/esm/helpers/getFocusableDate.js",
+      "bytes": 1871,
+      "sha256": "ca9db2325d7e7fd100942b5f773584f5971d6774ab862b258a87c5a6a90b8704",
+      "gitBlob": "a88052e4d559f24d4110ac79e3d720d0223db594"
+    },
+    {
+      "path": "node_modules/.pnpm/react-day-picker@9.14.0_react@19.3.0/node_modules/react-day-picker/dist/esm/helpers/getNextFocus.js",
+      "bytes": 1949,
+      "sha256": "332ace93043e9da40348e75ffdc3d8a93387016f43f272390c1d9e901dee19fd",
+      "gitBlob": "048bb4722acddf2c2220c964e7c6875dfbc521f2"
+    },
+    {
+      "path": "node_modules/.pnpm/react-day-picker@9.14.0_react@19.3.0/node_modules/react-day-picker/dist/esm/classes/DateLib.js",
+      "bytes": 20842,
+      "sha256": "eed7d3f01f1743c8d2633abaeac9661c87aac7622425885508146978a2d6674c",
+      "gitBlob": "19ebe1830352260f2e371801d2ba34fcfa142320"
+    },
+    {
+      "path": "node_modules/.pnpm/react-day-picker@9.14.0_react@19.3.0/node_modules/react-day-picker/dist/esm/selection/useSingle.js",
+      "bytes": 1522,
+      "sha256": "3b59fa2a7deec4989616acad453b156f2d85faf2e2dc2059fef23ba9ec6ad805",
+      "gitBlob": "09950cc345e930c317e90809dc99896a3e6faebe"
+    },
+    {
+      "path": "node_modules/.pnpm/date-fns@4.1.0/node_modules/date-fns/package.json",
+      "bytes": 200594,
+      "sha256": "4569c5b08a8bc61281236014c2a43490142579e1f47550cf51297607feba4b9b",
+      "gitBlob": "5c2fa610633fa82ec9f97d3e9664010cbf532570"
+    },
+    {
+      "path": "node_modules/.pnpm/date-fns@4.1.0/node_modules/date-fns/LICENSE.md",
+      "bytes": 1117,
+      "sha256": "8d3951c38967b964b1fe259bfd200c2647cc04c858b55a4414e3122a60f1ef4b",
+      "gitBlob": "29c6e85fd3248d26520354a84ee70e961f3475d1"
+    },
+    {
+      "path": "node_modules/.pnpm/date-fns@4.1.0/node_modules/date-fns/addDays.js",
+      "bytes": 1378,
+      "sha256": "ebbd906629d4919ba2e46a82944e166b17b6775266b82b132843830d37e1bfac",
+      "gitBlob": "4d1cafa3bd60b46340116a9365c433ee7d89a206"
+    },
+    {
+      "path": "node_modules/.pnpm/date-fns@4.1.0/node_modules/date-fns/addWeeks.js",
+      "bytes": 1104,
+      "sha256": "13c0d8c4ae05daa04649cf89a82dbda8002d92ee7803b7c8f66c354b45e7e206",
+      "gitBlob": "15a35b2ab08a7be9db6ba04b8c3d4ecacfdb854b"
+    },
+    {
+      "path": "node_modules/.pnpm/date-fns@4.1.0/node_modules/date-fns/addMonths.js",
+      "bytes": 3132,
+      "sha256": "993cfefdd053727ac193345649e7bda7bd4b1875f002fa6103fc0079483d87c0",
+      "gitBlob": "a4eabae2ef2dad75a1f35d83da73a03882a30dcd"
+    },
+    {
+      "path": "node_modules/.pnpm/date-fns@4.1.0/node_modules/date-fns/addYears.js",
+      "bytes": 1001,
+      "sha256": "23cb737e737222a926d77c1f0c1e70f4a3fb2fec711396a0b2348c3d83433e0e",
+      "gitBlob": "055bf8252f2590ed249c5671e829d3e15d2d5dd4"
+    },
+    {
+      "path": "node_modules/.pnpm/date-fns@4.1.0/node_modules/date-fns/startOfWeek.js",
+      "bytes": 1801,
+      "sha256": "58bee5159e4634754e68eddbd243befdac04df2d23cccef3f7bb62316ccf3223",
+      "gitBlob": "54c520e2bee34b3b22d6f80a1eb3b718ac4780ee"
+    },
+    {
+      "path": "node_modules/.pnpm/date-fns@4.1.0/node_modules/date-fns/endOfWeek.js",
+      "bytes": 1799,
+      "sha256": "eb514877bd201c239281a4c7ea65858affc4967bee68ef947f85630b3e51c3da",
+      "gitBlob": "1e6155d2ec1b3a377e3f3c761c1c646e7779c503"
+    }
+  ],
+  "existingLocaleProducer": {
+    "publicBase": "89340738750c688842f5716352f8d47f0189f03c",
+    "path": "src/lib/ui/date-time-locales.ts",
+    "bytes": 758,
+    "sha256": "2f5620906aafcc4e368183a9bb9e8106f80542b9a51a270311667e4a0a5bd83b",
+    "gitBlob": "3698465cc1c9ac621432635e4dc6763a246803bf",
+    "changed": false,
+    "heldLocaleProducerAdopted": false
+  },
+  "mitNotices": [
+    "notices/emdash-MIT.txt",
+    "notices/calendar-picker/kumo-2.6.0-MIT.txt",
+    "notices/calendar-picker/react-day-picker-9.14.0-MIT.txt"
+  ],
+  "regularLocalCommits": [
+    {
+      "commit": "11afbaafe73a139f5502549ba6d3be1c105aef5b",
+      "parents": [
+        "89340738750c688842f5716352f8d47f0189f03c"
+      ],
+      "tree": "74b970aefd510c68b7189dbfead72befa8a75a0c",
+      "subject": "refactor: isolate compact calendar focus movement before parity tests"
+    },
+    {
+      "commit": "a4bcb878877b79e3c1fead2c7f914fd4fa918533",
+      "parents": [
+        "11afbaafe73a139f5502549ba6d3be1c105aef5b"
+      ],
+      "tree": "5a2e09caeda1e8422699ba870cc2dd4dc974b0a0",
+      "subject": "test: specify compact calendar keyboard dates and focus before repair"
+    },
+    {
+      "commit": "a0c3d7796fe19103f358b89017581eeccd2abd9e",
+      "parents": [
+        "a4bcb878877b79e3c1fead2c7f914fd4fa918533"
+      ],
+      "tree": "c773d2c2e91a215b64b7e0e7ab58cee4a25c9832",
+      "subject": "test: correct isolated keyboard host and bundled picker provenance"
+    },
+    {
+      "commit": "73b350d1681e4c6f98c9f51382882382a2b1b1af",
+      "parents": [
+        "a0c3d7796fe19103f358b89017581eeccd2abd9e"
+      ],
+      "tree": "94cf55927e51c90997726cee3242db99b9fc1dcb",
+      "subject": "fix: retain compact calendar selection during full keyboard focus movement"
+    },
+    {
+      "commit": "60e41c4a9ec6651834cb70161af1c32f8c4ce5c6",
+      "parents": [
+        "73b350d1681e4c6f98c9f51382882382a2b1b1af"
+      ],
+      "tree": "2c40835179a2c2c3946e9f141619a661489640e4",
+      "subject": "refactor: isolate compact calendar tab target before history control"
+    },
+    {
+      "commit": "9c7c5dcd486e262156472e8f9306fecd8a326081",
+      "parents": [
+        "60e41c4a9ec6651834cb70161af1c32f8c4ce5c6"
+      ],
+      "tree": "41e08785f597bcd1de0ad0640d13d785956345dc",
+      "subject": "test: retain compact calendar focus history across controlled month return"
+    },
+    {
+      "commit": "a7a0871a5c8da93227e70b3f9147a3a50334b77e",
+      "parents": [
+        "9c7c5dcd486e262156472e8f9306fecd8a326081"
+      ],
+      "tree": "de17102c9de2be14f1ec3d493ab1d824fa637871",
+      "subject": "fix: preserve compact calendar focus history independently of selection"
+    }
+  ],
+  "supplementalStructuralCensus": [
+    {
+      "path": "tests/calendar-picker-keyboard/movement.test.ts",
+      "declarations": 3,
+      "direct": 5,
+      "element": 0,
+      "poll": 0,
+      "staticMatcherRoots": 5
+    },
+    {
+      "path": "tests/calendar-picker-keyboard-browser/focus-selection.test.ts",
+      "declarations": 8,
+      "direct": 16,
+      "element": 0,
+      "poll": 13,
+      "staticMatcherRoots": 29
+    }
+  ],
+  "actualPureCases": 41,
+  "pureFirstDateValueReds": 27,
+  "pureFirstFocusTargetValueReds": 1,
+  "pureFinalPasses": 41,
+  "pureTimezone": "America/New_York; command prefixes for earlier runs and final configuration env",
+  "preparedBrowserCases": 12,
+  "actualBrowserCallbacks": 0,
+  "browserValueRedCredit": 0,
+  "browserPassCredit": 0,
+  "browserLimit": "official sandbox Chromium1243 absent at initial11-case attempt; final12 not retried; no fallback/download/polyfill",
+  "browserHost": {
+    "playwright": "1.63.0",
+    "chromiumRevision": "1243",
+    "chromiumSandbox": true,
+    "timezoneId": "America/New_York",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "launchTimeoutMs": 30000
+  },
+  "privateRawReceipts": [
+    {
+      "privatePath": "/tmp/calendar-picker-keyboard-install.log",
+      "exitCode": 1,
+      "classification": "offline frozen installation stopped before completion; no callbacks",
+      "result": null,
+      "bytes": 445,
+      "sha256": "a37863a1ce709f31486a819493db6b46fbff9378a7ae97f0744beb9cc9a90cce",
+      "gitBlob": "76a0ac8991dce5fa2ac0da5dd0ecc1e6364117c6"
+    },
+    {
+      "privatePath": "/tmp/calendar-picker-keyboard-install-online.log",
+      "exitCode": 0,
+      "classification": "ordinary frozen installation succeeds with unchanged lockfile",
+      "result": null,
+      "bytes": 1976,
+      "sha256": "6beb36ae3cabe237b9eb09df6841591fdb5b2662b48f8a0758f79b25e9cfe9cb",
+      "gitBlob": "56d5a46f560fd104bf5ad4bf5b503a7703ab4570"
+    },
+    {
+      "privatePath": "/tmp/calendar-picker-keyboard-pure-first.log",
+      "exitCode": 1,
+      "classification": "pre-import controlled Kit alias stop; no collected callbacks",
+      "result": {
+        "registered": 0,
+        "passed": 0,
+        "reachedValueRed": 0
+      },
+      "bytes": 1100,
+      "sha256": "5893d0183404f536521467cbfb2cab2608c18af8aec37a8d94fcac262465f7d5",
+      "gitBlob": "c3b566bfafa9e982e24026207f8e0348eeaa309c"
+    },
+    {
+      "privatePath": "/tmp/calendar-picker-keyboard-browser-first.log",
+      "exitCode": 1,
+      "classification": "precollection official1243 executable absent; no browser callbacks",
+      "result": {
+        "registered": 0,
+        "passed": 0,
+        "reachedValueRed": 0,
+        "errors": 1
+      },
+      "bytes": 15150,
+      "sha256": "e29b2933cc205ec972dcbcab4534cea52576f31c770137acf310bfd52914db52",
+      "gitBlob": "15827036ea663d230fa07f8b1933cf338cf7e944"
+    },
+    {
+      "privatePath": "/tmp/calendar-picker-keyboard-pure-corrected-first.log",
+      "exitCode": 1,
+      "classification": "test-first corrected host; actual date-value assertion reds",
+      "result": {
+        "registered": 40,
+        "passed": 13,
+        "reachedValueRed": 27
+      },
+      "bytes": 21124,
+      "sha256": "f49efedc297877de49d141097e07b2bb50177ea95e05efea498d205fa77c8ea1",
+      "gitBlob": "8836ab43be50daa28bb0b130cc33537f36e8bdd9"
+    },
+    {
+      "privatePath": "/tmp/calendar-picker-keyboard-pure-after.log",
+      "exitCode": 0,
+      "classification": "post-movement repair working tree subsequently committed as73b350d1; not final reviewed head",
+      "result": {
+        "registered": 40,
+        "passed": 40,
+        "reachedValueRed": 0
+      },
+      "bytes": 231,
+      "sha256": "b929b4366279440e4e7cea70b6a933d0004015bb58243ee5bbb5dae797cc2ea4",
+      "gitBlob": "65600294468f424ec87dfcce8a194b1a22aaf324"
+    },
+    {
+      "privatePath": "/tmp/calendar-picker-keyboard-check.log",
+      "exitCode": 0,
+      "classification": "checker at73b350d1 before focus-history successor",
+      "result": {
+        "errors": 0,
+        "warnings": 0
+      },
+      "bytes": 218,
+      "sha256": "a876bf2c989698a660ceffd9eae9a21db444d0a84cdc7473d496ad7f7fc1dcb4",
+      "gitBlob": "36ba0130cce6175f15b821b94493d7fbaa72ec10"
+    },
+    {
+      "privatePath": "/tmp/calendar-picker-keyboard-source86-guard.log",
+      "exitCode": 0,
+      "classification": "whole immutable provenance only; no product callbacks",
+      "result": {
+        "wholeAuthorities": 86,
+        "wholeFamilies": 16,
+        "declarations": 126,
+        "staticMatcherRoots": 360,
+        "executionCredit": 0
+      },
+      "bytes": 189,
+      "sha256": "f55e5f3fd56b2a6193d02bdb1a5ccbad218cf2d97d74ec605ee0da385a59036f",
+      "gitBlob": "71305fcfb52b509de3ffa01e0750cfc6d6e66e24"
+    },
+    {
+      "privatePath": "/tmp/calendar-picker-keyboard-focus-first.log",
+      "exitCode": 1,
+      "classification": "test-first tab-target value red with all preceding40 green",
+      "result": {
+        "registered": 41,
+        "passed": 40,
+        "reachedValueRed": 1
+      },
+      "bytes": 1292,
+      "sha256": "423e1ecf3c157243d3f11c954d1036957224bb959ddd2630d3dd5d9708c6e5c2",
+      "gitBlob": "11140043b0f09708d157fca3672c9100c72d3792"
+    },
+    {
+      "privatePath": "/tmp/calendar-picker-keyboard-final-pure41.log",
+      "exitCode": 0,
+      "classification": "final pure callbacks at exact candidate codea7a0871a5c8da93227e70b3f9147a3a50334b77e",
+      "result": {
+        "registered": 41,
+        "passed": 41,
+        "reachedValueRed": 0
+      },
+      "bytes": 232,
+      "sha256": "3d4872ae205f9d49637715b810b0c11fe65b66b89fd59333ed5372b8d4175928",
+      "gitBlob": "a4fe8cc8131a0ee85f4283e522b032f262631c7e"
+    },
+    {
+      "privatePath": "/tmp/calendar-picker-keyboard-final-check.log",
+      "exitCode": 0,
+      "classification": "final checker at exact candidate codea7a0871a5c8da93227e70b3f9147a3a50334b77e",
+      "result": {
+        "errors": 0,
+        "warnings": 0
+      },
+      "bytes": 218,
+      "sha256": "a876bf2c989698a660ceffd9eae9a21db444d0a84cdc7473d496ad7f7fc1dcb4",
+      "gitBlob": "36ba0130cce6175f15b821b94493d7fbaa72ec10"
+    }
+  ],
+  "pureAlgorithmAdaptation": "Native local-noon day-key/date-fns move and focus-target helper; no shared DateTime or dependency changes",
+  "frameworkAdaptation": "component-scoped Svelte active/last focus, native button activation and actual event prevent/stop; controlled browser fixtures unexecuted",
+  "originalSourceExecutionCreditInThisPreparation": 0,
+  "protectedHttpSessionSignatureRaceExecutionCredit": 0,
+  "storageExecutionCredit": 0,
+  "nativeUrlCredit": 0,
+  "incomplete": [
+    "exact Source custom-modifier versus internal active-focus tab-target parity",
+    "locale-derived Source getLocaleDir integration",
+    "vendor accessibility/Today/selected localization and endonyms",
+    "complete vendor focus/ARIA/CSS",
+    "original whole49 browser regression after this repair",
+    "supplemental12 official sandbox browser execution",
+    "full normal/secured gates on any later qualified integration",
+    "final independent/configured review and Root qualification/acceptance",
+    "publication/owned PR/approval/merge"
+  ],
+  "openFocusTabTargetDifference": {
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "reference": "actual Kumo2.6 bundle calculateFocusTarget/getModifiers before internal active focus applies during rendering",
+    "sourceStaticDerived": "lastFocusedOctober16 may remain tab target while internal activeOctober17; no custom focused modifier in SourceCalendarMonth",
+    "native": "calendarFocusTarget selects activeOctober17 over lastOctober16",
+    "decision": "unaccepted Native adaptation; exact vendor tab-target parity remains incomplete",
+    "evidence": "fresh static review only; no pinned Source browser reproduction. Initial active-priority pure expectation establishes Native behavior with0Source equivalence credit."
+  },
+  "candidateCodeValidationLimit": "Pure41/check0/0 executed at a7a0871a; subsequent Source-claim corrections change comments/documentation only. No final whole-gate or acceptance claim."
+}
