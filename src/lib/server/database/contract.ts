@@ -46,6 +46,8 @@ export interface CmsTables extends AuthTables, AuthIdentityTables {
  */
 export interface CmsDatabase {
   readonly db: Kysely<CmsTables>;
+  /** Genuine synchronous transaction executor capability; absent on D1 fixed batches. */
+  readonly atomicQueryLoops?: true;
   atomicBatch(statements: readonly CompiledQuery[]): Promise<readonly QueryResult<unknown>[]>;
   close(): Promise<void>;
 }
