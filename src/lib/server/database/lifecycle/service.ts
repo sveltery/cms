@@ -327,7 +327,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
           const revision=prepared?{id:prepared.id}:await revisions.create(revisionInput);
           const metadata=prepared&&liveMetaTouched?await prepareAtomicUpdate(value,
             {...existing,version:existing.version+1,draftRevisionId:prepared.id},
-            {...value,slug:undefined},undefined,'content:edit_any'):undefined;
+            {...value,slug:undefined,bylines:undefined},undefined,'content:edit_any'):undefined;
           let staged;
           try{staged=await content.replaceDraftRevision(value.type,value.id,revision.id,existing,prepared?async statement=>{
             const schemaToken=ulid();const entryToken=ulid();const stageToken=ulid();const metadataToken=ulid();
@@ -392,8 +392,8 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       return hydratedBylines(published);
     },
     async scheduleContent(input:unknown,currentTime:Date=new Date()):Promise<ContentItem> {
-      const actor=mutationPermission('content:publish_own','content:publish_any');const value=key(input);
-      const item=await stored(value,value.locale===undefined,true);owner(item,actor,'content:publish_any');precondition(value.expected,item);
+      const actor=mutationPermission('content:publish_own','content:publish_any');const raw=object(input);const value=key(raw);
+      const item=await stored(value,raw.locale===undefined,true);owner(item,actor,'content:publish_any');precondition(value.expected,item);
       const collection=await definition(value.type);
       if(collection.routable&&!item.slug?.trim())throw new CmsError('VALIDATION_ERROR','Cannot publish routable content without a slug');
       return hydratedBylines(await translate(()=>content.schedule(value.type,item.id,value.scheduledAt,currentTime,{version:item.version,updatedAt:item.updatedAt})));

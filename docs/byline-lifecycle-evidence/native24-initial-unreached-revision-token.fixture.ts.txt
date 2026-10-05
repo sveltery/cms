@@ -21,7 +21,7 @@ it('clears credits through a byline-only enhanced form without staging field dat
  const byline=await new BylineRepository(database).create({slug:'author',displayName:'Author'});const service=ordinaryContentService(database,principal);
  const item=await service.createContent({type:'post',data:{title:'Form story'},bylines:[{bylineId:byline.id}]});
  const {_rev}=withRevision(item);const parsed=parse(updateInput,{collection:'post',id:item.id,locale:item.locale,_rev,bylines:'[]'});
- const {collection,_rev:ignored,...input}=parsed;
+ const {collection,...input}=parsed;
  const updated=await service.updateContent({type:collection,...input,expected:precondition(parsed)});
  expect(updated.bylines).toEqual([]);expect(updated.draftRevisionId).toBeNull();expect(updated.data.title).toBe('Form story');
 });
