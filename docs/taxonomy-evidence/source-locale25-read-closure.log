@@ -1,0 +1,86 @@
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > persists the configured default instead of the database column default
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > uses the implicit English locale when i18n is not configured
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > stores term locales with the configured casing
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > rejects a parent when creating a term in a flat taxonomy
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > rejects a new parent when updating a term in a flat taxonomy
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > resolves taxonomy reads with the configured locale casing
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > repository resolves only the entry-locale variant when locale is given
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > GET returns only the FR variant for the FR entry
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > GET returns only the EN variant for the EN entry
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > GET by slug returns only the FR variant for the FR entry
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > POST response echoes only the entry-locale variant
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > POST refreshes published translations and taxonomy facets
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > batches cache purges for large translation groups
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > falls back to the configured default-locale term and exposes its actual locale
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > keeps an assignment unresolved when neither exact nor default locale exists
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > keeps a newly assigned unresolved group visible on every content sibling
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > reports the implicit English default for existing mixed-locale data
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > lists exact variants first and default-locale variants for untranslated groups
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > content terms route locale-awareness (#1218) [sqlite] > rejects fallback-resolved term lists without a requested locale
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > taxonomy parent stays nested across locales (#1347) [sqlite] > nests a child under a parent translated AFTER the child
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > taxonomy parent stays nested across locales (#1347) [sqlite] > keeps each locale's child under its own parent in an unfiltered list
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > taxonomy parent stays nested across locales (#1347) [sqlite] > rejects a translation parented to its own translation group
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > taxonomy parent stays nested across locales (#1347) [sqlite] > rejects a parent that belongs to a different taxonomy
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > taxonomy parent stays nested across locales (#1347) [sqlite] > backfills legacy locale-bound parent_id to the translation_group
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts > taxonomy parent stays nested across locales (#1347) [sqlite] > leaves a group where only one row has a parent split across locales
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts (25 tests) 2991ms
+
+ Test Files  1 passed (1)
+      Tests  25 passed (25)
+   Start at  17:20:57
+   Duration  4.84s (transform 1.23s, setup 0ms, import 1.72s, tests 2.99s, environment 0ms)
+
+JSON report written to /tmp/taxonomy-whole-locale-terms-read-closure-report.json

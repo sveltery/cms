@@ -1,0 +1,146 @@
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+ ❯ tests/taxonomy-d1/atomic-writes.test.mjs (8 tests | 7 failed) 1553ms
+   × D1: one concept has locale-specific labels and one actual group 258ms
+   × D1: failed group move rolls back the just-inserted translation 159ms
+   × D1: a definition creation failure leaves neither its locale nor its structure group 162ms
+   × D1: editing one locale changes shared structure and preserves other labels 157ms
+   × D1: a later reorder chunk failure rolls back all earlier chunks 310ms
+   × D1: replacing assignments preserves the old set if insertion fails 156ms
+   × D1: deleting a whole taxonomy clears all locales, terms, groups and actual pivots 181ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/taxonomy-d1/atomic-writes.test.mjs > D1: one concept has locale-specific labels and one actual group
+AssertionError: Got unwanted rejection: real D1 taxonomy writes must use the atomic provider
+Actual message: "D1 callback transactions are unsupported; use atomicBatch"
+
+simple
+
+ ❯ create tests/taxonomy-d1/atomic-writes.test.mjs:24:3
+     22| async function create(input) {
+     23|   let term;
+     24|   await assert.doesNotReject(async () => { term = await repo.create(in…
+       |   ^
+     25|   return term;
+     26| }
+ ❯ tests/taxonomy-d1/atomic-writes.test.mjs:33:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  tests/taxonomy-d1/atomic-writes.test.mjs > D1: failed group move rolls back the just-inserted translation
+AssertionError: Got unwanted rejection: real D1 taxonomy writes must use the atomic provider
+Actual message: "D1 callback transactions are unsupported; use atomicBatch"
+
+simple
+
+ ❯ create tests/taxonomy-d1/atomic-writes.test.mjs:24:3
+     22| async function create(input) {
+     23|   let term;
+     24|   await assert.doesNotReject(async () => { term = await repo.create(in…
+       |   ^
+     25|   return term;
+     26| }
+ ❯ tests/taxonomy-d1/atomic-writes.test.mjs:41:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  tests/taxonomy-d1/atomic-writes.test.mjs > D1: a definition creation failure leaves neither its locale nor its structure group
+AssertionError: Got unwanted rejection.
+Actual message: "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/tests/taxonomy-d1/atomic-writes.test.mjs"
+
+simple
+
+ ❯ handlers tests/taxonomy-d1/atomic-writes.test.mjs:28:12
+     26| }
+     27| async function handlers() {
+     28|   let api; await assert.doesNotReject(async () => { api = await import…
+       |            ^
+     29| }
+     30| function successful(result) { assert.equal(result.success,true,JSON.st…
+ ❯ tests/taxonomy-d1/atomic-writes.test.mjs:52:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  tests/taxonomy-d1/atomic-writes.test.mjs > D1: editing one locale changes shared structure and preserves other labels
+AssertionError: Got unwanted rejection.
+Actual message: "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/tests/taxonomy-d1/atomic-writes.test.mjs"
+
+simple
+
+ ❯ handlers tests/taxonomy-d1/atomic-writes.test.mjs:28:12
+     26| }
+     27| async function handlers() {
+     28|   let api; await assert.doesNotReject(async () => { api = await import…
+       |            ^
+     29| }
+     30| function successful(result) { assert.equal(result.success,true,JSON.st…
+ ❯ tests/taxonomy-d1/atomic-writes.test.mjs:63:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  tests/taxonomy-d1/atomic-writes.test.mjs > D1: a later reorder chunk failure rolls back all earlier chunks
+AssertionError: The input did not match the regular expression /taxonomy fixture final chunk failure/. Input:
+
+'Error: D1 taxonomy writes require atomic adaptation'
+
+
+- Expected:
+/taxonomy fixture final chunk failure/
+
++ Received:
+Error {
+  "message": "D1 taxonomy writes require atomic adaptation",
+}
+
+ ❯ tests/taxonomy-d1/atomic-writes.test.mjs:82:3
+     80|     WHEN OLD.translation_group = 'term-000' BEGIN SELECT RAISE(ABORT, …
+     81|   const siblings=before.map(row=>({group:row.translation_group,positio…
+     82|   await assert.rejects(repo.reorder(siblings.map(row=>row.group).rever…
+       |   ^
+     83|   assert.deepEqual(await rows(sql`SELECT translation_group,sort_order …
+     84| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  tests/taxonomy-d1/atomic-writes.test.mjs > D1: replacing assignments preserves the old set if insertion fails
+AssertionError: Got unwanted rejection: real D1 taxonomy writes must use the atomic provider
+Actual message: "D1 callback transactions are unsupported; use atomicBatch"
+
+simple
+
+ ❯ create tests/taxonomy-d1/atomic-writes.test.mjs:24:3
+     22| async function create(input) {
+     23|   let term;
+     24|   await assert.doesNotReject(async () => { term = await repo.create(in…
+       |   ^
+     25|   return term;
+     26| }
+ ❯ tests/taxonomy-d1/atomic-writes.test.mjs:87:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  tests/taxonomy-d1/atomic-writes.test.mjs > D1: deleting a whole taxonomy clears all locales, terms, groups and actual pivots
+AssertionError: Got unwanted rejection.
+Actual message: "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/tests/taxonomy-d1/atomic-writes.test.mjs"
+
+simple
+
+ ❯ handlers tests/taxonomy-d1/atomic-writes.test.mjs:28:12
+     26| }
+     27| async function handlers() {
+     28|   let api; await assert.doesNotReject(async () => { api = await import…
+       |            ^
+     29| }
+     30| function successful(result) { assert.equal(result.success,true,JSON.st…
+ ❯ tests/taxonomy-d1/atomic-writes.test.mjs:98:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 1 passed (8)
+   Start at  12:58:01
+   Duration  2.28s (transform 286ms, setup 0ms, import 624ms, tests 1.55s, environment 0ms)
+

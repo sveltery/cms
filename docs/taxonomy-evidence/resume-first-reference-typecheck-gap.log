@@ -1,0 +1,433 @@
+$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+Loading svelte-check in workspace: /workspace/cms-full-taxonomy-api-admin
+Getting Svelte diagnostics...
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/request-context.ts:22:36
+Error: Cannot find module './database/instrumentation.js' or its corresponding type declarations. 
+
+import type { QueryRecorder } from "./database/instrumentation.js";
+import type { DeferredTaskTracker } from "./deferred-tasks.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/media/usage/collection-deletion.ts:9:8
+Error: Cannot find module '../../database/repositories/types.js' or its corresponding type declarations. 
+	type FindManyResult,
+} from "../../database/repositories/types.js";
+import { withTransaction } from "../../database/transaction.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/media/usage/collection-deletion.ts:627:44
+Error: Cannot find module 'virtual:emdash/config' or its corresponding type declarations. 
+	if (executeAdapterGuard) {
+		const { default: config } = await import("virtual:emdash/config");
+		return executeAdapterGuard(config.database?.config, input);
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/media/usage/collection-deletion.ts:637:32
+Error: Cannot find module 'virtual:emdash/dialect' or its corresponding type declarations. 
+	try {
+		const dialect = await import("virtual:emdash/dialect");
+		return dialect.executeCollectionDeletionGuard;
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/repositories/media-usage.ts:35:85
+Error: Cannot find module './types.js' or its corresponding type declarations. 
+import { validateIdentifier } from "../validate.js";
+import { decodeCursor, encodeCursor, InvalidCursorError, type FindManyResult } from "./types.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/media/normalize.ts:13:67
+Error: Cannot find module './types.js' or its corresponding type declarations. 
+import { normalizeFocalPoint } from "./focal-point.js";
+import type { MediaProvider, MediaProviderItem, MediaValue } from "./types.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/repositories/media-usage-work.ts:6:65
+Error: Cannot find module './types.js' or its corresponding type declarations. 
+import type { Database, MediaUsageWorkTable } from "../types.js";
+import { decodeCursor, encodeCursor, type FindManyResult } from "./types.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/transfer/format/columns.ts:29:33
+Error: Cannot find module './kinds.js' or its corresponding type declarations. 
+import { TransferError } from "../errors.js";
+import type { RecordKind } from "./kinds.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/schema/registry.ts:44:52
+Error: Cannot find module '../transfer/format/kinds.js' or its corresponding type declarations. 
+import { canonicalDigest } from "../transfer/format/digest.js";
+import type { CollectionRecord, FieldRecord } from "../transfer/format/kinds.js";
+import { encodeRecord, firstDifference, recordCodecs } from "../transfer/import/rows.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/schema/registry.ts:50:8
+Error: Cannot find module '../transfer/schema-importer.js' or its corresponding type declarations. 
+	ImportCollectionResult,
+} from "../transfer/schema-importer.js";
+import { chunks, SQL_BATCH_SIZE } from "../utils/chunks.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/schema/registry.ts:874:46
+Error: 'lifecycle' is possibly 'undefined'. 
+		const captureFinalized =
+			lifecycle?.collection_id === record.id && lifecycle.capture_state === "active";
+		let captureRequired = captureFinalized;
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/schema/registry.ts:1012:36
+Error: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'Record<FieldType, ColumnType>'. 
+			slugs.add(field.slug);
+			if (!isFieldType(field.type) || FIELD_TYPE_TO_COLUMN[field.type] !== field.columnType) {
+				throw new SchemaError(
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/i18n/resolve.ts:225:29
+Error: Cannot find module 'astro:config/server' or its corresponding type declarations. 
+	try {
+		const mod = (await import("astro:config/server")) as {
+			i18n?: {
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/loader.ts:14:33
+Error: Cannot find module 'astro/loaders' or its corresponding type declarations. 
+
+import type { LiveLoader } from "astro/loaders";
+import { Kysely, type RawBuilder, sql, type Dialect } from "kysely";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/loader.ts:18:33
+Error: Cannot find module './database/instrumentation.js' or its corresponding type declarations. 
+import { buildStatusCondition, isPostgres } from "./database/dialect-helpers.js";
+import { kyselyLogOption } from "./database/instrumentation.js";
+import { selectTaxonomyDefs } from "./database/repositories/taxonomy-def.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/loader.ts:20:64
+Error: Cannot find module './database/repositories/types.js' or its corresponding type declarations. 
+import { selectTaxonomyDefs } from "./database/repositories/taxonomy-def.js";
+import { decodeCursor, encodeCursor, InvalidCursorError } from "./database/repositories/types.js";
+import { validateIdentifier } from "./database/validate.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/loader.ts:23:31
+Error: Cannot find module './index.js' or its corresponding type declarations. 
+import { getI18nConfig } from "./i18n/config.js";
+import type { Database } from "./index.js";
+import { primeSeoPanel } from "./page/seo-panel.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/loader.ts:24:31
+Error: Cannot find module './page/seo-panel.js' or its corresponding type declarations. 
+import type { Database } from "./index.js";
+import { primeSeoPanel } from "./page/seo-panel.js";
+import { getRequestContext } from "./request-context.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/loader.ts:975:48
+Error: Cannot find module './references/field-map.js' or its corresponding type declarations. 
+	if (candidates.length === 0) return undefined;
+	const { getReferenceFieldMap } = await import("./references/field-map.js");
+	const bound = await getReferenceFieldMap(collection);
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/loader.ts:1526:26
+Error: Binding element 'filter' implicitly has an 'any' type. 
+		 */
+		async loadCollection({ filter }) {
+			try {
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/loader.ts:1859:21
+Error: Binding element 'filter' implicitly has an 'any' type. 
+		 */
+		async loadEntry({ filter }) {
+			try {
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/object-cache/index.ts:30:23
+Error: Cannot find module '../after.js' or its corresponding type declarations. 
+
+import { after } from "../after.js";
+import { getRequestContext } from "../request-context.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/object-cache/index.ts:32:32
+Error: Cannot find module './codec.js' or its corresponding type declarations. 
+import { getRequestContext } from "../request-context.js";
+import { decode, encode } from "./codec.js";
+import type {
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/object-cache/index.ts:37:8
+Error: Cannot find module './types.js' or its corresponding type declarations. 
+	ObjectCacheRuntimeConfig,
+} from "./types.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/object-cache/index.ts:852:8
+Error: Cannot find module './types.js' or its corresponding type declarations. 
+	ObjectCacheRuntimeConfig,
+} from "./types.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/taxonomies/index.ts:32:32
+Error: Cannot find module '../query.js' or its corresponding type declarations. 
+} from "../object-cache/index.js";
+import type { CacheHint } from "../query.js";
+import { peekRequestCache, requestCached, setRequestCacheEntry } from "../request-cache.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/taxonomies/index.ts:821:47
+Error: Cannot find module '../query.js' or its corresponding type declarations. 
+): Promise<Array<{ id: string; data: Record<string, unknown> }>> {
+	const { getEmDashCollection } = await import("../query.js");
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts:5:22
+Error: Could not find a declaration file for module 'pg'. '/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/pg@8.18.0/node_modules/pg/esm/index.mjs' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/pg` if it exists or add a new declaration (.d.ts) file containing `declare module 'pg';` 
+import { Kysely, SqliteAdapter, SqliteDialect } from "kysely";
+import { Pool } from "pg";
+import { describe } from "vitest";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/utils/slugify.ts:1:25
+Error: Cannot find module '@emdash-cms/admin/slugify' or its corresponding type declarations. 
+export { slugify } from "@emdash-cms/admin/slugify";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/content-datetime.ts:12:39
+Error: Cannot find module './repositories/types.js' or its corresponding type declarations. 
+import { isSafeUrlFieldWriteValue } from "../utils/url.js";
+import { EmDashValidationError } from "./repositories/types.js";
+import type { Database } from "./types.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/repositories/content.ts:4:67
+Error: Cannot find module '../../content-list-query.js' or its corresponding type declarations. 
+
+import type { ContentFieldFilterValue, ContentFieldFilters } from "../../content-list-query.js";
+import { keepKnownFields, staleStoredKeys } from "../../content/known-fields.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/repositories/content.ts:27:8
+Error: Cannot find module './types.js' or its corresponding type declarations. 
+	ContentBylineFilter,
+} from "./types.js";
+import {
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/repositories/content.ts:36:8
+Error: Cannot find module './types.js' or its corresponding type declarations. 
+	decodeCursor,
+} from "./types.js";
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/repositories/content.ts:438:23
+Error: Argument of type 'unknown' is not assignable to parameter of type 'string'. 
+		for (const field of inherited) {
+			validateIdentifier(field, "inherited content field name");
+			if (!SYSTEM_COLUMNS.has(field) && !Object.hasOwn(data, field)) {
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/repositories/content.ts:439:28
+Error: Argument of type 'unknown' is not assignable to parameter of type 'string'. 
+			validateIdentifier(field, "inherited content field name");
+			if (!SYSTEM_COLUMNS.has(field) && !Object.hasOwn(data, field)) {
+				columns.push(field);
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/repositories/content.ts:439:59
+Error: Argument of type 'unknown' is not assignable to parameter of type 'PropertyKey'. 
+			validateIdentifier(field, "inherited content field name");
+			if (!SYSTEM_COLUMNS.has(field) && !Object.hasOwn(data, field)) {
+				columns.push(field);
+
+/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/repositories/content.ts:440:18
+Error: Argument of type 'unknown' is not assignable to parameter of type 'string'. 
+			if (!SYSTEM_COLUMNS.has(field) && !Object.hasOwn(data, field)) {
+				columns.push(field);
+				values.push(null);
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:12:21
+Error: Parameter 'db' implicitly has an 'any' type. 
+
+function sourceHost(db){return{database:db,
+ async get(collection,id,locale){
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:13:12
+Error: Parameter 'collection' implicitly has an 'any' type. 
+function sourceHost(db){return{database:db,
+ async get(collection,id,locale){
+  const item=await new ContentRepository(db).findByIdOrSlug(collection,id,locale?resolveConfiguredLocale(locale):undefined);
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:13:23
+Error: Parameter 'id' implicitly has an 'any' type. 
+function sourceHost(db){return{database:db,
+ async get(collection,id,locale){
+  const item=await new ContentRepository(db).findByIdOrSlug(collection,id,locale?resolveConfiguredLocale(locale):undefined);
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:13:26
+Error: Parameter 'locale' implicitly has an 'any' type. 
+function sourceHost(db){return{database:db,
+ async get(collection,id,locale){
+  const item=await new ContentRepository(db).findByIdOrSlug(collection,id,locale?resolveConfiguredLocale(locale):undefined);
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:17:15
+Error: Parameter 'collection' implicitly has an 'any' type. 
+ },
+ async create(collection,body){
+  let selections=[];
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:17:26
+Error: Parameter 'body' implicitly has an 'any' type. 
+ },
+ async create(collection,body){
+  let selections=[];
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:18:7
+Error: Variable 'selections' implicitly has type 'any[]' in some locations where its type cannot be determined. 
+ async create(collection,body){
+  let selections=[];
+  const item=await withTransaction(db,async transaction=>{
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:20:40
+Error: Argument of type 'Kysely<any> | Transaction<any>' is not assignable to parameter of type 'Kysely<Database>'.
+  Type 'Transaction<any>' is not assignable to type 'Kysely<Database>'.
+    The types returned by '$extendTables().fn.any(...)' are incompatible between these types.
+      Type 'KyselyTypeError<"any(expr) call failed: expr must be an array"> | ExpressionWrapper<any, string | number | symbol, unknown>' is not assignable to type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'.
+        Property '__kyselyTypeError__' is missing in type 'ExpressionWrapper<any, string | number | symbol, unknown>' but required in type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'. 
+  const item=await withTransaction(db,async transaction=>{
+   const content=new ContentRepository(transaction);
+   const locale=body.locale?resolveConfiguredLocale(body.locale):getI18nConfig()?.defaultLocale;
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:25:64
+Error: Argument of type 'Kysely<any> | Transaction<any>' is not assignable to parameter of type 'Kysely<Database>'.
+  Type 'Transaction<any>' is not assignable to type 'Kysely<Database>'.
+    The types returned by '$extendTables().fn.any(...)' are incompatible between these types.
+      Type 'KyselyTypeError<"any(expr) call failed: expr must be an array"> | ExpressionWrapper<any, string | number | symbol, unknown>' is not assignable to type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'.
+        Property '__kyselyTypeError__' is missing in type 'ExpressionWrapper<any, string | number | symbol, unknown>' but required in type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'. 
+   const created=await content.create({...body,type:collection,locale,slug});
+   if(body.taxonomies){selections=await resolveTaxonomySlugMap(transaction,body.taxonomies,locale);
+    await applyResolvedTaxonomySelections(transaction,collection,created.id,selections);}
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:26:43
+Error: Argument of type 'Kysely<any> | Transaction<any>' is not assignable to parameter of type 'Kysely<Database>'.
+  Type 'Transaction<any>' is not assignable to type 'Kysely<Database>'.
+    The types returned by '$extendTables().fn.any(...)' are incompatible between these types.
+      Type 'KyselyTypeError<"any(expr) call failed: expr must be an array"> | ExpressionWrapper<any, string | number | symbol, unknown>' is not assignable to type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'.
+        Property '__kyselyTypeError__' is missing in type 'ExpressionWrapper<any, string | number | symbol, unknown>' but required in type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'. 
+   if(body.taxonomies){selections=await resolveTaxonomySlugMap(transaction,body.taxonomies,locale);
+    await applyResolvedTaxonomySelections(transaction,collection,created.id,selections);}
+   return created;
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:29:29
+Error: Variable 'selections' implicitly has an 'any[]' type. 
+  });
+  completeContentTaxonomies(selections);return item;
+ },
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:31:15
+Error: Parameter 'collection' implicitly has an 'any' type. 
+ },
+ async update(collection,id,body){
+  let selections=[];
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:31:26
+Error: Parameter 'id' implicitly has an 'any' type. 
+ },
+ async update(collection,id,body){
+  let selections=[];
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:31:29
+Error: Parameter 'body' implicitly has an 'any' type. 
+ },
+ async update(collection,id,body){
+  let selections=[];
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:32:7
+Error: Variable 'selections' implicitly has type 'any[]' in some locations where its type cannot be determined. 
+ async update(collection,id,body){
+  let selections=[];
+  const item=await withTransaction(db,async transaction=>{
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:34:40
+Error: Argument of type 'Kysely<any> | Transaction<any>' is not assignable to parameter of type 'Kysely<Database>'.
+  Type 'Transaction<any>' is not assignable to type 'Kysely<Database>'.
+    The types returned by '$extendTables().fn.any(...)' are incompatible between these types.
+      Type 'KyselyTypeError<"any(expr) call failed: expr must be an array"> | ExpressionWrapper<any, string | number | symbol, unknown>' is not assignable to type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'.
+        Property '__kyselyTypeError__' is missing in type 'ExpressionWrapper<any, string | number | symbol, unknown>' but required in type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'. 
+  const item=await withTransaction(db,async transaction=>{
+   const content=new ContentRepository(transaction);
+   if(body._rev){const existing=await content.findById(collection,id);if(!existing)throw new CmsError('NOT_FOUND');
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:38:64
+Error: Argument of type 'Kysely<any> | Transaction<any>' is not assignable to parameter of type 'Kysely<Database>'.
+  Type 'Transaction<any>' is not assignable to type 'Kysely<Database>'.
+    The types returned by '$extendTables().fn.any(...)' are incompatible between these types.
+      Type 'KyselyTypeError<"any(expr) call failed: expr must be an array"> | ExpressionWrapper<any, string | number | symbol, unknown>' is not assignable to type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'.
+        Property '__kyselyTypeError__' is missing in type 'ExpressionWrapper<any, string | number | symbol, unknown>' but required in type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'. 
+   const updated=await content.update(collection,id,body);
+   if(body.taxonomies){selections=await resolveTaxonomySlugMap(transaction,body.taxonomies,updated.locale??body.locale);
+    await applyResolvedTaxonomySelections(transaction,collection,id,selections);}
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:39:43
+Error: Argument of type 'Kysely<any> | Transaction<any>' is not assignable to parameter of type 'Kysely<Database>'.
+  Type 'Transaction<any>' is not assignable to type 'Kysely<Database>'.
+    The types returned by '$extendTables().fn.any(...)' are incompatible between these types.
+      Type 'KyselyTypeError<"any(expr) call failed: expr must be an array"> | ExpressionWrapper<any, string | number | symbol, unknown>' is not assignable to type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'.
+        Property '__kyselyTypeError__' is missing in type 'ExpressionWrapper<any, string | number | symbol, unknown>' but required in type 'KyselyTypeError<"any(expr) call failed: expr must be an array">'. 
+   if(body.taxonomies){selections=await resolveTaxonomySlugMap(transaction,body.taxonomies,updated.locale??body.locale);
+    await applyResolvedTaxonomySelections(transaction,collection,id,selections);}
+   return updated;
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:42:29
+Error: Variable 'selections' implicitly has an 'any[]' type. 
+  });
+  completeContentTaxonomies(selections);return item;
+ }
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:45:37
+Error: Parameter 'db' implicitly has an 'any' type. 
+};}
+export function handleContentCreate(db,collection,body){return create(db,collection,body,sourceHost(db));}
+export function handleContentUpdate(db,collection,id,body){return update(db,collection,id,body,sourceHost(db));}
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:45:40
+Error: Parameter 'collection' implicitly has an 'any' type. 
+};}
+export function handleContentCreate(db,collection,body){return create(db,collection,body,sourceHost(db));}
+export function handleContentUpdate(db,collection,id,body){return update(db,collection,id,body,sourceHost(db));}
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:45:51
+Error: Parameter 'body' implicitly has an 'any' type. 
+};}
+export function handleContentCreate(db,collection,body){return create(db,collection,body,sourceHost(db));}
+export function handleContentUpdate(db,collection,id,body){return update(db,collection,id,body,sourceHost(db));}
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:46:37
+Error: Parameter 'db' implicitly has an 'any' type. 
+export function handleContentCreate(db,collection,body){return create(db,collection,body,sourceHost(db));}
+export function handleContentUpdate(db,collection,id,body){return update(db,collection,id,body,sourceHost(db));}
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:46:40
+Error: Parameter 'collection' implicitly has an 'any' type. 
+export function handleContentCreate(db,collection,body){return create(db,collection,body,sourceHost(db));}
+export function handleContentUpdate(db,collection,id,body){return update(db,collection,id,body,sourceHost(db));}
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:46:51
+Error: Parameter 'id' implicitly has an 'any' type. 
+export function handleContentCreate(db,collection,body){return create(db,collection,body,sourceHost(db));}
+export function handleContentUpdate(db,collection,id,body){return update(db,collection,id,body,sourceHost(db));}
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:46:54
+Error: Parameter 'body' implicitly has an 'any' type. 
+export function handleContentCreate(db,collection,body){return create(db,collection,body,sourceHost(db));}
+export function handleContentUpdate(db,collection,id,body){return update(db,collection,id,body,sourceHost(db));}
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:48:34
+Error: Parameter 'db' implicitly has an 'any' type. 
+
+export function handleContentGet(db,collection,id,locale){return get(db,collection,id,locale,sourceHost(db));}
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:48:37
+Error: Parameter 'collection' implicitly has an 'any' type. 
+
+export function handleContentGet(db,collection,id,locale){return get(db,collection,id,locale,sourceHost(db));}
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:48:48
+Error: Parameter 'id' implicitly has an 'any' type. 
+
+export function handleContentGet(db,collection,id,locale){return get(db,collection,id,locale,sourceHost(db));}
+
+/workspace/cms-full-taxonomy-api-admin/tests/helpers/taxonomies/source-content-reference.mjs:48:51
+Error: Parameter 'locale' implicitly has an 'any' type. 
+
+export function handleContentGet(db,collection,id,locale){return get(db,collection,id,locale,sourceHost(db));}
+
+/workspace/cms-full-taxonomy-api-admin/tests/taxonomy-native/source-locale-reference.test.ts:25:42
+Error: Argument of type 'import("/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely").Kysely<import("/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/types").Database>' is not assignable to parameter of type 'import("/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely").Kysely<import("/workspace/cms-full-taxonomy-api-admin/src/lib/server/canonical-storage/types").Database>'.
+  The types of 'fn.agg(...).over' are incompatible between these types.
+    Type '(over?: import("/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/aggregate-function-builder").OverBuilderCallback<import("/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/types").Database, keyof import("/wo...' is not assignable to type '(over?: import("/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/aggregate-function-builder").OverBuilderCallback<import("/workspace/cms-full-taxonomy-api-admin/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-taxonomy-...'.
+      Types of parameters 'over' and 'over' are incompatible.
+        Types of parameters 'builder' and 'builder' are incompatible.
+          Type 'import("/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/over-builder").OverBuilder<import("/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/types").Database, keyof import("/workspace/cms-full-taxonomy-api-...' is not assignable to type 'import("/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/over-builder").OverBuilder<import("/workspace/cms-full-taxonomy-api-admin/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-taxonomy-api-admin/src/lib/server/canon...'.
+            Types of property 'partitionBy' are incompatible.
+              Type '{ (partitionBy: readonly import("/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/types").Database, keyof import...' is not assignable to type '{ (partitionBy: readonly import("/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-taxonomy-api-admin/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-taxo...'.
+                Types of parameters 'partitionBy' and 'partitionBy' are incompatible.
+                  Type 'readonly import("/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-taxonomy-api-admin/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-taxonomy-api-admin/s...' is not assignable to type 'readonly import("/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/types").Database, keyof import("/workspace/cms...'.
+                    Type 'import("/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-taxonomy-api-admin/src/lib/server/canonical-storage/types").Database, keyof import("/workspace/cms-full-taxonomy-api-admin/src/lib/se...' is not assignable to type 'import("/workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/parser/partition-by-parser").PartitionByExpression<import("/workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/database/types").Database, keyof import("/workspace/cms-full-tax...'.
+                      Type '"_emdash_collections.version"' is not assignable to type 'PartitionByExpression<Database, keyof Database>'. Did you mean '"_emdash_collections.icon"'? 
+it('reference host: Source resolveId dataflow finds the French slug before actual assignment update',async()=>{
+ const repository=new TaxonomyRepository(db);
+ await repository.create({name:'tag',slug:'initial',label:'Initial',locale:'fr'});
+
+====================================
+svelte-check found 68 errors and 0 warnings in 17 files
+[ELIFECYCLE] Command failed with exit code 1.

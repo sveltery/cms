@@ -1541,6 +1541,108 @@ whole normal/secured CI and independent/configured review, PM approval, author
 expected-head merge and post-Main verification remain pending. Other direct
 Miniflare fixtures and full product parity remain separate unfinished scope.
 
+
+## Full taxonomy product test-first completion (proposed TAX1)
+
+EmDash1.1.0 immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e` is the behavior authority. [The taxonomy feature record](../../docs/taxonomies.md) and [complete immutable ledger](../../docs/taxonomy-source.json) preserve99 whole Source authorities, including all27 audited test families,310 static declarations and815 expect expressions. Whole callbacks, datasets, clocks, SQL literals, values and original PostgreSQL conditional expansion remain unchanged. Source execution and completed causal Source assertion-red credit are0. This initial test-only proposal grants no feature completion, storage/transport parity or specific deviation acceptance.
+
+TAX1-01 proposes Source JSON/Astro and React/Kumo administration through Native SvelteKit handlers, real Native Svelte manager/sidebar, existing trusted permissions and base-qualified Native routes. API response/locale/group/structure/order/cleanup/count semantics must follow the immutable contracts; UI mounting and pure supplied-client mocks are explicit test-only boundaries. Actual API/admin/client/public/lifecycle composition is unfinished. Specific framework/API acceptance is pending.
+
+TAX1-02 preserves the single existing whole TaxonomyRepository/definitions, frozen canonical provider7, object/request caches and BulkTaxonomyDialog. Existing canonicalSourceDatabase maps logical Source taxonomy names to real `_cms_` tables. Literal Source SQL/index/log-plan expectations remain unmodified; Native index names differ and may produce honest namespace-bound Source failures. No test/result/log/introspection rewrite or fabricated provider grants passing credit. Full Source fixture closure and visible counts/public hydration integration are pending.
+
+TAX1-03 preserves the existing unsupported-D1-write refusal and C-07 requirement. Whole Source callbacks can fall back to separate writes on Source D1; Native completion requires a separately qualified actual atomicBatch plan, not a non-atomic fallback. No canonical migration, auth/session/principal guard, package/lock/bootstrap/CI command, security policy or original clock changes are included in this test-only packet. Node ordinary SQL and pure matcher tests are the initial proposed execution scope; retained route permission callbacks are held for finite manager qualification.
+
+Ten Original Native ordinary SQL requirements consume the real public canonical storage and unchanged repository. One initial implemented group control and nine missing-module requirements precede later real SQL/value assertions. Outcomes remain unmeasured at this inventory checkpoint. Complete Source matcher15 resolves to the absent actual Native matcher; a pre-expect import error grants0 completed Source assertion-red credit. Whole other26 families remain retained/unexecuted. Proposed own PR, actual baseline/fix/refactor receipts, full final normal/secured gates, independent/configured review, specific decisions, Root expected-head approval, author merge and actual post-Main are all pending.
+
+
+### TAX1 actual test-first baseline checkpoint
+
+The exact qualified test-only packet is regularly committed at `b02f30de8ebd932682e2d1f75fb64301ee4fb4eb`. [The complete actual receipt](../../docs/taxonomy-evidence/initial-baseline.json) retains each whole raw log and separates initial control/module availability from actual SQL/Source behavior. Guard99/27/310/815 passes; Native10 executes one already implemented real group control and9 reached missing-handler assertion reds, with later SQL values unreached. Whole Source matcher15 stops before collection at its absent Native module; completed Source value-red and Source execution credits remain0. Other26 whole families stay exact/retained/unexecuted.
+
+Original Source supplied mocked/unit contexts are not blanket classified as unauthorized protected HTTP; their concrete real fixture/transport closure still requires a finite proposal. No new actual credentials/session/signature/replay/race or protected HTTP probe is performed. The two literal raw baseline files keep all original bytes and receive only `whitespace=-blank-at-eof`; no wildcard or global whitespace exemption exists. Product namespace/atomic/backend/admin closure, whole Source integration, specific TAX1 acceptance, author-owned PR/final normal/secured gates/review/approval/merge/post-Main remain pending.
+
+### Taxonomy D1 atomic write contracts (PR102, test-first; not parity approval)
+
+Pinned authority: EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`,
+`packages/core/src/database/repositories/taxonomy.ts` and
+`packages/core/src/api/handlers/taxonomies.ts`. Source uses interactive
+transactions where supported and per-chunk reorder writes on D1. Native must
+use the actual existing atomic provider for each complete mutation, including
+multiple reorder chunks. Eight supplemental tests retain real D1 storage,
+66 actual groups/three <=96-parameter chunks and dedicated trigger failures to
+verify rollback; they neither rewrite the Source expected SQL nor claim Source
+TDD credit. All whole Source families and original Native10 remain unchanged.
+No widened clocks, fabricated result rows, transaction emulation, auth/session
+changes or new protected HTTP probes are proposed. Full Native runtime adapter
+and its first execution are pending separate finite review/qualification.
+Framework/backend substitution is proposed for PR102; an acceptance decision
+is not recorded. See `docs/taxonomies.md` for paired feature scope and evidence.
+
+### Taxonomy Native D1 actual baseline receipt (PR102; no parity approval)
+
+At Native343ab38d, the unchanged whole eight-case D1 requirements ran once: seven
+failed/one existing boundary-and-empty-SQL control passed; no fixture failures,
+timeouts or skips. Three reached unsupported callback-transaction assertions;
+three reached absent-handler module assertions; one reached a reorder expected
+error mismatch at the existing Source-write boundary. Their later SQL rollback
+and behavior values were unreached. Zero completed Source assertions or Source
+value-red credit. Raw6277-byte evidence and precise classification are in
+`docs/taxonomy-evidence/`; paired `docs/taxonomies.md` records the same limits.
+Source27/99 and originalNative10 remain unchanged. The additional literal
+`.gitattributes` rule disables only blank-at-EOF checking for the byte-exact D1
+log; other whitespace checks remain active. Product atomic substitution remains
+finite-proposed, unapplied and awaiting separate fresh review/Root qualification.
+
+
+### Taxonomy Source-only migration fixture preparation — proposed PR102, not applied
+
+Source authority: immutable `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, original `packages/core/tests/utils/test-db.ts` and whole `packages/core/src/database/migrations/runner.ts` eager/dynamic closure (99 files;95 new whole files,381,386 bytes). The fixture remains physically Source-only: original migrations001–091 (90 actual migrations), original SQL/index names and genuine query/catalogue/results. A same-schema Source-plus-Native14 installation is blocked by16 global index-name collisions (26 actual declarations); no synthetic Native markers or identifier/result rewrites are permitted.
+
+Framework/runtime distinction: Source reference fixtures are separate from the actual Native normal canonical installation, Node10 and realD1eight. Three finite Node support controls are proposed but unexecuted. Their Native migration call must genuinely refuse the Source-owned colliding catalogue and leave it unchanged. Source original helper, Registry/ContentRepository reference-support closure and Native taxonomy-domain constructor hosting remain pending a further finite graph/semantic qualification. They establish no NativeRegistry/provider/PG/Worker acceptance. Original Source27 bodies/callbacks/assertions are unchanged and have zero new execution credit here.
+
+Dependency substitution: Source helper's eager real `pg` Pool import uses proposed exact development-only8.18.0, Source direct package version from the pin. Fourteen explicitly locked graph nodes and actual installed license authorities are recorded in `notices/taxonomy-test-dependencies/inventory.json`; every old whole lock package/snapshot record is retained exactly. Transitive versions follow this concrete Native lock proposal rather than asserting identical Source transitive lock resolution. No external database/credential/session/replay/race/protectedHTTP probes were run. Paired feature documentation is `docs/taxonomies.md`. Preparation direction recorded by Root; application, actual baseline evidence, final product parity and merge acceptance remain unrecorded/pending.
+
+
+### Taxonomy Source-only support baseline — actual PR102 development evidence
+
+At unchanged-product test-first head `d5a73717ae88a1c81b079a31a9f9ba093f18482b`, one whole support3 run passed3/3,1.13s total/321ms tests;0 skips/timeouts/fixture failures. The original Source90 actual migrations/indexes/catalogue/introspection, actual 1n affected-row result and full laterfailure rollback passed. The real Native canonical owner correctly refused the Source catalogue's index collisions with `MIGRATION_REQUIRED`; its complete catalogue remained unchanged and no Native markers were added. `docs/taxonomy-evidence/source-support3-baseline.log` retains the exact223-byte raw run, SHA256`63b757712bf32b4a5048c3362fe5b2ff52d3d3658154947640967de074b5a118`. The genuine frozen install raw519-byte log retains SHA256`cbcb8c8bf84b0bab53e57b930595fa8149628f59f9b907a4b6a6e541ec2fc6b3`; unchanged parsed whole records and restoration of the qualified minimal lock serialization are explicit in its receipt.
+
+This establishes only ordinary dedicated Node reference-fixture support. SourceTaxonomy27 callbacks/assertions, actualNative success/provider/Registry, PostgreSQL/D1/Worker product and final taxonomy feature acceptance have zero new credit. Native10/D1eight baselines were not repeated. The full original reference helper/Registry/ContentRepository closure and single Native taxonomy-domain hosting/runtime proposal remain pending; no product change was applied. Root exact122 direction authorized this finite test-only baseline; final runtime/merge/feature acceptance remains separate and unrecorded. Paired current feature evidence appears in `docs/taxonomies.md`.
+
+
+### Full taxonomy Core22 reference closure — proposed PR102, unexecuted
+
+Source pin913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:214 whole original runtime/test authorities,538 runtime edges,61 new whole files735,721 bytes. All original22 Core families216 declarations/543 matcher expressions remain unchanged. Genuine Source SchemaRegistry/ContentRepository are test-only reference support; taxonomy under test and the single existing context/cache/i18n owners resolve actual Native paths. No Native Registry/content implementation is substituted with a fake producer. Source-schema creation/capture remains genuine reference support and gives only taxonomy-domain fixture credit after actual assertions are reached. Initial missing Native modules remain honest pre-expect failures with zero value-red/pass credit.
+
+The real pinned `sqlite` descriptor and whole original `generateConfigModule`/`generateDialectModule` produce virtual modules that import the actual Source Node SQLite factory. Unsupported request-scope/coalescing/deletion-guard capabilities retain exactly the Source-generator exports. Original controlled APIContext tests use only pure Role/RBAC/hasScope exports from three whole original auth bodies; no new credential/session/signature/replay/race/protectedHTTP probes are introduced. Original eager `pg` Pool uses the already qualified development-only dependency; whole original PG conditionals are retained and unexecuted unless configured. No same-schema dual installation, Source SQL/index/catalogue/result/log rewriting, helper narrowing, or fake callback results are allowed.
+
+Native atomic taxonomy writes, Source-physical constructor hosting, and the single actual DraftRepository/create/update/revision assignment plans remain separate product proposals requiring a fresh semantic review and Root qualification. Source-fixture passes will establish neither Native Registry/provider acceptance nor D1/PG/Worker behavior. NativeNode10 and actualD1eight previous distinct baseline witnesses are unchanged. The two static type findings receive whole original adapter closure plus a type-only catalogue SQL generic; support3 runtime statements/assertions stay identical and are not repeated. Paired feature record: `docs/taxonomies.md`. Root fixture/dependency application and initial Core22 baseline are pending; no new execution or product-pass credit is recorded.
+
+
+### Taxonomy whole Core22 actual first baseline — PR102 at198d2327
+
+Qualified immutable test-host68 was committed normally with zero product changes, then Source99/27/310/815 and reference214/538 provenance guards exited0. One complete unchanged Core22 baseline exited1:22 files included,21 module-preexpect failures, one actual original query-plan family with3 registered/executed/passed callbacks and no failed callbacks. Other213 static declarations were uncollected. Missing-module failures earn zero Source expectation/value-red/pass credit; only five first-visible absent Native paths are observed, with other absent boundaries unreached. Static216 declarations/543 matcher expressions and all original Source27 bodies/data/mocks/clocks remain retained.
+
+The3 passed term-order cases use the same preexisting Native taxonomy repository, genuine Source-only90 migrations/Node SQLite, original captured query SQL/parameters and actual SQLite EXPLAIN. The whole passed family retains13 static matcher expressions; no runtime expectation counter was fabricated. This gives only narrow taxonomy-domain query-plan support evidence, no new product feature/full API/admin acceptance and no Native canonical Registry/provider/Node/D1/PG/Worker credit. Original PostgreSQL conditionals remain whole and unconfigured/unexecuted. No dual installation, Native markers, query/index/catalogue/row/result/log rewrite or support3/Native10/D1eight repeat occurred.
+
+Actual raw23,067-byte log SHA d61aadac0cc2219a096ac4ca7f42d78c8c83455f5c94b10bc084e9002d589727 and10,975-byte JSON reporter SHA dd6892eb3841f0416c4bbb5a2717c34caa0926c155289c096df28c37a4c3d942 are retained byte-for-byte with truthful per-family/callback classification and receipt in `docs/taxonomy-evidence/source-core22-baseline*`. Native static `tsc --noEmit` now exits0 with literal empty stdout/stderr after the whole adapter/type-only SQL generic correction; it gives no Source/runtime/SQL credit. Paired feature record: `docs/taxonomies.md`. Full finite Native runtime/physical Source domain host/atomic lifecycle/cache integration and final actual-public acceptance remain separately pending.
+
+
+### Supplemental whole Source7 Native content-taxonomy fixture — proposed PR102
+
+Source authority: immutable913cb1bb9b7f08c3ff0d258b4420e53835b6a58e `packages/core/tests/integration/content/content-taxonomies.test.ts`, byte-identical whole body SHA87d90ae65b69a597a38437c21b1960208ce51ed2ad1d0a2fe1dc6ae497db1d36. The supplemental test host binds original post/page setup inputs to actual Native migrateCms/SchemaRegistry and wraps the sole actual ordinaryContentService in Source response envelopes. Source update permits omitted `_rev`; Native content service requires CAS. The fixture reads the real persisted version/updatedAt and supplies that unchanged actual snapshot, preserving Native storage conflict checks. This fixture adaptation earns no Source omitted-CAS transport fidelity claim. It installs no identity or credentials, performs no protected HTTP/permission-denial/session/signature/replay/race probes and never fabricates providers/rows/results/transactions.
+
+Whole seven declarations and every original matcher/data/SQL/clock remain unchanged. Native SQLite is the only supplied dialect; Source PostgreSQL conditionals remain whole in the independent Source-only Core22 runner but are not supplied or credited here. This prepared test-only host is unexecuted, unqualified and gives zero assertion/value-red/pass/Native provider or complete feature acceptance. Actual Native worktree canonical14 and later public15/Node/D1 acceptance remain distinct. Paired feature record: `docs/taxonomies.md`. Existing full Source27, Native10/D1eight/support3 evidence is preserved without repeats.
+
+
+### Native whole Source7 actual initial TDD baseline — PR102 at9996aa63
+
+The Root-qualified Native fixture executed the whole original seven-case content-taxonomies family once before product application: all7 callbacks registered, four reached actual value-assertion mismatches, two dereferenced absent create results before their taxonomy assertions, and one existing unsupported-capability guard control passed malformed input. The control establishes no causal taxonomy-shape fidelity; the unknown-slug rollback assertion stayed unreached. Whole23 static matcher expressions, source body/data/raw SQL/clocks remain unchanged. Actual raw5615-byte log SHA80551a0d882940de9e343fece87825bba3181075dccec98e54edc67d3302c2d5 and5974-byte reporter SHA8e881a919ed13e3ce50966a50dbcdfe3e94289c328a9bdece2c6079214026d63 are retained unchanged with classification in `docs/taxonomy-evidence/native-source7-baseline*`. Native canonical14 readiness was real; the feature remains red with no PG/Worker/full UI acceptance. Source provenance passed and no identical earlier baselines repeated. Paired record: `docs/taxonomies.md`.
+
+
+### Three reviewed taxonomy Source-contract supplemental reds — PR102 a181c558
+
+Following the complete original Native Source7 baseline, authorized local development applied immutable R1 runtime. New supplemental tests for TAXRUNREV01/02/03 all registered and reached actual assertion reds:400 vs200 for ignored reorder locale, false vs true for configured FR create, false vs true for existing French omitted-locale update. These are supplemental Native contract checks, with zero original Source matcher credit; whole Source7 body/data/SQL/clocks remain unchanged. Actual native storage/content/Tax owners and original controlled unit-context substitution are used, with no new credentials/identity/session/signature/permission-denial/auth/race probes or server exposure. Raw originals/receipt are in `docs/taxonomy-evidence/native-review-regressions-baseline*`. Fixes, same-reviewer closure, actual-public union/final acceptance remain pending. Paired feature record: `docs/taxonomies.md`.
 ## Native HTTP fixture listener lifecycle
 
 The [Native fixture record](../../docs/runtime-port-lifecycle.md) covers a test-only initial port allocation repair. The project authority remains EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`; this change copies no new upstream function or assertion and changes no production behavior. It adds three ordinary Native HTTP lifecycle callbacks with zero Source callbacks or parity credit.
@@ -1829,3 +1931,78 @@ checks and closure are audited externally against their actual commit, without a
 self-referential future-head claim in this snapshot. Full scheduler/heartbeat,
 full Source users/CLI/PAT, remote D1 and general migration-runner parity remain
 unfinished. No new CLI/auth/HTTP probe or private provider is introduced.
+
+
+### Taxonomy backend runtime development — PR102
+
+EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e` remains the exact authority. [The feature record](../../docs/taxonomies.md) and [actual runtime receipt](../../docs/taxonomy-evidence/runtime-development-receipt.json) retain every historical baseline and whole Source family. Three review-contract regressions reached supplemental assertion reds and now pass after fidelity repairs plus meaningful shared read-owner refactoring. Original reorder deliberately ignores locale query, explicit configured FR resolves tofr on create, and omitted-locale update reads the genuine French entry. All original bodies/mocks/data/SQL/clocks remain unchanged. Genuine content-Get constructor closure resolves real identifiers through the single existing Native content owner or original Source reference repository; it does not establish general content SEO/byline/reference hydration. Equivalent explicit property initialization replaces one nonerasable TypeScript parameter property for native Node24 loading without behavioral change.
+
+Actual public Mainc3d was merged at e5084, preserving the entire UTC/CAS Registry timestamp repair and frozen canonical1–15; Tax adds only after-success collection slug-cache resets. Whole original Core22 now passes222 actual callbacks (216 static declarations plus six original parameter expansions), and pure matcher15 passes15. Earlier first runtime218/222 had four constructor-import pre-expect failures, not assertion reds, now genuinely closed; raw outcomes are retained. Source-only original90 migration/reference fixtures grant only taxonomy-domain proof. Separate actual canonical15 Native API10, Native Source7 and genuine D1eight pass10/7/8; supplemental compound Node/D1 atomic checks pass8 after a real Node import gap. Native Source7 uses a genuine current persisted snapshot to satisfy existing mandatory Native CAS and gives no omitted-CAS Source API fidelity credit. No runtime matcher counts, providers, callback results or SQL/catalogue rows are fabricated.
+
+The finite synchronous query-list/actual atomicBatch adaptation and native `/api` SvelteKit transport preserve Source envelopes, locale/group/assignment semantics and existing Native permission/origin/CAS owners. Unsupported Source-shaped public D1 interactive callbacks remain unavailable. These are framework/API substitutions proposed in PR102; final specific deviation acceptance is not recorded. Same-reviewer closure, full final13 normal/9 secured and configured independent review, author CAS merge/post-Main, frontend79 and actual App/Search/Seed/Worker integrations remain pending. The public QueryCore dependency fails closed rather than supplying duplicate query behavior; schema full-index forward installation remains its assigned owner. This local runtime evidence is not full product completion.
+
+
+The entire existing lifecycle test-file glob also passes324/324 after the equivalent Native Node import repair, on actual canonical15 Node/D1 fixtures. [Its exact raw log and receipt](../../docs/taxonomy-evidence/public15-existing-lifecycle-receipt.json) preserve every original callback without new Source matcher credit or authored protected probes. This is regression evidence, with final entire normal/secured/configured gates and integration acceptance still pending.
+
+### Taxonomy configured-locale by-slug fidelity repair — PR102
+
+The immutable EmDash1.1.0 pin remains
+`913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. Source content handler lines587–590,
+1075–1078 and1496 canonicalize the supplied locale before genuine slug lookup.
+The trusted Native taxonomy constructor forwarded `FR` directly when the
+stored locale was `fr`, returning NOT_FOUND for get/update of `bonjour`.
+Two supplemental Native callbacks reached success assertion failures at
+test-first630341ae. Fix84f72210 reuses the existing configured-locale resolver;
+refactor37bf7885 shares this read without changing omitted-locale inference,
+actual canonical entry identity, snapshot CAS or existing permission owners.
+This is a fidelity repair, not a newly accepted behavioral difference.
+
+[The paired feature record](../../docs/taxonomies.md) and
+[whole retained receipt](../../docs/taxonomy-evidence/resume-locale-slug-receipt.json)
+record Native5 passing and original Core222/matcher15, Native API10, whole
+Source-on-Native7, D1eight and compound Node/D1eight passing. Two separate
+genuine Source-physical reference-host controls pass; their update follows
+the original resolveId dataflow through the actual repository then existing
+reference-host update. They are supplemental controls with zero original
+Source callback credit, not full generic Source handler execution or Native
+provider acceptance. Original Source bodies/data/mocks/SQL/clocks stay exact.
+
+Existing mandatory Native snapshot CAS, finite atomicBatch/D1 plan and `/api`
+SvelteKit substitutions remain proposed PR102 differences with final specific
+acceptance unrecorded. Corrected erased row types retain actual compound SQL
+and assertions; historical CI478 failed typecheck and receives no whole normal
+credit. Final current-head normal13/secured9, fresh/configured review and Root
+approval remain required before author expected-head regular merge. Full UI,
+public QueryCore, App/Seed, PostgreSQL and deployed Worker remain incomplete.
+
+
+### Taxonomy final-gate cache/Worker integration repairs — PR102
+
+The immutable913cb1 Source remains unchanged. [The paired feature record](../../docs/taxonomies.md) and [full integration receipt](../../docs/taxonomy-evidence/integration-closure-receipt.json) retain CI482/local actual1492 results:1477passed/15failed. Eight old Native readiness rejection expectations are superseded by actual atomic capability plus real trigger rollback requirements; direct-write safety assertions stay intact. Three old Native role projections now include original Source taxonomy thresholds. Neither expectation maintenance earns original Source callback credit.
+
+Four genuine Worker failures came from eager taxonomy imports into the bounded scalar graph and an obsolete single-bundle fixture assumption. The same collection-slug globalSymbol holder/reset is split without duplicating cache state. Real taxonomy repository and object-cache invalidation load only for actual taxonomy work; all lifecycle/reference callers await actual invalidation. Real Vite ESModule transport preserves every chunk and original Worker flags, security, SQL, data and clocks, checking every chunk for node:sqlite. Whole four Worker families pass31; no-nodejscompat scalar execution does not imply complete taxonomy Worker support. This Native module/fixture transport substitution is proposed for finite PR102 backend acceptance; final specific acceptance is unrecorded.
+
+SourceCore222/matcher15, supplemental reference2, NativeAPI10/Source-on-Native7/regressions5/D1eight/compound8, Nativeboundary16 and existingRole4 pass before finalcommonconstructor refactor; checker0/0. Complete final-head normal13/secured9 and fresh independent/configured reviews, Root exact approval and author expected-head regular merge remain pending. Full taxonomy UI, actualQueryCore/App/Seed and full provider/deployed integration remain incomplete.
+
+### Taxonomy canonical provenance gate closure — PR102
+
+CI486 at46b reached the old canonical provenance assertion after its service
+suite passed and rejected the obsolete import-only description of the real
+atomic-adapted taxonomy repository. Definitions had the same obsolete contract.
+This static guard failure earns zero new original Source or causal product-red
+credit. Its full normal validation did not complete; its secured browser job
+passed on46b only and does not qualify a successor.
+
+[The paired feature record](../../docs/taxonomies.md) and
+[canonical prerequisite record](../../docs/canonical-installation.md) now
+distinguish three complete import-only runtime bodies from two complete finite
+Native adaptations. The hash-guarded32 explicit Source/native edits in the
+[adaptation inventory](../../docs/taxonomy-canonical-repository-adaptations.json)
+reconstruct both entire taxonomy bodies without ignored spans or arbitrary
+normalization. Immutable38 canonical/255 taxonomy authorities and all original
+test bodies/data/SQL/clocks remain unchanged. This is provenance evidence with
+zero new callback or behavioral parity credit. Native atomicity, affected-row
+and framework substitutions remain proposed pending current-head full normal13,
+secured9, independent/configured review and specific Root approval before the
+author's expected-head regular merge. Full UI, QueryCore, App/Seed, PostgreSQL
+and deployed Worker integration remain incomplete.
