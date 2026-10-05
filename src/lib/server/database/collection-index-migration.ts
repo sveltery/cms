@@ -65,13 +65,20 @@ function actualDuplicatesQuery(table:string) {
       CASE WHEN content.id=content.translation_group THEN 0 ELSE 1 END,content.created_at,content.id`;
 }
 
-/** Actual Source080 body planning for each fresh, already-executed SQL read. */
-function splitQueries(database:CmsDatabase, slug:string, duplicates:readonly DuplicateContentRow[]) {
-  const statements:CompiledQuery[]=[],table=tableName(slug);
+/** Both executors retain Source080's first-row anchor in each ordered group. */
+function* rowsToSplit(duplicates:readonly DuplicateContentRow[]) {
   let previousGroupLocale:string|null=null;
   for (const row of duplicates) {
     const groupLocale=`${row.translation_group}\0${row.locale_key}`;
-    if (groupLocale!==previousGroupLocale) {previousGroupLocale=groupLocale;continue;}
+    if (groupLocale===previousGroupLocale) yield row;
+    else previousGroupLocale=groupLocale;
+  }
+}
+
+/** Actual Source080 body planning for each fresh, already-executed SQL read. */
+function splitQueries(database:CmsDatabase, slug:string, duplicates:readonly DuplicateContentRow[]) {
+  const statements:CompiledQuery[]=[],table=tableName(slug);
+  for (const row of rowsToSplit(duplicates)) {
     statements.push(sql`INSERT INTO _cms_content_taxonomies(collection,entry_id,taxonomy_id)
       SELECT collection,${row.id},taxonomy_id FROM _cms_content_taxonomies
       WHERE collection=${slug} AND entry_id=${row.translation_group}
@@ -125,12 +132,7 @@ async function planDuplicateLocales(database: CmsDatabase, slug: string) {
         statements:[triggerGuard,contentGuard,...statements]};
     }
     statements.push(...splitQueries(database,slug,duplicates));
-    let previousGroupLocale:string|null=null;
-    for (const row of duplicates) {
-      const groupLocale=`${row.translation_group}\0${row.locale_key}`;
-      if (groupLocale!==previousGroupLocale) {previousGroupLocale=groupLocale;continue;}
-      groups[row.id]=row.id;
-    }
+    for (const row of rowsToSplit(duplicates)) groups[row.id]=row.id;
   }
 }
 
