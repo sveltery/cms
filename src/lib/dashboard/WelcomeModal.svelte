@@ -19,7 +19,11 @@
   const firstName = $derived(userName?.split(' ')?.[0]?.trim() ?? '');
   const role = $derived(userRole >= 50 ? 'Administrator' : userRole >= 40 ? 'Editor' : userRole >= 30 ? 'Author' : userRole >= 20 ? 'Contributor' : 'Subscriber');
   const scope = $derived(userRole >= 50 ? 'You have full access to manage this site, including users, settings, and all content.' : userRole >= 40 ? 'You can manage content, media, menus, and taxonomies.' : userRole >= 30 ? 'You can create and edit your own content.' : 'You can view and contribute to the site.');
-  function dismiss() { void dismissal.mutate({ dismissWelcome: () => dismissWelcome(), onDismissed, onClose }).catch(() => {}); }
+  function dismiss() {
+    // Retain the component's reactive callback getters while its actual mutation
+    // belongs to the app owner; standalone callback updates keep their lifetime.
+    void dismissal.mutate({ dismissWelcome: () => dismissWelcome(), onDismissed: () => onDismissed?.(), onClose: () => onClose() }).catch(() => {});
+  }
   function keydown(event: KeyboardEvent) {
     if (event.key === 'Escape') { event.preventDefault(); void dismiss(); }
     if (event.key !== 'Tab') return;

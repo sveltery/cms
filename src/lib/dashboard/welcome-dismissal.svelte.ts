@@ -20,12 +20,12 @@ export function createWelcomeDismissal(queryClient: QueryClient) {
   },
   onError: (_error, dismissal) => { dismissal.onClose(); }
  }));
- return { queryClient, get result() { return mutation.result; }, mutate: mutation.mutate };
+ return { queryClient, mutation };
 }
 type WelcomeDismissal = ReturnType<typeof createWelcomeDismissal>;
 export function provideWelcomeDismissal(dismissal: WelcomeDismissal): void { setContext(contextKey, dismissal); }
-export function resolveWelcomeDismissal(queryClient: QueryClient): WelcomeDismissal {
+export function resolveWelcomeDismissal(queryClient: QueryClient): WelcomeDismissal['mutation'] {
  const dismissal = getContext<WelcomeDismissal | undefined>(contextKey);
  // An explicit different client remains the component's standalone owner.
- return dismissal?.queryClient === queryClient ? dismissal : createWelcomeDismissal(queryClient);
+ return (dismissal?.queryClient === queryClient ? dismissal : createWelcomeDismissal(queryClient)).mutation;
 }

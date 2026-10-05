@@ -296,8 +296,11 @@ missing product import and earn zero causal credit. Whole Source12 subsequently
 passes. Page-path identity/path resolution is real native code; those nine tests
 establish no trusted React mounting or widget/context integration.
 
-Five supplemental native app tests reach genuine missing current-user, first
-login, toolbar and shared-cache value failures before the fix. Two later controls
+The five supplemental native app baseline tests contain four direct missing
+current-user/toolbar/shared-cache value comparisons and one actual assertion
+operand-type failure: first-login dialog text is undefined when passed to
+`toContain`. All five fail before the fix and pass afterward; the fifth is not
+credited as a completed string-contains value comparison. Two later controls
 mount the actual root layout to verify shared default queries and isolated app
 instances. A further real ContentPicker root-cache failure precedes its context
 binding. Two retained-root navigation regressions then expose welcome reopening
@@ -326,3 +329,30 @@ interaction backend and full widgets remain incomplete. Own PR100 stays draft
 pending full current checks, configured and fresh independent review, Root exact
 approval and author regular expected-head merge. This continuation completes no
 whole dashboard/admin/product checklist row.
+
+The final independent review of `aaf25359` found that the welcome MutationObserver
+still belonged to a page-level modal. Two ordinary controlled-promise navigation
+regressions were committed first at `487b8e04`: the whole native DOM family ran
+twelve callbacks, with ten controls passing and two genuine `disabled=false`
+versus `true` failures after remount. Later success/failure/cache assertions were
+unreached in that baseline. The [complete raw-output envelope](../parity/emdash/admin-app-source/evidence/r7-pending-navigation-baseline.json)
+preserves the original UTF-8 bytes and hash without trimming diagnostic output.
+
+The fix creates exactly one actual welcome MutationObserver in each persistent
+provider and lets matching-client modals consume that same observer after page
+navigation. Standalone modals or explicitly different clients keep their own
+original component lifetime. Success updates only that client's current-user
+cache and closes the retained shell; failure closes it without updating the
+user. After green, the owner exposes the actual observer directly instead of
+proxying its result and mutation methods. Whole Source12, Native DOM12 and real
+Node SSR2 pass after that refactor. These remain deterministic UI fixtures,
+without live HTTP, credential/session, principal or new race probes.
+
+Three exact literal `.gitattributes` rules preserve the reviewed raw type-check,
+build and navigation-baseline logs unchanged while disabling only their observed
+blank-at-eol/blank-at-eof diagnostics. The full initial-to-current `git diff
+--check` now passes. Earlier `aaf25359` configured review completed with no major
+issues, but its hosted normal job was cancelled and its local whole bootstrap
+stopped at existing Node package-install deadlines. Those are incomplete gates,
+not whole-check passes; all checks and final reviews are required again at the
+successor head before Root approval and author merge.

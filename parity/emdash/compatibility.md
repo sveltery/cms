@@ -2112,3 +2112,24 @@ CI/deadlines/security and every old Source command/authority remain preserved;
 only full new terminal app Source/native commands are additive. Current full
 gates, configured and fresh final-head review, Root approval, author regular
 expected-head PR100 merge and actual post-Main qualification remain pending.
+
+Final-review follow-up DWA-FINAL-01 retains one actual welcome MutationObserver
+at the per-application provider lifetime. Matching-client modal remounts consume
+that observer; independent roots and explicit standalone clients remain separate.
+Two test-first controlled-promise navigation callbacks report real pending-button
+value reds, then pass along with the existing ten DOM controls and two actual
+Node SSR controls. Success-only current-user updates and close-on-error remain
+unchanged. The meaningful post-green refactor exposes that actual observer
+directly; whole original Source12 passes again with all bodies/values/clocks
+unchanged. This proves ordinary pending-navigation behavior, with no live
+HTTP/session/principal/new race probe or persisted backend dismissal credit.
+
+The initial five native app baseline failures are four direct value comparisons
+plus one literal `toContain(undefined, string)` operand-type assertion failure;
+the latter earns no completed string-contains value-comparison credit. DWA-FINAL-02
+adds only three exact per-file whitespace attributes for the observed diagnostic
+categories, preserving each complete raw log byte-for-byte and all old rules.
+Raw follow-up outputs use reversible UTF-8 JSON envelopes to preserve whitespace
+without further exemptions. Current final whole/configured/fresh gates and Root
+approval remain necessary; the full backend/global admin/plugin scope above is
+still incomplete.
