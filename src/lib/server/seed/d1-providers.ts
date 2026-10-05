@@ -4,14 +4,15 @@ export * from './providers.ts';
 export {MediaUsageRepository} from './d1-media-usage.ts';
 import type {Kysely} from 'kysely';
 import type {Database} from './upstream/database/types.ts';
-import {seedDatabaseOwner} from './namespace.ts';
+import {seedDatabaseOwner,seedNativeBylines} from './namespace.ts';
 import {BylineRepository as Byline} from '../bylines/repository.ts';
 import {MediaRepository as Media} from '../general-media/index.ts';
 import {RedirectRepository as Redirect} from '../redirects/repository.ts';
 import {FTSManager as FTS} from '../content-picker/fts-manager.ts';
 import {BlockTypeRegistry as Block} from '../blocks/upstream/schema/block-type-registry.ts';
 import {registerBlockDatabaseHost} from '../blocks/upstream/host.ts';
-export class BylineRepository extends Byline {constructor(db:Kysely<Database>){super(seedDatabaseOwner(db));}}
+export const BylineRepository=function(db:Kysely<Database>){return seedNativeBylines(db);} as unknown as new(db:Kysely<Database>)=>Byline;
+export type BylineRepository=Byline;
 export class MediaRepository extends Media {constructor(db:Kysely<Database>){super(seedDatabaseOwner(db));}}
 export class RedirectRepository extends Redirect {constructor(db:Kysely<Database>){super(seedDatabaseOwner(db).db as unknown as ConstructorParameters<typeof Redirect>[0]);}}
 export class FTSManager extends FTS {constructor(db:Kysely<Database>){super(seedDatabaseOwner(db).db as unknown as ConstructorParameters<typeof FTS>[0]);}}

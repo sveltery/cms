@@ -7,7 +7,8 @@ import {RawBindingD1Adapter} from '../database/d1.ts';
 import {registeredSeedDatabaseOwner} from './namespace.ts';
 import {registeredBylineDatabaseOwner} from '../bylines/storage.ts';
 import {blockDatabaseHost} from '../blocks/upstream/host.ts';
-import {MediaUsageRepository as SourceUsage,MEDIA_USAGE_GENERATION_WRITE_LEASE_MS,type MediaUsageSourceInput,type MediaUsageOccurrenceInput,type MediaUsageSource,type MediaUsageGuardedReplaceResult} from '../blocks/upstream/database/repositories/media-usage.ts';
+import {MediaUsageRepository as SourceUsage,MEDIA_USAGE_GENERATION_WRITE_LEASE_MS,type MediaUsageSourceInput,type MediaUsageOccurrenceInput,type MediaUsageSource,type MediaUsageGuardedReplaceResult,type MediaUsageGuardedDeleteResult,type MediaUsageGuardedAbsentDeleteResult} from '../blocks/upstream/database/repositories/media-usage.ts';
+import {validateIdentifier} from '../blocks/upstream/database/validate.ts';
 import type {Database} from '../blocks/upstream/database/types.ts';
 
 // Erased access to genuine inherited pure Source helpers, never copied SQL
@@ -21,6 +22,7 @@ interface PureSource {
  generationWriteLeaseExpression(row:any,token:string):any;
  generationWriteLeaseExpiryIsInFuture(column:string):RawBuilder<boolean>;
  generationWriteLeaseTimestampOffset(seconds:number):RawBuilder<string>;
+ contentRowExists(table:string,id:string):Promise<boolean>;
 }
 
 export class MediaUsageRepository extends SourceUsage {
@@ -44,6 +46,41 @@ export class MediaUsageRepository extends SourceUsage {
    :await this.replaceExistingSourcesBatch([{source,occurrences,expectedSource}]);
   const replaced=changed.has(source.sourceKey);
   return{replaced,unchanged:false,source:replaced?null:await this.findSource(source.sourceKey)};
+ }
+ override async deleteSourceIfMatching(key:string,expected:MediaUsageSource):Promise<MediaUsageGuardedDeleteResult>{
+  if(!this.nativeD1)return super.deleteSourceIfMatching(key,expected);
+  const deleted=await this.deleteMatchingGeneration(key,expected);
+  return{deleted,source:await this.findSource(key)};
+ }
+ override async deleteSourceIfMatchingContentAbsent(key:string,expected:MediaUsageSource,collection:string,id:string):Promise<MediaUsageGuardedAbsentDeleteResult>{
+  if(!this.nativeD1)return super.deleteSourceIfMatchingContentAbsent(key,expected,collection,id);
+  validateIdentifier(collection,'collection slug');const table=`ec_${collection}`;
+  const deleted=await this.deleteMatchingGeneration(key,expected,sql<boolean>`NOT EXISTS(SELECT 1 FROM ${sql.ref(table)} WHERE id=${id})`);
+  const present=deleted?false:await (this as unknown as PureSource).contentRowExists(table,id);
+  return{deleted,contentPresent:present,source:deleted||present?null:await this.findSource(key)};
+ }
+ /** Fixed D1 snapshot permits cleanup before deletion under the same exact
+  * Source predicate. The whole body commits together, with a real receipt. */
+ private async deleteMatchingGeneration(key:string,expected:MediaUsageSource,absence?:RawBuilder<boolean>):Promise<boolean>{
+  const owner=this.owner!,db=owner.db as unknown as Kysely<Database>,pure=this as unknown as PureSource;
+  let match=db.selectFrom('_cms_media_usage_sources').select('source_key').where('source_key','=',key)
+   .where(pure.sourceMatchExpression(expected)).where(pure.currentCollectionExists(expected.collectionId,expected.collectionSlug));
+  let deletion=db.deleteFrom('_cms_media_usage_sources').where('source_key','=',key)
+   .where(pure.sourceMatchExpression(expected)).where(pure.currentCollectionExists(expected.collectionId,expected.collectionSlug));
+  if(absence){match=match.where(absence);deletion=deletion.where(absence);}
+  const statements=[db.updateTable('_cms_media_usage').set({cleanup_lease_token:null}).where('source_key','=',key).where('generation','=',expected.currentGeneration).where(eb=>eb.exists(match)).compile(),
+   db.deleteFrom('_cms_media_usage').where('source_key','=',key).where('generation','=',expected.currentGeneration).where(eb=>eb.exists(match)).compile(),deletion.returning('source_key').compile()];
+  if(statements.some(statement=>statement.parameters.length>100))throw new Error('Native D1 media usage deletion exceeds 100 bindings');
+  const results=await owner.atomicBatch(statements);return results[2].rows.length>0;
+ }
+ override async deleteContentSources(collection:string,id:string):Promise<number>{
+  if(!this.nativeD1)return super.deleteContentSources(collection,id);
+  const owner=this.owner!,db=owner.db as unknown as Kysely<Database>;
+  const rows=await db.selectFrom('_cms_media_usage_sources').select('source_key').where('source_type','=','content').where('collection_slug','=',collection).where('content_id','=',id).execute();
+  const keys=[...new Set(rows.map(row=>row.source_key))],statements:CompiledQuery[]=[];
+  for(let start=0;start<keys.length;start+=50){const batch=keys.slice(start,start+50);statements.push(db.deleteFrom('_cms_media_usage_sources').where('source_key','in',batch).returning('source_key').compile(),db.updateTable('_cms_media_usage').set({cleanup_lease_token:null}).where('source_key','in',batch).compile(),db.deleteFrom('_cms_media_usage').where('source_key','in',batch).compile());}
+  if(!statements.length)return 0;
+  const results=await owner.atomicBatch(statements);return results.reduce((count,result,index)=>count+(index%3===0?result.rows.length:0),0);
  }
 
  /** Source single-source contract before capture activation. The admitted

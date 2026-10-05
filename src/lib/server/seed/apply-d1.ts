@@ -36,7 +36,7 @@ import {
 } from "./d1-providers.ts";
 import { TaxonomyRepository } from "./d1-providers.ts";
 import type { ContentItem } from "../database/lifecycle/upstream/database/repositories/types.ts";
-import {seedDatabaseOwner,seedAtomicBatch} from "./namespace.ts";
+import {seedDatabaseOwner,seedAtomicBatch,seedNativeContentCreate,seedNativeContentUpdate} from "./namespace.ts";
 import {applySeedContentCreate,applySeedContentUpdate} from "../database/lifecycle/seed-plan.ts";
 import {resolveNativeBylines,resolveNativeTaxonomyTerms,createNativeReferenceField} from "./d1-inputs.ts";
 import type { Database } from "./upstream/database/types.ts";
@@ -886,7 +886,7 @@ async function applySeedWrites(
 							const status = entry.status || "published";
 							let contentMutated = false;
 							try {
-								await applySeedContentUpdate(seedDatabaseOwner(db),{type:collectionSlug,id:existing.id,status,data:columnData,bylines:resolveNativeBylines(entry,seedBylineIdMap,collectionSlug,true),taxonomyTermIds:await resolveNativeTaxonomyTerms(db,entry),references:Object.fromEntries(edges.map(edge=>[edge.fieldSlug,edge.childIds])),routable:collectionRoutable});
+								await seedNativeContentUpdate(db,{type:collectionSlug,id:existing.id,status,data:columnData,bylines:resolveNativeBylines(entry,seedBylineIdMap,collectionSlug,true),taxonomyTermIds:await resolveNativeTaxonomyTerms(db,entry),references:Object.fromEntries(edges.map(edge=>[edge.fieldSlug,edge.childIds])),routable:collectionRoutable});
 							} catch (error) {
 								if (contentMutated) await markSeedContentCollectionStale(collectionSlug);
 								throw error;
@@ -950,7 +950,7 @@ async function applySeedWrites(
 					let contentMutated = false;
 					let created: Awaited<ReturnType<ContentRepository["create"]>>;
 					try {
-						created = await applySeedContentCreate(seedDatabaseOwner(db),{input:{...(entrySlug?{}:{id:entry.id}),type:collectionSlug,slug:entrySlug,status,data:columnData,locale:entryLocale,translationOf,publishedAt:status==='published'?new Date().toISOString():null},bylines:resolveNativeBylines(entry,seedBylineIdMap,collectionSlug,false),taxonomyTermIds:await resolveNativeTaxonomyTerms(db,entry),references:Object.fromEntries(edges.map(edge=>[edge.fieldSlug,edge.childIds])),routable:collectionRoutable});
+						created = await seedNativeContentCreate(db,{input:{...(entrySlug?{}:{id:entry.id}),type:collectionSlug,slug:entrySlug,status,data:columnData,locale:entryLocale,translationOf,publishedAt:status==='published'?new Date().toISOString():null},bylines:resolveNativeBylines(entry,seedBylineIdMap,collectionSlug,false),taxonomyTermIds:await resolveNativeTaxonomyTerms(db,entry),references:Object.fromEntries(edges.map(edge=>[edge.fieldSlug,edge.childIds])),routable:collectionRoutable});
 					} catch (error) {
 						if (contentMutated) await markSeedContentCollectionStale(collectionSlug);
 						throw error;

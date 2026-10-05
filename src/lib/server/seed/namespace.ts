@@ -1,6 +1,6 @@
 // Native seed namespace proposal; no production import or provider activation.
 import { registerCanonicalTaxonomyDatabaseHandle } from '../canonical-storage/namespace.ts';
-import { OperationNodeTransformer, type AliasNode, type Kysely, type KyselyPlugin,
+import { OperationNodeTransformer, NoResultError, isNoResultErrorConstructor, type CompiledQuery, type AliasNode, type Kysely, type KyselyPlugin,
   type TableNode, type RawNode, type RootOperationNode, type OperationNode,
   type IdentifierNode, type ReferenceNode, type ValueNode, type Compilable, type RawBuilder, type QueryResult } from 'kysely';
 import type { CmsDatabase } from '../database/contract.ts';
@@ -10,6 +10,8 @@ import { registerBylineDatabaseHandle } from '../bylines/storage.ts';
 import { RawBindingD1Adapter } from '../database/d1.ts';
 import { registerLifecycleDatabase } from '../database/lifecycle/upstream/host.ts';
 import type { Database } from './upstream/database/types.ts';
+import {applySeedContentCreate,applySeedContentUpdate,type SeedContentCreate,type SeedContentUpdate} from '../database/lifecycle/seed-plan.ts';
+import {BylineRepository} from '../bylines/repository.ts';
 
 // Contracts inspected at public Draft14 dd80fe3f; table installation is a separate prerequisite.
 const names: Readonly<Record<string, string>> = {
@@ -479,6 +481,80 @@ export function seedDatabaseOwner(db: object): CmsDatabase {
   if (!context) throw new Error('Seed operations require their actual registered CMS database owner');
   return context.owner;
 }
+function assertNativeRead(query:RootOperationNode):void {
+  const refuse=()=>{throw new Error('Seed Native producer descriptor executes only real reads; writes require the existing fixed atomic owner');};
+  if(query.kind!=='SelectQueryNode'&&!(query.kind==='RawNode'&&(/^[\s]*?(?:SELECT|WITH)\b/i.test(rawCode(query))||readonlyCatalogPragma(query))))refuse();
+  function visit(node:OperationNode):void {
+    if(/^(?:Insert|Update|Delete|Create|Alter|Drop|Merge|Replace|Truncate|Refresh|Grant|Revoke)/.test(node.kind))refuse();
+    if(node.kind==='RawNode'&&mutationSql.test(rawCode(node as RawNode))&&!readonlyCatalogPragma(node as RawNode))refuse();
+    // Parameter payloads are data, not executable operation-node children.
+    if(node.kind==='ValueNode'||node.kind==='PrimitiveValueListNode')return;
+    for(const value of Object.values(node)){
+      if(Array.isArray(value)){for(const child of value)if(child&&typeof child==='object'&&'kind'in child)visit(child as OperationNode);}
+      else if(value&&typeof value==='object'&&'kind'in value)visit(value as OperationNode);
+    }
+  }
+  visit(query);
+}
+/** Internal hosting only: actual reads and compilation retain caller plugins.
+ * No executable mutation descriptor is returned through a public Source API. */
+function nativeReadCompiler<T extends object>(target:T,executionTarget:any=target):T {
+  function builder<B extends object>(value:B,additionalPlugins:readonly KyselyPlugin[]=[]):B {
+    return new Proxy(value,{get(instance,key){
+      if(key==='execute'||key==='executeTakeFirst'||key==='executeTakeFirstOrThrow')return async(optionsOrConstructor?:any)=>{
+        const compiled=(instance as any).compile();assertNativeRead(compiled.query);
+        const options=key==='executeTakeFirstOrThrow'&&typeof optionsOrConstructor==='function'?{errorConstructor:optionsOrConstructor}:optionsOrConstructor;
+        let result=await executionTarget.getExecutor().executeQuery(compiled,options);
+        for(const plugin of additionalPlugins)result=await plugin.transformResult({result,queryId:compiled.queryId});
+        if(key==='execute')return result.rows;
+        const row=result.rows[0];
+        if(row===undefined&&key==='executeTakeFirstOrThrow'){
+          const errorConstructor=options?.errorConstructor??NoResultError;
+          throw isNoResultErrorConstructor(errorConstructor)?new errorConstructor(compiled.query):errorConstructor(compiled.query);
+        }
+        return row;
+      };
+      if(key==='stream'||key==='explain')return()=>{throw new Error('Seed Native producer descriptor does not expose streaming or arbitrary explanation execution');};
+      const member=Reflect.get(instance,key,instance);
+      if(typeof member==='function')return(...args:unknown[])=>{const result=member.apply(instance,args);return result&&typeof result==='object'&&('compile'in result||'toOperationNode'in result)?builder(result,key==='withPlugin'?[...additionalPlugins,args[0] as KyselyPlugin]:additionalPlugins):result;};
+      return member;
+    }});
+  }
+  return new Proxy(target,{get(instance,key){
+    if(key==='getExecutor')return()=>{const executor=(instance as any).getExecutor();return new Proxy(executor,{get(current,member){
+      if(member==='executeQuery')return(compiled:CompiledQuery,...args:unknown[])=>{assertNativeRead(compiled.query);return current.executeQuery(compiled,...args);};
+      if(member==='provideConnection'||member==='stream'||member==='withConnectionProvider')return()=>{throw new Error('Seed Native producer descriptor exposes no connection execution escape');};
+      const value=Reflect.get(current,member,current);return typeof value==='function'?value.bind(current):value;
+    }});};
+    if(key==='executeQuery')return(compiled:CompiledQuery,...args:unknown[])=>{assertNativeRead(compiled.query);return (instance as any).executeQuery(compiled,...args);};
+    if(key==='transaction'||key==='connection'||key==='destroy'||key==='withoutPlugins')return()=>{throw new Error('Seed Native producer descriptor retains its real owner and exposes no callback/connection/lifecycle escape');};
+    const value=Reflect.get(instance,key,instance);
+    if(typeof value==='function')return(...args:unknown[])=>{
+      const result=value.apply(instance,args);
+      if(result&&typeof result==='object'&&'getExecutor'in result)return nativeReadCompiler(result);
+      if(result&&typeof result==='object'&&'selectFrom'in result&&'insertInto'in result)return nativeReadCompiler(result,executionTarget);
+      return result&&typeof result==='object'&&('compile'in result||'toOperationNode'in result)?builder(result):result;
+    };
+    return value&&typeof value==='object'&&key==='schema'?builder(value):value;
+  }});
+}
+function nativeContentOwner(db:Kysely<any>):CmsDatabase {
+  const context=views.get(db);if(!context)throw new Error('Seed Native content requires its actual registered query handle');
+  const target=context.atomicLogical.withPlugin(namespace),compiler=nativeReadCompiler(target);
+  const plugins=target.getExecutor().plugins;
+  return{...context.owner,db:compiler as unknown as CmsDatabase['db'],async atomicBatch(statements){
+    const results=await context.owner.atomicBatch(statements),transformed:QueryResult<unknown>[]=[];
+    for(let index=0;index<results.length;index++){
+      let result=results[index];for(const plugin of plugins)result=await plugin.transformResult({result:result as QueryResult<import('kysely').UnknownRow>,queryId:statements[index].queryId});
+      transformed.push(result);
+    }
+    return transformed;
+  },async close(){throw new Error('Seed Native content does not own the database lifecycle');}};
+}
+/** Finite existing canonical domains; neither exposes an executable write handle. */
+export function seedNativeContentCreate(db:Kysely<any>,input:SeedContentCreate){return applySeedContentCreate(nativeContentOwner(db),input);}
+export function seedNativeContentUpdate(db:Kysely<any>,input:SeedContentUpdate){return applySeedContentUpdate(nativeContentOwner(db),input);}
+export function seedNativeBylines(db:Kysely<any>){return new BylineRepository(nativeContentOwner(db));}
 const executeMethods = new Set(['execute','executeQuery','executeTakeFirst','executeTakeFirstOrThrow','stream','explain']);
 /** Builders used to prepare a batch cannot execute queries or callbacks themselves. */
 function compilationOnly<T extends object>(target: T): T {
