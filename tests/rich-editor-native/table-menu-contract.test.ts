@@ -89,7 +89,11 @@ describe('Actual Native table toolbar menu contract', () => {
   });
 
   it('keeps header checkboxes open and focused across actual document changes', async () => {
-    const { host, editor } = await render(); table(editor); await tick(); trigger(host).click(); await tick();
+    const { host, editor } = await render(); table(editor);
+    // Source CheckboxItem keeps normal false/true headers open; the mixed
+    // state uses a regular Item, whose Source default closes on activation.
+    editor.commands.toggleHeaderRow(); editor.commands.toggleHeaderRow();
+    await tick(); trigger(host).click(); await tick();
     const current = menu(host)!; const header = current.querySelector<HTMLButtonElement>('[role="menuitemcheckbox"]')!;
     header.focus(); header.click(); await tick();
     expect(menu(host)).toBe(current); expect(document.activeElement).toBe(header); expect(header.getAttribute('aria-checked')).toBe('true');
