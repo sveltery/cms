@@ -7,6 +7,7 @@
   import { base } from '$app/paths';
   import { goto } from '$app/navigation';
   import { createCalendarQueryClient } from '$lib/calendar/query-client.ts';
+  import { bootstrapCalendarLocale } from '$lib/calendar/locale-browser.ts';
   import WorkspaceShell from '$lib/ui/WorkspaceShell.svelte';
   import Calendar from '$lib/calendar/CalendarPage.svelte';
   import { parseCalendarSearch,type CalendarSearch } from '$lib/calendar/calendar.ts';
@@ -19,7 +20,7 @@
   onMount(()=>{if(!data.available)return;const owner=observeCalendarMetadata(queryClient,client,{manifest,user},value=>{manifest=value.manifest;user=value.user;});return()=>owner.destroy();});
   // Original admin bootstrap owns browser locale before any client request.
   // Existing i18n is reused; no locale is changed on an SSR request.
-  if(browser&&!i18n.locale)i18n.loadAndActivate({locale:'en',messages:{}});
+  if(browser)void bootstrapCalendarLocale();
   const search=$derived(parseCalendarSearch(Object.fromEntries(page.url.searchParams)));
   function updateSearch(patch:Partial<CalendarSearch>,push=false){
     const url=new URL(page.url);for(const [key,value]of Object.entries(patch)){if(value===undefined)url.searchParams.delete(key);else url.searchParams.set(key,value);}
