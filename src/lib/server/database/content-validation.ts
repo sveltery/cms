@@ -1,4 +1,5 @@
 import * as v from 'valibot';
+import {contentSeoInput} from '../seo/content-input.ts';
 import {identifier,localeInput,schemaData,updateDraftInput} from './validation.ts';
 
 // Valibot record strips constructor/prototype. These can be real indexed
@@ -18,6 +19,9 @@ export const contentListOptions={
  dateField:v.optional(v.picklist(['createdAt','updatedAt','publishedAt'])),
  dateFrom:v.optional(v.pipe(v.string(),v.maxLength(128))),
  dateTo:v.optional(v.pipe(v.string(),v.maxLength(128))),
+ bylines:v.optional(v.array(v.pipe(v.string(),v.minLength(1),v.maxLength(128)))),
+ bylinesNone:v.optional(v.boolean(),false),
+ includeInferredBylines:v.optional(v.boolean(),false),
  fieldFilters:v.optional(fieldFilters)
 };
 export const genericContentList=v.strictObject({type:identifier,...contentListOptions});
@@ -28,4 +32,8 @@ export const genericContentList=v.strictObject({type:identifier,...contentListOp
 export const taxonomySlugMap=v.custom<Record<string,string[]>>(value=>
  value!==null&&typeof value==='object'&&!Array.isArray(value)&&
  Object.values(value).every(slugs=>Array.isArray(slugs)&&slugs.every(slug=>typeof slug==='string'&&slug.length>0)));
-export const genericContentUpdate=v.strictObject({...updateDraftInput.entries,data:v.optional(schemaData),taxonomies:v.optional(taxonomySlugMap)});
+export const contentBylineInput=v.array(v.strictObject({bylineId:v.pipe(v.string(),v.minLength(1)),roleLabel:v.optional(v.nullable(v.string()))}));
+export const referenceSelectionMap=v.custom<Record<string,string[]>>(value=>
+ value!==null&&typeof value==='object'&&!Array.isArray(value)&&
+ Object.values(value).every(ids=>Array.isArray(ids)&&ids.every(id=>typeof id==='string')));
+export const genericContentUpdate=v.strictObject({...updateDraftInput.entries,data:v.optional(schemaData),taxonomies:v.optional(taxonomySlugMap),bylines:v.optional(contentBylineInput),references:v.optional(referenceSelectionMap),seo:v.optional(contentSeoInput)});

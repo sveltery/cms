@@ -1,0 +1,11 @@
+Loading svelte-check in workspace: /workspace/cms-byline-content-lifecycle
+Getting Svelte diagnostics...
+
+/workspace/cms-byline-content-lifecycle/tests/users-native/repository.test.ts:200:54
+Error: 'existing' is possibly 'null' or 'undefined'. 
+      assert.ok(existing);
+      await assert.rejects(() => f.repository.update(existing.id, { role: 'admin', name: 'Rejected' }), /operator profile rejection/);
+      assert.deepEqual(await readRows(f.database), before);
+
+====================================
+svelte-check found 1 error and 0 warnings in 1 file

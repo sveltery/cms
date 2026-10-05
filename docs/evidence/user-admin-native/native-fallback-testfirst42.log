@@ -1,0 +1,46 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-user99-backend
+
+ ❯ tests/user-admin-native/api.test.ts (18 tests | 2 failed) 2919ms
+   × Node SQLite: malformed stored profile returns the original endpoint fallback messages 56ms
+   × raw workerd D1: malformed stored profile returns the original endpoint fallback messages 142ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/user-admin-native/api.test.ts > Node SQLite: malformed stored profile returns the original endpoint fallback messages
+ FAIL  tests/user-admin-native/api.test.ts > raw workerd D1: malformed stored profile returns the original endpoint fallback messages
+AssertionError: Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
+    code: 'USER_LIST_ERROR',
++   message: 'Account request failed'
+-   message: 'Failed to list users'
+  }
+
+
+- Expected
++ Received
+
+  {
+    "code": "USER_LIST_ERROR",
+-   "message": "Failed to list users",
++   "message": "Account request failed",
+  }
+
+ ❯ tests/user-admin-native/api.test.ts:78:57
+     76|     [await disable(f.context(f.author.id,{})),'USER_DISABLE_ERROR','Fa…
+     77|     [await enable(f.context(f.author.id,{})),'USER_ENABLE_ERROR','Fail…
+     78|    ] as const){assert.equal(response.status,500);assert.deepEqual((awa…
+       |                                                         ^
+     79|    assert.equal((await f.database.db.selectFrom('_cms_auth_profiles').…
+     80|   }finally{await f.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 40 passed (42)
+   Start at  21:22:39
+   Duration  14.36s (transform 1.74s, setup 0ms, import 4.59s, tests 9.02s, environment 0ms)
+

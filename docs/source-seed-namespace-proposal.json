@@ -1,0 +1,610 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "nativeAuthorHead": "b5b9efe1c007424c07b8572a030f52223efef275",
+  "readOnlyPublicDraft": "dd80fe3f942aef2e44d3df92c28a818b5a45897c",
+  "applied": false,
+  "scope": "Complete table/type inventory and native namespace design only; no executable provider/namespace change, no Source family execution credit, no private imports.",
+  "publicContracts": [
+    {
+      "path": "src/lib/server/database/canonical-features/physical-schema.json",
+      "bytes": 27495,
+      "sha256": "f8ab1ed6bd1846995553b3115a9971101d13d55890e49a56088814bc7523e3fc",
+      "gitBlob": "6a537b82ae4307f54bf1dea74426e3fe55289d29"
+    },
+    {
+      "path": "src/lib/server/database/canonical-features/redirect-physical-schema.json",
+      "bytes": 11486,
+      "sha256": "271ad24c0f668405e8520b7c0be159391e4afb0358cfd3b19fc35f3136cda321",
+      "gitBlob": "3e9ed53665bbcba36bd238af92d44bbef2987276"
+    },
+    {
+      "path": "src/lib/server/database/canonical-features/descriptors.ts",
+      "bytes": 2816,
+      "sha256": "a97b0037ad23568db10a28b13f02816979f5d05fdac4497f31bc0eed9bb136b3",
+      "gitBlob": "67f054cca0a55308d0c341e15755f53648619a1e"
+    },
+    {
+      "path": "src/lib/server/database/canonical-features/providers.ts",
+      "bytes": 5575,
+      "sha256": "db0830769f0e62cd7883c63f1603b9d45327b8649f3b7936c88321006b7e7507",
+      "gitBlob": "4251797d9fde1b559aa86356d9be7a8a097c9145"
+    },
+    {
+      "path": "src/lib/server/menus/migrations.ts",
+      "bytes": 2030,
+      "sha256": "a6ace61c23a3820b87d38f5e6678bbc8b08af3928b36a57b69e5938bf7411bc1",
+      "gitBlob": "24bc8823432c9beb01193fef1ae897e7635e5fc5"
+    },
+    {
+      "path": "src/lib/server/sections-widgets/schema.ts",
+      "bytes": 2864,
+      "sha256": "09639908a392621d84951867201ba0628f3feebc0a7d96a453f91f8451bd1d00",
+      "gitBlob": "d6f06678e671a2a59c526a92cb4a22eb2b7e1ec4"
+    },
+    {
+      "path": "src/lib/server/comments/migrations.ts",
+      "bytes": 2375,
+      "sha256": "5f958b538a13f7894a53deef3de30ccf04d4ab22c6eb8454d7f2e3d400d4f25c",
+      "gitBlob": "c2691f570dd91d258169b36ef8513abfa875da44"
+    },
+    {
+      "path": "src/lib/server/comments/runtime-migrations.ts",
+      "bytes": 1376,
+      "sha256": "7b39a3140121b983fbc028c8091309410ae0e5730382c4f47e4f03182c7de573",
+      "gitBlob": "806b44d65d202b0d6701467044ab54e601f3068d"
+    },
+    {
+      "path": "src/lib/server/canonical-storage/namespace.ts",
+      "bytes": 4611,
+      "sha256": "ea44cee482ff9c03fdf030f0b2c14c56da5c7aed9ea47be56ced60a26db2b78e",
+      "gitBlob": "3b0545f9228cae09d4cea26cb0398796f2bda944"
+    },
+    {
+      "path": "src/lib/server/database/contract.ts",
+      "bytes": 5542,
+      "sha256": "91e3c2e710331b7996fd0aa4263b1be9439a073456faf7165fd4819932949b1d",
+      "gitBlob": "3938150398fbae09a840855abca3c5fda021a208"
+    },
+    {
+      "path": "src/lib/server/database/lifecycle/upstream/host.ts",
+      "bytes": 1499,
+      "sha256": "f4298e5298301414c26ad883be621186f9ee0d3245bbb927324be4dd78c298d8",
+      "gitBlob": "d33062950713b84f064915dae3c6c2e1fa4b26e5"
+    },
+    {
+      "path": "src/lib/server/database/d1.ts",
+      "bytes": 5251,
+      "sha256": "bac92c1567f597b316c0f7caca0c067672653022292ef0361bd7243abd085cd1",
+      "gitBlob": "4a8058f6475f941e4e67f38452b7de552bf554b3"
+    }
+  ],
+  "sourceTableCount": 70,
+  "tableMappings": [
+    {
+      "sourceTable": "revisions",
+      "sourceType": "RevisionTable",
+      "nativeTable": "_cms_revisions",
+      "physicalAuthority": "Existing frozen Native1\u20138 actual SQLite catalog",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_revision_prune_queue",
+      "sourceType": "RevisionPruneQueueTable",
+      "nativeTable": "_cms_revision_prune_queue",
+      "physicalAuthority": "Existing frozen Native1\u20138 actual SQLite catalog",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "taxonomies",
+      "sourceType": "TaxonomyTable",
+      "nativeTable": "_cms_taxonomies",
+      "physicalAuthority": "Existing frozen Native1\u20138 actual SQLite catalog",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "content_taxonomies",
+      "sourceType": "ContentTaxonomyTable",
+      "nativeTable": "_cms_content_taxonomies",
+      "physicalAuthority": "Existing frozen Native1\u20138 actual SQLite catalog",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_taxonomy_defs",
+      "sourceType": "TaxonomyDefTable",
+      "nativeTable": "_cms_taxonomy_defs",
+      "physicalAuthority": "Existing frozen Native1\u20138 actual SQLite catalog",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_taxonomy_def_groups",
+      "sourceType": "TaxonomyDefGroupTable",
+      "nativeTable": "_cms_taxonomy_def_groups",
+      "physicalAuthority": "Existing frozen Native1\u20138 actual SQLite catalog",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "media",
+      "sourceType": "MediaTable",
+      "nativeTable": "_cms_media",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "media_folders",
+      "sourceType": "MediaFolderTable",
+      "nativeTable": "_cms_media_folders",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_media_upload_attempts",
+      "sourceType": "MediaUploadAttemptTable",
+      "nativeTable": "_cms_media_upload_attempts",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_media_usage_sources",
+      "sourceType": "MediaUsageSourceTable",
+      "nativeTable": "_cms_media_usage_sources",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_media_usage",
+      "sourceType": "MediaUsageTable",
+      "nativeTable": "_cms_media_usage",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_media_usage_cleanup",
+      "sourceType": "MediaUsageCleanupTable",
+      "nativeTable": "_cms_media_usage_cleanup",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_media_usage_generation_writes",
+      "sourceType": "MediaUsageGenerationWriteTable",
+      "nativeTable": "_cms_media_usage_generation_writes",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_media_usage_cleanup_fence",
+      "sourceType": "MediaUsageGenerationFenceTable",
+      "nativeTable": "_cms_media_usage_cleanup_fence",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_media_usage_index_status",
+      "sourceType": "MediaUsageIndexStatusTable",
+      "nativeTable": "_cms_media_usage_index_status",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_media_usage_activation",
+      "sourceType": "MediaUsageActivationTable",
+      "nativeTable": "_cms_media_usage_activation",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_media_usage_work",
+      "sourceType": "MediaUsageWorkTable",
+      "nativeTable": "_cms_media_usage_work",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_media_usage_collection_deletions",
+      "sourceType": "MediaUsageCollectionDeletionTable",
+      "nativeTable": "_cms_media_usage_collection_deletions",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_media_usage_reconciliations",
+      "sourceType": "MediaUsageReconciliationTable",
+      "nativeTable": "_cms_media_usage_reconciliations",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "users",
+      "sourceType": "UserTable",
+      "nativeTable": "_cms_auth_users",
+      "physicalAuthority": "Existing frozen Native1\u20138 actual SQLite catalog",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "credentials",
+      "sourceType": "CredentialTable",
+      "nativeTable": null,
+      "physicalAuthority": null,
+      "status": "Excluded: no Source auth/runner adaptation in seed domain"
+    },
+    {
+      "sourceTable": "auth_tokens",
+      "sourceType": "AuthTokenTable",
+      "nativeTable": null,
+      "physicalAuthority": null,
+      "status": "Excluded: no Source auth/runner adaptation in seed domain"
+    },
+    {
+      "sourceTable": "oauth_accounts",
+      "sourceType": "OAuthAccountTable",
+      "nativeTable": null,
+      "physicalAuthority": null,
+      "status": "Excluded: no Source auth/runner adaptation in seed domain"
+    },
+    {
+      "sourceTable": "allowed_domains",
+      "sourceType": "AllowedDomainTable",
+      "nativeTable": null,
+      "physicalAuthority": null,
+      "status": "Excluded: no Source auth/runner adaptation in seed domain"
+    },
+    {
+      "sourceTable": "auth_challenges",
+      "sourceType": "AuthChallengeTable",
+      "nativeTable": null,
+      "physicalAuthority": null,
+      "status": "Excluded: no Source auth/runner adaptation in seed domain"
+    },
+    {
+      "sourceTable": "options",
+      "sourceType": "OptionTable",
+      "nativeTable": "_cms_options",
+      "physicalAuthority": "Existing frozen Native1\u20138 actual SQLite catalog",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "audit_logs",
+      "sourceType": "AuditLogTable",
+      "nativeTable": "audit_logs",
+      "physicalAuthority": null,
+      "status": "Missing physical/runtime contract; must remain unavailable"
+    },
+    {
+      "sourceTable": "_emdash_migrations",
+      "sourceType": "MigrationTable",
+      "nativeTable": null,
+      "physicalAuthority": null,
+      "status": "Excluded: no Source auth/runner adaptation in seed domain"
+    },
+    {
+      "sourceTable": "_emdash_collections",
+      "sourceType": "CollectionTable",
+      "nativeTable": "_cms_collections",
+      "physicalAuthority": "Existing frozen Native1\u20138 actual SQLite catalog",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_fields",
+      "sourceType": "FieldTable",
+      "nativeTable": "_cms_fields",
+      "physicalAuthority": "Existing frozen Native1\u20138 actual SQLite catalog",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_block_types",
+      "sourceType": "BlockTypeTable",
+      "nativeTable": "_cms_block_types",
+      "physicalAuthority": null,
+      "status": "Missing physical/runtime contract; must remain unavailable"
+    },
+    {
+      "sourceTable": "_emdash_block_type_versions",
+      "sourceType": "BlockTypeVersionTable",
+      "nativeTable": "_cms_block_type_versions",
+      "physicalAuthority": null,
+      "status": "Missing physical/runtime contract; must remain unavailable"
+    },
+    {
+      "sourceTable": "_plugin_storage",
+      "sourceType": "PluginStorageTable",
+      "nativeTable": "_cms_plugin_storage",
+      "physicalAuthority": "Existing frozen Native1\u20138 actual SQLite catalog",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_plugin_state",
+      "sourceType": "PluginStateTable",
+      "nativeTable": "_cms_plugin_state",
+      "physicalAuthority": "Existing frozen Native1\u20138 actual SQLite catalog",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_plugin_indexes",
+      "sourceType": "PluginIndexTable",
+      "nativeTable": "_cms_plugin_indexes",
+      "physicalAuthority": "Existing frozen Native1\u20138 actual SQLite catalog",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_menus",
+      "sourceType": "MenuTable",
+      "nativeTable": "_cms_menus",
+      "physicalAuthority": "src/lib/server/menus/migrations.ts",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_menu_items",
+      "sourceType": "MenuItemTable",
+      "nativeTable": "_cms_menu_items",
+      "physicalAuthority": "src/lib/server/menus/migrations.ts",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_widget_areas",
+      "sourceType": "WidgetAreaTable",
+      "nativeTable": "_cms_widget_areas",
+      "physicalAuthority": "src/lib/server/sections-widgets/schema.ts",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_widgets",
+      "sourceType": "WidgetTable",
+      "nativeTable": "_cms_widgets",
+      "physicalAuthority": "src/lib/server/sections-widgets/schema.ts",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_sections",
+      "sourceType": "SectionTable",
+      "nativeTable": "_cms_sections",
+      "physicalAuthority": "src/lib/server/sections-widgets/schema.ts",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_api_tokens",
+      "sourceType": "ApiTokenTable",
+      "nativeTable": null,
+      "physicalAuthority": null,
+      "status": "Excluded: no Source auth/runner adaptation in seed domain"
+    },
+    {
+      "sourceTable": "_emdash_oauth_tokens",
+      "sourceType": "OAuthTokenTable",
+      "nativeTable": null,
+      "physicalAuthority": null,
+      "status": "Excluded: no Source auth/runner adaptation in seed domain"
+    },
+    {
+      "sourceTable": "_emdash_device_codes",
+      "sourceType": "DeviceCodeTable",
+      "nativeTable": null,
+      "physicalAuthority": null,
+      "status": "Excluded: no Source auth/runner adaptation in seed domain"
+    },
+    {
+      "sourceTable": "_emdash_authorization_codes",
+      "sourceType": "AuthorizationCodeTable",
+      "nativeTable": null,
+      "physicalAuthority": null,
+      "status": "Excluded: no Source auth/runner adaptation in seed domain"
+    },
+    {
+      "sourceTable": "_emdash_oauth_clients",
+      "sourceType": "OAuthClientTable",
+      "nativeTable": null,
+      "physicalAuthority": null,
+      "status": "Excluded: no Source auth/runner adaptation in seed domain"
+    },
+    {
+      "sourceTable": "_emdash_seo",
+      "sourceType": "SeoTable",
+      "nativeTable": "_cms_seo",
+      "physicalAuthority": null,
+      "status": "Missing physical/runtime contract; must remain unavailable"
+    },
+    {
+      "sourceTable": "_emdash_cron_tasks",
+      "sourceType": "CronTaskTable",
+      "nativeTable": "_cms_cron_tasks",
+      "physicalAuthority": null,
+      "status": "Missing physical/runtime contract; must remain unavailable"
+    },
+    {
+      "sourceTable": "_emdash_comments",
+      "sourceType": "CommentTable",
+      "nativeTable": "_cms_comments",
+      "physicalAuthority": "src/lib/server/comments/migrations.ts",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_comment_reactions",
+      "sourceType": "CommentReactionTable",
+      "nativeTable": "_cms_comment_reactions",
+      "physicalAuthority": "src/lib/server/comments/migrations.ts",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_redirects",
+      "sourceType": "RedirectTable",
+      "nativeTable": "_cms_redirects",
+      "physicalAuthority": "src/lib/server/database/canonical-features/redirect-physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_redirect_write_lock",
+      "sourceType": "RedirectWriteLockTable",
+      "nativeTable": "_cms_redirect_write_lock",
+      "physicalAuthority": "src/lib/server/database/canonical-features/redirect-physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_redirect_state",
+      "sourceType": "RedirectStateTable",
+      "nativeTable": "_cms_redirect_state",
+      "physicalAuthority": "src/lib/server/database/canonical-features/redirect-physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_redirect_artifacts",
+      "sourceType": "RedirectArtifactTable",
+      "nativeTable": "_cms_redirect_artifacts",
+      "physicalAuthority": "src/lib/server/database/canonical-features/redirect-physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_redirect_generation_artifacts",
+      "sourceType": "RedirectGenerationArtifactTable",
+      "nativeTable": "_cms_redirect_generation_artifacts",
+      "physicalAuthority": "src/lib/server/database/canonical-features/redirect-physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_404_log",
+      "sourceType": "NotFoundLogTable",
+      "nativeTable": "_cms_404_log",
+      "physicalAuthority": "src/lib/server/database/canonical-features/redirect-physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_bylines",
+      "sourceType": "BylineTable",
+      "nativeTable": "_cms_bylines",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_content_bylines",
+      "sourceType": "ContentBylineTable",
+      "nativeTable": "_cms_content_bylines",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_byline_fields",
+      "sourceType": "BylineFieldTable",
+      "nativeTable": "_cms_byline_fields",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_byline_field_values",
+      "sourceType": "BylineFieldValueTable",
+      "nativeTable": "_cms_byline_field_values",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_byline_field_group_values",
+      "sourceType": "BylineFieldGroupValueTable",
+      "nativeTable": "_cms_byline_field_group_values",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_relations",
+      "sourceType": "RelationTable",
+      "nativeTable": "_cms_relations",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_content_references",
+      "sourceType": "ContentReferenceTable",
+      "nativeTable": "_cms_content_references",
+      "physicalAuthority": "src/lib/server/database/canonical-features/physical-schema.json",
+      "status": "Published contract present; actual Main installation still required"
+    },
+    {
+      "sourceTable": "_emdash_rate_limits",
+      "sourceType": "RateLimitTable",
+      "nativeTable": null,
+      "physicalAuthority": null,
+      "status": "Excluded: no Source auth/runner adaptation in seed domain"
+    },
+    {
+      "sourceTable": "_emdash_entry_locks",
+      "sourceType": "EntryLockTable",
+      "nativeTable": "_cms_entry_locks",
+      "physicalAuthority": null,
+      "status": "Missing physical/runtime contract; must remain unavailable"
+    },
+    {
+      "sourceTable": "_emdash_transfer_operations",
+      "sourceType": "TransferOperationTable",
+      "nativeTable": "_cms_transfer_operations",
+      "physicalAuthority": null,
+      "status": "Missing physical/runtime contract; must remain unavailable"
+    },
+    {
+      "sourceTable": "_emdash_transfer_identity_map",
+      "sourceType": "TransferIdentityMapTable",
+      "nativeTable": "_cms_transfer_identity_map",
+      "physicalAuthority": null,
+      "status": "Missing physical/runtime contract; must remain unavailable"
+    },
+    {
+      "sourceTable": "_emdash_transfer_staged_files",
+      "sourceType": "TransferStagedFileTable",
+      "nativeTable": "_cms_transfer_staged_files",
+      "physicalAuthority": null,
+      "status": "Missing physical/runtime contract; must remain unavailable"
+    },
+    {
+      "sourceTable": "_emdash_transfer_package_index",
+      "sourceType": "TransferPackageIndexTable",
+      "nativeTable": "_cms_transfer_package_index",
+      "physicalAuthority": null,
+      "status": "Missing physical/runtime contract; must remain unavailable"
+    },
+    {
+      "sourceTable": "_emdash_transfer_media_blobs",
+      "sourceType": "TransferMediaBlobTable",
+      "nativeTable": "_cms_transfer_media_blobs",
+      "physicalAuthority": null,
+      "status": "Missing physical/runtime contract; must remain unavailable"
+    },
+    {
+      "sourceTable": "_emdash_transfer_approvals",
+      "sourceType": "TransferApprovalTable",
+      "nativeTable": "_cms_transfer_approvals",
+      "physicalAuthority": null,
+      "status": "Missing physical/runtime contract; must remain unavailable"
+    }
+  ],
+  "dynamicContent": "Source and Native both use ec_<validated slug>; retain identical names, locale/field/content bytes and Source index names. No invented prefix mapping.",
+  "requiredTransforms": [
+    {
+      "kind": "Typed table/reference nodes",
+      "rule": "Map only recognized physical table names; preserve caller aliases, schema-qualified unrelated names and column identifiers. SourceDatabase remains the complete pinned type; no unknown-as-success casts."
+    },
+    {
+      "kind": "Source raw DDL/queries",
+      "rule": "Use a SQL token/context-aware transform for actual table/reference targets. Preserve string literals, comments, field names, aliases, trigger names and values. Blind global mapping of media/options tokens is insufficient."
+    },
+    {
+      "kind": "Catalog bound values",
+      "rule": "Map Source table names only in recognized tableExists/columnExists/listTableColumns catalog positions: sqlite_master name equality and pragma_table_info table argument. Ordinary persisted values equal to Source identifiers remain byte exact. Source ec_% patterns/results remain unchanged."
+    },
+    {
+      "kind": "Logical observation and plugin propagation",
+      "rule": "Source original recorders and SeedBudget must observe every complete logical query before native mapping, including atomic-batch statements and db.withPlugin-derived instances. Zero logical field-read counts after early mapping give no credit. Adapter/executor identities and request-cache context must persist."
+    },
+    {
+      "kind": "D1 atomicity",
+      "rule": "Keep existing canonicalSourceDatabase D1 write boundary unchanged for existing callers. A seed-specific mutation adapter requires whole finite statement plans via real CmsDatabase.atomicBatch and \u2264100 parameters per statement. No callback fallback or disabled boundary."
+    },
+    {
+      "kind": "Capture/creation ordering",
+      "rule": "Use actual persisted expanded/active state and one live provider/error-class identity. Active creation must prepare identity/fingerprint, create table, install+verify3triggers, mark ready, publish metadata/indexes, finalize in Source order. No fabricated inactive row or ready success."
+    }
+  ],
+  "unresolved": [
+    "Actual public Main14 landing/recognition and Block15/default003/027 creation support.",
+    "Source registry facade or qualified Source-layout recognition: Native current-layout structural/default/index rules do not yet accept direct whole Source createContentTable DDL.",
+    "Real media/storage providers and approved image-size patch/mime packages must land Main.",
+    "Full settings invalidation and content-refresh/deletion runtime closure; Source shared cache bindings must be real.",
+    "Production namespace/compiler/plugin/atomic boundary has no implementation or causal passing evidence yet.",
+    "Whole Source ordinary apply/budget/cache85 remain unexecuted; Pg2 conditionals unchanged, adapter unimplemented."
+  ],
+  "tddBoundary": "Before any namespace/atomic implementation: original Native real Node/raw-D1 cases must reach actual stored-data/positive-query-count/value-preservation/atomic-rollback assertions; then execute whole ordinary Source85 only after complete genuine closure. No protected auth/session/SC49 families."
+}

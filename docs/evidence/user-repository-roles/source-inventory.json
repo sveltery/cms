@@ -1,0 +1,467 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "publicMain": "ab43accd4de235b07a22dd0ac24289605902d959",
+  "wholeAuthorities": [
+    {
+      "path": "LICENSE",
+      "bytes": 1079,
+      "sha256": "d5ab82c0225b0def1fa140af22ff2f3bed9791a527545be1b04ab4337dc88675",
+      "blob": "02cc4b8b0a5f883c5243927e683b00c10588bf4c"
+    },
+    {
+      "path": "packages/core/src/database/repositories/user.ts",
+      "bytes": 7158,
+      "sha256": "f58a1066c40f8ba48ac02ac115f325fe3ce7bed329842bf9c16a7b6cf119c46e",
+      "blob": "05182745afeaa8bbde8bf4769f1db2cb49ca1d3e"
+    },
+    {
+      "path": "packages/core/src/database/types.ts",
+      "bytes": 31530,
+      "sha256": "ebd3a2d8aded68ada1731adb4838d7eda5b85778d373b248211e0f8fe75c2b1d",
+      "blob": "cdbabe910a87d12eab47933b8f5fb16ff6db3aa7"
+    },
+    {
+      "path": "packages/core/src/database/repositories/types.ts",
+      "bytes": 13959,
+      "sha256": "880e1ee7c6b2792d0f0316d4853dea590ce10f89073dd5a4f5ef56ebd118fa04",
+      "blob": "abcf7a35f71936c2e8953f7bbd18b32fa1282bb7"
+    },
+    {
+      "path": "packages/core/src/utils/chunks.ts",
+      "bytes": 529,
+      "sha256": "d5c454b134d9727d0af1fa5befb786a781e65cdac964a668af6a8fab74b81877",
+      "blob": "9ff9f0f4082b9f32e5c9f851a0a30cef1459048e"
+    },
+    {
+      "path": "packages/auth/src/adapters/kysely.ts",
+      "bytes": 20225,
+      "sha256": "ade818b1bc6ce264cbc3e0812ee10e384b7cca8c29806187a950e996abd07433",
+      "blob": "7cb68baea14a9696296c8fc9c414abe95c8ea594"
+    },
+    {
+      "path": "packages/auth/src/types.ts",
+      "bytes": 10246,
+      "sha256": "2764667f5a2552eda6f401ea63bfdccda5ef30508b71adaa049257fe733de7f5",
+      "blob": "e5fc2ec92b399079aca96f08621b3d042a41fb15"
+    },
+    {
+      "path": "packages/auth/src/rbac.ts",
+      "bytes": 7361,
+      "sha256": "1d5663c430cb02e934eafeca27c512007112dcc0c975d6a84ad3c73c9343d85e",
+      "blob": "55eda9bdfd9aa92b3d40ba45ebda6daa00d20dbb"
+    },
+    {
+      "path": "packages/auth/src/rbac.test.ts",
+      "bytes": 6356,
+      "sha256": "72c96f2e4b69a72793ddafa54f159aad7f34b4b705f78980816d9fd1bf25bac4",
+      "blob": "2c2d10f69655b77ddd2e16c4b7547e9343606a4a"
+    },
+    {
+      "path": "packages/auth/src/tokens.ts",
+      "bytes": 9438,
+      "sha256": "9699e9636b3329812bc3743987ba4e36a5abab1a21dcf0dfffe03bf877bc215d",
+      "blob": "c96ef3c7ad026bfd31117f2db2ce0378d570dc4f"
+    },
+    {
+      "path": "packages/core/src/database/migrations/008_auth.ts",
+      "bytes": 7437,
+      "sha256": "7698709e8bdc5a3de32b84be22368982829bc94aef6ce258fa2e6197a7ca82ba",
+      "blob": "70bc0f799c59ce72fac69aad24d2fc9cdd9ce1c0"
+    },
+    {
+      "path": "packages/core/src/database/migrations/009_user_disabled.ts",
+      "bytes": 1010,
+      "sha256": "df12eb1b324686e8e3dd750ce1d0881dd276b9944ae74c97d12fd9ea6c61018b",
+      "blob": "827db35e316bcf4af35ba7c36ea4d9436db837e1"
+    },
+    {
+      "path": "packages/core/src/api/schemas/users.ts",
+      "bytes": 2468,
+      "sha256": "e29ed02f63aadc36f858ce67905de264af0c8d7af71dc0cd4399c65fece55f94",
+      "blob": "51626da451ba6879a015ae5404a159a781bd252d"
+    },
+    {
+      "path": "packages/core/src/plugins/context.ts",
+      "bytes": 61202,
+      "sha256": "09b8e2784d0aed1d21527ba74a0cd5a03d7c64d1a956ca35bf8b6f3eede77747",
+      "blob": "ee05129cc8b217ec64f96e92a412947712fc3473"
+    },
+    {
+      "path": "packages/core/tests/integration/api/byline-hooks.test.ts",
+      "bytes": 5884,
+      "sha256": "a93b9494404d67429885a5cbf0f1d57a35af564f852cafed1f5ca5ef4a5b8b7a",
+      "blob": "f94104c01e27e25b396a470486eda9ed721178df"
+    },
+    {
+      "path": "packages/core/tests/integration/api/byline-translation-user-link.test.ts",
+      "bytes": 7275,
+      "sha256": "7039481b0860479b03c7a189a9d9a6cc4534aded119d4529389b1cf8a574d8ea",
+      "blob": "2900b624e1e05753be8bf2efa2cec5951d2332ed"
+    },
+    {
+      "path": "packages/core/tests/integration/content/content-list-byline-filter.test.ts",
+      "bytes": 11617,
+      "sha256": "139dafde51d729e5ec0476338608b85eaab047c2cebdccb6512a9bf208936426",
+      "blob": "20e12ad7f6c0e6d83d2abb55f054360ed2e34aad"
+    },
+    {
+      "path": "packages/core/tests/integration/content/content-list-filters.test.ts",
+      "bytes": 9588,
+      "sha256": "446ec771358e945072b14dc9c2141b499509525c31d993241850a4c71fb19636",
+      "blob": "ebed3e558d28d500fbc6d342aa1874a4a345da76"
+    },
+    {
+      "path": "packages/core/tests/integration/plugins/byline-access.test.ts",
+      "bytes": 6328,
+      "sha256": "f0a90f393a39144fa965c523fc70e19f260821b2c545c64c81705d79623724bd",
+      "blob": "5010b4eb4da2b8f16bac887bff0f0301897277f4"
+    },
+    {
+      "path": "packages/core/tests/integration/plugins/capabilities.test.ts",
+      "bytes": 63569,
+      "sha256": "7cb8fb022f7116c13d2b3e8192c60a8641738eb9235572cbacacb8287952cc40",
+      "blob": "1f85f5441807e80e36372c9143f25581026052fd"
+    },
+    {
+      "path": "packages/core/tests/unit/api/content-handlers.test.ts",
+      "bytes": 39771,
+      "sha256": "176412daffe131e71a4bdf1c8e6d1b39dd0ce97abb9ff42516a1f4e2bcaef7df",
+      "blob": "e9fd563de4da76e50a28e4029825c659c04408ce"
+    },
+    {
+      "path": "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+      "bytes": 3200,
+      "sha256": "ccd11fb00a967ab4e1649755b3d86416b1d2a07464fb78acad8708ab6dbcb0b5",
+      "blob": "ba3b7a413e01f59cf21f831badf694120e7d6a3d"
+    },
+    {
+      "path": "packages/core/tests/unit/bylines/bylines-query.test.ts",
+      "bytes": 24934,
+      "sha256": "f14278bbd5f36fa7c408ccde1b08195eae1667b95d5ee07dc4a8c95bea56aa4f",
+      "blob": "f1294167ef22d937100889b6de914c5cd8f6a9aa"
+    }
+  ],
+  "directRepositoryTestFiles": [
+    "packages/core/tests/unit/astro/session-user.test.ts"
+  ],
+  "userRepositoryConsumerTestFiles": [
+    "packages/core/tests/integration/api/byline-hooks.test.ts",
+    "packages/core/tests/integration/api/byline-translation-user-link.test.ts",
+    "packages/core/tests/integration/content/content-list-byline-filter.test.ts",
+    "packages/core/tests/integration/content/content-list-filters.test.ts",
+    "packages/core/tests/integration/plugins/byline-access.test.ts",
+    "packages/core/tests/integration/plugins/capabilities.test.ts",
+    "packages/core/tests/unit/api/content-handlers.test.ts",
+    "packages/core/tests/unit/auth/me-welcome-dismiss.test.ts",
+    "packages/core/tests/unit/bylines/bylines-query.test.ts"
+  ],
+  "pureRoleWholeFamily": {
+    "file": "packages/auth/src/rbac.test.ts",
+    "declarations": [
+      {
+        "line": 15,
+        "title": "returns false for null user",
+        "callee": "it"
+      },
+      {
+        "line": 19,
+        "title": "returns false for undefined user",
+        "callee": "it"
+      },
+      {
+        "line": 23,
+        "title": "allows subscriber to read content",
+        "callee": "it"
+      },
+      {
+        "line": 27,
+        "title": "denies subscriber from creating content",
+        "callee": "it"
+      },
+      {
+        "line": 31,
+        "title": "allows contributor to create content",
+        "callee": "it"
+      },
+      {
+        "line": 35,
+        "title": "allows admin to do anything",
+        "callee": "it"
+      },
+      {
+        "line": 43,
+        "title": "denies editor from managing users",
+        "callee": "it"
+      },
+      {
+        "line": 47,
+        "title": "allows author to edit own media",
+        "callee": "it"
+      },
+      {
+        "line": 51,
+        "title": "denies contributor from editing media",
+        "callee": "it"
+      },
+      {
+        "line": 55,
+        "title": "allows editor to edit any media",
+        "callee": "it"
+      },
+      {
+        "line": 59,
+        "title": "denies author from editing any media",
+        "callee": "it"
+      },
+      {
+        "line": 65,
+        "title": "denies subscriber from reading drafts",
+        "callee": "it"
+      },
+      {
+        "line": 69,
+        "title": "allows contributor to read drafts",
+        "callee": "it"
+      },
+      {
+        "line": 73,
+        "title": "allows editor to read drafts",
+        "callee": "it"
+      },
+      {
+        "line": 79,
+        "title": "throws for null user",
+        "callee": "it"
+      },
+      {
+        "line": 83,
+        "title": "throws unauthorized for missing user",
+        "callee": "it"
+      },
+      {
+        "line": 92,
+        "title": "throws forbidden for insufficient permissions",
+        "callee": "it"
+      },
+      {
+        "line": 101,
+        "title": "does not throw for sufficient permissions",
+        "callee": "it"
+      },
+      {
+        "line": 109,
+        "title": "allows action on own resource with own permission",
+        "callee": "it"
+      },
+      {
+        "line": 113,
+        "title": "denies action on others resource without any permission",
+        "callee": "it"
+      },
+      {
+        "line": 117,
+        "title": "allows editor to edit any resource",
+        "callee": "it"
+      },
+      {
+        "line": 122,
+        "title": "allows author to edit own media",
+        "callee": "it"
+      },
+      {
+        "line": 126,
+        "title": "denies author from editing others media",
+        "callee": "it"
+      },
+      {
+        "line": 130,
+        "title": "denies contributor from editing any media (including own)",
+        "callee": "it"
+      },
+      {
+        "line": 135,
+        "title": "allows editor to edit any media",
+        "callee": "it"
+      },
+      {
+        "line": 140,
+        "title": "F17: empty-string ownerId is not treated as 'owned by user with id ''",
+        "callee": "it"
+      },
+      {
+        "line": 153,
+        "title": "clampScopes keeps transfer scopes for admins",
+        "callee": "it"
+      },
+      {
+        "line": 160,
+        "title": "clampScopes drops transfer scopes for role %s",
+        "callee": "it.each([Role.SUBSCRIBER, Role.CONTRIBUTOR, Role.AUTHOR, Role.EDITOR])"
+      },
+      {
+        "line": 169,
+        "title": "allows author to edit own content",
+        "callee": "it"
+      },
+      {
+        "line": 176,
+        "title": "throws for author editing others content",
+        "callee": "it"
+      }
+    ],
+    "expectations": [
+      {
+        "line": 16,
+        "expression": "expect(hasPermission(null, \"content:read\")).toBe"
+      },
+      {
+        "line": 20,
+        "expression": "expect(hasPermission(undefined, \"content:read\")).toBe"
+      },
+      {
+        "line": 24,
+        "expression": "expect(hasPermission({ role: Role.SUBSCRIBER }, \"content:read\")).toBe"
+      },
+      {
+        "line": 28,
+        "expression": "expect(hasPermission({ role: Role.SUBSCRIBER }, \"content:create\")).toBe"
+      },
+      {
+        "line": 32,
+        "expression": "expect(hasPermission({ role: Role.CONTRIBUTOR }, \"content:create\")).toBe"
+      },
+      {
+        "line": 37,
+        "expression": "expect(hasPermission(admin, \"content:read\")).toBe"
+      },
+      {
+        "line": 38,
+        "expression": "expect(hasPermission(admin, \"content:create\")).toBe"
+      },
+      {
+        "line": 39,
+        "expression": "expect(hasPermission(admin, \"users:manage\")).toBe"
+      },
+      {
+        "line": 40,
+        "expression": "expect(hasPermission(admin, \"schema:manage\")).toBe"
+      },
+      {
+        "line": 44,
+        "expression": "expect(hasPermission({ role: Role.EDITOR }, \"users:manage\")).toBe"
+      },
+      {
+        "line": 48,
+        "expression": "expect(hasPermission({ role: Role.AUTHOR }, \"media:edit_own\")).toBe"
+      },
+      {
+        "line": 52,
+        "expression": "expect(hasPermission({ role: Role.CONTRIBUTOR }, \"media:edit_own\")).toBe"
+      },
+      {
+        "line": 56,
+        "expression": "expect(hasPermission({ role: Role.EDITOR }, \"media:edit_any\")).toBe"
+      },
+      {
+        "line": 60,
+        "expression": "expect(hasPermission({ role: Role.AUTHOR }, \"media:edit_any\")).toBe"
+      },
+      {
+        "line": 66,
+        "expression": "expect(hasPermission({ role: Role.SUBSCRIBER }, \"content:read_drafts\")).toBe"
+      },
+      {
+        "line": 70,
+        "expression": "expect(hasPermission({ role: Role.CONTRIBUTOR }, \"content:read_drafts\")).toBe"
+      },
+      {
+        "line": 74,
+        "expression": "expect(hasPermission({ role: Role.EDITOR }, \"content:read_drafts\")).toBe"
+      },
+      {
+        "line": 80,
+        "expression": "expect(() => requirePermission(null, \"content:read\")).toThrow"
+      },
+      {
+        "line": 87,
+        "expression": "expect(e).toBeInstanceOf"
+      },
+      {
+        "line": 88,
+        "expression": "expect((e as PermissionError).code).toBe"
+      },
+      {
+        "line": 96,
+        "expression": "expect(e).toBeInstanceOf"
+      },
+      {
+        "line": 97,
+        "expression": "expect((e as PermissionError).code).toBe"
+      },
+      {
+        "line": 102,
+        "expression": "expect(() => requirePermission({ role: Role.ADMIN }, \"content:create\")).not"
+      },
+      {
+        "line": 110,
+        "expression": "expect(canActOnOwn(user, \"user-1\", \"content:edit_own\", \"content:edit_any\")).toBe"
+      },
+      {
+        "line": 114,
+        "expression": "expect(canActOnOwn(user, \"user-2\", \"content:edit_own\", \"content:edit_any\")).toBe"
+      },
+      {
+        "line": 119,
+        "expression": "expect(canActOnOwn(editor, \"user-2\", \"content:edit_own\", \"content:edit_any\")).toBe"
+      },
+      {
+        "line": 123,
+        "expression": "expect(canActOnOwn(user, \"user-1\", \"media:edit_own\", \"media:edit_any\")).toBe"
+      },
+      {
+        "line": 127,
+        "expression": "expect(canActOnOwn(user, \"user-2\", \"media:edit_own\", \"media:edit_any\")).toBe"
+      },
+      {
+        "line": 132,
+        "expression": "expect(canActOnOwn(contributor, \"contrib-1\", \"media:edit_own\", \"media:edit_any\")).toBe"
+      },
+      {
+        "line": 137,
+        "expression": "expect(canActOnOwn(editor, \"user-2\", \"media:edit_own\", \"media:edit_any\")).toBe"
+      },
+      {
+        "line": 146,
+        "expression": "expect(canActOnOwn(orphanedUser, \"\", \"content:edit_own\", \"content:edit_any\")).toBe"
+      },
+      {
+        "line": 154,
+        "expression": "expect(clampScopes([\"admin\", ...transferScopes], Role.ADMIN)).toEqual"
+      },
+      {
+        "line": 163,
+        "expression": "expect(clampScopes([...transferScopes, \"content:read\"], role)).toEqual"
+      },
+      {
+        "line": 171,
+        "expression": "expect(() =>\n\t\t\t\trequirePermissionOnResource(user, \"user-1\", \"content:edit_own\", \"content:edit_any\"),\n\t\t\t).not"
+      },
+      {
+        "line": 178,
+        "expression": "expect(() =>\n\t\t\t\trequirePermissionOnResource(user, \"user-2\", \"content:edit_own\", \"content:edit_any\"),\n\t\t\t).toThrow"
+      }
+    ],
+    "expandedCases": 33
+  },
+  "seed": {
+    "root": "packages/core/src/seed/apply.ts",
+    "directUsersCallsInApply": [],
+    "reachableValueModules": 113,
+    "graphKind": "relative value imports/exports plus literal dynamic imports; @emdash-cms/auth resolves to pinned auth/index.ts",
+    "executionLimit": "Module reachability does not establish that an exported users function executes during applySeed",
+    "UserRepositoryImportChain": null,
+    "directUsersCalls": []
+  },
+  "productTestsRun": 0,
+  "sourceCausalRedCredit": 0
+}

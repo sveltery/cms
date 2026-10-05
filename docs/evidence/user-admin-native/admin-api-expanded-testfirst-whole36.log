@@ -1,0 +1,49 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-user99-backend
+
+ ❯ tests/user-admin-native/api.test.ts (12 tests | 2 failed) 1397ms
+   × Node SQLite: original missing-ID detail and update semantics are explicit 25ms
+   × raw workerd D1: original missing-ID detail and update semantics are explicit 95ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/user-admin-native/api.test.ts > Node SQLite: original missing-ID detail and update semantics are explicit
+AssertionError: Expected values to be strictly equal:
+
+404 !== 400
+
+
+- Expected
++ Received
+
+- 400
++ 404
+
+ ❯ tests/user-admin-native/api.test.ts:58:11
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/user-admin-native/api.test.ts > raw workerd D1: original missing-ID detail and update semantics are explicit
+AssertionError: Expected values to be strictly equal:
+
+500 !== 400
+
+
+- Expected
++ Received
+
+- 400
++ 500
+
+ ❯ tests/user-admin-native/api.test.ts:58:11
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 34 passed (36)
+   Start at  20:49:21
+   Duration  4.88s (transform 376ms, setup 0ms, import 1.20s, tests 3.42s, environment 0ms)
+

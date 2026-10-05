@@ -1,0 +1,60 @@
+// Independent supplemental metadata-only control using the existing fixture.
+import {afterEach,beforeEach,expect,it} from 'vitest';
+import {openBylineLifecycleStorage} from '../helpers/byline-lifecycle/native-storage.ts';
+import type {CmsDatabase} from '../../src/lib/server/database/contract.ts';
+import {migrateCms} from '../../src/lib/server/database/migrations.ts';
+import {SchemaRegistry} from '../../src/lib/server/database/registry.ts';
+import {nativeContentApi} from '../../src/lib/server/database/content-api.ts';
+import {ContentRepository} from '../../src/lib/server/database/lifecycle/upstream/database/repositories/content.ts';
+import {principal} from '../helpers/lifecycle-fixture.ts';
+let database:CmsDatabase;
+beforeEach(async()=>{database=await openBylineLifecycleStorage();await migrateCms(database);const registry=new SchemaRegistry(database);await registry.createCollection({slug:'post',label:'Posts'});await registry.createField('post',{slug:'title',label:'Title',type:'string'});});
+afterEach(()=>database.close());
+for(const authorId of ['copy-author',null]){
+ it(`unchanged Source repository writes literal author metadata ${authorId}`,async()=>{
+  const api=nativeContentApi(database,principal,{after:()=>{}});
+  const initial=await api.create('post',{data:{title:'Imported'},authorId:'imported-author'});
+  expect(initial.success).toBe(true);if(!initial.success)throw new Error(initial.error.message);
+  const updated=await new ContentRepository(database.db as any).update('post',initial.data.item.id,{authorId});
+  expect(updated.authorId).toBe(authorId);
+ });
+ it(`Native trusted Source API writes literal author metadata ${authorId}`,async()=>{
+  const api=nativeContentApi(database,principal,{after:()=>{}});
+  const initial=await api.create('post',{data:{title:'Imported'},authorId:'imported-author'});
+  expect(initial.success).toBe(true);if(!initial.success)throw new Error(initial.error.message);
+  const updated=await api.update('post',initial.data.item.id,{authorId,_rev:initial.data._rev});
+  expect(updated.success).toBe(true);if(!updated.success)throw new Error(updated.error.message);
+  expect(updated.data.item.authorId).toBe(authorId);
+ });
+}
+for(const slug of [null,'']){
+ it(`Source slug generation for falsy handler slug ${String(slug)}`,async()=>{
+  nativeContentApi(database,principal,{after:()=>{}});
+  const generated=await new ContentRepository(database.db as any).generateUniqueSlug('post','Imported','en');
+  expect(generated).toBe('imported');
+ });
+ it(`Native trusted Source API generates a title slug for ${String(slug)}`,async()=>{
+  const result=await nativeContentApi(database,principal,{after:()=>{}}).create('post',{data:{title:'Imported'},slug});
+  expect(result.success).toBe(true);if(!result.success)throw new Error(result.error.message);
+  expect(result.data.item.slug).toBe('imported');
+ });
+}
+for(const action of ['schedule','unschedule'] as const){
+ it(`trusted Source ${action} returns the persisted SEO hydration`,async()=>{
+  const registry=new SchemaRegistry(database);
+  await registry.createCollection({slug:'seo_post',label:'Posts',supports:['seo','drafts']});
+  await registry.createField('seo_post',{slug:'title',label:'Title',type:'string'});
+  const api=nativeContentApi(database,principal,{after:()=>{}});
+  const created=await api.create('seo_post',{data:{title:'Imported'},seo:{title:'Stored title'}});
+  expect(created.success).toBe(true);if(!created.success)throw new Error(created.error.message);
+  expect(created.data.item.seo?.title).toBe('Stored title');
+  const scheduled=await api.schedule('seo_post',created.data.item.id,new Date(Date.now()+60_000).toISOString(),new Date(),created.data._rev);
+  expect(scheduled.success).toBe(true);if(!scheduled.success)throw new Error(scheduled.error.message);
+  if(action==='schedule')expect(scheduled.data.item.seo?.title).toBe('Stored title');
+  else {
+   const unscheduled=await api.unschedule('seo_post',created.data.item.id,scheduled.data._rev);
+   expect(unscheduled.success).toBe(true);if(!unscheduled.success)throw new Error(unscheduled.error.message);
+   expect(unscheduled.data.item.seo?.title).toBe('Stored title');
+  }
+ });
+}

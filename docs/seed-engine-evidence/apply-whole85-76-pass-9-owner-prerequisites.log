@@ -1,0 +1,171 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts (78 tests | 7 failed) 3601ms
+       × binds an existing unbound reference field when a re-applied seed names a target 93ms
+       × should create bylines and assign ordered credits to content 47ms
+       × should seed a byline avatar as a media row and link it 36ms
+       × links a byline avatar on update (onConflict: update) 37ms
+       × idempotently publishes slugless content for a non-routable collection 42ms
+       × reads the site timezone and field definitions as often for ten entries as for one 64ms
+       × does not create relation edges to a skipped trashed entry 52ms
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts (5 tests | 2 failed) 2059ms
+     × resolves references, term parents, bylines and menus across calls as a single call does 239ms
+     × keeps every call near its budget while it creates many terms and bylines 332ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > resolves references, term parents, bylines and menus across calls as a single call does
+Error: Byline writes require the actual registered CMS database owner
+ ❯ bylineDatabaseOwner src/lib/server/bylines/storage.ts:59:21
+     57| export function bylineDatabaseOwner(db: Kysely<Database>): CmsDatabase…
+     58|   const owner = registeredBylineDatabaseOwner(db);
+     59|   if (!owner) throw new Error('Byline writes require the actual regist…
+       |                     ^
+     60|   return owner;
+     61| }
+ ❯ BylineRepository.create src/lib/server/bylines/repository.ts:755:3
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:774:38
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applyInCalls parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:49:19
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:148:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > keeps every call near its budget while it creates many terms and bylines
+Error: Byline writes require the actual registered CMS database owner
+ ❯ bylineDatabaseOwner src/lib/server/bylines/storage.ts:59:21
+     57| export function bylineDatabaseOwner(db: Kysely<Database>): CmsDatabase…
+     58|   const owner = registeredBylineDatabaseOwner(db);
+     59|   if (!owner) throw new Error('Byline writes require the actual regist…
+       |                     ^
+     60|   return owner;
+     61| }
+ ❯ BylineRepository.create src/lib/server/bylines/repository.ts:755:3
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:774:38
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applyInCalls parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:49:19
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:250:33
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > relations > binds an existing unbound reference field when a re-applied seed names a target
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:446:23
+    444| export function seedDatabaseOwner(db: object): CmsDatabase {
+    445|   const context = views.get(db);
+    446|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    447|   return context.owner;
+    448| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:8:40
+ ❯ createFieldRelation src/lib/server/seed/field-relations.ts:27:19
+ ❯ src/lib/server/seed/field-relations.ts:75:26
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:680:38
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20
+ ❯ upsertSeedField src/lib/server/seed/apply.ts:1827:4
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:434:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should create bylines and assign ordered credits to content
+Error: Byline writes require the actual registered CMS database owner
+ ❯ bylineDatabaseOwner src/lib/server/bylines/storage.ts:59:21
+     57| export function bylineDatabaseOwner(db: Kysely<Database>): CmsDatabase…
+     58|   const owner = registeredBylineDatabaseOwner(db);
+     59|   if (!owner) throw new Error('Byline writes require the actual regist…
+       |                     ^
+     60|   return owner;
+     61| }
+ ❯ BylineRepository.create src/lib/server/bylines/repository.ts:755:3
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:774:38
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1270:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > should seed a byline avatar as a media row and link it
+Error: Byline writes require the actual registered CMS database owner
+ ❯ bylineDatabaseOwner src/lib/server/bylines/storage.ts:59:21
+     57| export function bylineDatabaseOwner(db: Kysely<Database>): CmsDatabase…
+     58|   const owner = registeredBylineDatabaseOwner(db);
+     59|   if (!owner) throw new Error('Byline writes require the actual regist…
+       |                     ^
+     60|   return owner;
+     61| }
+ ❯ BylineRepository.create src/lib/server/bylines/repository.ts:755:3
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:774:38
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1321:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > links a byline avatar on update (onConflict: update)
+Error: Byline writes require the actual registered CMS database owner
+ ❯ bylineDatabaseOwner src/lib/server/bylines/storage.ts:59:21
+     57| export function bylineDatabaseOwner(db: Kysely<Database>): CmsDatabase…
+     58|   const owner = registeredBylineDatabaseOwner(db);
+     59|   if (!owner) throw new Error('Byline writes require the actual regist…
+       |                     ^
+     60|   return owner;
+     61| }
+ ❯ BylineRepository.create src/lib/server/bylines/repository.ts:755:3
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:774:38
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1346:4
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > idempotently publishes slugless content for a non-routable collection
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > reads the site timezone and field definitions as often for ten entries as for one
+Error: Byline writes require the actual registered CMS database owner
+ ❯ bylineDatabaseOwner src/lib/server/bylines/storage.ts:59:21
+     57| export function bylineDatabaseOwner(db: Kysely<Database>): CmsDatabase…
+     58|   const owner = registeredBylineDatabaseOwner(db);
+     59|   if (!owner) throw new Error('Byline writes require the actual regist…
+       |                     ^
+     60|   return owner;
+     61| }
+ ❯ BylineRepository.planContentBylineReplacement src/lib/server/bylines/repository.ts:1326:3
+ ❯ BylineRepository.setContentBylines src/lib/server/bylines/repository.ts:1312:33
+ ❯ applyContentBylines src/lib/server/seed/apply.ts:1748:21
+ ❯ src/lib/server/seed/apply.ts:900:16
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:680:32
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:889:9
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content conflicts with trashed entries > does not create relation edges to a skipped trashed entry
+Error: Seed operations require their actual registered CMS database owner
+ ❯ seedDatabaseOwner src/lib/server/seed/namespace.ts:446:23
+    444| export function seedDatabaseOwner(db: object): CmsDatabase {
+    445|   const context = views.get(db);
+    446|   if (!context) throw new Error('Seed operations require their actual …
+       |                       ^
+    447|   return context.owner;
+    448| }
+ ❯ new SchemaRegistry src/lib/server/seed/registry.ts:8:40
+ ❯ createFieldRelation src/lib/server/seed/field-relations.ts:27:19
+ ❯ src/lib/server/seed/apply.ts:1886:27
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:680:38
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:20
+ ❯ upsertSeedField src/lib/server/seed/apply.ts:1885:3
+ ❯ applySeedWrites src/lib/server/seed/apply.ts:434:7
+ ❯ coalesceObjectCacheWrites src/lib/server/menus/object-cache.ts:757:10
+ ❯ applySeed src/lib/server/seed/apply.ts:181:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+
+ Test Files  2 failed | 1 passed (3)
+      Tests  9 failed | 76 passed (85)
+   Start at  21:28:25
+   Duration  10.50s (transform 1.98s, setup 0ms, import 3.52s, tests 6.15s, environment 0ms)
+

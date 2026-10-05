@@ -1,0 +1,26 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-user99-backend
+
+ ❯ parity/emdash/user-admin-reference/runtime/tests/accounts-source-contract/public-users.test.mjs (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/user-admin-reference/runtime/tests/accounts-source-contract/public-users.test.mjs [ parity/emdash/user-admin-reference/runtime/tests/accounts-source-contract/public-users.test.mjs ]
+Error: Cannot find module '/parity/emdash/user-admin-reference/runtime/packages/core/src/api/schemas.mjs' imported from /workspace/cms-complete-user99-backend/parity/emdash/user-admin-reference/runtime/packages/core/src/astro/routes/api/admin/users/index.mjs
+ ❯ parity/emdash/user-admin-reference/runtime/packages/core/src/astro/routes/api/admin/users/index.mjs:10:1
+      8| import { apiError, apiSuccess, handleError } from "#api/error.mjs";
+      9| import { isParseError, parseQuery } from "#api/parse.mjs";
+     10| import { usersListQuery } from "#api/schemas.mjs";
+       | ^
+     11| export const prerender = false;
+     12| export const GET = async ({ url, locals }) => {
+ ❯ parity/emdash/user-admin-reference/runtime/tests/accounts-source-contract/public-users.test.mjs:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  20:59:14
+   Duration  397ms (transform 100ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

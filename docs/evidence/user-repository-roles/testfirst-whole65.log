@@ -1,0 +1,524 @@
+
+ RUN  v4.1.10 /workspace/cms-user-repository-roles
+
+ ❯ tests/users-native/repository.test.ts (27 tests | 26 failed) 1456ms
+   × Node SQLite: creates a full default subscriber and preserves Source SQLite timestamps 20ms
+   × Node SQLite: creates named roles, avatar URLs and full JSON profile data 7ms
+   × Node SQLite: email uniqueness rejects the whole atomic create without leaving an identity 7ms
+   × Node SQLite: resolves complete existing profiles by ID and case-insensitive email 7ms
+   × Node SQLite: batches IDs while dropping duplicates, empty IDs and absent profiles 12ms
+   × Node SQLite: pages tied timestamps without duplicates and filters each exact role 7ms
+   × Node SQLite: updates role and profile fields together without changing core timestamps 7ms
+   × Node SQLite: an operator profile rejection rolls back both role and profile changes 7ms
+   × Node SQLite: deleting a complete profile returns true once and uses the stored identity cascade 7ms
+   × Node SQLite: profileless historical identities are preserved without fabricated user rows 7ms
+   × Node SQLite: reads preserve existing nonstandard timestamp bytes, disabled state and full JSON 7ms
+   × Node SQLite: existing identity adapter reads the same full newly created profile 7ms
+   × Node SQLite: malformed stored JSON preserves the Source parse error without rewriting data 6ms
+   × raw workerd D1: creates a full default subscriber and preserves Source SQLite timestamps 635ms
+   × raw workerd D1: creates named roles, avatar URLs and full JSON profile data 60ms
+   × raw workerd D1: email uniqueness rejects the whole atomic create without leaving an identity 30ms
+   × raw workerd D1: resolves complete existing profiles by ID and case-insensitive email 30ms
+   × raw workerd D1: batches IDs while dropping duplicates, empty IDs and absent profiles 325ms
+   × raw workerd D1: pages tied timestamps without duplicates and filters each exact role 37ms
+   × raw workerd D1: updates role and profile fields together without changing core timestamps 40ms
+   × raw workerd D1: an operator profile rejection rolls back both role and profile changes 35ms
+   × raw workerd D1: deleting a complete profile returns true once and uses the stored identity cascade 28ms
+   × raw workerd D1: profileless historical identities are preserved without fabricated user rows 33ms
+   × raw workerd D1: reads preserve existing nonstandard timestamp bytes, disabled state and full JSON 37ms
+   × raw workerd D1: existing identity adapter reads the same full newly created profile 25ms
+   × raw workerd D1: malformed stored JSON preserves the Source parse error without rewriting data 31ms
+ ❯ parity/emdash/users/source/packages/auth/src/rbac.test.ts (33 tests | 5 failed) 13ms
+       × clampScopes keeps transfer scopes for admins 4ms
+       × clampScopes drops transfer scopes for role 10 0ms
+       × clampScopes drops transfer scopes for role 20 0ms
+       × clampScopes drops transfer scopes for role 30 1ms
+       × clampScopes drops transfer scopes for role 40 0ms
+ ❯ tests/users-native/scopes.test.ts (5 tests | 5 failed) 6ms
+   × pure role 10: intersects requested transfer scopes with the Source role policy 4ms
+   × pure role 20: intersects requested transfer scopes with the Source role policy 0ms
+   × pure role 30: intersects requested transfer scopes with the Source role policy 0ms
+   × pure role 40: intersects requested transfer scopes with the Source role policy 0ms
+   × pure role 50: intersects requested transfer scopes with the Source role policy 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 36 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/users-native/repository.test.ts > Node SQLite: creates a full default subscriber and preserves Source SQLite timestamps
+AssertionError: Got unwanted rejection: Core user creation must execute on the actual migrated Native storage
+Actual message: "no such table: users"
+
+simple
+
+ ❯ created tests/users-native/repository.test.ts:35:3
+     33| async function created(repository: UserRepository, input: Parameters<U…
+     34|   let result: Awaited<ReturnType<UserRepository['create']>> | undefine…
+     35|   await assert.doesNotReject(async () => { result = await repository.c…
+       |   ^
+     36|     'Core user creation must execute on the actual migrated Native sto…
+     37|   assert.ok(result);
+ ❯ tests/users-native/repository.test.ts:62:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > Node SQLite: creates named roles, avatar URLs and full JSON profile data
+AssertionError: Got unwanted rejection: Core user creation must execute on the actual migrated Native storage
+Actual message: "no such table: users"
+
+simple
+
+ ❯ created tests/users-native/repository.test.ts:35:3
+     33| async function created(repository: UserRepository, input: Parameters<U…
+     34|   let result: Awaited<ReturnType<UserRepository['create']>> | undefine…
+     35|   await assert.doesNotReject(async () => { result = await repository.c…
+       |   ^
+     36|     'Core user creation must execute on the actual migrated Native sto…
+     37|   assert.ok(result);
+ ❯ tests/users-native/repository.test.ts:80:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > Node SQLite: email uniqueness rejects the whole atomic create without leaving an identity
+AssertionError: Got unwanted rejection: Core user creation must execute on the actual migrated Native storage
+Actual message: "no such table: users"
+
+simple
+
+ ❯ created tests/users-native/repository.test.ts:35:3
+     33| async function created(repository: UserRepository, input: Parameters<U…
+     34|   let result: Awaited<ReturnType<UserRepository['create']>> | undefine…
+     35|   await assert.doesNotReject(async () => { result = await repository.c…
+       |   ^
+     36|     'Core user creation must execute on the actual migrated Native sto…
+     37|   assert.ok(result);
+ ❯ tests/users-native/repository.test.ts:94:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > Node SQLite: resolves complete existing profiles by ID and case-insensitive email
+AssertionError: Got unwanted rejection.
+Actual message: "no such table: users"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:106:7
+    104|       await insertProfile(f.database, 'legacy-profile', 40);
+    105|       let user: Awaited<ReturnType<UserRepository['findById']>> | unde…
+    106|       await assert.doesNotReject(async () => { user = await f.reposito…
+       |       ^
+    107|       assert.ok(user);
+    108|       assert.deepEqual(user, { id: 'legacy-profile', email: 'legacy-pr…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > Node SQLite: batches IDs while dropping duplicates, empty IDs and absent profiles
+AssertionError: Got unwanted rejection.
+Actual message: "no such table: users"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:124:7
+    122|       for (const id of ids) await insertProfile(f.database, id);
+    123|       let found: Awaited<ReturnType<UserRepository['findByIds']>> | un…
+    124|       await assert.doesNotReject(async () => { found = await f.reposit…
+       |       ^
+    125|       assert.ok(found);
+    126|       assert.deepEqual(found.map(user => user.id).toSorted(), ids);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > Node SQLite: pages tied timestamps without duplicates and filters each exact role
+AssertionError: Got unwanted rejection.
+Actual message: "no such table: users"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:137:7
+    135|       for (const [index, role] of [10, 20, 30, 40, 50].entries()) awai…
+    136|       let first: Awaited<ReturnType<UserRepository['findMany']>> | und…
+    137|       await assert.doesNotReject(async () => { first = await f.reposit…
+       |       ^
+    138|       assert.ok(first);
+    139|       const seen = [...first.items.map(user => user.id)];
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > Node SQLite: updates role and profile fields together without changing core timestamps
+AssertionError: Got unwanted rejection.
+Actual message: "no such table: users"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:167:7
+    165|       await insertProfile(f.database, 'update-profile', 20);
+    166|       let updated: Awaited<ReturnType<UserRepository['update']>> | und…
+    167|       await assert.doesNotReject(async () => { updated = await f.repos…
+       |       ^
+    168|         name: 'Changed', role: 'admin', avatarUrl: '/avatar.png', data…
+    169|       assert.ok(updated);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > Node SQLite: an operator profile rejection rolls back both role and profile changes
+AssertionError: Got unwanted rejection.
+Actual message: "no such table: users"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:198:7
+    196|       const before = await readRows(f.database);
+    197|       let existing: Awaited<ReturnType<UserRepository['findById']>> | …
+    198|       await assert.doesNotReject(async () => { existing = await f.repo…
+       |       ^
+    199|       assert.ok(existing);
+    200|       await assert.rejects(() => f.repository.update(existing.id, { ro…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > Node SQLite: deleting a complete profile returns true once and uses the stored identity cascade
+AssertionError: Got unwanted rejection.
+Actual message: "no such table: users"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:210:7
+    208|       await insertProfile(f.database, 'delete-profile', 40);
+    209|       let deleted: boolean | undefined;
+    210|       await assert.doesNotReject(async () => { deleted = await f.repos…
+       |       ^
+    211|       assert.equal(deleted, true);
+    212|       assert.equal(await f.repository.delete('delete-profile'), false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > Node SQLite: profileless historical identities are preserved without fabricated user rows
+AssertionError: Got unwanted rejection.
+Actual message: "no such table: users"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:225:7
+    223|       const before = await readRows(f.database);
+    224|       let missing: Awaited<ReturnType<UserRepository['findById']>> | u…
+    225|       await assert.doesNotReject(async () => { missing = await f.repos…
+       |       ^
+    226|       assert.equal(missing, null);
+    227|       assert.equal(await f.repository.update('profileless', { role: 'a…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > Node SQLite: reads preserve existing nonstandard timestamp bytes, disabled state and full JSON
+AssertionError: Got unwanted rejection.
+Actual message: "no such table: users"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:244:7
+    242|       const before = await readRows(f.database);
+    243|       let user: Awaited<ReturnType<UserRepository['findById']>> | unde…
+    244|       await assert.doesNotReject(async () => { user = await f.reposito…
+       |       ^
+    245|       assert.ok(user);
+    246|       assert.equal(user.createdAt, '2024-01-02T03:04:05.006Z');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > Node SQLite: existing identity adapter reads the same full newly created profile
+AssertionError: Got unwanted rejection: Core user creation must execute on the actual migrated Native storage
+Actual message: "no such table: users"
+
+simple
+
+ ❯ created tests/users-native/repository.test.ts:35:3
+     33| async function created(repository: UserRepository, input: Parameters<U…
+     34|   let result: Awaited<ReturnType<UserRepository['create']>> | undefine…
+     35|   await assert.doesNotReject(async () => { result = await repository.c…
+       |   ^
+     36|     'Core user creation must execute on the actual migrated Native sto…
+     37|   assert.ok(result);
+ ❯ tests/users-native/repository.test.ts:258:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > Node SQLite: malformed stored JSON preserves the Source parse error without rewriting data
+AssertionError: Got unwanted rejection.
+Actual message: "no such table: users"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:278:7
+    276|       await f.database.db.updateTable('_cms_auth_profiles').set({ data…
+    277|       let count: number | undefined;
+    278|       await assert.doesNotReject(async () => { count = await f.reposit…
+       |       ^
+    279|       assert.equal(count, 1);
+    280|       const before = await readRows(f.database);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > raw workerd D1: creates a full default subscriber and preserves Source SQLite timestamps
+AssertionError: Got unwanted rejection: Core user creation must execute on the actual migrated Native storage
+Actual message: "D1_ERROR: no such table: users: SQLITE_ERROR"
+
+simple
+
+ ❯ created tests/users-native/repository.test.ts:35:3
+     33| async function created(repository: UserRepository, input: Parameters<U…
+     34|   let result: Awaited<ReturnType<UserRepository['create']>> | undefine…
+     35|   await assert.doesNotReject(async () => { result = await repository.c…
+       |   ^
+     36|     'Core user creation must execute on the actual migrated Native sto…
+     37|   assert.ok(result);
+ ❯ tests/users-native/repository.test.ts:62:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > raw workerd D1: creates named roles, avatar URLs and full JSON profile data
+AssertionError: Got unwanted rejection: Core user creation must execute on the actual migrated Native storage
+Actual message: "D1_ERROR: no such table: users: SQLITE_ERROR"
+
+simple
+
+ ❯ created tests/users-native/repository.test.ts:35:3
+     33| async function created(repository: UserRepository, input: Parameters<U…
+     34|   let result: Awaited<ReturnType<UserRepository['create']>> | undefine…
+     35|   await assert.doesNotReject(async () => { result = await repository.c…
+       |   ^
+     36|     'Core user creation must execute on the actual migrated Native sto…
+     37|   assert.ok(result);
+ ❯ tests/users-native/repository.test.ts:80:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > raw workerd D1: email uniqueness rejects the whole atomic create without leaving an identity
+AssertionError: Got unwanted rejection: Core user creation must execute on the actual migrated Native storage
+Actual message: "D1_ERROR: no such table: users: SQLITE_ERROR"
+
+simple
+
+ ❯ created tests/users-native/repository.test.ts:35:3
+     33| async function created(repository: UserRepository, input: Parameters<U…
+     34|   let result: Awaited<ReturnType<UserRepository['create']>> | undefine…
+     35|   await assert.doesNotReject(async () => { result = await repository.c…
+       |   ^
+     36|     'Core user creation must execute on the actual migrated Native sto…
+     37|   assert.ok(result);
+ ❯ tests/users-native/repository.test.ts:94:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > raw workerd D1: resolves complete existing profiles by ID and case-insensitive email
+AssertionError: Got unwanted rejection.
+Actual message: "D1_ERROR: no such table: users: SQLITE_ERROR"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:106:7
+    104|       await insertProfile(f.database, 'legacy-profile', 40);
+    105|       let user: Awaited<ReturnType<UserRepository['findById']>> | unde…
+    106|       await assert.doesNotReject(async () => { user = await f.reposito…
+       |       ^
+    107|       assert.ok(user);
+    108|       assert.deepEqual(user, { id: 'legacy-profile', email: 'legacy-pr…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > raw workerd D1: batches IDs while dropping duplicates, empty IDs and absent profiles
+AssertionError: Got unwanted rejection.
+Actual message: "D1_ERROR: no such table: users: SQLITE_ERROR"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:124:7
+    122|       for (const id of ids) await insertProfile(f.database, id);
+    123|       let found: Awaited<ReturnType<UserRepository['findByIds']>> | un…
+    124|       await assert.doesNotReject(async () => { found = await f.reposit…
+       |       ^
+    125|       assert.ok(found);
+    126|       assert.deepEqual(found.map(user => user.id).toSorted(), ids);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > raw workerd D1: pages tied timestamps without duplicates and filters each exact role
+AssertionError: Got unwanted rejection.
+Actual message: "D1_ERROR: no such table: users: SQLITE_ERROR"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:137:7
+    135|       for (const [index, role] of [10, 20, 30, 40, 50].entries()) awai…
+    136|       let first: Awaited<ReturnType<UserRepository['findMany']>> | und…
+    137|       await assert.doesNotReject(async () => { first = await f.reposit…
+       |       ^
+    138|       assert.ok(first);
+    139|       const seen = [...first.items.map(user => user.id)];
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > raw workerd D1: updates role and profile fields together without changing core timestamps
+AssertionError: Got unwanted rejection.
+Actual message: "D1_ERROR: no such table: users: SQLITE_ERROR"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:167:7
+    165|       await insertProfile(f.database, 'update-profile', 20);
+    166|       let updated: Awaited<ReturnType<UserRepository['update']>> | und…
+    167|       await assert.doesNotReject(async () => { updated = await f.repos…
+       |       ^
+    168|         name: 'Changed', role: 'admin', avatarUrl: '/avatar.png', data…
+    169|       assert.ok(updated);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > raw workerd D1: an operator profile rejection rolls back both role and profile changes
+AssertionError: Got unwanted rejection.
+Actual message: "D1_ERROR: no such table: users: SQLITE_ERROR"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:198:7
+    196|       const before = await readRows(f.database);
+    197|       let existing: Awaited<ReturnType<UserRepository['findById']>> | …
+    198|       await assert.doesNotReject(async () => { existing = await f.repo…
+       |       ^
+    199|       assert.ok(existing);
+    200|       await assert.rejects(() => f.repository.update(existing.id, { ro…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > raw workerd D1: deleting a complete profile returns true once and uses the stored identity cascade
+AssertionError: Got unwanted rejection.
+Actual message: "D1_ERROR: no such table: users: SQLITE_ERROR"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:210:7
+    208|       await insertProfile(f.database, 'delete-profile', 40);
+    209|       let deleted: boolean | undefined;
+    210|       await assert.doesNotReject(async () => { deleted = await f.repos…
+       |       ^
+    211|       assert.equal(deleted, true);
+    212|       assert.equal(await f.repository.delete('delete-profile'), false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > raw workerd D1: profileless historical identities are preserved without fabricated user rows
+AssertionError: Got unwanted rejection.
+Actual message: "D1_ERROR: no such table: users: SQLITE_ERROR"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:225:7
+    223|       const before = await readRows(f.database);
+    224|       let missing: Awaited<ReturnType<UserRepository['findById']>> | u…
+    225|       await assert.doesNotReject(async () => { missing = await f.repos…
+       |       ^
+    226|       assert.equal(missing, null);
+    227|       assert.equal(await f.repository.update('profileless', { role: 'a…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > raw workerd D1: reads preserve existing nonstandard timestamp bytes, disabled state and full JSON
+AssertionError: Got unwanted rejection.
+Actual message: "D1_ERROR: no such table: users: SQLITE_ERROR"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:244:7
+    242|       const before = await readRows(f.database);
+    243|       let user: Awaited<ReturnType<UserRepository['findById']>> | unde…
+    244|       await assert.doesNotReject(async () => { user = await f.reposito…
+       |       ^
+    245|       assert.ok(user);
+    246|       assert.equal(user.createdAt, '2024-01-02T03:04:05.006Z');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > raw workerd D1: existing identity adapter reads the same full newly created profile
+AssertionError: Got unwanted rejection: Core user creation must execute on the actual migrated Native storage
+Actual message: "D1_ERROR: no such table: users: SQLITE_ERROR"
+
+simple
+
+ ❯ created tests/users-native/repository.test.ts:35:3
+     33| async function created(repository: UserRepository, input: Parameters<U…
+     34|   let result: Awaited<ReturnType<UserRepository['create']>> | undefine…
+     35|   await assert.doesNotReject(async () => { result = await repository.c…
+       |   ^
+     36|     'Core user creation must execute on the actual migrated Native sto…
+     37|   assert.ok(result);
+ ❯ tests/users-native/repository.test.ts:258:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/36]⎯
+
+ FAIL  tests/users-native/repository.test.ts > raw workerd D1: malformed stored JSON preserves the Source parse error without rewriting data
+AssertionError: Got unwanted rejection.
+Actual message: "D1_ERROR: no such table: users: SQLITE_ERROR"
+
+simple
+
+ ❯ tests/users-native/repository.test.ts:278:7
+    276|       await f.database.db.updateTable('_cms_auth_profiles').set({ data…
+    277|       let count: number | undefined;
+    278|       await assert.doesNotReject(async () => { count = await f.reposit…
+       |       ^
+    279|       assert.equal(count, 1);
+    280|       const before = await readRows(f.database);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/36]⎯
+
+ FAIL  tests/users-native/scopes.test.ts > pure role 10: intersects requested transfer scopes with the Source role policy
+ FAIL  tests/users-native/scopes.test.ts > pure role 20: intersects requested transfer scopes with the Source role policy
+ FAIL  tests/users-native/scopes.test.ts > pure role 30: intersects requested transfer scopes with the Source role policy
+ FAIL  tests/users-native/scopes.test.ts > pure role 40: intersects requested transfer scopes with the Source role policy
+ FAIL  tests/users-native/scopes.test.ts > pure role 50: intersects requested transfer scopes with the Source role policy
+AssertionError: Got unwanted exception: The Source scope policy must be available as a pure function
+Actual message: "Native Source clampScopes is not implemented"
+
+simple
+
+ ❯ tests/users-native/scopes.test.ts:10:12
+      8|     let granted: string[] | undefined;
+      9|     const requested = ['admin', 'transfer:export', 'transfer:analyze',…
+     10|     assert.doesNotThrow(() => { granted = clampScopes(requested, role)…
+       |            ^
+     11|     assert.deepEqual(granted, role === 50 ? requested.slice(0, -1) : […
+     12|     assert.deepEqual(requested, ['admin', 'transfer:export', 'transfer…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/36]⎯
+
+ FAIL  parity/emdash/users/source/packages/auth/src/rbac.test.ts > rbac > site transfer > clampScopes keeps transfer scopes for admins
+Error: Native Source clampScopes is not implemented
+ ❯ clampScopes tests/helpers/users/source-rbac-baseline.ts:8:51
+      6| export function clampScopes(requested: string[], role: 10 | 20 | 30 | …
+      7|   const implementation = Reflect.get(permissions, 'clampScopes');
+      8|   if (typeof implementation !== 'function') throw new Error('Native So…
+       |                                                   ^
+      9|   return implementation(requested, role);
+     10| }
+ ❯ parity/emdash/users/source/packages/auth/src/rbac.test.ts:154:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/36]⎯
+
+ FAIL  parity/emdash/users/source/packages/auth/src/rbac.test.ts > rbac > site transfer > clampScopes drops transfer scopes for role 10
+ FAIL  parity/emdash/users/source/packages/auth/src/rbac.test.ts > rbac > site transfer > clampScopes drops transfer scopes for role 20
+ FAIL  parity/emdash/users/source/packages/auth/src/rbac.test.ts > rbac > site transfer > clampScopes drops transfer scopes for role 30
+ FAIL  parity/emdash/users/source/packages/auth/src/rbac.test.ts > rbac > site transfer > clampScopes drops transfer scopes for role 40
+Error: Native Source clampScopes is not implemented
+ ❯ clampScopes tests/helpers/users/source-rbac-baseline.ts:8:51
+      6| export function clampScopes(requested: string[], role: 10 | 20 | 30 | …
+      7|   const implementation = Reflect.get(permissions, 'clampScopes');
+      8|   if (typeof implementation !== 'function') throw new Error('Native So…
+       |                                                   ^
+      9|   return implementation(requested, role);
+     10| }
+ ❯ parity/emdash/users/source/packages/auth/src/rbac.test.ts:163:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/36]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  36 failed | 29 passed (65)
+   Start at  10:26:31
+   Duration  2.34s (transform 182ms, setup 0ms, import 513ms, tests 1.48s, environment 0ms)
+

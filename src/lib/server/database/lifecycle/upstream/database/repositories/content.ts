@@ -321,7 +321,7 @@ function serializeValue(value: unknown): unknown {
 	return value;
 }
 
-function writableContentData(data: Record<string, unknown>): Record<string, unknown> {
+export function writableContentData(data: Record<string, unknown>): Record<string, unknown> {
 	const writable: Record<string, unknown> = {};
 	for (const [key, value] of Object.entries(data)) {
 		if (SYSTEM_COLUMNS.has(key)) continue;
@@ -1093,6 +1093,7 @@ this.datetimeContexts = datetimeContexts;
 		revisionData: Record<string, unknown>,
 		authorId: string,
 		expectedRevision?: ContentRevisionPrecondition,
+		executeRestore?: (queries:readonly RawBuilder<unknown>[])=>Promise<readonly QueryResult<unknown>[]>,
 	): Promise<{ item: ContentItem; revisionId: string }> {
 		const tableName = getTableName(type);
 		const existing = await this.findById(type, id);
@@ -1165,7 +1166,7 @@ this.datetimeContexts = datetimeContexts;
 			return [audit, update, removeUnappliedAudit, releaseMarker] as const;
 		};
 
-		const batched = await executeAtomicBatchIfSupported(this.db, buildQueries());
+		const batched = executeRestore ? await executeRestore(buildQueries()) : await executeAtomicBatchIfSupported(this.db, buildQueries());
 		if (batched) {
 			if (
 				batched[0]?.rows.length !== 1 ||

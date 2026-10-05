@@ -1,0 +1,82 @@
+$ vitest run --config vitest.seo-storage-native.config.ts
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+ ❯ tests/seo-storage-native/read-snapshot.test.ts (4 tests | 4 failed) 273ms
+   × Source single hydration uses the trusted true metadata snapshot 153ms
+   × Source single hydration uses the trusted false metadata snapshot 42ms
+   × Source batch hydration uses the trusted true metadata snapshot 46ms
+   × Source batch hydration uses the trusted false metadata snapshot 32ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/seo-storage-native/read-snapshot.test.ts > Source single hydration uses the trusted true metadata snapshot
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ undefined
+- 'Persisted SEO'
+
+
+simple
+
+ ❯ tests/seo-storage-native/read-snapshot.test.ts:39:22
+     37|     ?await (hydrateContentSeo as unknown as Single)(fixture.database,'…
+     38|     :(await (hydrateContentSeoMany as unknown as Many)(fixture.databas…
+     39|    if(enabled)assert.equal(hydrated.seo?.title,'Persisted SEO');
+       |                      ^
+     40|    else {assert.equal(Object.hasOwn(hydrated,'seo'),false);assert.stri…
+     41|   }finally{await fixture.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/seo-storage-native/read-snapshot.test.ts > Source single hydration uses the trusted false metadata snapshot
+ FAIL  tests/seo-storage-native/read-snapshot.test.ts > Source batch hydration uses the trusted false metadata snapshot
+AssertionError: Expected values to be strictly equal:
+
+true !== false
+
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/seo-storage-native/read-snapshot.test.ts:40:17
+     38|     :(await (hydrateContentSeoMany as unknown as Many)(fixture.databas…
+     39|    if(enabled)assert.equal(hydrated.seo?.title,'Persisted SEO');
+     40|    else {assert.equal(Object.hasOwn(hydrated,'seo'),false);assert.stri…
+       |                 ^
+     41|   }finally{await fixture.close();}
+     42|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/seo-storage-native/read-snapshot.test.ts > Source batch hydration uses the trusted true metadata snapshot
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ undefined
+- 'Persisted SEO'
+
+
+simple
+
+ ❯ tests/seo-storage-native/read-snapshot.test.ts:39:22
+     37|     ?await (hydrateContentSeo as unknown as Single)(fixture.database,'…
+     38|     :(await (hydrateContentSeoMany as unknown as Many)(fixture.databas…
+     39|    if(enabled)assert.equal(hydrated.seo?.title,'Persisted SEO');
+       |                      ^
+     40|    else {assert.equal(Object.hasOwn(hydrated,'seo'),false);assert.stri…
+     41|   }finally{await fixture.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  4 failed | 27 passed (31)
+   Start at  05:32:41
+   Duration  57.52s (transform 1.60s, setup 0ms, import 6.18s, tests 49.58s, environment 1ms)
+
+[ELIFECYCLE] Command failed with exit code 1.
