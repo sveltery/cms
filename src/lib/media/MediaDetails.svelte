@@ -72,8 +72,35 @@
  function failed(cause:unknown){return cause instanceof Error?cause.message:'An error occurred';}
  const notFound=(cause:unknown)=>cause instanceof ApiResponseError&&cause.code==='NOT_FOUND';
  async function recover(updateMissing:boolean){if(!local||busy==='recover')return;busy='recover';if(updateMissing)error='';try{const fresh=await fetchMediaItem(selected.id);onupdated?.(fresh as unknown as MediaItem);if(updateMissing)error='The selected folder no longer exists. Choose another location and save again.';}catch(cause){if(notFound(cause)){unavailable=true;error='This media item no longer exists.';onunavailable?.(selected.id);}else error=updateMissing?'Couldn’t confirm whether the media item or selected folder still exists. Try again.':failed(cause);}finally{void queryClient.invalidateQueries({queryKey:['media']});busy=null;}}
- async function save(){if(!canEdit||!dirty||busy||unavailable)return;busy='save';error='';const id=selected.id,changes:Parameters<typeof updateMedia>[1]={};if(canEditMetadata){if(alt!==(selected.alt??''))changes.alt=alt;if(caption!==(selected.caption??''))changes.caption=caption;if(focalChanged){changes.focalX=focal?.focalX??null;changes.focalY=focal?.focalY??null;}}if(locationChanged)changes.folderId=folderId;
-  try{const result=await updateMedia(id,changes);if(item.id===id){if(locationChanged)restoreFocus=true;const fresh={...selected,...result,url:result.url||selected.url};onupdated?.(fresh as MediaItem);onchanged?.();void queryClient.invalidateQueries({queryKey:['media']});}}catch(cause){if(item.id===id){if(notFound(cause)){busy=null;await recover(true);}else error=failed(cause);}}finally{if(busy==='save')busy=null;}}
+ function saveChanges():Parameters<typeof updateMedia>[1]{
+  const changes:Parameters<typeof updateMedia>[1]={};
+  if(canEditMetadata){
+   if(alt!==(selected.alt??''))changes.alt=alt;
+   if(caption!==(selected.caption??''))changes.caption=caption;
+   if(focalChanged){changes.focalX=focal?.focalX??null;changes.focalY=focal?.focalY??null;}
+  }
+  if(locationChanged)changes.folderId=folderId;
+  return changes;
+ }
+ async function save(){
+  if(!canEdit||!dirty||busy||unavailable)return;
+  busy='save';error='';
+  const id=selected.id,changes=saveChanges();
+  try{
+   const result=await updateMedia(id,changes);
+   if(item.id===id){
+    if(locationChanged)restoreFocus=true;
+    const fresh={...selected,...result,url:result.url||selected.url};
+    onupdated?.(fresh as MediaItem);onchanged?.();
+    void queryClient.invalidateQueries({queryKey:['media']});
+   }
+  }catch(cause){
+   if(item.id===id){
+    if(notFound(cause)){busy=null;await recover(true);}
+    else error=failed(cause);
+   }
+  }finally{if(busy==='save')busy=null;}
+ }
  async function remove(){if(!canDelete||busy)return;busy='delete';error='';try{if(selected.provider)await deleteFromProvider(selected.provider,selected.id);else await deleteMedia(selected.id);void queryClient.invalidateQueries({queryKey:selected.provider?['provider-media',selected.provider]:['media']});restoreFocus=true;confirmKind=null;ondeleted?.();close();}catch(cause){error=failed(cause);}finally{busy=null;}}
  function clearCrop(){aspectMode='original';crop=undefined;pixels=null;cropStatus='';cropError='';}
  async function startCrop(action:'duplicate'|'replace'){if(!showCrop||cropDisabled||(action==='replace'&&(!replaceAllowed||aspectMode!=='original'))||(action==='duplicate'&&!canDuplicateCrop))return;busy='crop';cropError='';cropStatus=action==='duplicate'?'Creating cropped copy...':'Replacing original...';const id=selected.id;
