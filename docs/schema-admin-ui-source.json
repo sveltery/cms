@@ -553,5 +553,74 @@
     },
     "successorCurrentGatesAndReview": "pending",
     "fullFeatureComplete": false
+  },
+  "repeaterLabelClosure": {
+    "finding": "SCUI-7C14-REPEATER-SLUG01",
+    "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "source": "packages/admin/src/components/FieldEditor.tsx:1208–1219",
+    "sourceBehavior": "Every repeater sub-field label edit updates the label and derives the slug with toLowerCase, /[^a-z0-9]+/g and /^_|_$/g; an unchanged label does not override a manual slug.",
+    "testFirst": "1b32a775b236e85b8b7189b92d4a15b0c715a70e",
+    "fix": "48789bb55c8a50f5235936b34d87b82460efe659",
+    "refactor": "9ae7f88ba022eaddd58c9b36d0b2e449de067214",
+    "firstWholeNative": {
+      "registered": 33,
+      "passed": 31,
+      "genuineValueFailures": 2,
+      "preExpectationOrInfrastructureStops": 0,
+      "newCallbacks": 3,
+      "oldNative30Changed": false
+    },
+    "fixedWholeNative": 33,
+    "refactoredWholeNative": 33,
+    "unchangedOriginalUi": 138,
+    "addedOriginalSourceCallbacksOrCausalCredit": 0,
+    "historical7c14Gates": {
+      "head": "7c14ceebc8ff26075233e9ad1e3135679ba7810f",
+      "tree": "7150bb27e5f67ac94bc4cbb4e03f9a6063c63996",
+      "run": 37277612257,
+      "normal13": "complete",
+      "oldSecured9AndSchema139": "complete",
+      "freshIndependentReview": "HOLD on the repeater label defect; no final merge approval"
+    },
+    "successorCurrentGatesAndFreshReview": "pending",
+    "configuredReview": "verified quota stop5990016858; standing manager exception, zero current automatic verdict; no repeated trigger",
+    "rootApprovalAndRegularAuthorMerge": "pending",
+    "fullFeatureComplete": false,
+    "receipts": [
+      {
+        "phase": "firstRed",
+        "path": "docs/receipts/schema-admin-ui/repeater-label-first-red.log",
+        "bytes": 3231,
+        "sha256": "e56f50b29a82da5e7e3e4b331c02947c1102cee152b5290a4d5da9c2584dc527"
+      },
+      {
+        "phase": "fixed",
+        "path": "docs/receipts/schema-admin-ui/repeater-label-fixed.log",
+        "bytes": 291,
+        "sha256": "4e1b1eaa928c3a832d858616619e397ae2be62b4f30a4bf20383e5c8f21790a9"
+      },
+      {
+        "phase": "refactored",
+        "path": "docs/receipts/schema-admin-ui/repeater-label-refactor.log",
+        "bytes": 292,
+        "sha256": "dadc2b6949ed5de30a23f330ef6d5e366436a01a8877770433a864569725f145"
+      },
+      {
+        "phase": "source138",
+        "path": "docs/receipts/schema-admin-ui/repeater-label-source138.log",
+        "bytes": 433,
+        "sha256": "5b2f3e44f93bfb3df8d90214744529561eab1e3a434bba0498396d45e6db1419"
+      },
+      {
+        "phase": "typeCheck",
+        "path": "docs/receipts/schema-admin-ui/repeater-label-check.log",
+        "bytes": 210,
+        "sha256": "b137b15c6e50d474904eb3e2cffbafe25a390926aefd0d91bd8870027a059da4"
+      }
+    ],
+    "typeCheck": {
+      "errors": 0,
+      "warnings": 0
+    }
   }
 }

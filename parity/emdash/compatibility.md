@@ -2371,3 +2371,8 @@ Proposal remains PR111; final successor full13/secured9+139, fresh review, finit
 
 
 Schema UI receipt closure is metadata-only: exact scoped whitespace attributes preserve every literal old/new receipt and all existing attribute lines, while the additive ledger retains stationary2e93 complete local13 and hosted541 secured9/139. Independent2e93 review closes all four product P2 findings; its sole P3 is the missing receipt attributes. No Source/product semantics or callbacks change. The resulting successor needs current gates/review and finite manager guard acceptance/approval before regular author merge; no full Schema or hosted normal success is inferred from historical checkpoints.
+
+
+### Schema repeater label fidelity after exact7c14 review
+
+SCUI-7C14-REPEATER-SLUG01 restores immutable EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, FieldEditor.tsx1208–1219: every repeater sub-field label edit derives the slug with lowercase, `/[^a-z0-9]+/g` and `/^_|_$/g`. Native previously saved an empty new slug or retained an older/manual slug after label edits. Test-first1b32a775 reaches two genuine save-payload value reds with31 controls passing and zero setup stops. Fix48789bb5/refactor9ae7f88b preserve copied draft ownership and manual slug edits when the label is unchanged; whole Native33 and unchanged Source138 pass. This is a fidelity repair, adds zero original Source callback/causal credit, and changes no backend/security/clock/fixture contract. [Paired feature documentation and literal receipts](../../docs/schema-admin-completion.md) retain prior history. Proposed PR111 still requires current successor gates/fresh review/exact manager approval and regular author merge; no full schema parity or canonical relationship cleanup is claimed.
