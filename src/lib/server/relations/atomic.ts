@@ -14,14 +14,14 @@ function dbFor(database: CmsDatabase) { return database.db as unknown as Kysely<
 async function relationFor(repo: RelationRepository, key: string): Promise<Relation | null> {
   return await repo.findById(key) ?? await repo.findBySlug(key);
 }
-function relationGuard(db: Kysely<Database>, relation: Relation, token: string): CompiledQuery {
+export function relationGuard(db: Kysely<Database>, relation: Relation, token: string): CompiledQuery {
   return sql`INSERT INTO _cms_guards(token, pass) SELECT ${token}, CASE WHEN EXISTS
     (SELECT 1 FROM _cms_relations WHERE id IS ${relation.id} AND slug IS ${relation.slug}
       AND parent_collection IS ${relation.parentCollection} AND child_collection IS ${relation.childCollection}
       AND max_children_per_parent IS ${relation.maxChildrenPerParent}
       AND max_parents_per_child IS ${relation.maxParentsPerChild}) THEN 1 ELSE 0 END`.compile(db);
 }
-function addPlan(db: Kysely<Database>, rows: Edge[], limitedSide: Side, limit: number | null, token: string): CompiledQuery[] {
+export function addPlan(db: Kysely<Database>, rows: Edge[], limitedSide: Side, limit: number | null, token: string): CompiledQuery[] {
   if (limit === null) return [...chunks(rows, INSERT_BATCH)].map(batch => db.insertInto('_cms_content_references').values(batch).onConflict(oc => oc.doNothing()).compile());
   const column = limitedSide === 'parent' ? 'parent_group' : 'child_group';
   return rows.flatMap(row => [
@@ -32,10 +32,10 @@ function addPlan(db: Kysely<Database>, rows: Edge[], limitedSide: Side, limit: n
     db.insertInto('_cms_content_references').values(row).compile()
   ]);
 }
-function removePlan(db: Kysely<Database>, ids: string[]): CompiledQuery[] {
+export function removePlan(db: Kysely<Database>, ids: string[]): CompiledQuery[] {
   return [...chunks(ids, 100)].map(batch => db.deleteFrom('_cms_content_references').where('id', 'in', batch).compile());
 }
-function positionPlan(db: Kysely<Database>, moves: {id: string; sortOrder: number}[]): CompiledQuery[] {
+export function positionPlan(db: Kysely<Database>, moves: {id: string; sortOrder: number}[]): CompiledQuery[] {
   return [...chunks(moves, REPOSITION_BATCH)].map(batch => {
     for (const move of batch) if (!Number.isInteger(move.sortOrder) || move.sortOrder < 0) throw new TypeError(`Invalid reference sort order: ${move.sortOrder}`);
     return db.updateTable('_cms_content_references').set({ sort_order: sql<number>`CASE ${sql.ref('id')}
