@@ -1,4 +1,7 @@
 import type { Kysely } from 'kysely';
+import { openD1 } from '../../../src/lib/server/database/d1.ts';
+import { asyncD1Storage } from '../async-d1-storage.ts';
+declare const __SEED_TEST_STORAGE__: string;
 import { openSqlite } from '../../../src/lib/server/database/sqlite.ts';
 import { migrateCms } from '../../../src/lib/server/database/migrations.ts';
 import { seedSourceDatabase } from '../../../src/lib/server/seed/namespace.ts';
@@ -13,7 +16,11 @@ export function sourceSeedOwner(db: object): CmsDatabase {
   return owner;
 }
 export async function setupTestDatabase(): Promise<Kysely<Database>> {
-  const database = openSqlite(':memory:');
+  let database:CmsDatabase;
+  if(typeof __SEED_TEST_STORAGE__!=='undefined' && __SEED_TEST_STORAGE__==='raw-d1') {
+    const fixture=await asyncD1Storage();const storage=openD1(fixture.binding);
+    database={...storage,async close(){try{await storage.close();}finally{await fixture.runtime.dispose();}}};
+  } else database=openSqlite(':memory:');
   try {
     await migrateCms(database);
     const db = seedSourceDatabase(database) as Kysely<Database>;
