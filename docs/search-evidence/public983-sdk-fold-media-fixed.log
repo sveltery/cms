@@ -1,0 +1,91 @@
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts (7 tests | 6 failed) 718ms
+     × folds bylines + terms into loadEntry (one query, correct data) 268ms
+     × uses the folded public shape when byline custom fields are registered 58ms
+     × folds terms in the entry's own locale (#1441) 77ms
+     × folds the default-locale variant when the entry-locale term is missing 82ms
+     × does not fold an arbitrary locale when exact and default variants are missing 69ms
+     × returns empty folded arrays for content with no bylines/terms 61ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts > loader hydration fold [sqlite] > folds bylines + terms into loadEntry (one query, correct data)
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts:112:32
+    110|   );
+    111|   // eslint-disable-next-line typescript/no-explicit-any -- loader res…
+    112|   const data = (result as any).data as Record<string, unknown>;
+       |                                ^
+    113|
+    114|   const terms = read<FoldedTerm[]>(data, FOLDED_TERMS);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts > loader hydration fold [sqlite] > uses the folded public shape when byline custom fields are registered
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts:202:32
+    200|   );
+    201|   // eslint-disable-next-line typescript/no-explicit-any -- loader res…
+    202|   const data = (result as any).data as { bylines: ContentBylineCredit[…
+       |                                ^
+    203|   expect(data.bylines[0]?.byline.customFields).toEqual({});
+    204|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts > loader hydration fold [sqlite] > folds terms in the entry's own locale (#1441)
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts:256:33
+    254|    );
+    255|    // eslint-disable-next-line typescript/no-explicit-any -- loader re…
+    256|    const data = (result as any).data;
+       |                                 ^
+    257|    const terms = read<FoldedTerm[]>(data, FOLDED_TERMS);
+    258|    expect(terms).toHaveLength(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts > loader hydration fold [sqlite] > folds the default-locale variant when the entry-locale term is missing
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts:295:53
+    293|    );
+    294|    // eslint-disable-next-line typescript/no-explicit-any -- loader re…
+    295|    const terms = read<FoldedTerm[]>((result as any).data, FOLDED_TERMS…
+       |                                                     ^
+    296|    expect(terms).toEqual([
+    297|     expect.objectContaining({ slug: "news", label: "News", locale: "en…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts > loader hydration fold [sqlite] > does not fold an arbitrary locale when exact and default variants are missing
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts:330:53
+    328|    );
+    329|    // eslint-disable-next-line typescript/no-explicit-any -- loader re…
+    330|    const terms = read<FoldedTerm[]>((result as any).data, FOLDED_TERMS…
+       |                                                     ^
+    331|    expect(terms).toEqual([]);
+    332|   } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts > loader hydration fold [sqlite] > returns empty folded arrays for content with no bylines/terms
+TypeError: Cannot read properties of undefined (reading 'data')
+ ❯ parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/loader-fold.test.ts:346:32
+    344|   );
+    345|   // eslint-disable-next-line typescript/no-explicit-any -- loader res…
+    346|   const data = (result as any).data as Record<string, unknown>;
+       |                                ^
+    347|   expect(read<FoldedTerm[]>(data, FOLDED_TERMS)).toEqual([]);
+    348|   expect(read<FoldedByline[]>(data, FOLDED_BYLINES)).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 1 passed (7)
+   Start at  18:43:59
+   Duration  5.20s (transform 2.91s, setup 0ms, import 3.95s, tests 718ms, environment 0ms)
+

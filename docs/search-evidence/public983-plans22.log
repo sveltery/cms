@@ -1,0 +1,20 @@
+$ node scripts/check-query-sdk-read-fixture-source.mjs && vitest run --config vitest.query-sdk-plan-reference.config.mts && vitest run --config vitest.query-sdk-read-storage.config.mts
+{"pin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","wholeReferenceAuthorities":17,"newWholeAuthorities":8,"reusedPublicTaxAuthorities":9,"productCallbacksRun":0,"nativeCanonicalOrBylineCredit":0}
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+
+ Test Files  3 passed (3)
+      Tests  20 passed (20)
+   Start at  18:42:11
+   Duration  17.48s (transform 4.19s, setup 0ms, import 7.30s, tests 8.76s, environment 0ms)
+
+
+ RUN  v4.1.10 /workspace/cms-full-search-query-api
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  18:42:30
+   Duration  5.84s (transform 3.54s, setup 0ms, import 4.83s, tests 759ms, environment 0ms)
+
