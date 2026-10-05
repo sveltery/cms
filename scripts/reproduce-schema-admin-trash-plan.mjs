@@ -14,7 +14,7 @@ const ledger=JSON.parse(readFileSync(new URL('../docs/schema-admin-completion-so
 const witness=JSON.parse(readFileSync(new URL('../docs/schema-admin-index-trigger-source.json',import.meta.url),'utf8'));
 assert.equal(witness.pin,'913cb1bb9b7f08c3ff0d258b4420e53835b6a58e');
 function load(record) {
-  const path=record.destination;const bytes=readFileSync(root+'/'+path);
+  const path=record.destination??record.target;const bytes=readFileSync(root+'/'+path);
   assert.equal(bytes.length,record.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),record.sha256);
   assert.equal(createHash('sha1').update(Buffer.from(`blob ${bytes.length}\0`)).update(bytes).digest('hex'),record.sourceGitBlob??record.gitBlob);
   return bytes.toString('utf8');
@@ -28,7 +28,7 @@ function evaluate(source,imports={}) {
 const record=source=>witness.records.find(item=>item.source===source);
 const validator=evaluate(load(record('packages/core/src/database/validate.ts')));
 const helpers=evaluate(load(record('packages/core/src/database/dialect-helpers.ts')),{'kysely':kysely,'./validate.js':validator});
-const initial=evaluate(load(record('packages/core/src/database/migrations/001_initial.ts')),{'kysely':kysely});
+const initial=evaluate(load(record('packages/core/src/database/migrations/001_initial.ts')),{'kysely':kysely,'../dialect-helpers.js':helpers});
 const registryRecord=ledger.standardCollectionIndexesForwardRuntime.sourceAuthorities.find(item=>item.source==='packages/core/src/schema/registry.ts');
 const registryText=load(registryRecord);
 const typesRecord=ledger.authorities.find(item=>item.source==='packages/core/src/schema/types.ts');
