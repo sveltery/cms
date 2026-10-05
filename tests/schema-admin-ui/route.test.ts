@@ -25,3 +25,18 @@ it('blocks field actions while the actual collection route waits for a prior sch
   try { await vi.waitFor(()=>expect([...target.querySelectorAll<HTMLButtonElement>('button')].find(button=>button.textContent==='Add Field')?.disabled).toBe(true)); }
   finally { release();await tick(); }
 });
+it('keeps the current collection view when an obsolete post-save read finishes after Kit parameter reuse',async()=>{
+  // Pure controlled UI lifecycle: no HTTP, session, identity, storage or protected concurrency fixture.
+  const posts={id:'posts',slug:'posts',label:'Posts',source:'manual',supports:['drafts'],hasSeo:false,fields:[]};
+  let release!:(value:typeof posts)=>void;
+  getCollection.mockImplementationOnce(async()=>posts).mockImplementationOnce(()=>new Promise<typeof posts>(resolve=>{release=resolve;}));
+  const target=document.createElement('section');document.body.append(target);
+  instance=mount(Page,{target,props:{data:{canMutateSchema:true}}});await tick();
+  await vi.waitFor(()=>expect(target.querySelector('h1')?.textContent).toBe('Posts'));
+  target.querySelector<HTMLFormElement>('form')!.requestSubmit();
+  await vi.waitFor(()=>expect(getCollection).toHaveBeenCalledTimes(2));
+  setCollection('pages');await tick();
+  await vi.waitFor(()=>expect(target.querySelector('h1')?.textContent).toBe('Pages'));
+  release(posts);await Promise.resolve();await tick();await Promise.resolve();await tick();
+  await vi.waitFor(()=>expect(target.querySelector('h1')?.textContent).toBe('Pages'));
+});

@@ -112,3 +112,40 @@ it('disables actual destructive controls when their reference cleanup capability
   mounted.push(mount(Editor,{target:editor,props:{collection:{...collection,fields:[{id:'title',slug:'title',label:'Title',type:'string'}]},deletionAvailable:false,client}}));await tick();
   expect(editor.querySelector<HTMLButtonElement>('button[aria-label="Delete Title field"]')?.disabled).toBe(true);
 });
+it('offers exactly the pinned Source repeater sub-field menu supported by the schema contract',async()=>{
+  const target=document.createElement('section');document.body.append(target);
+  mounted.push(mount(FieldEditor,{target,props:{open:true,onOpenChange:()=>{},onSave:()=>{},field:{slug:'items',label:'Items',type:'repeater',validation:{subFields:[{slug:'title',label:'Title',type:'string'}]}},client}}));await tick();
+  const select=[...target.querySelectorAll<HTMLLabelElement>('label')].find(label=>label.textContent?.startsWith('Sub-field type'))!.querySelector('select')!;
+  // Immutable FieldEditor.tsx:1231–1241, not the Native type-list implementation.
+  expect([...select.options].map(option=>[option.value,option.textContent])).toEqual([
+    ['string','Short Text'],['text','Long Text'],['number','Number'],['integer','Integer'],
+    ['boolean','Boolean'],['datetime','Date & Time'],['select','Select'],['url','URL'],['image','Image']
+  ]);
+});
+it('keeps repeater saving disabled until the group has a sub-field, as the pinned Source requires',async()=>{
+  const target=document.createElement('section');document.body.append(target);
+  mounted.push(mount(FieldEditor,{target,props:{open:true,onOpenChange:()=>{},onSave:()=>{},field:{slug:'items',label:'Items',type:'repeater'},client}}));await tick();
+  const save=[...target.querySelectorAll<HTMLButtonElement>('button')].find(button=>button.textContent==='Update Field')!;
+  expect(save.disabled).toBe(true);
+  [...target.querySelectorAll<HTMLButtonElement>('button')].find(button=>button.textContent==='Add sub-field')!.click();await tick();
+  expect(save.disabled).toBe(false);
+});
+it.each([
+  ['number','Min Value','Max Value',{min:0,max:0}],
+  ['integer','Min Value','Max Value',{min:0,max:0}],
+  ['string','Min Length','Max Length',{minLength:0,maxLength:0}],
+  ['text','Min Length','Max Length',{minLength:0,maxLength:0}],
+  ['slug','Min Length','Max Length',{minLength:0,maxLength:0}],
+  ['repeater','Minimum items','Maximum items',{minItems:0,maxItems:1}],
+  ['blocks','Minimum blocks','Maximum blocks',{minItems:0,maxItems:1}]
+] as const)('preserves an explicitly entered zero validation bound for %s through the actual field callback',async(type,minLabel,maxLabel,validation)=>{
+  const target=document.createElement('section');document.body.append(target);const onSave=vi.fn();
+  const field={slug:'amount',label:'Amount',type,...(type==='repeater'?{validation:{subFields:[{slug:'title',label:'Title',type:'string'}]}}:{})};
+  mounted.push(mount(FieldEditor,{target,props:{open:true,onOpenChange:()=>{},onSave,field,client:{...client,fetchBlockTypes:async()=>[]}}}));await tick();
+  for(const [label,value] of [[minLabel,'0'],[maxLabel,type==='repeater'||type==='blocks'?'1':'0']]) {
+    const input=[...target.querySelectorAll<HTMLLabelElement>('label')].find(item=>item.textContent?.startsWith(label))!.querySelector('input')!;
+    input.value=value;input.dispatchEvent(new Event('input',{bubbles:true}));await tick();
+  }
+  [...target.querySelectorAll<HTMLButtonElement>('button')].find(button=>button.textContent==='Update Field')!.click();
+  expect(onSave).toHaveBeenCalledWith(expect.objectContaining({validation:expect.objectContaining(validation)}));
+});
