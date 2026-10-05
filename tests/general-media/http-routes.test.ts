@@ -25,6 +25,23 @@ async function fixture() {
   return {database,storage,event,async close(){await database.close();await rm(directory,{recursive:true,force:true});}};
 }
 describe('Original native media route module calls using controlled principals',()=>{
+  it('reads actual canonical logo favicon and OG usage with the pinned count permission',async()=>{
+    const owned=await fixture();
+    try{
+      const item=await new MediaRepository(owned.database).create({filename:'settings.png',mimeType:'image/png',storageKey:'settings.png'});
+      await owned.database.db.insertInto('_cms_options').values([
+        {name:'site:logo',value:JSON.stringify({mediaId:item.id})},
+        {name:'site:favicon',value:JSON.stringify({mediaId:item.id})},
+        {name:'site:seo',value:JSON.stringify({defaultOgImage:{mediaId:item.id}})}
+      ]).execute();
+      const media=await route('api/media');expect(media).not.toBeNull();
+      const request=()=>new Request('http://localhost/api/media?includeUsage=1');
+      const reader=await media!.GET(owned.event(request(),Role.SUBSCRIBER));expect(reader.status).toBe(200);
+      expect((await reader.json()).data.items[0].usage).toEqual({count:null,coverage:{scope:'all_content_collections',status:'complete'}});
+      const editor=await media!.GET(owned.event(request(),Role.EDITOR));expect(editor.status).toBe(200);
+      expect((await editor.json()).data.items[0].usage).toEqual({count:3,coverage:{scope:'all_content_collections',status:'complete'}});
+    }finally{await owned.close();}
+  });
   it('streams a pending local upload, confirms its bytes, and replaces the same canonical media key',async()=>{
     const owned=await fixture();
     try{
