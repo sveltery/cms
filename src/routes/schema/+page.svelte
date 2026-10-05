@@ -17,5 +17,6 @@
 
 <svelte:head><title>Schema · Sveltery CMS</title></svelte:head>
 <WorkspaceShell homeHref={resolve('/')} schemaHref={resolve('/schema')} activePage="schema">
+  <a href={resolve('/schema/_manage')}>Manage content types and all field types</a>
   <SchemaCollections {collections} unavailable={schemas.unavailable} disabled={!data.canMutateSchema} />
 </WorkspaceShell>

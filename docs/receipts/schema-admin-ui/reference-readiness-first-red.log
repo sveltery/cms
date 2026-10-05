@@ -1,0 +1,47 @@
+$ vitest run --config vitest.schema-admin-ui-native.config.ts
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+ ❯ tests/schema-admin-ui/native.test.ts (13 tests | 2 failed) 821ms
+   × prefixes the actual Native relation link with the configured Kit base 9ms
+   × disables reference creation when the real route reports its relationship dependency unavailable 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > prefixes the actual Native relation link with the configured Kit base
+AssertionError: expected '/schema/relations' to be '/cms/schema/relations' // Object.is equality
+
+Expected: "/cms/schema/relations"
+Received: "/schema/relations"
+
+ ❯ tests/schema-admin-ui/native.test.ts:99:59
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > disables reference creation when the real route reports its relationship dependency unavailable
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/schema-admin-ui/native.test.ts:105:31
+    103|   mounted.push(mount(FieldEditor,{target,props:{open:true,onOpenChange…
+    104|   const reference=[...target.querySelectorAll<HTMLButtonElement>('butt…
+    105|   expect(reference?.disabled).toBe(true);
+       |                               ^
+    106|   expect(target.textContent).toContain('Reference fields require avail…
+    107| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 14 passed (16)
+   Start at  05:55:03
+   Duration  3.19s (transform 2.11s, setup 0ms, import 2.81s, tests 1.09s, environment 2.19s)
+
+[ELIFECYCLE] Command failed with exit code 1.

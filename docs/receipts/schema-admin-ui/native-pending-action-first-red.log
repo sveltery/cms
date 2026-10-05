@@ -1,0 +1,35 @@
+$ vitest run --config vitest.schema-admin-ui-native.config.ts
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+ ❯ tests/schema-admin-ui/route.test.ts (2 tests | 1 failed) 1221ms
+   × blocks field actions while the actual collection route waits for a prior schema save 1077ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-ui/route.test.ts > blocks field actions while the actual collection route waits for a prior schema save
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/schema-admin-ui/route.test.ts:25:153
+     23|   const label=[...target.querySelectorAll<HTMLLabelElement>('label')].…
+     24|   label.value='Updated posts';label.dispatchEvent(new Event('input',{b…
+     25|   try { await vi.waitFor(()=>expect([...target.querySelectorAll<HTMLBu…
+       |                                                                                                                                                         ^
+     26|   finally { release();await tick(); }
+     27| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 19 passed (20)
+   Start at  06:32:24
+   Duration  3.08s (transform 1.89s, setup 0ms, import 2.62s, tests 1.87s, environment 2.43s)
+
+[ELIFECYCLE] Command failed with exit code 1.
