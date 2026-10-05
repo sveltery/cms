@@ -36,11 +36,78 @@
     "first-report.json": {
       "bytes": 24734,
       "sha256": "1a55e801540a70c8b41d7e245eb461b90cf4368101a6489856ba3c80e9c1bfc9"
+    },
+    "first-fix.log": {
+      "bytes": 23194,
+      "sha256": "cffae35ad3c5aa222a72bb09c337396eb5aa1460c5fb9cd8c75b760e719f0f40"
+    },
+    "first-fix.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "first-fix-report.json": {
+      "bytes": 24165,
+      "sha256": "ea98a4da5790ca214be62e372ae1c1f3f7dea32a7f4508ef95c161356feee13d"
+    },
+    "first-fix-source.log": {
+      "bytes": 457,
+      "sha256": "5f8948831812ee242ecdd491f716ea3ade219e57a688d6c2b108923cdd82954c"
+    },
+    "first-fix-source.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "first-fix-check.log": {
+      "bytes": 1209,
+      "sha256": "df2d9c5c8db8d6fa873942766a376c08277a95f98dfc75fe1b7cf9ff65e1a7f0"
+    },
+    "first-fix-check.exit": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "first-fix-check-corrected.log": {
+      "bytes": 148,
+      "sha256": "59aa5dce6d511082ca6edcdf662772b6d4e90f7b288dadd9ee0145b8cf1ff451"
+    },
+    "first-fix-check-corrected.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
     }
   },
   "limits": [
     "Original HTML28 baseline and its active stationary public product remain separate.",
     "No HTML/card/provider backend implementation or protected probe is included.",
     "Literal CodeMirror jsdom Range stderr and React test environment warnings are retained without suppression."
-  ]
+  ],
+  "firstFix": {
+    "nativeWhole": {
+      "registered": 57,
+      "passed": 57,
+      "failed": 0,
+      "pending": 0,
+      "processExit": 0
+    },
+    "sourceWhole": {
+      "callbacks": 206,
+      "passed": 206,
+      "families": 24,
+      "immutableFiles": 148,
+      "processExit": 0
+    },
+    "checkFirst": {
+      "errors": 1,
+      "warnings": 0,
+      "classification": "new supplemental Translate union overload diagnostic; source and old callbacks untouched"
+    },
+    "checkCorrected": {
+      "errors": 0,
+      "warnings": 0,
+      "processExit": 0
+    },
+    "scope": "Existing current host locale getter read in the existing translator wrapper; optional NodeViewState.locale supplied by same props; bridge explicit locale fallback uses same existing Lingui provider. No HTML/card markup or second provider."
+  },
+  "htmlOwnerPrerequisite": {
+    "initialOriginalHTML28": "Separate PR115 original baseline completes3PASS25FAIL0pending; actualRTL Expectedrtl/Receivedltr reached before sharedcard implementation.",
+    "owner": "fresh HTML/shared-card developer; parent adds getter only."
+  }
 }

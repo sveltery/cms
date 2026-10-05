@@ -21,7 +21,7 @@ export default function EditorBridge(props: PortableTextEditorProps) {
   const imageInsert = React.useRef<((attributes: Record<string, unknown>) => void) | null>(null);
   const translate = React.useCallback<Translate>(descriptor => i18n._(descriptor), [i18n]);
   const ready = React.useCallback((current: Editor | null) => { setEditor(current); props.onEditorReady?.(current); }, [props.onEditorReady]);
-  const adapted = { ...props, translate, locale: i18n.locale, onEditorReady: ready,
+  const adapted = { ...props, translate, locale: props.locale ?? i18n.locale, onEditorReady: ready,
     onGutterReady: (insert: (position: number) => void) => { gutter.current = insert; },
     onRequestSection: () => setSectionOpen(true),
     onRequestImage: (insert: (attributes: Record<string, unknown>) => void) => { imageInsert.current = insert; setImageOpen(true); }

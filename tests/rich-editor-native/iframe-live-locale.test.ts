@@ -37,7 +37,7 @@ it('witnesses the whole Source CodeEditor live locale hint and mount-only aria l
 
 it('updates the real iframe tab labels and CodeMirror hint when the same owning provider activates another locale', async () => {
   const i18n = provider(), target = document.createElement('div'); document.body.append(target);
-  const translate: Translate = descriptor => i18n._(descriptor);
+  const translate: Translate = descriptor => typeof descriptor === 'string' ? i18n._(descriptor) : i18n._(descriptor);
   const state = bridgeState<PortableTextEditorProps>({ value: [{ _type: 'iframe', _key: 'live-frame', src: '' }], translate, locale: i18n.locale });
   const instance = mount(Host, { target, props: { state } });
   cleanup.push(async () => { await unmount(instance); target.remove(); });
