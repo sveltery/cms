@@ -1,0 +1,70 @@
+
+ RUN  v4.1.10 /workspace/cms-full-schema-admin
+
+ ❯ tests/schema-admin-completion/source/core/tests/unit/api/schema-update-collection-display-fields.test.ts (6 tests | 3 failed) 8ms
+     × includes titleField and dateField on the response contract 3ms
+     × allows nullable titleField and dateField 0ms
+     × allows legacy response objects that omit titleField and dateField 0ms
+ ❯ tests/schema-admin-completion/source/core/tests/unit/api/collection-admin-schema.test.ts (5 tests | 1 failed) 10ms
+     × accepts legacy responses with more than four stored list columns 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-completion/source/core/tests/unit/api/collection-admin-schema.test.ts > collection admin list column schemas > accepts legacy responses with more than four stored list columns
+Error: Native collection response validation is not implemented
+ ❯ Object.missingResponseContract tests/schema-admin-completion/bridges/api-contracts.ts:18:9
+     16| export const updateCollectionBody = contract(collectionMetadataInput);
+     17| function missingResponseContract(_value: unknown): never {
+     18|   throw new Error('Native collection response validation is not implem…
+       |         ^
+     19| }
+     20| // Uniform missing real-product boundary, not an always-valid fixture …
+ ❯ tests/schema-admin-completion/source/core/tests/unit/api/collection-admin-schema.test.ts:54:43
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/schema-admin-completion/source/core/tests/unit/api/schema-update-collection-display-fields.test.ts > collectionSchema display fields > includes titleField and dateField on the response contract
+Error: Native collection response validation is not implemented
+ ❯ Object.missingResponseContract tests/schema-admin-completion/bridges/api-contracts.ts:18:9
+     16| export const updateCollectionBody = contract(collectionMetadataInput);
+     17| function missingResponseContract(_value: unknown): never {
+     18|   throw new Error('Native collection response validation is not implem…
+       |         ^
+     19| }
+     20| // Uniform missing real-product boundary, not an always-valid fixture …
+ ❯ tests/schema-admin-completion/source/core/tests/unit/api/schema-update-collection-display-fields.test.ts:32:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/schema-admin-completion/source/core/tests/unit/api/schema-update-collection-display-fields.test.ts > collectionSchema display fields > allows nullable titleField and dateField
+Error: Native collection response validation is not implemented
+ ❯ Object.missingResponseContract tests/schema-admin-completion/bridges/api-contracts.ts:18:9
+     16| export const updateCollectionBody = contract(collectionMetadataInput);
+     17| function missingResponseContract(_value: unknown): never {
+     18|   throw new Error('Native collection response validation is not implem…
+       |         ^
+     19| }
+     20| // Uniform missing real-product boundary, not an always-valid fixture …
+ ❯ tests/schema-admin-completion/source/core/tests/unit/api/schema-update-collection-display-fields.test.ts:57:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/schema-admin-completion/source/core/tests/unit/api/schema-update-collection-display-fields.test.ts > collectionSchema display fields > allows legacy response objects that omit titleField and dateField
+Error: Native collection response validation is not implemented
+ ❯ Object.missingResponseContract tests/schema-admin-completion/bridges/api-contracts.ts:18:9
+     16| export const updateCollectionBody = contract(collectionMetadataInput);
+     17| function missingResponseContract(_value: unknown): never {
+     18|   throw new Error('Native collection response validation is not implem…
+       |         ^
+     19| }
+     20| // Uniform missing real-product boundary, not an always-valid fixture …
+ ❯ tests/schema-admin-completion/source/core/tests/unit/api/schema-update-collection-display-fields.test.ts:82:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  2 failed | 1 passed (3)
+      Tests  4 failed | 18 passed (22)
+   Start at  14:26:21
+   Duration  1.01s (transform 202ms, setup 0ms, import 379ms, tests 275ms, environment 0ms)
+

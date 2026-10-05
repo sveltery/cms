@@ -1,0 +1,171 @@
+{
+  "artifact": "Whole Source22 initial ordinary Node/SQLite baseline",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "testFirstHead": "0b8ba77d68afcf601ccb20636a1df3bf60e56ebd",
+  "productBase": "b5ed8e06c9c3034e99645ef85022e027130fec51",
+  "productChangesBeforeExecution": 0,
+  "commands": {
+    "provenanceGuard": {
+      "command": "node scripts/check-schema-admin-completion-source22.mjs",
+      "exitCode": 0
+    },
+    "wholeBaseline": {
+      "command": "node /workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs exec vitest run --config vitest.schema-admin-completion-source22.config.ts",
+      "exitCode": 1,
+      "executions": 1
+    }
+  },
+  "runtime": "Own frozen518-entry public dependencies; Node24.19.0/pnpm12.6.0/Vitest4.1.10/actual Kysely0.29.2/Native SQLite/Valibot1.5.0",
+  "sourceClocks": "Original Node defaults5,000/10,000, globals true; no test body/options/data/clock modifications.",
+  "totals": {
+    "wholeFamiliesRegistered": 3,
+    "callbacksDeclared": 22,
+    "callbacksRegistered": 22,
+    "callbackControlsPassed": 18,
+    "preExpectationMissingProductResponseFailures": 4,
+    "completedAssertionValueFailures": 0,
+    "otherInfrastructureFailures": 0,
+    "importCollectionFailures": 0,
+    "directSourceExpectsRetained": 38,
+    "directSourceExpectsReachedAndPassed": 31,
+    "directSourceExpectsNotReached": 7,
+    "wholeFamiliesPassed": 1,
+    "wholeFamiliesFailed": 2,
+    "sourceCausalRedCredit": 0
+  },
+  "families": [
+    {
+      "source": "packages/core/tests/unit/api/collection-admin-schema.test.ts",
+      "authority": "parity/emdash/schema-admin-completion-source/authority/packages/core/tests/unit/api/collection-admin-schema.test.ts.source",
+      "executable": "tests/schema-admin-completion/source/core/tests/unit/api/collection-admin-schema.test.ts",
+      "bytes": 2148,
+      "sha256": "4ed8eee86387e0152512795b8b9b5e0cacecfcf993af36f56e77bf3fc4cb864e",
+      "gitBlob": "e3b2d7c536bbfb5bb2839ed547d73c2898033b8b",
+      "testDeclarations": 5,
+      "expandedCallbacks": 5,
+      "directExpectCalls": 7,
+      "callbackBodiesAndImportsByteExact": true,
+      "datasetsAndOriginalClocksByteExact": true,
+      "protectedCalls": [],
+      "registered": 5,
+      "passedCallbackControls": 4,
+      "preExpectationMissingResponseFailures": 1,
+      "completedAssertionValueFailures": 0,
+      "infrastructureOrImportFailures": 0,
+      "wholeFamilyResult": "failed on unimplemented response boundary",
+      "originalDirectExpectCallsReachedAndPassed": 6,
+      "originalDirectExpectCallsNotReached": 1,
+      "preExpectationCallbacks": [
+        {
+          "title": "accepts legacy responses with more than four stored list columns",
+          "error": "Native collection response validation is not implemented",
+          "boundary": "tests/schema-admin-completion/bridges/api-contracts.ts:18",
+          "classification": "uniform absent real-product response validation; before original expects, no causal-red credit"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/api/schema-update-collection-display-fields.test.ts",
+      "authority": "parity/emdash/schema-admin-completion-source/authority/packages/core/tests/unit/api/schema-update-collection-display-fields.test.ts.source",
+      "executable": "tests/schema-admin-completion/source/core/tests/unit/api/schema-update-collection-display-fields.test.ts",
+      "bytes": 2881,
+      "sha256": "7d4d0a755b450db70865cb7e4f92e51c983e7820e00d29f448cc9b3330b13b9f",
+      "gitBlob": "29c6a30ec4c39a6b11a2885bd08af0f4f3ecbb76",
+      "testDeclarations": 6,
+      "expandedCallbacks": 6,
+      "directExpectCalls": 12,
+      "callbackBodiesAndImportsByteExact": true,
+      "datasetsAndOriginalClocksByteExact": true,
+      "protectedCalls": [],
+      "registered": 6,
+      "passedCallbackControls": 3,
+      "preExpectationMissingResponseFailures": 3,
+      "completedAssertionValueFailures": 0,
+      "infrastructureOrImportFailures": 0,
+      "wholeFamilyResult": "failed on unimplemented response boundary",
+      "originalDirectExpectCallsReachedAndPassed": 6,
+      "originalDirectExpectCallsNotReached": 6,
+      "preExpectationCallbacks": [
+        {
+          "title": "includes titleField and dateField on the response contract",
+          "error": "Native collection response validation is not implemented",
+          "boundary": "tests/schema-admin-completion/bridges/api-contracts.ts:18",
+          "classification": "uniform absent real-product response validation; before original expects, no causal-red credit"
+        },
+        {
+          "title": "allows nullable titleField and dateField",
+          "error": "Native collection response validation is not implemented",
+          "boundary": "tests/schema-admin-completion/bridges/api-contracts.ts:18",
+          "classification": "uniform absent real-product response validation; before original expects, no causal-red credit"
+        },
+        {
+          "title": "allows legacy response objects that omit titleField and dateField",
+          "error": "Native collection response validation is not implemented",
+          "boundary": "tests/schema-admin-completion/bridges/api-contracts.ts:18",
+          "classification": "uniform absent real-product response validation; before original expects, no causal-red credit"
+        }
+      ]
+    },
+    {
+      "source": "packages/core/tests/unit/schema/collection-title-date-fields.test.ts",
+      "authority": "parity/emdash/schema-admin-completion-source/authority/packages/core/tests/unit/schema/collection-title-date-fields.test.ts.source",
+      "executable": "tests/schema-admin-completion/source/core/tests/unit/schema/collection-title-date-fields.test.ts",
+      "bytes": 5328,
+      "sha256": "ca6792f92eafc9e9b6c658def3ec558e9899e9be7e17b8d30d24d82fe43b8d53",
+      "gitBlob": "829c6447a0d450906780211a293d5bc781e5412a",
+      "testDeclarations": 11,
+      "expandedCallbacks": 11,
+      "directExpectCalls": 19,
+      "callbackBodiesAndImportsByteExact": true,
+      "datasetsAndOriginalClocksByteExact": true,
+      "protectedCalls": [],
+      "registered": 11,
+      "passedCallbackControls": 11,
+      "preExpectationMissingResponseFailures": 0,
+      "completedAssertionValueFailures": 0,
+      "infrastructureOrImportFailures": 0,
+      "wholeFamilyResult": "passed",
+      "originalDirectExpectCallsReachedAndPassed": 19,
+      "originalDirectExpectCallsNotReached": 0,
+      "preExpectationCallbacks": []
+    }
+  ],
+  "scopeLimits": [
+    "Passing controls exercise existing real Native domain validation and the same real Kysely/SQLite/migrations/SchemaRegistry constructor bridge. They do not establish complete REST API/error-shape/HTTP/D1 parity.",
+    "Four response callbacks uniformly fail closed before original expectations because actual product response validation is absent; no fake successful response schema exists and no causal-red credit is claimed.",
+    "Whole UI138, API routes3, registry68 including original concurrent callbacks, and E2E11 remain retained/unexecuted, with original literal bodies/clocks.",
+    "Both earlier Native8 raw logs remain unchanged and were not repeated. Full product/schema completion and actual public provider/Search/cache owner integration remain pending."
+  ],
+  "nativeHistory": {
+    "initial": {
+      "path": "/workspace/cms-full-schema-admin/docs/receipts/schema-admin-completion/initial-native-baseline.log",
+      "bytes": 3651,
+      "sha256": "ca0d3c35dc77a62455015059306cb5e86f1298ec2782e5b8fb8aac2c54f5d090",
+      "gitBlob": "71f716a69fbfd5bf03e06539d6f26d703e07822e"
+    },
+    "corrected": {
+      "path": "/workspace/cms-full-schema-admin/docs/receipts/schema-admin-completion/corrected-native-baseline.log",
+      "bytes": 9530,
+      "sha256": "06ea0b0dacbfdc51ba80b3b88721f947e2eaaefa0b791c24d9cf168f42534a10",
+      "gitBlob": "fee7db1244144a6dc9d3f5d9756dcb59562ecca7"
+    },
+    "executionsAdded": 0
+  },
+  "artifacts": [
+    {
+      "path": "docs/receipts/schema-admin-completion/source22-initial-guard.log",
+      "bytes": 100,
+      "sha256": "de26796058610827f184b55b98972b69630d26954520112cb59b1508964bdce3",
+      "gitBlob": "90834a28854ee0fa57a41d762fc1f381ebceaabc",
+      "rawUnchanged": true
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/source22-initial-baseline.log",
+      "bytes": 4444,
+      "sha256": "0b38a81fa4cf1e83653a626004c2cd63b33fbf824c5dbc9480b08f10c95ff6ca",
+      "gitBlob": "ba36f7925dc06ba0a6c57c0ee66d593eb10ba2cc",
+      "rawUnchanged": true
+    }
+  ],
+  "acceptance": "None; complete schema feature unfinished. No Zod error-shape equivalence or Source causal repair claimed."
+}

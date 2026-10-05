@@ -1,0 +1,105 @@
+{
+  "artifact": "SCIDXREV01 whole pinned Source080 witness and actual Native R1 initial operator regression",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "testfirstHead": "a94ada6c",
+  "exactHeldR1LocalApplication": "efcad8b1376575fc7c6602771122d9d536db4ed9",
+  "reviewFinding": "SCIDXREV01",
+  "initialExecutions": [
+    {
+      "label": "source-witness-guard",
+      "head": "efcad8b1376575fc7c6602771122d9d536db4ed9",
+      "command": [
+        "node",
+        "scripts/check-schema-admin-index-trigger-source.mjs"
+      ],
+      "startedAt": "2026-10-04T17:17:25.741281+00:00",
+      "endedAt": "2026-10-04T17:17:25.830474+00:00",
+      "runs": 1,
+      "exitCode": 0,
+      "bytes": 125,
+      "sha256": "946559471e69500507da5984055e0b9409229b6a55f01a924aa8efa0ada58ff0"
+    },
+    {
+      "label": "whole-witness-and-native",
+      "head": "efcad8b1376575fc7c6602771122d9d536db4ed9",
+      "command": [
+        "node",
+        "/workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.schema-admin-collection-index-operator-trigger.config.ts"
+      ],
+      "startedAt": "2026-10-04T17:17:25.830553+00:00",
+      "endedAt": "2026-10-04T17:17:27.756356+00:00",
+      "runs": 1,
+      "exitCode": 1,
+      "bytes": 2632,
+      "sha256": "7ac6b365ce586c2092af29c0eb259bfe1089a23b637d2d20589ec314552ee2b4"
+    }
+  ],
+  "initialClassification": {
+    "registered": 2,
+    "SourceWitnessPreExpectationFixtureFailure": "Nonexistent Kysely runtime $castTo; type-only casts must not invent a runtime method.",
+    "NativeAssertionReachedFixtureFailure": "Real migrateCms rejects the hand-written marker SQL layout before080; exact published tracking statement spacing is required.",
+    "Source080CausalCredit": 0,
+    "Native080CausalValueReds": 0
+  },
+  "fixtureCorrectionHead": "5480ba9d0679da9db066a7b7ea01aec4f6932a92",
+  "fixtureCorrection": "Type-only Kysely<unknown> cast on actual unchanged object and exact frozen tracking SQL; no Source authority/expected/defaultclock changes.",
+  "correctedExecution": {
+    "head": "5480ba9d0679da9db066a7b7ea01aec4f6932a92",
+    "command": [
+      "node",
+      "/workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs",
+      "exec",
+      "vitest",
+      "run",
+      "--config",
+      "vitest.schema-admin-collection-index-operator-trigger.config.ts"
+    ],
+    "startedAt": "2026-10-04T17:19:20.205014+00:00",
+    "endedAt": "2026-10-04T17:19:21.434387+00:00",
+    "runs": 1,
+    "exitCode": 1,
+    "bytes": 2107,
+    "sha256": "f9c3cebb9a1f352c474a9fbc00a85a0086d39de8199013b0ae9511488e33eee8"
+  },
+  "correctedClassification": {
+    "registered": 2,
+    "wholeSourceModuleWitnessPassed": 1,
+    "SourceWitnessExpectsReachedAndPassed": 4,
+    "NativeCompletedAssertionValueFailures": 1,
+    "NativeActualFailure": "Real UNIQUE constraint failed: index uidx_ec_posts_active_tg_locale from admitted trigger-mutated actual rows; native atomic transaction rolls back.",
+    "NativeExpectsReached": 1,
+    "NativeExpectsUnreached": 3,
+    "infrastructurePreExpectationFailures": 0,
+    "originalSourceTestCallbackCredit": 0
+  },
+  "rawFiles": [
+    {
+      "path": "docs/receipts/schema-admin-completion/index-trigger-initial-guard.log",
+      "bytes": 125,
+      "sha256": "946559471e69500507da5984055e0b9409229b6a55f01a924aa8efa0ada58ff0",
+      "rawUnmodified": true
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/index-trigger-initial-fixture.log",
+      "bytes": 2632,
+      "sha256": "7ac6b365ce586c2092af29c0eb259bfe1089a23b637d2d20589ec314552ee2b4",
+      "rawUnmodified": true
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/index-trigger-corrected-baseline.log",
+      "bytes": 2107,
+      "sha256": "f9c3cebb9a1f352c474a9fbc00a85a0086d39de8199013b0ae9511488e33eee8",
+      "rawUnmodified": true
+    }
+  ],
+  "limits": [
+    "Supplementary ordinary LOCAL SQL witness executes whole Source001/080/helpers/validate with real Source physical fixture, not whole original Source test-family acceptance or full SourceRegistry integration.",
+    "R1 was applied locally under Root authorization after newtestfirst solely to expose actual Native failure; shared review remainsHOLD, no merge/public consumer acceptance.",
+    "No runtime design fix, D1 dynamic-loop proof, auth/HTTP/concurrency/credential/proxy change; full Native8/UI138/CRUD remains open."
+  ]
+}

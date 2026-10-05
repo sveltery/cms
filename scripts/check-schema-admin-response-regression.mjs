@@ -1,0 +1,13 @@
+import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import assert from 'node:assert/strict';
+const root = new URL('../', import.meta.url);
+const ledger = JSON.parse(await readFile(new URL('docs/schema-admin-completion-source.json', root), 'utf8'));
+const proposal = ledger.responseFiniteRegressionTestfirst;
+const bytes = await readFile(new URL(proposal.retainedCandidate.path, root));
+assert.equal(bytes.length, proposal.retainedCandidate.bytes);
+assert.equal(createHash('sha256').update(bytes).digest('hex'), proposal.retainedCandidate.sha256);
+assert.equal(createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex'), proposal.retainedCandidate.gitBlob);
+assert.equal(proposal.nativeSupplementaryCallbacks, 1);
+assert.equal(proposal.originalSourceCallbacksAddedOrChanged, 0);
+console.log('Schema response regression: exact sealed R1 candidate retained; provenance only, one Native callback.');

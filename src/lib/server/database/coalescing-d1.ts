@@ -25,6 +25,7 @@ import type { D1Database, D1PreparedStatement, D1Result } from "@cloudflare/work
 type D1DialectConfig = { database: D1Database };
 
 import { RawBindingD1Adapter as D1Adapter, SessionD1Dialect as EmDashD1Dialect } from "./d1.ts";
+import { assertStaticAtomicQueries } from "./atomic-query-loop.ts";
 
 /**
  * Statements safe to coalesce: plain SELECTs. Deliberately conservative —
@@ -141,6 +142,7 @@ export class CoalescingD1Connection implements DatabaseConnection {
 
 	/** Native CmsDatabase extension: atomic writes share the physical session chain. */
 	async executeAtomicBatch(queries: readonly CompiledQuery[]): Promise<readonly QueryResult<unknown>[]> {
+		assertStaticAtomicQueries(queries);
 		// Drain already-issued SELECTs synchronously into the chain before this
 		// barrier. Awaiting the drain here would let a later write overtake it.
 		void this.#flush();
