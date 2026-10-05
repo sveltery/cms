@@ -26,7 +26,8 @@ class SourceRedirectTable extends OperationNodeTransformer {
 const redirects=new SourceRedirectTable();
 const redirectReads={transformQuery:({node})=>redirects.transformNode(node),transformResult:async({result})=>result};
 function storage(db){const owner=owners.get(db);if(!owner)throw new Error('Unknown actual byline lifecycle fixture');return owner;}
-function service(db){return nativeContentApi(storage(db),principal,{after:()=>{}});}
+const sourceAdmin={...principal,permissions:[...principal.permissions,'content:delete_permanent']};
+function service(db){return nativeContentApi(storage(db),sourceAdmin,{after:()=>{}});}
 export async function setupTestDatabase(){
  const original=openSqlite(':memory:');await migrateCms(original);
  const db=registerBylineDatabase({...original,db:canonicalSourceDatabase(original).withPlugin(redirectReads)});

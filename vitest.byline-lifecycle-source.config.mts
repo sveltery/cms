@@ -3,6 +3,7 @@ import {dirname,resolve,relative} from 'node:path';
 const root=import.meta.dirname;
 const frozen=resolve(root,'parity/emdash/byline-lifecycle-source/upstream/packages/core');
 const imports:Record<string,string>={
+ 'src/seed/apply.ts':'src/lib/server/seed/index.ts',
  'src/api/index.ts':'tests/helpers/byline-lifecycle/source-host.mjs',
  'src/api/handlers/content.ts':'tests/helpers/byline-lifecycle/source-host.mjs',
  'tests/utils/test-db.ts':'tests/helpers/byline-lifecycle/source-host.mjs',

@@ -1,6 +1,7 @@
 // Framework transport only: original whole tests call the real canonical API
 // and bounded content runtime on the existing controlled fixture principal.
-import {sql,OperationNodeTransformer,ColumnNode,ValueListNode,ValueNode,type InsertQueryNode,type Kysely} from 'kysely';
+import {sql,OperationNodeTransformer,ColumnNode,ValueListNode,ValueNode,type InsertQueryNode,type Kysely,type ValuesNode} from 'kysely';
+import type {CmsDatabase} from '../../../src/lib/server/database/contract.ts';
 import {setupForDialect as setupNative,teardownForDialect,describeEachDialect,SchemaRegistry} from './native-db.ts';
 import {requireRelationDatabase,registerRelationDatabase} from '../../../src/lib/server/relations/storage.ts';
 import {registerLifecycleDatabase} from '../../../src/lib/server/database/lifecycle/upstream/host.ts';
@@ -18,7 +19,8 @@ class SourceFieldDefault extends OperationNodeTransformer {
  protected override transformInsertQuery(node:InsertQueryNode):InsertQueryNode {
   const result=super.transformInsertQuery(node);
   if(result.into?.table.identifier.name!=='_cms_fields'||result.columns?.some(column=>column.column.name==='created_at')||result.values?.kind!=='ValuesNode')return result;
-  return{...result,columns:[...(result.columns??[]),ColumnNode.create('created_at')],values:{...result.values,values:result.values.values.map(row=>ValueListNode.create([
+  const values=result.values as ValuesNode;
+  return{...result,columns:[...(result.columns??[]),ColumnNode.create('created_at')],values:{...values,values:values.values.map(row=>ValueListNode.create([
    ...(row.kind==='PrimitiveValueListNode'?row.values.map(value=>ValueNode.create(value)):row.values),sql`strftime('%Y-%m-%dT%H:%M:%fZ', 'now')`.toOperationNode()
   ]))}};
  }
@@ -30,7 +32,7 @@ function hostDerivedTransaction(db:Kysely<any>,actual:ReturnType<typeof requireR
    const builder=target.transaction();
    return new Proxy(builder,{get(transactionBuilder,method){
     if(method==='execute')return(callback:(trx:Kysely<any>)=>unknown)=>transactionBuilder.execute(async trx=>{
-     const bound={...actual,db:trx};registerRelationDatabase(bound,trx);registerLifecycleDatabase(bound,{after:()=>{}});registerBylineDatabaseHandle(bound,trx);return callback(trx);
+     const bound={...actual,db:trx as unknown as CmsDatabase['db']};registerRelationDatabase(bound,trx);registerLifecycleDatabase(bound,{after:()=>{}});registerBylineDatabaseHandle(bound,trx as any);return callback(trx);
     });
     const value=Reflect.get(transactionBuilder,method);return typeof value==='function'?value.bind(transactionBuilder):value;
    }});
@@ -41,13 +43,13 @@ function hostDerivedTransaction(db:Kysely<any>,actual:ReturnType<typeof requireR
 }
 export async function setupForDialect(dialect:'sqlite'|'postgres'){
  const ctx=await setupNative(dialect);const actual=requireRelationDatabase(ctx.db);
- const mapped=canonicalSourceDatabase({...actual,db:ctx.db}).withPlugin({transformQuery:({node})=>fieldDefault.transformNode(node),transformResult:async({result})=>result});
- registerRelationDatabase(actual,mapped);registerLifecycleDatabase({...actual,db:mapped},{after:()=>{}});registerBylineDatabaseHandle(actual,mapped as any);
+ const mapped=canonicalSourceDatabase({...actual,db:ctx.db as unknown as CmsDatabase['db']}).withPlugin({transformQuery:({node})=>fieldDefault.transformNode(node),transformResult:async({result})=>result});
+ registerRelationDatabase(actual,mapped);registerLifecycleDatabase({...actual,db:mapped as unknown as CmsDatabase['db']},{after:()=>{}});registerBylineDatabaseHandle(actual,mapped as any);
  return{...ctx,db:hostDerivedTransaction(mapped,actual) as typeof ctx.db};
 }
 // Exact original Source helper body; association below only records its genuine
 // derived proxy with the same canonical owner, without changing its behavior.
-export function asInlineTransaction(db:Kysely<any>){const proxy=sourceAsInlineTransaction(db);const actual=requireRelationDatabase(db);registerRelationDatabase(actual,proxy);registerLifecycleDatabase({...actual,db:proxy},{after:()=>{}});registerBylineDatabaseHandle(actual,proxy);return proxy;}
+export function asInlineTransaction(db:Kysely<any>){const proxy=sourceAsInlineTransaction(db);const actual=requireRelationDatabase(db);registerRelationDatabase(actual,proxy);registerLifecycleDatabase({...actual,db:proxy as unknown as CmsDatabase['db']},{after:()=>{}});registerBylineDatabaseHandle(actual,proxy as any);return proxy;}
 function api(db:Kysely<any>){return nativeContentApi(requireRelationDatabase(db),fixturePrincipal,{after:()=>{}});}
 export function createTestRuntime(db:Kysely<any>){return nativeContentRuntime(requireRelationDatabase(db),fixturePrincipal,{after:()=>{}});}
 export function handleContentCreate(db:Kysely<any>,collection:string,body:any){return api(db).create(collection,body);}
