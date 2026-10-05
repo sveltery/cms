@@ -74,7 +74,8 @@ export default defineConfig({
       'parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.footer.test.tsx',
       'parity/emdash/rich-editor-source/packages/admin/tests/editor/iframe-block-editor.test.tsx',
       'parity/emdash/rich-editor-source/packages/admin/tests/editor/table-controls.test.tsx',
-      'tests/rich-editor-browser/form-keyboard.test.ts'
+      'tests/rich-editor-browser/form-keyboard.test.ts',
+      'tests/rich-editor-browser/table-controls.test.ts'
     ],
     browser: {
       enabled: true, headless: true,

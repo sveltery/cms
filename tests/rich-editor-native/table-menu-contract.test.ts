@@ -87,4 +87,29 @@ describe('Actual Native table toolbar menu contract', () => {
       expect(editor.state.doc.lastChild!.textContent).toBe('Last');
     } finally { vi.unstubAllGlobals(); }
   });
+
+  it('keeps header checkboxes open and focused across actual document changes', async () => {
+    const { host, editor } = await render(); table(editor); await tick(); trigger(host).click(); await tick();
+    const current = menu(host)!; const header = current.querySelector<HTMLButtonElement>('[role="menuitemcheckbox"]')!;
+    header.focus(); header.click(); await tick();
+    expect(menu(host)).toBe(current); expect(document.activeElement).toBe(header); expect(header.getAttribute('aria-checked')).toBe('true');
+    header.click(); await tick(); expect(menu(host)).toBe(current); expect(header.getAttribute('aria-checked')).toBe('false');
+  });
+
+  it('opens from ArrowDown and performs the Source500ms case-insensitive menu typeahead', async () => {
+    const { host, editor } = await render(); table(editor); await tick(); trigger(host).focus();
+    trigger(host).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true, cancelable: true })); await tick();
+    expect(menu(host)).toBeTruthy(); expect(document.activeElement?.textContent?.trim()).toBe('Select row');
+    vi.useFakeTimers();
+    try {
+      menu(host)!.dispatchEvent(new KeyboardEvent('keydown', { key: 'D', bubbles: true, cancelable: true })); await tick();
+      expect(document.activeElement?.textContent?.trim()).toBe('Delete row');
+      await vi.advanceTimersByTimeAsync(499);
+      menu(host)!.dispatchEvent(new KeyboardEvent('keydown', { key: 'e', bubbles: true, cancelable: true })); await tick();
+      expect(document.activeElement?.textContent?.trim()).toBe('Delete row');
+      await vi.advanceTimersByTimeAsync(500);
+      menu(host)!.dispatchEvent(new KeyboardEvent('keydown', { key: 's', bubbles: true, cancelable: true })); await tick();
+      expect(document.activeElement?.textContent?.trim()).toBe('Select table');
+    } finally { vi.useRealTimers(); }
+  });
 });
