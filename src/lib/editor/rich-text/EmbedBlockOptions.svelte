@@ -12,11 +12,14 @@
   let menu = $state<HTMLDivElement>();
   const t = (message: string) => htmlMessage(translate, message);
   function items() { return [...(menu?.querySelectorAll<HTMLButtonElement>('[role="menuitem"], [role="menuitemradio"]') ?? [])]; }
+  // Source list navigation shares one item-focus policy for open, keys and hover.
+  function focusItem(item: HTMLButtonElement | undefined) { item?.focus({ preventScroll: true }); }
+  function hover(event: MouseEvent) { focusItem(event.currentTarget as HTMLButtonElement); }
   async function show(last = false) {
     const rect = trigger.getBoundingClientRect();
     left = direction === 'rtl' ? Math.max(8, rect.right - 320) : Math.min(rect.left, window.innerWidth - 328);
     top = rect.bottom + 4; open = true; await tick();
-    (last ? items().at(-1) : items()[0])?.focus();
+    focusItem(last ? items().at(-1) : items()[0]);
   }
   function close(restore = true) { open = false; if (restore) trigger?.focus(); }
   function key(event: KeyboardEvent) {
@@ -32,7 +35,7 @@
       const found = rows.findIndex(row => row.textContent?.trim().toLocaleLowerCase().startsWith(event.key.toLocaleLowerCase()));
       if (found < 0) return; next = found;
     } else return;
-    event.preventDefault(); event.stopPropagation(); rows[next]?.focus();
+    event.preventDefault(); event.stopPropagation(); focusItem(rows[next]);
   }
   // The real popup lives outside the clipped card, like Source DropdownMenu.
   function portal(element: HTMLElement) { document.body.append(element); return { destroy() { element.remove(); } }; }
@@ -51,16 +54,16 @@
     {#if onModeChange}
       <div role="group" aria-label={t('On the site')}>
         <div class="menu-label">{t('On the site')}</div>
-        <button type="button" role="menuitemradio" aria-checked={isolated === true} onmousemove={event => event.currentTarget.focus({ preventScroll: true })} onclick={() => { close(); onModeChange?.(true); }}>
+        <button type="button" role="menuitemradio" aria-checked={isolated === true} onmousemove={hover} onclick={() => { close(); onModeChange?.(true); }}>
           <span>{t('Isolated frame')}<small>{t('Runs HTML, CSS and JavaScript in a sandbox.')}</small></span>
         </button>
-        <button type="button" role="menuitemradio" aria-checked={isolated !== true} onmousemove={event => event.currentTarget.focus({ preventScroll: true })} onclick={() => { close(); onModeChange?.(false); }}>
+        <button type="button" role="menuitemradio" aria-checked={isolated !== true} onmousemove={hover} onclick={() => { close(); onModeChange?.(false); }}>
           <span>{t('Inline')}<small>{t("HTML only, cleaned, using your site's styles.")}</small></span>
         </button>
       </div>
       <hr />
     {/if}
-    <button type="button" role="menuitem" class="delete" onmousemove={event => event.currentTarget.focus({ preventScroll: true })} onclick={() => { close(false); onDelete(); }}><EmbedIcon name="Trash" />{t('Delete block')}</button>
+    <button type="button" role="menuitem" class="delete" onmousemove={hover} onclick={() => { close(false); onDelete(); }}><EmbedIcon name="Trash" />{t('Delete block')}</button>
   </div>
 {/if}
 <style>
