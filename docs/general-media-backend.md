@@ -213,3 +213,23 @@ Native runtime imports: 1,495 registered, 1,486 passed, nine failed and zero
 cancelled; only frozen install/type checks finished. Fresh normal and browser
 gates, independent/configured review and exact Root technical approval remain
 required for the successor.
+
+
+### Actual published schema-main integration
+
+Regular merge `a9565529` has ordered parents `ae9438e9` and published schema
+main `f2b2e560`. It retains all 3,295 incoming main rows, with only the 11
+previously owned shared Media paths changed. The complete incoming Source
+command chain is followed by the same three Media gates; the complete incoming
+compatibility text precedes the whole owned Media tail. Current main's nine
+protected owners are byte-exact, including providers, descriptors, physical
+schema, namespace mapping, D1 adapter, dependency lock, workflow, attributes and
+bootstrap.
+
+The incoming schema browser command adds one launch to the existing secured
+job: current validation requires 13 normal stages and 10 secured launches, with
+all original nine retained. The 188 immutable Media authorities and 60 complete
+algorithms still pass their guard. This integration earns no additional Source
+callback or product parity credit. Final-head full checks, fresh independent
+and configured review, exact Root approval, author regular merge and actual
+post-main verification remain pending.
