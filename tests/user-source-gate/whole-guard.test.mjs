@@ -41,6 +41,7 @@ function runWholeGuard(chain) {
 
 const cases = [
   ['accepts the complete current workload', originalChain, true],
+  ['accepts whitespace around the complete required command tokens', originalChain.replace(core, `  ${core}   `).replace(admin, `   ${admin}  `), true],
   ['accepts an unrelated future whole feature leaf', `${originalChain} && pnpm test:byline-content-lifecycle-source`, true],
   ['accepts a future admin UI leaf sharing the required command prefix', `${originalChain} && pnpm test:user-admin-ui`, true],
   ['accepts a future repository leaf sharing the required command prefix', `${originalChain} && pnpm test:user-repository-roles-ui`, true],
