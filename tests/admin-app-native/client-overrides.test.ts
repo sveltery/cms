@@ -1,6 +1,8 @@
 import { afterEach, expect, it, vi } from 'vitest';
 import { flushSync, mount, settled, unmount } from 'svelte';
 import Host from '../helpers/admin-app/ClientOverridesHost.svelte';
+import NativeAppHost from '../helpers/admin-app/NativeAppHost.svelte';
+import type { QueryClient } from '@tanstack/query-core';
 import { lifecycleState } from '../helpers/dashboard-welcome/lifecycle-state.svelte';
 const instances: ReturnType<typeof mount>[] = [];
 afterEach(async () => { for (const instance of instances.splice(0)) await unmount(instance); document.body.replaceChildren(); localStorage.clear(); });
@@ -11,6 +13,18 @@ async function render(state: any) {
  instances.push(flushSync(() => mount(Host, { target, props: { state } })));
  await settled(); return target;
 }
+it('actual default account consumers retain the root current-user cache and Source freshness', async () => {
+ const target = document.createElement('div'); document.body.append(target);
+ let queryClient!: QueryClient;
+ const seededUser = { ...alice, isFirstLogin: false };
+ instances.push(flushSync(() => mount(NativeAppHost, { target, props: {
+  state: { showSecond: true }, onQueryClient: (client: QueryClient) => { queryClient = client; client.setQueryData(['currentUser'], seededUser); }
+ } })));
+ await settled();
+ await vi.waitFor(() => expect(queryClient.getQueryCache().find({ queryKey: ['currentUser'] })?.getObserversCount()).toBe(2));
+ const query = queryClient.getQueryCache().find({ queryKey: ['currentUser'] })!;
+ expect([query.state.data, (query.options as { staleTime?: number }).staleTime, query.options.retry, query.state.fetchStatus]).toEqual([seededUser, 300_000, false, 'idle']);
+});
 it('sequential explicit account clients under one root render their own identity', async () => {
  const first = { currentUser: vi.fn(async () => alice), dismissWelcome: vi.fn(async () => {}) };
  const second = { currentUser: vi.fn(async () => bob), dismissWelcome: vi.fn(async () => {}) };
