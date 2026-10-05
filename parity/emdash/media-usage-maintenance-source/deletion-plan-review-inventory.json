@@ -1,0 +1,207 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "state": "Source review inventory; Native plan implementation and public Seed descriptor qualification pending",
+  "executor": "sole qualified same-owner Seed read/compile/atomic descriptor; never callback emulation or new general executor",
+  "bindingLimit": 100,
+  "sourcePageLimit": 51,
+  "mutationRowsPerBatch": 50,
+  "phases": [
+    {
+      "phase": "fence",
+      "reads": [
+        "live tombstone exact collection ID/slug, leased state, fence phase, lease token and unexpired lease",
+        "actual ec_slug live row if forceDelete is false",
+        "actual collection metadata identity"
+      ],
+      "writes": [
+        "guarded no-op tombstone lock",
+        "conditional status capture_state active -> deleting with actual collection identity"
+      ],
+      "sourceReceipt": "actual affected status row count",
+      "nativeReceipt": "actual status UPDATE RETURNING plus genuine content-presence read"
+    },
+    {
+      "phase": "registry",
+      "reads": [],
+      "writes": [
+        "DELETE exact collection ID/slug WHERE EXISTS exact live registry-phase tombstone",
+        "UPDATE exact live registry-phase tombstone to table phase"
+      ],
+      "sourceReceipt": "actual checkpoint affected-row count",
+      "nativeReceipt": "actual checkpoint UPDATE RETURNING; preserve Source behavior when registry deletion affects zero rows"
+    },
+    {
+      "phase": "table",
+      "reads": [
+        "actual FTS metadata/catalogue required by existing FTS producer",
+        "exact live table-phase tombstone"
+      ],
+      "writes": [
+        "existing FTS trigger/table drops",
+        "DROP TABLE IF EXISTS exact ec_slug"
+      ],
+      "sourceReceipt": "real adapter guard dropped outcome",
+      "nativeReceipt": "real whole atomic plan and guarded live tombstone receipt; no synthetic DDL results"
+    },
+    {
+      "phase": "work",
+      "reads": [
+        "actual sorted content_id page, collection_id predicate, optional source work cursor, limit51"
+      ],
+      "writes": [
+        "DELETE selected <=50 exact work IDs for collection_id, same live phase lease guard",
+        "UPDATE exact live work-phase tombstone: work cursor or sources phase, clear attempt/error"
+      ],
+      "sourceReceipt": "actual affected checkpoint count must equal1",
+      "nativeReceipt": "actual checkpoint UPDATE RETURNING must have exactly1 row"
+    },
+    {
+      "phase": "sources",
+      "reads": [
+        "actual first content source by source_type content + collection_id when source key is absent",
+        "actual occurrence ID page for selected source key, optional occurrence cursor, limit51"
+      ],
+      "writes": [
+        "DELETE selected <=50 occurrence IDs for source key with exact live sources-phase lease",
+        "DELETE source key only when source_type content and collection_id match, exact live sources-phase lease",
+        "UPDATE exact live sources-phase tombstone: occurrence cursor/source key or status phase, clear attempt/error"
+      ],
+      "sourceReceipt": "actual affected checkpoint count must equal1",
+      "nativeReceipt": "actual checkpoint UPDATE RETURNING must have exactly1 row"
+    },
+    {
+      "phase": "status",
+      "reads": [
+        "actual EXISTS work/source/status cleanup metadata, ignoring status for this phase"
+      ],
+      "writes": [
+        "DELETE reconciliations by exact collection ID/slug and live status-phase lease",
+        "DELETE status by content-media adapter/collection scope/slug/collection ID and live status-phase lease",
+        "UPDATE exact live status-phase tombstone to finalize, clear attempt/error"
+      ],
+      "sourceReceipt": "throw on actual remaining work/source; actual checkpoint affected count must equal1",
+      "nativeReceipt": "same genuine cleanup refusal plus actual checkpoint UPDATE RETURNING must have exactly1 row"
+    },
+    {
+      "phase": "finalize",
+      "reads": [
+        "actual content table existence",
+        "actual work/source/status cleanup existence",
+        "actual registry ID/slug existence"
+      ],
+      "writes": [
+        "DELETE exact collection ID/slug leased finalize-phase tombstone with lease token and unexpired lease"
+      ],
+      "sourceReceipt": "real numDeletedRows must equal1",
+      "nativeReceipt": "real DELETE RETURNING must have exactly1 row"
+    }
+  ],
+  "sourceFunctions": [
+    {
+      "sourcePath": "packages/core/src/media/usage/collection-deletion.ts",
+      "name": "deleteRegistryAndCheckpoint",
+      "line": 375,
+      "sha256": "316531a1fa74076d7b2e03d634201f9253d47cdfd5471969cdef9309098dc584",
+      "exactSourceFunction": "async deleteRegistryAndCheckpoint(input: {\n\t\tcollectionId: string;\n\t\tcollectionSlug: string;\n\t\tleaseToken: string;\n\t}): Promise<boolean> {\n\t\treturn withTransaction(this.db, async (trx) => {\n\t\t\tawait trx\n\t\t\t\t.deleteFrom(\"_emdash_collections\")\n\t\t\t\t.where(\"id\", \"=\", input.collectionId)\n\t\t\t\t.where(\"slug\", \"=\", input.collectionSlug)\n\t\t\t\t.where((eb) =>\n\t\t\t\t\teb.exists(\n\t\t\t\t\t\teb\n\t\t\t\t\t\t\t.selectFrom(\"_emdash_media_usage_collection_deletions as deletion\")\n\t\t\t\t\t\t\t.select(\"deletion.collection_id\")\n\t\t\t\t\t\t\t.where(\"deletion.collection_id\", \"=\", input.collectionId)\n\t\t\t\t\t\t\t.where(\"deletion.collection_slug\", \"=\", input.collectionSlug)\n\t\t\t\t\t\t\t.where(\"deletion.state\", \"=\", \"leased\")\n\t\t\t\t\t\t\t.where(\"deletion.phase\", \"=\", \"registry\")\n\t\t\t\t\t\t\t.where(\"deletion.lease_token\", \"=\", input.leaseToken)\n\t\t\t\t\t\t\t.where(liveLease(trx, \"deletion.lease_expires_at\")),\n\t\t\t\t\t),\n\t\t\t\t)\n\t\t\t\t.execute();\n\n\t\t\tconst checkpoint = await trx\n\t\t\t\t.updateTable(\"_emdash_media_usage_collection_deletions\")\n\t\t\t\t.set({ phase: \"table\", updated_at: timestampOffset(trx, 0) })\n\t\t\t\t.where(\"collection_id\", \"=\", input.collectionId)\n\t\t\t\t.where(\"collection_slug\", \"=\", input.collectionSlug)\n\t\t\t\t.where(\"state\", \"=\", \"leased\")\n\t\t\t\t.where(\"phase\", \"=\", \"registry\")\n\t\t\t\t.where(\"lease_token\", \"=\", input.leaseToken)\n\t\t\t\t.where(liveLease(trx))\n\t\t\t\t.executeTakeFirst();\n\t\t\treturn Number(checkpoint.numUpdatedRows ?? 0) === 1;\n\t\t});\n\t}"
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/collection-deletion.ts",
+      "name": "executeCollectionDeletionGuard",
+      "line": 621,
+      "sha256": "7d5f271c3fc86e4c59d9036026dfe64bbe394ea95e06b28ddfe6a33abe8f91f5",
+      "exactSourceFunction": "async function executeCollectionDeletionGuard(\n\tdb: Kysely<Database>,\n\tinput: CollectionDeletionGuardInput,\n): Promise<CollectionDeletionGuardResult> {\n\tconst executeAdapterGuard = await loadAdapterCollectionDeletionGuard();\n\tif (executeAdapterGuard) {\n\t\tconst { default: config } = await import(\"virtual:emdash/config\");\n\t\treturn executeAdapterGuard(config.database?.config, input);\n\t}\n\treturn executeLocalCollectionDeletionGuard(db, input);\n}"
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/collection-deletion.ts",
+      "name": "executeLocalCollectionDeletionGuard",
+      "line": 654,
+      "sha256": "8fc71c16a077526461426f610c84d3aa83c0f112980089b13a5ecce81a752eee",
+      "exactSourceFunction": "export async function executeLocalCollectionDeletionGuard(\n\tdb: Kysely<Database>,\n\tinput: CollectionDeletionGuardInput,\n): Promise<CollectionDeletionGuardResult> {\n\tassertGuardInput(input);\n\treturn db.transaction().execute(async (trx) => {\n\t\tif (!(await lockLiveTombstone(trx, input))) return { outcome: \"stale\" };\n\t\tif (input.action === \"fence\") return fenceCollection(trx, input);\n\n\t\tconst fts = new FTSManager(trx);\n\t\tawait fts.dropFtsTable(input.collectionSlug);\n\t\tawait sql`DROP TABLE IF EXISTS ${sql.ref(`ec_${input.collectionSlug}`)}`.execute(trx);\n\t\treturn { outcome: \"dropped\" };\n\t});\n}"
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/collection-deletion.ts",
+      "name": "fenceCollection",
+      "line": 670,
+      "sha256": "667cb0d0166655f8a1ebe9b4833cf89d64551e37ac6df349edaf22f514e72b07",
+      "exactSourceFunction": "async function fenceCollection(\n\ttrx: Transaction<Database>,\n\tinput: Extract<CollectionDeletionGuardInput, { action: \"fence\" }>,\n): Promise<CollectionDeletionGuardResult> {\n\tconst tableName = `ec_${input.collectionSlug}`;\n\tvalidateIdentifier(tableName, \"content table\");\n\tif (isPostgres(trx)) {\n\t\tawait sql`LOCK TABLE ${sql.ref(tableName)} IN SHARE ROW EXCLUSIVE MODE`.execute(trx);\n\t}\n\n\tif (!input.forceDelete) {\n\t\tconst content = await sql<{ present: number }>`\n\t\t\tSELECT 1 AS present FROM ${sql.ref(tableName)}\n\t\t\tWHERE deleted_at IS NULL\n\t\t\tLIMIT 1\n\t\t`.execute(trx);\n\t\tif (content.rows.length > 0) return { outcome: \"has_content\" };\n\t}\n\n\tconst result = await trx\n\t\t.updateTable(\"_emdash_media_usage_index_status as status\")\n\t\t.set({ capture_state: \"deleting\", updated_at: timestampOffset(trx, 0) })\n\t\t.where(\"status.adapter_id\", \"=\", \"content-media\")\n\t\t.where(\"status.scope_type\", \"=\", \"collection\")\n\t\t.where(\"status.scope_key\", \"=\", input.collectionSlug)\n\t\t.where(\"status.collection_id\", \"=\", input.collectionId)\n\t\t.where(\"status.capture_state\", \"=\", \"active\")\n\t\t.where((eb) =>\n\t\t\teb.exists(\n\t\t\t\teb\n\t\t\t\t\t.selectFrom(\"_emdash_collections as collection\")\n\t\t\t\t\t.select(\"collection.id\")\n\t\t\t\t\t.where(\"collection.id\", \"=\", input.collectionId)\n\t\t\t\t\t.where(\"collection.slug\", \"=\", input.collectionSlug),\n\t\t\t),\n\t\t)\n\t\t.executeTakeFirst();\n\treturn Number(result.numUpdatedRows ?? 0) === 1 ? { outcome: \"fenced\" } : { outcome: \"stale\" };\n}"
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/collection-deletion.ts",
+      "name": "lockLiveTombstone",
+      "line": 710,
+      "sha256": "ce96e7cc8e0f226af3d2cbc8abd3a423b9d8e70dfd42d049773277522e8351a3",
+      "exactSourceFunction": "async function lockLiveTombstone(\n\ttrx: Transaction<Database>,\n\tinput: CollectionDeletionGuardInput,\n): Promise<boolean> {\n\tconst phase = input.action === \"fence\" ? \"fence\" : \"table\";\n\tif (isPostgres(trx)) {\n\t\tconst row = await trx\n\t\t\t.selectFrom(\"_emdash_media_usage_collection_deletions\")\n\t\t\t.select(\"collection_id\")\n\t\t\t.where(\"collection_id\", \"=\", input.collectionId)\n\t\t\t.where(\"collection_slug\", \"=\", input.collectionSlug)\n\t\t\t.where(\"state\", \"=\", \"leased\")\n\t\t\t.where(\"phase\", \"=\", phase)\n\t\t\t.where(\"lease_token\", \"=\", input.leaseToken)\n\t\t\t.where(liveLease(trx))\n\t\t\t.forUpdate()\n\t\t\t.executeTakeFirst();\n\t\treturn row !== undefined;\n\t}\n\n\tconst locked = await trx\n\t\t.updateTable(\"_emdash_media_usage_collection_deletions\")\n\t\t.set({ updated_at: sql<string>`updated_at` })\n\t\t.where(\"collection_id\", \"=\", input.collectionId)\n\t\t.where(\"collection_slug\", \"=\", input.collectionSlug)\n\t\t.where(\"state\", \"=\", \"leased\")\n\t\t.where(\"phase\", \"=\", phase)\n\t\t.where(\"lease_token\", \"=\", input.leaseToken)\n\t\t.where(liveLease(trx))\n\t\t.executeTakeFirst();\n\treturn Number(locked.numUpdatedRows ?? 0) === 1;\n}"
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/collection-deletion.ts",
+      "name": "liveLease",
+      "line": 753,
+      "sha256": "0e78421f1228a1fb9db17404667e3dedc58edb968b8a8da6b542bdb12df6caa3",
+      "exactSourceFunction": "function liveLease(db: Kysely<Database>, column = \"lease_expires_at\"): RawBuilder<boolean> {\n\tconst leaseExpiresAt = sql.ref(column);\n\treturn isPostgres(db)\n\t\t? sql<boolean>`${leaseExpiresAt}::timestamptz > clock_timestamp()`\n\t\t: sql<boolean>`${leaseExpiresAt} > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')`;\n}"
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/collection-deletion.ts",
+      "name": "timestampOffset",
+      "line": 772,
+      "sha256": "7a833e54c57b539590c353a557e19cfd2e33cdc87a44c8247158fc2226059426",
+      "exactSourceFunction": "function timestampOffset(db: Kysely<Database>, offsetSeconds: number): RawBuilder<string> {\n\tif (isPostgres(db)) {\n\t\treturn sql<string>`to_char(\n\t\t\t(clock_timestamp() AT TIME ZONE 'UTC') + (${offsetSeconds} * INTERVAL '1 second'),\n\t\t\t'YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"'\n\t\t)`;\n\t}\n\treturn sql<string>`strftime(\n\t\t'%Y-%m-%dT%H:%M:%fZ',\n\t\t'now',\n\t\t${`${offsetSeconds >= 0 ? \"+\" : \"\"}${offsetSeconds} seconds`}\n\t)`;\n}"
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/collection-deletion-processor.ts",
+      "name": "processWorkBatch",
+      "line": 136,
+      "sha256": "6711d65766e9c8eab93264e209f05a8a87fca2d59f69094fdda039f26c7e0764",
+      "exactSourceFunction": "async function processWorkBatch(\n\tdb: Kysely<Database>,\n\tclaim: MediaUsageCollectionDeletionRecord & { leaseToken: string },\n): Promise<boolean> {\n\tawait withTransaction(db, async (trx) => {\n\t\tconst rows = await trx\n\t\t\t.selectFrom(\"_emdash_media_usage_work\")\n\t\t\t.select(\"content_id\")\n\t\t\t.where(\"collection_id\", \"=\", claim.collectionId)\n\t\t\t.$if(claim.workCursor !== null, (query) => query.where(\"content_id\", \">\", claim.workCursor!))\n\t\t\t.orderBy(\"content_id\", \"asc\")\n\t\t\t.limit(MEDIA_USAGE_COLLECTION_DELETION_LIMITS.rowsPerBatch + 1)\n\t\t\t.execute();\n\t\tconst batch = rows.slice(0, MEDIA_USAGE_COLLECTION_DELETION_LIMITS.rowsPerBatch);\n\t\tif (batch.length > 0) {\n\t\t\tawait trx\n\t\t\t\t.deleteFrom(\"_emdash_media_usage_work\")\n\t\t\t\t.where(\"collection_id\", \"=\", claim.collectionId)\n\t\t\t\t.where(\n\t\t\t\t\t\"content_id\",\n\t\t\t\t\t\"in\",\n\t\t\t\t\tbatch.map((row) => row.content_id),\n\t\t\t\t)\n\t\t\t\t.where(liveLeaseGuard(trx, claim))\n\t\t\t\t.execute();\n\t\t}\n\t\tawait updateDeletion(trx, claim, {\n\t\t\tphase: rows.length > MEDIA_USAGE_COLLECTION_DELETION_LIMITS.rowsPerBatch ? \"work\" : \"sources\",\n\t\t\twork_cursor:\n\t\t\t\trows.length > MEDIA_USAGE_COLLECTION_DELETION_LIMITS.rowsPerBatch\n\t\t\t\t\t? batch.at(-1)!.content_id\n\t\t\t\t\t: null,\n\t\t});\n\t});\n\treturn false;\n}"
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/collection-deletion-processor.ts",
+      "name": "processSourceBatch",
+      "line": 173,
+      "sha256": "b730dbdb74cc794027d72d773135f483d1e8c62326d9e38fc24084b8c909da3e",
+      "exactSourceFunction": "async function processSourceBatch(\n\tdb: Kysely<Database>,\n\tclaim: MediaUsageCollectionDeletionRecord & { leaseToken: string },\n): Promise<boolean> {\n\tawait withTransaction(db, async (trx) => {\n\t\tlet sourceKey = claim.sourceKey;\n\t\tif (!sourceKey) {\n\t\t\tconst source = await trx\n\t\t\t\t.selectFrom(\"_emdash_media_usage_sources\")\n\t\t\t\t.select(\"source_key\")\n\t\t\t\t.where(\"source_type\", \"=\", \"content\")\n\t\t\t\t.where(\"collection_id\", \"=\", claim.collectionId)\n\t\t\t\t.orderBy(\"source_key\", \"asc\")\n\t\t\t\t.limit(1)\n\t\t\t\t.executeTakeFirst();\n\t\t\tif (!source) {\n\t\t\t\tawait updateDeletion(trx, claim, {\n\t\t\t\t\tphase: \"status\",\n\t\t\t\t\tsource_key: null,\n\t\t\t\t\toccurrence_cursor: null,\n\t\t\t\t});\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tsourceKey = source.source_key;\n\t\t\tawait updateDeletion(trx, claim, { source_key: sourceKey, occurrence_cursor: null });\n\t\t}\n\n\t\tconst occurrences = await trx\n\t\t\t.selectFrom(\"_emdash_media_usage\")\n\t\t\t.select(\"id\")\n\t\t\t.where(\"source_key\", \"=\", sourceKey)\n\t\t\t.$if(claim.occurrenceCursor !== null, (query) =>\n\t\t\t\tquery.where(\"id\", \">\", claim.occurrenceCursor!),\n\t\t\t)\n\t\t\t.orderBy(\"id\", \"asc\")\n\t\t\t.limit(MEDIA_USAGE_COLLECTION_DELETION_LIMITS.rowsPerBatch + 1)\n\t\t\t.execute();\n\t\tconst batch = occurrences.slice(0, MEDIA_USAGE_COLLECTION_DELETION_LIMITS.rowsPerBatch);\n\t\tif (batch.length > 0) {\n\t\t\tawait trx\n\t\t\t\t.deleteFrom(\"_emdash_media_usage\")\n\t\t\t\t.where(\"source_key\", \"=\", sourceKey)\n\t\t\t\t.where(\n\t\t\t\t\t\"id\",\n\t\t\t\t\t\"in\",\n\t\t\t\t\tbatch.map((row) => row.id),\n\t\t\t\t)\n\t\t\t\t.where(liveLeaseGuard(trx, claim))\n\t\t\t\t.execute();\n\t\t}\n\t\tif (occurrences.length > MEDIA_USAGE_COLLECTION_DELETION_LIMITS.rowsPerBatch) {\n\t\t\tawait updateDeletion(trx, claim, {\n\t\t\t\tsource_key: sourceKey,\n\t\t\t\toccurrence_cursor: batch.at(-1)!.id,\n\t\t\t});\n\t\t\treturn;\n\t\t}\n\t\tawait trx\n\t\t\t.deleteFrom(\"_emdash_media_usage_sources\")\n\t\t\t.where(\"source_key\", \"=\", sourceKey)\n\t\t\t.where(\"source_type\", \"=\", \"content\")\n\t\t\t.where(\"collection_id\", \"=\", claim.collectionId)\n\t\t\t.where(liveLeaseGuard(trx, claim))\n\t\t\t.execute();\n\t\tawait updateDeletion(trx, claim, { source_key: null, occurrence_cursor: null });\n\t});\n\treturn false;\n}"
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/collection-deletion-processor.ts",
+      "name": "processStatus",
+      "line": 242,
+      "sha256": "9d6acaa809590139b1c642801563c8097e9c141c4445ddfeab0723668346a5c7",
+      "exactSourceFunction": "async function processStatus(\n\tdb: Kysely<Database>,\n\tclaim: MediaUsageCollectionDeletionRecord & { leaseToken: string },\n): Promise<boolean> {\n\tawait withTransaction(db, async (trx) => {\n\t\tif (await exactCleanupRowsRemain(trx, claim, false)) {\n\t\t\tthrow new Error(\"Collection deletion cleanup is incomplete\");\n\t\t}\n\t\tawait trx\n\t\t\t.deleteFrom(\"_emdash_media_usage_reconciliations\")\n\t\t\t.where(\"collection_id\", \"=\", claim.collectionId)\n\t\t\t.where(\"collection_slug\", \"=\", claim.collectionSlug)\n\t\t\t.where(liveLeaseGuard(trx, claim))\n\t\t\t.execute();\n\t\tawait trx\n\t\t\t.deleteFrom(\"_emdash_media_usage_index_status\")\n\t\t\t.where(\"adapter_id\", \"=\", \"content-media\")\n\t\t\t.where(\"scope_type\", \"=\", \"collection\")\n\t\t\t.where(\"scope_key\", \"=\", claim.collectionSlug)\n\t\t\t.where(\"collection_id\", \"=\", claim.collectionId)\n\t\t\t.where(liveLeaseGuard(trx, claim))\n\t\t\t.execute();\n\t\tawait updateDeletion(trx, claim, { phase: \"finalize\" });\n\t});\n\treturn false;\n}"
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/collection-deletion-processor.ts",
+      "name": "finalizeDeletion",
+      "line": 269,
+      "sha256": "85a0f1640f8734836f1fc22c8bbc2f63ee907c67577a4157944eb23884c59adc",
+      "exactSourceFunction": "async function finalizeDeletion(\n\tdb: Kysely<Database>,\n\tclaim: MediaUsageCollectionDeletionRecord & { leaseToken: string },\n): Promise<boolean> {\n\tif (await tableExists(db, `ec_${claim.collectionSlug}`)) {\n\t\tthrow new Error(\"Collection table still exists during deletion finalization\");\n\t}\n\tif (await exactCleanupRowsRemain(db, claim)) throw new Error(\"Collection deletion is incomplete\");\n\tconst registry = await db\n\t\t.selectFrom(\"_emdash_collections\")\n\t\t.select(\"id\")\n\t\t.where(\"id\", \"=\", claim.collectionId)\n\t\t.where(\"slug\", \"=\", claim.collectionSlug)\n\t\t.executeTakeFirst();\n\tif (registry) throw new Error(\"Collection registry identity still exists\");\n\tconst result = await db\n\t\t.deleteFrom(\"_emdash_media_usage_collection_deletions\")\n\t\t.where(\"collection_id\", \"=\", claim.collectionId)\n\t\t.where(\"collection_slug\", \"=\", claim.collectionSlug)\n\t\t.where(\"state\", \"=\", \"leased\")\n\t\t.where(\"phase\", \"=\", \"finalize\")\n\t\t.where(\"lease_token\", \"=\", claim.leaseToken)\n\t\t.where(liveLeaseGuard(db, claim))\n\t\t.executeTakeFirst();\n\tif (Number(result.numDeletedRows ?? 0) !== 1)\n\t\tthrow new Error(\"Collection deletion lost finalization\");\n\treturn true;\n}"
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/collection-deletion-processor.ts",
+      "name": "exactCleanupRowsRemain",
+      "line": 298,
+      "sha256": "9e325d625d3115dfd629287175710492c202577031de1891c0d3a2294b3c6a11",
+      "exactSourceFunction": "async function exactCleanupRowsRemain(\n\tdb: DatabaseExecutor,\n\tclaim: Pick<MediaUsageCollectionDeletionRecord, \"collectionId\" | \"collectionSlug\">,\n\tincludeStatus = true,\n): Promise<boolean> {\n\tconst result = await sql<{\n\t\twork_present: boolean | number;\n\t\tsource_present: boolean | number;\n\t\tstatus_present: boolean | number;\n\t}>`\n\t\tSELECT\n\t\t\tEXISTS (\n\t\t\t\tSELECT 1 FROM _emdash_media_usage_work\n\t\t\t\tWHERE collection_id = ${claim.collectionId}\n\t\t\t) AS work_present,\n\t\t\tEXISTS (\n\t\t\t\tSELECT 1 FROM _emdash_media_usage_sources\n\t\t\t\tWHERE source_type = 'content' AND collection_id = ${claim.collectionId}\n\t\t\t) AS source_present,\n\t\t\tEXISTS (\n\t\t\t\tSELECT 1 FROM _emdash_media_usage_index_status\n\t\t\t\tWHERE adapter_id = 'content-media'\n\t\t\t\t\tAND scope_type = 'collection'\n\t\t\t\t\tAND scope_key = ${claim.collectionSlug}\n\t\t\t\t\tAND collection_id = ${claim.collectionId}\n\t\t\t) AS status_present\n\t`.execute(db);\n\tconst row = result.rows[0];\n\treturn (\n\t\tBoolean(row?.work_present) ||\n\t\tBoolean(row?.source_present) ||\n\t\t(includeStatus && Boolean(row?.status_present))\n\t);\n}"
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/collection-deletion-processor.ts",
+      "name": "updateDeletion",
+      "line": 333,
+      "sha256": "0c3bf48906fe71f620d1e1667d266eed8288aef1a37222471e4585cc8da8d438",
+      "exactSourceFunction": "async function updateDeletion(\n\tdb: DatabaseExecutor,\n\tclaim: MediaUsageCollectionDeletionRecord & { leaseToken: string },\n\tvalues: Updateable<MediaUsageCollectionDeletionTable>,\n): Promise<void> {\n\tconst result = await db\n\t\t.updateTable(\"_emdash_media_usage_collection_deletions\")\n\t\t.set({\n\t\t\t...values,\n\t\t\tattempt_count: 0,\n\t\t\tlast_error_code: null,\n\t\t\tupdated_at: collectionDeletionCurrentTimestamp(db),\n\t\t})\n\t\t.where(\"collection_id\", \"=\", claim.collectionId)\n\t\t.where(\"state\", \"=\", \"leased\")\n\t\t.where(\"lease_token\", \"=\", claim.leaseToken)\n\t\t.where(liveLeaseGuard(db, claim))\n\t\t.executeTakeFirst();\n\tif (Number(result.numUpdatedRows ?? 0) !== 1)\n\t\tthrow new Error(\"Collection deletion lease was lost\");\n}"
+    },
+    {
+      "sourcePath": "packages/core/src/media/usage/collection-deletion-processor.ts",
+      "name": "liveLeaseGuard",
+      "line": 355,
+      "sha256": "8d80dccf73538f621ae3812eb5d6aa8c8b40328ed2e041d9e3809f071ddda3a2",
+      "exactSourceFunction": "function liveLeaseGuard(\n\tdb: DatabaseExecutor,\n\tclaim: Pick<MediaUsageCollectionDeletionRecord, \"collectionId\"> & { leaseToken: string },\n): RawBuilder<boolean> {\n\treturn isPostgres(db)\n\t\t? sql<boolean>`EXISTS (\n\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions AS deletion\n\t\t\tWHERE deletion.collection_id = ${claim.collectionId}\n\t\t\t\tAND deletion.state = 'leased'\n\t\t\t\tAND deletion.lease_token = ${claim.leaseToken}\n\t\t\t\tAND deletion.lease_expires_at::timestamptz > clock_timestamp()\n\t\t)`\n\t\t: sql<boolean>`EXISTS (\n\t\t\tSELECT 1 FROM _emdash_media_usage_collection_deletions AS deletion\n\t\t\tWHERE deletion.collection_id = ${claim.collectionId}\n\t\t\t\tAND deletion.state = 'leased'\n\t\t\t\tAND deletion.lease_token = ${claim.leaseToken}\n\t\t\t\tAND deletion.lease_expires_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')\n\t\t)`;\n}"
+    }
+  ],
+  "invariants": [
+    "retain exact Source lease timestamp comparisons",
+    "retain exact per-phase guards and collection identity predicates",
+    "do not invent a current live collection requirement in post-registry cleanup phases",
+    "preserve Source missing/zero-row outcomes, actual count/result hooks and query IDs",
+    "Source callback bodies remain immutable in reference witnesses",
+    "Native whole atomic-batch strengthening is C-07, zero Source D1 callback identity credit"
+  ]
+}

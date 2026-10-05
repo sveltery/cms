@@ -9,7 +9,9 @@ root = pathlib.Path(__file__).resolve().parents[1]
 source = pathlib.Path('/tmp/cms-emdash-full')
 pin = '913cb1bb9b7f08c3ff0d258b4420e53835b6a58e'
 paths = ['database/repositories/media-usage-work.ts',
-    'media/usage/reconciliation.ts']
+    'media/usage/reconciliation.ts', 'media/usage/collection-deletion.ts',
+    'media/usage/collection-deletion-processor.ts', 'media/usage/reconciliation-processor.ts',
+    'media/usage/work-processor.ts', 'media/usage/maintenance-engine.ts']
 records = []
 for path in paths:
     origin = 'packages/core/src/' + path
