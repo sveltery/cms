@@ -4,13 +4,14 @@
   // PublishingScheduleDialog context/submission behavior, EmDash1.1.0
   // pin913cb1bb; MIT notices/emdash-MIT.txt. Native browser dialog transport.
   import { untrack } from 'svelte';
+  import type { CalendarMessage } from './message-descriptors.ts';
   import Fields from '../ui/PublishingDateTimeFields.svelte';
   import { publishingInstantToLocalFields,publishingFieldsMatchInstant,serializeFuturePublishingDateTime } from '../ui/publishing-datetime.ts';
   let { open,entryKey,scheduledAt=null,isLive=false,isPending=false,locale='en',onOpenChange,onSchedule }: {
     open:boolean;entryKey:string;scheduledAt?:string|null;isLive?:boolean;isPending?:boolean;locale?:string;
     onOpenChange:(open:boolean)=>void;onSchedule:(at:string)=>void|Promise<void>;
   }=$props();
-  let date=$state<Date>(),time=$state(''),validationError=$state<string>(),mutationError=$state<string>(),submitting=$state(false),dialog=$state<HTMLDialogElement>();
+  let date=$state<Date>(),time=$state(''),validationError=$state<string>(),mutationError=$state<string|{message:CalendarMessage}>(),submitting=$state(false),dialog=$state<HTMLDialogElement>();
   let generation=0,activeSubmission:{entryKey:string;generation:number}|null=null,returnFocus:HTMLElement|null=null;
   const pending=$derived(isPending||submitting),isEditing=$derived(Boolean(scheduledAt));
   // Parent entry objects can refresh without changing the schedule context.
@@ -31,7 +32,7 @@
     if(isEditing&&publishingFieldsMatchInstant(scheduledAt,date,time))return;
     clearError();const submission={entryKey,generation:++generation};activeSubmission=submission;submitting=true;
     try{await onSchedule(result.value);if(entryKey===submission.entryKey&&generation===submission.generation){reset();onOpenChange(false);}}
-    catch(error){if(entryKey===submission.entryKey&&generation===submission.generation)mutationError=error instanceof Error?error.message:t("An error occurred");}
+    catch(error){if(entryKey===submission.entryKey&&generation===submission.generation)mutationError=error instanceof Error?error.message:{message:"An error occurred"};}
     finally{if(activeSubmission===submission)activeSubmission=null;if(entryKey===submission.entryKey&&generation===submission.generation)submitting=false;}
   }
 </script>
@@ -40,7 +41,7 @@
   <p id="calendar-schedule-description">{description}</p>
   <form novalidate onsubmit={event=>{event.preventDefault();event.stopPropagation();void submit();}}>
     <Fields {date} {time} {locale} disabled={pending} restrictToFuture dateAriaLabel={t("Schedule date")} onDateChange={value=>{date=value;clearError();}} onTimeChange={value=>{time=value;clearError();}}/>
-    {#if validationError||mutationError}<p role="alert">{validationError??mutationError}</p>{/if}
+    {#if validationError||mutationError}<p role="alert">{validationError??(typeof mutationError==='string'?mutationError:mutationError?t(mutationError.message):undefined)}</p>{/if}
     <footer><button type="button" onclick={()=>changeOpen(false)}>{t("Cancel")}</button><button type="submit" disabled={pending||(isEditing&&publishingFieldsMatchInstant(scheduledAt,date,time))}>{submitLabel}</button></footer>
   </form>
 </dialog>

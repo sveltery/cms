@@ -9,6 +9,7 @@
   import { QueryObserver, type QueryClient } from '@tanstack/react-query';
   import { formatTimeAgo,formatTimeUntil,type CalendarDisplay,type CalendarItem } from './calendar.ts';
   import { stateLabels } from './entry.ts';
+  import type { CalendarMessage } from './message-descriptors.ts';
   import type { CalendarClient,CalendarContent,CalendarManifest,CalendarUser,CalendarNotice } from './ui-types.ts';
   let { item,display,now,compact, i18n,urlPatterns={},user,onClose,onRescheduled,onNotice,returnFocus,client,queryClient }: {
     item:CalendarItem|undefined;display:CalendarDisplay;now:number;compact:boolean;
@@ -16,15 +17,15 @@
     onClose:()=>void;onRescheduled:(item:CalendarItem,scheduledAt:string)=>void;onNotice?:(notice:CalendarNotice)=>void;returnFocus?:{current:HTMLElement|null};
     client:CalendarClient;queryClient?:QueryClient;
   }=$props();
-  let entry=$state<CalendarContent>(),error=$state<string>(),pending=$state(false),scheduleOpen=$state(false),previewing=$state(false),translations=$state<{id:string;locale:string;status:string}[]>([]),dialog=$state<HTMLDialogElement>();
+  let entry=$state<CalendarContent>(),error=$state<string|{message:CalendarMessage}>(),pending=$state(false),scheduleOpen=$state(false),previewing=$state(false),translations=$state<{id:string;locale:string;status:string}[]>([]),dialog=$state<HTMLDialogElement>();
   const selectedKey=$derived(item?.key);
   $effect(()=>{selectedKey;scheduleOpen=false;pending=false;previewing=false;});
   $effect(()=>{
     selectedKey;const selected=untrack(()=>item);if(!selected){entry=undefined;return;}
     entry=undefined;error=undefined;let active=true;
     const options={queryKey:['content',selected.collection,selected.id,{locale:i18n?selected.locale:undefined}],queryFn:()=>client.fetchContent(selected.collection,selected.id,{locale:i18n?selected.locale:undefined}),staleTime:0};
-    if(queryClient){const observer=new QueryObserver(queryClient,options);const unsubscribe=observer.subscribe(result=>{entry=result.data;error=result.isError?t("Could not load this entry's details."):undefined;});return()=>{active=false;unsubscribe();observer.destroy();};}
-    void options.queryFn().then(value=>{if(active)entry=value;},()=>{if(active)error=t("Could not load this entry's details.");});return()=>{active=false;};
+    if(queryClient){const observer=new QueryObserver(queryClient,options);const unsubscribe=observer.subscribe(result=>{entry=result.data;error=result.isError?{message:"Could not load this entry's details."}:undefined;});return()=>{active=false;unsubscribe();observer.destroy();};}
+    void options.queryFn().then(value=>{if(active)entry=value;},()=>{if(active)error={message:"Could not load this entry's details."};});return()=>{active=false;};
   });
   $effect(()=>{
     selectedKey;const selected=untrack(()=>item),fetch=client.fetchTranslations;translations=[];
@@ -65,7 +66,7 @@
       refresh(selected);
       onNotice?.(action==='publish'?{title:t("Published"),description:t("{title} is now live.",{title:selected.title})}:{title:t("Schedule removed"),description:selected.status==='published'?t("The scheduled changes to {title} stay as a draft.",{title:selected.title}):t("{title} is a draft again.",{title:selected.title})});
       if(item?.key===selected.key)onClose();
-    }catch(cause){const description=cause instanceof Error?cause.message:t("An error occurred");if(item?.key===selected.key)error=description;onNotice?.({title:action==='publish'?t("Could not publish"):t("Could not remove the schedule"),description,type:'error'});}
+    }catch(cause){const description=cause instanceof Error?cause.message:t("An error occurred");if(item?.key===selected.key)error=cause instanceof Error?description:{message:"An error occurred"};onNotice?.({title:action==='publish'?t("Could not publish"):t("Could not remove the schedule"),description,type:'error'});}
     finally{if(item?.key===selected.key)pending=false;}
   }
   async function reschedule(at:string){
@@ -94,7 +95,7 @@
   {:else if item.state==='scheduled'}<ol class="timeline"><li>{t("Draft")}</li><li><strong>{t("Scheduled")}</strong><p>{t("Goes live {countdown}",{countdown:formatTimeUntil(item.time-now,display.locale)})}</p></li></ol>{:else if item.state==='update'}<ol class="timeline"><li><strong>{t("Live version")}</strong>{#if liveSince}<p>{t("Published {liveSince}",{liveSince})}</p>{/if}</li><li><strong>{t("Scheduled changes")}</strong><p>{t("Go live {countdown}",{countdown:formatTimeUntil(item.time-now,display.locale)})}</p></li></ol>{/if}
   {#if canPublish}<div class="actions">{#if item.state==='overdue'}<button type="button" disabled={pending} onclick={()=>void mutate('publish')}>{t("Publish now")}</button>{/if}<button type="button" disabled={pending} onclick={()=>scheduleOpen=true}>{t("Reschedule")}</button><button type="button" disabled={pending} onclick={()=>void mutate('unschedule')}>{t("Remove schedule")}</button></div>{/if}
 {/if}
-{#if error}<p role="alert">{error}</p>{/if}
+{#if error}<p role="alert">{typeof error==='string'?error:t(error.message)}</p>{/if}
 <footer><a href={`${base}/content/${encodeURIComponent(item.collection)}/${encodeURIComponent(item.id)}?locale=${encodeURIComponent(item.locale)}`}>{t("Open in editor")}</a>{#if item.kind==='scheduled'}<button type="button" disabled={previewing} onclick={()=>void openPreview()}>{item.state==='update'?t("Preview changes"):t("Preview")}</button>{/if}{#if liveUrl}<a href={liveUrl} target="_blank" rel="noopener noreferrer">{t("View live")}</a>{/if}</footer>
 {#if item.kind==='scheduled'&&canPublish}<ScheduleDialog open={scheduleOpen} entryKey={item.key} scheduledAt={item.at} isLive={item.status==='published'} locale={display.locale} onOpenChange={value=>scheduleOpen=value} onSchedule={reschedule}/>{/if}
 {/if}</dialog>
