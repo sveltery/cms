@@ -2490,3 +2490,11 @@ actualSSR2 pass after both phases. Complete r10 raw evidence is linked from the
 paired feature documentation above. This is bounded framework/cache evidence,
 zero new original Source callback or full-product parity credit; final exact-head
 checks, reviews, Root approval and author regular merge remain pending.
+
+CI505's new Native picker fixture return-type inference rejects two arbitrary
+data records before any Source callback. The successor annotates only the helper
+with the actual public `FindManyResult<ContentItem>` type; runtime transpilation
+is byte-identical, with all assertions/data/clocks retained. Check succeeds with
+zero errors/warnings. The paired r11 record preserves complete actual CI/local
+failure logs; this type-only correction earns zero original Source or causal
+product-red credit. Full current-head checks and approval remain pending.

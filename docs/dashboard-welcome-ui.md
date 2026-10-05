@@ -414,3 +414,14 @@ Native18 and actualSSR2 pass after fix and refactor. The [complete r10 envelope]
 retains the genuine baseline and both green runs. All Source authorities and old
 assertions/data/clocks remain unchanged; current whole checks and reviews remain
 required for the successor.
+
+CI505 at `3f666f96` stops in type checking before any original Source callback:
+the new picker helper accidentally inferred both fixture title fields as
+required, although actual `ContentItem.data` is `Record<string, unknown>`. The
+successor gives only that helper the existing public `FindManyResult<ContentItem>`
+return type. Every dataset, matcher, callback and clock remains unchanged, and
+actual TypeScript6 transpilation is byte-identical before and after. Check now
+reports zero errors/warnings. [The complete r11 evidence](../parity/emdash/admin-app-source/evidence/r11-native-fixture-type-authority.json)
+retains the whole CI failure, local failure and successful check. Those type-check
+stops supply zero Source or causal product-red credit. Full current-head normal13,
+secured9 and final reviews remain required.
