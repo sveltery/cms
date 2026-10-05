@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "repository": "sveltery/cms",
+  "branch": "feat/full-scheduling-calendar",
+  "expectedPreviousHead": "7dc68e53fb85c76536ace6c8ec087b12699cfbac",
+  "actualHead": "fe23c138296879364428757b9695d7a940a9f5bd",
+  "actualTree": "c16c924b7b92f79c31c09bfe9bfb9cf9ba542d5d",
+  "commits": [
+    {
+      "localCommit": "4b91572a372370f6fa0bce4ba69cb284fd51ca49",
+      "remoteCommit": "3f8810e4fb885937aa4855126f1170aa3cc03919",
+      "tree": "d1927a9fc67b7151be24a0868d07ea6beb8c5c6a",
+      "parentsRemote": [
+        "7dc68e53fb85c76536ace6c8ec087b12699cfbac"
+      ],
+      "metadataShaDifference": true
+    },
+    {
+      "localCommit": "3a45d076650294ae889154f7cfcac6fb3b1e5151",
+      "remoteCommit": "5ef8f6afc190f4ef5a1c106b1e5dedd086ef7509",
+      "tree": "e21832e00d5dc26198c6b56aefdc20e1ea0a7b98",
+      "parentsRemote": [
+        "3f8810e4fb885937aa4855126f1170aa3cc03919"
+      ],
+      "metadataShaDifference": true
+    },
+    {
+      "localCommit": "59bdd3f743130532bda36fcf5482e16cb2b8fbb4",
+      "remoteCommit": "fe23c138296879364428757b9695d7a940a9f5bd",
+      "tree": "c16c924b7b92f79c31c09bfe9bfb9cf9ba542d5d",
+      "parentsRemote": [
+        "5ef8f6afc190f4ef5a1c106b1e5dedd086ef7509",
+        "c3d135a6f20e4319ee07eebb0f9009b57f2985f9"
+      ],
+      "metadataShaDifference": true
+    }
+  ],
+  "force": false,
+  "compareAndSetLimit": "MCP update_ref has no expected-old field. Verified own105 expected head immediately before one force:false fast-forward update, then verified published result. Metadata SHA differences are explicit; all trees and ordered parent history are exact.",
+  "explicitCatalogRejection": "Initial create_tree was rejected before execution because catalog changed. Schema rediscovered; one fresh prepared call succeeded. No unknown ref write retried."
+}
