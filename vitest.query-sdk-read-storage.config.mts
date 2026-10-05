@@ -20,5 +20,5 @@ export default defineConfig({
    for(const file of ['read-storage.ts','bindings.ts'])if(target===resolve(root,'src/lib/server/query-sdk',file))return resolve(baseline,file);
   }
  },...source.plugins!],
- test:{...source.test,include:['tests/query-sdk-read-storage/*.test.ts']}
+ test:{...source.test,include:['tests/query-sdk-read-storage/*.test.mjs']}
 });

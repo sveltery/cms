@@ -18,7 +18,7 @@ const boundaries: Record<string,string>={
 function sourceFile(logical:string) {
   const boundary=boundaries[logical];
   if(boundary)return resolve(root,boundary);
-  if(logical==='src/schema/registry.ts'||logical==='src/database/migrations/runner.ts')return resolve(root,'tests/helpers/query-sdk/source-read-fixture.ts');
+  if(logical==='src/schema/registry.ts'||logical==='src/database/migrations/runner.ts')return resolve(root,'tests/helpers/query-sdk/source-read-fixture.mjs');
   const published=resolve(publishedFixture,logical);
   return existsSync(published)?published:resolve(sourceExtension,logical);
 }
