@@ -1,0 +1,36 @@
+
+ RUN  v4.1.10 /workspace/cms-full-schema-admin
+
+ ❯ tests/schema-admin-completion/native/collection-index-operator-trigger.test.ts (2 tests | 1 failed) 138ms
+   × actual Native forward migration preserves admitted operator-trigger mutation semantics 126ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-index-operator-trigger.test.ts > actual Native forward migration preserves admitted operator-trigger mutation semantics
+AssertionError: promise rejected "Error: UNIQUE constraint failed: index 'u… { …(3) }" instead of resolving
+ ❯ tests/schema-admin-completion/native/collection-index-operator-trigger.test.ts:72:39
+     70|   try {
+     71|     await nativeStorage(database);await seed(database,'_cms_content_ta…
+     72|     await expect(migrateCms(database)).resolves.toBeUndefined();
+       |                                       ^
+     73|     await assertRepaired(database,'_cms_content_taxonomies');
+     74|   } finally {await database.close();}
+
+Caused by: Error: UNIQUE constraint failed: index 'uidx_ec_posts_active_tg_locale'
+ ❯ Object.run src/lib/server/database/node-sqlite-compat.ts:87:38
+ ❯ src/lib/server/database/sqlite.ts:21:40
+ ❯ #props.executor.provideConnection.freeze.signal node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:647:26
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ migrateCms src/lib/server/database/migrations.ts:313:9
+ ❯ tests/schema-admin-completion/native/collection-index-operator-trigger.test.ts:72:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_SQLITE_ERROR', errcode: 2067, errstr: 'constraint failed' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  17:19:20
+   Duration  816ms (transform 369ms, setup 0ms, import 561ms, tests 138ms, environment 0ms)
+

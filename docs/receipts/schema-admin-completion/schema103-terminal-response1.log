@@ -1,0 +1,11 @@
+$ node scripts/check-schema-admin-response-regression.mjs && vitest run --config vitest.schema-admin-response-regression.config.ts
+Schema response regression: exact sealed R1 candidate retained; provenance only, one Native callback.
+
+ RUN  v4.1.10 /workspace/cms-full-schema-admin
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  01:20:02
+   Duration  200ms (transform 51ms, setup 0ms, import 71ms, tests 5ms, environment 0ms)
+

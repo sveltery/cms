@@ -1,5 +1,6 @@
 import { sql } from 'kysely';
 import type { CmsDatabase } from '../database/contract.ts';
+import { CMS_MIGRATIONS } from '../database/migrations.ts';
 import { commentSchemaSql } from './migrations.ts';
 import { commentRuntimeSchemaSql } from './runtime-migrations.ts';
 
@@ -70,12 +71,13 @@ export async function commentsReady(database: CmsDatabase): Promise<boolean> {
     WHERE name='_cms_migrations' AND type='table'
   `.execute(database.db)).rows;
   // Frozen canonical5/14 requires default0. Append15 changes only fresh
-  // creation to Source027 default1; a marker alone or a gapped/future list
+  // creation to Source027 default1; forward16 keeps those defaults. A marker alone or a gapped/future list
   // does not select that schema. Keep historical literal negatives exact.
   const versions = rows.some(row => row.type === 'migration-table')
     ? (await sql<{ version: number }>`SELECT version FROM _cms_migrations ORDER BY version`.execute(database.db)).rows.map(row => row.version)
     : [];
-  const sourceCreationDefaults = versions.length === 15 && versions.every((version,index) => version === index+1);
+  const sourceCreationDefaults = versions.length >= 15 && versions.length <= CMS_MIGRATIONS.length &&
+    versions.every((version,index) => version === index+1 && version === CMS_MIGRATIONS[index]?.version);
   const settings = new Map([
     ['comments_enabled', { type: 'INTEGER', value: '0' }],
     ['comments_moderation', { type: 'TEXT', value: "'first_time'" }],
