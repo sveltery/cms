@@ -1,0 +1,46 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "productionBase": "ab5464d2f4e6aaad784984f469e6797af0ec0a65",
+  "wholeNative": {
+    "registered": 57,
+    "passed": 56,
+    "failed": 1,
+    "pending": 0,
+    "processExit": 1
+  },
+  "oldNative55": "all unchanged PASS",
+  "separateSourceRuntimeWitness": {
+    "originalCallbackCredit": 0,
+    "actualModule": "parity/emdash/rich-editor-source/packages/admin/src/components/editor/CodeEditor.tsx",
+    "wholeBodyUntouched": true,
+    "transport": "actual Source-exact Lingui macro compilation restricted to this one original full module; real React/I18nProvider/CodeMirror",
+    "result": "Actual Source hint rerenders after same provider activation; same EditorView and mount-only ARIA retain initial label even when prop changes.",
+    "passed": 1
+  },
+  "genuineNativeFailure": {
+    "actual": "Code/Preview tabs remain English after same real Lingui provider activates es-ES and actual owning host locale prop changes",
+    "expected": "literal pinned es-ES Code/Preview catalog entries C\u00f3digo/Avance; same live-provider hint follows supplemental exact Source descriptor catalog",
+    "reachedAssertionValueRed": true
+  },
+  "sourceFilesEdited": false,
+  "sourceOrBrowserOrGeometryCredit": 0,
+  "raw": {
+    "first.log": {
+      "bytes": 24737,
+      "sha256": "c8ab040271c5ef88fe32dbd7f25432ee8f32701a6650ecde51811c54c1f31ee1"
+    },
+    "first.exit": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "first-report.json": {
+      "bytes": 24734,
+      "sha256": "1a55e801540a70c8b41d7e245eb461b90cf4368101a6489856ba3c80e9c1bfc9"
+    }
+  },
+  "limits": [
+    "Original HTML28 baseline and its active stationary public product remain separate.",
+    "No HTML/card/provider backend implementation or protected probe is included.",
+    "Literal CodeMirror jsdom Range stderr and React test environment warnings are retained without suppression."
+  ]
+}
