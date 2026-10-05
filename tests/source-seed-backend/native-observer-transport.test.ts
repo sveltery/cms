@@ -3,7 +3,7 @@ import {sql,type Kysely,type KyselyPlugin} from 'kysely';
 import {schemaAdminStorage} from '../helpers/schema-admin-storage.ts';
 import {migrateCms} from '../../src/lib/server/database/migrations.ts';
 import {seedSourceDatabase,seedNativeBylines} from '../../src/lib/server/seed/namespace.ts';
-import {MediaRepository,MediaUsageRepository} from '../../src/lib/server/seed/d1-providers.ts';
+import {MediaRepository,MediaUsageRepository,TaxonomyRepository,RelationRepository} from '../../src/lib/server/seed/d1-providers.ts';
 
 async function fixture(){
  const storage=await schemaAdminStorage('D1');
@@ -40,5 +40,17 @@ it('observes actual media writes, media reads and usage reads on the same owner'
   expect(await new MediaUsageRepository(db).findSource('absent-observed-source')).toBeNull();
   expect(queries).toHaveLength(3);expect(results).toEqual(queries);
   expect((await sql`SELECT id FROM _cms_media WHERE id=${item.id}`.execute(f.storage.database.db)).rows).toEqual([{id:item.id}]);
+ }finally{await f.storage.close();}
+},30000);
+it('observes actual canonical taxonomy and relation writes and their real receipts',async()=>{
+ const f=await fixture();try{
+  const queries:{kind:string,id:unknown}[]=[],results:unknown[]=[];
+  const db=f.guarded.withPlugin({transformQuery({node,queryId}){queries.push({kind:node.kind,id:queryId});return node;},async transformResult({result,queryId}){results.push(queryId);return result;}});
+  const term=await new TaxonomyRepository(db).create({name:'tag',slug:'observed-term',label:'Observed Term'});
+  const relation=await new RelationRepository(db).create({slug:'observed_relation',parentCollection:'posts',childCollection:'pages',parentLabel:'Posts',childLabel:'Pages'});
+  expect(queries.filter(query=>query.kind==='InsertQueryNode')).toHaveLength(2);
+  expect(results).toEqual(queries.map(query=>query.id));
+  expect((await sql`SELECT id FROM _cms_taxonomies WHERE id=${term.id}`.execute(f.storage.database.db)).rows).toEqual([{id:term.id}]);
+  expect((await sql`SELECT id FROM _cms_relations WHERE id=${relation.id}`.execute(f.storage.database.db)).rows).toEqual([{id:relation.id}]);
  }finally{await f.storage.close();}
 },30000);
