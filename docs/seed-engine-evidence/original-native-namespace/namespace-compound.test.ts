@@ -3,7 +3,6 @@ import { sql, type AbortableOperationOptions, type CompiledQuery, type QueryResu
 import { seedSourceDatabase } from 'seed-namespace-subject';
 import { schemaAdminStorage } from '../helpers/schema-admin-storage.ts';
 import { migrateCms } from '../../src/lib/server/database/migrations.ts';
-import { prepareOpaqueMediaIndexFixture } from '../helpers/source-seed-backend/opaque-media-index-fixture.ts';
 
 // Whole original Native compound-catalog cases; no Source/auth credit.
 for (const target of ['Node', 'D1'] as const) {
@@ -12,7 +11,6 @@ for (const target of ['Node', 'D1'] as const) {
       const storage = await schemaAdminStorage(target);
       try {
         await migrateCms(storage.database);
-        await prepareOpaqueMediaIndexFixture(storage.database);
         await sql`CREATE INDEX _cms_media ON _cms_options(name)`.execute(storage.database.db);
         const oracle = await sql<{ name: string; tbl_name: string; type: string }>`SELECT name, tbl_name, type FROM sqlite_master WHERE name = ${'_cms_options'} OR name = ${'_cms_media'} ORDER BY type`.execute(storage.database.db);
         expect(oracle.rows).toEqual([

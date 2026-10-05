@@ -1,0 +1,287 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ tests/source-seed-backend/namespace-collision.test.ts (12 tests | 12 failed) 1385ms
+   × Node: preserves a physical-name-collision index and its object SQL 34ms
+   × Node: preserves a physical-name-collision PRAGMA column 20ms
+   × Node: preserves a physical-name-collision PRAGMA index 20ms
+   × Node: distinguishes table and index names in mixed object results 18ms
+   × Node: preserves opaque object names without selecting type 23ms
+   × Node: ignores a SELECT comparison when identifying table-only rows 19ms
+   × D1: preserves a physical-name-collision index and its object SQL 832ms
+   × D1: preserves a physical-name-collision PRAGMA column 114ms
+   × D1: preserves a physical-name-collision PRAGMA index 84ms
+   × D1: distinguishes table and index names in mixed object results 76ms
+   × D1: preserves opaque object names without selecting type 78ms
+   × D1: ignores a SELECT comparison when identifying table-only rows 64ms
+ ❯ tests/source-seed-backend/namespace-compound.test.ts (10 tests | 8 failed) 1304ms
+   × Node: refuses UNION catalog SQL before driver execution 35ms
+   × Node: refuses UNION ALL catalog SQL before driver execution 21ms
+   × Node: refuses INTERSECT catalog SQL before driver execution 20ms
+   × Node: refuses EXCEPT catalog SQL before driver execution 23ms
+   × D1: refuses UNION catalog SQL before driver execution 803ms
+   × D1: refuses UNION ALL catalog SQL before driver execution 79ms
+   × D1: refuses INTERSECT catalog SQL before driver execution 102ms
+   × D1: refuses EXCEPT catalog SQL before driver execution 92ms
+ ❯ tests/source-seed-backend/namespace-predicate.test.ts (8 tests | 8 failed) 1198ms
+   × Node: preserves an index selected by a negated table predicate 37ms
+   × Node: preserves an index selected by a negated conjunction 23ms
+   × Node: preserves a positive table constraint with a NOT LIKE name guard 21ms
+   × Node: preserves a positive table constraint under double negation 18ms
+   × D1: preserves an index selected by a negated table predicate 857ms
+   × D1: preserves an index selected by a negated conjunction 101ms
+   × D1: preserves a positive table constraint with a NOT LIKE name guard 71ms
+   × D1: preserves a positive table constraint under double negation 68ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 28 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/source-seed-backend/namespace-collision.test.ts > Node: preserves a physical-name-collision index and its object SQL
+Error: there is already a table named _cms_media
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ fixture tests/source-seed-backend/namespace-collision.test.ts:15:5
+ ❯ tests/source-seed-backend/namespace-collision.test.ts:22:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/28]⎯
+
+ FAIL  tests/source-seed-backend/namespace-collision.test.ts > Node: preserves a physical-name-collision PRAGMA column
+Error: there is already a table named _cms_media
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ fixture tests/source-seed-backend/namespace-collision.test.ts:15:5
+ ❯ tests/source-seed-backend/namespace-collision.test.ts:37:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/28]⎯
+
+ FAIL  tests/source-seed-backend/namespace-collision.test.ts > Node: preserves a physical-name-collision PRAGMA index
+Error: there is already a table named _cms_media
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ fixture tests/source-seed-backend/namespace-collision.test.ts:15:5
+ ❯ tests/source-seed-backend/namespace-collision.test.ts:53:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/28]⎯
+
+ FAIL  tests/source-seed-backend/namespace-collision.test.ts > Node: distinguishes table and index names in mixed object results
+Error: there is already a table named _cms_media
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ fixture tests/source-seed-backend/namespace-collision.test.ts:15:5
+ ❯ tests/source-seed-backend/namespace-collision.test.ts:67:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/28]⎯
+
+ FAIL  tests/source-seed-backend/namespace-collision.test.ts > Node: preserves opaque object names without selecting type
+Error: there is already a table named _cms_media
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ fixture tests/source-seed-backend/namespace-collision.test.ts:15:5
+ ❯ tests/source-seed-backend/namespace-collision.test.ts:84:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/28]⎯
+
+ FAIL  tests/source-seed-backend/namespace-collision.test.ts > Node: ignores a SELECT comparison when identifying table-only rows
+Error: there is already a table named _cms_media
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ fixture tests/source-seed-backend/namespace-collision.test.ts:15:5
+ ❯ tests/source-seed-backend/namespace-collision.test.ts:98:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/28]⎯
+
+ FAIL  tests/source-seed-backend/namespace-collision.test.ts > D1: preserves a physical-name-collision index and its object SQL
+ FAIL  tests/source-seed-backend/namespace-collision.test.ts > D1: preserves a physical-name-collision PRAGMA column
+ FAIL  tests/source-seed-backend/namespace-collision.test.ts > D1: preserves a physical-name-collision PRAGMA index
+ FAIL  tests/source-seed-backend/namespace-collision.test.ts > D1: distinguishes table and index names in mixed object results
+ FAIL  tests/source-seed-backend/namespace-collision.test.ts > D1: preserves opaque object names without selecting type
+ FAIL  tests/source-seed-backend/namespace-collision.test.ts > D1: ignores a SELECT comparison when identifying table-only rows
+ FAIL  tests/source-seed-backend/namespace-compound.test.ts > D1: refuses UNION catalog SQL before driver execution
+ FAIL  tests/source-seed-backend/namespace-compound.test.ts > D1: refuses UNION ALL catalog SQL before driver execution
+ FAIL  tests/source-seed-backend/namespace-compound.test.ts > D1: refuses INTERSECT catalog SQL before driver execution
+ FAIL  tests/source-seed-backend/namespace-compound.test.ts > D1: refuses EXCEPT catalog SQL before driver execution
+ FAIL  tests/source-seed-backend/namespace-predicate.test.ts > D1: preserves an index selected by a negated table predicate
+ FAIL  tests/source-seed-backend/namespace-predicate.test.ts > D1: preserves an index selected by a negated conjunction
+ FAIL  tests/source-seed-backend/namespace-predicate.test.ts > D1: preserves a positive table constraint with a NOT LIKE name guard
+ FAIL  tests/source-seed-backend/namespace-predicate.test.ts > D1: preserves a positive table constraint under double negation
+Error: D1_ERROR: there is already a table named _cms_media: SQLITE_ERROR
+ ❯ Error tests/helpers/async-d1-storage.ts:41:19
+     39|   const owned = new WeakMap<D1Statement, Query>();
+     40|   const revivers = { Error(value: { name: string; message: string; cau…
+     41|     const error = new Error(value.message, { cause: value.cause });
+       |                   ^
+     42|     error.name = value.name;
+     43|     return error;
+ ❯ hydrate ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24
+ ❯ hydrate ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26
+ ❯ unflatten ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9
+ ❯ parse ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:21:9
+ ❯ tests/helpers/async-d1-storage.ts:51:21
+ ❯ execute tests/helpers/async-d1-storage.ts:56:18
+ ❯ D1Connection.executeQuery src/lib/server/database/d1.ts:55:29
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:24
+
+Caused by: Error: there is already a table named _cms_media: SQLITE_ERROR
+ ❯ Error tests/helpers/async-d1-storage.ts:41:19
+ ❯ hydrate ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:24
+ ❯ hydrate ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26
+ ❯ hydrate ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:107:32
+ ❯ hydrate ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:271:26
+ ❯ unflatten ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:278:9
+ ❯ parse ../cms-byline-content-lifecycle/node_modules/.pnpm/devalue@5.9.4/node_modules/devalue/src/parse.js:21:9
+ ❯ tests/helpers/async-d1-storage.ts:51:21
+ ❯ execute tests/helpers/async-d1-storage.ts:56:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/28]⎯
+
+ FAIL  tests/source-seed-backend/namespace-compound.test.ts > Node: refuses UNION catalog SQL before driver execution
+ FAIL  tests/source-seed-backend/namespace-compound.test.ts > Node: refuses UNION ALL catalog SQL before driver execution
+ FAIL  tests/source-seed-backend/namespace-compound.test.ts > Node: refuses INTERSECT catalog SQL before driver execution
+ FAIL  tests/source-seed-backend/namespace-compound.test.ts > Node: refuses EXCEPT catalog SQL before driver execution
+Error: there is already a table named _cms_media
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ tests/source-seed-backend/namespace-compound.test.ts:14:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/28]⎯
+
+ FAIL  tests/source-seed-backend/namespace-predicate.test.ts > Node: preserves an index selected by a negated table predicate
+Error: there is already a table named _cms_media
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ fixture tests/source-seed-backend/namespace-predicate.test.ts:12:5
+ ❯ tests/source-seed-backend/namespace-predicate.test.ts:19:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/28]⎯
+
+ FAIL  tests/source-seed-backend/namespace-predicate.test.ts > Node: preserves an index selected by a negated conjunction
+Error: there is already a table named _cms_media
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ fixture tests/source-seed-backend/namespace-predicate.test.ts:12:5
+ ❯ tests/source-seed-backend/namespace-predicate.test.ts:31:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/28]⎯
+
+ FAIL  tests/source-seed-backend/namespace-predicate.test.ts > Node: preserves a positive table constraint with a NOT LIKE name guard
+Error: there is already a table named _cms_media
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ fixture tests/source-seed-backend/namespace-predicate.test.ts:12:5
+ ❯ tests/source-seed-backend/namespace-predicate.test.ts:43:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/28]⎯
+
+ FAIL  tests/source-seed-backend/namespace-predicate.test.ts > Node: preserves a positive table constraint under double negation
+Error: there is already a table named _cms_media
+ ❯ NodeSqliteCompatDatabase.prepare src/lib/server/database/node-sqlite-compat.ts:82:36
+     80|
+     81|  prepare(sql: string): NodeSqliteCompatStatement {
+     82|   const statement = this.#database.prepare(sql);
+       |                                    ^
+     83|   return {
+     84|    reader: statement.columns().length > 0,
+ ❯ SqliteConnection.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/dialect/sqlite/sqlite-driver.js:58:31
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ fixture tests/source-seed-backend/namespace-predicate.test.ts:12:5
+ ❯ tests/source-seed-backend/namespace-predicate.test.ts:54:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/28]⎯
+
+
+ Test Files  3 failed | 5 passed (8)
+      Tests  28 failed | 32 passed (60)
+   Start at  22:06:51
+   Duration  15.29s (transform 711ms, setup 0ms, import 4.10s, tests 9.97s, environment 1ms)
+
