@@ -19,5 +19,5 @@ export default defineConfig({
     };
     return map[relative] && path.join(root, map[relative]);
   }}],
-  test: { environment: 'node', fileParallelism: false, include: ['parity/emdash/relations-source/executable/packages/core/tests/integration/database/relation-repository.test.ts', 'parity/emdash/relations-source/executable/packages/core/tests/integration/database/relation-set-children-writes.test.ts', 'parity/emdash/relations-source/executable/packages/core/tests/integration/database/content-references.test.ts'] }
+  test: { environment: 'node', fileParallelism: false, include: ['parity/emdash/relations-source/executable/packages/core/tests/integration/database/relation-repository.test.ts', 'parity/emdash/relations-source/executable/packages/core/tests/integration/database/relation-set-children-writes.test.ts', 'parity/emdash/relations-source/executable/packages/core/tests/integration/database/content-references.test.ts', 'parity/emdash/relations-source/executable/packages/core/tests/integration/database/relations-structural-migration.test.ts'] }
 });

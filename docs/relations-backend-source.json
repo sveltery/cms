@@ -292,7 +292,10 @@
     "packages/core/tests/integration/database/relations-structural-migration.test.ts",
     "packages/core/tests/integration/database/reference-field-relations-migration.test.ts",
     "packages/core/tests/integration/api/relations-handlers.test.ts",
-    "packages/core/tests/integration/api/references-edges.test.ts"
+    "packages/core/tests/integration/api/references-edges.test.ts",
+    "packages/core/tests/integration/content/content-references-write.test.ts",
+    "packages/core/tests/integration/content/reference-constraints.test.ts",
+    "packages/core/tests/integration/content/reference-draft-lifecycle.test.ts"
   ],
   "omissions": [
     "content reference draft lifecycle integration",
@@ -549,6 +552,54 @@
     "remaining": [
       "full content reference lifecycle needs actual published sole lifecycle fixed-plan owner",
       "fresh configured review and normal13/secured9 final gates"
+    ]
+  },
+  "contentLifecycleReadiness": {
+    "basisHead": "3f5ef9533f985d638f62d16f8b6a84f41ed0e6e2",
+    "originalRunDateUtc": "2026-10-04",
+    "status": "three whole lifecycle families stop on unpublished current content-handler integration before registration; zero executed callbacks and zero Source causal-red credit",
+    "registeredCallbacks": 0,
+    "passingCallbacks": 0,
+    "sourceCausalRedCredit": 0,
+    "blockedOwner": "actual published sole content lifecycle producer; no duplicate writer or private dependency adoption",
+    "referenceMigrationRun": {
+      "actualCallbacks": 51,
+      "passingCallbacks": 51,
+      "families": {
+        "relationRepository": 33,
+        "relationSetChildren": 3,
+        "referenceDdlControls": 8,
+        "structuralMigrationControls": 7
+      },
+      "nativeCanonicalRunnerCredit": false,
+      "sourceCausalRedCredit": 0
+    },
+    "rawEvidence": [
+      {
+        "path": "docs/relations-backend-evidence/lifecycle-readiness/relations-content-first-readiness.log",
+        "bytes": 3266,
+        "sha256": "e2fed8fe869149ea6017135d1c4b3e8c6738eb94043dc60cd4cac34e28bae92e"
+      },
+      {
+        "path": "docs/relations-backend-evidence/lifecycle-readiness/relations-content-first-readiness.json",
+        "bytes": 1975,
+        "sha256": "5a48612062b4b27cb62deddea7b3d1fb4055ca8e2d48a3304c7205b53ac7cdb3"
+      },
+      {
+        "path": "docs/relations-backend-evidence/lifecycle-readiness/relations-structural-first-reference.log",
+        "bytes": 843,
+        "sha256": "a7ef76867ef3e367081636708886a3b63588b18aeb7106cd0dd72f77d90732f2"
+      },
+      {
+        "path": "docs/relations-backend-evidence/lifecycle-readiness/relations-structural-first-reference.json",
+        "bytes": 17236,
+        "sha256": "9db4853027f9cb5881611d72440596be88a5cce8f51eb000e43d8349b23b2965"
+      },
+      {
+        "path": "docs/relations-backend-evidence/lifecycle-readiness/relations-expanded-guard.log",
+        "bytes": 116,
+        "sha256": "12cd4b3119b3f0530fa3ebef67747d23ebd61c6e0bc158ce0b64ae2c98ef4b70"
+      }
     ]
   }
 }
