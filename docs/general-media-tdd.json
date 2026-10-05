@@ -251,6 +251,76 @@
       "privatePath": "/tmp/general-media-check-cleanup-third.log",
       "bytes": 216,
       "sha256": "834cdc203986df67b0e7bd3abc36ee349dc3f316e5e840067a8126accb31fb73"
+    },
+    {
+      "privatePath": "/tmp/general-media-environment-first-red.log",
+      "bytes": 2435,
+      "sha256": "7901271d6f7f4631c1ff307fb0d0063b89c337587f8a640c2363f914951a8aca"
+    },
+    {
+      "privatePath": "/tmp/general-media-environment-first-implementation.log",
+      "bytes": 1340,
+      "sha256": "ef2fbe346b038c8ee08ea73b90562aad5d1ee28c18e119a70af5ae5b004a97f4"
+    },
+    {
+      "privatePath": "/tmp/general-media-environment-corrected-input.log",
+      "bytes": 230,
+      "sha256": "ae279c9520019df66976b13ccf943c3b09efaa161a0ca66b12f48e5a5708d8df"
+    },
+    {
+      "privatePath": "/tmp/general-media-environment-refactor-green.log",
+      "bytes": 230,
+      "sha256": "42a9421d4461f222c569bb9bf7050323cb1dda4f86d5a857eb0ebbe63def0251"
+    },
+    {
+      "privatePath": "/tmp/general-media-environment-check-first.log",
+      "bytes": 216,
+      "sha256": "834cdc203986df67b0e7bd3abc36ee349dc3f316e5e840067a8126accb31fb73"
+    },
+    {
+      "privatePath": "/tmp/general-media-rbac-maintenance-green.log",
+      "bytes": 1393,
+      "sha256": "a33be06e03cdf4f6f2cbda4497663e4f50414fbc0aaa3a5eb0f05c113c8a9d18"
+    },
+    {
+      "privatePath": "/tmp/general-media-usage-cleanup-first-red.log",
+      "bytes": 1738,
+      "sha256": "bb282ba8d14e2275029094612a5388e16c7411af45e589d40130bcaa98003fa1"
+    },
+    {
+      "privatePath": "/tmp/general-media-usage-cleanup-first-implementation.log",
+      "bytes": 1969,
+      "sha256": "42c933cb9c768884f7e9605c575e5dabbf5f1f74f7193d5aec77f4d87bcee37d"
+    },
+    {
+      "privatePath": "/tmp/general-media-usage-cleanup-seed-implementation.log",
+      "bytes": 960,
+      "sha256": "049f13c725e386a4b76e7abb0d01add1e3875a607ac8cedbe0e1ed60a9686e1e"
+    },
+    {
+      "privatePath": "/tmp/general-media-closure-focused-source.log",
+      "bytes": 672,
+      "sha256": "123fa2827c3b4a2d7a6a65bb2b9622794b188e2b200aa37f79659b8a57370af3"
+    },
+    {
+      "privatePath": "/tmp/general-media-closure-focused-r2-source.log",
+      "bytes": 663,
+      "sha256": "4b4c805c83f760893f4169e4658463e4c4005f2aa4560cc8b5462d887ca8e6b9"
+    },
+    {
+      "privatePath": "/tmp/general-media-closure-focused-native.log",
+      "bytes": 1436,
+      "sha256": "a33738e250c01f8091de8d071dba15bba136e312e2828ef37811910e25fc60b5"
+    },
+    {
+      "privatePath": "/tmp/general-media-closure-focused-check.log",
+      "bytes": 216,
+      "sha256": "834cdc203986df67b0e7bd3abc36ee349dc3f316e5e840067a8126accb31fb73"
+    },
+    {
+      "privatePath": "/tmp/general-media-source-grounded-native.log",
+      "bytes": 292,
+      "sha256": "7f2c321d5ee097a81b54e01db9e65908f5b45bd67b8d020afe7dcbbbdffcb956"
     }
   ],
   "implementationCheckpoint": {
@@ -403,5 +473,92 @@
     "checkerWarnings": 0,
     "scope": "Exact two complete Source cleanup subsystem3/4 try blocks through actual canonical owner. Actual Node/rawD1 and reversible local bytes. Shared ready key remains; abandoned/orphan bytes and markers removed. No full runSystemCleanup, cron or original stream/race callback credit.",
     "typeOnlyRepair": "Canonical _cms_media physically exists but is absent from base CmsTables TypeScript view; Native fixture annotates actual installed table with complete pinned MediaTable type, preserving emitted SQL/data/expectations. Initial two checker errors and annotation-only retry retained."
+  },
+  "sharedPinnedD1BugQualification": {
+    "contract": "MED-D1-BUG01",
+    "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+    "completeSourceAlgorithms": [
+      "packages/core/src/media/usage/cleanup.ts",
+      "packages/core/src/database/repositories/media-usage.ts"
+    ],
+    "wholeOriginalPhysicalMigrations": [
+      "046_media_usage_index",
+      "061_media_usage_cleanup",
+      "062_media_usage_cleanup_fence"
+    ],
+    "sourceLockedDriver": "kysely-d1@0.4.0",
+    "sourceResult": {
+      "candidateRows": 4,
+      "backlogLowerBound": 3,
+      "deletedOrphans": 2,
+      "deletedRows": 2,
+      "deletedStale": 0,
+      "deletedAbandoned": 0
+    },
+    "actualRemaining": [
+      "abandoned",
+      "live",
+      "stale"
+    ],
+    "sourceCorrectionCredit": 0,
+    "productRepairCredit": 0,
+    "originalTestFamilyCallbacks": 0,
+    "qualification": "Root approved preserving shared pinned bug and Source-grounding only the new supplemental D1 expectation. Original algorithms/mapper/SQL/providers/clocks unchanged; full D1 cleanup correctness incomplete.",
+    "publication": "Exact issue and paired public write-up pending specific user approval after actual automatic approval review rejection."
+  },
+  "environmentStorage": {
+    "contract": "MED-ENV01",
+    "testFirstCommit": "e99a6657",
+    "wholeNewNativeFamilyCallbacks": 4,
+    "firstPassed": 2,
+    "genuineNativeValueReds": 2,
+    "implementationCommit": "d6d026ca",
+    "refactorCommit": "0beaa8bd",
+    "currentPassed": 4,
+    "sourceCallbacks": 0,
+    "productRepairCreditForFixtureCorrection": 0,
+    "fixtureCorrection": "New Native plain-text upload fixture was rejected by exact Source global MIME allowlist. Corrected only its filename/contentType to Source-supported PDF; first wrong fixture and corrected run retained. No algorithm or Source test changed.",
+    "scope": "Trusted optional Node/SQLite SVELTERY_MEDIA_DIRECTORY descriptor constructs existing pinned LocalStorage lazily after origin/base validation; no default directory, injectedStorage precedence, D1/Worker rejection, same scoped/session/origin/mutation ownership. Controlled unit/file evidence, not real protected HTTP/session/PAT/signature/cloud evidence."
+  },
+  "roleExpectationMaintenance": {
+    "contract": "MED-RBAC-LITERALS01",
+    "decision": "Root approved exact sealed five Native literal sites in two files",
+    "commit": "e6d0635a",
+    "patchBytes": 3874,
+    "patchSha256": "5c631c674d30f0b7a19143b29210b1352fcfefd8676baa7f7d58b93e750677d5",
+    "sourceOrProductRepairCredit": 0,
+    "scope": "Author +4, Contributor +2, Admin count27to33 and two Subscriber +1 literals only; Source thresholds and all old rights/callbacks/data/clocks remain. CI535 reached3 genuine old-native assertion reds, later2 sites unreached. Focused Node4 registration3pass/1 D1 ECONNRESET before its role assertion; not a whole passing runtime-D1 claim."
+  },
+  "usageCleanup": {
+    "contract": "MED-USAGE-CLEAN01 / MED-CLEAN-INIT01",
+    "testFirstCommit": "7cb4ef8e",
+    "firstWholeNewNativeFamily": 2,
+    "firstGenuineMissingOperatorValueReds": 2,
+    "implementationCommit": "463ca313",
+    "wholePinnedModules": 60,
+    "sourceOriginalCleanupTestFamilyCallbacks": 0,
+    "canonicalInitialRowAbsent": true,
+    "nodeInitialSeedGapValueRed": "Expected completed cleanup; actual skipped through unchanged Source algorithm because canonical storage schema is installed without Source migration061 row seed",
+    "operationalInitialization": "Only task_key projection_gc and initial next_eligible_at1970-01-01T00:00:00.000Z, onConflict task_key doNothing in actual canonical metadata owner. No DDL/provider/usage-occurrence writer. Existing lease/cursor/backoff control retained.",
+    "earlyD1Timeouts": "Unchanged5000ms deadlines retained; timeout runs give no value-red credit.",
+    "sourceGroundedExpectationCommit": "0b4d9788",
+    "latestWholeNativePassed": 22,
+    "scope": "Whole exact pinned cleanup algorithm uses sole published MediaUsageRepository. No cron/full runSystemCleanup/content/SEO/transfer/plugin pipeline. Known pinned D1 correctness limitation separately qualified and awaits issue/write-up publication permission."
+  },
+  "historicalCI535": {
+    "head": "fa5048d0713650e0b4c7e2b943dd3a9460027ecd",
+    "workflowRun": 37274850792,
+    "normalJob": 111649520026,
+    "normal": "failure",
+    "completedNormalStages": 2,
+    "serviceTests": 1495,
+    "servicePassed": 1492,
+    "serviceFailed": 3,
+    "cancelled": 0,
+    "unreachedNormalStages": 10,
+    "securedJob": 111649519772,
+    "secured": "success",
+    "securedLaunches": 9,
+    "scope": "Historical head only, not the current environment/cleanup/Source-grounded expectation successor"
   }
 }

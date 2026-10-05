@@ -40,6 +40,15 @@ retains both complete blocks and the whole original system-cleanup file. This
 operator installs no cron and does not emulate Source `runSystemCleanup`; other
 subsystem results and the full original stream/cleanup family remain unclaimed.
 
+`cleanupGeneralMediaUsage` and the backend's `cleanupUsage` call the complete
+pinned usage-cleanup algorithm through the sole published MediaUsageRepository.
+The native wrapper initializes only the existing canonical `projection_gc`
+metadata row using Source migration 061's task key and initial eligible time,
+with `ON CONFLICT DO NOTHING`. This is operational initialization because the
+canonical provider installs the schema without Source's migration data seed.
+Existing lease, cursor and backoff state remains intact. It adds no occurrence
+writer, cron, schema, provider or full content/plugin/transfer pipeline.
+
 Trusted server configuration supplies a `Storage` instance through the existing
 runtime presentation/request configuration. The final scoped D1 database spread
 retains that instance, identity, session and waitUntil semantics. Node callers
@@ -48,7 +57,24 @@ trusted binding. The R2 class calls the supplied binding directly; an ambient
 Web/Worker stream type contract changes no executable method body. No default
 filesystem directory, bucket, credentials or Source `cloudflare:workers` env
 factory is configured by this prerequisite. Environment provider construction
-is a pending separately scoped hosting integration.
+is available for configured Node/SQLite hosting through the trusted
+`SVELTERY_MEDIA_DIRECTORY` option:
+
+```sh
+SVELTERY_DATABASE_PATH=./data/cms.db \
+SVELTERY_MEDIA_DIRECTORY=./data/media \
+SVELTERY_PUBLIC_ORIGIN=http://localhost:3000 \
+ORIGIN=http://localhost:3000 pnpm start:node
+```
+
+Build the Node target first as documented in [Node hosting](node-hosting.md).
+The trusted runtime derives public file URLs from the exact configured origin,
+Kit base path and `/api/media/file`. The descriptor loads the Node-only provider
+after origin/base validation, creates no default directory and never uses
+forwarded headers. Explicitly injected storage retains precedence. A filesystem
+option on D1/Worker configuration is rejected; scoped database, session, origin
+and mutation gates remain unchanged. Omitting the option leaves storage absent.
+Worker binding and S3 environment factories remain incomplete.
 
 Native requests consume only the existing trusted principal and existing
 mutation opt-in/origin guard. Read requires Subscriber, upload Contributor,
@@ -130,3 +156,31 @@ post-main checks remain pending. Draft [PR #113](https://github.com/sveltery/cms
 is open. App attachment was requested once; the request wait did not complete
 and was stopped without retry, so attachment status is unverified. No complete
 media roadmap checkbox or upstream parity is claimed.
+
+### MED-D1-BUG01: shared pinned D1 cleanup limitation
+
+The complete pinned EmDash cleanup algorithm and MediaUsageRepository reproduce a D1 counting bug with original migrations 046/061/062 and Source-locked `kysely-d1@0.4.0`. For one current, one stale, one abandoned and one orphan occurrence, D1 reports two orphan deletions after removing one orphan: the fence-trigger write is included in affected rows. Stale and abandoned rows remain in that tick. SQLite removes all three obsolete occurrences.
+
+The native port preserves the pinned algorithms, mapper, SQL, providers and clocks. Only the new supplemental D1 expectation is grounded to the observed Source result; this correction earns zero Source or product repair credit. Full D1 cleanup correctness remains unfinished. The shared bug is tracked in the repository issue once publication is approved.
+
+## Local closure checkpoint
+
+Root approved the finite Node environment-storage contract, the exact five old
+Native role-expectation literals, the trusted whole usage-cleanup operator and
+its existing-row-only operational initialization. Whole Source36/321 and the
+original R2 mock1 pass; all188 immutable authorities and60 whole module
+algorithms are guarded. Current supplemental Native22 pass with their original
+deadlines, including Node environment4 and sequential usage2. Type checks report
+0 errors / 0 warnings. The new D1 expectation follows the qualified shared pin
+bug above and earns no repair credit. All earlier assertion failures, invalid
+Native fixture, module stop, deadlines and transport failures remain in the
+paired private receipts.
+
+CI535 on fa5048d0 passed secured9 but failed normal service tests1495/1492pass/
+3 old-role-assertion failures,0cancelled; only2 of13 normal stages finished.
+The sealed literal proposal is now approved and applied. These historical gates
+do not qualify this successor. Current normal13/secured9, fresh independent
+and configured review, exact Root approval, author regular merge and post-main
+verification remain pending. Public issue and related diagnostic write-up have
+a specific publication hold after automatic approval review rejected the issue;
+all local preparation remains reviewable without a public retry.
