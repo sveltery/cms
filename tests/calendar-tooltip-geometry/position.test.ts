@@ -15,6 +15,12 @@ function setup(reference:ReturnType<typeof rect>,width:number,height:number,view
     getDimensions:async element=>element===arrow?{width:20,height:10}:{width,height},
     isRTL:async()=>false,isElement:async()=>true,
     getOffsetParent:async()=>popup,
+    // Controlled rectangles already use viewport coordinates. Supply the
+    // documented platform conversion rather than polyfilling a browser global.
+    convertOffsetParentRelativeRectToViewportRelativeRect:async({rect})=>rect,
+    getScale:async()=>({x:1,y:1}),
+    getDocumentElement(){throw new Error('Controlled rectangle fixture has no DOM document');},
+    getClientRects(){throw new Error('Controlled fixture has no inline client rectangles');},
   };
   return{trigger,popup,arrow,platform,viewport};
 }
