@@ -5,7 +5,7 @@ import { monotonicFactory } from "ulidx";
 
 import { ContentDatetimeNormalizer, type DatetimeContextCache } from "../content-datetime.ts";
 import type { Database, RevisionTable } from "../types.ts";
-import { validateIdentifier } from "../validate.ts";
+import { validateIdentifier } from "../../../../database/lifecycle/upstream/database/validate.ts";
 
 const monotonic = monotonicFactory();
 

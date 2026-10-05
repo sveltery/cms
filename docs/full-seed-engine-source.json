@@ -114,6 +114,12 @@
       "bytes": 25945,
       "sha256": "6fc591cf554cc0889d78ce170b07dee1cc1afa6a3cc7e06fcea6148df988c5a6",
       "gitBlob": "5ed005afb9e146778b4a42a303e391abef5dcace"
+    },
+    {
+      "path": "packages/core/src/media/usage/capture-triggers.ts",
+      "bytes": 16459,
+      "sha256": "6319d59395354d6364dcf008fd19947b9da60a7040879f035c85ea585c55d50e",
+      "gitBlob": "620065f3858633a4d54d144fbd6ba1c3a50fcd2a"
     }
   ],
   "runtime": [
@@ -211,6 +217,24 @@
         "isRecord",
         "parseSupports",
         "parseCollectionAdmin"
+      ]
+    },
+    {
+      "native": "src/lib/server/seed/d1-capture-builder.ts",
+      "source": "packages/core/src/media/usage/capture-triggers.ts",
+      "declarations": [
+        "POSTGRES_IDENTIFIER_LIMIT",
+        "CAPTURE_TRIGGER_VERSION",
+        "WHITESPACE_PATTERN",
+        "TRAILING_SEMICOLON_PATTERN",
+        "MediaUsageCaptureIdentity",
+        "CaptureOperation",
+        "captureOperations",
+        "captureIdentifiers",
+        "identityDigest",
+        "normalizeDdl",
+        "sqliteTriggerSql",
+        "operationSql"
       ]
     }
   ],

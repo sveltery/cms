@@ -18,7 +18,7 @@ import { chunks, SQL_BATCH_SIZE } from "../../../../schema/chunks.ts";
 import { listTablesLike } from "../dialect-helpers.ts";
 import { withTransaction } from "../../../../database/lifecycle/upstream/database/transaction.ts";
 import type { BylineTable, Database } from "../types.ts";
-import { validateIdentifier } from "../validate.ts";
+import { validateIdentifier } from "../../../../database/lifecycle/upstream/database/validate.ts";
 import {
 	decodeCursor,
 	EmDashValidationError,

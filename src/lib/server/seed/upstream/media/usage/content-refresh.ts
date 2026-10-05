@@ -9,7 +9,7 @@ import {
 	type MediaUsageSource,
 } from "../../../providers.ts";
 import type { Database } from "../../database/types.ts";
-import { validateIdentifier } from "../../database/validate.ts";
+import { validateIdentifier } from "../../../../database/lifecycle/upstream/database/validate.ts";
 import { isI18nEnabled } from "../../../i18n-config.ts";
 import {
 	loadContentMediaUsageFields,

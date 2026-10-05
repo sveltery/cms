@@ -16,7 +16,7 @@ import { ContentDatetimeNormalizer, type DatetimeContextCache } from "../content
 import { executeAtomicBatchIfSupported, isPostgres } from "../dialect-helpers.ts";
 import { withTransaction } from "../../../../database/lifecycle/upstream/database/transaction.ts";
 import type { Database } from "../types.ts";
-import { validateIdentifier } from "../validate.ts";
+import { validateIdentifier } from "../../../../database/lifecycle/upstream/database/validate.ts";
 import { createRevisionId, RevisionRepository } from "./revision.ts";
 import type {
 	CreateContentInput,

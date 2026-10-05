@@ -3,7 +3,7 @@
 import type { Kysely } from "kysely";
 
 import type { Database } from "../../database/types.ts";
-import { validateIdentifier } from "../../database/validate.ts";
+import { validateIdentifier } from "../../../../database/lifecycle/upstream/database/validate.ts";
 import { BlockTypeRegistry } from "../../../providers.ts";
 import type { BlockType } from "../../../../blocks/upstream/schema/block-types.ts";
 import { buildCanonicalSha256Fingerprint } from "../../../../blocks/upstream/media/usage/projection-fingerprint.ts";

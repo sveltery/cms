@@ -1,10 +1,8 @@
-// Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
-// Source 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/src/media/usage/capture-triggers.ts; complete import-adapted body.
 import { sql, type Kysely, type RawBuilder } from "kysely";
 
-import { isPostgres, tableExists } from "../../database/dialect-helpers.ts";
-import type { Database } from "../../database/types.ts";
-import { validateIdentifier } from "../../../../database/lifecycle/upstream/database/validate.ts";
+import { isPostgres, tableExists } from "../../database/dialect-helpers.js";
+import type { Database } from "../../database/types.js";
+import { validateIdentifier } from "../../database/validate.js";
 
 const POSTGRES_TRIGGER_FUNCTION = "emdash_media_usage_capture_work";
 const POSTGRES_IDENTIFIER_LIMIT = 63;

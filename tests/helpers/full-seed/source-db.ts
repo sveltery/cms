@@ -8,6 +8,7 @@ import { seedSourceDatabase } from '../../../src/lib/server/seed/namespace.ts';
 import type { Database } from '../../../src/lib/server/seed/upstream/database/types.ts';
 import type { CmsDatabase } from '../../../src/lib/server/database/contract.ts';
 import { describe } from 'vitest';
+import { originalD1FixtureHandle } from './source-d1-fixture-handle.ts';
 
 const owners = new WeakMap<object, CmsDatabase>();
 export function sourceSeedOwner(db: object): CmsDatabase {
@@ -23,7 +24,8 @@ export async function setupTestDatabase(): Promise<Kysely<Database>> {
   } else database=openSqlite(':memory:');
   try {
     await migrateCms(database);
-    const db = seedSourceDatabase(database) as Kysely<Database>;
+    const guarded = seedSourceDatabase(database) as Kysely<Database>;
+    const db = database.atomicQueryLoops ? guarded : originalD1FixtureHandle(guarded,database);
     owners.set(db, database);
     return db;
   } catch (cause) { await database.close(); throw cause; }

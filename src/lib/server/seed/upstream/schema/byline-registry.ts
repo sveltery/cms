@@ -6,7 +6,7 @@ import { ulid } from "ulidx";
 
 import { withTransaction } from "../../../database/lifecycle/upstream/database/transaction.ts";
 import type { BylineFieldTable, Database } from "../database/types.ts";
-import { validateIdentifier } from "../database/validate.ts";
+import { validateIdentifier } from "../../../database/lifecycle/upstream/database/validate.ts";
 import {
 	BYLINE_FIELD_TYPES,
 	RESERVED_BYLINE_FIELD_SLUGS,

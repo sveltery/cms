@@ -1,0 +1,37 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts (7 tests | 1 failed) 229ms
+     × rejects supported fields with invalid slugs before they can become column refs 28ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > rejects supported fields with invalid slugs before they can become column refs
+AssertionError: expected error to be instance of IdentifierError
+
+- Expected:
+[Function IdentifierError]
+
++ Received:
+IdentifierError {
+  "message": "media usage field slug must match /^[a-z][a-z0-9_]*$/ (got \"bad-slug\")",
+  "identifier": "bad-slug",
+  "name": "IdentifierError",
+}
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts:219:61
+    217|    .execute();
+    218|
+    219|   await expect(loadContentMediaUsageFields(ctx.db, "posts")).rejects.t…
+       |                                                             ^
+    220|  });
+    221|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 68 passed (69)
+   Start at  22:27:43
+   Duration  6.53s (transform 1.10s, setup 0ms, import 3.50s, tests 2.42s, environment 0ms)
+

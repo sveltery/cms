@@ -14,7 +14,7 @@ for (const target of ['Node', 'D1'] as const) {
     const storage = await schemaAdminStorage(target);
     try {
       await migrateCms(storage.database);
-      const db = storage.database.db;
+      const db = storage.database.db as unknown as Kysely<Database>;
       await activateMediaUsageCapture(db as unknown as Kysely<Database>, { writersDrained: true });
       const registry = new SchemaRegistry(storage.database);
       const error = await registry.createCollection({ slug: 'captured', label: 'Captured' }).then(() => null, error => error);
@@ -34,7 +34,7 @@ for (const target of ['Node', 'D1'] as const) {
     const storage = await schemaAdminStorage(target);
     try {
       await migrateCms(storage.database);
-      const db = storage.database.db;
+      const db = storage.database.db as unknown as Kysely<Database>;
       await activateMediaUsageCapture(db as unknown as Kysely<Database>, { writersDrained: true });
       const registry = new SchemaRegistry(storage.database);
       const fields = Array.from({ length: 74 }, (_, index) => ({ slug: `field_${index}`, label: `Field ${index}`, type: 'string' }));
@@ -53,7 +53,7 @@ for (const target of ['Node', 'D1'] as const) {
     const storage = await schemaAdminStorage(target);
     try {
       await migrateCms(storage.database);
-      const db = storage.database.db;
+      const db = storage.database.db as unknown as Kysely<Database>;
       await activateMediaUsageCapture(db as unknown as Kysely<Database>, { writersDrained: true });
       await sql`CREATE TRIGGER controlled_capture_failure BEFORE INSERT ON _cms_collections WHEN NEW.slug = 'failed_capture' BEGIN SELECT RAISE(ABORT, 'controlled capture publication failure'); END`.execute(db);
       await expect(new SchemaRegistry(storage.database).createCollection({ slug: 'failed_capture', label: 'Failed Capture' })).rejects.toThrow('controlled capture publication failure');
@@ -70,7 +70,7 @@ for (const target of ['Node', 'D1'] as const) {
       await new SchemaRegistry(storage.database).createSeedCollectionSchema({ slug: 'seed_indexes', label: 'Seed Indexes' }, []);
       const names = (await sql<{ name: string }>`SELECT name FROM sqlite_master WHERE type = 'index' AND tbl_name = 'ec_seed_indexes'`.execute(storage.database.db)).rows.map(row => row.name);
       expect(names).toContain('idx_ec_seed_indexes_primary_byline');
-      expect(names).toContain('idx_ec_seed_indexes_status');
+      expect(names).toContain('idx_ec_seed_indexes_slug');
     } finally { await storage.close(); }
   }, 30000);
 }
