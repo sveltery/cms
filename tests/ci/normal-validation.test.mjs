@@ -73,6 +73,7 @@ test('local bootstrap and the entire secured browser job remain byte-exact', () 
 });
 
 function runPhase(phase, failure = '') {
+  assert.ok(existsSync(join(root, 'scripts/ci-validation-phase.sh')), 'phase runner prerequisite exists');
   const directory = mkdtempSync(join(tmpdir(), 'cms-ci-command-boundary-'));
   const trace = join(directory, 'trace');
   const executable = (name) => `#!/usr/bin/env sh
@@ -132,6 +133,7 @@ test('unknown or missing phase rejects before executing any prerequisite or work
 });
 
 function aggregate(results) {
+  assert.ok(existsSync(join(root, 'scripts/ci-validation-result.mjs')), 'aggregate runner prerequisite exists');
   return spawnSync(process.execPath, [join(root, 'scripts/ci-validation-result.mjs'), ...results], {
     cwd: tmpdir(), encoding: 'utf8',
   });
