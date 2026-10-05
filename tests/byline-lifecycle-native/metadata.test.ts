@@ -29,3 +29,13 @@ it('retains ordinary Native form identity rules separately from Source attributi
  const item=await ordinaryContentService(database,principal,{after:()=>{}}).createContent({type:'post',data:{title:'Ordinary'},authorId:'imported-author'});
  expect(item.authorId).toBe(principal.id);
 });
+it('duplicates Source attribution with an optional override and original-author fallback',async()=>{
+ const api=nativeContentApi(database,principal,{after:()=>{}});
+ const original=await api.create('post',{data:{title:'Imported'},authorId:'imported-author'});
+ expect(original.success).toBe(true);if(!original.success)throw new Error(original.error.message);
+ for(const authorId of [undefined,'','copy-author']){
+  const copied=await api.duplicate('post',original.data.item.id,authorId);
+  expect(copied.success).toBe(true);if(!copied.success)throw new Error(copied.error.message);
+  expect(copied.data.item.authorId).toBe(authorId||'imported-author');
+ }
+});
