@@ -22,6 +22,7 @@ owned_names = {
     'media-usage-progress-route', 'media-usage-work-route',
     'media-usage-collection-deletion-route', 'media-usage-repair-route',
     'media-usage-repair-auth', 'media-usage-write-fence',
+    'media-usage-activation-route', 'media-usage-read-route', 'media-usage-activation-d1',
 }
 records = []
 for path in paths:
