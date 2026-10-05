@@ -56,7 +56,7 @@ export function handleContentGet(db,collection,id,locale){return service(db).get
 export function handleContentUpdate(db,collection,id,body){return service(db).update(collection,id,body);}
 export function handleContentList(db,collection,options){return service(db).list(collection,options);}
 export function handleContentPublish(db,collection,id,options){return service(db).publish(collection,id,options);}
-export function handleContentDuplicate(db,collection,id){return service(db).duplicate(collection,id);}
+export function handleContentDuplicate(db,collection,id,authorId){return service(db).duplicate(collection,id,authorId);}
 export function handleContentSchedule(db,collection,id,scheduledAt,currentTime,_rev){return service(db).schedule(collection,id,scheduledAt,currentTime,_rev);}
 export function handleContentUnschedule(db,collection,id,_rev){return service(db).unschedule(collection,id,_rev);}
 export function handleContentPermanentDelete(db,collection,id){return service(db).permanentDelete(collection,id);}

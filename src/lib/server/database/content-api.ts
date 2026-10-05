@@ -49,7 +49,10 @@ export function nativeContentApi(database:CmsDatabase,principal:ServerPrincipal|
   async update(collection:string,id:string,body:Body){try{return receipt(await mutation(collection,id,body,async input=>(await owner.updateContent(input)).item));}catch(cause){return failure(cause,'UPDATE',collection);}},
   async list(collection:string,options:Body={}){try{return{success:true as const,data:await owner.listContent({...options,type:collection},{allLocales:true,sourceSchemaDiscovery:true})};}catch(cause){return failure(cause,'LIST',collection);}},
   async publish(collection:string,id:string,options:Body={}){try{return receipt(await mutation(collection,id,options,input=>owner.publish(input)));}catch(cause){return failure(cause,'PUBLISH',collection);}},
-  async duplicate(collection:string,id:string){try{return receipt(await owner.duplicateContent({type:collection,id}));}catch(cause){return failure(cause,'DUPLICATE',collection);}},
+  async duplicate(collection:string,id:string,authorId?:string){try{
+   const copier=lifecycleService(database,principal,dependencies,creationAttribution??{authorId});
+   return receipt(await copier.duplicateContent({type:collection,id}));
+  }catch(cause){return failure(cause,'DUPLICATE',collection);}},
   async schedule(collection:string,id:string,scheduledAt:string,currentTime:Date=new Date(),_rev?:string){try{return receipt(await mutation(collection,id,{scheduledAt,_rev},input=>owner.scheduleContent(input,currentTime)));}catch(cause){return failure(cause,'SCHEDULE',collection);}},
   async unschedule(collection:string,id:string,_rev?:string){try{return receipt(await mutation(collection,id,{_rev},input=>owner.unscheduleContent(input)));}catch(cause){return failure(cause,'UNSCHEDULE',collection);}},
   async permanentDelete(collection:string,id:string){try{await owner.permanentDeleteContent({type:collection,id});return{success:true as const,data:{deleted:true}};}catch(cause){return failure(cause,'PERMANENT_DELETE',collection);}}

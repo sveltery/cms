@@ -248,13 +248,14 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const source=typeof data.title==='string'?data.title:typeof data.name==='string'?data.name:null;
       const slug=source?await content.generateUniqueSlug(value.type,source,original.locale??undefined):null;
       const existingBylines=await bylines.getContentBylines(value.type,original.id);
+      const attribution=creationMetadata===undefined?undefined:{authorId:creationMetadata.authorId||original.authorId||null};
       const item=await drafts.create({type:value.type,locale:original.locale??'en',slug,data},actor.id,
         existingBylines.length?async entry=>{
           const plan=newContentTaxonomyStatements(database,value.type,entry,[]);
           const statements=await bylines.planContentBylineReplacement(value.type,entry.id,
             existingBylines.map(credit=>({bylineId:credit.byline.id,roleLabel:credit.roleLabel})));
           return {...plan,after:[...plan.after,...statements]};
-        }:undefined);
+        }:undefined,undefined,attribution);
       invalidateCollectionCache(value.type);return hydratedBylines(await stored({type:value.type,id:item.id,locale:item.locale}));
     },
     async permanentDeleteContent(input:unknown):Promise<void> {
