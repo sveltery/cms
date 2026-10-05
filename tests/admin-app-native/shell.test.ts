@@ -85,3 +85,11 @@ it('two actual root layouts create isolated default current-user caches', async 
  await vi.waitFor(() => expect(second.queryClient.getQueryData(['currentUser'])).toEqual({ ...user, id: 'root-second', name: 'Bob', isFirstLogin: false }));
  expect(first.queryClient).not.toBe(second.queryClient);
 });
+
+it('the actual content picker uses the root layout cache when no client is supplied', async () => {
+ const pickerClient = { fetchCollections: vi.fn(async () => []), fetchManifest: vi.fn(async () => ({ collections: {} })), fetchContentList: vi.fn(async () => ({ items: [], total: 0 })) };
+ const { queryClient } = await renderWithRootDefaults({ currentUserClient: { currentUser: vi.fn(async () => ({ ...user, isFirstLogin: false })) }, pickerClient });
+ await vi.waitFor(() => expect(queryClient.getQueryCache().find({ queryKey: ['manifest'] })).toBeDefined());
+ expect(queryClient.getQueryCache().find({ queryKey: ['collections'] })).toBeDefined();
+ expect([pickerClient.fetchCollections.mock.calls.length, pickerClient.fetchManifest.mock.calls.length, pickerClient.fetchContentList.mock.calls.length]).toEqual([0, 0, 0]);
+});
