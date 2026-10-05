@@ -446,5 +446,20 @@ export const CALENDAR_MESSAGE_FALLBACKS = {
   ],
   "An error occurred": [
     "An error occurred"
+  ],
+  "Choose a date": [
+    "Choose a date"
+  ],
+  "Choose a time": [
+    "Choose a time"
+  ],
+  "Choose a time in the future": [
+    "Choose a time in the future"
+  ],
+  "That time does not exist in your time zone": [
+    "That time does not exist in your time zone"
+  ],
+  "Choose a valid date and time": [
+    "Choose a valid date and time"
   ]
 } as const;

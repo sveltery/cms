@@ -29,7 +29,7 @@
   async function submit(){
     if(pending||activeSubmission?.entryKey===entryKey)return;
     const result=serializeFuturePublishingDateTime(date,time);
-    if(!result.success){validationError=result.error==='missing-date'?'Choose a date':result.error==='missing-time'?'Choose a time':result.error==='past'?'Choose a time in the future':result.error==='nonexistent-time'?'That time does not exist in your time zone':'Choose a valid date and time';return;}
+    if(!result.success){validationError=t(result.error==='missing-date'?'Choose a date':result.error==='missing-time'?'Choose a time':result.error==='past'?'Choose a time in the future':result.error==='nonexistent-time'?'That time does not exist in your time zone':'Choose a valid date and time');return;}
     if(isEditing&&publishingFieldsMatchInstant(scheduledAt,date,time))return;
     clearError();const submission={entryKey,generation:++generation};activeSubmission=submission;submitting=true;
     try{await onSchedule(result.value);if(entryKey===submission.entryKey&&generation===submission.generation){reset();onOpenChange(false);}}

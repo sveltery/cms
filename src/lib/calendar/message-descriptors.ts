@@ -377,6 +377,26 @@ export const CALENDAR_MESSAGE_DESCRIPTORS = {
   "An error occurred": {
     "id": "Vw8l6h",
     "message": "An error occurred"
+  },
+  "Choose a date": {
+    "id": "HC7flO",
+    "message": "Choose a date"
+  },
+  "Choose a time": {
+    "id": "GwhNN9",
+    "message": "Choose a time"
+  },
+  "Choose a time in the future": {
+    "id": "mc9NDr",
+    "message": "Choose a time in the future"
+  },
+  "That time does not exist in your time zone": {
+    "id": "9zWebh",
+    "message": "That time does not exist in your time zone"
+  },
+  "Choose a valid date and time": {
+    "id": "OuC9cQ",
+    "message": "Choose a valid date and time"
   }
 } as const;
 
