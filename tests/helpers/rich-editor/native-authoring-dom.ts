@@ -41,4 +41,4 @@ export async function ordinarySlash(host: HTMLElement, editor: Editor, title: st
   editor.commands.setTextSelection(editor.state.doc.content.size - 1);
   editor.commands.insertContent('/'); await tick(); await command(host, title);
 }
-export function texts(editor: Editor) { return editor.getJSON().content?.map(node => node.content?.map(span => span.text ?? '').join('') ?? node.type); }
+export function texts(editor: Editor) { return editor.getJSON().content?.map(node => node.content?.map(span => 'text' in span ? span.text ?? '' : '').join('') ?? node.type); }
