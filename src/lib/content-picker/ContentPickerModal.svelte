@@ -17,7 +17,7 @@
   const id = $props.id();
   const locked = $derived(!!collection);
   const applicationQueryClient = untrack(getDashboardQueryClient);
-  const queryClient = $derived(suppliedQueryClient ?? applicationQueryClient ?? pickerQueryClient(client));
+  const queryClient = $derived(suppliedQueryClient ?? (client === contentPickerClient ? applicationQueryClient : undefined) ?? pickerQueryClient(client));
   let searchQuery = $state(''), debouncedSearch = $state(''), dropdownCollection = $state('');
   let picked = $state<Record<string, PickedContentEntry>>({});
   let collections = $state<{ slug: string; label: string }[]>([]), manifest = $state<PickerManifest | undefined>();

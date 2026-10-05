@@ -11,7 +11,7 @@ let directory: string, Root: Component<any>, getClient: () => QueryClient;
 before(async () => {
  directory = await mkdtemp(fileURLToPath(new URL('.root-cache-', import.meta.url)));
  await compileWorkspaceAccountSsr(directory);
- const provider = compile(await readFile(new URL('../../src/lib/dashboard/DashboardQueryProvider.svelte', import.meta.url), 'utf8'), { filename: 'DashboardQueryProvider.svelte', generate: 'server' }).js.code.replace('./query.svelte', './dashboard-query.js').replace('../admin-app/state.svelte', './shell-state.js').replace('./welcome-dismissal.svelte', './welcome-dismissal.js');
+ const provider = compile(await readFile(new URL('../../src/lib/dashboard/DashboardQueryProvider.svelte', import.meta.url), 'utf8'), { filename: 'DashboardQueryProvider.svelte', generate: 'server' }).js.code.replace('./query.svelte', './dashboard-query.js').replace('../admin-app/state.svelte', './shell-state.js').replace('./welcome-dismissal.svelte', './welcome-dismissal.js').replace('../admin-app/client-scopes.svelte', './client-scopes.js');
  await writeFile(`${directory}/Provider.js`, provider);
  const layout = compile(await readFile(new URL('../../src/routes/+layout.svelte', import.meta.url), 'utf8'), { filename: '+layout.svelte', generate: 'server' }).js.code.replace('$lib/dashboard/DashboardQueryProvider.svelte', './Provider.js');
  await writeFile(`${directory}/Root.js`, layout);

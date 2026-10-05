@@ -4,15 +4,15 @@
   import { onMount, untrack } from 'svelte';
   import type { QueryClient } from '@tanstack/query-core';
   import { resolveDashboardQueryClient, retainDashboardQueryClient } from './query.svelte';
-  import { resolveWelcomeDismissal } from './welcome-dismissal.svelte';
+  import { resolveWelcomeDismissal, type WelcomeDismissal } from './welcome-dismissal.svelte';
   import { createDashboardClient } from './client';
-  let { open, onClose, userName, userRole, siteName = 'Sveltery CMS', basePath = '', dismissWelcome: suppliedDismissWelcome, onDismissed, queryClient: suppliedQueryClient }: {
+  let { open, onClose, userName, userRole, siteName = 'Sveltery CMS', basePath = '', dismissWelcome: suppliedDismissWelcome, onDismissed, queryClient: suppliedQueryClient, dismissalOwner }: {
     open: boolean; onClose: () => void; userName?: string | null; userRole: number;
-    siteName?: string; basePath?: string; dismissWelcome?: () => Promise<void>; onDismissed?: () => void; queryClient?: QueryClient;
+    siteName?: string; basePath?: string; dismissWelcome?: () => Promise<void>; onDismissed?: () => void; queryClient?: QueryClient; dismissalOwner?: WelcomeDismissal;
   } = $props();
   const dismissWelcome = $derived(suppliedDismissWelcome ?? createDashboardClient(basePath).dismissWelcome);
   const queryClient = untrack(() => resolveDashboardQueryClient(suppliedQueryClient));
-  const dismissal = untrack(() => resolveWelcomeDismissal(queryClient));
+  const dismissal = untrack(() => resolveWelcomeDismissal(queryClient, dismissalOwner));
   const pending = $derived(dismissal.result.isPending);
   onMount(() => retainDashboardQueryClient(queryClient));
   let dialog = $state<HTMLDivElement>();

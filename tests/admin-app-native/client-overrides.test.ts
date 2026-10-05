@@ -52,6 +52,6 @@ it('sequential explicit picker clients under one root render their own metadata 
 it('concurrent explicit picker clients under one root fetch independently', async () => {
  const first = picker('Alice'), second = picker('Bob'); const target = await render({ pickers: [first, second] });
  await vi.waitFor(() => expect([first.fetchContentList.mock.calls.length, second.fetchContentList.mock.calls.length]).toEqual([1, 1]));
- expect([...target.querySelectorAll('.single strong')].map(element => element.textContent)).toEqual(['Alice content', 'Bob content']);
+ await vi.waitFor(() => expect([...target.querySelectorAll('.single strong')].map(element => element.textContent)).toEqual(['Alice content', 'Bob content']));
  expect([...target.querySelectorAll('option')].map(element => element.textContent)).toEqual(['Alice collection', 'Bob collection']);
 });

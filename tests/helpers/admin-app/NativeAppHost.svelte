@@ -7,7 +7,7 @@
   let { state, queryClient, onQueryClient }: { state: any; queryClient?: QueryClient; onQueryClient?: (client: QueryClient) => void } = $props();
 </script>
 <RootLayout>
-  <QueryClientProbe {onQueryClient} />
+  <QueryClientProbe {onQueryClient} currentUserClient={state.pickerClient ? undefined : state.currentUserClient} />
   {#if state.showShell !== false}
   <WorkspaceShell {queryClient} {...state} navigation={{ authenticated: true, permissions: [], collections: {} }} currentPath="/">
     <div>Native fixture page</div>
@@ -17,6 +17,6 @@
    <WorkspaceShell {queryClient} {...state} navigation={{ authenticated: true, permissions: [], collections: {} }} currentPath="/">Second current-user consumer</WorkspaceShell>
   {/if}
   {#if state.pickerClient}
-   <ContentPickerModal open={false} onOpenChange={() => {}} onConfirm={() => {}} client={state.pickerClient} />
+   <ContentPickerModal open={false} onOpenChange={() => {}} onConfirm={() => {}} />
   {/if}
 </RootLayout>
