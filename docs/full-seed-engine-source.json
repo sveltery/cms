@@ -120,6 +120,36 @@
       "bytes": 16459,
       "sha256": "6319d59395354d6364dcf008fd19947b9da60a7040879f035c85ea585c55d50e",
       "gitBlob": "620065f3858633a4d54d144fbd6ba1c3a50fcd2a"
+    },
+    {
+      "path": "packages/core/tests/workerd/seed-settings-d1.test.ts",
+      "bytes": 4371,
+      "sha256": "5a12eff5353891d55451aba9da60a5ce2a55cf9ded3e4d699c4d74f96f609589",
+      "gitBlob": "1570ca51de3d344edb196698582e7b2385eda7c9"
+    },
+    {
+      "path": "packages/core/tests/workerd/seed-trash-d1.test.ts",
+      "bytes": 2185,
+      "sha256": "eb6f07ccd918dbffcc9578d9084b6f90f130b256ba5bc6f9d0a6f2e864685dc9",
+      "gitBlob": "54b955551317e299833ae1e8a42205a25791efe0"
+    },
+    {
+      "path": "packages/core/tests/workerd/blocks-seed-d1.test.ts",
+      "bytes": 1744,
+      "sha256": "b51713d277200e2e26e6fe16d1e35a83db8b80c56ce5ce5cebeb7f48de9c6a97",
+      "gitBlob": "f5e0c40dad73a74b5132019fa937434afe58c7c2"
+    },
+    {
+      "path": "packages/core/tests/workerd/d1-schema.ts",
+      "bytes": 4595,
+      "sha256": "8ce5c39386f471243134fe5cdae511c94908e45d18c2dc9750ee3c3fe8cc92b2",
+      "gitBlob": "016cacbb9054b3ef423eae27008e8492c81470bc"
+    },
+    {
+      "path": "packages/core/vitest.workerd.config.ts",
+      "bytes": 1231,
+      "sha256": "6525998f10c41095b0ae9f8b0ae5f8f820ecef414435031655c3b80cedb5c5aa",
+      "gitBlob": "a0c96e947cb0de99a03aeacfb79d39e799e4360c"
     }
   ],
   "runtime": [
@@ -243,7 +273,25 @@
     "packages/core/tests/integration/database/media-usage-capture-trigger.test.ts",
     "packages/core/tests/integration/database/media-usage-content-refresh.test.ts",
     "packages/core/tests/integration/database/media-usage-content-fields.test.ts",
-    "packages/core/tests/integration/database/media-usage-content-snapshots.test.ts"
+    "packages/core/tests/integration/database/media-usage-content-snapshots.test.ts",
+    {
+      "path": "packages/core/tests/workerd/seed-settings-d1.test.ts",
+      "kind": "whole-original-workerd-d1",
+      "deadlineMs": 30000,
+      "causalCredit": 0
+    },
+    {
+      "path": "packages/core/tests/workerd/seed-trash-d1.test.ts",
+      "kind": "whole-original-workerd-d1",
+      "deadlineMs": 30000,
+      "causalCredit": 0
+    },
+    {
+      "path": "packages/core/tests/workerd/blocks-seed-d1.test.ts",
+      "kind": "whole-original-workerd-d1",
+      "deadlineMs": 30000,
+      "causalCredit": 0
+    }
   ],
   "existingApplyFamilies": [
     "apply.test.ts",
