@@ -31,7 +31,7 @@ import {resolveTaxonomySlugMap,contentTaxonomyStatements,newContentTaxonomyState
 // restore:4974 at immutable913cb1bb9b7f08c3ff0d258b4420e53835b6a58e.
 // Copyright2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
 const DRAFT_ONLY_UPDATE_KEYS = new Set(['data','slug','locale','skipRevision','taxonomies','references','actor','migrateBlocks','replaceBlocks']);
-const UNSUPPORTED = ['seo','references','actor','migrateBlocks','replaceBlocks','translationOf','inheritFields'];
+const UNSUPPORTED = ['seo','references','actor','migrateBlocks','replaceBlocks','inheritFields'];
 export interface ContentKey {type:string;id:string;locale?:string}
 export interface ContentMutation extends ContentKey {expected?:RevisionPrecondition}
 export interface ContentUpdate extends ContentMutation {
@@ -205,17 +205,43 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const type=parse(identifier,value.type);const locale=parse(localeInput,value.locale===undefined?getI18nConfig()?.defaultLocale??'en':resolveConfiguredLocale(parse(localeInput,value.locale)));
       if(value.status!==undefined&&value.status!=='draft')throw new CmsError('VALIDATION_ERROR','Create a draft, then publish it');
       const collection=await definition(type);
-      const data=normalizeBlankArrays(parse(schemaData,value.data),collection.fields);
+      let data=normalizeBlankArrays(parse(schemaData,value.data),collection.fields);
+      let translation: {id:string;translationGroup:string;version:number;updatedAt:string;inheritFields:string[]}|undefined;
+      if(value.translationOf!==undefined){
+        const source=await content.findById(type,parse(entryId,value.translationOf));if(!source)throw new CmsError('NOT_FOUND','Translation source content not found');
+        const inheritFields=collection.fields.filter(field=>!field.translatable&&!(field.type==='reference'&&field.validation?.relation)).map(field=>field.slug);
+        data={...data};for(const field of inheritFields){if(Object.hasOwn(source.data,field))data[field]=source.data[field];else delete data[field];}
+        translation={id:source.id,translationGroup:source.translationGroup??source.id,version:source.version,updatedAt:source.updatedAt,inheritFields};
+      }
       const slug=value.slug===undefined?await content.generateUniqueSlug(type,typeof data.title==='string'?data.title:'',locale):value.slug;
       const selections=value.taxonomies===undefined?[]:await translate(()=>resolveTaxonomySlugMap(canonicalSourceDatabase(database),value.taxonomies,locale));
-      const hasSideWrites=selections.length>0||value.bylines!==undefined;
+      const hasSideWrites=selections.length>0||value.bylines!==undefined||translation!==undefined;
       const item=await drafts.create({type,locale,data,slug},actor.id,hasSideWrites?async entry=>{
         const taxonomy=newContentTaxonomyStatements(database,type,entry,selections);
-        const statements=value.bylines===undefined?[]:await bylines.planContentBylineReplacement(type,entry.id,value.bylines);
+        const statements=value.bylines!==undefined?await bylines.planContentBylineReplacement(type,entry.id,value.bylines)
+          :translation?await bylines.planContentBylineCopy(type,translation.id,entry.id):[];
         return {...taxonomy,after:[...taxonomy.after,...statements]};
-      }:undefined);
-      await completeContentTaxonomies(selections);completeBylines(type,value.bylines);
+      }:undefined,translation);
+      await completeContentTaxonomies(selections);if(value.bylines!==undefined||translation)invalidateCollectionCache(type);
       return hydratedBylines(await stored({type,id:item.id,locale}));
+    },
+    async duplicateContent(input:unknown):Promise<ContentItem> {
+      const actor=requirePermission('content:create');mutationPermission('content:edit_own','content:edit_any');
+      const value=key(input);const original=await stored(value,true,true);owner(original,actor,'content:edit_any');
+      const data={...original.data};
+      if(typeof data.title==='string')data.title=`${data.title} (Copy)`;
+      else if(typeof data.name==='string')data.name=`${data.name} (Copy)`;
+      const source=typeof data.title==='string'?data.title:typeof data.name==='string'?data.name:null;
+      const slug=source?await content.generateUniqueSlug(value.type,source,original.locale??undefined):null;
+      const existingBylines=await bylines.getContentBylines(value.type,original.id);
+      const item=await drafts.create({type:value.type,locale:original.locale??'en',slug,data},actor.id,
+        existingBylines.length?async entry=>{
+          const plan=newContentTaxonomyStatements(database,value.type,entry,[]);
+          const statements=await bylines.planContentBylineReplacement(value.type,entry.id,
+            existingBylines.map(credit=>({bylineId:credit.byline.id,roleLabel:credit.roleLabel})));
+          return {...plan,after:[...plan.after,...statements]};
+        }:undefined);
+      invalidateCollectionCache(value.type);return hydratedBylines(await stored({type:value.type,id:item.id,locale:item.locale}));
     },
     async getContent(input:unknown,options:{inferLocale?:boolean;resolveIdentifier?:boolean}={}):Promise<ContentItem> {
       requirePermission('content:read');requirePermission('content:read_drafts');
@@ -224,12 +250,12 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const inferLocale=options.inferLocale===true&&object(input).locale===undefined;
       return hydrate(await stored(key(input),inferLocale,options.resolveIdentifier===true));
     },
-    async listContent(input:unknown) {
+    async listContent(input:unknown,options:{allLocales?:boolean}={}) {
       requirePermission('content:read');requirePermission('content:read_drafts');const value=object(input);
       const type=parse(identifier,value.type);const locale=parse(localeInput,value.locale??'en');await definition(type);
       if(value.status!==undefined&&typeof value.status!=='string')throw new CmsError('VALIDATION_ERROR');
       if(value.limit!==undefined&&(!Number.isSafeInteger(value.limit)||value.limit<1))throw new CmsError('VALIDATION_ERROR');
-      const result=await content.findMany(type,{limit:value.limit,cursor:value.cursor,where:{locale,...(value.status===undefined?{}:{status:value.status})}});
+      const result=await content.findMany(type,{limit:value.limit,cursor:value.cursor,where:{...(options.allLocales===true&&value.locale===undefined?{}:{locale}),...(value.status===undefined?{}:{status:value.status})}});
       await hydrateBylinesMany(bylineDatabase(database),type,result.items);return result;
     },
     async updateContent(input:unknown):Promise<ContentReceipt> {

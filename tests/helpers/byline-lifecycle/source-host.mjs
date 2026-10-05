@@ -65,7 +65,7 @@ export async function handleContentUpdate(db,collection,id,body){
  }catch(cause){return failure(cause,'UPDATE');}
 }
 export async function handleContentList(db,collection,options){
- try{return{success:true,data:await service(db).listContent({...options,type:collection})};}
+ try{return{success:true,data:await service(db).listContent({...options,type:collection},{allLocales:options.locale===undefined})};}
  catch(cause){return failure(cause,'LIST');}
 }
 export async function handleContentPublish(db,collection,id,options={}){
