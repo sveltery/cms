@@ -227,3 +227,25 @@ The first final normal run at38ad registered1492 callbacks and failed15: eight o
 The sole collection-slug holder/reset now lives in a dependency-free module consumed by the same Registry/cache owners. Promise sharing, rejection eviction, isolated-database bypass, the60-second window and after-success reset hooks stay intact. Content taxonomy work loads the same real repository/cache only when needed, and every caller awaits actual invalidation before mutation resolution. Existing no-nodejscompat scalar Worker fixtures load all actual Vite ESModules without inlining, flag or security changes; all four whole families pass31/31. This does not establish full taxonomy support without the existing Nodecompat runtime.
 
 Supplemental Native D1 capability checks now verify persisted atomic success plus controlled whole-plan rollback; all16 pass and the direct-write guards remain. Existing role families pass4/4 with pinned taxonomy read/manage thresholds and current ADMIN projection25. Original taxonomy Core222/matcher15, supplemental reference2 and Native10/7/5/8/compound8 pass after integration fixes. Subsequent common actual-repository construction refactoring requires new final current-head normal13/secured9, independent and configured review, and Root approval before author merge. Full product integration limits above remain unfinished.
+
+## Canonical provenance gate closure
+
+CI486 at46b passed its secured browser job and the first three normal phases,
+then the existing canonical provenance guard rejected a stale claim that the
+taxonomy repository and definitions were still import-only Source copies.
+This is a static provenance failure, not a new product or original Source
+assertion red. The complete failed CI/local logs remain retained for Root
+review; later normal phases were unreached and no full normal pass is claimed.
+
+The immutable38 canonical authorities,255 unique taxonomy authorities, original
+test bodies/expectations/data/SQL/clocks and five original runtime paths remain
+intact. The three unaffected runtime bodies still compare entirely with their
+import-normalized originals. Both changed taxonomy bodies are now reconstructed
+in full from32 ordered explicit Source/native edits in the
+[finite adaptation inventory](taxonomy-canonical-repository-adaptations.json),
+whose complete bytes are independently hash-guarded. No arbitrary body is
+normalized or omitted. This verifies documented Native atomic/query-result
+hosting adaptations; it grants zero new Source callback or behavioral credit.
+Current successor normal13/secured9, fresh/configured review, Root approval and
+author expected-head regular merge remain pending. Full UI, QueryCore, App/Seed,
+PostgreSQL and deployed Worker integration remain unfinished.
