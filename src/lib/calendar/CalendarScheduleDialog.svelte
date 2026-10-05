@@ -41,7 +41,7 @@
   <div class="heading"><h2 id="calendar-schedule-title">{title}</h2><button type="button" aria-label={t("Close")} onclick={()=>changeOpen(false)}>×</button></div>
   <p id="calendar-schedule-description">{description}</p>
   <form novalidate onsubmit={event=>{event.preventDefault();event.stopPropagation();void submit();}}>
-    <Fields {date} {time} {locale} disabled={pending} restrictToFuture dateAriaLabel={t("Schedule date")} onDateChange={value=>{date=value;clearError();}} onTimeChange={value=>{time=value;clearError();}}/>
+    <Fields {date} {time} {locale} translate={t} disabled={pending} restrictToFuture dateAriaLabel={t("Schedule date")} onDateChange={value=>{date=value;clearError();}} onTimeChange={value=>{time=value;clearError();}}/>
     <DialogError message={validationError??(typeof mutationError==='string'?mutationError:mutationError?t(mutationError.message):undefined)}/>
     <footer><button type="button" onclick={()=>changeOpen(false)}>{t("Cancel")}</button><button type="submit" disabled={pending||(isEditing&&publishingFieldsMatchInstant(scheduledAt,date,time))}>{submitLabel}</button></footer>
   </form>

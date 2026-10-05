@@ -4,8 +4,9 @@
   // EmDash1.1.0 CalendarMonth placement/folding/reservation/picker behavior, pin913cb1bb; MIT.
   import { onDestroy,setContext,tick,untrack } from 'svelte';
   import {createCalendarTooltipGroup} from './presentation.ts';
-  import { format } from 'date-fns';
+  import { DateLib } from 'react-day-picker';
   import { getDayPickerLocale } from '../ui/date-time-locales.ts';
+  import { getPublishingDatePickerLabels } from '../ui/date-time-picker-labels.ts';
   import { getLocaleDir } from '../ui/locales/config.ts';
   import { isMonthCutOff, dayKeyToUTC, type CalendarDisplay, type CalendarItem } from './calendar.ts';
   import { calendarFocusTarget, moveCalendarFocus, type CalendarPickerDirection } from './picker-keyboard.ts';
@@ -18,6 +19,9 @@
     onSelect?:CalendarSelectHandler;onMonthChange:(month:string)=>void;onClearFilters?:()=>void;
   }=$props();
   const direction=$derived(dir??getLocaleDir(display.locale));
+  const pickerLocale=$derived(getDayPickerLocale(display.locale));
+  const pickerDates=$derived(new DateLib({locale:pickerLocale}));
+  const pickerLabels=$derived(getPublishingDatePickerLabels(pickerLocale));
   const tooltipGroup=createCalendarTooltipGroup(400);setContext('calendar-tooltip-group',tooltipGroup);onDestroy(()=>tooltipGroup.destroy());
   // Source switches provider instances when compact/grid modes change.
   $effect(()=>{compact;untrack(()=>tooltipGroup.destroy());});
@@ -36,7 +40,8 @@
   const cutOff=$derived(isMonthCutOff(month,loadedThrough));
   const currentItems=$derived(days.get(selected)??[]);
   function nowIndex(items:readonly CalendarItem[]){const index=items.findIndex(item=>item.time>now);return index===-1?items.length:index;}
-  function dayLabel(day:string){const d=new Date(dayKeyToUTC(day));const local=new Date(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate(),12);const label=format(local,'MMMM do, yyyy',{locale:getDayPickerLocale(display.locale)});const count=days.get(day)?.length??0;return count?t("{dayLabel}, {entries}",{dayLabel:label,entries:t("{0, plural, one {# entry} other {# entries}}",{"0":count})}):label;}
+  function localDay(day:string){const d=new Date(dayKeyToUTC(day));return new Date(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate(),12);}
+  function dayLabel(day:string){const label=pickerLabels.labelDayButton(localDay(day),{today:day===today,selected:day===selected},pickerDates.options,pickerDates);const count=days.get(day)?.length??0;return count?t("{dayLabel}, {entries}",{dayLabel:label,entries:t("{0, plural, one {# entry} other {# entries}}",{"0":count})}):label;}
   function keydown(event:KeyboardEvent,day:string){const next=moveCalendarFocus(day,event,display.locale,direction);if(next===undefined)return;event.preventDefault();event.stopPropagation();focusDay=next;if(!next.startsWith(month))onMonthChange(next.slice(0,7));}
   function pick(event:MouseEvent,day:string){event.preventDefault();event.stopPropagation();picked=day;focusDay=day;}
   function blurDay(){lastFocusedDay=focusDay;focusDay=undefined;}
@@ -56,7 +61,7 @@
 {/snippet}
 <svelte:window onpointerdown={event=>{if(popover&&event.target instanceof Node&&!popup?.contains(event.target)&&!moreTrigger?.contains(event.target))closePopover(false);}}/>
 <div class="month">
-<table bind:this={pickerTable} dir={compact?direction:undefined} aria-label={display.monthTitle(month)}><thead><tr>{#each weeks[0]??[] as day}<th scope="col" aria-label={display.weekday(day)}>{display.weekdayShort(day)}</th>{/each}</tr></thead>
+<table bind:this={pickerTable} role={compact?'grid':undefined} dir={compact?direction:undefined} aria-label={compact?pickerLabels.labelGrid(localDay(`${month}-01`),pickerDates.options,pickerDates):display.monthTitle(month)}><thead><tr>{#each weeks[0]??[] as day}<th scope="col" aria-label={compact?pickerLabels.labelWeekday(localDay(day),pickerDates.options,pickerDates):display.weekday(day)}>{compact?pickerDates.format(localDay(day),'cccccc'):display.weekdayShort(day)}</th>{/each}</tr></thead>
 <tbody>{#each weeks as week(week[0])}<tr>{#each week as day(day)}{@const reserved=unfilteredDays?.get(day)}
   <td class:outside={!day.startsWith(month)} class:weekend={display.isWeekend(day)} aria-current={day===today?'date':undefined}>
   {#if compact}

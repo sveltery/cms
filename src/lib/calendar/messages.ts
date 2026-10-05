@@ -2,14 +2,19 @@
 import { i18n } from '@lingui/core';
 import { CALENDAR_MESSAGE_DESCRIPTORS, type CalendarMessage } from './message-descriptors.ts';
 import { CALENDAR_MESSAGE_FALLBACKS } from './message-fallbacks.ts';
+import { PUBLISHING_DATE_TIME_MESSAGES, type PublishingDateTimeMessage } from '../ui/publishing-datetime-labels.ts';
 
 export type CalendarValues = Record<string, unknown>;
-export type CalendarTranslate = (message: CalendarMessage, values?: CalendarValues) => string;
+type CalendarDisplayMessage = CalendarMessage | PublishingDateTimeMessage;
+export type CalendarTranslate = (message: CalendarDisplayMessage, values?: CalendarValues) => string;
+// These six context-free Source labels use this same owner/subscription. Shared
+// fields receive the callback and never import or subscribe to Lingui themselves.
+const descriptors = { ...CALENDAR_MESSAGE_DESCRIPTORS, ...PUBLISHING_DATE_TIME_MESSAGES };
 
 // Explicit retained Native English SSR templates. These are not an ICU parser
 // or locale producer; they keep the prior display when bootstrap has not run.
 const number = (value: unknown) => new Intl.NumberFormat('en').format(Number(value));
-const englishTemplates: Partial<Record<CalendarMessage, (values: CalendarValues) => string>> = {
+const englishTemplates: Partial<Record<CalendarDisplayMessage, (values: CalendarValues) => string>> = {
   '{0, plural, one {# entry} other {# entries}}': v => `${number(v['0'])} ${Number(v['0']) === 1 ? 'entry' : 'entries'}`,
   '{dayLabel}, {entries}': v => `${v.dayLabel}, ${v.entries}`,
   '{earlierCount, plural, one {Show # earlier entry} other {Show # earlier entries}}': v => `Show ${number(v.earlierCount)} earlier ${Number(v.earlierCount) === 1 ? 'entry' : 'entries'}`,
@@ -41,11 +46,11 @@ const englishTemplates: Partial<Record<CalendarMessage, (values: CalendarValues)
 
 export const translateCalendarMessage: CalendarTranslate = (message, values = {}) => {
   if (!i18n.locale) return englishTemplates[message]?.(values) ?? message;
-  const descriptor = CALENDAR_MESSAGE_DESCRIPTORS[message];
+  const descriptor = descriptors[message];
   // Frozen core's runtime accepts compiled fallback arrays, while the public
   // MessageDescriptor type narrows message to string. Isolate that Native type
   // bridge here: loaded public translations still take precedence by exact ID.
-  const fallback = CALENDAR_MESSAGE_FALLBACKS[message] as unknown as string;
+  const fallback = (CALENDAR_MESSAGE_FALLBACKS[message as CalendarMessage] ?? descriptor.message) as unknown as string;
   return i18n._({ id: descriptor.id, message: fallback, values });
 };
 
