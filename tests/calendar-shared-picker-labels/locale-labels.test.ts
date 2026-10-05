@@ -28,7 +28,7 @@ it('preserves the exact Source locale function label', () => {
 });
 it.each([undefined, ''])('retains Source previous-month default for absent/falsy locale label %s', value => {
   const locale = { ...sourceLocale('en'), labels: { labelPrevious: value } };
-  expect(getPublishingDatePickerLabels(locale).labelPrevious()).toBe(labelPrevious());
+  expect(getPublishingDatePickerLabels(locale).labelPrevious(undefined)).toBe(labelPrevious(undefined));
 });
 
 it.each(locales)('retains the complete Source locale label object for %s', locale => {
