@@ -1,0 +1,1016 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx (54 tests | 49 failed) 14787ms
+     × auto-generates slug from label when isNew 18ms
+     × toggles support checkboxes 1027ms
+     × save button is disabled when no changes have been made 1006ms
+     × save button is enabled after changing label 16ms
+     × calls onSave with correct input when creating new collection 10ms
+     × calls onSave with correct input when editing existing collection 4ms
+     × creates a collection without a dashboard quick action when switched off 2ms
+     × keeps existing admin settings when turning off the dashboard quick action 8ms
+     × displays custom fields with type and badges 1024ms
+     × shows system fields section 1010ms
+     × shows an unsupported field's stored type without allowing it to be edited 1008ms
+     × opens FieldEditor dialog when Add Field is clicked 12ms
+     × calls onDeleteField when delete is confirmed via dialog 2ms
+     × does not call onDeleteField when delete dialog is cancelled 2ms
+       × names the field on the other content type and the links that go with it 2ms
+       × leaves the field being deleted out of the list 1ms
+       × deletes the relationship by default 3ms
+       × keeps the relationship when the checkbox is cleared 2ms
+       × offers nothing extra for a field that uses no relationship 2ms
+     × shows info banner and disables inputs for code-source collections 1003ms
+     × shows empty state when collection has no custom fields 1012ms
+     × shows 'Saving...' when isSaving is true 2ms
+     × renders a sticky-header save button when editing existing collection 1ms
+     × sticky-header save flips to enabled 'Save' when fields change 1ms
+     × sticky-header save submits the form (calls onSave) 1ms
+     × does not render sticky-header save for code-source collections 1ms
+     × does not render sticky-header save when creating a new collection 1ms
+     × shows URL Pattern input 1003ms
+     × populates URL Pattern from collection 1017ms
+     × includes urlPattern in onSave when set 9ms
+     × saves whether the collection is routable 2ms
+     × saves whether the collection takes edit locks 10ms
+     × saves a trimmed sidebar group and clears it with null 4ms
+     × saves the icon and navigation visibility 1ms
+     × shows validation error when pattern lacks {slug} 6ms
+     × disables save button when pattern lacks {slug} 5ms
+     × blocks saving a pattern with two placeholders in one path segment 2ms
+     × saves unrelated edits when a stored legacy pattern is unchanged 6ms
+     × enables save button when pattern includes {slug} 27ms
+     × allows empty URL Pattern (field is optional) 2ms
+     × disables URL Pattern input for code-source collections 1011ms
+     × shows field count in header 1012ms
+       × lists only the relations this content type is an end of 1013ms
+       × names the side this content type plays 1011ms
+       × says when no field on this content type uses a relation 1023ms
+       × creates a relation with this content type as the linking end 33ms
+       × edits a relation from the content type it is an end of 16ms
+       × deletes a relation once the dialog says what goes with it 9ms
+       × keeps the dialog open and shows the server's message when creating fails 7ms
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx (25 tests | 17 failed) 9694ms
+       × displays collections with labels and slugs 1169ms
+       × shows 'Code' badge for code-source collections 1014ms
+       × shows 'Dashboard' badge for dashboard-source collections 1006ms
+       × shows feature badges from supports array 1015ms
+       × shows the seo badge from hasSeo, not from supports 28ms
+       × edit link navigates to /content-types/$slug 1273ms
+       × delete button only shown for non-code-source collections 1012ms
+       × opens confirm dialog and calls onDelete after confirm 53ms
+       × does not call onDelete when confirm dialog is cancelled 3ms
+       × shows warning when orphanedTables has items 1010ms
+       × register button calls onRegisterOrphan 10ms
+       × shows 'No content types yet' when no collections 1018ms
+       × pins the icon width and lets the description wrap in the name cell 7ms
+       × renders a labelled drag handle per row when onReorder is provided 1007ms
+       × renders collections in the order given, not alphabetically 8ms
+     × names the relationships and the fields on other content types that go with them 2ms
+     × says nothing about relationships for a content type in none 8ms
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.blocks.test.tsx (1 test | 1 failed) 326ms
+     × creates an ordered blocks field from the read-only version inventory 324ms
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx (58 tests | 51 failed) 45305ms
+       × shows type selection grid when creating new field 1597ms
+       × shows all 14 field types as buttons 1021ms
+       × shows Configure Field title for string type 1036ms
+       × shows label and slug inputs 1014ms
+       × shows searchable checkbox for string type 1018ms
+       × shows min/max length validation for string type 1014ms
+       × shows pattern input for string type 1009ms
+       × shows required and unique checkboxes 1006ms
+       × shows min/max value for number type 1015ms
+       × shows min/max length but no pattern for text type 1009ms
+       × shows searchable checkbox for text type 1011ms
+       × shows options textarea for select type 1011ms
+       × shows options textarea for multi-select type 1007ms
+       × skips type selection and shows config directly 1029ms
+       × disables slug input in edit mode 1012ms
+       × shows hint about slug immutability 1011ms
+       × shows Update Field button instead of Add Field 1010ms
+       × pre-populates validation values 1012ms
+       × pre-populates slug value 1010ms
+       × pre-populates required checkbox 1004ms
+       × does not auto-generate slug when editing label in edit mode 39ms
+       × shows type indicator with field type info 1007ms
+       × shows Saving... when isSaving is true 1006ms
+       × disables cancel button when saving 1006ms
+       × disables update button when saving 1004ms
+       × disables save button when label is empty 1004ms
+       × enables save button when label and slug are filled 1010ms
+       × clears the flag when the field type cannot be indexed 1016ms
+       × keeps the flag for a field type that can be indexed 1007ms
+       × hides and clears the flag for a storage-less reference field 1029ms
+       × shows the collection its options named, so it can be confirmed 1010ms
+       × keeps a bound field's collection immutable 1010ms
+       × sends the collection on save so the server can bind the field 1013ms
+       × offers a relationship this collection can still bind to 1010ms
+       × offers quick create and the relation editor when no relationship is bindable 1011ms
+       × leaves out a relationship whose ends are already picked from 1007ms
+       × derives the side and sends it with the relationship 1015ms
+       × derives the child side when this collection is the linked end 1023ms
+       × offers the side as a choice on a self-referential relationship 1004ms
+       × sends no target collection when a relationship is chosen 1005ms
+       × still creates a relationship when none is chosen 1003ms
+       × shows AllowedTypesEditor for file type 1003ms
+       × shows AllowedTypesEditor for image type 1006ms
+       × pre-populates allowedMimeTypes from existing field validation 1007ms
+       × saves the option when switched on 17ms
+       × removes only the option when switched off and keeps other widget options 1015ms
+       × asks for the relationship before the field itself 26ms
+       × names the field after the side it picks 9ms
+       × says what each side of the relationship will show 3ms
+       × creates the relationship it needs and comes back with it picked 6ms
+       × bounds the config content so save actions remain reachable with many repeater sub-fields 8ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 118 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > auto-generates slug from label when isNew
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:129:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > toggles support checkboxes
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > save button is disabled when no changes have been made
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > displays custom fields with type and badges
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows system fields section
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows an unsupported field's stored type without allowing it to be edited
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows info banner and disables inputs for code-source collections
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows empty state when collection has no custom fields
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows URL Pattern input
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > populates URL Pattern from collection
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > disables URL Pattern input for code-source collections
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows field count in header
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > relations panel > lists only the relations this content type is an end of
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > relations panel > names the side this content type plays
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > relations panel > says when no field on this content type uses a relation
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > rendering collections > displays collections with labels and slugs
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > rendering collections > shows 'Code' badge for code-source collections
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > rendering collections > shows 'Dashboard' badge for dashboard-source collections
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > rendering collections > shows feature badges from supports array
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > navigation > edit link navigates to /content-types/$slug
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > delete > delete button only shown for non-code-source collections
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > orphaned tables > shows warning when orphanedTables has items
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > empty state > shows 'No content types yet' when no collections
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > reordering > renders a labelled drag handle per row when onReorder is provided
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > type selection step > shows type selection grid when creating new field
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > type selection step > shows all 14 field types as buttons
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows Configure Field title for string type
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows label and slug inputs
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows searchable checkbox for string type
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows min/max length validation for string type
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows pattern input for string type
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (string field) > shows required and unique checkboxes
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (number field) > shows min/max value for number type
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (text field) > shows min/max length but no pattern for text type
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (text field) > shows searchable checkbox for text type
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (select field) > shows options textarea for select type
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (multiSelect field) > shows options textarea for multi-select type
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > skips type selection and shows config directly
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > disables slug input in edit mode
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > shows hint about slug immutability
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > shows Update Field button instead of Add Field
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > pre-populates validation values
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > pre-populates slug value
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > pre-populates required checkbox
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > shows type indicator with field type info
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > saving state > shows Saving... when isSaving is true
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > saving state > disables cancel button when saving
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > saving state > disables update button when saving
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > button state > disables save button when label is empty
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > button state > enables save button when label and slug are filled
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > indexed flag > clears the flag when the field type cannot be indexed
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > indexed flag > keeps the flag for a field type that can be indexed
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > indexed flag > hides and clears the flag for a storage-less reference field
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > reference field that predates relations > shows the collection its options named, so it can be confirmed
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > reference field that predates relations > keeps a bound field's collection immutable
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > reference field that predates relations > sends the collection on save so the server can bind the field
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > offers a relationship this collection can still bind to
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > offers quick create and the relation editor when no relationship is bindable
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > leaves out a relationship whose ends are already picked from
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > derives the side and sends it with the relationship
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > derives the child side when this collection is the linked end
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > offers the side as a choice on a self-referential relationship
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > sends no target collection when a relationship is chosen
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > binding a reference field to an existing relationship > still creates a relationship when none is chosen
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (file field) > shows AllowedTypesEditor for file type
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (file field) > shows AllowedTypesEditor for image type
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > config step (file field) > pre-populates allowedMimeTypes from existing field validation
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > dark mode variant option (image field) > removes only the option when switched off and keeps other widget options
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/helpers/schema-ui/dom-setup.ts:5:74
+      3| function assertions(value: Element | Locator | null, negate = false): …
+      4|   const node = () => value instanceof Locator ? value.query() : value;
+      5|   const check = (read: () => boolean) => vi.waitFor(() => expect(read(…
+       |                                                                          ^
+      6|   return {
+      7|     get not() { return assertions(value, !negate); },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > save button is enabled after changing label
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:187:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > calls onSave with correct input when creating new collection
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:199:49
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > calls onSave with correct input when editing existing collection
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:226:49
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > creates a collection without a dashboard quick action when switched off
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:254:49
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > keeps existing admin settings when turning off the dashboard quick action
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:268:79
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > opens FieldEditor dialog when Add Field is clicked
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:346:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > calls onDeleteField when delete is confirmed via dialog
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:365:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > does not call onDeleteField when delete dialog is cancelled
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:387:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > deleting a reference field > names the field on the other content type and the links that go with it
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ openDeleteDialog parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:433:71
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:439:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > deleting a reference field > leaves the field being deleted out of the list
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ openDeleteDialog parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:433:71
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:454:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > deleting a reference field > deletes the relationship by default
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ openDeleteDialog parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:433:71
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:462:38
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > deleting a reference field > keeps the relationship when the checkbox is cleared
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ openDeleteDialog parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:433:71
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:472:38
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > deleting a reference field > offers nothing extra for a field that uses no relationship
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:490:76
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows 'Saving...' when isSaving is true
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:571:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > renders a sticky-header save button when editing existing collection
+TypeError: screen.getByRole(...).first is not a function
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:586:72
+    584|   // reachable from the sticky header and at the end of the form.
+    585|   await expect
+    586|    .element(screen.getByRole("button", { name: "Saved", exact: true })…
+       |                                                                        ^
+    587|    .toBeInTheDocument();
+    588|   expect(screen.getByRole("status").element().textContent).toBe("Saved…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > sticky-header save flips to enabled 'Save' when fields change
+TypeError: screen.getByRole(...).first is not a function
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:600:72
+    598|   // Initially clean -> disabled "Saved"
+    599|   await expect
+    600|    .element(screen.getByRole("button", { name: "Saved", exact: true })…
+       |                                                                        ^
+    601|    .toBeDisabled();
+    602|   expect(screen.getByRole("status").element().textContent).toBe("Saved…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > sticky-header save submits the form (calls onSave)
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:618:49
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > does not render sticky-header save for code-source collections
+TypeError: screen.getByRole(...).first is not a function
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:630:71
+    628|   // Neither save action appears for code-source collections.
+    629|   await expect
+    630|    .element(screen.getByRole("button", { name: "Save", exact: true }).…
+       |                                                                       ^
+    631|    .not.toBeInTheDocument();
+    632|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > does not render sticky-header save when creating a new collection
+TypeError: screen.getByRole(...).first is not a function
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:639:71
+    637|   // On the new flow only the bottom 'Create Content Type' button is e…
+    638|   await expect
+    639|    .element(screen.getByRole("button", { name: "Save", exact: true }).…
+       |                                                                       ^
+    640|    .not.toBeInTheDocument();
+    641|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > includes urlPattern in onSave when set
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:669:46
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > saves whether the collection is routable
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:684:43
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > saves whether the collection takes edit locks
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:697:47
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > saves a trimmed sidebar group and clears it with null
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:710:40
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > saves the icon and navigation visibility
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:726:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows validation error when pattern lacks {slug}
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:742:46
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > disables save button when pattern lacks {slug}
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:751:46
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > blocks saving a pattern with two placeholders in one path segment
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:761:46
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > saves unrelated edits when a stored legacy pattern is unchanged
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:779:49
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > enables save button when pattern includes {slug}
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:793:46
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > allows empty URL Pattern (field is optional)
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:807:49
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > relations panel > creates a relation with this content type as the linking end
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:933:63
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > relations panel > edits a relation from the content type it is an end of
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:970:69
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[34/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > relations panel > deletes a relation once the dialog says what goes with it
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:986:71
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[35/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > relations panel > keeps the dialog open and shows the server's message when creating fails
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:1002:63
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[36/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > rendering collections > shows the seo badge from hasSeo, not from supports
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx:117:22
+    115|    const screen = await render(<ContentTypeList collections={collectio…
+    116|    const seoBadges = screen.getByText("seo", { exact: true }).elements…
+    117|    expect(seoBadges).toHaveLength(1);
+       |                      ^
+    118|    expect(seoBadges[0]!.closest("tr")?.textContent).toContain("pages");
+    119|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[37/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > delete > opens confirm dialog and calls onDelete after confirm
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx:165:63
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[38/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > delete > does not call onDelete when confirm dialog is cancelled
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx:185:63
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[39/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > orphaned tables > register button calls onRegisterOrphan
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx:219:59
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[40/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > icon aspect ratio > pins the icon width and lets the description wrap in the name cell
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx:263:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[41/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList > reordering > renders collections in the order given, not alphabetically
+AssertionError: expected [] to deeply equal [ 'posts', 'pages' ]
+
+- Expected
++ Received
+
+- [
+-   "posts",
+-   "pages",
+- ]
++ []
+
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx:316:57
+    314|
+    315|    const rendered = screen.container.querySelectorAll("tbody code");
+    316|    expect(Array.from(rendered, (el) => el.textContent)).toEqual(["post…
+       |                                                         ^
+    317|   });
+    318|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[42/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList relationship warning > names the relationships and the fields on other content types that go with them
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx:370:63
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[43/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx > ContentTypeList relationship warning > says nothing about relationships for a content type in none
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:62
+ ❯ flushSync node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/internal/client/reactivity/batch.js:1045:13
+ ❯ tests/helpers/schema-ui/dom-render.ts:26:40
+ ❯ process.env.NODE_ENV.exports.flushSync node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js:146:18
+ ❯ Locator.click tests/helpers/schema-ui/dom-render.ts:26:19
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeList.test.tsx:385:63
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[44/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.blocks.test.tsx > FieldEditor blocks configuration > creates an ordered blocks field from the read-only version inventory
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.blocks.test.tsx:60:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[45/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > edit mode > does not auto-generate slug when editing label in edit mode
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ Locator.fill tests/helpers/schema-ui/dom-render.ts:19:23
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx:329:41
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[46/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > dark mode variant option (image field) > saves the option when switched on
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx:759:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[47/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > a new reference field > asks for the relationship before the field itself
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ openReferenceField parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx:825:6
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx:852:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[48/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > a new reference field > names the field after the side it picks
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ openReferenceField parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx:825:6
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx:863:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[49/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > a new reference field > says what each side of the relationship will show
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ openReferenceField parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx:825:6
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx:887:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[50/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > a new reference field > creates the relationship it needs and comes back with it picked
+Error: Control absent from actual native DOM
+ ❯ Locator.element tests/helpers/schema-ui/dom-render.ts:15:65
+     13|   elements() { flushSync(); return this.find(); }
+     14|   query() { return this.elements()[0] ?? null; }
+     15|   element() { const element = this.query(); if (!element) throw new Er…
+       |                                                                 ^
+     16|   last() { return new Locator(() => this.elements().slice(-1)); }
+     17|   nth(index: number) { return new Locator(() => this.elements().slice(…
+ ❯ openReferenceField parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx:825:6
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx:907:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[51/118]⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx > FieldEditor > scrollable config dialog > bounds the config content so save actions remain reachable with many repeater sub-fields
+AssertionError: expected null not to be null
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/FieldEditor.test.tsx:948:24
+    946|    const content = document.querySelector('[data-testid="field-editor-…
+    947|
+    948|    expect(content).not.toBeNull();
+       |                        ^
+    949|    expect(content!.classList.contains("max-h-[60vh]")).toBe(true);
+    950|    expect(content!.classList.contains("overflow-y-auto")).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[52/118]⎯
+
+
+ Test Files  4 failed (4)
+      Tests  118 failed | 20 passed (138)
+   Start at  04:45:21
+   Duration  81.58s (transform 1.91s, setup 3.19s, import 1.23s, tests 70.11s, environment 5.59s)
+

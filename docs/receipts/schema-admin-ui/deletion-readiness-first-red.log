@@ -1,0 +1,58 @@
+$ vitest run --config vitest.schema-admin-ui-native.config.ts
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+ ❯ tests/schema-admin-ui/deletion-readiness.test.ts (2 tests | 2 failed) 12ms
+   × holds actual collection destructive route delegation until reference cleanup is available 10ms
+   × holds actual field destructive route delegation until reference cleanup is available 1ms
+ ❯ tests/schema-admin-ui/native.test.ts (14 tests | 1 failed) 619ms
+   × disables actual destructive controls when their reference cleanup capability is unavailable 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-ui/deletion-readiness.test.ts > holds actual collection destructive route delegation until reference cleanup is available
+ FAIL  tests/schema-admin-ui/deletion-readiness.test.ts > holds actual field destructive route delegation until reference cleanup is available
+AssertionError: expected 200 to be 503 // Object.is equality
+
+- Expected
++ Received
+
+- 503
++ 200
+
+ ❯ tests/schema-admin-ui/deletion-readiness.test.ts:16:27
+     14|   const event={params:{collection:'posts',field:'title'},request:new R…
+     15|   const response=await handler(event as any);
+     16|   expect(response.status).toBe(503);
+       |                           ^
+     17|   expect((await response.json()).success).toBe(false);
+     18|   expect(deletion).not.toHaveBeenCalled();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/schema-admin-ui/native.test.ts > disables actual destructive controls when their reference cleanup capability is unavailable
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/schema-admin-ui/native.test.ts:110:98
+    108| it('disables actual destructive controls when their reference cleanup …
+    109|   const target=await list({onDelete:vi.fn(),deletionAvailable:false});
+    110|   expect(target.querySelector<HTMLButtonElement>('button[aria-label="D…
+       |                                                                                                  ^
+    111|   const editor=document.createElement('section');document.body.append(…
+    112|   mounted.push(mount(Editor,{target:editor,props:{collection:{...colle…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+
+ Test Files  2 failed | 2 passed (4)
+      Tests  3 failed | 16 passed (19)
+   Start at  06:02:05
+   Duration  2.53s (transform 1.97s, setup 0ms, import 2.49s, tests 775ms, environment 2.38s)
+
+[ELIFECYCLE] Command failed with exit code 1.

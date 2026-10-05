@@ -1,0 +1,40 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-schema-admin-ui
+
+4:57:19 AM [vite-plugin-svelte] src/lib/schema-admin/ContentTypeEditor.svelte:72:36 `<div>` with a dragover or drop handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+stderr | parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows 'Saving...' when isSaving is true
+An update to Root inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx (54 tests | 1 failed) 1170ms
+     × shows 'Saving...' when isSaving is true 15ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx > ContentTypeEditor > shows 'Saving...' when isSaving is true
+TypeError: screen.getByRole.all is not a function or its return value is not iterable
+ ❯ parity/emdash/schema-admin-ui-source/packages/admin/tests/components/ContentTypeEditor.test.tsx:572:87
+    570|
+    571|   expect(screen.getByRole("status").element().textContent).toBe("Savin…
+    572|   for (const button of screen.getByRole("button", { name: "Saving...",…
+       |                                                                                       ^
+    573|    await expect.element(button).toBeDisabled();
+    574|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 137 passed (138)
+   Start at  04:57:17
+   Duration  8.05s (transform 1.44s, setup 1.86s, import 632ms, tests 2.91s, environment 2.12s)
+

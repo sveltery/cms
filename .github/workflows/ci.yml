@@ -62,6 +62,10 @@ jobs:
         run: timeout --kill-after=30s 180s pnpm test:content-picker-browser-source
         env:
           DEBUG: pw:browser
+      - name: Run complete pinned schema administration UI Source callbacks in sandboxed Chromium
+        run: timeout --kill-after=30s 180s pnpm test:schema-admin-ui-browser
+        env:
+          DEBUG: pw:browser
       - run: pnpm build
       - name: Run sandboxed browser tests
         run: timeout --kill-after=30s 180s pnpm test:browser
