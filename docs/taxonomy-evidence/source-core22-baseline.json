@@ -1,0 +1,334 @@
+{
+  "schemaVersion": 1,
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "nativeExecutionHead": "198d2327d838a959fd31e06807775105b390a9fb",
+  "wholeFamiliesIncluded": 22,
+  "wholeStaticDeclarations": 216,
+  "wholeStaticMatcherExpressions": 543,
+  "sourceTestBodiesMocksDataClocksChanged": 0,
+  "invocations": 1,
+  "exitCode": 1,
+  "actualFiles": {
+    "total": 22,
+    "failedBeforeCollection": 21,
+    "passed": 1
+  },
+  "actualCallbacks": {
+    "registered": 3,
+    "executed": 3,
+    "passed": 3,
+    "failed": 0,
+    "pending": 0,
+    "uncollectedStaticDeclarations": 213
+  },
+  "sourceAssertionValueReds": 0,
+  "staticMatcherExpressionCountInPassedWholeFamily": 13,
+  "runtimeExpectationInvocationCount": "not instrumented; no fabricated runtime counter",
+  "actualMissingModuleErrors": {
+    "/src/lib/server/taxonomies/handlers.ts": 8,
+    "/src/lib/server/schema/collection-slugs-cache.ts": 8,
+    "/src/lib/server/taxonomies/content.ts": 2,
+    "/src/lib/server/taxonomies/bulk-tag.ts": 1,
+    "/src/lib/server/taxonomies/index.ts": 2
+  },
+  "independentFromStaticSevenAbsentNativeBoundaries": "Five first-visible missing paths appear in actual errors; other absent boundaries remain unreached, no causal credit invented",
+  "families": [
+    {
+      "sourceFamily": "packages/core/tests/integration/taxonomy-reorder-writes.test.ts",
+      "sourceSha256": "9d31e435bc08a5f3c62ca42fc2c6f723b9953e6ff4f382085f571e524a158040",
+      "sourceBlob": "4d047576a45720f40e882dc43920eceb1e1dcfc4",
+      "staticDeclarations": 5,
+      "staticMatcherExpressions": 9,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-reorder-writes.test.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/integration/taxonomy-term-counts-plan.test.ts",
+      "sourceSha256": "640ed3c559b9e76f6c751902f2dd4f558ae47242eab306b517181ebc83e2044a",
+      "sourceBlob": "5891e6f992cfab0feedecfbaeb260862458c05b5",
+      "staticDeclarations": 2,
+      "staticMatcherExpressions": 6,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/schema/registry.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/integration/taxonomy-term-order-plan.test.ts",
+      "sourceSha256": "1d505e0557f5fef390a7975a7adf23c7e020f40f7f31d503e9468e1f15278052",
+      "sourceBlob": "0f63eef5320092d496701c9999f65fd9c44d0b9a",
+      "staticDeclarations": 3,
+      "staticMatcherExpressions": 13,
+      "actualStatus": "passed",
+      "actualRegisteredExecutedCallbacks": 3,
+      "classification": "three original passed query-plan callbacks against real Source SQLite and same existing Native taxonomy repository",
+      "originalReportedError": "",
+      "callbacks": [
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/taxonomy-term-order-plan.test.ts:107",
+          "title": "seeks findByName through the composite index rather than scanning the locale",
+          "actualStatus": "passed"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/taxonomy-term-order-plan.test.ts:119",
+          "title": "bounds manual keyset pages while seeking the taxonomy index",
+          "actualStatus": "passed"
+        },
+        {
+          "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/core/tests/integration/taxonomy-term-order-plan.test.ts:144",
+          "title": "seeks findChildren through the parent index",
+          "actualStatus": "passed"
+        }
+      ]
+    },
+    {
+      "sourceFamily": "packages/core/tests/integration/content/content-taxonomies.test.ts",
+      "sourceSha256": "87d90ae65b69a597a38437c21b1960208ce51ed2ad1d0a2fe1dc6ae497db1d36",
+      "sourceBlob": "c9e7187be8d81effb92ffd22a14f8d21dd77f342",
+      "staticDeclarations": 7,
+      "staticMatcherExpressions": 23,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/taxonomies/content.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/integration/database/taxonomy-repository-pagination.test.ts",
+      "sourceSha256": "4d61fd81964ec8ecdaede7a9ec0b9236c0519d5141882a41f3baf9af7420928e",
+      "sourceBlob": "0dea12458f6d707d34f64e2eaa175df9f10b8ee4",
+      "staticDeclarations": 2,
+      "staticMatcherExpressions": 6,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/integration/taxonomies/bulk-tag.test.ts",
+      "sourceSha256": "d0a30f4bd6d812ac8495ab65688e35bb4082b2cc4b7407aea1d7a4d3201583b0",
+      "sourceBlob": "2404edef85833519d7c4e21f333d69f06f5bf1d4",
+      "staticDeclarations": 13,
+      "staticMatcherExpressions": 40,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/taxonomies/bulk-tag.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts",
+      "sourceSha256": "3bbd042cc6005601d764286873da118ecac7f0bd736ceac3cd22401ad8332ad1",
+      "sourceBlob": "9cc11bb06a2daf7d9b239a4e61f897698d3ab5bf",
+      "staticDeclarations": 7,
+      "staticMatcherExpressions": 14,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts",
+      "sourceSha256": "73712aa988d8d91abb9f50a9ef4d54de80681011def873de3319b6cca03e9777",
+      "sourceBlob": "99660dd9b9dde60d72c01cefc976a9c513a6f258",
+      "staticDeclarations": 25,
+      "staticMatcherExpressions": 68,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/taxonomies/content.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/integration/taxonomies/taxonomy-translation-group-assignments.test.ts",
+      "sourceSha256": "2f8e4a6a94ac2ffa56aad9403ad0013d79d9eb185778de74f2591b60276c98e3",
+      "sourceBlob": "ebed876c6d4bcd3f3bdbb4407d98215357b0e4b0",
+      "staticDeclarations": 1,
+      "staticMatcherExpressions": 2,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/unit/taxonomies/defs-cache.test.ts",
+      "sourceSha256": "520b3b11ff1f82a12b464fde0253aedb9dc89dd284ef64ae55a065601ee6cfea",
+      "sourceBlob": "c9a22ceb8f08333d4313aee334859bf77f6d31a4",
+      "staticDeclarations": 5,
+      "staticMatcherExpressions": 12,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/taxonomies/index.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/defs-cache.test.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/unit/taxonomies/entry-terms-object-cache.test.ts",
+      "sourceSha256": "c8e7637c8da1cfe23bf6f4b5334a1028df67fd61e9b967d3a3f3cf839c8925ae",
+      "sourceBlob": "9d8676ade2bc75d69fea55b9abfc938e24780f9c",
+      "staticDeclarations": 2,
+      "staticMatcherExpressions": 5,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/taxonomies/index.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/entry-terms-object-cache.test.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts",
+      "sourceSha256": "2f2d1d1c4ca587cb489466fd3922b08a736a9cb04cfb26cef0276c0c54220148",
+      "sourceBlob": "32c69910e79b70da2c96805f7840caa367430259",
+      "staticDeclarations": 9,
+      "staticMatcherExpressions": 23,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/unit/taxonomies/get-taxonomy-terms.test.ts",
+      "sourceSha256": "ed235ee815403005486e57de57b5a896049812be455b086ffed555bf0520fb43",
+      "sourceBlob": "f1feaa93056fcab5f1db719d97e7dacd5fac89ea",
+      "staticDeclarations": 2,
+      "staticMatcherExpressions": 5,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/unit/taxonomies/get-term.test.ts",
+      "sourceSha256": "c8f300330e716c4d7e2da085d26f31125b5dbfec476540d8dcbd566e9370d3f3",
+      "sourceBlob": "56dd961188da79550ec15886113e2897a465032e",
+      "staticDeclarations": 4,
+      "staticMatcherExpressions": 15,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-term.test.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/unit/taxonomies/taxonomies.test.ts",
+      "sourceSha256": "b4c63c85b8db6e9c6c10c5272bf5089736e7a9258126ccc2b3b3256afbad499f",
+      "sourceBlob": "2b715a45384ac5e3cddbfb258481993198606baf",
+      "staticDeclarations": 35,
+      "staticMatcherExpressions": 60,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts",
+      "sourceSha256": "af22f913b1f187075062eddbcf005048ee1d4f9485d9b94991fef4c4dae8481c",
+      "sourceBlob": "1e22106d55a9302f35e62bbae1cff7efb0194a9c",
+      "staticDeclarations": 26,
+      "staticMatcherExpressions": 74,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/unit/taxonomies/term-count-demand.test.ts",
+      "sourceSha256": "8d95acc4a410b662d7962bab6846ccd82df1ca522228100cc42ced7c282d6a9f",
+      "sourceBlob": "fa447e1d64584e944509daca15b7eededfa9417b",
+      "staticDeclarations": 7,
+      "staticMatcherExpressions": 26,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/schema/registry.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/unit/taxonomies/term-counts.test.ts",
+      "sourceSha256": "7162a63f0aa4876c1318d0a2c632ba3b024b4203488702f23b79a892b5670086",
+      "sourceBlob": "379923e64513e7e6f191bbfebff3a412a7a6dba8",
+      "staticDeclarations": 18,
+      "staticMatcherExpressions": 39,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/unit/taxonomies/term-list-counts.test.ts",
+      "sourceSha256": "eac0343f4f29974762d3a2867b8d5b57e2cbfada2635ecb3704aa956ba8e9a07",
+      "sourceBlob": "9ab1d0e2f5a4f13fdbfc4cd59cf855aa0d7224db",
+      "staticDeclarations": 4,
+      "staticMatcherExpressions": 13,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-counts.test.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/unit/taxonomies/term-list-object-cache.test.ts",
+      "sourceSha256": "0976061afc2a340d7af08cb0b613c5dd301c616fa470fee5ebaf781d12078790",
+      "sourceBlob": "74978600a356598a8147af7af989f3dc1f436c13",
+      "staticDeclarations": 2,
+      "staticMatcherExpressions": 5,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-object-cache.test.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/unit/taxonomies/term-reorder.test.ts",
+      "sourceSha256": "f1dd9c7c068ba1e082958110d54b533bbf6cc55f52435d3a4bfa70ab00a18913",
+      "sourceBlob": "12e5f88279d628543bbf81d1e8ae2d8fc9139d5e",
+      "staticDeclarations": 31,
+      "staticMatcherExpressions": 69,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts",
+      "callbacks": []
+    },
+    {
+      "sourceFamily": "packages/core/tests/unit/taxonomies/term-slug-generation.test.ts",
+      "sourceSha256": "de719ffe7aa56a86bd179e1c74f54bf99b2a12b8d83992ca73aeccaa04103e88",
+      "sourceBlob": "f4ad440938145d68db8f6b1cc33dca80bccd32bd",
+      "staticDeclarations": 6,
+      "staticMatcherExpressions": 16,
+      "actualStatus": "failed",
+      "actualRegisteredExecutedCallbacks": 0,
+      "classification": "module-preexpect Native implementation missing; no Source assertion/value-red/pass credit",
+      "originalReportedError": "Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts",
+      "callbacks": []
+    }
+  ],
+  "narrowSourcePassScope": "Only taxonomy-term-order-plan3 passed original callbacks through the same preexisting Native TaxonomyRepository on genuine Source90 DDL/Source SQLite EXPLAIN. No new product implementation and no Native canonical schema/Registry/provider acceptance.",
+  "fixtures": "Original Source migrations001\u2013091 (90 actual), actual Node SQLite, original captured Kysely SQL/parameters, genuine SQLite EXPLAIN, all unrewritten",
+  "originalConditionalPg": "Retained unchanged; not configured/run by this baseline; no PG parity claim",
+  "sourceApiAdminComplete": false,
+  "sourceUi4Matcher1": "Retained whole, not executed by Core22 config; UI79 and pure matcher15 previous module-preexpect receipts stay separate",
+  "native10D1eightSourceSupport3Repeated": false,
+  "nativeCanonicalProviderNodeD1PgWorkerFullFeatureCredit": 0,
+  "originalRawLog": {
+    "path": "/tmp/taxonomy-198d2327-whole-core22-initial-baseline.log",
+    "bytes": 23067,
+    "sha256": "d61aadac0cc2219a096ac4ca7f42d78c8c83455f5c94b10bc084e9002d589727"
+  },
+  "originalRawReporter": {
+    "path": "/tmp/taxonomy-198d2327-whole-core22-initial-baseline-report.json",
+    "bytes": 10975,
+    "sha256": "dd6892eb3841f0416c4bbb5a2717c34caa0926c155289c096df28c37a4c3d942"
+  }
+}

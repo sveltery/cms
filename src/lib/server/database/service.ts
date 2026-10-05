@@ -12,7 +12,7 @@ import { countTrashedDraftInput, createDraftInput, deleteDraftInput, getDraftInp
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 export type Permission = 'schema:read' | 'schema:manage' | 'content:read' | 'content:read_drafts'
   | 'content:create' | 'content:edit_own' | 'content:edit_any' | 'content:delete_own' | 'content:delete_any'
-  | 'content:publish_own' | 'content:publish_any' | 'menus:read' | 'menus:manage' | 'redirects:read' | 'redirects:manage' | 'sections:read' | 'sections:manage' | 'widgets:read' | 'widgets:manage' | 'comments:read' | 'comments:moderate' | 'comments:delete' | 'comments:settings';
+  | 'content:publish_own' | 'content:publish_any' | 'taxonomies:read' | 'taxonomies:manage' | 'menus:read' | 'menus:manage' | 'redirects:read' | 'redirects:manage' | 'sections:read' | 'sections:manage' | 'widgets:read' | 'widgets:manage' | 'comments:read' | 'comments:moderate' | 'comments:delete' | 'comments:settings';
 export interface ServerPrincipal { readonly id: string; readonly permissions: readonly Permission[] }
 const listInput = v.strictObject({
   type: identifier, locale: v.optional(localeInput, 'en'),

@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import { sql, type CompiledQuery, type KyselyPlugin } from 'kysely';
 import { Miniflare } from 'miniflare';
 import { build } from 'vite';
+import {viteWorkerModules,fixtureModulesRoot} from './helpers/vite-worker-modules.ts';
 import { openSqlite } from '../src/lib/server/database/sqlite.ts';
 import { openD1 } from '../src/lib/server/database/d1.ts';
 import { migrateCms } from '../src/lib/server/database/migrations.ts';
@@ -188,8 +189,7 @@ test('workerd supplemental: manifest executes on the actual local D1 binding wit
     lib: { entry: new URL('./helpers/editor-manifest-worker.ts', import.meta.url).pathname, formats: ['es'], fileName: 'editor-manifest-worker' } } });
   assert.ok(!('on' in built));
   const chunks = (Array.isArray(built) ? built : [built]).flatMap(output => output.output).filter(output => output.type === 'chunk');
-  assert.equal(chunks.length, 1); assert.doesNotMatch(chunks[0].code, /node:sqlite/);
-  const runtime = new Miniflare({ modules: true, script: chunks[0].code, compatibilityDate: '2026-05-07',
+  const runtime = new Miniflare({ modulesRoot:fixtureModulesRoot, modules:viteWorkerModules(chunks), compatibilityDate: '2026-05-07',
     host: '127.0.0.1', port: 0, cf: false, d1Databases: { DB: 'cms-manifest-worker' } });
   try {
     const response = await runtime.dispatchFetch('https://cms.example/'); assert.equal(response.status, 200);

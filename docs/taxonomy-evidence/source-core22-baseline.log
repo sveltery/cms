@@ -1,0 +1,303 @@
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-count-demand.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-term.test.ts (0 test)
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-term-order-plan.test.ts > seeks findByName through the composite index rather than scanning the locale
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-term-order-plan.test.ts > bounds manual keyset pages while seeking the taxonomy index
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-term-order-plan.test.ts > seeks findChildren through the parent index
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-term-order-plan.test.ts (3 tests) 332ms
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-counts.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/defs-cache.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-reorder-writes.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/entry-terms-object-cache.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-object-cache.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-term-counts-plan.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/database/taxonomy-repository-pagination.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-taxonomy-terms.test.ts (0 test)
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-translation-group-assignments.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 21 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-reorder-writes.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-reorder-writes.test.ts ]
+Error: Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-reorder-writes.test.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-reorder-writes.test.ts:18:1
+     16| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+     17|
+     18| import { handleTermReorder } from "../../src/api/handlers/taxonomies.j…
+       | ^
+     19| import { runMigrations } from "../../src/database/migrations/runner.js…
+     20| import { TaxonomyRepository } from "../../src/database/repositories/ta…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-term-counts-plan.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-term-counts-plan.test.ts ]
+Error: Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/schema/registry.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/src/schema/registry.ts:52:1
+     50| } from "../transfer/schema-importer.js";
+     51| import { chunks, SQL_BATCH_SIZE } from "../utils/chunks.js";
+     52| import { resetRegisteredCollectionsCache } from "./collection-slugs-ca…
+       | ^
+     53| import {
+     54|  type Collection,
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomy-term-counts-plan.test.ts:16:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts ]
+Error: Cannot find module '/src/lib/server/taxonomies/content.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts:16:1
+     14| import { afterEach, beforeEach, expect, it } from "vitest";
+     15|
+     16| import { handleContentCreate, handleContentUpdate } from "../../../src…
+       | ^
+     17| import { TaxonomyRepository } from "../../../src/database/repositories…
+     18| import type { Database } from "../../../src/database/types.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/integration/database/taxonomy-repository-pagination.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/integration/database/taxonomy-repository-pagination.test.ts ]
+Error: Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts:21:1
+     19| import { openNodeSqliteDatabase } from "../../src/db/node-sqlite-compa…
+     20| import { waitForDeferredTasks } from "../../src/deferred-tasks.js";
+     21| import { resetRegisteredCollectionsCacheForTests } from "../../src/sch…
+       | ^
+     22| import { SchemaRegistry } from "../../src/schema/registry.js";
+     23| import { resetTaxonomyDefsCacheForTests } from "../../src/taxonomies/i…
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/database/taxonomy-repository-pagination.test.ts:4:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts ]
+Error: Cannot find module '/src/lib/server/taxonomies/bulk-tag.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/bulk-tag.test.ts:4:1
+      2| import { afterEach, beforeEach, expect, it, vi } from "vitest";
+      3|
+      4| import { handleBulkTag } from "../../../src/api/handlers/bulk-tag.js";
+       | ^
+      5| import { ContentRepository } from "../../../src/database/repositories/…
+      6| import { TaxonomyRepository } from "../../../src/database/repositories…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts ]
+Error: Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-def-structure.test.ts:5:1
+      3| import { afterEach, beforeEach, expect, it } from "vitest";
+      4|
+      5| import {
+       | ^
+      6|  handleTaxonomyCreate,
+      7|  handleTaxonomyGet,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts ]
+Error: Cannot find module '/src/lib/server/taxonomies/content.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-locale-terms.test.ts:19:1
+     17| import { afterEach, beforeEach, expect, it, vi } from "vitest";
+     18|
+     19| import { handleContentGet } from "../../../src/api/handlers/content.js…
+       | ^
+     20| import {
+     21|  handleTaxonomyCreate,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-translation-group-assignments.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-translation-group-assignments.test.ts ]
+Error: Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts:21:1
+     19| import { openNodeSqliteDatabase } from "../../src/db/node-sqlite-compa…
+     20| import { waitForDeferredTasks } from "../../src/deferred-tasks.js";
+     21| import { resetRegisteredCollectionsCacheForTests } from "../../src/sch…
+       | ^
+     22| import { SchemaRegistry } from "../../src/schema/registry.js";
+     23| import { resetTaxonomyDefsCacheForTests } from "../../src/taxonomies/i…
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/integration/taxonomies/taxonomy-translation-group-assignments.test.ts:5:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/defs-cache.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/defs-cache.test.ts ]
+Error: Cannot find module '/src/lib/server/taxonomies/index.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/defs-cache.test.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/defs-cache.test.ts:23:1
+     21| import { setI18nConfig } from "../../../src/i18n/config.js";
+     22| import { runWithContext } from "../../../src/request-context.js";
+     23| import {
+       | ^
+     24|  getTaxonomyDef,
+     25|  getTaxonomyDefs,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/entry-terms-object-cache.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/entry-terms-object-cache.test.ts ]
+Error: Cannot find module '/src/lib/server/taxonomies/index.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/entry-terms-object-cache.test.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/entry-terms-object-cache.test.ts:19:1
+     17| } from "../../../src/object-cache/index.js";
+     18| import { runWithContext } from "../../../src/request-context.js";
+     19| import { getEntryTerms, getTermsForEntries } from "../../../src/taxono…
+       | ^
+     20| import { setupTestDatabaseWithCollections, teardownTestDatabase } from…
+     21|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts ]
+Error: Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts:21:1
+     19| import { openNodeSqliteDatabase } from "../../src/db/node-sqlite-compa…
+     20| import { waitForDeferredTasks } from "../../src/deferred-tasks.js";
+     21| import { resetRegisteredCollectionsCacheForTests } from "../../src/sch…
+       | ^
+     22| import { SchemaRegistry } from "../../src/schema/registry.js";
+     23| import { resetTaxonomyDefsCacheForTests } from "../../src/taxonomies/i…
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-all-terms-for-entries.test.ts:7:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-taxonomy-terms.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-taxonomy-terms.test.ts ]
+Error: Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts:21:1
+     19| import { openNodeSqliteDatabase } from "../../src/db/node-sqlite-compa…
+     20| import { waitForDeferredTasks } from "../../src/deferred-tasks.js";
+     21| import { resetRegisteredCollectionsCacheForTests } from "../../src/sch…
+       | ^
+     22| import { SchemaRegistry } from "../../src/schema/registry.js";
+     23| import { resetTaxonomyDefsCacheForTests } from "../../src/taxonomies/i…
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-taxonomy-terms.test.ts:4:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-term.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-term.test.ts ]
+Error: Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-term.test.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/get-term.test.ts:13:1
+     11| import { ContentRepository } from "../../../src/database/repositories/…
+     12| import { TaxonomyRepository } from "../../../src/database/repositories…
+     13| import { primeRegisteredCollections } from "../../../src/schema/collec…
+       | ^
+     14| import {
+     15|  describeEachDialect,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts ]
+Error: Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/utils/test-db.ts:21:1
+     19| import { openNodeSqliteDatabase } from "../../src/db/node-sqlite-compa…
+     20| import { waitForDeferredTasks } from "../../src/deferred-tasks.js";
+     21| import { resetRegisteredCollectionsCacheForTests } from "../../src/sch…
+       | ^
+     22| import { SchemaRegistry } from "../../src/schema/registry.js";
+     23| import { resetTaxonomyDefsCacheForTests } from "../../src/taxonomies/i…
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomies.test.ts:7:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts ]
+Error: Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/taxonomy-crud.test.ts:8:1
+      6| import { NodeSqliteCompatDatabase as BetterSqlite3 } from "#node-sqlit…
+      7|
+      8| import {
+       | ^
+      9|  handleTaxonomyCreate,
+     10|  handleTaxonomyDelete,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-count-demand.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-count-demand.test.ts ]
+Error: Cannot find module '/src/lib/server/schema/collection-slugs-cache.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/src/schema/registry.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/src/schema/registry.ts:52:1
+     50| } from "../transfer/schema-importer.js";
+     51| import { chunks, SQL_BATCH_SIZE } from "../utils/chunks.js";
+     52| import { resetRegisteredCollectionsCache } from "./collection-slugs-ca…
+       | ^
+     53| import {
+     54|  type Collection,
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-count-demand.test.ts:18:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts ]
+Error: Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-counts.test.ts:14:1
+     12| import { afterEach, beforeEach, describe, expect, it, vi } from "vites…
+     13|
+     14| import { handleTermGet, handleTermList } from "../../../src/api/handle…
+       | ^
+     15| import { ContentRepository } from "../../../src/database/repositories/…
+     16| import { TaxonomyRepository } from "../../../src/database/repositories…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-counts.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-counts.test.ts ]
+Error: Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-counts.test.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-counts.test.ts:18:1
+     16| import { NodeSqliteCompatDatabase as Database } from "#node-sqlite";
+     17|
+     18| import { handleTermList } from "../../../src/api/handlers/taxonomies.j…
+       | ^
+     19| import { GET as getTerms } from "../../../src/astro/routes/api/taxonom…
+     20| import { runMigrations } from "../../../src/database/migrations/runner…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-object-cache.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-object-cache.test.ts ]
+Error: Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-object-cache.test.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-list-object-cache.test.ts:20:1
+     18| }));
+     19|
+     20| import { handleTermReorder } from "../../../src/api/handlers/taxonomie…
+       | ^
+     21| import { TaxonomyRepository } from "../../../src/database/repositories…
+     22| import type { Database } from "../../../src/database/types.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts ]
+Error: Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-reorder.test.ts:11:1
+      9| import { afterEach, beforeEach, expect, it, vi } from "vitest";
+     10|
+     11| import {
+       | ^
+     12|  handleTermCreate,
+     13|  handleTermList,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/21]⎯
+
+ FAIL  parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts [ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts ]
+Error: Cannot find module '/src/lib/server/taxonomies/handlers.ts' imported from /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts
+ ❯ parity/emdash/taxonomies/source/packages/core/tests/unit/taxonomies/term-slug-generation.test.ts:3:1
+      1| import { afterEach, beforeEach, expect, it } from "vitest";
+      2|
+      3| import { handleTaxonomyCreate, handleTermCreate } from "../../../src/a…
+       | ^
+      4| import {
+      5|  describeEachDialect,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/21]⎯
+
+
+ Test Files  21 failed | 1 passed (22)
+      Tests  3 passed (3)
+   Start at  15:43:54
+   Duration  6.97s (transform 983ms, setup 0ms, import 210ms, tests 332ms, environment 2ms)
+
+JSON report written to /tmp/taxonomy-198d2327-whole-core22-initial-baseline-report.json

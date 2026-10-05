@@ -1,0 +1,69 @@
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+ ❯ tests/taxonomy-native/runtime-regressions.test.ts (3 tests | 3 failed) 102ms
+   × TAXRUNREV01: reorder ignores malformed locale query and persists the requested positions 56ms
+   × TAXRUNREV02: configured locale casing resolves the real French term and persists fr content 23ms
+   × TAXRUNREV03: omitted-locale update resolves the existing French entry and replaces actual terms 22ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/taxonomy-native/runtime-regressions.test.ts > TAXRUNREV01: reorder ignores malformed locale query and persists the requested positions
+AssertionError: expected 400 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 400
+
+ ❯ tests/taxonomy-native/runtime-regressions.test.ts:41:26
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/taxonomy-native/runtime-regressions.test.ts > TAXRUNREV02: configured locale casing resolves the real French term and persists fr content
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/taxonomy-native/runtime-regressions.test.ts:50:25
+     48|  const term=await repository.create({name:'tag',slug:'actualites',labe…
+     49|  const result=await handleContentCreate(controlled.db!,'post',{data:{t…
+     50|  expect(result.success).toBe(true);
+       |                         ^
+     51|  if(!result.success)throw new Error(result.error.message);
+     52|  expect(result.data.item.locale).toBe('fr');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/taxonomy-native/runtime-regressions.test.ts > TAXRUNREV03: omitted-locale update resolves the existing French entry and replaces actual terms
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/taxonomy-native/runtime-regressions.test.ts:64:25
+     62|  expect(created.success).toBe(true);if(!created.success)throw new Erro…
+     63|  const result=await handleContentUpdate(controlled.db!,'post',created.…
+     64|  expect(result.success).toBe(true);if(!result.success)throw new Error(…
+       |                         ^
+     65|  expect(result.data.item.locale).toBe('fr');
+     66|  expect(result.data.item.version).toBeGreaterThan(created.data.item.ve…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  17:11:23
+   Duration  990ms (transform 512ms, setup 0ms, import 774ms, tests 102ms, environment 0ms)
+
+JSON report written to /tmp/taxonomy-r1-native-review-regressions-baseline-report.json
