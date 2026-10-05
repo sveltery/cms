@@ -1,4 +1,5 @@
 import {hydrateBylines,hydrateBylinesMany} from '../bylines/content-hydration.ts';
+import {resolveBylineFilter} from '../bylines/content-list.ts';
 import {bylineDatabase} from '../bylines/storage.ts';
 import {sql,type CompiledQuery} from 'kysely';
 import {ulid} from 'ulidx';
@@ -73,6 +74,7 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
   const where:FindManyOptions['where']={locale:value.locale};
   if(value.status)where.status=value.status;if(value.authorId)where.authorId=value.authorId;
   if(value.fieldFilters&&Object.keys(value.fieldFilters).length)where.fieldFilters=value.fieldFilters as any;
+  const bylineFilter=resolveBylineFilter(value,value.locale);if(bylineFilter)where.bylineFilter=bylineFilter;
   if(value.dateField&&(value.dateFrom||value.dateTo))where.dateFilter={field:value.dateField,from:bound(value.dateFrom,'start'),to:bound(value.dateTo,'end')};
   return{value,collection,options:{limit:value.limit,cursor:value.cursor,where,
    ...(value.orderBy?{orderBy:{field:value.orderBy,direction:value.order??'desc'}}:{}),

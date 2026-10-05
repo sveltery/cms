@@ -12,6 +12,7 @@ import {registerBylineDatabase} from '../../../src/lib/server/bylines/storage.ts
 import {canonicalSourceDatabase} from '../../../src/lib/server/canonical-storage/namespace.ts';
 import {ContentRepository} from '../../../src/lib/server/database/lifecycle/upstream/database/repositories/content.ts';
 import {principal} from '../lifecycle-fixture.ts';
+import {UserRepository} from './source-user.ts';
 import {encodeRev,validateRev} from '../../../src/lib/server/database/lifecycle/upstream/api/rev.ts';
 const owners=new WeakMap();
 // Only the three original Source redirect SELECT TableNodes need this finite
@@ -51,7 +52,12 @@ export function describeEachDialect(name,callback){describe(`${name} [native-sql
 export async function setupForDialect(dialect){return{db:await setupTestDatabase(),dialect};}
 export async function setupForDialectWithCollections(dialect){return{db:await setupTestDatabaseWithCollections(),dialect};}
 export async function teardownForDialect(context){await teardownTestDatabase(context?.db);}
-export function handleContentCreate(db,collection,body){return service(db).create(collection,body);}
+export async function handleContentCreate(db,collection,body){
+ // Original Source may provide a stored author's attribution. Resolve that
+ // genuine public User99 row into constructor metadata; actor grants stay fixed.
+ const author=body.authorId?await new UserRepository(db).findById(body.authorId):null;
+ return nativeContentApi(storage(db),principal,{after:()=>{}},author?{authorId:author.id}:undefined).create(collection,body);
+}
 export function handleContentGet(db,collection,id,locale){return service(db).get(collection,id,locale);}
 export function handleContentUpdate(db,collection,id,body){return service(db).update(collection,id,body);}
 export function handleContentList(db,collection,options){return service(db).list(collection,options);}

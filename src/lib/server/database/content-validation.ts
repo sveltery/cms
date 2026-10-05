@@ -18,6 +18,9 @@ export const contentListOptions={
  dateField:v.optional(v.picklist(['createdAt','updatedAt','publishedAt'])),
  dateFrom:v.optional(v.pipe(v.string(),v.maxLength(128))),
  dateTo:v.optional(v.pipe(v.string(),v.maxLength(128))),
+ bylines:v.optional(v.array(v.pipe(v.string(),v.minLength(1),v.maxLength(128)))),
+ bylinesNone:v.optional(v.boolean(),false),
+ includeInferredBylines:v.optional(v.boolean(),false),
  fieldFilters:v.optional(fieldFilters)
 };
 export const genericContentList=v.strictObject({type:identifier,...contentListOptions});

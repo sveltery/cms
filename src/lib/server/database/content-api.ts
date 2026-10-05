@@ -4,7 +4,7 @@
 import {CmsError,type CmsDatabase} from './contract.ts';
 import type {ServerPrincipal} from './service.ts';
 import type {LifecycleDependencies} from './lifecycle/upstream/host.ts';
-import {lifecycleService} from './lifecycle/service.ts';
+import {lifecycleService,type ContentCreationAttribution} from './lifecycle/service.ts';
 import {LifecycleSlugConflictError} from './lifecycle/errors.ts';
 import {encodeRev,validateRev} from './lifecycle/upstream/api/rev.ts';
 import {ContentCollectionNotFoundError,EmDashValidationError,InvalidCursorError,type ContentItem} from './lifecycle/upstream/database/repositories/types.ts';
@@ -25,8 +25,8 @@ function failure(cause:unknown,operation:string,collection:string){
 
 /** Identity and Source list semantics are fixed by this trusted constructor.
  * Public request bodies never provide either constructor policy or identity. */
-export function nativeContentApi(database:CmsDatabase,principal:ServerPrincipal|null,dependencies:LifecycleDependencies={}){
- const owner=lifecycleService(database,principal,dependencies);
+export function nativeContentApi(database:CmsDatabase,principal:ServerPrincipal|null,dependencies:LifecycleDependencies={},creationAttribution?:ContentCreationAttribution){
+ const owner=lifecycleService(database,principal,dependencies,creationAttribution);
  const get=(collection:string,id:string,locale?:string)=>owner.getContent({type:collection,id,...(locale===undefined?{}:{locale})},{inferLocale:locale===undefined,resolveIdentifier:true});
  async function mutation(collection:string,id:string,body:Body,operation:(input:Body)=>Promise<ContentItem>){
   const item=await get(collection,id,body.locale);const validation=validateRev(body._rev,item);

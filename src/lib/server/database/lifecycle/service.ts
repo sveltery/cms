@@ -20,6 +20,7 @@ import * as v from 'valibot';
 import {BylineRepository,type ContentBylineInput} from '../../bylines/repository.ts';
 import {bylineDatabase} from '../../bylines/storage.ts';
 import {hydrateBylines,hydrateBylinesMany} from '../../bylines/content-hydration.ts';
+import {resolveBylineFilter} from '../../bylines/content-list.ts';
 import {invalidateCollectionCache} from '../../menus/object-cache.ts';
 import {contentBylineInput} from '../content-validation.ts';
 import {canonicalSourceDatabase} from '../../canonical-storage/namespace.ts';
@@ -38,10 +39,13 @@ export interface ContentUpdate extends ContentMutation {
   data?:Record<string,unknown>;bylines?:ContentBylineInput[];taxonomies?:Record<string,string[]>;slug?:string|null;skipRevision?:boolean;publishedAt?:string|null;
 }
 export interface ContentReceipt {item:ContentItem;liveContentChanged:boolean}
+/** Trusted importer/API attribution metadata; never read from mutation input. */
+export interface ContentCreationAttribution {readonly authorId:string}
 
 /** Compose only with trusted authentication; input never supplies identity. */
-export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal|null, dependencies:LifecycleDependencies={}) {
+export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal|null, dependencies:LifecycleDependencies={},creationAttribution?:ContentCreationAttribution) {
   registerLifecycleDatabase(database,dependencies);
+  const creationAuthorId=creationAttribution?.authorId;
   const identity=principal&&typeof principal.id==='string'&&principal.id.length>0&&principal.id.length<=128&&Array.isArray(principal.permissions)
     ? {id:principal.id,permissions:new Set<string>(principal.permissions)} : null;
   const registry=new SchemaRegistry(database);
@@ -57,13 +61,13 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
   function mutationPermission(own:string,any:string) {
     const actor=authenticated();if(!actor.permissions.has(own)&&!actor.permissions.has(any))throw new CmsError('FORBIDDEN');return actor;
   }
-  function object(input:unknown):Record<string,any> {
+  function object(input:unknown,bylineSelections=true):Record<string,any> {
     if(!input||typeof input!=='object'||Array.isArray(input))throw new CmsError('VALIDATION_ERROR');
     const value=input as Record<string,any>;
     for(const key of UNSUPPORTED)if(value[key]!==undefined)throw new CmsError('VALIDATION_ERROR',`Lifecycle capability '${key}' is not implemented`);
     if(value.slug!==undefined)parse(v.nullable(v.pipe(v.string(),v.maxLength(200))),value.slug);
     if(value.taxonomies!==undefined&&(value.taxonomies===null||typeof value.taxonomies!=='object'||Array.isArray(value.taxonomies)))throw new CmsError('VALIDATION_ERROR','taxonomies must be a map of term slugs');
-    if(value.bylines!==undefined)parse(contentBylineInput,value.bylines);
+    if(bylineSelections&&value.bylines!==undefined)parse(contentBylineInput,value.bylines);
     if(value.skipRevision!==undefined)parse(v.boolean(),value.skipRevision);
     if(value.status!==undefined)parse(v.string(),value.status);
     return value;
@@ -205,6 +209,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
   return {
     async createContent(input:unknown):Promise<ContentItem> {
       const actor=requirePermission('content:create');const value=object(input);
+      const authorId=creationAuthorId===undefined?actor.id:parse(entryId,creationAuthorId);
       publicationDatePermission(value);
       const type=parse(identifier,value.type);const locale=parse(localeInput,value.locale===undefined?getI18nConfig()?.defaultLocale??'en':resolveConfiguredLocale(parse(localeInput,value.locale)));
       if(value.status!==undefined&&value.status!=='draft')throw new CmsError('VALIDATION_ERROR','Create a draft, then publish it');
@@ -225,7 +230,7 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         createdAt:value.createdAt?await translate(()=>datetimes.normalizeValue(type,value.createdAt)):undefined,
         publishedAt:value.publishedAt?await translate(()=>datetimes.normalizeValue(type,value.publishedAt)):null
       };
-      const item=await drafts.create({type,locale,data,slug},actor.id,hasSideWrites?async entry=>{
+      const item=await drafts.create({type,locale,data,slug},authorId,hasSideWrites?async entry=>{
         const taxonomy=newContentTaxonomyStatements(database,type,entry,selections);
         const statements=value.bylines!==undefined?await bylines.planContentBylineReplacement(type,entry.id,value.bylines)
           :translation?await bylines.planContentBylineCopy(type,translation.id,entry.id):[];
@@ -290,15 +295,17 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       return hydrate(await stored(key(input),inferLocale,options.resolveIdentifier===true));
     },
     async listContent(input:unknown,options:{allLocales?:boolean;sourceSchemaDiscovery?:boolean}={}) {
-      requirePermission('content:read');requirePermission('content:read_drafts');const value=object(input);
+      requirePermission('content:read');requirePermission('content:read_drafts');const value=object(input,false);
       const type=parse(identifier,value.type);const locale=parse(localeInput,value.locale??'en');
       const collection=options.sourceSchemaDiscovery===true?await registry.getCollectionWithFields(type):await definition(type);
       if(value.status!==undefined&&typeof value.status!=='string')throw new CmsError('VALIDATION_ERROR');
       if(value.limit!==undefined&&(!Number.isSafeInteger(value.limit)||value.limit<1))throw new CmsError('VALIDATION_ERROR');
+      const filterLocale=options.allLocales===true&&value.locale===undefined?undefined:locale;
+      const bylineFilter=resolveBylineFilter(value,filterLocale);
       const result=await content.findMany(type,{limit:value.limit,cursor:value.cursor,
         ...(value.orderBy?{orderBy:{field:value.orderBy,direction:value.order??'desc'}}:{}),
         sortableExtras:[collection?.titleField,collection?.dateField].filter((field):field is string=>Boolean(field)),
-        where:{...(options.allLocales===true&&value.locale===undefined?{}:{locale}),...(value.status===undefined?{}:{status:value.status})}});
+        where:{...(filterLocale===undefined?{}:{locale:filterLocale}),...(value.status===undefined?{}:{status:value.status}),...(bylineFilter?{bylineFilter}:{})}});
       await hydrateBylinesMany(bylineDatabase(database),type,result.items);return result;
     },
     async updateContent(input:unknown):Promise<ContentReceipt> {
