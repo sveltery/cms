@@ -64,19 +64,16 @@ for(const target of ['Node','D1'] as const)describe(`${target} actual calendar l
   it('reads a non-English calendar ID when detail locale is omitted',async()=>{
     const {service}=await fixture(target);
     const item=await service.createContent({type:'posts',locale:'fr',slug:'lancement',data:{title:'Lancement'}});
-    const detail=await readCalendarContent(service,'posts',item.id);
-    expect(detail.id).toBe(item.id);expect(detail.locale).toBe('fr');expect(detail.data.title).toBe('Lancement');
+    await expect(readCalendarContent(service,'posts',item.id)).resolves.toMatchObject({id:item.id,locale:'fr',data:{title:'Lancement'}});
   });
   it('resolves the existing content slug using the supplied locale',async()=>{
     const {service}=await fixture(target);
     const item=await service.createContent({type:'posts',locale:'fr',slug:'lancement',data:{title:'Lancement'}});
-    const detail=await readCalendarContent(service,'posts','lancement','fr');
-    expect(detail.id).toBe(item.id);expect(detail.locale).toBe('fr');
+    await expect(readCalendarContent(service,'posts','lancement','fr')).resolves.toMatchObject({id:item.id,locale:'fr'});
   });
   it('retains Source ID lookup independence from the supplied detail locale',async()=>{
     const {service}=await fixture(target);
     const item=await service.createContent({type:'posts',locale:'fr',slug:'lancement',data:{title:'Lancement'}});
-    const detail=await readCalendarContent(service,'posts',item.id,'en');
-    expect(detail.id).toBe(item.id);expect(detail.locale).toBe('fr');
+    await expect(readCalendarContent(service,'posts',item.id,'en')).resolves.toMatchObject({id:item.id,locale:'fr'});
   });
 });
