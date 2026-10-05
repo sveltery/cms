@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "createdUtc": "2026-10-05T00:56:03.629487+00:00",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "actualMainRetained": "c3d135a6f20e4319ee07eebb0f9009b57f2985f9",
+  "runtimeHead": "96288c731c4af901eab18de7fe25132afa66b72b",
+  "testfirst": "630341ae1b99eac848801a90f8c068cfafe0f087",
+  "firstFix": "84f72210f1c8f08085249be1a569a5dc02bb5f67",
+  "refactor": "37bf7885528bffbf9011a9dba5b0f73bdfd84bde",
+  "finding": "TAXRUNREV04: configured FR by-slug read/update must resolve to actual persisted fr before genuine lookup",
+  "supplementalNativeBaseline": {
+    "registered": 5,
+    "passed": 3,
+    "valueFailed": 2,
+    "skipped": 0,
+    "sourceOriginalCallbackCredit": 0
+  },
+  "supplementalNativeFirstGreen": {
+    "registered": 5,
+    "passed": 5,
+    "failed": 0
+  },
+  "referenceFirstRun": {
+    "wholeOriginalCoreCallbacks": 222,
+    "supplementalReferenceControls": 2,
+    "allPassed": 224,
+    "meaning": "Genuine original Source physical repository/DDL with existing whole content reference host. Supplemental update control reproduces original resolveId canonicalization and actual by-resolved-id host update; full original generic Source handlers are not executed by these two controls; zero new original Source callback credit."
+  },
+  "referenceFinalRun": {
+    "registered": 2,
+    "passed": 2,
+    "failed": 0,
+    "classification": "Supplemental original-physical reference-host controls only; no Native provider/Registry/PG/Worker acceptance."
+  },
+  "postRefactorFeature": {
+    "wholeOriginalCore": 222,
+    "wholeOriginalMatcher": 15,
+    "nativeApi": 10,
+    "wholeOriginalSourceOnNative": 7,
+    "nativeRegression": 5,
+    "nativeD1": 8,
+    "nativeCompoundAtomic": 8,
+    "allPassed": true,
+    "sourceNativeCasDifference": "Original Source-on-Native fixture uses actual snapshot Native required CAS; no original omitted-CAS API fidelity credit."
+  },
+  "retainedInfrastructureFailures": [
+    "First nested feature invocation used installed system pnpm11, before Source callbacks; actual pinned pnpm12.6 wrapper corrected launcher. No product failure or version spoof.",
+    "New supplemental TS reference file imported untyped immutable Source graph into checker:68 diagnostics. Moved new reference controls to existing JavaScript fixture boundary without runtime/assertion changes; current checker0/0. Original Source not altered.",
+    "Supplemental Source physical reference file initially matched Native *.mjs fixture glob; canonical Native10 passed, separate support control failed precollection at missing Source import. New separate tests/taxonomy-reference directory isolates genuine physical owner without modifying original Native glob/families."
+  ],
+  "ci478": {
+    "run": 37221470994,
+    "normalJob": 111492517779,
+    "head": "81c96414f726d0ce89f53445a88fc80bf2727347",
+    "status": "FAILED typecheck before Source callbacks",
+    "fourErrors": "Actual stored unknown twice,row unknown,revision.data{}; accurate RawBuilder row generics repair only erased types, SQL/assertions unchanged. Browser nine-stage success at this historical head is not current final-head acceptance."
+  },
+  "currentDevelopmentCheck": "0 errors/0 warnings at6d03487b; current final entire normal/secured checks pending",
+  "gateBoundary": "Root qualified exact8516-byte package: old whole source-ports terminal chain preserved, whole Core22/matcher15 plus separately supplemental2, complete Native10/Source7/regression5/D1eight/Nodecompound8. No dependency/lock/workflow/bootstrap/security/deadline changes.",
+  "mergeAndFullFeatureStatus": "Final current-head normal13/secured9, fresh independent/configured review, Root exact PR approval and author expected-head regular merge remain pending. Full Taxonomy UI79, actual published Search QueryCore/getEntriesByTerm, App/Seed integration, full index installation, PG/deployed Worker remain unfinished. No private producer adoption, duplicate cache/provider/lifecycle owner or new credential/session/signature/live HTTP/race probes.",
+  "records": [
+    {
+      "path": "docs/taxonomy-evidence/native-locale-slug-baseline.log",
+      "bytes": 2473,
+      "sha256": "1dd7863cc3f7038a5525bc8b1b5c06bbb91d6f73298ac6264617092ffe88cde8",
+      "gitBlob": "2488526215c5aad9c2f2d233911ffb86e471da64"
+    },
+    {
+      "path": "docs/taxonomy-evidence/native-locale-slug-baseline.json",
+      "bytes": 3022,
+      "sha256": "73bd39c2337fafa1f0b3accab949aae4cb002742933f288711985ceabaf79ae6",
+      "gitBlob": "5c5a5f01a631c8ae8ab783001632c2662ff34b89"
+    },
+    {
+      "path": "docs/taxonomy-evidence/native-locale-slug-first-green.log",
+      "bytes": 364,
+      "sha256": "d459dd9c3ee60e54f1ef9f5d8bfa08a71e5ded257eeb02741e75465cd1ff2693",
+      "gitBlob": "2d5039b906bc2d04028cd70b461fe128e9e1237d"
+    },
+    {
+      "path": "docs/taxonomy-evidence/native-locale-slug-first-green.json",
+      "bytes": 2227,
+      "sha256": "6277d112d18d2015672c8b956e17ff39e5bbe787dbd207e65f5b4c9bbcda579e",
+      "gitBlob": "c190526c52103e64427ce97e2766cddd1546a492"
+    },
+    {
+      "path": "docs/taxonomy-evidence/source-locale-reference-first224.log",
+      "bytes": 70087,
+      "sha256": "e5870803873a685b0c5b6aec4d8516531343357bd9335a062f0e50ac264c788c",
+      "gitBlob": "55b11870d36d09209057414f8e0fa8cbabbe1452"
+    },
+    {
+      "path": "docs/taxonomy-evidence/source-locale-reference-first224.json",
+      "bytes": 78154,
+      "sha256": "53430e9e99f817c6e1d4a32ffa2f95327dc488e4870a6d84b05be824db47b520",
+      "gitBlob": "aa111a11238b62971ae92eb7b5bd21b6deeb32fd"
+    },
+    {
+      "path": "docs/taxonomy-evidence/source-locale-reference2-final.log",
+      "bytes": 1005,
+      "sha256": "0827cfc813f04135dc347ac99ea14e172548b2d4efebd2247df03e25c3ca027d",
+      "gitBlob": "875184764cf055e3adedc725efd3f63bbef714b2"
+    },
+    {
+      "path": "docs/taxonomy-evidence/source-locale-reference2-final.json",
+      "bytes": 1303,
+      "sha256": "0c89ce15781f16eb5cf531773cc426ab40264fb5e203ede51b700aa41e493acc",
+      "gitBlob": "a962d37977f2a8aca3b38e4961b3c34bad82e964"
+    },
+    {
+      "path": "docs/taxonomy-evidence/resume-whole-native-current.log",
+      "bytes": 2073,
+      "sha256": "79225d2c70513aa0f568a0cd9ccbc67fa62c105f62942dbddb607565e924ef94",
+      "gitBlob": "52ba52526d0c2f7138b52f46c6d2d516ca0114ed"
+    },
+    {
+      "path": "docs/taxonomy-evidence/resume-whole-feature-first-infra.log",
+      "bytes": 567,
+      "sha256": "406fdf9d53c85a61ac39763a190e8eaf18ba3aead5fea816987fa72efff12fb3",
+      "gitBlob": "a8c7ea8e4b7d7d89f536cc2e8ebd5373744ea722"
+    },
+    {
+      "path": "docs/taxonomy-evidence/resume-whole-feature-first-canonical-fixture-gap.log",
+      "bytes": 2620,
+      "sha256": "021167b03d1d50100528a55450ac59c6f9ab2d8d1751a5b5af8b91a2e2d6cfcd",
+      "gitBlob": "c47ac84c587841fe75869f71324d3f19f22ab1fd"
+    },
+    {
+      "path": "docs/taxonomy-evidence/resume-first-reference-typecheck-gap.log",
+      "bytes": 31299,
+      "sha256": "43186e78b671b9123f68c3b09cb33eed50cc19241b8f2926fdb7ebc5333e0067",
+      "gitBlob": "6bcf070d389f7fa42e2c01ad64d1f4609eddf3a9"
+    },
+    {
+      "path": "docs/taxonomy-evidence/resume-check-clean.log",
+      "bytes": 209,
+      "sha256": "799bb052fc8675b0d047d248cde90772af3b7ed4f74f9b24cfc0466c682ddf53",
+      "gitBlob": "aa1cbb460ff6bcc60264fc8cd99911f474d285fc"
+    },
+    {
+      "path": "docs/taxonomy-evidence/ci478-normal-first-failure.log",
+      "bytes": 22337,
+      "sha256": "50baec7aab55c4525da731035f89cda2338e8660fa2b7aaddfb8421b3898954b",
+      "gitBlob": "b9b49a091b48f34e9b804a5ffac837da46d7be42"
+    }
+  ]
+}

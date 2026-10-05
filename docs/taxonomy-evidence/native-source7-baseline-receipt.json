@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "nativeHead": "9996aa631b12041c895fc14e70d1a01ccc0f0dc7",
+  "command": "node /workspace/.tools/pnpm/node_modules/pnpm/bin/pnpm.mjs exec vitest run --config vitest.taxonomy-native-content-source.config.mts --reporter=default --reporter=json --outputFile.json=/tmp/taxonomy-9996aa63-native-whole-source7-initial-baseline-report.json",
+  "actualExitCode": 1,
+  "executionCount": 1,
+  "wholeSourceDeclarations": 7,
+  "wholeStaticMatcherExpressions": 23,
+  "registeredCallbacks": 7,
+  "rawPassedCallbacks": 1,
+  "rawFailedCallbacks": 6,
+  "classification": {
+    "reachedValueAssertionReds": 4,
+    "beforeExpectedTaxonomyAssertionsResultDereferenceFailures": 2,
+    "rawShapeGuardControlPass": 1,
+    "causalTaxonomyShapeImplementationPassCredit": 0
+  },
+  "callbacks": [
+    {
+      "title": "attaches taxonomy terms on create by slug",
+      "status": "failed",
+      "classification": "reached-value-assertion-red",
+      "failureMessages": [
+        "AssertionError: expected false to be true // Object.is equality\n    at /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts:69:26\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+      ]
+    },
+    {
+      "title": "returns VALIDATION_ERROR and rolls back the whole write when a slug is unknown",
+      "status": "failed",
+      "classification": "reached-value-assertion-red",
+      "failureMessages": [
+        "AssertionError: expected 'Lifecycle capability \\'taxonomies\\' i\u2026' to contain 'does-not-exist'\n    at /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts:89:33\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+      ]
+    },
+    {
+      "title": "rejects taxonomies with a non-array value",
+      "status": "passed",
+      "classification": "raw-existing-unsupported-capability-shape-guard-control",
+      "failureMessages": []
+    },
+    {
+      "title": "replaces existing assignments on update (setTermsForEntry semantics)",
+      "status": "failed",
+      "classification": "reached-value-assertion-red",
+      "failureMessages": [
+        "AssertionError: expected false to be true // Object.is equality\n    at /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts:121:27\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+      ]
+    },
+    {
+      "title": "clears a taxonomy when passed an empty array",
+      "status": "failed",
+      "classification": "before-taxonomy-expected-assertions-result-dereference",
+      "failureMessages": [
+        "TypeError: Cannot read properties of undefined (reading 'item')\n    at /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts:144:33\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+      ]
+    },
+    {
+      "title": "leaves untouched taxonomies alone (only rewrites named ones)",
+      "status": "failed",
+      "classification": "before-taxonomy-expected-assertions-result-dereference",
+      "failureMessages": [
+        "TypeError: Cannot read properties of undefined (reading 'item')\n    at /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts:163:33\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+      ]
+    },
+    {
+      "title": "resolves slugs in the entry's locale for i18n sites",
+      "status": "failed",
+      "classification": "reached-value-assertion-red",
+      "failureMessages": [
+        "AssertionError: expected false to be true // Object.is equality\n    at /workspace/cms-full-taxonomy-api-admin/parity/emdash/taxonomies/source/packages/core/tests/integration/content/content-taxonomies.test.ts:204:28\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at file:///workspace/cms-full-taxonomy-api-admin/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20"
+      ]
+    }
+  ],
+  "scope": "Actual Native canonical14 migration/Registry/content service and TaxonomyRepository; unchanged whole Source7 body/data/SQL/clocks. Existing taxonomies capability rejection reaches four assertion mismatches. Two callbacks dereference missing create results before their taxonomy assertions; no reached-assertion or rollback credit. One malformed-shape case matches the existing unsupported-field guard and does not establish causal taxonomy validation.",
+  "productBeforeBaselineChanged": 0,
+  "sourceBodyAssertionsMocksDataSqlClocksChanged": 0,
+  "sourcePgNativePgWorkerProviderCredit": 0,
+  "actualNativeCanonicalProof": "real Native installation/readiness reached; taxonomy feature remains red",
+  "raws": [
+    {
+      "path": "/tmp/taxonomy-9996aa63-native-whole-source7-initial-baseline.log",
+      "bytes": 5615,
+      "sha256": "80551a0d882940de9e343fece87825bba3181075dccec98e54edc67d3302c2d5"
+    },
+    {
+      "path": "/tmp/taxonomy-9996aa63-native-whole-source7-initial-baseline-report.json",
+      "bytes": 5974,
+      "sha256": "8e881a919ed13e3ce50966a50dbcdfe3e94289c328a9bdece2c6079214026d63"
+    }
+  ],
+  "sourceGuard": {
+    "bytes": 106,
+    "sha256": "f64427cfad72ec7c9ca59b61093a77cb3462afc8c2eec677f02bdd7db7216c9b",
+    "actualExitCode": 0
+  }
+}

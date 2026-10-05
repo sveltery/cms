@@ -1,6 +1,7 @@
 // Copyright 2026 Cloudflare Inc. MIT; see notices/emdash-MIT.txt.
 // Whole selected interfaces from the retained pinned database/types.ts authority.
 import type { Generated } from "kysely";
+import type {CollectionRow,FieldRow} from "../database/contract.ts";
 
 export interface TaxonomyTable {
 	id: string;
@@ -96,6 +97,8 @@ export interface PluginIndexTable {
 }
 
 export interface Database {
+ _emdash_collections:CollectionRow;
+ _emdash_fields:FieldRow;
  options: OptionTable;
  taxonomies: TaxonomyTable;
  content_taxonomies: ContentTaxonomyTable;

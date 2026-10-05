@@ -1,0 +1,17 @@
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+ ✓ tests/taxonomy-d1/atomic-writes.test.mjs (8 tests) 3008ms
+   ✓ D1: one concept has locale-specific labels and one actual group  503ms
+   ✓ D1: failed group move rolls back the just-inserted translation  311ms
+   ✓ D1: a definition creation failure leaves neither its locale nor its structure group  423ms
+   ✓ D1: a later reorder chunk failure rolls back all earlier chunks  558ms
+   ✓ D1: replacing assignments preserves the old set if insertion fails  312ms
+   ✓ D1: deleting a whole taxonomy clears all locales, terms, groups and actual pivots  376ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  17:31:29
+   Duration  4.46s (transform 730ms, setup 0ms, import 1.23s, tests 3.01s, environment 0ms)
+
+JSON report written to /tmp/taxonomy-public15-d1eight-report.json

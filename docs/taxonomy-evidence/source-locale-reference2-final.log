@@ -1,0 +1,19 @@
+
+ RUN  v4.1.10 /workspace/cms-full-taxonomy-api-admin
+
+stderr | tests/taxonomy-reference/source-locale-reference.test.mjs > reference host: configured FR finds the generated-id French entry by slug
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+stderr | tests/taxonomy-reference/source-locale-reference.test.mjs > reference host: Source resolveId dataflow finds the French slug before actual assignment update
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ✓ tests/taxonomy-reference/source-locale-reference.test.mjs (2 tests) 1104ms
+   ✓ reference host: configured FR finds the generated-id French entry by slug  659ms
+   ✓ reference host: Source resolveId dataflow finds the French slug before actual assignment update  444ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  00:53:37
+   Duration  5.65s (transform 3.24s, setup 0ms, import 4.26s, tests 1.10s, environment 0ms)
+
+JSON report written to /tmp/taxonomy102-rev04-reference2-final.json
