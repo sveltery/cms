@@ -53,10 +53,11 @@
     else if (intent === 'restore') restore();
   }
   function items() { return surface ? [...surface.querySelectorAll<HTMLButtonElement>('button[role^="menuitem"]')] : []; }
-  function focusItem(item?: HTMLButtonElement) {
+  function focusItem(item?: HTMLButtonElement, reveal = true) {
     if (!item) return;
     for (const button of items()) button.tabIndex = button === item ? 0 : -1;
-    item.focus(); item.scrollIntoView?.({ block: 'nearest' });
+    item.focus({ preventScroll: true });
+    if (reveal) item.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
   }
   function hoverItem(event: MouseEvent) {
     const item = event.currentTarget as HTMLButtonElement;
@@ -64,7 +65,7 @@
     // admits unavailable actions, requires an open menu and a registered item,
     // and avoids refocusing the current item. Activation keeps its own guards.
     if (!menuOpen || !editable || !surface?.contains(item) || document.activeElement === item) return;
-    focusItem(item);
+    focusItem(item, false);
   }
   function positionMenu() {
     if (!menuOpen || !trigger || !surface) return;
