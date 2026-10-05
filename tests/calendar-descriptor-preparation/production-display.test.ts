@@ -32,6 +32,10 @@ describe('controlled translated production Calendar displays',()=>{
     i18n.loadAndActivate({locale:'en',messages:{'NV/gQ6':['LATE ',['lateness']]}});
     expect(render(Entry,{props:{item,display,now}}).body).toContain('LATE 1 hour ago');
   });
+  it('uses the Source flat published state/time descriptor',()=>{
+    i18n.loadAndActivate({locale:'en',messages:{kDmC2a:['FLAT ',['state'],' AT ',['time']]}});
+    expect(render(Entry,{props:{item:{...item,kind:'published',state:'published'},display,now,chip:true}}).body).toContain('FLAT Published AT 11:00 AM');
+  });
   it('uses Source more-entry plural/date descriptor in the month',()=>{
     i18n.loadAndActivate({locale:'en',messages:{YSXm8I:[['hidden','plural',{one:['HIDDEN ','#',' ON ',['date']],other:['HIDDEN ','#',' ON ',['date']]}]]}});
     const entries=Array.from({length:5},(_,index)=>({...item,key:`posts:${index}:scheduled`}));
