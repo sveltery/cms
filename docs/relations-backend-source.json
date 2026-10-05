@@ -1030,5 +1030,91 @@
       "The old exact22 diagnostics remain held; no branch graph containing them was uploaded.",
       "Final whole13, secured9, configured and fresh review are pending at their actual final head."
     ]
+  },
+  "relLif03CompiledWorkerClosure": {
+    "feature": "REL-LIF03 compiled Worker closure",
+    "runtimeFixHead": "62dc5832",
+    "mergedHead": "bd770239333606a763b81c8a41e895cd77f408eb",
+    "mergedTree": "4d3cd7cffee5105f764ae5c9937435fb82975990",
+    "wholeOriginalWorkerPreReadBaseline": "482fbe83 after Kit preparation: collection metadata Worker startup fails before assertions with same ALS error; initial missing-Kit snapshot has zero runtime credit",
+    "repair": "Replace only the owned REL2 whole-Kysely dynamic namespace import with a named static sql import inside the already lazy relations module. No Source function/data/clock, context, fallback, Vite, adapter flag or deadline changes.",
+    "currentWhole13": "pending one justified changed-runtime attempt",
+    "publicGraphUploaded": false,
+    "priorWholeNormalOutcome": {
+      "head": "9cce6fabe4489eda4ced456560bf0b0885d064c3",
+      "tree": "09e16bce3a1fbe99a600817cbc62b8a290665a6e",
+      "command": "pinned pnpm12.6 PATH; timeout --signal=TERM --kill-after=30s 15m sh scripts/bootstrap.sh",
+      "exit": 124,
+      "completedNormalPhases": [
+        "frozen dependency install",
+        "type and Svelte checks"
+      ],
+      "serviceOutcome": {
+        "registered": 1541,
+        "passed": 1538,
+        "failed": 2,
+        "cancelled": 1
+      },
+      "realProductFailures": [
+        "Unchanged whole collection-update-workerd callback pre-fetch ALS runtime failure",
+        "Unchanged whole draft-trash-workerd callback pre-fetch ALS runtime failure"
+      ],
+      "cancelledOriginalFile": "tests/lifecycle-startup-prerequisites.test.ts: event loop resolved with pending promise; no completed assertion failure from that file",
+      "SourceAssertionRedCredit": 0,
+      "whole13Credit": 0,
+      "finalStationaryOutcome": true,
+      "followup": "one existing owned REL2 dynamic whole-Kysely namespace import generates eager menus ALS chunk. Isolated named-import successor closes both entire Worker callbacks."
+    },
+    "privateRawSummaries": [
+      {
+        "label": "whole original Worker callbacks",
+        "bytes": 336,
+        "sha256": "738e996e2ab28abc94652ca2a832ced3c9779065d59616017fcae628c8643ff1",
+        "passed": 2,
+        "exit": 0
+      },
+      {
+        "label": "Native55",
+        "bytes": 14622,
+        "sha256": "fbacf3e2c7e41624da055f4f0263dc8e54de4d0240a63627e9349d2940802be0",
+        "passed": 55,
+        "exit": 0
+      },
+      {
+        "label": "Source51",
+        "bytes": 231,
+        "sha256": "9c4899900d8512a6c92670136492cd7c7987aa00e9a41b54ae1a6a0a9e155134",
+        "passed": 51,
+        "exit": 0
+      },
+      {
+        "label": "Source33 duplicate canonical family",
+        "bytes": 231,
+        "sha256": "6003f8fb8988c9a2d5aa2420028a7257470c461f2e343fff891748aa10bc731b",
+        "passed": 33,
+        "exit": 0
+      },
+      {
+        "label": "Source43",
+        "bytes": 231,
+        "sha256": "8257da9e457f260d89d3560f0556126229522ef038eeee4deeb2c84c795418d7",
+        "passed": 43,
+        "exit": 0
+      },
+      {
+        "label": "Source body guard",
+        "bytes": 165,
+        "sha256": "ef491db504e93960ad5b9f85bf48a743ff9ebb1fa7e4fb014c956aa82ba6f42a",
+        "passed": null,
+        "exit": 0
+      },
+      {
+        "label": "typecheck",
+        "bytes": 154,
+        "sha256": "f337be6d176001dbd22cfeb64ce9a7a77881be8a88a4d70e1afe51b2ea519258",
+        "passed": null,
+        "exit": 0
+      }
+    ]
   }
 }
