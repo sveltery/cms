@@ -1,0 +1,1163 @@
+﻿2026-10-05T20:15:56.2511027Z Current runner version: '2.337.0'
+2026-10-05T20:15:56.2531401Z ##[group]Runner Image Provisioner
+2026-10-05T20:15:56.2532171Z Hosted Compute Agent
+2026-10-05T20:15:56.2532858Z Version: 20260901.588
+2026-10-05T20:15:56.2533440Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-05T20:15:56.2534115Z Build Date: 2026-09-01T19:56:44Z
+2026-10-05T20:15:56.2534701Z Worker ID: {1dae889f-c672-4f7d-84dd-8c7bdd8f04f9}
+2026-10-05T20:15:56.2535331Z Azure Region: westus3
+2026-10-05T20:15:56.2535850Z ##[endgroup]
+2026-10-05T20:15:56.2536923Z ##[group]Operating System
+2026-10-05T20:15:56.2537503Z Ubuntu
+2026-10-05T20:15:56.2537960Z 22.04.5
+2026-10-05T20:15:56.2538380Z LTS
+2026-10-05T20:15:56.2538892Z ##[endgroup]
+2026-10-05T20:15:56.2539404Z ##[group]Runner Image
+2026-10-05T20:15:56.2539970Z Image: ubuntu-22.04
+2026-10-05T20:15:56.2540449Z Version: 20260927.309.1
+2026-10-05T20:15:56.2541544Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20260927.309/images/ubuntu/Ubuntu2204-Readme.md
+2026-10-05T20:15:56.2542944Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20260927.309
+2026-10-05T20:15:56.2543801Z ##[endgroup]
+2026-10-05T20:15:56.2544688Z ##[group]GITHUB_TOKEN Permissions
+2026-10-05T20:15:56.2546298Z Contents: read
+2026-10-05T20:15:56.2546803Z Metadata: read
+2026-10-05T20:15:56.2547257Z ##[endgroup]
+2026-10-05T20:15:56.2548978Z Secret source: Actions
+2026-10-05T20:15:56.2549795Z Cache mode: write
+2026-10-05T20:15:56.2550463Z Prepare workflow directory
+2026-10-05T20:15:56.2809275Z Prepare all required actions
+2026-10-05T20:15:56.2848839Z Getting action download info
+2026-10-05T20:15:56.6132453Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-05T20:15:56.7522157Z Download action repository 'pnpm/action-setup@v4' (SHA:b906affcce14559ad1aafd4ab0e942779e9f58b1)
+2026-10-05T20:15:57.4131710Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-05T20:15:57.7055248Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-05T20:15:58.1209606Z Complete job name: rich-editor-source
+2026-10-05T20:15:58.1957704Z ##[group]Run actions/checkout@v4
+2026-10-05T20:15:58.1958952Z with:
+2026-10-05T20:15:58.1959884Z   repository: sveltery/cms
+2026-10-05T20:15:58.1966935Z   token: ***
+2026-10-05T20:15:58.1967782Z   ssh-strict: true
+2026-10-05T20:15:58.1968609Z   ssh-user: git
+2026-10-05T20:15:58.1969432Z   persist-credentials: true
+2026-10-05T20:15:58.1970437Z   clean: true
+2026-10-05T20:15:58.1971270Z   sparse-checkout-cone-mode: true
+2026-10-05T20:15:58.1972395Z   fetch-depth: 1
+2026-10-05T20:15:58.1973226Z   fetch-tags: false
+2026-10-05T20:15:58.1974069Z   show-progress: true
+2026-10-05T20:15:58.1975045Z   lfs: false
+2026-10-05T20:15:58.1975829Z   submodules: false
+2026-10-05T20:15:58.1976671Z   set-safe-directory: true
+2026-10-05T20:15:58.1977677Z   allow-unsafe-pr-checkout: false
+2026-10-05T20:15:58.1978863Z ##[endgroup]
+2026-10-05T20:15:58.2842020Z Syncing repository: sveltery/cms
+2026-10-05T20:15:58.2844684Z ##[group]Getting Git version info
+2026-10-05T20:15:58.2846070Z Working directory is '/home/runner/work/cms/cms'
+2026-10-05T20:15:58.2847802Z [command]/usr/bin/git version
+2026-10-05T20:15:58.2867539Z git version 2.55.0
+2026-10-05T20:15:58.2887282Z ##[endgroup]
+2026-10-05T20:15:58.2899013Z Temporarily overriding HOME='/home/runner/work/_temp/f568e954-5518-4e0d-8308-86fbca092c60' before making global git config changes
+2026-10-05T20:15:58.2901735Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-05T20:15:58.2903983Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-05T20:15:58.2938288Z Deleting the contents of '/home/runner/work/cms/cms'
+2026-10-05T20:15:58.2944326Z ##[group]Initializing the repository
+2026-10-05T20:15:58.2946401Z [command]/usr/bin/git init /home/runner/work/cms/cms
+2026-10-05T20:15:58.3084371Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-05T20:15:58.3086627Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-05T20:15:58.3088781Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-05T20:15:58.3090939Z hint: call:
+2026-10-05T20:15:58.3092066Z hint:
+2026-10-05T20:15:58.3093619Z hint: 	git config --global init.defaultBranch <name>
+2026-10-05T20:15:58.3095503Z hint:
+2026-10-05T20:15:58.3097309Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-05T20:15:58.3099875Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-05T20:15:58.3102140Z hint:
+2026-10-05T20:15:58.3103608Z hint: 	git branch -m <name>
+2026-10-05T20:15:58.3105276Z hint:
+2026-10-05T20:15:58.3107192Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-05T20:15:58.3109685Z Initialized empty Git repository in /home/runner/work/cms/cms/.git/
+2026-10-05T20:15:58.3114471Z [command]/usr/bin/git remote add origin https://github.com/sveltery/cms
+2026-10-05T20:15:58.3129057Z ##[endgroup]
+2026-10-05T20:15:58.3131436Z ##[group]Disabling automatic garbage collection
+2026-10-05T20:15:58.3135421Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-05T20:15:58.3190630Z ##[endgroup]
+2026-10-05T20:15:58.3192926Z ##[group]Setting up auth
+2026-10-05T20:15:58.3196899Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-05T20:15:58.3235126Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-05T20:15:58.3591050Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-05T20:15:58.3627472Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-05T20:15:58.3862990Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-05T20:15:58.3896663Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-05T20:15:58.4115547Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-05T20:15:58.4153428Z ##[endgroup]
+2026-10-05T20:15:58.4154915Z ##[group]Fetching the repository
+2026-10-05T20:15:58.4160740Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +820f408897a0ba48cbc831f2f38b837fc9e1a8fc:refs/remotes/pull/104/merge
+2026-10-05T20:16:00.4089077Z From https://github.com/sveltery/cms
+2026-10-05T20:16:00.4090276Z  * [new ref]         820f408897a0ba48cbc831f2f38b837fc9e1a8fc -> pull/104/merge
+2026-10-05T20:16:00.4092146Z ##[endgroup]
+2026-10-05T20:16:00.4092839Z ##[group]Determining the checkout info
+2026-10-05T20:16:00.4094812Z ##[endgroup]
+2026-10-05T20:16:00.4099183Z [command]/usr/bin/git sparse-checkout disable
+2026-10-05T20:16:00.4175861Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-05T20:16:00.4206152Z ##[group]Checking out the ref
+2026-10-05T20:16:00.4208836Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/104/merge
+2026-10-05T20:16:00.7057445Z Note: switching to 'refs/remotes/pull/104/merge'.
+2026-10-05T20:16:00.7057896Z 
+2026-10-05T20:16:00.7058185Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-05T20:16:00.7058861Z changes and commit them, and you can discard any commits you make in this
+2026-10-05T20:16:00.7059516Z state without impacting any branches by switching back to a branch.
+2026-10-05T20:16:00.7059957Z 
+2026-10-05T20:16:00.7060252Z If you want to create a new branch to retain commits you create, you may
+2026-10-05T20:16:00.7060855Z do so (now or later) by using -c with the switch command. Example:
+2026-10-05T20:16:00.7061550Z 
+2026-10-05T20:16:00.7061714Z   git switch -c <new-branch-name>
+2026-10-05T20:16:00.7061972Z 
+2026-10-05T20:16:00.7082773Z Or undo this operation with:
+2026-10-05T20:16:00.7083102Z 
+2026-10-05T20:16:00.7083267Z   git switch -
+2026-10-05T20:16:00.7083484Z 
+2026-10-05T20:16:00.7083775Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-05T20:16:00.7084237Z 
+2026-10-05T20:16:00.7084685Z HEAD is now at 820f408 Merge 2e8747bef91b9b61975832b86d097b5e82c2a9b1 into f2b2e560f6ea54f53e941db76fac732601772ce9
+2026-10-05T20:16:00.7086441Z ##[endgroup]
+2026-10-05T20:16:00.7133497Z [command]/usr/bin/git log -1 --format=%H
+2026-10-05T20:16:00.7145709Z 820f408897a0ba48cbc831f2f38b837fc9e1a8fc
+2026-10-05T20:16:00.7356963Z ##[group]Run pnpm/action-setup@v4
+2026-10-05T20:16:00.7357198Z with:
+2026-10-05T20:16:00.7357363Z   version: 12.6.0
+2026-10-05T20:16:00.7357535Z   dest: ~/setup-pnpm
+2026-10-05T20:16:00.7357712Z   run_install: null
+2026-10-05T20:16:00.7357904Z   cache: false
+2026-10-05T20:16:00.7358084Z   cache_dependency_path: pnpm-lock.yaml
+2026-10-05T20:16:00.7358345Z   package_json_file: package.json
+2026-10-05T20:16:00.7358548Z   standalone: false
+2026-10-05T20:16:00.7358713Z ##[endgroup]
+2026-10-05T20:16:00.8541408Z ##[group]Running self-installer...
+2026-10-05T20:16:01.1794071Z (node:1860) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-05T20:16:01.3523975Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-05T20:16:01.3524590Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-10-05T20:16:01.4933758Z Packages: +3
+2026-10-05T20:16:01.4935336Z +++
+2026-10-05T20:16:02.2111885Z Progress: resolved 15, reused 0, downloaded 3, added 3, done
+2026-10-05T20:16:02.2235244Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm preinstall$ node install.js
+2026-10-05T20:16:03.7172949Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm preinstall: Done
+2026-10-05T20:16:03.7176769Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm postinstall$ node install.js
+2026-10-05T20:16:03.7595754Z .../.pnpm/pnpm@12.6.0/node_modules/pnpm postinstall: Done
+2026-10-05T20:16:04.9351047Z 
+2026-10-05T20:16:04.9351574Z dependencies:
+2026-10-05T20:16:04.9351876Z + pnpm 12.6.0 (12.9.1 is available)
+2026-10-05T20:16:04.9352124Z 
+2026-10-05T20:16:04.9370716Z Done in 3.9s
+2026-10-05T20:16:04.9947894Z ##[endgroup]
+2026-10-05T20:16:04.9948730Z Installation Completed!
+2026-10-05T20:16:05.0123218Z ##[group]Run actions/setup-node@v4
+2026-10-05T20:16:05.0123428Z with:
+2026-10-05T20:16:05.0123588Z   node-version: 24
+2026-10-05T20:16:05.0123752Z   cache: pnpm
+2026-10-05T20:16:05.0123917Z   always-auth: false
+2026-10-05T20:16:05.0124089Z   check-latest: false
+2026-10-05T20:16:05.0126132Z   token: ***
+2026-10-05T20:16:05.0126295Z env:
+2026-10-05T20:16:05.0126545Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T20:16:05.0126814Z ##[endgroup]
+2026-10-05T20:16:05.1672874Z (node:1891) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-05T20:16:05.1673516Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-05T20:16:05.1681811Z Found in cache @ /opt/hostedtoolcache/node/24.21.0/x64
+2026-10-05T20:16:05.1691511Z ##[group]Environment details
+2026-10-05T20:16:06.8842880Z node: v24.21.0
+2026-10-05T20:16:06.8843220Z npm: 11.19.0
+2026-10-05T20:16:06.8843459Z yarn: 1.22.22
+2026-10-05T20:16:06.8844860Z ##[endgroup]
+2026-10-05T20:16:06.8859874Z [command]/home/runner/setup-pnpm/node_modules/.bin/pnpm store path --silent
+2026-10-05T20:16:06.9022384Z /home/runner/setup-pnpm/node_modules/.bin/store/v11
+2026-10-05T20:16:07.1182556Z Cache hit for: node-cache-Linux-x64-pnpm-40a3e34403dfa50d16a1b0a9fae1c6e0b3629958f2bb31cfbe373f03cb9feb81
+2026-10-05T20:16:07.1265082Z (node:1891) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-05T20:16:08.3620948Z Received 37748736 of 179658130 (21.0%), 36.0 MBs/sec
+2026-10-05T20:16:09.3625034Z Received 167772160 of 179658130 (93.4%), 80.0 MBs/sec
+2026-10-05T20:16:09.4239110Z Received 179658130 of 179658130 (100.0%), 83.1 MBs/sec
+2026-10-05T20:16:09.4239685Z Cache Size: ~171 MB (179658130 B)
+2026-10-05T20:16:09.4335723Z [command]/usr/bin/tar -xf /home/runner/work/_temp/85fa6cb2-0203-47d6-a11e-efe55f47e04e/cache.tzst -P -C /home/runner/work/cms/cms --use-compress-program unzstd
+2026-10-05T20:16:11.0824965Z Cache restored successfully
+2026-10-05T20:16:11.1158281Z Cache restored from key: node-cache-Linux-x64-pnpm-40a3e34403dfa50d16a1b0a9fae1c6e0b3629958f2bb31cfbe373f03cb9feb81
+2026-10-05T20:16:11.1315621Z ##[group]Run pnpm install --frozen-lockfile
+2026-10-05T20:16:11.1315958Z [36;1mpnpm install --frozen-lockfile[0m
+2026-10-05T20:16:11.1978118Z shell: /usr/bin/bash -e {0}
+2026-10-05T20:16:11.1978359Z env:
+2026-10-05T20:16:11.1978589Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T20:16:11.1978847Z ##[endgroup]
+2026-10-05T20:16:11.2491169Z ? Verifying lockfile against supply-chain policies (634 entries)...
+2026-10-05T20:16:11.4094154Z Packages are hard linked from the content-addressable store to the virtual store.
+2026-10-05T20:16:11.4113353Z   Content-addressable store is at: /home/runner/setup-pnpm/node_modules/.bin/store/v11
+2026-10-05T20:16:11.4114032Z   Virtual store is at:             node_modules/.pnpm
+2026-10-05T20:16:13.8088384Z ✓ Lockfile passes supply-chain policies (634 entries in 2.6s)
+2026-10-05T20:16:13.8088955Z Lockfile is up to date, resolution step is skipped
+2026-10-05T20:16:13.8161930Z Packages: +503
+2026-10-05T20:16:13.8162831Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-10-05T20:16:13.9397856Z Progress: resolved 503, reused 503, downloaded 0, added 503, done
+2026-10-05T20:16:14.0595788Z . prepare$ svelte-kit sync
+2026-10-05T20:16:15.1539931Z . prepare: Done
+2026-10-05T20:16:15.1548469Z 
+2026-10-05T20:16:15.1548673Z dependencies:
+2026-10-05T20:16:15.1549070Z + @codemirror/autocomplete 6.20.3
+2026-10-05T20:16:15.1549467Z + @codemirror/commands 6.10.4
+2026-10-05T20:16:15.1549804Z + @codemirror/lang-css 6.3.1
+2026-10-05T20:16:15.1550172Z + @codemirror/lang-html 6.4.12
+2026-10-05T20:16:15.1550501Z + @codemirror/lang-javascript 6.2.5
+2026-10-05T20:16:15.1550843Z + @codemirror/language 6.12.4
+2026-10-05T20:16:15.1551166Z + @codemirror/state 6.7.1
+2026-10-05T20:16:15.1551487Z + @codemirror/view 6.43.8
+2026-10-05T20:16:15.1551791Z + @lezer/highlight 1.2.3
+2026-10-05T20:16:15.1552091Z + @oslojs/crypto 1.0.1
+2026-10-05T20:16:15.1559240Z + @oslojs/encoding 1.1.0
+2026-10-05T20:16:15.1559596Z + @oslojs/webauthn 1.0.0
+2026-10-05T20:16:15.1559870Z + @tiptap/core 3.20.0
+2026-10-05T20:16:15.1560191Z + @tiptap/extension-character-count 3.20.0
+2026-10-05T20:16:15.1560640Z + @tiptap/extension-code 3.20.0
+2026-10-05T20:16:15.1561001Z + @tiptap/extension-code-block-lowlight 3.20.0
+2026-10-05T20:16:15.1561360Z + @tiptap/extension-focus 3.20.0
+2026-10-05T20:16:15.1561690Z + @tiptap/extension-link 3.20.0
+2026-10-05T20:16:15.1562001Z + @tiptap/extension-list 3.20.0
+2026-10-05T20:16:15.1563108Z + @tiptap/extension-placeholder 3.20.0
+2026-10-05T20:16:15.1563551Z + @tiptap/extension-subscript 3.20.0
+2026-10-05T20:16:15.1563994Z + @tiptap/extension-superscript 3.20.0
+2026-10-05T20:16:15.1564375Z + @tiptap/extension-table 3.20.0
+2026-10-05T20:16:15.1564803Z + @tiptap/extension-table-cell 3.20.0
+2026-10-05T20:16:15.1565237Z + @tiptap/extension-table-header 3.20.0
+2026-10-05T20:16:15.1565637Z + @tiptap/extension-table-row 3.20.0
+2026-10-05T20:16:15.1566027Z + @tiptap/extension-text-align 3.20.0
+2026-10-05T20:16:15.1566446Z + @tiptap/extension-typography 3.20.0
+2026-10-05T20:16:15.1566818Z + @tiptap/pm 3.20.0
+2026-10-05T20:16:15.1567117Z + @tiptap/starter-kit 3.20.0
+2026-10-05T20:16:15.1567735Z + @tiptap/suggestion 3.20.0
+2026-10-05T20:16:15.1568199Z + @wordpress/block-serialization-default-parser 5.38.0
+2026-10-05T20:16:15.1568624Z + blurhash 2.0.5
+2026-10-05T20:16:15.1568887Z + cn 0.2.2
+2026-10-05T20:16:15.1569138Z + date-fns 4.1.0
+2026-10-05T20:16:15.1569428Z + highlight.js 11.11.2
+2026-10-05T20:16:15.1569732Z + image-size 2.0.2
+2026-10-05T20:16:15.1570003Z + jpeg-js 0.4.4
+2026-10-05T20:16:15.1570285Z + jsonc-parser 3.3.1
+2026-10-05T20:16:15.1570565Z + kysely 0.29.2
+2026-10-05T20:16:15.1570824Z + lowlight 3.3.0
+2026-10-05T20:16:15.1571080Z + mime 4.1.0
+2026-10-05T20:16:15.1571329Z + parse5 7.3.0
+2026-10-05T20:16:15.1571607Z + smol-toml 1.6.0
+2026-10-05T20:16:15.1571869Z + ulidx 2.4.1
+2026-10-05T20:16:15.1572115Z + upng-js 2.1.0
+2026-10-05T20:16:15.1572538Z + valibot 1.5.0
+2026-10-05T20:16:15.1573035Z + zod 4.5.4
+2026-10-05T20:16:15.1573465Z 
+2026-10-05T20:16:15.1573595Z devDependencies:
+2026-10-05T20:16:15.1573880Z + @babel/core 7.29.7
+2026-10-05T20:16:15.1574187Z + @cloudflare/kumo 2.6.0
+2026-10-05T20:16:15.1574552Z + @cloudflare/workers-types 4.20260507.1
+2026-10-05T20:16:15.1574975Z + @lingui/babel-plugin-lingui-macro 5.9.5
+2026-10-05T20:16:15.1575349Z + @lingui/conf 5.9.5
+2026-10-05T20:16:15.1575633Z + @lingui/core 5.9.5
+2026-10-05T20:16:15.1575934Z + @lingui/react 5.9.5
+2026-10-05T20:16:15.1576253Z + @playwright/test 1.63.0
+2026-10-05T20:16:15.1576625Z + @sveltejs/adapter-auto 7.0.1
+2026-10-05T20:16:15.1577024Z + @sveltejs/adapter-cloudflare 7.2.9
+2026-10-05T20:16:15.1577423Z + @sveltejs/adapter-node 5.5.7
+2026-10-05T20:16:15.1577747Z + @sveltejs/kit 2.70.3
+2026-10-05T20:16:15.1578094Z + @sveltejs/vite-plugin-svelte 7.3.1
+2026-10-05T20:16:15.1578485Z + @tanstack/react-query 5.90.21
+2026-10-05T20:16:15.1578908Z + @tanstack/react-router 1.163.2
+2026-10-05T20:16:15.1579297Z + @testing-library/react 16.3.2
+2026-10-05T20:16:15.1579625Z + @tiptap/react 3.20.0
+2026-10-05T20:16:15.1579913Z + @types/jsdom 30.0.0
+2026-10-05T20:16:15.1580187Z + @types/node 24.19.0
+2026-10-05T20:16:15.1580432Z + @types/react 19.3.0
+2026-10-05T20:16:15.1580723Z + @types/react-dom 19.3.0
+2026-10-05T20:16:15.1581083Z + @vitest/browser-playwright 4.1.10
+2026-10-05T20:16:15.1581425Z + devalue 5.9.4
+2026-10-05T20:16:15.1581683Z + jsdom 30.1.1
+2026-10-05T20:16:15.1581961Z + miniflare 4.20260507.1
+2026-10-05T20:16:15.1582245Z + pg 8.18.0
+2026-10-05T20:16:15.1582771Z + react 19.3.0
+2026-10-05T20:16:15.1583052Z + react-dom 19.3.0
+2026-10-05T20:16:15.1583310Z + svelte 5.57.1
+2026-10-05T20:16:15.1583605Z + svelte-check 4.7.6
+2026-10-05T20:16:15.1583898Z + typescript 6.0.3
+2026-10-05T20:16:15.1584165Z + vite 8.3.2
+2026-10-05T20:16:15.1584411Z + vitest 4.1.10
+2026-10-05T20:16:15.1584709Z + vitest-browser-react 2.2.0
+2026-10-05T20:16:15.1585030Z + wrangler 4.99.0
+2026-10-05T20:16:15.1585179Z 
+2026-10-05T20:16:15.1585386Z Done in 3.9s using pnpm v12.6.0
+2026-10-05T20:16:15.1928027Z ##[group]Run pnpm exec playwright install --with-deps chromium
+2026-10-05T20:16:15.1928427Z [36;1mpnpm exec playwright install --with-deps chromium[0m
+2026-10-05T20:16:15.1995060Z shell: /usr/bin/bash -e {0}
+2026-10-05T20:16:15.1995274Z env:
+2026-10-05T20:16:15.1995497Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T20:16:15.1995762Z ##[endgroup]
+2026-10-05T20:16:15.6111517Z Installing dependencies...
+2026-10-05T20:16:15.6175952Z Switching to root user to install dependencies...
+2026-10-05T20:16:15.7923756Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-05T20:16:15.8135848Z Get:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease [3632 B]
+2026-10-05T20:16:15.9364339Z Get:7 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main arm64 Packages [551 kB]
+2026-10-05T20:16:15.9460980Z Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+2026-10-05T20:16:15.9471508Z Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+2026-10-05T20:16:15.9493602Z Get:8 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main amd64 Packages [794 kB]
+2026-10-05T20:16:15.9523144Z Get:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+2026-10-05T20:16:15.9530342Z Get:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+2026-10-05T20:16:16.1300475Z Get:9 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3907 kB]
+2026-10-05T20:16:16.1706812Z Get:10 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main Translation-en [576 kB]
+2026-10-05T20:16:16.2203599Z Get:11 http://azure.archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [6714 kB]
+2026-10-05T20:16:16.3089314Z Get:12 http://azure.archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [1290 kB]
+2026-10-05T20:16:16.3142640Z Get:13 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1285 kB]
+2026-10-05T20:16:16.3195764Z Get:14 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe Translation-en [325 kB]
+2026-10-05T20:16:16.3215133Z Get:15 http://azure.archive.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3631 kB]
+2026-10-05T20:16:16.3353296Z Get:16 http://azure.archive.ubuntu.com/ubuntu jammy-security/main Translation-en [508 kB]
+2026-10-05T20:16:16.3379395Z Get:17 http://azure.archive.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [6465 kB]
+2026-10-05T20:16:16.3621261Z Get:18 http://azure.archive.ubuntu.com/ubuntu jammy-security/restricted Translation-en [1244 kB]
+2026-10-05T20:16:16.4099402Z Get:19 http://azure.archive.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1052 kB]
+2026-10-05T20:16:16.4144829Z Get:20 http://azure.archive.ubuntu.com/ubuntu jammy-security/universe Translation-en [237 kB]
+2026-10-05T20:16:26.2770855Z Fetched 29.0 MB in 3s (9899 kB/s)
+2026-10-05T20:16:27.3169556Z Reading package lists...
+2026-10-05T20:16:27.3695894Z Reading package lists...
+2026-10-05T20:16:27.5863416Z Building dependency tree...
+2026-10-05T20:16:27.5872911Z Reading state information...
+2026-10-05T20:16:27.7350739Z fonts-liberation is already the newest version (1:1.07.4-11).
+2026-10-05T20:16:27.7351241Z fonts-liberation set to manually installed.
+2026-10-05T20:16:27.7352026Z libatk-bridge2.0-0 is already the newest version (2.38.0-3).
+2026-10-05T20:16:27.7352635Z libatk-bridge2.0-0 set to manually installed.
+2026-10-05T20:16:27.7353119Z libatk1.0-0 is already the newest version (2.36.0-3build1).
+2026-10-05T20:16:27.7353600Z libatk1.0-0 set to manually installed.
+2026-10-05T20:16:27.7354065Z libatspi2.0-0 is already the newest version (2.44.0-3).
+2026-10-05T20:16:27.7354519Z libatspi2.0-0 set to manually installed.
+2026-10-05T20:16:27.7355049Z libfontconfig1 is already the newest version (2.13.1-4.2ubuntu5).
+2026-10-05T20:16:27.7355590Z libfontconfig1 set to manually installed.
+2026-10-05T20:16:27.7356107Z libxcb1 is already the newest version (1.14-3ubuntu3).
+2026-10-05T20:16:27.7356596Z libxcb1 set to manually installed.
+2026-10-05T20:16:27.7357675Z libxcomposite1 is already the newest version (1:0.4.5-1build2).
+2026-10-05T20:16:27.7358234Z libxcomposite1 set to manually installed.
+2026-10-05T20:16:27.7358759Z libxdamage1 is already the newest version (1:1.1.5-2build2).
+2026-10-05T20:16:27.7359243Z libxdamage1 set to manually installed.
+2026-10-05T20:16:27.7359749Z libxext6 is already the newest version (2:1.3.4-1build1).
+2026-10-05T20:16:27.7360212Z libxext6 set to manually installed.
+2026-10-05T20:16:27.7360685Z libxfixes3 is already the newest version (1:6.0.0-1).
+2026-10-05T20:16:27.7361139Z libxfixes3 set to manually installed.
+2026-10-05T20:16:27.7361606Z libxkbcommon0 is already the newest version (1.4.0-1).
+2026-10-05T20:16:27.7362113Z libxkbcommon0 set to manually installed.
+2026-10-05T20:16:27.7362806Z libxrandr2 is already the newest version (2:1.5.2-1build1).
+2026-10-05T20:16:27.7363308Z libxrandr2 set to manually installed.
+2026-10-05T20:16:27.7363943Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.22.04.1).
+2026-10-05T20:16:27.7364662Z libasound2 is already the newest version (1.2.6.1-1ubuntu1.2).
+2026-10-05T20:16:27.7365176Z libasound2 set to manually installed.
+2026-10-05T20:16:27.7365902Z libcairo2 is already the newest version (1.16.0-5ubuntu2.1).
+2026-10-05T20:16:27.7366390Z libcairo2 set to manually installed.
+2026-10-05T20:16:27.7366940Z libcups2 is already the newest version (2.4.1op1-1ubuntu4.21).
+2026-10-05T20:16:27.7367419Z libcups2 set to manually installed.
+2026-10-05T20:16:27.7367914Z libdbus-1-3 is already the newest version (1.12.20-2ubuntu4.1).
+2026-10-05T20:16:27.7368398Z libdbus-1-3 set to manually installed.
+2026-10-05T20:16:27.7368932Z libdrm2 is already the newest version (2.4.113-2~ubuntu0.22.04.1).
+2026-10-05T20:16:27.7369424Z libdrm2 set to manually installed.
+2026-10-05T20:16:27.7369963Z libfreetype6 is already the newest version (2.11.1+dfsg-1ubuntu0.3).
+2026-10-05T20:16:27.7370512Z libfreetype6 set to manually installed.
+2026-10-05T20:16:27.7371368Z libgbm1 is already the newest version (23.2.1-1ubuntu3.1~22.04.4).
+2026-10-05T20:16:27.7371939Z libgbm1 set to manually installed.
+2026-10-05T20:16:27.7372588Z libglib2.0-0 is already the newest version (2.72.4-0ubuntu2.10).
+2026-10-05T20:16:27.7373107Z libglib2.0-0 set to manually installed.
+2026-10-05T20:16:27.7373668Z libnspr4 is already the newest version (2:4.35-0ubuntu0.22.04.1).
+2026-10-05T20:16:27.7374297Z libnss3 is already the newest version (2:3.98-0ubuntu0.22.04.4).
+2026-10-05T20:16:27.7374945Z libpango-1.0-0 is already the newest version (1.50.6+ds-2ubuntu1).
+2026-10-05T20:16:27.7375499Z libpango-1.0-0 set to manually installed.
+2026-10-05T20:16:27.7376102Z libwayland-client0 is already the newest version (1.20.0-1ubuntu0.1).
+2026-10-05T20:16:27.7376700Z libwayland-client0 set to manually installed.
+2026-10-05T20:16:27.7377260Z libx11-6 is already the newest version (2:1.7.5-1ubuntu0.3).
+2026-10-05T20:16:27.7377760Z libx11-6 set to manually installed.
+2026-10-05T20:16:27.7378309Z xvfb is already the newest version (2:21.1.4-2ubuntu1.7~22.04.16).
+2026-10-05T20:16:27.7378900Z The following additional packages will be installed:
+2026-10-05T20:16:27.7379370Z   xfonts-encodings xfonts-utils
+2026-10-05T20:16:27.7379725Z Recommended packages:
+2026-10-05T20:16:27.7380068Z   fonts-ipafont-mincho fonts-tlwg-loma
+2026-10-05T20:16:27.7692213Z The following NEW packages will be installed:
+2026-10-05T20:16:27.7692976Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+2026-10-05T20:16:27.7696078Z   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+2026-10-05T20:16:27.7696550Z   xfonts-utils
+2026-10-05T20:16:27.7852197Z 0 upgraded, 9 newly installed, 0 to remove and 20 not upgraded.
+2026-10-05T20:16:27.7852905Z Need to get 18.4 MB of archives.
+2026-10-05T20:16:27.7853323Z After this operation, 56.8 MB of additional disk space will be used.
+2026-10-05T20:16:27.7853736Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-05T20:16:27.8699858Z Get:2 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1 [3513 kB]
+2026-10-05T20:16:28.4477644Z Get:3 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 fonts-freefont-ttf all 20120503-10build1 [2388 kB]
+2026-10-05T20:16:28.5410766Z Get:4 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1 [107 kB]
+2026-10-05T20:16:28.6083724Z Get:5 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-unifont all 1:14.0.01-1 [3551 kB]
+2026-10-05T20:16:28.7387566Z Get:6 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 fonts-wqy-zenhei all 0.9.45-8 [7472 kB]
+2026-10-05T20:16:28.9391006Z Get:7 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2 [578 kB]
+2026-10-05T20:16:29.0053635Z Get:8 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 xfonts-utils amd64 1:7.7+6build2 [94.6 kB]
+2026-10-05T20:16:29.0689476Z Get:9 http://azure.archive.ubuntu.com/ubuntu jammy/universe amd64 xfonts-cyrillic all 1:1.0.5 [386 kB]
+2026-10-05T20:16:29.1337205Z Get:10 http://azure.archive.ubuntu.com/ubuntu jammy/main amd64 xfonts-scalable all 1:1.0.3-1.2ubuntu1 [306 kB]
+2026-10-05T20:16:29.4052978Z Fetched 18.4 MB in 1s (13.5 MB/s)
+2026-10-05T20:16:29.4563796Z Selecting previously unselected package fonts-ipafont-gothic.
+2026-10-05T20:16:29.5359033Z (Reading database ... 
+2026-10-05T20:16:29.5359423Z (Reading database ... 5%
+2026-10-05T20:16:29.5359874Z (Reading database ... 10%
+2026-10-05T20:16:29.5360237Z (Reading database ... 15%
+2026-10-05T20:16:29.5360550Z (Reading database ... 20%
+2026-10-05T20:16:29.5360906Z (Reading database ... 25%
+2026-10-05T20:16:29.5361204Z (Reading database ... 30%
+2026-10-05T20:16:29.5361656Z (Reading database ... 35%
+2026-10-05T20:16:29.5361968Z (Reading database ... 40%
+2026-10-05T20:16:29.5362398Z (Reading database ... 45%
+2026-10-05T20:16:29.5362692Z (Reading database ... 50%
+2026-10-05T20:16:29.9360824Z (Reading database ... 55%
+2026-10-05T20:16:30.4215056Z (Reading database ... 60%
+2026-10-05T20:16:30.9352718Z (Reading database ... 65%
+2026-10-05T20:16:31.3591501Z (Reading database ... 70%
+2026-10-05T20:16:32.1910087Z (Reading database ... 75%
+2026-10-05T20:16:32.9813884Z (Reading database ... 80%
+2026-10-05T20:16:34.4427187Z (Reading database ... 85%
+2026-10-05T20:16:35.2995318Z (Reading database ... 90%
+2026-10-05T20:16:36.1049488Z (Reading database ... 95%
+2026-10-05T20:16:36.1049881Z (Reading database ... 100%
+2026-10-05T20:16:36.1050255Z (Reading database ... 260411 files and directories currently installed.)
+2026-10-05T20:16:36.1110035Z Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
+2026-10-05T20:16:36.1199457Z Unpacking fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-05T20:16:36.3840321Z Selecting previously unselected package fonts-freefont-ttf.
+2026-10-05T20:16:36.4021615Z Preparing to unpack .../1-fonts-freefont-ttf_20120503-10build1_all.deb ...
+2026-10-05T20:16:36.4026570Z Unpacking fonts-freefont-ttf (20120503-10build1) ...
+2026-10-05T20:16:36.5541554Z Selecting previously unselected package fonts-tlwg-loma-otf.
+2026-10-05T20:16:36.5724738Z Preparing to unpack .../2-fonts-tlwg-loma-otf_1%3a0.7.3-1_all.deb ...
+2026-10-05T20:16:36.5729083Z Unpacking fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-05T20:16:36.5966815Z Selecting previously unselected package fonts-unifont.
+2026-10-05T20:16:36.6146179Z Preparing to unpack .../3-fonts-unifont_1%3a14.0.01-1_all.deb ...
+2026-10-05T20:16:36.6152132Z Unpacking fonts-unifont (1:14.0.01-1) ...
+2026-10-05T20:16:36.7551640Z Selecting previously unselected package fonts-wqy-zenhei.
+2026-10-05T20:16:36.7732923Z Preparing to unpack .../4-fonts-wqy-zenhei_0.9.45-8_all.deb ...
+2026-10-05T20:16:36.7892390Z Unpacking fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-05T20:16:37.2946559Z Selecting previously unselected package xfonts-encodings.
+2026-10-05T20:16:37.3128320Z Preparing to unpack .../5-xfonts-encodings_1%3a1.0.5-0ubuntu2_all.deb ...
+2026-10-05T20:16:37.3133619Z Unpacking xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-05T20:16:37.3389342Z Selecting previously unselected package xfonts-utils.
+2026-10-05T20:16:37.3567686Z Preparing to unpack .../6-xfonts-utils_1%3a7.7+6build2_amd64.deb ...
+2026-10-05T20:16:37.3573168Z Unpacking xfonts-utils (1:7.7+6build2) ...
+2026-10-05T20:16:37.4457277Z Selecting previously unselected package xfonts-cyrillic.
+2026-10-05T20:16:37.4639663Z Preparing to unpack .../7-xfonts-cyrillic_1%3a1.0.5_all.deb ...
+2026-10-05T20:16:37.4645295Z Unpacking xfonts-cyrillic (1:1.0.5) ...
+2026-10-05T20:16:37.5043917Z Selecting previously unselected package xfonts-scalable.
+2026-10-05T20:16:37.5225567Z Preparing to unpack .../8-xfonts-scalable_1%3a1.0.3-1.2ubuntu1_all.deb ...
+2026-10-05T20:16:37.5230673Z Unpacking xfonts-scalable (1:1.0.3-1.2ubuntu1) ...
+2026-10-05T20:16:37.5712122Z Setting up fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-05T20:16:37.5812599Z Setting up fonts-freefont-ttf (20120503-10build1) ...
+2026-10-05T20:16:37.5827092Z Setting up fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-05T20:16:37.5840611Z Setting up xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-05T20:16:37.5855505Z Setting up fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-05T20:16:37.5924312Z update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+2026-10-05T20:16:37.5942939Z Setting up fonts-unifont (1:14.0.01-1) ...
+2026-10-05T20:16:37.5956862Z Setting up xfonts-utils (1:7.7+6build2) ...
+2026-10-05T20:16:37.5990430Z Setting up xfonts-cyrillic (1:1.0.5) ...
+2026-10-05T20:16:37.6397447Z Setting up xfonts-scalable (1:1.0.3-1.2ubuntu1) ...
+2026-10-05T20:16:37.6646180Z Processing triggers for man-db (2.10.2-1) ...
+2026-10-05T20:16:37.6666020Z Not building database; man-db/auto-update is not 'true'.
+2026-10-05T20:16:37.6675343Z Processing triggers for fontconfig (2.13.1-4.2ubuntu5) ...
+2026-10-05T20:16:38.8467267Z 
+2026-10-05T20:16:38.8467817Z Running kernel seems to be up-to-date.
+2026-10-05T20:16:38.8468024Z 
+2026-10-05T20:16:38.8468197Z No services need to be restarted.
+2026-10-05T20:16:38.8468348Z 
+2026-10-05T20:16:38.8468465Z No containers need to be restarted.
+2026-10-05T20:16:38.8472993Z 
+2026-10-05T20:16:38.8473233Z No user sessions are running outdated binaries.
+2026-10-05T20:16:38.8473452Z 
+2026-10-05T20:16:38.8473695Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-05T20:16:39.9420622Z Downloading Chrome for Testing 153.0.8010.12 (playwright chromium v1243) from https://cdn.playwright.dev/builds/cft/153.0.8010.12/linux64/chrome-linux64.zip
+2026-10-05T20:16:40.2914114Z |                                                                                |   0% of 186.8 MiB
+2026-10-05T20:16:40.4144117Z |■■■■■■■■                                                                        |  10% of 186.8 MiB
+2026-10-05T20:16:40.4849227Z |■■■■■■■■■■■■■■■■                                                                |  20% of 186.8 MiB
+2026-10-05T20:16:40.5575923Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 186.8 MiB
+2026-10-05T20:16:40.6054900Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 186.8 MiB
+2026-10-05T20:16:40.6661373Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 186.8 MiB
+2026-10-05T20:16:40.7255487Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 186.8 MiB
+2026-10-05T20:16:40.7738443Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 186.8 MiB
+2026-10-05T20:16:40.8413739Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 186.8 MiB
+2026-10-05T20:16:40.8944531Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 186.8 MiB
+2026-10-05T20:16:40.9633431Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 186.8 MiB
+2026-10-05T20:16:43.2966723Z Chrome for Testing 153.0.8010.12 (playwright chromium v1243) downloaded to /home/runner/.cache/ms-playwright/chromium-1243
+2026-10-05T20:16:43.2969554Z Downloading FFmpeg (playwright ffmpeg v1011) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-linux.zip
+2026-10-05T20:16:43.5837520Z |                                                                                |   0% of 2.3 MiB
+2026-10-05T20:16:43.5867700Z |■■■■■■■■                                                                        |  10% of 2.3 MiB
+2026-10-05T20:16:43.5883519Z |■■■■■■■■■■■■■■■■                                                                |  20% of 2.3 MiB
+2026-10-05T20:16:43.5896684Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.3 MiB
+2026-10-05T20:16:43.5910214Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.3 MiB
+2026-10-05T20:16:43.5920149Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.3 MiB
+2026-10-05T20:16:43.5969107Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.3 MiB
+2026-10-05T20:16:43.5981719Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.3 MiB
+2026-10-05T20:16:43.6001145Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.3 MiB
+2026-10-05T20:16:43.6003907Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.3 MiB
+2026-10-05T20:16:43.6012053Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.3 MiB
+2026-10-05T20:16:43.6471568Z FFmpeg (playwright ffmpeg v1011) downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1011
+2026-10-05T20:16:43.6474558Z Downloading Chrome Headless Shell 153.0.8010.12 (playwright chromium-headless-shell v1243) from https://cdn.playwright.dev/builds/cft/153.0.8010.12/linux64/chrome-headless-shell-linux64.zip
+2026-10-05T20:16:43.9788100Z |                                                                                |   0% of 114.3 MiB
+2026-10-05T20:16:44.0501952Z |■■■■■■■■                                                                        |  10% of 114.3 MiB
+2026-10-05T20:16:44.1026927Z |■■■■■■■■■■■■■■■■                                                                |  20% of 114.3 MiB
+2026-10-05T20:16:44.1423300Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 114.3 MiB
+2026-10-05T20:16:44.1843784Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 114.3 MiB
+2026-10-05T20:16:44.2275260Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 114.3 MiB
+2026-10-05T20:16:44.2705039Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 114.3 MiB
+2026-10-05T20:16:44.3210975Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 114.3 MiB
+2026-10-05T20:16:44.3485736Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 114.3 MiB
+2026-10-05T20:16:44.3762965Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 114.3 MiB
+2026-10-05T20:16:44.4229285Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 114.3 MiB
+2026-10-05T20:16:46.1523945Z Chrome Headless Shell 153.0.8010.12 (playwright chromium-headless-shell v1243) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1243
+2026-10-05T20:16:46.1809870Z ##[group]Run node scripts/check-rich-editor-source.mjs
+2026-10-05T20:16:46.1810214Z [36;1mnode scripts/check-rich-editor-source.mjs[0m
+2026-10-05T20:16:46.1873691Z shell: /usr/bin/bash -e {0}
+2026-10-05T20:16:46.1873907Z env:
+2026-10-05T20:16:46.1874121Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T20:16:46.1874383Z ##[endgroup]
+2026-10-05T20:16:46.2331216Z Rich editor Source guard: 34 whole families and 148 exact immutable files retained. Execution credit is recorded separately.
+2026-10-05T20:16:46.2398598Z ##[group]Run timeout --kill-after=30s 600s node node_modules/vitest/vitest.mjs run --config vitest.rich-editor-browser.config.ts --reporter=default --reporter=json --outputFile=rich-editor-browser-report.json
+2026-10-05T20:16:46.2399713Z [36;1mtimeout --kill-after=30s 600s node node_modules/vitest/vitest.mjs run --config vitest.rich-editor-browser.config.ts --reporter=default --reporter=json --outputFile=rich-editor-browser-report.json[0m
+2026-10-05T20:16:46.2465171Z shell: /usr/bin/bash -e {0}
+2026-10-05T20:16:46.2465378Z env:
+2026-10-05T20:16:46.2465591Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T20:16:46.2465841Z   DEBUG: pw:browser
+2026-10-05T20:16:46.2466028Z ##[endgroup]
+2026-10-05T20:16:47.3522041Z 
+2026-10-05T20:16:47.3524504Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/home/runner/work/cms/cms[39m
+2026-10-05T20:16:47.3524884Z 
+2026-10-05T20:16:48.6299843Z 2026-10-05T20:16:48.628Z pw:browser <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-MZONK0 --remote-debugging-pipe --no-startup-window
+2026-10-05T20:16:48.6343621Z 2026-10-05T20:16:48.634Z pw:browser <launched> pid=2811
+2026-10-05T20:16:49.0352045Z 2026-10-05T20:16:49.034Z pw:browser [pid=2811][err] [1005/201649.026715:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T20:16:49.0431364Z 2026-10-05T20:16:49.042Z pw:browser [pid=2811][err] Unable to revert mtime: /usr/share/fonts
+2026-10-05T20:16:49.0433315Z 2026-10-05T20:16:49.043Z pw:browser [pid=2811][err] Unable to revert mtime: /usr/share/fonts/truetype
+2026-10-05T20:16:49.0890580Z 2026-10-05T20:16:49.088Z pw:browser [pid=2811][err] Unable to revert mtime: /usr/share/fonts/truetype/dejavu
+2026-10-05T20:16:49.0892772Z 2026-10-05T20:16:49.088Z pw:browser [pid=2811][err] [1005/201649.079430:WARNING:media/gpu/vaapi/vaapi_wrapper.cc:1660] drmGetDevices2() has not found any devices
+2026-10-05T20:16:49.0895422Z 2026-10-05T20:16:49.088Z pw:browser [pid=2811][err] [1005/201649.082269:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
+2026-10-05T20:16:49.3549011Z 2026-10-05T20:16:49.354Z pw:browser [pid=2811][err] Unable to revert mtime: /usr/share/fonts/truetype/lato
+2026-10-05T20:16:49.4716301Z 2026-10-05T20:16:49.471Z pw:browser [pid=2811][err] Unable to revert mtime: /usr/share/fonts/truetype/liberation
+2026-10-05T20:16:49.5785838Z 2026-10-05T20:16:49.578Z pw:browser [pid=2811][err] Unable to revert mtime: /usr/share/fonts/truetype/noto
+2026-10-05T20:16:49.7045050Z 2026-10-05T20:16:49.703Z pw:browser [pid=2811][err] [1005/201649.702758:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T20:16:49.7047266Z 2026-10-05T20:16:49.703Z pw:browser [pid=2811][err] [1005/201649.702838:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+2026-10-05T20:16:49.7073467Z 2026-10-05T20:16:49.707Z pw:browser [pid=2811][err] [1005/201649.706410:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+2026-10-05T20:16:49.9436012Z 2026-10-05T20:16:49.943Z pw:browser [pid=2811][err] [1005/201649.943241:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T20:16:49.9493380Z 2026-10-05T20:16:49.949Z pw:browser [pid=2811][err] [1005/201649.948255:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T20:16:49.9885510Z 2026-10-05T20:16:49.988Z pw:browser [pid=2811][err] [1005/201649.980549:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T20:16:50.0059588Z 2026-10-05T20:16:50.005Z pw:browser [pid=2811][err] [1005/201649.996026:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T20:16:50.7653013Z [2m8:16:50 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "@phosphor-icons/react" from "parity/emdash/rich-editor-source/packages/admin/src/components/SectionPickerModal.tsx". Does the file exist?
+2026-10-05T20:16:50.7654733Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:50.7655793Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/components/SectionPickerModal.tsx[39m:9:44
+2026-10-05T20:16:50.7656887Z [33m  6  |  import { Button, Dialog, Input } from "@cloudflare/kumo";
+2026-10-05T20:16:50.7657493Z   7  |  import { useLingui as _useLingui } from "@lingui/react";
+2026-10-05T20:16:50.7658122Z   8  |  import { MagnifyingGlass, FolderOpen } from "@phosphor-icons/react";
+2026-10-05T20:16:50.7658678Z      |                                               ^
+2026-10-05T20:16:50.7659128Z   9  |  import { X } from "@phosphor-icons/react";
+2026-10-05T20:16:50.7659719Z   10 |  import { useQuery } from "@tanstack/react-query";[39m
+2026-10-05T20:16:50.7677309Z [2m8:16:50 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "@phosphor-icons/react" from "parity/emdash/rich-editor-source/packages/admin/src/components/MediaPickerModal.tsx". Does the file exist?
+2026-10-05T20:16:50.7678673Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:50.7680067Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/components/MediaPickerModal.tsx[39m:27:7
+2026-10-05T20:16:50.7681044Z [33m  3  |  import { i18n as _i18n } from "@lingui/core";
+2026-10-05T20:16:50.7681589Z   4  |  import { useLingui as _useLingui } from "@lingui/react";
+2026-10-05T20:16:50.7682465Z   5  |  ...le, Paperclip, PencilSimple, SquaresFour, Upload, X } from "@phosphor-icons/react";
+2026-10-05T20:16:50.7683139Z      |                                                                 ^
+2026-10-05T20:16:50.7683959Z   6  |  import { keepPreviousData, useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+2026-10-05T20:16:50.7684956Z   7  |  import * as React from "react";[39m
+2026-10-05T20:16:50.7687194Z [2m8:16:50 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "@floating-ui/react" from "parity/emdash/rich-editor-source/packages/admin/src/components/editor/DragHandleWrapper.tsx". Does the file exist?
+2026-10-05T20:16:50.7688543Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:50.7689501Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/components/editor/DragHandleWrapper.tsx[39m:12:23
+2026-10-05T20:16:50.7690323Z [33m  9  |  */
+2026-10-05T20:16:50.7690635Z   10 |  import { Button } from "@cloudflare/kumo";
+2026-10-05T20:16:50.7691115Z   11 |  import { offset } from "@floating-ui/react";
+2026-10-05T20:16:50.7691529Z      |                          ^
+2026-10-05T20:16:50.7691991Z   12 |  import { useLingui as _useLingui } from "@lingui/react";
+2026-10-05T20:16:50.7692882Z   13 |  import { DotsSixVertical, Plus } from "@phosphor-icons/react";[39m
+2026-10-05T20:16:50.9306914Z [2m8:16:50 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "clsx" from "parity/emdash/rich-editor-source/packages/admin/src/lib/utils.ts". Does the file exist?
+2026-10-05T20:16:50.9308252Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:50.9309166Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/lib/utils.ts[39m:1:38
+2026-10-05T20:16:50.9309990Z [33m  1  |  import { clsx } from "clsx";
+2026-10-05T20:16:50.9310384Z      |                        ^
+2026-10-05T20:16:50.9310787Z   2  |  import { twMerge } from "tailwind-merge";
+2026-10-05T20:16:50.9311349Z   3  |  export { slugify } from "../slugify.js";[39m
+2026-10-05T20:16:50.9313188Z [2m8:16:50 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "clsx" from "parity/emdash/rich-editor-source/packages/admin/src/lib/utils.ts". Does the file exist?
+2026-10-05T20:16:50.9314423Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:50.9315324Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/lib/utils.ts[39m:1:38
+2026-10-05T20:16:50.9316144Z [33m  1  |  import { clsx } from "clsx";
+2026-10-05T20:16:50.9316544Z      |                        ^
+2026-10-05T20:16:50.9316925Z   2  |  import { twMerge } from "tailwind-merge";
+2026-10-05T20:16:50.9317484Z   3  |  export { slugify } from "../slugify.js";[39m
+2026-10-05T20:16:50.9319104Z [2m8:16:50 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "clsx" from "parity/emdash/rich-editor-source/packages/admin/src/lib/utils.ts". Does the file exist?
+2026-10-05T20:16:50.9320301Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:50.9321194Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/lib/utils.ts[39m:1:38
+2026-10-05T20:16:50.9322020Z [33m  1  |  import { clsx } from "clsx";
+2026-10-05T20:16:50.9322563Z      |                        ^
+2026-10-05T20:16:50.9322950Z   2  |  import { twMerge } from "tailwind-merge";
+2026-10-05T20:16:50.9323531Z   3  |  export { slugify } from "../slugify.js";[39m
+2026-10-05T20:16:50.9332718Z [2m8:16:50 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "clsx" from "parity/emdash/rich-editor-source/packages/admin/src/lib/utils.ts". Does the file exist?
+2026-10-05T20:16:50.9334452Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:50.9335564Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/lib/utils.ts[39m:1:38
+2026-10-05T20:16:50.9336563Z [33m  1  |  import { clsx } from "clsx";
+2026-10-05T20:16:50.9337094Z      |                        ^
+2026-10-05T20:16:50.9337640Z   2  |  import { twMerge } from "tailwind-merge";
+2026-10-05T20:16:50.9338324Z   3  |  export { slugify } from "../slugify.js";[39m
+2026-10-05T20:16:50.9340233Z [2m8:16:50 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "clsx" from "parity/emdash/rich-editor-source/packages/admin/src/lib/utils.ts". Does the file exist?
+2026-10-05T20:16:50.9341565Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:50.9342698Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/lib/utils.ts[39m:1:38
+2026-10-05T20:16:50.9343665Z [33m  1  |  import { clsx } from "clsx";
+2026-10-05T20:16:50.9344177Z      |                        ^
+2026-10-05T20:16:50.9344701Z   2  |  import { twMerge } from "tailwind-merge";
+2026-10-05T20:16:50.9345382Z   3  |  export { slugify } from "../slugify.js";[39m
+2026-10-05T20:16:50.9347423Z [2m8:16:50 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "@phosphor-icons/react" from "parity/emdash/rich-editor-source/packages/admin/src/components/admin-navigation-icons.ts". Does the file exist?
+2026-10-05T20:16:50.9349000Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:50.9350220Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/components/admin-navigation-icons.ts[39m:41:7
+2026-10-05T20:16:50.9351685Z [33m  1  |  ...ture, SquaresFour, Star, Tag, Trophy, Upload, Users } from "@phosphor-icons/react";
+2026-10-05T20:16:50.9352638Z      |                                                                 ^
+2026-10-05T20:16:50.9353221Z   2  |  import * as React from "react";
+2026-10-05T20:16:50.9354146Z   3  |  /** Shared icon vocabulary for first-party admin entities and navigation surfaces. */[39m
+2026-10-05T20:16:50.9356495Z [2m8:16:50 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "@phosphor-icons/react" from "parity/emdash/rich-editor-source/packages/admin/src/components/media/MediaBrowserItems.tsx". Does the file exist?
+2026-10-05T20:16:50.9358114Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:50.9359339Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/components/media/MediaBrowserItems.tsx[39m:3:74
+2026-10-05T20:16:50.9360663Z [33m  1  |  import { Badge, Button, LayerCard, Loader } from "@cloudflare/kumo";
+2026-10-05T20:16:50.9361444Z   2  |  import { useLingui as _useLingui } from "@lingui/react";
+2026-10-05T20:16:50.9362505Z   3  |  import { ArrowDown, ArrowUp, Check, FolderSimple, WarningCircle, X } from "@phosphor-icons/react";
+2026-10-05T20:16:50.9363398Z      |                                                                             ^
+2026-10-05T20:16:50.9364002Z   4  |  import * as React from "react";
+2026-10-05T20:16:50.9365071Z   5  |  import { fallbackToOriginalThumbnail, formatFileSize, getFileIcon, getMediaObjectPosition, getMediaPreviewUrl, getMed...[39m
+2026-10-05T20:16:50.9367228Z [2m8:16:50 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "@phosphor-icons/react" from "parity/emdash/rich-editor-source/packages/admin/src/components/TableToolbar.tsx". Does the file exist?
+2026-10-05T20:16:50.9368641Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:50.9369712Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/components/TableToolbar.tsx[39m:2:32
+2026-10-05T20:16:50.9370981Z [33m  1  |  import { InputGroup } from "@cloudflare/kumo";
+2026-10-05T20:16:50.9371644Z   2  |  import { MagnifyingGlass } from "@phosphor-icons/react";
+2026-10-05T20:16:50.9372244Z      |                                   ^
+2026-10-05T20:16:50.9373050Z   3  |  import { cn } from "../lib/utils.js";
+2026-10-05T20:16:50.9374152Z   4  |  var _jsxFileName = "/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/components/TableToo...[39m
+2026-10-05T20:16:50.9376521Z [2m8:16:50 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "@phosphor-icons/react" from "parity/emdash/rich-editor-source/packages/admin/src/components/MediaDetailPanel.tsx". Does the file exist?
+2026-10-05T20:16:50.9378253Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:50.9379405Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/components/MediaDetailPanel.tsx[39m:39:7
+2026-10-05T20:16:50.9380530Z [33m  8  |  import { i18n as _i18n } from "@lingui/core";
+2026-10-05T20:16:50.9381203Z   9  |  import { useLingui as _useLingui } from "@lingui/react";
+2026-10-05T20:16:50.9382064Z   10 |  ...magesSquare, LinkSimple, Ruler, Info, WarningCircle } from "@phosphor-icons/react";
+2026-10-05T20:16:50.9382989Z      |                                                                 ^
+2026-10-05T20:16:50.9383875Z   11 |  import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+2026-10-05T20:16:50.9384855Z   12 |  import { useNavigate } from "@tanstack/react-router";[39m
+2026-10-05T20:16:50.9526385Z [2m8:16:50 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "@phosphor-icons/react" from "parity/emdash/rich-editor-source/packages/admin/src/components/editor/BlockMenu.tsx". Does the file exist?
+2026-10-05T20:16:50.9527839Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:50.9534177Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/components/editor/BlockMenu.tsx[39m:33:7
+2026-10-05T20:16:50.9535333Z [33m  12 |  import { Button, DropdownMenu } from "@cloudflare/kumo";
+2026-10-05T20:16:50.9536383Z   13 |  import { useLingui as _useLingui } from "@lingui/react";
+2026-10-05T20:16:50.9537051Z   14 |  ...tHSix, Quotes, Code, List, ListNumbers, Copy, Trash } from "@phosphor-icons/react";
+2026-10-05T20:16:50.9537817Z      |                                                                 ^
+2026-10-05T20:16:50.9538463Z   15 |  import { NodeSelection } from "@tiptap/pm/state";
+2026-10-05T20:16:50.9539277Z   16 |  import * as React from "react";[39m
+2026-10-05T20:16:51.4691974Z [2m8:16:51 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "react-image-crop" from "parity/emdash/rich-editor-source/packages/admin/src/components/MediaImageCropper.tsx". Does the file exist?
+2026-10-05T20:16:51.4694101Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:51.4695255Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/components/MediaImageCropper.tsx[39m:9:7
+2026-10-05T20:16:51.4696541Z [33m  1  |  import { useLingui as _useLingui } from "@lingui/react";
+2026-10-05T20:16:51.4697230Z   2  |  import * as React from "react";
+2026-10-05T20:16:51.4715954Z   3  |  import ReactCrop, { centerCrop, convertToPixelCrop, makeAspectCrop } from "react-image-crop";
+2026-10-05T20:16:51.4716737Z      |                                                                             ^
+2026-10-05T20:16:51.4717369Z   4  |  import { useContainedMediaSize } from "./useContainedMediaSize.js";
+2026-10-05T20:16:51.4718557Z   5  |  var _jsxFileName = "/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/components/MediaIma...[39m
+2026-10-05T20:16:51.4720776Z [2m8:16:51 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "@phosphor-icons/react" from "parity/emdash/rich-editor-source/packages/admin/src/components/MediaUsedIn.tsx". Does the file exist?
+2026-10-05T20:16:51.4722587Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:51.4723564Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/components/MediaUsedIn.tsx[39m:22:7
+2026-10-05T20:16:51.4724858Z [33m  1  |  import { Badge, Banner, Button, LayerCard, Link as KumoLink, SkeletonLine, Tooltip } from "@cloudflare/kumo";
+2026-10-05T20:16:51.4725657Z   2  |  import { useLingui as _useLingui } from "@lingui/react";
+2026-10-05T20:16:51.4726345Z   3  |  ...ock, Gear, Question, ArrowUpRight, Warning, XCircle } from "@phosphor-icons/react";
+2026-10-05T20:16:51.4726974Z      |                                                                 ^
+2026-10-05T20:16:51.4727771Z   4  |  import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+2026-10-05T20:16:51.4728446Z   5  |  import { Link } from "@tanstack/react-router";[39m
+2026-10-05T20:16:51.4796631Z [2m8:16:51 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "@phosphor-icons/react" from "parity/emdash/rich-editor-source/packages/admin/src/components/ArrowIcons.tsx". Does the file exist?
+2026-10-05T20:16:51.4797919Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:51.4798809Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/components/ArrowIcons.tsx[39m:1:63
+2026-10-05T20:16:51.4799827Z [33m  1  |  import { ArrowRightIcon, CaretRightIcon } from "@phosphor-icons/react";
+2026-10-05T20:16:51.4800385Z      |                                                  ^
+2026-10-05T20:16:51.4800795Z   2  |  import { cn } from "../lib/utils";
+2026-10-05T20:16:51.4801743Z   3  |  var _jsxFileName = "/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/components/ArrowIco...[39m
+2026-10-05T20:16:52.5011346Z [2m8:16:52 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "clsx" from "parity/emdash/rich-editor-source/packages/admin/src/lib/utils.ts". Does the file exist?
+2026-10-05T20:16:52.5012123Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:52.5012989Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/lib/utils.ts[39m:1:38
+2026-10-05T20:16:52.5013494Z [33m  1  |  import { clsx } from "clsx";
+2026-10-05T20:16:52.5013744Z      |                        ^
+2026-10-05T20:16:52.5014000Z   2  |  import { twMerge } from "tailwind-merge";
+2026-10-05T20:16:52.5014340Z   3  |  export { slugify } from "../slugify.js";[39m
+2026-10-05T20:16:52.5015322Z [2m8:16:52 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "clsx" from "parity/emdash/rich-editor-source/packages/admin/src/lib/utils.ts". Does the file exist?
+2026-10-05T20:16:52.5015994Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:52.5016532Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/lib/utils.ts[39m:1:38
+2026-10-05T20:16:52.5017006Z [33m  1  |  import { clsx } from "clsx";
+2026-10-05T20:16:52.5017237Z      |                        ^
+2026-10-05T20:16:52.5017471Z   2  |  import { twMerge } from "tailwind-merge";
+2026-10-05T20:16:52.5017790Z   3  |  export { slugify } from "../slugify.js";[39m
+2026-10-05T20:16:52.5020894Z [2m8:16:52 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to resolve import "@phosphor-icons/react" from "parity/emdash/rich-editor-source/packages/admin/src/components/admin-navigation-icons.ts". Does the file exist?
+2026-10-05T20:16:52.5022209Z   Plugin: [35mvite:import-analysis[39m
+2026-10-05T20:16:52.5023454Z   File: [36m/home/runner/work/cms/cms/parity/emdash/rich-editor-source/packages/admin/src/components/admin-navigation-icons.ts[39m:41:7
+2026-10-05T20:16:52.5024761Z [33m  1  |  ...ture, SquaresFour, Star, Tag, Trophy, Upload, Users } from "@phosphor-icons/react";
+2026-10-05T20:16:52.5026077Z      |                                                                 ^
+2026-10-05T20:16:52.5026555Z   2  |  import * as React from "react";
+2026-10-05T20:16:52.5027345Z   3  |  /** Shared icon vocabulary for first-party admin entities and navigation surfaces. */[39m
+2026-10-05T20:16:55.8055714Z  [31m❯[39m [30m[43m chromium [49m[39m parity/emdash/rich-editor-source/packages/admin/tests/editor/PortableTextEditor.test.tsx [2m([22m[2m91 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[33m 5214[2mms[22m[39m
+2026-10-05T20:16:55.8057381Z      [32m✓[39m builds form state from field initial_value defaults[32m 2[2mms[22m[39m
+2026-10-05T20:16:55.8058694Z      [32m✓[39m merges existing block data over defaults when editing[32m 0[2mms[22m[39m
+2026-10-05T20:16:55.8060174Z      [32m✓[39m keeps explicit existing values over defaults[32m 0[2mms[22m[39m
+2026-10-05T20:16:55.8061926Z      [32m✓[39m preserves existing keys and supported link mark definitions[32m 1[2mms[22m[39m
+2026-10-05T20:16:55.8069300Z [31m     [31m×[31m keeps a no-op editor update lossless[39m[33m 3406[2mms[22m[39m
+2026-10-05T20:16:55.8070336Z      [32m✓[39m keeps span keys unique when an edit splits existing text[32m 25[2mms[22m[39m
+2026-10-05T20:16:55.8071407Z      [32m✓[39m keeps block keys unique when an edit splits a paragraph[32m 19[2mms[22m[39m
+2026-10-05T20:16:55.8076955Z      [32m✓[39m rejects mixed unsupported decorators across nested and spanning text[32m 2[2mms[22m[39m
+2026-10-05T20:16:55.8079011Z      [32m✓[39m rejects unsupported markDefs annotations by type[32m 0[2mms[22m[39m
+2026-10-05T20:16:55.8079983Z      [32m✓[39m rejects unsupported marks in nested outbound ProseMirror content[32m 0[2mms[22m[39m
+2026-10-05T20:16:55.8081011Z      [32m✓[39m blocks the editor with a localized mark-specific alert in RTL layouts[32m 8[2mms[22m[39m
+2026-10-05T20:16:55.8082026Z      [32m✓[39m keeps safe content editable when an unsupported section is rejected[32m 12[2mms[22m[39m
+2026-10-05T20:16:55.8083069Z      [32m✓[39m keeps safe content editable when a section contains an unsafe table[32m 11[2mms[22m[39m
+2026-10-05T20:16:55.8083740Z      [32m✓[39m rejects unsupported table-cell paste with localized guidance and no mutation[32m 15[2mms[22m[39m
+2026-10-05T20:16:55.8084400Z      [32m✓[39m reports an image inside pasted table HTML as unsupported cell content[32m 11[2mms[22m[39m
+2026-10-05T20:16:55.8085516Z      [32m✓[39m distinguishes oversized table paste from unsupported cell content[32m 17[2mms[22m[39m
+2026-10-05T20:16:55.8086569Z      [32m✓[39m announces bounded TSV paste dimensions through the stable status region[32m 18[2mms[22m[39m
+2026-10-05T20:16:55.8087668Z      [32m✓[39m reports malformed quoted TSV without mutating the selected table[32m 11[2mms[22m[39m
+2026-10-05T20:16:55.8088619Z      [32m✓[39m gives distinct guidance for malformed table geometry[32m 9[2mms[22m[39m
+2026-10-05T20:16:55.8089360Z      [32m✓[39m explains that tables cannot be pasted inside lists or quotes[32m 7[2mms[22m[39m
+2026-10-05T20:16:55.8089934Z      [32m✓[39m does not open block slash commands inside a table cell[32m 59[2mms[22m[39m
+2026-10-05T20:16:55.8090419Z      [32m✓[39m renders a paragraph from PT value[32m 8[2mms[22m[39m
+2026-10-05T20:16:55.8091443Z      [32m✓[39m does not report a change when mounting a payload-less registered block[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8092243Z      [32m✓[39m renders an h1 heading[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8092981Z      [32m✓[39m renders an h6 heading[32m 7[2mms[22m[39m
+2026-10-05T20:16:55.8093543Z      [32m✓[39m renders bold text[32m 7[2mms[22m[39m
+2026-10-05T20:16:55.8094154Z      [32m✓[39m renders a link from markDef[32m 7[2mms[22m[39m
+2026-10-05T20:16:55.8094837Z      [32m✓[39m renders linked inline code in body text[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8095891Z      [32m✓[39m renders linked inline code in headings[32m 9[2mms[22m[39m
+2026-10-05T20:16:55.8096708Z      [32m✓[39m keeps code and link marks together when both are toggled[32m 9[2mms[22m[39m
+2026-10-05T20:16:55.8097433Z      [32m✓[39m saves typed dotted filenames as plain Portable Text[32m 15[2mms[22m[39m
+2026-10-05T20:16:55.8097954Z      [32m✓[39m saves pasted dotted filenames as plain Portable Text[32m 13[2mms[22m[39m
+2026-10-05T20:16:55.8098458Z      [32m✓[39m continues to save typed explicit URLs as links[32m 13[2mms[22m[39m
+2026-10-05T20:16:55.8099023Z      [32m✓[39m continues link formatting when typing at the end of an autolinked URL[32m 16[2mms[22m[39m
+2026-10-05T20:16:55.8099668Z      [32m✓[39m renders a bullet list[32m 7[2mms[22m[39m
+2026-10-05T20:16:55.8100410Z      [32m✓[39m renders an ordered list[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8100978Z      [32m✓[39m renders a blockquote[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8101486Z      [32m✓[39m renders a code block[32m 19[2mms[22m[39m
+2026-10-05T20:16:55.8101983Z      [32m✓[39m renders an image block[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8102768Z      [32m✓[39m renders a horizontal rule[32m 8[2mms[22m[39m
+2026-10-05T20:16:55.8103454Z      [32m✓[39m renders empty editor when value is empty array[32m 5[2mms[22m[39m
+2026-10-05T20:16:55.8104190Z      [32m✓[39m renders empty editor when value is undefined[32m 5[2mms[22m[39m
+2026-10-05T20:16:55.8105013Z      [32m✓[39m teaches writing and slash commands in the default placeholder[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8105926Z      [32m✓[39m centers the writing column with responsive space for block controls[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8106602Z      [32m✓[39m renders bold+italic text with multiple marks[32m 7[2mms[22m[39m
+2026-10-05T20:16:55.8107412Z      [32m✓[39m renders subscript and superscript Portable Text marks[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8108665Z      [32m✓[39m fires onChange with valid PT blocks when typing[32m 7[2mms[22m[39m
+2026-10-05T20:16:55.8109435Z      [32m✓[39m shows placeholder text in empty editor[32m 5[2mms[22m[39m
+2026-10-05T20:16:55.8110205Z      [32m✓[39m sets contenteditable=false when editable is false[32m 5[2mms[22m[39m
+2026-10-05T20:16:55.8110936Z      [32m✓[39m sets contenteditable=true by default[32m 4[2mms[22m[39m
+2026-10-05T20:16:55.8111696Z      [32m✓[39m applies spotlight-mode class when focusMode is spotlight[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8112767Z      [32m✓[39m does not apply spotlight-mode class when focusMode is normal[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8113582Z      [32m✓[39m hides toolbar and footer in minimal mode[32m 7[2mms[22m[39m
+2026-10-05T20:16:55.8114478Z      [32m✓[39m raises the non-minimal writing surface above the editor canvas[32m 7[2mms[22m[39m
+2026-10-05T20:16:55.8115559Z      [32m✓[39m shrinks the editor surface to fit a narrow grid column[32m 7[2mms[22m[39m
+2026-10-05T20:16:55.8116157Z      [32m✓[39m calls onEditorReady with Editor instance[32m 11[2mms[22m[39m
+2026-10-05T20:16:55.8118010Z      [32m✓[39m calls onEditorReady with null on unmount so consumers can clear stale references[32m 16[2mms[22m[39m
+2026-10-05T20:16:55.8118840Z      [32m✓[39m shows word count and character count in footer[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8119506Z      [32m✓[39m renders a toolbar with text formatting aria-label[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8119944Z      [32m✓[39m has inline formatting buttons[32m 7[2mms[22m[39m
+2026-10-05T20:16:55.8120414Z      [32m✓[39m persists Subscript formatting as a Portable Text mark[32m 57[2mms[22m[39m
+2026-10-05T20:16:55.8120960Z      [32m✓[39m persists Superscript formatting as a Portable Text mark[32m 57[2mms[22m[39m
+2026-10-05T20:16:55.8121521Z      [32m✓[39m has a heading menu[32m 68[2mms[22m[39m
+2026-10-05T20:16:55.8121874Z      [32m✓[39m has list buttons[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8122836Z      [32m✓[39m has block buttons[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8123354Z      [32m✓[39m has alignment buttons[32m 8[2mms[22m[39m
+2026-10-05T20:16:55.8124127Z      [32m✓[39m keeps extended insertion actions out of the formatting toolbar[32m 5[2mms[22m[39m
+2026-10-05T20:16:55.8124979Z      [32m✓[39m has history buttons (initially disabled)[32m 7[2mms[22m[39m
+2026-10-05T20:16:55.8125690Z      [32m✓[39m does not include a spotlight mode button[32m 5[2mms[22m[39m
+2026-10-05T20:16:55.8126411Z      [32m✓[39m toggles bold aria-pressed when clicked[32m 57[2mms[22m[39m
+2026-10-05T20:16:55.8127115Z      [32m✓[39m toggles italic aria-pressed when clicked[32m 50[2mms[22m[39m
+2026-10-05T20:16:55.8128111Z      [32m✓[39m changes the current block to Heading 1 from the heading menu[32m 101[2mms[22m[39m
+2026-10-05T20:16:55.8128950Z      [32m✓[39m enables Undo after typing and Redo after undoing[32m 49[2mms[22m[39m
+2026-10-05T20:16:55.8129627Z      [32m✓[39m toolbar not present in minimal mode[32m 5[2mms[22m[39m
+2026-10-05T20:16:55.8130300Z      [32m✓[39m renders without errors with default commands[32m 5[2mms[22m[39m
+2026-10-05T20:16:55.8131073Z      [32m✓[39m renders without errors with pluginBlocks prop[32m 5[2mms[22m[39m
+2026-10-05T20:16:55.8131604Z      [32m✓[39m editor accepts pluginBlocks without crashing when typing[32m 7[2mms[22m[39m
+2026-10-05T20:16:55.8132253Z      [32m✓[39m onChange returns blocks with _type and _key[32m 5[2mms[22m[39m
+2026-10-05T20:16:55.8132942Z      [32m✓[39m heading value roundtrips through onEditorReady[32m 4[2mms[22m[39m
+2026-10-05T20:16:55.8133436Z      [32m✓[39m code block value roundtrips through onEditorReady[32m 6[2mms[22m[39m
+2026-10-05T20:16:55.8133930Z      [32m✓[39m list value roundtrips through onEditorReady[32m 8[2mms[22m[39m
+2026-10-05T20:16:55.8134413Z      [32m✓[39m copies raw code and resets its accessible feedback[32m 57[2mms[22m[39m
+2026-10-05T20:16:55.8134929Z      [32m✓[39m keeps the newest copy feedback and reports failures[32m 110[2mms[22m[39m
+2026-10-05T20:16:55.8135525Z      [32m✓[39m falls back after Clipboard API rejection and restores focus and selection[32m 105[2mms[22m[39m
+2026-10-05T20:16:55.8136096Z      [32m✓[39m preserves alias, free-form, and cancel behavior[32m 267[2mms[22m[39m
+2026-10-05T20:16:55.8136679Z      [32m✓[39m keeps language suggestions available while typing over the current language[32m 133[2mms[22m[39m
+2026-10-05T20:16:55.8137258Z      [32m✓[39m identifies the search and marks the stored language[32m 51[2mms[22m[39m
+2026-10-05T20:16:55.8137815Z      [32m✓[39m prevents block formatting that cannot survive inside a table cell[32m 8[2mms[22m[39m
+2026-10-05T20:16:55.8138403Z      [32m✓[39m assigns stable unique keys to newly created table structures[32m 7[2mms[22m[39m
+2026-10-05T20:16:55.8139005Z      [32m✓[39m does not erase opaque metadata when separate tables reuse structural keys[32m 8[2mms[22m[39m
+2026-10-05T20:16:55.8139637Z      [32m✓[39m refuses to edit stored table cell content that cannot round-trip safely[32m 3[2mms[22m[39m
+2026-10-05T20:16:55.8469870Z 2026-10-05T20:16:55.846Z pw:browser [pid=2811][err] [1005/201655.845991:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T20:16:55.8583945Z 2026-10-05T20:16:55.858Z pw:browser [pid=2811][err] [1005/201655.858108:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T20:16:59.9992648Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/rich-editor-source/packages/admin/tests/editor/slash-menu.test.tsx [2m([22m[2m44 tests[22m[2m)[22m[33m 3804[2mms[22m[39m
+2026-10-05T20:16:59.9993996Z      [33m[2m✓[22m[39m keeps focus in the editor when the menu opens [33m 408[2mms[22m[39m
+2026-10-05T20:17:00.0393054Z 2026-10-05T20:17:00.038Z pw:browser [pid=2811][err] [1005/201700.036329:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T20:17:00.0453930Z 2026-10-05T20:17:00.045Z pw:browser [pid=2811][err] [1005/201700.045052:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T20:17:16.7246949Z  [31m❯[39m [30m[43m chromium [49m[39m parity/emdash/rich-editor-source/packages/admin/tests/editor/table-controls.test.tsx [2m([22m[2m60 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[33m 16164[2mms[22m[39m
+2026-10-05T20:17:16.7248573Z      [32m✓[39m keeps native movement inside multi-paragraph RTL cells[32m 17[2mms[22m[39m
+2026-10-05T20:17:16.7249570Z      [32m✓[39m moves the caret across the visual rtl cell edge (ثان)[32m 33[2mms[22m[39m
+2026-10-05T20:17:16.7250801Z      [32m✓[39m moves the caret across the visual rtl cell edge (two)[32m 33[2mms[22m[39m
+2026-10-05T20:17:16.7251758Z      [32m✓[39m moves the caret across the visual ltr cell edge (two)[32m 34[2mms[22m[39m
+2026-10-05T20:17:16.7252934Z      [32m✓[39m extends rtl cells in visual order while preserving character selection (ثان)[32m 67[2mms[22m[39m
+2026-10-05T20:17:16.7253922Z      [32m✓[39m extends rtl cells in visual order while preserving character selection (two)[32m 67[2mms[22m[39m
+2026-10-05T20:17:16.7254778Z      [32m✓[39m extends ltr cells in visual order while preserving character selection (two)[32m 67[2mms[22m[39m
+2026-10-05T20:17:16.7255539Z      [32m✓[39m navigates and confirms the fine-pointer size grid[32m 20[2mms[22m[39m
+2026-10-05T20:17:16.7256377Z      [32m✓[39m inverts horizontal grid movement in RTL and supports Control+End[32m 14[2mms[22m[39m
+2026-10-05T20:17:16.7257048Z [31m     [31m×[31m uses the shared header-row choice for pointer insertion[39m[33m 15117[2mms[22m[39m
+2026-10-05T20:17:16.7257703Z      [32m✓[39m keeps hover preview separate from keyboard focus and exposes real grid rows[32m 133[2mms[22m[39m
+2026-10-05T20:17:16.7258577Z [31m     [31m×[31m keeps the header choice before confirmation in the coarse keyboard flow[39m[32m 85[2mms[22m[39m
+2026-10-05T20:17:16.7259272Z      [32m✓[39m inserts beside a top-level container instead of nesting an unsupported table[32m 7[2mms[22m[39m
+2026-10-05T20:17:16.7260060Z      [32m✓[39m appends a row when Tab leaves the final table cell[32m 4[2mms[22m[39m
+2026-10-05T20:17:16.7260702Z      [32m✓[39m rejects a merge beyond the span limit (101 × 1)[32m 17[2mms[22m[39m
+2026-10-05T20:17:16.7261299Z      [32m✓[39m rejects a merge beyond the span limit (1 × 101)[32m 8[2mms[22m[39m
+2026-10-05T20:17:16.7261985Z      [32m✓[39m does not grow a row span beyond its limit[32m 6[2mms[22m[39m
+2026-10-05T20:17:16.7262818Z      [32m✓[39m does not grow a column span beyond its limit[32m 5[2mms[22m[39m
+2026-10-05T20:17:16.7263666Z      [32m✓[39m does not grow a full-size table through final-cell Tab[32m 10[2mms[22m[39m
+2026-10-05T20:17:16.7264439Z      [32m✓[39m select-row selects the expected rectangle[32m 4[2mms[22m[39m
+2026-10-05T20:17:16.7265139Z      [32m✓[39m select-column selects the expected rectangle[32m 3[2mms[22m[39m
+2026-10-05T20:17:16.7265881Z      [32m✓[39m select-table selects the expected rectangle[32m 2[2mms[22m[39m
+2026-10-05T20:17:16.7266632Z      [32m✓[39m recognizes a reverse row selection as already selected[32m 2[2mms[22m[39m
+2026-10-05T20:17:16.7267551Z      [32m✓[39m deletes complete axes with Backspace in ltr and restores them with history[32m 47[2mms[22m[39m
+2026-10-05T20:17:16.7268532Z      [32m✓[39m deletes complete axes with Delete in rtl and restores them with history[32m 50[2mms[22m[39m
+2026-10-05T20:17:16.7269497Z      [32m✓[39m deletes complete axes with Delete in ltr and restores them with history[32m 50[2mms[22m[39m
+2026-10-05T20:17:16.7270240Z      [32m✓[39m deletes complete axes with Backspace in rtl and restores them with history[32m 50[2mms[22m[39m
+2026-10-05T20:17:16.7271526Z      [32m✓[39m keeps partial-cell and text deletion separate from structural deletion[32m 33[2mms[22m[39m
+2026-10-05T20:17:16.7272514Z      [32m✓[39m keeps full-table Backspace behavior[32m 17[2mms[22m[39m
+2026-10-05T20:17:16.7273182Z      [32m✓[39m keeps full-table Delete behavior[32m 16[2mms[22m[39m
+2026-10-05T20:17:16.7273916Z      [32m✓[39m does not structurally delete with Control held[32m 17[2mms[22m[39m
+2026-10-05T20:17:16.7274677Z      [32m✓[39m does not structurally delete with Meta held[32m 17[2mms[22m[39m
+2026-10-05T20:17:16.7275416Z      [32m✓[39m does not structurally delete with Alt held[32m 16[2mms[22m[39m
+2026-10-05T20:17:16.7276221Z      [32m✓[39m does not structurally delete with Shift held[32m 17[2mms[22m[39m
+2026-10-05T20:17:16.7276995Z      [32m✓[39m does not delete structures while composing[32m 3[2mms[22m[39m
+2026-10-05T20:17:16.7277663Z      [32m✓[39m does not delete structures while read-only[32m 2[2mms[22m[39m
+2026-10-05T20:17:16.7278172Z      [32m✓[39m add-row-before changes geometry in one undo step[32m 3[2mms[22m[39m
+2026-10-05T20:17:16.7278659Z      [32m✓[39m add-row-after changes geometry in one undo step[32m 2[2mms[22m[39m
+2026-10-05T20:17:16.7279451Z      [32m✓[39m add-column-before changes geometry in one undo step[32m 2[2mms[22m[39m
+2026-10-05T20:17:16.7280219Z      [32m✓[39m add-column-after changes geometry in one undo step[32m 2[2mms[22m[39m
+2026-10-05T20:17:16.7280953Z      [32m✓[39m delete-row changes geometry in one undo step[32m 4[2mms[22m[39m
+2026-10-05T20:17:16.7281721Z      [32m✓[39m delete-column changes geometry in one undo step[32m 2[2mms[22m[39m
+2026-10-05T20:17:16.7282815Z      [32m✓[39m delete-row removes a rectangular multi-selection in one history step[32m 4[2mms[22m[39m
+2026-10-05T20:17:16.7283878Z      [32m✓[39m delete-column removes a rectangular multi-selection in one history step[32m 6[2mms[22m[39m
+2026-10-05T20:17:16.7284804Z      [32m✓[39m disables delete-row for the entire axis[32m 2[2mms[22m[39m
+2026-10-05T20:17:16.7285595Z      [32m✓[39m disables delete-column for the entire axis[32m 6[2mms[22m[39m
+2026-10-05T20:17:16.7286181Z      [32m✓[39m normalizes a whole-table node selection for structural commands[32m 4[2mms[22m[39m
+2026-10-05T20:17:16.7286690Z      [32m✓[39m toggles the first header row and column[32m 3[2mms[22m[39m
+2026-10-05T20:17:16.7287240Z      [32m✓[39m reports row and column header states independently at their intersection[32m 4[2mms[22m[39m
+2026-10-05T20:17:16.7287876Z      [32m✓[39m uses row precedence for a 1 × 1 header and disables unrepresentable axes[32m 3[2mms[22m[39m
+2026-10-05T20:17:16.7288485Z      [32m✓[39m disables header-row when a spanning edge makes the scope ambiguous[32m 2[2mms[22m[39m
+2026-10-05T20:17:16.7289098Z      [32m✓[39m disables header-column when a spanning edge makes the scope ambiguous[32m 2[2mms[22m[39m
+2026-10-05T20:17:16.7289690Z      [32m✓[39m keeps header-column intersection spans blocking header-row[32m 3[2mms[22m[39m
+2026-10-05T20:17:16.7290260Z      [32m✓[39m keeps header-row intersection spans blocking header-column[32m 3[2mms[22m[39m
+2026-10-05T20:17:16.7290854Z      [32m✓[39m merges content and splits with stable anchor metadata and fresh identities[32m 4[2mms[22m[39m
+2026-10-05T20:17:16.7291480Z      [32m✓[39m preserves automatic and sub-minimum width preferences when merging[32m 2[2mms[22m[39m
+2026-10-05T20:17:16.7292013Z      [32m✓[39m changes, distributes, and resets column widths[32m 4[2mms[22m[39m
+2026-10-05T20:17:16.7292768Z      [32m✓[39m distributes from the rendered table width and clamps the portable value[32m 3[2mms[22m[39m
+2026-10-05T20:17:16.7293634Z      [32m✓[39m detects later-row widths that still need distribution[32m 4[2mms[22m[39m
+2026-10-05T20:17:16.7294443Z      [32m✓[39m reuses adjacent empty paragraphs and deletes the table[32m 3[2mms[22m[39m
+2026-10-05T20:17:16.7634608Z 2026-10-05T20:17:16.763Z pw:browser [pid=2811][err] [1005/201716.763044:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T20:17:16.7714095Z 2026-10-05T20:17:16.771Z pw:browser [pid=2811][err] [1005/201716.771018:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T20:17:19.8939986Z 2026-10-05T20:17:19.893Z pw:browser [pid=2811][err] [1005/201719.893408:ERROR:net/socket/ssl_client_socket_impl.cc:949] handshake failed; returned -1, SSL error code 1, net_error -107
+2026-10-05T20:17:19.8941221Z 2026-10-05T20:17:19.893Z pw:browser [pid=2811][err] [1005/201719.893889:ERROR:net/socket/ssl_client_socket_impl.cc:949] handshake failed; returned -1, SSL error code 1, net_error -107
+2026-10-05T20:17:20.4082654Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/rich-editor-source/packages/admin/tests/editor/iframe-block-editor.test.tsx [2m([22m[2m11 tests[22m[2m)[22m[33m 3377[2mms[22m[39m
+2026-10-05T20:17:20.4084251Z      [33m[2m✓[22m[39m inserts a block from /iframe with its Code tab focused [33m 493[2mms[22m[39m
+2026-10-05T20:17:20.4085304Z      [33m[2m✓[22m[39m turns a pasted YouTube link into the player and shows it in Preview [33m 515[2mms[22m[39m
+2026-10-05T20:17:20.4086253Z      [33m[2m✓[22m[39m saves a link that waited while the editor was read-only [33m 550[2mms[22m[39m
+2026-10-05T20:17:20.4087256Z      [33m[2m✓[22m[39m keeps showing a link that waits for the editor when the code editor loses focus [33m 650[2mms[22m[39m
+2026-10-05T20:17:20.4088307Z      [33m[2m✓[22m[39m shows why input is rejected and keeps the saved embed [33m 420[2mms[22m[39m
+2026-10-05T20:17:20.4089155Z      [33m[2m✓[22m[39m clears the embed when the code is deleted [33m 367[2mms[22m[39m
+2026-10-05T20:17:20.4483338Z 2026-10-05T20:17:20.445Z pw:browser [pid=2811][err] [1005/201720.444014:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T20:17:20.4536120Z 2026-10-05T20:17:20.453Z pw:browser [pid=2811][err] [1005/201720.453246:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T20:17:21.4584077Z  [32m✓[39m [30m[43m chromium [49m[39m tests/rich-editor-browser/form-keyboard.test.ts [2m([22m[2m1 test[22m[2m)[22m[33m 548[2mms[22m[39m
+2026-10-05T20:17:21.4585476Z    [33m[2m✓[22m[39m keeps real browser search Enter local while the enclosing draft still submits explicitly [33m 548[2mms[22m[39m
+2026-10-05T20:17:21.4957046Z 2026-10-05T20:17:21.493Z pw:browser [pid=2811][err] [1005/201721.493562:INFO:CONSOLE:934] "[vite] connecting...", source: http://localhost:63315/@vite/client (934)
+2026-10-05T20:17:21.5031727Z 2026-10-05T20:17:21.503Z pw:browser [pid=2811][err] [1005/201721.502932:INFO:CONSOLE:1045] "[vite] connected.", source: http://localhost:63315/@vite/client (1045)
+2026-10-05T20:17:21.9223459Z  [32m✓[39m [30m[43m chromium [49m[39m parity/emdash/rich-editor-source/packages/admin/tests/components/PortableTextEditor.footer.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 105[2mms[22m[39m
+2026-10-05T20:17:21.9246468Z 
+2026-10-05T20:17:21.9247034Z [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 3 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+2026-10-05T20:17:21.9247379Z 
+2026-10-05T20:17:21.9250832Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m parity/emdash/rich-editor-source/packages/admin/tests/editor/PortableTextEditor.test.tsx[2m > [22mPortable Text ↔ ProseMirror conversion[2m > [22mkeeps a no-op editor update lossless
+2026-10-05T20:17:21.9255077Z [31m[1mAssertionError[22m: expected null to be truthy[39m
+2026-10-05T20:17:21.9255562Z 
+2026-10-05T20:17:21.9255815Z Failure screenshot:
+2026-10-05T20:17:21.9257401Z   - [2mparity/emdash/rich-editor-source/packages/admin/tests/editor/__screenshots__/PortableTextEditor.test.tsx/Portable-Text---ProseMirror-conversion-keeps-a-no-op-editor-update-lossless-1.png[22m
+2026-10-05T20:17:21.9258784Z 
+2026-10-05T20:17:21.9259129Z [32m- Expected:[39m
+2026-10-05T20:17:21.9259912Z true
+2026-10-05T20:17:21.9260215Z 
+2026-10-05T20:17:21.9260532Z [31m+ Received:[39m
+2026-10-05T20:17:21.9260954Z null
+2026-10-05T20:17:21.9261230Z 
+2026-10-05T20:17:21.9262551Z [36m [2m❯[22m vi.waitFor.timeout parity/emdash/rich-editor-source/packages/admin/tests/editor/PortableTextEditor.test.tsx:[2m119:14[22m[39m
+2026-10-05T20:17:21.9440091Z     [90m117|[39m   () [33m=>[39m {
+2026-10-05T20:17:21.9441297Z     [90m118|[39m    pm [33m=[39m document[33m.[39m[34mquerySelector[39m([32m".ProseMirror"[39m) [35mas[39m [33mHTMLElement[39m [33m|[39m [35mnull[39m[33m;[39m
+2026-10-05T20:17:21.9442577Z     [90m119|[39m    [34mexpect[39m(pm)[33m.[39m[34mtoBeTruthy[39m()[33m;[39m
+2026-10-05T20:17:21.9443195Z     [90m   |[39m              [31m^[39m
+2026-10-05T20:17:21.9443626Z     [90m120|[39m   }[33m,[39m
+2026-10-05T20:17:21.9444592Z     [90m121|[39m   { timeout[33m:[39m [34m3000[39m }[33m,[39m
+2026-10-05T20:17:21.9444937Z 
+2026-10-05T20:17:21.9445288Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯[22m[39m
+2026-10-05T20:17:21.9445567Z 
+2026-10-05T20:17:21.9447003Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m parity/emdash/rich-editor-source/packages/admin/tests/editor/table-controls.test.tsx[2m > [22mtable controls[2m > [22muses the shared header-row choice for pointer insertion
+2026-10-05T20:17:21.9448833Z [31m[1mVitestBrowserElementError[22m: Cannot find element with locator: page.getByRole('switch', { name: 'Header row' })
+2026-10-05T20:17:21.9449456Z 
+2026-10-05T20:17:21.9449605Z [36m<body>[31m
+2026-10-05T20:17:21.9449887Z   [0m
+2026-10-05T20:17:21.9450123Z   
+2026-10-05T20:17:21.9450256Z 
+2026-10-05T20:17:21.9450373Z [0m
+2026-10-05T20:17:21.9450649Z   [36m<div>[31m
+2026-10-05T20:17:21.9450954Z     [36m<div>[31m
+2026-10-05T20:17:21.9451247Z       [90m<!---->[31m
+2026-10-05T20:17:21.9451646Z       [36m<div[31m …[36m />[31m
+2026-10-05T20:17:21.9451994Z       [0m[0m
+2026-10-05T20:17:21.9452443Z       [0m[0m
+2026-10-05T20:17:21.9452749Z     [36m</div>[31m
+2026-10-05T20:17:21.9453061Z   [36m</div>[31m
+2026-10-05T20:17:21.9453387Z [36m</body>[31m...[39m
+2026-10-05T20:17:21.9453580Z 
+2026-10-05T20:17:21.9453711Z Failure screenshot:
+2026-10-05T20:17:21.9455105Z   - [2mparity/emdash/rich-editor-source/packages/admin/tests/editor/__screenshots__/table-controls.test.tsx/table-controls-uses-the-shared-header-row-choice-for-pointer-insertion-1.png[22m
+2026-10-05T20:17:21.9456155Z 
+2026-10-05T20:17:21.9456946Z [36m [2m❯[22m parity/emdash/rich-editor-source/packages/admin/tests/editor/table-controls.test.tsx:[2m229:31[22m[39m
+2026-10-05T20:17:21.9508833Z     [90m227|[39m   const screen = await render(<TableSizePicker onInsert={onInsert} onC…
+2026-10-05T20:17:21.9510141Z     [90m228|[39m   [35mconst[39m header [33m=[39m screen[33m.[39m[34mgetByRole[39m([32m"switch"[39m[33m,[39m { name[33m:[39m [32m"Header row"[39m })[33m;[39m
+2026-10-05T20:17:21.9511436Z     [90m229|[39m   [35mawait[39m expect[33m.[39m[34melement[39m(header)[33m.[39m[34mtoBeChecked[39m()[33m;[39m
+2026-10-05T20:17:21.9512225Z     [90m   |[39m                               [31m^[39m
+2026-10-05T20:17:21.9513046Z     [90m230|[39m   header[33m.[39m[34melement[39m()[33m.[39m[34mclick[39m()[33m;[39m
+2026-10-05T20:17:21.9513913Z     [90m231|[39m   screen.getByRole("gridcell", { name: "2 × 2 table" }).element().clic…
+2026-10-05T20:17:21.9514332Z 
+2026-10-05T20:17:21.9542875Z [31m[1mCaused by: Error[22m: Matcher did not succeed in time.[39m
+2026-10-05T20:17:21.9544192Z [36m [2m❯[22m parity/emdash/rich-editor-source/packages/admin/tests/editor/table-controls.test.tsx:[2m229:2[22m[39m
+2026-10-05T20:17:21.9544809Z 
+2026-10-05T20:17:21.9545116Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯[22m[39m
+2026-10-05T20:17:21.9545375Z 
+2026-10-05T20:17:21.9546868Z [41m[1m FAIL [22m[49m [30m[43m chromium [49m[39m parity/emdash/rich-editor-source/packages/admin/tests/editor/table-controls.test.tsx[2m > [22mtable controls[2m > [22mkeeps the header choice before confirmation in the coarse keyboard flow
+2026-10-05T20:17:21.9548362Z [31m[1mVitestBrowserElementError[22m: Cannot find element with locator: page.getByRole('switch', { name: 'Header row' })
+2026-10-05T20:17:21.9548958Z 
+2026-10-05T20:17:21.9549097Z [36m<body>[31m
+2026-10-05T20:17:21.9549390Z   [0m
+2026-10-05T20:17:21.9549624Z   
+2026-10-05T20:17:21.9549714Z 
+2026-10-05T20:17:21.9549792Z [0m
+2026-10-05T20:17:21.9549967Z   [36m<div>[31m
+2026-10-05T20:17:21.9550161Z     [36m<div>[31m
+2026-10-05T20:17:21.9550356Z       [90m<!---->[31m
+2026-10-05T20:17:21.9550551Z       [36m<div[31m
+2026-10-05T20:17:21.9550825Z         [33maria-label[31m=[32m"Insert table"[31m
+2026-10-05T20:17:21.9551182Z         [33mclass[31m=[32m"table-picker svelte-1kx6tej"[31m
+2026-10-05T20:17:21.9551824Z         [33mrole[31m=[32m"dialog"[31m
+2026-10-05T20:17:21.9552380Z         [33mtabindex[31m=[32m"-1"[31m
+2026-10-05T20:17:21.9552743Z       [36m>[31m
+2026-10-05T20:17:21.9552976Z         [36m<p>[31m
+2026-10-05T20:17:21.9553199Z           [0m1 × 1 table[0m
+2026-10-05T20:17:21.9553410Z         [36m</p>[31m
+2026-10-05T20:17:21.9553600Z         [0m [0m
+2026-10-05T20:17:21.9553785Z         [36m<label[31m
+2026-10-05T20:17:21.9554055Z           [33mclass[31m=[32m"svelte-1kx6tej"[31m
+2026-10-05T20:17:21.9554363Z           [33mfor[31m=[32m"c5-rows"[31m
+2026-10-05T20:17:21.9554645Z         [36m>[31m
+2026-10-05T20:17:21.9554905Z           [0mRows[0m
+2026-10-05T20:17:21.9555102Z         [36m</label>[31m
+2026-10-05T20:17:21.9555308Z         [36m<select[31m
+2026-10-05T20:17:21.9555555Z           [33mid[31m=[32m"c5-rows"[31m
+2026-10-05T20:17:21.9555780Z         [36m>[31m
+2026-10-05T20:17:21.9556007Z           [36m<option[31m
+2026-10-05T20:17:21.9556346Z             [33mvalue[31m=[32m"1"[31m
+2026-10-05T20:17:21.9556617Z           [36m>[31m
+2026-10-05T20:17:21.9556809Z             [0m1[0m
+2026-10-05T20:17:21.9557009Z           [36m</option>[31m
+2026-10-05T20:17:21.9557238Z           [36m<option[31m
+2026-10-05T20:17:21.9557469Z             [33mvalue[31m=[32m"2"[31m
+2026-10-05T20:17:21.9557780Z           [36m>[31m
+2026-10-05T20:17:21.9557964Z             [0m2[0m
+2026-10-05T20:17:21.9558153Z           [36m</option>[31m
+2026-10-05T20:17:21.9558359Z           [36m<option[31m
+2026-10-05T20:17:21.9558595Z             [33mvalue[31m=[32m"3"[31m
+2026-10-05T20:17:21.9558813Z           [36m>[31m
+2026-10-05T20:17:21.9558990Z             [0m3[0m
+2026-10-05T20:17:21.9559177Z           [36m</option>[31m
+2026-10-05T20:17:21.9559389Z           [36m<option[31m
+2026-10-05T20:17:21.9559713Z             [33mvalue[31m=[32m"4"[31m
+2026-10-05T20:17:21.9559926Z           [36m>[31m
+2026-10-05T20:17:21.9560114Z             [0m4[0m
+2026-10-05T20:17:21.9560302Z           [36m</option>[31m
+2026-10-05T20:17:21.9560508Z           [36m<option[31m
+2026-10-05T20:17:21.9560734Z             [33mvalue[31m=[32m"5"[31m
+2026-10-05T20:17:21.9561085Z           [36m>[31m
+2026-10-05T20:17:21.9561265Z             [0m5[0m
+2026-10-05T20:17:21.9561472Z           [36m</option>[31m
+2026-10-05T20:17:21.9561716Z           [36m<option[31m
+2026-10-05T20:17:21.9562049Z             [33mvalue[31m=[32m"6"[31m
+2026-10-05T20:17:21.9562501Z           [36m>[31m
+2026-10-05T20:17:21.9562774Z             [0m6[0m
+2026-10-05T20:17:21.9563104Z           [36m</option>[31m
+2026-10-05T20:17:21.9563340Z           [36m<option[31m
+2026-10-05T20:17:21.9563575Z             [33mvalue[31m=[32m"7"[31m
+2026-10-05T20:17:21.9563791Z           [36m>[31m
+2026-10-05T20:17:21.9563969Z             [0m7[0m
+2026-10-05T20:17:21.9564164Z           [36m</option>[31m
+2026-10-05T20:17:21.9564366Z           [36m<option[31m
+2026-10-05T20:17:21.9564591Z             [33mvalue[31m=[32m"8"[31m
+2026-10-05T20:17:21.9564822Z           [36m>[31m
+2026-10-05T20:17:21.9565108Z             [0m8[0m
+2026-10-05T20:17:21.9565407Z           [36m</option>[31m
+2026-10-05T20:17:21.9565693Z           [36m<option[31m
+2026-10-05T20:17:21.9565926Z             [33mvalue[31m=[32m"9"[31m
+2026-10-05T20:17:21.9566141Z           [36m>[31m
+2026-10-05T20:17:21.9566323Z             [0m9[0m
+2026-10-05T20:17:21.9566520Z           [36m</option>[31m
+2026-10-05T20:17:21.9566719Z           [36m<option[31m
+2026-10-05T20:17:21.9566947Z             [33mvalue[31m=[32m"10"[31m
+2026-10-05T20:17:21.9567174Z           [36m>[31m
+2026-10-05T20:17:21.9567358Z             [0m10[0m
+2026-10-05T20:17:21.9567548Z           [36m</option>[31m
+2026-10-05T20:17:21.9567742Z           [0m[0m
+2026-10-05T20:17:21.9567938Z         [36m</select>[31m
+2026-10-05T20:17:21.9568134Z         [0m [0m
+2026-10-05T20:17:21.9568318Z         [36m<label[31m
+2026-10-05T20:17:21.9568580Z           [33mclass[31m=[32m"svelte-1kx6tej"[31m
+2026-10-05T20:17:21.9569034Z           [33mfor[31m=[32m"c5-columns"[31m
+2026-10-05T20:17:21.9569294Z         [36m>[31m
+2026-10-05T20:17:21.9569491Z           [0mColumns[0m
+2026-10-05T20:17:21.9569691Z         [36m</label>[31m
+2026-10-05T20:17:21.9569900Z         [36m<select[31m
+2026-10-05T20:17:21.9570138Z           [33mid[31m=[32m"c5-columns"[31m
+2026-10-05T20:17:21.9570366Z         [36m>[31m
+2026-10-05T20:17:21.9570556Z           [36m<option[31m
+2026-10-05T20:17:21.9570784Z             [33mvalue[31m=[32m"1"[31m
+2026-10-05T20:17:21.9571004Z           [36m>[31m
+2026-10-05T20:17:21.9571192Z             [0m1[0m
+2026-10-05T20:17:21.9571385Z           [36m</option>[31m
+2026-10-05T20:17:21.9571589Z           [36m<option[31m
+2026-10-05T20:17:21.9571812Z             [33mvalue[31m=[32m"2"[31m
+2026-10-05T20:17:21.9572038Z           [36m>[31m
+2026-10-05T20:17:21.9572220Z             [0m2[0m
+2026-10-05T20:17:21.9572616Z           [36m</option>[31m
+2026-10-05T20:17:21.9572825Z           [36m<option[31m
+2026-10-05T20:17:21.9573059Z             [33mvalue[31m=[32m"3"[31m
+2026-10-05T20:17:21.9573277Z           [36m>[31m
+2026-10-05T20:17:21.9573463Z             [0m3[0m
+2026-10-05T20:17:21.9573652Z           [36m</option>[31m
+2026-10-05T20:17:21.9573858Z           [36m<option[31m
+2026-10-05T20:17:21.9574089Z             [33mvalue[31m=[32m"4"[31m
+2026-10-05T20:17:21.9574301Z           [36m>[31m
+2026-10-05T20:17:21.9574481Z             [0m4[0m
+2026-10-05T20:17:21.9574664Z           [36m</option>[31m
+2026-10-05T20:17:21.9575005Z           [36m<option[31m
+2026-10-05T20:17:21.9575261Z             [33mvalue[31m=[32m"5"[31m
+2026-10-05T20:17:21.9575475Z           [36m>[31m
+2026-10-05T20:17:21.9575662Z             [0m5[0m
+2026-10-05T20:17:21.9575851Z           [36m</option>[31m
+2026-10-05T20:17:21.9576051Z           [36m<option[31m
+2026-10-05T20:17:21.9576280Z             [33mvalue[31m=[32m"6"[31m
+2026-10-05T20:17:21.9576552Z           [36m>[31m
+2026-10-05T20:17:21.9576818Z             [0m6[0m
+2026-10-05T20:17:21.9577087Z           [36m</option>[31m
+2026-10-05T20:17:21.9577367Z           [36m<option[31m
+2026-10-05T20:17:21.9577723Z             [33mvalue[31m=[32m"7"[31m
+2026-10-05T20:17:21.9577942Z           [36m>[31m
+2026-10-05T20:17:21.9578129Z             [0m7[0m
+2026-10-05T20:17:21.9578317Z           [36m</option>[31m
+2026-10-05T20:17:21.9578520Z           [36m<option[31m
+2026-10-05T20:17:21.9578751Z             [33mvalue[31m=[32m"8"[31m
+2026-10-05T20:17:21.9578966Z           [36m>[31m
+2026-10-05T20:17:21.9579152Z             [0m8[0m
+2026-10-05T20:17:21.9579349Z           [36m</option>[31m
+2026-10-05T20:17:21.9579601Z           [36m<option[31m
+2026-10-05T20:17:21.9579963Z             [33mvalue[31m=[32m"9"[31m
+2026-10-05T20:17:21.9580305Z           [36m>[31m
+2026-10-05T20:17:21.9580572Z             [0m9[0m
+2026-10-05T20:17:21.9580835Z           [36m</option>[31m
+2026-10-05T20:17:21.9581130Z           [36m<option[31m
+2026-10-05T20:17:21.9581466Z             [33mvalue[31m=[32m"10"[31m
+2026-10-05T20:17:21.9581779Z           [36m>[31m
+2026-10-05T20:17:21.9582054Z             [0m10[0m
+2026-10-05T20:17:21.9582489Z           [36m</option>[31m
+2026-10-05T20:17:21.9582784Z           [0m[0m
+2026-10-05T20:17:21.9583062Z         [36m</select>[31m
+2026-10-05T20:17:21.9583341Z         [90m<!---->[31m
+2026-10-05T20:17:21.9583630Z         [0m [0m
+2026-10-05T20:17:21.9583818Z         [36m<label[31m
+2026-10-05T20:17:21.9584080Z           [33mclass[31m=[32m"svelte-1kx6tej"[31m
+2026-10-05T20:17:21.9584356Z         [36m>[31m
+2026-10-05T20:17:21.9584557Z           [36m<input[31m
+2026-10-05T20:17:21.9584812Z             [33mtype[31m=[32m"checkbox"[31m
+2026-10-05T20:17:21.9585065Z           [36m/>[31m
+2026-10-05T20:17:21.9585268Z           [0m Header row[0m
+2026-10-05T20:17:21.9585494Z         [36m</label>[31m
+2026-10-05T20:17:21.9585698Z         [0m [0m
+2026-10-05T20:17:21.9585884Z         [36m<button[31m
+2026-10-05T20:17:21.9586266Z           [33mtype[31m=[32m"button"[31m
+2026-10-05T20:17:21.9586497Z         [36m>[31m
+2026-10-05T20:17:21.9586751Z           [0mInsert table[0m
+2026-10-05T20:17:21.9587055Z         [36m</button>[31m
+2026-10-05T20:17:21.9587323Z         [90m<!---->[31m
+2026-10-05T20:17:21.9587577Z       [36m</div>[31m
+2026-10-05T20:17:21.9587766Z       [0m[0m
+2026-10-05T20:17:21.9587940Z       [0m[0m
+2026-10-05T20:17:21.9588126Z     [36m</div>[31m
+2026-10-05T20:17:21.9588343Z   [36m</div>[31m
+2026-10-05T20:17:21.9588617Z [36m</body>[31m[39m
+2026-10-05T20:17:21.9588770Z 
+2026-10-05T20:17:21.9588884Z Failure screenshot:
+2026-10-05T20:17:21.9590063Z   - [2mparity/emdash/rich-editor-source/packages/admin/tests/editor/__screenshots__/table-controls.test.tsx/table-controls-keeps-the-header-choice-before-confirmation-in-the-coarse-keyboard-flow-1.png[22m
+2026-10-05T20:17:21.9590715Z 
+2026-10-05T20:17:21.9591189Z [36m [2m❯[22m parity/emdash/rich-editor-source/packages/admin/tests/editor/table-controls.test.tsx:[2m267:69[22m[39m
+2026-10-05T20:17:21.9591835Z     [90m265|[39m    const screen = await render(<TableSizePicker onInsert={vi.fn()} onC…
+2026-10-05T20:17:21.9592637Z     [90m266|[39m    const rows = screen.getByRole("combobox", { name: "Rows" }).element…
+2026-10-05T20:17:21.9593311Z     [90m267|[39m    const header = screen.getByRole("switch", { name: "Header row" }).e…
+2026-10-05T20:17:21.9593780Z     [90m   |[39m                                                                     [31m^[39m
+2026-10-05T20:17:21.9594222Z     [90m268|[39m    const insert = screen.getByRole("button", { name: "Insert table" })…
+2026-10-05T20:17:21.9594997Z     [90m269|[39m    [35mawait[39m vi[33m.[39m[34mwaitFor[39m(() [33m=>[39m [34mexpect[39m(rows)[33m.[39m[34mtoHaveFocus[39m())[33m;[39m
+2026-10-05T20:17:21.9595592Z 
+2026-10-05T20:17:21.9595962Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯[22m[39m
+2026-10-05T20:17:21.9596212Z 
+2026-10-05T20:17:21.9596245Z 
+2026-10-05T20:17:21.9596806Z [2m Test Files [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m4 passed[39m[22m[90m (6)[39m
+2026-10-05T20:17:21.9598049Z [2m      Tests [22m [1m[31m3 failed[39m[22m[2m | [22m[1m[32m206 passed[39m[22m[90m (209)[39m
+2026-10-05T20:17:21.9598710Z [2m   Start at [22m 20:16:47
+2026-10-05T20:17:21.9599504Z [2m   Duration [22m 34.57s[2m (transform 0ms, setup 558ms, import 1.22s, tests 29.21s, environment 0ms)[22m
+2026-10-05T20:17:21.9600024Z 
+2026-10-05T20:17:21.9607460Z JSON report written to /home/runner/work/cms/cms/rich-editor-browser-report.json
+2026-10-05T20:17:21.9944881Z 2026-10-05T20:17:21.993Z pw:browser [pid=2811][err] [1005/201721.985087:INFO:CONSOLE:1080] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/@vite/client (1080)
+2026-10-05T20:17:21.9947289Z 2026-10-05T20:17:21.993Z pw:browser [pid=2811][err] [1005/201721.986155:INFO:CONSOLE:1211] "[vite] server connection lost. Polling for restart...", source: http://localhost:63315/__vitest_browser__/tester-BJtsJFpD.js (1211)
+2026-10-05T20:17:22.0088557Z 2026-10-05T20:17:22.007Z pw:browser [pid=2811] <gracefully close start>
+2026-10-05T20:17:22.0431430Z 2026-10-05T20:17:22.042Z pw:browser [pid=2811] <process did exit: exitCode=0, signal=null>
+2026-10-05T20:17:22.0432529Z 2026-10-05T20:17:22.043Z pw:browser [pid=2811] starting temporary directories cleanup
+2026-10-05T20:17:22.0466027Z 2026-10-05T20:17:22.046Z pw:browser [pid=2811] finished temporary directories cleanup
+2026-10-05T20:17:22.0466735Z 2026-10-05T20:17:22.046Z pw:browser [pid=2811] <gracefully close end>
+2026-10-05T20:17:23.0386395Z ##[error]Process completed with exit code 1.
+2026-10-05T20:17:23.0444291Z ##[group]Run actions/upload-artifact@v4
+2026-10-05T20:17:23.0444517Z with:
+2026-10-05T20:17:23.0444706Z   name: rich-editor-source-browser-evidence
+2026-10-05T20:17:23.0444955Z   path: rich-editor-browser-report.json
+2026-10-05T20:17:23.0445176Z   retention-days: 7
+2026-10-05T20:17:23.0445364Z   if-no-files-found: warn
+2026-10-05T20:17:23.0445556Z   compression-level: 6
+2026-10-05T20:17:23.0445736Z   overwrite: false
+2026-10-05T20:17:23.0445913Z   include-hidden-files: false
+2026-10-05T20:17:23.0446129Z env:
+2026-10-05T20:17:23.0446325Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-05T20:17:23.0446573Z ##[endgroup]
+2026-10-05T20:17:23.1880283Z (node:2895) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-05T20:17:23.1880965Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-05T20:17:23.1920066Z With the provided path, there will be 1 file uploaded
+2026-10-05T20:17:23.1936248Z Artifact name is valid!
+2026-10-05T20:17:23.1942156Z Root directory input is valid!
+2026-10-05T20:17:23.5481816Z Beginning upload of artifact content to blob storage
+2026-10-05T20:17:23.5636702Z (node:2895) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-05T20:17:23.7648342Z Uploaded bytes 8604
+2026-10-05T20:17:23.8208323Z Finished uploading artifact content to blob storage!
+2026-10-05T20:17:23.8209600Z SHA256 digest of uploaded artifact zip is f4bc8b192b67304861dd3dc04e656dc247b2a904703ee06a0435092a94230a91
+2026-10-05T20:17:23.8210327Z Finalizing artifact upload
+2026-10-05T20:17:24.0889690Z Artifact rich-editor-source-browser-evidence.zip successfully finalized. Artifact ID 11368997819
+2026-10-05T20:17:24.0890700Z Artifact rich-editor-source-browser-evidence has been successfully uploaded! Final size is 8604 bytes. Artifact ID is 11368997819
+2026-10-05T20:17:24.0895563Z Artifact download URL: https://github.com/sveltery/cms/actions/runs/37366707175/artifacts/11368997819
+2026-10-05T20:17:24.1051536Z Post job cleanup.
+2026-10-05T20:17:24.2237292Z Pruning is unnecessary.
+2026-10-05T20:17:24.2378165Z Post job cleanup.
+2026-10-05T20:17:24.3230774Z [command]/usr/bin/git version
+2026-10-05T20:17:24.3272726Z git version 2.55.0
+2026-10-05T20:17:24.3302731Z Temporarily overriding HOME='/home/runner/work/_temp/d392529e-2c27-4572-840e-a7405b1fc5f3' before making global git config changes
+2026-10-05T20:17:24.3304235Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-05T20:17:24.3307601Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cms/cms
+2026-10-05T20:17:24.3342783Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-05T20:17:24.3377190Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-05T20:17:24.3625383Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-05T20:17:24.3655598Z http.https://github.com/.extraheader
+2026-10-05T20:17:24.3666205Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-05T20:17:24.3701034Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-05T20:17:24.3938847Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-05T20:17:24.3973784Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-05T20:17:24.4345195Z Cleaning up orphan processes
+2026-10-05T20:17:24.4623514Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4, pnpm/action-setup@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
