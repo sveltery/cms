@@ -273,3 +273,56 @@ results establish no accepted public app, final CI/review/merge or whole product
 parity. Final current normal13/secured9, configured review, new independent final
 head review, Root approval, author regular expected-head merge and post-Main
 verification remain pending.
+
+### Actual shared application and Shell continuation
+
+The root layout now mounts one provider without duplicating WorkspaceShell.
+Each provider owns an actual QueryClient and non-secret Shell effect state; the
+root retains both across client navigation, and every server render creates
+fresh instances. Existing Source defaults remain staleTime60000/retry1. The
+actual current-user observer shares `["currentUser"]`, staleTime300000 and
+retryfalse, using the real public auth/me GET by default. Existing Dashboard,
+WelcomeModal and ContentPicker components consume the same app client; explicit
+caller clients and standalone picker fallback remain supported.
+
+The additional [whole Source inventory](../parity/emdash/admin-app-source/sources.json)
+preserves ten complete pinned authorities/26594 bytes, twelve source IDs and
+thirteen static matcher expressions. Original Shell3 and plugin page-path9
+callback bodies, expected values, fixtures and clocks are byte-exact. Initial
+empty async test mounts are retained with zero causal credit. Corrected uniform
+mount readiness exposes the actual main landmark: two Source Shell values fail
+before implementation, one control passes; the nine page-path callbacks stop at
+missing product import and earn zero causal credit. Whole Source12 subsequently
+passes. Page-path identity/path resolution is real native code; those nine tests
+establish no trusted React mounting or widget/context integration.
+
+Five supplemental native app tests reach genuine missing current-user, first
+login, toolbar and shared-cache value failures before the fix. Two later controls
+mount the actual root layout to verify shared default queries and isolated app
+instances. A further real ContentPicker root-cache failure precedes its context
+binding. Two retained-root navigation regressions then expose welcome reopening
+and toolbar effects replaying when page shells remount. The per-provider state
+retains Source Shell lifetime across that navigation. These are native UI/cache
+fixtures, never credential/session/protected HTTP or authentication evidence.
+Actual Node SSR controls independently verify per-render user-data isolation and
+Source default query policy without fetching.
+
+The current-user query was extracted after the first green phase for reuse by
+future Header/Sidebar consumers. Existing nineteen standalone SSR callbacks keep
+all assertions and now compile the actual additional Svelte/rune/DTO dependencies;
+initial import failures and every subsequent complete raw result are retained.
+New terminal Source12 and native app/SSR commands follow the entire old Source
+aggregate. Dependencies, lockfile, shared workflows, deadlines, browser policy,
+old commands, full incoming Main and Source authorities remain unchanged.
+
+The real welcome POST, dashboard GET, transfer/policy endpoints and persisted
+first-login dismissal still await the actual owning backend producer. Source33
+retains the original failed `npx emdash doctor` assertion and zero credit for it;
+its strict bounded native CLI qualification remains explicit. The copied App,
+CoreUpdateBanner and SandboxedPluginWidget authorities are unexecuted references.
+Global locale/branding/theme/full Header/Sidebar/command palette, CoreUpdate's
+real backend/runtime status, trusted React plugin modules, sandbox BlockRenderer/
+interaction backend and full widgets remain incomplete. Own PR100 stays draft
+pending full current checks, configured and fresh independent review, Root exact
+approval and author regular expected-head merge. This continuation completes no
+whole dashboard/admin/product checklist row.

@@ -83,5 +83,168 @@
       "sha256": "f81f4d5752b5684f6005b6c714e94a86d799aec1f37c91c054d1ec2b1b261f50",
       "gitBlob": "2eb64e86d10aa3999fba7374a32711175ffc6bc7"
     }
+  ],
+  "declarations": [
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/Shell.test.tsx:45",
+      "sourcePath": "packages/admin/tests/components/Shell.test.tsx",
+      "line": 45,
+      "title": "sets the admin page canvas to the elevated surface",
+      "sha256": "a403a9c418ebf5233d1a3d6db30b0b8fb16bef09137d9d959e97143b846f452f"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/Shell.test.tsx:55",
+      "sourcePath": "packages/admin/tests/components/Shell.test.tsx",
+      "line": 55,
+      "title": "does not show marketplace migration guidance outside the dashboard",
+      "sha256": "86b2511be11d3d096273808f7f7da037a75778bd275f83042810fc74f6f87442"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/components/Shell.test.tsx:67",
+      "sourcePath": "packages/admin/tests/components/Shell.test.tsx",
+      "line": 67,
+      "title": "stores localized labels for the cache-safe client toolbar bootstrap",
+      "sha256": "96469f6a8d1aab0dae0c5b9d16447177440e4e0dab35319d3ab10cd45a6a2ced"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/plugin-context.test.ts:12",
+      "sourcePath": "packages/admin/tests/lib/plugin-context.test.ts",
+      "line": 12,
+      "title": "resolves an exact page path",
+      "sha256": "32c85b61b148825af6b733ffd33f373dbe1b25dced1be231ea28d28d92c66b86"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/plugin-context.test.ts:16",
+      "sourcePath": "packages/admin/tests/lib/plugin-context.test.ts",
+      "line": 16,
+      "title": "resolves a trailing-slash path to the page registered without one",
+      "sha256": "da0ead11e90b8030dfc257c420d631a65e3e75fc68f8cd023dfdfbf01329ba4d"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/plugin-context.test.ts:20",
+      "sourcePath": "packages/admin/tests/lib/plugin-context.test.ts",
+      "line": 20,
+      "title": "resolves a path without a trailing slash to the page registered with one",
+      "sha256": "cf392156acc8028e67ab944ee250204726e16bd00584edb8353ef72ae825a8ee"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/plugin-context.test.ts:24",
+      "sourcePath": "packages/admin/tests/lib/plugin-context.test.ts",
+      "line": 24,
+      "title": "prefers an exact match when both slash variants are registered",
+      "sha256": "fb5067a5e7e0a84eca2bb7d51abd780346014b3cfb0fe0ff557e77527e1d786f"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/plugin-context.test.ts:30",
+      "sourcePath": "packages/admin/tests/lib/plugin-context.test.ts",
+      "line": 30,
+      "title": "resolves the root path to a page registered at the root",
+      "sha256": "8e7f25e8cad32ec66ddbeb18fd68513007d01a0e46b077c5423a95ff3f26f819"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/plugin-context.test.ts:34",
+      "sourcePath": "packages/admin/tests/lib/plugin-context.test.ts",
+      "line": 34,
+      "title": "falls back to the first registered page at the root when no root page exists",
+      "sha256": "f07ee38af06dc2459b3e0b096413810002b67e096234e66ab0279a701c2db527"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/plugin-context.test.ts:38",
+      "sourcePath": "packages/admin/tests/lib/plugin-context.test.ts",
+      "line": 38,
+      "title": "falls back to the first of several pages at the root",
+      "sha256": "aa9b74d7f24a0fd137b3f6ed508523791f6f19cda4b809c16b45903d08172490"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/plugin-context.test.ts:43",
+      "sourcePath": "packages/admin/tests/lib/plugin-context.test.ts",
+      "line": 43,
+      "title": "does not fall back for an unregistered non-root path",
+      "sha256": "af07bfa7d536565ee5685e02fd3c787823b93133f6cbe3ef2e219655aba267d5"
+    },
+    {
+      "sourceId": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e:packages/admin/tests/lib/plugin-context.test.ts:47",
+      "sourcePath": "packages/admin/tests/lib/plugin-context.test.ts",
+      "line": 47,
+      "title": "returns null when the plugin has no pages",
+      "sha256": "52b07c50203d5f84e4440501f11480ecad23ea425907cd2ec90ffc9d75c26140"
+    }
+  ],
+  "assertionFiles": [
+    {
+      "sourcePath": "packages/admin/tests/components/Shell.test.tsx",
+      "expressions": [
+        {
+          "line": 52,
+          "expression": "expect(document.querySelector(\"main\")).toHaveClass(\"bg-kumo-elevated\")",
+          "sha256": "2326ba408ad4e907a0b3c0811960f5b60ad93d5a55576c4bfdc8addc6ebd1806"
+        },
+        {
+          "line": 62,
+          "expression": "expect\n\t\t\t.element(screen.getByText(\"Marketplace configuration is deprecated\"))\n\t\t\t.not.toBeInTheDocument()",
+          "sha256": "e81b8a7977cf25db66168a40960a42aed7f0f0bad29def65fc1ee6235f6e0ab7"
+        },
+        {
+          "line": 75,
+          "expression": "expect(JSON.parse(localStorage.getItem(\"emdash-toolbar-labels\") ?? \"null\")).toEqual({\n\t\t\teditMode: \"Edit\",\n\t\t\thideToolbar: \"Hide toolbar\",\n\t\t})",
+          "sha256": "0446c03d3303841eb7a619a3376f6959cd8f041c28d521bfca5918ace6c73a98"
+        }
+      ]
+    },
+    {
+      "sourcePath": "packages/admin/tests/lib/plugin-context.test.ts",
+      "expressions": [
+        {
+          "line": 13,
+          "expression": "expect(resolvePluginPagePath({ \"/settings\": SettingsPage }, \"/settings\")).toBe(SettingsPage)",
+          "sha256": "be5320fbf34d8f8689e393200d6b8ffef4fe65207c9b488819779eec72275de9"
+        },
+        {
+          "line": 17,
+          "expression": "expect(resolvePluginPagePath({ \"/settings\": SettingsPage }, \"/settings/\")).toBe(SettingsPage)",
+          "sha256": "39794d9d778fd30bc9fa4a7d35b9d98c60a24aafdcf7806687c6b3b92d7c23a6"
+        },
+        {
+          "line": 21,
+          "expression": "expect(resolvePluginPagePath({ \"/settings/\": SettingsPage }, \"/settings\")).toBe(SettingsPage)",
+          "sha256": "2e90101dc12bd97c610f889a754fa6468dd428ee8d22315c5018ab8e7e914974"
+        },
+        {
+          "line": 26,
+          "expression": "expect(resolvePluginPagePath(pages, \"/settings\")).toBe(SettingsPage)",
+          "sha256": "15668524f819b2b401ab4cf55ef015d35afbf61094301fcf26fbdb085adf5ce6"
+        },
+        {
+          "line": 27,
+          "expression": "expect(resolvePluginPagePath(pages, \"/settings/\")).toBe(SettingsPageWithSlash)",
+          "sha256": "1393e88d2b051560d39d19a7bd58cfd9403e6d63895eca9704a2582d9740c793"
+        },
+        {
+          "line": 31,
+          "expression": "expect(resolvePluginPagePath({ \"/\": RootPage }, \"/\")).toBe(RootPage)",
+          "sha256": "d93284b1af312f76f8c11b86b953c63b66faa0e1db177282a882bba8b9ca34e2"
+        },
+        {
+          "line": 35,
+          "expression": "expect(resolvePluginPagePath({ \"/settings\": SettingsPage }, \"/\")).toBe(SettingsPage)",
+          "sha256": "8051ee4cb549ec16b69afe33a0edfe78f45812f3a582a4e56dc8b3e70d8b3985"
+        },
+        {
+          "line": 40,
+          "expression": "expect(resolvePluginPagePath(pages, \"/\")).toBe(SettingsPage)",
+          "sha256": "f9032d6a3590b6a5ac9c608ca10ff56bcac4da3356e1e1868551ca157e83db9d"
+        },
+        {
+          "line": 44,
+          "expression": "expect(resolvePluginPagePath({ \"/settings\": SettingsPage }, \"/missing\")).toBeNull()",
+          "sha256": "904b50f7ec931a9adbb6184087e9caf6b44260f8791f36f744e944cd1594f79f"
+        },
+        {
+          "line": 48,
+          "expression": "expect(resolvePluginPagePath(undefined, \"/settings\")).toBeNull()",
+          "sha256": "36f458e4007bb990376c1913bfc4437ca56109c3ec1ae1efcb6c5eb6596b11f1"
+        }
+      ]
+    }
   ]
 }

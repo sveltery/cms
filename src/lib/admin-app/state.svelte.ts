@@ -12,16 +12,17 @@ interface ShellStateValues {
 const contextKey = Symbol('sveltery-admin-shell-state');
 export function createAdminShellState() {
  let value = $state.raw<ShellStateValues>({ welcomeOpen: false, firstLogin: undefined, toolbarUser: undefined, toolbarLabels: undefined, toolbarLocale: undefined });
+ function update(patch: Partial<ShellStateValues>) { value = { ...value, ...patch }; }
  return {
   get welcomeOpen() { return value.welcomeOpen; },
   observeFirstLogin(firstLogin: boolean | undefined) {
    if (value.firstLogin === firstLogin) return;
-   value = { ...value, firstLogin, welcomeOpen: firstLogin ? true : value.welcomeOpen };
+   update({ firstLogin, welcomeOpen: firstLogin ? true : value.welcomeOpen });
   },
-  closeWelcome() { value = { ...value, welcomeOpen: false }; },
+  closeWelcome() { update({ welcomeOpen: false }); },
   shouldUpdateToolbar(user: CurrentUser, labels: ToolbarLabels, locale: string): boolean {
    if (value.toolbarUser === user && value.toolbarLocale === locale && value.toolbarLabels?.editMode === labels.editMode && value.toolbarLabels.hideToolbar === labels.hideToolbar) return false;
-   value = { ...value, toolbarUser: user, toolbarLabels: { ...labels }, toolbarLocale: locale };
+   update({ toolbarUser: user, toolbarLabels: { ...labels }, toolbarLocale: locale });
    return true;
   }
  };

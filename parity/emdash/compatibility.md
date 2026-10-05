@@ -2074,3 +2074,41 @@ results establish no accepted public app, final CI/review/merge or whole product
 parity. Final current normal13/secured9, configured review, new independent final
 head review, Root approval, author regular expected-head merge and post-Main
 verification remain pending.
+
+### Dashboard app/Shell context continuation in proposed PR100
+
+DWA-01 proposes the actual SvelteKit provider-only root layout and shared Shell
+lifetime described in [the paired feature record](../../docs/dashboard-welcome-ui.md).
+Pinned Source App.tsx owns a browser React Query singleton under client-only
+Astro mounting; Native owns one actual client and effect-state object per root
+provider and per actual server render. Source defaults60000/retry1 and shared
+currentUser300000/retryfalse remain exact. Native page-level shells preserve
+first-login/modal and toolbar effect lifetime through provider context, rather
+than introducing another global cache or duplicating Shell markup. Actual Node
+SSR controls prove user-data isolation between renders. This is a proposed native
+framework substitution; no specific final DWA acceptance is inferred.
+
+The ten new whole authorities/26594 bytes retain twelve immutable declaration
+IDs/thirteen static matcher expressions. The original Source Shell3 and plugin
+path9 callback bodies/mocks/values/clocks remain byte-exact. Corrected mount
+readiness exposes two genuine Source Shell value reds; earlier empty-host failures
+and the nine initially missing-module callbacks earn zero causal credit. Whole
+Source12 then passes. Native app controls separately establish actual shared
+current-user queries, first-login modal/cache effects and toolbar behavior;
+genuine content-picker and retained-navigation value reds precede their fixes.
+The existing Source33 doctor's original literal still fails honestly with zero
+credit and the independently qualified bounded CLI exception. No all-33 or full
+admin parity claim is made.
+
+The real public current-user GET is consumed directly. Persisted welcome POST,
+dashboard/transfer/policy endpoints and the broader pending backend are neither
+privately imported nor manufactured. Page-path9 proves only the actual generic
+component-identity/path algorithm; full trusted React/Svelte plugin mounting,
+context providers, widgets and sandbox interaction/BlockRenderer still require
+real implementations. English fixture toolbar copy can receive real locale
+labels/code, but full configured localization/branding/themes and full Source
+Header/Sidebar/palette/CoreUpdate remain unfinished. Shared dependencies/lock,
+CI/deadlines/security and every old Source command/authority remain preserved;
+only full new terminal app Source/native commands are additive. Current full
+gates, configured and fresh final-head review, Root approval, author regular
+expected-head PR100 merge and actual post-Main qualification remain pending.
