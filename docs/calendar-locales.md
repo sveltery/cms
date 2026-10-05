@@ -17,3 +17,5 @@ Preparation evidence is limited to byte-copy provenance and reproducible catalog
 The finite Root scope qualification, original whole-family execution, stationary final-head CI, independent/configured review, PR publication, and merge are pending. This packet is local preparation from actual public Main `98332aaa81bf857b3e8214a7e572cb086390d703`, not landed product parity.
 
 Reproduce generation after the existing frozen install with `node scripts/compile-calendar-locales.mjs`. An optional argument selects another checkout containing the identical frozen dependency graph for local preparation; it does not change generated headers or output. Check retained authorities with `node scripts/check-calendar-locales-source.mjs`. These commands compile/check data and do not run the original test family.
+
+The 31 whole upstream PO catalogs retain their original trailing whitespace. Exact path entries in `.gitattributes` preserve that source formatting; native production code and test expectations keep normal whitespace checks.
