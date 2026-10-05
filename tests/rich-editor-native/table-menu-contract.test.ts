@@ -109,7 +109,15 @@ describe('Actual Native table toolbar menu contract', () => {
       expect(document.activeElement?.textContent?.trim()).toBe('Delete row');
       await vi.advanceTimersByTimeAsync(500);
       menu(host)!.dispatchEvent(new KeyboardEvent('keydown', { key: 's', bubbles: true, cancelable: true })); await tick();
-      expect(document.activeElement?.textContent?.trim()).toBe('Select table');
+      expect(document.activeElement?.textContent?.trim()).toBe('Split merged cell');
     } finally { vi.useRealTimers(); }
+  });
+
+  it('keeps an unavailable action focusable while actual click remains a guarded no-op', async () => {
+    const { host, editor } = await render(); table(editor); await tick(); trigger(host).click(); await tick();
+    const unavailable = action(host, 'Split merged cell'), before = editor.getJSON();
+    expect(unavailable.getAttribute('aria-disabled')).toBe('true');
+    unavailable.focus(); expect(document.activeElement).toBe(unavailable); unavailable.click(); await tick();
+    expect(editor.getJSON()).toEqual(before); expect(menu(host)).toBeTruthy();
   });
 });
