@@ -5,7 +5,8 @@ import type { DayPickerLocale } from 'react-day-picker/locale';
 
 function resolveLabel<Args extends unknown[]>(fallback: (...args: Args) => string,
   localized: string | ((...args: Args) => string) | undefined): (...args: Args) => string {
-  return typeof localized === 'string' ? () => localized : localized ?? fallback;
+  if (localized) return typeof localized === 'function' ? localized : () => localized;
+  return fallback;
 }
 
 export function getPublishingDatePickerLabels(locale: DayPickerLocale) {
