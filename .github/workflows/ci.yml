@@ -108,3 +108,7 @@ jobs:
         run: timeout --kill-after=30s 180s pnpm test:calendar-admin-native-browser
         env:
           DEBUG: pw:browser
+      - name: Run supplemental Calendar picker locale and tooltip controls
+        run: timeout --kill-after=30s 180s pnpm test:calendar-admin-fidelity-browser
+        env:
+          DEBUG: pw:browser
