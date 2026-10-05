@@ -71,7 +71,7 @@
       command: ({ editor: current, range }) => {
         current.chain().focus().deleteRange(range).run();
         if (props.onRequestPluginBlock) props.onRequestPluginBlock(block, values => insert({ type: 'pluginBlock', attrs: { blockType: block.type, id: typeof values.url === 'string' ? values.url : '', data: values } }));
-        else providerMessage = 'This block can be inserted when its plugin is available.';
+        else { pendingInsert = null; providerMessage = 'This block can be inserted when its plugin is available.'; }
       } });
     return items;
   });
@@ -139,6 +139,9 @@
   }
   function execute(item: SlashCommandItem) {
     if (!editor?.isEditable || !slash.range) return;
+    // A new command owns its own insertion position, even if an external
+    // provider cancelled an earlier request without returning a selection.
+    pendingInsert = null;
     if (item.opensTablePicker) { setSlash(previous => ({ ...previous, mode: 'table-size', isOpen: true })); return; }
     let range = slash.range;
     if (slash.trigger === 'gutter') {
@@ -149,10 +152,10 @@
     item.command({ editor, range }); setSlash(previous => ({ ...previous, isOpen: false, mode: 'commands', gutterBlockPos: null }));
   }
   function insert(content: JSONContent | JSONContent[]) {
+    const position = pendingInsert; pendingInsert = null;
     if (!editor?.isEditable) return;
     const chain = editor.chain().focus();
-    if (pendingInsert === null) chain.insertContent(content).run(); else chain.insertContentAt(pendingInsert, content).run();
-    pendingInsert = null;
+    if (position === null) chain.insertContent(content).run(); else chain.insertContentAt(position, content).run();
   }
   function sectionSelect(section: { content: unknown[] }) {
     if (!editor || !section.content?.length) return;
@@ -167,10 +170,10 @@
   function request(kind: string) {
     providerMessage = '';
     if (kind === 'section') { if (props.onRequestSection) props.onRequestSection(sectionSelect);
-      else { sectionOpen = true; void import('../../ui/sections-widgets/SectionPickerModal.svelte').then(({ default: Picker }) => { SectionPicker = Picker; }).catch(() => { sectionOpen = false; providerMessage = 'Could not load the section picker. Try again.'; }); } }
+      else { sectionOpen = true; void import('../../ui/sections-widgets/SectionPickerModal.svelte').then(({ default: Picker }) => { SectionPicker = Picker; }).catch(() => { sectionOpen = false; pendingInsert = null; providerMessage = 'Could not load the section picker. Try again.'; }); } }
     else if (kind === 'image' && props.onRequestImage) props.onRequestImage(attrs => insert({ type: 'image', attrs }));
     else if (kind === 'gallery' && props.onRequestGallery) props.onRequestGallery(attrs => insert({ type: 'gallery', attrs }));
-    else providerMessage = 'Media can be inserted when the media library is available.';
+    else { pendingInsert = null; providerMessage = 'Media can be inserted when the media library is available.'; }
   }
   function tableInsert(rows: number, columns: number, header: boolean) {
     if (!editor?.isEditable) return;
@@ -209,7 +212,7 @@
         </div>
         {#if headings}<div role="menu" aria-label="Headings" class="heading-menu"><button type="button" role="menuitem" onclick={() => void heading(0)}>Paragraph</button>{#each [1, 2, 3, 4, 5, 6] as level}<button type="button" role="menuitem" data-emdash-heading-item onclick={() => void heading(level)}>Heading {level}</button>{/each}</div>{/if}
         {#if tableMenu}<div role="menu" aria-label="Table actions" class="table-menu">{#if controls}{#each actions as [id, label]}<button type="button" role="menuitem" onclick={() => { if (editor && runTableAction(editor, id)) { announcement = label; tableMenu = false; } }}>{label}</button>{/each}{:else}<button type="button" role="menuitem" onclick={() => { tableMenu = false; openGutter(editor!.state.doc.content.size); setSlash(previous => ({ ...previous, mode: 'table-size' })); }}>Insert table</button>{/if}</div>{/if}
-        {#if linkOpen}<form class="link-form" onsubmit={event => { event.preventDefault(); applyLink(); }}><label>Link URL<input value={href} oninput={event => { href = event.currentTarget.value; }} placeholder="https://" /></label><button type="submit">Apply</button><button type="button" onclick={() => { linkOpen = false; editor?.view.focus(); }}>Cancel</button></form>{/if}
+        {#if linkOpen}<div class="link-form"><label>Link URL<input value={href} oninput={event => { href = event.currentTarget.value; }} onkeydown={event => { if (event.key === 'Enter') { event.preventDefault(); applyLink(); } else if (event.key === 'Escape') { event.preventDefault(); linkOpen = false; editor?.view.focus(); } }} placeholder="https://" /></label><button type="button" onclick={applyLink}>Apply</button><button type="button" onclick={() => { linkOpen = false; editor?.view.focus(); }}>Cancel</button></div>{/if}
       {/if}
       <div bind:this={element} class:spotlight-mode={props.focusMode === 'spotlight'} aria-labelledby={props['aria-labelledby']}></div>
       {#if editor && !props.minimal}<EditorFooter {editor} translate={t} />{/if}
@@ -242,4 +245,4 @@
   <span data-base-ui-focus-guard tabindex="-1" aria-hidden="true" onfocus={() => editor?.view.focus()}></span>
   </div>
 {/if}
-{#if sectionOpen && SectionPicker}<SectionPicker open={sectionOpen} onOpenChange={value => { sectionOpen = value; }} onSelect={sectionSelect} />{:else if sectionOpen}<p role="status">Loading sections...</p>{/if}
+{#if sectionOpen && SectionPicker}<SectionPicker open={sectionOpen} onOpenChange={value => { sectionOpen = value; if (!value) pendingInsert = null; }} onSelect={sectionSelect} />{:else if sectionOpen}<p role="status">Loading sections...</p>{/if}
