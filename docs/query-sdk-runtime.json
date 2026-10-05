@@ -1,0 +1,135 @@
+{
+  "pin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "basis": "45e32fbb32b5feaafd5cd2bf537cd1c25ca9c6f3",
+  "files": [
+    {
+      "path": "src/lib/server/query-sdk/loader.ts",
+      "source": "packages/core/src/loader.ts",
+      "bytes": 76249,
+      "sha256": "7bed0165e6daee4c71952b6c5ff553f3680ab4a3fa4da466d096f2522c32ff46",
+      "adapters": {
+        "imports": "Existing Native dialect/types/validation/context/i18n/chunks/errors; future actual published Tax selector",
+        "physicalTables": {
+          "content_taxonomies": "_cms_content_taxonomies",
+          "taxonomies": "_cms_taxonomies",
+          "_emdash_content_bylines": "_cms_content_bylines",
+          "_emdash_seo": "_cms_seo",
+          "_emdash_fields": "_cms_fields",
+          "_emdash_collections": "_cms_collections",
+          "_emdash_bylines": "_cms_bylines (physical FROM/JOIN only)",
+          "revisions": "_cms_revisions"
+        },
+        "config": "Native existing i18n producer replaces Astro virtual i18n config",
+        "database": "Actual trusted request database only; no lazy db creation, migrations or global dbInstance"
+      }
+    },
+    {
+      "path": "src/lib/server/query.ts",
+      "source": "packages/core/src/query.ts",
+      "bytes": 70414,
+      "sha256": "29bf58b8a521c085389f84c63fa19e80768be126959a6d10d926be03e84402f9",
+      "adapters": {
+        "imports": "Existing Native single caches/context/i18n/types/URL/errors + same actual Native live provider resolved by original mocked astro module",
+        "pendingProducers": "Taxonomy/Byline actual published exports; sole SourceSlug cache producer",
+        "algorithms": "Complete original body retained; no assertion/data/clock/query-result substitution",
+        "constructor": "Actual Native CmsDatabase owner required by SchemaRegistry path resolver"
+      }
+    },
+    {
+      "path": "src/lib/server/query-sdk/editable.ts",
+      "source": "packages/core/src/visual-editing/editable.ts",
+      "bytes": 3087,
+      "sha256": "32494ddeeba12b6a7fd785aa2fb9cb15c7a3ced81fdd1d3da8b895bd90c9f2ce",
+      "adapters": {
+        "body": "Entire Source runtime body"
+      }
+    },
+    {
+      "path": "src/lib/server/query-sdk/references/types.ts",
+      "source": "packages/core/src/references/types.ts",
+      "bytes": 919,
+      "sha256": "012157fdde1cd27efb19d235cf2a4bf48478a15580224dc8d66e93eebb3622b1",
+      "adapters": {
+        "body": "Entire Source runtime body"
+      }
+    },
+    {
+      "path": "src/lib/server/query-sdk/seo-panel.ts",
+      "source": "packages/core/src/page/seo-panel.ts",
+      "bytes": 2356,
+      "sha256": "2ee3bb3e38fbc4fb552ea538e1d25ef2bc8ec859d18fcead45293682b84545d0",
+      "adapters": {
+        "imports": {
+          "\"../database/repositories/types.js\"": "\"../database/lifecycle/upstream/database/repositories/types.ts\"",
+          "\"../request-cache.js\"": "\"../menus/request-cache.ts\""
+        },
+        "cache": "Existing actual request cache; no cache backend/holder/global created"
+      }
+    },
+    {
+      "path": "src/lib/server/query-sdk/references/field-map.ts",
+      "source": "packages/core/src/references/field-map.ts",
+      "bytes": 4635,
+      "sha256": "03e8b8c1bbdb2876828d442401dab6d873351f6117da333279e2070e510f1859",
+      "adapters": {
+        "imports": {
+          "\"../database/dialect-helpers.js\"": "\"../../database/lifecycle/upstream/database/dialect-helpers.ts\"",
+          "\"../database/types.js\"": "\"../../database/lifecycle/upstream/database/types.ts\"",
+          "\"../loader.js\"": "\"../loader.ts\"",
+          "\"../object-cache/index.js\"": "\"../../menus/object-cache.ts\"",
+          "\"../request-cache.js\"": "\"../../menus/request-cache.ts\"",
+          "\"../utils/db-errors.js\"": "\"../../schema/db-errors.ts\""
+        },
+        "physicalIdentifiers": true
+      }
+    },
+    {
+      "path": "src/lib/server/query-sdk/references/resolve.ts",
+      "source": "packages/core/src/references/resolve.ts",
+      "bytes": 6166,
+      "sha256": "0ae5940d30c94fd14140052949bbe8739ec8a490f719fa048c3d33df15dbfd86",
+      "adapters": {
+        "imports": {
+          "\"../database/repositories/relation.js\"": "\"../../relations/repository.ts\"",
+          "\"../database/repositories/revision.js\"": "\"../../database/lifecycle/upstream/database/repositories/revision.ts\"",
+          "\"../i18n/config.js\"": "\"../../menus/i18n-config.ts\"",
+          "\"../loader.js\"": "\"../loader.ts\"",
+          "\"./field-map.js\"": "\"./field-map.ts\"",
+          "\"./staged.js\"": "\"./staged.ts\"",
+          "\"./types.js\"": "\"./types.ts\""
+        },
+        "physicalIdentifiers": false
+      }
+    },
+    {
+      "path": "src/lib/server/query-sdk/references/staged.ts",
+      "source": "packages/core/src/references/staged.ts",
+      "bytes": 6232,
+      "sha256": "c0fcc8cd49cec64a55c40a7e356ac650ad0afd401773f2ef04c2c3a549385e08",
+      "adapters": {
+        "imports": {
+          "\"../database/repositories/types.js\"": "\"../../database/lifecycle/upstream/database/repositories/types.ts\""
+        },
+        "physicalIdentifiers": false
+      }
+    }
+  ],
+  "status": "Owned local development after wholeSource test-first; shared dependency imports honestly missing until actual published producers; no parity credit",
+  "nativeFrameworkFiles": [
+    {
+      "path": "src/lib/server/query-sdk/types.ts",
+      "bytes": 1084,
+      "sha256": "3e7a1f09f961e3827df3ace2370e90145ad5d5ce6d23852c5b7e07e64c1b3208"
+    },
+    {
+      "path": "src/lib/server/query-sdk/bindings.ts",
+      "bytes": 658,
+      "sha256": "131f6e755e33847e88cc9702ac2651d69de1fb1afcf9eb627d496a42139ca2f9"
+    },
+    {
+      "path": "src/lib/server/query-sdk/live-provider.ts",
+      "bytes": 991,
+      "sha256": "4284ed8390f13726d21f75549ceaf8f8beaacd9d0fb215d515bb5ffe98815ca5"
+    }
+  ]
+}
