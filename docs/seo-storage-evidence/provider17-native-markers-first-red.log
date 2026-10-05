@@ -1,0 +1,343 @@
+✖ Node: genuine v5 upgrade and persisted v16 reopen preserve content and operator objects (356.205777ms)
+✔ Node: a future Source-named trigger collision is refused before any startup write (48.523298ms)
+✖ Node: a real late-batch SQLite failure rolls back the complete v0→16 installation (190.936245ms)
+✖ Node: a real late-batch SQLite failure rolls back the complete v4→16 installation (226.222255ms)
+✖ raw D1: genuine v5 upgrade and persisted v16 reopen preserve content and operator objects (4792.775322ms)
+✔ raw D1: a future Source-named trigger collision is refused before any startup write (2440.199942ms)
+✖ raw D1: a real late-batch SQLite failure rolls back the complete v0→16 installation (12597.853044ms)
+✖ raw D1: a real late-batch SQLite failure rolls back the complete v4→16 installation (7582.486523ms)
+✖ scoped D1: genuine v5 upgrade and persisted v16 reopen preserve content and operator objects (4279.035361ms)
+✔ scoped D1: a future Source-named trigger collision is refused before any startup write (2148.377736ms)
+✖ scoped D1: a real late-batch SQLite failure rolls back the complete v0→16 installation (3390.190155ms)
+✖ scoped D1: a real late-batch SQLite failure rolls back the complete v4→16 installation (10221.881286ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 3
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 50093.161038
+
+✖ failing tests:
+
+test at tests/canonical-feature-atomicity-original.test.ts:24:3
+✖ Node: genuine v5 upgrade and persisted v16 reopen preserve content and operator objects (356.205777ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-feature-atomicity-original.test.ts:40:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:76:5
+✖ Node: a real late-batch SQLite failure rolls back the complete v0→16 installation (190.936245ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-feature-atomicity-original.test.ts:99:16)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:76:5
+✖ Node: a real late-batch SQLite failure rolls back the complete v4→16 installation (226.222255ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-feature-atomicity-original.test.ts:99:16)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:24:3
+✖ raw D1: genuine v5 upgrade and persisted v16 reopen preserve content and operator objects (4792.775322ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-feature-atomicity-original.test.ts:40:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:76:5
+✖ raw D1: a real late-batch SQLite failure rolls back the complete v0→16 installation (12597.853044ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-feature-atomicity-original.test.ts:99:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:76:5
+✖ raw D1: a real late-batch SQLite failure rolls back the complete v4→16 installation (7582.486523ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-feature-atomicity-original.test.ts:99:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:24:3
+✖ scoped D1: genuine v5 upgrade and persisted v16 reopen preserve content and operator objects (4279.035361ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-feature-atomicity-original.test.ts:40:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:76:5
+✖ scoped D1: a real late-batch SQLite failure rolls back the complete v0→16 installation (3390.190155ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-feature-atomicity-original.test.ts:99:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/canonical-feature-atomicity-original.test.ts:76:5
+✖ scoped D1: a real late-batch SQLite failure rolls back the complete v4→16 installation (10221.881286ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      1,
+      2,
+      3,
+      4,
+  ...
+      16,
+  +   17
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-seo-storage-backend/tests/canonical-feature-atomicity-original.test.ts:99:16)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+       1,  2,  3,  4,  5,  6,  7,
+       8,  9, 10, 11, 12, 13, 14,
+      15, 16, 17
+    ],
+    expected: [
+       1,  2,  3,  4,  5,  6,
+       7,  8,  9, 10, 11, 12,
+      13, 14, 15, 16
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

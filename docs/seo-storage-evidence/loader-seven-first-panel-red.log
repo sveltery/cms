@@ -1,0 +1,40 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+stderr | parity/emdash/seo-storage/source/packages/core/tests/unit/loader-seo.test.ts > Loader SEO hydration (#1270) [sqlite] > primes the request-scoped SEO panel cache keyed by the content-row id
+[datetime migration] 0 noncanonical values (0 naive) using UTC
+
+ ❯ parity/emdash/seo-storage/source/packages/core/tests/unit/loader-seo.test.ts (7 tests | 1 failed) 826ms
+     × primes the request-scoped SEO panel cache keyed by the content-row id 104ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/seo-storage/source/packages/core/tests/unit/loader-seo.test.ts > Loader SEO hydration (#1270) [sqlite] > primes the request-scoped SEO panel cache keyed by the content-row id
+AssertionError: expected null to match object { title: 'Panel Title', …(1) }
+
+- Expected:
+{
+  "canonical": "/elsewhere",
+  "title": "Panel Title",
+}
+
++ Received:
+null
+
+ ❯ parity/emdash/seo-storage/source/packages/core/tests/unit/loader-seo.test.ts:156:18
+    154|
+    155|    const panel = await peekSeoPanel("post", post.id);
+    156|    expect(panel).toMatchObject({ title: "Panel Title", canonical: "/el…
+       |                  ^
+    157|   });
+    158|  });
+ ❯ parity/emdash/seo-storage/source/packages/core/tests/unit/loader-seo.test.ts:152:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+   Start at  04:09:26
+   Duration  3.05s (transform 1.58s, setup 0ms, import 2.10s, tests 826ms, environment 0ms)
+

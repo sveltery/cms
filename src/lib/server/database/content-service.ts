@@ -2,6 +2,7 @@ import {hydrateBylines,hydrateBylinesMany} from '../bylines/content-hydration.ts
 import {resolveBylineFilter} from '../bylines/content-list.ts';
 import {bylineDatabase} from '../bylines/storage.ts';
 import {sql,type CompiledQuery} from 'kysely';
+import {hydrateContentSeo,hydrateContentSeoMany} from '../seo/content-read.ts';
 import {ulid} from 'ulidx';
 import {deserializeValue} from './field-value.ts';
 import {CmsError,type CmsDatabase,type DraftEntry,type DraftSummary} from './contract.ts';
@@ -38,7 +39,8 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
   const data=Object.fromEntries(fields.filter(field=>Object.hasOwn(row,field.slug)).map(field=>[field.slug,deserializeValue(row[field.slug])]));
   return {...repository().mapRow(type,row),data};
  }
- async function hydrate(item:ContentItem):Promise<ContentItem&DraftEntry>{
+ async function hydrate(item:ContentItem,hasSeo:boolean):Promise<ContentItem&DraftEntry>{
+  item=await hydrateContentSeo(database,item.type,item,hasSeo);
   await hydrateBylines(bylineDatabase(database),item.type,item);
   const stored=entry(item);if(!item.draftRevisionId)return stored;
   try{
@@ -89,7 +91,7 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
   const collection=await definition(type);
   const row=(await sql<Record<string,unknown>>`SELECT * FROM ${sql.ref(tableName(type))} WHERE id=${id}
    ${locale===undefined?sql``:sql`AND locale=${locale}`}`.execute(database.db)).rows[0];
-  if(!row)throw new CmsError('NOT_FOUND');return{...nativeRow(type,row,collection.fields),deletedAt:typeof row.deleted_at==='string'?row.deleted_at:null};
+  if(!row)throw new CmsError('NOT_FOUND');return{item:{...nativeRow(type,row,collection.fields),deletedAt:typeof row.deleted_at==='string'?row.deleted_at:null},hasSeo:collection.hasSeo};
  }
  async function guarded(collection:{id:string;version:number},query:CompiledQuery){
   const token=ulid();try{return await database.atomicBatch([
@@ -101,7 +103,7 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
   async createContent(input:unknown){permission('content:create');return entry(await lifecycle().createContent(input));},
   async duplicateContent(input:unknown){return entry(await lifecycle().duplicateContent(input));},
   permanentDeleteContent:(input:unknown)=>lifecycle().permanentDeleteContent(input),
-  async getContent(input:unknown){read();const value=parse(getDraftInput,input);const item=await includingTrashed(value.type,value.id,value.locale);if(item.deletedAt)throw new CmsError('NOT_FOUND');const {deletedAt,...active}=item;return hydrateReferences(await hydrate(active));},
+  async getContent(input:unknown){read();const value=parse(getDraftInput,input);const persisted=await includingTrashed(value.type,value.id,value.locale);const item=persisted.item;if(item.deletedAt)throw new CmsError('NOT_FOUND');const {deletedAt,...active}=item;return hydrateReferences(await hydrate(active,persisted.hasSeo));},
   async getPublishedContent(input:unknown){permission('content:read');return entry(await lifecycle().getPublishedContent(parse(getDraftInput,input)));},
   async compareContent(input:unknown){read();return lifecycle().compareContent(parse(getDraftInput,input));},
   async updateContent(input:unknown){
@@ -113,19 +115,19 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
    const parsed=parse(genericContentUpdate,value);return entry((await lifecycle().updateContent({...parsed,...(skipRevision===undefined?{}:{skipRevision})})).item);
   },
   async listContent(input:unknown){read();const {value,collection,options}=await listOptions(input);
-   const result=await translate(()=>repository().findMany(value.type,options));await hydrateBylinesMany(bylineDatabase(database),value.type,result.items);return{...result,items:result.items.map(item=>summary(item,collection.titleField??'title'))};
+   const result=await translate(()=>repository().findMany(value.type,options));await hydrateBylinesMany(bylineDatabase(database),value.type,result.items);return{...result,items:(await hydrateContentSeoMany(database,value.type,result.items,collection.hasSeo)).map(item=>summary(item,collection.titleField??'title'))};
   },
   async countContent(input:unknown){read();const {value,options}=await listOptions(input);return translate(()=>repository().count(value.type,options.where));},
-  async getTrashedContent(input:unknown){read();const value=parse(getTrashedDraftInput,input);const item=await includingTrashed(value.type,value.id,value.locale);
-   if(!item.deletedAt)throw new CmsError('NOT_FOUND');return{...await hydrate(item),deletedAt:item.deletedAt};
+  async getTrashedContent(input:unknown){read();const value=parse(getTrashedDraftInput,input);const persisted=await includingTrashed(value.type,value.id,value.locale);const item=persisted.item;
+   if(!item.deletedAt)throw new CmsError('NOT_FOUND');return{...await hydrate(item,persisted.hasSeo),deletedAt:item.deletedAt};
   },
   async listTrashedContent(input:unknown){read();const {type,locale,...options}=parse(listTrashedDraftInput,input);const collection=await definition(type);
-   const result=await translate(()=>repository().findTrashed(type,{...options,where:{locale}}));return{...result,items:result.items.map(item=>({...summary(item,collection.titleField??'title'),deletedAt:item.deletedAt}))};
+   const result=await translate(()=>repository().findTrashed(type,{...options,where:{locale}}));return{...result,items:(await hydrateContentSeoMany(database,type,result.items,collection.hasSeo)).map(item=>({...summary(item,collection.titleField??'title'),deletedAt:item.deletedAt}))};
   },
   async countTrashedContent(input:unknown){read();const {type,locale}=parse(countTrashedDraftInput,input);await definition(type);return repository().countTrashed(type,{locale});},
   async deleteContent(input:unknown){
    const identity=mutation('content:delete_own','content:delete_any');const value=parse(deleteDraftInput,input);
-   const item=await includingTrashed(value.type,value.id,value.locale);if(item.deletedAt)throw new CmsError('NOT_FOUND');owner(item,'content:delete_any');
+   const item=(await includingTrashed(value.type,value.id,value.locale)).item;if(item.deletedAt)throw new CmsError('NOT_FOUND');owner(item,'content:delete_any');
    const collection=await definition(value.type);const now=new Date().toISOString();
    const query=sql`UPDATE ${sql.ref(tableName(value.type))} SET deleted_at=${now},updated_at=${now},version=version+1
     WHERE id=${value.id} AND locale=${value.locale} AND deleted_at IS NULL AND version=${value.expected.version} AND updated_at=${value.expected.updatedAt}
@@ -134,13 +136,13 @@ export function ordinaryContentService(database:CmsDatabase,principal:ServerPrin
   },
   async restoreContent(input:unknown){
    const identity=mutation('content:edit_own','content:edit_any');const value=parse(restoreDraftInput,input);
-   const item=await includingTrashed(value.type,value.id,value.locale);owner(item,'content:edit_any');
+   const item=(await includingTrashed(value.type,value.id,value.locale)).item;owner(item,'content:edit_any');
    const collection=await definition(value.type);const now=new Date(Math.max(Date.now(),Date.parse(value.expected.updatedAt)+1)).toISOString();
    const query=sql<Record<string,unknown>>`UPDATE ${sql.ref(tableName(value.type))} SET deleted_at=NULL,live_revision_id=NULL,scheduled_at=NULL,status='draft',updated_at=${now},version=version+1
     WHERE id=${value.id} AND locale=${value.locale} AND deleted_at IS NOT NULL AND version=${value.expected.version} AND updated_at=${value.expected.updatedAt}
     ${identity.permissions.includes('content:edit_any')?sql``:sql`AND author_id=${identity.id}`} RETURNING *`.compile(database.db);
    const results=await guarded(collection,query);const row=results[1]?.rows[0] as Record<string,unknown>|undefined;if(!row)throw new CmsError('CONFLICT');
-   return hydrate(nativeRow(value.type,row,collection.fields));
+   return hydrate(nativeRow(value.type,row,collection.fields),collection.hasSeo);
   }
  };
 }

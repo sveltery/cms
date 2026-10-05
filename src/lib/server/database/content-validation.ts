@@ -1,4 +1,5 @@
 import * as v from 'valibot';
+import {contentSeoInput} from '../seo/content-input.ts';
 import {identifier,localeInput,schemaData,updateDraftInput} from './validation.ts';
 
 // Valibot record strips constructor/prototype. These can be real indexed
@@ -35,4 +36,4 @@ export const contentBylineInput=v.array(v.strictObject({bylineId:v.pipe(v.string
 export const referenceSelectionMap=v.custom<Record<string,string[]>>(value=>
  value!==null&&typeof value==='object'&&!Array.isArray(value)&&
  Object.values(value).every(ids=>Array.isArray(ids)&&ids.every(id=>typeof id==='string')));
-export const genericContentUpdate=v.strictObject({...updateDraftInput.entries,data:v.optional(schemaData),taxonomies:v.optional(taxonomySlugMap),bylines:v.optional(contentBylineInput),references:v.optional(referenceSelectionMap)});
+export const genericContentUpdate=v.strictObject({...updateDraftInput.entries,data:v.optional(schemaData),taxonomies:v.optional(taxonomySlugMap),bylines:v.optional(contentBylineInput),references:v.optional(referenceSelectionMap),seo:v.optional(contentSeoInput)});
