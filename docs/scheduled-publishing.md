@@ -1,5 +1,12 @@
 # Scheduled publishing and calendar
 
+## Current structural census correction
+
+The current whole16-family census is126 test declarations and360 static matcher roots:308 direct `expect`,45 `expect.element` and7 `expect.poll`. Of the element and poll roots,14 and4 respectively use multiline callee formatting. The older342/31 counts in the retained descriptions and receipts below are historical parser output, superseded by this correction:342 omitted18 multiline property-access calls, and31 was the inline element count rather than the multiline count.
+
+The checker now matches TypeScript Identifier/PropertyAccessExpression structure, independently of callee whitespace. [Whole16 actual parser verification](receipts/scheduled-publishing/structural-census-correction-verification.json) retains exact per-family counts and every omitted Source location. All old census fields, raw runs and86 immutable Source authorities remain unchanged. Static roots are not dynamic matcher invocations: this correction adds0 runtime/Source behavior/causal credit, changes no product or test body and does not rerun the passing calendar41 or Native5. The complete scheduler28 remains preimport-stopped with0 registered Source callbacks.
+
+
 This feature follows [EmDash1.1.0](https://github.com/emdash-cms/emdash/tree/913cb1bb9b7f08c3ff0d258b4420e53835b6a58e). Its [Source ledger](scheduled-publishing-source.json) retains all16 whole families and their whole production authorities, original data, assertions, clocks and MIT notices. The census identifies126 semantic test declarations and342 static expect calls, including31 multiline `expect.element` calls. These are static inventories, not observed callback or assertion counts.
 
 The current public content repository already stores scheduled publication and scheduled changes to published content. The native lifecycle commands, calendar/API/UI, actual due-publication executor and Node/Cloudflare maintenance are unfinished. This test-first proposal adds no product implementation. A working calendar surface will not complete scheduling until real capture/media activation, plugin rejection behavior, revision/CAS and successful maintenance/heartbeat composition exist.
