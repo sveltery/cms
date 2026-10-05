@@ -57,6 +57,10 @@
   const showDetails = $derived(selectedType !== 'reference' || Boolean(field) || Boolean(selectedRelation));
   const typeInfo = $derived(types.find(type => type[0] === selectedType));
   function slugify(value: string) { return value.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,''); }
+  function updateSubFieldLabel(index: number, value: string) {
+    // Pinned FieldEditor.tsx:1208–1219 derives the slug on every label edit.
+    subFields[index] = {...subFields[index],label:value,slug:slugify(value)};
+  }
   function nameRelation(rel: any, side: string) {
     if (!rel || labelEdited) return;
     label = side === 'parent' ? rel.childLabel : rel.parentLabel; slug = slugify(label);
@@ -125,7 +129,7 @@
           {#if ['file','image'].includes(selectedType)}<h3>Allowed types</h3><label>MIME types<textarea value={allowedMimeTypes.join('\n')} oninput={event => allowedMimeTypes = event.currentTarget.value.split('\n').map(value => value.trim()).filter(Boolean)}></textarea></label>{#each allowedMimeTypes as mime}<span>{mime}</span>{/each}{/if}
           {#if selectedType === 'image'}<label><input role="switch" type="checkbox" bind:checked={darkVariant} />Dark mode variant</label>{/if}
           {#if selectedType === 'repeater'}
-            {#each subFields as subField,index}<fieldset><label>Sub-field label<input value={subField.label} oninput={event => { subFields[index] = {...subField,label:event.currentTarget.value,slug:slugify(event.currentTarget.value)}; }} /></label><label>Sub-field slug<input bind:value={subField.slug} /></label><label>Sub-field type<select bind:value={subField.type}>{#each repeaterTypes as type}<option value={type[0]}>{type[1]}</option>{/each}</select></label><label><input type="checkbox" bind:checked={subField.required} />Required</label><button type="button" onclick={() => subFields = subFields.filter((_,i) => i !== index)}>Remove sub-field</button></fieldset>{/each}
+            {#each subFields as subField,index}<fieldset><label>Sub-field label<input value={subField.label} oninput={event => updateSubFieldLabel(index,event.currentTarget.value)} /></label><label>Sub-field slug<input bind:value={subField.slug} /></label><label>Sub-field type<select bind:value={subField.type}>{#each repeaterTypes as type}<option value={type[0]}>{type[1]}</option>{/each}</select></label><label><input type="checkbox" bind:checked={subField.required} />Required</label><button type="button" onclick={() => subFields = subFields.filter((_,i) => i !== index)}>Remove sub-field</button></fieldset>{/each}
             <button type="button" onclick={() => subFields = [...subFields,{slug:'',label:'',type:'string',required:false}]}>Add sub-field</button>
           {/if}
           {#if ['repeater','blocks'].includes(selectedType)}<label>Minimum {selectedType === 'blocks' ? 'blocks' : 'items'}<input value={minItems} oninput={event => minItems = event.currentTarget.value} type="number" /></label><label>Maximum {selectedType === 'blocks' ? 'blocks' : 'items'}<input value={maxItems} oninput={event => maxItems = event.currentTarget.value} type="number" /></label>{/if}
