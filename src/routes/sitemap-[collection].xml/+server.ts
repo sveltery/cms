@@ -8,5 +8,6 @@ export const GET: RequestHandler = ({ locals, params, url }) => collectionSitema
   db: locals.cms?.database.db as unknown as Kysely<Database> ?? null,
   collection: params.collection,
   url,
-  publicOrigin: locals.cmsRuntime?.publicOrigin
+  publicOrigin: locals.cmsRuntime?.publicOrigin,
+  basePath: locals.cmsRuntime?.basePath
 });

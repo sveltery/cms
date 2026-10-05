@@ -35,6 +35,8 @@ export interface CollectionSitemapInput {
   url: URL;
   /** Trusted server configuration; never read from forwarded request headers. */
   publicOrigin?: string;
+  /** Existing trusted SvelteKit mount path, validated by runtime composition. */
+  basePath?: string;
   trailingSlash?: "always" | "never" | "ignore";
 }
 
@@ -59,7 +61,7 @@ export async function collectionSitemapResponse(input: CollectionSitemapInput, s
 
 	try {
 		const settings = await getSiteSettingsWithDb(db as unknown as Kysely<CmsTables>);
-		const siteUrl = (settings.url || (input.publicOrigin || url.origin)).replace(
+		const siteUrl = (settings.url || (input.publicOrigin || url.origin) + (input.basePath ?? "")).replace(
 			TRAILING_SLASH_RE,
 			"",
 		);
