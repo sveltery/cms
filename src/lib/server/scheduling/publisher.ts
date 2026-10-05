@@ -12,6 +12,24 @@ import { completeContentSlugRedirect } from '../redirects/content-atomic.ts';
 import type { ApiResult } from '../menus/api-types.ts';
 import { schedulingStorage, SchemaRegistry } from './storage.ts';
 
+type PublicationResult = ApiResult<{item: ContentItem; _rev: string}>;
+
+// Keep result classification separate from the actual atomic content writer
+// and its AFTER-success redirect completion; errors never complete a cache.
+function publicationFailure(error: unknown): PublicationResult {
+  if (error instanceof ScheduledNotDueError) return {success: false, error: {code: 'NOT_DUE', message: error.message}};
+  if (error instanceof ContentMutationConflictError || error instanceof CmsError && error.code === 'CONFLICT')
+    return {success: false, error: {code: 'CONFLICT', message: error.message}};
+  if (error instanceof EmDashValidationError) {
+    const details: unknown = error.details;
+    const isSlugConflict = typeof details === 'object' && details !== null &&
+      'code' in details && details.code === 'SLUG_CONFLICT';
+    return {success: false, error: {code: isSlugConflict ? 'SLUG_CONFLICT' : 'VALIDATION_ERROR', message: error.message}};
+  }
+  console.error('Content publish error:', error);
+  return {success: false, error: {code: 'CONTENT_PUBLISH_ERROR', message: 'Failed to publish content'}};
+}
+
 /**
  * Trusted maintenance publisher using the sole published content repository.
  * Request authorization belongs to the existing service. Reference promotion,
@@ -22,7 +40,7 @@ export async function handleContentPublish(db: Kysely<any>, collection: string, 
   requireScheduledDue?: boolean;
   expectedScheduledAt?: string;
   currentTime?: Date;
-} = {}): Promise<ApiResult<{item: ContentItem; _rev: string}>> {
+} = {}): Promise<PublicationResult> {
   try {
     const database = schedulingStorage(db);
     const definition = await new SchemaRegistry(db).getCollectionWithFields(collection);
@@ -41,16 +59,6 @@ export async function handleContentPublish(db: Kysely<any>, collection: string, 
     if (redirectCreated) completeContentSlugRedirect(database);
     return {success: true, data: {item, _rev: encodeRev(item)}};
   } catch (error) {
-    if (error instanceof ScheduledNotDueError) return {success: false, error: {code: 'NOT_DUE', message: error.message}};
-    if (error instanceof ContentMutationConflictError || error instanceof CmsError && error.code === 'CONFLICT')
-      return {success: false, error: {code: 'CONFLICT', message: error.message}};
-    if (error instanceof EmDashValidationError) {
-      const details: unknown = error.details;
-      const isSlugConflict = typeof details === 'object' && details !== null &&
-        'code' in details && details.code === 'SLUG_CONFLICT';
-      return {success: false, error: {code: isSlugConflict ? 'SLUG_CONFLICT' : 'VALIDATION_ERROR', message: error.message}};
-    }
-    console.error('Content publish error:', error);
-    return {success: false, error: {code: 'CONTENT_PUBLISH_ERROR', message: 'Failed to publish content'}};
+    return publicationFailure(error);
   }
 }
