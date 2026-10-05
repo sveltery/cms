@@ -1,0 +1,126 @@
+✔ accepts the complete current workload (415.416417ms)
+✔ accepts an unrelated future whole feature leaf (382.43192ms)
+✖ accepts a future admin UI leaf sharing the required command prefix (402.298821ms)
+✖ accepts a future repository leaf sharing the required command prefix (415.794187ms)
+✖ rejects replacement of the required admin gate by a different command (393.299564ms)
+✔ rejects replacement of the required core gate by a different command (374.865744ms)
+✔ rejects a duplicated complete admin gate (414.07303ms)
+✔ rejects a duplicated complete core gate (378.301579ms)
+✔ rejects separation of the required adjacent gates (389.052781ms)
+✔ rejects reversal of the required adjacent gates (369.68335ms)
+✔ rejects deletion of the historical workload prefix (391.425104ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 8
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4394.68201
+
+✖ failing tests:
+
+test at tests/user-source-gate/whole-guard.test.mjs:57:3
+✖ accepts a future admin UI leaf sharing the required command prefix (402.298821ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+  
+  AssertionError [ERR_ASSERTION]: whole user administration gate occurs once
+  
+  3 !== 2
+  
+      at file:///tmp/sveltery-user-source-gate-bL7gdw/scripts/check-user-repository-source.mjs:116:8
+      at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+      at async node:internal/modules/esm/loader:643:26
+      at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+  
+  Node.js v24.19.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-user99-backend/tests/user-source-gate/whole-guard.test.mjs:60:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/user-source-gate/whole-guard.test.mjs:57:3
+✖ accepts a future repository leaf sharing the required command prefix (415.794187ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+  
+  AssertionError [ERR_ASSERTION]: whole user gate occurs once
+  
+  3 !== 2
+  
+      at file:///tmp/sveltery-user-source-gate-6sNbvn/scripts/check-user-repository-source.mjs:115:8
+      at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+      at async node:internal/modules/esm/loader:643:26
+      at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+  
+  Node.js v24.19.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-user99-backend/tests/user-source-gate/whole-guard.test.mjs:60:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/user-source-gate/whole-guard.test.mjs:57:3
+✖ rejects replacement of the required admin gate by a different command (393.299564ms)
+  AssertionError [ERR_ASSERTION]: Complete checker accepted an invalid workload:
+  node scripts/check-bulk-taxonomy-source.mjs && node scripts/check-seo-source-ports.mjs && vitest run --config vitest.source-ports.config.ts && node scripts/check-redirect-source-ports.mjs && vitest run --config vitest.redirect-source.config.ts && pnpm test:bulk-taxonomy-native && pnpm test:menu-source && pnpm test:menu-native-ui && node scripts/check-redirect-integration-source.mjs && vitest run --config vitest.redirect-integration-source.config.ts && vitest run --config vitest.redirect-ui-native.config.ts && pnpm test:sections-widgets-core && pnpm test:sections-widgets-converter && pnpm test:sections-widgets-transport && pnpm test:sections-widgets-core-d1 && pnpm test:comments-source && pnpm test:comments-native && pnpm test:canonical-installation-source && pnpm test:content-picker-source && pnpm test:content-picker-native-ui && pnpm test:writable-editor-source && pnpm test:writable-editor-ui && node scripts/check-canonical-feature-storage-source.mjs && pnpm test:block-registry-native && pnpm test:block-registry-source && pnpm test:doctor-source && pnpm test:taxonomy && pnpm test:schema-admin-source && pnpm test:schema-admin-response-native && pnpm test:schema-admin-index-native && pnpm test:byline-source && pnpm test:byline-native && pnpm test:calendar-source && pnpm test:scheduled-sweep-native && pnpm test:schema-admin-ui-source && pnpm test:schema-admin-ui-native && pnpm test:user-repository-roles && pnpm test:user-admin-other
+  User source guard: 23 whole pinned authorities/MIT, unchanged Native assertions, whole Source RBAC 30 declarations/35 expectation expressions/33 callbacks, pure Source scope policy exact. Nine broader consumer families remain unexecuted; byte/inventory checks earn zero product parity credit.
+  
+      at TestContext.<anonymous> (file:///workspace/cms-complete-user99-backend/tests/user-source-gate/whole-guard.test.mjs:63:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 0,
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
