@@ -50,3 +50,12 @@ it('keeps the collection read model unchanged when repeater configuration is edi
   [...target.querySelectorAll<HTMLButtonElement>('button')].find(button=>button.textContent==='Cancel')!.click();
   expect(definition.validation.subFields[0].label).toBe('Original label');
 });
+it('retains field deletion confirmation when the real asynchronous mutation rejects', async () => {
+  const target=document.createElement('section');document.body.append(target);
+  const onDeleteField=vi.fn(async()=>{throw new Error('Field is still used by a relationship');});
+  mounted.push(mount(Editor,{target,props:{collection:{...collection,fields:[{id:'title',slug:'title',label:'Title',type:'string'}]},onDeleteField,client}}));await tick();
+  target.querySelector<HTMLButtonElement>('button[aria-label="Delete Title field"]')!.click();await tick();
+  [...target.querySelectorAll<HTMLButtonElement>('dialog button')].find(button=>button.textContent==='Delete')!.click();
+  await vi.waitFor(()=>expect(target.querySelector('dialog [role="alert"]')?.textContent).toBe('Field is still used by a relationship'));
+  expect(onDeleteField).toHaveBeenCalledWith('title',undefined);
+});
