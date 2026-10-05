@@ -126,3 +126,6 @@ export async function handleContentCreate(
     return {success: false as const, error: error instanceof Error ? error : new Error(String(error))};
   }
 }
+
+// Actual published trusted maintenance publisher; no new fixture writer.
+export { handleContentPublish } from '../../../src/lib/server/scheduling/publisher.ts';

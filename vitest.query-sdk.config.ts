@@ -23,7 +23,8 @@ const routes: Record<string, string> = {
   'src/schema/byline-registry.ts': 'src/lib/server/bylines/schema.ts',
   'src/taxonomies/index.ts': 'src/lib/server/taxonomies/index.ts',
   'src/bylines/index.ts': 'src/lib/server/bylines/index.ts',
-  'src/bylines/field-defs-cache.ts': 'src/lib/server/bylines/field-defs-cache.ts'
+  'src/bylines/field-defs-cache.ts': 'src/lib/server/bylines/field-defs-cache.ts',
+  'src/scheduled-publish.ts': 'src/lib/server/scheduling/scheduled-publish.ts'
 };
 
 export default defineConfig({
