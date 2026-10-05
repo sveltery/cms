@@ -12,6 +12,7 @@ import {encodeRev,validateRev} from '../database/lifecycle/upstream/api/rev.ts';
 import type {ApiResult} from '../menus/api-types.ts';
 import type {Database} from './database-types.ts';
 import {taxonomyStorage} from './write-plan.ts';
+import {resolveConfiguredLocale} from '../menus/i18n-config.ts';
 
 export interface TaxonomyContentBody {
  data?:Record<string,unknown>;slug?:string|null;locale?:string;
@@ -30,11 +31,11 @@ export function nativeTaxonomyContentHost(db:Kysely<Database>,storage:CmsDatabas
  if(taxonomyStorage(db)!==storage)throw new Error('Content and taxonomy physical owners differ');
  const service=lifecycleService(storage,principal,dependencies);
  return {database:db,
-  get:(collection,id,locale)=>service.getContent({type:collection,id,...(locale===undefined?{}:{locale})},{inferLocale:locale===undefined,resolveIdentifier:true}),
+  get:(collection,id,locale)=>service.getContent({type:collection,id,...(locale===undefined?{}:{locale:resolveConfiguredLocale(locale)})},{inferLocale:locale===undefined,resolveIdentifier:true}),
   create:(collection,body)=>service.createContent({...body,type:collection}),
   async update(collection,id,body){
    const {_rev,...values}=body;
-   const existing=await service.getContent({type:collection,id,...(body.locale===undefined?{}:{locale:body.locale})},{inferLocale:body.locale===undefined,resolveIdentifier:true});
+   const existing=await service.getContent({type:collection,id,...(body.locale===undefined?{}:{locale:resolveConfiguredLocale(body.locale)})},{inferLocale:body.locale===undefined,resolveIdentifier:true});
    const check=validateRev(_rev,existing);if(!check.valid)throw new CmsError('CONFLICT',check.message);
    return (await service.updateContent({...values,type:collection,id:existing.id,locale:existing.locale,
     expected:{version:existing.version,updatedAt:existing.updatedAt}})).item;

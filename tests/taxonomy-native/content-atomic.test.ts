@@ -3,6 +3,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {sql} from 'kysely';
+import type {RawBuilder} from 'kysely';
 import {schemaAdminStorage} from '../helpers/schema-admin-storage.ts';
 import {principal} from '../helpers/lifecycle-fixture.ts';
 import {migrateCms} from '../../src/lib/server/database/migrations.ts';
@@ -21,10 +22,10 @@ async function fixture(target:'Node'|'D1') {
  const taxonomy=new TaxonomyRepository(canonicalSourceDatabase(storage.database));
  const first=await taxonomy.create({name:'tag',slug:'first',label:'First'});
  const second=await taxonomy.create({name:'tag',slug:'second',label:'Second'});
- const rows=async(query:ReturnType<typeof sql>)=>(await query.execute(storage.database.db)).rows;
+ const rows=async<Row>(query:RawBuilder<Row>)=>(await query.execute(storage.database.db)).rows;
  const guards=()=>rows(sql`SELECT token FROM _cms_guards`);
- const content=()=>rows(sql`SELECT * FROM ec_post ORDER BY id`);
- const revisions=()=>rows(sql`SELECT * FROM _cms_revisions ORDER BY id`);
+ const content=()=>rows(sql<{title:string|null;draft_revision_id:string|null}>`SELECT * FROM ec_post ORDER BY id`);
+ const revisions=()=>rows(sql<{id:string;data:string}>`SELECT * FROM _cms_revisions ORDER BY id`);
  const assignments=()=>rows(sql`SELECT * FROM _cms_content_taxonomies ORDER BY collection,entry_id,taxonomy_id`);
  const queue=()=>rows(sql`SELECT * FROM _cms_revision_prune_queue ORDER BY collection,entry_id`);
  const snapshot=async()=>({content:await content(),revisions:await revisions(),assignments:await assignments(),queue:await queue(),guards:await guards()});
