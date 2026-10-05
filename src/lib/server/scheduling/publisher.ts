@@ -14,6 +14,13 @@ import { schedulingStorage, SchemaRegistry } from './storage.ts';
 
 type PublicationResult = ApiResult<{item: ContentItem; _rev: string}>;
 
+// The driver fingerprint is pure classification; the repository remains the
+// sole publication owner and this predicate cannot complete a cache or write.
+function isDatabaseSlugConflict(error: unknown): boolean {
+  const message = error instanceof Error ? error.message.toLowerCase() : '';
+  return (message.includes('unique constraint failed') || message.includes('duplicate key')) && message.includes('slug');
+}
+
 // Keep result classification separate from the actual atomic content writer
 // and its AFTER-success redirect completion; errors never complete a cache.
 function publicationFailure(error: unknown, collection: string): PublicationResult {
@@ -27,8 +34,7 @@ function publicationFailure(error: unknown, collection: string): PublicationResu
     return {success: false, error: {code: isSlugConflict ? 'SLUG_CONFLICT' : 'VALIDATION_ERROR', message: error.message}};
   }
   // Pinned SQL uniqueness backstop after the staged-slug pre-check.
-  const message = error instanceof Error ? error.message.toLowerCase() : '';
-  if ((message.includes('unique constraint failed') || message.includes('duplicate key')) && message.includes('slug')) {
+  if (isDatabaseSlugConflict(error)) {
     return {success: false, error: {code: 'SLUG_CONFLICT',
       message: `The staged slug is already used by another entry in collection '${collection}'`}};
   }
