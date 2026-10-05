@@ -20,7 +20,7 @@ const routes: Record<string, string> = {
   'src/database/repositories/byline.ts': 'src/lib/server/bylines/repository.ts',
   'src/database/repositories/taxonomy.ts': 'src/lib/server/taxonomies/repository.ts',
   'src/database/repositories/revision.ts': 'src/lib/server/database/lifecycle/upstream/database/repositories/revision.ts',
-  'src/schema/byline-registry.ts': 'src/lib/server/bylines/registry.ts',
+  'src/schema/byline-registry.ts': 'src/lib/server/bylines/schema.ts',
   'src/taxonomies/index.ts': 'src/lib/server/taxonomies/index.ts',
   'src/bylines/index.ts': 'src/lib/server/bylines/index.ts',
   'src/bylines/field-defs-cache.ts': 'src/lib/server/bylines/field-defs-cache.ts'

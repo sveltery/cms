@@ -1546,7 +1546,8 @@ async function hydrateEntryBylines<D>(type: string, entries: ContentEntry<D>[]):
 				const { getDb } = await import("./query-sdk/loader.ts");
 				const db = await getDb();
 				const { getBylineFieldDefs } = await import("./bylines/field-defs-cache.ts");
-				hasCustomFields = (await getBylineFieldDefs(db)).length > 0;
+				const { bylineDatabase } = await import("./bylines/storage.ts");
+				hasCustomFields = (await getBylineFieldDefs(bylineDatabase(db as unknown as Parameters<typeof bylineDatabase>[0]))).length > 0;
 			} catch (error) {
 				// A missing table is expected pre-migration and means there are no
 				// custom fields — the fold's values are complete. Any other error

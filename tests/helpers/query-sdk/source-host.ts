@@ -9,6 +9,7 @@ import { principal } from '../content-picker/source-host.ts';
 import { SchemaRegistry as NativeRegistry } from '../../../src/lib/server/database/registry.ts';
 import { queryDatabaseOwner, queryReadDatabase } from '../../../src/lib/server/query-sdk/bindings.ts';
 import type { CmsDatabase } from '../../../src/lib/server/database/contract.ts';
+import { registerBylineDatabase } from '../../../src/lib/server/bylines/storage.ts';
 
 // The Native dialect host has no PostgreSQL pool. Its whole-family cleanup
 // closes any actual fixture adapters still open after a failed setup/teardown.
@@ -37,6 +38,7 @@ export async function setupTestDatabase() {
   registerLifecycleDatabase({...database, db: sourceFixtureDb}, {after: task => {void task();}});
   const db = queryReadDatabase(sourceFixtureDb as unknown as import('kysely').Kysely<unknown>) as unknown as CmsDatabase['db'];
   registerLifecycleDatabase({...database, db}, {after: task => {void task();}});
+  registerBylineDatabase({...database, db});
   activeDatabases.set(db, database);
   return db;
 }
