@@ -73,11 +73,21 @@ export function accountsRepository(database:CmsDatabase){
   if(disabled&&id===actorId)throw new AccountError('VALIDATION_ERROR','Cannot disable your own account',400);
   const target=await requireProfile(id);
   if(disabled&&target.role===50&&await countAdmins()<=1)throw new AccountError('VALIDATION_ERROR','Cannot disable the last admin. Promote another user first.',400);
-  // One SQL statement owns this actual current-role store change; no credential/session issuance.
+  // Both physical writes own the Source single-row update's rollback boundary.
+  // Retain the existing last-admin SQL predicate inside the same canonical batch.
   const query=db.updateTable('_cms_auth_users').set({disabled:disabled?1:0}).where('id','=',id);
-  const result=await (disabled&&target.role===50?query.where(sql<boolean>`(SELECT count(*) FROM _cms_auth_users WHERE role=50 AND disabled=0)>1`):query).executeTakeFirst();
-  if(disabled&&target.role===50&&result.numUpdatedRows===0n)throw new AccountError('VALIDATION_ERROR','Cannot disable the last admin. Promote another user first.',400);
-  await db.updateTable('_cms_auth_profiles').set({updated_at:new Date().toISOString()}).where('user_id','=',id).execute();
+  const identity=disabled&&target.role===50?query.where(sql<boolean>`(SELECT count(*) FROM _cms_auth_users WHERE role=50 AND disabled=0)>1`):query;
+  const token=ulid();
+  const guard=disabled&&target.role===50?sql`INSERT INTO _cms_guards(token,pass) VALUES(${token},CASE WHEN (SELECT count(*) FROM _cms_auth_users WHERE role=50 AND disabled=0)>1 THEN 1 ELSE 0 END)`.compile(db):undefined;
+  try{
+   const results=await database.atomicBatch([...(guard?[guard]:[]),identity.compile(),
+    db.updateTable('_cms_auth_profiles').set({updated_at:new Date().toISOString()}).where('user_id','=',id).compile(),
+    ...(guard?[sql`DELETE FROM _cms_guards WHERE token=${token}`.compile(db)]:[])]);
+   if(disabled&&target.role===50&&(results[guard?1:0].numAffectedRows??0n)===0n)throw new AccountError('VALIDATION_ERROR','Cannot disable the last admin. Promote another user first.',400);
+  }catch(cause){
+   if(guard&&await countAdmins()<=1)throw new AccountError('VALIDATION_ERROR','Cannot disable the last admin. Promote another user first.',400);
+   throw cause;
+  }
  }
  return {list,detail,requireProfile,update,setDisabled};
 }
