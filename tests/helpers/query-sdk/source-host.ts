@@ -15,14 +15,16 @@ import { registerBylineDatabase } from '../../../src/lib/server/bylines/storage.
 // closes any actual fixture adapters still open after a failed setup/teardown.
 const activeDatabases = new Map<CmsDatabase['db'], CmsDatabase>();
 
-// The original byline-filter fixtures insert through ordinary Kysely builders.
-// Map only their TableNode to the real already-installed Native pivot. Raw SQL,
+// The original byline-filter and media fixtures insert through ordinary Kysely builders.
+// Map only their TableNode to real already-installed Native tables. Raw SQL,
 // literals, supplied rows and whole Source assertion bodies remain untouched.
 class BylineFixtureTable extends OperationNodeTransformer {
   protected override transformTable(node: TableNode): TableNode {
     const value = super.transformTable(node);
-    if (value.table.schema || value.table.identifier.name !== '_emdash_content_bylines') return value;
-    return {...value, table: {...value.table, identifier: {...value.table.identifier, name: '_cms_content_bylines'}}};
+    if (value.table.schema) return value;
+    const physical = value.table.identifier.name === '_emdash_content_bylines' ? '_cms_content_bylines'
+      : value.table.identifier.name === 'media' ? '_cms_media' : undefined;
+    return physical ? {...value, table: {...value.table, identifier: {...value.table.identifier, name: physical}}} : value;
   }
 }
 const bylineFixtureTable = new BylineFixtureTable();
