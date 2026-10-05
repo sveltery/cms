@@ -3,7 +3,8 @@
   import { tick } from 'svelte';
   import { format } from 'date-fns';
   import { getDayPickerLocale } from '../ui/date-time-locales.ts';
-  import { isMonthCutOff, shiftDay, dayKeyToUTC, type CalendarDisplay, type CalendarItem } from './calendar.ts';
+  import { isMonthCutOff, dayKeyToUTC, type CalendarDisplay, type CalendarItem } from './calendar.ts';
+  import { moveCalendarFocus } from './picker-keyboard.ts';
   import Entry from './CalendarEntry.svelte';
   import DayList from './CalendarDayList.svelte';
   import type { CalendarSelectHandler } from './ui-types.ts';
@@ -27,7 +28,7 @@
   const currentItems=$derived(days.get(selected)??[]);
   function nowIndex(items:readonly CalendarItem[]){const index=items.findIndex(item=>item.time>now);return index===-1?items.length:index;}
   function dayLabel(day:string){const d=new Date(dayKeyToUTC(day));const local=new Date(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate(),12);const label=format(local,'MMMM do, yyyy',{locale:getDayPickerLocale(display.locale)});const count=days.get(day)?.length??0;return count?`${label}, ${count} ${count===1?'entry':'entries'}`:label;}
-  function keydown(event:KeyboardEvent,day:string){const step:Record<string,number>={ArrowRight:1,ArrowLeft:-1,ArrowDown:7,ArrowUp:-7};if(!(event.key in step))return;event.preventDefault();const next=shiftDay(day,step[event.key]!);focusDay=next;picked=next;if(!next.startsWith(month))onMonthChange(next.slice(0,7));else void tick().then(()=>document.querySelector<HTMLButtonElement>(`[data-calendar-day="${next}"]`)?.focus());}
+  function keydown(event:KeyboardEvent,day:string){const next=moveCalendarFocus(day,event,display.locale);if(next===undefined)return;event.preventDefault();focusDay=next;picked=next;if(!next.startsWith(month))onMonthChange(next.slice(0,7));else void tick().then(()=>document.querySelector<HTMLButtonElement>(`[data-calendar-day="${next}"]`)?.focus());}
   function roomiestEntries(items:readonly CalendarItem[]){return items.toSorted((a,b)=>Number(a.state==='published')-Number(b.state==='published')).slice(0,4);}
 </script>
 {#snippet notice()}<div class="notice"><p>{cutOff?'No loaded entries match these filters':'No entries match these filters'}</p><button type="button" onclick={onClearFilters}>Clear filters</button></div>{/snippet}
