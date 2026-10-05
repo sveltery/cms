@@ -2766,6 +2766,43 @@ Decision: Root exact development qualification pending, unapplied; final review/
 The revision4 table-only inference was held because NOT(type=table) also matched its equality scan. [Whole predicate evidence](../../docs/source-seed-namespace-predicate-baseline.json) preserves the actual4 negative assertion reds with prior42+4 positive controls green. Revision5 conservatively evaluates supported Boolean WHERE structure: NOT swaps possible truth/falsehood, AND/OR combine them, and unsupported atoms remain unknown. Table-only names require possible table rows with impossible other-object rows. Source positive type=table AND name NOT LIKE guards and double negation remain supported. Historical revision5 whole7/50 and checker0/0 pass in isolation; all earlier packets/logs remain immutable, no runtime application/Source credit/general SQL parity is recorded.
 
 Revision6 closes the held revision5 compound-catalog result inference: raw catalog UNION/UNION ALL/INTERSECT/EXCEPT tokens fail explicitly during transformation, before compilation/driver execution. Literal/comment/quoted identifier words stay opaque. Whole8/60 ordinary Native cases pass; exact heldR5 reaches8 compound assertion reds while prior50 and2 new lexical controls pass. No compound result adaptation, general SQL parser, production application or Source/auth credit is claimed. Full Source85/capture/provider/Pg closure remains unfinished.
+## SEO storage PR109: shared reads and public sitemap producer
+
+The immutable authority remains EmDash1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`. [The paired SEO record](../../docs/seo.md) and [storage ledger](../../docs/seo-storage-ports.json) retain nine whole Source families, 169 declarations/351 expressions and 70 complete authorities. Original callbacks, SQL/data, mocks and clocks are unchanged. Proposed PR109 currently executes repository3, hreflang14, collection-sitemap13, content integration60 and loader7 on a distinct genuine Source physical reference host. Import stops earn zero assertion/value-red credit; reference-host passes earn zero Native canonical/provider/PG/D1/Worker credit.
+
+SEO-STORAGE-01 selects only two fixed trusted physical descriptors: default Native `_cms_seo`/`_cms_collections`, or explicitly supplied genuine reference `_emdash_seo`/`_emdash_collections`. Kysely compiles actual physical identifiers; there is no catalogue/query/result rewriting or fixture detection. Source table algorithms otherwise retain the pinned no-op, partial-upsert, cache invalidation, batching and canonical-clearing duplication semantics. Canonical forward17 now follows independently verified public16 `f6d10ddfe66c81b4a6203f6cccdcf9d70d8c953b`. It implements only the Source018 SEO table/index through the existing migration/recognition owner. Frozen providers1–16 and the provider3 collection flag remain unchanged. Native original installation2 and canonical/read9 pass; DDL syntax failures before assertions earn zero assertion credit. Actual marker assertion reds precede the narrowly authorized creator upper bound16→17 and four literal Native marker-fixture extensions, with whole families12/12 and48/48 passing. This is proposed namespace hosting; specific feature acceptance is not yet recorded.
+
+SEO-STORAGE-02 adds finite scalar settings and collection explicit-db reads through the published OptionsRepository and SchemaRegistry. Its supplied-Kysely adapter cannot write or close the connection and adds no cache or writer. Native2 first reach real availability assertion reds and then pass. Whole Source media resolution semantics are incomplete: logo/favicon/defaultOGImage remain raw stored references while the genuine Media owner is absent. Existing shared content ID/slug/translation reads and menus request cache/i18n are reused unchanged. No complete Settings, loader, query SDK or draft-revision hydration acceptance is inferred.
+
+SEO-STORAGE-03 substitutes the SvelteKit public collection-sitemap GET and a finite XML producer for the Source Astro route transport. The Native GET consumes the final request-scoped database and existing trusted runtime origin, without reading forwarded headers or introducing another configuration/cache/writer owner. The Source virtual-config trailing-slash seam is an explicit producer input; actual product runtime policy composition remains pending. Native producer availability1 has a genuine assertion-red-to-green sequence; whole Source route13 passes on the explicit genuine Source physical host. Source XML, response statuses/types, noindex/soft-delete, date, locale, alternates and escaping are retained. Bare-ID media routing, index/robots, SDK/content hydration and full feature integration remain incomplete. Framework transport/trusted-origin substitution is proposed; no specific feature acceptance or final merge approval is recorded here.
+
+
+SEO-LIF01 is the authorized next finite single-writer boundary. The whole original Source content60 passes on the genuine Source physical reference owner and grants zero Native lifecycle credit. Nine actual canonical Node/raw/scoped D1 controlled requirements retain completed assertion reds for unsupported SEO input or absent planned SEO SQL and now pass through the existing owner. Source-derived readonly compiled upsert/copy/delete plans enter only the existing content owner’s create/update/revision batch, with its existing CAS/schema guards and cache invalidation after actual success. SEO remains ordinary transactional side-table metadata even for staged drafts; no `_seo` revision staging/baseline or second writer/cache owner is introduced. Shared duplication/permanent deletion and public loader integration remain pending if their actual producer is absent. This contract is authorized work, not feature acceptance or final merge approval.
+
+
+SEO-CTX01 substitutes compatibility delegates for the old independent SEO ALS/cache. The sole published menus owner retains the same original context object, all public functions and Source keys; no caller mutation, second store or private Search graph is introduced. The exact algorithm guard now follows the existing actual shared request-cache body. Whole Source loader7 has six first passes plus one retained real null-panel red, then7/7 through the shared owner; pure72 plus existing43 remain115/115. Native25 qualifies actual identity, promise/prime, isolation, explicit invalidation, real canonical committed/rolled-back cache results and a single existing request/deferred tracker. Four existing Cloudflare Source families pass23/23. Shared Native get/list and publication hydration retain only exact Source SEO shape/flags; full Source loader/SDK and deployed Worker acceptance remain open. Root authorizes this finite contract; specific feature acceptance/final merge approval remain pending.
+
+The full first Native service receipt is1500/1490pass/10fail/zero skips or cancellations, solely obsolete final marker vectors in existing lifecycle-history/startup-upgrade fixtures. Root authorizes only their four literal1..16→1..17 expectations, retaining all callback/data/history/auth/clock/DDL/concurrency assertions and zero Source/product-repair credit. Current successor whole1500/normal13/secured9 qualification remains required. The actual public Native collection sitemap also retains two trusted-base-path URL reds, then passes both unchanged callbacks through the existing validated cmsRuntime.basePath transport input. Configured settings.url retains Source precedence; the whole Native gate passes27/27 and the whole new Source suffix passes30+60+7 after every prior command. the initial incorrect success-content-type Original expectation earns zero causal credit and is corrected to the pinned charset before those URL assertions execute.
+
+The later `f7cb8c1e` whole normal receipt retained1500/1498pass/two genuine obsolete MAX(version) scalar failures before Root authorized its one literal16→17. Ordinary actual public Byline main `90fa2410` is now preserved in stationary implementation `27939fd0`: all1500 services pass, followed by original block-registry Native30/20pass/10fail/zero skips or cancellations. Four latest-marker literals (CMS_MIGRATION_VERSION at provider-preservation85/94/122 and final marker row-count215) still expect16 against actual17. [Configured review 5410125940](https://github.com/sveltery/cms/pull/109#pullrequestreview-5410125940) reports the same first three; the [whole failed normal receipt](../../docs/seo-storage-evidence/279-normal13-block-marker-red.log) preserves later stage4 callbacks and stages5–13 as unreached. Root authorizes only these four scalar16→17 repairs after the genuine whole value-red, keeping every other Source/Native body, data, snapshot, historical marker, DDL and clock unchanged. CI511 validate fails at that same stage; all nine secured browser commands pass. Fresh exact279 independent semantic review is clear for the proposed bounded implementation but grants no merge readiness. This marker maintenance earns zero Source/product-repair credit; whole30 and current stationary normal13/secured9/configured/fresh review plus exact manager approval remain required.
+
+SEO-READ02 is authorized Source fidelity work: content.ts281/295 hydrateSeo/hydrateSeoMany receive the authoritative hasSeo boolean from their existing collection metadata owner. Native own helpers instead requery it. Four new controlled Native single/batch returned-SEO/skip requirements use genuine existing SchemaRegistry metadata snapshots and ordinary sequential flag updates, producing four real property value-reds while all preceding27 cases pass; the [complete31-case red](../../docs/seo-storage-evidence/read02-native31-first-property-red.log) earns Native causal evidence only. The required internal parameter will be threaded solely from the same already-read owners, preserving schema/CAS/freshness outside this read contract and adding no public flag, cache, DB or read owner. No runner/deadline optimization is claimed.
+
+The exact03e9 [whole local timeout receipt](../../docs/seo-storage-evidence/03e9-normal13-timeout.log) finishes1500/1499pass/zero assertion failures/one cancelled original D1 scalar callback at its unchanged120-second limit; stages4–13 are unreached. Actual CI514 independently passes all1500 services, block30, Byline/Source/SEO stage4 and stages1–8 before its unchanged15-minute cancellation during stage9; stages10–13 are unreached. Its secured9 and current configured/fresh semantic reviews pass in their bounded scope. Ordinary actual public Scheduling98332aaa is now adopted with its calendar41/Native10 prefix intact. New current successor normal13/secured9/configured/fresh review plus exact manager approval remain required; timing interruptions earn zero assertion or Source repair credit.
+
+SEO-READ02 now threads the required authoritative hasSeo boolean only from existing actual getCollectionWithFields reads: private stored/includingTrashed results retain their metadata value, and already-held definitions supply other callers. Source false/empty early returns are preserved, with no public caller flag or new cache/DB/read owner. Every other old query/guard/CAS/schema-freshness path and returned public item is retained. The four property value-reds now pass in [whole Native31](../../docs/seo-storage-evidence/read02-native31-green.log); [whole original Source30+60+7](../../docs/seo-storage-evidence/read02-source97-green.log) and zero-error/warning type checking pass. Source physical reference passes still grant zero Native loader/SDK credit. This is Source fidelity evidence, not runner/deadline optimization or final feature acceptance; current stationary whole13/secured9/configured/fresh review and exact manager approval remain required.
+
+
+### SEO current public Schema UI union
+
+Ordinary union7709fbca adopts actual public Main `f2b2e560f6ea54f53e941db76fac732601772ce9` while retaining the reviewed SEO-READ02 implementation and all70 immutable authorities. Entire Main package values/scripts, frozen dependencies, bootstrap, workflow, security and deadlines remain unchanged; existing Source chain is a literal incoming prefix followed by the SEO suffix. Incoming Schema UI secure browser command remains required, making the current boundary normal13/secured10. [Paired documentation and actual terminal receipt](../../docs/seo.md) retain current original30+60+7 and Native31 passes, zero type diagnostics, earlier pre-callback pnpm environment stop and incomplete historical normal521 attempts. No new product repair, Source callback credit, provider beyond17, full SEO acceptance or hosted normal success is inferred. Current final-head gates/fresh review/exact Root approval/AUTHOR regular merge/post-main qualification remain pending.
+
+
+### SEO and published Calendar metadata snapshot union
+
+Ordinary Main99 union0326fab4 preserves actual public dependencies, Source prefix, CI116 orchestration, bootstrap, deadlines and all secured browser bytes. The unchanged calendar56 baseline retains14 product exceptions with0Source/value causal credit; new separate Native35 baseline preserves31 passes and four reached resolve-versus-reject assertion reds. Only the three incoming Calendar callers consume the established authoritative stored.item (fix8acedf91/refactorc5ba1135), without metadata rereads, changed hasSeo, query/guard/CAS/write/cache owners, return hydration or another provider. [The paired feature record and four literal receipts](../../docs/seo.md) retain Source97/Native35/calendar56 and one bounded3072 checker0/0. Original Source70/Native31/raw history and frozen providers1–16 remain unchanged. This is bounded Native integration fidelity with0newSource callback credit, not full SEO/Calendar/backend acceptance. Current final-head phase/aggregate/secured/calendar gates, configured/quota review, manager approval, regular author merge and post-main qualification remain pending.
+
+
 ### MED-REPO01 / MED-API01 / MED-CACHE01 general media backend prerequisite
 
 Source: EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, 186 whole authorities and 81 whole test families retained. [Paired feature and actual TDD ledger](../../docs/general-media-backend.md) records complete source IDs, 800 static declarations/2,316 expectation roots, unchanged original fixtures/data/mocks/clocks, actual first stops and supplemental native reds. Current unchanged whole selection is35 files/291 passes plus the original R2 supplied-mock callback1. These original missing-module baselines earn0 Source value-red/causal credit. Supplemental native14 workflows and local Miniflare R2/rawD1 execution are separate; controlled route contexts do not establish actual protected HTTP/session/PAT or external cloud acceptance.
@@ -3129,3 +3166,122 @@ SEED-OBSERVERS03 current development checkpoint: unchanged Node Original85/69 pa
 SEED-WORKERD04: whole immutable Original3families/10cases passes on Node hosting a real local workerd D1 binding via Root-qualified test-only single-Kysely constructor/executor/atomicBatch transport. Existing30000ms clocks/data/bodies and explicit migrations stay exact; earlier0registered import prerequisite and constructor hosting earn0Source causal credit, and no original Worker-pool claim is made. Default/runtime consumer5 authorities remain static0execution credit. Current checker5errors first receipt is retained; repaired type/capture-state fixes await current successful checker. Pure Node24 constructor/build prerequisites, complete normal/secured gates, fresh semantic review and manager acceptance remain pending.
 
 Final all-qualified-producer observer rerun: Native budget2 passes2/2 in13.54s with both unchanged datasets/budget/progress assertions. Whole Original D1 apply85 now records84pass/1timeout in28.25s, retaining its original5000ms clock; the620-record combined taxonomy/byline case times out, while the240-entry case completes within its unchanged clock on this run. Earlier83/2 remains historical, and no clock repair or stable5000ms performance claim follows. Complete Original Workerd10 and Native observer4 pass as reported above. Full stationary gates and final acceptance remain pending.
+
+
+### MED-REPO01 / MED-ENV01 published main99 integration
+
+Regular union `64fe89d3` has ordered parents Media `6908b076` and actual published
+main `99c659f6` (Schema111, Picker110, CI116 and Calendar112). It retains the
+complete 610,050-byte incoming compatibility document, including its insertions,
+followed by the complete 10,062-byte owned Media tail. The complete incoming
+Source command chain precedes the same three Media commands. All old dependency
+versions remain; the incoming Calendar dependency additions and frozen lock are
+kept exactly as published. Twelve protected owners match current main exactly.
+At the union checkpoint, all nine shared Media product/test paths and all318
+owned added files were unchanged from the scoped independently reviewed
+`6908b076`. This follow-up changes only the paired feature documentation, ledger
+and owned compatibility tail. No combined Byline
+writer, second content/usage writer, new provider or private feature graph is
+adopted. The D1 counting bug remains preserved in issue114.
+
+This integrated code checkpoint passes whole Source36/321, original R2mock1,
+Native7/22 (including environment4), the three complete existing runtime files24
+and checker0/0. Original bodies, fixtures, mocks and clocks remain exact. These
+checks used sequential bounded-heap processes; heap bounds do not change test
+deadlines or behavior. The earlier scoped semantic review applies to6908 only;
+a current main-union review and exact-head approval remain required.
+
+Historical6908 hosted attempt1 started13 normal phases and completed12 before
+its original deadline cancellation; attempt2's queued validate job has no steps.
+Neither earns complete normal credit. Its secured10 passed using official
+headless-shell1243 without --no-sandbox. The retained local6908 bootstrap stopped
+at frozen install on npm metadata503 with no completed stage or product test.
+No third old-head normal rerun was launched.
+
+Published CI116 now runs the same complete13 normal stages through three
+sequential15-minute phase jobs and a required aggregate. The browser job remains
+byte-exact current main and keeps all10 secured launches; the incoming Calendar
+Source/browser job is also retained. Local bootstrap and its previous receipts
+remain unchanged. Current full phase/aggregate/browser gates, the current
+configured-review request, Root exact-head technical approval, author regular
+merge and post-main verification remain pending. No full Media feature or
+product completion is claimed.
+
+[Paired Media feature scope and evidence](../../docs/general-media-backend.md).
+
+
+### MED-CURSOR-IDENTITY01 native class-authority transport repair
+
+A Media120 test-first canonical Node integration callback (`2e4c7fdd`) persisted
+a media row and requested usage with `cursor: not-a-cursor`. Source's complete
+read-route family requires `INVALID_CURSOR`; actual8fda returned
+`MEDIA_USAGE_READ_ERROR`. The actual inherited usage repository throws the
+Blocks repository's InvalidCursorError, while the handler imported a distinct
+Byline class through the general Media type re-export. Upstream shares one
+class identity. This is a Native import-transport defect, separate from issue114.
+
+Own test-first `efeaccc1` retains the same1215-byte Native file without changes
+and reaches the same genuine1 assertion red. Fix `9ce291b5` changes only the
+usage handler's InvalidCursorError import to its actual repository authority;
+the callback passes. Refactor `3d25b853` groups that import with the existing
+repository-owned imports and records why identity matters; the callback stays
+green. All seven complete pinned function bodies, the global type modules,
+other handlers, repositories, producers and Source datasets/clocks remain exact.
+This closes one Native fidelity regression and earns zero copied Source callback
+credit; the complete original read-route test family remains Media120's lane.
+
+Before sealing, regular union `05ed251a` adopts actual published SEO109 main
+`cc1fc904`, with ordered parents `3d25b853` and that main. Both published owners
+remain; provider1–16 are unchanged and17 remains solely SEO. The whole622,590-byte
+incoming compatibility document precedes the whole12,652-byte prior Media tail,
+and the complete incoming Source chain precedes the same three Media gates.
+Fourteen protected owners are exact current main. No new provider, writer,
+private Byline graph, global error-class replacement or D1 cleanup fix is added.
+
+Post-union whole Source36/321, R2 originalmock1, whole Native8/23 and one bounded
+checker0/0 pass with original deadlines. All old Native22 bodies and raw histories
+remain intact. Previous scoped CLEAR and8fda hosted attempts, including its one
+browser retry, are historical evidence only. Fresh successor phase/aggregate/
+secured10/Calendar checks, current review, Root exact-head approval, author
+regular merge and post-main verification remain pending. Full media parity
+continues to exclude the previously listed auth, UI and producer scope.
+
+[Paired feature and complete retained evidence](../../docs/general-media-backend.md).
+
+
+### MED-NODE-CTOR01: finite Node strip-mode constructor transport
+
+The original pinned `MediaRepository` and `MediaFolderRepository` constructors
+use a private `db` parameter property. The unchanged Node24 strip-only loader
+rejects that syntax before it can execute repository behavior. Native test-first
+`30fb2e38` runs an actual child Node import of both modules and the canonical
+storage owner. Its exit-zero expectation reaches a genuine Native infrastructure
+red: actual exit1 at the media constructor. The canonical migrated folder/media
+write and read result assertions are initially unreached. This supplemental
+control copies zero original Source callbacks and earns no Source causal credit.
+
+Implementation `bcd7a435` adds an explicit typed private `db` field and assigns
+the constructor argument to it in each of those two classes. Every other class
+member, method body, SQL query, DTO, guard and initialization operation remains
+exact. Immutable Source bytes and hashes remain unchanged. This is a finite
+framework syntax substitution authorized by Root for proposed PR113; no merged
+or full hosting acceptance is recorded. The guard now verifies58 complete
+module algorithms plus exactly two constructor-only module transports, rather
+than claiming60 whole-module identities. Complete R2, seven usage-read function
+bodies and two upload cleanup blocks remain guarded. An isolated copied fixture
+passes the exact guard and rejects both a changed db assignment and a changed
+method SQL table; the live repository was not mutated by those controls.
+
+After this repair the same unchanged child import advances to the existing
+shared Byline `EmDashValidationError` parameter property. The retained second
+run is still a red, despite its historical first-green log filename. Its
+canonical owner result assertions remain unreached. No shared Byline class,
+Source storage-error class, loader flag, dependency or test expectation is
+changed here. Whole Source36/321 and original R2mock1 pass; whole Native9/24
+reports23 passed and this one dependency failure. The old Native23 bodies and
+all prior raw histories remain exact. The Byline owner prerequisite, complete
+child-import green, fresh current-head gates/review, Root exact-head approval,
+author regular merge and post-main verification remain pending. This does not
+establish complete Node import hosting or full Media parity.
+
+[Paired feature and complete retained evidence](../../docs/general-media-backend.md).

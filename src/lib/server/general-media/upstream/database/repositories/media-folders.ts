@@ -1,5 +1,5 @@
 // EmDash 1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
-// Whole pinned body; native import paths only.
+// Pinned methods; native imports and explicit db-field constructor transport for Node strip mode.
 import { sql, type Kysely } from "kysely";
 import { ulid } from "ulidx";
 
@@ -37,7 +37,11 @@ function normalizeFolderName(name: string): { name: string; nameKey: string } {
 }
 
 export class MediaFolderRepository {
-	constructor(private db: Kysely<Database>) {}
+	private db: Kysely<Database>;
+
+	constructor(db: Kysely<Database>) {
+		this.db = db;
+	}
 
 	async findMany(options: FindManyMediaFoldersOptions = {}): Promise<FindManyResult<MediaFolder>> {
 		const limit = Math.max(1, Math.min(options.limit ?? 50, 100));

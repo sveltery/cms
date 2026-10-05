@@ -233,3 +233,116 @@ algorithms still pass their guard. This integration earns no additional Source
 callback or product parity credit. Final-head full checks, fresh independent
 and configured review, exact Root approval, author regular merge and actual
 post-main verification remain pending.
+
+
+### Published main99 integration and current phased gates
+
+Regular union `64fe89d3` has ordered parents Media `6908b076` and actual published
+main `99c659f6` (Schema111, Picker110, CI116 and Calendar112). It retains the
+complete 610,050-byte incoming compatibility document, including its insertions,
+followed by the complete 10,062-byte owned Media tail. The complete incoming
+Source command chain precedes the same three Media commands. All old dependency
+versions remain; the incoming Calendar dependency additions and frozen lock are
+kept exactly as published. Twelve protected owners match current main exactly.
+At the union checkpoint, all nine shared Media product/test paths and all318
+owned added files were unchanged from the scoped independently reviewed
+`6908b076`. This follow-up changes only the paired feature documentation, ledger
+and owned compatibility tail. No combined Byline
+writer, second content/usage writer, new provider or private feature graph is
+adopted. The D1 counting bug remains preserved in issue114.
+
+This integrated code checkpoint passes whole Source36/321, original R2mock1,
+Native7/22 (including environment4), the three complete existing runtime files24
+and checker0/0. Original bodies, fixtures, mocks and clocks remain exact. These
+checks used sequential bounded-heap processes; heap bounds do not change test
+deadlines or behavior. The earlier scoped semantic review applies to6908 only;
+a current main-union review and exact-head approval remain required.
+
+Historical6908 hosted attempt1 started13 normal phases and completed12 before
+its original deadline cancellation; attempt2's queued validate job has no steps.
+Neither earns complete normal credit. Its secured10 passed using official
+headless-shell1243 without --no-sandbox. The retained local6908 bootstrap stopped
+at frozen install on npm metadata503 with no completed stage or product test.
+No third old-head normal rerun was launched.
+
+Published CI116 now runs the same complete13 normal stages through three
+sequential15-minute phase jobs and a required aggregate. The browser job remains
+byte-exact current main and keeps all10 secured launches; the incoming Calendar
+Source/browser job is also retained. Local bootstrap and its previous receipts
+remain unchanged. Current full phase/aggregate/browser gates, the current
+configured-review request, Root exact-head technical approval, author regular
+merge and post-main verification remain pending. No full Media feature or
+product completion is claimed.
+
+
+### MED-CURSOR-IDENTITY01: native usage-read import fidelity repair
+
+A Media120 test-first canonical Node integration callback (`2e4c7fdd`) persisted
+a media row and requested usage with `cursor: not-a-cursor`. Source's complete
+read-route family requires `INVALID_CURSOR`; actual8fda returned
+`MEDIA_USAGE_READ_ERROR`. The actual inherited usage repository throws the
+Blocks repository's InvalidCursorError, while the handler imported a distinct
+Byline class through the general Media type re-export. Upstream shares one
+class identity. This is a Native import-transport defect, separate from issue114.
+
+Own test-first `efeaccc1` retains the same1215-byte Native file without changes
+and reaches the same genuine1 assertion red. Fix `9ce291b5` changes only the
+usage handler's InvalidCursorError import to its actual repository authority;
+the callback passes. Refactor `3d25b853` groups that import with the existing
+repository-owned imports and records why identity matters; the callback stays
+green. All seven complete pinned function bodies, the global type modules,
+other handlers, repositories, producers and Source datasets/clocks remain exact.
+This closes one Native fidelity regression and earns zero copied Source callback
+credit; the complete original read-route test family remains Media120's lane.
+
+Before sealing, regular union `05ed251a` adopts actual published SEO109 main
+`cc1fc904`, with ordered parents `3d25b853` and that main. Both published owners
+remain; provider1–16 are unchanged and17 remains solely SEO. The whole622,590-byte
+incoming compatibility document precedes the whole12,652-byte prior Media tail,
+and the complete incoming Source chain precedes the same three Media gates.
+Fourteen protected owners are exact current main. No new provider, writer,
+private Byline graph, global error-class replacement or D1 cleanup fix is added.
+
+Post-union whole Source36/321, R2 originalmock1, whole Native8/23 and one bounded
+checker0/0 pass with original deadlines. All old Native22 bodies and raw histories
+remain intact. Previous scoped CLEAR and8fda hosted attempts, including its one
+browser retry, are historical evidence only. Fresh successor phase/aggregate/
+secured10/Calendar checks, current review, Root exact-head approval, author
+regular merge and post-main verification remain pending. Full media parity
+continues to exclude the previously listed auth, UI and producer scope.
+
+
+### MED-NODE-CTOR01: finite Node strip-mode constructor transport
+
+The original pinned `MediaRepository` and `MediaFolderRepository` constructors
+use a private `db` parameter property. The unchanged Node24 strip-only loader
+rejects that syntax before it can execute repository behavior. Native test-first
+`30fb2e38` runs an actual child Node import of both modules and the canonical
+storage owner. Its exit-zero expectation reaches a genuine Native infrastructure
+red: actual exit1 at the media constructor. The canonical migrated folder/media
+write and read result assertions are initially unreached. This supplemental
+control copies zero original Source callbacks and earns no Source causal credit.
+
+Implementation `bcd7a435` adds an explicit typed private `db` field and assigns
+the constructor argument to it in each of those two classes. Every other class
+member, method body, SQL query, DTO, guard and initialization operation remains
+exact. Immutable Source bytes and hashes remain unchanged. This is a finite
+framework syntax substitution authorized by Root for proposed PR113; no merged
+or full hosting acceptance is recorded. The guard now verifies58 complete
+module algorithms plus exactly two constructor-only module transports, rather
+than claiming60 whole-module identities. Complete R2, seven usage-read function
+bodies and two upload cleanup blocks remain guarded. An isolated copied fixture
+passes the exact guard and rejects both a changed db assignment and a changed
+method SQL table; the live repository was not mutated by those controls.
+
+After this repair the same unchanged child import advances to the existing
+shared Byline `EmDashValidationError` parameter property. The retained second
+run is still a red, despite its historical first-green log filename. Its
+canonical owner result assertions remain unreached. No shared Byline class,
+Source storage-error class, loader flag, dependency or test expectation is
+changed here. Whole Source36/321 and original R2mock1 pass; whole Native9/24
+reports23 passed and this one dependency failure. The old Native23 bodies and
+all prior raw histories remain exact. The Byline owner prerequisite, complete
+child-import green, fresh current-head gates/review, Root exact-head approval,
+author regular merge and post-main verification remain pending. This does not
+establish complete Node import hosting or full Media parity.

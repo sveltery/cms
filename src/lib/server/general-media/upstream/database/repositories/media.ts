@@ -1,5 +1,5 @@
 // EmDash 1.1.0 913cb1bb9b7f08c3ff0d258b4420e53835b6a58e; Copyright 2026 Cloudflare Inc. MIT; notices/emdash-MIT.txt.
-// Whole pinned body; native import paths only.
+// Pinned methods; native imports and explicit db-field constructor transport for Node strip mode.
 import {
 	sql,
 	type ExpressionBuilder,
@@ -137,7 +137,11 @@ const UPLOAD_ATTEMPT_CLEANUP_BATCH_SIZE = 100;
  * Media repository for database operations
  */
 export class MediaRepository {
-	constructor(private db: Kysely<Database>) {}
+	private db: Kysely<Database>;
+
+	constructor(db: Kysely<Database>) {
+		this.db = db;
+	}
 
 	/**
 	 * Create a new media item

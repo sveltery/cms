@@ -582,5 +582,101 @@
     "historicalCi521NormalAttempts": "both deadline-cancelled; no whole-normal pass",
     "finalHeadCiReviewApprovalMergePostMain": "pending",
     "fullFeature": "incomplete"
+  },
+  "currentPublishedCalendarUnion": {
+    "actualPublicMain": "99c659f67a2117f9e523f1231f0f44d207713396",
+    "mainTree": "e8caa819f8910113aa58b2cc81e8456e18990a58",
+    "ordinaryMerge": "0326fab4aedfc17bb18a14c73b39a96898356821",
+    "testFirst": "40603bdd64db3c8cff50483e7e621611e11beb5d",
+    "fix": "8acedf9114a2352b812f6a38755e6d22b249f21c",
+    "refactor": "c5ba11354d7184be72ecdf6acca195cf610aed62",
+    "threeIncomingCallerAdaptations": [
+      "resolvePublicationKey",
+      "schedule",
+      "unschedule"
+    ],
+    "privateStoredMetadataOwnerUnchanged": true,
+    "mainSourcePrefixPackageDependenciesLockCiSecurityDeadlinesUnchanged": true,
+    "newNativeResultExpectationReds": 4,
+    "oldNative31Unchanged": true,
+    "sourceNewCallbackCredit": 0,
+    "wholeOriginalCalendar56FirstPass": 42,
+    "wholeOriginalCalendar56PreExpectationExceptionStops": 14,
+    "wholeSourceCounts": [
+      30,
+      60,
+      7
+    ],
+    "finalNativeCount": 35,
+    "finalCalendarCount": 56,
+    "boundedChecker": {
+      "heapMiB": 3072,
+      "timeoutSeconds": 300,
+      "killAfterSeconds": 15,
+      "errors": 0,
+      "warnings": 0,
+      "exitCode": 0
+    },
+    "literalReceipts": [
+      {
+        "path": "docs/seo-storage-evidence/main99-calendar-first-union.log",
+        "bytes": 9646,
+        "sha256": "124a29fa4c93f0f3c7f14bf5fa1bf744112a64537b2c78dcf958dae3eddf9081",
+        "description": "unchanged published whole calendar first union",
+        "counts": [
+          42,
+          14
+        ],
+        "exitCode": 1,
+        "preExpectationExceptionStops": 14,
+        "sourceCausalCredit": 0
+      },
+      {
+        "path": "docs/seo-storage-evidence/main99-native35-first-red.log",
+        "bytes": 3742,
+        "sha256": "5efb8050155bf0ed2021b182ac6632443196038913f0137363d820c68f3b7767",
+        "description": "whole native TDD35 result expectation failure",
+        "counts": [
+          31,
+          4
+        ],
+        "exitCode": 1,
+        "preExpectationExceptionStops": 0,
+        "sourceCausalCredit": 0
+      },
+      {
+        "path": "docs/seo-storage-evidence/main99-native35-calendar56-fixed.log",
+        "bytes": 825,
+        "sha256": "4f4a14da58cfa019460226f6128d63baa9f30f203420c5790e169b9b3d818fad",
+        "description": "minimal three stored.item consumption fix",
+        "counts": [
+          35,
+          56
+        ],
+        "exitCode": 0,
+        "preExpectationExceptionStops": 0,
+        "sourceCausalCredit": 0
+      },
+      {
+        "path": "docs/seo-storage-evidence/main99-final-focused-refactor.log",
+        "bytes": 2976,
+        "sha256": "90f6ea7403717f82122a2aebe21420886590d16e91f80ce3350dfffb7b116c30",
+        "description": "refactored Source97 Native35 Calendar56 and bounded checker",
+        "counts": [
+          30,
+          60,
+          7,
+          35,
+          56
+        ],
+        "exitCode": 0,
+        "preExpectationExceptionStops": 0,
+        "sourceCausalCredit": 0
+      }
+    ],
+    "currentHostedAllSixJobs": "pending",
+    "configuredReview": "pending final public head association",
+    "managerApprovalRegularMergePostMain": "pending",
+    "fullSeoFeature": "incomplete"
   }
 }

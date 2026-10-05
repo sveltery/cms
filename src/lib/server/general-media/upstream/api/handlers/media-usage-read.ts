@@ -3,8 +3,9 @@
 import type { Kysely } from 'kysely';
 import { MediaUsageRepository, type MediaUsageCollectionIndexStatusScope, type MediaUsageEntryGroup } from '../../database/repositories/media-usage.ts';
 import { MediaRepository } from '../../database/repositories/media.ts';
-import { InvalidCursorError } from '../../database/repositories/types.ts';
 import type { Database } from '../../database/types.ts';
+// Match the cursor-error identity of the sole published usage repository owner.
+import { InvalidCursorError } from '../../../../blocks/upstream/database/repositories/types.ts';
 import { CONTENT_MEDIA_USAGE_ADAPTER_ID, CONTENT_MEDIA_USAGE_COLLECTION_SCOPE } from '../../../../blocks/upstream/media/usage/schema-invalidation.ts';
 import { CONTENT_SOURCE_SCHEMA_VERSION } from '../../../../blocks/upstream/media/usage/types.ts';
 import { groupSiteSettingMediaUsage, MEDIA_USAGE_SITE_SETTING_OPTIONS, type MediaUsageSiteSetting } from '../../media/usage/site-settings.ts';

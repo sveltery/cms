@@ -117,6 +117,42 @@ docs/relations-backend-evidence/handlers/relations-native-service-first-red.log 
 
 # Preserve literal seed TDD evidence, including original formatter whitespace.
 docs/seed-engine-evidence/*.log -whitespace
+# Preserve literal trailing whitespace in exactly the 31 whole pinned locale catalogs.
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ar/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/bn/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ca/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/cs/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/da/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/de/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/en/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/en-GB/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/es-419/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/es-ES/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/eu/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/fa/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/fr/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/hi/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/hu/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/id/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ja/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ka/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/ko/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/nb/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/nl/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/pl/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/pseudo/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/pt-BR/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/sr-Latn/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/sv/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/th/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/tr/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/uk/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/zh-CN/messages.po whitespace=-blank-at-eol
+parity/emdash/calendar-locales-source/upstream/packages/admin/src/locales/zh-TW/messages.po whitespace=-blank-at-eol
+
+# Preserve the frozen DayPicker whole-module source formatting.
+parity/emdash/calendar-shared-picker-labels/vendor/kumo-2.6.0-internal-day-picker-9.13.2/DayPicker.js whitespace=-blank-at-eol
+
 # Preserve exact SEO diagnostic bytes, including final Vitest blank lines.
 docs/seo-storage-evidence/native-read-producer-green.log whitespace=-blank-at-eof
 docs/seo-storage-evidence/reference-repository-hreflang-green.log whitespace=-blank-at-eof
@@ -302,3 +338,9 @@ docs/seed-engine-evidence/full-seed-current-old-native30-namespace-import.log -w
 docs/seed-engine-evidence/full-seed-native-budget-two-all-canonical-observers.log -whitespace
 
 docs/seed-engine-evidence/full-seed-original85-all-canonical-observers.log -whitespace
+
+# Exact Main99 SEO and Calendar integration TDD receipts.
+docs/seo-storage-evidence/main99-calendar-first-union.log -whitespace
+docs/seo-storage-evidence/main99-native35-first-red.log -whitespace
+docs/seo-storage-evidence/main99-native35-calendar56-fixed.log -whitespace
+docs/seo-storage-evidence/main99-final-focused-refactor.log -whitespace

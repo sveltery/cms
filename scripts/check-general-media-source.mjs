@@ -11,7 +11,18 @@ console.log('Verified ' + manifest.authorities.length + ' whole EmDash general-m
 const readJson = path => JSON.parse(readFileSync(new URL('../' + path, import.meta.url), 'utf8'));
 const parse = path => ts.createSourceFile(path,readFileSync(new URL('../'+path,import.meta.url),'utf8'),ts.ScriptTarget.Latest,true);
 const transformations=readJson('parity/emdash/general-media-source/runtime-transformations.json');
+// Only these two parameter properties have an approved, equivalent Node strip-mode transport.
+const constructorTransports=new Map([
+  ['packages/core/src/database/repositories/media.ts','MediaRepository'],
+  ['packages/core/src/database/repositories/media-folders.ts','MediaFolderRepository']
+]);
+const originalConstructor='constructor(private db: Kysely<Database>) {}';
+const nativeField='private db: Kysely<Database>;';
+const nativeConstructor='constructor(db: Kysely<Database>) {\n\t\tthis.db = db;\n\t}';
+let constructorTransportCount=0;
 for(const row of transformations.runtimeModules) {
+  const constructorClass=constructorTransports.get(row.source);
+  if(row.constructorTransport!==constructorClass)throw new Error('Finite constructor allowance changed: '+row.runtime);
   const source=parse('parity/emdash/general-media-source/upstream/'+row.source);
   const native=parse(row.runtime);
   if(source.statements.length!==native.statements.length)throw new Error('Whole statement count changed: '+row.runtime);
@@ -27,9 +38,20 @@ for(const row of transformations.runtimeModules) {
       const end=original.moduleSpecifier.end-original.getStart(source);
       expected=expected.slice(0,start)+actual.moduleSpecifier.getText(native)+expected.slice(end);
     }
+    if(constructorClass&&ts.isClassDeclaration(original)&&original.name?.text===constructorClass) {
+      const sourceConstructor=original.members[0];
+      if(!ts.isConstructorDeclaration(sourceConstructor)||sourceConstructor.getText(source)!==originalConstructor||
+        !ts.isClassDeclaration(actual)||actual.name?.text!==constructorClass||
+        actual.members[0]?.getText(native)!==nativeField||actual.members[1]?.getText(native)!==nativeConstructor)throw new Error('Finite db constructor transport changed: '+row.runtime);
+      const start=sourceConstructor.getStart(source)-original.getStart(source);
+      const end=sourceConstructor.end-original.getStart(source);
+      expected=expected.slice(0,start)+nativeField+'\n\n\t'+nativeConstructor+expected.slice(end);
+      constructorTransportCount++;
+    }
     if(expected!==actual.getText(native))throw new Error('Pinned whole algorithm changed: '+row.runtime+':'+index);
   }
 }
+if(constructorTransportCount!==2)throw new Error('Expected exactly two approved constructor transports');
 function checkCompleteNodes(authorityPath,runtimePath,rows,select) {
   const source=parse(authorityPath),native=parse(runtimePath);
   for(const row of rows){
@@ -43,7 +65,7 @@ const r2=readJson('parity/emdash/general-media-source/r2-class.json');
 checkCompleteNodes('parity/emdash/general-media-source/upstream/'+r2.source,r2.runtime,r2.nodes,(node,file)=>ts.isClassDeclaration(node)?node.name?.text:ts.isVariableStatement(node)?node.declarationList.declarations[0]?.name.getText(file):undefined);
 const usage=readJson('parity/emdash/general-media-source/usage-read-functions.json');
 checkCompleteNodes('parity/emdash/general-media-source/upstream/'+usage.source,usage.runtime,usage.functions,node=>ts.isFunctionDeclaration(node)?node.name?.text:undefined);
-console.log('Verified '+transformations.runtimeModules.length+' complete native module algorithms, complete R2 class, and seven complete media read functions; no whole-handler/env-factory credit.');
+console.log('Verified '+(transformations.runtimeModules.length-constructorTransportCount)+' complete native module algorithms, '+constructorTransportCount+' finite constructor-only module transports with all other statements/methods exact, complete R2 class, and seven complete media read functions; no whole-handler/env-factory credit.');
 const cleanup=readJson('parity/emdash/general-media-source/cleanup-blocks.json');
 const cleanupSource=parse('parity/emdash/general-media-source/upstream/'+cleanup.source),cleanupNative=parse(cleanup.runtime);
 for(const row of cleanup.blocks){
