@@ -6,11 +6,12 @@ import { SESSION_COOKIE_NAME } from './request.ts';
 import { createKyselySessionStore } from './store.ts';
 import type { Permission, ServerPrincipal } from '../database/service.ts';
 import type { CmsDatabase } from '../database/contract.ts';
+import type { Storage } from '../general-media/upstream/storage/types.ts';
 
 const servicePermissions: readonly Permission[] = Object.freeze([
   'schema:read', 'schema:manage', 'content:read', 'content:read_drafts', 'content:create',
   'content:edit_own', 'content:edit_any', 'content:delete_own', 'content:delete_any',
-  'content:delete_permanent', 'content:publish_own', 'content:publish_any', 'taxonomies:read', 'taxonomies:manage', 'menus:read', 'menus:manage', 'redirects:read', 'redirects:manage', 'sections:read', 'sections:manage', 'widgets:read', 'widgets:manage', 'comments:read', 'comments:moderate', 'comments:delete', 'comments:settings', 'bylines:read', 'bylines:manage'
+  'content:delete_permanent', 'content:publish_own', 'content:publish_any', 'taxonomies:read', 'taxonomies:manage', 'menus:read', 'menus:manage', 'redirects:read', 'redirects:manage', 'sections:read', 'sections:manage', 'widgets:read', 'widgets:manage', 'comments:read', 'comments:moderate', 'comments:delete', 'comments:settings', 'bylines:read', 'bylines:manage', 'media:read', 'media:upload', 'media:edit_own', 'media:edit_any', 'media:delete_own', 'media:delete_any'
 ]);
 
 /** Accept only a server-resolved principal; request claims never enter this bridge. */
@@ -22,6 +23,8 @@ export function servicePrincipal(principal: SessionPrincipal | null): ServerPrin
 export interface CmsRequestConfiguration {
   /** An already-migrated adapter from trusted server configuration, scoped to this request. */
   database: CmsDatabase;
+  /** Trusted media storage supplied by the server hosting owner. */
+  storage?: Storage;
   /** Explicit server-only opt-in; absence and any value other than true keep HTTP writes disabled. */
   mutationsEnabled?: boolean;
   /** Supply this request's workerd waitUntil when the hosting adapter supports it. */
@@ -35,7 +38,7 @@ export function createCmsHandle(factory: (event: RequestEvent) => CmsRequestConf
     const configuration = await factory(event);
     if (configuration) {
       const principal = await resolvePrincipal(event.cookies.get(SESSION_COOKIE_NAME), createKyselySessionStore(configuration.database.db.$pickTables<'_cms_auth_users' | '_cms_auth_sessions'>()), { keepAlive: configuration.keepAlive });
-      event.locals.cms = Object.freeze({ database: configuration.database, principal: servicePrincipal(principal), mutationsEnabled: configuration.mutationsEnabled === true, keepAlive: configuration.keepAlive });
+      event.locals.cms = Object.freeze({ database: configuration.database, principal: servicePrincipal(principal), mutationsEnabled: configuration.mutationsEnabled === true, keepAlive: configuration.keepAlive, storage: configuration.storage });
     }
     return resolve(event);
   };
