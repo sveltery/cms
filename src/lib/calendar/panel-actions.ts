@@ -14,7 +14,7 @@ export async function runCalendarPanelAction(action:CalendarPanelAction,item:Cal
     if(action==='publish')await context.client.publishContent(item.collection,item.id,{locale:item.locale,_rev:context.rev});
     else await context.client.unscheduleContent(item.collection,item.id,{locale:item.locale});
     context.refresh();context.success();if(context.current())context.close();
-  }catch(cause){const description=cause instanceof Error?cause.message:'Request failed';context.failure(description);}
+  }catch(cause){const description=!cause?null:cause instanceof Error?cause.message:(context.genericError?.()??'An error occurred');context.failure(description);}
   finally{if(context.current())context.pending(false);}
 }
 export interface CalendarRescheduleContext {
