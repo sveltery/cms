@@ -1,0 +1,25 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+ ❯ parity/emdash/seo-storage/source/packages/core/tests/integration/seo/sitemap-route.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/seo-storage/source/packages/core/tests/integration/seo/sitemap-route.test.ts [ parity/emdash/seo-storage/source/packages/core/tests/integration/seo/sitemap-route.test.ts ]
+Error: Cannot find module '../../../src/lib/server/seo/sitemap-response.ts' imported from /workspace/cms-complete-seo-storage-backend/tests/helpers/seo/reference-sitemap-route.mjs
+ ❯ tests/helpers/seo/reference-sitemap-route.mjs:2:1
+      1| // TEST ONLY: unchanged Source APIContext supplied to the real XML pro…
+      2| import { collectionSitemapResponse } from '../../../src/lib/server/seo…
+       | ^
+      3| import { SOURCE_SEO_STORAGE } from '../../../src/lib/server/seo/storag…
+      4| export const GET = ({params, locals, url}) => collectionSitemapRespons…
+ ❯ parity/emdash/seo-storage/source/packages/core/tests/integration/seo/sitemap-route.test.ts:15:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  17 passed (17)
+   Start at  03:36:11
+   Duration  17.49s (transform 5.71s, setup 0ms, import 8.69s, tests 6.51s, environment 0ms)
+

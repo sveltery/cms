@@ -1,9 +1,8 @@
-import {AsyncLocalStorage}from 'node:async_hooks';
-/** Native rendering context. Each request owns an independent SEO cache. */
+// Compatibility API for the original SEO render host. The existing menus
+// request context owns the sole ALS; this wrapper preserves caller identity.
+import {runWithContext as sharedRunWithContext,getRequestContext as sharedGetRequestContext,type RequestContext} from '../menus/context.ts';
 export interface SeoRequestContext {editMode?:boolean;db?:unknown;metrics?:{cacheHits:number;cacheMisses:number}}
-const key=Symbol.for('sveltery:seo-request-context');
-const globals=globalThis as Record<symbol,unknown>;
-const storage=(globals[key] as AsyncLocalStorage<SeoRequestContext>|undefined)??new AsyncLocalStorage<SeoRequestContext>();
-globals[key]=storage;
-export function runWithContext<T>(context:SeoRequestContext,callback:()=>T):T{return storage.run(context,callback);}
-export function getRequestContext():SeoRequestContext|undefined{return storage.getStore();}
+export function runWithContext<T>(context:SeoRequestContext,callback:()=>T):T {
+ return sharedRunWithContext(context as unknown as RequestContext,callback);
+}
+export function getRequestContext():SeoRequestContext|undefined{return sharedGetRequestContext();}
