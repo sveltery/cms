@@ -2,6 +2,7 @@
   // PublishingScheduleDialog context/submission behavior, EmDash1.1.0
   // pin913cb1bb; MIT notices/emdash-MIT.txt. Native browser dialog transport.
   import { untrack } from 'svelte';
+  import DialogError from './CalendarDialogError.svelte';
   import Fields from '../ui/PublishingDateTimeFields.svelte';
   import { publishingInstantToLocalFields,publishingFieldsMatchInstant,serializeFuturePublishingDateTime } from '../ui/publishing-datetime.ts';
   let { open,entryKey,scheduledAt=null,isLive=false,isPending=false,locale='en',onOpenChange,onSchedule }: {
@@ -38,7 +39,7 @@
   <p id="calendar-schedule-description">{description}</p>
   <form novalidate onsubmit={event=>{event.preventDefault();event.stopPropagation();void submit();}}>
     <Fields {date} {time} {locale} disabled={pending} restrictToFuture dateAriaLabel="Schedule date" onDateChange={value=>{date=value;clearError();}} onTimeChange={value=>{time=value;clearError();}}/>
-    {#if validationError||mutationError}<p role="alert">{validationError??mutationError}</p>{/if}
+    {#if validationError||mutationError}<DialogError message={validationError??mutationError}/>{/if}
     <footer><button type="button" onclick={()=>changeOpen(false)}>Cancel</button><button type="submit" disabled={pending||(isEditing&&publishingFieldsMatchInstant(scheduledAt,date,time))}>{pending?'Saving…':submitLabel}</button></footer>
   </form>
 </dialog>
