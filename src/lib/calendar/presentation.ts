@@ -3,7 +3,7 @@
 // Pure controlled data tests grant no original Source callback or browser credit.
 export function calendarInitialLoading(pending:boolean,fetching:boolean):boolean{return pending&&fetching;}
 export function calendarEditedState(pending:boolean,available:boolean):'pending'|'value'|'unavailable'{return pending?'pending':available?'value':'unavailable';}
-export function calendarTabFocus(selected:number,_current:number,_focusedInside:boolean):number{return selected;}
+export function calendarTabFocus(selected:number,current:number,focusedInside:boolean):number{return focusedInside?current:selected;}
 export type CalendarDirection='ltr'|'rtl';
 export function calendarTabTarget(key:string,current:number,count:number,direction:CalendarDirection='ltr'):number|undefined{
   if(!count)return;
