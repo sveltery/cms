@@ -1,8 +1,9 @@
 <script lang="ts">
   // EmDash1.1.0 Calendar page behavior, pin913cb1bb; MIT notices/emdash-MIT.txt.
   // Framework host supplies one real QueryClient and URL/history operations.
-  import { onMount,untrack } from 'svelte';
+  import { onDestroy,onMount,untrack } from 'svelte';
   import {calendarInitialLoading,calendarTabTarget} from './presentation.ts';
+  import {createCalendarRangeOwner} from './range-owner.ts';
   import { QueryObserver,type QueryClient } from '@tanstack/react-query';
   import { calendarQueryOptions,CALENDAR_MAX_ENTRIES,type CalendarRange } from './api.ts';
   import { ApiResponseError } from '../sections-widgets/client.ts';
@@ -34,14 +35,10 @@
   const filtered=$derived(filters.collections.length+filters.locales.length+filters.states.length>0);
   const rangeHasNow=$derived(now>=Date.parse(range.from)&&now<Date.parse(range.to));
   let calendarObserver=$state<QueryObserver<CalendarRange,Error,CalendarRange,CalendarRange,readonly ['calendar',string,string]>>();
-  $effect(()=>{
-    if(!manifest)return;
-    const observer=new QueryObserver(queryClient,{...calendarQueryOptions(range.from,range.to),staleTime:0,refetchInterval:query=>untrack(()=>rangeHasNow)&&query.state.status!=='error'?60000:false});
-    calendarObserver=observer;
-    const apply=(result:ReturnType<typeof observer.getCurrentResult>)=>{data=result.data;updatedAt=result.dataUpdatedAt;fetching=result.isFetching;initialPending=result.isPending;error=result.error;};
-    const unsubscribe=observer.subscribe(apply);apply(observer.getCurrentResult());refetch=()=>{void observer.refetch();};
-    return()=>{unsubscribe();observer.destroy();};
-  });
+  const rangeOwner=createCalendarRangeOwner(result=>{data=result.data;updatedAt=result.dataUpdatedAt;fetching=result.isFetching;initialPending=result.isPending;error=result.error;},observer=>{calendarObserver=observer;});
+  onDestroy(()=>rangeOwner.destroy());
+  $effect(()=>{rangeOwner.update(queryClient,manifest,{...calendarQueryOptions(range.from,range.to),staleTime:0,refetchInterval:query=>untrack(()=>rangeHasNow)&&query.state.status!=='error'?60000:false});});
+  refetch=()=>{void rangeOwner.refetch();};
   // The Source keeps one observer per range. A minute clock updates interval
   // eligibility without remounting stale queries or restarting terminal errors.
   $effect(()=>{const observer=calendarObserver,containsNow=rangeHasNow;if(observer)observer.setOptions({...observer.options,refetchInterval:query=>containsNow&&query.state.status!=='error'?60000:false});});
