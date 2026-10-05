@@ -4,12 +4,16 @@
   import { addDays, addMonths, addWeeks, addYears, startOfWeek, endOfWeek, format } from 'date-fns';
   import { untrack } from 'svelte';
   import { getDayPickerLocale } from './date-time-locales';
+  import { DateLib } from 'react-day-picker';
+  import { getPublishingDatePickerLabels } from './date-time-picker-labels';
+  import { publishingDateTimeEnglish, type PublishingDateTimeTranslate } from './publishing-datetime-labels';
   import { getPublishingTimeZone, resolvePublishingLocalDateTime } from './publishing-datetime';
   let { date, time, locale = 'en', disabled = false, restrictToFuture = false, dateAriaLabel,
-    onDateChange, onTimeChange }: {
+    translate = publishingDateTimeEnglish, onDateChange, onTimeChange }: {
     date?: Date; time: string; locale?: string; disabled?: boolean; restrictToFuture?: boolean;
     dateAriaLabel: string; onDateChange?: (date: Date | undefined) => void;
     onTimeChange?: (time: string) => void;
+    translate?: PublishingDateTimeTranslate;
   } = $props();
   type DayPeriod = 'am' | 'pm';
   interface TimeParts { hour: string; minute: string; period: DayPeriod; }
@@ -75,9 +79,11 @@
     updateTimeParts({ ...timeParts, minute });
   }
   const calendarLocale = $derived(getDayPickerLocale(locale));
+  const calendarDateLib = $derived(new DateLib({ locale: calendarLocale }));
+  const calendarLabels = $derived(getPublishingDatePickerLabels(calendarLocale));
   const direction = $derived(locale === 'ar' || locale === 'fa' ? 'rtl' : 'ltr');
   const weekStartsOn = $derived(calendarLocale.options?.weekStartsOn ?? 0);
-  const caption = $derived(format(month, 'LLLL y', { locale: calendarLocale }));
+  const caption = $derived(calendarDateLib.formatMonthYear(month));
   const days = $derived.by(() => {
     const first = new Date(month.getFullYear(), month.getMonth(), 1);
     const offset = (first.getDay() - weekStartsOn + 7) % 7;
@@ -87,7 +93,7 @@
   const weekdays = $derived(Array.from({ length: 7 }, (_, index) => new Date(2020, 10, 1 + (weekStartsOn + index) % 7)));
   const resolution = $derived(resolvePublishingLocalDateTime(date, time));
   const zone = $derived(getPublishingTimeZone(resolution.success ? resolution.date : date ?? new Date(), locale));
-  const zoneValue = $derived(zone.timeZone ? zone.shortName ? `${zone.timeZone} (${zone.shortName})` : zone.timeZone : 'Local time');
+  const zoneValue = $derived(zone.timeZone ? zone.shortName ? `${zone.timeZone} (${zone.shortName})` : zone.timeZone : translate('Local time'));
   const periods = $derived([{ value: 'am' as const, label: dayPeriodLabel(locale, 9, 'AM') }, { value: 'pm' as const, label: dayPeriodLabel(locale, 13, 'PM') }]);
   let periodOpen = $state(false), periodButton = $state<HTMLButtonElement>();
   const id = $props.id();
@@ -131,18 +137,18 @@
 
 <div class="publishing-fields" dir={direction}>
   <section class="calendar" aria-label={dateAriaLabel}>
-    <div class="calendar-nav">
-      <button type="button" aria-label="Go to the Previous Month" onclick={() => changeMonth(-1)}>{direction === 'rtl' ? '›' : '‹'}</button>
+    <div class="calendar-nav" role="navigation" aria-label={calendarLabels.labelNav()}>
+      <button type="button" aria-label={calendarLabels.labelPrevious(addMonths(month, -1))} onclick={() => changeMonth(-1)}>{direction === 'rtl' ? '›' : '‹'}</button>
       <span id={`${id}-caption`} aria-live="polite">{caption}</span>
-      <button type="button" aria-label="Go to the Next Month" onclick={() => changeMonth(1)}>{direction === 'rtl' ? '‹' : '›'}</button>
+      <button type="button" aria-label={calendarLabels.labelNext(addMonths(month, 1))} onclick={() => changeMonth(1)}>{direction === 'rtl' ? '‹' : '›'}</button>
     </div>
-    <table role="grid" aria-labelledby={`${id}-caption`}>
-      <thead><tr>{#each weekdays as day}<th scope="col" aria-label={format(day, 'cccc', { locale: calendarLocale })}>{format(day, 'cccccc', { locale: calendarLocale })}</th>{/each}</tr></thead>
+    <table role="grid" aria-label={calendarLabels.labelGrid(month, calendarDateLib.options, calendarDateLib)}>
+      <thead><tr>{#each weekdays as day}<th scope="col" aria-label={calendarLabels.labelWeekday(day, calendarDateLib.options, calendarDateLib)}>{format(day, 'cccccc', { locale: calendarLocale })}</th>{/each}</tr></thead>
       <tbody>{#each Array.from({ length: days.length / 7 }, (_, index) => index) as week}
         <tr>{#each days.slice(week * 7, week * 7 + 7) as day}
           <td aria-selected={sameDay(date, day)} class:outside={day.getMonth() !== month.getMonth()}>
             <button type="button" id={`${id}-${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`}
-              aria-label={`${format(day, 'PPPP', { locale: calendarLocale })}${sameDay(date, day) ? ', selected' : ''}`}
+              aria-label={calendarLabels.labelDayButton(day, { today: sameDay(today(), day), selected: sameDay(date, day) }, calendarDateLib.options, calendarDateLib)}
               aria-current={sameDay(today(), day) ? 'date' : undefined}
               class:selected={sameDay(date, day)} disabled={blocked(day)}
               tabindex={sameDay(focusTarget, day) ? 0 : -1}
@@ -153,27 +159,27 @@
     </table>
   </section>
   <fieldset {disabled}>
-    <legend>Time</legend>
+    <legend>{translate('Time')}</legend>
     <div class="time-fields">
-      <input aria-label="Hour" type="text" placeholder="--" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" value={timeParts.hour} {disabled}
+      <input aria-label={translate('Hour')} type="text" placeholder="--" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" value={timeParts.hour} {disabled}
         oninput={event => { updateHour(event.currentTarget.value); event.currentTarget.value = timeParts.hour; }} onfocus={event => event.currentTarget.select()}
         onblur={event => { const hour = numericTimePart(event.currentTarget.value); if (hour.length === 1) updateHour(hour.padStart(2, '0')); }} />
       <span aria-hidden="true">:</span>
-      <input bind:this={minuteInput} aria-label="Minute" type="text" placeholder="--" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" value={timeParts.minute} {disabled}
+      <input bind:this={minuteInput} aria-label={translate('Minute')} type="text" placeholder="--" inputmode="numeric" maxlength="2" pattern="[0-9]*" autocomplete="off" value={timeParts.minute} {disabled}
         oninput={event => { updateMinute(event.currentTarget.value); event.currentTarget.value = timeParts.minute; }} onfocus={event => event.currentTarget.select()}
         onblur={event => { const minute = numericTimePart(event.currentTarget.value); if (minute.length === 1) updateMinute(minute.padStart(2, '0')); }} />
       {#if use12HourClock}
         <div class="period-picker">
-          <button bind:this={periodButton} type="button" role="combobox" aria-label="Period" aria-haspopup="listbox" aria-controls={`${id}-periods`} aria-expanded={periodOpen} {disabled}
+          <button bind:this={periodButton} type="button" role="combobox" aria-label={translate('Period')} aria-haspopup="listbox" aria-controls={`${id}-periods`} aria-expanded={periodOpen} {disabled}
             onclick={() => { periodOpen = !periodOpen; }} onkeydown={event => { if (event.key === 'Escape') periodOpen = false; if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); choosePeriod(timeParts.period === 'am' ? 'pm' : 'am'); } }}>{periods.find(item => item.value === timeParts.period)?.label}</button>
-          {#if periodOpen}<div id={`${id}-periods`} role="listbox" aria-label="Period">
+          {#if periodOpen}<div id={`${id}-periods`} role="listbox" aria-label={translate('Period')}>
             {#each periods as item}<button type="button" role="option" aria-selected={item.value === timeParts.period} onclick={() => choosePeriod(item.value)} onkeydown={event => { if (event.key === 'Escape') { periodOpen = false; periodButton?.focus(); } }}>{item.label}</button>{/each}
           </div>{/if}
         </div>
       {/if}
     </div>
   </fieldset>
-  <p class="timezone"><span class="sr-only">Timezone: </span><bdi>{zoneValue}</bdi></p>
+  <p class="timezone"><span class="sr-only">{translate('Timezone')}: </span><bdi>{zoneValue}</bdi></p>
 </div>
 
 <style>
