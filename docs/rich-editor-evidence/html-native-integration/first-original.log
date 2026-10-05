@@ -1,0 +1,298 @@
+
+ RUN  v4.1.10 /workspace/cms-rich104-html-embed-card
+
+ ❯ tests/rich-editor-native/authoring-controls.test.ts (7 tests | 2 failed) 350ms
+     ✓ persists text-cell alignment in the emitted Portable Text cell, without paragraph-only alignment 152ms
+     ✓ persists alignment across the actual CellSelection and emits both selected cell attributes 37ms
+     ✓ refuses toolbar alignment for an actual mixed table and outside-text selection 22ms
+     × deletes only the clicked HTML embed while unrelated paragraph text is selected 39ms
+     × deletes the clicked iframe at its current moved position while a different HTML node is selected 14ms
+     ✓ mounts a payload-less registered plugin and retains a no-op value with the actual Native component 23ms
+     ✓ keeps a code language popup usable after cancellation and commits keyboard suggestions without cleanup errors 62ms
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > retains a valid intermediate URL as authored text while focused
+TypeError: textRange(...).getClientRects is not a function
+    at clientRectsFor (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:464:56)
+    at Placeholder.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:10063:38)
+    at WidgetTile.coordsInWidget (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2123:34)
+    at WidgetTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2121:39)
+    at onSameLine (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2038:43)
+    at scan (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1986:129)
+    at LineTile.resolveInline (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1999:9)
+    at LineTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2004:26)
+    at DocView.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > writes nothing immediately or at249ms, then saves at the original250ms while retaining the focused draft
+TypeError: textRange(...).getClientRects is not a function
+    at clientRectsFor (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:464:56)
+    at Placeholder.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:10063:38)
+    at WidgetTile.coordsInWidget (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2123:34)
+    at WidgetTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2121:39)
+    at onSameLine (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2038:43)
+    at scan (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1986:129)
+    at LineTile.resolveInline (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1999:9)
+    at LineTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2004:26)
+    at DocView.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > writes nothing immediately or at249ms, then saves at the original250ms while retaining the focused draft
+TypeError: textRange(...).getClientRects is not a function
+    at TextTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2094:51)
+    at LineTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2007:27)
+    at DocView.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+    at RectangleMarker.forRange (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9291:28)
+    at Object.markers (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9558:51)
+    at LayerView.measure (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9448:27)
+    at file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8182:34
+    at Array.map (<anonymous>)
+    at EditorView.measure (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8180:42)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > restarts the250ms clock for the actual final draft rather than saving a valid intermediate
+TypeError: textRange(...).getClientRects is not a function
+    at clientRectsFor (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:464:56)
+    at Placeholder.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:10063:38)
+    at WidgetTile.coordsInWidget (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2123:34)
+    at WidgetTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2121:39)
+    at onSameLine (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2038:43)
+    at scan (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1986:129)
+    at LineTile.resolveInline (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1999:9)
+    at LineTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2004:26)
+    at DocView.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > keeps a pending draft while read-only, then flushes it on a real tab change once editing resumes
+TypeError: textRange(...).getClientRects is not a function
+    at clientRectsFor (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:464:56)
+    at Placeholder.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:10063:38)
+    at WidgetTile.coordsInWidget (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2123:34)
+    at WidgetTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2121:39)
+    at onSameLine (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2038:43)
+    at scan (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1986:129)
+    at LineTile.resolveInline (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1999:9)
+    at LineTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2004:26)
+    at DocView.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > flushes on blur and canonicalizes valid text when the document still has real control focus
+TypeError: textRange(...).getClientRects is not a function
+    at clientRectsFor (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:464:56)
+    at Placeholder.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:10063:38)
+    at WidgetTile.coordsInWidget (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2123:34)
+    at WidgetTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2121:39)
+    at onSameLine (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2038:43)
+    at scan (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1986:129)
+    at LineTile.resolveInline (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1999:9)
+    at LineTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2004:26)
+    at DocView.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > drops obsolete pending text after a real external attribute update
+TypeError: textRange(...).getClientRects is not a function
+    at clientRectsFor (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:464:56)
+    at Placeholder.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:10063:38)
+    at WidgetTile.coordsInWidget (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2123:34)
+    at WidgetTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2121:39)
+    at onSameLine (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2038:43)
+    at scan (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1986:129)
+    at LineTile.resolveInline (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1999:9)
+    at LineTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2004:26)
+    at DocView.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > preserves invalid authored text and the saved embed after delayed rejection and blur
+TypeError: textRange(...).getClientRects is not a function
+    at TextTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2094:51)
+    at LineTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2007:27)
+    at DocView.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+    at RectangleMarker.forRange (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9291:28)
+    at Object.markers (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9558:51)
+    at LayerView.measure (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9448:27)
+    at file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8182:34
+    at Array.map (<anonymous>)
+    at EditorView.measure (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8180:42)
+
+stderr | tests/rich-editor-native/configured-table-iframe.test.ts > Actual iframe draft and Source250ms flush contract > cannot write a delayed pending draft after the owning node is deleted
+TypeError: textRange(...).getClientRects is not a function
+    at clientRectsFor (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:464:56)
+    at Placeholder.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:10063:38)
+    at WidgetTile.coordsInWidget (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2123:34)
+    at WidgetTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2121:39)
+    at onSameLine (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2038:43)
+    at scan (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1986:129)
+    at LineTile.resolveInline (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1999:9)
+    at LineTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2004:26)
+    at DocView.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+
+ ✓ tests/rich-editor-native/configured-table-iframe.test.ts (12 tests) 1175ms
+     ✓ retains a valid intermediate URL as authored text while focused  369ms
+ ✓ tests/rich-editor-native/fields.test.ts (9 tests) 414ms
+     ✓ emits real numeric values and preserves the Source empty-number coercion to zero  367ms
+ ✓ tests/rich-editor-native/deferred-form-controls.test.ts (9 tests) 1082ms
+     ✓ keeps section search Enter local while retaining real debounced search and explicit draft submission  384ms
+ ✓ tests/rich-editor-native/converters.test.ts (8 tests) 93ms
+stderr | tests/rich-editor-native/iframe-localization.test.ts > translates actual delayed invalid-input feedback while preserving the saved embed
+TypeError: textRange(...).getClientRects is not a function
+    at TextTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2094:51)
+    at LineTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2007:27)
+    at DocView.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+    at RectangleMarker.forRange (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9291:28)
+    at Object.markers (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9558:51)
+    at LayerView.measure (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9448:27)
+    at file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8182:34
+    at Array.map (<anonymous>)
+    at EditorView.measure (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8180:42)
+
+ ✓ tests/rich-editor-native/iframe-localization.test.ts (4 tests) 727ms
+   ✓ uses the pinned Spanish catalog Code and Preview labels through the actual editor node view  301ms
+   ✓ translates actual delayed invalid-input feedback while preserving the saved embed  342ms
+stderr | tests/rich-editor-native/iframe-live-locale.test.ts > witnesses the whole Source CodeEditor live locale hint and mount-only aria label
+The current testing environment is not configured to support act(...)
+
+stderr | tests/rich-editor-native/iframe-live-locale.test.ts > witnesses the whole Source CodeEditor live locale hint and mount-only aria label
+The current testing environment is not configured to support act(...)
+The current testing environment is not configured to support act(...)
+
+stderr | tests/rich-editor-native/iframe-live-locale.test.ts > witnesses the whole Source CodeEditor live locale hint and mount-only aria label
+The current testing environment is not configured to support act(...)
+
+stderr | tests/rich-editor-native/iframe-live-locale.test.ts > updates the real iframe tab labels and CodeMirror hint when the same owning provider activates another locale
+TypeError: textRange(...).getClientRects is not a function
+    at clientRectsFor (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:464:56)
+    at Placeholder.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:10063:38)
+    at WidgetTile.coordsInWidget (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2123:34)
+    at WidgetTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2121:39)
+    at onSameLine (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2038:43)
+    at scan (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1986:129)
+    at LineTile.resolveInline (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:1999:9)
+    at LineTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2004:26)
+    at DocView.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+
+ ✓ tests/rich-editor-native/iframe-live-locale.test.ts (2 tests) 372ms
+ ✓ tests/rich-editor-native/table-readonly-transition.test.ts (1 test) 183ms
+stderr | tests/rich-editor-native/embed-tabs.test.ts > activates iframe tabs on actual focus and mounts the corresponding real panel
+TypeError: textRange(...).getClientRects is not a function
+    at TextTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2094:51)
+    at LineTile.coordsIn (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:2007:27)
+    at DocView.coordsAt (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:3256:21)
+    at EditorView.coordsAtPos (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8524:29)
+    at RectangleMarker.forRange (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9291:28)
+    at Object.markers (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9558:51)
+    at LayerView.measure (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:9448:27)
+    at file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8182:34
+    at Array.map (<anonymous>)
+    at EditorView.measure (file:///workspace/cms-rich104-html-embed-card/node_modules/.pnpm/@codemirror+view@6.43.8/node_modules/@codemirror/view/dist/index.js:8180:42)
+
+ ✓ tests/rich-editor-native/embed-tabs.test.ts (2 tests) 511ms
+   ✓ activates iframe tabs on actual focus and mounts the corresponding real panel  421ms
+ ✓ tests/rich-editor-native/code-editor-boundary.test.ts (1 test) 400ms
+   ✓ shows the Source reload fallback for real CodeMirror mount errors and mounts normally after recovery  399ms
+ ✓ tests/rich-editor-native/source-insertion-witness.test.ts (1 test) 287ms
+ ✓ tests/rich-editor-native/section-import-failure.test.ts (1 test) 241ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/rich-editor-native/authoring-controls.test.ts > Actual Native authoring control fidelity repairs > deletes only the clicked HTML embed while unrelated paragraph text is selected
+AssertionError: expected null to be truthy
+
+- Expected:
+true
+
++ Received:
+null
+
+ ❯ render tests/rich-editor-native/authoring-controls.test.ts:29:32
+     27|     onEditorReady: current => { editor = current; }, ...extra } });
+     28|   cleanups.push(async () => { await unmount(instance); host.remove(); …
+     29|   await tick(); expect(editor).toBeTruthy();
+       |                                ^
+     30|   // jsdom has no layout or Range.getClientRects. These are persisted-…
+     31|   // control regressions; suppress only the browser's scroll presentat…
+ ❯ tests/rich-editor-native/authoring-controls.test.ts:77:40
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/rich-editor-native/authoring-controls.test.ts > Actual Native authoring control fidelity repairs > deletes the clicked iframe at its current moved position while a different HTML node is selected
+AssertionError: expected null to be truthy
+
+- Expected:
+true
+
++ Received:
+null
+
+ ❯ render tests/rich-editor-native/authoring-controls.test.ts:29:32
+     27|     onEditorReady: current => { editor = current; }, ...extra } });
+     28|   cleanups.push(async () => { await unmount(instance); host.remove(); …
+     29|   await tick(); expect(editor).toBeTruthy();
+       |                                ^
+     30|   // jsdom has no layout or Range.getClientRects. These are persisted-…
+     31|   // control regressions; suppress only the browser's scroll presentat…
+ ❯ tests/rich-editor-native/authoring-controls.test.ts:88:40
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 2 unhandled errors during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+ReferenceError: IntersectionObserver is not defined
+
+	in $effect
+	in HtmlPreviewFrame.svelte
+	in HtmlBlockPreview.svelte
+	in EmbedBlockCard.svelte
+	in HtmlBlockEditor.svelte
+	in EmbedBlockEditor.svelte
+	in undefined
+	in PortableTextEditor.svelte
+	in undefined
+
+ ❯ src/lib/editor/rich-text/HtmlPreviewFrame.svelte:26:22
+
+ ❯ $effect node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/index-client.js:100:20
+ ❯ src/lib/editor/rich-text/embed-node-view.ts:32:20
+
+This error originated in "tests/rich-editor-native/authoring-controls.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "deletes only the clicked HTML embed while unrelated paragraph text is selected". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+ReferenceError: IntersectionObserver is not defined
+
+	in $effect
+	in HtmlPreviewFrame.svelte
+	in HtmlBlockPreview.svelte
+	in EmbedBlockCard.svelte
+	in HtmlBlockEditor.svelte
+	in EmbedBlockEditor.svelte
+	in undefined
+	in PortableTextEditor.svelte
+	in undefined
+
+ ❯ src/lib/editor/rich-text/HtmlPreviewFrame.svelte:26:22
+
+ ❯ $effect node_modules/.pnpm/svelte@5.57.1/node_modules/svelte/src/index-client.js:100:20
+ ❯ src/lib/editor/rich-text/embed-node-view.ts:32:20
+
+This error originated in "tests/rich-editor-native/authoring-controls.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "deletes the clicked iframe at its current moved position while a different HTML node is selected". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed | 11 passed (12)
+      Tests  2 failed | 55 passed (57)
+     Errors  2 errors
+   Start at  21:11:19
+   Duration  19.17s (transform 1.62s, setup 0ms, import 5.06s, tests 5.84s, environment 6.75s)
+
+JSON report written to /tmp/rich104-html-integration-native-first-report.json

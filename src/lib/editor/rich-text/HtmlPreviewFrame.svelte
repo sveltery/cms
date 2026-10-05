@@ -9,6 +9,9 @@
   const initialHeight = () => lastHeight.current;
   let visible = $state(false), blocked = $state(false), dragging = $state(false), height = $state(initialHeight());
   onMount(() => {
+    // Root-qualified unsupported Native environment: no visibility claim or
+    // iframe creation when this browser API is absent; real browsers stay exact.
+    if (typeof IntersectionObserver === 'undefined') return;
     const onMessage = (event: MessageEvent) => {
       if (!visible || event.source !== frame?.contentWindow) return;
       const data: unknown = event.data;
