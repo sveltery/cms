@@ -2424,3 +2424,78 @@ Decision: Root exact development qualification pending, unapplied; final review/
 The revision4 table-only inference was held because NOT(type=table) also matched its equality scan. [Whole predicate evidence](../../docs/source-seed-namespace-predicate-baseline.json) preserves the actual4 negative assertion reds with prior42+4 positive controls green. Revision5 conservatively evaluates supported Boolean WHERE structure: NOT swaps possible truth/falsehood, AND/OR combine them, and unsupported atoms remain unknown. Table-only names require possible table rows with impossible other-object rows. Source positive type=table AND name NOT LIKE guards and double negation remain supported. Historical revision5 whole7/50 and checker0/0 pass in isolation; all earlier packets/logs remain immutable, no runtime application/Source credit/general SQL parity is recorded.
 
 Revision6 closes the held revision5 compound-catalog result inference: raw catalog UNION/UNION ALL/INTERSECT/EXCEPT tokens fail explicitly during transformation, before compilation/driver execution. Literal/comment/quoted identifier words stay opaque. Whole8/60 ordinary Native cases pass; exact heldR5 reaches8 compound assertion reds while prior50 and2 new lexical controls pass. No compound result adaptation, general SQL parser, production application or Source/auth credit is claimed. Full Source85/capture/provider/Pg closure remains unfinished.
+### MED-REPO01 / MED-API01 / MED-CACHE01 general media backend prerequisite
+
+Source: EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, 186 whole authorities and 81 whole test families retained. [Paired feature and actual TDD ledger](../../docs/general-media-backend.md) records complete source IDs, 800 static declarations/2,316 expectation roots, unchanged original fixtures/data/mocks/clocks, actual first stops and supplemental native reds. Current unchanged whole selection is35 files/291 passes plus the original R2 supplied-mock callback1. These original missing-module baselines earn0 Source value-red/causal credit. Supplemental native14 workflows and local Miniflare R2/rawD1 execution are separate; controlled route contexts do not establish actual protected HTTP/session/PAT or external cloud acceptance.
+
+Framework/storage substitutions: complete pinned repositories/LocalStorage/pure algorithms and routes use finite import paths and native trusted request types. Fixed media/folder/attempt/field TableNodes compose existing canonical options namespace and actual provider9/CmsDatabase; no DDL, raw SQL/result replacement, alternate database or new provider. Final mapped handle registers the existing sole MediaUsage writer/executor owner, retaining D1 fail-closed callback transaction behavior. Complete R2 class/URL constant accept the actual trusted binding; native ambient stream types change no runtime body. Source framework env factory is unimplemented. Astro routes become Kit handlers through the existing principal/mutation/origin/ALS owners and preserve Source fallback URLs. Six Source role thresholds project through the existing principal. Bounded post-success deletion invalidation delegates only to the published settings object-cache namespace; Source single-flight/request-settings owner remains absent. Seven complete usage read functions are a partial handler, with no full lifecycle/handler credit.
+
+Decision: Root development qualification recorded for finite MED-REPO01/MED-API01/MED-CACHE01; no full behavior acceptance or exact-head merge approval. Existing native subscriber expected permissions need the single Source-backed `media:read` literal, pending coordinator review; its reached historical red remains. Full media usage repair/refresh/cleanup/content/SEO/transfer/plugin pipeline, admin library, image transforms, asset-auth/PAT, S3 and PostgreSQL remain unfinished. No complete feature checkbox. All existing dependency versions/lock policies/security/deadlines/frozen providers1–16 remain,17 reserved to SEO. Own35/R2/native gates append after the complete existing Source chain; original thirteen normal and nine secured browser stages remain exact. Current full gates, fresh independent/configured review, Root exact-head approval, author regular merge and actual post-main verification remain required.
+
+
+### MED-REPO01 actual optional S3 and bounded upload cleanup continuation
+
+The complete pinned optional AWS declaration producer was found in Source aws-sdk.d.ts and retained, alongside the whole unchanged S3 storage module. Actual whole36 Source files321 callbacks now pass, including30 original supplied SDK mock callbacks; R2 originalmock1 remains separate. Complete Source authorities188, complete module algorithms59, exact R2 class/seven complete read functions/two complete cleanup blocks are guarded. Static81/800/2316/131/24 remains unchanged. No SDK dependency/version or external credential/signature/bucket/hosting is invented; optional S3 stays outside the default Node/Worker graph.
+
+Trusted upload cleanup exposes only exact Source cleanup.ts subsystems3/4 through the actual canonical media owner. Supplemental sequential Node/rawD1 owned local-byte fixtures first reach2 genuine missing-operator value reds with14 controls green, then16 pass; they preserve a live ready shared key while removing old pending/orphan bytes and markers. Fixed past data literal, no fakeclock/protectedHTTP/session/PAT/signature/newrace probe. Type-only installed MediaTable fixture annotation closes2 checker errors without emitted SQL/data/expectation change; current checker0/0. No full runSystemCleanup/cron/usage maintenance or original stream33 callback credit. [Paired scope/evidence](../../docs/general-media-backend.md) retains all raw receipt hashes and prior failures.
+
+Historical exact bfc3/tree dbbc on owned draft [PR113](https://github.com/sveltery/cms/pull/113) passed hosted secured9 browser launches and fresh independent Source/census/receipt review. Its full13 stopped after frozen/type success at services1495:1492pass/3fail/0cancelled/skip/todo, later10 phases unreached. Three reached old Native role expectations omit Source media rights; later Contributor and Admin-count expectations in the first failed callback were unreached. Five finite expectation sites across the two old Native files have a sealed UNAPPLIED Source-backed proposal pending Root; no Source assertion change or causal credit. Those historical gates/review do not qualify this successor. App attachment requested once but wait did not complete; status unverified, no duplicate request. Current full13/secured9/fresh independent/configured review/Root exacthead approval/AUTHOR regular merge/post-main remain pending. Complete media feature, optional environment provider construction, image transforms, full auth/UI and content/SEO/transfer/plugin/usage pipeline remain open.
+
+### MED-D1-BUG01 / MED-CLEAN-INIT01 pinned usage maintenance
+
+Source: EmDash 1.1.0 `913cb1bb9b7f08c3ff0d258b4420e53835b6a58e`, complete `packages/core/src/media/usage/cleanup.ts`, complete original MediaUsageRepository, original migrations 046/061/062 and Source-lock `kysely-d1@0.4.0`.
+
+The same Source D1 fixture reports two deletions after removing one orphan because affected rows include its cleanup-fence trigger. Stale and abandoned occurrences remain; the SQLite case removes all three obsolete occurrences. The native port preserves this shared pin bug. Correcting only the new supplemental D1 expectation to actual Source behavior establishes fidelity, not a product repair or full D1 cleanup correctness. Original Source bodies, datasets, assertions and clocks remain unchanged. Root approved this bounded qualification. After the initial automatic approval review rejection, the user explicitly authorized repository publication; the exact issue payload is now [issue #114](https://github.com/sveltery/cms/issues/114), and the related write-up has no remaining publication hold.
+
+Native operational initialization adds only the existing `projection_gc` metadata row with Source migration061's initial eligible time and `ON CONFLICT DO NOTHING`. Source performs this initialization during migration; canonical schema installation retains empty metadata. Actual Node cleanup and existing-row lease/cursor/backoff controls are separate Native evidence. No DDL, provider, occurrence writer, new fence or full system-cleanup pipeline is added. Exact-head review, current normal13/secured9, Root merge approval and author regular merge remain pending.
+
+
+### MED-ENV01 Native Node entry integration
+
+The shared Node entry initially eagerly imported the exact LocalStorage module.
+Original local full bootstrap at `16b6cc31` stops nine existing Native runtime
+callbacks on unsupported Source StorageError parameter-property syntax in Node
+strip-only mode: 1,495 registered, 1,486 pass, nine import failures, zero cancelled;
+frozen install/type checks finish and ten later stages are unreached. These
+module stops give zero value-red or Source repair credit.
+
+Regular successor `8b1acb04` makes only the selected LocalStorage factory async
+and imports its Source module there. Ordinary Node database entry startup keeps
+its original graph. Three complete existing Native files pass 24 callbacks,
+and the four environment controls pass; Source 188 authorities/60 complete
+algorithms remain exact. No Source body, fixture, assertion, clock, driver,
+provider or dependency changes. Earlier role literals remain Root-approved
+Native expectation maintenance with zero product repair credit.
+
+[Predecessor CI](https://github.com/sveltery/cms/actions/runs/37358343871) completed
+all nine secured launches using official headless-shell v1243 without
+--no-sandbox (Source 14/30/25/3/35/4/3, Native default65/Node65). Its normal job
+failed the same nine Native imports (1,495 registered, 1,486 pass, nine fail, zero
+cancelled), with only frozen install/type checks completed. Current final-head
+normal/browser checks, fresh
+independent/configured review, exact Root approval, author regular merge and
+post-main remain pending. The [paired feature record](../../docs/general-media-backend.md)
+and [ledger](../../docs/general-media-tdd.json) retain all previous outcomes.
+No full media feature or D1 correctness completion is claimed.
+
+
+### MED-ENV01 actual published schema-main integration
+
+Regular merge `a9565529` has ordered parents `ae9438e9` and published schema
+main `f2b2e560`. It retains all 3,295 incoming main rows, with only the 11
+previously owned shared Media paths changed. The complete incoming Source
+command chain is followed by the same three Media gates; the complete incoming
+compatibility text precedes the whole owned Media tail. Current main's nine
+protected owners are byte-exact, including providers, descriptors, physical
+schema, namespace mapping, D1 adapter, dependency lock, workflow, attributes and
+bootstrap.
+
+The incoming schema browser command adds one launch to the existing secured
+job: current validation requires 13 normal stages and 10 secured launches, with
+all original nine retained. The 188 immutable Media authorities and 60 complete
+algorithms still pass their guard. This integration earns no additional Source
+callback or product parity credit. Final-head full checks, fresh independent
+and configured review, exact Root approval, author regular merge and actual
+post-main verification remain pending.
+
+[Paired Media scope and retained evidence](../../docs/general-media-backend.md).

@@ -51,6 +51,6 @@ test('trusted D1 platform configuration migrates local storage, resolves fresh r
     assert.equal((await new DraftRepository(reopened.cms!.database).findById('notes', entry.id))!.data.title, 'D1 persistent draft');
     await reopened.cms!.database.db.updateTable('_cms_auth_users').set({ role: Role.SUBSCRIBER }).where('id', '=', 'owner').execute();
     const demoted = await visit(true);
-    assert.deepEqual(demoted.cms!.principal!.permissions, ['content:read', 'taxonomies:read', 'menus:read', 'sections:read', 'widgets:read', 'comments:read', 'bylines:read']);
+    assert.deepEqual(demoted.cms!.principal!.permissions, ['content:read', 'taxonomies:read', 'menus:read', 'sections:read', 'widgets:read', 'comments:read', 'bylines:read', 'media:read']);
   } finally { await runtime.close(); await worker.dispose(); }
 });
