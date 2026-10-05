@@ -1,7 +1,8 @@
 // Supplemental genuine Native lifecycle tests. Source families remain whole and immutable.
 import {afterEach,beforeEach,describe,expect,it} from 'vitest';
 import {sql} from 'kysely';
-import {openSqlite} from '../../src/lib/server/database/sqlite.ts';
+import {openBylineLifecycleStorage} from '../helpers/byline-lifecycle/native-storage.ts';
+import type {CmsDatabase} from '../../src/lib/server/database/contract.ts';
 import {migrateCms} from '../../src/lib/server/database/migrations.ts';
 import {SchemaRegistry} from '../../src/lib/server/database/registry.ts';
 import {lifecycleService} from '../../src/lib/server/database/lifecycle/service.ts';
@@ -10,12 +11,12 @@ import {BylineRepository} from '../../src/lib/server/bylines/repository.ts';
 import {setI18nConfig} from '../../src/lib/server/menus/i18n-config.ts';
 import {principal} from '../helpers/lifecycle-fixture.ts';
 
-let database:ReturnType<typeof openSqlite>;
+let database:CmsDatabase;
 let service:ReturnType<typeof lifecycleService>;
 let ordinary:ReturnType<typeof ordinaryContentService>;
 let repo:BylineRepository;
 beforeEach(async()=>{
- database=openSqlite(':memory:');await migrateCms(database);
+ database=await openBylineLifecycleStorage();await migrateCms(database);
  const registry=new SchemaRegistry(database);
  await registry.createCollection({slug:'post',label:'Posts'});
  await registry.createField('post',{slug:'title',label:'Title',type:'string'});

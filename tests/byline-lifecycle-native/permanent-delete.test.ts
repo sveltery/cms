@@ -1,19 +1,20 @@
 // Supplemental real owned SQLite fixture. No protected HTTP, credentials or sessions.
 import {afterEach,beforeEach,describe,it,expect} from 'vitest';
 import {sql} from 'kysely';
-import {openSqlite} from '../../src/lib/server/database/sqlite.ts';
+import {openBylineLifecycleStorage} from '../helpers/byline-lifecycle/native-storage.ts';
+import type {CmsDatabase} from '../../src/lib/server/database/contract.ts';
 import {migrateCms} from '../../src/lib/server/database/migrations.ts';
 import {SchemaRegistry} from '../../src/lib/server/database/registry.ts';
 import {lifecycleService} from '../../src/lib/server/database/lifecycle/service.ts';
 import {ordinaryContentService} from '../../src/lib/server/database/content-service.ts';
 import {BylineRepository} from '../../src/lib/server/bylines/repository.ts';
 import {principal} from '../helpers/lifecycle-fixture.ts';
-let database:ReturnType<typeof openSqlite>;
+let database:CmsDatabase;
 let service:ReturnType<typeof lifecycleService>;
 let ordinary:ReturnType<typeof ordinaryContentService>;
 let repo:BylineRepository;
 beforeEach(async()=>{
- database=openSqlite(':memory:');await migrateCms(database);const registry=new SchemaRegistry(database);
+ database=await openBylineLifecycleStorage();await migrateCms(database);const registry=new SchemaRegistry(database);
  for(const slug of ['post','page']){await registry.createCollection({slug,label:slug});await registry.createField(slug,{slug:'title',label:'Title',type:'string'});}
  const admin={...principal,permissions:[...principal.permissions,'content:delete_permanent']};
  service=lifecycleService(database,admin,{after:()=>{}});ordinary=ordinaryContentService(database,admin,{after:()=>{}});repo=new BylineRepository(database);

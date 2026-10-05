@@ -1,17 +1,18 @@
 // Supplemental canonical lifecycle coupling; immutable Source whole families are separate.
 import {afterEach,beforeEach,describe,it,expect} from 'vitest';
 import {sql} from 'kysely';
-import {openSqlite} from '../../src/lib/server/database/sqlite.ts';
+import {openBylineLifecycleStorage} from '../helpers/byline-lifecycle/native-storage.ts';
+import type {CmsDatabase} from '../../src/lib/server/database/contract.ts';
 import {migrateCms} from '../../src/lib/server/database/migrations.ts';
 import {SchemaRegistry} from '../../src/lib/server/database/registry.ts';
 import {lifecycleService} from '../../src/lib/server/database/lifecycle/service.ts';
 import {BylineRepository} from '../../src/lib/server/bylines/repository.ts';
 import {principal} from '../helpers/lifecycle-fixture.ts';
-let database:ReturnType<typeof openSqlite>;
+let database:CmsDatabase;
 let service:ReturnType<typeof lifecycleService>;
 let repo:BylineRepository;
 beforeEach(async()=>{
- database=openSqlite(':memory:');await migrateCms(database);const registry=new SchemaRegistry(database);
+ database=await openBylineLifecycleStorage();await migrateCms(database);const registry=new SchemaRegistry(database);
  await registry.createCollection({slug:'post',label:'Posts'});
  await registry.createField('post',{slug:'title',label:'Title',type:'string'});
  await registry.createField('post',{slug:'shared',label:'Shared',type:'string',translatable:false});
