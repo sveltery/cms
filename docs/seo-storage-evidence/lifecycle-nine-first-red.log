@@ -1,0 +1,123 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+ ❯ tests/seo-storage-native/lifecycle.test.ts (9 tests | 9 failed) 10130ms
+   × Node: sole lifecycle create commits SEO and returns the stored shape 55ms
+   × Node: ordinary and staged draft updates preserve metadata, history and stale CAS 38ms
+   × Node: actual SEO write fault rolls back the content create batch 38ms
+   × raw D1: sole lifecycle create commits SEO and returns the stored shape 1484ms
+   × raw D1: ordinary and staged draft updates preserve metadata, history and stale CAS 1520ms
+   × raw D1: actual SEO write fault rolls back the content create batch 1837ms
+   × scoped D1: sole lifecycle create commits SEO and returns the stored shape 1400ms
+   × scoped D1: ordinary and staged draft updates preserve metadata, history and stale CAS 1860ms
+   × scoped D1: actual SEO write fault rolls back the content create batch 1895ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/seo-storage-native/lifecycle.test.ts > Node: sole lifecycle create commits SEO and returns the stored shape
+AssertionError: Got unwanted rejection.
+Actual message: "Lifecycle capability 'seo' is not implemented"
+
+simple
+
+ ❯ tests/seo-storage-native/lifecycle.test.ts:19:7
+     17|       const service=lifecycleService(fixture.database,principal,{after…
+     18|       let created:any;
+     19|       await assert.doesNotReject(async()=>{created=await service.creat…
+       |       ^
+     20|       assert.equal(created.seo.title,'Stored title');
+     21|       const row=(await sql<{seo_title:string}>`SELECT seo_title FROM _…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  tests/seo-storage-native/lifecycle.test.ts > Node: ordinary and staged draft updates preserve metadata, history and stale CAS
+AssertionError: Got unwanted rejection.
+Actual message: "Lifecycle capability 'seo' is not implemented"
+
+simple
+
+ ❯ tests/seo-storage-native/lifecycle.test.ts:36:7
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  tests/seo-storage-native/lifecycle.test.ts > Node: actual SEO write fault rolls back the content create batch
+AssertionError: Expected values to be strictly equal:
+
+false !== true
+
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/seo-storage-native/lifecycle.test.ts:64:14
+     62|       }};
+     63|       await assert.rejects(()=>lifecycleService(subject,principal,{aft…
+     64|       assert.equal(seoWasPlanned,true);
+       |              ^
+     65|       assert.deepEqual(await databaseSnapshot(fixture.database),before…
+     66|     }finally{await fixture.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  tests/seo-storage-native/lifecycle.test.ts > raw D1: sole lifecycle create commits SEO and returns the stored shape
+ FAIL  tests/seo-storage-native/lifecycle.test.ts > scoped D1: sole lifecycle create commits SEO and returns the stored shape
+AssertionError: Got unwanted rejection.
+Actual message: "Lifecycle capability 'seo' is not implemented"
+
+simple
+
+ ❯ tests/seo-storage-native/lifecycle.test.ts:19:7
+     17|       const service=lifecycleService(fixture.database,principal,{after…
+     18|       let created:any;
+     19|       await assert.doesNotReject(async()=>{created=await service.creat…
+       |       ^
+     20|       assert.equal(created.seo.title,'Stored title');
+     21|       const row=(await sql<{seo_title:string}>`SELECT seo_title FROM _…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  tests/seo-storage-native/lifecycle.test.ts > raw D1: ordinary and staged draft updates preserve metadata, history and stale CAS
+ FAIL  tests/seo-storage-native/lifecycle.test.ts > scoped D1: ordinary and staged draft updates preserve metadata, history and stale CAS
+AssertionError: Got unwanted rejection.
+Actual message: "Lifecycle capability 'seo' is not implemented"
+
+simple
+
+ ❯ tests/seo-storage-native/lifecycle.test.ts:36:7
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  tests/seo-storage-native/lifecycle.test.ts > raw D1: actual SEO write fault rolls back the content create batch
+ FAIL  tests/seo-storage-native/lifecycle.test.ts > scoped D1: actual SEO write fault rolls back the content create batch
+AssertionError: Expected values to be strictly equal:
+
+false !== true
+
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/seo-storage-native/lifecycle.test.ts:64:14
+     62|       }};
+     63|       await assert.rejects(()=>lifecycleService(subject,principal,{aft…
+     64|       assert.equal(seoWasPlanned,true);
+       |              ^
+     65|       assert.deepEqual(await databaseSnapshot(fixture.database),before…
+     66|     }finally{await fixture.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed (9)
+   Start at  03:58:20
+   Duration  11.83s (transform 996ms, setup 0ms, import 1.57s, tests 10.13s, environment 0ms)
+
