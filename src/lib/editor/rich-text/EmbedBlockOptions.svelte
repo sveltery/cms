@@ -51,16 +51,16 @@
     {#if onModeChange}
       <div role="group" aria-label={t('On the site')}>
         <div class="menu-label">{t('On the site')}</div>
-        <button type="button" role="menuitemradio" aria-checked={isolated === true} onclick={() => { close(); onModeChange?.(true); }}>
+        <button type="button" role="menuitemradio" aria-checked={isolated === true} onmousemove={event => event.currentTarget.focus({ preventScroll: true })} onclick={() => { close(); onModeChange?.(true); }}>
           <span>{t('Isolated frame')}<small>{t('Runs HTML, CSS and JavaScript in a sandbox.')}</small></span>
         </button>
-        <button type="button" role="menuitemradio" aria-checked={isolated !== true} onclick={() => { close(); onModeChange?.(false); }}>
+        <button type="button" role="menuitemradio" aria-checked={isolated !== true} onmousemove={event => event.currentTarget.focus({ preventScroll: true })} onclick={() => { close(); onModeChange?.(false); }}>
           <span>{t('Inline')}<small>{t("HTML only, cleaned, using your site's styles.")}</small></span>
         </button>
       </div>
       <hr />
     {/if}
-    <button type="button" role="menuitem" class="delete" onclick={() => { close(false); onDelete(); }}><EmbedIcon name="Trash" />{t('Delete block')}</button>
+    <button type="button" role="menuitem" class="delete" onmousemove={event => event.currentTarget.focus({ preventScroll: true })} onclick={() => { close(false); onDelete(); }}><EmbedIcon name="Trash" />{t('Delete block')}</button>
   </div>
 {/if}
 <style>
