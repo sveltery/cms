@@ -1,5 +1,5 @@
 import type {RequestHandler} from './$types';
-import {accountsApi,requestAccounts,accountBody,requiredUserId} from '$lib/server/accounts/request';
+import {accountsApi,requestAccounts,accountBody,requiredUserId,isParseError} from '$lib/server/accounts/request';
 import {AccountError} from '$lib/server/accounts/repository';
 export const GET:RequestHandler=event=>accountsApi('USER_DETAIL_ERROR',async()=>{
  const {repository}=await requestAccounts(event);const item=await repository.detail(requiredUserId(event.params.id));
@@ -7,5 +7,6 @@ export const GET:RequestHandler=event=>accountsApi('USER_DETAIL_ERROR',async()=>
 });
 export const PUT:RequestHandler=event=>accountsApi('USER_UPDATE_ERROR',async()=>{
  const {repository,actorId}=await requestAccounts(event,true);const id=requiredUserId(event.params.id);await repository.requireProfile(id);
- return {item:await repository.update(id,actorId,await accountBody(event))};
+ const body=await accountBody(event);if(isParseError(body))return body;
+ return {item:await repository.update(id,actorId,body)};
 });
