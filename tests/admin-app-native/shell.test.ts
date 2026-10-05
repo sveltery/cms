@@ -93,3 +93,24 @@ it('the actual content picker uses the root layout cache when no client is suppl
  expect(queryClient.getQueryCache().find({ queryKey: ['collections'] })).toBeDefined();
  expect([pickerClient.fetchCollections.mock.calls.length, pickerClient.fetchManifest.mock.calls.length, pickerClient.fetchContentList.mock.calls.length]).toEqual([0, 0, 0]);
 });
+
+it('a retained root keeps failed welcome dismissal closed across page shell remounts', async () => {
+ const state = lifecycleState({ showShell: true, currentUserClient: { currentUser: vi.fn(async () => user), dismissWelcome: vi.fn(async () => { throw Error('Ordinary welcome fixture'); }) } });
+ const { target, queryClient } = await renderWithRootDefaults(state);
+ await vi.waitFor(() => expect(target.querySelector('[role=dialog]')).not.toBeNull());
+ target.querySelector<HTMLButtonElement>('button.primary')!.click();
+ await vi.waitFor(() => expect(target.querySelector('[role=dialog]')).toBeNull());
+ state.showShell = false; await settled(); await vi.waitFor(() => expect(target.querySelector('main')).toBeNull());
+ state.showShell = true; await settled(); await vi.waitFor(() => expect(target.querySelector('main')).not.toBeNull());
+ expect(target.querySelector('[role=dialog]')).toBeNull();
+ expect(queryClient.getQueryData(['currentUser'])).toEqual(user);
+});
+it('a retained root preserves toolbar effect lifetime across page shell remounts', async () => {
+ const state = lifecycleState({ showShell: true, currentUserClient: { currentUser: vi.fn(async () => ({ ...user, isFirstLogin: false })) } });
+ const { target } = await renderWithRootDefaults(state);
+ await vi.waitFor(() => expect(localStorage.getItem('emdash-editor')).toBe('1'));
+ localStorage.setItem('emdash-toolbar-dismissed', '1');
+ state.showShell = false; await settled(); await vi.waitFor(() => expect(target.querySelector('main')).toBeNull());
+ state.showShell = true; await settled(); await vi.waitFor(() => expect(target.querySelector('main')).not.toBeNull());
+ expect(localStorage.getItem('emdash-toolbar-dismissed')).toBe('1');
+});

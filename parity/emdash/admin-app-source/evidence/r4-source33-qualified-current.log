@@ -1,0 +1,12 @@
+{"sourcePin":"913cb1bb9b7f08c3ff0d258b4420e53835b6a58e","wholeSourceAuthorities":24,"wholeSourceBytes":129244,"wholeCallbacks":33,"wholeAssertionExpressions":43,"productTestsRun":0}
+file:///workspace/cms-dashboard-welcome-ui/scripts/run-dashboard-welcome-source.mjs:11
+if (!pnpm) throw new Error('Run this gate with pnpm test:dashboard-welcome-source.');
+                 ^
+
+Error: Run this gate with pnpm test:dashboard-welcome-source.
+    at file:///workspace/cms-dashboard-welcome-ui/scripts/run-dashboard-welcome-source.mjs:11:18
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.19.0

@@ -1,0 +1,19 @@
+
+ RUN  v4.1.10 /workspace/cms-dashboard-welcome-ui
+
+ ✓ parity/emdash/content-picker-source/upstream/packages/core/tests/integration/content/content-list-search-fts.test.ts (11 tests) 2050ms
+ ✓ parity/emdash/content-picker-source/upstream/packages/core/tests/integration/content/content-list-search.test.ts (6 tests) 2250ms
+     ✓ finds an entry that lives far past the first page  586ms
+     ✓ matches case-insensitively  599ms
+     ✓ treats LIKE wildcards in the query literally  362ms
+ ✓ parity/emdash/content-picker-source/upstream/packages/core/tests/integration/content/content-list-search-title-field.test.ts (2 tests) 1171ms
+     ✓ finds an entry by its titleField value, past the first page  617ms
+     ✓ matches the titleField case-insensitively  552ms
+ ✓ tests/content-picker-native-backend/query.test.ts (3 tests) 353ms
+
+ Test Files  4 passed (4)
+      Tests  22 passed (22)
+   Start at  01:03:10
+   Duration  13.34s (transform 1.26s, setup 0ms, import 5.69s, tests 5.82s, environment 14ms)
+
+JSON report written to /workspace/cms-dashboard-welcome-ui/parity/emdash/admin-app-source/evidence/r4-picker-source-current.json

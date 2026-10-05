@@ -57,7 +57,7 @@
     "test:dashboard-welcome-source": "node --test tests/dashboard-welcome-source-qualification/*.test.mjs && node scripts/run-dashboard-welcome-source.mjs",
     "test:dashboard-welcome-native": "vitest run --config vitest.dashboard-welcome-native.config.ts",
     "test:admin-app-source": "node scripts/check-admin-app-source.mjs && vitest run --config vitest.admin-app-source.config.ts",
-    "test:admin-app-native": "vitest run --config vitest.admin-app-native.config.ts"
+    "test:admin-app-native": "vitest run --config vitest.admin-app-native.config.ts && node --test tests/admin-app-ssr/*.test.ts"
   },
   "dependencies": {
     "@tanstack/query-core": "5.90.20",

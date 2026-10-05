@@ -8,9 +8,11 @@
 </script>
 <RootLayout>
   <QueryClientProbe {onQueryClient} />
+  {#if state.showShell !== false}
   <WorkspaceShell {queryClient} {...state} navigation={{ authenticated: true, permissions: [], collections: {} }} currentPath="/">
     <div>Native fixture page</div>
   </WorkspaceShell>
+  {/if}
   {#if state.showSecond}
    <WorkspaceShell {queryClient} {...state} navigation={{ authenticated: true, permissions: [], collections: {} }} currentPath="/">Second current-user consumer</WorkspaceShell>
   {/if}
