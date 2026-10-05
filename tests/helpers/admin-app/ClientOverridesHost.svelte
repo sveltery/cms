@@ -5,14 +5,14 @@
  let { state }: { state: any } = $props();
 </script>
 <RootLayout>
- {#each state.accounts ?? [] as client, index (client.currentUser)}
+ {#each state.accounts ?? [] as client, index (client)}
   <section data-account={index}>
    <WorkspaceShell currentUserClient={client} navigation={{ authenticated: true, permissions: [], collections: {} }} currentPath="/">Client fixture</WorkspaceShell>
   </section>
  {/each}
- {#each state.pickers ?? [] as client, index (client.fetchContentList)}
+ {#each state.pickers ?? [] as client, index (client)}
   <section data-picker={index}>
-   <ContentPickerModal open={true} onOpenChange={() => {}} onConfirm={() => {}} {client} />
+   <ContentPickerModal open={true} onOpenChange={() => {}} onConfirm={entries => state.onPickerConfirm?.(client, entries)} {client} />
   </section>
  {/each}
 </RootLayout>

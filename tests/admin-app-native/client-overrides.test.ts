@@ -80,3 +80,57 @@ it('separate actual roots do not reuse an explicit picker client warm cache', as
  await vi.waitFor(() => expect(second.querySelector('.single strong')?.textContent).toBe('Second root content'));
  expect([api.fetchCollections.mock.calls.length, api.fetchManifest.mock.calls.length, api.fetchContentList.mock.calls.length]).toEqual([2, 2, 2]);
 });
+class AccountApi {
+ reads = 0; dismissals = 0;
+ constructor(readonly user: typeof alice, readonly dismissal = Promise.resolve()) {}
+ async currentUser() { this.reads++; return this.user; }
+ async dismissWelcome() { this.dismissals++; await this.dismissal; }
+}
+it('different account class instances sharing prototype methods load their own identities', async () => {
+ const first = new AccountApi(alice), second = new AccountApi(bob);
+ expect(first.currentUser).toBe(second.currentUser);
+ const target = await render({ accounts: [first, second] });
+ await vi.waitFor(() => expect([...target.querySelectorAll('[role=dialog] h2')].map(element => element.textContent)).toEqual(['Welcome to Sveltery CMS, Alice!', 'Welcome to Sveltery CMS, Bob!']));
+ expect([first.reads, second.reads]).toEqual([1, 1]);
+});
+it('class account dismissal preserves its receiver and keeps another client enabled', async () => {
+ let complete!: () => void;
+ const first = new AccountApi(alice, new Promise<void>(resolve => { complete = resolve; })), second = new AccountApi(bob);
+ const target = await render({ accounts: [first, second] });
+ try {
+  await vi.waitFor(() => expect(target.querySelector('[data-account="0"] button.primary')).not.toBeNull());
+  target.querySelector<HTMLButtonElement>('[data-account="0"] button.primary')!.click();
+  await vi.waitFor(() => expect([first.dismissals, second.dismissals]).toEqual([1, 0]));
+  expect(target.querySelector<HTMLButtonElement>('[data-account="0"] button.primary')!.disabled).toBe(true);
+  expect(target.querySelector<HTMLButtonElement>('[data-account="1"] button.primary')!.disabled).toBe(false);
+  complete();
+  await vi.waitFor(() => expect(target.querySelector('[data-account="0"] [role=dialog]')).toBeNull());
+  expect(target.querySelector('[data-account="1"] [role=dialog]')?.textContent).toContain('Bob');
+ } finally { complete(); await settled(); }
+});
+class PickerApi {
+ collectionsReads = 0; manifestReads = 0; contentReads = 0;
+ constructor(readonly name: string) {}
+ async fetchCollections() { this.collectionsReads++; return [{ slug: 'posts', label: `${this.name} collection` }]; }
+ async fetchManifest() { this.manifestReads++; return { collections: { posts: { titleField: `${this.name.toLowerCase()}Title` } } }; }
+ async fetchContentList(): Promise<FindManyResult<ContentItem>> {
+  this.contentReads++;
+  return { items: [{ id: this.name, type: 'posts', data: { aliceTitle: 'Alice class content', bobTitle: 'Bob class content' }, locale: 'en', translationGroup: null, slug: this.name.toLowerCase(), liveRevisionId: null, draftRevisionId: null }] };
+ }
+}
+it('picker class instances with shared prototype methods render and select their own content', async () => {
+ const first = new PickerApi('Alice'), second = new PickerApi('Bob'), onPickerConfirm = vi.fn();
+ expect(first.fetchContentList).toBe(second.fetchContentList);
+ const target = await render({ pickers: [first, second], onPickerConfirm });
+ await vi.waitFor(() => expect(target.querySelector('[data-picker="1"] .single strong')?.textContent).toBe('Bob class content'));
+ target.querySelector<HTMLButtonElement>('[data-picker="1"] button.single')!.click();
+ expect(onPickerConfirm).toHaveBeenCalledWith(second, [{ collection: 'posts', id: 'Bob', slug: 'bob', title: 'Bob class content', locale: 'en', translationGroup: null }]);
+ expect([first.contentReads, second.contentReads]).toEqual([1, 1]);
+});
+it('picker class receivers keep collection and manifest metadata independent', async () => {
+ const first = new PickerApi('Alice'), second = new PickerApi('Bob');
+ const target = await render({ pickers: [first, second] });
+ await vi.waitFor(() => expect([...target.querySelectorAll('option')].map(element => element.textContent)).toEqual(['Alice collection', 'Bob collection']));
+ await vi.waitFor(() => expect([...target.querySelectorAll('.single strong')].map(element => element.textContent)).toEqual(['Alice class content', 'Bob class content']));
+ expect([first.collectionsReads, second.collectionsReads, first.manifestReads, second.manifestReads]).toEqual([1, 1, 1, 1]);
+});
