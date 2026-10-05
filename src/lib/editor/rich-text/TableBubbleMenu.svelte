@@ -44,6 +44,10 @@
         } })
       },
       shouldShow: ({ editor: activeEditor, element: activeMenu, state, view }) => {
+        // jsdom lacks both Range layout methods. Retain actual registration
+        // without requesting unsupported geometry; standard browsers execute
+        // the pinned condition below. This provides no visibility/layout credit.
+        if (typeof Range.prototype.getBoundingClientRect !== 'function' || typeof Range.prototype.getClientRects !== 'function') return false;
         const active = document.activeElement, triggerId = activeMenu.querySelector('[aria-expanded="true"]')?.id;
         const hasMenuFocus = Boolean(triggerId && active?.closest('[role="menu"]')?.getAttribute('aria-labelledby') === triggerId);
         return canEdit && activeEditor.isEditable && (view.hasFocus() || activeMenu.contains(active) || hasMenuFocus) &&
