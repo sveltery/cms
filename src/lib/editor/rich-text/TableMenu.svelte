@@ -19,6 +19,7 @@
   const triggerId = $props.id();
   let bookmark: SelectionBookmark | null = null, closingFocus: Element | null = null, shortcutReturn = false;
   let pickerFrame = 0, running = false, typeahead = '', typeaheadTimer: ReturnType<typeof setTimeout>;
+  let typeaheadPrevious = -1, typeaheadMatch = -1;
   let menuLeft = $state(0), menuTop = $state(0);
   const editable = $derived.by(() => { void revision; return editableProp ?? editor.isEditable; });
   const inTable = $derived.by(() => { void revision; return selectionIsContainedInTableCells(editor.state) ||
@@ -100,21 +101,35 @@
     else if (event.key === 'ArrowUp') next = (index - 1 + buttons.length) % buttons.length;
     else if (event.key === 'Home') next = 0;
     else if (event.key === 'End') next = buttons.length - 1;
-    else if (event.key.length === 1 && !event.altKey && !event.ctrlKey && !event.metaKey && event.key !== ' ') {
-      typeahead += event.key.toLocaleLowerCase(); clearTimeout(typeaheadTimer);
-      typeaheadTimer = setTimeout(() => { typeahead = ''; }, 500);
-      const labels = buttons.map(button => button.textContent?.trim().toLocaleLowerCase() ?? '');
-      const repeated = typeahead.length > 1 && [...typeahead].every(char => char === typeahead[0]) &&
-        !labels.some(label => label.startsWith(typeahead));
-      if (repeated) typeahead = typeahead[0];
-      const start = typeahead.length > 1 ? index : index + 1;
-      next = -1;
-      for (let offset = 0; offset < buttons.length; offset++) {
-        const candidate = (Math.max(0, start) + offset) % buttons.length;
-        if (labels[candidate].startsWith(typeahead)) { next = candidate; break; }
-      }
+    else if (event.key.length === 1 && !event.altKey && !event.ctrlKey && !event.metaKey) {
+      // Exact session/matching rules from pinned BaseUI1.5 useTypeahead;
+      // menuRoot supplies500ms and includes focusable disabled items.
+      const activeSession = typeahead.length > 0, fresh = !activeSession;
+      if (fresh) typeaheadPrevious = index;
+      const labels = buttons.map(button => button.textContent?.trim() ?? '');
+      const allowRepeated = labels.every(label => label[0]?.toLocaleLowerCase() !== label[1]?.toLocaleLowerCase());
+      if (allowRepeated && typeahead === event.key) { typeahead = ''; typeaheadPrevious = typeaheadMatch; }
+      typeahead += event.key; clearTimeout(typeaheadTimer);
+      typeaheadTimer = setTimeout(() => { typeahead = ''; typeaheadPrevious = typeaheadMatch; }, 500);
+      const start = (fresh ? index : typeaheadPrevious) + 1;
+      next = matchingItem(buttons, labels, typeahead, start);
+      if (next !== -1) typeaheadMatch = next;
+      else if (event.key !== ' ') typeahead = '';
+      if (event.key === ' ' && !activeSession) return;
     } else return;
     event.preventDefault(); event.stopPropagation(); focusItem(buttons[next]);
+  }
+  function matchingItem(buttons: HTMLButtonElement[], labels: string[], prefix: string, start: number) {
+    if (!buttons.length) return -1;
+    const normalizedStart = (start % buttons.length + buttons.length) % buttons.length;
+    for (let offset = 0; offset < buttons.length; offset++) {
+      const index = (normalizedStart + offset) % buttons.length, item = buttons[index], styles = getComputedStyle(item);
+      if (!labels[index].toLocaleLowerCase().startsWith(prefix.toLocaleLowerCase()) || !item.isConnected ||
+        styles.visibility === 'hidden' || styles.visibility === 'collapse') continue;
+      if (typeof item.checkVisibility === 'function' ? !item.checkVisibility() : styles.display === 'none' || styles.display === 'contents') continue;
+      return index;
+    }
+    return -1;
   }
   function triggerKeyboard(event: KeyboardEvent) {
     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
