@@ -1,0 +1,353 @@
+{
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "base": "59610b0710fd896f70a173de9f7bbd4029eaf71c",
+  "productionCheckpoint": "5a0913ad6f4781b6bd727945ca5e0c07fc17915a",
+  "proposedPR": "https://github.com/sveltery/cms/pull/112",
+  "decision": "Private same-PR112 development preparation; no acceptance, publication, merge or whole-vendor parity decision",
+  "wholeNewSourceAuthority": {
+    "source": "packages/admin/src/locales/day-picker.ts",
+    "local": "parity/emdash/calendar-shared-picker-labels/source/packages/admin/src/locales/day-picker.ts",
+    "blob": "c43dacdb902396c31b7e3520c67cf246483ace58",
+    "bytes": 691,
+    "sha256": "cd214e13b7783e0a0dbf5d9551599ba667d253663dedc1d425628cf0fe499f57"
+  },
+  "internalVendor": {
+    "kumo": "2.6.0",
+    "dayPicker": "9.13.2",
+    "authorities": [
+      {
+        "path": "parity/emdash/calendar-shared-picker-labels/vendor/kumo-2.6.0-internal-day-picker-9.13.2/DayPicker.js",
+        "bytes": 22644,
+        "sha256": "52fa2f4cf3454cd1564503b0883a28b414f3a6b7861f89376e148e699c7c07c0",
+        "blob": "6bbb96092defe9d80f374f5d4a3abe70cbf49a5d"
+      },
+      {
+        "path": "parity/emdash/calendar-shared-picker-labels/vendor/kumo-2.6.0-internal-day-picker-9.13.2/classes/DateLib.js",
+        "bytes": 20842,
+        "sha256": "eed7d3f01f1743c8d2633abaeac9661c87aac7622425885508146978a2d6674c",
+        "blob": "19ebe1830352260f2e371801d2ba34fcfa142320"
+      },
+      {
+        "path": "parity/emdash/calendar-shared-picker-labels/vendor/kumo-2.6.0-internal-day-picker-9.13.2/components/Nav.js",
+        "bytes": 1751,
+        "sha256": "6e2764800b1c65b212a208dc552cd74f68063d93af5245d1c273dcf434204d69",
+        "blob": "afa3e81dd46f72b213dc13ee3589c9b00260b269"
+      },
+      {
+        "path": "parity/emdash/calendar-shared-picker-labels/vendor/kumo-2.6.0-internal-day-picker-9.13.2/formatters/formatCaption.js",
+        "bytes": 810,
+        "sha256": "e009fc837bbab1f2a665c1e530bfadc99e4179fe2f9fc79068cc7fc931f2942d",
+        "blob": "b6cf3b86551012de73cc7fb2a57c5569b1d3bd54"
+      },
+      {
+        "path": "parity/emdash/calendar-shared-picker-labels/vendor/kumo-2.6.0-internal-day-picker-9.13.2/helpers/getLabels.js",
+        "bytes": 2289,
+        "sha256": "121ebb6ece70573ffdbf51cb313cbe94b52730eb8926ffea7a3133fd950bc4e3",
+        "blob": "475119b98445f2ff7595317646b6c76d62d8ab6f"
+      }
+    ],
+    "license": "../notices/calendar-picker/kumo-2.6.0-MIT.txt",
+    "dayPickerLicense": "../notices/calendar-picker/react-day-picker-9.14.0-MIT.txt",
+    "wholeModuleExecution": 0,
+    "formatMonthYearSuffixByteIdenticalToExternal914": true
+  },
+  "externalLocaleDependency": {
+    "name": "react-day-picker",
+    "version": "9.14.0",
+    "peer": "react19.3.0",
+    "directDevelopmentBinding": "9.14.0(react@19.3.0)",
+    "oldPackageSnapshotSRIAndLockBytesPreserved": true,
+    "newLockLines": 3,
+    "sourceLocaleKeys": 29,
+    "distinctSourceLocaleObjects": 28
+  },
+  "sharedMessages": {
+    "Local time": {
+      "id": "9YjY73",
+      "message": "Local time"
+    },
+    "Time": {
+      "id": "LhMjLm",
+      "message": "Time"
+    },
+    "Hour": {
+      "id": "6XgEPi",
+      "message": "Hour"
+    },
+    "Minute": {
+      "id": "6UYTy8",
+      "message": "Minute"
+    },
+    "Period": {
+      "id": "NtQvjo",
+      "message": "Period"
+    },
+    "Timezone": {
+      "id": "40Gx0U",
+      "message": "Timezone"
+    }
+  },
+  "supplementalNativeControls": {
+    "pureAndActualSvelteSSR": 84,
+    "mountedJsdom": 2,
+    "incrementalReachedValueReds": 72,
+    "baselineOrFirstExecutionGreens": 14,
+    "originalSourceAssertionCredit": 0,
+    "sourceWholeCallbackCreditAdded": 0,
+    "runtime": {
+      "node": "24.19.0",
+      "vitest": "4.1.10",
+      "svelte": "5.57.1",
+      "jsdom": "30.1.1",
+      "actualTimeZone": "America/New_York",
+      "mountedInput": "supplied in-memory props through existing NativeHarness; no protected transport"
+    },
+    "historicalControls": [
+      {
+        "receipt": "/tmp/calendar-shared-picker-labels-red.log",
+        "registered": 72,
+        "failed": 67,
+        "passed": 5,
+        "nativeWhitespaceExpectationMistake": 1,
+        "additionalCredit": 0
+      },
+      {
+        "receipt": "/tmp/calendar-shared-picker-labels-corrected-red.log",
+        "registered": 72,
+        "reachedValueReds": 66,
+        "baselinePasses": 6
+      },
+      {
+        "receipt": "/tmp/calendar-shared-picker-labels-caption-red.log",
+        "registered": 78,
+        "failed": 72,
+        "passed": 6,
+        "nativeCSSAttributeSelectorMistake": 1,
+        "additionalCredit": 0
+      },
+      {
+        "receipt": "/tmp/calendar-shared-picker-labels-caption-corrected-red.log",
+        "registered": 78,
+        "reachedValueReds": 71,
+        "baselinePasses": 7
+      },
+      {
+        "receipt": "/tmp/calendar-shared-picker-labels-normalizer-red.log",
+        "registered": 82,
+        "failed": 0,
+        "passed": 82,
+        "causalValueRedCredit": 0
+      },
+      {
+        "receipt": "/tmp/calendar-shared-picker-labels-previous-normalizer-red.log",
+        "registered": 84,
+        "reachedValueReds": 1,
+        "baselineOrPreviouslyGreen": 83
+      },
+      {
+        "receipt": "/tmp/calendar-shared-picker-labels-sealed-ssr.log",
+        "passed": 84,
+        "failed": 0
+      },
+      {
+        "receipt": "/tmp/calendar-shared-picker-labels-sealed-dom.log",
+        "passed": 2,
+        "failed": 0
+      }
+    ],
+    "originalSourceExpectationsChanged": 0
+  },
+  "existingWholeDateTime": {
+    "authorities": 27,
+    "declarations": 18,
+    "staticAssertionExpressions": 43,
+    "executedSourceCases": 19,
+    "executedNativeCases": 11,
+    "actualCases": 30,
+    "passed": 30,
+    "addedSourceAssertionOrCausalCredit": 0,
+    "nativeHost": "mounted jsdom/pure existing exact fixture bridge"
+  },
+  "wholeSchedulingAuthorities": {
+    "files": 86,
+    "families": 16,
+    "declarations": 126,
+    "staticMatcherRoots": 360,
+    "direct": 308,
+    "element": 45,
+    "poll": 7,
+    "assertionExecutionCreditAdded": 0
+  },
+  "browser": {
+    "requiredBuild": 1243,
+    "officialExecutable": "/home/agent/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome",
+    "exists": false,
+    "attempts": 0,
+    "callbacks": 0,
+    "alternativeBrowserOrDownloadOrSecurityFallback": false
+  },
+  "zeroCredits": {
+    "officialBrowser": 0,
+    "modality": 0,
+    "focus": 0,
+    "geometry": 0,
+    "sourceCSS": 0,
+    "nativeURL": 0,
+    "protectedHTTP": 0,
+    "storage": 0,
+    "newSchemaOwner": 0,
+    "newI18nListener": 0
+  },
+  "check": {
+    "errors": 0,
+    "warnings": 0,
+    "receipt": "/tmp/calendar-shared-picker-labels-sealed-check.log"
+  },
+  "hostStops": [
+    {
+      "command": "pnpm exec svelte-kit sync",
+      "reason": "existing node_modules symlink rejected as hoist directory; tests not selected",
+      "collection": 0,
+      "sourceCredit": 0
+    },
+    {
+      "receipt": "/tmp/calendar-shared-picker-labels-check.log",
+      "reason": "Native fixture this annotation",
+      "errors": 1,
+      "warnings": 0,
+      "sourceCredit": 0
+    },
+    {
+      "receipt": "/tmp/calendar-shared-picker-labels-final-check.log",
+      "reason": "Native fixture optional vendor month argument annotation",
+      "errors": 2,
+      "warnings": 0,
+      "sourceCredit": 0
+    }
+  ],
+  "rawReceipts": [
+    {
+      "path": "/tmp/calendar-shared-picker-labels-caption-corrected-red.log",
+      "bytes": 391862,
+      "sha256": "6e362a38da0a9470fcb3f5da675f23587e00625c6895c1805e2306a50de76fa1",
+      "blob": "74b698c85edd5bf61331b3d69065bcef9eec84ce"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-caption-red.log",
+      "bytes": 443599,
+      "sha256": "3261147d5e331cad0eb690c566186414d5ef7ae547d468e6cd8619057acdc0ad",
+      "blob": "a084c83b0ab3f7b326643e34bacb155fc7cdf5f7"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-check.log",
+      "bytes": 552,
+      "sha256": "0c26572e6d060313cae6d68725b2ed52316da9a0e81d5d71db67406e6c1d1735",
+      "blob": "319287243583b65714d113a1cefdc9398501e7c9"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-corrected-red.log",
+      "bytes": 388265,
+      "sha256": "dec107d8be00485d885f517be3502be02c9e92608fc5495520ddbec7560990af",
+      "blob": "0211dd0df9f88477060b183625712f60a102e138"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-dom.log",
+      "bytes": 230,
+      "sha256": "ee332d446016dbe57adec636f573d7c165f044088c9bd0661e61f32fc0f6eb7f",
+      "blob": "517edaccd096d87c0ab0adece2b2c248693d40af"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-final-check.log",
+      "bytes": 841,
+      "sha256": "523d35b5d8b22054f76d2bd0dcc8a666a2f20270ad71c35ffdb8abd9f3d28be5",
+      "blob": "14a06226497e790778556f1eec36eb763b47b461"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-final-green.log",
+      "bytes": 231,
+      "sha256": "ac39cae8fb46cdd60da76957a04262e88809f352e5fdf1cade558e2ca8cd0419",
+      "blob": "629941989dbfc7ccf53a5aa5eb357a35615d2011"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-green.log",
+      "bytes": 231,
+      "sha256": "c9d43802f8b3ef8e4a88dfa50cdf7d9c7d701d9a2e034a9f4132a85ca1bef482",
+      "blob": "a2eae587d502e29297e9e712479caee66eed1459"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-normalizer-red.log",
+      "bytes": 231,
+      "sha256": "fb5aaec32c0fa6383d5667f3cd1cd4a22f23d28bd6a2cf809be7a967120a213d",
+      "blob": "d92dfa38f1d4a176af28ecc2a13fbdacdc5d7654"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-original-date-time.log",
+      "bytes": 237,
+      "sha256": "16850ed2b23458d423c60879b468a9310ff58355b07f5d81df0556766a2c1772",
+      "blob": "fd8247566f39d896c617424f99f4bf4637f66760"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-previous-normalizer-red.log",
+      "bytes": 1242,
+      "sha256": "0a6a1a5afee07e6e8582c4d12c2da495281ffda7efb55fe4b3483176a61d8aaf",
+      "blob": "1a51da24678a77139a80b2f3b1657ae186c23127"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-red.log",
+      "bytes": 397451,
+      "sha256": "f54699a94c53a148fe9d6ca555af6de99b45731b74de7fcef00faec743f8c90b",
+      "blob": "72b02497207532a63eb87bcab6e7b55352989895"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-sealed-check.log",
+      "bytes": 154,
+      "sha256": "05ead47d12f2dbc926c88b045e519b1a74510ebbe5fdf27e4f6f69a227afc737",
+      "blob": "83d1182e86a241abd97f9267f56f5a35ce8b1c76"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-sealed-dom.log",
+      "bytes": 231,
+      "sha256": "076a7ba5c64b67efd07c889e424509781eca113c13c87516d4b41a9c2ef6e58f",
+      "blob": "bd178ab8764b765125ccb78cb043409d5c69ecd4"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-sealed-ssr.log",
+      "bytes": 231,
+      "sha256": "d5834d6ba944ba07ac3b5427d7a1ec975e48b6fbb31d7fd776f9296fda16fce7",
+      "blob": "9d48e737a73936812262565616cf45709306f87d"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-source27-guard.log",
+      "bytes": 141,
+      "sha256": "acb987cb32d763f758206e40f10e3df93c3cf182ef5f1fee6808d155dc98476e",
+      "blob": "987384159cbbc23e98971febfe15512d1d4d6a93"
+    },
+    {
+      "path": "/tmp/calendar-shared-picker-labels-source86-guard.log",
+      "bytes": 189,
+      "sha256": "f55e5f3fd56b2a6193d02bdb1a5ccbad218cf2d97d74ec605ee0da385a59036f",
+      "blob": "71305fcfb52b509de3ffa01e0750cfc6d6e66e24"
+    }
+  ],
+  "unchangedContracts": [
+    "publishing-datetime.ts",
+    "datetime-local.ts",
+    "all shared calendar keyboard/focus handlers",
+    "all original Source callbacks and gates",
+    "all stored publication/cache/schema/writer/security owners",
+    "all dependency versions/SRI/package/snapshot records"
+  ],
+  "remaining": [
+    "Parent six-message callback wiring",
+    "Parent development qualification/integration",
+    "Fresh combined whole normal13 and secured9 including official1243",
+    "Final fresh and configured review",
+    "Manager exact-head approval and author regular merge",
+    "Broader Source vendor geometry/modality and complete product acceptance"
+  ],
+  "gitDiffCheck": {
+    "productDocsAndAllOtherPaths": "pass",
+    "retainedWholeVendorSourceWhitespace": "exact Kumo internal DayPicker.js line250 retains one source trailing space; unmodified whole authority",
+    "sourceWhitespaceSanitized": false
+  }
+}
