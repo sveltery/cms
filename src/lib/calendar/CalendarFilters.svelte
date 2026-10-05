@@ -37,7 +37,7 @@
 </script>
 <svelte:window onpointerdown={event=>{if(open&&event.target instanceof Node&&!container?.contains(event.target))close(false);}}/>
 <div class="filter" bind:this={container}><button type="button" bind:this={trigger} aria-haspopup="menu" aria-expanded={open} aria-label={count?`Filter: ${count} selected`:undefined} onclick={()=>{openKey='';open=!open;if(!open)typeahead.reset();}} onkeydown={event=>{if(event.key==='ArrowDown'||event.key==='ArrowUp'){event.preventDefault();openKey=event.key;open=true;}}}>Filter {#if count}<span>{count}</span>{/if}</button>
-{#if open}<div bind:this={menu} role="menu" aria-label="Calendar filters" onfocusout={event=>{if(event.relatedTarget instanceof Node&&!menu?.contains(event.relatedTarget)&&!trigger?.contains(event.relatedTarget))typeahead.reset();}} onkeydown={menuKey} tabindex="-1">
+{#if open}<div bind:this={menu} role="menu" aria-label="Calendar filters" onfocusout={event=>{if(!(event.relatedTarget instanceof Node)||!menu?.contains(event.relatedTarget)&&!trigger?.contains(event.relatedTarget))typeahead.reset();}} onkeydown={menuKey} tabindex="-1">
   {#each groups as group}<div role="group" aria-label={group.label}><h3>{group.label}</h3>
   {#each group.options as option}<button type="button" role="menuitemcheckbox" tabindex="-1" aria-checked={(value[group.key] as readonly string[]).includes(option.value)} onclick={()=>toggle(group.key,option.value,group.options)}>{option.label}</button>{/each}</div>{/each}
   {#if count}<button type="button" role="menuitem" tabindex="-1" onclick={()=>{onChange({collections:[],locales:[],states:[]});close();}}>Clear filters</button>{/if}
