@@ -20,14 +20,14 @@ it.each(locales)('renders Source vendor labels for today and selected day in %s'
   const localeObject = sourceLocale(locale), options = { locale: localeObject };
   const labels = localeObject.labels!;
   const html = render(Fields, { props: { ...props, locale } }).body;
-  const label = labels.labelDayButton as (date: Date, modifiers: Record<string, boolean>, options: typeof options) => string;
+  const label = labels.labelDayButton as (date: Date, modifiers: Record<string, boolean>, options: { locale: ReturnType<typeof sourceLocale> }) => string;
   expect(html).toContain(`aria-label="${escape(label(day, { today: true, selected: true }, options))}"`);
   expect(html).toContain(`aria-label="${escape(String(labels.labelPrevious))}"`);
   expect(html).toContain(`aria-label="${escape(String(labels.labelNext))}"`);
   expect(html).toContain(`aria-label="${escape(String(labels.labelNav))}"`);
-  const grid = labels.labelGrid as (date: Date, options: typeof options) => string;
+  const grid = labels.labelGrid as (date: Date, options: { locale: ReturnType<typeof sourceLocale> }) => string;
   expect(html).toContain(`role="grid" aria-label="${escape(grid(day, options))}"`);
-  const weekday = labels.labelWeekday as (date: Date, options: typeof options) => string;
+  const weekday = labels.labelWeekday as (date: Date, options: { locale: ReturnType<typeof sourceLocale> }) => string;
   expect(html).toContain(`aria-label="${escape(weekday(day, options))}"`);
 });
 it.each(['ko', 'pseudo', 'not-a-supported-locale'])('preserves Source en-US fallback for %s', locale => {
@@ -48,7 +48,8 @@ it.each(['Time', 'Hour', 'Minute', 'Period', 'Timezone', 'Local time'])('uses ca
     });
   }
   const translate = (value: string) => `CONTROLLED ${value}`;
-  const html = render(Fields, { props: { ...props, translate } as Parameters<typeof render<typeof Fields>>[1]['props'] }).body;
+  const translatedProps = { ...props, translate };
+  const html = render(Fields, { props: translatedProps }).body;
   expect(html).toContain(`CONTROLLED ${message}`);
 });
 it('preserves English field labels for callers that provide no translator', () => {
@@ -57,5 +58,5 @@ it('preserves English field labels for callers that provide no translator', () =
   expect(html).toContain('aria-label="Hour"');
   expect(html).toContain('aria-label="Minute"');
   expect(html).toContain('aria-label="Period"');
-  expect(html).toContain('>Timezone: </span>');
+  expect(html).toContain('>Timezone:</span>');
 });
