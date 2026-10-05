@@ -57,6 +57,7 @@
     "test:full-search": "node scripts/check-search-source.mjs && vitest run --config vitest.full-search.config.ts && vitest run --config vitest.search-review.config.ts && pnpm test:search-ui-source && vitest run --config vitest.search-native-ui.config.ts",
     "test:query-sdk-source": "node scripts/check-query-sdk-source.mjs && node scripts/check-query-sdk-astro-authority.mjs && vitest run --config vitest.query-sdk.config.ts",
     "test:query-sdk-native": "vitest run --config vitest.query-sdk-native.config.ts",
+    "test:query-sdk-types": "node scripts/check-query-sdk-types.mjs",
     "test:search-ui-source": "node scripts/check-search-ui-source.mjs && vitest run --config vitest.search-ui-source.config.ts"
   },
   "dependencies": {

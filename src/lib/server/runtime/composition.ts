@@ -8,6 +8,7 @@ import { openD1 } from '../database/d1.ts';
 import { migrateCms } from '../database/migrations.ts';
 import type { CmsDatabase } from '../database/contract.ts';
 import { resolveCmsRedirects } from '../redirects/middleware.ts';
+import { withQueryRenderRequest } from '../query-sdk/render-context.ts';
 
 export interface RuntimePresentation {
   publicOrigin: string;
@@ -109,7 +110,7 @@ export function createCmsRuntime(
   return {
     handle: async input => {
       const resolvePage: typeof input.resolve = (event, options) =>
-        resolveCmsRedirects(event, () => input.resolve(event, options));
+        withQueryRenderRequest(event, () => resolveCmsRedirects(event, () => input.resolve(event, options)));
       delete input.event.locals.cmsRuntime;
       try {
         return await sessionHandle({ ...input, resolve: async (event, options) => {
