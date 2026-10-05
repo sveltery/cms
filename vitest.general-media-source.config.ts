@@ -9,6 +9,7 @@ export default defineConfig({
     if (!importer?.startsWith(source) || !id.startsWith('.')) return;
     const relative = path.relative(source, path.resolve(path.dirname(importer), id)).replaceAll(path.sep, '/');
     if (relative === 'tests/utils/test-db.js') return path.join(root, 'tests/helpers/general-media/reference-db.ts');
+    if (relative === 'tests/utils/image-fixtures.js') return path.join(source,'tests/utils/image-fixtures.ts');
     if (relative.startsWith('src/')) return path.join(native, relative.slice(4).replace(/\.js$/, '.ts'));
   }}],
   test: { environment: 'node', fileParallelism: false, include: [
