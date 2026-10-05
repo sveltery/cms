@@ -11,12 +11,15 @@
   let date=$state<Date>(),time=$state(''),validationError=$state<string>(),mutationError=$state<string>(),submitting=$state(false),dialog=$state<HTMLDialogElement>();
   let generation=0,activeSubmission:{entryKey:string;generation:number}|null=null,returnFocus:HTMLElement|null=null;
   const pending=$derived(isPending||submitting),isEditing=$derived(Boolean(scheduledAt));
+  // Parent entry objects can refresh without changing the schedule context.
+  // Only changed primitive entry/date values reset an in-progress form.
+  const resetContext=$derived(JSON.stringify([entryKey,scheduledAt]));
   const title=$derived(isEditing?'Change schedule':isLive?'Schedule changes':'Schedule publication');
   const description=$derived(isLive?'Choose when these changes replace the live version.':isEditing?'Choose a new publication time for this draft.':'Choose when this draft becomes public.');
   const submitLabel=$derived(isEditing?'Save schedule':isLive?'Schedule changes':'Schedule');
   function clearError(){validationError=undefined;mutationError=undefined;}
   function reset(){const fields=publishingInstantToLocalFields(scheduledAt);date=fields.date;time=fields.time;clearError();}
-  $effect(()=>{entryKey;scheduledAt;generation++;activeSubmission=null;submitting=false;untrack(reset);});
+  $effect(()=>{resetContext;generation++;activeSubmission=null;submitting=false;untrack(reset);});
   $effect(()=>{const node=dialog;if(open&&node&&!node.open){returnFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;node.showModal();}else if(!open&&node?.open){node.close();if(returnFocus?.isConnected)returnFocus.focus();}});
   function changeOpen(next:boolean){if(!next&&!pending)reset();onOpenChange(next);}
   async function submit(){
