@@ -16,7 +16,7 @@ type PublicationResult = ApiResult<{item: ContentItem; _rev: string}>;
 
 // Keep result classification separate from the actual atomic content writer
 // and its AFTER-success redirect completion; errors never complete a cache.
-function publicationFailure(error: unknown): PublicationResult {
+function publicationFailure(error: unknown, collection: string): PublicationResult {
   if (error instanceof ScheduledNotDueError) return {success: false, error: {code: 'NOT_DUE', message: error.message}};
   if (error instanceof ContentMutationConflictError || error instanceof CmsError && error.code === 'CONFLICT')
     return {success: false, error: {code: 'CONFLICT', message: error.message}};
@@ -25,6 +25,12 @@ function publicationFailure(error: unknown): PublicationResult {
     const isSlugConflict = typeof details === 'object' && details !== null &&
       'code' in details && details.code === 'SLUG_CONFLICT';
     return {success: false, error: {code: isSlugConflict ? 'SLUG_CONFLICT' : 'VALIDATION_ERROR', message: error.message}};
+  }
+  // Pinned SQL uniqueness backstop after the staged-slug pre-check.
+  const message = error instanceof Error ? error.message.toLowerCase() : '';
+  if ((message.includes('unique constraint failed') || message.includes('duplicate key')) && message.includes('slug')) {
+    return {success: false, error: {code: 'SLUG_CONFLICT',
+      message: `The staged slug is already used by another entry in collection '${collection}'`}};
   }
   console.error('Content publish error:', error);
   return {success: false, error: {code: 'CONTENT_PUBLISH_ERROR', message: 'Failed to publish content'}};
@@ -59,6 +65,6 @@ export async function handleContentPublish(db: Kysely<any>, collection: string, 
     if (redirectCreated) completeContentSlugRedirect(database);
     return {success: true, data: {item, _rev: encodeRev(item)}};
   } catch (error) {
-    return publicationFailure(error);
+    return publicationFailure(error, collection);
   }
 }
