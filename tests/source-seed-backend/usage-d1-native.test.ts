@@ -69,3 +69,16 @@ it('D1: refreshes a real preactivation source and preserves no-op generations',a
   expect(await f.db.selectFrom('_cms_media_usage_generation_writes').select('lease_token').execute()).toEqual([]);
  }finally{await f.storage.close();}
 },30000);
+it('D1: deletes only the matching source generation and clears real content sources',async()=>{
+ const f=await fixture(false);try{
+  await f.repo.replaceSourceIfMatching(f.source,[f.occurrence],null);
+  const source=(await f.repo.findSource(f.source.sourceKey))!;
+  const outcome=await f.repo.deleteSourceIfMatching(f.source.sourceKey,source).then(receipt=>({receipt,error:null}),error=>({receipt:null,error}));
+  expect(outcome.error).toBeNull();expect(outcome.receipt).toEqual({deleted:true,source:null});
+  expect(await f.repo.findCurrentUsageByMediaId('actual-media')).toEqual([]);
+  await f.repo.replaceSourceIfMatching(f.source,[f.occurrence],null);
+  expect(await f.repo.deleteContentSources('usage_posts','usage-entry')).toBe(1);
+  expect(await f.repo.findSource(f.source.sourceKey)).toBeNull();
+  expect(await f.db.selectFrom('_cms_media_usage').select('id').execute()).toEqual([]);
+ }finally{await f.storage.close();}
+},30000);

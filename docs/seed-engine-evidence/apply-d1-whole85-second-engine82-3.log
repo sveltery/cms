@@ -1,0 +1,55 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts (5 tests | 2 failed) 13302ms
+     × keeps every call near its budget, however many entries earlier calls wrote 5091ms
+     × keeps every call near its budget while it creates many terms and bylines 5089ms
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts (78 tests | 1 failed) 10095ms
+       × reads the site timezone and field definitions as often for ten entries as for one 343ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > keeps every call near its budget, however many entries earlier calls wrote
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:185:2
+    183|  });
+    184|
+    185|  it("keeps every call near its budget, however many entries earlier ca…
+       |  ^
+    186|   const budget = 150;
+    187|   const seed = plainSeed(["pages", "posts", "events", "places"], 60);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts > applySeed with a budget > keeps every call near its budget while it creates many terms and bylines
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply-budget.test.ts:216:2
+    214|  });
+    215|
+    216|  it("keeps every call near its budget while it creates many terms and …
+       |  ^
+    217|   const budget = 150;
+    218|   const seed: SeedFile = {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts > applySeed > content > reads the site timezone and field definitions as often for ten entries as for one
+AssertionError: expected 0 to be greater than 0
+ ❯ parity/emdash/source-seed-backend/source/packages/core/tests/unit/seed/apply.test.ts:1784:28
+    1782|    const single = await lookupsFor(1);
+    1783|
+    1784|    expect(single.timezone).toBeGreaterThan(0);
+       |                            ^
+    1785|    expect(await lookupsFor(10)).toEqual(single);
+    1786|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed | 1 passed (3)
+      Tests  3 failed | 82 passed (85)
+   Start at  23:05:51
+   Duration  30.19s (transform 1.26s, setup 0ms, import 2.90s, tests 26.96s, environment 0ms)
+

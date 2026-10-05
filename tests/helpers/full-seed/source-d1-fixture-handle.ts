@@ -3,6 +3,7 @@ import type { CmsDatabase } from '../../../src/lib/server/database/contract.ts';
 import type { Database } from '../../../src/lib/server/seed/upstream/database/types.ts';
 import { seedDomainPlanCompiler } from '../../../src/lib/server/seed/namespace.ts';
 import { registerBylineDatabaseHandle } from '../../../src/lib/server/bylines/storage.ts';
+import {registerCanonicalTaxonomyDatabaseHandle} from '../../../src/lib/server/canonical-storage/namespace.ts';
 import { registerBlockDatabaseHost } from '../../../src/lib/server/blocks/upstream/host.ts';
 
 const guardedHandles = new WeakMap<object, Kysely<Database>>();
@@ -60,5 +61,6 @@ export function originalD1FixtureHandle(guarded: Kysely<Database>, owner: CmsDat
   guardedHandles.set(fixture, guarded);
   registerBylineDatabaseHandle(owner, fixture as unknown as Parameters<typeof registerBylineDatabaseHandle>[1]);
   registerBlockDatabaseHost({...owner,db:fixture as unknown as CmsDatabase['db']});
+  registerCanonicalTaxonomyDatabaseHandle(owner,fixture as unknown as Parameters<typeof registerCanonicalTaxonomyDatabaseHandle>[1]);
   return fixture;
 }

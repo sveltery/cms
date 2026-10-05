@@ -1,0 +1,193 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts (26 tests | 1 failed) 6207ms
+     × treats a missing activation table as inactive without aborting the transaction 114ms
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > deletes a stale draft overlay source after a successful columns-only refresh
+[media-usage] Failed to refresh posts/01M474E0KKTYYVXHYEET76GQXT: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at MediaUsageRepository.deleteSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:1670:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh-d1.ts:630:18)
+    at refreshContentMediaUsageUnlocked (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh-d1.ts:487:19)
+    at withContentUsageLock (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh-d1.ts:954:10)
+    at withContentUsageCollectionLock (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh-d1.ts:977:10)
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > retries a draft overlay delete after a concurrent source change
+[media-usage] Failed to refresh posts/01M474E1TN5JZ063YWMQRHRA3X: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at MediaUsageRepository.deleteSourceIfMatching (/workspace/cms-full-seed-engine/src/lib/server/blocks/upstream/database/repositories/media-usage.ts:1670:3)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh-d1.ts:630:18)
+    at refreshContentMediaUsageUnlocked (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh-d1.ts:487:19)
+    at withContentUsageLock (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh-d1.ts:954:10)
+    at withContentUsageCollectionLock (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh-d1.ts:977:10)
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > deletes every source for a content item
+[media-usage] Failed to delete usage for posts/01M474E28DGNBR1KBXW62SF8ZW: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at deleteContentMediaUsageUnlocked (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh-d1.ts:743:30)
+    at withContentUsageLock (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh-d1.ts:954:10)
+    at withContentUsageCollectionLock (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh-d1.ts:977:10)
+    at /workspace/cms-full-seed-engine/parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:364:18
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/@vitest+runner@4.1.10/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20
+
+stderr | parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > removes the old projection when its collection registry row disappears
+[media-usage] Failed to refresh posts/01M474E2KQC1F9KHHYSJCT5789: Error: D1 callback transactions are unsupported; use atomicBatch
+    at D1Driver.beginTransaction (/workspace/cms-full-seed-engine/src/lib/server/database/d1.ts:66:51)
+    at RuntimeDriver.beginTransaction (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35)
+    at file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+    at DefaultConnectionProvider.provideConnection (file:///workspace/cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at refreshContentMediaUsageAttempt (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh-d1.ts:563:31)
+    at refreshContentMediaUsageUnlocked (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh-d1.ts:487:19)
+    at withContentUsageLock (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh-d1.ts:954:10)
+    at withContentUsageCollectionLock (/workspace/cms-full-seed-engine/src/lib/server/seed/upstream/media/usage/content-refresh-d1.ts:977:10)
+    at /workspace/cms-full-seed-engine/parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:391:18
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts (11 tests | 4 failed) 5121ms
+     × deletes a stale draft overlay source after a successful columns-only refresh 462ms
+     × retries a draft overlay delete after a concurrent source change 384ms
+     × deletes every source for a content item 373ms
+     × removes the old projection when its collection registry row disappears 304ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > treats a missing activation table as inactive without aborting the transaction
+Error: D1 callback transactions are unsupported; use atomicBatch
+ ❯ D1Driver.beginTransaction src/lib/server/database/d1.ts:66:51
+     64|   async releaseConnection() {}
+     65|   async destroy() {} // Binding lifetime belongs to the caller/runtime.
+     66|   async beginTransaction(): Promise<void> { throw new Error('D1 callba…
+       |                                                   ^
+     67|   async commitTransaction(): Promise<void> { throw new Error('D1 callb…
+     68|   async rollbackTransaction(): Promise<void> { throw new Error('D1 cal…
+ ❯ RuntimeDriver.beginTransaction ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/runtime-driver.js:70:35
+ ❯ ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/kysely.js:678:42
+ ❯ DefaultConnectionProvider.provideConnection ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:50:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > deletes a stale draft overlay source after a successful columns-only refresh
+AssertionError: expected { success: false, …(4) } to deeply equal { success: true, …(3) }
+
+- Expected
++ Received
+
+  {
+-   "deletedSourceCount": 1,
++   "deletedSourceCount": 0,
++   "errorCode": "CONTENT_USAGE_REFRESH_ERROR",
+    "failedSourceCount": 0,
+-   "refreshedSourceCount": 1,
+-   "success": true,
++   "refreshedSourceCount": 0,
++   "success": false,
+  }
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:212:18
+    210|   const result = await refreshContentMediaUsage(ctx.db, "posts", item.…
+    211|
+    212|   expect(result).toEqual({
+       |                  ^
+    213|    success: true,
+    214|    refreshedSourceCount: 1,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > retries a draft overlay delete after a concurrent source change
+AssertionError: expected { success: false, …(4) } to deeply equal { success: true, …(3) }
+
+- Expected
++ Received
+
+  {
+-   "deletedSourceCount": 1,
++   "deletedSourceCount": 0,
++   "errorCode": "CONTENT_USAGE_REFRESH_ERROR",
+    "failedSourceCount": 0,
+-   "refreshedSourceCount": 1,
+-   "success": true,
++   "refreshedSourceCount": 0,
++   "success": false,
+  }
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:335:18
+    333|    observedColumnsGeneration,
+    334|   );
+    335|   expect(result).toEqual({
+       |                  ^
+    336|    success: true,
+    337|    refreshedSourceCount: 1,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > deletes every source for a content item
+AssertionError: expected { success: false, …(4) } to deeply equal { success: true, …(3) }
+
+- Expected
++ Received
+
+  {
+-   "deletedSourceCount": 2,
++   "deletedSourceCount": 0,
++   "errorCode": "CONTENT_USAGE_DELETE_ERROR",
+    "failedSourceCount": 0,
+    "refreshedSourceCount": 0,
+-   "success": true,
++   "success": false,
+  }
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:366:18
+    364|   const result = await deleteContentMediaUsage(ctx.db, "posts", item.i…
+    365|
+    366|   expect(result).toEqual({
+       |                  ^
+    367|    success: true,
+    368|    refreshedSourceCount: 0,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > removes the old projection when its collection registry row disappears
+AssertionError: expected { success: false, …(4) } to deeply equal { success: true, …(3) }
+
+- Expected
++ Received
+
+  {
+-   "deletedSourceCount": 1,
++   "deletedSourceCount": 0,
++   "errorCode": "CONTENT_USAGE_REFRESH_ERROR",
+    "failedSourceCount": 0,
+    "refreshedSourceCount": 0,
+-   "success": true,
++   "success": false,
+  }
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:393:18
+    391|   const result = await refreshContentMediaUsage(ctx.db, "posts", item.…
+    392|
+    393|   expect(result).toEqual({
+       |                  ^
+    394|    success: true,
+    395|    refreshedSourceCount: 0,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  2 failed | 3 passed (5)
+      Tests  5 failed | 64 passed (69)
+   Start at  22:54:45
+   Duration  30.73s (transform 1.40s, setup 0ms, import 4.45s, tests 25.52s, environment 0ms)
+

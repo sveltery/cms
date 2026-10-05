@@ -19,6 +19,7 @@ import { getMediaUsageActivationStatus, canResumeMediaUsageCollectionCapture,
 import { markContentMediaUsageCollectionStaleSafely } from '../blocks/upstream/media/usage/schema-invalidation.ts';
 import type { CreateCollectionInput, CreateFieldInput } from '../schema/types.ts';
 import { buildSeedCapturedCreationPlan } from './seed-capture-plan.ts';
+import * as nativeCapture from '../blocks/upstream/media/usage/activation.ts';
 
 
 export const MAX_COLLECTIONS = 100;
@@ -473,15 +474,23 @@ export class SchemaRegistry {
 
   /** Existing physical tables acquire actual Source capture before publication. */
   async registerOrphanedTable(slugInput:string,options?:{label?:string;labelSingular?:string;description?:string}):Promise<Collection> {
-    const slug=parse(identifier,slugInput),db=seedSourceDatabase(this.database);
+    const slug=parse(identifier,slugInput);
+    // Source keeps prepare/install/ready committed if metadata publication fails.
+    // D1 uses those same existing fixed Native domains in that exact sequence.
+    const captureOwner=this.database.atomicQueryLoops?{
+      canResumeMediaUsageCollectionCapture,prepareMediaUsageCollectionCapture,
+      installPreparedMediaUsageCollectionCapture,markMediaUsageCollectionCaptureReady,
+      finalizeMediaUsageCollectionCapture
+    }:nativeCapture;
+    const db=(this.database.atomicQueryLoops?seedSourceDatabase(this.database):this.database.db) as any;
     if(!await tableExists(db,tableName(slug))) throw new Error(`Table ${tableName(slug)} does not exist`);
     const existing=await this.getCollection(slug);
-    if(existing&&!await canResumeMediaUsageCollectionCapture(db,{collectionId:existing.id,collectionSlug:slug})) throw new CmsError('COLLECTION_EXISTS');
-    const capture=await prepareMediaUsageCollectionCapture(db,{collectionId:existing?.id??ulid(),collectionSlug:slug,registeredCollectionId:existing?.id});
+    if(existing&&!await captureOwner.canResumeMediaUsageCollectionCapture(db,{collectionId:existing.id,collectionSlug:slug})) throw new CmsError('COLLECTION_EXISTS');
+    const capture=await captureOwner.prepareMediaUsageCollectionCapture(db,{collectionId:existing?.id??ulid(),collectionSlug:slug,registeredCollectionId:existing?.id});
     const identity={collectionId:capture.collectionId,collectionSlug:slug};
     if(capture.captureRequired) {
-      await installPreparedMediaUsageCollectionCapture(db,identity);
-      await markMediaUsageCollectionCaptureReady(db,identity);
+      await captureOwner.installPreparedMediaUsageCollectionCapture(db,identity);
+      await captureOwner.markMediaUsageCollectionCaptureReady(db,identity);
     }
     if(!capture.registrationExists) {
       const now=new Date().toISOString();
@@ -490,7 +499,7 @@ export class SchemaRegistry {
         label_singular:options?.labelSingular??null,description:options?.description??null,
         supports:'[]',source:'discovered',version:1,created_at:now,updated_at:now}).execute();
     }
-    if(capture.captureRequired) await finalizeMediaUsageCollectionCapture(db,identity);
+    if(capture.captureRequired) await captureOwner.finalizeMediaUsageCollectionCapture(db,identity);
     await markContentMediaUsageCollectionStaleSafely(this.database.db as unknown as Parameters<typeof markContentMediaUsageCollectionStaleSafely>[0],slug,'CONTENT_USAGE_STALE');
     resetRegisteredCollectionsCache();
     return (await this.getCollection(slug))!;
