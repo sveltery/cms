@@ -4,6 +4,7 @@
 import { Kysely, SqliteAdapter, SqliteQueryCompiler, type CompiledQuery, type DatabaseConnection,
   type Dialect, type Driver, type QueryResult } from 'kysely';
 import type { CmsDatabase, CmsTables } from './contract.ts';
+import { assertStaticAtomicQueries } from './atomic-query-loop.ts';
 
 /** Structural subset of a trusted raw D1Database binding, never a D1DatabaseSession. */
 export interface D1Binding {
@@ -39,6 +40,7 @@ export class RawBindingD1Adapter extends SqliteAdapter {
   // Session bookmark/coalescing semantics are outside this adapter's contract.
   override get supportsMultipleConnections() { return true; }
   async executeAtomicBatch(queries: readonly CompiledQuery[]): Promise<readonly QueryResult<unknown>[]> {
+    assertStaticAtomicQueries(queries);
     const statements = queries.map(query => this.database.prepare(query.sql).bind(...query.parameters));
     return (await this.database.batch(statements)).map(mapD1Result);
   }

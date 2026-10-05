@@ -1,0 +1,125 @@
+? Verifying lockfile against supply-chain policies (520 entries)...
+Update available! 12.6.0 → 12.9.1.
+Changelog: https://pnpm.io/v/12.9.1
+To update, run: curl -fsSL https://get.pnpm.io/install.sh | sh -
+✓ Lockfile passes supply-chain policies (520 entries in 5.1s)
+Lockfile is up to date, resolution step is skipped
+Packages: +2
+++
+Progress: resolved 2, reused 2, downloaded 0, added 2, done
+. prepare$ svelte-kit sync
+. prepare: Done
+
+dependencies:
++ jsonc-parser 3.3.1
++ smol-toml 1.6.0
+
+Done in 6s using pnpm v12.6.0
+
+ RUN  v4.1.10 /workspace/cms-full-schema-admin
+
+ ❯ tests/schema-admin-completion/native/collection-indexes.test.ts (3 tests | 3 failed) 89ms
+   × creates all sixteen Source standard collection indexes in the real catalogue 45ms
+   × enforces one active translation group per case-folded locale while retaining null and trash rows 22ms
+   × seeks active group and locale through the Source covering lookup without ANALYZE 21ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-indexes.test.ts > creates all sixteen Source standard collection indexes in the real catalogue
+AssertionError: expected [ false, false, false, false, …(12) ] to deeply equal [ true, true, true, true, true, …(11) ]
+
+- Expected
++ Received
+
+  [
+-   true,
+-   true,
+-   true,
+-   true,
+-   true,
+-   true,
+-   true,
+-   true,
+-   true,
+-   true,
+-   true,
+-   true,
+-   true,
+-   true,
++   false,
++   false,
++   false,
++   false,
++   false,
+    true,
++   false,
++   false,
++   false,
++   false,
++   false,
+    true,
++   false,
++   false,
++   false,
++   false,
+  ]
+
+ ❯ tests/schema-admin-completion/native/collection-indexes.test.ts:27:55
+     25|   const actual = (await sql<{ name: string }>`SELECT name FROM sqlite_…
+     26|     WHERE type = 'index' AND tbl_name = 'ec_posts'`.execute(database.d…
+     27|   expect(expected.map(name => actual.includes(name))).toEqual(expected…
+       |                                                       ^
+     28| });
+     29|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-indexes.test.ts > enforces one active translation group per case-folded locale while retaining null and trash rows
+AssertionError: promise resolved "{ insertId: 5n, …(2) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "insertId": 5n,
++   "numAffectedRows": 1n,
++   "rows": [],
+  }
+
+ ❯ tests/schema-admin-completion/native/collection-indexes.test.ts:37:82
+     35|     VALUES(${id},${id},'draft',${group},${locale},${deleted})`.execute…
+     36|   await expect(sql`INSERT INTO ec_posts(id,slug,status,translation_gro…
+     37|     VALUES('duplicate','duplicate','draft','group-a','EN')`.execute(da…
+       |                                                                                  ^
+     38|   expect((await sql<{ count: number }>`SELECT count(*) AS count FROM e…
+     39|     .toBe(4);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/schema-admin-completion/native/collection-indexes.test.ts > seeks active group and locale through the Source covering lookup without ANALYZE
+AssertionError: expected 'SEARCH e USING INDEX idx_ec_posts_dra…' to match /SEARCH e USING (?:COVERING )?INDEX id…/
+
+- Expected:
+/SEARCH e USING (?:COVERING )?INDEX idx_ec_posts_del_tg_locale \(deleted_at=\? AND translation_group=\? AND locale=\?\)/
+
++ Received:
+"SEARCH e USING INDEX idx_ec_posts_draft_list (locale=? AND deleted_at=?)"
+
+ ❯ tests/schema-admin-completion/native/collection-indexes.test.ts:48:16
+     46|     WHERE e.deleted_at IS NULL AND e.translation_group = 'group-a' AND…
+     47|     .execute(database.db)).rows.map(row => row.detail).join('\n');
+     48|   expect(plan).toMatch(/SEARCH e USING (?:COVERING )?INDEX idx_ec_post…
+       |                ^
+     49|   expect(plan).not.toMatch(/\bSCAN e\b/);
+     50| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  16:27:27
+   Duration  534ms (transform 195ms, setup 0ms, import 328ms, tests 89ms, environment 0ms)
+

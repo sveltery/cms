@@ -1,0 +1,12 @@
+$ node scripts/check-schema-admin-completion-source.mjs && node scripts/check-schema-admin-completion-source22.mjs && vitest run --config vitest.schema-admin-completion-source22.config.ts
+Schema administration: 11 complete Source families, 242 expanded callbacks, 442 direct expect calls; provenance only, no execution credit.
+Schema Source22: three whole byte-exact families, 22 callbacks, 38 direct expects; provenance only.
+
+ RUN  v4.1.10 /workspace/cms-full-schema-admin
+
+
+ Test Files  3 passed (3)
+      Tests  22 passed (22)
+   Start at  01:20:00
+   Duration  1.40s (transform 391ms, setup 0ms, import 646ms, tests 376ms, environment 0ms)
+

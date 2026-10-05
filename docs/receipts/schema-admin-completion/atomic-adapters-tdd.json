@@ -1,0 +1,64 @@
+{
+  "artifact": "Schema16 supplemental atomic adapter TDD",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "testFirstHead": "5d7c5977",
+  "trackingFixtureCorrection": "ece000e1",
+  "actualBoundaryTargetCorrection": "2b70529f",
+  "initial": {
+    "registered": 5,
+    "failed": 4,
+    "passed": 1,
+    "classification": "Node two failures and D1 indirect pass initially hit mismatched tracking metadata; zero claimed affected product controls. Raw D1 within-position snapshot and serialized-operation assertions genuinely failed."
+  },
+  "correctedTracking": {
+    "registered": 5,
+    "failed": 4,
+    "passed": 1,
+    "classification": "Node earlier-provider and D1 indirect cases stopped at unchanged public lifecycle indirect-dependency refusal. These two observations do not establish new provider-loop or D1-operator credit. Shallow Node wrapper, D1 late snapshot and serialized query assertions reached product failures."
+  },
+  "correctedActualProductBoundaryBaseline": {
+    "registered": 5,
+    "failed": 5,
+    "passed": 0,
+    "completedValueFailures": 5,
+    "preExpectationFailures": 0,
+    "originalSourceCallbackCredit": 0,
+    "note": "Uses actual provider15 and16 prepared statements in one real atomicBatch to prove earlier-provider effects, while preserving the public migrateCms lifecycle guard."
+  },
+  "firstFixedRun": {
+    "registered": 5,
+    "passed": 5,
+    "failed": 0,
+    "sourceOriginalCallbackCredit": 0,
+    "runtime": "actual NodeSQLite and actual local raw-D1 workerd storage",
+    "wholeSource080WitnessFollowup": "pending separate run"
+  },
+  "raw": [
+    {
+      "path": "docs/receipts/schema-admin-completion/schema103-atomic-adapters-initial.log",
+      "bytes": 8053,
+      "sha256": "3372c9cead4bb9a495ce4215e7e497c363c812974b0f0aa629ecefdc9e3a0a6a"
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/schema103-atomic-adapters-corrected-initial.log",
+      "bytes": 8621,
+      "sha256": "e5cbcd573b36532bc9dce6b88af1aad39d1c45e469da204ed2e5aa3438cf1665"
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/schema103-atomic-adapters-product-baseline.log",
+      "bytes": 49407,
+      "sha256": "43f924520188487a86f62ae979e3aa44231ca66d7a229a2020db221e40db3ab4"
+    },
+    {
+      "path": "docs/receipts/schema-admin-completion/schema103-atomic-adapters-first-fix.log",
+      "bytes": 217,
+      "sha256": "8e653e0741ff21fc11d4bf858d1ce6e521638e7cc66a4557c60578ba0c40696e"
+    }
+  ],
+  "limits": [
+    "Supplemental Native callbacks; no whole original Source callback credit.",
+    "Node internal dynamic operations execute only through CmsDatabase.atomicBatch, not ordinary Kysely.executeQuery.",
+    "D1 operator-influenced loops remain incomplete: unknown global trigger presence or changed at-position snapshots cause MIGRATION_REQUIRED and rollback.",
+    "No configured/final-head review, Root merge approval or deployment proof yet."
+  ]
+}
