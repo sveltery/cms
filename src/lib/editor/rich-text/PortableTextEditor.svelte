@@ -56,7 +56,7 @@
     const items = defaultSlashCommands.filter(item => item.id !== 'iframe' || !pluginTypes.has('iframe')).map(item => {
       const insert = item.id === 'htmlBlock' ? insertHtmlBlock : item.id === 'iframe' ? insertIframeBlock : undefined;
       return insert ? { ...item, deferInsertion: true, command: ({ editor: current, range }: Parameters<SlashCommandItem['command']>[0]) => {
-        const position = pendingInsert; pendingInsert = null;
+        const position = takeInsertionPosition();
         if (position === null) insert(current, range); else insert(current, undefined, position);
       } } : item;
     });
@@ -141,7 +141,7 @@
     if (!editor?.isEditable || !slash.range) return;
     // A new command owns its own insertion position, even if an external
     // provider cancelled an earlier request without returning a selection.
-    pendingInsert = null;
+    takeInsertionPosition();
     if (item.opensTablePicker) { setSlash(previous => ({ ...previous, mode: 'table-size', isOpen: true })); return; }
     let range = slash.range;
     if (slash.trigger === 'gutter') {
@@ -152,11 +152,14 @@
     item.command({ editor, range }); setSlash(previous => ({ ...previous, isOpen: false, mode: 'commands', gutterBlockPos: null }));
   }
   function insert(content: JSONContent | JSONContent[]) {
-    const position = pendingInsert; pendingInsert = null;
+    const position = takeInsertionPosition();
     if (!editor?.isEditable) return;
     const chain = editor.chain().focus();
     if (position === null) chain.insertContent(content).run(); else chain.insertContentAt(position, content).run();
   }
+  // Deferred positions are consumed once, including rejected/unavailable paths.
+  function takeInsertionPosition() { const position = pendingInsert; pendingInsert = null; return position; }
+  function sectionPickerOpen(value: boolean) { sectionOpen = value; if (!value) takeInsertionPosition(); }
   function sectionSelect(section: { content: unknown[] }) {
     if (!editor || !section.content?.length) return;
     try { const document = portableTextToProsemirror(section.content as AuthoringBlock[], pluginTypes); sectionError = ''; insert(document.content as JSONContent[]); }
@@ -170,7 +173,7 @@
   function request(kind: string) {
     providerMessage = '';
     if (kind === 'section') { if (props.onRequestSection) props.onRequestSection(sectionSelect);
-      else { sectionOpen = true; void import('../../ui/sections-widgets/SectionPickerModal.svelte').then(({ default: Picker }) => { SectionPicker = Picker; }).catch(() => { sectionOpen = false; pendingInsert = null; providerMessage = 'Could not load the section picker. Try again.'; }); } }
+      else { sectionOpen = true; void import('../../ui/sections-widgets/SectionPickerModal.svelte').then(({ default: Picker }) => { SectionPicker = Picker; }).catch(() => { sectionPickerOpen(false); providerMessage = 'Could not load the section picker. Try again.'; }); } }
     else if (kind === 'image' && props.onRequestImage) props.onRequestImage(attrs => insert({ type: 'image', attrs }));
     else if (kind === 'gallery' && props.onRequestGallery) props.onRequestGallery(attrs => insert({ type: 'gallery', attrs }));
     else { pendingInsert = null; providerMessage = 'Media can be inserted when the media library is available.'; }
@@ -245,4 +248,4 @@
   <span data-base-ui-focus-guard tabindex="-1" aria-hidden="true" onfocus={() => editor?.view.focus()}></span>
   </div>
 {/if}
-{#if sectionOpen && SectionPicker}<SectionPicker open={sectionOpen} onOpenChange={value => { sectionOpen = value; if (!value) pendingInsert = null; }} onSelect={sectionSelect} />{:else if sectionOpen}<p role="status">Loading sections...</p>{/if}
+{#if sectionOpen && SectionPicker}<SectionPicker open={sectionOpen} onOpenChange={sectionPickerOpen} onSelect={sectionSelect} />{:else if sectionOpen}<p role="status">Loading sections...</p>{/if}
