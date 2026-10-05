@@ -10,6 +10,10 @@ import { SchemaRegistry as NativeRegistry } from '../../../src/lib/server/databa
 import { queryDatabaseOwner, queryReadDatabase } from '../../../src/lib/server/query-sdk/bindings.ts';
 import type { CmsDatabase } from '../../../src/lib/server/database/contract.ts';
 
+// The Native dialect host has no PostgreSQL pool. Its whole-family cleanup
+// closes any actual fixture adapters still open after a failed setup/teardown.
+const activeDatabases = new Map<CmsDatabase['db'], CmsDatabase>();
+
 // The original byline-filter fixtures insert through ordinary Kysely builders.
 // Map only their TableNode to the real already-installed Native pivot. Raw SQL,
 // literals, supplied rows and whole Source assertion bodies remain untouched.
@@ -33,11 +37,20 @@ export async function setupTestDatabase() {
   registerLifecycleDatabase({...database, db: sourceFixtureDb}, {after: task => {void task();}});
   const db = queryReadDatabase(sourceFixtureDb as unknown as import('kysely').Kysely<unknown>) as unknown as CmsDatabase['db'];
   registerLifecycleDatabase({...database, db}, {after: task => {void task();}});
+  activeDatabases.set(db, database);
   return db;
 }
 
 export async function teardownTestDatabase(db: CmsDatabase['db']) {
-  await queryDatabaseOwner(db).close();
+  const database = activeDatabases.get(db) ?? queryDatabaseOwner(db);
+  try { await database.close(); }
+  finally { activeDatabases.delete(db); }
+}
+
+export async function destroySharedPool(): Promise<void> {
+  const databases = [...activeDatabases.values()];
+  activeDatabases.clear();
+  await Promise.all(databases.map(database => database.close()));
 }
 
 export class SchemaRegistry extends NativeRegistry {
