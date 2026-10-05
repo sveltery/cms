@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "artifact": "Actual unchanged whole38 calendar core rerun after original Lingui unit-host context correction",
+  "commit": "a20264f4cd1782e2084c1a42b71ba50a58bd0e54",
+  "tree": "dff6402a043f7320ee29dc9c9b44b4b6b15f76a8",
+  "ownDraft": "https://github.com/sveltery/cms/pull/105",
+  "qualification": "/tmp/root-scheduling105-exact11-first-evidence-original-lingui-context-qualification.json",
+  "qualificationSha256": "05c3ef8b6861e2a6b6a9eebec38db65df17761e73c9e3365f1767f51a9293687",
+  "invocations": 1,
+  "justification": "Previous full38 exposed real missing original admin global Lingui context. Exact11 qualification retained whole original admin config/setup and actual unchanged loadAndActivate call in uniform Node host; applied product files and all test bodies stayed byte-exact.",
+  "actual": {
+    "files": 4,
+    "registered": 38,
+    "passed": 38,
+    "failed": 0,
+    "SourceRegistered": 27,
+    "SourcePassed": 27,
+    "NativeRegistered": 11,
+    "NativePassed": 11,
+    "skipped": 0,
+    "todo": 0,
+    "timeouts": 0,
+    "precollectionStops": 0,
+    "callbackContextStops": 0,
+    "guardWhole84": "PASS",
+    "configuredPG": 0,
+    "executedPG": 0,
+    "pgCredit": 0
+  },
+  "wholeReceipts": [
+    {
+      "copy": "docs/receipts/scheduled-publishing/core-context-fixed.log",
+      "original": "/tmp/scheduling-calendar-context-fixed-whole38.log",
+      "bytes": 732,
+      "sha256": "5a75629699557eb332d21258774168e872bf4cfafbc74476c41c8f730aad0fe0",
+      "gitBlob": "9a5818dbbba1ca1e6205ff7e9deb83dc46754d9a",
+      "changedBytes": 0
+    },
+    {
+      "copy": "docs/receipts/scheduled-publishing/core-context-fixed.json",
+      "original": "/tmp/scheduling-calendar-context-fixed-whole38.json",
+      "bytes": 12251,
+      "sha256": "06da26723676417e98c90c1160201f4c62246643a845208857d4e05923848442",
+      "gitBlob": "88fdc30de3f5f961acc1c6259044ae5495d69a12",
+      "changedBytes": 0
+    },
+    {
+      "copy": "docs/receipts/scheduled-publishing/core-context-fixed-source-guard.log",
+      "original": "/tmp/scheduling-calendar-context-fixed-source84-guard.log",
+      "bytes": 111,
+      "sha256": "ab5af61bd04353fdd187c3681f35607a9238a9224046dba8d39c28f75171478f",
+      "gitBlob": "bb977babccb9282caedc0b4a5db1e910adaa1265",
+      "changedBytes": 0
+    }
+  ],
+  "callbacks": [
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "storage control: first publication scheduling and removal preserve the real row",
+      "status": "passed"
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "storage control: scheduling changes keeps an already published entry live",
+      "status": "passed"
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "storage control: due selection excludes later and trashed rows",
+      "status": "passed"
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar lists both events for published content with scheduled changes",
+      "status": "passed"
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar walks ties in collection and event order without skipping an event",
+      "status": "passed"
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar uses persisted hidden and titleField metadata without changing content",
+      "status": "passed"
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar returns the original invalid-cursor envelope",
+      "status": "passed"
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar placement uses site timezone and the time entries loaded",
+      "status": "passed"
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar filters intersect collection, locale and state without changing the input",
+      "status": "passed"
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar client bounds a repeating page stream to ten pages and de-duplicates event keys",
+      "status": "passed"
+    },
+    {
+      "family": "tests/scheduling-native/calendar.test.ts",
+      "name": "calendar client sends bounds and cursor through the ordinary calendar API",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "monthGridDays covers whole weeks from the locale's first day of the week",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "dayKeyInZone and fetchRange places an instant on the site zone's calendar day",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "dayKeyInZone and fetchRange fetches every grid day in the most extreme UTC offsets",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "dayKeyInZone and fetchRange fetches every grid day in the local mean time of historical zones",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "createCalendarDisplay shades the admin locale's weekend",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "createCalendarDisplay shows the browser's time, with its weekday when the date differs",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "createCalendarDisplay formats entry dates on the Gregorian calendar the grid uses",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "createCalendarDisplay treats zones with the same name as the same, and falls back to UTC",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "calendarState derives each state, waiting out the grace period before Overdue",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "parseCalendarSearch keeps a known view and a month from 1000 to 9999",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "parseCalendarSearch splits, de-duplicates, and bounds list params, keeping only known states",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "parseCalendarSearch drops unknown views and invalid months",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "parseCalendarSearch keeps an entry key only in its collection, id, and kind form",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "formatShortDuration uses the largest whole unit",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "formatTimeUntil counts down to a future time and never reads as past",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "filterItems combines filters and treats an empty filter as all",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "fetchCalendarRange stops after ten pages and drops entries that repeat across pages",
+      "status": "passed"
+    },
+    {
+      "family": "packages/admin/tests/lib/calendar.test.ts",
+      "name": "fetchCalendarRange reports a complete walk when the last page has no cursor",
+      "status": "passed"
+    },
+    {
+      "family": "packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "name": "calendar handler (Native Node SQLite) places published entries, schedules, and scheduled updates",
+      "status": "passed"
+    },
+    {
+      "family": "packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "name": "calendar handler (Native Node SQLite) walks every event exactly once across pages",
+      "status": "passed"
+    },
+    {
+      "family": "packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "name": "calendar handler (Native Node SQLite) uses the collection's title field, then title, then slug",
+      "status": "passed"
+    },
+    {
+      "family": "packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "name": "calendar handler (Native Node SQLite) leaves out hidden collections",
+      "status": "passed"
+    },
+    {
+      "family": "packages/core/tests/unit/api/calendar-handlers.test.ts",
+      "name": "calendar handler (Native Node SQLite) rejects malformed cursors",
+      "status": "passed"
+    },
+    {
+      "family": "packages/core/tests/unit/astro/calendar-route.test.ts",
+      "name": "GET /_emdash/api/calendar lets contributors and above read the calendar",
+      "status": "passed"
+    },
+    {
+      "family": "packages/core/tests/unit/astro/calendar-route.test.ts",
+      "name": "GET /_emdash/api/calendar reads bounds with an offset as instants",
+      "status": "passed"
+    },
+    {
+      "family": "packages/core/tests/unit/astro/calendar-route.test.ts",
+      "name": "GET /_emdash/api/calendar rejects a reversed range and a range over 62 days",
+      "status": "passed"
+    },
+    {
+      "family": "packages/core/tests/unit/astro/calendar-route.test.ts",
+      "name": "GET /_emdash/api/calendar rejects a malformed cursor",
+      "status": "passed"
+    }
+  ],
+  "staticDynamicLimits": "Selected Source27 declarations/74 static expect calls are distinct from loop-expanded runtime matcher count. No matcher instrumentation was added; observed complete whole27 callbacks pass. Native11 complete, including original two API pagination value callbacks after context initialization. Source16 total126/342/31 and all84 originals remain whole, unchanged.",
+  "causalLimits": "Initial Source23 had0 registrations/expect before missing imports, so current Source27 greens are observed original behavior evidence, not Source assertion-caused TDD credit. Six Native readiness-red contracts progressed to calendar value passes atcef28; last two API callbacks required Source host localization correction before their values completed. Context repair is not represented as a product localization rewrite or substantive Source assertion-red fix.",
+  "historicalEvidenceRetained": "Original test-first requested34 and first product whole38=34pass/4context stops remain complete and unchanged, with full earlier feature/compatibility prefixes and all prior ledger properties retained.",
+  "retainedOtherFamilies": 13,
+  "retainedOtherSemanticDeclarations": 99,
+  "retainedOtherExecuted": 0,
+  "fullFeatureDone": false,
+  "pending": "Full UI/app query/i18n mounting; editor schedule/unschedule; actual runtime policy/rejection/media activation/capture/site fence; exact draft/revision/CAS; actual Node/Worker cron/maintenance/heartbeat; remaining13 whole Source families/full16 acceptance; final actual published union13+9/gates/fresh/configuredreview/Root exacthead approval/author regular expectedhead merge/postMain."
+}
