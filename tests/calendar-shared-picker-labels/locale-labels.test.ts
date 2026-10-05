@@ -5,6 +5,7 @@ import { render } from 'svelte/server';
 import { getDayPickerLocale as sourceLocale } from '../../parity/emdash/calendar-shared-picker-labels/source/packages/admin/src/locales/day-picker.ts';
 import { getDayPickerLocale as nativeLocale } from '../../src/lib/ui/date-time-locales.ts';
 import Fields from '../../src/lib/ui/PublishingDateTimeFields.svelte';
+import { DateLib } from 'react-day-picker';
 
 const locales = ['en', 'ar', 'eu', 'bn', 'ca', 'zh-CN', 'zh-TW', 'cs', 'da', 'nl', 'en-GB', 'fa', 'fr', 'ka', 'de', 'hi', 'hu', 'id', 'ja', 'nb', 'pl', 'pt-BR', 'sr-Latn', 'es-419', 'es-ES', 'sv', 'th', 'tr', 'uk'];
 const day = new Date(2026, 9, 5, 12);
@@ -33,6 +34,11 @@ it.each(locales)('renders Source vendor labels for today and selected day in %s'
 it.each(['ko', 'pseudo', 'not-a-supported-locale'])('preserves Source en-US fallback for %s', locale => {
   expect(nativeLocale(locale).code).toBe(sourceLocale(locale).code);
   expect(nativeLocale(locale).options).toEqual(sourceLocale(locale).options);
+});
+it.each(['en', 'eu', 'hu', 'ja', 'zh-CN', 'zh-TW'])('preserves Source vendor month/year ordering for %s', locale => {
+  const expected = new DateLib({ locale: sourceLocale(locale) }).formatMonthYear(day);
+  const html = render(Fields, { props: { ...props, locale } }).body;
+  expect(html.match(/aria-live="polite"[^>]*>(.*?)<\/span>/)?.[1]).toBe(escape(expected));
 });
 it.each([[false, false], [false, true], [true, false], [true, true]])('preserves Source day-button today=%s selected=%s output', (today, selected) => {
   vi.useFakeTimers(); vi.setSystemTime(today ? day : new Date(2026, 9, 6, 12));
