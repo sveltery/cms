@@ -7,11 +7,13 @@ const native = path.join(root, 'src/lib/server/bylines');
 const helpers = path.join(root, 'tests/helpers/bylines');
 export default defineConfig({
   plugins: [{ name: 'whole-byline-test-native-import-host', enforce: 'pre', resolveId(id, importer) {
+    if (id === '@emdash-cms/admin/slugify') return path.join(root, 'src/lib/server/database/lifecycle/upstream/admin-slugify.ts');
     if (id === '#node-sqlite') return path.join(root, 'src/lib/server/database/node-sqlite-compat.ts');
     if (!importer?.startsWith(source) || !id.startsWith('.')) return;
     const target = path.resolve(path.dirname(importer), id).replaceAll(path.sep, '/');
     const key = path.relative(source, target).replaceAll(path.sep, '/');
     const imports: Record<string, string> = {
+      'src/database/repositories/types.js': path.join(native, 'repository-types.ts'),
       'src/database/repositories/byline.js': path.join(native, 'repository.ts'),
       'src/schema/byline-registry.js': path.join(native, 'schema.ts'),
       'src/bylines/index.js': path.join(native, 'index.ts'),
@@ -21,7 +23,8 @@ export default defineConfig({
       'src/api/handlers/byline-fields.js': path.join(native, 'field-handlers.ts'),
       'tests/utils/test-db.js': path.join(helpers, 'reference-db.ts'),
       'src/database/migrations/runner.js': path.join(helpers, 'reference-db.ts'),
-      'src/loader.js': path.join(root, 'src/lib/server/menus/loader.ts'),
+      'src/db/node-sqlite-compat.js': path.join(root, 'src/lib/server/database/node-sqlite-compat.ts'),
+      'src/loader.js': path.join(native, 'loader.ts'),
       'src/i18n/config.js': path.join(root, 'src/lib/server/menus/i18n-config.ts'),
       'src/request-context.js': path.join(root, 'src/lib/server/menus/context.ts'),
       'src/request-cache.js': path.join(root, 'src/lib/server/menus/request-cache.ts'),
