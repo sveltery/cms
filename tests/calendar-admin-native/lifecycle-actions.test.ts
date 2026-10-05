@@ -86,7 +86,7 @@ for(const target of ['Node','D1'] as const)describe(`${target} actual calendar l
     const {service}=await fixture(target);
     const item=await service.createContent({type:'posts',locale:'fr',slug:'lancement',data:{title:'Lancement'}});
     const revision=withRevision(contentEntry(item))._rev;
-    const resolve=(service as any).resolvePublicationKey;
+    const resolve=service.resolvePublicationKey;
     expect(typeof resolve).toBe('function');
     const key=await resolve({type:'posts',id:item.id});
     expect(key).toEqual({type:'posts',id:item.id,locale:'fr'});
@@ -101,7 +101,7 @@ for(const target of ['Node','D1'] as const)describe(`${target} actual calendar l
     const item=await service.createContent({type:'posts',locale:'fr',slug:'lancement',data:{title:'Lancement'}});
     const scheduled=await service.schedule({type:'posts',id:item.id,locale:'fr',scheduledAt:'2030-10-20T09:00:00.000Z'});
     const revision=withRevision(contentEntry(scheduled))._rev;
-    const resolve=(service as any).resolvePublicationKey;
+    const resolve=service.resolvePublicationKey;
     expect(typeof resolve).toBe('function');
     const key=await resolve({type:'posts',id:'lancement',locale:'fr'});
     expect(key).toEqual({type:'posts',id:item.id,locale:'fr'});
@@ -117,7 +117,7 @@ for(const target of ['Node','D1'] as const)describe(`${target} actual calendar l
     const item=await service.createContent({type:'posts',locale:'fr-ca',slug:'lancement',data:{title:'Lancement'}});
     expect(item.locale).toBe('fr-CA');
     const revision=withRevision(contentEntry(item))._rev;
-    const resolve=(service as any).resolvePublicationKey;
+    const resolve=service.resolvePublicationKey;
     expect(typeof resolve).toBe('function');
     const key=await resolve({type:'posts',id:'lancement',locale:'FR-ca'});
     expect(key).toEqual({type:'posts',id:item.id,locale:'fr-CA'});

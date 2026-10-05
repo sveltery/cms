@@ -293,7 +293,11 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       const item=await atomicUpdate(value,existing,value,data,'content:edit_any',taxonomySelections);
       return {item:await hydrate(item),liveContentChanged:Boolean(data||value.slug!==undefined||liveMetaTouched||taxonomySelections.length)};
     },
-    /** Read-only preparation; the existing writer repeats owner and CAS checks. */
+    /**
+     * Read-only key preparation for pinned Source schedule route52/74,104/127
+     * and publish route44/81/92. EmDash913cb1bb; MIT notices/emdash-MIT.txt.
+     * The existing writer repeats owner and CAS checks against this stored key.
+     */
     async resolvePublicationKey(input:unknown):Promise<ContentKey&{locale:string}> {
       const actor=mutationPermission('content:publish_own','content:publish_any');
       const value=key(input);value.locale=resolveConfiguredLocale(value.locale);
