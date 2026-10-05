@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "status": "private preparation; Root qualification/publication/adoption/acceptance pending",
+  "publicBase": "89340738750c688842f5716352f8d47f0189f03c",
+  "checkedCode": "3304c601b502cbce986bce95224702b35278a411",
+  "sourcePin": "913cb1bb9b7f08c3ff0d258b4420e53835b6a58e",
+  "features": [
+    "Toolbar loading is pending AND fetching, preserving background data without a loader.",
+    "Actual grid tooltip provider uses400ms mouse rest, significant-movement restart, tiny-movement preservation, shared0-delay warm phase and400ms closed reset; focus-visible chip-only immediate open; dismissal blocks movement until re-entry.",
+    "View tabs use roving focus, wrapping horizontal direction-aware arrows/Home/End and manual activation; external selection changes retain current focus inside the real tab list.",
+    "Filter ArrowUp opens last including clear action; prefix typeahead preserves Source case normalization/repeated-character cycle/500ms expiry and clears on close/focus leaving, including null relatedTarget.",
+    "Existing page QueryClient observes manifest with inherited60000/retry1 and currentUser with300000/retryfalse only after manifest; Native SSR snapshots seed these observers; original React metadata fixture bridge is unchanged.",
+    "Panel reschedule pending survives same-entry scheduledAt refresh and resets on new entry key; callbacks from old entry context do not clear new pending.",
+    "Action failures notify without clearing or replacing detail query errors; Source falsy causes retain title with null description; truthy non-Error uses caller-owned generic Source fallback.",
+    "Last edited distinguishes pending details from settled unavailable details; Native skeleton CSS grants0 Source CSS fidelity."
+  ],
+  "tdd": {
+    "startup": "initial missing generated Kit tsconfig:0 collection; unchanged Kit sync0 repaired infrastructure",
+    "first31": {
+      "registered": 31,
+      "actualValueRed": 24,
+      "baselinePass": 7
+    },
+    "sourceNullableError40": {
+      "registered": 40,
+      "actualValueRed": 8,
+      "baselinePass": 32
+    },
+    "reviewScope44": {
+      "registered": 44,
+      "actualValueRed": 3,
+      "baselinePass": 41
+    },
+    "manualTab47": {
+      "registered": 47,
+      "actualValueRed": 2,
+      "baselinePass": 45
+    },
+    "final47": "47PASS at3304",
+    "oldWholeSelection50": "original18Source pure+32Native callbacks unchanged,50PASS; final successor rerun queued",
+    "originalCalendarSource49": "0 new executions; public893 previous officialNewYork49 retained",
+    "newBrowser": "0 executed; no browser launch/fallback/probe in this candidate",
+    "wholeUiCausalCredit": 0
+  },
+  "receipts": [
+    {
+      "path": "/tmp/calendar-presentation-private-action-error-after-fix.log",
+      "bytes": 228,
+      "sha256": "163e1c0c0e750ea8d5f0abfa931e58d28ff1e9c5a133311b72e7ce4d18d39a4b",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-action-error-first-red.log",
+      "bytes": 3206,
+      "sha256": "84261c74e39add0443bf9ff71a64a60f41636063003e48720aa22799c0c3ccdf",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-after-all-fixes.log",
+      "bytes": 228,
+      "sha256": "d0cdaedbcde2c6f079ee6f8f45b990e995551b021b342fb8b73d56ddca6e9d02",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-after-presentation-fix.log",
+      "bytes": 1673,
+      "sha256": "84771d534f88ab60a904a3822584e5b46b7df7e8022ee051ecdf172e1f590910",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-corrected-first-red.log",
+      "bytes": 10812,
+      "sha256": "55245a9111b7a27de96e743e97157b85020868abff6cf593c780e002b0342fc3",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-existing50.log",
+      "bytes": 232,
+      "sha256": "c193836f41eea083d456a0abc32f6de3cab4dce8742d5c427c8280f6eed28689",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-final-check.log",
+      "bytes": 154,
+      "sha256": "9a165ff50847c2d80c6bf9b0b6466230cbec90ee061d6da1284819efb19cd668",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-first-check.log",
+      "bytes": 2949,
+      "sha256": "9ab093c2e66458e287d6899a16e683acea8918d0553f0f5c6581aa1d1cc7c154",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-first-red.log",
+      "bytes": 1541,
+      "sha256": "808128de737b89292408aacad803bc959f7c91660e335d364bbed3cbb621661a",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-source-guard.log",
+      "bytes": 189,
+      "sha256": "f55e5f3fd56b2a6193d02bdb1a5ccbad218cf2d97d74ec605ee0da385a59036f",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-static-findings-after-fix.log",
+      "bytes": 228,
+      "sha256": "77ffcd36c6adcda3d1aa80bfec4036a4996afb178764019dd8b48a3b1a329444",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-static-findings-first-red.log",
+      "bytes": 1872,
+      "sha256": "9268eda54e0517182fba5f6a6fb9ab162c64a2daf03108877c192c31f84e4a32",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-successor-check.log",
+      "bytes": 154,
+      "sha256": "9a165ff50847c2d80c6bf9b0b6466230cbec90ee061d6da1284819efb19cd668",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-successor-existing50.log",
+      "bytes": 232,
+      "sha256": "7af0a0e4719cdca1a3c091467262d16f663b1f0f84d932db83bfc907ff527051",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-successor44.log",
+      "bytes": 229,
+      "sha256": "da6d98012bb795fe3b38c80d628cdd860a9b9feaf117808a833348737842f4e1",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-sync.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-tab-focus-after-fix.log",
+      "bytes": 229,
+      "sha256": "1d533fc99b16fd76a19b5a650cd4ea575200854524f35d476f139e8ec6eb520f",
+      "private": true
+    },
+    {
+      "path": "/tmp/calendar-presentation-private-tab-focus-first-red.log",
+      "bytes": 1298,
+      "sha256": "0b5d706fae6030628b6285d0da194910e4248dc40d4b63e4515558e6808944a7",
+      "private": true
+    }
+  ],
+  "held": {
+    "localeAndDescriptorGraph": "not imported/adopted; caller fallback integration with separate private descriptor candidate pending",
+    "canonicalMutationKey": "not imported/adopted",
+    "extendedCompactPicker": "not imported/adopted; same CalendarMonth file will need concrete Root integration",
+    "safePolygonGeometry": "excluded,0 original vendor geometry credit; prior Native hover bridge retained",
+    "sourceCSS": "0 original compiled CSS-body fidelity",
+    "broaderSourceScheduler": "whole28/plugin/media/transfer/lock/policy/hook/sibling producer fences remain outside this preparation",
+    "actualHTTP": "0 protected/AuthHTTP/storage/nativeURL probe credit"
+  },
+  "finiteAdoptionProposal": {
+    "production": "existing Calendar frontend/page read/mutation clients only; same suppliedQueryClient; existing published lifecycle stillonlywriter; no SQL/DDL/cache/databaseowner/globalSSR activation/provider/permission/deps/lock/origin changes",
+    "tests": "new private controlledNode47 can be appended as supplemental selection only after Root qualification; old normal13/secured9/Source49/Native24 callbacks, configs, gates and prefixes remain exact",
+    "required": "Root exactpacket qualification, conflict-aware descriptor/picker/key/catalog integration, official sandboxed1243/full UI/gates/fresh independent+configuredreview; author regular exacthead merge only after explicit Rootapproval"
+  }
+}
