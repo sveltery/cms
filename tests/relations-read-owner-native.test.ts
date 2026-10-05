@@ -21,8 +21,8 @@ async function setup(mode:StorageMode){
   for(const slug of ['post','page']){await registry.createCollection({slug,label:slug});await registry.createField(slug,{slug:'title',label:'Title',type:'string'});}
   const relations=new RelationRepository(host.database);
   const relation=await relations.create({slug:'read_owner_refs',parentCollection:'post',childCollection:'page',parentLabel:'Posts',childLabel:'Pages'});
-  await registry.createField('post',{slug:'related',label:'Related',type:'reference',validation:{relation:relation.slug}});
-  await registry.createField('page',{slug:'backlinks',label:'Backlinks',type:'reference',validation:{relation:relation.slug,relationSide:'child'}});
+  await registry.createField('post',{slug:'related',label:'Related',type:'reference',validation:{relation:relation.slug,relationSide:'parent',targetCollection:'page'}});
+  await registry.createField('page',{slug:'backlinks',label:'Backlinks',type:'reference',validation:{relation:relation.slug,relationSide:'child',targetCollection:'post'}});
   const principal=servicePrincipal({id:'ordinary-original-unit-admin',role:Role.ADMIN});
   const owner=lifecycleService(host.database,principal,{after(){}});
   const ordinary=ordinaryContentService(host.database,principal,{after(){}});
@@ -51,7 +51,7 @@ for(const mode of ['Node','raw D1','scoped D1'] as const satisfies readonly Stor
  test(`${mode} comparison uses real live edges and merges a staged subset without rewriting history`,async()=>{
   const {host,registry,relation,owner,a,b,published}=await setup(mode);
   try{
-   await registry.createField('post',{slug:'featured',label:'Featured',type:'reference',validation:{relation:relation.slug}});
+   await registry.createField('post',{slug:'featured',label:'Featured',type:'reference',validation:{relation:relation.slug,relationSide:'parent',targetCollection:'page'}});
    const updated=await owner.updateContent({type:'post',id:published.id,locale:'en',data:{title:'Retitled'},references:{related:[b.id]},expected:{version:published.version,updatedAt:published.updatedAt}});
    const revisions=new RevisionRepository(host.database.db as any);
    const before=await revisions.findByEntry('post',published.id);
