@@ -13,7 +13,7 @@ async function fixture(target:'Node'|'D1') {
   await registry.createField('posts',{slug:'title',label:'Title',type:'string'});
   const service=lifecycleService(storage.database,principal,{after:()=>{}});
   const item=await service.createContent({type:'posts',slug:'launch',data:{title:'Launch'}});
-  return {service,item};
+  return {service,item,registry};
 }
 for(const target of ['Node','D1'] as const)describe(`${target} actual calendar lifecycle actions`,()=>{
   it('schedules and removes a draft schedule through the sole repository',async()=>{
@@ -41,5 +41,23 @@ for(const target of ['Node','D1'] as const)describe(`${target} actual calendar l
     const {service,item}=await fixture(target);expect(typeof service.schedule).toBe('function');
     await expect(service.schedule({type:'posts',id:item.id,locale:'en',scheduledAt:'2020-10-20T09:00:00.000Z'})).rejects.toMatchObject({code:'VALIDATION_ERROR'});
     expect((await service.getContent({type:'posts',id:item.id,locale:'en'})).status).toBe('draft');
+  });
+  it('rejects rescheduling a routable draft after its slug is cleared',async()=>{
+    const {service,item}=await fixture(target);
+    await service.schedule({type:'posts',id:item.id,locale:'en',scheduledAt:'2030-10-20T09:00:00.000Z'});
+    await service.updateContent({type:'posts',id:item.id,locale:'en',slug:null});
+    await expect(service.schedule({type:'posts',id:item.id,locale:'en',scheduledAt:'2030-10-21T09:00:00.000Z'})).rejects.toMatchObject({
+      code:'VALIDATION_ERROR',message:'Cannot publish routable content without a slug'
+    });
+    const stored=await service.getContent({type:'posts',id:item.id,locale:'en'});
+    expect(stored.slug).toBeNull();expect(stored.scheduledAt).toBe('2030-10-20T09:00:00.000Z');
+  });
+  it('allows a nonroutable draft to schedule without a slug',async()=>{
+    const {service,item,registry}=await fixture(target);
+    await registry.updateCollection('posts',{routable:false});
+    await service.updateContent({type:'posts',id:item.id,locale:'en',slug:null});
+    const scheduled=await service.schedule({type:'posts',id:item.id,locale:'en',scheduledAt:'2030-10-20T09:00:00.000Z'});
+    expect(scheduled.slug).toBeNull();expect(scheduled.status).toBe('scheduled');
+    expect(scheduled.scheduledAt).toBe('2030-10-20T09:00:00.000Z');
   });
 });
