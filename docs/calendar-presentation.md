@@ -1,5 +1,9 @@
 # Calendar presentation preparation
 
+At public fb151, unchanged normal validation starts services but the newly owned root-level Vitest family is also matched by the unchanged Node `tests/*.test.ts` command. It stops before callbacks with “Vitest failed to find the runner”; that host mismatch earns0assertion credit. The entire47 family is now nested at `tests/calendar-presentation-private/presentation.test.ts`, with only relative imports and its own Vitest selector adjusted. Callback bodies, assertions, clocks, mocks and datasets remain exact after those import substitutions. Its proper Vitest host registers47/47PASS. The original Node command and all old service tests remain unchanged.
+
+The full failed normal receipt retains1434 registered/1425pass/1fail/8cancelled and later phases unstarted. The eight pending-event-loop cancellations remain unresolved failures with an unverified cause; this runtime relocation does not qualify them or establish a complete normal pass. Exact successor normal/secured/Calendar browser gates and fresh final review remain required.
+
 This private candidate repairs the eight additional Calendar feature gaps found by a fresh whole-production Source audit at public PR112 head89340738750c688842f5716352f8d47f0189f03c. It remains isolated from the published branch and held locale/descriptor/key/picker producers. Root qualification is required before publication or adoption.
 
 - Toolbar loading is pending AND fetching, preserving background data without a loader.

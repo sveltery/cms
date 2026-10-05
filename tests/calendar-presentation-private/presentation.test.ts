@@ -2,12 +2,12 @@
 // Pure controlled clients/timers only: zero original Source callbacks or HTTP credit.
 import {afterEach,beforeEach,describe,expect,it,vi} from 'vitest';
 import {QueryClient,type QueryObserverOptions} from '@tanstack/react-query';
-import {calendarEditedState,calendarInitialLoading,calendarMenuOpenTarget,calendarTabTarget,calendarTabFocus,createCalendarHoverTiming,createCalendarTooltipGroup,createCalendarTypeahead} from '../src/lib/calendar/presentation.ts';
-import {runCalendarPanelAction,runCalendarReschedule} from '../src/lib/calendar/panel-actions.ts';
-import {createCalendarRangeOwner,type CalendarRangeOptions} from '../src/lib/calendar/range-owner.ts';
-import {observeCalendarMetadata} from '../src/lib/calendar/metadata-owner.ts';
-import type {CalendarItem} from '../src/lib/calendar/calendar.ts';
-import type {CalendarClient,CalendarManifest,CalendarUser} from '../src/lib/calendar/ui-types.ts';
+import {calendarEditedState,calendarInitialLoading,calendarMenuOpenTarget,calendarTabTarget,calendarTabFocus,createCalendarHoverTiming,createCalendarTooltipGroup,createCalendarTypeahead} from '../../src/lib/calendar/presentation.ts';
+import {runCalendarPanelAction,runCalendarReschedule} from '../../src/lib/calendar/panel-actions.ts';
+import {createCalendarRangeOwner,type CalendarRangeOptions} from '../../src/lib/calendar/range-owner.ts';
+import {observeCalendarMetadata} from '../../src/lib/calendar/metadata-owner.ts';
+import type {CalendarItem} from '../../src/lib/calendar/calendar.ts';
+import type {CalendarClient,CalendarManifest,CalendarUser} from '../../src/lib/calendar/ui-types.ts';
 
 beforeEach(()=>vi.useFakeTimers());afterEach(()=>{vi.clearAllTimers();vi.useRealTimers();});
 describe('Source pending presentation',()=>{
