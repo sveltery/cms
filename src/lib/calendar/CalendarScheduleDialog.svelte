@@ -5,6 +5,7 @@
   // pin913cb1bb; MIT notices/emdash-MIT.txt. Native browser dialog transport.
   import { untrack } from 'svelte';
   import { calendarMutationError, type CalendarInlineError } from './mutation-error.ts';
+  import DialogError from './CalendarDialogError.svelte';
   import Fields from '../ui/PublishingDateTimeFields.svelte';
   import { publishingInstantToLocalFields,publishingFieldsMatchInstant,serializeFuturePublishingDateTime } from '../ui/publishing-datetime.ts';
   let { open,entryKey,scheduledAt=null,isLive=false,isPending=false,locale='en',onOpenChange,onSchedule }: {
@@ -41,10 +42,10 @@
   <p id="calendar-schedule-description">{description}</p>
   <form novalidate onsubmit={event=>{event.preventDefault();event.stopPropagation();void submit();}}>
     <Fields {date} {time} {locale} disabled={pending} restrictToFuture dateAriaLabel={t("Schedule date")} onDateChange={value=>{date=value;clearError();}} onTimeChange={value=>{time=value;clearError();}}/>
-    {#if validationError||mutationError}<p role="alert">{validationError??(typeof mutationError==='string'?mutationError:mutationError?t(mutationError.message):undefined)}</p>{/if}
+    <DialogError message={validationError??(typeof mutationError==='string'?mutationError:mutationError?t(mutationError.message):undefined)}/>
     <footer><button type="button" onclick={()=>changeOpen(false)}>{t("Cancel")}</button><button type="submit" disabled={pending||(isEditing&&publishingFieldsMatchInstant(scheduledAt,date,time))}>{submitLabel}</button></footer>
   </form>
 </dialog>
 <style>
-  dialog{box-sizing:border-box;border:1px solid var(--border,#ddd);border-radius:.75rem;background:var(--card,#fff);color:inherit;padding:1.5rem;width:29rem;max-width:calc(100vw - 2rem);max-height:90dvh;overflow:auto;box-shadow:0 1rem 4rem #0003;}dialog::backdrop{background:#0006;}.heading,footer{display:flex;justify-content:space-between;align-items:center;gap:1rem;}h2{font-size:1.25rem;margin:0;}p{font-size:.875rem;}form{display:grid;gap:1rem;}button{font:inherit;padding:.5rem .75rem;border:1px solid var(--border,#ccc);border-radius:.35rem;background:var(--background,#fff);color:inherit;cursor:pointer;}button:disabled{opacity:.5;cursor:default;}button:focus-visible{outline:2px solid var(--ring,#165ccc);outline-offset:2px;}[role="alert"]{color:var(--destructive,#b32929);}
+  dialog{box-sizing:border-box;border:1px solid var(--border,#ddd);border-radius:.75rem;background:var(--card,#fff);color:inherit;padding:1.5rem;width:29rem;max-width:calc(100vw - 2rem);max-height:90dvh;overflow:auto;box-shadow:0 1rem 4rem #0003;}dialog::backdrop{background:#0006;}.heading,footer{display:flex;justify-content:space-between;align-items:center;gap:1rem;}h2{font-size:1.25rem;margin:0;}p{font-size:.875rem;}form{display:grid;gap:1rem;}button{font:inherit;padding:.5rem .75rem;border:1px solid var(--border,#ccc);border-radius:.35rem;background:var(--background,#fff);color:inherit;cursor:pointer;}button:disabled{opacity:.5;cursor:default;}button:focus-visible{outline:2px solid var(--ring,#165ccc);outline-offset:2px;}
 </style>
