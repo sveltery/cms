@@ -26,7 +26,7 @@ function nativeProps(props:MediaDetailPanelProps,queryClient:ReturnType<typeof u
   queryClient,requestExitRef:props.requestExitRef?new MediaPanelRefTransport(props.requestExitRef):undefined,restoreFocusTargetRef:props.restoreFocusTargetRef?new MediaPanelRefTransport(props.restoreFocusTargetRef):undefined,
   onnavigate:router?((entry:{collection:string;contentId:string;locale:string|null})=>{void router.navigate({to:'/content/$collection/$id',params:{collection:entry.collection,id:entry.contentId},search:{locale:entry.locale??undefined}});}):undefined,
   onclose:props.onClose,onexit:props.onExit,onclosed:props.onClosed,ondeleted:props.onDeleted,
-  onupdated:(item:MediaItem)=>{props.onItemRefreshed?.(item);props.onUpdated?.();},
+  onupdated:props.onItemRefreshed,onchanged:props.onUpdated,
   oncreated:props.onCroppedCopyCreated,onunavailable:props.onUnavailable};
 }
 function MountedPanel(props:MediaDetailPanelProps) {

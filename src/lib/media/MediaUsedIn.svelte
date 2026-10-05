@@ -44,6 +44,7 @@
  const statusMessage=$derived(denied?'Usage details unavailable':usage?.isFetching?(pages.length?'Updating usage':'Loading usage'):pages.length?(coverageMessage||'Usage loaded'):'');
  const refreshError=$derived(usage?.isError&&pages.length>0&&!usage.isFetchNextPageError);
  const settingLabels={logo:'Logo',favicon:'Favicon','seo.defaultOgImage':'Default Social Image'};
+ const settingsDescription=$derived(new Intl.ListFormat(locale,{style:'short',type:'conjunction'}).format(settings.map(setting=>settingLabels[setting.setting])));
  let tooltip=$state(false);
  function metadata(entry:MediaUsageEntryDetail){
   const label=manifest?.collections[entry.collection]?.label;
@@ -62,7 +63,7 @@
   {#if refreshError}<div role="alert">Couldn’t load usage.<button onclick={()=>void observer?.refetch()}>Try again</button></div>{/if}
   {#if entries.length||settings.length}
    <ul class="p-0.5 usage-list">
-    {#if settings.length}<li><div class="usage-row"><span><span>Site settings</span><span class="usage-meta" title={settings.map(setting=>settingLabels[setting.setting]).join(', ')}>{settings.map(setting=>settingLabels[setting.setting]).join(', ')}</span></span></div></li>{/if}
+    {#if settings.length}<li><div class="usage-row"><span><span>Site Settings</span><span class="usage-meta" title={settingsDescription}>{settingsDescription}</span></span></div></li>{/if}
     {#each entries as entry (`${entry.collection}:${entry.contentId}`)}{@const meta=metadata(entry)}
      <li>{#snippet contents()}<span class="usage-copy"><span class="usage-title"><span dir={meta.titleDir}>{meta.title}</span>{#if entry.deletedAt}<span>In trash</span>{/if}</span><span class="usage-meta"><span dir={meta.labelDir}>{meta.label}</span><span aria-hidden="true"> · </span><span dir={meta.locationDir} translate={meta.locationDir==='ltr'?'no':undefined} title={meta.location}>{meta.location}</span>{#if meta.showLocale}<span aria-hidden="true"> · </span><span dir="ltr" translate="no">{entry.locale}</span>{/if}</span></span>{#if !entry.deletedAt}<span class="open-label">Open<svg class="rtl:-scale-x-100" aria-hidden="true" viewBox="0 0 16 16"><path d="M4 12 12 4M4 4h8v8" /></svg></span>{/if}{/snippet}
       {#if entry.deletedAt}<div class="usage-row">{@render contents()}</div>{:else}<a class="usage-row" href={`/content/${encodeURIComponent(entry.collection)}/${encodeURIComponent(entry.contentId)}${entry.locale?`?locale=${encodeURIComponent(entry.locale)}`:''}`} aria-disabled={navigationBlocked||undefined} onclick={event=>click(event,entry)} onauxclick={event=>{if(navigationBlocked)event.preventDefault();}} onkeydown={event=>{if(navigationBlocked&&event.key==='Enter')event.preventDefault();}}>{@render contents()}</a>{/if}
