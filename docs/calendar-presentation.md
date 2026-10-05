@@ -1,0 +1,22 @@
+# Calendar presentation preparation
+
+This private candidate repairs the eight additional Calendar feature gaps found by a fresh whole-production Source audit at public PR112 head89340738750c688842f5716352f8d47f0189f03c. It remains isolated from the published branch and held locale/descriptor/key/picker producers. Root qualification is required before publication or adoption.
+
+- Toolbar loading is pending AND fetching, preserving background data without a loader.
+- Actual grid tooltip provider uses400ms mouse rest, significant-movement restart, tiny-movement preservation, shared0-delay warm phase and400ms closed reset; focus-visible chip-only immediate open; dismissal blocks movement until re-entry.
+- View tabs use roving focus, wrapping horizontal direction-aware arrows/Home/End and manual activation; external selection changes retain current focus inside the real tab list.
+- Filter ArrowUp opens last including clear action; prefix typeahead preserves Source case normalization/repeated-character cycle/500ms expiry and clears on close/focus leaving, including null relatedTarget.
+- Existing page QueryClient observes manifest with inherited60000/retry1 and currentUser with300000/retryfalse only after manifest; Native SSR snapshots seed these observers; original React metadata fixture bridge is unchanged.
+- Panel reschedule pending survives same-entry scheduledAt refresh and resets on new entry key; callbacks from old entry context do not clear new pending.
+- Action failures notify without clearing or replacing detail query errors; Source falsy causes retain title with null description; truthy non-Error uses caller-owned generic Source fallback.
+- Last edited distinguishes pending details from settled unavailable details; Native skeleton CSS grants0 Source CSS fidelity.
+
+Controlled Native TDD:31registered initially24reached value failures and7baseline passes; nullable-error extension40registered8new value failures/32passes; review controls44registered3new value failures/41passes; manual focus extension47registered2new value failures/45passes. Final47pass. Initial generated Kit tsconfig stop collected0; unchanged sync repaired infrastructure. Existing18Source pure+32Native selection remains50pass with original callbacks unchanged. These controls earn0 original Calendar49 callback, browser, geometry, AuthHTTP/storage/NativeURL or acceptance credit. The Source86 ledger remains byte exact.
+
+The original production month provider400ms rest delay supersedes the earlier public audit's600ms-default inference; retain every historical public result without treating it as original month timing coverage. Current public PR893 remains untouched. The shared Source vendor safe-polygon close algorithm and exact CSS body are excluded; the existing Native CSS hover bridge remains an explicit adaptation.
+
+The metadata wrapper owns observers outside the original React fixture bridge, which already forwards controlled manifest/current-user results. It seeds actual Native SSR snapshots but never activates a global SSR locale or creates another QueryClient/cache. All mutations still use the existing published lifecycle and writer. No new SQL/DDL/provider/right, protected HTTP/session/token/credential/race probe, dependencies/lock, bootstrap or CI gate was added.
+
+Whole Source production and actual frozen Kumo2.6.0 bundle identities, changed blobs and every private raw host/TDD/check receipt are sealed in the preparation packet. Raw diagnostics remain private. License notices are retained in [Kumo-MIT](../notices/calendar-presentation/Kumo-MIT.txt), [Base-UI-MIT](../notices/calendar-presentation/Base-UI-MIT.txt) and the existing [EmDash MIT](../notices/emdash-MIT.txt). Paired machine evidence: [calendar-presentation-source.json](calendar-presentation-source.json).
+
+Remaining integration requires the separate exact-source locale catalogs, descriptor/endonym/RTL/vendor-label owner, canonical mutation-key candidate, and compact picker candidate. Descriptor-aware generic error notices must bind the supplied fallback after qualification. Reconcile overlapping CalendarPage/Entry/Filters/Month/Panel and nullable notice paths explicitly. Official Chromium1243 verification/full gates, final independent/configured review, feature acceptance and explicit manager approval before author regular merge remain pending. This preparation does not close broader Source scheduler/lock/policy/hook/publication sibling dependencies.

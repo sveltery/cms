@@ -2,7 +2,7 @@
 import type { CalendarDisplay, CalendarItem } from './calendar.ts';
 import type { QueryClient } from '@tanstack/react-query';
 export type CalendarSelectHandler = (item: CalendarItem, element: HTMLElement) => void;
-export interface CalendarNotice { title:string;description:string;type?:'error' }
+export interface CalendarNotice { title:string;description:string|null;type?:'error' }
 export interface CalendarUser { id: string; email: string; role: number }
 export interface CalendarContent {
   id: string; type: string; locale: string; authorId?: string | null; _rev?: string;
