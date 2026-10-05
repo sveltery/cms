@@ -39,10 +39,10 @@
   <p id="calendar-schedule-description">{description}</p>
   <form novalidate onsubmit={event=>{event.preventDefault();event.stopPropagation();void submit();}}>
     <Fields {date} {time} {locale} disabled={pending} restrictToFuture dateAriaLabel="Schedule date" onDateChange={value=>{date=value;clearError();}} onTimeChange={value=>{time=value;clearError();}}/>
-    {#if validationError||mutationError}<DialogError message={validationError??mutationError}/>{/if}
+    <DialogError message={validationError??mutationError}/>
     <footer><button type="button" onclick={()=>changeOpen(false)}>Cancel</button><button type="submit" disabled={pending||(isEditing&&publishingFieldsMatchInstant(scheduledAt,date,time))}>{pending?'Saving…':submitLabel}</button></footer>
   </form>
 </dialog>
 <style>
-  dialog{box-sizing:border-box;border:1px solid var(--border,#ddd);border-radius:.75rem;background:var(--card,#fff);color:inherit;padding:1.5rem;width:29rem;max-width:calc(100vw - 2rem);max-height:90dvh;overflow:auto;box-shadow:0 1rem 4rem #0003;}dialog::backdrop{background:#0006;}.heading,footer{display:flex;justify-content:space-between;align-items:center;gap:1rem;}h2{font-size:1.25rem;margin:0;}p{font-size:.875rem;}form{display:grid;gap:1rem;}button{font:inherit;padding:.5rem .75rem;border:1px solid var(--border,#ccc);border-radius:.35rem;background:var(--background,#fff);color:inherit;cursor:pointer;}button:disabled{opacity:.5;cursor:default;}button:focus-visible{outline:2px solid var(--ring,#165ccc);outline-offset:2px;}[role="alert"]{color:var(--destructive,#b32929);}
+  dialog{box-sizing:border-box;border:1px solid var(--border,#ddd);border-radius:.75rem;background:var(--card,#fff);color:inherit;padding:1.5rem;width:29rem;max-width:calc(100vw - 2rem);max-height:90dvh;overflow:auto;box-shadow:0 1rem 4rem #0003;}dialog::backdrop{background:#0006;}.heading,footer{display:flex;justify-content:space-between;align-items:center;gap:1rem;}h2{font-size:1.25rem;margin:0;}p{font-size:.875rem;}form{display:grid;gap:1rem;}button{font:inherit;padding:.5rem .75rem;border:1px solid var(--border,#ccc);border-radius:.35rem;background:var(--background,#fff);color:inherit;cursor:pointer;}button:disabled{opacity:.5;cursor:default;}button:focus-visible{outline:2px solid var(--ring,#165ccc);outline-offset:2px;}
 </style>
