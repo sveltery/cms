@@ -1,0 +1,17 @@
+import { expect, it, afterEach } from 'vitest';
+import { tick } from 'svelte';
+import { CellSelection } from '@tiptap/pm/tables';
+import { renderInDraftForm } from '../helpers/rich-editor/native-authoring-dom';
+let release: (() => Promise<void>) | undefined;
+afterEach(async () => { await release?.(); });
+it('focuses the item reached by mouse movement as the pinned BaseUI menu does', async () => {
+  const result = await renderInDraftForm(); release = result.cleanup;
+  result.editor.commands.insertTable({ rows: 2, cols: 2, withHeaderRow: false });
+  let cell = -1; result.editor.state.doc.descendants((node, pos) => { if (cell < 0 && node.type.name === 'tableCell') cell = pos; });
+  result.editor.view.dispatch(result.editor.state.tr.setSelection(CellSelection.create(result.editor.state.doc, cell)));
+  await tick(); result.host.querySelector<HTMLButtonElement>('[data-emdash-table-trigger]')!.click(); await tick();
+  const target = [...result.host.querySelectorAll<HTMLButtonElement>('[role="menu"] button')].find(button => button.textContent === 'Delete row')!;
+  expect(document.activeElement?.textContent).toBe('Select row');
+  target.dispatchEvent(new MouseEvent('mousemove', { bubbles: true, clientX: 20, clientY: 20 })); await tick();
+  expect(document.activeElement).toBe(target);
+});
