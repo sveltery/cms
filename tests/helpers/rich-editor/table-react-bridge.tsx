@@ -19,11 +19,11 @@ function NativeTableControl({ state }: { state: ComponentProps<typeof Host>['sta
 }
 export function TableSizePicker(props: { onInsert: (rows: number, columns: number, withHeaderRow: boolean) => void; onCancel: () => void }) {
   const { i18n } = useLingui();
-  const translate = React.useCallback<Translate>(descriptor => i18n._(descriptor), [i18n]);
+  const translate = React.useCallback<Translate>(descriptor => typeof descriptor === 'string' ? i18n._(descriptor) : i18n._(descriptor), [i18n]);
   return <NativeTableControl state={{ kind: 'picker', ...props, translate }} />;
 }
 export function TableSelectionAnnouncer(props: { editor: Editor; onChange: (label: string) => void }) {
   const { i18n } = useLingui();
-  const translate = React.useCallback<Translate>(descriptor => i18n._(descriptor), [i18n]);
+  const translate = React.useCallback<Translate>(descriptor => typeof descriptor === 'string' ? i18n._(descriptor) : i18n._(descriptor), [i18n]);
   return <NativeTableControl state={{ kind: 'announcer', ...props, translate }} />;
 }
