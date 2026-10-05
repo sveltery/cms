@@ -21,7 +21,7 @@ export const embedBlockNodeView: NodeViewRenderer = ({ node, editor, getPos }) =
       editor.view.focus();
       editor.chain().setNodeSelection(position).deleteSelection().run();
     });
-  });
+  }, getPos);
   const instance = flushSync(() => mount(EmbedBlockEditor, { target: dom, props: { state } }));
   return { dom,
     update(next) { if (next.type !== current.type) return false; current = next; state.node = next; state.editable = editor.isEditable; return true; },
