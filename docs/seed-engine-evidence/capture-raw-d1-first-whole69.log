@@ -1,0 +1,1256 @@
+
+ RUN  v4.1.10 /workspace/cms-full-seed-engine
+
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts (26 tests | 24 failed) 2577ms
+     × treats a missing activation table as inactive without aborting the transaction 79ms
+     × activates an empty installation explicitly and is then an idempotent no-op 75ms
+     × activates durable capture for collections created after global activation 69ms
+     × activates durable capture for seed collections created after global activation 64ms
+     × rejects seed writes until field metadata and capture publication are complete 70ms
+     × activates durable capture when registering an orphan after global activation 67ms
+     × rejects orphan writes until collection publication is active and resumes registration 63ms
+     × resumes collection capture after the content table commits before registration 95ms
+     × resumes collection publication after verified capture reaches ready 61ms
+     × resumes collection capture after registration commits before finalization 65ms
+     × resumes seed capture and restores missing field metadata before finalization 60ms
+     × rejects a conflicting seed definition while capture installation is incomplete 63ms
+     × does not resume a cursorless collection lifecycle as seed creation 83ms
+     × does not resume a fingerprinted seed lifecycle as ordinary collection creation 73ms
+     × distinguishes an omitted seed default from an explicit null default 63ms
+     × resumes orphan registration after publication commits before finalization 60ms
+     × activates one bounded collection per call and captures writes only after each exact lifecycle 112ms
+     × conservatively invalidates trusted coverage before activating capture 94ms
+     × does not steal a live activation lease and takes over an expired lease 58ms
+     × fails closed with durable diagnostics when trigger installation cannot finish 96ms
+     × rejects an excessive owned trigger set before changing trigger DDL 89ms
+     × refuses a runtime generation mismatch without changing activation state 58ms
+     × cannot finalize after losing its exact lease during collection activation 80ms
+     × cannot downgrade an active collection after its activation lease is taken over 79ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts (16 tests | 16 failed) 4911ms
+     × builds a columns snapshot from stored content fields 1009ms
+     × returns a typed not-found result for missing content 316ms
+     × keeps JSON-looking stored display strings as strings 294ms
+     × builds columns and draft overlay snapshots for a pending draft revision 273ms
+     × merges draft overlays over columns when the draft changes unrelated fields 281ms
+     × preserves column display fields when a draft changes only media 256ms
+     × keeps JSON-looking revision display strings as strings 268ms
+     × honors draft nulls that clear media fields 226ms
+     × keeps block media in independent live and draft projections 244ms
+     × fails when draft_revision_id belongs to another content row 238ms
+     × fails with a columns snapshot when draft_revision_id is missing 247ms
+     × fails when draft revision data is invalid JSON 251ms
+     × adds stable source schema versions and fingerprints to snapshots 240ms
+     × changes fingerprints when V1-visible source metadata changes 260ms
+     × changes fingerprints when extraction-relevant values or fields change 248ms
+     × keeps fingerprints stable for non-extraction schema metadata changes 258ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts (7 tests | 5 failed) 1715ms
+     × filters unsupported repeater subfields and excludes repeaters without images 162ms
+     × fails closed on malformed repeater validation 124ms
+     × discovers every retained block version and fingerprints contract changes 100ms
+     × fails closed when a configured block type cannot be resolved 90ms
+     × rejects supported fields with invalid slugs before they can become column refs 96ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts (11 tests | 11 failed) 2715ms
+     × refreshes a columns source and replaces its current usage 909ms
+     × does not create another generation when the full projection is unchanged 175ms
+     × refreshes columns and draft overlay sources when a draft exists 178ms
+     × deletes a stale draft overlay source after a successful columns-only refresh 158ms
+     × marks coverage stale instead of clobbering a newer source generation 167ms
+     × retries a replace generation conflict before marking coverage stale 164ms
+     × retries a draft overlay delete after a concurrent source change 191ms
+     × deletes every source for a content item 190ms
+     × removes the old projection when its collection registry row disappears 213ms
+     × marks draft snapshot failures without replacing current usage 194ms
+     × marks collection coverage stale while preserving existing status metadata 174ms
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts (9 tests | 9 failed) 1748ms
+     × coalesces insert, update, and delete into one newest pending job 834ms
+     × rejects writes unless the exact registry and lifecycle identity is active 132ms
+     × rejects a status identity mismatch while the registry identity remains current 110ms
+     × is behaviorally idempotent when installed repeatedly 104ms
+     × replaces stale triggers from an interrupted earlier collection identity 110ms
+     × repairs a same-named disabled or incorrect trigger while fenced 110ms
+     × rolls back every row, job, and epoch when one row cannot be captured 119ms
+     × removes the capture boundary explicitly 127ms
+     × refuses rollback after capture is active and leaves writes protected 102ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 65 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > treats a missing activation table as inactive without aborting the transaction
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ DropTableBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/schema/drop-table-builder.js:46:37
+ ❯ DropTableBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/schema/drop-table-builder.js:49:55
+ ❯ DropTableBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/schema/drop-table-builder.js:52:54
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:48:67
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates an empty installation explicitly and is then an idempotent no-op
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ claimActivation src/lib/server/seed/upstream/media/usage/activation.ts:478:37
+ ❯ advanceMediaUsageActivation src/lib/server/seed/upstream/media/usage/activation.ts:331:22
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:78:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates durable capture for collections created after global activation
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ claimActivation src/lib/server/seed/upstream/media/usage/activation.ts:478:37
+ ❯ advanceMediaUsageActivation src/lib/server/seed/upstream/media/usage/activation.ts:331:22
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:99:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates durable capture for seed collections created after global activation
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ claimActivation src/lib/server/seed/upstream/media/usage/activation.ts:478:37
+ ❯ advanceMediaUsageActivation src/lib/server/seed/upstream/media/usage/activation.ts:331:22
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:120:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects seed writes until field metadata and capture publication are complete
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ claimActivation src/lib/server/seed/upstream/media/usage/activation.ts:478:37
+ ❯ advanceMediaUsageActivation src/lib/server/seed/upstream/media/usage/activation.ts:331:22
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:143:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates durable capture when registering an orphan after global activation
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ claimActivation src/lib/server/seed/upstream/media/usage/activation.ts:478:37
+ ❯ advanceMediaUsageActivation src/lib/server/seed/upstream/media/usage/activation.ts:331:22
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:191:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects orphan writes until collection publication is active and resumes registration
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ claimActivation src/lib/server/seed/upstream/media/usage/activation.ts:478:37
+ ❯ advanceMediaUsageActivation src/lib/server/seed/upstream/media/usage/activation.ts:331:22
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:212:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes collection capture after the content table commits before registration
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ DeleteQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/delete-query-builder.js:441:37
+ ❯ DeleteQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/delete-query-builder.js:444:55
+ ❯ DeleteQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/delete-query-builder.js:447:36
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:263:83
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes collection publication after verified capture reaches ready
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ claimActivation src/lib/server/seed/upstream/media/usage/activation.ts:478:37
+ ❯ advanceMediaUsageActivation src/lib/server/seed/upstream/media/usage/activation.ts:331:22
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:287:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes collection capture after registration commits before finalization
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ claimActivation src/lib/server/seed/upstream/media/usage/activation.ts:478:37
+ ❯ advanceMediaUsageActivation src/lib/server/seed/upstream/media/usage/activation.ts:331:22
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:306:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes seed capture and restores missing field metadata before finalization
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ claimActivation src/lib/server/seed/upstream/media/usage/activation.ts:478:37
+ ❯ advanceMediaUsageActivation src/lib/server/seed/upstream/media/usage/activation.ts:331:22
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:324:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects a conflicting seed definition while capture installation is incomplete
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ claimActivation src/lib/server/seed/upstream/media/usage/activation.ts:478:37
+ ❯ advanceMediaUsageActivation src/lib/server/seed/upstream/media/usage/activation.ts:331:22
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:356:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > does not resume a cursorless collection lifecycle as seed creation
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ claimActivation src/lib/server/seed/upstream/media/usage/activation.ts:478:37
+ ❯ advanceMediaUsageActivation src/lib/server/seed/upstream/media/usage/activation.ts:331:22
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:385:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > does not resume a fingerprinted seed lifecycle as ordinary collection creation
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ claimActivation src/lib/server/seed/upstream/media/usage/activation.ts:478:37
+ ❯ advanceMediaUsageActivation src/lib/server/seed/upstream/media/usage/activation.ts:331:22
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:406:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > distinguishes an omitted seed default from an explicit null default
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ claimActivation src/lib/server/seed/upstream/media/usage/activation.ts:478:37
+ ❯ advanceMediaUsageActivation src/lib/server/seed/upstream/media/usage/activation.ts:331:22
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:441:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > resumes orphan registration after publication commits before finalization
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ claimActivation src/lib/server/seed/upstream/media/usage/activation.ts:478:37
+ ❯ advanceMediaUsageActivation src/lib/server/seed/upstream/media/usage/activation.ts:331:22
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:478:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > activates one bounded collection per call and captures writes only after each exact lifecycle
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ UpdateQueryBuilder.executeTakeFirst ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:467:37
+ ❯ claimActivation src/lib/server/seed/upstream/media/usage/activation.ts:478:37
+ ❯ advanceMediaUsageActivation src/lib/server/seed/upstream/media/usage/activation.ts:331:22
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:504:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > conservatively invalidates trusted coverage before activating capture
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:553:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > does not steal a live activation lease and takes over an expired lease
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:578:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > fails closed with durable diagnostics when trigger installation cannot finish
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:606:49
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > rejects an excessive owned trigger set before changing trigger DDL
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:638:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > refuses a runtime generation mismatch without changing activation state
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:665:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > cannot finalize after losing its exact lease during collection activation
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:688:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts > media usage production activation [sqlite] > cannot downgrade an active collection after its activation lease is taken over
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-activation.test.ts:720:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > coalesces insert, update, and delete into one newest pending job
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:298:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:30:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > rejects writes unless the exact registry and lifecycle identity is active
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:298:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:110:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > rejects a status identity mismatch while the registry identity remains current
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:298:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:138:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > is behaviorally idempotent when installed repeatedly
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:298:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:151:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > replaces stale triggers from an interrupted earlier collection identity
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:298:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:173:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > repairs a same-named disabled or incorrect trigger while fenced
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:298:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:205:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > rolls back every row, job, and epoch when one row cannot be captured
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:298:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:227:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > removes the capture boundary explicitly
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:298:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:252:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts > media usage capture triggers [sqlite] > refuses rollback after capture is active and leaves writes protected
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ createActiveFixture parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:298:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-capture-trigger.test.ts:269:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > filters unsupported repeater subfields and excludes repeaters without images
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts:92:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[34/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > fails closed on malformed repeater validation
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ UpdateQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:448:37
+ ❯ UpdateQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:451:55
+ ❯ UpdateQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/update-query-builder.js:454:36
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts:125:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[35/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > discovers every retained block version and fingerprints contract changes
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > keeps block media in independent live and draft projections
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:39:29
+ ❯ src/lib/server/blocks/upstream/database/dialect-helpers.ts:83:89
+ ❯ executeAtomicBatchIfSupported src/lib/server/blocks/upstream/database/dialect-helpers.ts:83:44
+ ❯ executeAtomicStatements src/lib/server/blocks/upstream/schema/block-type-registry.ts:59:24
+ ❯ BlockTypeRegistry.createBlockType src/lib/server/blocks/upstream/schema/block-type-registry.ts:312:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[36/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > fails closed when a configured block type cannot be resolved
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts:189:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[37/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts > content media usage field discovery [sqlite] > rejects supported fields with invalid slugs before they can become column refs
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-fields.test.ts:217:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[38/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > refreshes a columns source and replaces its current usage
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:535:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:45:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[39/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > does not create another generation when the full projection is unchanged
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:535:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:117:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[40/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > refreshes columns and draft overlay sources when a draft exists
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:535:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:145:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[41/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > deletes a stale draft overlay source after a successful columns-only refresh
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:535:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:192:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[42/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > marks coverage stale instead of clobbering a newer source generation
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:535:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:224:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[43/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > retries a replace generation conflict before marking coverage stale
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:535:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:268:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[44/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > retries a draft overlay delete after a concurrent source change
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:535:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:306:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[45/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > deletes every source for a content item
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:535:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:348:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[46/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > removes the old projection when its collection registry row disappears
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:535:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:379:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[47/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > marks draft snapshot failures without replacing current usage
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:535:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:404:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[48/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts > content media usage refresh [sqlite] > marks collection coverage stale while preserving existing status metadata
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ InsertQueryBuilder.toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1094:37
+ ❯ InsertQueryBuilder.compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1097:55
+ ❯ InsertQueryBuilder.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/insert-query-builder.js:1100:36
+ ❯ MediaUsageRepository.upsertIndexStatus src/lib/server/blocks/upstream/database/repositories/media-usage.ts:2149:5
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-refresh.test.ts:456:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[49/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > builds a columns snapshot from stored content fields
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:721:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:49:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[50/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > returns a typed not-found result for missing content
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ loadContentRows src/lib/server/seed/upstream/media/usage/content-snapshots.ts:312:4
+ ❯ loadContentMediaUsageSnapshotsBatch src/lib/server/seed/upstream/media/usage/content-snapshots.ts:105:21
+ ❯ loadContentMediaUsageSnapshots src/lib/server/seed/upstream/media/usage/content-snapshots.ts:82:18
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:114:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[51/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > keeps JSON-looking stored display strings as strings
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:721:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:121:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[52/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > builds columns and draft overlay snapshots for a pending draft revision
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:721:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:135:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[53/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > merges draft overlays over columns when the draft changes unrelated fields
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:721:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:204:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[54/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > preserves column display fields when a draft changes only media
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:721:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:233:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[55/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > keeps JSON-looking revision display strings as strings
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:721:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:262:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[56/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > honors draft nulls that clear media fields
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:721:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:286:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[57/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > fails when draft_revision_id belongs to another content row
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:721:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:426:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[58/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > fails with a columns snapshot when draft_revision_id is missing
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:721:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:460:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[59/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > fails when draft revision data is invalid JSON
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:721:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:489:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[60/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > adds stable source schema versions and fingerprints to snapshots
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:721:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:519:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[61/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > changes fingerprints when V1-visible source metadata changes
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:721:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:567:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[62/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > changes fingerprints when extraction-relevant values or fields change
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:721:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:594:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[63/65]⎯
+
+ FAIL  parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts > content media usage snapshots [sqlite] > keeps fingerprints stable for non-extraction schema metadata changes
+Error: D1 taxonomy writes require atomic adaptation
+ ❯ Object.transformQuery src/lib/server/seed/namespace.ts:398:47
+    396|     const read = node.kind === 'SelectQueryNode' && !node.with || node…
+    397|       (/^[ \t\r\n\f]*SELECT\b/i.test(rawCode(node)) || readonlyCatalog…
+    398|     if (!read && !optionMutation(node)) throw new Error(unavailableD1W…
+       |                                               ^
+    399|     return d1Boundary.transformNode(node);
+    400|   },
+ ❯ DefaultQueryExecutor.transformQuery ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:17:44
+ ❯ RawBuilderImpl.#toOperationNode ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:54:25
+ ❯ RawBuilderImpl.#compile ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:57:59
+ ❯ RawBuilderImpl.execute ../cms-byline-content-lifecycle/node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/raw-builder/raw-builder.js:43:51
+ ❯ insertPost parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:721:4
+ ❯ parity/emdash/full-seed-engine/source/packages/core/tests/integration/database/media-usage-content-snapshots.test.ts:632:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[64/65]⎯
+
+
+ Test Files  5 failed (5)
+      Tests  65 failed | 4 passed (69)
+   Start at  21:58:07
+   Duration  17.68s (transform 873ms, setup 0ms, import 3.37s, tests 13.67s, environment 1ms)
+
