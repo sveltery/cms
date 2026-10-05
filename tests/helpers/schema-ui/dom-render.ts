@@ -15,6 +15,7 @@ export class Locator {
   element() { const element = this.query(); if (!element) throw new Error('Control absent from actual native DOM'); return element; }
   last() { return new Locator(() => this.elements().slice(-1)); }
   first() { return this.nth(0); }
+  all() { return this.elements().map((_, index) => this.nth(index)); }
   nth(index: number) { return new Locator(() => this.elements().slice(index, index + 1)); }
   getByText(text: string | RegExp, options?: { exact?: boolean }) { return new Locator(() => this.query() ? queryAllByText(this.element() as HTMLElement, text, options) : []); }
   async fill(value: string) {

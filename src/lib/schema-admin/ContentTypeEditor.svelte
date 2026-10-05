@@ -69,7 +69,7 @@
 </form>
 {#if !isNew}
 <section><h2>Fields</h2><p>6 system + {fields.length} custom fields</p>{#if !locked}<button type="button" onclick={() => { editingField = undefined; fieldOpen = true; }}>Add Field</button>{/if}
-  {#each fields as field (field.id)}<div class="field" ondragover={event => event.preventDefault()} ondrop={event => { event.preventDefault(); reorder(dragging,field.slug); dragging = ''; }}>
+  {#each fields as field (field.id)}<div role="group" aria-label={`Field ${field.label}`} class="field" ondragover={event => event.preventDefault()} ondrop={event => { event.preventDefault(); reorder(dragging,field.slug); dragging = ''; }}>
     {#if !locked}<button type="button" draggable="true" aria-label={`Reorder ${field.label} field`} ondragstart={() => dragging = field.slug}>↕</button>{/if}
     <span>{field.label}</span><code>{field.slug}</code><span>{field.unsupportedType?.type ?? field.type}</span>
     {#if field.unsupportedType}<span>Unsupported</span>{/if}{#if field.required}<span>Required</span>{/if}{#if field.unique}<span>Unique</span>{/if}{#if field.searchable}<span>Searchable</span>{/if}
