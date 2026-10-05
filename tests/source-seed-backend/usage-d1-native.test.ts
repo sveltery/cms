@@ -1,6 +1,7 @@
 import {expect,it} from 'vitest';
 import {sql,type Kysely} from 'kysely';
 import {schemaAdminStorage} from '../helpers/schema-admin-storage.ts';
+import {registerBlockDatabaseHost} from '../../src/lib/server/blocks/upstream/host.ts';
 import {migrateCms} from '../../src/lib/server/database/migrations.ts';
 import {SchemaRegistry} from '../../src/lib/server/database/registry.ts';
 import {seedSourceDatabase} from '../../src/lib/server/seed/namespace.ts';
@@ -9,12 +10,12 @@ import {MediaUsageRepository} from '../../src/lib/server/seed/d1-media-usage.ts'
 import type {Database} from '../../src/lib/server/blocks/upstream/database/types.ts';
 import type {MediaUsageSourceInput,MediaUsageOccurrenceInput} from '../../src/lib/server/blocks/upstream/database/repositories/media-usage.ts';
 
-async function fixture() {
+async function fixture(active=true) {
  const storage=await schemaAdminStorage('D1');
  try{
-  await migrateCms(storage.database);seedSourceDatabase(storage.database);
+  await migrateCms(storage.database);seedSourceDatabase(storage.database);registerBlockDatabaseHost(storage.database);
   const db=storage.database.db as unknown as Kysely<Database>;
-  await activateMediaUsageCapture(db,{writersDrained:true});
+  if(active)await activateMediaUsageCapture(db,{writersDrained:true});
   await new SchemaRegistry(storage.database).createCollection({slug:'usage_posts',label:'Usage Posts'});
   const collection=(await new SchemaRegistry(storage.database).getCollection('usage_posts'))!;
   const stamp='2026-01-01T00:00:00.000Z';
@@ -52,5 +53,19 @@ it('D1: replaces only the expected generation and reports the real current sourc
   const stale=await f.repo.replaceSourceIfMatching({...changed,sourceFingerprint:'media-usage-projection:v1:sha256:'+ 'c'.repeat(64)},[],before);
   expect(stale).toEqual({replaced:false,unchanged:false,source:current});
   expect(await f.repo.findCurrentUsageByMediaId('actual-new-media')).toHaveLength(1);
+ }finally{await f.storage.close();}
+},30000);
+
+it('D1: refreshes a real preactivation source and preserves no-op generations',async()=>{
+ const f=await fixture(false);try{
+  const outcome=await f.repo.replaceSourceIfMatching(f.source,[f.occurrence],null);
+  expect(outcome).toEqual({replaced:true,unchanged:false,source:null});
+  const before=(await f.repo.findSource(f.source.sourceKey))!;expect(before).toBeTruthy();
+  expect(await f.repo.replaceSourceIfMatching(f.source,[f.occurrence],before)).toEqual({replaced:false,unchanged:true,source:null});
+  const changed={...f.source,sourceFingerprint:'media-usage-projection:v1:sha256:'+ 'd'.repeat(64)};
+  expect(await f.repo.replaceSourceIfMatching(changed,[],before)).toEqual({replaced:true,unchanged:false,source:null});
+  const current=(await f.repo.findSource(f.source.sourceKey))!;expect(current.currentGeneration).not.toBe(before.currentGeneration);
+  expect(await f.repo.replaceSourceIfMatching({...changed,sourceFingerprint:'media-usage-projection:v1:sha256:'+ 'e'.repeat(64)},[],before)).toEqual({replaced:false,unchanged:false,source:current});
+  expect(await f.db.selectFrom('_cms_media_usage_generation_writes').select('lease_token').execute()).toEqual([]);
  }finally{await f.storage.close();}
 },30000);
