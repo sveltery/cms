@@ -52,7 +52,7 @@ export async function calendarContentGet(event:Event):Promise<Response>{
     const locale=event.url.searchParams.get('locale')??undefined;
     const service=lifecycleService(cms.database,cms.principal);
     const translations=event.url.searchParams.get('view')==='translations';
-    const item=await readCalendarContent(service,event.params.collection,event.params.id,locale,translations);
+    const item=await readCalendarContent(service,event.params.collection,event.params.id,locale);
     if(translations){
       const {ContentRepository}=await import('../database/lifecycle/upstream/database/repositories/content.ts');
       const siblings=item.translationGroup?await new ContentRepository(cms.database.db as any).findTranslations(item.type,item.translationGroup):[];
