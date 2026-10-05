@@ -5,6 +5,7 @@ import { sql, type Kysely } from "kysely";
 import { invalidateCollectionCache } from "../menus/object-cache.ts";
 import { chunks, SQL_BATCH_SIZE } from "../menus/chunks.ts";
 import type { Database } from "./types.ts";
+import { NATIVE_SEO_STORAGE, seoStorage, type SeoStorage } from "./storage.ts";
 import type { ContentSeo, ContentSeoInput } from "../../seo/types.ts";
 
 /** Default SEO values for content without an explicit SEO row */
@@ -39,7 +40,10 @@ function hasAnyField(input: ContentSeoInput): boolean {
  */
 export class SeoRepository {
 	private db: Kysely<Database>;
-	constructor(db: Kysely<Database>) { this.db = db; }
+	private storage: SeoStorage;
+	constructor(db: Kysely<Database>, storage: SeoStorage = NATIVE_SEO_STORAGE) {
+		this.db = db; this.storage = seoStorage(storage);
+	}
 
 	/**
 	 * Check whether a collection has SEO enabled (`has_seo = 1`).
@@ -47,7 +51,7 @@ export class SeoRepository {
 	 */
 	async isEnabled(collection: string): Promise<boolean> {
 		const row = await this.db
-			.selectFrom("_cms_collections")
+			.selectFrom(this.storage.collections)
 			.select("has_seo")
 			.where("slug", "=", collection)
 			.executeTakeFirst();
@@ -59,7 +63,7 @@ export class SeoRepository {
 	 */
 	async get(collection: string, contentId: string): Promise<ContentSeo> {
 		const row = await this.db
-			.selectFrom("_cms_seo")
+			.selectFrom(this.storage.seo)
 			.selectAll()
 			.where("collection", "=", collection)
 			.where("content_id", "=", contentId)
@@ -99,7 +103,7 @@ export class SeoRepository {
 		const uniqueContentIds = [...new Set(contentIds)];
 		for (const chunk of chunks(uniqueContentIds, SQL_BATCH_SIZE)) {
 			const rows = await this.db
-				.selectFrom("_cms_seo")
+				.selectFrom(this.storage.seo)
 				.selectAll()
 				.where("collection", "=", collection)
 				.where("content_id", "in", chunk)
@@ -137,7 +141,7 @@ export class SeoRepository {
 		// On conflict, we use COALESCE(excluded.col, current.col) so that
 		// only explicitly-provided fields overwrite existing values.
 		await sql`
-			INSERT INTO _cms_seo (
+			INSERT INTO ${sql.table(this.storage.seo)} (
 				collection, content_id,
 				seo_title, seo_description, seo_image, seo_canonical, seo_no_index,
 				created_at, updated_at
@@ -149,11 +153,11 @@ export class SeoRepository {
 				${now}, ${now}
 			)
 			ON CONFLICT (collection, content_id) DO UPDATE SET
-				seo_title = ${input.title !== undefined ? sql`${input.title}` : sql`_cms_seo.seo_title`},
-				seo_description = ${input.description !== undefined ? sql`${input.description}` : sql`_cms_seo.seo_description`},
-				seo_image = ${input.image !== undefined ? sql`${input.image}` : sql`_cms_seo.seo_image`},
-				seo_canonical = ${input.canonical !== undefined ? sql`${input.canonical}` : sql`_cms_seo.seo_canonical`},
-				seo_no_index = ${input.noIndex !== undefined ? sql`${input.noIndex ? 1 : 0}` : sql`_cms_seo.seo_no_index`},
+				seo_title = ${input.title !== undefined ? sql`${input.title}` : sql.ref(this.storage.seo + ".seo_title")},
+				seo_description = ${input.description !== undefined ? sql`${input.description}` : sql.ref(this.storage.seo + ".seo_description")},
+				seo_image = ${input.image !== undefined ? sql`${input.image}` : sql.ref(this.storage.seo + ".seo_image")},
+				seo_canonical = ${input.canonical !== undefined ? sql`${input.canonical}` : sql.ref(this.storage.seo + ".seo_canonical")},
+				seo_no_index = ${input.noIndex !== undefined ? sql`${input.noIndex ? 1 : 0}` : sql.ref(this.storage.seo + ".seo_no_index")},
 				updated_at = ${now}
 		`.execute(this.db);
 
@@ -166,7 +170,7 @@ export class SeoRepository {
 	 */
 	async delete(collection: string, contentId: string): Promise<void> {
 		await this.db
-			.deleteFrom("_cms_seo")
+			.deleteFrom(this.storage.seo)
 			.where("collection", "=", collection)
 			.where("content_id", "=", contentId)
 			.execute();

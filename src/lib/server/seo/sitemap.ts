@@ -9,6 +9,7 @@
 import { sql, type Kysely } from "kysely";
 
 import type { Database } from "./types.ts";
+import { NATIVE_SEO_STORAGE, seoStorage, type SeoStorage } from "./storage.ts";
 import { validateIdentifier } from "../database/lifecycle/upstream/database/validate.ts";
 import type { ApiResult } from "../menus/api-types.ts";
 
@@ -108,11 +109,13 @@ export async function handleSitemapData(
 	db: Kysely<Database>,
 	/** When set, only return data for this collection. */
 	collectionSlug?: string,
+	storage: SeoStorage = NATIVE_SEO_STORAGE,
 ): Promise<ApiResult<SitemapDataResponse>> {
+	const physical = seoStorage(storage);
 	try {
 		// Find SEO-enabled collections (optionally filtered)
 		let query = db
-			.selectFrom("_cms_collections")
+			.selectFrom(physical.collections)
 			.select(["slug", "url_pattern"])
 			.where("has_seo", "=", 1)
 			.where("routable", "=", 1);
@@ -155,7 +158,7 @@ export async function handleSitemapData(
 				}>`
 					SELECT c.slug, c.id, c.updated_at, c.published_at, c.locale, c.translation_group, s.seo_image
 					FROM ${sql.ref(tableName)} c
-					LEFT JOIN _cms_seo s
+					LEFT JOIN ${sql.table(physical.seo)} s
 						ON s.collection = ${col.slug}
 						AND s.content_id = c.id
 					WHERE c.status = 'published'

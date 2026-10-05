@@ -16,4 +16,6 @@ export interface SeoTable {
 export interface Database extends CmsTables {
   _cms_collections: CollectionRow & { has_seo: number; routable: number; url_pattern: string | null };
   _cms_seo: SeoTable;
+  _emdash_collections: Database['_cms_collections'];
+  _emdash_seo: SeoTable;
 }
