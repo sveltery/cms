@@ -21,14 +21,15 @@
   const freeForm = $derived(matches.length ? undefined : normalizeLanguage(draft));
   $effect(() => {
     if (!open || !popup) return;
+    const currentPopup = popup, currentInput = input;
     const bounds = trigger.getBoundingClientRect();
-    document.body.append(popup);
-    popup.style.top = `${Math.min(bounds.bottom + 4, window.innerHeight - 300)}px`;
-    popup.style.left = `${Math.max(8, Math.min(bounds.left, window.innerWidth - 328))}px`;
-    const outside = (event: PointerEvent) => { if (!popup.contains(event.target as Node) && !trigger.contains(event.target as Node)) close(); };
+    document.body.append(currentPopup);
+    currentPopup.style.top = `${Math.min(bounds.bottom + 4, window.innerHeight - 300)}px`;
+    currentPopup.style.left = `${Math.max(8, Math.min(bounds.left, window.innerWidth - 328))}px`;
+    const outside = (event: PointerEvent) => { if (!currentPopup.contains(event.target as Node) && !trigger.contains(event.target as Node)) close(); };
     document.addEventListener('pointerdown', outside);
-    void tick().then(() => input?.focus());
-    return () => { document.removeEventListener('pointerdown', outside); popup.remove(); };
+    void tick().then(() => { if (open && currentPopup.isConnected) currentInput?.focus(); });
+    return () => { document.removeEventListener('pointerdown', outside); currentPopup.remove(); };
   });
   function close() { open = false; trigger?.focus(); }
   function commit(value?: string) {

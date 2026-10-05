@@ -37,6 +37,9 @@ export default defineConfig({
     }
   }, svelte({ configFile: false })],
   resolve: { alias: { $lib: resolve(root, 'src/lib') }, conditions: ['browser'] },
+  // Transform the real Native Svelte graph before the first lazy React mount;
+  // original Source readiness clocks and every callback remain unchanged.
+  server: { warmup: { clientFiles: ['tests/helpers/rich-editor/EditorHost.svelte', 'src/lib/editor/rich-text/PortableTextEditor.svelte'] } },
   // The whole Source families retain original provider mocks. Do not scan those
   // mocked module bodies: their unmounted React providers are not prerequisites
   // of the Native editor. Prebundle the actual harness/authoring graph before

@@ -213,7 +213,7 @@
       {/if}
       <div bind:this={element} class:spotlight-mode={props.focusMode === 'spotlight'} aria-labelledby={props['aria-labelledby']}></div>
       {#if editor && !props.minimal}<EditorFooter {editor} translate={t} />{/if}
-      {#if editor && editable}<button type="button" class="gutter-insert" aria-label="Insert block" onclick={() => { const selection = editor!.state.selection.$from; const at = selection.depth ? selection.after(1) : selection.pos; openGutter(at); }}>+</button>{/if}
+      {#if editor && editable && !props.onGutterReady}<button type="button" class="gutter-insert" aria-label="Insert block" onclick={() => { const selection = editor!.state.selection.$from; const at = selection.depth ? selection.after(1) : selection.pos; openGutter(at); }}>+</button>{/if}
     </div>
     {#if editor && editable && selection && !selection.empty}<div data-emdash-inline-bubble-menu class="inline-bubble"><button type="button" aria-label="Subscript" onmousedown={event => event.preventDefault()} onclick={() => mark('subscript')}>x₂</button><button type="button" aria-label="Superscript" onmousedown={event => event.preventDefault()} onclick={() => mark('superscript')}>x²</button></div>{/if}
     {#if pasteReason}<div role="alert"><p>{pasteMessage}</p><button type="button" aria-label="Dismiss table paste error" onclick={() => { pasteReason = undefined; }}>×</button></div>{/if}
@@ -223,6 +223,10 @@
   {/if}
 </div>
 {#if slash.isOpen}
+  <div class="slash-command-menu-positioner">
+  <!-- Native nonmodal focus sentinels retain Source portal structure. TipTap
+       owns focus; the whole pinned stylesheet keeps these outside Tab order. -->
+  <span data-base-ui-focus-guard tabindex="-1" aria-hidden="true" onfocus={() => editor?.view.focus()}></span>
   <div bind:this={menu} class="slash-command-menu" data-slash-command-menu role="dialog" tabindex="-1" aria-label="Insert block" onpointermove={() => { movedPointer = true; }}>
     {#if slash.mode === 'table-size'}<TableSizePicker onInsert={tableInsert} onCancel={tableCancel} />
     {:else}
@@ -234,6 +238,8 @@
         </button>{:else}<p>No results</p>{/each}
       </div>
     {/if}
+  </div>
+  <span data-base-ui-focus-guard tabindex="-1" aria-hidden="true" onfocus={() => editor?.view.focus()}></span>
   </div>
 {/if}
 {#if sectionOpen && SectionPicker}<SectionPicker open={sectionOpen} onOpenChange={value => { sectionOpen = value; }} onSelect={sectionSelect} />{:else if sectionOpen}<p role="status">Loading sections...</p>{/if}
