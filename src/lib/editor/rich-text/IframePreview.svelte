@@ -8,11 +8,15 @@
   const sandbox = $derived(SANDBOX.filter(token => token !== 'allow-same-origin' || url.host !== window.location.host).join(' '));
   const size = $derived(embed.width && embed.height ? `aspect-ratio: ${embed.width} / ${embed.height}` : embed.height ? `height: ${embed.height}px` : 'aspect-ratio: 16 / 9');
   onMount(() => {
-    const observer = new IntersectionObserver(([entry]) => { if (entry?.isIntersecting) { visible = true; observer.disconnect(); } }, { rootMargin: '200px' });
-    observer.observe(container);
+    // Without an intersection API there is no observed visibility. Keep the
+    // remote page unloaded rather than assuming it is visible or throwing.
+    const observer = typeof IntersectionObserver === 'function'
+      ? new IntersectionObserver(([entry]) => { if (entry?.isIntersecting) { visible = true; observer?.disconnect(); } }, { rootMargin: '200px' })
+      : null;
+    observer?.observe(container);
     const start = () => { dragging = true; }, end = () => { dragging = false; };
     document.addEventListener('dragstart', start); document.addEventListener('dragend', end); document.addEventListener('drop', end);
-    return () => { observer.disconnect(); document.removeEventListener('dragstart', start); document.removeEventListener('dragend', end); document.removeEventListener('drop', end); };
+    return () => { observer?.disconnect(); document.removeEventListener('dragstart', start); document.removeEventListener('dragend', end); document.removeEventListener('drop', end); };
   });
 </script>
 <div bind:this={container} style={size}>
