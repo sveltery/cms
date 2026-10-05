@@ -12,6 +12,24 @@ import {UserRepository} from '../../src/lib/server/users/repository.ts';
 import {accountsRepository} from '../../src/lib/server/accounts/repository.ts';
 
 for(const target of ['Node SQLite','raw workerd D1'] as const){
+ test(`${target}: guarded administrator disable succeeds and a rejected profile write preserves both admins`,async()=>{
+  const d1=target==='raw workerd D1'?await asyncD1Storage():undefined;
+  const database=d1?openD1(d1.binding):openSqlite(':memory:');
+  try{
+   await migrateCms(database);
+   const users=new UserRepository(database),admin=await users.create({email:'admin@example.test',role:'admin'}),other=await users.create({email:'other@example.test',role:'admin'});
+   const accounts=accountsRepository(database);
+   await accounts.setDisabled(other.id,admin.id,true);assert.equal((await accounts.detail(other.id))?.disabled,true);
+   await accounts.setDisabled(other.id,admin.id,false);assert.equal((await accounts.detail(other.id))?.disabled,false);
+   const before=await database.db.selectFrom('_cms_auth_users').selectAll().orderBy('id').execute();
+   const profilesBefore=await database.db.selectFrom('_cms_auth_profiles').selectAll().orderBy('user_id').execute();
+   await sql`CREATE TRIGGER operator_reject_profile BEFORE UPDATE ON _cms_auth_profiles BEGIN SELECT RAISE(ABORT,'operator profile rejection'); END`.execute(database.db);
+   await assert.rejects(()=>accounts.setDisabled(other.id,admin.id,true),/operator profile rejection/);
+   assert.deepEqual(await database.db.selectFrom('_cms_auth_users').selectAll().orderBy('id').execute(),before);
+   assert.deepEqual(await database.db.selectFrom('_cms_auth_profiles').selectAll().orderBy('user_id').execute(),profilesBefore);
+   assert.deepEqual(await database.db.selectFrom('_cms_guards').selectAll().execute(),[]);
+  }finally{await database.close();await d1?.runtime.dispose();}
+ });
  for(const disabled of [true,false]){
   test(`${target}: rejected profile update rolls back ${disabled?'disable':'enable'} and preserves all stored user/profile bytes`,async()=>{
    const d1=target==='raw workerd D1'?await asyncD1Storage():undefined;
