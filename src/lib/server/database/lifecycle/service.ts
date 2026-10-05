@@ -239,8 +239,8 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
         await checked(value.type,data,true);
       }
       const usesDraftRevisions=(data!==undefined||value.references!==undefined)&&collection.supports.includes('revisions');
-      if(usesDraftRevisions&&value.references!==undefined)throw new CmsError('VALIDATION_ERROR','Draft reference staging is not implemented');
-      const references=value.references===undefined?undefined:await (await import('../../relations/content-input.ts')).prepareContentReferencesUpdate(database,value.type,value.id,value.references);
+      const referenceDraft=usesDraftRevisions&&value.references!==undefined?await (await import('../../relations/content-input.ts')).prepareContentReferenceDraft(database,value.type,value.id,value.references):undefined;
+      const references=usesDraftRevisions||value.references===undefined?undefined:await (await import('../../relations/content-input.ts')).prepareContentReferencesUpdate(database,value.type,value.id,value.references);
       const taxonomySelections=value.taxonomies===undefined?[]:await translate(()=>resolveTaxonomySlugMap(canonicalSourceDatabase(database),value.taxonomies,value.locale));
       const liveMetaTouched=Object.entries(value).some(([field,fieldValue])=>fieldValue!==undefined&&!['type','id','expected','_rev'].includes(field)&&!DRAFT_ONLY_UPDATE_KEYS.has(field));
       if(usesDraftRevisions){
@@ -248,10 +248,11 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
           owner(existing,actor,'content:edit_any');precondition(value.expected,existing);
           const base=existing.draftRevisionId?(await revisions.findById(existing.draftRevisionId))?.data??existing.data:existing.data;
           const merged=keepKnownFields({...base,...data},fields);if(value.slug!==undefined)merged._slug=value.slug;
+          if(referenceDraft){const {mergeStagedReferences,mergeStagedReferenceBaselines}=await import('../../relations/staged.ts');merged._references=mergeStagedReferences(base,referenceDraft.staged);merged._referencesBaseline=mergeStagedReferenceBaselines(base,referenceDraft.baselines);}
           const revisionInput={collection:value.type,entryId:value.id,data:merged,authorId:actor.id};
           // With taxonomy writes, insert the real revision and stage it in the
           // same actual fixed batch. Existing no-taxonomy Source staging stays.
-          const prepared=taxonomySelections.length?await revisions.prepareCreate(revisionInput):undefined;
+          const prepared=taxonomySelections.length||referenceDraft?await revisions.prepareCreate(revisionInput):undefined;
           const revision=prepared?{id:prepared.id}:await revisions.create(revisionInput);
           const metadata=prepared&&liveMetaTouched?await prepareAtomicUpdate(value,
             {...existing,version:existing.version+1,draftRevisionId:prepared.id},
@@ -312,10 +313,14 @@ export function lifecycleService(database:CmsDatabase, principal:ServerPrincipal
       owner(item,actor,'content:publish_any');precondition(value.expected,item);const collection=await definition(value.type);
       publicationDatePermission(value);
       let redirectCreated=false;
-      const executePublication=publicationStatementExecutor(database,{id:collection.id,slug:value.type,version:collection.version,urlPattern:collection.urlPattern??null},candidate=>{redirectCreated=candidate;});
+      const needsReferences=collection.fields.some(field=>field.type==='reference'&&field.validation?.relation);
+      const publicationReferences=needsReferences?await (await import('../../relations/content-input.ts')).prepareContentReferencePublication(database,value.type,item,
+        item.draftRevisionId?(await revisions.findById(item.draftRevisionId))?.data:undefined):undefined;
+      const executePublication=publicationStatementExecutor(database,{id:collection.id,slug:value.type,version:collection.version,urlPattern:collection.urlPattern??null},candidate=>{redirectCreated=candidate;},publicationReferences);
       const published=await translate(()=>content.publish(value.type,value.id,value.publishedAt,false,undefined,collection.supports.includes('revisions'),collection.routable,
         {version:item.version,updatedAt:item.updatedAt},undefined,executePublication));
       if(redirectCreated)completeContentSlugRedirect(database,dependencies.after);
+      if(publicationReferences){const {completeContentReferences}=await import('../../relations/content-input.ts');completeContentReferences(publicationReferences);}
       return published;
     },
     async unpublish(input:unknown):Promise<ContentItem> {
