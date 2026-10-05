@@ -7,9 +7,11 @@ import { getDayPickerLocale } from '../ui/date-time-locales.ts';
 export type CalendarPickerDirection = 'ltr' | 'rtl';
 export type CalendarPickerKey = Readonly<{ key: string; shiftKey?: boolean }>;
 
-/** Current compact Calendar tab target, extracted before the focus-memory repair. */
-export function calendarFocusTarget(_month: string, focused: string | undefined, _lastFocused: string | undefined, selected: string): string {
-  return focused ?? selected;
+/** DayPicker prioritizes an available active focus, then last focus, then selection. */
+export function calendarFocusTarget(month: string, focused: string | undefined, lastFocused: string | undefined, selected: string): string {
+  if (focused?.startsWith(month)) return focused;
+  if (lastFocused?.startsWith(month)) return lastFocused;
+  return selected;
 }
 
 function pad(value: number): string {
