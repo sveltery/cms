@@ -10,6 +10,8 @@ export const paragraph = (key: string, text: string): AuthoringBlock => ({
   _type: 'block', _key: key, style: 'normal', children: [{ _type: 'span', _key: `${key}-text`, text }]
 });
 export async function renderInDraftForm(extra: Partial<PortableTextEditorProps> = {}) {
+  // jsdom also lacks element scroll presentation; this is not browser geometry.
+  if (!HTMLElement.prototype.scrollIntoView) Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', { configurable: true, value() {} });
   const form = document.createElement('form'); form.setAttribute('aria-label', 'Draft host');
   const host = document.createElement('div'); form.append(host); document.body.append(form);
   const submitted = vi.fn((event: Event) => event.preventDefault()); form.addEventListener('submit', submitted);
