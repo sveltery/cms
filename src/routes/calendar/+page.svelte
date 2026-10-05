@@ -20,7 +20,7 @@
   onMount(()=>{if(!data.available)return;const owner=observeCalendarMetadata(queryClient,client,{manifest,user},value=>{manifest=value.manifest;user=value.user;});return()=>owner.destroy();});
   // Original admin bootstrap owns browser locale before any client request.
   // Existing i18n is reused; no locale is changed on an SSR request.
-  if(browser)void bootstrapCalendarLocale(data.locale);
+  if(browser)void bootstrapCalendarLocale(untrack(()=>data.locale));
   const search=$derived(parseCalendarSearch(Object.fromEntries(page.url.searchParams)));
   function updateSearch(patch:Partial<CalendarSearch>,push=false){
     const url=new URL(page.url);for(const [key,value]of Object.entries(patch)){if(value===undefined)url.searchParams.delete(key);else url.searchParams.set(key,value);}
