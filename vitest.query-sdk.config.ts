@@ -31,6 +31,7 @@ export default defineConfig({
     name: 'whole-query-sdk-native-import-transport',
     enforce: 'pre',
     resolveId(id, importer) {
+      if (id === 'astro/content/runtime' && importer?.startsWith(frozen)) return resolve(root, 'parity/astro-7.3.2/content-errors-authority/dist/content/loaders/errors.js');
       if (id === 'astro:content') return resolve(root, 'src/lib/server/query-sdk/live-provider.ts');
       if (!importer?.startsWith(frozen) || !id.startsWith('.')) return;
       const target = resolve(dirname(importer), id).replace(/\.js$/, '.ts');
@@ -44,8 +45,7 @@ export default defineConfig({
     include: ['parity/emdash/query-sdk-source/upstream/packages/core/tests/**/*.test.ts'],
     exclude: [
       'parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/content/reference-public-query.test.ts',
-      'parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/content/reference-query-caching.test.ts',
-      'parity/emdash/query-sdk-source/upstream/packages/core/tests/unit/query-fallback-locale.test.ts'
+      'parity/emdash/query-sdk-source/upstream/packages/core/tests/integration/content/reference-query-caching.test.ts'
     ]
   }
 });

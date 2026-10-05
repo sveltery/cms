@@ -34,4 +34,5 @@ for (const file of manifest.files) {
   expectations += expects;
 }
 assert.deepEqual({files:27, testDeclarations:declarations, expectExpressions:expectations}, manifest.sourceStaticTotals);
-console.log(JSON.stringify({pin:manifest.pin, wholeFamilies:27, selectedWholeFamilies:24, deferredWholeFamilies:3, testDeclarations:declarations, expectExpressions:expectations, productTestsRun:0}));
+assert.equal(manifest.selectedWholeFamilies + manifest.deferredWholeFamilies, 27);
+console.log(JSON.stringify({pin:manifest.pin, wholeFamilies:27, selectedWholeFamilies:manifest.selectedWholeFamilies, deferredWholeFamilies:manifest.deferredWholeFamilies, testDeclarations:declarations, expectExpressions:expectations, productTestsRun:0}));
