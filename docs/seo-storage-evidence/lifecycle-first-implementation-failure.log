@@ -1,0 +1,107 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+ ❯ tests/seo-storage-native/lifecycle.test.ts (9 tests | 6 failed) 10823ms
+   × Node: sole lifecycle create commits SEO and returns the stored shape 103ms
+   × Node: ordinary and staged draft updates preserve metadata, history and stale CAS 37ms
+   × raw D1: sole lifecycle create commits SEO and returns the stored shape 1442ms
+   × raw D1: ordinary and staged draft updates preserve metadata, history and stale CAS 1625ms
+   × scoped D1: sole lifecycle create commits SEO and returns the stored shape 1421ms
+   × scoped D1: ordinary and staged draft updates preserve metadata, history and stale CAS 1484ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/seo-storage-native/lifecycle.test.ts > Node: sole lifecycle create commits SEO and returns the stored shape
+TypeError: Cannot read properties of undefined (reading 'title')
+ ❯ tests/seo-storage-native/lifecycle.test.ts:20:32
+     18|       let created:any;
+     19|       await assert.doesNotReject(async()=>{created=await service.creat…
+     20|       assert.equal(created.seo.title,'Stored title');
+       |                                ^
+     21|       const row=(await sql<{seo_title:string}>`SELECT seo_title FROM _…
+     22|       assert.equal(row.seo_title,'Stored title');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/seo-storage-native/lifecycle.test.ts > Node: ordinary and staged draft updates preserve metadata, history and stale CAS
+TypeError: Cannot read properties of undefined (reading 'title')
+ ❯ tests/seo-storage-native/lifecycle.test.ts:37:38
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/seo-storage-native/lifecycle.test.ts > raw D1: sole lifecycle create commits SEO and returns the stored shape
+ FAIL  tests/seo-storage-native/lifecycle.test.ts > scoped D1: sole lifecycle create commits SEO and returns the stored shape
+AssertionError: Got unwanted rejection.
+Actual message: "D1_TYPE_ERROR: Type 'undefined' not supported for value 'undefined'"
+
+simple
+
+ ❯ tests/seo-storage-native/lifecycle.test.ts:19:7
+     17|       const service=lifecycleService(fixture.database,principal,{after…
+     18|       let created:any;
+     19|       await assert.doesNotReject(async()=>{created=await service.creat…
+       |       ^
+     20|       assert.equal(created.seo.title,'Stored title');
+     21|       const row=(await sql<{seo_title:string}>`SELECT seo_title FROM _…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/seo-storage-native/lifecycle.test.ts > raw D1: ordinary and staged draft updates preserve metadata, history and stale CAS
+Error: D1_TYPE_ERROR: Type 'undefined' not supported for value 'undefined'
+ ❯ D1Connection.executeQuery src/lib/server/database/d1.ts:55:68
+     53|   constructor(database: D1Binding) { this.database = database; }
+     54|   async executeQuery<Row>(query: CompiledQuery): Promise<QueryResult<R…
+     55|     return mapD1Result<Row>(await this.database.prepare(query.sql).bin…
+       |                                                                    ^
+     56|   }
+     57|   async *streamQuery<Row>(): AsyncIterableIterator<QueryResult<Row>> {…
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ SelectQueryBuilderImpl.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24
+ ❯ SelectQueryBuilderImpl.executeTakeFirst node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26
+ ❯ SeoRepository.isEnabled src/lib/server/seo/repository.ts:40:15
+ ❯ hydrateContentSeo src/lib/server/seo/content-read.ts:9:6
+ ❯ hydrate src/lib/server/database/lifecycle/service.ts:115:10
+
+Caused by: Error: Type 'undefined' not supported for value 'undefined'
+ ❯ cloudflare-internal:d1-api:311:24
+ ❯ D1PreparedStatement.bind cloudflare-internal:d1-api:282:42
+ ❯ #fetch node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/workers/core/entry.worker.js:4363:141
+ ❯ ProxyServer.fetch node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/workers/core/entry.worker.js:4277:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/seo-storage-native/lifecycle.test.ts > scoped D1: ordinary and staged draft updates preserve metadata, history and stale CAS
+Error: D1_TYPE_ERROR: Type 'undefined' not supported for value 'undefined'
+ ❯ Object.bind src/lib/server/database/d1-session-guard.ts:176:34
+    174|    bind(...params: unknown[]): D1PreparedStatement {
+    175|     return wrapStatement(
+    176|      { statement: meta.statement.bind(...params), sql: meta.sql, param…
+       |                                  ^
+    177|      fallback,
+    178|     );
+ ❯ CoalescingD1Connection.executeQuery src/lib/server/database/coalescing-d1.ts:135:63
+ ❯ node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:39:41
+ ❯ DefaultConnectionProvider.provideConnection node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/driver/default-connection-provider.js:10:26
+ ❯ DefaultQueryExecutor.executeQuery node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-executor/query-executor-base.js:38:28
+ ❯ SelectQueryBuilderImpl.execute node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:318:24
+ ❯ SelectQueryBuilderImpl.executeTakeFirst node_modules/.pnpm/kysely@0.29.2/node_modules/kysely/dist/query-builder/select-query-builder.js:322:26
+ ❯ SeoRepository.isEnabled src/lib/server/seo/repository.ts:40:15
+ ❯ hydrateContentSeo src/lib/server/seo/content-read.ts:9:6
+
+Caused by: Error: Type 'undefined' not supported for value 'undefined'
+ ❯ cloudflare-internal:d1-api:311:24
+ ❯ D1PreparedStatement.bind cloudflare-internal:d1-api:282:42
+ ❯ #fetch node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/workers/core/entry.worker.js:4363:141
+ ❯ ProxyServer.fetch node_modules/.pnpm/miniflare@4.20260507.1/node_modules/miniflare/dist/src/workers/core/entry.worker.js:4277:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  6 failed | 12 passed (18)
+   Start at  04:06:52
+   Duration  18.58s (transform 662ms, setup 0ms, import 1.58s, tests 16.51s, environment 0ms)
+

@@ -10,7 +10,7 @@ import { DraftRepository } from '../src/lib/server/database/entries.ts';
 import { historicalFeatureStorage } from './helpers/canonical-feature-storage-original.ts';
 import { databaseSnapshot } from './helpers/lifecycle-startup.ts';
 
-const markers16 = Array.from({ length: 16 }, (_, index) => index + 1);
+const markers17 = Array.from({ length: 17 }, (_, index) => index + 1);
 async function markers(database: CmsDatabase) {
   return (await sql<{ version: number }>`SELECT version FROM _cms_migrations ORDER BY version`
     .execute(database.db)).rows.map(row => row.version);
@@ -21,7 +21,7 @@ async function operatorObjects(database: CmsDatabase) {
 }
 
 for (const mode of ['Node', 'raw D1', 'scoped D1'] as const) {
-  test(`${mode}: genuine v5 upgrade and persisted v16 reopen preserve content and operator objects`, { timeout: 90_000 }, async () => {
+  test(`${mode}: genuine v5 upgrade and persisted v17 reopen preserve content and operator objects`, { timeout: 90_000 }, async () => {
     const fixture = await historicalFeatureStorage(mode);
     try {
       const registry = new SchemaRegistry(fixture.database);
@@ -37,12 +37,12 @@ for (const mode of ['Node', 'raw D1', 'scoped D1'] as const) {
       const beforeObjects = await operatorObjects(fixture.database);
       const beforeContent = (await sql`SELECT * FROM ec_posts WHERE id=${post.id}`.execute(fixture.database.db)).rows;
       await migrateCms(fixture.database);
-      assert.deepEqual(await markers(fixture.database), markers16);
+      assert.deepEqual(await markers(fixture.database), markers17);
       assert.deepEqual(await operatorObjects(fixture.database), beforeObjects);
       assert.deepEqual((await sql`SELECT * FROM ec_posts WHERE id=${post.id}`.execute(fixture.database.db)).rows, beforeContent);
       assert.deepEqual((await sql<{ note: string }>`SELECT note FROM operator_notes`.execute(fixture.database.db)).rows.map(row=>({...row})), [{ note: 'operator-retained' }]);
       await fixture.reopen(); await migrateCms(fixture.database);
-      assert.deepEqual(await markers(fixture.database), markers16);
+      assert.deepEqual(await markers(fixture.database), markers17);
       assert.deepEqual(await operatorObjects(fixture.database), beforeObjects);
       assert.deepEqual((await sql`SELECT * FROM ec_posts WHERE id=${post.id}`.execute(fixture.database.db)).rows, beforeContent);
       await sql`INSERT INTO operator_notes VALUES ('reopened')`.execute(fixture.database.db);
@@ -73,7 +73,7 @@ for (const mode of ['Node', 'raw D1', 'scoped D1'] as const) {
   });
 
   for (const historicalVersion of [0, 4] as const) {
-    test(`${mode}: a real late-batch SQLite failure rolls back the complete v${historicalVersion}→16 installation`, { timeout: 90_000 }, async () => {
+    test(`${mode}: a real late-batch SQLite failure rolls back the complete v${historicalVersion}→17 installation`, { timeout: 90_000 }, async () => {
       const fixture = await historicalFeatureStorage(mode, historicalVersion);
       try {
         await sql`CREATE TABLE operator_notes (note TEXT NOT NULL)`.execute(fixture.database.db);
@@ -96,7 +96,7 @@ for (const mode of ['Node', 'raw D1', 'scoped D1'] as const) {
         await fixture.reopen();
         assert.deepEqual(await databaseSnapshot(fixture.database), before);
         await migrateCms(fixture.database);
-        assert.deepEqual(await markers(fixture.database), markers16);
+        assert.deepEqual(await markers(fixture.database), markers17);
         assert.deepEqual((await sql<{ note: string }>`SELECT note FROM operator_notes`.execute(fixture.database.db)).rows.map(row=>({...row})), [{ note: 'outside-CMS' }]);
       } finally { await fixture.close(); }
     });

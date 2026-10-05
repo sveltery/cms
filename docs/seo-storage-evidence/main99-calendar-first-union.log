@@ -1,0 +1,145 @@
+? Verifying lockfile against supply-chain policies (534 entries)...
+Update available! 12.6.0 → 12.9.1.
+Changelog: https://pnpm.io/v/12.9.1
+To update, run: curl -fsSL https://get.pnpm.io/install.sh | sh -
+✓ Lockfile passes supply-chain policies (534 entries in 6.8s)
+Lockfile is up to date, resolution step is skipped
+Already up to date
+. prepare$ svelte-kit sync
+. prepare: Done
+
+devDependencies:
++ @floating-ui/dom 1.8.0
++ react-day-picker 9.14.0
+
+Done in 7.8s using pnpm v12.6.0
+$ node scripts/check-scheduled-publishing-source.mjs && vitest run --config vitest.calendar-admin-native.config.ts
+Scheduling provenance: 16 whole test families / 86 whole pinned files; 126 declarations / 360 static matcher roots (308 direct, 45 element, 7 poll); assertion execution credit is separate.
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+ ❯ tests/calendar-admin-native/lifecycle-actions.test.ts (24 tests | 14 failed) 2806ms
+     × schedules and removes a draft schedule through the sole repository 54ms
+     × keeps the published version and pending draft when scheduling is removed 33ms
+     × rejects rescheduling a routable draft after its slug is cleared 24ms
+     × allows a nonroutable draft to schedule without a slug 30ms
+     × binds a French ID with omitted mutation locale to its stored revision key 27ms
+     × removes a French schedule using its explicit-locale slug and canonical revision key 30ms
+     × publishes with configured locale casing after read-only canonical key resolution 25ms
+     × schedules and removes a draft schedule through the sole repository 774ms
+     × keeps the published version and pending draft when scheduling is removed 226ms
+     × rejects rescheduling a routable draft after its slug is cleared 125ms
+     × allows a nonroutable draft to schedule without a slug 174ms
+     × binds a French ID with omitted mutation locale to its stored revision key 144ms
+     × removes a French schedule using its explicit-locale slug and canonical revision key 140ms
+     × publishes with configured locale casing after read-only canonical key resolution 157ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 14 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/calendar-admin-native/lifecycle-actions.test.ts > Node actual calendar lifecycle actions > schedules and removes a draft schedule through the sole repository
+ FAIL  tests/calendar-admin-native/lifecycle-actions.test.ts > D1 actual calendar lifecycle actions > schedules and removes a draft schedule through the sole repository
+CmsError: Cannot publish routable content without a slug
+ ❯ Object.schedule src/lib/server/database/lifecycle/service.ts:349:56
+    347|       // delegating to the repository, including rescheduling a cleare…
+    348|       const collection=await definition(value.type);
+    349|       if(collection.routable&&!item.slug?.trim())throw new CmsError('V…
+       |                                                        ^
+    350|       const scheduledAt=parse(v.pipe(v.string(),v.minLength(1),v.maxLe…
+    351|       return translate(()=>content.schedule(value.type,value.id,schedu…
+ ❯ tests/calendar-admin-native/lifecycle-actions.test.ts:26:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/14]⎯
+
+ FAIL  tests/calendar-admin-native/lifecycle-actions.test.ts > Node actual calendar lifecycle actions > keeps the published version and pending draft when scheduling is removed
+ FAIL  tests/calendar-admin-native/lifecycle-actions.test.ts > D1 actual calendar lifecycle actions > keeps the published version and pending draft when scheduling is removed
+CmsError: Cannot publish routable content without a slug
+ ❯ Object.schedule src/lib/server/database/lifecycle/service.ts:349:56
+    347|       // delegating to the repository, including rescheduling a cleare…
+    348|       const collection=await definition(value.type);
+    349|       if(collection.routable&&!item.slug?.trim())throw new CmsError('V…
+       |                                                        ^
+    350|       const scheduledAt=parse(v.pipe(v.string(),v.minLength(1),v.maxLe…
+    351|       return translate(()=>content.schedule(value.type,value.id,schedu…
+ ❯ tests/calendar-admin-native/lifecycle-actions.test.ts:35:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/14]⎯
+
+ FAIL  tests/calendar-admin-native/lifecycle-actions.test.ts > Node actual calendar lifecycle actions > rejects rescheduling a routable draft after its slug is cleared
+ FAIL  tests/calendar-admin-native/lifecycle-actions.test.ts > D1 actual calendar lifecycle actions > rejects rescheduling a routable draft after its slug is cleared
+CmsError: Cannot publish routable content without a slug
+ ❯ Object.schedule src/lib/server/database/lifecycle/service.ts:349:56
+    347|       // delegating to the repository, including rescheduling a cleare…
+    348|       const collection=await definition(value.type);
+    349|       if(collection.routable&&!item.slug?.trim())throw new CmsError('V…
+       |                                                        ^
+    350|       const scheduledAt=parse(v.pipe(v.string(),v.minLength(1),v.maxLe…
+    351|       return translate(()=>content.schedule(value.type,value.id,schedu…
+ ❯ tests/calendar-admin-native/lifecycle-actions.test.ts:52:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/14]⎯
+
+ FAIL  tests/calendar-admin-native/lifecycle-actions.test.ts > Node actual calendar lifecycle actions > allows a nonroutable draft to schedule without a slug
+ FAIL  tests/calendar-admin-native/lifecycle-actions.test.ts > D1 actual calendar lifecycle actions > allows a nonroutable draft to schedule without a slug
+CmsError: Content changed while the operation was in progress
+ ❯ translate src/lib/server/database/lifecycle/service.ts:142:62
+    140|     try{return await operation();}
+    141|     catch(cause){
+    142|       if(cause instanceof ContentMutationConflictError)throw new CmsEr…
+       |                                                              ^
+    143|       if(cause instanceof EmDashValidationError){
+    144|         throw LifecycleSlugConflictError.fromValidation(cause)??new Cm…
+ ❯ tests/calendar-admin-native/lifecycle-actions.test.ts:64:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/14]⎯
+
+ FAIL  tests/calendar-admin-native/lifecycle-actions.test.ts > Node actual calendar lifecycle actions > binds a French ID with omitted mutation locale to its stored revision key
+ FAIL  tests/calendar-admin-native/lifecycle-actions.test.ts > D1 actual calendar lifecycle actions > binds a French ID with omitted mutation locale to its stored revision key
+CmsError: VALIDATION_ERROR
+ ❯ parse src/lib/server/database/validation.ts:119:30
+    117| export function parse<T extends v.BaseSchema<unknown, unknown, v.BaseI…
+    118|   const result = v.safeParse(schema, input);
+    119|   if (!result.success) throw new CmsError('VALIDATION_ERROR');
+       |                              ^
+    120|   return result.output;
+    121| }
+ ❯ resolvePublicationKey src/lib/server/database/lifecycle/service.ts:329:49
+ ❯ tests/calendar-admin-native/lifecycle-actions.test.ts:91:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/14]⎯
+
+ FAIL  tests/calendar-admin-native/lifecycle-actions.test.ts > Node actual calendar lifecycle actions > removes a French schedule using its explicit-locale slug and canonical revision key
+ FAIL  tests/calendar-admin-native/lifecycle-actions.test.ts > D1 actual calendar lifecycle actions > removes a French schedule using its explicit-locale slug and canonical revision key
+CmsError: Cannot publish routable content without a slug
+ ❯ Object.schedule src/lib/server/database/lifecycle/service.ts:349:56
+    347|       // delegating to the repository, including rescheduling a cleare…
+    348|       const collection=await definition(value.type);
+    349|       if(collection.routable&&!item.slug?.trim())throw new CmsError('V…
+       |                                                        ^
+    350|       const scheduledAt=parse(v.pipe(v.string(),v.minLength(1),v.maxLe…
+    351|       return translate(()=>content.schedule(value.type,value.id,schedu…
+ ❯ tests/calendar-admin-native/lifecycle-actions.test.ts:102:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/14]⎯
+
+ FAIL  tests/calendar-admin-native/lifecycle-actions.test.ts > Node actual calendar lifecycle actions > publishes with configured locale casing after read-only canonical key resolution
+ FAIL  tests/calendar-admin-native/lifecycle-actions.test.ts > D1 actual calendar lifecycle actions > publishes with configured locale casing after read-only canonical key resolution
+CmsError: VALIDATION_ERROR
+ ❯ parse src/lib/server/database/validation.ts:119:30
+    117| export function parse<T extends v.BaseSchema<unknown, unknown, v.BaseI…
+    118|   const result = v.safeParse(schema, input);
+    119|   if (!result.success) throw new CmsError('VALIDATION_ERROR');
+       |                              ^
+    120|   return result.output;
+    121| }
+ ❯ resolvePublicationKey src/lib/server/database/lifecycle/service.ts:329:49
+ ❯ tests/calendar-admin-native/lifecycle-actions.test.ts:122:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/14]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  14 failed | 42 passed (56)
+   Start at  22:46:49
+   Duration  8.45s (transform 1.18s, setup 61ms, import 1.24s, tests 6.71s, environment 0ms)
+
+[ELIFECYCLE] Command failed with exit code 1.

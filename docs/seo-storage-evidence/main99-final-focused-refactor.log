@@ -1,0 +1,55 @@
+$ node scripts/check-seo-storage-source.mjs && vitest run --config vitest.seo-storage-reference.config.mts && vitest run --config vitest.seo-storage-content-reference.config.mts && vitest run --config vitest.seo-storage-loader-reference.config.mts
+{"wholeAuthorities":70,"wholeFamilies":[{"path":"packages/core/tests/unit/seo/get-seo-meta.test.ts","declarations":9,"expectExpressions":13},{"path":"packages/core/tests/unit/loader-seo.test.ts","declarations":7,"expectExpressions":18},{"path":"packages/core/tests/unit/page/seo-contributions.test.ts","declarations":20,"expectExpressions":30},{"path":"packages/core/tests/unit/plugins/page-seo.test.ts","declarations":10,"expectExpressions":16},{"path":"packages/core/tests/unit/plugins/page-metadata.test.ts","declarations":33,"expectExpressions":51},{"path":"packages/core/tests/unit/database/repositories/seo.test.ts","declarations":3,"expectExpressions":15},{"path":"packages/core/tests/integration/seo/seo.test.ts","declarations":60,"expectExpressions":147},{"path":"packages/core/tests/integration/seo/hreflang.test.ts","declarations":14,"expectExpressions":15},{"path":"packages/core/tests/integration/seo/sitemap-route.test.ts","declarations":13,"expectExpressions":46}],"productTestsRun":0}
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+
+ Test Files  3 passed (3)
+      Tests  30 passed (30)
+   Start at  22:50:07
+   Duration  5.69s (transform 1.02s, setup 0ms, import 2.05s, tests 3.24s, environment 0ms)
+
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+
+ Test Files  1 passed (1)
+      Tests  60 passed (60)
+   Start at  22:50:13
+   Duration  6.74s (transform 988ms, setup 0ms, import 1.37s, tests 5.24s, environment 0ms)
+
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  22:50:20
+   Duration  2.20s (transform 942ms, setup 0ms, import 1.31s, tests 774ms, environment 0ms)
+
+$ vitest run --config vitest.seo-storage-native.config.ts
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+
+ Test Files  8 passed (8)
+      Tests  35 passed (35)
+   Start at  22:50:23
+   Duration  36.37s (transform 681ms, setup 0ms, import 3.38s, tests 32.03s, environment 1ms)
+
+$ node scripts/check-scheduled-publishing-source.mjs && vitest run --config vitest.calendar-admin-native.config.ts
+Scheduling provenance: 16 whole test families / 86 whole pinned files; 126 declarations / 360 static matcher roots (308 direct, 45 element, 7 poll); assertion execution credit is separate.
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+
+ Test Files  4 passed (4)
+      Tests  56 passed (56)
+   Start at  22:51:00
+   Duration  9.63s (transform 1.63s, setup 68ms, import 1.35s, tests 7.72s, environment 0ms)
+
+$ svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+Loading svelte-check in workspace: /workspace/cms-complete-seo-storage-backend
+Getting Svelte diagnostics...
+
+svelte-check found 0 errors and 0 warnings

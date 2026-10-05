@@ -1,0 +1,33 @@
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+ ❯ tests/seo-storage-native/public-sitemap.test.ts (2 tests | 2 failed) 1886ms
+   × Node: actual public sitemap uses final canonical storage and trusted runtime base path 84ms
+   × raw D1: actual public sitemap uses final canonical storage and trusted runtime base path 1801ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/seo-storage-native/public-sitemap.test.ts > Node: actual public sitemap uses final canonical storage and trusted runtime base path
+ FAIL  tests/seo-storage-native/public-sitemap.test.ts > raw D1: actual public sitemap uses final canonical storage and trusted runtime base path
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'application/xml; charset=utf-8'
+- 'application/xml'
+                  ^
+
+
+Expected: "application/xml"
+Received: "application/xml; charset=utf-8"
+
+ ❯ tests/seo-storage-native/public-sitemap.test.ts:22:10
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  2 failed | 25 passed (27)
+   Start at  04:20:06
+   Duration  27.61s (transform 662ms, setup 0ms, import 2.41s, tests 24.54s, environment 0ms)
+

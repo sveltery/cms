@@ -1,0 +1,29 @@
+$ node scripts/check-seo-storage-source.mjs && vitest run --config vitest.seo-storage-reference.config.mts && vitest run --config vitest.seo-storage-content-reference.config.mts && vitest run --config vitest.seo-storage-loader-reference.config.mts
+{"wholeAuthorities":70,"wholeFamilies":[{"path":"packages/core/tests/unit/seo/get-seo-meta.test.ts","declarations":9,"expectExpressions":13},{"path":"packages/core/tests/unit/loader-seo.test.ts","declarations":7,"expectExpressions":18},{"path":"packages/core/tests/unit/page/seo-contributions.test.ts","declarations":20,"expectExpressions":30},{"path":"packages/core/tests/unit/plugins/page-seo.test.ts","declarations":10,"expectExpressions":16},{"path":"packages/core/tests/unit/plugins/page-metadata.test.ts","declarations":33,"expectExpressions":51},{"path":"packages/core/tests/unit/database/repositories/seo.test.ts","declarations":3,"expectExpressions":15},{"path":"packages/core/tests/integration/seo/seo.test.ts","declarations":60,"expectExpressions":147},{"path":"packages/core/tests/integration/seo/hreflang.test.ts","declarations":14,"expectExpressions":15},{"path":"packages/core/tests/integration/seo/sitemap-route.test.ts","declarations":13,"expectExpressions":46}],"productTestsRun":0}
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+
+ Test Files  3 passed (3)
+      Tests  30 passed (30)
+   Start at  04:23:37
+   Duration  4.94s (transform 826ms, setup 0ms, import 1.74s, tests 2.84s, environment 0ms)
+
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+
+ Test Files  1 passed (1)
+      Tests  60 passed (60)
+   Start at  04:23:42
+   Duration  6.70s (transform 991ms, setup 0ms, import 1.34s, tests 5.24s, environment 0ms)
+
+
+ RUN  v4.1.10 /workspace/cms-complete-seo-storage-backend
+
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  04:23:49
+   Duration  2.15s (transform 925ms, setup 0ms, import 1.29s, tests 739ms, environment 0ms)
+
