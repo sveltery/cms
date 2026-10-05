@@ -4,6 +4,7 @@ import FieldEditor from '../../src/lib/schema-admin/FieldEditor.svelte';
 import List from '../../src/lib/schema-admin/ContentTypeList.svelte';
 import Editor from '../../src/lib/schema-admin/ContentTypeEditor.svelte';
 import { nativeProps } from '../helpers/schema-ui/state.svelte';
+import { queryAllByRole } from '@testing-library/react';
 const mounted: ReturnType<typeof mount>[] = [];
 afterEach(async () => { for (const instance of mounted.splice(0)) await unmount(instance); document.body.replaceChildren(); });
 const collection = {id:'posts',slug:'posts',label:'Posts',source:'manual',supports:['drafts'],hasSeo:false};
@@ -68,4 +69,26 @@ it('reports a rejected collection save while retaining unsaved settings for retr
   target.querySelector<HTMLFormElement>('form')!.requestSubmit();
   await vi.waitFor(()=>expect(target.textContent).toContain('Collection schema changed; reload and retry'));
   expect(input.value).toBe('Updated posts');
+});
+it('excludes background actions from accessibility queries while its actual deletion dialog is open', async () => {
+  const target=await list({onDelete:vi.fn()});
+  target.querySelector<HTMLButtonElement>('button[aria-label="Delete Posts"]')!.click();await tick();
+  expect(queryAllByRole(target,'button',{name:'Delete',exact:false})).toHaveLength(1);
+});
+it('rolls a rejected collection reorder back to the persisted read model and reports its error', async () => {
+  const onReorder=vi.fn(async()=>{throw new Error('Collection order could not be saved');});
+  const target=await list({collections:[collection,{...collection,id:'pages',slug:'pages',label:'Pages'}],onReorder});
+  target.querySelector<HTMLButtonElement>('button[aria-label="Reorder Posts"]')!.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true}));
+  await vi.waitFor(()=>expect(target.querySelector('[role="alert"]')?.textContent).toContain('Collection order could not be saved'));
+  expect(target.querySelector('tbody tr a')?.textContent).toBe('Posts');
+  expect(onReorder).toHaveBeenCalledWith(['pages','posts']);
+});
+it('retains field order and displays a rejected field reorder', async () => {
+  const target=document.createElement('section');document.body.append(target);
+  const onReorderFields=vi.fn(async()=>{throw new Error('Field order could not be saved');});
+  mounted.push(mount(Editor,{target,props:{collection:{...collection,fields:[{id:'title',slug:'title',label:'Title',type:'string'},{id:'body',slug:'body',label:'Body',type:'text'}]},onReorderFields,client}}));await tick();
+  target.querySelector<HTMLButtonElement>('button[aria-label="Reorder Title field"]')!.dispatchEvent(new Event('dragstart',{bubbles:true}));
+  target.querySelector('[aria-label="Field Body"]')!.dispatchEvent(new Event('drop',{bubbles:true,cancelable:true}));
+  await vi.waitFor(()=>expect(target.textContent).toContain('Field order could not be saved'));
+  expect(target.querySelector('[role="group"]')?.getAttribute('aria-label')).toBe('Field Title');
 });
